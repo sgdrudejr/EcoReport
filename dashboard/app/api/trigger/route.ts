@@ -5,14 +5,7 @@ const GITHUB_REPO = "EcoReport";
 const EVENT_TYPE = "run-cycle";
 
 export async function POST(request: NextRequest) {
-  // ── 비밀번호 체크 ────────────────────────────────────────────────────
-  const password = process.env.DASHBOARD_PASSWORD;
-  if (password) {
-    const body = await request.json().catch(() => ({}));
-    if (body.password !== password) {
-      return Response.json({ error: "Unauthorized" }, { status: 401 });
-    }
-  }
+  await request.json().catch(() => ({}));
 
   // ── GitHub repository_dispatch 호출 ──────────────────────────────────
   const token = process.env.GITHUB_TOKEN;

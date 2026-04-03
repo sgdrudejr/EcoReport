@@ -10,15 +10,12 @@ export default function TriggerButton() {
   const [message, setMessage] = useState("");
 
   async function handleClick() {
-    const password = process.env.NEXT_PUBLIC_DASHBOARD_PASSWORD
-      ?? prompt("대시보드 비밀번호를 입력하세요") ?? undefined;
-
     setState("loading");
     try {
       const res = await fetch("/api/trigger", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ password }),
+        body: JSON.stringify({}),
       });
       const data = await res.json();
       if (!res.ok) {

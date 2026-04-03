@@ -135,16 +135,10 @@ export default function PortfolioEditor({
     setMessage("");
 
     try {
-      const password =
-        process.env.NEXT_PUBLIC_DASHBOARD_PASSWORD ??
-        prompt("대시보드 비밀번호를 입력하세요") ??
-        undefined;
-
       const response = await fetch("/api/portfolio/update", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          password,
           snapshot: {
             ...snapshot,
             date: new Date().toISOString().slice(0, 10),

@@ -41,10 +41,6 @@ type PortfolioSnapshot = {
   }>;
 };
 
-function unauthorized() {
-  return Response.json({ error: "Unauthorized" }, { status: 401 });
-}
-
 function validateSnapshot(snapshot: unknown): snapshot is PortfolioSnapshot {
   if (!snapshot || typeof snapshot !== "object") {
     return false;
@@ -85,7 +81,6 @@ async function fetchExistingSha(token: string) {
 }
 
 export async function POST(request: NextRequest) {
-  const password = process.env.DASHBOARD_PASSWORD;
   const token = process.env.GITHUB_TOKEN;
 
   if (!token) {
@@ -98,14 +93,6 @@ export async function POST(request: NextRequest) {
   const body = await request.json().catch(() => null);
   if (!body) {
     return Response.json({ error: "잘못된 요청 본문입니다." }, { status: 400 });
-  }
-
-  if (password && body.password && body.password !== password) {
-    return unauthorized();
-  }
-
-  if (password && !body.password) {
-    return unauthorized();
   }
 
   if (!validateSnapshot(body.snapshot)) {
