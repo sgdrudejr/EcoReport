@@ -1,14 +1,23 @@
 # 민감 정보
 .env
+.env.local
 config/accounts.json
 
 # 큰 파일 (PDF 원본은 올리지 않음)
 data/reports/**/*.pdf
+data/reports/**/*.txt
+data/reports/**/index.json
+
+# 수집 원본 데이터
+data/news/
+data/tweets/
+data/analysis-state/
 
 # node_modules
 node_modules/
 dashboard/node_modules/
 dashboard/.next/
+dashboard/out/
 
 # 로그
 logs/
