@@ -130,7 +130,21 @@ run_step "📊 [3/6] 기술적 분석 계산..." \
   node scripts/calc-technicals.js --date "$DATE"
 
 if [[ "$MANUAL_LLM" == "1" ]]; then
-  log "🧬 [4/6] 수동 LLM 모드: API 압축은 생략하고 프롬프트만 준비합니다."
+  log "🧬 [4/6] 수동 LLM 모드: API 압축은 생략하고 PDF 요약 큐/프롬프트만 준비합니다."
+
+  if report_queue_reason="$(should_run_llm_stage report-queue)"; then
+    if run_soft_step "📚 [4/6] 수동 LLM용 PDF 요약 큐 생성... $report_queue_reason" \
+      node scripts/build-report-summary-queue.js --date "$DATE"; then
+      mark_llm_stage report-queue
+    fi
+  else
+    local_status=$?
+    if [[ "$local_status" == "20" ]]; then
+      log "📚 [4/6] PDF 요약 큐 생성 스킵... $report_queue_reason"
+    else
+      log "⚠️ PDF 요약 큐 생성 여부 판단 실패: $report_queue_reason"
+    fi
+  fi
 
   if synthesis_reason="$(should_run_llm_stage synthesis)"; then
     run_soft_step "🧩 [5/6] 수동 LLM용 시황 프롬프트 생성... $synthesis_reason" \

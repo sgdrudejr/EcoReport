@@ -33,7 +33,7 @@ function parseArgs(argv) {
   }
 
   if (!args.stage) {
-    throw new Error("--stage 값이 필요합니다. (compress|synthesis|advisory)");
+    throw new Error("--stage 값이 필요합니다. (report-queue|compress|synthesis|advisory)");
   }
 
   return args;
@@ -131,6 +131,15 @@ async function resolveStageInputs(stage, date) {
   const knowledgeWeeklyDir = path.join(ROOT, "knowledge", "weekly");
   const knowledgeMonthlyDir = path.join(ROOT, "knowledge", "monthly");
 
+  if (stage === "report-queue") {
+    return [
+      path.join(reportsDir, "index.json"),
+      path.join(ROOT, "data", "portfolio", "latest.json"),
+      path.join(ROOT, "config", "watchlist.json"),
+      path.join(ROOT, "prompts", "compress-report.md"),
+    ];
+  }
+
   if (stage === "compress") {
     return [path.join(reportsDir, "index.json")];
   }
@@ -164,6 +173,13 @@ async function resolveStageInputs(stage, date) {
 }
 
 async function resolveStageOutputs(stage, date) {
+  if (stage === "report-queue") {
+    return [
+      path.join(ROOT, "knowledge", "daily", `${date}-report-summary-queue.json`),
+      path.join(ROOT, "knowledge", "daily", `${date}-report-summary-queue.md`),
+    ];
+  }
+
   if (stage === "compress") {
     return [path.join(ROOT, "data", "reports", date, "compressed.json")];
   }
