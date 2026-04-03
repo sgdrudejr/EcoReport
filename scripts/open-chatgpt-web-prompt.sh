@@ -5,17 +5,19 @@ ROOT="/Users/seo/stock-pilot"
 KNOWLEDGE_DIR="$ROOT/knowledge/daily"
 REPORTS_DIR="$ROOT/reports/daily"
 CHATGPT_URL="https://chatgpt.com/"
+AUTO_SAVE="true"
 
 usage() {
   cat <<'EOF'
 Usage:
-  bash scripts/open-chatgpt-web-prompt.sh [--no-submit] [advisory|synthesis|queue|file <path>]
+  bash scripts/open-chatgpt-web-prompt.sh [--no-submit] [--no-auto-save] [advisory|synthesis|queue|file <path>]
 
 Examples:
   bash scripts/open-chatgpt-web-prompt.sh advisory
   bash scripts/open-chatgpt-web-prompt.sh --no-submit synthesis
   bash scripts/open-chatgpt-web-prompt.sh queue
   bash scripts/open-chatgpt-web-prompt.sh file /Users/seo/stock-pilot/knowledge/daily/report-prompts/2026-04-03/report_001.md
+  bash scripts/open-chatgpt-web-prompt.sh --no-auto-save file /Users/seo/stock-pilot/knowledge/daily/report-prompts/2026-04-03/report_001.md
 EOF
 }
 
@@ -29,10 +31,26 @@ latest_matching_file() {
 }
 
 SUBMIT="true"
-if [[ "${1:-}" == "--no-submit" ]]; then
-  SUBMIT="false"
+while [[ "${1:-}" == --* ]]; do
+  case "${1:-}" in
+    --no-submit)
+      SUBMIT="false"
+      ;;
+    --no-auto-save)
+      AUTO_SAVE="false"
+      ;;
+    -h|--help)
+      usage
+      exit 0
+      ;;
+    *)
+      echo "Unknown option: $1" >&2
+      usage
+      exit 1
+      ;;
+  esac
   shift
-fi
+done
 
 MODE="${1:-advisory}"
 TARGET_FILE=""
@@ -137,3 +155,24 @@ echo "Opened ChatGPT web."
 echo "Loaded prompt:"
 echo "$TARGET_FILE"
 echo "Submit mode: $SUBMIT"
+
+if [[ "$MODE" == "file" && "$SUBMIT" == "true" && "$AUTO_SAVE" == "true" ]]; then
+  REPORT_BASENAME="$(basename "$TARGET_FILE" .md)"
+  REPORT_DATE="$(basename "$(dirname "$TARGET_FILE")")"
+
+  if [[ "$REPORT_BASENAME" =~ ^report_[0-9]+$ && "$REPORT_DATE" =~ ^[0-9]{4}-[0-9]{2}-[0-9]{2}$ ]]; then
+    echo "Watching ChatGPT response for auto-save..."
+    for _ in {1..36}; do
+      sleep 5
+      if bash "$ROOT/scripts/save-chatgpt-report-response.sh" "$REPORT_DATE" "$REPORT_BASENAME" >/tmp/ecoreport-auto-save.log 2>/tmp/ecoreport-auto-save.err; then
+        echo "Auto-saved ChatGPT response:"
+        cat /tmp/ecoreport-auto-save.log
+        exit 0
+      fi
+    done
+
+    echo "Auto-save timed out. You can save manually with:" >&2
+    echo "bash $ROOT/scripts/save-chatgpt-report-response.sh $REPORT_DATE $REPORT_BASENAME" >&2
+    exit 1
+  fi
+fi
