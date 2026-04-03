@@ -1,6 +1,14 @@
 name: Deploy Dashboard to Vercel
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - "dashboard/**"
+      - "data/portfolio/**"
+      - "config/**"
+      - ".github/workflows/deploy.yml"
   # 분석 사이클 완료 후 자동 배포
   workflow_run:
     workflows: ["Run Analysis Cycle (Mac Mini)"]
