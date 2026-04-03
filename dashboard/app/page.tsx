@@ -94,9 +94,10 @@ function MarketCard({
   changePct,
 }: {
   label: string;
-  close: number;
-  changePct: number;
+  close: number | null | undefined;
+  changePct: number | null | undefined;
 }) {
+  const safeClose = typeof close === "number" ? close : 0;
   const safeChangePct = typeof changePct === "number" ? changePct : 0;
   const positive = safeChangePct > 0;
   const neutral = safeChangePct === 0;
@@ -113,7 +114,7 @@ function MarketCard({
         {label}
       </span>
       <span className="text-xl font-semibold tabular-nums">
-        {close.toLocaleString()}
+        {safeClose.toLocaleString()}
       </span>
       <span className={`flex items-center gap-1 text-sm font-medium ${color}`}>
         <Icon size={14} />
@@ -122,6 +123,22 @@ function MarketCard({
       </span>
     </div>
   );
+}
+
+function formatSignedPercent(value: number | null | undefined, digits = 2) {
+  if (typeof value !== "number" || Number.isNaN(value)) {
+    return "-";
+  }
+
+  return `${value > 0 ? "+" : ""}${value.toFixed(digits)}%`;
+}
+
+function formatPercent(value: number | null | undefined, digits = 1) {
+  if (typeof value !== "number" || Number.isNaN(value)) {
+    return "-";
+  }
+
+  return `${value.toFixed(digits)}%`;
 }
 
 function StrategyProgress({ strategy }: { strategy: Strategy }) {
@@ -223,9 +240,7 @@ function PortfolioAccountCard({ account }: { account: PortfolioAccount }) {
         <span>
           수익률{" "}
           <span className={profitClass}>
-            {account.profitRate != null
-              ? `${account.profitRate > 0 ? "+" : ""}${account.profitRate.toFixed(2)}%`
-              : "-"}
+            {formatSignedPercent(account.profitRate)}
           </span>
         </span>
       </div>
@@ -242,9 +257,7 @@ function PortfolioAccountCard({ account }: { account: PortfolioAccount }) {
           <div className="flex items-center justify-between text-xs text-zinc-500">
             <span>보유 종목 합산 수익률</span>
             <span className={`font-medium ${holdingsProfitClass}`}>
-              {holdingsProfitRate != null
-                ? `${holdingsProfitRate > 0 ? "+" : ""}${holdingsProfitRate.toFixed(2)}%`
-                : "-"}
+              {formatSignedPercent(holdingsProfitRate)}
             </span>
           </div>
           <div className="flex flex-wrap gap-2 pt-1">
@@ -369,9 +382,7 @@ export default function DashboardPage() {
                               : "text-zinc-400"
                         }
                       >
-                        {totals?.totalHoldingsProfitRate != null
-                          ? `${totals.totalHoldingsProfitRate > 0 ? "+" : ""}${totals.totalHoldingsProfitRate.toFixed(2)}%`
-                          : "-"}
+                        {formatSignedPercent(totals?.totalHoldingsProfitRate)}
                       </span>
                     </p>
                   </div>
@@ -438,13 +449,13 @@ export default function DashboardPage() {
             <div className="bg-zinc-900 rounded-xl border border-zinc-800 p-4">
               <p className="text-xs text-zinc-500">총 현금 비중</p>
               <p className="mt-1 text-3xl font-semibold tabular-nums text-zinc-100">
-                {(portfolioGuide.totalCashPct * 100).toFixed(1)}%
+                {formatPercent(portfolioGuide.totalCashPct * 100)}
               </p>
             </div>
             <div className="bg-zinc-900 rounded-xl border border-zinc-800 p-4">
               <p className="text-xs text-zinc-500">이번 단계 기준</p>
               <p className="mt-1 text-3xl font-semibold tabular-nums text-zinc-100">
-                {(portfolioGuide.nextTranchePct * 100).toFixed(0)}%
+                {formatPercent(portfolioGuide.nextTranchePct * 100, 0)}
               </p>
               <p className="mt-1 text-xs text-zinc-500">다음 분할매수 비중</p>
             </div>

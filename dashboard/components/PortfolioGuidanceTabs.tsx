@@ -12,11 +12,19 @@ function formatSignedCurrency(value: number) {
 }
 
 function formatSignedPercent(value: number | null) {
-  if (value == null) {
+  if (value == null || Number.isNaN(value)) {
     return "-";
   }
 
   return `${value > 0 ? "+" : ""}${value.toFixed(2)}%`;
+}
+
+function formatPercent(value: number | null | undefined, digits = 1) {
+  if (typeof value !== "number" || Number.isNaN(value)) {
+    return "-";
+  }
+
+  return `${value.toFixed(digits)}%`;
 }
 
 function getStatusClass(status: AccountGuide["status"]) {
@@ -222,8 +230,8 @@ export default function PortfolioGuidanceTabs({
                   />
                 </div>
                 <div className="flex items-center justify-between text-xs text-zinc-500">
-                  <span>현재 {(category.currentPct * 100).toFixed(1)}%</span>
-                  <span>목표 {(category.targetPct * 100).toFixed(1)}%</span>
+                  <span>현재 {formatPercent(category.currentPct * 100)}</span>
+                  <span>목표 {formatPercent(category.targetPct * 100)}</span>
                 </div>
               </div>
             ))}
@@ -251,8 +259,8 @@ export default function PortfolioGuidanceTabs({
               <div>
                 <p className="text-xs text-zinc-500">현금 비중</p>
                 <p className="mt-1 text-sm text-zinc-100">
-                  현재 {(selectedAccount.cashPct * 100).toFixed(1)}% / 목표{" "}
-                  {(selectedAccount.targetCashPct * 100).toFixed(1)}%
+                  현재 {formatPercent(selectedAccount.cashPct * 100)} / 목표{" "}
+                  {formatPercent(selectedAccount.targetCashPct * 100)}
                 </p>
               </div>
               <div>
