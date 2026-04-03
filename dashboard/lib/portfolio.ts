@@ -116,3 +116,75 @@ export function loadLatestPortfolio(): PortfolioSnapshot | null {
 export function getPortfolioFilePath() {
   return PORTFOLIO_FILE;
 }
+
+export function getHoldingProfitLoss(holding: PortfolioHolding) {
+  if (holding.profitLoss != null) {
+    return holding.profitLoss;
+  }
+
+  if (holding.marketValue != null && holding.purchaseValue != null) {
+    return holding.marketValue - holding.purchaseValue;
+  }
+
+  return 0;
+}
+
+export function getHoldingProfitRate(holding: PortfolioHolding) {
+  if (holding.profitRate != null) {
+    return holding.profitRate;
+  }
+
+  const purchaseValue = holding.purchaseValue ?? null;
+  const profitLoss = getHoldingProfitLoss(holding);
+  if (!purchaseValue) {
+    return null;
+  }
+
+  return (profitLoss / purchaseValue) * 100;
+}
+
+export function getAccountHoldingsValue(account: PortfolioAccount) {
+  return account.holdings.reduce(
+    (sum, holding) => sum + (holding.marketValue ?? 0),
+    0,
+  );
+}
+
+export function getAccountHoldingsProfitLoss(account: PortfolioAccount) {
+  return account.holdings.reduce((sum, holding) => sum + getHoldingProfitLoss(holding), 0);
+}
+
+export function getAccountHoldingCount(account: PortfolioAccount) {
+  return account.holdings.length;
+}
+
+export function getPortfolioTotals(snapshot: PortfolioSnapshot) {
+  const totalEvaluationAmount = snapshot.accounts.reduce(
+    (sum, account) => sum + (account.evaluationAmount ?? 0),
+    0,
+  );
+  const totalCashAvailable = snapshot.accounts.reduce(
+    (sum, account) => sum + (account.cashAvailable ?? 0),
+    0,
+  );
+  const totalHoldingsValue = snapshot.accounts.reduce(
+    (sum, account) => sum + getAccountHoldingsValue(account),
+    0,
+  );
+  const totalHoldingsProfitLoss = snapshot.accounts.reduce(
+    (sum, account) => sum + getAccountHoldingsProfitLoss(account),
+    0,
+  );
+  const totalHoldingCount = snapshot.accounts.reduce(
+    (sum, account) => sum + getAccountHoldingCount(account),
+    0,
+  );
+
+  return {
+    totalEvaluationAmount,
+    totalCashAvailable,
+    totalHoldingsValue,
+    totalHoldingsProfitLoss,
+    totalHoldingCount,
+  };
+}

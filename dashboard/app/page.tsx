@@ -5,7 +5,13 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { TrendingUp, TrendingDown, Minus } from "lucide-react";
 import TriggerButton from "@/components/TriggerButton";
-import { loadLatestPortfolio, type PortfolioAccount } from "@/lib/portfolio";
+import {
+  getAccountHoldingCount,
+  getAccountHoldingsProfitLoss,
+  getPortfolioTotals,
+  loadLatestPortfolio,
+  type PortfolioAccount,
+} from "@/lib/portfolio";
 
 const REPO_ROOT = path.resolve(process.cwd(), "..");
 
@@ -160,6 +166,14 @@ function PortfolioAccountCard({ account }: { account: PortfolioAccount }) {
       ? "text-red-400"
       : "text-zinc-400";
 
+  const holdingsProfitLoss = getAccountHoldingsProfitLoss(account);
+  const holdingsProfitClass =
+    holdingsProfitLoss > 0
+      ? "text-emerald-400"
+      : holdingsProfitLoss < 0
+        ? "text-red-400"
+        : "text-zinc-400";
+
   return (
     <div className="bg-zinc-900 rounded-xl p-4 border border-zinc-800 space-y-2">
       <div className="flex items-start justify-between gap-3">
@@ -200,7 +214,7 @@ function PortfolioAccountCard({ account }: { account: PortfolioAccount }) {
       </div>
 
       <div className="flex items-center justify-between text-xs text-zinc-500 pt-1">
-        <span>보유 종목 {account.holdings.length}개</span>
+        <span>보유 종목 {getAccountHoldingCount(account)}개</span>
         <span>
           수익률{" "}
           <span className={profitClass}>
@@ -210,6 +224,28 @@ function PortfolioAccountCard({ account }: { account: PortfolioAccount }) {
           </span>
         </span>
       </div>
+
+      {account.holdings.length > 0 && (
+        <>
+          <div className="flex items-center justify-between text-xs text-zinc-500">
+            <span>보유 종목 합산 손익</span>
+            <span className={`font-medium ${holdingsProfitClass}`}>
+              {holdingsProfitLoss > 0 ? "+" : ""}
+              {holdingsProfitLoss.toLocaleString()}원
+            </span>
+          </div>
+          <div className="flex flex-wrap gap-2 pt-1">
+            {account.holdings.map((holding) => (
+              <span
+                key={`${account.key}-${holding.code ?? holding.name}`}
+                className="rounded-full border border-zinc-800 bg-zinc-950 px-2.5 py-1 text-[11px] text-zinc-300"
+              >
+                {holding.name}
+              </span>
+            ))}
+          </div>
+        </>
+      )}
     </div>
   );
 }
@@ -224,11 +260,7 @@ export default function DashboardPage() {
 
   const indices = market?.indices ?? {};
   const hasMarket = Object.keys(indices).length > 0;
-  const totalPortfolioValue =
-    portfolio?.accounts.reduce(
-      (sum, account) => sum + (account.evaluationAmount ?? 0),
-      0,
-    ) ?? 0;
+  const totals = portfolio ? getPortfolioTotals(portfolio) : null;
 
   return (
     <main className="max-w-4xl mx-auto w-full px-4 py-8 space-y-8">
@@ -277,7 +309,22 @@ export default function DashboardPage() {
                       최신 스냅샷 기준 총 평가금액
                     </p>
                     <p className="text-2xl font-semibold tabular-nums text-zinc-100">
-                      {totalPortfolioValue.toLocaleString()}원
+                      {(totals?.totalEvaluationAmount ?? 0).toLocaleString()}원
+                    </p>
+                    <p className="mt-1 text-xs text-zinc-500">
+                      보유 종목 {totals?.totalHoldingCount ?? 0}개 · 합산 손익{" "}
+                      <span
+                        className={
+                          (totals?.totalHoldingsProfitLoss ?? 0) > 0
+                            ? "text-emerald-400"
+                            : (totals?.totalHoldingsProfitLoss ?? 0) < 0
+                              ? "text-red-400"
+                              : "text-zinc-400"
+                        }
+                      >
+                        {(totals?.totalHoldingsProfitLoss ?? 0) > 0 ? "+" : ""}
+                        {(totals?.totalHoldingsProfitLoss ?? 0).toLocaleString()}원
+                      </span>
                     </p>
                   </div>
                   <div className="flex gap-2">
