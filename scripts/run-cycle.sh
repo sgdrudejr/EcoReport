@@ -6,6 +6,7 @@ set -euo pipefail
 DATE="$(date +%F)"
 TIME="$(date +%H%M)"
 SKIP_LLM="${SKIP_LLM:-0}"
+MANUAL_LLM="${MANUAL_LLM:-0}"
 AUTO_PUSH=0
 FORCE_LLM=0
 
@@ -17,6 +18,10 @@ while [[ $# -gt 0 ]]; do
       ;;
     --skip-llm)
       SKIP_LLM=1
+      shift
+      ;;
+    --manual-llm)
+      MANUAL_LLM=1
       shift
       ;;
     --push)
@@ -124,7 +129,21 @@ run_optional_step "📰 [2/6] RSS/트위터/시장 데이터 수집..." \
 run_step "📊 [3/6] 기술적 분석 계산..." \
   node scripts/calc-technicals.js --date "$DATE"
 
-if [[ "$SKIP_LLM" == "1" || -z "${ANTHROPIC_API_KEY:-}" || "${ANTHROPIC_API_KEY:-}" == "sk-ant-xxxxx" ]]; then
+if [[ "$MANUAL_LLM" == "1" ]]; then
+  log "🧬 [4/6] 수동 LLM 모드: API 압축은 생략하고 프롬프트만 준비합니다."
+
+  if synthesis_reason="$(should_run_llm_stage synthesis)"; then
+    run_soft_step "🧩 [5/6] 수동 LLM용 시황 프롬프트 생성... $synthesis_reason" \
+      node scripts/build-synthesis-prompt.js --date "$DATE" --output "knowledge/daily/$DATE-synthesis-prompt.md"
+  else
+    local_status=$?
+    if [[ "$local_status" == "20" ]]; then
+      log "🧩 [5/6] 시황 프롬프트 생성 스킵... $synthesis_reason"
+    else
+      log "⚠️ 시황 프롬프트 생성 여부 판단 실패: $synthesis_reason"
+    fi
+  fi
+elif [[ "$SKIP_LLM" == "1" || -z "${ANTHROPIC_API_KEY:-}" || "${ANTHROPIC_API_KEY:-}" == "sk-ant-xxxxx" ]]; then
   log "🧬 [4/6] LLM 단계는 건너뜁니다. (skip-llm 또는 API 미설정)"
 else
   if compress_reason="$(should_run_llm_stage compress)"; then
@@ -156,7 +175,19 @@ else
   fi
 fi
 
-if [[ "$SKIP_LLM" == "1" || -z "${ANTHROPIC_API_KEY:-}" || "${ANTHROPIC_API_KEY:-}" == "sk-ant-xxxxx" ]]; then
+if [[ "$MANUAL_LLM" == "1" ]]; then
+  if advisory_reason="$(should_run_llm_stage advisory)"; then
+    run_step "🧠 [6/6] 수동 LLM용 어드바이저 프롬프트 생성... $advisory_reason" \
+      bash scripts/run-advisory.sh --date "$DATE" --manual-llm --force
+  else
+    local_status=$?
+    if [[ "$local_status" == "20" ]]; then
+      log "🧠 [6/6] 어드바이저 프롬프트 생성 스킵... $advisory_reason"
+    else
+      log "⚠️ 어드바이저 실행 여부 판단 실패: $advisory_reason"
+    fi
+  fi
+elif [[ "$SKIP_LLM" == "1" || -z "${ANTHROPIC_API_KEY:-}" || "${ANTHROPIC_API_KEY:-}" == "sk-ant-xxxxx" ]]; then
   run_step "🧠 [6/6] 어드바이저 컨텍스트/브리핑 생성..." \
     bash scripts/run-advisory.sh --date "$DATE" $( [[ "$SKIP_LLM" == "1" ]] && echo "--skip-llm" )
 else
