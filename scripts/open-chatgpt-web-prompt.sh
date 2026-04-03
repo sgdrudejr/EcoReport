@@ -6,6 +6,7 @@ KNOWLEDGE_DIR="$ROOT/knowledge/daily"
 REPORTS_DIR="$ROOT/reports/daily"
 CHATGPT_URL="https://chatgpt.com/"
 AUTO_SAVE="true"
+AUTO_SAVE_TARGET=""
 
 usage() {
   cat <<'EOF'
@@ -62,18 +63,30 @@ GENERATED_TMP_FILE=""
 case "$MODE" in
   advisory)
     TARGET_FILE="$(latest_matching_file "$REPORTS_DIR" "*-advisory-prompt.md")"
+    if [ -n "$TARGET_FILE" ]; then
+      AUTO_SAVE_TARGET="${TARGET_FILE%-advisory-prompt.md}-briefing.md"
+    fi
     ;;
   synthesis)
     TARGET_FILE="$(latest_matching_file "$KNOWLEDGE_DIR" "*-synthesis-prompt.md")"
+    if [ -n "$TARGET_FILE" ]; then
+      AUTO_SAVE_TARGET="${TARGET_FILE%-synthesis-prompt.md}-synthesis.md"
+    fi
     ;;
   queue)
     TARGET_FILE="$(latest_matching_file "$KNOWLEDGE_DIR" "*-report-summary-queue.md")"
     ;;
   triage)
     TARGET_FILE="$(latest_matching_file "$KNOWLEDGE_DIR" "*-report-triage-prompt.md")"
+    if [ -n "$TARGET_FILE" ]; then
+      AUTO_SAVE_TARGET="${TARGET_FILE%-report-triage-prompt.md}-report-triage-response.md"
+    fi
     ;;
   coach)
     TARGET_FILE="$(latest_matching_file "$REPORTS_DIR" "*-portfolio-coach-prompt.md")"
+    if [ -n "$TARGET_FILE" ]; then
+      AUTO_SAVE_TARGET="${TARGET_FILE%-portfolio-coach-prompt.md}-portfolio-coach.md"
+    fi
     ;;
   ask)
     shift
@@ -119,7 +132,23 @@ print(base64.b64encode(text.encode("utf-8")).decode("ascii"))
 PY
 )"
 
-open -a Safari "$CHATGPT_URL"
+osascript <<APPLESCRIPT
+tell application "Safari"
+  activate
+  if (count of documents) = 0 then
+    make new document with properties {URL:"$CHATGPT_URL"}
+  else
+    try
+      set currentUrl to URL of front document
+    on error
+      set currentUrl to ""
+    end try
+    if currentUrl does not start with "$CHATGPT_URL" then
+      set URL of front document to "$CHATGPT_URL"
+    end if
+  end if
+end tell
+APPLESCRIPT
 sleep 3
 
 osascript <<APPLESCRIPT
@@ -199,4 +228,20 @@ if [[ "$MODE" == "file" && "$SUBMIT" == "true" && "$AUTO_SAVE" == "true" ]]; the
     echo "bash $ROOT/scripts/save-chatgpt-report-response.sh $REPORT_DATE $REPORT_BASENAME" >&2
     exit 1
   fi
+fi
+
+if [[ "$SUBMIT" == "true" && "$AUTO_SAVE" == "true" && -n "$AUTO_SAVE_TARGET" ]]; then
+  echo "Watching ChatGPT response for markdown auto-save..."
+  for _ in {1..48}; do
+    sleep 5
+    if bash "$ROOT/scripts/save-chatgpt-markdown-response.sh" "$AUTO_SAVE_TARGET" >/tmp/ecoreport-auto-save.log 2>/tmp/ecoreport-auto-save.err; then
+      echo "Auto-saved ChatGPT response:"
+      cat /tmp/ecoreport-auto-save.log
+      exit 0
+    fi
+  done
+
+  echo "Auto-save timed out. You can save manually with:" >&2
+  echo "bash $ROOT/scripts/save-chatgpt-markdown-response.sh $AUTO_SAVE_TARGET" >&2
+  exit 1
 fi
