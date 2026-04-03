@@ -1,0 +1,37 @@
+name: Deploy Dashboard to Vercel
+
+on:
+  push:
+    branches:
+      - data    # data 브랜치에 push 될 때마다 재배포
+
+jobs:
+  deploy:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout data branch
+        uses: actions/checkout@v4
+        with:
+          ref: data
+          fetch-depth: 0
+
+      - name: Merge main branch (dashboard code)
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git fetch origin main
+          # main 의 dashboard/ 코드를 data 위에 병합 (충돌 시 main 우선)
+          git merge origin/main --allow-unrelated-histories \
+            --strategy-option=theirs \
+            -m "chore: merge main for deploy" || true
+
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token:   ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id:  ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          working-directory: ./dashboard
+          vercel-args: "--prod"

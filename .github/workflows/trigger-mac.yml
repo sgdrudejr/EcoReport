@@ -1,0 +1,56 @@
+name: Run Analysis Cycle (Mac Mini)
+
+on:
+  # 대시보드 API 또는 GitHub API 에서 repository_dispatch 로 트리거
+  repository_dispatch:
+    types: [run-cycle]
+
+  # GitHub Actions UI 에서 수동 실행
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "분석 날짜 (YYYY-MM-DD, 비워두면 오늘)"
+        required: false
+        default: ""
+
+jobs:
+  run-cycle:
+    name: Run Analysis & Push Data
+    runs-on: self-hosted   # Mac Mini self-hosted runner
+
+    steps:
+      - name: Checkout main branch
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0          # push-to-github.sh 에서 data 브랜치 전환 필요
+
+      - name: Resolve date
+        id: date
+        run: |
+          # workflow_dispatch 입력값 → repository_dispatch payload → 오늘 날짜 순으로 fallback
+          DATE="${{ github.event.inputs.date }}"
+          if [ -z "$DATE" ]; then
+            DATE="${{ github.event.client_payload.date }}"
+          fi
+          if [ -z "$DATE" ]; then
+            DATE="$(date +%F)"
+          fi
+          echo "value=$DATE" >> "$GITHUB_OUTPUT"
+
+      - name: Run analysis cycle (Step 1–6)
+        run: bash scripts/run-cycle.sh "${{ steps.date.outputs.value }}"
+        env:
+          # 필요한 API 키 등은 GitHub Repository Secrets 에 등록
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          FRED_API_KEY:   ${{ secrets.FRED_API_KEY }}
+          BOK_API_KEY:    ${{ secrets.BOK_API_KEY }}
+
+      - name: Push results to data branch
+        run: bash scripts/push-to-github.sh "${{ steps.date.outputs.value }}"
+        env:
+          # self-hosted runner 는 기본적으로 GITHUB_TOKEN 으로 push 가능
+          GIT_AUTHOR_NAME:  "github-actions[bot]"
+          GIT_AUTHOR_EMAIL: "github-actions[bot]@users.noreply.github.com"
+          GIT_COMMITTER_NAME:  "github-actions[bot]"
+          GIT_COMMITTER_EMAIL: "github-actions[bot]@users.noreply.github.com"
