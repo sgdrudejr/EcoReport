@@ -40,6 +40,7 @@ add_if_exists "data/reports/${DATE}/compressed.json"
 add_if_exists "data/market/${DATE}.json"
 add_if_exists "data/technical/${DATE}.json"
 add_if_exists "knowledge/daily/${DATE}-digest.md"
+add_if_exists "reports/daily/${DATE}-briefing.md"
 add_if_exists "reports/daily/${DATE}-*-briefing.md"
 add_if_exists "config/strategy.json"
 
