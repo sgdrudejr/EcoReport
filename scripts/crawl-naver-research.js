@@ -16,7 +16,7 @@ const PAGE_TIMEOUT_MS = 15_000;
 const FETCH_TIMEOUT_MS = 20_000;
 const RETRIES = 3;
 const RETRY_DELAY_MS = 5_000;
-const PDF_TEXT_LIMIT = 5_000;
+const PDF_TEXT_LIMIT = 12_000;
 const MAX_PAGES = 50;
 
 const CATEGORY_CONFIG = [

@@ -117,6 +117,7 @@ if target_path.exists():
 
 item = {
     "id": report_id,
+    "schemaVersion": obj.get("schema_version", 2) if isinstance(obj, dict) else 2,
     "savedAt": __import__("datetime").datetime.now(__import__("datetime").timezone.utc).isoformat().replace("+00:00", "Z"),
     "rank": meta.get("rank"),
     "title": meta.get("title"),

@@ -158,6 +158,39 @@ function buildCoverageMaps(watchlist, portfolio) {
   };
 }
 
+function summarizePortfolioForPrompt(portfolio, relatedAccounts = []) {
+  if (!portfolio?.accounts?.length) {
+    return ["- 현재 저장된 포트폴리오 스냅샷이 없습니다."];
+  }
+
+  const relatedSet = new Set(relatedAccounts);
+  const prioritized = [];
+  const secondary = [];
+
+  for (const account of portfolio.accounts) {
+    const line = [
+      `### ${account.label} (${account.key})`,
+      ...((account.holdings ?? []).length > 0
+        ? account.holdings.map((holding) => {
+            const rate =
+              typeof holding.profitRate === "number" && Number.isFinite(holding.profitRate)
+                ? `, ${holding.profitRate.toFixed(2)}%`
+                : "";
+            return `- ${holding.name} (${holding.code ?? "N/A"}) / ${holding.quantity ?? "N/A"}주 / 손익 ${holding.profitLoss ?? "N/A"}${rate}`;
+          })
+        : ["- 보유 종목 없음"]),
+    ].join("\n");
+
+    if (relatedSet.size > 0 && (relatedSet.has(account.label) || relatedSet.has(account.key))) {
+      prioritized.push(line);
+    } else {
+      secondary.push(line);
+    }
+  }
+
+  return [...prioritized, ...secondary];
+}
+
 function scoreReport(report, coverage) {
   let score = 10;
   const reasons = [];
@@ -264,12 +297,14 @@ function scoreReport(report, coverage) {
   };
 }
 
-function buildPrompt(template, report, queueItem) {
+function buildPrompt(template, report, queueItem, portfolio) {
+  const portfolioContext = summarizePortfolioForPrompt(portfolio, queueItem.relatedAccounts);
   return [
-    "# EcoReport 수동 PDF 요약 프롬프트",
+    "# EcoReport 수동 PDF 깊은 리포트 추출 프롬프트",
     "",
     "아래 리포트를 읽고 지정된 JSON만 출력하세요.",
-    "현재 포트폴리오와 직접 연결되는 내용, 새 정보, 목표가/의견 변화, 실제 운용 시사점을 우선 요약하세요.",
+    "이번 작업은 단순 압축이 아니라 research extract v2를 만드는 단계입니다.",
+    "현재 포트폴리오와 직접 연결되는 내용, 새 정보, 기존 논리 대비 바뀐 점, 실제 운용 시사점을 우선 정리하세요.",
     "",
     "## 이 리포트를 먼저 보는 이유",
     `- 우선순위 점수: ${queueItem.priorityScore} (${queueItem.priorityLabel})`,
@@ -279,6 +314,16 @@ function buildPrompt(template, report, queueItem) {
     ...(queueItem.relatedAccounts.length > 0
       ? [`- 관련 계좌: ${queueItem.relatedAccounts.join(", ")}`]
       : []),
+    "",
+    "## 내 현재 포트폴리오 컨텍스트",
+    ...portfolioContext,
+    "",
+    "## 출력 원칙",
+    "- 사실과 해석을 섞지 말고 evidence_notes와 key_numbers에 근거를 남기세요.",
+    "- what_changed에는 기존 컨센서스 대비 실제로 달라진 점만 적으세요.",
+    "- portfolio_impacts에는 내 보유 종목/계좌와 연결되는 영향만 넣으세요. 없으면 빈 배열로 두세요.",
+    "- time_horizon_summary는 1주/1개월/3개월/6개월 관점에서 각각 한 줄씩 요약하세요.",
+    "- confidence는 리포트 자체의 신뢰도와 명확성을 기준으로 평가하세요.",
     "",
     template.trim(),
     "",
@@ -403,7 +448,7 @@ async function main() {
 
   await fs.mkdir(promptDir, { recursive: true });
   for (const item of ranked) {
-    const prompt = buildPrompt(template, item.raw, item);
+    const prompt = buildPrompt(template, item.raw, item, portfolio);
     await fs.writeFile(path.join(promptDir, `${item.id}.md`), prompt, "utf8");
   }
 

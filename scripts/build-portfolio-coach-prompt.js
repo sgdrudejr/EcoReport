@@ -131,7 +131,26 @@ function summarizeManualReports(reports) {
 
   return reports.slice(0, MAX_MANUAL_REPORTS).map((item) => {
     const themes = Array.isArray(item.themes) ? item.themes.join(", ") : "";
-    return `- [${item.broker}] ${item.title} / 섹터 ${item.sector ?? "N/A"} / 핵심 ${item.key_thesis ?? "N/A"} / 새 정보 ${item.new_info ?? "없음"}${themes ? ` / 테마 ${themes}` : ""}`;
+    const changed = item.what_changed ? ` / 변화 ${item.what_changed}` : "";
+    const numbers = Array.isArray(item.key_numbers) && item.key_numbers.length > 0
+      ? ` / 수치 ${item.key_numbers
+          .slice(0, 2)
+          .map((entry) => `${entry.label ?? "지표"} ${entry.value ?? "N/A"}`)
+          .join(", ")}`
+      : "";
+    const impacts = Array.isArray(item.portfolio_impacts) && item.portfolio_impacts.length > 0
+      ? ` / 영향 ${item.portfolio_impacts
+          .slice(0, 2)
+          .map((impact) => {
+            const target = impact.target_name || impact.target_code || impact.account_key || impact.target_type || "N/A";
+            const direction = impact.direction ?? "neutral";
+            const actionHint = impact.action_hint ? `:${impact.action_hint}` : "";
+            return `${target}:${direction}${actionHint}`;
+          })
+          .join(", ")}`
+      : "";
+    const confidence = item.confidence ? ` / 신뢰도 ${item.confidence}` : "";
+    return `- [${item.broker}] ${item.title} / 섹터 ${item.sector ?? "N/A"} / 핵심 ${item.key_thesis ?? "N/A"} / 새 정보 ${item.new_info ?? "없음"}${changed}${numbers}${themes ? ` / 테마 ${themes}` : ""}${impacts}${confidence}`;
   }).join("\n");
 }
 

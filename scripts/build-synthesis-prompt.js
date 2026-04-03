@@ -88,7 +88,26 @@ function formatCompressedReports(reports) {
           Array.isArray(item.themes) && item.themes.length > 0
             ? ` / 테마: ${item.themes.join(", ")}`
             : "";
-        return `- [${item.broker}] ${item.title}${tickers} / 의견: ${item.opinion ?? "N/A"} / 핵심: ${item.key_thesis ?? "N/A"}${themes}`;
+        const changed = item.what_changed ? ` / 변화: ${item.what_changed}` : "";
+        const numbers = Array.isArray(item.key_numbers) && item.key_numbers.length > 0
+          ? ` / 핵심수치: ${item.key_numbers
+              .slice(0, 2)
+              .map((entry) => `${entry.label ?? "지표"} ${entry.value ?? "N/A"}`)
+              .join(", ")}`
+          : "";
+        const impacts = Array.isArray(item.portfolio_impacts) && item.portfolio_impacts.length > 0
+          ? ` / 포트폴리오영향: ${item.portfolio_impacts
+              .slice(0, 2)
+              .map((impact) => {
+                const target = impact.target_name || impact.target_code || impact.account_key || impact.target_type || "N/A";
+                const direction = impact.direction ?? "neutral";
+                const horizon = impact.horizon ? ` ${impact.horizon}` : "";
+                return `${target}:${direction}${horizon}`;
+              })
+              .join(", ")}`
+          : "";
+        const confidence = item.confidence ? ` / 신뢰도: ${item.confidence}` : "";
+        return `- [${item.broker}] ${item.title}${tickers} / 의견: ${item.opinion ?? "N/A"} / 핵심: ${item.key_thesis ?? "N/A"}${changed}${numbers}${themes}${impacts}${confidence}`;
       });
 
       return `### ${sector}\n${lines.join("\n")}`;
