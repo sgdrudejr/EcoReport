@@ -1,0 +1,14 @@
+# 민감 정보
+.env
+config/accounts.json
+
+# 큰 파일 (PDF 원본은 올리지 않음)
+data/reports/**/*.pdf
+
+# node_modules
+node_modules/
+dashboard/node_modules/
+dashboard/.next/
+
+# 로그
+logs/
