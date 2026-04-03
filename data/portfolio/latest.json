@@ -1,6 +1,6 @@
 {
   "date": "2026-04-03",
-  "updatedAt": "2026-04-03T10:44:07.922Z",
+  "updatedAt": "2026-04-03T23:40:02.516Z",
   "source": {
     "method": "screenshot_review",
     "reviewer": "seo",
@@ -17,7 +17,9 @@
       "principal": 6304001,
       "profitLoss": 2084749,
       "profitRate": 33.07,
-      "screenshots": [],
+      "screenshots": [
+        "1000147257.jpg"
+      ],
       "incomplete": true,
       "holdings": [
         {
@@ -68,7 +70,9 @@
       "principal": 1027340,
       "profitLoss": -155,
       "profitRate": -0.02,
-      "screenshots": [],
+      "screenshots": [
+        "1000147239.jpg"
+      ],
       "incomplete": false,
       "holdings": [
         {
@@ -119,7 +123,9 @@
       "principal": 1300945,
       "profitLoss": -2155,
       "profitRate": -0.17,
-      "screenshots": [],
+      "screenshots": [
+        "1000147255.jpg"
+      ],
       "incomplete": true,
       "holdings": [
         {
