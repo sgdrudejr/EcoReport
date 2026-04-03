@@ -104,6 +104,14 @@ export default function PortfolioGuidanceTabs({
                   </p>
                 </div>
               </div>
+
+              <div className="mt-3 flex items-center gap-2 text-[11px] text-zinc-500">
+                <span>배분 {account.allocationScore}점</span>
+                <span>·</span>
+                <span>
+                  기술 {account.technicalScore != null ? `${account.technicalScore}점` : "-"}
+                </span>
+              </div>
             </button>
           );
         })}
@@ -173,6 +181,21 @@ export default function PortfolioGuidanceTabs({
           </div>
         </div>
 
+        <div className="grid sm:grid-cols-2 gap-3">
+          <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
+            <p className="text-xs text-zinc-500">배분 점수</p>
+            <p className="mt-1 text-xl font-semibold tabular-nums text-zinc-100">
+              {selectedAccount.allocationScore}점
+            </p>
+          </div>
+          <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
+            <p className="text-xs text-zinc-500">기술 점수</p>
+            <p className="mt-1 text-xl font-semibold tabular-nums text-zinc-100">
+              {selectedAccount.technicalScore != null ? `${selectedAccount.technicalScore}점` : "-"}
+            </p>
+          </div>
+        </div>
+
         <div className="grid lg:grid-cols-2 gap-4">
           <div className="space-y-3">
             <h4 className="text-sm font-medium text-zinc-200">현재 배분 vs 목표</h4>
@@ -209,6 +232,14 @@ export default function PortfolioGuidanceTabs({
           <div className="space-y-3">
             <h4 className="text-sm font-medium text-zinc-200">실행 가이드</h4>
             <div className="rounded-xl border border-zinc-800 bg-zinc-950 p-4 space-y-3">
+              <div>
+                <p className="text-xs text-zinc-500">기술 상위 신호</p>
+                <p className="mt-1 text-sm text-zinc-100">
+                  {selectedAccount.topSignals.length > 0
+                    ? selectedAccount.topSignals.join(", ")
+                    : "보유 종목 기술 신호 데이터가 아직 부족합니다."}
+                </p>
+              </div>
               <div>
                 <p className="text-xs text-zinc-500">우선 후보</p>
                 <p className="mt-1 text-sm text-zinc-100">

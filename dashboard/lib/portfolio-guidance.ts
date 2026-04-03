@@ -10,6 +10,7 @@ import {
 
 const REPO_ROOT = path.resolve(process.cwd(), "..");
 const STRATEGY_FILE = path.join(REPO_ROOT, "config", "strategy.json");
+const TECHNICAL_DIR = path.join(REPO_ROOT, "data", "technical");
 
 type StrategyAccountKey = "ISA" | "연금저축" | "토스증권";
 
@@ -50,6 +51,8 @@ export type AccountGuide = {
   key: string;
   label: string;
   score: number;
+  allocationScore: number;
+  technicalScore: number | null;
   status: "양호" | "보강 필요" | "조정 필요";
   totalAssets: number;
   holdingsValue: number;
@@ -63,6 +66,7 @@ export type AccountGuide = {
   note: string;
   candidates: string[];
   categories: CategoryGuide[];
+  topSignals: string[];
 };
 
 export type PortfolioGuide = {
@@ -110,6 +114,29 @@ function readStrategy(): StrategyAllocation | null {
 
   try {
     return JSON.parse(fs.readFileSync(STRATEGY_FILE, "utf8")) as StrategyAllocation;
+  } catch {
+    return null;
+  }
+}
+
+function readLatestTechnical(dateHint?: string) {
+  try {
+    const preferredPath = dateHint ? path.join(TECHNICAL_DIR, `${dateHint}.json`) : null;
+    if (preferredPath && fs.existsSync(preferredPath)) {
+      return JSON.parse(fs.readFileSync(preferredPath, "utf8"));
+    }
+
+    const files = fs
+      .readdirSync(TECHNICAL_DIR)
+      .filter((file) => file.endsWith(".json"))
+      .sort()
+      .reverse();
+
+    if (files.length === 0) {
+      return null;
+    }
+
+    return JSON.parse(fs.readFileSync(path.join(TECHNICAL_DIR, files[0]), "utf8"));
   } catch {
     return null;
   }
@@ -212,6 +239,72 @@ function getAccountScore(categoryGuides: CategoryGuide[], incomplete?: boolean) 
   return score;
 }
 
+function getTechnicalScoreForAccount(
+  account: PortfolioAccount,
+  technicalMap: Record<string, any> | null,
+) {
+  if (!technicalMap) {
+    return {
+      technicalScore: null,
+      topSignals: [],
+    };
+  }
+
+  const scoredHoldings = account.holdings
+    .map((holding) => {
+      const technical = holding.code ? technicalMap[holding.code] : null;
+      if (!technical || typeof technical.score !== "number") {
+        return null;
+      }
+
+      return {
+        name: holding.name,
+        weight: holding.marketValue ?? 0,
+        score: technical.score,
+        signal: technical.signal,
+        signalReason: technical.signal_reason,
+      };
+    })
+    .filter((item): item is NonNullable<typeof item> => item !== null);
+
+  if (scoredHoldings.length === 0) {
+    return {
+      technicalScore: null,
+      topSignals: [],
+    };
+  }
+
+  const totalWeight = scoredHoldings.reduce((sum, item) => sum + Math.max(item.weight, 0), 0);
+  const weightedScore =
+    totalWeight > 0
+      ? scoredHoldings.reduce((sum, item) => sum + item.score * Math.max(item.weight, 0), 0) / totalWeight
+      : scoredHoldings.reduce((sum, item) => sum + item.score, 0) / scoredHoldings.length;
+
+  const topSignals = scoredHoldings
+    .slice()
+    .sort((left, right) => right.score - left.score)
+    .slice(0, 3)
+    .map((item) => `${item.name} ${item.score}점 (${item.signal})`);
+
+  return {
+    technicalScore: Math.round(weightedScore),
+    topSignals,
+  };
+}
+
+function mergeScores(allocationScore: number, technicalScore: number | null, incomplete?: boolean) {
+  let score =
+    technicalScore == null
+      ? allocationScore
+      : Math.round(allocationScore * 0.6 + technicalScore * 0.4);
+
+  if (incomplete) {
+    score = Math.max(0, score - 5);
+  }
+
+  return Math.max(0, Math.min(100, score));
+}
+
 function getStatusFromScore(score: number): AccountGuide["status"] {
   if (score >= 75) return "양호";
   if (score >= 55) return "보강 필요";
@@ -221,6 +314,7 @@ function getStatusFromScore(score: number): AccountGuide["status"] {
 function buildAccountNote(
   account: PortfolioAccount,
   score: number,
+  technicalScore: number | null,
   recommendedDeploy: number,
   topShortfalls: CategoryGuide[],
   cashPct: number,
@@ -232,11 +326,19 @@ function buildAccountNote(
 
   if (recommendedDeploy > 0 && topShortfalls.length > 0) {
     const top = topShortfalls[0];
+    if (technicalScore != null && technicalScore < 45) {
+      return `현금 비중은 높지만 기술 점수(${technicalScore}점)가 낮습니다. ${top.category} 보강은 가능하되, 추격보다는 분할 접근이 적절합니다.`;
+    }
+
     return `현금 비중이 목표보다 높습니다. 이번 단계에서는 ${top.category} 중심으로 ${recommendedDeploy.toLocaleString()}원까지 나눠서 배치하는 편이 적절합니다.`;
   }
 
   if (cashPct < targetCashPct - 0.05) {
     return "현금 여유가 목표보다 낮습니다. 추가 진입보다 현재 보유분 유지와 대기 자금 복원이 우선입니다.";
+  }
+
+  if (technicalScore != null && technicalScore < 40) {
+    return `배분은 크게 나쁘지 않지만 보유 기술 점수(${technicalScore}점)가 약합니다. 신규 확대보다 현재 보유분 점검이 우선입니다.`;
   }
 
   if (score >= 75) {
@@ -252,6 +354,9 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
     return null;
   }
 
+  const technical = readLatestTechnical(snapshot.date);
+  const technicalMap = technical?.scores ?? null;
+
   const nextTranchePct = getNextTranchePct(strategy);
 
   const accounts = snapshot.accounts
@@ -265,7 +370,9 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
         account,
         targetAllocation,
       );
-      const score = getAccountScore(categories, account.incomplete);
+      const allocationScore = getAccountScore(categories, false);
+      const { technicalScore, topSignals } = getTechnicalScoreForAccount(account, technicalMap);
+      const score = mergeScores(allocationScore, technicalScore, account.incomplete);
       const targetCashPct = targetAllocation["현금파킹"] ?? 0;
       const cashPct = totalAssets > 0 ? cashValue / totalAssets : 0;
       const topShortfalls = categories
@@ -297,6 +404,8 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
         key: account.key,
         label: account.label,
         score,
+        allocationScore,
+        technicalScore,
         status: getStatusFromScore(score),
         totalAssets,
         holdingsValue,
@@ -310,6 +419,7 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
         note: buildAccountNote(
           account,
           score,
+          technicalScore,
           recommendedDeploy,
           topShortfalls,
           cashPct,
@@ -317,6 +427,7 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
         ),
         candidates,
         categories: categories.sort((left, right) => right.targetPct - left.targetPct),
+        topSignals,
       };
     })
     .filter((account): account is AccountGuide => account !== null);

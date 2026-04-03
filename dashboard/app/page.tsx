@@ -97,8 +97,9 @@ function MarketCard({
   close: number;
   changePct: number;
 }) {
-  const positive = changePct > 0;
-  const neutral = changePct === 0;
+  const safeChangePct = typeof changePct === "number" ? changePct : 0;
+  const positive = safeChangePct > 0;
+  const neutral = safeChangePct === 0;
   const Icon = neutral ? Minus : positive ? TrendingUp : TrendingDown;
   const color = neutral
     ? "text-zinc-400"
@@ -116,8 +117,8 @@ function MarketCard({
       </span>
       <span className={`flex items-center gap-1 text-sm font-medium ${color}`}>
         <Icon size={14} />
-        {changePct > 0 ? "+" : ""}
-        {changePct.toFixed(2)}%
+        {safeChangePct > 0 ? "+" : ""}
+        {safeChangePct.toFixed(2)}%
       </span>
     </div>
   );
