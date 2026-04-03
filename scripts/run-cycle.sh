@@ -39,9 +39,25 @@ mkdir -p knowledge/daily
 mkdir -p reports/daily
 mkdir -p config
 
-cp $IGZUN_DIR/data/market/$DATE.json         data/market/            2>/dev/null || echo "  - market json 없음 (스킵)"         | tee -a $LOG_FILE
-cp $IGZUN_DIR/reports/daily/*$DATE*.md       reports/daily/          2>/dev/null || echo "  - daily briefing 없음 (스킵)"      | tee -a $LOG_FILE
-cp $IGZUN_DIR/data/reports/$DATE/compressed.json data/reports/$DATE/ 2>/dev/null || echo "  - compressed.json 없음 (스킵)"     | tee -a $LOG_FILE
+# 시장 데이터
+cp $IGZUN_DIR/data/market_data_latest.json        data/market/$DATE.json        2>/dev/null \
+  && echo "  ✓ data/market/$DATE.json"            | tee -a $LOG_FILE \
+  || echo "  - market_data_latest.json 없음 (스킵)" | tee -a $LOG_FILE
+
+# 퀀트 스냅샷 (technical)
+cp $IGZUN_DIR/data/market_quant_snapshot.json     data/technical/$DATE.json     2>/dev/null \
+  && echo "  ✓ data/technical/$DATE.json"          | tee -a $LOG_FILE \
+  || echo "  - market_quant_snapshot.json 없음 (스킵)" | tee -a $LOG_FILE
+
+# LLM 인사이트 → compressed.json
+cp $IGZUN_DIR/data/llm_insights/$DATE.json        data/reports/$DATE/compressed.json 2>/dev/null \
+  && echo "  ✓ data/reports/$DATE/compressed.json" | tee -a $LOG_FILE \
+  || echo "  - llm_insights/$DATE.json 없음 (스킵)"  | tee -a $LOG_FILE
+
+# 어드바이저 브리핑
+cp $IGZUN_DIR/data/manual_summary/$DATE.md        reports/daily/$DATE-briefing.md    2>/dev/null \
+  && echo "  ✓ reports/daily/$DATE-briefing.md"    | tee -a $LOG_FILE \
+  || echo "  - manual_summary/$DATE.md 없음 (스킵)"  | tee -a $LOG_FILE
 
 # ---------------------------------------------------------
 # Step 7: GitHub push (대시보드 업데이트 트리거)
