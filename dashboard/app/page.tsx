@@ -6,6 +6,10 @@ import remarkGfm from "remark-gfm";
 import { TrendingUp, TrendingDown, Minus } from "lucide-react";
 import TriggerButton from "@/components/TriggerButton";
 import {
+  buildPortfolioGuide,
+  type AccountGuide,
+} from "@/lib/portfolio-guidance";
+import {
   getAccountHoldingCount,
   getAccountHoldingsProfitLoss,
   getPortfolioTotals,
@@ -250,6 +254,154 @@ function PortfolioAccountCard({ account }: { account: PortfolioAccount }) {
   );
 }
 
+function categoryBarWidth(value: number) {
+  return `${Math.max(0, Math.min(100, value * 100))}%`;
+}
+
+function GuidanceScoreCard({
+  score,
+  label,
+}: {
+  score: number;
+  label: string;
+}) {
+  const color =
+    score >= 75 ? "text-emerald-400" : score >= 55 ? "text-amber-300" : "text-red-400";
+
+  return (
+    <div className="bg-zinc-900 rounded-xl border border-zinc-800 p-4">
+      <p className="text-xs text-zinc-500">{label}</p>
+      <p className={`mt-1 text-3xl font-semibold tabular-nums ${color}`}>
+        {score}점
+      </p>
+    </div>
+  );
+}
+
+function GuidanceAccountCard({
+  account,
+}: {
+  account: AccountGuide;
+}) {
+  const statusClass =
+    account.status === "양호"
+      ? "bg-emerald-950/40 text-emerald-300 border-emerald-900/50"
+      : account.status === "보강 필요"
+        ? "bg-amber-950/40 text-amber-300 border-amber-900/50"
+        : "bg-red-950/40 text-red-300 border-red-900/50";
+
+  return (
+    <section className="bg-zinc-900 rounded-xl border border-zinc-800 p-5 space-y-4">
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <div className="flex items-center gap-2">
+            <h3 className="text-lg font-semibold text-zinc-100">{account.label}</h3>
+            <span className={`rounded-full border px-2 py-1 text-[11px] ${statusClass}`}>
+              {account.status}
+            </span>
+          </div>
+          <p className="mt-1 text-sm text-zinc-500">{account.note}</p>
+        </div>
+        <div className="text-right">
+          <p className="text-xs text-zinc-500">운용 점수</p>
+          <p className="text-2xl font-semibold tabular-nums text-zinc-100">{account.score}점</p>
+        </div>
+      </div>
+
+      <div className="grid sm:grid-cols-3 gap-3">
+        <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
+          <p className="text-xs text-zinc-500">이번 단계 투입</p>
+          <p className="mt-1 text-xl font-semibold tabular-nums text-zinc-100">
+            {account.recommendedDeploy.toLocaleString()}원
+          </p>
+        </div>
+        <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
+          <p className="text-xs text-zinc-500">대기 자금</p>
+          <p className="mt-1 text-xl font-semibold tabular-nums text-zinc-100">
+            {account.reserveCash.toLocaleString()}원
+          </p>
+        </div>
+        <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
+          <p className="text-xs text-zinc-500">보유 종목 손익</p>
+          <p
+            className={`mt-1 text-xl font-semibold tabular-nums ${
+              account.holdingsProfitLoss > 0
+                ? "text-emerald-400"
+                : account.holdingsProfitLoss < 0
+                  ? "text-red-400"
+                  : "text-zinc-100"
+            }`}
+          >
+            {account.holdingsProfitLoss > 0 ? "+" : ""}
+            {account.holdingsProfitLoss.toLocaleString()}원
+          </p>
+        </div>
+      </div>
+
+      <div className="grid lg:grid-cols-2 gap-4">
+        <div className="space-y-3">
+          <h4 className="text-sm font-medium text-zinc-200">현재 배분 vs 목표</h4>
+          {account.categories.map((category) => (
+            <div key={`${account.key}-${category.category}`} className="space-y-1.5">
+              <div className="flex items-center justify-between text-sm">
+                <span className="text-zinc-200">{category.category}</span>
+                <span
+                  className={
+                    category.action === "보강 필요"
+                      ? "text-amber-300"
+                      : category.action === "비중 축소"
+                        ? "text-red-300"
+                        : "text-zinc-400"
+                  }
+                >
+                  {category.action}
+                </span>
+              </div>
+              <div className="rounded-full bg-zinc-800 h-2 overflow-hidden">
+                <div
+                  className="bg-zinc-500/80 h-2"
+                  style={{ width: categoryBarWidth(category.currentPct) }}
+                />
+              </div>
+              <div className="flex items-center justify-between text-xs text-zinc-500">
+                <span>현재 {(category.currentPct * 100).toFixed(1)}%</span>
+                <span>목표 {(category.targetPct * 100).toFixed(1)}%</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div className="space-y-3">
+          <h4 className="text-sm font-medium text-zinc-200">실행 가이드</h4>
+          <div className="rounded-xl border border-zinc-800 bg-zinc-950 p-4 space-y-3">
+            <div>
+              <p className="text-xs text-zinc-500">우선 후보</p>
+              <p className="mt-1 text-sm text-zinc-100">
+                {account.candidates.length > 0
+                  ? account.candidates.join(", ")
+                  : "현재는 신규 보강보다 유지 우선"}
+              </p>
+            </div>
+            <div>
+              <p className="text-xs text-zinc-500">현금 비중</p>
+              <p className="mt-1 text-sm text-zinc-100">
+                현재 {(account.cashPct * 100).toFixed(1)}% / 목표{" "}
+                {(account.targetCashPct * 100).toFixed(1)}%
+              </p>
+            </div>
+            <div>
+              <p className="text-xs text-zinc-500">실행 리듬</p>
+              <p className="mt-1 text-sm text-zinc-100">
+                오늘 1차 진입 후 1~2거래일 안에 눌림목 또는 방향 확인 시 2차, 이후 재평가합니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ── 메인 페이지 ───────────────────────────────────────────────────────
 
 export default function DashboardPage() {
@@ -257,6 +409,7 @@ export default function DashboardPage() {
   const market = loadLatestMarket();
   const strategy = loadStrategy();
   const portfolio = loadLatestPortfolio();
+  const portfolioGuide = portfolio ? buildPortfolioGuide(portfolio) : null;
 
   const indices = market?.indices ?? {};
   const hasMarket = Object.keys(indices).length > 0;
@@ -364,6 +517,68 @@ export default function DashboardPage() {
             )}
 
             {strategy && <StrategyProgress strategy={strategy} />}
+          </div>
+        </section>
+      )}
+
+      {portfolioGuide && (
+        <section>
+          <div className="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <h2 className="text-sm font-semibold text-zinc-500 uppercase tracking-wide">
+                운용 가이드
+              </h2>
+              <p className="mt-1 text-sm text-zinc-500">
+                점수보다 중요한 건 지금 어떤 계좌에서 무엇을 보강할지입니다.
+                아래 가이드는 현재 스냅샷과 목표 배분 기준입니다.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid sm:grid-cols-3 gap-3 mb-4">
+            <GuidanceScoreCard
+              score={portfolioGuide.score}
+              label="포트폴리오 운용 점수"
+            />
+            <div className="bg-zinc-900 rounded-xl border border-zinc-800 p-4">
+              <p className="text-xs text-zinc-500">총 현금 비중</p>
+              <p className="mt-1 text-3xl font-semibold tabular-nums text-zinc-100">
+                {(portfolioGuide.totalCashPct * 100).toFixed(1)}%
+              </p>
+            </div>
+            <div className="bg-zinc-900 rounded-xl border border-zinc-800 p-4">
+              <p className="text-xs text-zinc-500">이번 단계 기준</p>
+              <p className="mt-1 text-3xl font-semibold tabular-nums text-zinc-100">
+                {(portfolioGuide.nextTranchePct * 100).toFixed(0)}%
+              </p>
+              <p className="mt-1 text-xs text-zinc-500">다음 분할매수 비중</p>
+            </div>
+          </div>
+
+          {portfolioGuide.incompleteCount > 0 && (
+            <div className="mb-4 rounded-xl border border-amber-900/50 bg-amber-950/30 px-4 py-3 text-sm text-amber-300">
+              부분 캡처 계좌가 {portfolioGuide.incompleteCount}개 있어 일부 가이드는
+              참고용입니다. 누락 종목을 채우면 정밀도가 올라갑니다.
+            </div>
+          )}
+
+          <div className="mb-4 rounded-xl border border-zinc-800 bg-zinc-900 p-4">
+            <p className="text-sm font-medium text-zinc-100">오늘의 우선 지침</p>
+            <ul className="mt-3 space-y-2 text-sm text-zinc-300">
+              {portfolioGuide.globalActions.length > 0 ? (
+                portfolioGuide.globalActions.map((action) => (
+                  <li key={action}>- {action}</li>
+                ))
+              ) : (
+                <li>- 현재는 급한 보강보다 기존 비중 유지가 우선입니다.</li>
+              )}
+            </ul>
+          </div>
+
+          <div className="space-y-4">
+            {portfolioGuide.accounts.map((account) => (
+              <GuidanceAccountCard key={account.key} account={account} />
+            ))}
           </div>
         </section>
       )}
