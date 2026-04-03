@@ -150,8 +150,24 @@ export function getAccountHoldingsValue(account: PortfolioAccount) {
   );
 }
 
+export function getAccountHoldingsPurchaseValue(account: PortfolioAccount) {
+  return account.holdings.reduce(
+    (sum, holding) => sum + (holding.purchaseValue ?? 0),
+    0,
+  );
+}
+
 export function getAccountHoldingsProfitLoss(account: PortfolioAccount) {
   return account.holdings.reduce((sum, holding) => sum + getHoldingProfitLoss(holding), 0);
+}
+
+export function getAccountHoldingsProfitRate(account: PortfolioAccount) {
+  const purchaseValue = getAccountHoldingsPurchaseValue(account);
+  if (!purchaseValue) {
+    return null;
+  }
+
+  return (getAccountHoldingsProfitLoss(account) / purchaseValue) * 100;
 }
 
 export function getAccountHoldingCount(account: PortfolioAccount) {
@@ -175,16 +191,26 @@ export function getPortfolioTotals(snapshot: PortfolioSnapshot) {
     (sum, account) => sum + getAccountHoldingsProfitLoss(account),
     0,
   );
+  const totalHoldingsPurchaseValue = snapshot.accounts.reduce(
+    (sum, account) => sum + getAccountHoldingsPurchaseValue(account),
+    0,
+  );
   const totalHoldingCount = snapshot.accounts.reduce(
     (sum, account) => sum + getAccountHoldingCount(account),
     0,
   );
+  const totalHoldingsProfitRate =
+    totalHoldingsPurchaseValue > 0
+      ? (totalHoldingsProfitLoss / totalHoldingsPurchaseValue) * 100
+      : null;
 
   return {
     totalEvaluationAmount,
     totalCashAvailable,
     totalHoldingsValue,
     totalHoldingsProfitLoss,
+    totalHoldingsPurchaseValue,
+    totalHoldingsProfitRate,
     totalHoldingCount,
   };
 }

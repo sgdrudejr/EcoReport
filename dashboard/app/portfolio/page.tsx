@@ -1,6 +1,7 @@
 import Link from "next/link";
 import {
   getAccountHoldingsProfitLoss,
+  getAccountHoldingsProfitRate,
   getAccountHoldingsValue,
   getHoldingProfitLoss,
   getHoldingProfitRate,
@@ -72,7 +73,20 @@ export default function PortfolioPage() {
                 {totals?.totalHoldingsProfitLoss.toLocaleString()}원
               </p>
               <p className="mt-1 text-xs text-zinc-500">
-                총 {totals?.totalHoldingCount}종목
+                총 {totals?.totalHoldingCount}종목 · 수익률{" "}
+                <span
+                  className={
+                    (totals?.totalHoldingsProfitLoss ?? 0) > 0
+                      ? "text-emerald-400"
+                      : (totals?.totalHoldingsProfitLoss ?? 0) < 0
+                        ? "text-red-400"
+                        : "text-zinc-300"
+                  }
+                >
+                  {totals?.totalHoldingsProfitRate != null
+                    ? `${totals.totalHoldingsProfitRate > 0 ? "+" : ""}${totals.totalHoldingsProfitRate.toFixed(2)}%`
+                    : "-"}
+                </span>
               </p>
             </div>
           </section>
@@ -128,6 +142,22 @@ export default function PortfolioPage() {
                   >
                     {getAccountHoldingsProfitLoss(account) > 0 ? "+" : ""}
                     {getAccountHoldingsProfitLoss(account).toLocaleString()}원
+                  </p>
+                  <p className="mt-1 text-xs text-zinc-500">
+                    수익률{" "}
+                    <span
+                      className={
+                        (getAccountHoldingsProfitRate(account) ?? 0) > 0
+                          ? "text-emerald-400"
+                          : (getAccountHoldingsProfitRate(account) ?? 0) < 0
+                            ? "text-red-400"
+                            : "text-zinc-300"
+                      }
+                    >
+                      {getAccountHoldingsProfitRate(account) != null
+                        ? `${(getAccountHoldingsProfitRate(account) ?? 0) > 0 ? "+" : ""}${getAccountHoldingsProfitRate(account)?.toFixed(2)}%`
+                        : "-"}
+                    </span>
                   </p>
                 </div>
               </div>

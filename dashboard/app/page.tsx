@@ -4,14 +4,13 @@ import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { TrendingUp, TrendingDown, Minus } from "lucide-react";
+import PortfolioGuidanceTabs from "@/components/PortfolioGuidanceTabs";
 import TriggerButton from "@/components/TriggerButton";
-import {
-  buildPortfolioGuide,
-  type AccountGuide,
-} from "@/lib/portfolio-guidance";
+import { buildPortfolioGuide } from "@/lib/portfolio-guidance";
 import {
   getAccountHoldingCount,
   getAccountHoldingsProfitLoss,
+  getAccountHoldingsProfitRate,
   getPortfolioTotals,
   loadLatestPortfolio,
   type PortfolioAccount,
@@ -171,6 +170,7 @@ function PortfolioAccountCard({ account }: { account: PortfolioAccount }) {
       : "text-zinc-400";
 
   const holdingsProfitLoss = getAccountHoldingsProfitLoss(account);
+  const holdingsProfitRate = getAccountHoldingsProfitRate(account);
   const holdingsProfitClass =
     holdingsProfitLoss > 0
       ? "text-emerald-400"
@@ -238,6 +238,14 @@ function PortfolioAccountCard({ account }: { account: PortfolioAccount }) {
               {holdingsProfitLoss.toLocaleString()}원
             </span>
           </div>
+          <div className="flex items-center justify-between text-xs text-zinc-500">
+            <span>보유 종목 합산 수익률</span>
+            <span className={`font-medium ${holdingsProfitClass}`}>
+              {holdingsProfitRate != null
+                ? `${holdingsProfitRate > 0 ? "+" : ""}${holdingsProfitRate.toFixed(2)}%`
+                : "-"}
+            </span>
+          </div>
           <div className="flex flex-wrap gap-2 pt-1">
             {account.holdings.map((holding) => (
               <span
@@ -252,10 +260,6 @@ function PortfolioAccountCard({ account }: { account: PortfolioAccount }) {
       )}
     </div>
   );
-}
-
-function categoryBarWidth(value: number) {
-  return `${Math.max(0, Math.min(100, value * 100))}%`;
 }
 
 function GuidanceScoreCard({
@@ -275,130 +279,6 @@ function GuidanceScoreCard({
         {score}점
       </p>
     </div>
-  );
-}
-
-function GuidanceAccountCard({
-  account,
-}: {
-  account: AccountGuide;
-}) {
-  const statusClass =
-    account.status === "양호"
-      ? "bg-emerald-950/40 text-emerald-300 border-emerald-900/50"
-      : account.status === "보강 필요"
-        ? "bg-amber-950/40 text-amber-300 border-amber-900/50"
-        : "bg-red-950/40 text-red-300 border-red-900/50";
-
-  return (
-    <section className="bg-zinc-900 rounded-xl border border-zinc-800 p-5 space-y-4">
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <div className="flex items-center gap-2">
-            <h3 className="text-lg font-semibold text-zinc-100">{account.label}</h3>
-            <span className={`rounded-full border px-2 py-1 text-[11px] ${statusClass}`}>
-              {account.status}
-            </span>
-          </div>
-          <p className="mt-1 text-sm text-zinc-500">{account.note}</p>
-        </div>
-        <div className="text-right">
-          <p className="text-xs text-zinc-500">운용 점수</p>
-          <p className="text-2xl font-semibold tabular-nums text-zinc-100">{account.score}점</p>
-        </div>
-      </div>
-
-      <div className="grid sm:grid-cols-3 gap-3">
-        <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
-          <p className="text-xs text-zinc-500">이번 단계 투입</p>
-          <p className="mt-1 text-xl font-semibold tabular-nums text-zinc-100">
-            {account.recommendedDeploy.toLocaleString()}원
-          </p>
-        </div>
-        <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
-          <p className="text-xs text-zinc-500">대기 자금</p>
-          <p className="mt-1 text-xl font-semibold tabular-nums text-zinc-100">
-            {account.reserveCash.toLocaleString()}원
-          </p>
-        </div>
-        <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
-          <p className="text-xs text-zinc-500">보유 종목 손익</p>
-          <p
-            className={`mt-1 text-xl font-semibold tabular-nums ${
-              account.holdingsProfitLoss > 0
-                ? "text-emerald-400"
-                : account.holdingsProfitLoss < 0
-                  ? "text-red-400"
-                  : "text-zinc-100"
-            }`}
-          >
-            {account.holdingsProfitLoss > 0 ? "+" : ""}
-            {account.holdingsProfitLoss.toLocaleString()}원
-          </p>
-        </div>
-      </div>
-
-      <div className="grid lg:grid-cols-2 gap-4">
-        <div className="space-y-3">
-          <h4 className="text-sm font-medium text-zinc-200">현재 배분 vs 목표</h4>
-          {account.categories.map((category) => (
-            <div key={`${account.key}-${category.category}`} className="space-y-1.5">
-              <div className="flex items-center justify-between text-sm">
-                <span className="text-zinc-200">{category.category}</span>
-                <span
-                  className={
-                    category.action === "보강 필요"
-                      ? "text-amber-300"
-                      : category.action === "비중 축소"
-                        ? "text-red-300"
-                        : "text-zinc-400"
-                  }
-                >
-                  {category.action}
-                </span>
-              </div>
-              <div className="rounded-full bg-zinc-800 h-2 overflow-hidden">
-                <div
-                  className="bg-zinc-500/80 h-2"
-                  style={{ width: categoryBarWidth(category.currentPct) }}
-                />
-              </div>
-              <div className="flex items-center justify-between text-xs text-zinc-500">
-                <span>현재 {(category.currentPct * 100).toFixed(1)}%</span>
-                <span>목표 {(category.targetPct * 100).toFixed(1)}%</span>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="space-y-3">
-          <h4 className="text-sm font-medium text-zinc-200">실행 가이드</h4>
-          <div className="rounded-xl border border-zinc-800 bg-zinc-950 p-4 space-y-3">
-            <div>
-              <p className="text-xs text-zinc-500">우선 후보</p>
-              <p className="mt-1 text-sm text-zinc-100">
-                {account.candidates.length > 0
-                  ? account.candidates.join(", ")
-                  : "현재는 신규 보강보다 유지 우선"}
-              </p>
-            </div>
-            <div>
-              <p className="text-xs text-zinc-500">현금 비중</p>
-              <p className="mt-1 text-sm text-zinc-100">
-                현재 {(account.cashPct * 100).toFixed(1)}% / 목표{" "}
-                {(account.targetCashPct * 100).toFixed(1)}%
-              </p>
-            </div>
-            <div>
-              <p className="text-xs text-zinc-500">실행 리듬</p>
-              <p className="mt-1 text-sm text-zinc-100">
-                오늘 1차 진입 후 1~2거래일 안에 눌림목 또는 방향 확인 시 2차, 이후 재평가합니다.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
   );
 }
 
@@ -477,6 +357,20 @@ export default function DashboardPage() {
                       >
                         {(totals?.totalHoldingsProfitLoss ?? 0) > 0 ? "+" : ""}
                         {(totals?.totalHoldingsProfitLoss ?? 0).toLocaleString()}원
+                      </span>{" "}
+                      · 수익률{" "}
+                      <span
+                        className={
+                          (totals?.totalHoldingsProfitLoss ?? 0) > 0
+                            ? "text-emerald-400"
+                            : (totals?.totalHoldingsProfitLoss ?? 0) < 0
+                              ? "text-red-400"
+                              : "text-zinc-400"
+                        }
+                      >
+                        {totals?.totalHoldingsProfitRate != null
+                          ? `${totals.totalHoldingsProfitRate > 0 ? "+" : ""}${totals.totalHoldingsProfitRate.toFixed(2)}%`
+                          : "-"}
                       </span>
                     </p>
                   </div>
@@ -575,11 +469,7 @@ export default function DashboardPage() {
             </ul>
           </div>
 
-          <div className="space-y-4">
-            {portfolioGuide.accounts.map((account) => (
-              <GuidanceAccountCard key={account.key} account={account} />
-            ))}
-          </div>
+          <PortfolioGuidanceTabs accounts={portfolioGuide.accounts} />
         </section>
       )}
 

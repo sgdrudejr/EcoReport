@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import {
   getAccountHoldingsProfitLoss,
+  getAccountHoldingsProfitRate,
   getAccountHoldingsValue,
   type PortfolioAccount,
   type PortfolioSnapshot,
@@ -53,6 +54,7 @@ export type AccountGuide = {
   totalAssets: number;
   holdingsValue: number;
   holdingsProfitLoss: number;
+  holdingsProfitRate: number | null;
   cashValue: number;
   cashPct: number;
   targetCashPct: number;
@@ -299,6 +301,7 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
         totalAssets,
         holdingsValue,
         holdingsProfitLoss: getAccountHoldingsProfitLoss(account),
+        holdingsProfitRate: getAccountHoldingsProfitRate(account),
         cashValue,
         cashPct,
         targetCashPct,
