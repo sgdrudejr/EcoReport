@@ -6,6 +6,7 @@ set -euo pipefail
 ROOT_DIR="/Users/seo/stock-pilot"
 DATE="$(date +%F)"
 USE_MOCK_STAGE2=1
+USE_GEMINI_STAGE2=0
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -14,6 +15,11 @@ while [[ $# -gt 0 ]]; do
       shift 2
       ;;
     --no-mock-stage2)
+      USE_MOCK_STAGE2=0
+      shift
+      ;;
+    --gemini-stage2)
+      USE_GEMINI_STAGE2=1
       USE_MOCK_STAGE2=0
       shift
       ;;
@@ -32,7 +38,10 @@ node scripts/build-stage1-report-extracts.js --date "$DATE"
 echo "== Stage 2: strategy prompt =="
 node scripts/build-stage2-strategy-prompt.js --date "$DATE"
 
-if [[ "$USE_MOCK_STAGE2" == "1" ]]; then
+if [[ "$USE_GEMINI_STAGE2" == "1" ]]; then
+  echo "== Stage 2 actual: Gemini strategy options =="
+  .venv/bin/python scripts/build-stage2-strategy-gemini.py --date "$DATE"
+elif [[ "$USE_MOCK_STAGE2" == "1" ]]; then
   echo "== Stage 2 mock: strategy options =="
   node scripts/build-stage2-strategy-mock.js --date "$DATE"
 fi

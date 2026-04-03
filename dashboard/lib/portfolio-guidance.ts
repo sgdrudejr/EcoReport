@@ -53,6 +53,8 @@ export type AccountGuide = {
   score: number;
   allocationScore: number;
   technicalScore: number | null;
+  reportCoverageScore: number | null;
+  stage2Bias: string | null;
   status: "양호" | "보강 필요" | "조정 필요";
   totalAssets: number;
   holdingsValue: number;
@@ -67,6 +69,8 @@ export type AccountGuide = {
   candidates: string[];
   categories: CategoryGuide[];
   topSignals: string[];
+  scoreDrivers: string[];
+  improvementActions: string[];
 };
 
 export type PortfolioGuide = {
@@ -140,6 +144,36 @@ function readLatestTechnical(dateHint?: string) {
   } catch {
     return null;
   }
+}
+
+function readStage3Analysis(dateHint?: string) {
+  const analysisDir = path.join(REPO_ROOT, "data", "analysis-state");
+  try {
+    const preferredPath = dateHint
+      ? path.join(analysisDir, dateHint, "stage3-quant-scores.json")
+      : null;
+    if (preferredPath && fs.existsSync(preferredPath)) {
+      return JSON.parse(fs.readFileSync(preferredPath, "utf8"));
+    }
+
+    const datedDirs = fs
+      .readdirSync(analysisDir, { withFileTypes: true })
+      .filter((entry) => entry.isDirectory())
+      .map((entry) => entry.name)
+      .sort()
+      .reverse();
+
+    for (const datedDir of datedDirs) {
+      const candidate = path.join(analysisDir, datedDir, "stage3-quant-scores.json");
+      if (fs.existsSync(candidate)) {
+        return JSON.parse(fs.readFileSync(candidate, "utf8"));
+      }
+    }
+  } catch {
+    return null;
+  }
+
+  return null;
 }
 
 function normalizeStrategyAccountKey(account: PortfolioAccount): StrategyAccountKey | null {
@@ -348,6 +382,94 @@ function buildAccountNote(
   return "목표 배분과의 괴리가 남아 있습니다. 가장 부족한 자산부터 순서대로 보강하는 방식이 안정적입니다.";
 }
 
+function buildScoreDrivers(
+  account: PortfolioAccount,
+  allocationScore: number,
+  technicalScore: number | null,
+  reportCoverageScore: number | null,
+  cashPct: number,
+  targetCashPct: number,
+  categories: CategoryGuide[],
+) {
+  const drivers: string[] = [];
+
+  if (account.incomplete) {
+    drivers.push("부분 캡처 계좌라 보유 누락 가능성이 있어 보수적으로 감점됐습니다.");
+  }
+
+  drivers.push(`배분 점수 ${allocationScore}점: 목표 배분과의 괴리를 기반으로 계산됩니다.`);
+
+  if (technicalScore != null) {
+    drivers.push(`기술 점수 ${technicalScore}점: RSI, MACD, 이평선, 변동성 신호를 합산한 보유 종목 가중 평균입니다.`);
+  } else {
+    drivers.push("기술 점수 데이터가 아직 부족해 배분 점수 비중이 더 크게 반영됐습니다.");
+  }
+
+  if (reportCoverageScore != null) {
+    drivers.push(`리포트 커버리지 ${reportCoverageScore}점: 최근 리포트와 직접 연결된 보유 종목 비중입니다.`);
+  }
+
+  if (cashPct > targetCashPct + 0.05) {
+    drivers.push(
+      `현금 비중이 목표보다 ${formatPctPoint((cashPct - targetCashPct) * 100)}p 높아 점수가 눌리고 있습니다.`,
+    );
+  }
+
+  const biggestGap = categories
+    .filter((category) => category.category !== "현금파킹")
+    .sort((left, right) => Math.abs(right.gapPct) - Math.abs(left.gapPct))[0];
+
+  if (biggestGap && biggestGap.gapPct > 0.03) {
+    drivers.push(
+      `${biggestGap.category} 비중이 목표보다 ${formatPctPoint(biggestGap.gapPct * 100)}p 부족합니다.`,
+    );
+  }
+
+  return drivers.slice(0, 5);
+}
+
+function buildImprovementActions(
+  account: PortfolioAccount,
+  categories: CategoryGuide[],
+  technicalScore: number | null,
+  cashPct: number,
+  targetCashPct: number,
+) {
+  const actions: string[] = [];
+
+  const shortfalls = categories
+    .filter((category) => category.category !== "현금파킹" && category.gapPct > 0.03)
+    .sort((left, right) => right.gapAmount - left.gapAmount)
+    .slice(0, 3);
+
+  for (const category of shortfalls) {
+    actions.push(
+      `${category.category}을 ${Math.max(category.gapAmount, 0).toLocaleString()}원 보강하면 배분 점수가 개선됩니다.`,
+    );
+  }
+
+  if (cashPct > targetCashPct + 0.05) {
+    actions.push(
+      `현금을 ${formatPctPoint((cashPct - targetCashPct) * 100)}p 줄이고 목표 자산군으로 옮기면 총점이 올라갑니다.`,
+    );
+  }
+
+  if (technicalScore != null && technicalScore < 50) {
+    actions.push("기술 점수가 약한 종목은 추가 매수보다 보유 점검 또는 교체 검토가 유리합니다.");
+  }
+
+  if (account.incomplete) {
+    actions.push("누락된 보유 종목을 먼저 입력하면 기술·배분 점수가 정확해집니다.");
+  }
+
+  return actions.slice(0, 5);
+}
+
+function formatPctPoint(value: number) {
+  const rounded = Number.parseFloat(value.toFixed(1));
+  return `${rounded > 0 ? "+" : ""}${rounded}`;
+}
+
 export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide | null {
   const strategy = readStrategy();
   if (!strategy?.accounts) {
@@ -356,6 +478,7 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
 
   const technical = readLatestTechnical(snapshot.date);
   const technicalMap = technical?.scores ?? null;
+  const stage3 = readStage3Analysis(snapshot.date);
 
   const nextTranchePct = getNextTranchePct(strategy);
 
@@ -370,9 +493,15 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
         account,
         targetAllocation,
       );
-      const allocationScore = getAccountScore(categories, false);
-      const { technicalScore, topSignals } = getTechnicalScoreForAccount(account, technicalMap);
-      const score = mergeScores(allocationScore, technicalScore, account.incomplete);
+      const fallbackAllocationScore = getAccountScore(categories, false);
+      const { technicalScore: fallbackTechnicalScore, topSignals } = getTechnicalScoreForAccount(account, technicalMap);
+      const stage3Account = stage3?.accounts?.[account.key] ?? null;
+      const allocationScore = stage3Account?.allocationScore ?? fallbackAllocationScore;
+      const technicalScore = stage3Account?.holdingsScore ?? fallbackTechnicalScore;
+      const reportCoverageScore = stage3Account?.reportCoverageScore ?? null;
+      const score =
+        stage3Account?.totalScore ??
+        mergeScores(allocationScore, technicalScore, account.incomplete);
       const targetCashPct = targetAllocation["현금파킹"] ?? 0;
       const cashPct = totalAssets > 0 ? cashValue / totalAssets : 0;
       const topShortfalls = categories
@@ -428,6 +557,24 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
         candidates,
         categories: categories.sort((left, right) => right.targetPct - left.targetPct),
         topSignals,
+        reportCoverageScore,
+        stage2Bias: stage3Account?.stage2Bias ?? null,
+        scoreDrivers: buildScoreDrivers(
+          account,
+          allocationScore,
+          technicalScore,
+          reportCoverageScore,
+          cashPct,
+          targetCashPct,
+          categories,
+        ),
+        improvementActions: buildImprovementActions(
+          account,
+          categories,
+          technicalScore,
+          cashPct,
+          targetCashPct,
+        ),
       };
     })
     .filter((account): account is AccountGuide => account !== null);
@@ -453,12 +600,12 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
   const score = Math.round(weightedScore);
 
   return {
-    score,
+    score: stage3?.portfolio?.totalScore ?? score,
     totalAssets,
     totalCash,
     totalCashPct: totalAssets > 0 ? totalCash / totalAssets : 0,
     nextTranchePct,
-    globalStatus: getStatusFromScore(score),
+    globalStatus: getStatusFromScore(stage3?.portfolio?.totalScore ?? score),
     globalActions,
     incompleteCount: snapshot.accounts.filter((account) => account.incomplete).length,
     accounts,

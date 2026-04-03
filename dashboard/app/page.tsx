@@ -26,13 +26,24 @@ function loadLatestBriefing(): { date: string; content: string } | null {
 
   const files = fs
     .readdirSync(dir)
-    .filter((f) => f.endsWith("-briefing.md"))
-    .sort()
-    .reverse();
+    .filter(
+      (f) =>
+        f.endsWith("-briefing.md") || f.endsWith("-stage4-execution-plan.md"),
+    )
+    .map((file) => ({
+      file,
+      priority: file.endsWith("-briefing.md") ? 1 : 0,
+      mtime: fs.statSync(path.join(dir, file)).mtimeMs,
+    }))
+    .sort((left, right) => {
+      if (right.priority !== left.priority) return right.priority - left.priority;
+      if (right.mtime !== left.mtime) return right.mtime - left.mtime;
+      return right.file.localeCompare(left.file);
+    });
 
   if (files.length === 0) return null;
 
-  const file = files[0];
+  const file = files[0].file;
   const date = file.slice(0, 10);
   const content = fs.readFileSync(path.join(dir, file), "utf-8");
   return { date, content };

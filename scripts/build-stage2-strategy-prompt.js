@@ -5,6 +5,7 @@ import path from "node:path";
 
 import {
   ROOT_DIR,
+  buildPortfolioMaps,
   parseDateArgs,
   readJson,
   readText,
@@ -24,6 +25,33 @@ function summarizeAccounts(portfolio) {
     .join("\n");
 }
 
+function buildTechnicalSubset(portfolio, technical, watchlist) {
+  const portfolioMaps = buildPortfolioMaps(portfolio);
+  const codes = new Set([
+    ...portfolioMaps.holdingsByCode.keys(),
+    ...(watchlist?.core_etf ?? []).map((item) => item.code),
+    ...(watchlist?.satellite_etf ?? []).map((item) => item.code),
+  ]);
+
+  const scores = technical?.scores ?? {};
+  return [...codes]
+    .map((code) => {
+      const item = scores[code];
+      if (!item) return null;
+      return {
+        code,
+        name: item.name,
+        score: item.score,
+        signal: item.signal,
+        signal_reason: truncate(item.signal_reason ?? "", 180),
+        rsi: item.rsi,
+        bollinger_position: item?.bollinger?.position ?? null,
+      };
+    })
+    .filter(Boolean)
+    .slice(0, 24);
+}
+
 async function main() {
   const args = parseDateArgs(process.argv.slice(2));
   const stateDir = path.join(ROOT_DIR, "data", "analysis-state", args.date);
@@ -35,17 +63,20 @@ async function main() {
     args.output ??
     path.join(ROOT_DIR, "knowledge", "daily", "manual-kit", args.date, "08-stage2-strategy-prompt.md");
 
-  const [stage1, portfolio, technical, briefing] = await Promise.all([
+  const [stage1, portfolio, technical, briefing, watchlist] = await Promise.all([
     readJson(stage1Path, { extracts: [] }),
     readJson(portfolioPath, { accounts: [] }),
     readJson(technicalPath, { market_context: {}, scores: {} }),
     readText(richBriefingPath, ""),
+    readJson(path.join(ROOT_DIR, "config", "watchlist.json"), {}),
   ]);
 
   const directExtracts = stage1.extracts
     .filter((item) => item.related_holdings_in_my_portfolio.length > 0 || item.portfolio_impacts_candidate.length > 0)
-    .slice(0, 18);
-  const macroExtracts = stage1.extracts.filter((item) => item.report_type === "macro").slice(0, 8);
+    .slice(0, 12);
+  const macroExtracts = stage1.extracts.filter((item) => item.report_type === "macro").slice(0, 5);
+  const technicalSubset = buildTechnicalSubset(portfolio, technical, watchlist);
+  const briefingSummary = truncate(briefing, 5000);
 
   const prompt = [
     "# EcoReport Stage 2 Strategy Exploration",
@@ -59,7 +90,7 @@ async function main() {
     summarizeAccounts(portfolio),
     "",
     "## 시장/섹터 브리핑",
-    briefing || "- rich briefing 없음",
+    briefingSummary || "- rich briefing 없음",
     "",
     "## 직접 관련 리포트 연구 노트",
     JSON.stringify(directExtracts, null, 2),
@@ -68,10 +99,20 @@ async function main() {
     JSON.stringify(macroExtracts, null, 2),
     "",
     "## 기술점수 스냅샷",
-    JSON.stringify(technical, null, 2),
+    JSON.stringify(
+      {
+        market_context: technical?.market_context ?? {},
+        relevant_scores: technicalSubset,
+      },
+      null,
+      2,
+    ),
     "",
     "## 출력 요구사항",
     "반드시 유효한 JSON으로만 답하세요.",
+    "문장은 짧게, 각 문자열은 1~2문장 이내로 유지하세요.",
+    "strategy_changes는 최대 4개, candidate_scores는 최대 8개까지만 반환하세요.",
+    "buy_candidates / trim_candidates / hold_candidates는 각 계좌당 최대 3개까지만 반환하세요.",
     "",
     JSON.stringify(
       {
@@ -127,4 +168,3 @@ main().catch((error) => {
   console.error(`stage2 strategy prompt 생성 실패: ${error.message}`);
   process.exit(1);
 });
-

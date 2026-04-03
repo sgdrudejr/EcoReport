@@ -10,6 +10,7 @@
     "reports:rag": "node scripts/build-report-rag-corpus.js",
     "stage1:extracts": "node scripts/build-stage1-report-extracts.js",
     "stage2:prompt": "node scripts/build-stage2-strategy-prompt.js",
+    "stage2:gemini": ".venv/bin/python scripts/build-stage2-strategy-gemini.py --date $(date +%F)",
     "stage2:mock": "node scripts/build-stage2-strategy-mock.js",
     "stage3:quant": "node scripts/build-stage3-quant-scores.js",
     "stage4:plan": "node scripts/build-stage4-execution-plan.js",

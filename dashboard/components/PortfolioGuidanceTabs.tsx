@@ -119,6 +119,12 @@ export default function PortfolioGuidanceTabs({
                 <span>
                   기술 {account.technicalScore != null ? `${account.technicalScore}점` : "-"}
                 </span>
+                {account.reportCoverageScore != null && (
+                  <>
+                    <span>·</span>
+                    <span>리포트 {account.reportCoverageScore}점</span>
+                  </>
+                )}
               </div>
             </button>
           );
@@ -202,6 +208,20 @@ export default function PortfolioGuidanceTabs({
               {selectedAccount.technicalScore != null ? `${selectedAccount.technicalScore}점` : "-"}
             </p>
           </div>
+          <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
+            <p className="text-xs text-zinc-500">리포트 점수</p>
+            <p className="mt-1 text-xl font-semibold tabular-nums text-zinc-100">
+              {selectedAccount.reportCoverageScore != null
+                ? `${selectedAccount.reportCoverageScore}점`
+                : "-"}
+            </p>
+          </div>
+          <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
+            <p className="text-xs text-zinc-500">Stage 2 bias</p>
+            <p className="mt-1 text-xl font-semibold tabular-nums text-zinc-100">
+              {selectedAccount.stage2Bias ?? "-"}
+            </p>
+          </div>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-4">
@@ -240,6 +260,26 @@ export default function PortfolioGuidanceTabs({
           <div className="space-y-3">
             <h4 className="text-sm font-medium text-zinc-200">실행 가이드</h4>
             <div className="rounded-xl border border-zinc-800 bg-zinc-950 p-4 space-y-3">
+              <div>
+                <p className="text-xs text-zinc-500">왜 이 점수인가</p>
+                <ul className="mt-1 space-y-1 text-sm text-zinc-100">
+                  {selectedAccount.scoreDrivers.map((driver) => (
+                    <li key={driver}>- {driver}</li>
+                  ))}
+                </ul>
+              </div>
+              <div>
+                <p className="text-xs text-zinc-500">점수를 올리려면</p>
+                <ul className="mt-1 space-y-1 text-sm text-zinc-100">
+                  {selectedAccount.improvementActions.length > 0 ? (
+                    selectedAccount.improvementActions.map((action) => (
+                      <li key={action}>- {action}</li>
+                    ))
+                  ) : (
+                    <li>- 현재는 급한 수정 없이 유지가 적절합니다.</li>
+                  )}
+                </ul>
+              </div>
               <div>
                 <p className="text-xs text-zinc-500">기술 상위 신호</p>
                 <p className="mt-1 text-sm text-zinc-100">

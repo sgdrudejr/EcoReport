@@ -98,20 +98,44 @@ function resolveStage2Candidates(account, stage2Data, bucket) {
   const accountKeyHints = new Set([account.key, account.label]);
   const buyCodes = new Set(bucket.stage2Bias ? (stage2Data?.account_actions ?? [])
     .find((item) => item.account_key === account.key || item.account_key === account.label)?.buy_candidates ?? [] : []);
+  const desiredCategory = bucket.topGap?.category ?? null;
 
   const matched = allCandidates.filter((item) => {
     const targets = item.target_accounts ?? [];
     const matchesAccount = targets.some((target) => accountKeyHints.has(target));
+    const itemCategory =
+      CATEGORY_BY_CODE[item.code]?.[account.key] ??
+      CATEGORY_BY_CODE[item.code]?.default ??
+      null;
+    const matchesCategory = desiredCategory != null && itemCategory === desiredCategory;
+    const alreadyHeld = (account.holdings ?? []).some((holding) => holding.code === item.code);
     const matchesGapLabel =
       bucket.candidateFromGap &&
       (item.name === bucket.candidateFromGap ||
         item.code === bucket.candidateFromGap ||
         (item.thesis ?? "").includes(bucket.candidateFromGap));
     const matchesBuyCode = buyCodes.has(item.code);
-    return matchesAccount || matchesGapLabel || matchesBuyCode;
+    return matchesCategory || matchesGapLabel || (matchesAccount && (alreadyHeld || itemCategory !== "기타")) || matchesBuyCode;
   });
 
-  return matched.slice(0, 3).map((item) => ({
+  const sorted = matched
+    .map((item) => {
+      const itemCategory =
+        CATEGORY_BY_CODE[item.code]?.[account.key] ??
+        CATEGORY_BY_CODE[item.code]?.default ??
+        null;
+      const categoryBonus = desiredCategory != null && itemCategory === desiredCategory ? 4 : 0;
+      const gapBonus = bucket.candidateFromGap && item.name === bucket.candidateFromGap ? 3 : 0;
+      const buyCodeBonus = buyCodes.has(item.code) ? 2 : 0;
+      const holdBonus = (account.holdings ?? []).some((holding) => holding.code === item.code) ? 1 : 0;
+      return {
+        ...item,
+        __rank: categoryBonus + gapBonus + buyCodeBonus + holdBonus,
+      };
+    })
+    .sort((left, right) => right.__rank - left.__rank);
+
+  return sorted.slice(0, 3).map((item) => ({
     code: item.code,
     name: item.name,
     score: null,
@@ -121,7 +145,20 @@ function resolveStage2Candidates(account, stage2Data, bucket) {
 }
 
 function distributeBudget(bucket, stage2Candidates = []) {
-  const candidates = stage2Candidates.length > 0 ? stage2Candidates : bucket.buy.slice(0, 3);
+  const fallbackCandidates =
+    bucket.candidateFromGap != null
+      ? [
+          {
+            code: bucket.topGap?.code ?? null,
+            name: bucket.candidateFromGap,
+            score: null,
+            reason: `${bucket.topGap?.category ?? "부족 자산군"} 목표 배분을 메우기 위한 보강`,
+            source: "gap",
+          },
+          ...bucket.buy.slice(0, 2),
+        ]
+      : bucket.buy.slice(0, 3);
+  const candidates = stage2Candidates.length > 0 ? stage2Candidates : fallbackCandidates;
   if (bucket.deployBudget <= 0 || candidates.length === 0) return [];
   const weights = candidates.length === 1 ? [1] : candidates.length === 2 ? [0.6, 0.4] : [0.5, 0.3, 0.2];
   return candidates.map((item, index) => ({
@@ -173,6 +210,8 @@ async function main() {
   const outputJson = args.output ?? path.join(stateDir, "stage4-execution-plan.json");
   const outputMarkdown =
     args.markdown ?? path.join(ROOT_DIR, "reports", "daily", `${args.date}-stage4-execution-plan.md`);
+  const outputBriefing =
+    args.briefing ?? path.join(ROOT_DIR, "reports", "daily", `${args.date}-briefing.md`);
 
   const payload = {
     date: args.date,
@@ -202,7 +241,7 @@ async function main() {
       "",
       "### 1차 실행",
       ...(account.stagedBuys.length > 0
-        ? account.stagedBuys.map((item) => `- ${item.name}(${item.code}) ${won(item.suggestedAmount)} / 이유: ${item.reason}`)
+        ? account.stagedBuys.map((item) => `- ${item.name}${item.code ? `(${item.code})` : ""} ${won(item.suggestedAmount)} / 이유: ${item.reason}`)
         : ["- 즉시 매수 후보 없음"]),
       "",
       "### 비중 축소/재점검",
@@ -222,8 +261,37 @@ async function main() {
     ]),
   ].join("\n");
 
+  const briefing = [
+    `# EcoReport 어드바이저 브리핑 (${args.date})`,
+    "",
+    `- 포트폴리오 총점: ${quant.portfolio?.totalScore ?? "N/A"}점`,
+    `- 현재 레짐: ${quant.regime?.name ?? "N/A"} / 신뢰도 ${regimeConfidence}`,
+    `- 핵심 코멘트: ${quant.portfolio?.note ?? "요약 없음"}`,
+    "",
+    "## 오늘의 우선 액션",
+    ...accountPlans.map((account) => {
+      const firstBuy = account.stagedBuys[0];
+      const topGap = account.topGap?.category ?? "없음";
+      return `- ${account.label}: ${topGap} 보강 우선 / ${account.totalScore}점 / 1차 ${firstBuy ? `${firstBuy.name} ${won(firstBuy.suggestedAmount)}` : "즉시 매수 없음"}`;
+    }),
+    "",
+    "## 계좌별 코멘트",
+    ...accountPlans.flatMap((account) => [
+      `### ${account.label}`,
+      `- 계좌 총점: ${account.totalScore}점`,
+      `- 부족한 자산군: ${account.topGap ? `${account.topGap.category} (${won(Math.max(account.topGap.gapAmount, 0))})` : "없음"}`,
+      `- 남길 예수금: ${won(account.reserveCash)}`,
+      `- 우선 후보: ${account.stage2Candidates.length > 0 ? account.stage2Candidates.map((item) => item.name).join(", ") : account.candidateFromGap ?? "없음"}`,
+      ...(account.trims.length > 0
+        ? [`- 재점검 필요: ${account.trims.map((item) => `${item.name} ${item.score}점`).join(", ")}`]
+        : [`- 재점검 필요: 즉시 축소 대상 없음`]),
+      "",
+    ]),
+  ].join("\n");
+
   await writeJson(outputJson, payload);
   await writeText(outputMarkdown, `${markdown}\n`);
+  await writeText(outputBriefing, `${briefing}\n`);
   console.log(outputJson);
 }
 
