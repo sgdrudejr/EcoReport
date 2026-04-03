@@ -168,6 +168,12 @@ export default function ManualLlmPage() {
           GPT 웹에서 생성한 시황 종합, 브리핑, 개별 PDF 요약을 붙여넣고
           저장하면 EcoReport가 다음 사이클부터 바로 재사용합니다.
         </p>
+        <div className="mt-3 rounded-xl border border-zinc-800 bg-zinc-900/70 px-4 py-3 text-xs text-zinc-400">
+          추천 순서: <code>queue</code> 또는 <code>triage</code>로 오늘 읽을
+          리포트를 고르고, <code>file ...</code>로 개별 PDF를 요약한 뒤,
+          <code>synthesis</code>로 시황 종합, <code>coach</code> 또는{" "}
+          <code>advisory</code>로 내 포트폴리오 운용 가이드를 만드세요.
+        </div>
       </div>
 
       <ManualLlmEditor

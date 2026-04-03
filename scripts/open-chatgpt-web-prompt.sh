@@ -10,12 +10,15 @@ AUTO_SAVE="true"
 usage() {
   cat <<'EOF'
 Usage:
-  bash scripts/open-chatgpt-web-prompt.sh [--no-submit] [--no-auto-save] [advisory|synthesis|queue|file <path>]
+  bash scripts/open-chatgpt-web-prompt.sh [--no-submit] [--no-auto-save] [advisory|synthesis|queue|triage|coach|ask <question>|file <path>]
 
 Examples:
   bash scripts/open-chatgpt-web-prompt.sh advisory
   bash scripts/open-chatgpt-web-prompt.sh --no-submit synthesis
   bash scripts/open-chatgpt-web-prompt.sh queue
+  bash scripts/open-chatgpt-web-prompt.sh triage
+  bash scripts/open-chatgpt-web-prompt.sh coach
+  bash scripts/open-chatgpt-web-prompt.sh ask "오늘 내 포트폴리오에서 제일 위험한 계좌는 어디야?"
   bash scripts/open-chatgpt-web-prompt.sh file /Users/seo/stock-pilot/knowledge/daily/report-prompts/2026-04-03/report_001.md
   bash scripts/open-chatgpt-web-prompt.sh --no-auto-save file /Users/seo/stock-pilot/knowledge/daily/report-prompts/2026-04-03/report_001.md
 EOF
@@ -54,6 +57,7 @@ done
 
 MODE="${1:-advisory}"
 TARGET_FILE=""
+GENERATED_TMP_FILE=""
 
 case "$MODE" in
   advisory)
@@ -64,6 +68,26 @@ case "$MODE" in
     ;;
   queue)
     TARGET_FILE="$(latest_matching_file "$KNOWLEDGE_DIR" "*-report-summary-queue.md")"
+    ;;
+  triage)
+    TARGET_FILE="$(latest_matching_file "$KNOWLEDGE_DIR" "*-report-triage-prompt.md")"
+    ;;
+  coach)
+    TARGET_FILE="$(latest_matching_file "$REPORTS_DIR" "*-portfolio-coach-prompt.md")"
+    ;;
+  ask)
+    shift
+    QUESTION="${*:-}"
+    if [ -z "$QUESTION" ]; then
+      echo "Question text is required for ask mode." >&2
+      exit 1
+    fi
+    GENERATED_TMP_FILE="/tmp/ecoreport-manual-question-prompt.md"
+    node "$ROOT/scripts/build-manual-question-prompt.js" \
+      --date "$(date +%F)" \
+      --question "$QUESTION" \
+      --output "$GENERATED_TMP_FILE" >/dev/null
+    TARGET_FILE="$GENERATED_TMP_FILE"
     ;;
   file)
     TARGET_FILE="${2:-}"

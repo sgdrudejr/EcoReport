@@ -135,6 +135,8 @@ if [[ "$MANUAL_LLM" == "1" ]]; then
   if report_queue_reason="$(should_run_llm_stage report-queue)"; then
     if run_soft_step "📚 [4/6] 수동 LLM용 PDF 요약 큐 생성... $report_queue_reason" \
       node scripts/build-report-summary-queue.js --date "$DATE"; then
+      run_soft_step "🧭 [4/6] 수동 LLM용 리포트 선별 프롬프트 생성..." \
+        node scripts/build-report-triage-prompt.js --date "$DATE" --output "knowledge/daily/$DATE-report-triage-prompt.md"
       mark_llm_stage report-queue
     fi
   else
@@ -193,6 +195,8 @@ if [[ "$MANUAL_LLM" == "1" ]]; then
   if advisory_reason="$(should_run_llm_stage advisory)"; then
     run_step "🧠 [6/6] 수동 LLM용 어드바이저 프롬프트 생성... $advisory_reason" \
       bash scripts/run-advisory.sh --date "$DATE" --manual-llm --force
+    run_soft_step "🧮 [6/6] 수동 LLM용 포트폴리오 코치 프롬프트 생성..." \
+      node scripts/build-portfolio-coach-prompt.js --date "$DATE" --output "reports/daily/$DATE-portfolio-coach-prompt.md"
   else
     local_status=$?
     if [[ "$local_status" == "20" ]]; then
