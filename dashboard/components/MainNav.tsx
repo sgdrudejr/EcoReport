@@ -5,6 +5,7 @@ const links = [
   { href: "/reports", label: "리포트" },
   { href: "/portfolio", label: "포트폴리오" },
   { href: "/portfolio/update", label: "업데이트" },
+  { href: "/manual-llm", label: "LLM 저장" },
 ];
 
 export default function MainNav() {

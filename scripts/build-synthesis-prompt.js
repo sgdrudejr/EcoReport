@@ -147,21 +147,34 @@ async function main() {
   const args = parseArgs(process.argv.slice(2));
   const cwd = process.cwd();
   const templatePath = path.join(cwd, "prompts", "daily-synthesis.md");
+  const manualCompressedPath = path.join(
+    cwd,
+    "data",
+    "reports",
+    args.date,
+    "manual-compressed.json",
+  );
   const compressedPath = path.join(cwd, "data", "reports", args.date, "compressed.json");
   const rawReportsPath = path.join(cwd, "data", "reports", args.date, "index.json");
   const newsPath = path.join(cwd, "data", "news", `${args.date}.json`);
   const tweetsPath = path.join(cwd, "data", "tweets", `${args.date}.json`);
 
-  const [template, compressedReports, rawReports, news, tweets] = await Promise.all([
+  const [template, manualCompressedReports, compressedReports, rawReports, news, tweets] = await Promise.all([
     readFile(templatePath, ""),
+    readJson(manualCompressedPath, []),
     readJson(compressedPath, []),
     readJson(rawReportsPath, []),
     readJson(newsPath, []),
     readJson(tweetsPath, []),
   ]);
 
+  const prioritizedReports =
+    Array.isArray(manualCompressedReports) && manualCompressedReports.length > 0
+      ? manualCompressedReports
+      : compressedReports;
+
   const reportsSection =
-    formatCompressedReports(compressedReports) ?? formatRawReports(rawReports);
+    formatCompressedReports(prioritizedReports) ?? formatRawReports(rawReports);
 
   let prompt = template;
   const replacements = {
