@@ -10,9 +10,8 @@ export default function TriggerButton() {
   const [message, setMessage] = useState("");
 
   async function handleClick() {
-    const password = process.env.NEXT_PUBLIC_DASHBOARD_PASSWORD_REQUIRED
-      ? prompt("대시보드 비밀번호를 입력하세요")
-      : undefined;
+    const password = process.env.NEXT_PUBLIC_DASHBOARD_PASSWORD
+      ?? prompt("대시보드 비밀번호를 입력하세요") ?? undefined;
 
     setState("loading");
     try {
