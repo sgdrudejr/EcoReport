@@ -110,80 +110,44 @@ echo "[open-chatgpt] Deep Research 모드: $DEEP_RESEARCH_MODE"
 cat "$TARGET_FILE" | pbcopy
 echo "[open-chatgpt] ✓ 클립보드에 복사 완료 ($(wc -c < "$TARGET_FILE") bytes)"
 
-# ── 2. AppleScript: ChatGPT 탭 열기 + 포커스 + Cmd+V ─────────────────
-osascript <<APPLESCRIPT
-set deepResearchMode to $DEEP_RESEARCH_MODE
-
+# ── 2. AppleScript: ChatGPT 탭 열기 + Cmd+V ─────────────────────────
+APPLESCRIPT_FILE="/tmp/ecoreport_open_$$.applescript"
+cat > "$APPLESCRIPT_FILE" <<'EOF'
 tell application "Google Chrome"
   activate
-  if (count of windows) = 0 then
-    make new window
-  end if
-
-  -- 기존 ChatGPT 탭 찾기
-  set targetTab to null
+  set foundTab to false
   repeat with w in windows
     repeat with t in tabs of w
       if URL of t contains "chatgpt.com" then
-        set targetTab to t
         set active tab index of w to index of t
         set index of w to 1
+        set foundTab to true
         exit repeat
       end if
     end repeat
-    if targetTab is not null then exit repeat
+    if foundTab then exit repeat
   end repeat
-
-  -- 없으면 새 탭 열기
-  if targetTab is null then
+  if not foundTab then
+    if (count of windows) = 0 then
+      make new window
+    end if
     tell front window to make new tab with properties {URL:"https://chatgpt.com/"}
     delay 4
   else
     delay 1
   end if
-
-  -- Deep Research 토글 클릭
-  if deepResearchMode then
-    do JavaScript "
-      (function() {
-        const btns = Array.from(document.querySelectorAll('button, [role=button]'));
-        const btn = btns.find(b =>
-          (b.textContent || '').includes('Research') ||
-          (b.textContent || '').includes('딥 리서치') ||
-          (b.getAttribute('aria-label') || '').includes('Research')
-        );
-        if (btn) { btn.click(); return 'clicked'; }
-        return 'not found';
-      })()
-    " in front document
-    delay 1
-  end if
-
-  -- 입력창 포커스
-  do JavaScript "
-    (function() {
-      const sels = ['div[contenteditable=true]', 'textarea#prompt-textarea', 'textarea'];
-      for (const s of sels) {
-        const el = document.querySelector(s);
-        if (el) { el.focus(); return 'focused:' + s; }
-      }
-      return 'not found';
-    })()
-  " in front document
-  delay 0.5
-
 end tell
-
--- Cmd+V (System Events로 붙여넣기)
+delay 1
 tell application "System Events"
   tell process "Google Chrome"
     keystroke "v" using {command down}
   end tell
 end tell
+display notification "프롬프트 붙여넣기 완료" with title "EcoReport"
+EOF
 
-delay 0.5
-display notification "프롬프트 붙여넣기 완료" with title "EcoReport ($MODE)"
-APPLESCRIPT
+osascript "$APPLESCRIPT_FILE"
+rm -f "$APPLESCRIPT_FILE"
 
 echo "[open-chatgpt] ✓ 프롬프트가 ChatGPT에 붙여넣어졌습니다."
 echo "[open-chatgpt] 검토 후 직접 전송(Enter)하세요."
