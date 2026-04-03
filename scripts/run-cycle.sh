@@ -7,6 +7,7 @@ DATE="$(date +%F)"
 TIME="$(date +%H%M)"
 SKIP_LLM="${SKIP_LLM:-0}"
 MANUAL_LLM="${MANUAL_LLM:-0}"
+SKIP_COLLECT=0
 AUTO_PUSH=0
 FORCE_LLM=0
 
@@ -22,6 +23,10 @@ while [[ $# -gt 0 ]]; do
       ;;
     --manual-llm)
       MANUAL_LLM=1
+      shift
+      ;;
+    --skip-collect)
+      SKIP_COLLECT=1
       shift
       ;;
     --push)
@@ -120,11 +125,16 @@ log "=================================================="
 log "🚀 [$TIME] EcoReport 분석 사이클 시작 ($DATE)"
 log "=================================================="
 
-run_optional_step "📡 [1/6] 네이버 리서치 수집..." \
-  node scripts/crawl-naver-research.js --date "$DATE"
+if [[ "$SKIP_COLLECT" == "1" ]]; then
+  log "📡 [1/6] 수집 단계 건너뜀 (--skip-collect)"
+  log "📰 [2/6] 수집 단계 건너뜀 (--skip-collect)"
+else
+  run_optional_step "📡 [1/6] 네이버 리서치 수집..." \
+    node scripts/crawl-naver-research.js --date "$DATE"
 
-run_optional_step "📰 [2/6] RSS/트위터/시장 데이터 수집..." \
-  bash -lc "node scripts/fetch-rss-news.js --date '$DATE' && node scripts/fetch-twitter.js --date '$DATE' && node scripts/fetch-market-data.js --date '$DATE'"
+  run_optional_step "📰 [2/6] RSS/트위터/시장 데이터 수집..." \
+    bash -lc "node scripts/fetch-rss-news.js --date '$DATE' && node scripts/fetch-twitter.js --date '$DATE' && node scripts/fetch-market-data.js --date '$DATE'"
+fi
 
 run_step "📊 [3/6] 기술적 분석 계산..." \
   node scripts/calc-technicals.js --date "$DATE"
