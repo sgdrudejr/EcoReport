@@ -1,65 +1,179 @@
 # EcoReport
 
-Mac Mini에서 돌아가는 반자동 포트폴리오 인텔리전스 워크벤치입니다.  
-핵심은 아래 3가지를 하나의 루프로 묶는 것입니다.
+EcoReport는 Mac Mini에서 돌아가는 반자동 포트폴리오 인텔리전스 워크벤치입니다.
 
-- 데이터 수집: 네이버 증권 리포트, RSS 뉴스, 시장 데이터, 계좌 스냅샷
-- 해석: 기술 점수 + ChatGPT/Claude 웹 수동 LLM 해석
-- 실행 가이드: 내 계좌 기준 점수, 보강/보류/분할매수 지침
+핵심 목표는 하나입니다.
 
-현재 구조는 **API 자동 과금형**이 아니라 **수동 LLM 개입형**을 기본으로 합니다.  
-즉, EcoReport가 재료를 준비하고, ChatGPT 웹 또는 Claude 앱/웹이 해석하고, 그 결과를 다시 EcoReport에 저장하는 방식입니다.
+- 리포트를 많이 모으는 것이 아니라
+- 리포트, 기술지표, 내 계좌 상태를 같은 구조 안에 넣고
+- 실제 계좌 운용 지침까지 연결하는 것
+
+현재 기본 모드는 **API 대량 호출형**이 아니라 **수동 LLM 개입형**입니다.
+즉, EcoReport가 재료와 점수를 준비하고, ChatGPT/Gemini/Claude 같은 LLM은 해석과 전략 탐색을 담당합니다.
 
 ## 현재 목표
 
-- 내 계좌 3개(ISA / 연금저축 / 토스증권)를 한 화면에서 본다
-- 매일 수집되는 증권사 PDF/뉴스/시장 데이터가 내 계좌에 어떤 의미인지 연결한다
-- 단순 요약이 아니라 "오늘 내 계좌를 어떻게 운용해야 하는지"를 제시한다
-- LLM 비용은 최소화하고, 중요한 단계만 수동으로 개입한다
+- ISA / 연금저축 / 토스증권 계좌를 하나의 모델로 다루기
+- 증권사 PDF를 단순 요약이 아니라 연구 노트 형태로 축적하기
+- 기술지표와 리포트 영향을 같이 반영한 계좌 점수 만들기
+- 최종적으로 "오늘 뭘 보강/보류/관망할지"를 계좌 단위로 제시하기
+
+## 핵심 원칙
+
+- `igzun-daily-report`는 참고 레퍼런스일 뿐, EcoReport 런타임 의존성이 아닙니다.
+- 수집 후에는 반드시 `PDF 전문 텍스트화`를 거칩니다.
+- Stage 2만 LLM 의존도가 높고, Stage 1/3/4는 재현 가능한 코드로 유지합니다.
+- 지금은 수동 LLM 운영이 기본이며, 구조가 안정되면 그때 API를 붙입니다.
 
 ## 아키텍처
 
 ```mermaid
 flowchart TD
-    A["Naver Research PDFs"] --> B["crawl-naver-research.js"]
-    C["RSS News"] --> D["fetch-rss-news.js"]
-    E["Market Data"] --> F["fetch-market-data.js"]
-    G["Portfolio Screenshots"] --> H["/portfolio/update UI"]
+    A["Report Sources<br/>Naver + Shinhan"] --> B["collect-report-assets.sh"]
+    B --> B1["PDFs + index.json"]
+    B --> B2["text/*.txt + text-manifest.json"]
 
-    B --> I["Report Queue / Prompts"]
-    D --> J["Daily Context"]
-    F --> K["calc-technicals.js"]
-    H --> L["data/portfolio/latest.json"]
+    B2 --> C["Stage 1<br/>build-stage1-report-extracts.js"]
+    P["Portfolio Snapshot<br/>data/portfolio/latest.json"] --> C
+    W["Watchlist / Strategy"] --> C
+    C --> C1["stage1-report-extracts-v2.json"]
+    C --> C2["stage1-report-extracts-v2.md"]
 
-    I --> M["ChatGPT Web / Claude (manual)"]
-    J --> M
-    K --> M
-    L --> M
+    C1 --> D["Stage 2 Prompt<br/>build-stage2-strategy-prompt.js"]
+    C1 --> E["Stage 2 Mock<br/>build-stage2-strategy-mock.js"]
+    T["Technical Snapshot<br/>data/technical/YYYY-MM-DD.json"] --> D
+    T --> E
+    P --> D
+    P --> E
+    G["Daily / Gemini Briefing"] --> D
+    E --> E1["stage2-strategy-options.mock.json"]
+    D --> D1["08-stage2-strategy-prompt.md"]
 
-    M --> N["Manual save / auto-save scripts"]
-    N --> O["manual-compressed.json / synthesis / briefing"]
+    C1 --> F["Stage 3 Quant<br/>build-stage3-quant-scores.js"]
+    E1 --> F
+    T --> F
+    P --> F
+    W --> F
+    F --> F1["stage3-quant-scores.json"]
 
-    O --> P["dashboard/"]
-    K --> P
-    L --> P
+    C1 --> H["Stage 4 Execution<br/>build-stage4-execution-plan.js"]
+    E1 --> H
+    F1 --> H
+    P --> H
+    W --> H
+    H --> H1["stage4-execution-plan.json"]
+    H --> H2["stage4-execution-plan.md"]
+
+    B2 --> R["Report RAG Corpus"]
+    P --> PR["Portfolio RAG Corpus"]
+    R --> XR["Parallel RAG Corpus"]
+    PR --> XR
 ```
 
-## 현재 운영 모드
+별도 아키텍처 문서:
 
-### 1. 자동 수집 + 수동 LLM 해석
+- [STAGE_1_4_ARCHITECTURE.md](/Users/seo/stock-pilot/docs/STAGE_1_4_ARCHITECTURE.md)
+- [OPERATOR_RUNBOOK.md](/Users/seo/stock-pilot/docs/OPERATOR_RUNBOOK.md)
 
-기본 모드입니다.
+## Stage 1~4 개요
 
-- 수집과 계산은 스크립트가 자동 수행
-- LLM은 ChatGPT 웹으로 질문을 자동 전송
-- 응답은 DOM에서 읽어 저장하거나, 수동 저장 UI에 붙여 넣음
+### Stage 1. 리포트 연구 노트화
 
-### 2. 수집 스킵 스프린트
+입력:
 
-이미 오늘 데이터가 있으면 다시 크롤링하지 않고, 기존 데이터로만 GPT 스프린트를 돌립니다.
+- `data/reports/YYYY-MM-DD/index.json`
+- `data/reports/YYYY-MM-DD/text/*.txt`
+- `data/portfolio/latest.json`
+- `config/watchlist.json`
 
-- `run-manual-gpt-sprint.sh`
-- `run-chatgpt-full-sprint.sh`
+출력:
+
+- `data/analysis-state/YYYY-MM-DD/stage1-report-extracts-v2.json`
+- `knowledge/daily/YYYY-MM-DD-stage1-report-extracts-v2.md`
+
+핵심 필드:
+
+- `report_type`
+- `sector`
+- `themes`
+- `related_holdings_in_my_portfolio`
+- `related_accounts`
+- `key_thesis`
+- `key_points`
+- `key_numbers`
+- `what_changed`
+- `bull_case`
+- `bear_case`
+- `portfolio_impacts_candidate`
+- `evidence_notes`
+
+설명:
+
+- 이 단계는 추천을 만드는 단계가 아니라 **리포트 연구 노트를 만드는 단계**입니다.
+- 최대한 많은 근거를 보존하고, 리포트-포트폴리오 관련성을 후보 수준으로 붙입니다.
+
+### Stage 2. 전략 탐색
+
+입력:
+
+- Stage 1 연구 노트
+- 포트폴리오 상태
+- 기술지표
+- Daily / Gemini 브리핑
+
+출력:
+
+- `knowledge/daily/manual-kit/YYYY-MM-DD/08-stage2-strategy-prompt.md`
+- `data/analysis-state/YYYY-MM-DD/stage2-strategy-options.mock.json`
+
+설명:
+
+- 실제 LLM이 붙을 자리입니다.
+- 현재는 mock JSON을 먼저 만들어 Stage 3/4를 계속 검증합니다.
+- 나중에는 이 mock 자리에 실제 LLM 응답 JSON이 들어갑니다.
+
+### Stage 3. 퀀트 점수화
+
+입력:
+
+- 기술지표
+- Stage 1 리포트 영향 후보
+- Stage 2 전략 bias
+- 전략 파일 / 목표 배분
+
+출력:
+
+- `data/analysis-state/YYYY-MM-DD/stage3-quant-scores.json`
+
+설명:
+
+- 종목, 계좌, 포트폴리오 점수를 계산합니다.
+- 현재는 기술지표 + 리포트 영향 후보 + 배분 점수 조합입니다.
+- 향후 `deep-research-report.md` 기반 `Direction / Timing / Regime / ActionScore / Probabilities` 구조로 더 고도화할 수 있습니다.
+
+### Stage 4. 실행 계획 생성
+
+입력:
+
+- Stage 1 연구 노트
+- Stage 2 전략 탐색 결과
+- Stage 3 점수
+- 포트폴리오 현재 상태
+
+출력:
+
+- `data/analysis-state/YYYY-MM-DD/stage4-execution-plan.json`
+- `reports/daily/YYYY-MM-DD-stage4-execution-plan.md`
+
+설명:
+
+- 계좌별 부족 자산군
+- 이번 tranche 투입 예산
+- 즉시 보강 후보
+- 유지/감축/관찰 대상
+- 직접 관련 리포트 근거
+
+를 하나의 실행 초안으로 만듭니다.
 
 ## 디렉토리 구조
 
@@ -68,25 +182,47 @@ stock-pilot/
 ├── config/                    # 전략, 관심종목, RSS 피드, 알림 규칙
 ├── dashboard/                 # Next.js 대시보드
 ├── data/
+│   ├── analysis-state/        # Stage 1~4 산출물
 │   ├── market/                # 날짜별 시장 데이터
 │   ├── news/                  # 날짜별 RSS 뉴스
 │   ├── portfolio/             # 최신 계좌 스냅샷
-│   ├── reports/               # 날짜별 PDF/텍스트/수동 요약
+│   ├── reports/               # 날짜별 PDF/텍스트/RAG/수동 요약
 │   ├── technical/             # 날짜별 기술 점수
-│   └── tweets/                # 날짜별 트윗 수집 결과
+│   └── tweets/                # 날짜별 트윗 결과
+├── docs/                      # 아키텍처 및 운영 문서
 ├── knowledge/
-│   ├── daily/                 # triage/synthesis prompt, 응답, 큐 파일
-│   ├── monthly/               # 월간 요약
-│   └── weekly/                # 주간 요약
-├── prompts/                   # API형 LLM 프롬프트 템플릿
+│   ├── daily/                 # prompt, response, manual-kit
+│   ├── monthly/
+│   ├── rag/                   # 병렬 RAG 코퍼스
+│   └── weekly/
 ├── reports/
-│   └── daily/                 # advisory prompt, briefing
-└── scripts/                   # 전체 파이프라인
+│   └── daily/                 # stage4 실행계획, briefing
+└── scripts/                   # 수집/정리/점수/실행 스크립트
 ```
+
+## 수집 이후 텍스트화 원칙
+
+리포트 수집은 **PDF 다운로드에서 끝나지 않습니다.**
+
+반드시 아래 산출물이 같이 있어야 합니다.
+
+- `data/reports/YYYY-MM-DD/index.json`
+- `data/reports/YYYY-MM-DD/text/*.txt`
+- `data/reports/YYYY-MM-DD/crawl-manifest.json`
+- `data/reports/YYYY-MM-DD/text-manifest.json`
+
+즉, 앞으로 EcoReport의 1번 시작 단계는:
+
+1. PDF 수집
+2. 전문 텍스트 추출
+3. OCR fallback
+4. 텍스트 품질 로그 생성
+
+입니다.
 
 ## 핵심 데이터 스키마
 
-### 1. 포트폴리오 스냅샷
+### 포트폴리오 스냅샷
 
 파일:
 
@@ -95,56 +231,15 @@ stock-pilot/
 용도:
 
 - 계좌별 평가금액, 예수금, 보유 종목, 종목별 손익/수익률 저장
-- 대시보드와 포트폴리오 운용 가이드의 기준 데이터
+- 대시보드와 Stage 1~4 전체의 기준 데이터
 
-예시 필드:
-
-```json
-{
-  "date": "2026-04-03",
-  "updatedAt": "2026-04-03T10:44:07.922Z",
-  "source": {
-    "method": "screenshot_review",
-    "reviewer": "seo"
-  },
-  "accounts": [
-    {
-      "key": "ISA",
-      "label": "ISA",
-      "evaluationAmount": 8384240,
-      "cashAvailable": 6277490,
-      "principal": 6304001,
-      "profitLoss": 2084749,
-      "profitRate": 33.07,
-      "incomplete": true,
-      "holdings": [
-        {
-          "code": "458760",
-          "name": "TIGER 미국배당+7%프리미엄다우존스",
-          "quantity": 50,
-          "marketValue": 510250,
-          "purchaseValue": 510500,
-          "profitLoss": -250,
-          "profitRate": -0.05
-        }
-      ]
-    }
-  ]
-}
-```
-
-### 2. 기술 점수
+### 기술 점수
 
 파일:
 
 - `data/technical/YYYY-MM-DD.json`
 
-용도:
-
-- 종목/ETF별 기술적 상태를 점수화
-- 포트폴리오 운용 점수의 기술 파트 입력값
-
-현재 포함 지표:
+현재 포함:
 
 - 이동평균선(5/20/60/120)
 - RSI
@@ -154,45 +249,16 @@ stock-pilot/
 - ADX
 - 거래량 비율
 
-예시 필드:
-
-```json
-{
-  "date": "2026-04-03",
-  "market_context": {
-    "signal": "NEUTRAL",
-    "score": 43
-  },
-  "scores": {
-    "360750": {
-      "name": "TIGER 미국S&P500",
-      "score": 70,
-      "signal": "BUY",
-      "signal_reason": "주가가 20일선 위에서 유지 중...",
-      "rsi": 49.54,
-      "macd": {
-        "histogram": 4.5906
-      },
-      "alerts": [
-        "MACD 시그널 상향 돌파"
-      ]
-    }
-  }
-}
-```
-
-### 3. 리포트 원본 인덱스
+### 리포트 원본 자산
 
 파일:
 
 - `data/reports/YYYY-MM-DD/index.json`
+- `data/reports/YYYY-MM-DD/text/*.txt`
+- `data/reports/YYYY-MM-DD/crawl-manifest.json`
+- `data/reports/YYYY-MM-DD/text-manifest.json`
 
-용도:
-
-- 네이버 증권 PDF 수집 결과 메타데이터
-- 제목, 증권사, 카테고리, PDF 경로, 추출 텍스트 보관
-
-### 4. 수동 PDF 요약 결과
+### 수동 PDF 요약
 
 파일:
 
@@ -200,234 +266,143 @@ stock-pilot/
 
 용도:
 
-- ChatGPT/Claude가 개별 PDF를 읽고 정리한 구조화 결과 저장
-- 이후 synthesis/advisory에 우선 입력
+- 수동 LLM이 읽은 개별 PDF 결과 저장
+- 이후 synthesis/advisory 입력으로 사용
 
-현재 의도 스키마:
+### RAG 코퍼스
 
-```json
-[
-  {
-    "id": "report_001",
-    "broker": "증권사명",
-    "title": "리포트 제목",
-    "tickers": ["005930"],
-    "key_thesis": "핵심 주장",
-    "new_info": "새로운 정보",
-    "risks": ["리스크"],
-    "themes": ["HBM4"],
-    "impact": {
-      "direction": "positive",
-      "reason": "포트폴리오 관점 핵심 이유"
-    }
-  }
-]
-```
+파일:
 
-### 5. 일간 지식 파일
+- `data/reports/YYYY-MM-DD/rag/*`
+- `data/portfolio/rag/YYYY-MM-DD/*`
+- `knowledge/rag/YYYY-MM-DD/*`
 
-위치:
+용도:
 
-- `knowledge/daily/`
+- 리포트 원문 청크
+- 포트폴리오 청크
+- 병렬 검색 / 컨텍스트 빌더
 
-주요 파일:
+## 현재 운영 모드
 
-- `*-report-summary-queue.md`: 오늘 읽을 PDF 우선순위
-- `*-report-triage-prompt.md`: GPT에게 "무엇부터 읽을지" 묻는 프롬프트
-- `*-report-triage-response.md`: GPT triage 응답 저장본
-- `*-synthesis-prompt.md`: 오늘 시장/리포트 종합 프롬프트
-- `*-synthesis.md`: 저장된 종합 응답
+### 1. 자동 수집 + 수동 LLM 해석
 
-### 6. 브리핑 파일
+기본 모드입니다.
 
-위치:
+- 수집, 텍스트화, 점수 계산은 코드가 수행
+- 전략 해석은 사람이 ChatGPT/Gemini/Claude에 질문
+- 응답은 수동 저장 또는 후속 자동 저장 스크립트로 반영
 
-- `reports/daily/`
+### 2. Stage 1~4 코드 검증 모드
 
-주요 파일:
+실제 LLM이 없어도 mock Stage 2로 Stage 3/4를 검증할 수 있습니다.
 
-- `*-advisory-prompt.md`: 포트폴리오 운용 프롬프트
-- `*-briefing.md`: 최종 운용 브리핑
-- `*-portfolio-coach-prompt.md`: 계좌 운용 코치용 프롬프트
+이 모드가 중요한 이유:
 
-## 방법론
-
-### A. 수집
-
-1. 네이버 증권 리포트 PDF 수집
-2. RSS 뉴스 수집
-3. 시장 데이터 수집
-4. 포트폴리오 스냅샷 반영
-
-### B. 정리
-
-1. 오늘 수집한 PDF를 우선순위 큐로 정렬
-2. 중요한 PDF만 개별 요약
-3. 요약된 PDF + 뉴스 + 시장 + 포트폴리오를 합쳐 시황 종합
-4. 시황 종합 + 포트폴리오 + 기술점수로 최종 운용 가이드 생성
-
-### C. 운용 점수
-
-현재 계좌 운용 점수는 아래를 섞어 계산합니다.
-
-- 배분 점수: 목표 배분 대비 현재 자산군 괴리
-- 기술 점수: 계좌 내 보유 종목의 기술 점수 가중 평균
-
-현재 구현은 이 두 축이 중심입니다.  
-다음 단계로는 아래 항목을 추가해야 합니다.
-
-- 리포트 영향 점수
-- 계좌별 리포트 민감도
-- 리포트/종목/계좌 간 양방향 연결
-
-### D. 수동 LLM 원칙
-
-API를 무조건 호출하지 않습니다.
-
-- 데이터가 바뀐 경우에만 LLM 단계 재준비
-- LLM은 ChatGPT 웹/Claude 웹 또는 앱에 수동 질문
-- 답변은 DOM 읽기 또는 수동 저장
-
-즉, 구조는:
-
-- EcoReport = 데이터 엔진 + 저장소 + 대시보드
-- GPT/Claude = 고급 해석기
+- 구조가 먼저 안정되어야 나중에 API를 붙일 수 있음
+- 점수와 실행계획이 재현 가능해야 사람/에이전트 교체가 가능함
 
 ## 실제 실행 명령
 
-### 1. 오늘 데이터로 수집 포함 풀사이클 준비
+### 1. 리포트 수집 + 텍스트화
 
 ```bash
 cd /Users/seo/stock-pilot
-bash scripts/run-cycle.sh --manual-llm
+bash scripts/collect-report-assets.sh --date 2026-04-03
 ```
 
-### 2. 이미 데이터가 있으면 수집 없이 스프린트
+### 2. RAG 코퍼스 생성
+
+```bash
+cd /Users/seo/stock-pilot
+node scripts/build-report-rag-corpus.js --date 2026-04-03
+node scripts/build-portfolio-rag-corpus.js --date 2026-04-03
+node scripts/build-parallel-rag-corpus.js --date 2026-04-03
+```
+
+### 3. Stage 1~4 전략 파이프라인 실행
+
+```bash
+cd /Users/seo/stock-pilot
+bash scripts/run-strategy-pipeline.sh --date 2026-04-03
+```
+
+또는 개별 실행:
+
+```bash
+cd /Users/seo/stock-pilot
+npm run stage1:extracts -- --date 2026-04-03
+npm run stage2:prompt -- --date 2026-04-03
+npm run stage2:mock -- --date 2026-04-03
+npm run stage3:quant -- --date 2026-04-03
+npm run stage4:plan -- --date 2026-04-03
+```
+
+### 4. 수동 GPT 스프린트
 
 ```bash
 cd /Users/seo/stock-pilot
 bash scripts/run-manual-gpt-sprint.sh --date 2026-04-03
 ```
 
-### 3. ChatGPT 웹 전체 스프린트
+### 5. 개별 수동 프롬프트
 
 ```bash
-cd /Users/seo/stock-pilot
-bash scripts/run-chatgpt-full-sprint.sh --date 2026-04-03
-```
-
-### 4. 개별 모드별 ChatGPT 웹 전송
-
-```bash
-bash scripts/open-chatgpt-web-prompt.sh triage
-bash scripts/open-chatgpt-web-prompt.sh queue
 bash scripts/open-chatgpt-web-prompt.sh synthesis
 bash scripts/open-chatgpt-web-prompt.sh coach
 bash scripts/open-chatgpt-web-prompt.sh advisory
-bash scripts/open-chatgpt-web-prompt.sh ask "오늘 내 계좌에서 가장 먼저 보강할 계좌는 어디고 왜 그래?"
-bash scripts/open-chatgpt-web-prompt.sh file /Users/seo/stock-pilot/knowledge/daily/report-prompts/2026-04-03/report_001.md
+bash scripts/open-chatgpt-web-prompt.sh ideas
 ```
 
-## 현재 대시보드 기능
+## 다른 날짜 / 다른 사람 / 다른 에이전트가 이어받는 순서
 
-### 홈
-
-- 최신 브리핑 표시
-- 시장 카드
-- 포트폴리오 총 평가/예수금/손익/수익률 요약
-- 계좌별 운용 가이드 탭
-- 계좌별 점수, 보유 종목 손익, 보유 수익률
-
-### 포트폴리오
-
-- 계좌별 보유 종목 한눈에 보기
-- 종목별 손익/수익률
-- 계좌별 보유 종목 합산 손익/수익률
-
-### 포트폴리오 업데이트
-
-- 계좌 스냅샷 수동 수정/저장
-- 현재는 검수형 입력 중심
-- 다음 단계는 OCR/비전 자동 채우기
-
-### 수동 LLM 저장
-
-- GPT/Claude 응답을 붙여 넣어 저장
-- synthesis / advisory / report summary 저장 가능
+1. 이 README 읽기
+2. [STAGE_1_4_ARCHITECTURE.md](/Users/seo/stock-pilot/docs/STAGE_1_4_ARCHITECTURE.md) 읽기
+3. [OPERATOR_RUNBOOK.md](/Users/seo/stock-pilot/docs/OPERATOR_RUNBOOK.md) 읽기
+4. 해당 날짜의 아래 파일 존재 여부 확인
+   - `data/reports/YYYY-MM-DD/index.json`
+   - `data/reports/YYYY-MM-DD/text-manifest.json`
+   - `data/portfolio/latest.json`
+5. 없으면 수집부터, 있으면 `run-strategy-pipeline.sh`부터 시작
 
 ## 현재 잘 되는 것
 
-- Vercel 배포 및 외부 접속
-- GitHub Actions 트리거
-- ChatGPT 웹 자동 열기 및 프롬프트 주입
-- ChatGPT 응답 DOM polling 및 일부 자동 저장
-- 계좌 스냅샷 반영
-- 기술 점수 계산
-- 계좌별 운용 가이드 표시
+- 네이버/신한 리포트 수집
+- 수집 후 전문 텍스트화 + OCR fallback
+- 리포트/포트폴리오 RAG 코퍼스 생성
+- 기술지표 계산
+- Stage 1~4 전략 파이프라인 산출물 생성
+- 계좌 스냅샷 저장
+- 대시보드 표시
 
 ## 아직 부족한 것
 
 ### 1. 리포트-계좌 양방향성
 
-지금 가장 큰 약점입니다.
+가장 큰 약점입니다.
 
-현재는:
+현재 `portfolio_impacts_candidate`는 후보 수준입니다.
+즉, 아직 확정된 영향도 레이어는 아닙니다.
 
-- 리포트는 모음
-- 요약은 가능
-- 내 계좌 가이드도 나옴
+다음 단계 핵심은 `impact-map.json`입니다.
 
-하지만 아직 부족한 점:
+### 2. Stage 2 실제 LLM 연결
 
-- 어떤 리포트가 어떤 계좌 점수에 영향을 줬는지 구조화되어 있지 않음
-- 특정 종목/계좌 관점에서 "오늘 중요한 리포트 3개"를 자동으로 뽑아주지 못함
-- 리포트 변화가 계좌 점수에 직접 반영되지 않음
+지금은 mock JSON으로 Stage 3/4를 검증합니다.
+실제 전략 판단은 아직 사람이 LLM에 묻고 결과를 같은 스키마 JSON으로 저장해야 합니다.
 
-### 2. 리포트 영향 레이어 부재
+### 3. Stage 1 품질 고도화
 
-다음 단계 핵심은 `impact-map.json` 같은 중간 계층입니다.
+현재도 연구 노트는 생성되지만, 아래는 더 개선해야 합니다.
 
-예상 스키마:
+- 표/차트 잡음 제거
+- 면책문구 제거 강화
+- ETF/테마형 종목의 직접 관련성 추론 정교화
+- `what_changed`의 변화 감지 정밀도
 
-```json
-{
-  "date": "2026-04-03",
-  "reports": [
-    {
-      "id": "report_001",
-      "impacts": [
-        {
-          "targetType": "holding",
-          "targetKey": "360750",
-          "accountKey": "PENSION",
-          "direction": "positive",
-          "horizon": "3m",
-          "strength": 0.72,
-          "reason": "실적/목표가/신규 수급 논리"
-        }
-      ]
-    }
-  ]
-}
-```
+### 4. 딥 리서치 기반 점수 고도화
 
-이게 들어가야 진짜로:
-
-- 리포트가 계좌 점수를 움직이고
-- 계좌가 어떤 리포트를 더 읽어야 하는지 다시 정할 수 있습니다
-
-### 3. Deep-research 기반 점수 고도화
-
-현재 기술 점수는 전통 지표 기반입니다.
-
-- RSI
-- MACD
-- 볼린저밴드
-- 이평선
-- 스토캐스틱
-- ADX
-
-다음 단계는 `deep-research-report.md` 기반으로:
+향후 목표:
 
 - Direction
 - Timing
@@ -436,11 +411,9 @@ bash scripts/open-chatgpt-web-prompt.sh file /Users/seo/stock-pilot/knowledge/da
 - Conviction
 - P(buy) / P(hold) / P(sell)
 
-구조로 업그레이드하는 것입니다.
+### 5. OCR 자동화
 
-### 4. OCR 자동화
-
-현재 포트폴리오 입력은 수동 검수형입니다.  
+현재 포트폴리오 입력은 수동 검수형입니다.
 다음 단계는 계좌 캡처 이미지를 넣으면:
 
 - 종목명
@@ -448,28 +421,7 @@ bash scripts/open-chatgpt-web-prompt.sh file /Users/seo/stock-pilot/knowledge/da
 - 평가금액
 - 예수금
 
-을 자동 추출해 입력칸을 채우는 기능입니다.
-
-## 권장 운영 루프
-
-### 가장 현실적인 일일 루프
-
-1. 계좌 캡처 업로드 / 포트폴리오 최신화
-2. `run-cycle.sh --manual-llm`
-3. `triage`로 오늘 읽을 PDF 우선순위 확인
-4. 상위 PDF만 개별 요약
-5. `synthesis`로 오늘 시황 종합
-6. `coach` / `advisory`로 실제 운용 가이드 생성
-7. 필요한 결과를 대시보드에 저장
-
-### 언제 API를 쓰나
-
-지금은 기본적으로 쓰지 않습니다.  
-향후 아래 경우에만 부분 도입을 고려합니다.
-
-- PDF 개수가 급증해 수동 처리 한계가 올 때
-- 특정 단계만 매일 자동으로 굴리고 싶을 때
-- `synthesis` 또는 `advisory`만 자동화하고 싶을 때
+을 자동 채우는 것입니다.
 
 ## 운영 철학
 
@@ -479,5 +431,5 @@ EcoReport는 자동매매 시스템이 아닙니다.
 - 해석은 사람과 LLM이 함께
 - 실행은 사람이 최종 결정
 
-즉, 목표는 "AI가 대신 투자"가 아니라  
+즉, 목표는 "AI가 대신 투자"가 아니라
 **"내 계좌와 시장 사이의 연결을 더 빠르고 깊게 읽어주는 리서치 코치"** 입니다.

@@ -1,0 +1,58 @@
+{
+  "name": "2026 Q2-Q3 전술적 배분",
+  "period": { "start": "2026-04-03", "end": "2026-09-30" },
+  "total_cash": 18267581,
+  "accounts": {
+    "ISA": {
+      "cash": 8392660,
+      "target_allocation": {
+        "배당/커버드콜": 0.3,
+        "금": 0.25,
+        "미국인덱스": 0.25,
+        "현금파킹": 0.2
+      }
+    },
+    "연금저축": {
+      "cash": 5565201,
+      "target_allocation": {
+        "S&P500": 0.4,
+        "나스닥100": 0.25,
+        "금": 0.15,
+        "현금파킹": 0.2
+      }
+    },
+    "토스증권": {
+      "cash": 4309720,
+      "target_allocation": {
+        "전력기기": 0.3,
+        "방산": 0.25,
+        "원자력": 0.2,
+        "현금파킹": 0.25
+      }
+    }
+  },
+  "dca_plan": {
+    "total_tranches": 4,
+    "completed": 0,
+    "schedule": [
+      { "tranche": 1, "pct": 0.25, "target_date": "2026-04-03", "status": "pending" },
+      { "tranche": 2, "pct": 0.25, "target_date": "2026-04-mid", "status": "pending" },
+      { "tranche": 3, "pct": 0.25, "target_date": "2026-05-mid", "status": "pending" },
+      { "tranche": 4, "pct": 0.25, "target_date": "2026-06-mid", "status": "pending" }
+    ]
+  },
+  "satellite_rules": {
+    "max_per_theme_pct": 0.05,
+    "initial_position_pct": 0.025,
+    "max_concurrent_themes": 6,
+    "exit_trigger": "테마 소멸 또는 -10%"
+  },
+  "risk_triggers": {
+    "vix_caution": 30,
+    "vix_emergency": 40,
+    "wti_high": 120,
+    "wti_low": 70,
+    "stock_daily_drop": -0.08,
+    "cash_floor_pct": 0.1
+  }
+}

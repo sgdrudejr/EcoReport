@@ -1,0 +1,13 @@
+{
+  "accounts": [
+    { "handle": "DeItaone", "category": "속보", "priority": "HIGH" },
+    { "handle": "unusual_whales", "category": "옵션이상거래", "priority": "HIGH" },
+    { "handle": "zerohedge", "category": "매크로", "priority": "MED" },
+    { "handle": "WallStEngine", "category": "월가", "priority": "MED" },
+    { "handle": "sentdefender", "category": "지정학", "priority": "HIGH" },
+    { "handle": "IntelCrab", "category": "중동", "priority": "HIGH" },
+    { "handle": "FinancialJuice_", "category": "경제지표", "priority": "MED" }
+  ],
+  "method": "nitter_rss",
+  "nitter_instance": "http://localhost:8080"
+}

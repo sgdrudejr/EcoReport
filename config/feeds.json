@@ -1,0 +1,16 @@
+{
+  "korea_market": [
+    { "name": "한국경제 증권", "url": "https://www.hankyung.com/feed/stock", "category": "시황" },
+    { "name": "매일경제 증권", "url": "https://www.mk.co.kr/rss/30000001/", "category": "시황" },
+    { "name": "이데일리 증권", "url": "https://rss.edaily.co.kr/edaily/Industry/", "category": "산업" },
+    { "name": "연합인포맥스", "url": "https://news.einfomax.co.kr/rss/S1N10.xml", "category": "시황" }
+  ],
+  "global": [
+    { "name": "Reuters Business", "url": "https://feeds.reuters.com/reuters/businessNews", "category": "글로벌" },
+    { "name": "CNBC Top News", "url": "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=100003114", "category": "글로벌" }
+  ],
+  "sector": [
+    { "name": "ETF Trends", "url": "https://www.etftrends.com/feed/", "category": "ETF" },
+    { "name": "Seeking Alpha Tech", "url": "https://seekingalpha.com/sector/technology.xml", "category": "기술" }
+  ]
+}

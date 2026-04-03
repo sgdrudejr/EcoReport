@@ -21,21 +21,45 @@ const MAX_PAGES = 50;
 
 const CATEGORY_CONFIG = [
   {
+    source: '네이버증권',
     category: '종목분석',
     listUrl: 'https://finance.naver.com/research/company_list.naver',
     detailKind: 'company',
   },
   {
+    source: '네이버증권',
     category: '산업분석',
     listUrl: 'https://finance.naver.com/research/industry_list.naver',
     detailKind: 'industry',
   },
   {
+    source: '네이버증권',
     category: '경제분석',
     listUrl: 'https://finance.naver.com/research/economy_list.naver',
     detailKind: 'economy',
   },
+  {
+    source: '네이버증권',
+    category: '시황정보',
+    listUrl: 'https://finance.naver.com/research/market_info_list.naver',
+    detailKind: 'simple',
+  },
+  {
+    source: '네이버증권',
+    category: '투자전략',
+    listUrl: 'https://finance.naver.com/research/invest_list.naver',
+    detailKind: 'simple',
+  },
+  {
+    source: '네이버증권',
+    category: '채권분석',
+    listUrl: 'https://finance.naver.com/research/debenture_list.naver',
+    detailKind: 'simple',
+  },
 ];
+
+const SHINHAN_LIST_API = 'https://www.shinhansec.com/siw/etc/browse/search05/data.do';
+const SHINHAN_PDF_BASE = 'https://bbs2.shinhansec.com';
 
 function parseArgs(argv) {
   const args = { date: todayIso(), limit: Number.POSITIVE_INFINITY, force: false };
@@ -111,6 +135,16 @@ function parseMoney(value) {
 
   const digits = value.replace(/[^\d]/g, '');
   return digits ? Number.parseInt(digits, 10) : null;
+}
+
+function incrementCounter(map, key) {
+  map.set(key, (map.get(key) ?? 0) + 1);
+}
+
+function counterEntries(map) {
+  return Object.fromEntries(
+    Array.from(map.entries()).sort((left, right) => right[1] - left[1] || left[0].localeCompare(right[0], 'ko')),
+  );
 }
 
 function withTimeoutSignal(timeoutMs) {
@@ -199,7 +233,7 @@ async function extractListRows(page, detailKind) {
           continue;
         }
 
-        if (kind === 'economy' && cells.length >= 4) {
+        if ((kind === 'economy' || kind === 'simple') && cells.length >= 4) {
           const titleAnchor = cells[0].querySelector('a[href*="_read.naver"]');
           results.push({
             title: sanitize(titleAnchor?.textContent),
@@ -217,7 +251,7 @@ async function extractListRows(page, detailKind) {
   );
 }
 
-async function collectCategoryRows(browserContext, categoryConfig, targetDate) {
+async function collectCategoryRows(browserContext, categoryConfig, targetDate, crawlStats) {
   const page = await browserContext.newPage();
   const collected = [];
 
@@ -236,6 +270,7 @@ async function collectCategoryRows(browserContext, categoryConfig, targetDate) {
 
       const normalizedRows = rawRows.map((row) => ({
         ...row,
+        source: categoryConfig.source,
         category: categoryConfig.category,
         date: naverDateToIso(row.date),
       }));
@@ -244,6 +279,13 @@ async function collectCategoryRows(browserContext, categoryConfig, targetDate) {
       const hasOlderRows = normalizedRows.some((row) => row.date && row.date < targetDate);
 
       collected.push(...pageMatches);
+      crawlStats.pageLogs.push({
+        source: categoryConfig.source,
+        category: categoryConfig.category,
+        page: currentPage,
+        matchedCount: pageMatches.length,
+        totalRowsOnPage: normalizedRows.length,
+      });
 
       console.log(`- ${categoryConfig.category} ${currentPage}페이지: ${pageMatches.length}건 수집`);
 
@@ -258,6 +300,129 @@ async function collectCategoryRows(browserContext, categoryConfig, targetDate) {
   return collected;
 }
 
+function shinhanDateToIso(value) {
+  const match = value?.trim().match(/^(\d{4})\.(\d{2})\.(\d{2})$/);
+  if (!match) {
+    return null;
+  }
+
+  const [, yyyy, mm, dd] = match;
+  return `${yyyy}-${mm}-${dd}`;
+}
+
+function normalizeShinhanCategory(item) {
+  const boardTitle = sanitizeWhitespace(item.BOARD_TITLE);
+  if (boardTitle === '기업분석') return '종목분석';
+  if (boardTitle === '산업분석') return '산업분석';
+  if (boardTitle === '경제') return '경제분석';
+  if (boardTitle === '채권/신용분석') return '채권분석';
+  if (boardTitle === '투자전략') return '투자전략';
+  if (boardTitle === '주식전략/시황') return '시황정보';
+  return boardTitle || '신한리서치';
+}
+
+function shinhanPdfUrl(item) {
+  if (!item?.ATTACHMENT_ID) {
+    return null;
+  }
+
+  return `${SHINHAN_PDF_BASE}/board/message/file.pdf.do?attachmentId=${item.ATTACHMENT_ID}`;
+}
+
+async function fetchShinhanRows(targetDate) {
+  const collected = [];
+  const pageSize = 100;
+  const pageLogs = [];
+
+  for (let startCount = 0; startCount < 2_000; startCount += pageSize) {
+    const body = new URLSearchParams({
+      startCount: String(startCount),
+      listCount: String(pageSize),
+      query: '',
+      searchType: 'A',
+      boardCode: '',
+    });
+
+    const payload = await withRetry(`신한 리서치 API ${startCount}`, async () => {
+      const { signal, clear } = withTimeoutSignal(FETCH_TIMEOUT_MS);
+
+      try {
+        const response = await fetch(SHINHAN_LIST_API, {
+          method: 'POST',
+          headers: {
+            'User-Agent': 'Mozilla/5.0',
+            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+          },
+          body,
+          signal,
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+
+        return await response.json();
+      } finally {
+        clear();
+      }
+    });
+
+    const items = payload?.body?.collectionList?.find((entry) => entry.thisCollection === 'researchFinder')?.itemList ?? [];
+    if (items.length === 0) {
+      break;
+    }
+
+    const normalized = items
+      .filter((item) => String(item.ATTACHMENT_COUNT || '0') !== '0' && String(item.EXT || '').toLowerCase() === 'pdf')
+      .map((item) => ({
+        source: '신한투자증권',
+        category: normalizeShinhanCategory(item),
+        title: sanitizeWhitespace(item.TITLE),
+        broker: '신한투자증권',
+        date: shinhanDateToIso(item.DATE),
+        pdf_url: shinhanPdfUrl(item),
+        detail_url: `${SHINHAN_PDF_BASE}/siw/board/message/view.file.pop.do?boardName=${encodeURIComponent(item.BOARD_NAME)}&messageId=${encodeURIComponent(item.DOCID)}`,
+        ticker: parseTickerFromHref(item.VARIABLE_FIELD_NAME1) ?? null,
+        ticker_name: sanitizeWhitespace(item.VARIABLE_FIELD_NAME4) || null,
+        opinion: null,
+        target_price: null,
+        board_name: item.BOARD_NAME,
+        attachment_id: item.ATTACHMENT_ID,
+      }));
+
+    const pageMatches = normalized.filter((item) => item.date === targetDate);
+    const hasOlderRows = normalized.some((item) => item.date && item.date < targetDate);
+
+    console.log(`- 신한투자증권 API ${startCount / pageSize + 1}페이지: ${pageMatches.length}건 수집`);
+    pageLogs.push({
+      source: '신한투자증권',
+      category: '전체',
+      page: startCount / pageSize + 1,
+      matchedCount: pageMatches.length,
+      totalRowsOnPage: normalized.length,
+    });
+    collected.push(...pageMatches);
+
+    if (hasOlderRows || pageMatches.length === 0) {
+      break;
+    }
+  }
+
+  return { rows: collected, pageLogs };
+}
+
+function dedupeRows(rows) {
+  const seen = new Set();
+  return rows.filter((row) => {
+    const key = row.pdf_url || row.detail_url || `${row.category}|${row.broker}|${row.title}|${row.date}`;
+    if (seen.has(key)) {
+      return false;
+    }
+    seen.add(key);
+    return true;
+  });
+}
+
 async function enrichRows(browserContext, items) {
   if (items.length === 0) {
     return items;
@@ -268,6 +433,10 @@ async function enrichRows(browserContext, items) {
   try {
     for (const item of items) {
       if (!item.detail_url) {
+        continue;
+      }
+
+      if (item.source === '신한투자증권') {
         continue;
       }
 
@@ -368,7 +537,7 @@ async function extractPdfText(pdfPath) {
   }
 }
 
-async function buildIndexEntries(targetDate, rows, outputDir, limit) {
+async function buildIndexEntries(targetDate, rows, outputDir, limit, crawlStats) {
   const results = [];
   let sequence = 1;
 
@@ -387,6 +556,14 @@ async function buildIndexEntries(targetDate, rows, outputDir, limit) {
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
       console.warn(`⚠️ PDF 다운로드 스킵 (${row.title}): ${message}`);
+      crawlStats.downloadFailures.push({
+        source: row.source ?? '알 수 없음',
+        category: row.category,
+        broker: row.broker,
+        title: row.title,
+        pdf_url: row.pdf_url,
+        error: message,
+      });
       continue;
     }
 
@@ -396,6 +573,7 @@ async function buildIndexEntries(targetDate, rows, outputDir, limit) {
       id,
       title: row.title,
       broker: row.broker,
+      source: row.source ?? '알 수 없음',
       date: targetDate,
       category: row.category,
       ticker: row.ticker ?? null,
@@ -412,6 +590,86 @@ async function buildIndexEntries(targetDate, rows, outputDir, limit) {
   }
 
   return results;
+}
+
+async function writeCrawlManifest(targetDate, outputDir, crawlStats, entries) {
+  const sourceCounts = new Map();
+  const categoryCounts = new Map();
+  const brokerCounts = new Map();
+
+  for (const entry of entries) {
+    incrementCounter(sourceCounts, entry.source ?? '알 수 없음');
+    incrementCounter(categoryCounts, entry.category ?? '미분류');
+    incrementCounter(brokerCounts, entry.broker ?? '알 수 없음');
+  }
+
+  const manifest = {
+    date: targetDate,
+    generated_at: new Date().toISOString(),
+    input_sources: [
+      ...CATEGORY_CONFIG.map((config) => ({
+        source: config.source,
+        category: config.category,
+        list_url: config.listUrl,
+      })),
+      {
+        source: '신한투자증권',
+        category: '전체',
+        list_url: 'https://www.shinhansec.com/siw/insights/research/list/view-popup.do',
+        api_url: SHINHAN_LIST_API,
+      },
+    ],
+    page_logs: crawlStats.pageLogs,
+    total_matched_before_dedupe: crawlStats.totalMatchedBeforeDedupe,
+    total_unique_after_dedupe: crawlStats.totalUniqueAfterDedupe,
+    downloaded_count: entries.length,
+    failed_download_count: crawlStats.downloadFailures.length,
+    source_counts: counterEntries(sourceCounts),
+    category_counts: counterEntries(categoryCounts),
+    top_brokers: counterEntries(brokerCounts),
+    download_failures: crawlStats.downloadFailures,
+  };
+
+  const manifestPath = path.join(outputDir, 'crawl-manifest.json');
+  await fs.writeFile(manifestPath, JSON.stringify(manifest, null, 2), 'utf8');
+
+  const markdownLines = [
+    `# ${targetDate} 리포트 수집 매니페스트`,
+    '',
+    `- 생성 시각: ${manifest.generated_at}`,
+    `- 매칭 건수(중복 제거 전): ${manifest.total_matched_before_dedupe}`,
+    `- 저장 건수(중복 제거 후/PDF 다운로드 성공): ${manifest.downloaded_count}`,
+    `- 다운로드 실패: ${manifest.failed_download_count}`,
+    '',
+    '## 출처별 건수',
+    ...Object.entries(manifest.source_counts).map(([key, value]) => `- ${key}: ${value}건`),
+    '',
+    '## 카테고리별 건수',
+    ...Object.entries(manifest.category_counts).map(([key, value]) => `- ${key}: ${value}건`),
+    '',
+    '## 상위 증권사',
+    ...Object.entries(manifest.top_brokers)
+      .slice(0, 20)
+      .map(([key, value]) => `- ${key}: ${value}건`),
+    '',
+    '## 페이지 로그',
+    ...manifest.page_logs.map(
+      (pageLog) =>
+        `- ${pageLog.source} / ${pageLog.category} / ${pageLog.page}페이지: ${pageLog.matchedCount}건 (페이지 원본 ${pageLog.totalRowsOnPage}건)`,
+    ),
+  ];
+
+  if (manifest.download_failures.length > 0) {
+    markdownLines.push('', '## 다운로드 실패');
+    markdownLines.push(
+      ...manifest.download_failures.map(
+        (failure) => `- ${failure.source} / ${failure.category} / ${failure.title} / ${failure.error}`,
+      ),
+    );
+  }
+
+  const markdownPath = path.join(outputDir, 'crawl-manifest.md');
+  await fs.writeFile(markdownPath, markdownLines.join('\n'), 'utf8');
 }
 
 async function main() {
@@ -439,23 +697,37 @@ async function main() {
 
   try {
     const collectedRows = [];
+    const crawlStats = {
+      pageLogs: [],
+      downloadFailures: [],
+      totalMatchedBeforeDedupe: 0,
+      totalUniqueAfterDedupe: 0,
+    };
 
     for (const categoryConfig of CATEGORY_CONFIG) {
-      const categoryRows = await collectCategoryRows(context, categoryConfig, args.date);
+      const categoryRows = await collectCategoryRows(context, categoryConfig, args.date, crawlStats);
       collectedRows.push(...categoryRows);
     }
 
-    await enrichRows(context, collectedRows);
+    const shinhanResult = await fetchShinhanRows(args.date);
+    collectedRows.push(...shinhanResult.rows);
+    crawlStats.pageLogs.push(...shinhanResult.pageLogs);
 
-    const sortedRows = collectedRows.sort((a, b) => {
+    await enrichRows(context, collectedRows);
+    crawlStats.totalMatchedBeforeDedupe = collectedRows.length;
+
+    const uniqueRows = dedupeRows(collectedRows);
+    crawlStats.totalUniqueAfterDedupe = uniqueRows.length;
+    const sortedRows = uniqueRows.sort((a, b) => {
       if (a.category !== b.category) {
         return a.category.localeCompare(b.category, 'ko');
       }
       return a.title.localeCompare(b.title, 'ko');
     });
 
-    const entries = await buildIndexEntries(args.date, sortedRows, outputDir, args.limit);
+    const entries = await buildIndexEntries(args.date, sortedRows, outputDir, args.limit, crawlStats);
     await fs.writeFile(indexPath, JSON.stringify(entries, null, 2), 'utf8');
+    await writeCrawlManifest(args.date, outputDir, crawlStats, entries);
 
     console.log(`✅ 리포트 ${entries.length}건 저장 완료`);
     console.log(`📁 ${indexPath}`);

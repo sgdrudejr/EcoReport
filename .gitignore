@@ -21,3 +21,8 @@ dashboard/out/
 
 # 로그
 logs/
+
+# macOS / Python noise
+.DS_Store
+**/.DS_Store
+scripts/__pycache__/

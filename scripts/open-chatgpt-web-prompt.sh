@@ -11,7 +11,7 @@ AUTO_SAVE_TARGET=""
 usage() {
   cat <<'EOF'
 Usage:
-  bash scripts/open-chatgpt-web-prompt.sh [--no-submit] [--no-auto-save] [advisory|synthesis|queue|triage|coach|ask <question>|file <path>]
+  bash scripts/open-chatgpt-web-prompt.sh [--no-submit] [--no-auto-save] [advisory|synthesis|queue|triage|coach|ideas|ask <question>|file <path>]
 
 Examples:
   bash scripts/open-chatgpt-web-prompt.sh advisory
@@ -19,6 +19,7 @@ Examples:
   bash scripts/open-chatgpt-web-prompt.sh queue
   bash scripts/open-chatgpt-web-prompt.sh triage
   bash scripts/open-chatgpt-web-prompt.sh coach
+  bash scripts/open-chatgpt-web-prompt.sh ideas
   bash scripts/open-chatgpt-web-prompt.sh ask "오늘 내 포트폴리오에서 제일 위험한 계좌는 어디야?"
   bash scripts/open-chatgpt-web-prompt.sh file /Users/seo/stock-pilot/knowledge/daily/report-prompts/2026-04-03/report_001.md
   bash scripts/open-chatgpt-web-prompt.sh --no-auto-save file /Users/seo/stock-pilot/knowledge/daily/report-prompts/2026-04-03/report_001.md
@@ -86,6 +87,19 @@ case "$MODE" in
     TARGET_FILE="$(latest_matching_file "$REPORTS_DIR" "*-portfolio-coach-prompt.md")"
     if [ -n "$TARGET_FILE" ]; then
       AUTO_SAVE_TARGET="${TARGET_FILE%-portfolio-coach-prompt.md}-portfolio-coach.md"
+    fi
+    ;;
+  ideas)
+    TARGET_FILE="$(latest_matching_file "$REPORTS_DIR" "*-investment-ideas-prompt.md")"
+    if [ -z "$TARGET_FILE" ]; then
+      GENERATED_TMP_FILE="/tmp/ecoreport-investment-ideas-prompt.md"
+      node "$ROOT/scripts/build-investment-ideas-prompt.js" \
+        --date "$(date +%F)" \
+        --output "$GENERATED_TMP_FILE" >/dev/null
+      TARGET_FILE="$GENERATED_TMP_FILE"
+    fi
+    if [ -n "$TARGET_FILE" ]; then
+      AUTO_SAVE_TARGET="${TARGET_FILE%-investment-ideas-prompt.md}-investment-ideas.md"
     fi
     ;;
   ask)
