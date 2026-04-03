@@ -1,9 +1,15 @@
 name: Deploy Dashboard to Vercel
 
 on:
+  # data 브랜치에 push 될 때마다 재배포
   push:
     branches:
-      - data    # data 브랜치에 push 될 때마다 재배포
+      - data
+  # 또는 분석 사이클 완료 후 자동 배포
+  workflow_run:
+    workflows: ["Run Analysis Cycle (Mac Mini)"]
+    types:
+      - completed
 
 jobs:
   deploy:
