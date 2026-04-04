@@ -3,6 +3,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { notFound } from "next/navigation";
 import { loadReportBySlug } from "@/lib/reports";
+import { formatDateContextLine } from "@/lib/trading-calendar";
 
 export const dynamic = "force-dynamic";
 
@@ -23,6 +24,17 @@ export default async function ReportDetailPage({
       <div className="flex items-center justify-between gap-4">
         <div>
           <p className="text-sm text-zinc-500">{report.date}</p>
+          {formatDateContextLine({
+            runDate: report.runDate,
+            effectiveMarketDate: report.effectiveMarketDate,
+          }) && (
+            <p className="mt-1 text-xs text-zinc-600">
+              {formatDateContextLine({
+                runDate: report.runDate,
+                effectiveMarketDate: report.effectiveMarketDate,
+              })}
+            </p>
+          )}
           <h1 className="text-2xl font-bold text-zinc-100 mt-1">
             {report.filename.replace(/\.md$/, "")}
           </h1>

@@ -358,6 +358,8 @@ async function main() {
   const summary = [
     `# Stage 1 Report Extracts v2 (${args.date})`,
     "",
+    `- 실행일: ${args.runDate}`,
+    `- 기준 거래일: ${args.effectiveMarketDate}`,
     `- 총 리포트 수: ${extracts.length}`,
     `- 포트폴리오 직접 관련 리포트: ${extracts.filter((item) => item.related_holdings_in_my_portfolio.length > 0).length}`,
     `- 계좌 영향 후보 포함 리포트: ${extracts.filter((item) => item.portfolio_impacts_candidate.length > 0).length}`,
@@ -374,6 +376,8 @@ async function main() {
 
   await writeJson(outputPath, {
     date: args.date,
+    runDate: args.runDate,
+    effectiveMarketDate: args.effectiveMarketDate,
     generatedAt: new Date().toISOString(),
     reportCount: extracts.length,
     extracts,

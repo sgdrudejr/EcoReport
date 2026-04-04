@@ -414,6 +414,8 @@ async function main() {
   const payload = {
     schemaVersion: 1,
     date: args.date,
+    runDate: args.runDate,
+    effectiveMarketDate: args.effectiveMarketDate,
     generatedAt: new Date().toISOString(),
     provenance: {
       source: stage2 ? "hybrid" : "manual",
@@ -427,6 +429,8 @@ async function main() {
   const markdown = [
     `# Impact Map (${args.date})`,
     "",
+    `- 실행일: ${args.runDate}`,
+    `- 기준 거래일: ${args.effectiveMarketDate}`,
     `- 리포트 수: ${reports.length}`,
     `- 영향 이벤트 수: ${reports.reduce((sum, report) => sum + report.impacts.length, 0)}`,
     "",

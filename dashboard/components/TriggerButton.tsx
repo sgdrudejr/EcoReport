@@ -23,7 +23,18 @@ export default function TriggerButton() {
         setMessage(data.error ?? "오류가 발생했습니다.");
       } else {
         setState("ok");
-        setMessage("분석 실행 요청이 전송됐습니다.");
+        const runDate = typeof data.run_date === "string" ? data.run_date : null;
+        const effectiveDate =
+          typeof data.effective_market_date === "string"
+            ? data.effective_market_date
+            : null;
+        setMessage(
+          runDate && effectiveDate && runDate !== effectiveDate
+            ? `분석 실행 요청 전송 완료 · 실행일 ${runDate} / 기준 거래일 ${effectiveDate}`
+            : effectiveDate
+              ? `분석 실행 요청 전송 완료 · 기준 거래일 ${effectiveDate}`
+              : "분석 실행 요청이 전송됐습니다.",
+        );
         setTimeout(() => setState("idle"), 3000);
       }
     } catch {

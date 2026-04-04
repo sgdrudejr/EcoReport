@@ -405,6 +405,8 @@ async function main() {
 
   const payload = {
     date: args.date,
+    runDate: args.runDate,
+    effectiveMarketDate: args.effectiveMarketDate,
     generatedAt: new Date().toISOString(),
     portfolioScore: quant.portfolio?.totalScore ?? 50,
     regime: quant.regime ?? null,
@@ -417,6 +419,8 @@ async function main() {
   const markdown = [
     `# EcoReport Stage 4 Execution Plan (${args.date})`,
     "",
+    `- 실행일: ${args.runDate}`,
+    `- 기준 거래일: ${args.effectiveMarketDate}`,
     `- 포트폴리오 총점: ${quant.portfolio?.totalScore ?? "N/A"}점`,
     `- 레짐: ${quant.regime?.name ?? "N/A"} (신뢰도 ${regimeConfidence})`,
     "",
@@ -460,6 +464,9 @@ async function main() {
   const briefing = [
     `# EcoReport 어드바이저 브리핑 (${args.date})`,
     "",
+    `- run_date: ${args.runDate}`,
+    `- effective_market_date: ${args.effectiveMarketDate}`,
+    `- generated_at: ${new Date().toISOString()}`,
     `- 포트폴리오 총점: ${quant.portfolio?.totalScore ?? "N/A"}점`,
     `- 현재 레짐: ${quant.regime?.name ?? "N/A"} / 신뢰도 ${regimeConfidence}`,
     `- 핵심 코멘트: ${quant.portfolio?.note ?? "요약 없음"}`,

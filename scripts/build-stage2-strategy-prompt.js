@@ -81,6 +81,7 @@ async function main() {
   const prompt = [
     "# EcoReport Stage 2 Strategy Exploration",
     "",
+    `실행일은 ${args.runDate}, 기준 거래일은 ${args.effectiveMarketDate} 입니다.`,
     `오늘 날짜는 ${args.date} 입니다.`,
     "당신은 내 포트폴리오를 실제로 운용하는 전략 탐색 LLM입니다.",
     "아래 Stage 1 연구 노트, 계좌 상태, 기술점수를 바탕으로 새로운 투자 전략 옵션을 설계하세요.",

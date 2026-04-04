@@ -164,6 +164,8 @@ async function main() {
 
   const payload = {
     date: args.date,
+    runDate: args.runDate,
+    effectiveMarketDate: args.effectiveMarketDate,
     generatedAt: new Date().toISOString(),
     source: "mock",
     macro_view: regimeFromTechnical(technical),

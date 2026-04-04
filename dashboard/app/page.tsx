@@ -9,10 +9,10 @@ import RecommendationBoard from "@/components/RecommendationBoard";
 import TriggerButton from "@/components/TriggerButton";
 import { buildPortfolioGuide } from "@/lib/portfolio-guidance";
 import { loadRecommendationBoard } from "@/lib/recommendations";
+import { loadReports } from "@/lib/reports";
 import {
   listRepoFiles,
   readRepoJsonFile,
-  readRepoTextFile,
 } from "@/lib/repo-artifacts";
 import { resolveRepoRoot } from "@/lib/repo-root";
 import {
@@ -30,37 +30,13 @@ import {
   loadLatestPortfolio,
   type PortfolioAccount,
 } from "@/lib/portfolio";
+import { formatDateContextLine } from "@/lib/trading-calendar";
 
 export const dynamic = "force-dynamic";
 
 const REPO_ROOT = resolveRepoRoot();
 
 // ── 데이터 로더 ────────────────────────────────────────────────────────
-
-function loadLatestBriefing(): { date: string; content: string } | null {
-  const dir = "reports/daily";
-  const files = listRepoFiles(dir)
-    .filter(
-      (f) =>
-        f.endsWith("-briefing.md") || f.endsWith("-stage4-execution-plan.md"),
-    )
-    .map((file) => ({
-      file,
-      priority: file.endsWith("-briefing.md") ? 1 : 0,
-    }))
-    .sort((left, right) => {
-      if (right.priority !== left.priority) return right.priority - left.priority;
-      return right.file.localeCompare(left.file);
-    });
-
-  if (files.length === 0) return null;
-
-  const file = files[0].file;
-  const date = file.slice(0, 10);
-  const content = readRepoTextFile(path.posix.join(dir, file));
-  if (!content) return null;
-  return { date, content };
-}
 
 interface MarketIndex {
   close: number;
@@ -344,7 +320,7 @@ function researchTagClass(tone: string) {
 // ── 메인 페이지 ───────────────────────────────────────────────────────
 
 export default function DashboardPage() {
-  const briefing = loadLatestBriefing();
+  const briefing = loadReports()[0] ?? null;
   const market = loadLatestMarket();
   const strategy = loadStrategy();
   const portfolio = loadLatestPortfolio();
@@ -363,6 +339,18 @@ export default function DashboardPage() {
   const researchActionPoints = researchBriefing
     ? extractResearchActionPoints(researchBriefing.content, 4)
     : [];
+  const briefingDateLine = briefing
+    ? formatDateContextLine({
+        runDate: briefing.runDate,
+        effectiveMarketDate: briefing.effectiveMarketDate,
+      })
+    : null;
+  const researchDateLine = researchBriefing
+    ? formatDateContextLine({
+        runDate: researchBriefing.runDate,
+        effectiveMarketDate: researchBriefing.effectiveMarketDate,
+      })
+    : null;
 
   const indices = market?.indices ?? {};
   const hasMarket = Object.keys(indices).length > 0;
@@ -375,7 +363,9 @@ export default function DashboardPage() {
         <div>
           <h1 className="text-3xl font-bold tracking-tight text-zinc-100 md:text-4xl">EcoReport</h1>
           {briefing && (
-            <p className="mt-1 text-sm text-zinc-500 md:text-base">{briefing.date}</p>
+            <p className="mt-1 text-sm text-zinc-500 md:text-base">
+              {briefingDateLine ?? briefing.date}
+            </p>
           )}
         </div>
         <div className="md:self-start">
@@ -583,7 +573,10 @@ export default function DashboardPage() {
             </ul>
           </div>
 
-          <PortfolioGuidanceTabs accounts={portfolioGuide.accounts} />
+          <PortfolioGuidanceTabs
+            accounts={portfolioGuide.accounts}
+            analysisDateLabel={portfolioGuide.analysisDateLabel}
+          />
         </section>
       )}
 
@@ -599,6 +592,9 @@ export default function DashboardPage() {
               <p className="mt-1 text-sm text-zinc-500">
                 오늘 브리핑에서 가장 중요한 거시·섹터 변화만 먼저 볼 수 있게 정리했습니다.
               </p>
+              {researchDateLine && (
+                <p className="mt-1 text-xs text-zinc-600">{researchDateLine}</p>
+              )}
             </div>
             <Link
               href="/reports"
@@ -713,6 +709,9 @@ export default function DashboardPage() {
         </h2>
         {briefing ? (
           <div className="bg-zinc-900 rounded-xl p-6 border border-zinc-800 prose prose-invert prose-sm max-w-none">
+            {briefingDateLine && (
+              <p className="mb-4 text-xs text-zinc-500 not-prose">{briefingDateLine}</p>
+            )}
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
               {briefing.content}
             </ReactMarkdown>

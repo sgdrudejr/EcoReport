@@ -119,7 +119,9 @@ function HoldingScoreCard({ account }: { account: AccountGuide }) {
                 <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-3 py-2">
                   <p className="text-zinc-500">리포트 점수</p>
                   <p className="mt-1 font-medium text-zinc-100">
-                    {holding.reportScore != null ? `${holding.reportScore}점` : "-"}
+                    {holding.reportStatus === "available" && holding.reportScore != null
+                      ? `${holding.reportScore}점`
+                      : "미반영"}
                   </p>
                 </div>
               </div>
@@ -132,6 +134,14 @@ function HoldingScoreCard({ account }: { account: AccountGuide }) {
               {holding.warnings.length > 0 && (
                 <p className="mt-1 text-xs text-zinc-500">
                   주의: {holding.warnings[0]}
+                </p>
+              )}
+              {holding.reportStatus === "unavailable" && (
+                <p className="mt-1 text-xs text-amber-300">
+                  리포트 미반영
+                  {holding.reportUnavailableReason === "no_report_input"
+                    ? " · 기준 거래일 리포트 입력 없음"
+                    : " · 직접 연결된 리포트 근거 부족"}
                 </p>
               )}
             </div>
@@ -224,7 +234,11 @@ function DesktopSelector({
             <div className="mt-3 flex flex-wrap gap-2 text-[11px] text-zinc-500">
               <span>배분 {account.allocationScore}점</span>
               <span>기술 {account.technicalScore != null ? `${account.technicalScore}점` : "-"}</span>
-              {account.reportScore != null && <span>리포트 {account.reportScore}점</span>}
+              {account.reportStatus === "available" && account.reportScore != null ? (
+                <span>리포트 {account.reportScore}점</span>
+              ) : (
+                <span>리포트 미반영</span>
+              )}
               {account.riskPenaltyTotal != null && <span>패널티 {account.riskPenaltyTotal}점</span>}
             </div>
           </button>
@@ -277,7 +291,13 @@ function MobileSelector({
   );
 }
 
-export default function PortfolioGuidanceTabs({ accounts }: { accounts: AccountGuide[] }) {
+export default function PortfolioGuidanceTabs({
+  accounts,
+  analysisDateLabel,
+}: {
+  accounts: AccountGuide[];
+  analysisDateLabel?: string | null;
+}) {
   const [selectedKey, setSelectedKey] = useState(accounts[0]?.key ?? "");
 
   const selectedAccount = useMemo(
@@ -296,6 +316,11 @@ export default function PortfolioGuidanceTabs({ accounts }: { accounts: AccountG
 
   return (
     <div className="space-y-4">
+      {analysisDateLabel && (
+        <div className="rounded-2xl border border-sky-900/40 bg-sky-950/10 px-4 py-3 text-sm text-sky-200">
+          {analysisDateLabel}
+        </div>
+      )}
       <DesktopSelector accounts={accounts} selectedKey={selectedAccount.key} onSelect={setSelectedKey} />
       <MobileSelector accounts={accounts} selectedKey={selectedAccount.key} onSelect={setSelectedKey} />
 
@@ -348,11 +373,33 @@ export default function PortfolioGuidanceTabs({ accounts }: { accounts: AccountG
         <div className="grid gap-3 md:grid-cols-3 xl:grid-cols-6">
           <MetricCard label="배분 점수" value={`${selectedAccount.allocationScore}점`} />
           <MetricCard label="기술 점수" value={selectedAccount.technicalScore != null ? `${selectedAccount.technicalScore}점` : "-"} />
-          <MetricCard label="리포트 점수" value={selectedAccount.reportScore != null ? `${selectedAccount.reportScore}점` : "-"} />
-          <MetricCard label="리포트 커버리지" value={selectedAccount.reportCoverageScore != null ? `${selectedAccount.reportCoverageScore}%` : "-"} />
+          <MetricCard
+            label="리포트 점수"
+            value={
+              selectedAccount.reportStatus === "available" && selectedAccount.reportScore != null
+                ? `${selectedAccount.reportScore}점`
+                : "미반영"
+            }
+          />
+          <MetricCard
+            label="리포트 커버리지"
+            value={
+              selectedAccount.reportStatus === "available" && selectedAccount.reportCoverageScore != null
+                ? `${selectedAccount.reportCoverageScore}%`
+                : "미반영"
+            }
+          />
           <MetricCard label="레짐 적합도" value={selectedAccount.regimeFitScore != null ? `${selectedAccount.regimeFitScore}점` : "-"} />
           <MetricCard label="Stage 2 bias" value={selectedAccount.stage2Bias ?? "-"} />
         </div>
+
+        {selectedAccount.reportStatus === "unavailable" && (
+          <div className="rounded-2xl border border-amber-900/50 bg-amber-950/20 px-4 py-3 text-sm text-amber-200">
+            {selectedAccount.reportUnavailableReason === "no_report_input"
+              ? "이번 실행은 기준 거래일 리포트 입력이 0건이라 리포트 점수가 총점에 반영되지 않았습니다."
+              : "직접 연결된 리포트 근거가 부족해 이번 계좌 점수는 배분/기술/패널티 중심으로 계산되었습니다."}
+          </div>
+        )}
 
         <HoldingScoreCard account={selectedAccount} />
 

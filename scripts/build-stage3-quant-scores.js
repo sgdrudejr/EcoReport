@@ -906,6 +906,7 @@ async function main() {
   const referenceDate = new Date(`${args.date}T00:00:00Z`);
   const profileName = chooseWeightProfile(strategy, regime);
   const riskCaps = strategy?.scoring?.riskPenaltyCaps ?? DEFAULT_RISK_CAPS;
+  const stage1ReportCount = stage1.reportCount ?? stage1.extracts?.length ?? 0;
 
   const holdingScores = {};
   const accountScores = {};
@@ -956,6 +957,13 @@ async function main() {
       const scoreWeight = categoryScoreWeight(category, holding.marketValue ?? 0);
       const explanation = holdingExplanation(holding, technicalItem, reportImpact, computed);
       const holdingKey = holding.code;
+      const holdingReportAvailable = reportImpact.impactCount > 0;
+      const holdingReportUnavailableReason =
+        holdingReportAvailable
+          ? null
+          : stage1ReportCount <= 0
+            ? "no_report_input"
+            : "no_linked_report";
 
       holdingScores[holdingKey] = {
         code: holding.code,
@@ -979,7 +987,9 @@ async function main() {
         },
         report: {
           sourceLayer: reportImpact.sourceLayer,
-          impactScore: reportImpact.score,
+          available: holdingReportAvailable,
+          unavailableReason: holdingReportUnavailableReason,
+          impactScore: holdingReportAvailable ? reportImpact.score : null,
           impactValue: toRoundedNumber(reportImpact.value),
           impactCount: reportImpact.impactCount,
           coverageWeight: reportImpact.coverageWeight,
@@ -987,7 +997,7 @@ async function main() {
         },
         scores: {
           techScore: techBaseScore,
-          reportScore: reportImpact.score,
+          reportScore: holdingReportAvailable ? reportImpact.score : null,
           actionScore: computed.actionScore,
         },
         explain: explanation,
@@ -1027,6 +1037,13 @@ async function main() {
         100,
       ),
     );
+    const reportAvailable = impactCoverage > 0;
+    const reportUnavailableReason =
+      reportAvailable
+        ? null
+        : stage1ReportCount <= 0
+          ? "no_report_input"
+          : "no_mapped_impacts";
     const riskPenalty = computeRiskPenalty({
       account,
       allocationState,
@@ -1055,7 +1072,9 @@ async function main() {
       label: account.label,
       allocationScore,
       holdingsScore: techScore ?? null,
-      reportCoverageScore: Math.round(impactCoverage * 100),
+      reportCoverageScore: reportAvailable ? Math.round(impactCoverage * 100) : null,
+      reportStatus: reportAvailable ? "available" : "unavailable",
+      reportUnavailableReason,
       stage2Bias,
       totalScore,
       note: accountNote(totalScore, riskPenalty.total),
@@ -1063,7 +1082,7 @@ async function main() {
       baseScores: {
         allocationScore,
         techScore,
-        reportScore,
+        reportScore: reportAvailable ? reportScore : null,
         regimeFit: regimeFit.score,
         stage2Score,
         leadingScore: leadingIndicator.score,
@@ -1116,7 +1135,13 @@ async function main() {
   const outputPath = args.output ?? path.join(stateDir, "stage3-quant-scores.json");
   await writeJson(outputPath, {
     date: args.date,
+    runDate: args.runDate,
+    effectiveMarketDate: args.effectiveMarketDate,
     generatedAt: new Date().toISOString(),
+    reportInputs: {
+      reportCount: stage1ReportCount,
+      available: stage1ReportCount > 0,
+    },
     regime: {
       ...regime,
       market_context: technical.market_context ?? {},

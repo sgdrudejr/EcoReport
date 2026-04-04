@@ -4,7 +4,9 @@
 set -euo pipefail
 
 ROOT_DIR="${ROOT_DIR:-${ECOREPORT_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}}"
-DATE="$(node "$ROOT_DIR/scripts/resolve-cycle-date.js")"
+REQUESTED_DATE=""
+RUN_DATE="${RUN_DATE:-$(node "$ROOT_DIR/scripts/resolve-cycle-date.js" --field run_date)}"
+EFFECTIVE_MARKET_DATE=""
 TIME="$(date +%H%M)"
 SKIP_LLM="${SKIP_LLM:-0}"
 MANUAL_LLM="${MANUAL_LLM:-0}"
@@ -13,7 +15,15 @@ FORCE=0
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --date)
-      DATE="$2"
+      REQUESTED_DATE="$2"
+      shift 2
+      ;;
+    --run-date)
+      RUN_DATE="$2"
+      shift 2
+      ;;
+    --effective-market-date)
+      EFFECTIVE_MARKET_DATE="$2"
       shift 2
       ;;
     --skip-llm)
@@ -29,11 +39,24 @@ while [[ $# -gt 0 ]]; do
       shift
       ;;
     *)
-      DATE="$1"
+      REQUESTED_DATE="$1"
       shift
       ;;
   esac
 done
+
+if [[ -z "$EFFECTIVE_MARKET_DATE" ]]; then
+  RESOLVE_ARGS=()
+  if [[ -n "$REQUESTED_DATE" ]]; then
+    RESOLVE_ARGS+=(--date "$REQUESTED_DATE")
+  fi
+  if [[ -n "$RUN_DATE" ]]; then
+    RESOLVE_ARGS+=(--run-date "$RUN_DATE")
+  fi
+  EFFECTIVE_MARKET_DATE="$(node "$ROOT_DIR/scripts/resolve-cycle-date.js" "${RESOLVE_ARGS[@]}" --field effective_market_date)"
+fi
+
+DATE="$EFFECTIVE_MARKET_DATE"
 
 REPORT_DIR="$ROOT_DIR/reports/daily"
 PROMPT_FILE="$REPORT_DIR/$DATE-$TIME-advisory-prompt.md"
@@ -57,6 +80,8 @@ if [[ "$MANUAL_LLM" == "1" ]]; then
 # EcoReport Manual Advisory Queue
 
 - date: $DATE
+- run_date: $RUN_DATE
+- effective_market_date: $DATE
 - generated_at: $(date -Iseconds)
 - llm_status: manual_queue
 - prompt_file: $PROMPT_FILE
@@ -85,6 +110,8 @@ if [[ "$SKIP_LLM" == "1" || -z "$API_KEY" || "$API_KEY" == "sk-ant-xxxxx" ]]; th
 # EcoReport Advisory Placeholder
 
 - date: $DATE
+- run_date: $RUN_DATE
+- effective_market_date: $DATE
 - generated_at: $(date -Iseconds)
 - llm_status: skipped
 - reason: API 비용 절약 또는 키 미설정 상태라 LLM 호출을 건너뜀
@@ -103,7 +130,16 @@ fi
 
 if command -v claude >/dev/null 2>&1; then
   echo "🧠 Claude CLI로 브리핑 생성 중..."
-  claude -p < "$PROMPT_FILE" --output "$BRIEFING_FILE"
+  RAW_BRIEFING_FILE="${BRIEFING_FILE%.md}.raw.md"
+  claude -p < "$PROMPT_FILE" --output "$RAW_BRIEFING_FILE"
+  {
+    echo "- run_date: $RUN_DATE"
+    echo "- effective_market_date: $DATE"
+    echo "- generated_at: $(date -Iseconds)"
+    echo ""
+    cat "$RAW_BRIEFING_FILE"
+  } > "$BRIEFING_FILE"
+  rm -f "$RAW_BRIEFING_FILE"
   echo "✅ 리포트 생성 완료: $BRIEFING_FILE"
   exit 0
 fi
@@ -112,6 +148,8 @@ cat > "$BRIEFING_FILE" <<EOF
 # EcoReport Advisory Pending
 
 - date: $DATE
+- run_date: $RUN_DATE
+- effective_market_date: $DATE
 - generated_at: $(date -Iseconds)
 - llm_status: pending
 - reason: ANTHROPIC_API_KEY는 있지만 \`claude\` CLI를 찾지 못해 실행하지 못함

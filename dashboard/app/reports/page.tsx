@@ -20,6 +20,7 @@ import {
   type MacroIndicator,
   type ResearchBriefingDocument,
 } from "@/lib/research";
+import { formatDateContextLine } from "@/lib/trading-calendar";
 
 export const dynamic = "force-dynamic";
 
@@ -37,6 +38,17 @@ function ReportCard({
           <FileText size={16} className="text-zinc-500 shrink-0" />
           <div>
             <p className="text-sm font-medium text-zinc-200">{report.date}</p>
+            {formatDateContextLine({
+              runDate: report.runDate,
+              effectiveMarketDate: report.effectiveMarketDate,
+            }) && (
+              <p className="text-[11px] text-zinc-600 mt-0.5">
+                {formatDateContextLine({
+                  runDate: report.runDate,
+                  effectiveMarketDate: report.effectiveMarketDate,
+                })}
+              </p>
+            )}
             <p className="text-xs text-zinc-500 mt-0.5">
               {report.filename.replace(/\.md$/, "")}
             </p>
@@ -161,6 +173,17 @@ function ResearchBriefingCard({
               <p className="mt-1 text-sm text-zinc-500">
                 79건 리포트에서 추린 핵심 섹션을 계층적으로 정리한 브리핑입니다.
               </p>
+              {formatDateContextLine({
+                runDate: briefing.runDate,
+                effectiveMarketDate: briefing.effectiveMarketDate,
+              }) && (
+                <p className="mt-1 text-xs text-zinc-600">
+                  {formatDateContextLine({
+                    runDate: briefing.runDate,
+                    effectiveMarketDate: briefing.effectiveMarketDate,
+                  })}
+                </p>
+              )}
             </div>
           </div>
 

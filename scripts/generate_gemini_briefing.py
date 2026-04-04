@@ -114,6 +114,8 @@ def parse_args() -> argparse.Namespace:
         default="gemini-2.5-flash",
         help="사용할 Gemini 모델명",
     )
+    parser.add_argument("--run-date", default=None, help="실행일 (YYYY-MM-DD)")
+    parser.add_argument("--effective-market-date", default=None, help="기준 거래일 (YYYY-MM-DD)")
     return parser.parse_args()
 
 
@@ -457,6 +459,8 @@ def main() -> None:
     meta_path = output_path.with_suffix(output_path.suffix + ".meta.json")
     meta = {
         "generated_at": datetime.now().isoformat(),
+        "run_date": args.run_date,
+        "effective_market_date": args.effective_market_date,
         "input_path": str(input_path),
         "output_path": str(output_path),
         "model": resolved_model,

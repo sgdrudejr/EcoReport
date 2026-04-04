@@ -31,6 +31,8 @@ DEFAULT_PRIORITY_MODELS = [
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Gemini로 Stage 2 전략 JSON 생성")
     parser.add_argument("--date", required=True, help="대상 날짜 (YYYY-MM-DD)")
+    parser.add_argument("--run-date", default=None, help="실행일 (YYYY-MM-DD)")
+    parser.add_argument("--effective-market-date", default=None, help="기준 거래일 (YYYY-MM-DD)")
     parser.add_argument(
         "--prompt",
         help="입력 프롬프트 경로. 생략 시 manual-kit의 08-stage2-strategy-prompt.md 사용",
@@ -164,6 +166,8 @@ def main() -> None:
     write_text(raw_output_path, raw_text)
     payload = validate_payload(extract_json_block(raw_text))
     payload["date"] = args.date
+    payload["runDate"] = args.run_date or args.date
+    payload["effectiveMarketDate"] = args.effective_market_date or args.date
     payload["generatedAt"] = payload.get("generatedAt") or datetime.utcnow().isoformat() + "Z"
     payload["source"] = "gemini"
     payload["model"] = model_name

@@ -13,6 +13,11 @@ import {
   readRepoJsonFile,
 } from "@/lib/repo-artifacts";
 import { resolveRepoRoot } from "@/lib/repo-root";
+import {
+  formatDateContextLine,
+  normalizeArtifactDateContext,
+  type ArtifactDateContext,
+} from "@/lib/trading-calendar";
 
 const REPO_ROOT = resolveRepoRoot();
 const STRATEGY_FILE = path.join(REPO_ROOT, "config", "strategy.json");
@@ -71,13 +76,15 @@ type Stage3Account = {
   baseScores?: {
     allocationScore?: number;
     techScore?: number;
-    reportScore?: number;
+    reportScore?: number | null;
     regimeFit?: number;
     stage2Score?: number;
   };
   allocationScore?: number;
   holdingsScore?: number;
   reportCoverageScore?: number | null;
+  reportStatus?: "available" | "unavailable";
+  reportUnavailableReason?: string | null;
   coverage?: {
     impactCoverage?: number;
     techCoverage?: number;
@@ -107,6 +114,10 @@ type Stage3Holding = {
     reportScore?: number | null;
     actionScore?: number | null;
   };
+  report?: {
+    available?: boolean;
+    unavailableReason?: string | null;
+  };
   explain?: {
     topDrivers?: string[];
     warnings?: string[];
@@ -114,8 +125,16 @@ type Stage3Holding = {
 };
 
 type Stage3Analysis = {
+  date?: string;
+  runDate?: string | null;
+  effectiveMarketDate?: string | null;
+  generatedAt?: string | null;
   accounts?: Record<string, Stage3Account>;
   holdings?: Record<string, Stage3Holding>;
+  reportInputs?: {
+    reportCount?: number;
+    available?: boolean;
+  };
   portfolio?: {
     totalScore?: number;
   };
@@ -153,6 +172,10 @@ type Stage4AccountPlan = {
 };
 
 type Stage4Analysis = {
+  date?: string;
+  runDate?: string | null;
+  effectiveMarketDate?: string | null;
+  generatedAt?: string | null;
   accountPlans?: Stage4AccountPlan[];
 };
 
@@ -175,6 +198,8 @@ export type AccountGuide = {
   technicalScore: number | null;
   reportScore: number | null;
   reportCoverageScore: number | null;
+  reportStatus: "available" | "unavailable";
+  reportUnavailableReason: string | null;
   regimeFitScore: number | null;
   stage2Score: number | null;
   stage2Bias: string | null;
@@ -218,6 +243,8 @@ export type HoldingGuide = {
   accountFitScore: number | null;
   technicalScore: number | null;
   reportScore: number | null;
+  reportStatus: "available" | "unavailable";
+  reportUnavailableReason: string | null;
   actionScore: number | null;
   signal: string | null;
   technicalSignal: string | null;
@@ -227,6 +254,8 @@ export type HoldingGuide = {
 
 export type PortfolioGuide = {
   score: number;
+  analysisDateContext: ArtifactDateContext;
+  analysisDateLabel: string | null;
   totalAssets: number;
   totalCash: number;
   totalCashPct: number;
@@ -651,6 +680,14 @@ function buildHoldingGuides(
       stage3Holding?.technicalBaseScore ??
       null;
     const reportScore = stage3Holding?.scores?.reportScore ?? null;
+    const reportStatus =
+      stage3Holding?.report?.available === false || reportScore == null
+        ? "unavailable"
+        : "available";
+    const reportUnavailableReason =
+      reportStatus === "unavailable"
+        ? stage3Holding?.report?.unavailableReason ?? "no_report_signal"
+        : null;
     const actionScore = stage3Holding?.scores?.actionScore ?? null;
     const accountFitScore = getHoldingAccountFitScore(categoryGuide, account.incomplete);
     const score = blendHoldingScore([
@@ -670,6 +707,8 @@ function buildHoldingGuides(
       accountFitScore,
       technicalScore,
       reportScore,
+      reportStatus,
+      reportUnavailableReason,
       actionScore,
       signal: stage3Holding?.signal ?? null,
       technicalSignal: stage3Holding?.technicalSignal ?? null,
@@ -736,6 +775,8 @@ function buildScoreDrivers(
   technicalScore: number | null,
   reportScore: number | null,
   reportCoverageScore: number | null,
+  reportStatus: "available" | "unavailable",
+  reportUnavailableReason: string | null,
   regimeFitScore: number | null,
   stage2Score: number | null,
   riskPenaltyTotal: number | null,
@@ -787,7 +828,13 @@ function buildScoreDrivers(
     drivers.push("기술 점수 데이터가 아직 부족해 배분 점수 비중이 더 크게 반영됐습니다.");
   }
 
-  if (reportScore != null || reportCoverageScore != null) {
+  if (reportStatus === "unavailable") {
+    if (reportUnavailableReason === "no_report_input") {
+      drivers.push("이번 실행은 기준 거래일 리포트 입력이 0건이라 리포트 점수가 총점에 반영되지 않았습니다.");
+    } else {
+      drivers.push("직접 연결된 리포트 영향이 부족해 리포트 점수는 이번 계좌 총점에서 사실상 미반영 상태입니다.");
+    }
+  } else if (reportScore != null || reportCoverageScore != null) {
     const reportText = reportScore != null ? `${reportScore}점` : "미산출";
     const coverageText = reportCoverageScore != null ? ` / 커버리지 ${reportCoverageScore}%` : "";
     drivers.push(`리포트 점수 ${reportText}${coverageText}: 보유 종목과 직접 연결된 리포트의 방향과 강도를 반영합니다.`);
@@ -849,6 +896,8 @@ function buildImprovementActions(
   categories: CategoryGuide[],
   technicalScore: number | null,
   reportCoverageScore: number | null,
+  reportStatus: "available" | "unavailable",
+  reportUnavailableReason: string | null,
   regimeFitScore: number | null,
   riskPenaltyBreakdown: RiskPenaltyBreakdown | null,
   techCoverage: number | null,
@@ -892,7 +941,11 @@ function buildImprovementActions(
     actions.push("기술 점수가 약한 종목은 추가 매수보다 보유 점검 또는 교체 검토가 유리합니다.");
   }
 
-  if (reportCoverageScore != null && reportCoverageScore < 40) {
+  if (reportStatus === "unavailable" && reportUnavailableReason === "no_report_input") {
+    actions.push("기준 거래일 리포트 수집이 비어 있어 리포트 점수가 빠졌습니다. 다음 실행에서 거래일 기준 산출물을 먼저 확보해야 합니다.");
+  } else if (reportStatus === "unavailable") {
+    actions.push("보유 종목과 직접 연결된 리포트가 적어 리포트 점수가 미반영 상태입니다. 매핑 근거가 약한 종목은 보수적으로 접근하는 편이 좋습니다.");
+  } else if (reportCoverageScore != null && reportCoverageScore < 40) {
     actions.push("최근 리포트와 직접 연결된 보유 종목이 적습니다. 관련 근거가 약한 종목은 보수적으로 접근하는 편이 좋습니다.");
   }
 
@@ -991,6 +1044,14 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
   const technicalMap = technical?.scores ?? null;
   const stage3 = readStage3Analysis(snapshot.date);
   const stage4 = readStage4Analysis(snapshot.date);
+  const analysisDateContext = normalizeArtifactDateContext({
+    date: stage4?.date ?? stage3?.date ?? null,
+    runDate: stage4?.runDate ?? stage3?.runDate ?? null,
+    effectiveMarketDate:
+      stage4?.effectiveMarketDate ?? stage3?.effectiveMarketDate ?? null,
+    generatedAt: stage4?.generatedAt ?? stage3?.generatedAt ?? null,
+  });
+  const analysisDateLabel = formatDateContextLine(analysisDateContext);
 
   const nextTranchePct = getNextTranchePct(strategy);
 
@@ -1018,11 +1079,24 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
         stage3Account?.baseScores?.techScore ??
         stage3Account?.holdingsScore ??
         fallbackTechnicalScore;
-      const reportScore = stage3Account?.baseScores?.reportScore ?? null;
-      const reportCoverageScore =
+      const rawReportScore = stage3Account?.baseScores?.reportScore ?? null;
+      const rawReportCoverageScore =
         typeof stage3Account?.coverage?.impactCoverage === "number"
           ? Math.round(stage3Account.coverage.impactCoverage * 100)
           : stage3Account?.reportCoverageScore ?? null;
+      const reportStatus =
+        stage3Account?.reportStatus ??
+        ((typeof stage3Account?.coverage?.impactCoverage === "number" &&
+          stage3Account.coverage.impactCoverage > 0) ||
+        rawReportScore != null
+          ? "available"
+          : "unavailable");
+      const reportUnavailableReason =
+        stage3Account?.reportUnavailableReason ??
+        (reportStatus === "available" ? null : "no_report_signal");
+      const reportScore = reportStatus === "available" ? rawReportScore : null;
+      const reportCoverageScore =
+        reportStatus === "available" ? rawReportCoverageScore : null;
       const regimeFitScore = stage3Account?.baseScores?.regimeFit ?? null;
       const stage2Score = stage3Account?.baseScores?.stage2Score ?? null;
       const riskPenaltyTotal = stage3Account?.riskPenalty?.total ?? null;
@@ -1078,6 +1152,8 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
         reportScore,
         regimeFitScore,
         stage2Score,
+        reportStatus,
+        reportUnavailableReason,
         riskPenaltyTotal,
         riskPenaltyBreakdown,
         effectiveWeights,
@@ -1121,6 +1197,8 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
           technicalScore,
           reportScore,
           reportCoverageScore,
+          reportStatus,
+          reportUnavailableReason,
           regimeFitScore,
           stage2Score,
           riskPenaltyTotal,
@@ -1137,6 +1215,8 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
           categories,
           technicalScore,
           reportCoverageScore,
+          reportStatus,
+          reportUnavailableReason,
           regimeFitScore,
           riskPenaltyBreakdown,
           techCoverage,
@@ -1172,6 +1252,8 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
 
   return {
     score: stage3?.portfolio?.totalScore ?? score,
+    analysisDateContext,
+    analysisDateLabel,
     totalAssets,
     totalCash,
     totalCashPct: totalAssets > 0 ? totalCash / totalAssets : 0,

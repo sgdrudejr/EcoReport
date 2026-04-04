@@ -35,7 +35,9 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify({
         event_type: EVENT_TYPE,
         client_payload: {
-          date: cycleDate.date,
+          date: cycleDate.effectiveMarketDate,
+          run_date: cycleDate.runDate,
+          effective_market_date: cycleDate.effectiveMarketDate,
         },
       }),
     }
@@ -50,5 +52,11 @@ export async function POST(request: NextRequest) {
   }
 
   // GitHub dispatches API는 성공 시 204 No Content 반환
-  return Response.json({ ok: true, event: EVENT_TYPE, date: cycleDate.date, reason: cycleDate.reason });
+  return Response.json({
+    ok: true,
+    event: EVENT_TYPE,
+    run_date: cycleDate.runDate,
+    effective_market_date: cycleDate.effectiveMarketDate,
+    reason: cycleDate.reason,
+  });
 }

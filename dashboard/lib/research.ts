@@ -4,6 +4,7 @@ import {
   readRepoJsonFile,
   readRepoTextFile,
 } from "@/lib/repo-artifacts";
+import { normalizeArtifactDateContext } from "@/lib/trading-calendar";
 
 const KNOWLEDGE_DAILY_DIR = "knowledge/daily";
 const MARKET_DIR = "data/market";
@@ -20,6 +21,8 @@ export interface ResearchBriefingMeta {
   selected_chunk_count?: number | null;
   selected_report_count?: number | null;
   merged_text_char_length?: number | null;
+  run_date?: string | null;
+  effective_market_date?: string | null;
 }
 
 export interface ResearchBriefingDocument {
@@ -29,6 +32,9 @@ export interface ResearchBriefingDocument {
   content: string;
   variant: "rich" | "standard";
   meta: ResearchBriefingMeta | null;
+  runDate: string | null;
+  effectiveMarketDate: string | null;
+  hasExplicitDateContext: boolean;
 }
 
 export interface ResearchBriefingStats {
@@ -90,26 +96,46 @@ function getResearchMeta(relativePath: string) {
 }
 
 export function loadResearchBriefings(): ResearchBriefingDocument[] {
-  return listRepoFiles(KNOWLEDGE_DAILY_DIR)
+  const documents = listRepoFiles(KNOWLEDGE_DAILY_DIR)
     .filter((filename) =>
       /^\d{4}-\d{2}-\d{2}-gemini-briefing(?:-rich)?\.md$/.test(filename),
     )
-    .map((filename) => {
+    .reduce<ResearchBriefingDocument[]>((acc, filename) => {
       const relativePath = path.posix.join(KNOWLEDGE_DAILY_DIR, filename);
       const content = readRepoTextFile(relativePath);
-      if (!content) return null;
+      if (!content) return acc;
+      const meta = getResearchMeta(relativePath);
+      const context = normalizeArtifactDateContext({
+        date: filename.slice(0, 10),
+        runDate: meta?.run_date ?? null,
+        effectiveMarketDate: meta?.effective_market_date ?? null,
+        generatedAt: null,
+      });
 
-      return {
+      acc.push({
         filename,
         slug: filename.replace(/\.md$/, ""),
-        date: filename.slice(0, 10),
+        date: context.effectiveMarketDate ?? filename.slice(0, 10),
         content,
         variant: filename.includes("-rich.") ? "rich" : "standard",
-        meta: getResearchMeta(relativePath),
-      } satisfies ResearchBriefingDocument;
-    })
-    .filter((doc): doc is ResearchBriefingDocument => Boolean(doc))
+        meta,
+        runDate: context.runDate,
+        effectiveMarketDate: context.effectiveMarketDate ?? filename.slice(0, 10),
+        hasExplicitDateContext: context.hasExplicitContext,
+      } satisfies ResearchBriefingDocument);
+      return acc;
+    }, []);
+
+  return documents
     .sort((left, right) => {
+      const leftRunDate = left.runDate ?? "";
+      const rightRunDate = right.runDate ?? "";
+      if (leftRunDate !== rightRunDate) {
+        return rightRunDate.localeCompare(leftRunDate);
+      }
+      if (left.hasExplicitDateContext !== right.hasExplicitDateContext) {
+        return left.hasExplicitDateContext ? -1 : 1;
+      }
       if (left.date !== right.date) {
         return right.date.localeCompare(left.date);
       }

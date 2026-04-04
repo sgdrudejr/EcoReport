@@ -5,7 +5,8 @@
 set -euo pipefail
 
 REPO_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-DATE="${1:-$(node "$REPO_ROOT/scripts/resolve-cycle-date.js")}"
+DATE="${1:-$(node "$REPO_ROOT/scripts/resolve-cycle-date.js" --field effective_market_date)}"
+RUN_DATE="${RUN_DATE:-$(node "$REPO_ROOT/scripts/resolve-cycle-date.js" --field run_date)}"
 
 cd "$REPO_ROOT"
 
@@ -101,7 +102,11 @@ if git -C "$TMP_WORKTREE" diff --cached --quiet; then
   exit 0
 fi
 
-git -C "$TMP_WORKTREE" commit -m "📊 daily update: ${DATE}" >/dev/null
+COMMIT_MESSAGE="📊 daily update: ${DATE}"
+if [ "$RUN_DATE" != "$DATE" ]; then
+  COMMIT_MESSAGE="${COMMIT_MESSAGE} (run ${RUN_DATE})"
+fi
+git -C "$TMP_WORKTREE" commit -m "$COMMIT_MESSAGE" >/dev/null
 git -C "$TMP_WORKTREE" push -u origin data >/dev/null
 
 echo "[push-to-github] push 완료."

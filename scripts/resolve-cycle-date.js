@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
-const SEOUL_TIME_ZONE = "Asia/Seoul";
+import { resolveTradingDateContext } from "./lib/trading-calendar.js";
 
 function parseArgs(argv) {
   const args = {
     date: "",
+    runDate: "",
     field: "date",
   };
 
@@ -13,6 +14,12 @@ function parseArgs(argv) {
 
     if (token === "--date" && argv[index + 1]) {
       args.date = argv[index + 1].trim();
+      index += 1;
+      continue;
+    }
+
+    if (token === "--run-date" && argv[index + 1]) {
+      args.runDate = argv[index + 1].trim();
       index += 1;
       continue;
     }
@@ -26,61 +33,26 @@ function parseArgs(argv) {
   return args;
 }
 
-function getSeoulParts(now = new Date()) {
-  const formatter = new Intl.DateTimeFormat("en-US", {
-    timeZone: SEOUL_TIME_ZONE,
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-    weekday: "short",
-  });
-
-  const parts = formatter.formatToParts(now);
-  const getPart = (type) => parts.find((part) => part.type === type)?.value ?? "";
-
-  return {
-    year: Number(getPart("year")),
-    month: Number(getPart("month")),
-    day: Number(getPart("day")),
-    weekday: getPart("weekday"),
-  };
-}
-
-function resolveCycleDate(requestedDate = "", now = new Date()) {
-  if (requestedDate) {
-    return {
-      date: requestedDate,
-      reason: "requested",
-      weekday: "",
-    };
-  }
-
-  const { year, month, day, weekday } = getSeoulParts(now);
-  const effectiveDate = new Date(Date.UTC(year, month - 1, day));
-  let reason = "today";
-
-  if (weekday === "Sat") {
-    effectiveDate.setUTCDate(effectiveDate.getUTCDate() - 1);
-    reason = "weekend-fallback";
-  } else if (weekday === "Sun") {
-    effectiveDate.setUTCDate(effectiveDate.getUTCDate() - 2);
-    reason = "weekend-fallback";
-  }
-
-  return {
-    date: effectiveDate.toISOString().slice(0, 10),
-    reason,
-    weekday,
-  };
-}
-
 const args = parseArgs(process.argv.slice(2));
-const resolved = resolveCycleDate(args.date);
+const resolved = resolveTradingDateContext({
+  requestedDate: args.date,
+  runDate: args.runDate,
+});
 
 if (args.field === "reason") {
   process.stdout.write(resolved.reason);
 } else if (args.field === "weekday") {
   process.stdout.write(resolved.weekday);
+} else if (args.field === "run_date") {
+  process.stdout.write(resolved.runDate);
+} else if (args.field === "effective_market_date") {
+  process.stdout.write(resolved.effectiveMarketDate);
+} else if (args.field === "base_date") {
+  process.stdout.write(resolved.baseDate);
+} else if (args.field === "market_closed_label") {
+  process.stdout.write(resolved.marketClosedLabel ?? "");
+} else if (args.field === "json") {
+  process.stdout.write(`${JSON.stringify(resolved)}\n`);
 } else {
   process.stdout.write(resolved.date);
 }

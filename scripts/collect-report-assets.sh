@@ -4,13 +4,23 @@
 set -euo pipefail
 
 ROOT_DIR="${ROOT_DIR:-$HOME/stock-pilot}"
-DATE="$(node "$ROOT_DIR/scripts/resolve-cycle-date.js")"
+REQUESTED_DATE=""
+RUN_DATE="${RUN_DATE:-$(node "$ROOT_DIR/scripts/resolve-cycle-date.js" --field run_date)}"
+EFFECTIVE_MARKET_DATE=""
 FORCE=0
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --date)
-      DATE="$2"
+      REQUESTED_DATE="$2"
+      shift 2
+      ;;
+    --run-date)
+      RUN_DATE="$2"
+      shift 2
+      ;;
+    --effective-market-date)
+      EFFECTIVE_MARKET_DATE="$2"
       shift 2
       ;;
     --force)
@@ -18,11 +28,24 @@ while [[ $# -gt 0 ]]; do
       shift
       ;;
     *)
-      DATE="$1"
+      REQUESTED_DATE="$1"
       shift
       ;;
   esac
 done
+
+if [[ -z "$EFFECTIVE_MARKET_DATE" ]]; then
+  RESOLVE_ARGS=()
+  if [[ -n "$REQUESTED_DATE" ]]; then
+    RESOLVE_ARGS+=(--date "$REQUESTED_DATE")
+  fi
+  if [[ -n "$RUN_DATE" ]]; then
+    RESOLVE_ARGS+=(--run-date "$RUN_DATE")
+  fi
+  EFFECTIVE_MARKET_DATE="$(node "$ROOT_DIR/scripts/resolve-cycle-date.js" "${RESOLVE_ARGS[@]}" --field effective_market_date)"
+fi
+
+DATE="$EFFECTIVE_MARKET_DATE"
 
 cd "$ROOT_DIR"
 
@@ -34,10 +57,10 @@ if [[ "$FORCE" == "1" ]]; then
   TEXTIFY_ARGS+=(--force)
 fi
 
-echo "📡 리포트 수집 시작 ($DATE)"
+echo "📡 리포트 수집 시작 (run: $RUN_DATE / effective: $DATE)"
 node scripts/crawl-naver-research.js "${CRAWL_ARGS[@]}"
 
-echo "📝 전문 텍스트화 시작 ($DATE)"
+echo "📝 전문 텍스트화 시작 (effective: $DATE)"
 node scripts/dump-report-texts.js "${TEXTIFY_ARGS[@]}"
 
-echo "✅ 리포트 자산 수집 완료 ($DATE)"
+echo "✅ 리포트 자산 수집 완료 (run: $RUN_DATE / effective: $DATE)"

@@ -4,7 +4,9 @@
 set -euo pipefail
 
 ROOT_DIR="${ROOT_DIR:-${ECOREPORT_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}}"
-DATE="$(node "$ROOT_DIR/scripts/resolve-cycle-date.js")"
+REQUESTED_DATE=""
+RUN_DATE="${RUN_DATE:-$(node "$ROOT_DIR/scripts/resolve-cycle-date.js" --field run_date)}"
+EFFECTIVE_MARKET_DATE=""
 TIME="$(date +%H%M)"
 SKIP_LLM="${SKIP_LLM:-0}"
 MANUAL_LLM="${MANUAL_LLM:-0}"
@@ -15,7 +17,15 @@ FORCE_LLM=0
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --date)
-      DATE="$2"
+      REQUESTED_DATE="$2"
+      shift 2
+      ;;
+    --run-date)
+      RUN_DATE="$2"
+      shift 2
+      ;;
+    --effective-market-date)
+      EFFECTIVE_MARKET_DATE="$2"
       shift 2
       ;;
     --skip-llm)
@@ -39,11 +49,24 @@ while [[ $# -gt 0 ]]; do
       shift
       ;;
     *)
-      DATE="$1"
+      REQUESTED_DATE="$1"
       shift
       ;;
   esac
 done
+
+if [[ -z "$EFFECTIVE_MARKET_DATE" ]]; then
+  RESOLVE_ARGS=()
+  if [[ -n "$REQUESTED_DATE" ]]; then
+    RESOLVE_ARGS+=(--date "$REQUESTED_DATE")
+  fi
+  if [[ -n "$RUN_DATE" ]]; then
+    RESOLVE_ARGS+=(--run-date "$RUN_DATE")
+  fi
+  EFFECTIVE_MARKET_DATE="$(node "$ROOT_DIR/scripts/resolve-cycle-date.js" "${RESOLVE_ARGS[@]}" --field effective_market_date)"
+fi
+
+DATE="$EFFECTIVE_MARKET_DATE"
 
 LOG_DIR="$ROOT_DIR/logs"
 LOG_FILE="$LOG_DIR/$DATE-$TIME.log"
@@ -122,7 +145,7 @@ if [[ -z "${SECONDS:-}" ]]; then
 fi
 
 log "=================================================="
-log "🚀 [$TIME] EcoReport 분석 사이클 시작 ($DATE)"
+log "🚀 [$TIME] EcoReport 분석 사이클 시작 (run: $RUN_DATE / effective: $DATE)"
 log "=================================================="
 
 if [[ "$SKIP_COLLECT" == "1" ]]; then
@@ -132,7 +155,7 @@ if [[ "$SKIP_COLLECT" == "1" ]]; then
   log "📰 [3/7] 수집 단계 건너뜀 (--skip-collect)"
 else
   run_optional_step "📡 [1/7] 네이버 리서치 수집 + 전문 텍스트화..." \
-    bash scripts/collect-report-assets.sh --date "$DATE"
+    bash scripts/collect-report-assets.sh --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"
 
   run_optional_step "📰 [3/7] RSS/트위터/시장 데이터 수집..." \
     bash -lc "node scripts/fetch-rss-news.js --date '$DATE' && node scripts/fetch-twitter.js --date '$DATE' && node scripts/fetch-market-data.js --date '$DATE'"
@@ -206,7 +229,7 @@ fi
 if [[ "$MANUAL_LLM" == "1" ]]; then
   if advisory_reason="$(should_run_llm_stage advisory)"; then
     run_step "🧠 [7/7] 수동 LLM용 어드바이저 프롬프트 생성... $advisory_reason" \
-      bash scripts/run-advisory.sh --date "$DATE" --manual-llm --force
+      bash scripts/run-advisory.sh --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE" --manual-llm --force
     run_soft_step "🧮 [7/7] 수동 LLM용 포트폴리오 코치 프롬프트 생성..." \
       node scripts/build-portfolio-coach-prompt.js --date "$DATE" --output "reports/daily/$DATE-portfolio-coach-prompt.md"
   else
@@ -219,11 +242,11 @@ if [[ "$MANUAL_LLM" == "1" ]]; then
   fi
 elif [[ "$SKIP_LLM" == "1" || -z "${ANTHROPIC_API_KEY:-}" || "${ANTHROPIC_API_KEY:-}" == "sk-ant-xxxxx" ]]; then
   run_step "🧠 [7/7] 어드바이저 컨텍스트/브리핑 생성..." \
-    bash scripts/run-advisory.sh --date "$DATE" $( [[ "$SKIP_LLM" == "1" ]] && echo "--skip-llm" )
+    bash scripts/run-advisory.sh --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE" $( [[ "$SKIP_LLM" == "1" ]] && echo "--skip-llm" )
 else
   if advisory_reason="$(should_run_llm_stage advisory)"; then
     if run_soft_step "🧠 [7/7] 어드바이저 컨텍스트/브리핑 생성... $advisory_reason" \
-      bash scripts/run-advisory.sh --date "$DATE" --force; then
+      bash scripts/run-advisory.sh --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE" --force; then
       mark_llm_stage advisory
     fi
   else

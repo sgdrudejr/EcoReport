@@ -3,6 +3,8 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { todayInSeoul } from "./trading-calendar.js";
+
 function resolveRootDir() {
   const moduleDir = path.dirname(fileURLToPath(import.meta.url));
   const candidates = [
@@ -121,8 +123,11 @@ export const THEMATIC_TRIGGERS_BY_CODE = Object.fromEntries(
 export const THEME_CATEGORY_RULES = _sm.theme_category_rules ?? [];
 
 export function parseDateArgs(argv) {
+  const defaultRunDate = todayInSeoul();
   const args = {
-    date: new Date().toISOString().slice(0, 10),
+    date: defaultRunDate,
+    runDate: defaultRunDate,
+    effectiveMarketDate: null,
     output: null,
     markdown: null,
     force: false,
@@ -131,6 +136,13 @@ export function parseDateArgs(argv) {
   for (let index = 0; index < argv.length; index += 1) {
     const token = argv[index];
     if (token === "--date" && argv[index + 1]) {
+      args.date = argv[index + 1];
+      index += 1;
+    } else if (token === "--run-date" && argv[index + 1]) {
+      args.runDate = argv[index + 1];
+      index += 1;
+    } else if (token === "--effective-market-date" && argv[index + 1]) {
+      args.effectiveMarketDate = argv[index + 1];
       args.date = argv[index + 1];
       index += 1;
     } else if (token === "--output" && argv[index + 1]) {
@@ -142,6 +154,10 @@ export function parseDateArgs(argv) {
     } else if (token === "--force") {
       args.force = true;
     }
+  }
+
+  if (!args.effectiveMarketDate) {
+    args.effectiveMarketDate = args.date;
   }
 
   return args;

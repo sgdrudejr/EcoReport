@@ -4,7 +4,9 @@
 set -euo pipefail
 
 ROOT_DIR="${ROOT_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
-DATE="$(node "$ROOT_DIR/scripts/resolve-cycle-date.js")"
+REQUESTED_DATE=""
+RUN_DATE="${RUN_DATE:-$(node "$ROOT_DIR/scripts/resolve-cycle-date.js" --field run_date)}"
+EFFECTIVE_MARKET_DATE=""
 SKIP_COLLECT=0
 SKIP_RAG=0
 SKIP_PUSH=0
@@ -16,7 +18,15 @@ RUN_GEMINI_BRIEFING="auto"
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --date)
-      DATE="$2"
+      REQUESTED_DATE="$2"
+      shift 2
+      ;;
+    --run-date)
+      RUN_DATE="$2"
+      shift 2
+      ;;
+    --effective-market-date)
+      EFFECTIVE_MARKET_DATE="$2"
       shift 2
       ;;
     --skip-collect)
@@ -56,11 +66,30 @@ while [[ $# -gt 0 ]]; do
       shift
       ;;
     *)
-      DATE="$1"
+      REQUESTED_DATE="$1"
       shift
       ;;
   esac
 done
+
+if [[ -z "$EFFECTIVE_MARKET_DATE" ]]; then
+  RESOLVE_ARGS=()
+  if [[ -n "$REQUESTED_DATE" ]]; then
+    RESOLVE_ARGS+=(--date "$REQUESTED_DATE")
+  fi
+  if [[ -n "$RUN_DATE" ]]; then
+    RESOLVE_ARGS+=(--run-date "$RUN_DATE")
+  fi
+  EFFECTIVE_MARKET_DATE="$(node "$ROOT_DIR/scripts/resolve-cycle-date.js" "${RESOLVE_ARGS[@]}" --field effective_market_date)"
+fi
+
+DATE="$EFFECTIVE_MARKET_DATE"
+RESOLVE_REASON_ARGS=()
+if [[ -n "$REQUESTED_DATE" ]]; then
+  RESOLVE_REASON_ARGS+=(--date "$REQUESTED_DATE")
+fi
+RESOLVE_REASON_ARGS+=(--run-date "$RUN_DATE")
+RESOLUTION_REASON="$(node "$ROOT_DIR/scripts/resolve-cycle-date.js" "${RESOLVE_REASON_ARGS[@]}" --field reason)"
 
 cd "$ROOT_DIR"
 
@@ -108,14 +137,15 @@ python_bin() {
 }
 
 log "=================================================="
-log "🚀 EcoReport Daily System 시작 ($DATE)"
+log "🚀 EcoReport Daily System 시작 (run: $RUN_DATE / effective: $DATE)"
+log "🗓️ 날짜 해석 사유: $RESOLUTION_REASON"
 log "📁 로그: $LOG_FILE"
 log "=================================================="
 
 if [[ "$SKIP_COLLECT" == "1" ]]; then
   log "📡 수집 단계 건너뜀 (--skip-collect)"
 else
-  COLLECT_ARGS=(--date "$DATE")
+  COLLECT_ARGS=(--date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE")
   if [[ "$FORCE_COLLECT" == "1" ]]; then
     COLLECT_ARGS+=(--force)
   fi
@@ -146,12 +176,16 @@ if [[ "$RUN_GEMINI_BRIEFING" == "yes" ]] || { [[ "$RUN_GEMINI_BRIEFING" == "auto
   PYTHON_BIN="$(python_bin)"
   run_soft_step "🧠 Gemini 경제 브리핑 생성..." \
     "$PYTHON_BIN" scripts/generate_gemini_briefing.py \
+      --run-date "$RUN_DATE" \
+      --effective-market-date "$DATE" \
       --input "data/reports/$DATE/rag/chunks.jsonl" \
       --output "knowledge/daily/$DATE-gemini-briefing.md" \
       --min-chunks 15 \
       --max-chunks 20
   run_soft_step "🧠 Gemini 리치 브리핑 생성..." \
     "$PYTHON_BIN" scripts/generate_gemini_briefing.py \
+      --run-date "$RUN_DATE" \
+      --effective-market-date "$DATE" \
       --input "data/reports/$DATE/rag/chunks.jsonl" \
       --output "knowledge/daily/$DATE-gemini-briefing-rich.md" \
       --min-chunks 50 \
@@ -160,7 +194,7 @@ else
   log "🧠 Gemini 브리핑 스킵 (API 키 없음 또는 --no-gemini-briefing)"
 fi
 
-PIPELINE_ARGS=(--date "$DATE")
+PIPELINE_ARGS=(--date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE")
 if [[ "$STAGE2_MODE" == "gemini" ]]; then
   PIPELINE_ARGS+=(--gemini-stage2)
 elif [[ "$STAGE2_MODE" == "auto" ]] && has_gemini_key; then
@@ -182,5 +216,5 @@ else
 fi
 
 log "=================================================="
-log "✅ EcoReport Daily System 종료 ($DATE)"
+log "✅ EcoReport Daily System 종료 (run: $RUN_DATE / effective: $DATE)"
 log "=================================================="
