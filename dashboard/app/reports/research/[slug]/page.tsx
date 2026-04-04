@@ -1,7 +1,8 @@
 import Link from "next/link";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 import { notFound } from "next/navigation";
+import ResearchSectionTabs, {
+  type ResearchSectionTabItem,
+} from "@/components/ResearchSectionTabs";
 import {
   extractResearchActionPoints,
   extractResearchSections,
@@ -12,22 +13,6 @@ import {
 } from "@/lib/research";
 
 export const dynamic = "force-dynamic";
-
-function getSectionTone(title: string) {
-  if (title.includes("핵심")) {
-    return "border-sky-900/50 bg-sky-950/20";
-  }
-  if (title.includes("거시") || title.includes("매크로")) {
-    return "border-amber-900/50 bg-amber-950/20";
-  }
-  if (title.includes("섹터") || title.includes("성장")) {
-    return "border-emerald-900/50 bg-emerald-950/20";
-  }
-  if (title.includes("포트폴리오") || title.includes("시사점")) {
-    return "border-fuchsia-900/50 bg-fuchsia-950/20";
-  }
-  return "border-zinc-800 bg-zinc-900";
-}
 
 function researchTagClass(tone: string) {
   if (tone === "rose") return "border-rose-500/30 bg-rose-950/20 text-rose-300";
@@ -55,6 +40,14 @@ export default async function ResearchDetailPage({
   const stats = getResearchBriefingStats(briefing);
   const tags = extractResearchTags(briefing.content, 12);
   const actionPoints = extractResearchActionPoints(briefing.content, 6);
+  const sectionTabs: ResearchSectionTabItem[] = sections.map((section, index) => ({
+    id: `research-detail-section-${index + 1}`,
+    label: `Section ${index + 1}`,
+    title: section.title,
+    body: section.body,
+    tags: extractResearchTags(`${section.title}\n${section.body}`, 6),
+    actionPoints: extractResearchActionPoints(section.body, 3),
+  }));
 
   return (
     <main className="max-w-5xl mx-auto w-full px-4 py-8 space-y-6">
@@ -64,22 +57,41 @@ export default async function ResearchDetailPage({
           <h1 className="mt-1 text-2xl font-bold text-zinc-100">
             {briefing.variant === "rich" ? "리치 경제 리포트" : "경제 리포트"}
           </h1>
-          <div className="mt-3 flex flex-wrap gap-2">
-            <span className="rounded-full border border-zinc-800 bg-zinc-900 px-3 py-1 text-xs text-zinc-300">
-              모델 {stats.model ?? "수동/로컬"}
-            </span>
-            <span className="rounded-full border border-zinc-800 bg-zinc-900 px-3 py-1 text-xs text-zinc-300">
-              활용 리포트 {stats.coveredReportCount ?? "-"}건
-            </span>
-            <span className="rounded-full border border-zinc-800 bg-zinc-900 px-3 py-1 text-xs text-zinc-300">
-              사용 청크 {stats.usedChunkCount ?? "-"}개
-            </span>
-            <span className="rounded-full border border-zinc-800 bg-zinc-900 px-3 py-1 text-xs text-zinc-300">
-              후보 청크 {stats.candidateChunkCount ?? "-"}개
-            </span>
-            <span className="rounded-full border border-zinc-800 bg-zinc-900 px-3 py-1 text-xs text-zinc-300">
-              요약 전용 {stats.summaryChunkCount ?? "-"}개
-            </span>
+          <div className="mt-4 space-y-3">
+            <div className="-mx-1 overflow-x-auto pb-1">
+              <div className="flex min-w-max gap-3 px-1">
+                <div className="min-w-[132px] rounded-xl border border-zinc-800 bg-zinc-900 px-4 py-3">
+                  <p className="text-xs text-zinc-500">활용 리포트</p>
+                  <p className="mt-1 font-medium text-zinc-100">{stats.coveredReportCount ?? "-"}건</p>
+                </div>
+                <div className="min-w-[132px] rounded-xl border border-zinc-800 bg-zinc-900 px-4 py-3">
+                  <p className="text-xs text-zinc-500">사용 청크</p>
+                  <p className="mt-1 font-medium text-zinc-100">{stats.usedChunkCount ?? "-"}개</p>
+                </div>
+                <div className="min-w-[132px] rounded-xl border border-zinc-800 bg-zinc-900 px-4 py-3">
+                  <p className="text-xs text-zinc-500">후보 청크</p>
+                  <p className="mt-1 font-medium text-zinc-100">{stats.candidateChunkCount ?? "-"}개</p>
+                </div>
+                <div className="min-w-[132px] rounded-xl border border-zinc-800 bg-zinc-900 px-4 py-3">
+                  <p className="text-xs text-zinc-500">요약 전용</p>
+                  <p className="mt-1 font-medium text-zinc-100">{stats.summaryChunkCount ?? "-"}개</p>
+                </div>
+              </div>
+            </div>
+            <div className="grid max-w-md grid-cols-2 gap-3">
+              <div className="rounded-xl border border-zinc-800 bg-zinc-900 px-4 py-3">
+                <p className="text-xs text-zinc-500">모델</p>
+                <p className="mt-1 font-medium text-zinc-100">{stats.model ?? "수동/로컬"}</p>
+              </div>
+              <div className="rounded-xl border border-zinc-800 bg-zinc-900 px-4 py-3">
+                <p className="text-xs text-zinc-500">원문 길이</p>
+                <p className="mt-1 font-medium text-zinc-100">
+                  {stats.mergedTextLength != null
+                    ? `${stats.mergedTextLength.toLocaleString()}자`
+                    : "-"}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
         <Link
@@ -141,46 +153,7 @@ export default async function ResearchDetailPage({
         </section>
       )}
 
-      <div className="space-y-4">
-        {sections.map((section, index) => (
-          <section
-            key={`${section.title}-${index}`}
-            className={`rounded-2xl border px-6 py-5 ${getSectionTone(section.title)}`}
-          >
-            <p className="text-xs uppercase tracking-wide text-zinc-500">
-              Section {index + 1}
-            </p>
-            <h2 className="mt-1 text-xl font-semibold text-zinc-100">
-              {section.title}
-            </h2>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {extractResearchTags(`${section.title}\n${section.body}`, 6).map((tag) => (
-                <span
-                  key={`${section.title}-${tag.label}`}
-                  className={`rounded-full border px-2.5 py-1 text-[11px] ${researchTagClass(tag.tone)}`}
-                >
-                  {tag.label}
-                </span>
-              ))}
-            </div>
-            <div className="mt-4 prose prose-invert prose-sm max-w-none prose-headings:text-zinc-100 prose-p:text-zinc-300 prose-li:text-zinc-300">
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                {section.body}
-              </ReactMarkdown>
-            </div>
-            {extractResearchActionPoints(section.body, 3).length > 0 && (
-              <div className="mt-4 rounded-2xl border border-zinc-800 bg-zinc-950 p-4">
-                <p className="text-xs text-zinc-500">체크할 포인트</p>
-                <ul className="mt-2 space-y-1.5 text-sm text-zinc-100">
-                  {extractResearchActionPoints(section.body, 3).map((point) => (
-                    <li key={point}>- {point}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </section>
-        ))}
-      </div>
+      <ResearchSectionTabs sections={sectionTabs} />
     </main>
   );
 }

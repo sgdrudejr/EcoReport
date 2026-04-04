@@ -9,6 +9,9 @@ import FloatingSectionIndex, {
 } from "@/components/FloatingSectionIndex";
 import PortfolioGuidanceTabs from "@/components/PortfolioGuidanceTabs";
 import RecommendationBoard from "@/components/RecommendationBoard";
+import ResearchSectionTabs, {
+  type ResearchSectionTabItem,
+} from "@/components/ResearchSectionTabs";
 import TriggerButton from "@/components/TriggerButton";
 import { buildPortfolioGuide } from "@/lib/portfolio-guidance";
 import { loadRecommendationBoard } from "@/lib/recommendations";
@@ -318,6 +321,14 @@ export default function DashboardPage() {
   const researchActionPoints = researchBriefing
     ? extractResearchActionPoints(researchBriefing.content, 4)
     : [];
+  const researchSectionTabs: ResearchSectionTabItem[] = researchSections.map((section, index) => ({
+    id: `dashboard-research-section-${index + 1}`,
+    label: `Section ${index + 1}`,
+    title: section.title,
+    body: section.body,
+    tags: extractResearchTags(`${section.title}\n${section.body}`, 5),
+    actionPoints: extractResearchActionPoints(section.body, 2),
+  }));
   const briefingDateLine = briefing
     ? formatDateContextLine({
         runDate: briefing.runDate,
@@ -606,30 +617,32 @@ export default function DashboardPage() {
             </Link>
           </div>
 
-          <div className="mb-4 grid gap-3 md:grid-cols-4">
-            <div className="rounded-2xl border border-zinc-800 bg-zinc-900 px-4 py-3">
-              <p className="text-xs text-zinc-500">활용 리포트</p>
-              <p className="mt-1 text-lg font-semibold text-zinc-100">
-                {researchStats.coveredReportCount ?? "-"}건
-              </p>
-            </div>
-            <div className="rounded-2xl border border-zinc-800 bg-zinc-900 px-4 py-3">
-              <p className="text-xs text-zinc-500">사용 청크</p>
-              <p className="mt-1 text-lg font-semibold text-zinc-100">
-                {researchStats.usedChunkCount ?? "-"}개
-              </p>
-            </div>
-            <div className="rounded-2xl border border-zinc-800 bg-zinc-900 px-4 py-3">
-              <p className="text-xs text-zinc-500">후보 청크</p>
-              <p className="mt-1 text-lg font-semibold text-zinc-100">
-                {researchStats.candidateChunkCount ?? "-"}개
-              </p>
-            </div>
-            <div className="rounded-2xl border border-zinc-800 bg-zinc-900 px-4 py-3">
-              <p className="text-xs text-zinc-500">요약 전용</p>
-              <p className="mt-1 text-lg font-semibold text-zinc-100">
-                {researchStats.summaryChunkCount ?? "-"}개
-              </p>
+          <div className="mb-4 -mx-1 overflow-x-auto pb-1">
+            <div className="flex min-w-max gap-3 px-1">
+              <div className="min-w-[132px] rounded-2xl border border-zinc-800 bg-zinc-900 px-4 py-3">
+                <p className="text-xs text-zinc-500">활용 리포트</p>
+                <p className="mt-1 text-lg font-semibold text-zinc-100">
+                  {researchStats.coveredReportCount ?? "-"}건
+                </p>
+              </div>
+              <div className="min-w-[132px] rounded-2xl border border-zinc-800 bg-zinc-900 px-4 py-3">
+                <p className="text-xs text-zinc-500">사용 청크</p>
+                <p className="mt-1 text-lg font-semibold text-zinc-100">
+                  {researchStats.usedChunkCount ?? "-"}개
+                </p>
+              </div>
+              <div className="min-w-[132px] rounded-2xl border border-zinc-800 bg-zinc-900 px-4 py-3">
+                <p className="text-xs text-zinc-500">후보 청크</p>
+                <p className="mt-1 text-lg font-semibold text-zinc-100">
+                  {researchStats.candidateChunkCount ?? "-"}개
+                </p>
+              </div>
+              <div className="min-w-[132px] rounded-2xl border border-zinc-800 bg-zinc-900 px-4 py-3">
+                <p className="text-xs text-zinc-500">요약 전용</p>
+                <p className="mt-1 text-lg font-semibold text-zinc-100">
+                  {researchStats.summaryChunkCount ?? "-"}개
+                </p>
+              </div>
             </div>
           </div>
 
@@ -661,46 +674,7 @@ export default function DashboardPage() {
             </div>
           )}
 
-          <div className="grid gap-3 md:grid-cols-3">
-            {researchSections.map((section, index) => (
-              <article
-                key={`${section.title}-${index}`}
-                className="rounded-2xl border border-zinc-800 bg-zinc-900 p-5"
-              >
-                <p className="text-xs uppercase tracking-wide text-zinc-500">
-                  Section {index + 1}
-                </p>
-                <h3 className="mt-1 text-lg font-semibold text-zinc-100">
-                  {section.title}
-                </h3>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {extractResearchTags(`${section.title}\n${section.body}`, 5).map((tag) => (
-                    <span
-                      key={`${section.title}-${tag.label}`}
-                      className={`rounded-full border px-2.5 py-1 text-[11px] ${researchTagClass(tag.tone)}`}
-                    >
-                      {tag.label}
-                    </span>
-                  ))}
-                </div>
-                <div className="mt-3 prose prose-invert prose-sm max-w-none prose-p:text-zinc-300 prose-li:text-zinc-300">
-                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                    {section.body}
-                  </ReactMarkdown>
-                </div>
-                {extractResearchActionPoints(section.body, 2).length > 0 && (
-                  <div className="mt-4 rounded-xl border border-zinc-800 bg-zinc-950 px-3 py-3">
-                    <p className="text-xs text-zinc-500">체크할 포인트</p>
-                    <ul className="mt-2 space-y-1 text-sm text-zinc-100">
-                      {extractResearchActionPoints(section.body, 2).map((point) => (
-                        <li key={point}>- {point}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </article>
-            ))}
-          </div>
+          <ResearchSectionTabs sections={researchSectionTabs} />
         </section>
       )}
 

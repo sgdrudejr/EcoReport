@@ -9,6 +9,9 @@ import {
   Minus,
   Layers3,
 } from "lucide-react";
+import ResearchSectionTabs, {
+  type ResearchSectionTabItem,
+} from "@/components/ResearchSectionTabs";
 import { loadReports, type ReportDocument } from "@/lib/reports";
 import {
   extractResearchActionPoints,
@@ -130,22 +133,6 @@ function researchTagClass(tone: string) {
   return "border-zinc-700 bg-zinc-900 text-zinc-300";
 }
 
-function getSectionTone(title: string) {
-  if (title.includes("핵심")) {
-    return "border-sky-900/50 bg-sky-950/20";
-  }
-  if (title.includes("거시") || title.includes("매크로")) {
-    return "border-amber-900/50 bg-amber-950/20";
-  }
-  if (title.includes("섹터") || title.includes("성장")) {
-    return "border-emerald-900/50 bg-emerald-950/20";
-  }
-  if (title.includes("포트폴리오") || title.includes("시사점")) {
-    return "border-fuchsia-900/50 bg-fuchsia-950/20";
-  }
-  return "border-zinc-800 bg-zinc-950/70";
-}
-
 function ResearchBriefingCard({
   briefing,
 }: {
@@ -156,6 +143,14 @@ function ResearchBriefingCard({
   const stats = getResearchBriefingStats(briefing);
   const tags = extractResearchTags(briefing.content, 10);
   const actionPoints = extractResearchActionPoints(briefing.content, 5);
+  const sectionTabs: ResearchSectionTabItem[] = sections.map((section, index) => ({
+    id: `research-section-${index + 1}`,
+    label: `Section ${index + 1}`,
+    title: section.title,
+    body: section.body,
+    tags: extractResearchTags(`${section.title}\n${section.body}`, 6),
+    actionPoints: extractResearchActionPoints(section.body, 3),
+  }));
 
   return (
     <div className="rounded-2xl border border-zinc-800 bg-zinc-900 overflow-hidden">
@@ -187,44 +182,40 @@ function ResearchBriefingCard({
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 text-sm text-zinc-300 lg:min-w-[320px]">
-            <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
-              <p className="text-xs text-zinc-500">모델</p>
-              <p className="mt-1 font-medium">
-                {stats.model ?? "수동/로컬 생성"}
-              </p>
+          <div className="space-y-3 lg:min-w-[320px]">
+            <div className="-mx-1 overflow-x-auto pb-1">
+              <div className="flex min-w-max gap-3 px-1 text-sm text-zinc-300">
+                <div className="min-w-[132px] rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
+                  <p className="text-xs text-zinc-500">활용 리포트</p>
+                  <p className="mt-1 font-medium">{stats.coveredReportCount ?? "-"}건</p>
+                </div>
+                <div className="min-w-[132px] rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
+                  <p className="text-xs text-zinc-500">사용 청크</p>
+                  <p className="mt-1 font-medium">{stats.usedChunkCount ?? "-"}개</p>
+                </div>
+                <div className="min-w-[132px] rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
+                  <p className="text-xs text-zinc-500">후보 청크</p>
+                  <p className="mt-1 font-medium">{stats.candidateChunkCount ?? "-"}개</p>
+                </div>
+                <div className="min-w-[132px] rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
+                  <p className="text-xs text-zinc-500">요약 전용</p>
+                  <p className="mt-1 font-medium">{stats.summaryChunkCount ?? "-"}개</p>
+                </div>
+              </div>
             </div>
-            <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
-              <p className="text-xs text-zinc-500">활용 리포트</p>
-              <p className="mt-1 font-medium">
-                {stats.coveredReportCount ?? "-"}건
-              </p>
-            </div>
-            <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
-              <p className="text-xs text-zinc-500">사용 청크</p>
-              <p className="mt-1 font-medium">
-                {stats.usedChunkCount ?? "-"}개
-              </p>
-            </div>
-            <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
-              <p className="text-xs text-zinc-500">원문 길이</p>
-              <p className="mt-1 font-medium">
-                {stats.mergedTextLength != null
-                  ? `${stats.mergedTextLength.toLocaleString()}자`
-                  : "-"}
-              </p>
-            </div>
-            <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
-              <p className="text-xs text-zinc-500">후보 청크</p>
-              <p className="mt-1 font-medium">
-                {stats.candidateChunkCount ?? "-"}개
-              </p>
-            </div>
-            <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
-              <p className="text-xs text-zinc-500">요약 전용</p>
-              <p className="mt-1 font-medium">
-                {stats.summaryChunkCount ?? "-"}개
-              </p>
+            <div className="grid grid-cols-2 gap-3 text-sm text-zinc-300">
+              <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
+                <p className="text-xs text-zinc-500">모델</p>
+                <p className="mt-1 font-medium">{stats.model ?? "수동/로컬 생성"}</p>
+              </div>
+              <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
+                <p className="text-xs text-zinc-500">원문 길이</p>
+                <p className="mt-1 font-medium">
+                  {stats.mergedTextLength != null
+                    ? `${stats.mergedTextLength.toLocaleString()}자`
+                    : "-"}
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -284,49 +275,8 @@ function ResearchBriefingCard({
         </div>
       )}
 
-      <div className="px-5 py-5 space-y-5">
-        {sections.map((section, index) => (
-          <section
-            key={`${section.title}-${index}`}
-            className={`rounded-2xl border p-5 ${getSectionTone(section.title)}`}
-          >
-            <div className="mb-3 flex items-center justify-between gap-3">
-              <div>
-                <p className="text-xs uppercase tracking-wide text-zinc-500">
-                  Section {index + 1}
-                </p>
-                <h3 className="text-xl font-semibold text-zinc-100">
-                  {section.title}
-                </h3>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {extractResearchTags(`${section.title}\n${section.body}`, 6).map((tag) => (
-                  <span
-                    key={`${section.title}-${tag.label}`}
-                    className={`rounded-full border px-2.5 py-1 text-[11px] ${researchTagClass(tag.tone)}`}
-                  >
-                    {tag.label}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <div className="prose prose-invert prose-sm max-w-none prose-headings:text-zinc-100 prose-p:text-zinc-300 prose-li:text-zinc-300">
-              <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                {section.body}
-              </ReactMarkdown>
-            </div>
-            {extractResearchActionPoints(section.body, 3).length > 0 && (
-              <div className="mt-4 rounded-2xl border border-zinc-800 bg-zinc-950 p-4">
-                <p className="text-xs text-zinc-500">체크할 포인트</p>
-                <ul className="mt-2 space-y-1.5 text-sm text-zinc-100">
-                  {extractResearchActionPoints(section.body, 3).map((point) => (
-                    <li key={point}>- {point}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </section>
-        ))}
+      <div className="px-5 py-5">
+        <ResearchSectionTabs sections={sectionTabs} />
       </div>
     </div>
   );
