@@ -26,6 +26,9 @@ jobs:
   deploy:
     name: Build & Deploy
     runs-on: ubuntu-latest
+    if: |
+      github.event_name != 'push' ||
+      !startsWith(github.event.head_commit.message, 'chore: update portfolio snapshot ')
 
     steps:
       - name: Checkout data branch
