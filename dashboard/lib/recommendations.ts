@@ -264,17 +264,26 @@ const CODE_METADATA: Record<string, CandidateMeta> = {
   },
 };
 
-function findLatestAnalysisDate(fileName: string, dateHint?: string) {
-  if (
-    dateHint &&
-    readRepoJsonFile(`data/analysis-state/${dateHint}/${fileName}`)
-  ) {
+function findLatestAnalysisDate<T>(
+  fileName: string,
+  dateHint?: string,
+  validator?: (payload: T) => boolean,
+) {
+  const isUsableDate = (date: string) => {
+    const payload = readRepoJsonFile<T>(`data/analysis-state/${date}/${fileName}`);
+    if (!payload) {
+      return false;
+    }
+    return validator ? validator(payload) : true;
+  };
+
+  if (dateHint && isUsableDate(dateHint)) {
     return dateHint;
   }
 
   const dirs = listRepoDirectories("data/analysis-state").sort().reverse();
   for (const dir of dirs) {
-    if (readRepoJsonFile(`data/analysis-state/${dir}/${fileName}`)) {
+    if (isUsableDate(dir)) {
       return dir;
     }
   }
@@ -283,7 +292,18 @@ function findLatestAnalysisDate(fileName: string, dateHint?: string) {
 }
 
 function loadStage1(dateHint?: string) {
-  const date = findLatestAnalysisDate("stage1-report-extracts-v2.json", dateHint);
+  const date =
+    findLatestAnalysisDate<{
+      extracts?: Stage1Extract[];
+      reportCount?: number | null;
+    }>(
+      "stage1-report-extracts-v2.json",
+      dateHint,
+      (payload) =>
+        (payload.reportCount ?? 0) > 0 ||
+        (Array.isArray(payload.extracts) && payload.extracts.length > 0),
+    ) ??
+    findLatestAnalysisDate("stage1-report-extracts-v2.json", dateHint);
   if (!date) return { date: dateHint ?? null, extracts: [] as Stage1Extract[] };
   const parsed = readRepoJsonFile<{
     date?: string;
