@@ -375,16 +375,18 @@ export default function DashboardPage() {
   const totals = portfolio ? getPortfolioTotals(portfolio) : null;
 
   return (
-    <main className="max-w-4xl mx-auto w-full px-4 py-8 space-y-8">
+    <main className="mx-auto w-full max-w-7xl px-4 py-6 md:px-6 md:py-8 space-y-8">
       {/* 헤더 */}
-      <div className="flex items-center justify-between">
+      <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-zinc-100">EcoReport</h1>
+          <h1 className="text-3xl font-bold tracking-tight text-zinc-100 md:text-4xl">EcoReport</h1>
           {briefing && (
-            <p className="text-sm text-zinc-500 mt-0.5">{briefing.date}</p>
+            <p className="mt-1 text-sm text-zinc-500 md:text-base">{briefing.date}</p>
           )}
         </div>
-        <TriggerButton />
+        <div className="md:self-start">
+          <TriggerButton />
+        </div>
       </div>
 
       {/* 시장 지표 카드 */}
@@ -393,7 +395,16 @@ export default function DashboardPage() {
           <h2 className="text-sm font-semibold text-zinc-500 uppercase tracking-wide mb-3">
             시장 지표
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+          <div className="md:hidden -mx-4 overflow-x-auto px-4">
+            <div className="flex gap-3 pb-1">
+              {Object.entries(indices).map(([key, val]) => (
+                <div key={key} className="min-w-[160px]">
+                  <MarketCard label={key} close={val.close} changePct={val.change_pct} />
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className="hidden md:grid md:grid-cols-3 xl:grid-cols-6 gap-3">
             {Object.entries(indices).map(([key, val]) => (
               <MarketCard
                 key={key}
@@ -415,7 +426,7 @@ export default function DashboardPage() {
           <div className="space-y-4">
             {portfolio ? (
               <>
-                <div className="flex items-center justify-between gap-4">
+                <div className="flex flex-col gap-4 xl:flex-row xl:items-end xl:justify-between">
                   <div>
                     <p className="text-sm text-zinc-400">
                       최신 스냅샷 기준 총 평가금액
@@ -466,7 +477,16 @@ export default function DashboardPage() {
                     </Link>
                   </div>
                 </div>
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+                <div className="md:hidden -mx-4 overflow-x-auto px-4">
+                  <div className="flex gap-3 pb-1">
+                    {portfolio.accounts.map((account) => (
+                      <div key={account.key} className="min-w-[300px] max-w-[300px]">
+                        <PortfolioAccountCard account={account} />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="hidden md:grid md:grid-cols-2 xl:grid-cols-3 gap-3">
                   {portfolio.accounts.map((account) => (
                     <PortfolioAccountCard
                       key={account.key}
@@ -494,7 +514,7 @@ export default function DashboardPage() {
 
       {portfolioGuide && (
         <section>
-          <div className="flex items-center justify-between gap-4 mb-3">
+          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between mb-3">
             <div>
               <h2 className="text-sm font-semibold text-zinc-500 uppercase tracking-wide">
                 운용 가이드
@@ -506,7 +526,30 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          <div className="grid sm:grid-cols-3 gap-3 mb-4">
+          <div className="md:hidden -mx-4 overflow-x-auto px-4">
+            <div className="flex gap-3 pb-1">
+              <div className="min-w-[190px]">
+                <GuidanceScoreCard
+                  score={portfolioGuide.score}
+                  label="포트폴리오 운용 점수"
+                />
+              </div>
+              <div className="min-w-[190px] bg-zinc-900 rounded-xl border border-zinc-800 p-4">
+                <p className="text-xs text-zinc-500">총 현금 비중</p>
+                <p className="mt-1 text-3xl font-semibold tabular-nums text-zinc-100">
+                  {formatPercent(portfolioGuide.totalCashPct * 100)}
+                </p>
+              </div>
+              <div className="min-w-[190px] bg-zinc-900 rounded-xl border border-zinc-800 p-4">
+                <p className="text-xs text-zinc-500">이번 단계 기준</p>
+                <p className="mt-1 text-3xl font-semibold tabular-nums text-zinc-100">
+                  {formatPercent(portfolioGuide.nextTranchePct * 100, 0)}
+                </p>
+                <p className="mt-1 text-xs text-zinc-500">다음 분할매수 비중</p>
+              </div>
+            </div>
+          </div>
+          <div className="hidden md:grid md:grid-cols-3 gap-3 mb-4">
             <GuidanceScoreCard
               score={portfolioGuide.score}
               label="포트폴리오 운용 점수"
@@ -554,7 +597,7 @@ export default function DashboardPage() {
 
       {researchBriefing && researchSections.length > 0 && (
         <section>
-          <div className="flex items-center justify-between gap-4 mb-3">
+          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between mb-3">
             <div>
               <h2 className="text-sm font-semibold text-zinc-500 uppercase tracking-wide">
                 경제 리포트 요약

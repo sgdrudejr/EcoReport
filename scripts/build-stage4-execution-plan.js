@@ -167,15 +167,194 @@ function distributeBudget(bucket, stage2Candidates = []) {
   }));
 }
 
+function summarizeMacroTheme(stage2Data) {
+  const summary = String(stage2Data?.macro_view?.summary ?? "").replace(/\s+/g, " ").trim();
+  if (!summary) return null;
+  if (/유가|원유|중동|이란|호르무즈/i.test(summary)) {
+    return "중동 지정학 리스크와 유가 상승이 시장 변동성을 키우고 있습니다.";
+  }
+  if (/금리|CPI|인플레이션|연준|FOMC/i.test(summary)) {
+    return "인플레이션과 금리 상방 압력이 위험자산 선호를 누르고 있습니다.";
+  }
+  if (/AI|데이터센터|전력|반도체/i.test(summary)) {
+    return "AI 인프라와 전력 수요가 구조적 성장 축으로 다시 부각되고 있습니다.";
+  }
+  return summary;
+}
+
+function categoryNarrative(category) {
+  if (category === "금") return "방어자산과 원자재 헤지";
+  if (category === "배당/커버드콜") return "변동성 완충형 인컴 자산";
+  if (category === "현금파킹") return "대기 자금과 금리 방어 버퍼";
+  if (category === "S&P500" || category === "미국인덱스") return "미국 코어 인덱스";
+  if (category === "나스닥100") return "미국 성장/빅테크";
+  if (category === "전력기기") return "AI·전력 인프라";
+  if (category === "방산") return "지정학 민감 방산";
+  if (category === "원자력") return "에너지 안보/원전";
+  return category;
+}
+
+function accountPersona(accountKey) {
+  if (accountKey === "ISA") {
+    return "절세 계좌 특성상 국내 ETF 중심의 방어·인컴·테마 배치를 유연하게 조정하는 역할";
+  }
+  if (accountKey === "PENSION") {
+    return "장기 복리 관점에서 미국 코어 자산과 방어 자산을 안정적으로 쌓는 역할";
+  }
+  if (accountKey === "TOSS") {
+    return "전술 테마와 성장 섹터를 민첩하게 반영하는 역할";
+  }
+  return "계좌 목적에 맞는 자산 배분 역할";
+}
+
+function topImpactReasons(impactMap, account, limit = 3) {
+  const reasons = [];
+
+  for (const report of impactMap?.reports ?? []) {
+    for (const impact of report.impacts ?? []) {
+      const target = impact.target ?? {};
+      const matchesAccount = target.accountKey === account.key;
+      const matchesHolding =
+        target.type === "holding" &&
+        (account.holdings ?? []).some((holding) => holding.code === target.code);
+      const matchesCategory =
+        target.type === "category" &&
+        Boolean(target.accountKey === account.key && target.name);
+      if (!matchesAccount && !matchesHolding && !matchesCategory) continue;
+
+      reasons.push({
+        reportTitle: report.title,
+        direction: impact.direction ?? "neutral",
+        targetType: target.type ?? "unknown",
+        targetName: target.name ?? target.code ?? account.label,
+        text: impact.evidence?.snippets?.[0] ?? null,
+        riskTags: impact.riskTags ?? [],
+      });
+    }
+  }
+
+  return reasons.slice(0, limit);
+}
+
+function simplifyDriverText(value) {
+  const text = String(value ?? "").replace(/\s+/g, " ").trim();
+  if (!text) return null;
+  const cleaned = text
+    .replace(/^[•\-–—\s]+/, "")
+    .replace(/\s*\.\.\.\s*$/, "")
+    .trim();
+  if (cleaned.length <= 180) return cleaned;
+  const sentence = cleaned.match(/^(.{40,180}?[.!?])(?:\s|$)/)?.[1];
+  if (sentence) return sentence.trim();
+  return `${cleaned.slice(0, 177).trim()}...`;
+}
+
+function buildMacroCommentary({
+  account,
+  bucket,
+  stage2Action,
+  stage2Data,
+  stage1Drivers,
+  impactMap,
+}) {
+  const macroHeadline = summarizeMacroTheme(stage2Data);
+  const gapCategory = bucket.topGap?.category ?? null;
+  const assetFocus = gapCategory ? categoryNarrative(gapCategory) : null;
+  const persona = accountPersona(account.key);
+  const firstBuy = bucket.stage2Candidates?.[0] ?? bucket.buy?.[0] ?? null;
+  const reserveNote = stage2Action?.reserve_cash_note
+    ? String(stage2Action.reserve_cash_note).replace(/\s+/g, " ").trim()
+    : null;
+  const rationale = stage2Action?.rationale
+    ? String(stage2Action.rationale).replace(/\s+/g, " ").trim()
+    : null;
+  const isReadableDriver = (value) => {
+    const text = String(value ?? "").replace(/\s+/g, " ").trim();
+    if (text.length < 28) return false;
+    if ((text.match(/\b\d[\d,.-]*\b/g) ?? []).length >= 10) return false;
+    if ((text.match(/[u│■•□]/g) ?? []).length >= 3) return false;
+    if (/다올투자증권|여의나루로|본사영업점/i.test(text)) return false;
+    return true;
+  };
+
+  const mappedDrivers = topImpactReasons(impactMap, account, 3)
+    .map((item) => {
+      const reportLabel = simplifyDriverText(item.reportTitle)?.replace(/^\[[^\]]+\]\s*/, "") ?? "관련 리포트";
+      const directionLabel =
+        item.direction === "positive"
+          ? "긍정"
+          : item.direction === "negative"
+            ? "부정"
+            : item.direction === "mixed"
+              ? "혼합"
+              : "중립";
+      const riskHint =
+        item.riskTags?.includes("oil")
+          ? "유가"
+          : item.riskTags?.includes("rates")
+            ? "금리"
+            : item.riskTags?.includes("geopolitics")
+              ? "지정학"
+              : item.riskTags?.includes("ai")
+                ? "AI 인프라"
+                : item.riskTags?.includes("defense")
+                  ? "방산"
+                  : null;
+      const base = `${reportLabel}는 ${item.targetName}에 ${directionLabel} 신호를 줍니다${riskHint ? ` (${riskHint})` : ""}.`;
+      return base;
+    })
+    .filter(Boolean);
+
+  const researchDrivers = (stage1Drivers ?? [])
+    .map((item) => String(item.thesis ?? "").replace(/\s+/g, " ").trim())
+    .map((item) => simplifyDriverText(item))
+    .filter((item) => isReadableDriver(item))
+    .slice(0, 2);
+
+  const summaryParts = [
+    macroHeadline,
+    assetFocus ? `${account.label}은 ${assetFocus} 비중 조정이 핵심입니다.` : null,
+    `${persona}로 작동하는 계좌입니다.`,
+  ].filter(Boolean);
+
+  const actionLine =
+    bucket.deployBudget > 0 && (bucket.topGap || firstBuy)
+      ? `${account.label}은 ${bucket.topGap?.category ?? "핵심 자산"}을 우선 보강하고, ${
+          firstBuy?.name ?? bucket.candidateFromGap ?? "선별 후보"
+        }를 중심으로 ${won(bucket.deployBudget)} 한도에서 분할 접근하는 편이 좋습니다.`
+      : `${account.label}은 지금은 공격적 확대보다 기존 포지션과 현금 비중을 재점검하는 편이 좋습니다.`;
+
+  return {
+    summary: summaryParts.join(" "),
+    drivers: [
+      ...(macroHeadline ? [macroHeadline] : []),
+      ...(rationale ? [rationale] : []),
+      ...mappedDrivers,
+      ...researchDrivers,
+    ].slice(0, 4),
+    assetFocus: [
+      ...(assetFocus ? [assetFocus] : []),
+      ...(bucket.topGap?.category ? [bucket.topGap.category] : []),
+      ...bucket.gapSummary.slice(0, 2).map((item) => item.category),
+    ]
+      .filter(Boolean)
+      .filter((value, index, array) => array.indexOf(value) === index)
+      .slice(0, 4),
+    actionLine,
+    reserveNote,
+  };
+}
+
 async function main() {
   const args = parseDateArgs(process.argv.slice(2));
   const stateDir = path.join(ROOT_DIR, "data", "analysis-state", args.date);
-  const [portfolio, strategy, stage1, stage2, quant] = await Promise.all([
+  const [portfolio, strategy, stage1, stage2, quant, impactMap] = await Promise.all([
     readJson(path.join(ROOT_DIR, "data", "portfolio", "latest.json"), { accounts: [] }),
     readJson(path.join(ROOT_DIR, "config", "strategy.json"), { accounts: {} }),
     readJson(path.join(stateDir, "stage1-report-extracts-v2.json"), { extracts: [] }),
     readJson(path.join(stateDir, "stage2-strategy-options.json"), null),
     readJson(path.join(stateDir, "stage3-quant-scores.json"), { holdings: {}, accounts: {}, portfolio: {} }),
+    readJson(path.join(stateDir, "impact-map.json"), { reports: [] }),
   ]);
   const stage2Data = stage2 ?? (await readJson(path.join(stateDir, "stage2-strategy-options.mock.json"), { account_actions: [], strategy_changes: [] }));
 
@@ -185,7 +364,20 @@ async function main() {
       null;
     const bucket = executionBuckets(account, quant, stage2Action, strategy);
     const stage2Candidates = resolveStage2Candidates(account, stage2Data, bucket);
+    bucket.stage2Candidates = stage2Candidates;
+    const stage1Drivers = stage1.extracts
+      .filter((item) => item.related_accounts?.includes(account.key))
+      .slice(0, 4)
+      .map((item) => ({ id: item.id, title: item.title, thesis: item.key_thesis }));
     const stagedBuys = distributeBudget(bucket, stage2Candidates);
+    const macroCommentary = buildMacroCommentary({
+      account,
+      bucket,
+      stage2Action,
+      stage2Data,
+      stage1Drivers,
+      impactMap,
+    });
     return {
       key: account.key,
       label: account.label,
@@ -200,10 +392,8 @@ async function main() {
       trims: bucket.trim.slice(0, 3),
       holds: bucket.hold.slice(0, 3),
       watches: bucket.watch.slice(0, 3),
-      stage1Drivers: stage1.extracts
-        .filter((item) => item.related_accounts?.includes(account.key))
-        .slice(0, 4)
-        .map((item) => ({ id: item.id, title: item.title, thesis: item.key_thesis })),
+      macroCommentary,
+      stage1Drivers,
     };
   });
 
@@ -238,6 +428,7 @@ async function main() {
       `- 남길 예수금: ${won(account.reserveCash)}`,
       `- 가장 부족한 자산군: ${account.topGap ? `${account.topGap.category} / ${won(Math.max(account.topGap.gapAmount, 0))}` : "없음"}`,
       `- 우선 보강 후보: ${account.candidateFromGap ?? "없음"}`,
+      `- 매크로 → 자산군 → 액션: ${account.macroCommentary?.actionLine ?? "요약 없음"}`,
       "",
       "### 1차 실행",
       ...(account.stagedBuys.length > 0
@@ -257,6 +448,11 @@ async function main() {
       ...(account.stage1Drivers.length > 0
         ? account.stage1Drivers.map((item) => `- ${item.id}: ${item.title} / ${item.thesis}`)
         : ["- 직접 관련 리포트 추출 없음"]),
+      "",
+      "### 매크로 코멘터리",
+      ...(account.macroCommentary?.drivers?.length > 0
+        ? account.macroCommentary.drivers.map((item) => `- ${item}`)
+        : ["- 직접 연결된 거시 코멘트 없음"]),
       "",
     ]),
   ].join("\n");
@@ -279,9 +475,11 @@ async function main() {
     ...accountPlans.flatMap((account) => [
       `### ${account.label}`,
       `- 계좌 총점: ${account.totalScore}점`,
+      ...(account.macroCommentary?.summary ? [`- 매크로 요약: ${account.macroCommentary.summary}`] : []),
       `- 부족한 자산군: ${account.topGap ? `${account.topGap.category} (${won(Math.max(account.topGap.gapAmount, 0))})` : "없음"}`,
       `- 남길 예수금: ${won(account.reserveCash)}`,
       `- 우선 후보: ${account.stage2Candidates.length > 0 ? account.stage2Candidates.map((item) => item.name).join(", ") : account.candidateFromGap ?? "없음"}`,
+      ...(account.macroCommentary?.actionLine ? [`- 액션 연결: ${account.macroCommentary.actionLine}`] : []),
       ...(account.trims.length > 0
         ? [`- 재점검 필요: ${account.trims.map((item) => `${item.name} ${item.score}점`).join(", ")}`]
         : [`- 재점검 필요: 즉시 축소 대상 없음`]),

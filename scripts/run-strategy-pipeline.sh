@@ -46,6 +46,9 @@ elif [[ "$USE_MOCK_STAGE2" == "1" ]]; then
   node scripts/build-stage2-strategy-mock.js --date "$DATE"
 fi
 
+echo "== Stage 2.5: impact map =="
+node scripts/build-impact-map.js --date "$DATE"
+
 echo "== Stage 3: quant scores =="
 node scripts/build-stage3-quant-scores.js --date "$DATE"
 

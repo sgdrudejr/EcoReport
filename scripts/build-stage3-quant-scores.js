@@ -382,18 +382,37 @@ function aggregateHoldingReportImpacts({ impactMap, stage1Extracts, targetCode, 
     .filter((impact) => Math.abs(impact.contribution) >= 0.025)
     .sort((left, right) => Math.abs(right.contribution) - Math.abs(left.contribution));
 
-  const impacts = confirmed.length > 0 ? rawImpacts : rawImpacts.slice(0, 6);
-  const raw =
+  const impacts = rawImpacts.slice(0, confirmed.length > 0 ? 8 : 6);
+  const averageContribution =
+    impacts.length > 0
+      ? impacts.reduce((sum, impact) => sum + impact.contribution, 0) / impacts.length
+      : 0;
+  const contributionScale =
     confirmed.length > 0
-      ? impacts.reduce((sum, impact) => sum + impact.contribution, 0)
-      : impacts.length > 0
-        ? (impacts.reduce((sum, impact) => sum + impact.contribution, 0) / impacts.length) * 3
-        : 0;
+      ? clamp(Math.log2(impacts.length + 1), 0.6, 1.85)
+      : clamp(Math.log2(impacts.length + 1) * 0.82, 0.45, 1.35);
+  const raw = averageContribution * contributionScale * 2.4;
   const score = Math.round(sigmoid(raw * 1.2) * 100);
+  const directHoldingHits = impacts.filter((impact) => impact.targetType === "holding").length;
+  const thematicHits = impacts.filter(
+    (impact) => impact.targetType === "category" || impact.targetType === "theme",
+  ).length;
+  const coverageWeight = clamp(
+    directHoldingHits > 0
+      ? 1
+      : thematicHits > 0
+        ? 0.55
+        : impacts.length > 0
+          ? 0.3
+          : 0,
+    0,
+    1,
+  );
   return {
     sourceLayer: confirmed.length > 0 ? "impact-map" : "stage1-candidate-capped",
     value: clamp(raw, -2.5, 2.5),
     score,
+    coverageWeight: toRoundedNumber(coverageWeight, 3),
     impacts: impacts.slice(0, 5).map(({ contribution, ...rest }) => ({
       ...rest,
       contribution: toRoundedNumber(contribution, 4),
@@ -417,13 +436,12 @@ function aggregateAccountDirectImpacts({ impactMap, stage1Extracts, accountKey, 
     .filter((impact) => Math.abs(impact.contribution) >= 0.03)
     .sort((left, right) => Math.abs(right.contribution) - Math.abs(left.contribution));
 
-  const impacts = confirmed.length > 0 ? rawImpacts : rawImpacts.slice(0, 4);
-  const raw =
-    confirmed.length > 0
-      ? impacts.reduce((sum, impact) => sum + impact.contribution, 0)
-      : impacts.length > 0
-        ? (impacts.reduce((sum, impact) => sum + impact.contribution, 0) / impacts.length) * 2
-        : 0;
+  const impacts = rawImpacts.slice(0, confirmed.length > 0 ? 6 : 4);
+  const averageContribution =
+    impacts.length > 0
+      ? impacts.reduce((sum, impact) => sum + impact.contribution, 0) / impacts.length
+      : 0;
+  const raw = averageContribution * clamp(Math.log2(impacts.length + 1), 0.5, 1.6) * 1.9;
   return {
     value: clamp(raw, -1.5, 1.5),
     score: Math.round(sigmoid(raw * 1.1) * 100),
@@ -835,6 +853,7 @@ async function main() {
           impactScore: reportImpact.score,
           impactValue: toRoundedNumber(reportImpact.value),
           impactCount: reportImpact.impactCount,
+          coverageWeight: reportImpact.coverageWeight,
           directAccountImpactScore: accountDirectImpact.score,
         },
         scores: {
@@ -855,9 +874,10 @@ async function main() {
       (account.holdings ?? []).filter((holding) => typeof technicalMap[holding.code]?.score === "number").length /
       Math.max((account.holdings ?? []).length, 1);
     const impactCoverage =
-      (account.holdings ?? []).filter(
-        (holding) => (holdingScores[holding.code]?.report?.impactCount ?? 0) > 0,
-      ).length / Math.max((account.holdings ?? []).length, 1);
+      (account.holdings ?? []).reduce(
+        (sum, holding) => sum + (holdingScores[holding.code]?.report?.coverageWeight ?? 0),
+        0,
+      ) / Math.max((account.holdings ?? []).length, 1);
     const coverage = {
       techCoverage: toRoundedNumber(techCoverage, 4),
       impactCoverage: toRoundedNumber(impactCoverage, 4),

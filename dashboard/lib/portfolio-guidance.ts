@@ -75,6 +75,10 @@ export type AccountGuide = {
   recommendedDeploy: number;
   reserveCash: number;
   note: string;
+  macroSummary: string | null;
+  macroDrivers: string[];
+  assetFocus: string[];
+  actionLine: string | null;
   candidates: string[];
   categories: CategoryGuide[];
   topSignals: string[];
@@ -599,6 +603,12 @@ function buildImprovementActions(
 function buildEvidenceNotes(stage4Account: any | null) {
   const notes: string[] = [];
 
+  if (stage4Account?.macroCommentary?.summary) {
+    notes.push(
+      `매크로 요약: ${String(stage4Account.macroCommentary.summary).replace(/\s+/g, " ").trim()}`,
+    );
+  }
+
   for (const stagedBuy of stage4Account?.stagedBuys ?? []) {
     if (!stagedBuy?.name || !stagedBuy?.reason) continue;
     const reason = String(stagedBuy.reason).replace(/\s+/g, " ").trim();
@@ -622,6 +632,12 @@ function buildEvidenceNotes(stage4Account: any | null) {
 
 function buildActionPoints(stage4Account: any | null) {
   const points: string[] = [];
+
+  if (stage4Account?.macroCommentary?.actionLine) {
+    points.push(
+      String(stage4Account.macroCommentary.actionLine).replace(/\s+/g, " ").trim(),
+    );
+  }
 
   for (const stagedBuy of stage4Account?.stagedBuys ?? []) {
     if (!stagedBuy?.name || !stagedBuy?.suggestedAmount) continue;
@@ -774,6 +790,7 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
         recommendedDeploy,
         reserveCash,
         note:
+          stage4Account?.macroCommentary?.summary ??
           stage3Account?.note ??
           buildAccountNote(
             account,
@@ -785,6 +802,10 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
             targetCashPct,
           ),
         candidates,
+        macroSummary: stage4Account?.macroCommentary?.summary ?? null,
+        macroDrivers: stage4Account?.macroCommentary?.drivers ?? [],
+        assetFocus: stage4Account?.macroCommentary?.assetFocus ?? [],
+        actionLine: stage4Account?.macroCommentary?.actionLine ?? null,
         categories: categories.sort((left, right) => right.targetPct - left.targetPct),
         topSignals,
         reportCoverageScore,
