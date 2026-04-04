@@ -77,3 +77,40 @@ export function listRepoFiles(relativeDir: string) {
 
   return [...merged];
 }
+
+export function listRepoDirectories(relativeDir: string) {
+  const merged = new Set<string>();
+
+  const localDir = absolutePath(relativeDir);
+  if (fs.existsSync(localDir)) {
+    for (const entry of fs.readdirSync(localDir, { withFileTypes: true })) {
+      if (entry.isDirectory()) {
+        merged.add(entry.name);
+      }
+    }
+  }
+
+  for (const ref of DATA_BRANCH_REFS) {
+    try {
+      const output = runGit(["ls-tree", ref, "--", relativeDir]);
+      const lines = output
+        .split("\n")
+        .map((line) => line.trim())
+        .filter(Boolean);
+
+      for (const line of lines) {
+        const match = line.match(/^\d+\s+tree\s+[0-9a-f]+\t(.+)$/);
+        const entryPath = match?.[1]?.trim();
+        if (!entryPath) continue;
+        const name = path.posix.basename(entryPath);
+        if (name) {
+          merged.add(name);
+        }
+      }
+    } catch {
+      // try next ref
+    }
+  }
+
+  return [...merged];
+}

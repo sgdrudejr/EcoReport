@@ -7,11 +7,17 @@ import {
   type PortfolioAccount,
   type PortfolioSnapshot,
 } from "@/lib/portfolio";
+import {
+  listRepoDirectories,
+  listRepoFiles,
+  readRepoJsonFile,
+} from "@/lib/repo-artifacts";
 import { resolveRepoRoot } from "@/lib/repo-root";
 
 const REPO_ROOT = resolveRepoRoot();
 const STRATEGY_FILE = path.join(REPO_ROOT, "config", "strategy.json");
-const TECHNICAL_DIR = path.join(REPO_ROOT, "data", "technical");
+const TECHNICAL_DIR = "data/technical";
+const ANALYSIS_DIR = "data/analysis-state";
 
 type StrategyAccountKey = "ISA" | "연금저축" | "토스증권";
 
@@ -37,6 +43,97 @@ type StrategyAllocation = {
   };
 };
 
+type TechnicalScoreEntry = {
+  score?: number;
+  signal?: string | null;
+  signal_reason?: string | null;
+};
+
+type TechnicalSnapshot = {
+  scores?: Record<string, TechnicalScoreEntry>;
+};
+
+type RiskPenaltyBreakdown = {
+  dataQuality?: {
+    total?: number;
+    incompletePenalty?: number;
+    unmappedExposurePct?: number;
+  };
+  concentration?: {
+    total?: number;
+  };
+  regimeStress?: {
+    total?: number;
+  };
+};
+
+type Stage3Account = {
+  baseScores?: {
+    allocationScore?: number;
+    techScore?: number;
+    reportScore?: number;
+    regimeFit?: number;
+    stage2Score?: number;
+  };
+  allocationScore?: number;
+  holdingsScore?: number;
+  reportCoverageScore?: number | null;
+  coverage?: {
+    impactCoverage?: number;
+    techCoverage?: number;
+  };
+  riskPenalty?: {
+    total?: number;
+    breakdown?: RiskPenaltyBreakdown | null;
+  };
+  effectiveWeights?: Record<string, number> | null;
+  totalScore?: number;
+  note?: string | null;
+  stage2Bias?: string | null;
+};
+
+type Stage3Analysis = {
+  accounts?: Record<string, Stage3Account>;
+  portfolio?: {
+    totalScore?: number;
+  };
+};
+
+type Stage4AccountPlan = {
+  key?: string;
+  macroCommentary?: {
+    summary?: string;
+    drivers?: string[];
+    assetFocus?: string[];
+    actionLine?: string;
+  };
+  stagedBuys?: Array<{
+    name?: string;
+    suggestedAmount?: number;
+    reason?: string;
+  }>;
+  trims?: Array<{
+    name?: string;
+    reason?: string;
+  }>;
+  holds?: Array<{
+    name?: string;
+    reason?: string;
+  }>;
+  stage2Candidates?: Array<{
+    name?: string;
+    reason?: string;
+  }>;
+  stage1Drivers?: Array<{
+    title?: string;
+    thesis?: string;
+  }>;
+};
+
+type Stage4Analysis = {
+  accountPlans?: Stage4AccountPlan[];
+};
+
 export type CategoryGuide = {
   category: string;
   currentAmount: number;
@@ -60,7 +157,7 @@ export type AccountGuide = {
   stage2Score: number | null;
   stage2Bias: string | null;
   riskPenaltyTotal: number | null;
-  riskPenaltyBreakdown: Record<string, any> | null;
+  riskPenaltyBreakdown: RiskPenaltyBreakdown | null;
   effectiveWeights: Record<string, number> | null;
   techCoverage: number | null;
   impactCoverage: number | null;
@@ -139,83 +236,63 @@ function readStrategy(): StrategyAllocation | null {
 }
 
 function readLatestTechnical(dateHint?: string) {
-  try {
-    const preferredPath = dateHint ? path.join(TECHNICAL_DIR, `${dateHint}.json`) : null;
-    if (preferredPath && fs.existsSync(preferredPath)) {
-      return JSON.parse(fs.readFileSync(preferredPath, "utf8"));
-    }
+  const preferredPath = dateHint ? path.posix.join(TECHNICAL_DIR, `${dateHint}.json`) : null;
+  if (preferredPath) {
+    const preferred = readRepoJsonFile<TechnicalSnapshot>(preferredPath);
+    if (preferred) return preferred;
+  }
 
-    const files = fs
-      .readdirSync(TECHNICAL_DIR)
-      .filter((file) => file.endsWith(".json"))
-      .sort()
-      .reverse();
+  const files = listRepoFiles(TECHNICAL_DIR)
+    .filter((file) => /^\d{4}-\d{2}-\d{2}\.json$/.test(file))
+    .sort()
+    .reverse();
 
-    if (files.length === 0) {
-      return null;
-    }
-
-    return JSON.parse(fs.readFileSync(path.join(TECHNICAL_DIR, files[0]), "utf8"));
-  } catch {
+  if (files.length === 0) {
     return null;
   }
+
+  return readRepoJsonFile<TechnicalSnapshot>(path.posix.join(TECHNICAL_DIR, files[0]));
 }
 
 function readStage3Analysis(dateHint?: string) {
-  const analysisDir = path.join(REPO_ROOT, "data", "analysis-state");
-  try {
-    const preferredPath = dateHint
-      ? path.join(analysisDir, dateHint, "stage3-quant-scores.json")
-      : null;
-    if (preferredPath && fs.existsSync(preferredPath)) {
-      return JSON.parse(fs.readFileSync(preferredPath, "utf8"));
-    }
+  const preferredPath = dateHint
+    ? path.posix.join(ANALYSIS_DIR, dateHint, "stage3-quant-scores.json")
+    : null;
+  if (preferredPath) {
+    const preferred = readRepoJsonFile<Stage3Analysis>(preferredPath);
+    if (preferred) return preferred;
+  }
 
-    const datedDirs = fs
-      .readdirSync(analysisDir, { withFileTypes: true })
-      .filter((entry) => entry.isDirectory())
-      .map((entry) => entry.name)
-      .sort()
-      .reverse();
+  const datedDirs = listRepoDirectories(ANALYSIS_DIR).sort().reverse();
 
-    for (const datedDir of datedDirs) {
-      const candidate = path.join(analysisDir, datedDir, "stage3-quant-scores.json");
-      if (fs.existsSync(candidate)) {
-        return JSON.parse(fs.readFileSync(candidate, "utf8"));
-      }
+  for (const datedDir of datedDirs) {
+    const candidate = path.posix.join(ANALYSIS_DIR, datedDir, "stage3-quant-scores.json");
+    const result = readRepoJsonFile<Stage3Analysis>(candidate);
+    if (result) {
+      return result;
     }
-  } catch {
-    return null;
   }
 
   return null;
 }
 
 function readStage4Analysis(dateHint?: string) {
-  const analysisDir = path.join(REPO_ROOT, "data", "analysis-state");
-  try {
-    const preferredPath = dateHint
-      ? path.join(analysisDir, dateHint, "stage4-execution-plan.json")
-      : null;
-    if (preferredPath && fs.existsSync(preferredPath)) {
-      return JSON.parse(fs.readFileSync(preferredPath, "utf8"));
-    }
+  const preferredPath = dateHint
+    ? path.posix.join(ANALYSIS_DIR, dateHint, "stage4-execution-plan.json")
+    : null;
+  if (preferredPath) {
+    const preferred = readRepoJsonFile<Stage4Analysis>(preferredPath);
+    if (preferred) return preferred;
+  }
 
-    const datedDirs = fs
-      .readdirSync(analysisDir, { withFileTypes: true })
-      .filter((entry) => entry.isDirectory())
-      .map((entry) => entry.name)
-      .sort()
-      .reverse();
+  const datedDirs = listRepoDirectories(ANALYSIS_DIR).sort().reverse();
 
-    for (const datedDir of datedDirs) {
-      const candidate = path.join(analysisDir, datedDir, "stage4-execution-plan.json");
-      if (fs.existsSync(candidate)) {
-        return JSON.parse(fs.readFileSync(candidate, "utf8"));
-      }
+  for (const datedDir of datedDirs) {
+    const candidate = path.posix.join(ANALYSIS_DIR, datedDir, "stage4-execution-plan.json");
+    const result = readRepoJsonFile<Stage4Analysis>(candidate);
+    if (result) {
+      return result;
     }
-  } catch {
-    return null;
   }
 
   return null;
@@ -320,7 +397,7 @@ function getAccountScore(categoryGuides: CategoryGuide[], incomplete?: boolean) 
 
 function getTechnicalScoreForAccount(
   account: PortfolioAccount,
-  technicalMap: Record<string, any> | null,
+  technicalMap: Record<string, TechnicalScoreEntry> | null,
 ) {
   if (!technicalMap) {
     return {
@@ -437,7 +514,7 @@ function buildScoreDrivers(
   regimeFitScore: number | null,
   stage2Score: number | null,
   riskPenaltyTotal: number | null,
-  riskPenaltyBreakdown: Record<string, any> | null,
+  riskPenaltyBreakdown: RiskPenaltyBreakdown | null,
   effectiveWeights: Record<string, number> | null,
   techCoverage: number | null,
   impactCoverage: number | null,
@@ -548,7 +625,7 @@ function buildImprovementActions(
   technicalScore: number | null,
   reportCoverageScore: number | null,
   regimeFitScore: number | null,
-  riskPenaltyBreakdown: Record<string, any> | null,
+  riskPenaltyBreakdown: RiskPenaltyBreakdown | null,
   techCoverage: number | null,
   cashPct: number,
   targetCashPct: number,
@@ -572,7 +649,8 @@ function buildImprovementActions(
     );
   }
 
-  if (riskPenaltyBreakdown?.dataQuality?.incompletePenalty > 0) {
+  const incompletePenalty = riskPenaltyBreakdown?.dataQuality?.incompletePenalty ?? 0;
+  if (incompletePenalty > 0) {
     actions.push("누락된 보유 종목을 모두 입력하면 데이터 품질 패널티가 바로 줄어듭니다.");
   }
 
@@ -600,7 +678,7 @@ function buildImprovementActions(
   return actions.slice(0, 5);
 }
 
-function buildEvidenceNotes(stage4Account: any | null) {
+function buildEvidenceNotes(stage4Account: Stage4AccountPlan | null) {
   const notes: string[] = [];
 
   if (stage4Account?.macroCommentary?.summary) {
@@ -630,7 +708,7 @@ function buildEvidenceNotes(stage4Account: any | null) {
   return notes.filter((value, index, array) => array.indexOf(value) === index).slice(0, 4);
 }
 
-function buildActionPoints(stage4Account: any | null) {
+function buildActionPoints(stage4Account: Stage4AccountPlan | null) {
   const points: string[] = [];
 
   if (stage4Account?.macroCommentary?.actionLine) {
@@ -706,7 +784,7 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
       const { technicalScore: fallbackTechnicalScore, topSignals } = getTechnicalScoreForAccount(account, technicalMap);
       const stage3Account = stage3?.accounts?.[account.key] ?? null;
       const stage4Account =
-        stage4?.accountPlans?.find((plan: any) => plan.key === account.key) ?? null;
+        stage4?.accountPlans?.find((plan) => plan.key === account.key) ?? null;
       const allocationScore =
         stage3Account?.baseScores?.allocationScore ??
         stage3Account?.allocationScore ??
