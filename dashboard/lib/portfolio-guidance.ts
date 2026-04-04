@@ -53,8 +53,16 @@ export type AccountGuide = {
   score: number;
   allocationScore: number;
   technicalScore: number | null;
+  reportScore: number | null;
   reportCoverageScore: number | null;
+  regimeFitScore: number | null;
+  stage2Score: number | null;
   stage2Bias: string | null;
+  riskPenaltyTotal: number | null;
+  riskPenaltyBreakdown: Record<string, any> | null;
+  effectiveWeights: Record<string, number> | null;
+  techCoverage: number | null;
+  impactCoverage: number | null;
   status: "양호" | "보강 필요" | "조정 필요";
   totalAssets: number;
   holdingsValue: number;
@@ -71,6 +79,8 @@ export type AccountGuide = {
   topSignals: string[];
   scoreDrivers: string[];
   improvementActions: string[];
+  evidenceNotes: string[];
+  actionPoints: string[];
 };
 
 export type PortfolioGuide = {
@@ -165,6 +175,36 @@ function readStage3Analysis(dateHint?: string) {
 
     for (const datedDir of datedDirs) {
       const candidate = path.join(analysisDir, datedDir, "stage3-quant-scores.json");
+      if (fs.existsSync(candidate)) {
+        return JSON.parse(fs.readFileSync(candidate, "utf8"));
+      }
+    }
+  } catch {
+    return null;
+  }
+
+  return null;
+}
+
+function readStage4Analysis(dateHint?: string) {
+  const analysisDir = path.join(REPO_ROOT, "data", "analysis-state");
+  try {
+    const preferredPath = dateHint
+      ? path.join(analysisDir, dateHint, "stage4-execution-plan.json")
+      : null;
+    if (preferredPath && fs.existsSync(preferredPath)) {
+      return JSON.parse(fs.readFileSync(preferredPath, "utf8"));
+    }
+
+    const datedDirs = fs
+      .readdirSync(analysisDir, { withFileTypes: true })
+      .filter((entry) => entry.isDirectory())
+      .map((entry) => entry.name)
+      .sort()
+      .reverse();
+
+    for (const datedDir of datedDirs) {
+      const candidate = path.join(analysisDir, datedDir, "stage4-execution-plan.json");
       if (fs.existsSync(candidate)) {
         return JSON.parse(fs.readFileSync(candidate, "utf8"));
       }
@@ -384,29 +424,84 @@ function buildAccountNote(
 
 function buildScoreDrivers(
   account: PortfolioAccount,
+  score: number,
   allocationScore: number,
   technicalScore: number | null,
+  reportScore: number | null,
   reportCoverageScore: number | null,
+  regimeFitScore: number | null,
+  stage2Score: number | null,
+  riskPenaltyTotal: number | null,
+  riskPenaltyBreakdown: Record<string, any> | null,
+  effectiveWeights: Record<string, number> | null,
+  techCoverage: number | null,
+  impactCoverage: number | null,
   cashPct: number,
   targetCashPct: number,
   categories: CategoryGuide[],
 ) {
   const drivers: string[] = [];
 
+  const baseScoreParts = [
+    `배분 ${allocationScore}점`,
+    technicalScore != null ? `기술 ${technicalScore}점` : "기술 데이터 부족",
+    reportScore != null ? `리포트 ${reportScore}점` : null,
+    regimeFitScore != null ? `레짐 적합 ${regimeFitScore}점` : null,
+    stage2Score != null ? `Stage2 ${stage2Score}점` : null,
+  ].filter(Boolean);
+
+  drivers.push(
+    riskPenaltyTotal != null
+      ? `최종 ${score}점은 기본 점수에서 리스크 패널티 ${riskPenaltyTotal}점을 차감한 결과입니다. (${baseScoreParts.join(" · ")})`
+      : `최종 ${score}점은 ${baseScoreParts.join(" · ")}를 합산해 계산됩니다.`,
+  );
+
   if (account.incomplete) {
-    drivers.push("부분 캡처 계좌라 보유 누락 가능성이 있어 보수적으로 감점됐습니다.");
+    drivers.push("부분 캡처 계좌라 보유 누락 가능성이 있어 데이터 품질 패널티가 적용됐습니다.");
   }
 
-  drivers.push(`배분 점수 ${allocationScore}점: 목표 배분과의 괴리를 기반으로 계산됩니다.`);
+  if (effectiveWeights) {
+    const parts = [
+      `배분 ${formatPercent((effectiveWeights.allocation ?? 0) * 100)}`,
+      `기술 ${formatPercent((effectiveWeights.tech ?? 0) * 100)}`,
+      `리포트 ${formatPercent((effectiveWeights.report ?? 0) * 100)}`,
+      `레짐 ${formatPercent((effectiveWeights.regime ?? 0) * 100)}`,
+      `Stage2 ${formatPercent((effectiveWeights.stage2 ?? 0) * 100)}`,
+    ];
+    drivers.push(`현재 데이터 커버리지 기준 반영 비중은 ${parts.join(" / ")} 입니다.`);
+  }
 
   if (technicalScore != null) {
-    drivers.push(`기술 점수 ${technicalScore}점: RSI, MACD, 이평선, 변동성 신호를 합산한 보유 종목 가중 평균입니다.`);
+    const coverageText =
+      techCoverage != null ? ` (커버리지 ${formatPercent(techCoverage * 100)})` : "";
+    drivers.push(`기술 점수 ${technicalScore}점: RSI, MACD, 이평선, 변동성 신호를 합산한 보유 종목 가중 평균입니다${coverageText}.`);
   } else {
     drivers.push("기술 점수 데이터가 아직 부족해 배분 점수 비중이 더 크게 반영됐습니다.");
   }
 
-  if (reportCoverageScore != null) {
-    drivers.push(`리포트 커버리지 ${reportCoverageScore}점: 최근 리포트와 직접 연결된 보유 종목 비중입니다.`);
+  if (reportScore != null || reportCoverageScore != null) {
+    const reportText = reportScore != null ? `${reportScore}점` : "미산출";
+    const coverageText = reportCoverageScore != null ? ` / 커버리지 ${reportCoverageScore}%` : "";
+    drivers.push(`리포트 점수 ${reportText}${coverageText}: 보유 종목과 직접 연결된 리포트의 방향과 강도를 반영합니다.`);
+  }
+
+  if (regimeFitScore != null) {
+    drivers.push(`레짐 적합도 ${regimeFitScore}점: 현재 시장 레짐에 맞는 배분인지 평가합니다.`);
+  }
+
+  const dataQualityPenalty = riskPenaltyBreakdown?.dataQuality?.total ?? 0;
+  if (dataQualityPenalty > 0) {
+    drivers.push(`데이터 품질 패널티 ${dataQualityPenalty}점: 부분 캡처 또는 미분류 노출 때문에 감점됐습니다.`);
+  }
+
+  const concentrationPenalty = riskPenaltyBreakdown?.concentration?.total ?? 0;
+  if (concentrationPenalty > 0) {
+    drivers.push(`집중도 패널티 ${concentrationPenalty}점: 특정 종목/테마 쏠림이 점수를 눌렀습니다.`);
+  }
+
+  const regimeStressPenalty = riskPenaltyBreakdown?.regimeStress?.total ?? 0;
+  if (regimeStressPenalty > 0) {
+    drivers.push(`레짐 스트레스 패널티 ${regimeStressPenalty}점: 현재 레짐 대비 위험자산 비중이 높습니다.`);
   }
 
   if (cashPct > targetCashPct + 0.05) {
@@ -432,6 +527,10 @@ function buildImprovementActions(
   account: PortfolioAccount,
   categories: CategoryGuide[],
   technicalScore: number | null,
+  reportCoverageScore: number | null,
+  regimeFitScore: number | null,
+  riskPenaltyBreakdown: Record<string, any> | null,
+  techCoverage: number | null,
   cashPct: number,
   targetCashPct: number,
 ) {
@@ -454,20 +553,77 @@ function buildImprovementActions(
     );
   }
 
+  if (riskPenaltyBreakdown?.dataQuality?.incompletePenalty > 0) {
+    actions.push("누락된 보유 종목을 모두 입력하면 데이터 품질 패널티가 바로 줄어듭니다.");
+  }
+
+  const unmappedExposurePct = riskPenaltyBreakdown?.dataQuality?.unmappedExposurePct;
+  if (typeof unmappedExposurePct === "number" && unmappedExposurePct > 5) {
+    actions.push(`'기타' 비중 ${unmappedExposurePct.toFixed(1)}%를 적절한 자산군으로 분류하면 점수 신뢰도와 총점이 함께 개선됩니다.`);
+  }
+
+  if (typeof techCoverage === "number" && techCoverage < 0.8) {
+    actions.push(`기술 신호가 없는 보유 종목이 있어 커버리지가 ${formatPercent(techCoverage * 100)} 수준입니다. 누락 종목 보완 또는 점검이 필요합니다.`);
+  }
+
   if (technicalScore != null && technicalScore < 50) {
     actions.push("기술 점수가 약한 종목은 추가 매수보다 보유 점검 또는 교체 검토가 유리합니다.");
   }
 
-  if (account.incomplete) {
-    actions.push("누락된 보유 종목을 먼저 입력하면 기술·배분 점수가 정확해집니다.");
+  if (reportCoverageScore != null && reportCoverageScore < 40) {
+    actions.push("최근 리포트와 직접 연결된 보유 종목이 적습니다. 관련 근거가 약한 종목은 보수적으로 접근하는 편이 좋습니다.");
+  }
+
+  if (regimeFitScore != null && regimeFitScore < 50) {
+    actions.push("현재 시장 레짐에 맞게 위험자산을 줄이거나 방어 자산/현금 비중을 조정하면 레짐 적합도가 올라갑니다.");
   }
 
   return actions.slice(0, 5);
 }
 
+function buildEvidenceNotes(stage4Account: any | null) {
+  const notes: string[] = [];
+
+  for (const driver of stage4Account?.stage1Drivers ?? []) {
+    if (!driver?.title || !driver?.thesis) continue;
+    const sentence = String(driver.thesis).replace(/\s+/g, " ").trim();
+    notes.push(`${driver.title}: ${sentence.slice(0, 140)}${sentence.length > 140 ? "..." : ""}`);
+  }
+
+  return notes.slice(0, 3);
+}
+
+function buildActionPoints(stage4Account: any | null) {
+  const points: string[] = [];
+
+  for (const stagedBuy of stage4Account?.stagedBuys ?? []) {
+    if (!stagedBuy?.name || !stagedBuy?.suggestedAmount) continue;
+    points.push(`${stagedBuy.name} ${stagedBuy.suggestedAmount.toLocaleString()}원 분할매수 검토`);
+  }
+
+  for (const trim of stage4Account?.trims ?? []) {
+    if (!trim?.name) continue;
+    points.push(`${trim.name} 비중 축소 또는 재점검`);
+  }
+
+  for (const hold of stage4Account?.holds ?? []) {
+    if (!hold?.name) continue;
+    points.push(`${hold.name}은 유지하되 추가 진입은 보류`);
+  }
+
+  return points.slice(0, 4);
+}
+
 function formatPctPoint(value: number) {
   const rounded = Number.parseFloat(value.toFixed(1));
   return `${rounded > 0 ? "+" : ""}${rounded}`;
+}
+
+function formatPercent(value: number | null | undefined, digits = 1) {
+  if (typeof value !== "number" || Number.isNaN(value)) {
+    return "-";
+  }
+  return `${value.toFixed(digits)}%`;
 }
 
 export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide | null {
@@ -479,6 +635,7 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
   const technical = readLatestTechnical(snapshot.date);
   const technicalMap = technical?.scores ?? null;
   const stage3 = readStage3Analysis(snapshot.date);
+  const stage4 = readStage4Analysis(snapshot.date);
 
   const nextTranchePct = getNextTranchePct(strategy);
 
@@ -496,9 +653,34 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
       const fallbackAllocationScore = getAccountScore(categories, false);
       const { technicalScore: fallbackTechnicalScore, topSignals } = getTechnicalScoreForAccount(account, technicalMap);
       const stage3Account = stage3?.accounts?.[account.key] ?? null;
-      const allocationScore = stage3Account?.allocationScore ?? fallbackAllocationScore;
-      const technicalScore = stage3Account?.holdingsScore ?? fallbackTechnicalScore;
-      const reportCoverageScore = stage3Account?.reportCoverageScore ?? null;
+      const stage4Account =
+        stage4?.accountPlans?.find((plan: any) => plan.key === account.key) ?? null;
+      const allocationScore =
+        stage3Account?.baseScores?.allocationScore ??
+        stage3Account?.allocationScore ??
+        fallbackAllocationScore;
+      const technicalScore =
+        stage3Account?.baseScores?.techScore ??
+        stage3Account?.holdingsScore ??
+        fallbackTechnicalScore;
+      const reportScore = stage3Account?.baseScores?.reportScore ?? null;
+      const reportCoverageScore =
+        typeof stage3Account?.coverage?.impactCoverage === "number"
+          ? Math.round(stage3Account.coverage.impactCoverage * 100)
+          : stage3Account?.reportCoverageScore ?? null;
+      const regimeFitScore = stage3Account?.baseScores?.regimeFit ?? null;
+      const stage2Score = stage3Account?.baseScores?.stage2Score ?? null;
+      const riskPenaltyTotal = stage3Account?.riskPenalty?.total ?? null;
+      const riskPenaltyBreakdown = stage3Account?.riskPenalty?.breakdown ?? null;
+      const effectiveWeights = stage3Account?.effectiveWeights ?? null;
+      const techCoverage =
+        typeof stage3Account?.coverage?.techCoverage === "number"
+          ? stage3Account.coverage.techCoverage
+          : null;
+      const impactCoverage =
+        typeof stage3Account?.coverage?.impactCoverage === "number"
+          ? stage3Account.coverage.impactCoverage
+          : null;
       const score =
         stage3Account?.totalScore ??
         mergeScores(allocationScore, technicalScore, account.incomplete);
@@ -528,6 +710,8 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
         .filter((category) => category.category !== "현금파킹")
         .map((category) => category.preferredLabel ?? category.category)
         .slice(0, 3);
+      const evidenceNotes = buildEvidenceNotes(stage4Account);
+      const actionPoints = buildActionPoints(stage4Account);
 
       return {
         key: account.key,
@@ -535,6 +719,14 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
         score,
         allocationScore,
         technicalScore,
+        reportScore,
+        regimeFitScore,
+        stage2Score,
+        riskPenaltyTotal,
+        riskPenaltyBreakdown,
+        effectiveWeights,
+        techCoverage,
+        impactCoverage,
         status: getStatusFromScore(score),
         totalAssets,
         holdingsValue,
@@ -545,15 +737,17 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
         targetCashPct,
         recommendedDeploy,
         reserveCash,
-        note: buildAccountNote(
-          account,
-          score,
-          technicalScore,
-          recommendedDeploy,
-          topShortfalls,
-          cashPct,
-          targetCashPct,
-        ),
+        note:
+          stage3Account?.note ??
+          buildAccountNote(
+            account,
+            score,
+            technicalScore,
+            recommendedDeploy,
+            topShortfalls,
+            cashPct,
+            targetCashPct,
+          ),
         candidates,
         categories: categories.sort((left, right) => right.targetPct - left.targetPct),
         topSignals,
@@ -561,9 +755,18 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
         stage2Bias: stage3Account?.stage2Bias ?? null,
         scoreDrivers: buildScoreDrivers(
           account,
+          score,
           allocationScore,
           technicalScore,
+          reportScore,
           reportCoverageScore,
+          regimeFitScore,
+          stage2Score,
+          riskPenaltyTotal,
+          riskPenaltyBreakdown,
+          effectiveWeights,
+          techCoverage,
+          impactCoverage,
           cashPct,
           targetCashPct,
           categories,
@@ -572,9 +775,15 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
           account,
           categories,
           technicalScore,
+          reportCoverageScore,
+          regimeFitScore,
+          riskPenaltyBreakdown,
+          techCoverage,
           cashPct,
           targetCashPct,
         ),
+        evidenceNotes,
+        actionPoints,
       };
     })
     .filter((account): account is AccountGuide => account !== null);

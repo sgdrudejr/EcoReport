@@ -13,6 +13,9 @@ export interface ResearchBriefingMeta {
   covered_report_count?: number | null;
   summary_chunk_count?: number | null;
   merged_text_length?: number | null;
+  selected_chunk_count?: number | null;
+  selected_report_count?: number | null;
+  merged_text_char_length?: number | null;
 }
 
 export interface ResearchBriefingDocument {
@@ -22,6 +25,13 @@ export interface ResearchBriefingDocument {
   content: string;
   variant: "rich" | "standard";
   meta: ResearchBriefingMeta | null;
+}
+
+export interface ResearchBriefingStats {
+  model: string | null;
+  usedChunkCount: number | null;
+  coveredReportCount: number | null;
+  mergedTextLength: number | null;
 }
 
 export interface MacroIndicator {
@@ -83,6 +93,28 @@ export function loadResearchBriefings(): ResearchBriefingDocument[] {
 
 export function loadResearchBriefingBySlug(slug: string) {
   return loadResearchBriefings().find((doc) => doc.slug === slug) ?? null;
+}
+
+export function getResearchBriefingStats(
+  briefing: ResearchBriefingDocument | null,
+): ResearchBriefingStats {
+  const meta = briefing?.meta ?? null;
+  return {
+    model: meta?.model ?? null,
+    usedChunkCount:
+      meta?.selected_chunk_count ??
+      meta?.used_chunk_count ??
+      meta?.summary_chunk_count ??
+      null,
+    coveredReportCount:
+      meta?.selected_report_count ??
+      meta?.covered_report_count ??
+      null,
+    mergedTextLength:
+      meta?.merged_text_char_length ??
+      meta?.merged_text_length ??
+      null,
+  };
 }
 
 export function extractResearchSections(content: string): ResearchSection[] {
@@ -182,4 +214,3 @@ export function loadLatestMacroIndicators(date?: string): MacroIndicator[] {
 
   return indicators.filter((item) => item.close != null);
 }
-

@@ -12,6 +12,7 @@ import {
 import { loadReports, type ReportDocument } from "@/lib/reports";
 import {
   extractResearchSections,
+  getResearchBriefingStats,
   loadLatestMacroIndicators,
   loadResearchBriefings,
   type MacroIndicator,
@@ -83,7 +84,7 @@ function IndicatorCard({ indicator }: { indicator: MacroIndicator }) {
     <div className="rounded-2xl border border-zinc-800 bg-zinc-900/80 p-4 space-y-2">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <p className="text-xs uppercase tracking-wide text-zinc-500">
+          <p className="inline-flex rounded-full border border-zinc-700 bg-zinc-950 px-2.5 py-1 text-[11px] uppercase tracking-wide text-zinc-400">
             {indicator.label}
           </p>
           <p className="mt-1 text-2xl font-semibold tabular-nums text-zinc-100">
@@ -106,6 +107,22 @@ function IndicatorCard({ indicator }: { indicator: MacroIndicator }) {
   );
 }
 
+function getSectionTone(title: string) {
+  if (title.includes("핵심")) {
+    return "border-sky-900/50 bg-sky-950/20";
+  }
+  if (title.includes("거시") || title.includes("매크로")) {
+    return "border-amber-900/50 bg-amber-950/20";
+  }
+  if (title.includes("섹터") || title.includes("성장")) {
+    return "border-emerald-900/50 bg-emerald-950/20";
+  }
+  if (title.includes("포트폴리오") || title.includes("시사점")) {
+    return "border-fuchsia-900/50 bg-fuchsia-950/20";
+  }
+  return "border-zinc-800 bg-zinc-950/70";
+}
+
 function ResearchBriefingCard({
   briefing,
 }: {
@@ -113,6 +130,7 @@ function ResearchBriefingCard({
 }) {
   const sections = extractResearchSections(briefing.content);
   const indicators = loadLatestMacroIndicators(briefing.date);
+  const stats = getResearchBriefingStats(briefing);
 
   return (
     <div className="rounded-2xl border border-zinc-800 bg-zinc-900 overflow-hidden">
@@ -137,26 +155,26 @@ function ResearchBriefingCard({
             <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
               <p className="text-xs text-zinc-500">모델</p>
               <p className="mt-1 font-medium">
-                {briefing.meta?.model ?? "수동/로컬 생성"}
+                {stats.model ?? "수동/로컬 생성"}
               </p>
             </div>
             <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
               <p className="text-xs text-zinc-500">활용 리포트</p>
               <p className="mt-1 font-medium">
-                {briefing.meta?.covered_report_count ?? "-"}건
+                {stats.coveredReportCount ?? "-"}건
               </p>
             </div>
             <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
               <p className="text-xs text-zinc-500">사용 청크</p>
               <p className="mt-1 font-medium">
-                {briefing.meta?.used_chunk_count ?? briefing.meta?.summary_chunk_count ?? "-"}개
+                {stats.usedChunkCount ?? "-"}개
               </p>
             </div>
             <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
               <p className="text-xs text-zinc-500">원문 길이</p>
               <p className="mt-1 font-medium">
-                {briefing.meta?.merged_text_length != null
-                  ? `${briefing.meta.merged_text_length.toLocaleString()}자`
+                {stats.mergedTextLength != null
+                  ? `${stats.mergedTextLength.toLocaleString()}자`
                   : "-"}
               </p>
             </div>
@@ -192,7 +210,7 @@ function ResearchBriefingCard({
         {sections.map((section, index) => (
           <section
             key={`${section.title}-${index}`}
-            className="rounded-2xl border border-zinc-800 bg-zinc-950/70 p-5"
+            className={`rounded-2xl border p-5 ${getSectionTone(section.title)}`}
           >
             <div className="mb-3 flex items-center justify-between gap-3">
               <div>

@@ -11,6 +11,10 @@ import { buildPortfolioGuide } from "@/lib/portfolio-guidance";
 import { loadRecommendationBoard } from "@/lib/recommendations";
 import { resolveRepoRoot } from "@/lib/repo-root";
 import {
+  extractResearchSections,
+  loadResearchBriefings,
+} from "@/lib/research";
+import {
   getAccountHoldingCount,
   getAccountHoldingsProfitLoss,
   getAccountHoldingsProfitRate,
@@ -84,12 +88,23 @@ function loadLatestMarket(): MarketData | null {
 
 interface Tranche {
   filled: boolean;
+  status?: string;
 }
 interface Strategy {
   name?: string;
   target_price?: number;
   current_price?: number;
   tranches?: Tranche[];
+  dca_plan?: {
+    total_tranches?: number;
+    completed?: number;
+    schedule?: Array<{
+      tranche?: number;
+      pct?: number;
+      target_date?: string;
+      status?: string;
+    }>;
+  };
 }
 
 function loadStrategy(): Strategy | null {
@@ -158,9 +173,17 @@ function formatPercent(value: number | null | undefined, digits = 1) {
 }
 
 function StrategyProgress({ strategy }: { strategy: Strategy }) {
-  const tranches = strategy.tranches ?? [];
-  const total = tranches.length;
-  const filled = tranches.filter((t) => t.filled).length;
+  const tranches =
+    strategy.tranches && strategy.tranches.length > 0
+      ? strategy.tranches
+      : (strategy.dca_plan?.schedule ?? []).map((item) => ({
+          filled: item.status === "done" || item.status === "completed",
+          status: item.status,
+        }));
+
+  const total = tranches.length || strategy.dca_plan?.total_tranches || 0;
+  const filled =
+    tranches.filter((t) => t.filled).length || strategy.dca_plan?.completed || 0;
   const pct = total > 0 ? Math.round((filled / total) * 100) : 0;
 
   return (
@@ -323,6 +346,10 @@ export default function DashboardPage() {
   const recommendationBoard = loadRecommendationBoard(
     briefing?.date ?? portfolio?.date ?? market?.date,
   );
+  const researchBriefing = loadResearchBriefings()[0] ?? null;
+  const researchSections = researchBriefing
+    ? extractResearchSections(researchBriefing.content).slice(0, 3)
+    : [];
 
   const indices = market?.indices ?? {};
   const hasMarket = Object.keys(indices).length > 0;
@@ -505,6 +532,48 @@ export default function DashboardPage() {
       )}
 
       {recommendationBoard && <RecommendationBoard board={recommendationBoard} />}
+
+      {researchBriefing && researchSections.length > 0 && (
+        <section>
+          <div className="flex items-center justify-between gap-4 mb-3">
+            <div>
+              <h2 className="text-sm font-semibold text-zinc-500 uppercase tracking-wide">
+                경제 리포트 요약
+              </h2>
+              <p className="mt-1 text-sm text-zinc-500">
+                오늘 브리핑에서 가장 중요한 거시·섹터 변화만 먼저 볼 수 있게 정리했습니다.
+              </p>
+            </div>
+            <Link
+              href="/reports"
+              className="text-sm text-zinc-400 hover:text-zinc-100 transition-colors"
+            >
+              전체 리포트 보기 →
+            </Link>
+          </div>
+
+          <div className="grid gap-3 lg:grid-cols-3">
+            {researchSections.map((section, index) => (
+              <article
+                key={`${section.title}-${index}`}
+                className="rounded-2xl border border-zinc-800 bg-zinc-900 p-5"
+              >
+                <p className="text-xs uppercase tracking-wide text-zinc-500">
+                  Section {index + 1}
+                </p>
+                <h3 className="mt-1 text-lg font-semibold text-zinc-100">
+                  {section.title}
+                </h3>
+                <div className="mt-3 prose prose-invert prose-sm max-w-none prose-p:text-zinc-300 prose-li:text-zinc-300">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    {section.body}
+                  </ReactMarkdown>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* 어드바이저 브리핑 */}
       <section>

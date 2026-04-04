@@ -119,10 +119,22 @@ export default function PortfolioGuidanceTabs({
                 <span>
                   기술 {account.technicalScore != null ? `${account.technicalScore}점` : "-"}
                 </span>
+                {account.reportScore != null && (
+                  <>
+                    <span>·</span>
+                    <span>리포트 {account.reportScore}점</span>
+                  </>
+                )}
                 {account.reportCoverageScore != null && (
                   <>
                     <span>·</span>
-                    <span>리포트 {account.reportCoverageScore}점</span>
+                    <span>커버리지 {account.reportCoverageScore}%</span>
+                  </>
+                )}
+                {account.riskPenaltyTotal != null && (
+                  <>
+                    <span>·</span>
+                    <span>패널티 {account.riskPenaltyTotal}점</span>
                   </>
                 )}
               </div>
@@ -195,7 +207,7 @@ export default function PortfolioGuidanceTabs({
           </div>
         </div>
 
-        <div className="grid sm:grid-cols-2 gap-3">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
           <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
             <p className="text-xs text-zinc-500">배분 점수</p>
             <p className="mt-1 text-xl font-semibold tabular-nums text-zinc-100">
@@ -211,15 +223,35 @@ export default function PortfolioGuidanceTabs({
           <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
             <p className="text-xs text-zinc-500">리포트 점수</p>
             <p className="mt-1 text-xl font-semibold tabular-nums text-zinc-100">
-              {selectedAccount.reportCoverageScore != null
-                ? `${selectedAccount.reportCoverageScore}점`
+              {selectedAccount.reportScore != null
+                ? `${selectedAccount.reportScore}점`
                 : "-"}
+            </p>
+          </div>
+          <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
+            <p className="text-xs text-zinc-500">리포트 커버리지</p>
+            <p className="mt-1 text-xl font-semibold tabular-nums text-zinc-100">
+              {selectedAccount.reportCoverageScore != null
+                ? `${selectedAccount.reportCoverageScore}%`
+                : "-"}
+            </p>
+          </div>
+          <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
+            <p className="text-xs text-zinc-500">레짐 적합도</p>
+            <p className="mt-1 text-xl font-semibold tabular-nums text-zinc-100">
+              {selectedAccount.regimeFitScore != null ? `${selectedAccount.regimeFitScore}점` : "-"}
             </p>
           </div>
           <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
             <p className="text-xs text-zinc-500">Stage 2 bias</p>
             <p className="mt-1 text-xl font-semibold tabular-nums text-zinc-100">
               {selectedAccount.stage2Bias ?? "-"}
+            </p>
+          </div>
+          <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
+            <p className="text-xs text-zinc-500">리스크 패널티</p>
+            <p className="mt-1 text-xl font-semibold tabular-nums text-zinc-100">
+              {selectedAccount.riskPenaltyTotal != null ? `-${selectedAccount.riskPenaltyTotal}점` : "-"}
             </p>
           </div>
         </div>
@@ -288,6 +320,26 @@ export default function PortfolioGuidanceTabs({
                     : "보유 종목 기술 신호 데이터가 아직 부족합니다."}
                 </p>
               </div>
+              {selectedAccount.evidenceNotes.length > 0 && (
+                <div>
+                  <p className="text-xs text-zinc-500">리포트 근거</p>
+                  <ul className="mt-1 space-y-1 text-sm text-zinc-100">
+                    {selectedAccount.evidenceNotes.map((note) => (
+                      <li key={note}>- {note}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {selectedAccount.actionPoints.length > 0 && (
+                <div>
+                  <p className="text-xs text-zinc-500">액션 포인트</p>
+                  <ul className="mt-1 space-y-1 text-sm text-zinc-100">
+                    {selectedAccount.actionPoints.map((point) => (
+                      <li key={point}>- {point}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
               <div>
                 <p className="text-xs text-zinc-500">우선 후보</p>
                 <p className="mt-1 text-sm text-zinc-100">
@@ -303,6 +355,22 @@ export default function PortfolioGuidanceTabs({
                   {formatPercent(selectedAccount.targetCashPct * 100)}
                 </p>
               </div>
+              {(selectedAccount.techCoverage != null || selectedAccount.impactCoverage != null) && (
+                <div>
+                  <p className="text-xs text-zinc-500">데이터 커버리지</p>
+                  <p className="mt-1 text-sm text-zinc-100">
+                    기술 {selectedAccount.techCoverage != null ? formatPercent(selectedAccount.techCoverage * 100) : "-"} / 리포트 {selectedAccount.impactCoverage != null ? formatPercent(selectedAccount.impactCoverage * 100) : "-"}
+                  </p>
+                </div>
+              )}
+              {selectedAccount.effectiveWeights && (
+                <div>
+                  <p className="text-xs text-zinc-500">점수 반영 비중</p>
+                  <p className="mt-1 text-sm text-zinc-100">
+                    배분 {formatPercent((selectedAccount.effectiveWeights.allocation ?? 0) * 100)} / 기술 {formatPercent((selectedAccount.effectiveWeights.tech ?? 0) * 100)} / 리포트 {formatPercent((selectedAccount.effectiveWeights.report ?? 0) * 100)} / 레짐 {formatPercent((selectedAccount.effectiveWeights.regime ?? 0) * 100)} / Stage2 {formatPercent((selectedAccount.effectiveWeights.stage2 ?? 0) * 100)}
+                  </p>
+                </div>
+              )}
               <div>
                 <p className="text-xs text-zinc-500">실행 리듬</p>
                 <p className="mt-1 text-sm text-zinc-100">

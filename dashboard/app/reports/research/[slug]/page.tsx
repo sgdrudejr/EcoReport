@@ -4,11 +4,28 @@ import remarkGfm from "remark-gfm";
 import { notFound } from "next/navigation";
 import {
   extractResearchSections,
+  getResearchBriefingStats,
   loadLatestMacroIndicators,
   loadResearchBriefingBySlug,
 } from "@/lib/research";
 
 export const dynamic = "force-dynamic";
+
+function getSectionTone(title: string) {
+  if (title.includes("핵심")) {
+    return "border-sky-900/50 bg-sky-950/20";
+  }
+  if (title.includes("거시") || title.includes("매크로")) {
+    return "border-amber-900/50 bg-amber-950/20";
+  }
+  if (title.includes("섹터") || title.includes("성장")) {
+    return "border-emerald-900/50 bg-emerald-950/20";
+  }
+  if (title.includes("포트폴리오") || title.includes("시사점")) {
+    return "border-fuchsia-900/50 bg-fuchsia-950/20";
+  }
+  return "border-zinc-800 bg-zinc-900";
+}
 
 export default async function ResearchDetailPage({
   params,
@@ -24,6 +41,7 @@ export default async function ResearchDetailPage({
 
   const sections = extractResearchSections(briefing.content);
   const indicators = loadLatestMacroIndicators(briefing.date);
+  const stats = getResearchBriefingStats(briefing);
 
   return (
     <main className="max-w-5xl mx-auto w-full px-4 py-8 space-y-6">
@@ -33,6 +51,17 @@ export default async function ResearchDetailPage({
           <h1 className="mt-1 text-2xl font-bold text-zinc-100">
             {briefing.variant === "rich" ? "리치 경제 리포트" : "경제 리포트"}
           </h1>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <span className="rounded-full border border-zinc-800 bg-zinc-900 px-3 py-1 text-xs text-zinc-300">
+              모델 {stats.model ?? "수동/로컬"}
+            </span>
+            <span className="rounded-full border border-zinc-800 bg-zinc-900 px-3 py-1 text-xs text-zinc-300">
+              활용 리포트 {stats.coveredReportCount ?? "-"}건
+            </span>
+            <span className="rounded-full border border-zinc-800 bg-zinc-900 px-3 py-1 text-xs text-zinc-300">
+              사용 청크 {stats.usedChunkCount ?? "-"}개
+            </span>
+          </div>
         </div>
         <Link
           href="/reports"
@@ -49,7 +78,7 @@ export default async function ResearchDetailPage({
               key={indicator.key}
               className="rounded-2xl border border-zinc-800 bg-zinc-900/80 p-4"
             >
-              <p className="text-xs uppercase tracking-wide text-zinc-500">
+              <p className="inline-flex rounded-full border border-zinc-700 bg-zinc-950 px-2.5 py-1 text-[11px] uppercase tracking-wide text-zinc-400">
                 {indicator.label}
               </p>
               <p className="mt-2 text-2xl font-semibold tabular-nums text-zinc-100">
@@ -69,7 +98,7 @@ export default async function ResearchDetailPage({
         {sections.map((section, index) => (
           <section
             key={`${section.title}-${index}`}
-            className="rounded-2xl border border-zinc-800 bg-zinc-900 px-6 py-5"
+            className={`rounded-2xl border px-6 py-5 ${getSectionTone(section.title)}`}
           >
             <p className="text-xs uppercase tracking-wide text-zinc-500">
               Section {index + 1}

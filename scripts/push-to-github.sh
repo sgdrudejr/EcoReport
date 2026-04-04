@@ -53,6 +53,7 @@ copy_if_exists() {
 
 copy_if_exists "data/reports/${DATE}/compressed.json"
 copy_if_exists "data/market/${DATE}.json"
+copy_if_exists "data/portfolio/latest.json"
 copy_if_exists "data/technical/${DATE}.json"
 copy_if_exists "data/analysis-state/${DATE}/stage1-report-extracts-v2.json"
 copy_if_exists "data/analysis-state/${DATE}/stage2-strategy-options.json"
