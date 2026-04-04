@@ -145,51 +145,6 @@ function formatPercent(value: number | null | undefined, digits = 1) {
   return `${value.toFixed(digits)}%`;
 }
 
-function StrategyProgress({ strategy }: { strategy: Strategy }) {
-  const tranches =
-    strategy.tranches && strategy.tranches.length > 0
-      ? strategy.tranches
-      : (strategy.dca_plan?.schedule ?? []).map((item) => ({
-          filled: item.status === "done" || item.status === "completed",
-          status: item.status,
-        }));
-
-  const total = tranches.length || strategy.dca_plan?.total_tranches || 0;
-  const filled =
-    tranches.filter((t) => t.filled).length || strategy.dca_plan?.completed || 0;
-  const pct = total > 0 ? Math.round((filled / total) * 100) : 0;
-
-  return (
-    <div className="bg-zinc-900 rounded-xl p-4 border border-zinc-800">
-      <div className="flex justify-between items-center mb-2">
-        <span className="text-sm font-medium text-zinc-300">
-          {strategy.name ?? "분할매수"} 진행률
-        </span>
-        <span className="text-sm tabular-nums text-zinc-400">
-          {filled}/{total} 트랜치
-        </span>
-      </div>
-      <div className="w-full bg-zinc-800 rounded-full h-2.5">
-        <div
-          className="bg-emerald-500 h-2.5 rounded-full transition-all"
-          style={{ width: `${pct}%` }}
-        />
-      </div>
-      <div className="flex justify-between mt-1 text-xs text-zinc-500">
-        <span>0%</span>
-        <span className="text-emerald-400 font-medium">{pct}%</span>
-        <span>100%</span>
-      </div>
-      {strategy.target_price && strategy.current_price && (
-        <div className="mt-2 text-xs text-zinc-500 flex gap-4">
-          <span>목표가 {strategy.target_price.toLocaleString()}원</span>
-          <span>현재가 {strategy.current_price.toLocaleString()}원</span>
-        </div>
-      )}
-    </div>
-  );
-}
-
 function PortfolioAccountCard({
   account,
   guideScore = null,
@@ -521,8 +476,6 @@ export default function DashboardPage() {
                 </Link>
               </div>
             )}
-
-            {strategy && <StrategyProgress strategy={strategy} />}
           </div>
         </section>
       )}
