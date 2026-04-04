@@ -92,7 +92,7 @@ export function listRepoDirectories(relativeDir: string) {
 
   for (const ref of DATA_BRANCH_REFS) {
     try {
-      const output = runGit(["ls-tree", ref, "--", relativeDir]);
+      const output = runGit(["ls-tree", `${ref}:${relativeDir}`]);
       const lines = output
         .split("\n")
         .map((line) => line.trim())
@@ -100,9 +100,7 @@ export function listRepoDirectories(relativeDir: string) {
 
       for (const line of lines) {
         const match = line.match(/^\d+\s+tree\s+[0-9a-f]+\t(.+)$/);
-        const entryPath = match?.[1]?.trim();
-        if (!entryPath) continue;
-        const name = path.posix.basename(entryPath);
+        const name = match?.[1]?.trim();
         if (name) {
           merged.add(name);
         }
