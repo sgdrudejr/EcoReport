@@ -1,0 +1,326 @@
+{
+  "date": "2026-04-03",
+  "generatedAt": "2026-04-03T15:30:37.291Z",
+  "totalReports": 78,
+  "selectedReports": 10,
+  "items": [
+    {
+      "rank": 1,
+      "id": "report_003",
+      "title": "04/03, Kiwoom Morning Letter",
+      "broker": "키움증권",
+      "date": "2026-04-03",
+      "category": "경제분석",
+      "ticker": null,
+      "ticker_name": null,
+      "opinion": null,
+      "target_price": null,
+      "pdf_path": "data/reports/2026-04-03/report_003.pdf",
+      "text_length": 23095,
+      "priorityScore": 82,
+      "priorityLabel": "HIGH",
+      "reasons": [
+        "매크로 리포트라 전체 포트폴리오 자산배분 판단에 영향",
+        "관심 종목/ETF명(삼성전자)이 본문/제목에 언급됨",
+        "관심 종목/ETF명(SK하이닉스)이 본문/제목에 언급됨",
+        "관심 종목/ETF명(현대로템)이 본문/제목에 언급됨",
+        "관심 종목/ETF명(한국항공우주)이 본문/제목에 언급됨",
+        "매크로 핵심 변수 언급: 금리, 유가, 환율, 연준"
+      ],
+      "relatedAccounts": [
+        "ISA",
+        "연금저축",
+        "토스증권"
+      ],
+      "matchedTickers": [],
+      "matchedNames": [
+        "삼성전자",
+        "SK하이닉스",
+        "현대로템",
+        "한국항공우주"
+      ],
+      "excerpt": "u Korea Marketu Global Indicesu FICC 주요지수(pt,%) Close04/0204/0103/31 지수등락률(%) D-20 Fixed Income(bp) Close(%) D-1D-5D-20 KOSPI 5,234.05-4.47 +8.44 -4.26 KOSPI -6.3 한국 국고채(3년) 3.477 10.7bp-7.5bp28.8bp 대형주 5,537.57-4.54 +8.93 -4.48 Ishares MSCI KOREA ETF($) -2.3 한국 CD(91일) 2.820 0.0bp0.0bp1.0bp 중형주 4,180.61-4.21 +4.93 -2.62 KOSDAQ -5.38 Credit Spread(회사채BBB-,3y) 6.440 -1.2bp4.1bp4.8bp 소형주 2,661.13-2.71 +3.50 -2.25 DOW -3.02 미국 국채(2년) 3.796 -0.5bp-19.0bp22.0bp KOSDAQ 1,056.34-5.36 +6.06 -4.94 NASDAQ...",
+      "promptPath": "knowledge/daily/report-prompts/2026-04-03/report_003.md"
+    },
+    {
+      "rank": 2,
+      "id": "report_066",
+      "title": "효율화와 AI 투자로 실적 성장 준비",
+      "broker": "DS투자증권",
+      "date": "2026-04-03",
+      "category": "종목분석",
+      "ticker": "030000",
+      "ticker_name": "제일기획",
+      "opinion": "매수",
+      "target_price": 26000,
+      "pdf_path": "data/reports/2026-04-03/report_066.pdf",
+      "text_length": 8044,
+      "priorityScore": 59,
+      "priorityLabel": "MEDIUM",
+      "reasons": [
+        "종목분석 리포트라 직접 매매 연결도가 높음",
+        "관심 종목/ETF명(삼성전자)이 본문/제목에 언급됨",
+        "제목 핵심 키워드 감지: 실적",
+        "투자의견 정보 포함 (매수)",
+        "목표가 정보 포함",
+        "본문 길이가 충분해 요약 가치가 높음"
+      ],
+      "relatedAccounts": [],
+      "matchedTickers": [],
+      "matchedNames": [
+        "삼성전자"
+      ],
+      "excerpt": "매수 목표주가(유지) 26,000원 현재주가(04/02) 18,670원 상승여력 39.3% Stock Data KOSPI 5,234.1pt 시가총액(보통주) 2,148십억원 발행주식수 115,041천주 액면가 200원 자본금 23십억원 60일 평균거래량 431천주 60일 평균거래대금 9,008백만원 외국인 지분율 0.0% 52주 최고가 23,300원 52주 최저가 16,980원 주요주주 삼성전자(외 6인) 28.4% 자사주(외 1인) 12.0% 주가추이 및 상대강도 (%) 절대수익률 상대수익률 1M -14.9 1.2 3M -10.5 -31.9 6M -7.8 -55.3 주가차트 40 50 60 70 80 90 100 110 0 5,000 10,000 15,000 20,000 25,000 25/0425/0725/1026/01 (pt) (원) 제일기획 relative to KOSPI 효율화와 AI 투자로 실적 성장 준비 1Q26Pre: 글로벌 광고 경기 둔화 및 일회성 비용으로 실적 부진...",
+      "promptPath": "knowledge/daily/report-prompts/2026-04-03/report_066.md"
+    },
+    {
+      "rank": 3,
+      "id": "report_028",
+      "title": "[DS 시황 데일리] 현시점 2026-04-03",
+      "broker": "DS투자증권",
+      "date": "2026-04-03",
+      "category": "시황정보",
+      "ticker": null,
+      "ticker_name": null,
+      "opinion": null,
+      "target_price": null,
+      "pdf_path": "data/reports/2026-04-03/report_028.pdf",
+      "text_length": 4406,
+      "priorityScore": 54,
+      "priorityLabel": "LOW",
+      "reasons": [
+        "관심 종목/ETF명(삼성전자)이 본문/제목에 언급됨",
+        "관심 종목/ETF명(SK하이닉스)이 본문/제목에 언급됨",
+        "관심 종목/ETF명(현대로템)이 본문/제목에 언급됨",
+        "관심 종목/ETF명(한국항공우주)이 본문/제목에 언급됨",
+        "본문 길이가 충분해 요약 가치가 높음"
+      ],
+      "relatedAccounts": [],
+      "matchedTickers": [],
+      "matchedNames": [
+        "삼성전자",
+        "SK하이닉스",
+        "현대로템",
+        "한국항공우주"
+      ],
+      "excerpt": "지수 종합 주식시장 동향 매크로 이슈 업종 이슈 외국인 순매수 상위 기관 순매수 상위 테마 이슈 일간 상승률 상위 종목 기간별 수익률 (%) 1D 1W 1M (%) 1D 1W 1M 9.6 11.8 28.610.5 13.3 -22.3 6.7 6.2 -12.63.4 5.1 79.2 6.3 3.5 18.61.5 1.1 -6.3 5.9 11.8 34.90.7 5.7 3.4 5.0 1.7 10.1-0.1 4.0 0.3 개별 종목 3.2 18.2 59.9-0.3 7.4 6.2 2.6 11.7 -4.9-0.5 -0.3 -2.2 1.9 4.5 20.9-0.7 12.2 19.7 0.9 3.8 -9.6-0.8 0.8 -7.5 0.8 0.0 -10.9-1.0 -5.4 -24.0 업종별 기간 수익률테마별 기간 수익률 업종명(%)12MF EPS12MF PER 통신 은행 유틸리티 기계장비 운송 필수소비재 에너지화학 경기소비재 철강 보험 자동차 IT 헬스케어 K콘텐츠 반도체 증권 건설 그래핀 자전거 주유소 리...",
+      "promptPath": "knowledge/daily/report-prompts/2026-04-03/report_028.md"
+    },
+    {
+      "rank": 4,
+      "id": "report_045",
+      "title": "신한 탑픽스 (4월 3일)",
+      "broker": "신한투자증권",
+      "date": "2026-04-03",
+      "category": "신한 속보",
+      "ticker": null,
+      "ticker_name": null,
+      "opinion": null,
+      "target_price": null,
+      "pdf_path": "data/reports/2026-04-03/report_045.pdf",
+      "text_length": 13780,
+      "priorityScore": 54,
+      "priorityLabel": "LOW",
+      "reasons": [
+        "관심 종목/ETF명(삼성전자)이 본문/제목에 언급됨",
+        "관심 종목/ETF명(SK하이닉스)이 본문/제목에 언급됨",
+        "관심 종목/ETF명(HD현대일렉트릭)이 본문/제목에 언급됨",
+        "관심 종목/ETF명(현대로템)이 본문/제목에 언급됨",
+        "본문 길이가 충분해 요약 가치가 높음"
+      ],
+      "relatedAccounts": [],
+      "matchedTickers": [],
+      "matchedNames": [
+        "삼성전자",
+        "SK하이닉스",
+        "HD현대일렉트릭",
+        "현대로템"
+      ],
+      "excerpt": "1 I 반도체 삼성전자 (005930) 종가 (4월 3일, 원) 186,200 ◆ 메모리 Capa 확장 제한으로 기대 이상의 가격 상승세 2026년에도 지속될 전망 시가총액 (십억원) 1,104,604 ◆ HNM, eSSD, 범용 메모리 AI 수혜 지속 → 2026년 메모리 ASP 상승폭 경쟁사 압도 가능성 Analyst 김형태 수석연구원 ◆ 고부가 DRAM 다변화, 스토리지 수요 강세, 파운드리 가동률 회복 및 경쟁력 개선 기대감 유효 반도체 SK하이닉스 (000660) 종가 (4월 3일, 원) 876,000 ◆ 경쟁사 대비 높은 원가 효율로 HBM 경쟁우위 유지될 전망. 수익성 개선세 2026년 지속 기대 시가총액 (십억원) 629,673 ◆ DRAM, NAND 동반 성장하며 2026년 영업이익 140조원 상회로 2배 이상 성장 전망 Analyst 김형태 수석연구원 ◆ ROE 개선 가속화 및 Peer 그룹 평균 PBR 상단 돌파 → 과거와는 다른 밸류에이션 정당화 가능 전기전자 ...",
+      "promptPath": "knowledge/daily/report-prompts/2026-04-03/report_045.md"
+    },
+    {
+      "rank": 5,
+      "id": "report_075",
+      "title": "[QWER] 4월 1주차 - Bull/Bear 베타 + 리비전 전략",
+      "broker": "유안타증권",
+      "date": "2026-04-03",
+      "category": "투자전략",
+      "ticker": null,
+      "ticker_name": null,
+      "opinion": null,
+      "target_price": null,
+      "pdf_path": "data/reports/2026-04-03/report_075.pdf",
+      "text_length": 15593,
+      "priorityScore": 54,
+      "priorityLabel": "LOW",
+      "reasons": [
+        "관심 종목/ETF명(삼성전자)이 본문/제목에 언급됨",
+        "관심 종목/ETF명(SK하이닉스)이 본문/제목에 언급됨",
+        "관심 종목/ETF명(효성중공업)이 본문/제목에 언급됨",
+        "관심 종목/ETF명(현대로템)이 본문/제목에 언급됨",
+        "본문 길이가 충분해 요약 가치가 높음"
+      ],
+      "relatedAccounts": [],
+      "matchedTickers": [],
+      "matchedNames": [
+        "삼성전자",
+        "SK하이닉스",
+        "효성중공업",
+        "현대로템"
+      ],
+      "excerpt": "3 Apr, 2026 YuantaResearch 4월1주차Bull/Bear 베타+ 리비전전략 I 주간스크리닝 Bull/Bear 베타+ 리비전전략 II 수급 업종별 종목별 III 컨센서스&수익률 업종별 종목별 IV 스타일Status 성장/ 가치 주가–모멘텀/ 낙폭과대 수급–개인/ 기관/ 외국인 기타–리비전/ 배당/ 퀄리티 3 주간스크리닝.xlsx 1)과거증시변동성피크국면케이스스터디기반,4월변동성의점진적인완화와방향성이구체화되는한편전고점탈환을수반한V자형반등가능 성은제한적일것으로전망 2)변동성장세속종목별낙폭이후회복탄력이차별화됨에따라하락에대한민감도는낮고,상승에대한민감도는높은,초과회복을나타낼가능성 이높은종목에주목 3)또한,4월펀더멘탈에대한주가반응강도가가장확대되는기간으로,1)하락민감도(BearBeta)대비상승민감도(BullBeta)가높으며2)이익 추정치1개월조정률상위종목스크리닝 Bull/Bear 베타+ 리비전전략(참고자료: 기적의선반영, 선반영의기적) 리밸런싱 [4월1주차] 1) Bear Bet...",
+      "promptPath": "knowledge/daily/report-prompts/2026-04-03/report_075.md"
+    },
+    {
+      "rank": 6,
+      "id": "report_001",
+      "title": "[IBKS Economy Monitor] Focus on Week: 늘어지는 전황, 가장 부담스러운 것은 늘어나는 빚과 금리",
+      "broker": "IBK투자증권",
+      "date": "2026-04-03",
+      "category": "경제분석",
+      "ticker": null,
+      "ticker_name": null,
+      "opinion": null,
+      "target_price": null,
+      "pdf_path": "data/reports/2026-04-03/report_001.pdf",
+      "text_length": 3433,
+      "priorityScore": 50,
+      "priorityLabel": "LOW",
+      "reasons": [
+        "매크로 리포트라 전체 포트폴리오 자산배분 판단에 영향",
+        "제목 핵심 키워드 감지: 금리",
+        "매크로 핵심 변수 언급: 금리, 유가, 환율, 관세",
+        "본문 길이가 충분해 요약 가치가 높음"
+      ],
+      "relatedAccounts": [
+        "ISA",
+        "연금저축",
+        "토스증권"
+      ],
+      "matchedTickers": [],
+      "matchedNames": [],
+      "excerpt": "2026. 4. 3 Focus on Week: 늘어지는 전황, 가장 부담스러운 것은 늘어나는 빚과 금리 Economist 정 용 택 02) 6915-5701 ytjeong0815@ibks.com RA 김 예 슬 02)6915-5526 chchu93@ibks.com 냐 이란 사태로 인한 불확실성 증가 국면에서 간과하지 말아야 할 것은 미국 재정 부담 증가와 이로 인한 미 금리 상승 압박  사모신용 문제 등 확산되는 신용 불안의 현실화 여부와 연결되기 때문 이란 사태에 대한 성급한 기대와 실망이 지속되고 있다. 실물경제와 금융시장에 미치는 부 담이 큰 만큼 작은 신호에도 종전에 대한 기대가 시장에서 부풀어 오르지만 복잡하게 얽혀 있는 상황이 기대만큼 쉽게 해소되지는 못하고 있다. 시장의 기대를 모았던 이번 주 트럼 프 미 대통령의 담화는 지금의 불확실성이 더 연장될 것임을 확인시켜주었다. 전쟁 불확실 성에 계속 노출되는 만큼 주가나 환율 등 가격변수들의 급등락이 반복되고 공급망 와해...",
+      "promptPath": "knowledge/daily/report-prompts/2026-04-03/report_001.md"
+    },
+    {
+      "rank": 7,
+      "id": "report_006",
+      "title": "이란 사태 모니터(14): 불안해 보이는 출구전략. 그래도 지켜보자",
+      "broker": "iM증권",
+      "date": "2026-04-03",
+      "category": "경제분석",
+      "ticker": null,
+      "ticker_name": null,
+      "opinion": null,
+      "target_price": null,
+      "pdf_path": "data/reports/2026-04-03/report_006.pdf",
+      "text_length": 3792,
+      "priorityScore": 50,
+      "priorityLabel": "LOW",
+      "reasons": [
+        "매크로 리포트라 전체 포트폴리오 자산배분 판단에 영향",
+        "제목 핵심 키워드 감지: 이란",
+        "매크로 핵심 변수 언급: 금리, 유가, 연준, 국채",
+        "본문 길이가 충분해 요약 가치가 높음"
+      ],
+      "relatedAccounts": [
+        "ISA",
+        "연금저축",
+        "토스증권"
+      ],
+      "matchedTickers": [],
+      "matchedNames": [],
+      "excerpt": "2026-04-03 Economy Brief 이란 사태 모니터(14): 불안해 보이는 출구전략. 그래도 지켜보자 Economy Brief [경제] 박상현 2122-9196 shpark@imfnsec.com Check Point 트럼프 대통령의 대이란 연설이 큰 실망감을 주었지만 트럼프 대통령은 4월중 이란과의 전쟁을 마무리할 것이라는 일관된 메시지는 그래도 유지함 달러화 및 미국 국채 금리가 최근 안정세를 회복한 것은 우려는 잠재해 있지만 트럼프 대통령의 출구전략을 지켜보겠다는 경계 심리를 반영한 것으로 판단됨 그래도 출구전략이 본격화된다면 이란 리스크가 정점을 통과할 수 있다는 점에서 다시한번 일말의 기대를 갖고 출구전략 가시화 여부를 지켜봐야 할 시점 ‘반쪽자리 출구전략’에 대한 불안감 종전 혹은 휴전의 로드맵을 기대했지만 트럼프 대통령의 대이란 관련 연설은 일단 전쟁 장기화 우려만 증폭시켰다. 트럼프 대통령은 2~3주 동안 이란에 극도로 강력한 타격을 줄 것이라고 경고, 즉 특...",
+      "promptPath": "knowledge/daily/report-prompts/2026-04-03/report_006.md"
+    },
+    {
+      "rank": 8,
+      "id": "report_046",
+      "title": "'MLCC 임베디드 PCB'의 미래",
+      "broker": "SK증권",
+      "date": "2026-04-03",
+      "category": "종목분석",
+      "ticker": "009150",
+      "ticker_name": "삼성전기",
+      "opinion": "매수",
+      "target_price": 600000,
+      "pdf_path": "data/reports/2026-04-03/report_046.pdf",
+      "text_length": 13907,
+      "priorityScore": 50,
+      "priorityLabel": "LOW",
+      "reasons": [
+        "종목분석 리포트라 직접 매매 연결도가 높음",
+        "관심 종목/ETF명(삼성전자)이 본문/제목에 언급됨",
+        "투자의견 정보 포함 (매수)",
+        "목표가 정보 포함",
+        "본문 길이가 충분해 요약 가치가 높음"
+      ],
+      "relatedAccounts": [],
+      "matchedTickers": [],
+      "matchedNames": [
+        "삼성전자"
+      ],
+      "excerpt": "삼성전기 (009150/KS) ‘MLCC 임베디드 PCB’의 미래 2026-04-03 IT하드웨어/배터리. 박형우 / hyungwou@sks.co.kr / 3773-9035 매수(유지) 목표주가: 600,000 원(상향) 현재주가: 417,000 원 상승여력: 43.9% Signal: 주문 증가, 가동률 상승세 가속화, 공급단가 인상 초입 Key: 커스터마이즈된 수동소자 ‘임베디드 기판’ 기술 주목 Step: IT하드웨어 섹터 내 대형주 최선호주 의견 유지 가파른 성장세: 부품주문량, 기판 가동률, 공급단가 1분기 영업이익은 2,672억원(+33%, YoY)로 전망된다. 이는 일회성 비용이 반영된 손익으로, 제외 시 이익규모는 기존 추정치(2,842억원)을 크게 상회했다. ① 연초부터 MLCC 주문이 늘고 있다. ② FCBGA는 올해 연말 또는 내년 연초 풀 캐파 가동을 향해 가파르게 상승 중이다. ③ 주요 부품들의 ASP도 오르고 있다. 특히, FCBGA의 가격은 지금이 상승 흐름...",
+      "promptPath": "knowledge/daily/report-prompts/2026-04-03/report_046.md"
+    },
+    {
+      "rank": 9,
+      "id": "report_051",
+      "title": "1Q26 Preview: 우리도 아직 2회말이에요",
+      "broker": "유진투자증권",
+      "date": "2026-04-03",
+      "category": "종목분석",
+      "ticker": "009150",
+      "ticker_name": "삼성전기",
+      "opinion": "Buy",
+      "target_price": 590000,
+      "pdf_path": "data/reports/2026-04-03/report_051.pdf",
+      "text_length": 13112,
+      "priorityScore": 50,
+      "priorityLabel": "LOW",
+      "reasons": [
+        "종목분석 리포트라 직접 매매 연결도가 높음",
+        "관심 종목/ETF명(삼성전자)이 본문/제목에 언급됨",
+        "투자의견 정보 포함 (Buy)",
+        "목표가 정보 포함",
+        "본문 길이가 충분해 요약 가치가 높음"
+      ],
+      "relatedAccounts": [],
+      "matchedTickers": [],
+      "matchedNames": [
+        "삼성전자"
+      ],
+      "excerpt": "(009150) 삼성전기 2026.04.03 IT/전기전자 이주형 6190 / jhlee2207@eugenefn.com 우리도 아직 2회말이에요 투자의견 BUY(유지) 목표주가 590,000원(상향) 현재주가 417,000원(4/2)  1Q26 Preview: 삼성전기의 1분기 실적은 매출액 3조 1,302억원(YoY +14%, QoQ +8%), 영업이익 2,685억원(YOY +34%, QoQ +12%)을 기록 할 것으로 예상. 우호적인 환율과 사업환경에도 불구하고, 일회성 비용 인식 에 따라 수익성은 컨센서스(2,813억원)를 소폭 하회할 전망. 일회성 비용을 제외할 경우 3천억원대의 영업이익을 기록한 것으로 추정  컴포넌트: 1분기 매출액 1조 4,542억원(YoY +19.5%), 영업이익 1,664억 원(YoY +24.7%)을 기록할 전망. 랙서버 출하량의 꾸준한 증가세에 따라 서버 및 네트워크향 산업용 고부가가치 MLCC에 대한 공급 부족 조짐이 관 측되는 중. 지난 2월...",
+      "promptPath": "knowledge/daily/report-prompts/2026-04-03/report_051.md"
+    },
+    {
+      "rank": 10,
+      "id": "report_047",
+      "title": "1분기부터 영업실적 개선 전망",
+      "broker": "하나증권",
+      "date": "2026-04-03",
+      "category": "종목분석",
+      "ticker": "005490",
+      "ticker_name": "POSCO홀딩스",
+      "opinion": "Buy",
+      "target_price": 740000,
+      "pdf_path": "data/reports/2026-04-03/report_047.pdf",
+      "text_length": 10184,
+      "priorityScore": 49,
+      "priorityLabel": "LOW",
+      "reasons": [
+        "종목분석 리포트라 직접 매매 연결도가 높음",
+        "제목 핵심 키워드 감지: 실적",
+        "투자의견 정보 포함 (Buy)",
+        "목표가 정보 포함",
+        "본문 길이가 충분해 요약 가치가 높음"
+      ],
+      "relatedAccounts": [],
+      "matchedTickers": [],
+      "matchedNames": [],
+      "excerpt": "2026년 4월 3일 I 기업분석_Earnings Preview POSCO홀딩스 (005490) 1분기부터 영업실적 개선 전망 1분기 철강 스프레드 축소 반면, 국내 자회사들의 영업실적 개선 긍정적 2026년 1분기 POSCO홀딩스의 매출액과 영업이익은 각각 17.2조원(YoY -1.4%, QoQ +2.1%)과 5,715억원(YoY +0.5% QoQ +4,405.8%)으로 영업이익은 시장컨센서스인 6,059 억원을 소폭 하회할 전망이다. 1) 전반적인 철강 내수 부진 영향으로 1분기 POSCO의 철강 판매량은 801만톤(YoY -1.7%, QoQ +3.7%)을 기록할 것으로 예상된다. 2) 3분기 철광석을 비롯한 원재료 스팟 가격이 상 승분이 시차를 두고 반영됨과 동시에 4분기 원/달러 환율 상승의 영향으로 POSCO의 고로 원재료 투입단가는 전분기대비 2만원/톤 상승할 것으로 예상되는 반면, 3) 부진한 내수 영 향으로 탄소강 ASP는 0.7만원/톤 상승에 그치면서 스프레드가 축소...",
+      "promptPath": "knowledge/daily/report-prompts/2026-04-03/report_047.md"
+    }
+  ]
+}

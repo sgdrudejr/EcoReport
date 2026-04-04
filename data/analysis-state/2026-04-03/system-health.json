@@ -1,0 +1,98 @@
+{
+  "date": "2026-04-03",
+  "generatedAt": "2026-04-04T06:42:44.156Z",
+  "overallStatus": "ok",
+  "counts": {
+    "accounts": 3,
+    "reports": 78,
+    "extractedReports": 78,
+    "ocrUsedReports": 2,
+    "stage1Extracts": 78
+  },
+  "checks": [
+    {
+      "key": "portfolio_snapshot",
+      "label": "포트폴리오 스냅샷",
+      "status": "ok",
+      "detail": "계좌 3개",
+      "path": "data/portfolio/latest.json"
+    },
+    {
+      "key": "report_index",
+      "label": "리포트 인덱스",
+      "status": "ok",
+      "detail": "리포트 78건",
+      "path": "data/reports/2026-04-03/index.json"
+    },
+    {
+      "key": "textification",
+      "label": "전문 텍스트화",
+      "status": "ok",
+      "detail": "성공 78/78 · OCR 2건",
+      "path": "data/reports/2026-04-03/text-manifest.json"
+    },
+    {
+      "key": "market_snapshot",
+      "label": "시장 데이터",
+      "status": "ok",
+      "detail": "market 스냅샷 생성됨",
+      "path": "data/market/2026-04-03.json"
+    },
+    {
+      "key": "technical_snapshot",
+      "label": "기술 점수",
+      "status": "ok",
+      "detail": "종목 15개",
+      "path": "data/technical/2026-04-03.json"
+    },
+    {
+      "key": "rag_pipeline",
+      "label": "RAG 코퍼스",
+      "status": "ok",
+      "detail": "리포트 507 / 포트폴리오 16 / 병렬 523",
+      "path": "knowledge/rag/2026-04-03/parallel-manifest.json"
+    },
+    {
+      "key": "stage1",
+      "label": "Stage 1 연구 노트",
+      "status": "ok",
+      "detail": "추출 78건",
+      "path": "data/analysis-state/2026-04-03/stage1-report-extracts-v2.json"
+    },
+    {
+      "key": "stage2",
+      "label": "Stage 2 전략 탐색",
+      "status": "ok",
+      "detail": "Gemini 실제 결과 (gemini-2.5-flash)",
+      "path": "data/analysis-state/2026-04-03/stage2-strategy-options.json"
+    },
+    {
+      "key": "stage3",
+      "label": "Stage 3 퀀트 점수",
+      "status": "ok",
+      "detail": "포트폴리오 38점",
+      "path": "data/analysis-state/2026-04-03/stage3-quant-scores.json"
+    },
+    {
+      "key": "stage4",
+      "label": "Stage 4 실행 계획",
+      "status": "ok",
+      "detail": "계좌 계획 3개",
+      "path": "data/analysis-state/2026-04-03/stage4-execution-plan.json"
+    },
+    {
+      "key": "briefing",
+      "label": "일일 브리핑",
+      "status": "ok",
+      "detail": "briefing.md 생성됨",
+      "path": "reports/daily/2026-04-03-briefing.md"
+    },
+    {
+      "key": "gemini_briefing",
+      "label": "경제 리포트 브리핑",
+      "status": "ok",
+      "detail": "rich Gemini 브리핑 생성됨",
+      "path": "knowledge/daily/2026-04-03-gemini-briefing-rich.md"
+    }
+  ]
+}
