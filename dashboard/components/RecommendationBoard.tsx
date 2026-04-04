@@ -115,6 +115,20 @@ export default function RecommendationBoard({
             <div className="mt-4 grid gap-3 md:grid-cols-2">
               {activeLane.items.map((item) => {
                 const change = formatSignedPercent(item.changePct);
+                const themeAndAccountChips = [
+                  ...item.themes.map((theme) => ({
+                    key: `${item.code}-${theme}`,
+                    label: theme,
+                    className:
+                      "rounded-full border border-zinc-700 bg-zinc-950 px-2.5 py-1 text-xs text-zinc-300",
+                  })),
+                  ...item.targetAccounts.map((account) => ({
+                    key: `${item.code}-${account}`,
+                    label: account,
+                    className:
+                      "rounded-full border border-sky-500/30 bg-sky-950/20 px-2.5 py-1 text-xs text-sky-300",
+                  })),
+                ];
                 return (
                   <article
                     key={`${activeLane.key}-${item.code}`}
@@ -186,30 +200,18 @@ export default function RecommendationBoard({
                       </div>
                       <div className="rounded-xl border border-zinc-800 bg-zinc-900 px-3 py-3">
                         <p className="text-xs text-zinc-500">테마 · 적합 계좌</p>
-                        <div className="mt-2 flex flex-wrap gap-2">
-                          {item.themes.map((theme) => (
-                            <span
-                              key={`${item.code}-${theme}`}
-                              className="rounded-full border border-zinc-700 bg-zinc-950 px-2.5 py-1 text-xs text-zinc-300"
-                            >
-                              {theme}
-                            </span>
-                          ))}
-                        </div>
-                        <div className="mt-3 flex flex-wrap gap-2">
-                          {item.targetAccounts.length > 0 ? (
-                            item.targetAccounts.map((account) => (
+                        <div className="mt-2 flex max-h-[4.25rem] flex-wrap gap-2 overflow-hidden">
+                          {themeAndAccountChips.length > 0 ? (
+                            themeAndAccountChips.map((chip) => (
                               <span
-                                key={`${item.code}-${account}`}
-                                className="rounded-full border border-sky-500/30 bg-sky-950/20 px-2.5 py-1 text-xs text-sky-300"
+                                key={chip.key}
+                                className={chip.className}
                               >
-                                {account}
+                                {chip.label}
                               </span>
                             ))
                           ) : (
-                            <span className="text-sm text-zinc-500">
-                              계좌 적합성 데이터 부족
-                            </span>
+                            <span className="text-sm text-zinc-500">계좌 적합성 데이터 부족</span>
                           )}
                         </div>
                       </div>
