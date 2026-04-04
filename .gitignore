@@ -4,6 +4,7 @@
 config/accounts.json
 
 # 큰 파일 (PDF 원본은 올리지 않음)
+data/reports/
 data/reports/**/*.pdf
 data/reports/**/*.txt
 data/reports/**/index.json
@@ -12,6 +13,11 @@ data/reports/**/index.json
 data/news/
 data/tweets/
 data/analysis-state/
+data/market/
+data/etf-universe.db
+data/technical/
+data/portfolio/.gitkeep
+data/portfolio/rag/
 
 # node_modules
 node_modules/
@@ -26,3 +32,21 @@ logs/
 .DS_Store
 **/.DS_Store
 scripts/__pycache__/
+
+# daily generated knowledge / reports (synced via data branch)
+knowledge/daily/*-report-summary-queue.json
+knowledge/daily/*-report-summary-queue.md
+knowledge/daily/*-report-triage-prompt.md
+knowledge/daily/*-report-triage-response.md
+knowledge/daily/*-synthesis-prompt.md
+knowledge/daily/*-gemini-briefing.md
+knowledge/daily/*-gemini-briefing.md.meta.json
+knowledge/daily/*-gemini-briefing-rich.md
+knowledge/daily/*-gemini-briefing-rich.md.meta.json
+knowledge/daily/*-stage1-report-extracts-v2.md
+knowledge/daily/*-system-health.md
+knowledge/daily/manual-kit/
+knowledge/daily/report-prompts/
+knowledge/rag/
+reports/
+reports/daily/*.md
