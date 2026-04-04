@@ -1,7 +1,30 @@
+import fsSync from "node:fs";
 import fs from "node:fs/promises";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
 
-export const ROOT_DIR = "/Users/seo/stock-pilot";
+function resolveRootDir() {
+  const moduleDir = path.dirname(fileURLToPath(import.meta.url));
+  const candidates = [
+    process.env.ECOREPORT_ROOT,
+    process.cwd(),
+    path.resolve(process.cwd(), ".."),
+    path.resolve(moduleDir, "..", ".."),
+  ].filter(Boolean);
+
+  for (const candidate of candidates) {
+    if (
+      fsSync.existsSync(path.join(candidate, "config", "strategy.json")) &&
+      fsSync.existsSync(path.join(candidate, "scripts"))
+    ) {
+      return candidate;
+    }
+  }
+
+  return path.resolve(moduleDir, "..", "..");
+}
+
+export const ROOT_DIR = resolveRootDir();
 
 export const CATEGORY_BY_CODE = {
   "458760": { default: "배당/커버드콜", ISA: "배당/커버드콜" },

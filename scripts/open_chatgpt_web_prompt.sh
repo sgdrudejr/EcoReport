@@ -117,9 +117,13 @@ tell application "Google Chrome"
   activate
   set foundTab to false
   repeat with w in windows
-    repeat with t in tabs of w
+    set tabCount to count tabs of w
+    repeat with i from 1 to tabCount
+      set t to tab i of w
       if URL of t contains "chatgpt.com" then
-        set active tab index of w to index of t
+        tell w
+          set active tab index to i
+        end tell
         set index of w to 1
         set foundTab to true
         exit repeat

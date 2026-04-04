@@ -75,6 +75,7 @@ flowchart TD
 - [STAGE_1_4_ARCHITECTURE.md](/Users/seo/stock-pilot/docs/STAGE_1_4_ARCHITECTURE.md)
 - [OPERATOR_RUNBOOK.md](/Users/seo/stock-pilot/docs/OPERATOR_RUNBOOK.md)
 - [SCORE_SYSTEM_V2.md](/Users/seo/stock-pilot/docs/SCORE_SYSTEM_V2.md)
+- [PRIVATE_ACCESS_RUNBOOK.md](/Users/seo/stock-pilot/docs/PRIVATE_ACCESS_RUNBOOK.md)
 
 ## 매일 운영 명령
 
@@ -99,6 +100,20 @@ bash scripts/run-daily-system.sh --date YYYY-MM-DD
 
 - `data/analysis-state/YYYY-MM-DD/system-health.json`
 - `knowledge/daily/YYYY-MM-DD-system-health.md`
+
+## 접속 방식
+
+기본 운영은 이제 **공개 배포보다 로컬 우선**입니다.
+
+- 기본: Mac Mini 로컬 실행 + private access
+- 선택: `data` 브랜치/Vercel 보조 대시보드
+
+Vercel preview 실패가 있어도 일일 운영은 막히지 않도록 설계합니다.
+공개 배포가 불안정할 때는 Tailscale 같은 tailnet 기반 접속을 권장합니다.
+
+운영 가이드는 아래 문서를 따릅니다.
+
+- [PRIVATE_ACCESS_RUNBOOK.md](/Users/seo/stock-pilot/docs/PRIVATE_ACCESS_RUNBOOK.md)
 
 ## Stage 1~4 개요
 

@@ -9,6 +9,7 @@
 - `igzun-daily-report`는 참고용 레퍼런스이며 EcoReport 런타임 의존성이 아닙니다.
 - 수집 단계는 반드시 `전문 텍스트화`까지 포함합니다.
 - Stage 2만 LLM 의존도가 크고, Stage 1/3/4는 EcoReport 내부 코드로 재현 가능해야 합니다.
+- 기본 접속 경로는 공개 배포보다 **Mac Mini 로컬 + private access**를 우선합니다.
 
 ## 하루 운영 순서
 
@@ -147,3 +148,16 @@ node scripts/verify-daily-system.js --date YYYY-MM-DD
 cd /Users/seo/stock-pilot
 bash scripts/run-daily-system.sh --date 2026-04-10
 ```
+
+## private access 운영
+
+Vercel이 실패하거나 불필요할 때는 아래 문서를 따릅니다.
+
+- [PRIVATE_ACCESS_RUNBOOK.md](/Users/seo/stock-pilot/docs/PRIVATE_ACCESS_RUNBOOK.md)
+
+핵심 원칙:
+
+- Mac Mini에서 대시보드를 띄운다
+- 파이프라인은 로컬에서 실행한다
+- 원격 접속은 tailnet 내부에서만 허용한다
+- `--skip-push`로 public sync 없이도 일일 운영 가능하다
