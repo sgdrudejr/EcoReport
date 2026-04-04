@@ -1,6 +1,6 @@
 {
   "date": "2026-04-04",
-  "updatedAt": "2026-04-04T05:15:58.072Z",
+  "updatedAt": "2026-04-04T14:55:26.753Z",
   "source": {
     "method": "screenshot_review",
     "reviewer": "seo",
@@ -18,7 +18,7 @@
       "profitLoss": 2084749,
       "profitRate": 33.07,
       "screenshots": [
-        "1000147257.jpg"
+        "Screenshot_20260404_235200.jpg"
       ],
       "incomplete": true,
       "holdings": [
@@ -71,7 +71,7 @@
       "profitLoss": -155,
       "profitRate": -0.02,
       "screenshots": [
-        "1000147239.jpg"
+        "Screenshot_20260404_235333.jpg"
       ],
       "incomplete": false,
       "holdings": [
@@ -124,7 +124,7 @@
       "profitLoss": -2155,
       "profitRate": -0.17,
       "screenshots": [
-        "1000147255.jpg"
+        "스크린샷 2026-04-04 오후 11.53.18.png"
       ],
       "incomplete": true,
       "holdings": [
