@@ -38,6 +38,12 @@ function technicalBadgeLabel(signal: string | null, technicalScore: number | nul
   return "기술 데이터 부족";
 }
 
+function formatShortDate(dateText: string) {
+  const match = dateText.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+  if (!match) return dateText;
+  return `${match[1].slice(2)}.${match[2]}.${match[3]}`;
+}
+
 export default function RecommendationBoard({
   board,
 }: {
@@ -63,7 +69,7 @@ export default function RecommendationBoard({
         </div>
         {board.date && (
           <span className="rounded-full border border-zinc-800 bg-zinc-900 px-3 py-1 text-xs text-zinc-400">
-            기준일 {board.date}
+            종목추천 : 기준일 {formatShortDate(board.date)}
           </span>
         )}
       </div>
