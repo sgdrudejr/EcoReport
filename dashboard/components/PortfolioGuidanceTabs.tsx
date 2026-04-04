@@ -262,7 +262,6 @@ function HoldingScoreCard({ account }: { account: AccountGuide }) {
             계좌 적합도, 기술 점수, 리포트 점수를 합친 종합 점수입니다.
           </p>
         </div>
-        <span className="text-xs text-zinc-500">낮은 점수 순</span>
       </div>
 
       <div className="mt-4">
