@@ -190,7 +190,13 @@ function StrategyProgress({ strategy }: { strategy: Strategy }) {
   );
 }
 
-function PortfolioAccountCard({ account }: { account: PortfolioAccount }) {
+function PortfolioAccountCard({
+  account,
+  guideScore = null,
+}: {
+  account: PortfolioAccount;
+  guideScore?: number | null;
+}) {
   const profitPositive = (account.profitLoss ?? 0) > 0;
   const profitNegative = (account.profitLoss ?? 0) < 0;
   const profitClass = profitPositive
@@ -217,11 +223,26 @@ function PortfolioAccountCard({ account }: { account: PortfolioAccount }) {
             {account.accountNumber || "계좌번호 미입력"}
           </p>
         </div>
-        {account.incomplete && (
-          <span className="rounded-full bg-amber-950/40 px-2 py-1 text-[11px] text-amber-300 border border-amber-900/60">
-            부분 캡처
-          </span>
-        )}
+        <div className="flex flex-col items-end gap-2">
+          {typeof guideScore === "number" && (
+            <span
+              className={`rounded-full border px-2.5 py-1 text-[11px] font-medium ${
+                guideScore >= 75
+                  ? "border-emerald-900/60 bg-emerald-950/30 text-emerald-300"
+                  : guideScore >= 55
+                    ? "border-amber-900/60 bg-amber-950/30 text-amber-300"
+                    : "border-red-900/60 bg-red-950/30 text-red-300"
+              }`}
+            >
+              {guideScore}점
+            </span>
+          )}
+          {account.incomplete && (
+            <span className="rounded-full bg-amber-950/40 px-2 py-1 text-[11px] text-amber-300 border border-amber-900/60">
+              부분 캡처
+            </span>
+          )}
+        </div>
       </div>
 
       <div>
@@ -465,7 +486,13 @@ export default function DashboardPage() {
                   <div className="flex gap-3 pb-1">
                     {portfolio.accounts.map((account) => (
                       <div key={account.key} className="min-w-[300px] max-w-[300px]">
-                        <PortfolioAccountCard account={account} />
+                        <PortfolioAccountCard
+                          account={account}
+                          guideScore={
+                            portfolioGuide?.accounts.find((item) => item.key === account.key)?.score ??
+                            null
+                          }
+                        />
                       </div>
                     ))}
                   </div>
@@ -475,6 +502,10 @@ export default function DashboardPage() {
                     <PortfolioAccountCard
                       key={account.key}
                       account={account}
+                      guideScore={
+                        portfolioGuide?.accounts.find((item) => item.key === account.key)?.score ??
+                        null
+                      }
                     />
                   ))}
                 </div>
