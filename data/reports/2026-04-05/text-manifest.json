@@ -1,0 +1,19 @@
+{
+  "date": "2026-04-05",
+  "generated_at": "2026-04-04T15:07:44.493Z",
+  "total_reports": 0,
+  "success_count": 0,
+  "failed_count": 0,
+  "ocr_used_count": 0,
+  "ocr_trigger_length": 400,
+  "preview_text_limit": 12000,
+  "command_availability": {
+    "pdftotext": "/opt/homebrew/bin/pdftotext",
+    "pdftoppm": "/opt/homebrew/bin/pdftoppm",
+    "pdfinfo": "/opt/homebrew/bin/pdfinfo",
+    "tesseract": "/opt/homebrew/bin/tesseract",
+    "sips": "/usr/bin/sips"
+  },
+  "method_counts": {},
+  "entries": []
+}

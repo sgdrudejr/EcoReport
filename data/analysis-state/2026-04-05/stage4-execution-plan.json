@@ -1,0 +1,337 @@
+{
+  "date": "2026-04-05",
+  "generatedAt": "2026-04-04T15:08:27.108Z",
+  "portfolioScore": 38,
+  "regime": {
+    "name": "SIDEWAYS",
+    "confidence": 0.55,
+    "voteSum": 0,
+    "signals": [
+      "VIX 24.54>=20",
+      "T10Y2Y 0.51>0.5",
+      "추세 혼재"
+    ],
+    "market_context": {
+      "index": "KOSPI",
+      "signal": "NEUTRAL",
+      "vix": null,
+      "score": 43,
+      "close": 5377.3,
+      "ma": {
+        "ma5": 5283.962,
+        "ma20": 5502.285,
+        "ma60": 5317.8267,
+        "ma120": 4658.6131
+      },
+      "rsi": 48.24,
+      "alerts": []
+    }
+  },
+  "accountPlans": [
+    {
+      "key": "ISA",
+      "label": "ISA",
+      "totalScore": 36,
+      "stage2Bias": "hold",
+      "deployBudget": 3665433,
+      "reserveCash": 2612057,
+      "topGap": {
+        "category": "금",
+        "targetPct": 0.25,
+        "currentPct": 0,
+        "gapAmount": 2096060
+      },
+      "candidateFromGap": "KODEX 골드선물(H)",
+      "stage2Candidates": [
+        {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "score": null,
+          "reason": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 둔화",
+          "source": "stage2"
+        },
+        {
+          "code": "458760",
+          "name": "TIGER 미국배당+7%프리미엄다우존스",
+          "score": null,
+          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 둔화",
+          "source": "stage2"
+        },
+        {
+          "code": "423160",
+          "name": "KODEX KOFR금리액티브(합성)",
+          "score": null,
+          "reason": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 둔화",
+          "source": "stage2"
+        }
+      ],
+      "stagedBuys": [
+        {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "score": null,
+          "reason": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 둔화",
+          "source": "stage2",
+          "suggestedAmount": 1832717
+        },
+        {
+          "code": "458760",
+          "name": "TIGER 미국배당+7%프리미엄다우존스",
+          "score": null,
+          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 둔화",
+          "source": "stage2",
+          "suggestedAmount": 1099630
+        },
+        {
+          "code": "423160",
+          "name": "KODEX KOFR금리액티브(합성)",
+          "score": null,
+          "reason": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 둔화",
+          "source": "stage2",
+          "suggestedAmount": 733087
+        }
+      ],
+      "trims": [],
+      "holds": [
+        {
+          "code": "458760",
+          "name": "TIGER 미국배당+7%프리미엄다우존스",
+          "score": 55,
+          "reason": "BUY"
+        }
+      ],
+      "watches": [
+        {
+          "code": "423160",
+          "name": "KODEX KOFR금리액티브(합성)",
+          "score": 48,
+          "reason": "SELL"
+        },
+        {
+          "code": "2921050",
+          "name": "TIGER코리아TOP10",
+          "score": 41,
+          "reason": "N/A"
+        }
+      ],
+      "macroCommentary": {
+        "summary": "방향성보다 선별이 중요한 횡보 장세 ISA은 방어자산과 원자재 헤지 비중 조정이 핵심입니다. 절세 계좌 특성상 국내 ETF 중심의 방어·인컴·테마 배치를 유연하게 조정하는 역할로 작동하는 계좌입니다.",
+        "drivers": [
+          "방향성보다 선별이 중요한 횡보 장세",
+          "배분 유지와 선택적 관찰이 적절한 상태"
+        ],
+        "assetFocus": [
+          "방어자산과 원자재 헤지",
+          "금",
+          "미국인덱스"
+        ],
+        "actionLine": "ISA은 금을 우선 보강하고, KODEX 골드선물(H)를 중심으로 3,665,433원 한도에서 분할 접근하는 편이 좋습니다.",
+        "reserveNote": "다음 tranche 전까지 예수금 일부를 유지하며 분할 접근"
+      },
+      "stage1Drivers": []
+    },
+    {
+      "key": "PENSION",
+      "label": "연금저축",
+      "totalScore": 38,
+      "stage2Bias": "defensive",
+      "deployBudget": 1769368,
+      "reserveCash": 3795833,
+      "topGap": {
+        "category": "S&P500",
+        "targetPct": 0.4,
+        "currentPct": 0.07469273813354012,
+        "gapAmount": 2144536
+      },
+      "candidateFromGap": "TIGER 미국S&P500",
+      "stage2Candidates": [
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "score": null,
+          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 약세, MACD 모멘텀이 우호적",
+          "source": "stage2"
+        },
+        {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "score": null,
+          "reason": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 둔화",
+          "source": "stage2"
+        },
+        {
+          "code": "133690",
+          "name": "TIGER 미국나스닥100",
+          "score": null,
+          "reason": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 둔화",
+          "source": "stage2"
+        }
+      ],
+      "stagedBuys": [
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "score": null,
+          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 약세, MACD 모멘텀이 우호적",
+          "source": "stage2",
+          "suggestedAmount": 884684
+        },
+        {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "score": null,
+          "reason": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 둔화",
+          "source": "stage2",
+          "suggestedAmount": 530810
+        },
+        {
+          "code": "133690",
+          "name": "TIGER 미국나스닥100",
+          "score": null,
+          "reason": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 둔화",
+          "source": "stage2",
+          "suggestedAmount": 353874
+        }
+      ],
+      "trims": [],
+      "holds": [
+        {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "score": 53,
+          "reason": "REDUCE"
+        }
+      ],
+      "watches": [
+        {
+          "code": "133690",
+          "name": "TIGER 미국나스닥100",
+          "score": 48,
+          "reason": "SELL"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "score": 46,
+          "reason": "BUY"
+        }
+      ],
+      "macroCommentary": {
+        "summary": "방향성보다 선별이 중요한 횡보 장세 연금저축은 미국 코어 인덱스 비중 조정이 핵심입니다. 장기 복리 관점에서 미국 코어 자산과 방어 자산을 안정적으로 쌓는 역할로 작동하는 계좌입니다.",
+        "drivers": [
+          "방향성보다 선별이 중요한 횡보 장세",
+          "기술점수 하위 보유분이 있어 방어적 운용이 필요"
+        ],
+        "assetFocus": [
+          "미국 코어 인덱스",
+          "S&P500",
+          "나스닥100"
+        ],
+        "actionLine": "연금저축은 S&P500을 우선 보강하고, TIGER 미국S&P500를 중심으로 1,769,368원 한도에서 분할 접근하는 편이 좋습니다.",
+        "reserveNote": "다음 tranche 전까지 예수금 일부를 유지하며 분할 접근"
+      },
+      "stage1Drivers": []
+    },
+    {
+      "key": "TOSS",
+      "label": "토스증권",
+      "totalScore": 42,
+      "stage2Bias": "hold",
+      "deployBudget": 1077159,
+      "reserveCash": 1932685,
+      "topGap": {
+        "category": "전력기기",
+        "targetPct": 0.3,
+        "currentPct": 0.1082535671398406,
+        "gapAmount": 826165
+      },
+      "candidateFromGap": "효성중공업",
+      "stage2Candidates": [
+        {
+          "code": "298040",
+          "name": "효성중공업",
+          "score": null,
+          "reason": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화",
+          "source": "stage2"
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "score": null,
+          "reason": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화",
+          "source": "stage2"
+        },
+        {
+          "code": "267260",
+          "name": "HD현대일렉트릭",
+          "score": null,
+          "reason": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 둔화",
+          "source": "stage2"
+        }
+      ],
+      "stagedBuys": [
+        {
+          "code": "298040",
+          "name": "효성중공업",
+          "score": null,
+          "reason": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화",
+          "source": "stage2",
+          "suggestedAmount": 538580
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "score": null,
+          "reason": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화",
+          "source": "stage2",
+          "suggestedAmount": 323148
+        },
+        {
+          "code": "267260",
+          "name": "HD현대일렉트릭",
+          "score": null,
+          "reason": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 둔화",
+          "source": "stage2",
+          "suggestedAmount": 215432
+        }
+      ],
+      "trims": [],
+      "holds": [
+        {
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "score": 59,
+          "reason": "HOLD"
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "score": 59,
+          "reason": "HOLD"
+        },
+        {
+          "code": "449450",
+          "name": "PLUS K방산",
+          "score": 55,
+          "reason": "BUY"
+        }
+      ],
+      "watches": [],
+      "macroCommentary": {
+        "summary": "방향성보다 선별이 중요한 횡보 장세 토스증권은 AI·전력 인프라 비중 조정이 핵심입니다. 전술 테마와 성장 섹터를 민첩하게 반영하는 역할로 작동하는 계좌입니다.",
+        "drivers": [
+          "방향성보다 선별이 중요한 횡보 장세",
+          "배분 유지와 선택적 관찰이 적절한 상태"
+        ],
+        "assetFocus": [
+          "AI·전력 인프라",
+          "전력기기",
+          "방산"
+        ],
+        "actionLine": "토스증권은 전력기기을 우선 보강하고, 효성중공업를 중심으로 1,077,159원 한도에서 분할 접근하는 편이 좋습니다.",
+        "reserveNote": "다음 tranche 전까지 예수금 일부를 유지하며 분할 접근"
+      },
+      "stage1Drivers": []
+    }
+  ]
+}

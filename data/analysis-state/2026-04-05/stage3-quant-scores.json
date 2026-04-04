@@ -1,0 +1,936 @@
+{
+  "date": "2026-04-05",
+  "generatedAt": "2026-04-04T15:08:27.041Z",
+  "regime": {
+    "name": "SIDEWAYS",
+    "confidence": 0.55,
+    "voteSum": 0,
+    "signals": [
+      "VIX 24.54>=20",
+      "T10Y2Y 0.51>0.5",
+      "추세 혼재"
+    ],
+    "market_context": {
+      "index": "KOSPI",
+      "signal": "NEUTRAL",
+      "vix": null,
+      "score": 43,
+      "close": 5377.3,
+      "ma": {
+        "ma5": 5283.962,
+        "ma20": 5502.285,
+        "ma60": 5317.8267,
+        "ma120": 4658.6131
+      },
+      "rsi": 48.24,
+      "alerts": []
+    }
+  },
+  "leadingIndicator": {
+    "score": 60,
+    "available": true,
+    "t10y2y": 0.51,
+    "vix": 24.54,
+    "cpiYoy": null,
+    "cgMomentum": null
+  },
+  "coverage": {
+    "techCoverage": 0.8124,
+    "impactCoverage": 0,
+    "stage2Available": true
+  },
+  "configUsed": {
+    "weightProfile": "balanced",
+    "maxWeights": {
+      "allocation": 0.45,
+      "tech": 0.3,
+      "report": 0.1,
+      "regime": 0.05,
+      "stage2": 0.05,
+      "leading": 0.05
+    },
+    "riskPenaltyCaps": {
+      "concentration": 10,
+      "tailRisk": 15,
+      "dataQuality": 10,
+      "regimeStress": 10,
+      "total": 25
+    }
+  },
+  "holdings": {
+    "132030": {
+      "code": "132030",
+      "name": "KODEX 골드선물(H)",
+      "accountKey": "PENSION",
+      "accountLabel": "연금저축",
+      "category": "금",
+      "marketValue": 53300,
+      "technicalSignal": "REDUCE",
+      "technicalBaseScore": 24,
+      "actionScore": 53,
+      "direction": 0.122,
+      "timing": 0.13,
+      "reportScore": 0,
+      "probabilities": {
+        "p_buy": 0.3725,
+        "p_hold": 0.3631,
+        "p_sell": 0.2643
+      },
+      "conviction": "LOW",
+      "signal": "WATCH",
+      "features": {
+        "maTrend": 0.41800371980898077,
+        "macdZ": -0.018299361030757508,
+        "rsiMid": -0.31439999999999996,
+        "adxTrend": 0.5458333333333334,
+        "bbDist": 0.45,
+        "rsiTiming": 0.39299999999999996,
+        "stochTiming": -0.04499999999999993,
+        "volumeZ": -0.729
+      },
+      "reportImpacts": [],
+      "technical": {
+        "signal": "REDUCE",
+        "score": 24,
+        "adjustedScore": 24,
+        "rsi": 46.07,
+        "macd": {
+          "value": -697.7042,
+          "signal": -685.166,
+          "histogram": -12.5381
+        },
+        "bollinger": {
+          "upper": 30615.8097,
+          "middle": 27189.75,
+          "lower": 23763.6903,
+          "position": "lower_half"
+        },
+        "volumeRatio": 0.271
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "impactScore": 50,
+        "impactValue": 0,
+        "impactCount": 0,
+        "coverageWeight": 0,
+        "directAccountImpactScore": 50
+      },
+      "scores": {
+        "techScore": 24,
+        "reportScore": 50,
+        "actionScore": 53
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 24점",
+          "RSI 46.1"
+        ],
+        "warnings": [
+          "직접 연결된 리포트 영향이 아직 없습니다.",
+          "WATCH 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    },
+    "133690": {
+      "code": "133690",
+      "name": "TIGER 미국나스닥100",
+      "accountKey": "PENSION",
+      "accountLabel": "연금저축",
+      "category": "나스닥100",
+      "marketValue": 481440,
+      "technicalSignal": "SELL",
+      "technicalBaseScore": 17,
+      "actionScore": 48,
+      "direction": -0.122,
+      "timing": -0.075,
+      "reportScore": 0,
+      "probabilities": {
+        "p_buy": 0.2719,
+        "p_hold": 0.3644,
+        "p_sell": 0.3637
+      },
+      "conviction": "LOW",
+      "signal": "WATCH",
+      "features": {
+        "maTrend": -0.17332991482452176,
+        "macdZ": -0.17568385441041526,
+        "rsiMid": -0.06879999999999996,
+        "adxTrend": -0.3708333333333333,
+        "bbDist": 0.45,
+        "rsiTiming": 0.08599999999999994,
+        "stochTiming": -0.7141666666666667,
+        "volumeZ": -0.629
+      },
+      "reportImpacts": [],
+      "technical": {
+        "signal": "SELL",
+        "score": 17,
+        "adjustedScore": 17,
+        "rsi": 49.14,
+        "macd": {
+          "value": -812.1811,
+          "signal": -690.8159,
+          "histogram": -121.3652
+        },
+        "bollinger": {
+          "upper": 164783.8116,
+          "middle": 160704.25,
+          "lower": 156624.6884,
+          "position": "lower_half"
+        },
+        "volumeRatio": 0.371
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "impactScore": 50,
+        "impactValue": 0,
+        "impactCount": 0,
+        "coverageWeight": 0,
+        "directAccountImpactScore": 50
+      },
+      "scores": {
+        "techScore": 17,
+        "reportScore": 50,
+        "actionScore": 48
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 17점",
+          "RSI 49.1"
+        ],
+        "warnings": [
+          "직접 연결된 리포트 영향이 아직 없습니다.",
+          "WATCH 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    },
+    "360750": {
+      "code": "360750",
+      "name": "TIGER 미국S&P500",
+      "accountKey": "PENSION",
+      "accountLabel": "연금저축",
+      "category": "S&P500",
+      "marketValue": 492400,
+      "technicalSignal": "BUY",
+      "technicalBaseScore": 70,
+      "actionScore": 46,
+      "direction": -0.067,
+      "timing": -0.444,
+      "reportScore": 0,
+      "probabilities": {
+        "p_buy": 0.2379,
+        "p_hold": 0.3529,
+        "p_sell": 0.4092
+      },
+      "conviction": "LOW",
+      "signal": "WATCH",
+      "features": {
+        "maTrend": -0.02839784200480766,
+        "macdZ": 0.048478000306247986,
+        "rsiMid": -0.03680000000000007,
+        "adxTrend": -0.6383333333333333,
+        "bbDist": -0.35,
+        "rsiTiming": 0.04600000000000008,
+        "stochTiming": -1.705416666666667,
+        "volumeZ": 0.18900000000000006
+      },
+      "reportImpacts": [],
+      "technical": {
+        "signal": "BUY",
+        "score": 70,
+        "adjustedScore": 70,
+        "rsi": 49.54,
+        "macd": {
+          "value": -90.1038,
+          "signal": -94.6945,
+          "histogram": 4.5906
+        },
+        "bollinger": {
+          "upper": 24960.8443,
+          "middle": 24569.75,
+          "lower": 24178.6557,
+          "position": "upper_half"
+        },
+        "volumeRatio": 1.189
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "impactScore": 50,
+        "impactValue": 0,
+        "impactCount": 0,
+        "coverageWeight": 0,
+        "directAccountImpactScore": 50
+      },
+      "scores": {
+        "techScore": 70,
+        "reportScore": 50,
+        "actionScore": 46
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 70점",
+          "RSI 49.5"
+        ],
+        "warnings": [
+          "직접 연결된 리포트 영향이 아직 없습니다.",
+          "WATCH 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    },
+    "423160": {
+      "code": "423160",
+      "name": "KODEX KOFR금리액티브(합성)",
+      "accountKey": "ISA",
+      "accountLabel": "ISA",
+      "category": "현금파킹",
+      "marketValue": 442720,
+      "technicalSignal": "SELL",
+      "technicalBaseScore": 26,
+      "actionScore": 48,
+      "direction": -0.507,
+      "timing": 0.743,
+      "reportScore": 0,
+      "probabilities": {
+        "p_buy": 0.299,
+        "p_hold": 0.3336,
+        "p_sell": 0.3674
+      },
+      "conviction": "LOW",
+      "signal": "WATCH",
+      "features": {
+        "maTrend": -0.005671030255003595,
+        "macdZ": -2.5,
+        "rsiMid": -0.5183999999999997,
+        "adxTrend": 0.0674999999999999,
+        "bbDist": 0.45,
+        "rsiTiming": 0.6479999999999997,
+        "stochTiming": 2.5,
+        "volumeZ": -0.751
+      },
+      "reportImpacts": [],
+      "technical": {
+        "signal": "SELL",
+        "score": 12,
+        "adjustedScore": 26,
+        "rsi": 43.52,
+        "macd": {
+          "value": -14.2509,
+          "signal": -0.8478,
+          "histogram": -13.4031
+        },
+        "bollinger": {
+          "upper": 110864.8045,
+          "middle": 110737,
+          "lower": 110609.1955,
+          "position": "lower_half"
+        },
+        "volumeRatio": 0.249
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "impactScore": 50,
+        "impactValue": 0,
+        "impactCount": 0,
+        "coverageWeight": 0,
+        "directAccountImpactScore": 50
+      },
+      "scores": {
+        "techScore": 26,
+        "reportScore": 50,
+        "actionScore": 48
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 12점",
+          "RSI 43.5"
+        ],
+        "warnings": [
+          "직접 연결된 리포트 영향이 아직 없습니다.",
+          "WATCH 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    },
+    "434730": {
+      "code": "434730",
+      "name": "HANARO 원자력iSelect",
+      "accountKey": "TOSS",
+      "accountLabel": "토스증권",
+      "category": "원자력",
+      "marketValue": 447965,
+      "technicalSignal": "HOLD",
+      "technicalBaseScore": 43,
+      "actionScore": 59,
+      "direction": 0.36,
+      "timing": 0.561,
+      "reportScore": 0,
+      "probabilities": {
+        "p_buy": 0.5183,
+        "p_hold": 0.3225,
+        "p_sell": 0.1592
+      },
+      "conviction": "LOW",
+      "signal": "HOLD",
+      "features": {
+        "maTrend": 2.264847056963269,
+        "macdZ": -1.1215931176426526,
+        "rsiMid": -0.20560000000000003,
+        "adxTrend": -0.027499999999999858,
+        "bbDist": 0.45,
+        "rsiTiming": 0.257,
+        "stochTiming": 1.8995833333333334,
+        "volumeZ": -0.393
+      },
+      "reportImpacts": [],
+      "technical": {
+        "signal": "HOLD",
+        "score": 43,
+        "adjustedScore": 43,
+        "rsi": 47.43,
+        "macd": {
+          "value": -89.9283,
+          "signal": 739.5838,
+          "histogram": -829.5121
+        },
+        "bollinger": {
+          "upper": 72863.5799,
+          "middle": 66921.75,
+          "lower": 60979.9201,
+          "position": "lower_half"
+        },
+        "volumeRatio": 0.607
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "impactScore": 50,
+        "impactValue": 0,
+        "impactCount": 0,
+        "coverageWeight": 0,
+        "directAccountImpactScore": 50
+      },
+      "scores": {
+        "techScore": 43,
+        "reportScore": 50,
+        "actionScore": 59
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 43점",
+          "RSI 47.4"
+        ],
+        "warnings": [
+          "직접 연결된 리포트 영향이 아직 없습니다."
+        ]
+      }
+    },
+    "449450": {
+      "code": "449450",
+      "name": "PLUS K방산",
+      "accountKey": "TOSS",
+      "accountLabel": "토스증권",
+      "category": "방산",
+      "marketValue": 384400,
+      "technicalSignal": "BUY",
+      "technicalBaseScore": 60,
+      "actionScore": 55,
+      "direction": 0.692,
+      "timing": -0.789,
+      "reportScore": 0,
+      "probabilities": {
+        "p_buy": 0.4155,
+        "p_hold": 0.3314,
+        "p_sell": 0.2531
+      },
+      "conviction": "LOW",
+      "signal": "WATCH",
+      "features": {
+        "maTrend": 2.5,
+        "macdZ": -0.017887979840818226,
+        "rsiMid": 0.5688,
+        "adxTrend": -0.23166666666666677,
+        "bbDist": -0.35,
+        "rsiTiming": -0.711,
+        "stochTiming": -2.5,
+        "volumeZ": 0.1499999999999999
+      },
+      "reportImpacts": [],
+      "technical": {
+        "signal": "BUY",
+        "score": 60,
+        "adjustedScore": 60,
+        "rsi": 57.11,
+        "macd": {
+          "value": 477.0451,
+          "signal": 485.734,
+          "histogram": -8.6888
+        },
+        "bollinger": {
+          "upper": 80100.7373,
+          "middle": 73204.5,
+          "lower": 66308.2627,
+          "position": "upper_half"
+        },
+        "volumeRatio": 1.15
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "impactScore": 50,
+        "impactValue": 0,
+        "impactCount": 0,
+        "coverageWeight": 0,
+        "directAccountImpactScore": 50
+      },
+      "scores": {
+        "techScore": 60,
+        "reportScore": 50,
+        "actionScore": 55
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 60점",
+          "RSI 57.1"
+        ],
+        "warnings": [
+          "직접 연결된 리포트 영향이 아직 없습니다.",
+          "WATCH 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    },
+    "458760": {
+      "code": "458760",
+      "name": "TIGER 미국배당+7%프리미엄다우존스",
+      "accountKey": "ISA",
+      "accountLabel": "ISA",
+      "category": "배당/커버드콜",
+      "marketValue": 510250,
+      "technicalSignal": "BUY",
+      "technicalBaseScore": 76,
+      "actionScore": 55,
+      "direction": 0.318,
+      "timing": 0.038,
+      "reportScore": 0,
+      "probabilities": {
+        "p_buy": 0.4208,
+        "p_hold": 0.3503,
+        "p_sell": 0.2289
+      },
+      "conviction": "LOW",
+      "signal": "WATCH",
+      "features": {
+        "maTrend": 1.1873691973166856,
+        "macdZ": -0.183282998582808,
+        "rsiMid": 0.31839999999999974,
+        "adxTrend": 0.0408333333333332,
+        "bbDist": -0.35,
+        "rsiTiming": -0.3979999999999997,
+        "stochTiming": 1.1879166666666663,
+        "volumeZ": -0.373
+      },
+      "reportImpacts": [],
+      "technical": {
+        "signal": "BUY",
+        "score": 76,
+        "adjustedScore": 76,
+        "rsi": 53.98,
+        "macd": {
+          "value": 83.5623,
+          "signal": 102.315,
+          "histogram": -18.7526
+        },
+        "bollinger": {
+          "upper": 11432.6794,
+          "middle": 11266.25,
+          "lower": 11099.8206,
+          "position": "upper_half"
+        },
+        "volumeRatio": 0.627
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "impactScore": 50,
+        "impactValue": 0,
+        "impactCount": 0,
+        "coverageWeight": 0,
+        "directAccountImpactScore": 50
+      },
+      "scores": {
+        "techScore": 76,
+        "reportScore": 50,
+        "actionScore": 55
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 76점",
+          "RSI 54.0"
+        ],
+        "warnings": [
+          "직접 연결된 리포트 영향이 아직 없습니다.",
+          "WATCH 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    },
+    "487240": {
+      "code": "487240",
+      "name": "KODEX AI전력핵심설비",
+      "accountKey": "TOSS",
+      "accountLabel": "토스증권",
+      "category": "전력기기",
+      "marketValue": 466425,
+      "technicalSignal": "HOLD",
+      "technicalBaseScore": 43,
+      "actionScore": 59,
+      "direction": 0.427,
+      "timing": 0.471,
+      "reportScore": 0,
+      "probabilities": {
+        "p_buy": 0.5212,
+        "p_hold": 0.3244,
+        "p_sell": 0.1545
+      },
+      "conviction": "LOW",
+      "signal": "HOLD",
+      "features": {
+        "maTrend": 2.3623147341115938,
+        "macdZ": -0.6861139311462382,
+        "rsiMid": -0.09360000000000014,
+        "adxTrend": -0.5241666666666666,
+        "bbDist": 0.45,
+        "rsiTiming": 0.11700000000000017,
+        "stochTiming": 1.5458333333333334,
+        "volumeZ": -0.20799999999999996
+      },
+      "reportImpacts": [],
+      "technical": {
+        "signal": "HOLD",
+        "score": 43,
+        "adjustedScore": 43,
+        "rsi": 48.83,
+        "macd": {
+          "value": 161.5479,
+          "signal": 514.6705,
+          "histogram": -353.1226
+        },
+        "bollinger": {
+          "upper": 34679.1809,
+          "middle": 31774,
+          "lower": 28868.8191,
+          "position": "lower_half"
+        },
+        "volumeRatio": 0.792
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "impactScore": 50,
+        "impactValue": 0,
+        "impactCount": 0,
+        "coverageWeight": 0,
+        "directAccountImpactScore": 50
+      },
+      "scores": {
+        "techScore": 43,
+        "reportScore": 50,
+        "actionScore": 59
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 43점",
+          "RSI 48.8"
+        ],
+        "warnings": [
+          "직접 연결된 리포트 영향이 아직 없습니다."
+        ]
+      }
+    },
+    "2921050": {
+      "code": "2921050",
+      "name": "TIGER코리아TOP10",
+      "accountKey": "ISA",
+      "accountLabel": "ISA",
+      "category": "국내대형주",
+      "marketValue": 574400,
+      "technicalSignal": "N/A",
+      "technicalBaseScore": null,
+      "actionScore": 41,
+      "direction": -0.65,
+      "timing": 0,
+      "reportScore": 0,
+      "probabilities": {
+        "p_buy": 0.1619,
+        "p_hold": 0.3164,
+        "p_sell": 0.5217
+      },
+      "conviction": "LOW",
+      "signal": "REDUCE",
+      "features": {
+        "maTrend": -2.5,
+        "macdZ": 0,
+        "rsiMid": 0,
+        "adxTrend": 0,
+        "bbDist": 0,
+        "rsiTiming": 0,
+        "stochTiming": 0,
+        "volumeZ": 0
+      },
+      "reportImpacts": [],
+      "technical": {
+        "signal": null,
+        "score": null,
+        "adjustedScore": null,
+        "rsi": null,
+        "macd": null,
+        "bollinger": null,
+        "volumeRatio": null
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "impactScore": 50,
+        "impactValue": 0,
+        "impactCount": 0,
+        "coverageWeight": 0,
+        "directAccountImpactScore": 50
+      },
+      "scores": {
+        "techScore": null,
+        "reportScore": 50,
+        "actionScore": 41
+      },
+      "explain": {
+        "topDrivers": [],
+        "warnings": [
+          "기술 스냅샷이 없어 리포트/배분 쪽 해석 비중이 커졌습니다.",
+          "직접 연결된 리포트 영향이 아직 없습니다.",
+          "REDUCE 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    }
+  },
+  "accounts": {
+    "ISA": {
+      "key": "ISA",
+      "label": "ISA",
+      "allocationScore": 32,
+      "holdingsScore": 67,
+      "reportCoverageScore": 0,
+      "stage2Bias": "hold",
+      "totalScore": 36,
+      "note": "배분 괴리 또는 리스크 패널티가 커서 공격적 확대보다 재정비가 우선입니다.",
+      "coverage": {
+        "techCoverage": 0.6667,
+        "impactCoverage": 0,
+        "stage2Available": true,
+        "fredAvailable": true
+      },
+      "baseScores": {
+        "allocationScore": 32,
+        "techScore": 67,
+        "reportScore": 50,
+        "regimeFit": 32,
+        "stage2Score": 50,
+        "leadingScore": 60,
+        "actionBlend": 47
+      },
+      "effectiveWeights": {
+        "allocation": 0.6725,
+        "tech": 0.2,
+        "report": 0,
+        "regime": 0.0275,
+        "stage2": 0.05,
+        "leading": 0.05
+      },
+      "riskPenalty": {
+        "total": 5,
+        "breakdown": {
+          "dataQuality": {
+            "total": 5.02,
+            "incompletePenalty": 5,
+            "unmappedExposurePct": 0,
+            "unmappedPenalty": 0,
+            "missingTechnicalPenalty": 0.02
+          },
+          "concentration": {
+            "total": 0,
+            "hhi": 0.3371,
+            "hhiPenalty": 0,
+            "maxPositionPct": 37.61,
+            "maxPositionPenalty": 0
+          },
+          "tailRisk": {
+            "total": 0,
+            "method": "portfolio_weighted_returns",
+            "maxDrawdownPct": 1.36,
+            "cvar95Pct": -0.5826,
+            "holdingsWithData": 2
+          },
+          "regimeStress": {
+            "total": 0,
+            "currentRiskPct": 6.85,
+            "desiredRiskPct": 25,
+            "excessRiskPct": 0
+          }
+        },
+        "notes": [
+          "부분 캡처 계좌라 데이터 품질 패널티가 적용됐습니다."
+        ]
+      },
+      "accountDirectImpact": {
+        "value": 0,
+        "score": 50,
+        "impacts": []
+      }
+    },
+    "PENSION": {
+      "key": "PENSION",
+      "label": "연금저축",
+      "allocationScore": 36,
+      "holdingsScore": 43,
+      "reportCoverageScore": 0,
+      "stage2Bias": "defensive",
+      "totalScore": 38,
+      "note": "배분 괴리 또는 리스크 패널티가 커서 공격적 확대보다 재정비가 우선입니다.",
+      "coverage": {
+        "techCoverage": 1,
+        "impactCoverage": 0,
+        "stage2Available": true,
+        "fredAvailable": true
+      },
+      "baseScores": {
+        "allocationScore": 36,
+        "techScore": 43,
+        "reportScore": 50,
+        "regimeFit": 36,
+        "stage2Score": 44,
+        "leadingScore": 60,
+        "actionBlend": 47
+      },
+      "effectiveWeights": {
+        "allocation": 0.5725,
+        "tech": 0.3,
+        "report": 0,
+        "regime": 0.0275,
+        "stage2": 0.05,
+        "leading": 0.05
+      },
+      "riskPenalty": {
+        "total": 2,
+        "breakdown": {
+          "dataQuality": {
+            "total": 0,
+            "incompletePenalty": 0,
+            "unmappedExposurePct": 0,
+            "unmappedPenalty": 0,
+            "missingTechnicalPenalty": 0
+          },
+          "concentration": {
+            "total": 2.04,
+            "hhi": 0.4522,
+            "hhiPenalty": 1.57,
+            "maxPositionPct": 47.94,
+            "maxPositionPenalty": 0.47
+          },
+          "tailRisk": {
+            "total": 0,
+            "method": "portfolio_weighted_returns",
+            "maxDrawdownPct": 6.36,
+            "cvar95Pct": -1.8252,
+            "holdingsWithData": 3
+          },
+          "regimeStress": {
+            "total": 0,
+            "currentRiskPct": 14.77,
+            "desiredRiskPct": 65,
+            "excessRiskPct": 0
+          }
+        },
+        "notes": [
+          "단일 포지션 또는 집중도가 높아 분산 패널티가 반영됐습니다."
+        ]
+      },
+      "accountDirectImpact": {
+        "value": 0,
+        "score": 50,
+        "impacts": []
+      }
+    },
+    "TOSS": {
+      "key": "TOSS",
+      "label": "토스증권",
+      "allocationScore": 55,
+      "holdingsScore": 48,
+      "reportCoverageScore": 0,
+      "stage2Bias": "hold",
+      "totalScore": 42,
+      "note": "기본 점수보다 리스크 패널티가 점수를 크게 누르고 있어 구조 조정이 우선입니다.",
+      "coverage": {
+        "techCoverage": 1,
+        "impactCoverage": 0,
+        "stage2Available": true,
+        "fredAvailable": true
+      },
+      "baseScores": {
+        "allocationScore": 55,
+        "techScore": 48,
+        "reportScore": 50,
+        "regimeFit": 55,
+        "stage2Score": 50,
+        "leadingScore": 60,
+        "actionBlend": 58
+      },
+      "effectiveWeights": {
+        "allocation": 0.5725,
+        "tech": 0.3,
+        "report": 0,
+        "regime": 0.0275,
+        "stage2": 0.05,
+        "leading": 0.05
+      },
+      "riskPenalty": {
+        "total": 11,
+        "breakdown": {
+          "dataQuality": {
+            "total": 5,
+            "incompletePenalty": 5,
+            "unmappedExposurePct": 0,
+            "unmappedPenalty": 0,
+            "missingTechnicalPenalty": 0
+          },
+          "concentration": {
+            "total": 0,
+            "hhi": 0.3355,
+            "hhiPenalty": 0,
+            "maxPositionPct": 35.91,
+            "maxPositionPenalty": 0
+          },
+          "tailRisk": {
+            "total": 6.18,
+            "method": "portfolio_weighted_returns",
+            "maxDrawdownPct": 17.36,
+            "cvar95Pct": -9.5194,
+            "holdingsWithData": 3
+          },
+          "regimeStress": {
+            "total": 0,
+            "currentRiskPct": 30.14,
+            "desiredRiskPct": 75,
+            "excessRiskPct": 0
+          }
+        },
+        "notes": [
+          "부분 캡처 계좌라 데이터 품질 패널티가 적용됐습니다.",
+          "최대낙폭 17.36% / CVaR(95%) -9.5194% 수준으로 꼬리 리스크 패널티가 적용됐습니다."
+        ]
+      },
+      "accountDirectImpact": {
+        "value": 0,
+        "score": 50,
+        "impacts": []
+      }
+    }
+  },
+  "portfolio": {
+    "totalScore": 38,
+    "baseScore": 42.78,
+    "riskPenalty": {
+      "total": 5.18
+    },
+    "note": "배분 괴리와 리스크 패널티를 먼저 줄여야 하는 구간"
+  }
+}
