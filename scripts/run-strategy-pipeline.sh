@@ -4,7 +4,7 @@
 set -euo pipefail
 
 ROOT_DIR="${ROOT_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
-DATE="$(date +%F)"
+DATE="$(node "$ROOT_DIR/scripts/resolve-cycle-date.js")"
 USE_MOCK_STAGE2=1
 USE_GEMINI_STAGE2=0
 

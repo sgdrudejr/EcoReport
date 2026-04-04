@@ -1,6 +1,10 @@
 name: Run Analysis Cycle (Mac Mini)
 
 on:
+  # 매일 오전 10시(Asia/Seoul) = 01:00 UTC
+  schedule:
+    - cron: "0 1 * * *"
+
   # 대시보드 API 또는 GitHub API 에서 repository_dispatch 로 트리거
   repository_dispatch:
     types: [run-cycle]
@@ -29,14 +33,22 @@ jobs:
         id: date
         run: |
           # workflow_dispatch 입력값 → repository_dispatch payload → 오늘 날짜 순으로 fallback
-          DATE="${{ github.event.inputs.date }}"
-          if [ -z "$DATE" ]; then
-            DATE="${{ github.event.client_payload.date }}"
+          REQUESTED_DATE="${{ github.event.inputs.date }}"
+          if [ -z "$REQUESTED_DATE" ]; then
+            REQUESTED_DATE="${{ github.event.client_payload.date }}"
           fi
-          if [ -z "$DATE" ]; then
-            DATE="$(date +%F)"
+
+          if [ -n "$REQUESTED_DATE" ]; then
+            DATE="$(node scripts/resolve-cycle-date.js --date "$REQUESTED_DATE")"
+            REASON="$(node scripts/resolve-cycle-date.js --date "$REQUESTED_DATE" --field reason)"
+          else
+            DATE="$(node scripts/resolve-cycle-date.js)"
+            REASON="$(node scripts/resolve-cycle-date.js --field reason)"
           fi
+
           echo "value=$DATE" >> "$GITHUB_OUTPUT"
+          echo "reason=$REASON" >> "$GITHUB_OUTPUT"
+          echo "resolved cycle date: $DATE ($REASON)"
 
       - name: Run analysis cycle (Step 1–6)
         # run-daily-system.sh: 최신 단일 진입점. --skip-push 로 push는 다음 step에서 분리

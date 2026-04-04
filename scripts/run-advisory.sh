@@ -3,7 +3,8 @@
 
 set -euo pipefail
 
-DATE="$(date +%F)"
+ROOT_DIR="${ROOT_DIR:-${ECOREPORT_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}}"
+DATE="$(node "$ROOT_DIR/scripts/resolve-cycle-date.js")"
 TIME="$(date +%H%M)"
 SKIP_LLM="${SKIP_LLM:-0}"
 MANUAL_LLM="${MANUAL_LLM:-0}"
@@ -34,7 +35,6 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-ROOT_DIR="${ROOT_DIR:-${ECOREPORT_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}}"
 REPORT_DIR="$ROOT_DIR/reports/daily"
 PROMPT_FILE="$REPORT_DIR/$DATE-$TIME-advisory-prompt.md"
 BRIEFING_FILE="$REPORT_DIR/$DATE-$TIME-briefing.md"

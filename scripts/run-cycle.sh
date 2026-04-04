@@ -3,7 +3,8 @@
 
 set -euo pipefail
 
-DATE="$(date +%F)"
+ROOT_DIR="${ROOT_DIR:-${ECOREPORT_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}}"
+DATE="$(node "$ROOT_DIR/scripts/resolve-cycle-date.js")"
 TIME="$(date +%H%M)"
 SKIP_LLM="${SKIP_LLM:-0}"
 MANUAL_LLM="${MANUAL_LLM:-0}"
@@ -44,7 +45,6 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-ROOT_DIR="${ROOT_DIR:-${ECOREPORT_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}}"
 LOG_DIR="$ROOT_DIR/logs"
 LOG_FILE="$LOG_DIR/$DATE-$TIME.log"
 

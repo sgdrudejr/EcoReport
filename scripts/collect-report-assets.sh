@@ -4,7 +4,7 @@
 set -euo pipefail
 
 ROOT_DIR="${ROOT_DIR:-$HOME/stock-pilot}"
-DATE="$(date +%F)"
+DATE="$(node "$ROOT_DIR/scripts/resolve-cycle-date.js")"
 FORCE=0
 
 while [[ $# -gt 0 ]]; do

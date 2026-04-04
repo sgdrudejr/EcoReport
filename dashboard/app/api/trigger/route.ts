@@ -1,11 +1,17 @@
 import { NextRequest } from "next/server";
+import { resolveCycleDate } from "@/lib/cycle-date";
 
 const GITHUB_OWNER = "sgdrudejr";
 const GITHUB_REPO = "EcoReport";
 const EVENT_TYPE = "run-cycle";
 
 export async function POST(request: NextRequest) {
-  await request.json().catch(() => ({}));
+  const payload = await request.json().catch(() => ({}));
+  const requestedDate =
+    payload && typeof payload === "object" && typeof payload.date === "string"
+      ? payload.date
+      : "";
+  const cycleDate = resolveCycleDate(requestedDate);
 
   // ── GitHub repository_dispatch 호출 ──────────────────────────────────
   const token = process.env.GITHUB_TOKEN;
@@ -29,7 +35,7 @@ export async function POST(request: NextRequest) {
       body: JSON.stringify({
         event_type: EVENT_TYPE,
         client_payload: {
-          date: new Date().toISOString().slice(0, 10),
+          date: cycleDate.date,
         },
       }),
     }
@@ -44,5 +50,5 @@ export async function POST(request: NextRequest) {
   }
 
   // GitHub dispatches API는 성공 시 204 No Content 반환
-  return Response.json({ ok: true, event: EVENT_TYPE });
+  return Response.json({ ok: true, event: EVENT_TYPE, date: cycleDate.date, reason: cycleDate.reason });
 }
