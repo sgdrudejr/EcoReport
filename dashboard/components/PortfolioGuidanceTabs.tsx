@@ -76,47 +76,6 @@ function formatBarPercent(value: number) {
   return `${clampPercent(value).toFixed(1)}%`;
 }
 
-function CapitalBar({
-  label,
-  amount,
-  percent,
-  tone,
-}: {
-  label: string;
-  amount: number;
-  percent: number;
-  tone: "emerald" | "sky" | "amber";
-}) {
-  const toneClass =
-    tone === "emerald"
-      ? "bg-emerald-400/90"
-      : tone === "sky"
-        ? "bg-sky-400/90"
-        : "bg-amber-300/90";
-
-  return (
-    <div className="space-y-2">
-      <div className="flex items-end justify-between gap-3">
-        <div>
-          <p className="text-[11px] leading-4 text-zinc-500 md:text-xs">{label}</p>
-          <p className="mt-1 text-sm font-medium tabular-nums text-zinc-100 md:text-base">
-            {amount.toLocaleString()}원
-          </p>
-        </div>
-        <p className="text-sm font-semibold tabular-nums text-zinc-300">
-          {formatBarPercent(percent)}
-        </p>
-      </div>
-      <div className="h-2.5 overflow-hidden rounded-full bg-zinc-800">
-        <div
-          className={`h-full rounded-full transition-[width] duration-300 ${toneClass}`}
-          style={{ width: `${clampPercent(percent)}%` }}
-        />
-      </div>
-    </div>
-  );
-}
-
 function CapitalOverviewCard({
   totalAssets,
   holdingsValue,
@@ -131,6 +90,9 @@ function CapitalOverviewCard({
   const investedPct = totalAssets > 0 ? (holdingsValue / totalAssets) * 100 : 0;
   const deployPct = totalAssets > 0 ? (recommendedDeploy / totalAssets) * 100 : 0;
   const reservePct = totalAssets > 0 ? (reserveCash / totalAssets) * 100 : 0;
+  const investedWidth = clampPercent(investedPct);
+  const deployWidth = clampPercent(deployPct);
+  const reserveWidth = clampPercent(reservePct);
 
   return (
     <div className="rounded-2xl border border-zinc-800 bg-zinc-950 px-4 py-4 md:px-5">
@@ -138,31 +100,60 @@ function CapitalOverviewCard({
         <div>
           <p className="text-sm font-medium text-zinc-200">자금 배치 요약</p>
           <p className="mt-1 text-xs text-zinc-500">
-            총 자산 대비 현재 투입, 이번 단계 투입, 대기 자금을 막대로 봅니다.
+            총 자산을 현재 투입, 이번 단계 투입, 대기 자금으로 나눠서 한 줄로 봅니다.
           </p>
         </div>
         <p className="text-xs text-zinc-500">기준 {totalAssets.toLocaleString()}원</p>
       </div>
 
-      <div className="mt-4 grid gap-4 md:grid-cols-3">
-        <CapitalBar
-          label="현재 투입 비중"
-          amount={holdingsValue}
-          percent={investedPct}
-          tone="emerald"
-        />
-        <CapitalBar
-          label="이번 단계 투입"
-          amount={recommendedDeploy}
-          percent={deployPct}
-          tone="sky"
-        />
-        <CapitalBar
-          label="대기 자금"
-          amount={reserveCash}
-          percent={reservePct}
-          tone="amber"
-        />
+      <div className="mt-4 overflow-hidden rounded-full bg-zinc-800">
+        <div className="flex h-4 w-full">
+          <div
+            className="bg-emerald-400/90 transition-[width] duration-300"
+            style={{ width: `${investedWidth}%` }}
+            title={`현재 투입 ${formatBarPercent(investedPct)}`}
+          />
+          <div
+            className="bg-sky-400/90 transition-[width] duration-300"
+            style={{ width: `${deployWidth}%` }}
+            title={`이번 단계 투입 ${formatBarPercent(deployPct)}`}
+          />
+          <div
+            className="bg-amber-300/90 transition-[width] duration-300"
+            style={{ width: `${reserveWidth}%` }}
+            title={`대기 자금 ${formatBarPercent(reservePct)}`}
+          />
+        </div>
+      </div>
+
+      <div className="mt-4 grid grid-cols-3 gap-2">
+        <div className="rounded-2xl border border-emerald-900/40 bg-emerald-950/15 px-3 py-3 text-center">
+          <p className="text-[11px] leading-4 text-emerald-300/80 md:text-xs">현재 투입</p>
+          <p className="mt-1 text-base font-semibold tabular-nums text-emerald-300 md:text-lg">
+            {formatBarPercent(investedPct)}
+          </p>
+          <p className="mt-1 text-[11px] leading-4 tabular-nums text-zinc-400 md:text-xs">
+            {holdingsValue.toLocaleString()}원
+          </p>
+        </div>
+        <div className="rounded-2xl border border-sky-900/40 bg-sky-950/15 px-3 py-3 text-center">
+          <p className="text-[11px] leading-4 text-sky-300/80 md:text-xs">이번 단계 투입</p>
+          <p className="mt-1 text-base font-semibold tabular-nums text-sky-300 md:text-lg">
+            {formatBarPercent(deployPct)}
+          </p>
+          <p className="mt-1 text-[11px] leading-4 tabular-nums text-zinc-400 md:text-xs">
+            {recommendedDeploy.toLocaleString()}원
+          </p>
+        </div>
+        <div className="rounded-2xl border border-amber-900/40 bg-amber-950/15 px-3 py-3 text-center">
+          <p className="text-[11px] leading-4 text-amber-300/80 md:text-xs">대기 자금</p>
+          <p className="mt-1 text-base font-semibold tabular-nums text-amber-300 md:text-lg">
+            {formatBarPercent(reservePct)}
+          </p>
+          <p className="mt-1 text-[11px] leading-4 tabular-nums text-zinc-400 md:text-xs">
+            {reserveCash.toLocaleString()}원
+          </p>
+        </div>
       </div>
     </div>
   );
