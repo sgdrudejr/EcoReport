@@ -847,8 +847,6 @@ function holdingExplanation(holding, technicalItem, reportImpact, action) {
 
   if (reportImpact.impactCount > 0) {
     topDrivers.push(`리포트 영향 ${reportImpact.score}점 (${reportImpact.impactCount}건 연결)`);
-  } else {
-    warnings.push("직접 연결된 리포트 영향이 아직 없습니다.");
   }
 
   if (typeof technicalItem?.rsi === "number") {

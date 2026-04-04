@@ -713,7 +713,10 @@ function buildHoldingGuides(
       signal: stage3Holding?.signal ?? null,
       technicalSignal: stage3Holding?.technicalSignal ?? null,
       topDrivers: stage3Holding?.explain?.topDrivers ?? [],
-      warnings: stage3Holding?.explain?.warnings ?? [],
+      warnings:
+        (stage3Holding?.explain?.warnings ?? []).filter(
+          (warning) => warning !== "직접 연결된 리포트 영향이 아직 없습니다.",
+        ),
     } satisfies HoldingGuide;
   });
 
