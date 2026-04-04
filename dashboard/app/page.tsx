@@ -12,6 +12,9 @@ import { loadRecommendationBoard } from "@/lib/recommendations";
 import { resolveRepoRoot } from "@/lib/repo-root";
 import {
   extractResearchSections,
+  extractResearchTags,
+  extractResearchActionPoints,
+  getResearchBriefingStats,
   loadResearchBriefings,
 } from "@/lib/research";
 import {
@@ -335,6 +338,15 @@ function GuidanceScoreCard({
   );
 }
 
+function researchTagClass(tone: string) {
+  if (tone === "rose") return "border-rose-500/30 bg-rose-950/20 text-rose-300";
+  if (tone === "sky") return "border-sky-500/30 bg-sky-950/20 text-sky-300";
+  if (tone === "emerald") return "border-emerald-500/30 bg-emerald-950/20 text-emerald-300";
+  if (tone === "amber") return "border-amber-500/30 bg-amber-950/20 text-amber-300";
+  if (tone === "fuchsia") return "border-fuchsia-500/30 bg-fuchsia-950/20 text-fuchsia-300";
+  return "border-zinc-700 bg-zinc-900 text-zinc-300";
+}
+
 // ── 메인 페이지 ───────────────────────────────────────────────────────
 
 export default function DashboardPage() {
@@ -349,6 +361,13 @@ export default function DashboardPage() {
   const researchBriefing = loadResearchBriefings()[0] ?? null;
   const researchSections = researchBriefing
     ? extractResearchSections(researchBriefing.content).slice(0, 3)
+    : [];
+  const researchStats = getResearchBriefingStats(researchBriefing);
+  const researchTags = researchBriefing
+    ? extractResearchTags(researchBriefing.content, 8)
+    : [];
+  const researchActionPoints = researchBriefing
+    ? extractResearchActionPoints(researchBriefing.content, 4)
     : [];
 
   const indices = market?.indices ?? {};
@@ -552,7 +571,62 @@ export default function DashboardPage() {
             </Link>
           </div>
 
-          <div className="grid gap-3 lg:grid-cols-3">
+          <div className="mb-4 grid gap-3 md:grid-cols-4">
+            <div className="rounded-2xl border border-zinc-800 bg-zinc-900 px-4 py-3">
+              <p className="text-xs text-zinc-500">활용 리포트</p>
+              <p className="mt-1 text-lg font-semibold text-zinc-100">
+                {researchStats.coveredReportCount ?? "-"}건
+              </p>
+            </div>
+            <div className="rounded-2xl border border-zinc-800 bg-zinc-900 px-4 py-3">
+              <p className="text-xs text-zinc-500">사용 청크</p>
+              <p className="mt-1 text-lg font-semibold text-zinc-100">
+                {researchStats.usedChunkCount ?? "-"}개
+              </p>
+            </div>
+            <div className="rounded-2xl border border-zinc-800 bg-zinc-900 px-4 py-3">
+              <p className="text-xs text-zinc-500">후보 청크</p>
+              <p className="mt-1 text-lg font-semibold text-zinc-100">
+                {researchStats.candidateChunkCount ?? "-"}개
+              </p>
+            </div>
+            <div className="rounded-2xl border border-zinc-800 bg-zinc-900 px-4 py-3">
+              <p className="text-xs text-zinc-500">요약 전용</p>
+              <p className="mt-1 text-lg font-semibold text-zinc-100">
+                {researchStats.summaryChunkCount ?? "-"}개
+              </p>
+            </div>
+          </div>
+
+          {(researchTags.length > 0 || researchActionPoints.length > 0) && (
+            <div className="mb-4 grid gap-3 md:grid-cols-[1.5fr,1fr]">
+              <div className="rounded-2xl border border-zinc-800 bg-zinc-900 px-4 py-4">
+                <p className="text-xs text-zinc-500">핵심 태그</p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {researchTags.map((tag) => (
+                    <span
+                      key={tag.label}
+                      className={`rounded-full border px-2.5 py-1 text-xs ${researchTagClass(tag.tone)}`}
+                    >
+                      {tag.label}
+                    </span>
+                  ))}
+                </div>
+              </div>
+              <div className="rounded-2xl border border-zinc-800 bg-zinc-900 px-4 py-4">
+                <p className="text-xs text-zinc-500">액션 포인트</p>
+                <ul className="mt-3 space-y-2 text-sm text-zinc-100">
+                  {researchActionPoints.length > 0 ? (
+                    researchActionPoints.map((point) => <li key={point}>- {point}</li>)
+                  ) : (
+                    <li>- 오늘 브리핑에서 별도 액션 문구가 추출되지 않았습니다.</li>
+                  )}
+                </ul>
+              </div>
+            </div>
+          )}
+
+          <div className="grid gap-3 md:grid-cols-3">
             {researchSections.map((section, index) => (
               <article
                 key={`${section.title}-${index}`}
@@ -564,11 +638,31 @@ export default function DashboardPage() {
                 <h3 className="mt-1 text-lg font-semibold text-zinc-100">
                   {section.title}
                 </h3>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {extractResearchTags(`${section.title}\n${section.body}`, 5).map((tag) => (
+                    <span
+                      key={`${section.title}-${tag.label}`}
+                      className={`rounded-full border px-2.5 py-1 text-[11px] ${researchTagClass(tag.tone)}`}
+                    >
+                      {tag.label}
+                    </span>
+                  ))}
+                </div>
                 <div className="mt-3 prose prose-invert prose-sm max-w-none prose-p:text-zinc-300 prose-li:text-zinc-300">
                   <ReactMarkdown remarkPlugins={[remarkGfm]}>
                     {section.body}
                   </ReactMarkdown>
                 </div>
+                {extractResearchActionPoints(section.body, 2).length > 0 && (
+                  <div className="mt-4 rounded-xl border border-zinc-800 bg-zinc-950 px-3 py-3">
+                    <p className="text-xs text-zinc-500">체크할 포인트</p>
+                    <ul className="mt-2 space-y-1 text-sm text-zinc-100">
+                      {extractResearchActionPoints(section.body, 2).map((point) => (
+                        <li key={point}>- {point}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </article>
             ))}
           </div>

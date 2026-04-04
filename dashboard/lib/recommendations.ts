@@ -25,7 +25,7 @@ type Stage1Extract = {
   title: string;
   themes?: string[];
   sentiment_score?: number | null;
-  confidence?: number | null;
+  confidence?: number | string | null;
   portfolio_impacts_candidate?: Array<{
     target_code?: string;
     target_name?: string;
@@ -431,7 +431,8 @@ function normalizeAccountLabel(account: string) {
   return account;
 }
 
-function normalizeConfidence(value?: string | null) {
+function normalizeConfidence(value?: string | number | null) {
+  if (typeof value === "number") return clamp(value, 0, 1);
   if (value === "HIGH") return 1;
   if (value === "MEDIUM") return 0.6;
   if (value === "LOW") return 0.3;
@@ -571,6 +572,37 @@ function selectDiverseIdeas(candidates: RecommendationIdea[], limit: number) {
   return selected;
 }
 
+function laneThreshold(key: RecommendationLaneKey) {
+  if (key === "core") return 52;
+  if (key === "sector") return 50;
+  return 54;
+}
+
+function pickLaneIdeas(
+  key: RecommendationLaneKey,
+  candidates: RecommendationIdea[],
+  limit: number,
+) {
+  const threshold = laneThreshold(key);
+  const primary = candidates.filter((candidate) => candidate.score >= threshold);
+  const selected = selectDiverseIdeas(primary, limit);
+
+  if (selected.length >= limit) {
+    return selected;
+  }
+
+  const backup = candidates.filter(
+    (candidate) =>
+      !selected.some((item) => item.code === candidate.code) &&
+      (candidate.targetAccounts.length > 0 ||
+        candidate.stage2Score != null ||
+        candidate.reportScore >= 65 ||
+        candidate.technicalScore != null),
+  );
+
+  return selectDiverseIdeas([...selected, ...backup], limit).slice(0, limit);
+}
+
 function formatSignedPercent(value: number | null | undefined) {
   if (typeof value !== "number" || Number.isNaN(value)) {
     return null;
@@ -619,7 +651,7 @@ export function loadRecommendationBoard(dateHint?: string): RecommendationBoard 
             value:
               directionToNumber(impact.direction) *
               (impact.strength ?? 0.4) *
-              (extract.confidence ?? 0.6),
+              normalizeConfidence(extract.confidence),
           })),
       );
       const directImpactRaw = directImpacts.reduce((sum, item) => sum + item.value, 0);
@@ -652,11 +684,19 @@ export function loadRecommendationBoard(dateHint?: string): RecommendationBoard 
           ? { technical: 0.58, report: 0.3, stage2: 0, fit: 0.12 }
           : { technical: 0.48, report: 0.22, stage2: 0.2, fit: 0.1 };
 
+      const laneBonus =
+        meta.lane === "core"
+          ? 3
+          : meta.lane === "sector"
+            ? 2
+            : 0;
+
       const totalRaw =
         (technicalScore ?? 45) * weights.technical +
         reportScore * weights.report +
         accountFitScore * weights.fit +
-        (stage2Score ?? 0) * weights.stage2;
+        (stage2Score ?? 0) * weights.stage2 +
+        laneBonus;
 
       const signalPenalty =
         technicalItem?.signal === "SELL"
@@ -720,7 +760,6 @@ export function loadRecommendationBoard(dateHint?: string): RecommendationBoard 
         risks,
       } satisfies RecommendationIdea;
     })
-    .filter((idea) => idea.score >= 45)
     .sort((left, right) => {
       if (right.score !== left.score) return right.score - left.score;
       return (right.technicalScore ?? 0) - (left.technicalScore ?? 0);
@@ -735,7 +774,8 @@ export function loadRecommendationBoard(dateHint?: string): RecommendationBoard 
       key: "core",
       title: "코어 ETF",
       description: "계좌의 중심 비중을 채우는 안정적 코어 자산입니다.",
-      items: selectDiverseIdeas(
+      items: pickLaneIdeas(
+        "core",
         ideas.filter((idea) => idea.lane === "core"),
         3,
       ),
@@ -744,7 +784,8 @@ export function loadRecommendationBoard(dateHint?: string): RecommendationBoard 
       key: "sector",
       title: "섹터 ETF",
       description: "리포트 강세 테마를 전술적으로 반영하는 위성 자산입니다.",
-      items: selectDiverseIdeas(
+      items: pickLaneIdeas(
+        "sector",
         ideas.filter((idea) => idea.lane === "sector"),
         3,
       ),
@@ -753,7 +794,8 @@ export function loadRecommendationBoard(dateHint?: string): RecommendationBoard 
       key: "stock",
       title: "개별주",
       description: "테마 강도와 기술 신호가 함께 받쳐주는 단일 종목 후보입니다.",
-      items: selectDiverseIdeas(
+      items: pickLaneIdeas(
+        "stock",
         ideas.filter((idea) => idea.lane === "stock"),
         4,
       ),
@@ -764,6 +806,6 @@ export function loadRecommendationBoard(dateHint?: string): RecommendationBoard 
     date: stage4.date ?? stage3.date ?? stage2.date ?? stage1.date ?? technical?.date ?? null,
     themeSummary: themeSummary.slice(0, 6),
     highlightedThemes: themeSummary.slice(0, 4).map((item) => item.theme),
-    lanes: lanes.filter((lane) => lane.items.length > 0),
+    lanes,
   };
 }

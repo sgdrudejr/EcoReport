@@ -7,8 +7,9 @@ import {
   type PortfolioAccount,
   type PortfolioSnapshot,
 } from "@/lib/portfolio";
+import { resolveRepoRoot } from "@/lib/repo-root";
 
-const REPO_ROOT = path.resolve(process.cwd(), "..");
+const REPO_ROOT = resolveRepoRoot();
 const STRATEGY_FILE = path.join(REPO_ROOT, "config", "strategy.json");
 const TECHNICAL_DIR = path.join(REPO_ROOT, "data", "technical");
 
@@ -584,13 +585,25 @@ function buildImprovementActions(
 function buildEvidenceNotes(stage4Account: any | null) {
   const notes: string[] = [];
 
+  for (const stagedBuy of stage4Account?.stagedBuys ?? []) {
+    if (!stagedBuy?.name || !stagedBuy?.reason) continue;
+    const reason = String(stagedBuy.reason).replace(/\s+/g, " ").trim();
+    notes.push(`${stagedBuy.name}: ${reason.slice(0, 150)}${reason.length > 150 ? "..." : ""}`);
+  }
+
+  for (const candidate of stage4Account?.stage2Candidates ?? []) {
+    if (!candidate?.name || !candidate?.reason) continue;
+    const reason = String(candidate.reason).replace(/\s+/g, " ").trim();
+    notes.push(`${candidate.name}: ${reason.slice(0, 150)}${reason.length > 150 ? "..." : ""}`);
+  }
+
   for (const driver of stage4Account?.stage1Drivers ?? []) {
     if (!driver?.title || !driver?.thesis) continue;
     const sentence = String(driver.thesis).replace(/\s+/g, " ").trim();
     notes.push(`${driver.title}: ${sentence.slice(0, 140)}${sentence.length > 140 ? "..." : ""}`);
   }
 
-  return notes.slice(0, 3);
+  return notes.filter((value, index, array) => array.indexOf(value) === index).slice(0, 4);
 }
 
 function buildActionPoints(stage4Account: any | null) {
@@ -598,17 +611,26 @@ function buildActionPoints(stage4Account: any | null) {
 
   for (const stagedBuy of stage4Account?.stagedBuys ?? []) {
     if (!stagedBuy?.name || !stagedBuy?.suggestedAmount) continue;
-    points.push(`${stagedBuy.name} ${stagedBuy.suggestedAmount.toLocaleString()}원 분할매수 검토`);
+    const reason = stagedBuy?.reason
+      ? ` · ${String(stagedBuy.reason).replace(/\s+/g, " ").trim().slice(0, 72)}`
+      : "";
+    points.push(`${stagedBuy.name} ${stagedBuy.suggestedAmount.toLocaleString()}원 분할매수 검토${reason}`);
   }
 
   for (const trim of stage4Account?.trims ?? []) {
     if (!trim?.name) continue;
-    points.push(`${trim.name} 비중 축소 또는 재점검`);
+    const reason = trim?.reason
+      ? ` · ${String(trim.reason).replace(/\s+/g, " ").trim().slice(0, 72)}`
+      : "";
+    points.push(`${trim.name} 비중 축소 또는 재점검${reason}`);
   }
 
   for (const hold of stage4Account?.holds ?? []) {
     if (!hold?.name) continue;
-    points.push(`${hold.name}은 유지하되 추가 진입은 보류`);
+    const reason = hold?.reason
+      ? ` · ${String(hold.reason).replace(/\s+/g, " ").trim().slice(0, 72)}`
+      : "";
+    points.push(`${hold.name}은 유지하되 추가 진입은 보류${reason}`);
   }
 
   return points.slice(0, 4);

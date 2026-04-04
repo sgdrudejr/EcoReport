@@ -79,14 +79,19 @@ export default function RecommendationBoard({
               </span>
             </div>
 
-            <div className="mt-4 grid gap-3 lg:grid-cols-2">
-              {lane.items.map((item) => {
-                const change = formatSignedPercent(item.changePct);
-                return (
-                  <article
-                    key={`${lane.key}-${item.code}`}
-                    className="rounded-2xl border border-zinc-800 bg-zinc-950 p-4"
-                  >
+            {lane.items.length === 0 ? (
+              <div className="mt-4 rounded-2xl border border-dashed border-zinc-800 bg-zinc-950/60 px-4 py-6 text-sm text-zinc-500">
+                현재 데이터 기준으로는 이 레인의 확신도 높은 후보가 아직 부족합니다. 리포트 영향도와 기술 점수가 더 쌓이면 자동으로 채워집니다.
+              </div>
+            ) : (
+              <div className="mt-4 grid gap-3 md:grid-cols-2">
+                {lane.items.map((item) => {
+                  const change = formatSignedPercent(item.changePct);
+                  return (
+                    <article
+                      key={`${lane.key}-${item.code}`}
+                      className="rounded-2xl border border-zinc-800 bg-zinc-950 p-4"
+                    >
                     <div className="flex items-start justify-between gap-3">
                       <div>
                         <div className="flex flex-wrap items-center gap-2">
@@ -147,7 +152,7 @@ export default function RecommendationBoard({
                       )}
                     </div>
 
-                    <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                    <div className="mt-4 grid gap-3 md:grid-cols-2">
                       <div className="rounded-xl border border-zinc-800 bg-zinc-900 px-3 py-3">
                         <p className="text-xs text-zinc-500">추천 이유</p>
                         <ul className="mt-2 space-y-1.5 text-sm text-zinc-100">
@@ -197,10 +202,11 @@ export default function RecommendationBoard({
                         </ul>
                       </div>
                     )}
-                  </article>
-                );
-              })}
-            </div>
+                    </article>
+                  );
+                })}
+              </div>
+            )}
           </div>
         ))}
       </div>
