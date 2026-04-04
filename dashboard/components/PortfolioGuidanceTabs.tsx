@@ -323,17 +323,69 @@ function MobileSelector({
   selectedKey: string;
   onSelect: (key: string) => void;
 }) {
+  const containerRef = useRef<HTMLDivElement | null>(null);
   const touchStateRef = useRef<{
     key: string | null;
     x: number;
     y: number;
     moved: boolean;
+    scrollLeft: number;
+    startedAt: number;
   }>({
     key: null,
     x: 0,
     y: 0,
     moved: false,
+    scrollLeft: 0,
+    startedAt: 0,
   });
+
+  function resetTouchState() {
+    touchStateRef.current = {
+      key: null,
+      x: 0,
+      y: 0,
+      moved: false,
+      scrollLeft: 0,
+      startedAt: 0,
+    };
+  }
+
+  function beginPress(key: string, clientX: number, clientY: number, startedAt: number) {
+    touchStateRef.current = {
+      key,
+      x: clientX,
+      y: clientY,
+      moved: false,
+      scrollLeft: containerRef.current?.scrollLeft ?? 0,
+      startedAt,
+    };
+  }
+
+  function updatePress(key: string, clientX: number, clientY: number) {
+    if (touchStateRef.current.key !== key) return;
+    const deltaX = Math.abs(clientX - touchStateRef.current.x);
+    const deltaY = Math.abs(clientY - touchStateRef.current.y);
+    if (deltaX > 18 || deltaY > 18) {
+      touchStateRef.current.moved = true;
+    }
+  }
+
+  function endPress(key: string, endedAt: number) {
+    const current = touchStateRef.current;
+    const scrollDelta = Math.abs((containerRef.current?.scrollLeft ?? 0) - current.scrollLeft);
+    const elapsed = endedAt - current.startedAt;
+    const shouldSelect =
+      current.key === key &&
+      scrollDelta < 8 &&
+      (!current.moved || elapsed < 220);
+
+    resetTouchState();
+
+    if (shouldSelect) {
+      onSelect(key);
+    }
+  }
 
   return (
     <div className="sticky top-2 z-30 -mx-4 px-4 md:hidden">
@@ -341,7 +393,10 @@ function MobileSelector({
         <div className="mb-2 px-1 text-[11px] uppercase tracking-wide text-zinc-500">
           계좌 전환
         </div>
-        <div className="flex gap-2 overflow-x-auto pb-1 touch-pan-x snap-x snap-mandatory">
+        <div
+          ref={containerRef}
+          className="flex gap-2 overflow-x-auto pb-1 touch-pan-x snap-x snap-mandatory"
+        >
           {accounts.map((account) => {
             const isSelected = account.key === selectedKey;
             return (
@@ -350,49 +405,38 @@ function MobileSelector({
                 type="button"
                 aria-pressed={isSelected}
                 onClick={() => onSelect(account.key)}
+                onPointerDown={(event) => {
+                  if (event.pointerType === "mouse") return;
+                  beginPress(account.key, event.clientX, event.clientY, event.timeStamp);
+                }}
+                onPointerMove={(event) => {
+                  if (event.pointerType === "mouse") return;
+                  updatePress(account.key, event.clientX, event.clientY);
+                }}
+                onPointerUp={(event) => {
+                  if (event.pointerType === "mouse") return;
+                  endPress(account.key, event.timeStamp);
+                }}
+                onPointerCancel={() => {
+                  resetTouchState();
+                }}
                 onTouchStart={(event) => {
                   const touch = event.touches[0];
                   if (!touch) return;
-                  touchStateRef.current = {
-                    key: account.key,
-                    x: touch.clientX,
-                    y: touch.clientY,
-                    moved: false,
-                  };
+                  beginPress(account.key, touch.clientX, touch.clientY, event.timeStamp);
                 }}
                 onTouchMove={(event) => {
                   const touch = event.touches[0];
-                  if (!touch || touchStateRef.current.key !== account.key) return;
-                  const deltaX = Math.abs(touch.clientX - touchStateRef.current.x);
-                  const deltaY = Math.abs(touch.clientY - touchStateRef.current.y);
-                  if (deltaX > 10 || deltaY > 10) {
-                    touchStateRef.current.moved = true;
-                  }
+                  if (!touch) return;
+                  updatePress(account.key, touch.clientX, touch.clientY);
                 }}
                 onTouchEnd={(event) => {
-                  if (
-                    touchStateRef.current.key === account.key &&
-                    !touchStateRef.current.moved
-                  ) {
-                    event.preventDefault();
-                    onSelect(account.key);
-                  }
-                  touchStateRef.current = {
-                    key: null,
-                    x: 0,
-                    y: 0,
-                    moved: false,
-                  };
+                  endPress(account.key, event.timeStamp);
                 }}
                 onTouchCancel={() => {
-                  touchStateRef.current = {
-                    key: null,
-                    x: 0,
-                    y: 0,
-                    moved: false,
-                  };
+                  resetTouchState();
                 }}
-                className={`min-w-[172px] snap-start rounded-2xl border px-4 py-3 text-left transition active:scale-[0.99] touch-manipulation ${
+                className={`min-w-[172px] shrink-0 snap-start rounded-2xl border px-4 py-3 text-left transition active:scale-[0.99] touch-manipulation ${
                   isSelected
                     ? "border-emerald-500/60 bg-emerald-950/25 shadow-[0_0_0_1px_rgba(16,185,129,0.18)]"
                     : "border-zinc-800 bg-zinc-900"
