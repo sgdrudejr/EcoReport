@@ -258,39 +258,43 @@ function MobileSelector({
   onSelect: (key: string) => void;
 }) {
   return (
-    <div className="grid gap-3 md:hidden min-[520px]:grid-cols-2">
-      {accounts.map((account) => {
-        const isSelected = account.key === selectedKey;
-        return (
-          <button
-            key={account.key}
-            type="button"
-            aria-pressed={isSelected}
-            onClick={() => onSelect(account.key)}
-            className={`w-full rounded-2xl border px-4 py-3 text-left transition active:scale-[0.99] touch-manipulation ${
-              isSelected
-                ? "border-emerald-500/60 bg-emerald-950/20 shadow-[0_0_0_1px_rgba(16,185,129,0.16)]"
-                : "border-zinc-800 bg-zinc-900"
-            }`}
-          >
-            <div className="flex items-center justify-between gap-3">
-              <p className="text-sm font-semibold text-zinc-100">{account.label}</p>
-              <span
-                className={`rounded-full border px-2 py-1 text-[11px] ${getStatusClass(account.status)}`}
+    <div className="sticky top-2 z-30 -mx-4 px-4 md:hidden">
+      <div className="rounded-2xl border border-zinc-800/80 bg-zinc-950/92 p-2 shadow-[0_10px_30px_rgba(0,0,0,0.28)] backdrop-blur">
+        <div className="mb-2 px-1 text-[11px] uppercase tracking-wide text-zinc-500">
+          계좌 전환
+        </div>
+        <div className="flex gap-2 overflow-x-auto pb-1 touch-pan-x snap-x snap-mandatory">
+          {accounts.map((account) => {
+            const isSelected = account.key === selectedKey;
+            return (
+              <button
+                key={account.key}
+                type="button"
+                aria-pressed={isSelected}
+                onClick={() => onSelect(account.key)}
+                className={`min-w-[172px] snap-start rounded-2xl border px-4 py-3 text-left transition active:scale-[0.99] touch-manipulation ${
+                  isSelected
+                    ? "border-emerald-500/60 bg-emerald-950/25 shadow-[0_0_0_1px_rgba(16,185,129,0.18)]"
+                    : "border-zinc-800 bg-zinc-900"
+                }`}
               >
-                {account.score}점
-              </span>
-            </div>
-            <p className="mt-2 text-xs text-zinc-500">
-              {account.status} · 이번 단계 {account.recommendedDeploy.toLocaleString()}원
-            </p>
-            <p className="mt-2 text-sm text-zinc-300">
-              보유 손익 {formatSignedCurrency(account.holdingsProfitLoss)} ·{" "}
-              {formatSignedPercent(account.holdingsProfitRate)}
-            </p>
-          </button>
-        );
-      })}
+                <div className="flex items-center justify-between gap-3">
+                  <p className="text-sm font-semibold text-zinc-100">{account.label}</p>
+                  <span
+                    className={`rounded-full border px-2 py-1 text-[11px] ${getStatusClass(account.status)}`}
+                  >
+                    {account.score}점
+                  </span>
+                </div>
+                <p className="mt-2 text-xs text-zinc-500">{account.status}</p>
+                <p className="mt-2 text-sm text-zinc-300">
+                  {formatSignedCurrency(account.holdingsProfitLoss)}
+                </p>
+              </button>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }
