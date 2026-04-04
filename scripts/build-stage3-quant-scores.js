@@ -235,6 +235,54 @@ function getCategoryCurrentPct(allocationState, categoryName) {
   return allocationState.categories.find((item) => item.category === categoryName)?.currentPct ?? 0;
 }
 
+function allocationDiffPenalty(
+  categories,
+  desiredAllocation,
+  { cashOverweightWeight = 0.2, cashFundedShortfallWeight = 0.45 } = {},
+) {
+  const currentPctByCategory = new Map(
+    (categories ?? []).map((item) => [item.category, item.currentPct ?? 0]),
+  );
+  const categoryNames = [...new Set([
+    ...(categories ?? []).map((item) => item.category),
+    ...Object.keys(desiredAllocation ?? {}),
+  ])];
+
+  const currentCashPct = currentPctByCategory.get("현금파킹") ?? 0;
+  const desiredCashPct = desiredAllocation?.["현금파킹"] ?? 0;
+  let diff = 0;
+  let remainingCashBuffer = Math.max(currentCashPct - desiredCashPct, 0);
+
+  if (currentCashPct > desiredCashPct) {
+    // 여유 현금은 과도한 리스크보다는 완만한 기회비용으로만 반영한다.
+    diff += (currentCashPct - desiredCashPct) * cashOverweightWeight;
+  } else {
+    diff += desiredCashPct - currentCashPct;
+  }
+
+  const nonCashGaps = categoryNames
+    .filter((category) => category !== "현금파킹")
+    .map((category) => ({
+      category,
+      gap: (currentPctByCategory.get(category) ?? 0) - (desiredAllocation?.[category] ?? 0),
+    }));
+
+  for (const item of nonCashGaps
+    .filter((entry) => entry.gap < 0)
+    .sort((left, right) => Math.abs(right.gap) - Math.abs(left.gap))) {
+    const shortfall = Math.abs(item.gap);
+    const cashCovered = Math.min(shortfall, remainingCashBuffer);
+    diff += cashCovered * cashFundedShortfallWeight + (shortfall - cashCovered);
+    remainingCashBuffer -= cashCovered;
+  }
+
+  for (const item of nonCashGaps.filter((entry) => entry.gap >= 0)) {
+    diff += item.gap;
+  }
+
+  return diff;
+}
+
 function adjustedTechnicalScore({ category, rawScore, regimeName, allocationState }) {
   if (typeof rawScore !== "number") return null;
 
@@ -247,18 +295,18 @@ function adjustedTechnicalScore({ category, rawScore, regimeName, allocationStat
   const excessCashPct = currentCashPct - targetCashPct;
   const policyBase =
     regimeName === "HIGH_VOL"
-      ? 68
+      ? 74
       : regimeName === "BEAR"
-        ? 62
+        ? 68
         : excessCashPct > 0.2
-          ? 28
+          ? 56
           : excessCashPct > 0.08
-            ? 38
+            ? 60
             : Math.abs(excessCashPct) <= 0.05
-              ? 57
-              : 48;
+              ? 62
+              : 58;
 
-  return Math.round(clamp(rawScore * 0.15 + policyBase * 0.85, 0, 100));
+  return Math.round(clamp(rawScore * 0.1 + policyBase * 0.9, 0, 100));
 }
 
 function deriveFeatureVector(technicalItem) {
@@ -619,10 +667,7 @@ function buildAllocationState(account, strategy) {
 }
 
 function allocationScoreForAccount(allocationState) {
-  const diff = allocationState.categories.reduce(
-    (sum, category) => sum + Math.abs(category.currentPct - category.targetPct),
-    0,
-  );
+  const diff = allocationDiffPenalty(allocationState.categories, allocationState.targetAllocation);
   return Math.round(clamp((1 - diff / 2) * 100, 0, 100));
 }
 
@@ -639,16 +684,10 @@ function adjustedRegimeTargets(targetAllocation, regimeName) {
 
 function computeRegimeFit(allocationState, regimeName) {
   const desired = adjustedRegimeTargets(allocationState.targetAllocation, regimeName);
-  const categoryNames = new Set([
-    ...allocationState.categories.map((item) => item.category),
-    ...Object.keys(desired),
-  ]);
-  const diff = [...categoryNames].reduce((sum, category) => {
-    const currentPct =
-      allocationState.categories.find((item) => item.category === category)?.currentPct ?? 0;
-    const desiredPct = desired[category] ?? 0;
-    return sum + Math.abs(currentPct - desiredPct);
-  }, 0);
+  const diff = allocationDiffPenalty(allocationState.categories, desired, {
+    cashOverweightWeight: 0.25,
+    cashFundedShortfallWeight: 0.55,
+  });
 
   return {
     score: Math.round(clamp((1 - diff / 2) * 100, 0, 100)),

@@ -750,10 +750,10 @@ function buildAccountNote(
   if (recommendedDeploy > 0 && topShortfalls.length > 0) {
     const top = topShortfalls[0];
     if (technicalScore != null && technicalScore < 45) {
-      return `현금 비중은 높지만 기술 점수(${technicalScore}점)가 낮습니다. ${top.category} 보강은 가능하되, 추격보다는 분할 접근이 적절합니다.`;
+      return `현금 여유는 충분하지만 기술 점수(${technicalScore}점)가 낮습니다. ${top.category} 보강은 가능하되, 추격보다는 분할 접근이 적절합니다.`;
     }
 
-    return `현금 비중이 목표보다 높습니다. 이번 단계에서는 ${top.category} 중심으로 ${recommendedDeploy.toLocaleString()}원까지 나눠서 배치하는 편이 적절합니다.`;
+    return `현금 여유가 있는 상태입니다. 이번 단계에서는 ${top.category} 중심으로 ${recommendedDeploy.toLocaleString()}원까지 나눠서 배치하는 편이 적절합니다.`;
   }
 
   if (cashPct < targetCashPct - 0.05) {
@@ -864,7 +864,7 @@ function buildScoreDrivers(
 
   if (cashPct > targetCashPct + 0.05) {
     drivers.push(
-      `현금 비중이 목표보다 ${formatPctPoint((cashPct - targetCashPct) * 100)}p 높아 점수가 눌리고 있습니다.`,
+      `현금 비중이 목표보다 ${formatPctPoint((cashPct - targetCashPct) * 100)}p 높지만, 방어 포지션 자체를 과도하게 불리하게 보지 않도록 점수에는 완만한 기회비용만 반영합니다.`,
     );
   }
 
@@ -872,7 +872,7 @@ function buildScoreDrivers(
     const gapPct = (cashCategory.currentPct - cashCategory.targetPct) * 100;
     if (cashCategory.currentPct > cashCategory.targetPct + 0.05) {
       drivers.push(
-        `현금파킹 자산은 일반 위험자산처럼 단순 기술점수로 처리하지 않고, 현재 레짐과 목표 현금 비중을 반영한 정책 보정 점수를 사용합니다. 현재는 목표보다 ${formatPctPoint(gapPct)}p 높아 방어자산 자체가 나빠서가 아니라 과다 대기자금 때문에 총점이 눌립니다.`,
+        `현금파킹 자산은 일반 위험자산처럼 단순 기술점수로 처리하지 않고, 현재 레짐과 목표 현금 비중을 반영한 정책 보정 점수를 사용합니다. 현재는 목표보다 ${formatPctPoint(gapPct)}p 높지만, 방어자산 자체를 감점하기보다 향후 배치 여지를 반영하는 수준으로만 계산합니다.`,
       );
     } else {
       drivers.push(
@@ -920,9 +920,9 @@ function buildImprovementActions(
     );
   }
 
-  if (cashPct > targetCashPct + 0.05) {
+  if (cashPct > targetCashPct + 0.05 && shortfalls.length > 0) {
     actions.push(
-      `현금을 ${formatPctPoint((cashPct - targetCashPct) * 100)}p 줄이고 목표 자산군으로 옮기면 총점이 올라갑니다.`,
+      `여유 현금 ${formatPctPoint((cashPct - targetCashPct) * 100)}p 범위 안에서 가장 부족한 자산군부터 분할 배치할 수 있습니다.`,
     );
   }
 
