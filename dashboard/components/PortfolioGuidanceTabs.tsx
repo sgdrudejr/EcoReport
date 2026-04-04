@@ -59,9 +59,9 @@ function MetricCard({
         : "text-zinc-100";
 
   return (
-    <div className="rounded-2xl border border-zinc-800 bg-zinc-950 px-4 py-3">
-      <p className="text-xs text-zinc-500">{label}</p>
-      <p className={`mt-1 text-xl font-semibold tabular-nums ${toneClass}`}>{value}</p>
+    <div className="rounded-2xl border border-zinc-800 bg-zinc-950 px-3 py-3 md:px-4">
+      <p className="text-[11px] leading-4 text-zinc-500 md:text-xs">{label}</p>
+      <p className={`mt-1 text-lg font-semibold tabular-nums md:text-xl ${toneClass}`}>{value}</p>
     </div>
   );
 }
@@ -378,7 +378,7 @@ export default function PortfolioGuidanceTabs({
           </div>
         </div>
 
-        <div className="grid gap-3 md:grid-cols-3 xl:grid-cols-6">
+        <div className="grid grid-cols-3 gap-3 xl:grid-cols-6">
           <MetricCard label="배분 점수" value={`${selectedAccount.allocationScore}점`} />
           <MetricCard label="기술 점수" value={selectedAccount.technicalScore != null ? `${selectedAccount.technicalScore}점` : "-"} />
           <MetricCard
