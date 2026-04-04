@@ -111,9 +111,31 @@ bash scripts/run-daily-system.sh --date YYYY-MM-DD
 Vercel preview 실패가 있어도 일일 운영은 막히지 않도록 설계합니다.
 공개 배포가 불안정할 때는 Tailscale 같은 tailnet 기반 접속을 권장합니다.
 
+### 현재 권장 접속 경로
+
+개발/검증 중에는 아래를 기준으로 봅니다.
+
+```bash
+cd /Users/seo/stock-pilot/dashboard
+npm run dev -- --hostname 0.0.0.0
+```
+
+그다음 같은 Mac Mini에서는:
+
+- [http://localhost:3000](http://localhost:3000)
+
+같은 와이파이 기기에서는:
+
+- `http://<Mac-Mini-LAN-IP>:3000`
+
+로 접속합니다.
+
+즉, **지금 기준의 진짜 소스 오브 트루스는 `localhost:3000`** 입니다.
+
 운영 가이드는 아래 문서를 따릅니다.
 
 - [PRIVATE_ACCESS_RUNBOOK.md](/Users/seo/stock-pilot/docs/PRIVATE_ACCESS_RUNBOOK.md)
+- [UPDATE_LOG.md](/Users/seo/stock-pilot/docs/UPDATE_LOG.md)
 
 ## Stage 1~4 개요
 
@@ -415,7 +437,10 @@ bash scripts/open-chatgpt-web-prompt.sh ideas
 - 기술지표 계산
 - Stage 1~4 전략 파이프라인 산출물 생성
 - 계좌 스냅샷 저장
-- 대시보드 표시
+- 로컬 대시보드 표시
+- 경제 리포트 요약 + 어드바이저 브리핑 동시 표시
+- 계좌별 점수 근거 / 개선 액션 표시
+- ETF + 개별주 추천 보드 표시
 
 ## 아직 부족한 것
 
@@ -464,6 +489,29 @@ bash scripts/open-chatgpt-web-prompt.sh ideas
 - 예수금
 
 을 자동 채우는 것입니다.
+
+### 6. 외부 공개 배포 안정성
+
+`Vercel`은 현재 보조 채널입니다.
+
+- 운영 기준은 `localhost:3000`
+- `data` 브랜치와 원격 배포는 참고/보조 용도
+- 구조가 더 안정되면 다시 외부 배포를 강화합니다
+
+## 최근 상태 요약
+
+2026-04-04 기준으로 아래가 반영된 상태입니다.
+
+- 점수체계 v2: `BaseScore - RiskPenalty`
+- 현금파킹 자산은 일반 위험자산처럼 단순 RSI 점수로 처리하지 않도록 보정
+- 홈 대시보드에서 포트폴리오 / 운용가이드 / 종목추천 / 경제 리포트 / 어드바이저 브리핑을 한 화면에서 확인 가능
+- 경제 리포트에 `활용 리포트`, `사용 청크`, `후보 청크`, `요약 전용` 통계 표시
+- 추천 보드는 `코어 ETF / 섹터 ETF / 개별주` 3레인 구조
+- 보고서 상세 페이지에 태그 칩, 액션 포인트, 마켓 보드, 섹션 카드 표시
+
+업데이트 내역은 아래 문서를 계속 누적합니다.
+
+- [UPDATE_LOG.md](/Users/seo/stock-pilot/docs/UPDATE_LOG.md)
 
 ## 운영 철학
 
