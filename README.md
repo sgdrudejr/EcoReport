@@ -76,6 +76,7 @@ flowchart TD
 - [OPERATOR_RUNBOOK.md](/Users/seo/stock-pilot/docs/OPERATOR_RUNBOOK.md)
 - [SCORE_SYSTEM_V2.md](/Users/seo/stock-pilot/docs/SCORE_SYSTEM_V2.md)
 - [PRIVATE_ACCESS_RUNBOOK.md](/Users/seo/stock-pilot/docs/PRIVATE_ACCESS_RUNBOOK.md)
+- [FAILURES_AND_FALLBACKS.md](/Users/seo/stock-pilot/FAILURES_AND_FALLBACKS.md)
 
 ## 매일 운영 명령
 
@@ -136,6 +137,7 @@ npm run dev -- --hostname 0.0.0.0
 
 - [PRIVATE_ACCESS_RUNBOOK.md](/Users/seo/stock-pilot/docs/PRIVATE_ACCESS_RUNBOOK.md)
 - [UPDATE_LOG.md](/Users/seo/stock-pilot/docs/UPDATE_LOG.md)
+- [FAILURES_AND_FALLBACKS.md](/Users/seo/stock-pilot/FAILURES_AND_FALLBACKS.md)
 
 ## Stage 1~4 개요
 
