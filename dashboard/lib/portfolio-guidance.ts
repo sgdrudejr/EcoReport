@@ -92,8 +92,30 @@ type Stage3Account = {
   stage2Bias?: string | null;
 };
 
+type Stage3Holding = {
+  code?: string;
+  name?: string;
+  accountKey?: string;
+  accountLabel?: string;
+  category?: string;
+  marketValue?: number;
+  technicalSignal?: string | null;
+  technicalBaseScore?: number | null;
+  signal?: string | null;
+  scores?: {
+    techScore?: number | null;
+    reportScore?: number | null;
+    actionScore?: number | null;
+  };
+  explain?: {
+    topDrivers?: string[];
+    warnings?: string[];
+  };
+};
+
 type Stage3Analysis = {
   accounts?: Record<string, Stage3Account>;
+  holdings?: Record<string, Stage3Holding>;
   portfolio?: {
     totalScore?: number;
   };
@@ -183,6 +205,24 @@ export type AccountGuide = {
   improvementActions: string[];
   evidenceNotes: string[];
   actionPoints: string[];
+  holdingGuides: HoldingGuide[];
+};
+
+export type HoldingGuide = {
+  code: string | null;
+  name: string;
+  category: string;
+  marketValue: number;
+  weightPct: number;
+  score: number | null;
+  accountFitScore: number | null;
+  technicalScore: number | null;
+  reportScore: number | null;
+  actionScore: number | null;
+  signal: string | null;
+  technicalSignal: string | null;
+  topDrivers: string[];
+  warnings: string[];
 };
 
 export type PortfolioGuide = {
@@ -222,6 +262,48 @@ const PREFERRED_LABEL_BY_CATEGORY: Record<string, string> = {
   방산: "PLUS K방산",
   원자력: "HANARO 원자력iSelect",
 };
+
+const HOLDING_CODE_HINTS: Array<{ code: string; patterns: string[] }> = [
+  { code: "360750", patterns: ["미국s&p500", "미국sp500"] },
+  { code: "133690", patterns: ["미국나스닥100"] },
+  { code: "423160", patterns: ["kofr", "금리액티브"] },
+  { code: "434730", patterns: ["원자력"] },
+  { code: "449450", patterns: ["방산"] },
+  { code: "487240", patterns: ["ai전력", "전력핵심", "전력기기"] },
+  { code: "132030", patterns: ["골드", "금선물"] },
+  { code: "458760", patterns: ["미국배당", "다우존스"] },
+  { code: "2921050", patterns: ["코리아top10", "top10"] },
+];
+
+function clampScore(value: number, min = 0, max = 100) {
+  return Math.max(min, Math.min(max, value));
+}
+
+function normalizeHoldingName(value: string | null | undefined) {
+  return (value ?? "")
+    .toLowerCase()
+    .replace(/\([^)]*\)/g, "")
+    .replace(/[^0-9a-z가-힣&+]/gi, "");
+}
+
+function inferHoldingCode(name: string, explicitCode?: string | null) {
+  if (explicitCode) {
+    return explicitCode;
+  }
+
+  const normalized = normalizeHoldingName(name);
+  if (!normalized) {
+    return null;
+  }
+
+  for (const hint of HOLDING_CODE_HINTS) {
+    if (hint.patterns.some((pattern) => normalized.includes(normalizeHoldingName(pattern)))) {
+      return hint.code;
+    }
+  }
+
+  return null;
+}
 
 function readStrategy(): StrategyAllocation | null {
   if (!fs.existsSync(STRATEGY_FILE)) {
@@ -459,6 +541,149 @@ function mergeScores(allocationScore: number, technicalScore: number | null, inc
   }
 
   return Math.max(0, Math.min(100, score));
+}
+
+function blendHoldingScore(parts: Array<{ value: number | null; weight: number }>) {
+  const valid = parts.filter(
+    (part): part is { value: number; weight: number } =>
+      typeof part.value === "number" && Number.isFinite(part.value) && part.weight > 0,
+  );
+
+  if (valid.length === 0) {
+    return null;
+  }
+
+  const totalWeight = valid.reduce((sum, part) => sum + part.weight, 0);
+  if (totalWeight <= 0) {
+    return null;
+  }
+
+  return Math.round(
+    valid.reduce((sum, part) => sum + part.value * part.weight, 0) / totalWeight,
+  );
+}
+
+function getHoldingAccountFitScore(
+  categoryGuide: CategoryGuide | undefined,
+  incomplete?: boolean,
+) {
+  if (!categoryGuide) {
+    return incomplete ? 42 : 50;
+  }
+
+  let score = 55 + categoryGuide.gapPct * 120;
+
+  if (categoryGuide.category === "기타") {
+    score -= 8;
+  }
+
+  if (incomplete) {
+    score -= 4;
+  }
+
+  return Math.round(clampScore(score, 20, 90));
+}
+
+function buildHoldingGuides(
+  account: PortfolioAccount,
+  categories: CategoryGuide[],
+  stage3: Stage3Analysis | null,
+) {
+  const totalHoldingsValue = Math.max(getAccountHoldingsValue(account), 0);
+  const accountStage3Holdings = Object.values(stage3?.holdings ?? {}).filter(
+    (item): item is Stage3Holding & { accountKey: string } =>
+      Boolean(item) && typeof item.accountKey === "string" && item.accountKey === account.key,
+  );
+  const usedAccountStage3Codes = new Set<string>();
+
+  const holdingGuides = account.holdings.map((holding) => {
+    const inferredCode = inferHoldingCode(holding.name, holding.code);
+    let stage3Holding = inferredCode ? stage3?.holdings?.[inferredCode] ?? null : null;
+
+    if (!stage3Holding) {
+      const normalizedName = normalizeHoldingName(holding.name);
+      const exactMatch = accountStage3Holdings.find((item) => {
+        const candidateCode = item.code ?? "";
+        if (usedAccountStage3Codes.has(candidateCode)) {
+          return false;
+        }
+
+        const candidateName = normalizeHoldingName(item.name);
+        return Boolean(candidateName) && (
+          candidateName === normalizedName ||
+          candidateName.includes(normalizedName) ||
+          normalizedName.includes(candidateName)
+        );
+      });
+
+      if (exactMatch?.code) {
+        stage3Holding = exactMatch;
+      }
+    }
+
+    if (!stage3Holding) {
+      const targetValue = holding.marketValue ?? 0;
+      const closestByValue = accountStage3Holdings
+        .filter((item) => !usedAccountStage3Codes.has(item.code ?? ""))
+        .map((item) => ({
+          item,
+          diff: Math.abs((item.marketValue ?? 0) - targetValue),
+        }))
+        .sort((left, right) => left.diff - right.diff)[0];
+
+      const tolerance = Math.max(targetValue * 0.15, 25000);
+      if (closestByValue && closestByValue.diff <= tolerance) {
+        stage3Holding = closestByValue.item;
+      }
+    }
+
+    if (stage3Holding?.accountKey === account.key && stage3Holding.code) {
+      usedAccountStage3Codes.add(stage3Holding.code);
+    }
+
+    const category =
+      stage3Holding?.category ??
+      getCategoryForHolding(account, inferredCode ?? holding.code);
+    const categoryGuide = categories.find((item) => item.category === category);
+
+    const technicalScore =
+      stage3Holding?.scores?.techScore ??
+      stage3Holding?.technicalBaseScore ??
+      null;
+    const reportScore = stage3Holding?.scores?.reportScore ?? null;
+    const actionScore = stage3Holding?.scores?.actionScore ?? null;
+    const accountFitScore = getHoldingAccountFitScore(categoryGuide, account.incomplete);
+    const score = blendHoldingScore([
+      { value: accountFitScore, weight: 0.35 },
+      { value: technicalScore, weight: 0.4 },
+      { value: reportScore, weight: 0.25 },
+    ]);
+
+    return {
+      code: inferredCode ?? stage3Holding?.code ?? holding.code ?? null,
+      name: holding.name,
+      category,
+      marketValue: holding.marketValue ?? 0,
+      weightPct:
+        totalHoldingsValue > 0 ? ((holding.marketValue ?? 0) / totalHoldingsValue) * 100 : 0,
+      score,
+      accountFitScore,
+      technicalScore,
+      reportScore,
+      actionScore,
+      signal: stage3Holding?.signal ?? null,
+      technicalSignal: stage3Holding?.technicalSignal ?? null,
+      topDrivers: stage3Holding?.explain?.topDrivers ?? [],
+      warnings: stage3Holding?.explain?.warnings ?? [],
+    } satisfies HoldingGuide;
+  });
+
+  return holdingGuides.sort((left, right) => {
+    if ((left.score ?? 999) !== (right.score ?? 999)) {
+      return (left.score ?? 999) - (right.score ?? 999);
+    }
+    return right.marketValue - left.marketValue;
+  });
 }
 
 function getStatusFromScore(score: number): AccountGuide["status"] {
@@ -842,6 +1067,7 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
         .slice(0, 3);
       const evidenceNotes = buildEvidenceNotes(stage4Account);
       const actionPoints = buildActionPoints(stage4Account);
+      const holdingGuides = buildHoldingGuides(account, categories, stage3);
 
       return {
         key: account.key,
@@ -919,6 +1145,7 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
         ),
         evidenceNotes,
         actionPoints,
+        holdingGuides,
       };
     })
     .filter((account): account is AccountGuide => account !== null);

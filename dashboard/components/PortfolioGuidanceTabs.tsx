@@ -27,6 +27,21 @@ function getStatusClass(status: AccountGuide["status"]) {
   return "border-red-900/60 bg-red-950/30 text-red-300";
 }
 
+function getHoldingScoreClass(score: number | null) {
+  if (score == null) return "text-zinc-100";
+  if (score >= 70) return "text-emerald-400";
+  if (score >= 55) return "text-amber-300";
+  return "text-red-400";
+}
+
+function getSignalClass(signal: string | null | undefined) {
+  if (signal === "BUY") return "border-emerald-900/60 bg-emerald-950/30 text-emerald-300";
+  if (signal === "HOLD") return "border-sky-900/60 bg-sky-950/30 text-sky-300";
+  if (signal === "WATCH") return "border-amber-900/60 bg-amber-950/30 text-amber-300";
+  if (signal === "REDUCE" || signal === "SELL") return "border-red-900/60 bg-red-950/30 text-red-300";
+  return "border-zinc-800 bg-zinc-900 text-zinc-400";
+}
+
 function MetricCard({
   label,
   value,
@@ -47,6 +62,84 @@ function MetricCard({
     <div className="rounded-2xl border border-zinc-800 bg-zinc-950 px-4 py-3">
       <p className="text-xs text-zinc-500">{label}</p>
       <p className={`mt-1 text-xl font-semibold tabular-nums ${toneClass}`}>{value}</p>
+    </div>
+  );
+}
+
+function HoldingScoreCard({ account }: { account: AccountGuide }) {
+  return (
+    <div className="rounded-2xl border border-zinc-800 bg-zinc-950 px-4 py-4">
+      <div className="flex items-center justify-between gap-3">
+        <div>
+          <h4 className="text-sm font-medium text-zinc-200">보유 종목별 점수</h4>
+          <p className="mt-1 text-xs text-zinc-500">
+            계좌 적합도, 기술 점수, 리포트 점수를 합친 종합 점수입니다.
+          </p>
+        </div>
+        <span className="text-xs text-zinc-500">낮은 점수 순</span>
+      </div>
+
+      <div className="mt-4 grid gap-3 md:grid-cols-2">
+        {account.holdingGuides.length > 0 ? (
+          account.holdingGuides.map((holding) => (
+            <div
+              key={`${account.key}-${holding.code ?? holding.name}`}
+              className="rounded-2xl border border-zinc-800 bg-zinc-900 px-4 py-4"
+            >
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <p className="text-sm font-medium text-zinc-100">{holding.name}</p>
+                  <p className="mt-1 text-xs text-zinc-500">
+                    {holding.category} · 비중 {formatPercent(holding.weightPct)}
+                  </p>
+                </div>
+                <div className="text-right">
+                  <p className={`text-2xl font-semibold tabular-nums ${getHoldingScoreClass(holding.score)}`}>
+                    {holding.score != null ? `${holding.score}점` : "-"}
+                  </p>
+                  <span className={`mt-2 inline-flex rounded-full border px-2 py-1 text-[11px] ${getSignalClass(holding.signal ?? holding.technicalSignal)}`}>
+                    {holding.signal ?? holding.technicalSignal ?? "N/A"}
+                  </span>
+                </div>
+              </div>
+
+              <div className="mt-4 grid grid-cols-3 gap-2 text-xs">
+                <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-3 py-2">
+                  <p className="text-zinc-500">계좌 적합도</p>
+                  <p className="mt-1 font-medium text-zinc-100">
+                    {holding.accountFitScore != null ? `${holding.accountFitScore}점` : "-"}
+                  </p>
+                </div>
+                <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-3 py-2">
+                  <p className="text-zinc-500">기술 점수</p>
+                  <p className="mt-1 font-medium text-zinc-100">
+                    {holding.technicalScore != null ? `${holding.technicalScore}점` : "-"}
+                  </p>
+                </div>
+                <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-3 py-2">
+                  <p className="text-zinc-500">리포트 점수</p>
+                  <p className="mt-1 font-medium text-zinc-100">
+                    {holding.reportScore != null ? `${holding.reportScore}점` : "-"}
+                  </p>
+                </div>
+              </div>
+
+              {holding.topDrivers.length > 0 && (
+                <p className="mt-3 text-xs text-zinc-400">
+                  핵심: {holding.topDrivers.slice(0, 2).join(" · ")}
+                </p>
+              )}
+              {holding.warnings.length > 0 && (
+                <p className="mt-1 text-xs text-zinc-500">
+                  주의: {holding.warnings[0]}
+                </p>
+              )}
+            </div>
+          ))
+        ) : (
+          <p className="text-sm text-zinc-500">보유 종목 점수 데이터가 아직 없습니다.</p>
+        )}
+      </div>
     </div>
   );
 }
@@ -260,6 +353,8 @@ export default function PortfolioGuidanceTabs({ accounts }: { accounts: AccountG
           <MetricCard label="레짐 적합도" value={selectedAccount.regimeFitScore != null ? `${selectedAccount.regimeFitScore}점` : "-"} />
           <MetricCard label="Stage 2 bias" value={selectedAccount.stage2Bias ?? "-"} />
         </div>
+
+        <HoldingScoreCard account={selectedAccount} />
 
         <div className="grid gap-4 xl:grid-cols-[0.95fr,1.05fr]">
           <div className="space-y-4">
