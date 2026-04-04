@@ -84,6 +84,13 @@ const REGIME_CATEGORY_MULTIPLIERS = {
   HIGH_VOL: { risk: 0.72, defensive: 1.12, cash: 1.55, other: 0.9 },
 };
 
+const SCORE_WEIGHT_MULTIPLIERS = {
+  risk: 1,
+  defensive: 0.82,
+  cash: 0.22,
+  other: 0.55,
+};
+
 function detectRegime(technical) {
   const market = technical?.market_context ?? {};
   const ma20 = market.ma?.ma20 ?? null;
@@ -136,6 +143,42 @@ function categoryBucket(category) {
   if (category === "금" || category === "배당/커버드콜") return "defensive";
   if (category === "기타") return "other";
   return "risk";
+}
+
+function categoryScoreWeight(category, marketValue) {
+  const bucket = categoryBucket(category);
+  const multiplier = SCORE_WEIGHT_MULTIPLIERS[bucket] ?? 1;
+  return Math.max(marketValue ?? 0, 0) * multiplier;
+}
+
+function getCategoryCurrentPct(allocationState, categoryName) {
+  return allocationState.categories.find((item) => item.category === categoryName)?.currentPct ?? 0;
+}
+
+function adjustedTechnicalScore({ category, rawScore, regimeName, allocationState }) {
+  if (typeof rawScore !== "number") return null;
+
+  if (category !== "현금파킹") {
+    return rawScore;
+  }
+
+  const currentCashPct = getCategoryCurrentPct(allocationState, "현금파킹");
+  const targetCashPct = allocationState.targetAllocation["현금파킹"] ?? 0;
+  const excessCashPct = currentCashPct - targetCashPct;
+  const policyBase =
+    regimeName === "HIGH_VOL"
+      ? 68
+      : regimeName === "BEAR"
+        ? 62
+        : excessCashPct > 0.2
+          ? 28
+          : excessCashPct > 0.08
+            ? 38
+            : Math.abs(excessCashPct) <= 0.05
+              ? 57
+              : 48;
+
+  return Math.round(clamp(rawScore * 0.15 + policyBase * 0.85, 0, 100));
 }
 
 function deriveFeatureVector(technicalItem) {
@@ -687,6 +730,12 @@ function accountNote(totalScore, riskPenaltyTotal) {
   return "배분 괴리 또는 리스크 패널티가 커서 공격적 확대보다 재정비가 우선입니다.";
 }
 
+function weightedAverage(items) {
+  const totalWeight = items.reduce((sum, item) => sum + Math.max(item.weight, 0), 0);
+  if (totalWeight <= 0) return null;
+  return items.reduce((sum, item) => sum + item.value * (item.weight / totalWeight), 0);
+}
+
 async function main() {
   const args = parseDateArgs(process.argv.slice(2));
   const stateDir = path.join(ROOT_DIR, "data", "analysis-state", args.date);
@@ -750,7 +799,14 @@ async function main() {
         referenceDate,
       });
       const computed = computeActionScore(technicalItem, reportImpact, regime.name);
-      const techBaseScore = technicalItem?.score ?? null;
+      const rawTechBaseScore = technicalItem?.score ?? null;
+      const techBaseScore = adjustedTechnicalScore({
+        category,
+        rawScore: rawTechBaseScore,
+        regimeName: regime.name,
+        allocationState,
+      });
+      const scoreWeight = categoryScoreWeight(category, holding.marketValue ?? 0);
       const explanation = holdingExplanation(holding, technicalItem, reportImpact, computed);
       const holdingKey = holding.code;
 
@@ -767,7 +823,8 @@ async function main() {
         reportImpacts: reportImpact.impacts,
         technical: {
           signal: technicalItem?.signal ?? null,
-          score: techBaseScore,
+          score: rawTechBaseScore,
+          adjustedScore: techBaseScore,
           rsi: technicalItem?.rsi ?? null,
           macd: technicalItem?.macd ?? null,
           bollinger: technicalItem?.bollinger ?? null,
@@ -789,12 +846,11 @@ async function main() {
       };
 
       const weight = Math.max(holding.marketValue ?? 0, 0);
-      if (typeof techBaseScore === "number") weightedTech.push({ weight, value: techBaseScore });
-      if (typeof reportImpact.score === "number") weightedReport.push({ weight, value: reportImpact.score });
-      weightedAction.push({ weight, value: computed.actionScore });
+      if (typeof techBaseScore === "number") weightedTech.push({ weight: scoreWeight, value: techBaseScore });
+      if (typeof reportImpact.score === "number") weightedReport.push({ weight: scoreWeight, value: reportImpact.score });
+      weightedAction.push({ weight: scoreWeight, value: computed.actionScore });
     }
 
-    const totalHoldingWeight = weightedAction.reduce((sum, item) => sum + item.weight, 0) || 1;
     const techCoverage =
       (account.holdings ?? []).filter((holding) => typeof technicalMap[holding.code]?.score === "number").length /
       Math.max((account.holdings ?? []).length, 1);
@@ -811,16 +867,9 @@ async function main() {
 
     const weights = effectiveWeights(profileName, coverage, regime.confidence);
 
-    const techScore =
-      weightedTech.length > 0
-        ? Math.round(
-            weightedTech.reduce((sum, item) => sum + item.value * (item.weight / totalHoldingWeight), 0),
-          )
-        : null;
-    const holdingReportScore =
-      weightedReport.length > 0
-        ? weightedReport.reduce((sum, item) => sum + item.value * (item.weight / totalHoldingWeight), 0)
-        : null;
+    const techScoreRaw = weightedAverage(weightedTech);
+    const techScore = techScoreRaw != null ? Math.round(techScoreRaw) : null;
+    const holdingReportScore = weightedAverage(weightedReport);
     const reportScore = Math.round(
       clamp(
         (holdingReportScore ?? 50) * 0.85 + (accountDirectImpact.score ?? 50) * 0.15,
@@ -847,12 +896,7 @@ async function main() {
       100,
     );
     const totalScore = Math.round(clamp(baseScore - riskPenalty.total, 0, 100));
-    const holdingsScore =
-      weightedAction.length > 0
-        ? Math.round(
-            weightedAction.reduce((sum, item) => sum + item.value * (item.weight / totalHoldingWeight), 0),
-          )
-        : 50;
+    const holdingsScore = Math.round(weightedAverage(weightedAction) ?? 50);
 
     accountScores[account.key] = {
       key: account.key,

@@ -442,6 +442,7 @@ function buildScoreDrivers(
   categories: CategoryGuide[],
 ) {
   const drivers: string[] = [];
+  const cashCategory = categories.find((category) => category.category === "현금파킹");
 
   const baseScoreParts = [
     `배분 ${allocationScore}점`,
@@ -511,6 +512,19 @@ function buildScoreDrivers(
     );
   }
 
+  if (cashCategory) {
+    const gapPct = (cashCategory.currentPct - cashCategory.targetPct) * 100;
+    if (cashCategory.currentPct > cashCategory.targetPct + 0.05) {
+      drivers.push(
+        `현금파킹 자산은 일반 위험자산처럼 단순 기술점수로 처리하지 않고, 현재 레짐과 목표 현금 비중을 반영한 정책 보정 점수를 사용합니다. 현재는 목표보다 ${formatPctPoint(gapPct)}p 높아 방어자산 자체가 나빠서가 아니라 과다 대기자금 때문에 총점이 눌립니다.`,
+      );
+    } else {
+      drivers.push(
+        "현금파킹 자산은 일반 위험자산처럼 RSI만으로 평가하지 않고, 현재 레짐과 목표 현금 비중을 반영한 정책 보정 점수를 사용합니다.",
+      );
+    }
+  }
+
   const biggestGap = categories
     .filter((category) => category.category !== "현금파킹")
     .sort((left, right) => Math.abs(right.gapPct) - Math.abs(left.gapPct))[0];
@@ -521,7 +535,7 @@ function buildScoreDrivers(
     );
   }
 
-  return drivers.slice(0, 5);
+  return drivers.slice(0, 6);
 }
 
 function buildImprovementActions(
