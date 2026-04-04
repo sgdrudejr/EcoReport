@@ -4,6 +4,9 @@ import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { TrendingUp, TrendingDown, Minus } from "lucide-react";
+import FloatingSectionIndex, {
+  type FloatingSectionIndexItem,
+} from "@/components/FloatingSectionIndex";
 import PortfolioGuidanceTabs from "@/components/PortfolioGuidanceTabs";
 import RecommendationBoard from "@/components/RecommendationBoard";
 import TriggerButton from "@/components/TriggerButton";
@@ -331,6 +334,15 @@ export default function DashboardPage() {
   const indices = market?.indices ?? {};
   const hasMarket = Object.keys(indices).length > 0;
   const totals = portfolio ? getPortfolioTotals(portfolio) : null;
+  const sectionIndexItems: FloatingSectionIndexItem[] = [
+    hasMarket ? { id: "market-overview", label: "시장지표" } : null,
+    portfolio ? { id: "portfolio-overview", label: "포트폴리오" } : null,
+    portfolioGuide ? { id: "portfolio-guide", label: "운용가이드" } : null,
+    recommendationBoard ? { id: "recommendation-board", label: "종목추천" } : null,
+    researchBriefing && researchSections.length > 0
+      ? { id: "research-summary", label: "경제리포트" }
+      : null,
+  ].filter((item): item is FloatingSectionIndexItem => item !== null);
 
   return (
     <main className="mx-auto w-full max-w-7xl px-4 py-6 md:px-6 md:py-8 space-y-8">
@@ -351,7 +363,7 @@ export default function DashboardPage() {
 
       {/* 시장 지표 카드 */}
       {hasMarket && (
-        <section>
+        <section id="market-overview" className="scroll-mt-24 md:scroll-mt-28">
           <h2 className="text-sm font-semibold text-zinc-500 uppercase tracking-wide mb-3">
             시장 지표
           </h2>
@@ -379,7 +391,7 @@ export default function DashboardPage() {
 
       {/* 포트폴리오 */}
       {(portfolio || strategy) && (
-        <section>
+        <section id="portfolio-overview" className="scroll-mt-24 md:scroll-mt-28">
           <h2 className="text-sm font-semibold text-zinc-500 uppercase tracking-wide mb-3">
             포트폴리오
           </h2>
@@ -481,7 +493,7 @@ export default function DashboardPage() {
       )}
 
       {portfolioGuide && (
-        <section>
+        <section id="portfolio-guide" className="scroll-mt-24 md:scroll-mt-28">
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between mb-3">
             <div>
               <h2 className="text-sm font-semibold text-zinc-500 uppercase tracking-wide">
@@ -566,10 +578,14 @@ export default function DashboardPage() {
         </section>
       )}
 
-      {recommendationBoard && <RecommendationBoard board={recommendationBoard} />}
+      {recommendationBoard && (
+        <section id="recommendation-board" className="scroll-mt-24 md:scroll-mt-28">
+          <RecommendationBoard board={recommendationBoard} />
+        </section>
+      )}
 
       {researchBriefing && researchSections.length > 0 && (
-        <section>
+        <section id="research-summary" className="scroll-mt-24 md:scroll-mt-28">
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between mb-3">
             <div>
               <h2 className="text-sm font-semibold text-zinc-500 uppercase tracking-wide">
@@ -708,6 +724,8 @@ export default function DashboardPage() {
           </div>
         )}
       </section>
+
+      <FloatingSectionIndex items={sectionIndexItems} />
     </main>
   );
 }
