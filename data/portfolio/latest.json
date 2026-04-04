@@ -1,0 +1,170 @@
+{
+  "date": "2026-04-03",
+  "updatedAt": "2026-04-03T23:40:02.516Z",
+  "source": {
+    "method": "screenshot_review",
+    "reviewer": "seo",
+    "note": "2026-04-03 업로드된 계좌 캡처 기준 수동 정리. ISA와 토스는 부분 캡처라 일부 종목 또는 현금이 누락되었을 수 있음."
+  },
+  "accounts": [
+    {
+      "key": "ISA",
+      "label": "ISA",
+      "accountNumber": "270-80-195368",
+      "evaluationAmount": 8384240,
+      "cashAvailable": 6277490,
+      "settlementCash": null,
+      "principal": 6304001,
+      "profitLoss": 2084749,
+      "profitRate": 33.07,
+      "screenshots": [
+        "1000147257.jpg"
+      ],
+      "incomplete": true,
+      "holdings": [
+        {
+          "code": "423160",
+          "name": "KODEX KOFR금리액티브(합성)",
+          "quantity": 4,
+          "avgPrice": null,
+          "currentPrice": null,
+          "marketValue": 442720,
+          "purchaseValue": null,
+          "profitLoss": null,
+          "profitRate": null,
+          "note": "부분 캡처로 세부 수치 미확인"
+        },
+        {
+          "code": "458760",
+          "name": "TIGER 미국배당+7%프리미엄다우존스",
+          "quantity": 50,
+          "avgPrice": 10210,
+          "currentPrice": 10205,
+          "marketValue": 510250,
+          "purchaseValue": 510500,
+          "profitLoss": -250,
+          "profitRate": -0.05,
+          "note": "화면에 보인 보유분만 반영"
+        },
+        {
+          "name": "TIGER코리아TOP10",
+          "code": "2921050",
+          "quantity": 20,
+          "avgPrice": 28685,
+          "currentPrice": 28720,
+          "marketValue": 574400,
+          "purchaseValue": 573700,
+          "profitLoss": 700,
+          "profitRate": null,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "key": "PENSION",
+      "label": "연금저축",
+      "accountNumber": "270-81-572490",
+      "evaluationAmount": 1512270,
+      "cashAvailable": 5565201,
+      "settlementCash": 4047251,
+      "principal": 1027340,
+      "profitLoss": -155,
+      "profitRate": -0.02,
+      "screenshots": [
+        "1000147239.jpg"
+      ],
+      "incomplete": false,
+      "holdings": [
+        {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "quantity": 2,
+          "avgPrice": 26640,
+          "currentPrice": 26650,
+          "marketValue": 53300,
+          "purchaseValue": 53280,
+          "profitLoss": 20,
+          "profitRate": 0.04,
+          "note": null
+        },
+        {
+          "code": "133690",
+          "name": "TIGER 미국나스닥100",
+          "quantity": 3,
+          "avgPrice": 160520,
+          "currentPrice": 160480,
+          "marketValue": 481440,
+          "purchaseValue": 481560,
+          "profitLoss": -120,
+          "profitRate": -0.02,
+          "note": null
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "quantity": 20,
+          "avgPrice": 24625,
+          "currentPrice": 24620,
+          "marketValue": 492400,
+          "purchaseValue": 492500,
+          "profitLoss": -100,
+          "profitRate": -0.02,
+          "note": null
+        }
+      ]
+    },
+    {
+      "key": "TOSS",
+      "label": "토스증권",
+      "accountNumber": null,
+      "evaluationAmount": 1298790,
+      "cashAvailable": 3009844,
+      "settlementCash": null,
+      "principal": 1300945,
+      "profitLoss": -2155,
+      "profitRate": -0.17,
+      "screenshots": [
+        "1000147255.jpg"
+      ],
+      "incomplete": true,
+      "holdings": [
+        {
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "quantity": 7,
+          "avgPrice": null,
+          "currentPrice": 63995,
+          "marketValue": 447965,
+          "purchaseValue": 448670,
+          "profitLoss": -705,
+          "profitRate": -0.1,
+          "note": null
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "quantity": 15,
+          "avgPrice": null,
+          "currentPrice": 31095,
+          "marketValue": 466425,
+          "purchaseValue": 466475,
+          "profitLoss": -50,
+          "profitRate": -0.01,
+          "note": null
+        },
+        {
+          "code": "449450",
+          "name": "PLUS K방산",
+          "quantity": 5,
+          "avgPrice": null,
+          "currentPrice": 76880,
+          "marketValue": 384400,
+          "purchaseValue": 385800,
+          "profitLoss": -1400,
+          "profitRate": -0.36,
+          "note": null
+        }
+      ]
+    }
+  ]
+}
