@@ -139,6 +139,35 @@ npm run dev -- --hostname 0.0.0.0
 - [UPDATE_LOG.md](/Users/seo/stock-pilot/docs/UPDATE_LOG.md)
 - [FAILURES_AND_FALLBACKS.md](/Users/seo/stock-pilot/FAILURES_AND_FALLBACKS.md)
 
+### 대시보드 로컬 키 설정
+
+로컬 대시보드에서 OCR과 GitHub 동기화를 자동으로 쓰려면 아래 파일을 채웁니다.
+
+```bash
+cd /Users/seo/stock-pilot/dashboard
+cp .env.local.example .env.local
+```
+
+그다음 `dashboard/.env.local`에 값을 넣습니다.
+
+```bash
+GEMINI_API_KEY=...
+GEMINI_PORTFOLIO_MODEL=gemini-2.5-flash
+GITHUB_TOKEN=...
+```
+
+동작 방식:
+
+- `GEMINI_API_KEY`: `/portfolio/update`의 이미지 OCR, 일괄 분류, 숫자 추출
+- `GITHUB_TOKEN`: 포트폴리오 저장 시 `main` 자동 동기화, 수동 LLM 저장 동기화, 대시보드의 분석 실행 버튼에서 GitHub `repository_dispatch` 호출
+
+즉 `GITHUB_TOKEN`이 들어가 있으면 `/portfolio/update`에서 저장할 때 로컬 파일 저장 후 GitHub `main`에도 자동 반영됩니다.
+
+권한 메모:
+
+- 고전형 PAT를 쓴다면 보통 `repo` 권한이면 충분합니다.
+- fine-grained PAT를 쓴다면 이 저장소 기준 `Contents: write`가 필요합니다.
+
 ## Stage 1~4 개요
 
 ### Stage 1. 리포트 연구 노트화
