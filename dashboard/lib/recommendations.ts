@@ -1,12 +1,9 @@
-import fs from "fs";
-import path from "path";
 import { loadLatestPortfolio, type PortfolioSnapshot } from "@/lib/portfolio";
-import { resolveRepoRoot } from "@/lib/repo-root";
-
-const REPO_ROOT = resolveRepoRoot();
-const ANALYSIS_DIR = path.join(REPO_ROOT, "data", "analysis-state");
-const TECHNICAL_DIR = path.join(REPO_ROOT, "data", "technical");
-const WATCHLIST_FILE = path.join(REPO_ROOT, "config", "watchlist.json");
+import {
+  listRepoDirectories,
+  listRepoFiles,
+  readRepoJsonFile,
+} from "@/lib/repo-artifacts";
 
 type WatchlistEntry = {
   code: string;
@@ -267,35 +264,18 @@ const CODE_METADATA: Record<string, CandidateMeta> = {
   },
 };
 
-function parseJsonFile<T>(filePath: string): T | null {
-  try {
-    return JSON.parse(fs.readFileSync(filePath, "utf-8")) as T;
-  } catch {
-    return null;
-  }
-}
-
-function findLatestDatedFile(fileName: string, dateHint?: string) {
-  if (!fs.existsSync(ANALYSIS_DIR)) return null;
-
-  if (dateHint) {
-    const preferred = path.join(ANALYSIS_DIR, dateHint, fileName);
-    if (fs.existsSync(preferred)) {
-      return preferred;
-    }
+function findLatestAnalysisDate(fileName: string, dateHint?: string) {
+  if (
+    dateHint &&
+    readRepoJsonFile(`data/analysis-state/${dateHint}/${fileName}`)
+  ) {
+    return dateHint;
   }
 
-  const dirs = fs
-    .readdirSync(ANALYSIS_DIR, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory())
-    .map((entry) => entry.name)
-    .sort()
-    .reverse();
-
+  const dirs = listRepoDirectories("data/analysis-state").sort().reverse();
   for (const dir of dirs) {
-    const candidate = path.join(ANALYSIS_DIR, dir, fileName);
-    if (fs.existsSync(candidate)) {
-      return candidate;
+    if (readRepoJsonFile(`data/analysis-state/${dir}/${fileName}`)) {
+      return dir;
     }
   }
 
@@ -303,75 +283,81 @@ function findLatestDatedFile(fileName: string, dateHint?: string) {
 }
 
 function loadStage1(dateHint?: string) {
-  const filePath = findLatestDatedFile("stage1-report-extracts-v2.json", dateHint);
-  if (!filePath) return { date: dateHint ?? null, extracts: [] as Stage1Extract[] };
-  const parsed = parseJsonFile<{ date?: string; extracts?: Stage1Extract[] }>(filePath);
+  const date = findLatestAnalysisDate("stage1-report-extracts-v2.json", dateHint);
+  if (!date) return { date: dateHint ?? null, extracts: [] as Stage1Extract[] };
+  const parsed = readRepoJsonFile<{
+    date?: string;
+    extracts?: Stage1Extract[];
+  }>(`data/analysis-state/${date}/stage1-report-extracts-v2.json`);
   return {
-    date: parsed?.date ?? path.basename(path.dirname(filePath)),
+    date: parsed?.date ?? date,
     extracts: parsed?.extracts ?? [],
   };
 }
 
 function loadStage2(dateHint?: string) {
-  const filePath = findLatestDatedFile("stage2-strategy-options.json", dateHint);
-  if (!filePath) return { date: dateHint ?? null, candidates: [] as Stage2Candidate[] };
-  const parsed = parseJsonFile<{ date?: string; candidate_scores?: Stage2Candidate[] }>(filePath);
+  const date = findLatestAnalysisDate("stage2-strategy-options.json", dateHint);
+  if (!date) return { date: dateHint ?? null, candidates: [] as Stage2Candidate[] };
+  const parsed = readRepoJsonFile<{
+    date?: string;
+    candidate_scores?: Stage2Candidate[];
+  }>(`data/analysis-state/${date}/stage2-strategy-options.json`);
   return {
-    date: parsed?.date ?? path.basename(path.dirname(filePath)),
+    date: parsed?.date ?? date,
     candidates: parsed?.candidate_scores ?? [],
   };
 }
 
 function loadStage3(dateHint?: string) {
-  const filePath = findLatestDatedFile("stage3-quant-scores.json", dateHint);
-  if (!filePath) return { date: dateHint ?? null, holdings: {} as Record<string, Stage3Holding> };
-  const parsed = parseJsonFile<{
+  const date = findLatestAnalysisDate("stage3-quant-scores.json", dateHint);
+  if (!date) return { date: dateHint ?? null, holdings: {} as Record<string, Stage3Holding> };
+  const parsed = readRepoJsonFile<{
     date?: string;
     holdings?: Record<string, Stage3Holding>;
-  }>(filePath);
+  }>(`data/analysis-state/${date}/stage3-quant-scores.json`);
   return {
-    date: parsed?.date ?? path.basename(path.dirname(filePath)),
+    date: parsed?.date ?? date,
     holdings: parsed?.holdings ?? {},
   };
 }
 
 function loadStage4(dateHint?: string) {
-  const filePath = findLatestDatedFile("stage4-execution-plan.json", dateHint);
-  if (!filePath) return { date: dateHint ?? null, accountPlans: [] as Stage4AccountPlan[] };
-  const parsed = parseJsonFile<{
+  const date = findLatestAnalysisDate("stage4-execution-plan.json", dateHint);
+  if (!date) return { date: dateHint ?? null, accountPlans: [] as Stage4AccountPlan[] };
+  const parsed = readRepoJsonFile<{
     date?: string;
     accountPlans?: Stage4AccountPlan[];
-  }>(filePath);
+  }>(`data/analysis-state/${date}/stage4-execution-plan.json`);
   return {
-    date: parsed?.date ?? path.basename(path.dirname(filePath)),
+    date: parsed?.date ?? date,
     accountPlans: parsed?.accountPlans ?? [],
   };
 }
 
 function loadLatestTechnical(dateHint?: string) {
-  try {
-    const preferredPath = dateHint ? path.join(TECHNICAL_DIR, `${dateHint}.json`) : null;
-    if (preferredPath && fs.existsSync(preferredPath)) {
-      return parseJsonFile<{ date?: string; scores?: Record<string, TechnicalScore> }>(preferredPath);
+  if (dateHint) {
+    const preferred = readRepoJsonFile<{
+      date?: string;
+      scores?: Record<string, TechnicalScore>;
+    }>(`data/technical/${dateHint}.json`);
+    if (preferred) {
+      return preferred;
     }
-
-    const file = fs
-      .readdirSync(TECHNICAL_DIR)
-      .filter((entry) => entry.endsWith(".json"))
-      .sort()
-      .reverse()[0];
-
-    if (!file) return null;
-    return parseJsonFile<{ date?: string; scores?: Record<string, TechnicalScore> }>(
-      path.join(TECHNICAL_DIR, file),
-    );
-  } catch {
-    return null;
   }
+
+  const file = listRepoFiles("data/technical")
+    .filter((entry) => /^\d{4}-\d{2}-\d{2}\.json$/.test(entry))
+    .sort()
+    .reverse()[0];
+
+  if (!file) return null;
+  return readRepoJsonFile<{ date?: string; scores?: Record<string, TechnicalScore> }>(
+    `data/technical/${file}`,
+  );
 }
 
 function loadWatchlistUniverse() {
-  const config = parseJsonFile<WatchlistConfig>(WATCHLIST_FILE);
+  const config = readRepoJsonFile<WatchlistConfig>("config/watchlist.json");
   const result = new Map<string, CandidateMeta>();
 
   for (const entry of config?.core_etf ?? []) {
@@ -634,7 +620,6 @@ export function loadRecommendationBoard(dateHint?: string): RecommendationBoard 
         technicalItem?.score ??
         stage3Holding?.technicalBaseScore ??
         null;
-      const actionScore = stage3Holding?.actionScore ?? null;
       const stage2Score = stage2StanceScore(stage2Candidate);
       const themeScores = meta.themes
         .map((theme) => themeScoreMap.get(theme)?.signalScore ?? 50);
