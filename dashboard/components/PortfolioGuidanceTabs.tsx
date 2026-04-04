@@ -176,6 +176,69 @@ function HoldingScoreCard({ account }: { account: AccountGuide }) {
   const [selectedHoldingKey, setSelectedHoldingKey] = useState(
     account.holdingGuides[0] ? getHoldingKey(account.holdingGuides[0]) : "",
   );
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const touchStateRef = useRef<{
+    key: string | null;
+    x: number;
+    y: number;
+    moved: boolean;
+    scrollLeft: number;
+    startedAt: number;
+  }>({
+    key: null,
+    x: 0,
+    y: 0,
+    moved: false,
+    scrollLeft: 0,
+    startedAt: 0,
+  });
+
+  function resetTouchState() {
+    touchStateRef.current = {
+      key: null,
+      x: 0,
+      y: 0,
+      moved: false,
+      scrollLeft: 0,
+      startedAt: 0,
+    };
+  }
+
+  function beginPress(key: string, clientX: number, clientY: number, startedAt: number) {
+    touchStateRef.current = {
+      key,
+      x: clientX,
+      y: clientY,
+      moved: false,
+      scrollLeft: containerRef.current?.scrollLeft ?? 0,
+      startedAt,
+    };
+  }
+
+  function updatePress(key: string, clientX: number, clientY: number) {
+    if (touchStateRef.current.key !== key) return;
+    const deltaX = Math.abs(clientX - touchStateRef.current.x);
+    const deltaY = Math.abs(clientY - touchStateRef.current.y);
+    if (deltaX > 18 || deltaY > 18) {
+      touchStateRef.current.moved = true;
+    }
+  }
+
+  function endPress(key: string, endedAt: number) {
+    const current = touchStateRef.current;
+    const scrollDelta = Math.abs((containerRef.current?.scrollLeft ?? 0) - current.scrollLeft);
+    const elapsed = endedAt - current.startedAt;
+    const shouldSelect =
+      current.key === key &&
+      scrollDelta < 8 &&
+      (!current.moved || elapsed < 220);
+
+    resetTouchState();
+
+    if (shouldSelect) {
+      setSelectedHoldingKey(key);
+    }
+  }
 
   const resolvedHoldingKey = account.holdingGuides.some(
     (holding) => getHoldingKey(holding) === selectedHoldingKey,
@@ -205,16 +268,51 @@ function HoldingScoreCard({ account }: { account: AccountGuide }) {
       <div className="mt-4">
         {account.holdingGuides.length > 0 && selectedHolding ? (
           <>
-            <div className="-mx-1 overflow-x-auto pb-2">
+            <div
+              ref={containerRef}
+              className="-mx-1 overflow-x-auto pb-2"
+            >
               <div className="flex gap-2 px-1">
                 {account.holdingGuides.map((holding) => {
+                  const holdingKey = getHoldingKey(holding);
                   return (
                     <button
-                      key={`${account.key}-${getHoldingKey(holding)}`}
+                      key={`${account.key}-${holdingKey}`}
                       type="button"
-                      onClick={() => setSelectedHoldingKey(getHoldingKey(holding))}
-                      className={`min-w-[220px] rounded-2xl border px-4 py-3 text-left transition ${
-                        getHoldingKey(holding) === resolvedHoldingKey
+                      onClick={() => setSelectedHoldingKey(holdingKey)}
+                      onPointerDown={(event) => {
+                        if (event.pointerType === "mouse") return;
+                        beginPress(holdingKey, event.clientX, event.clientY, event.timeStamp);
+                      }}
+                      onPointerMove={(event) => {
+                        if (event.pointerType === "mouse") return;
+                        updatePress(holdingKey, event.clientX, event.clientY);
+                      }}
+                      onPointerUp={(event) => {
+                        if (event.pointerType === "mouse") return;
+                        endPress(holdingKey, event.timeStamp);
+                      }}
+                      onPointerCancel={() => {
+                        resetTouchState();
+                      }}
+                      onTouchStart={(event) => {
+                        const touch = event.touches[0];
+                        if (!touch) return;
+                        beginPress(holdingKey, touch.clientX, touch.clientY, event.timeStamp);
+                      }}
+                      onTouchMove={(event) => {
+                        const touch = event.touches[0];
+                        if (!touch) return;
+                        updatePress(holdingKey, touch.clientX, touch.clientY);
+                      }}
+                      onTouchEnd={(event) => {
+                        endPress(holdingKey, event.timeStamp);
+                      }}
+                      onTouchCancel={() => {
+                        resetTouchState();
+                      }}
+                      className={`min-w-[220px] shrink-0 rounded-2xl border px-4 py-3 text-left transition active:scale-[0.99] touch-manipulation ${
+                        holdingKey === resolvedHoldingKey
                           ? "border-emerald-500/60 bg-emerald-950/20 shadow-[0_0_0_1px_rgba(16,185,129,0.16)]"
                           : "border-zinc-800 bg-zinc-900"
                       }`}
