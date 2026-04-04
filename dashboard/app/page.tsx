@@ -5,8 +5,10 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { TrendingUp, TrendingDown, Minus } from "lucide-react";
 import PortfolioGuidanceTabs from "@/components/PortfolioGuidanceTabs";
+import RecommendationBoard from "@/components/RecommendationBoard";
 import TriggerButton from "@/components/TriggerButton";
 import { buildPortfolioGuide } from "@/lib/portfolio-guidance";
+import { loadRecommendationBoard } from "@/lib/recommendations";
 import { resolveRepoRoot } from "@/lib/repo-root";
 import {
   getAccountHoldingCount,
@@ -318,6 +320,9 @@ export default function DashboardPage() {
   const strategy = loadStrategy();
   const portfolio = loadLatestPortfolio();
   const portfolioGuide = portfolio ? buildPortfolioGuide(portfolio) : null;
+  const recommendationBoard = loadRecommendationBoard(
+    briefing?.date ?? portfolio?.date ?? market?.date,
+  );
 
   const indices = market?.indices ?? {};
   const hasMarket = Object.keys(indices).length > 0;
@@ -498,6 +503,8 @@ export default function DashboardPage() {
           <PortfolioGuidanceTabs accounts={portfolioGuide.accounts} />
         </section>
       )}
+
+      {recommendationBoard && <RecommendationBoard board={recommendationBoard} />}
 
       {/* 어드바이저 브리핑 */}
       <section>
