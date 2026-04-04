@@ -7,6 +7,7 @@ import { TrendingUp, TrendingDown, Minus } from "lucide-react";
 import PortfolioGuidanceTabs from "@/components/PortfolioGuidanceTabs";
 import TriggerButton from "@/components/TriggerButton";
 import { buildPortfolioGuide } from "@/lib/portfolio-guidance";
+import { resolveRepoRoot } from "@/lib/repo-root";
 import {
   getAccountHoldingCount,
   getAccountHoldingsProfitLoss,
@@ -16,7 +17,9 @@ import {
   type PortfolioAccount,
 } from "@/lib/portfolio";
 
-const REPO_ROOT = path.resolve(process.cwd(), "..");
+export const dynamic = "force-dynamic";
+
+const REPO_ROOT = resolveRepoRoot();
 
 // ── 데이터 로더 ────────────────────────────────────────────────────────
 

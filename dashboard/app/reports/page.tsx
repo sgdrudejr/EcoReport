@@ -1,38 +1,18 @@
-import fs from "fs";
-import path from "path";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { FileText, ChevronRight } from "lucide-react";
+import { loadReports, type ReportDocument } from "@/lib/reports";
 
-const REPO_ROOT = path.resolve(process.cwd(), "..");
+export const dynamic = "force-dynamic";
 
-interface Report {
-  filename: string;
-  date: string;
-  slug: string;
-  content: string;
-}
-
-function loadReports(): Report[] {
-  const dir = path.join(REPO_ROOT, "reports", "daily");
-  if (!fs.existsSync(dir)) return [];
-
-  return fs
-    .readdirSync(dir)
-    .filter((f) => f.endsWith("-briefing.md"))
-    .sort()
-    .reverse()
-    .map((filename) => {
-      const content = fs.readFileSync(path.join(dir, filename), "utf-8");
-      const date = filename.slice(0, 10);
-      // filename: 2026-04-03-xxx-briefing.md → slug: 2026-04-03-xxx-briefing
-      const slug = filename.replace(/\.md$/, "");
-      return { filename, date, slug, content };
-    });
-}
-
-function ReportCard({ report, expanded }: { report: Report; expanded: boolean }) {
+function ReportCard({
+  report,
+  expanded,
+}: {
+  report: ReportDocument;
+  expanded: boolean;
+}) {
   return (
     <div className="bg-zinc-900 rounded-xl border border-zinc-800 overflow-hidden">
       <div className="flex items-center justify-between px-5 py-4">

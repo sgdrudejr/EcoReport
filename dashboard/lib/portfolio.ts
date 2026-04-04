@@ -1,7 +1,8 @@
 import fs from "fs";
 import path from "path";
+import { resolveRepoRoot } from "@/lib/repo-root";
 
-const REPO_ROOT = path.resolve(process.cwd(), "..");
+const REPO_ROOT = resolveRepoRoot();
 const PORTFOLIO_FILE = path.join(REPO_ROOT, "data", "portfolio", "latest.json");
 
 export interface PortfolioHolding {
