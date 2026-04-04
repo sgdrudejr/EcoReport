@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import type { AccountGuide } from "@/lib/portfolio-guidance";
 
 function categoryBarWidth(value: number) {
@@ -257,6 +257,18 @@ function MobileSelector({
   selectedKey: string;
   onSelect: (key: string) => void;
 }) {
+  const touchStateRef = useRef<{
+    key: string | null;
+    x: number;
+    y: number;
+    moved: boolean;
+  }>({
+    key: null,
+    x: 0,
+    y: 0,
+    moved: false,
+  });
+
   return (
     <div className="sticky top-2 z-30 -mx-4 px-4 md:hidden">
       <div className="rounded-2xl border border-zinc-800/80 bg-zinc-950/92 p-2 shadow-[0_10px_30px_rgba(0,0,0,0.28)] backdrop-blur">
@@ -272,6 +284,48 @@ function MobileSelector({
                 type="button"
                 aria-pressed={isSelected}
                 onClick={() => onSelect(account.key)}
+                onTouchStart={(event) => {
+                  const touch = event.touches[0];
+                  if (!touch) return;
+                  touchStateRef.current = {
+                    key: account.key,
+                    x: touch.clientX,
+                    y: touch.clientY,
+                    moved: false,
+                  };
+                }}
+                onTouchMove={(event) => {
+                  const touch = event.touches[0];
+                  if (!touch || touchStateRef.current.key !== account.key) return;
+                  const deltaX = Math.abs(touch.clientX - touchStateRef.current.x);
+                  const deltaY = Math.abs(touch.clientY - touchStateRef.current.y);
+                  if (deltaX > 10 || deltaY > 10) {
+                    touchStateRef.current.moved = true;
+                  }
+                }}
+                onTouchEnd={(event) => {
+                  if (
+                    touchStateRef.current.key === account.key &&
+                    !touchStateRef.current.moved
+                  ) {
+                    event.preventDefault();
+                    onSelect(account.key);
+                  }
+                  touchStateRef.current = {
+                    key: null,
+                    x: 0,
+                    y: 0,
+                    moved: false,
+                  };
+                }}
+                onTouchCancel={() => {
+                  touchStateRef.current = {
+                    key: null,
+                    x: 0,
+                    y: 0,
+                    moved: false,
+                  };
+                }}
                 className={`min-w-[172px] snap-start rounded-2xl border px-4 py-3 text-left transition active:scale-[0.99] touch-manipulation ${
                   isSelected
                     ? "border-emerald-500/60 bg-emerald-950/25 shadow-[0_0_0_1px_rgba(16,185,129,0.18)]"
