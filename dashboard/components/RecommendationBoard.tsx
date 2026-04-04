@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import type { RecommendationBoard as RecommendationBoardData } from "@/lib/recommendations";
 
 function formatSignedPercent(value: number | null | undefined) {
@@ -29,6 +30,12 @@ export default function RecommendationBoard({
 }: {
   board: RecommendationBoardData;
 }) {
+  const [selectedLaneKey, setSelectedLaneKey] = useState(board.lanes[0]?.key ?? "core");
+  const activeLane =
+    board.lanes.find((lane) => lane.key === selectedLaneKey) ?? board.lanes[0] ?? null;
+
+  if (!activeLane) return null;
+
   return (
     <section className="space-y-4">
       <div className="flex items-start justify-between gap-4">
@@ -63,35 +70,58 @@ export default function RecommendationBoard({
         </div>
       </div>
 
-      <div className="space-y-4">
-        {board.lanes.map((lane) => (
-          <div
-            key={lane.key}
-            className="rounded-2xl border border-zinc-800 bg-zinc-900 p-5"
-          >
-            <div className="flex items-start justify-between gap-4">
+      <div className="rounded-2xl border border-zinc-800 bg-zinc-900 p-5">
+        <div className="-mx-1 overflow-x-auto pb-2">
+          <div className="flex gap-2 px-1">
+            {board.lanes.map((lane) => {
+              const isActive = lane.key === activeLane.key;
+              return (
+                <button
+                  key={lane.key}
+                  type="button"
+                  onClick={() => setSelectedLaneKey(lane.key)}
+                  className={`min-w-[150px] rounded-2xl border px-4 py-3 text-left transition ${
+                    isActive
+                      ? "border-emerald-500/60 bg-emerald-950/20 shadow-[0_0_0_1px_rgba(16,185,129,0.16)]"
+                      : "border-zinc-800 bg-zinc-950"
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <p className="text-sm font-medium text-zinc-100">{lane.title}</p>
+                    <span className="rounded-full border border-zinc-800 bg-zinc-900 px-2 py-0.5 text-[11px] text-zinc-400">
+                      {lane.items.length}
+                    </span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="mt-4">
+          <div className="flex items-start justify-between gap-4">
               <div>
-                <h3 className="text-lg font-semibold text-zinc-100">{lane.title}</h3>
-                <p className="mt-1 text-sm text-zinc-500">{lane.description}</p>
+                <h3 className="text-lg font-semibold text-zinc-100">{activeLane.title}</h3>
+                <p className="mt-1 text-sm text-zinc-500">{activeLane.description}</p>
               </div>
               <span className="rounded-full border border-zinc-800 bg-zinc-950 px-3 py-1 text-xs text-zinc-400">
-                {lane.items.length}개
+                {activeLane.items.length}개
               </span>
-            </div>
+          </div>
 
-            {lane.items.length === 0 ? (
-              <div className="mt-4 rounded-2xl border border-dashed border-zinc-800 bg-zinc-950/60 px-4 py-6 text-sm text-zinc-500">
-                현재 데이터 기준으로는 이 레인의 확신도 높은 후보가 아직 부족합니다. 리포트 영향도와 기술 점수가 더 쌓이면 자동으로 채워집니다.
-              </div>
-            ) : (
-              <div className="mt-4 grid gap-3 md:grid-cols-2">
-                {lane.items.map((item) => {
-                  const change = formatSignedPercent(item.changePct);
-                  return (
-                    <article
-                      key={`${lane.key}-${item.code}`}
-                      className="rounded-2xl border border-zinc-800 bg-zinc-950 p-4"
-                    >
+          {activeLane.items.length === 0 ? (
+            <div className="mt-4 rounded-2xl border border-dashed border-zinc-800 bg-zinc-950/60 px-4 py-6 text-sm text-zinc-500">
+              현재 데이터 기준으로는 이 레인의 확신도 높은 후보가 아직 부족합니다. 리포트 영향도와 기술 점수가 더 쌓이면 자동으로 채워집니다.
+            </div>
+          ) : (
+            <div className="mt-4 grid gap-3 md:grid-cols-2">
+              {activeLane.items.map((item) => {
+                const change = formatSignedPercent(item.changePct);
+                return (
+                  <article
+                    key={`${activeLane.key}-${item.code}`}
+                    className="rounded-2xl border border-zinc-800 bg-zinc-950 p-4"
+                  >
                     <div className="flex items-start justify-between gap-3">
                       <div>
                         <div className="flex flex-wrap items-center gap-2">
@@ -202,13 +232,12 @@ export default function RecommendationBoard({
                         </ul>
                       </div>
                     )}
-                    </article>
-                  );
-                })}
-              </div>
-            )}
-          </div>
-        ))}
+                  </article>
+                );
+              })}
+            </div>
+          )}
+        </div>
       </div>
     </section>
   );
