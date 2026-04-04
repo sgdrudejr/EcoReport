@@ -3,6 +3,8 @@
 import { useMemo, useRef, useState } from "react";
 import type { AccountGuide } from "@/lib/portfolio-guidance";
 
+type HoldingGuideItem = AccountGuide["holdingGuides"][number];
+
 function categoryBarWidth(value: number) {
   return `${Math.max(0, Math.min(100, value * 100))}%`;
 }
@@ -66,7 +68,28 @@ function MetricCard({
   );
 }
 
+function getHoldingKey(holding: HoldingGuideItem) {
+  return holding.code ?? holding.name;
+}
+
 function HoldingScoreCard({ account }: { account: AccountGuide }) {
+  const [selectedHoldingKey, setSelectedHoldingKey] = useState(
+    account.holdingGuides[0] ? getHoldingKey(account.holdingGuides[0]) : "",
+  );
+
+  const resolvedHoldingKey = account.holdingGuides.some(
+    (holding) => getHoldingKey(holding) === selectedHoldingKey,
+  )
+    ? selectedHoldingKey
+    : account.holdingGuides[0]
+      ? getHoldingKey(account.holdingGuides[0])
+      : "";
+
+  const selectedHolding =
+    account.holdingGuides.find((holding) => getHoldingKey(holding) === resolvedHoldingKey) ??
+    account.holdingGuides[0] ??
+    null;
+
   return (
     <div className="rounded-2xl border border-zinc-800 bg-zinc-950 px-4 py-4">
       <div className="flex items-center justify-between gap-3">
@@ -79,26 +102,64 @@ function HoldingScoreCard({ account }: { account: AccountGuide }) {
         <span className="text-xs text-zinc-500">낮은 점수 순</span>
       </div>
 
-      <div className="mt-4 grid gap-3 md:grid-cols-2">
-        {account.holdingGuides.length > 0 ? (
-          account.holdingGuides.map((holding) => (
-            <div
-              key={`${account.key}-${holding.code ?? holding.name}`}
-              className="rounded-2xl border border-zinc-800 bg-zinc-900 px-4 py-4"
-            >
+      <div className="mt-4">
+        {account.holdingGuides.length > 0 && selectedHolding ? (
+          <>
+            <div className="-mx-1 overflow-x-auto pb-2">
+              <div className="flex gap-2 px-1">
+                {account.holdingGuides.map((holding) => {
+                  return (
+                    <button
+                      key={`${account.key}-${getHoldingKey(holding)}`}
+                      type="button"
+                      onClick={() => setSelectedHoldingKey(getHoldingKey(holding))}
+                      className={`min-w-[220px] rounded-2xl border px-4 py-3 text-left transition ${
+                        getHoldingKey(holding) === resolvedHoldingKey
+                          ? "border-emerald-500/60 bg-emerald-950/20 shadow-[0_0_0_1px_rgba(16,185,129,0.16)]"
+                          : "border-zinc-800 bg-zinc-900"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between gap-3">
+                        <div className="min-w-0">
+                          <p className="truncate text-sm font-medium text-zinc-100">{holding.name}</p>
+                          <p className="mt-1 text-xs text-zinc-500">{holding.category}</p>
+                        </div>
+                        <p
+                          className={`shrink-0 text-lg font-semibold tabular-nums ${getHoldingScoreClass(
+                            holding.score,
+                          )}`}
+                        >
+                          {holding.score != null ? `${holding.score}점` : "-"}
+                        </p>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="rounded-2xl border border-zinc-800 bg-zinc-900 px-4 py-4">
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <p className="text-sm font-medium text-zinc-100">{holding.name}</p>
+                  <p className="text-sm font-medium text-zinc-100">{selectedHolding.name}</p>
                   <p className="mt-1 text-xs text-zinc-500">
-                    {holding.category} · 비중 {formatPercent(holding.weightPct)}
+                    {selectedHolding.category} · 비중 {formatPercent(selectedHolding.weightPct)}
                   </p>
                 </div>
                 <div className="text-right">
-                  <p className={`text-2xl font-semibold tabular-nums ${getHoldingScoreClass(holding.score)}`}>
-                    {holding.score != null ? `${holding.score}점` : "-"}
+                  <p
+                    className={`text-2xl font-semibold tabular-nums ${getHoldingScoreClass(
+                      selectedHolding.score,
+                    )}`}
+                  >
+                    {selectedHolding.score != null ? `${selectedHolding.score}점` : "-"}
                   </p>
-                  <span className={`mt-2 inline-flex rounded-full border px-2 py-1 text-[11px] ${getSignalClass(holding.signal ?? holding.technicalSignal)}`}>
-                    {holding.signal ?? holding.technicalSignal ?? "N/A"}
+                  <span
+                    className={`mt-2 inline-flex rounded-full border px-2 py-1 text-[11px] ${getSignalClass(
+                      selectedHolding.signal ?? selectedHolding.technicalSignal,
+                    )}`}
+                  >
+                    {selectedHolding.signal ?? selectedHolding.technicalSignal ?? "N/A"}
                   </span>
                 </div>
               </div>
@@ -107,45 +168,50 @@ function HoldingScoreCard({ account }: { account: AccountGuide }) {
                 <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-3 py-2">
                   <p className="text-zinc-500">계좌 적합도</p>
                   <p className="mt-1 font-medium text-zinc-100">
-                    {holding.accountFitScore != null ? `${holding.accountFitScore}점` : "-"}
+                    {selectedHolding.accountFitScore != null
+                      ? `${selectedHolding.accountFitScore}점`
+                      : "-"}
                   </p>
                 </div>
                 <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-3 py-2">
                   <p className="text-zinc-500">기술 점수</p>
                   <p className="mt-1 font-medium text-zinc-100">
-                    {holding.technicalScore != null ? `${holding.technicalScore}점` : "-"}
+                    {selectedHolding.technicalScore != null
+                      ? `${selectedHolding.technicalScore}점`
+                      : "-"}
                   </p>
                 </div>
                 <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-3 py-2">
                   <p className="text-zinc-500">리포트 점수</p>
                   <p className="mt-1 font-medium text-zinc-100">
-                    {holding.reportStatus === "available" && holding.reportScore != null
-                      ? `${holding.reportScore}점`
+                    {selectedHolding.reportStatus === "available" &&
+                    selectedHolding.reportScore != null
+                      ? `${selectedHolding.reportScore}점`
                       : "미반영"}
                   </p>
                 </div>
               </div>
 
-              {holding.topDrivers.length > 0 && (
+              {selectedHolding.topDrivers.length > 0 && (
                 <p className="mt-3 text-xs text-zinc-400">
-                  핵심: {holding.topDrivers.slice(0, 2).join(" · ")}
+                  핵심: {selectedHolding.topDrivers.slice(0, 2).join(" · ")}
                 </p>
               )}
-              {holding.warnings.length > 0 && (
+              {selectedHolding.warnings.length > 0 && (
                 <p className="mt-1 text-xs text-zinc-500">
-                  주의: {holding.warnings[0]}
+                  주의: {selectedHolding.warnings[0]}
                 </p>
               )}
-              {holding.reportStatus === "unavailable" && (
+              {selectedHolding.reportStatus === "unavailable" && (
                 <p className="mt-1 text-xs text-amber-300">
                   리포트 미반영
-                  {holding.reportUnavailableReason === "no_report_input"
+                  {selectedHolding.reportUnavailableReason === "no_report_input"
                     ? " · 기준 거래일 리포트 입력 없음"
                     : " · 직접 연결된 리포트 근거 부족"}
                 </p>
               )}
             </div>
-          ))
+          </>
         ) : (
           <p className="text-sm text-zinc-500">보유 종목 점수 데이터가 아직 없습니다.</p>
         )}
