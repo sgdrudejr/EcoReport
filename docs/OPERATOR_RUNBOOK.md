@@ -12,6 +12,25 @@
 
 ## 하루 운영 순서
 
+### 빠른 일일 운영 명령
+
+가장 권장하는 방식은 아래 한 줄입니다.
+
+```bash
+cd /Users/seo/stock-pilot
+bash scripts/run-daily-system.sh --date YYYY-MM-DD
+```
+
+이 명령은 아래를 순서대로 수행합니다.
+
+1. 리포트 수집 + 전문 텍스트화
+2. 시장 데이터 수집 + 기술지표 계산
+3. 리포트/포트폴리오/병렬 RAG 재생성
+4. Gemini 경제 브리핑 생성(키가 있을 때)
+5. Stage 1~4 실행
+6. `data` 브랜치 동기화
+7. 일일 산출물 검증
+
 ### 1. 포트폴리오 최신화
 
 - 대시보드 `/portfolio/update`에서 계좌 상태를 반영
@@ -48,6 +67,13 @@ cd /Users/seo/stock-pilot
 bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD
 ```
 
+Gemini Stage 2를 실제로 붙이고 싶으면:
+
+```bash
+cd /Users/seo/stock-pilot
+bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD --gemini-stage2
+```
+
 확인 파일:
 
 - `data/analysis-state/YYYY-MM-DD/stage1-report-extracts-v2.json`
@@ -71,6 +97,20 @@ cd /Users/seo/stock-pilot
 node scripts/build-stage3-quant-scores.js --date YYYY-MM-DD
 node scripts/build-stage4-execution-plan.js --date YYYY-MM-DD
 ```
+
+### 6. 일일 산출물 검증
+
+```bash
+cd /Users/seo/stock-pilot
+node scripts/verify-daily-system.js --date YYYY-MM-DD
+```
+
+생성 파일:
+
+- `data/analysis-state/YYYY-MM-DD/system-health.json`
+- `knowledge/daily/YYYY-MM-DD-system-health.md`
+
+이 검증 리포트는 “오늘 파이프라인이 실제로 다 끝났는지”를 보는 운영용 체크포인트입니다.
 
 ## 파일 우선순위
 
@@ -105,6 +145,5 @@ node scripts/build-stage4-execution-plan.js --date YYYY-MM-DD
 
 ```bash
 cd /Users/seo/stock-pilot
-bash scripts/collect-report-assets.sh --date 2026-04-10
-bash scripts/run-strategy-pipeline.sh --date 2026-04-10
+bash scripts/run-daily-system.sh --date 2026-04-10
 ```

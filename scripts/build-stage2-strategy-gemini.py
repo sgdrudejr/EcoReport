@@ -20,7 +20,7 @@ from dotenv import load_dotenv
 import google.generativeai as genai
 
 
-ROOT = Path("/Users/seo/stock-pilot")
+ROOT = Path(os.getenv("ECOREPORT_ROOT") or Path(__file__).resolve().parent.parent)
 DEFAULT_PRIORITY_MODELS = [
     "gemini-2.5-flash",
     "gemini-2.0-flash",

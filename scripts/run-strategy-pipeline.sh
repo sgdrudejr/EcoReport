@@ -3,7 +3,7 @@
 
 set -euo pipefail
 
-ROOT_DIR="/Users/seo/stock-pilot"
+ROOT_DIR="${ROOT_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
 DATE="$(date +%F)"
 USE_MOCK_STAGE2=1
 USE_GEMINI_STAGE2=0

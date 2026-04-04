@@ -74,6 +74,31 @@ flowchart TD
 
 - [STAGE_1_4_ARCHITECTURE.md](/Users/seo/stock-pilot/docs/STAGE_1_4_ARCHITECTURE.md)
 - [OPERATOR_RUNBOOK.md](/Users/seo/stock-pilot/docs/OPERATOR_RUNBOOK.md)
+- [SCORE_SYSTEM_V2.md](/Users/seo/stock-pilot/docs/SCORE_SYSTEM_V2.md)
+
+## 매일 운영 명령
+
+가장 권장하는 일일 실행 방법은 아래 한 줄입니다.
+
+```bash
+cd /Users/seo/stock-pilot
+bash scripts/run-daily-system.sh --date YYYY-MM-DD
+```
+
+이 러너는 다음을 한 번에 묶습니다.
+
+1. 리포트 수집 + 전문 텍스트화
+2. 시장 데이터 수집 + 기술 점수 계산
+3. 리포트/포트폴리오/병렬 RAG 재생성
+4. Gemini 경제 브리핑 생성(키가 있을 때)
+5. Stage 1~4 실행
+6. `data` 브랜치 동기화
+7. 일일 시스템 검증 리포트 생성
+
+검증 결과는 아래에 저장됩니다.
+
+- `data/analysis-state/YYYY-MM-DD/system-health.json`
+- `knowledge/daily/YYYY-MM-DD-system-health.md`
 
 ## Stage 1~4 개요
 
@@ -137,7 +162,7 @@ flowchart TD
 입력:
 
 - 기술지표
-- Stage 1 리포트 영향 후보
+- `impact-map.json` (있으면 우선 사용, 없으면 Stage 1 리포트 영향 후보 fallback)
 - Stage 2 전략 bias
 - 전략 파일 / 목표 배분
 
@@ -148,8 +173,10 @@ flowchart TD
 설명:
 
 - 종목, 계좌, 포트폴리오 점수를 계산합니다.
-- 현재는 기술지표 + 리포트 영향 후보 + 배분 점수 조합입니다.
-- 향후 `deep-research-report.md` 기반 `Direction / Timing / Regime / ActionScore / Probabilities` 구조로 더 고도화할 수 있습니다.
+- 현재 v2는 `BaseScore - RiskPenalty` 구조입니다.
+- BaseScore는 `배분 + 기술 + 리포트 + 레짐 적합도 + Stage 2 점수`를 coverage-aware 가중치로 합성합니다.
+- RiskPenalty는 `데이터 품질 + 집중도 + 레짐 스트레스(+ 추후 tail risk)`를 별도 감점으로 관리합니다.
+- 대시보드는 이 파일의 `baseScores`, `effectiveWeights`, `riskPenalty`를 읽어 “왜 이 점수인지 / 뭘 하면 점수가 올라가는지”를 설명합니다.
 
 ### Stage 4. 실행 계획 생성
 
