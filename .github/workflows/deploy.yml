@@ -17,6 +17,11 @@ on:
   # GitHub UI 에서 수동 실행
   workflow_dispatch:
 
+# 동시에 여러 배포가 쌓이지 않도록: 새 배포 시작 시 대기 중인 이전 배포 취소
+concurrency:
+  group: vercel-deploy
+  cancel-in-progress: true
+
 jobs:
   deploy:
     name: Build & Deploy
