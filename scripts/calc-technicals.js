@@ -543,6 +543,15 @@ function calculateIndicators(history, snapshot) {
     change_pct: roundNumber(snapshot?.change_pct ?? history.at(-1)?.change_pct ?? null, 6),
     history_points: history.length,
     alerts,
+    // 최근 60일 일별 수익률 — CVaR/MaxDrawdown 계산에 활용
+    daily_returns: closes.length >= 2
+      ? closes.slice(-61).reduce((acc, price, idx, arr) => {
+          if (idx === 0) return acc;
+          const ret = roundNumber((price - arr[idx - 1]) / arr[idx - 1], 6);
+          if (ret != null) acc.push(ret);
+          return acc;
+        }, [])
+      : [],
   };
 }
 

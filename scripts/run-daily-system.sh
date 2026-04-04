@@ -123,6 +123,15 @@ else
 fi
 
 run_step "📈 시장 데이터 수집..." node scripts/fetch-market-data.js --date "$DATE"
+
+# FRED API 키가 있으면 거시경제 선행지표 수집 (레짐 감지 + Stage 3 선행지표 스코어에 활용)
+PYTHON_BIN_DAILY="$(python_bin)"
+if grep -Eq '^FRED_API_KEY=.+$' "$ROOT_DIR/.env" 2>/dev/null || [[ -n "${FRED_API_KEY:-}" ]]; then
+  run_soft_step "🌐 FRED 거시경제 데이터 수집..." "$PYTHON_BIN_DAILY" scripts/fetch-fred-macro.py --date "$DATE"
+else
+  log "🌐 FRED 수집 스킵 (FRED_API_KEY 없음 — .env에 추가하면 선행지표 스코어 활성화)"
+fi
+
 run_step "📊 기술 지표 계산..." node scripts/calc-technicals.js --date "$DATE"
 
 if [[ "$SKIP_RAG" == "1" ]]; then

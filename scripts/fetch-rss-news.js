@@ -22,6 +22,11 @@ const HIGH_SIGNAL_KEYWORDS = [
   'ai', '데이터센터', '전력', '전력기기', '변압기', '방산', '원자력',
   'etf', '배당', '커버드콜', '금현물', '금선물', '관세', '수출', '경기',
   '코스피', '나스닥', 's&p', 'vix', '공급', '수주', 'smr', '원전',
+  // 중앙은행/글로벌 매크로 (연준·ECB·BIS 피드 대응)
+  'interest rate', 'rate cut', 'rate hike', 'basis point', 'bps', 'pivot',
+  'powell', 'lagarde', 'monetary policy', 'quantitative', 'balance sheet',
+  'inflation target', 'yield curve', 'treasury', 'tapering', 'central bank',
+  'bis', 'ecb', 'federal reserve', 'tariff', 'recession', 'gdp', 'employment',
 ];
 const LOW_SIGNAL_KEYWORDS = [
   '벚꽃', '드라마', '촬영', '뮤직비디오', '안젤리나 졸리', '샤일로', '호텔', '투숙',
@@ -151,6 +156,11 @@ function isRelevantArticle(entry) {
   const haystack = `${entry.title ?? ''} ${entry.summary ?? ''} ${entry.category ?? ''} ${entry.source ?? ''}`;
   const hasHighSignal = containsAnyKeyword(haystack, HIGH_SIGNAL_KEYWORDS);
   const hasLowSignal = containsAnyKeyword(haystack, LOW_SIGNAL_KEYWORDS);
+
+  // 중앙은행 소스는 전량 포함 (연준, ECB, BIS 발표문은 모두 투자 관련)
+  if (entry.category === '중앙은행') {
+    return { keep: true, score: Math.max(score, 5) };
+  }
 
   if (hasLowSignal && !hasHighSignal) {
     return { keep: false, score };

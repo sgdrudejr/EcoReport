@@ -39,11 +39,13 @@ const REGIME_WEIGHTS = {
 };
 
 const MAX_WEIGHT_PROFILES = {
-  balanced: { allocation: 0.45, tech: 0.3, report: 0.15, regime: 0.05, stage2: 0.05 },
-  dataSparse: { allocation: 0.7, tech: 0.15, report: 0.05, regime: 0.1, stage2: 0 },
-  reportHeavy: { allocation: 0.35, tech: 0.25, report: 0.3, regime: 0.05, stage2: 0.05 },
-  tactical: { allocation: 0.25, tech: 0.5, report: 0.15, regime: 0.05, stage2: 0.05 },
-  riskOff: { allocation: 0.45, tech: 0.2, report: 0.1, regime: 0.15, stage2: 0.1 },
+  // leading: FRED 선행지표 스코어 (T10Y2Y, VIX, CPI, 구리/금 비율)
+  // report 가중치를 0.05 줄여 leading에 할당
+  balanced:     { allocation: 0.45, tech: 0.30, report: 0.10, regime: 0.05, stage2: 0.05, leading: 0.05 },
+  dataSparse:   { allocation: 0.70, tech: 0.15, report: 0.05, regime: 0.10, stage2: 0.00, leading: 0.00 },
+  reportHeavy:  { allocation: 0.35, tech: 0.25, report: 0.25, regime: 0.05, stage2: 0.05, leading: 0.05 },
+  tactical:     { allocation: 0.25, tech: 0.50, report: 0.10, regime: 0.05, stage2: 0.05, leading: 0.05 },
+  riskOff:      { allocation: 0.45, tech: 0.20, report: 0.05, regime: 0.15, stage2: 0.10, leading: 0.05 },
 };
 
 const DEFAULT_RISK_CAPS = {
@@ -91,21 +93,98 @@ const SCORE_WEIGHT_MULTIPLIERS = {
   other: 0.55,
 };
 
-function detectRegime(technical) {
+function detectRegime(technical, fred) {
   const market = technical?.market_context ?? {};
   const ma20 = market.ma?.ma20 ?? null;
   const ma60 = market.ma?.ma60 ?? null;
   const close = market.close ?? null;
-  if (typeof market.vix === "number" && market.vix >= 30) {
-    return { name: "HIGH_VOL", confidence: 0.72 };
+  const marketScore = market.score ?? 0;
+
+  // FRED 데이터: VIX는 FRED가 더 정확 (fetch-market-data.js가 null 반환하는 경우 보완)
+  const vix = fred?.VIXCLS ?? (typeof market.vix === "number" ? market.vix : null);
+  const t10y2y = typeof fred?.T10Y2Y === "number" ? fred.T10Y2Y : null;
+  const cpiYoy = typeof fred?.CPIAUCSL_YOY === "number" ? fred.CPIAUCSL_YOY : null;
+  const cgMomentum = fred?.copper_gold_ratio?.momentum ?? null;
+
+  // 각 신호의 방향성 투표 (bullish: +1, bearish: -1, neutral: 0)
+  const votes = [];
+
+  // 1. VIX
+  if (vix != null) {
+    if (vix >= 30) votes.push({ signal: "vix", vote: -2, label: `VIX ${vix}>=30` });
+    else if (vix >= 20) votes.push({ signal: "vix", vote: -1, label: `VIX ${vix}>=20` });
+    else votes.push({ signal: "vix", vote: 1, label: `VIX ${vix}<20` });
   }
-  if (close != null && ma20 != null && ma60 != null && close > ma20 && ma20 > ma60 && (market.score ?? 0) >= 55) {
-    return { name: "BULL", confidence: 0.68 };
+
+  // 2. 장단기 금리 스프레드
+  if (t10y2y != null) {
+    if (t10y2y < -0.5) votes.push({ signal: "yield_curve", vote: -2, label: `T10Y2Y ${t10y2y}<-0.5 (강한 역전)` });
+    else if (t10y2y < 0) votes.push({ signal: "yield_curve", vote: -1, label: `T10Y2Y ${t10y2y}<0 (약한 역전)` });
+    else if (t10y2y > 0.5) votes.push({ signal: "yield_curve", vote: 1, label: `T10Y2Y ${t10y2y}>0.5` });
+    else votes.push({ signal: "yield_curve", vote: 0, label: `T10Y2Y ${t10y2y} (플랫)` });
   }
-  if (close != null && ma20 != null && ma60 != null && close < ma20 && ma20 < ma60 && (market.score ?? 0) <= 38) {
-    return { name: "BEAR", confidence: 0.66 };
+
+  // 3. 인플레이션
+  if (cpiYoy != null) {
+    if (cpiYoy > 4) votes.push({ signal: "inflation", vote: -1, label: `CPI YoY ${cpiYoy}%>4%` });
+    else if (cpiYoy > 2.5) votes.push({ signal: "inflation", vote: 0, label: `CPI YoY ${cpiYoy}% 보통` });
+    else votes.push({ signal: "inflation", vote: 1, label: `CPI YoY ${cpiYoy}%<2.5%` });
   }
-  return { name: "SIDEWAYS", confidence: 0.58 };
+
+  // 4. 구리/금 비율 방향성
+  if (cgMomentum) {
+    votes.push({ signal: "copper_gold", vote: cgMomentum === "rising" ? 1 : -1, label: `구리/금 ${cgMomentum}` });
+  }
+
+  // 5. 가격 추세 (기존 로직 유지)
+  if (close != null && ma20 != null && ma60 != null) {
+    if (close > ma20 && ma20 > ma60) votes.push({ signal: "price_trend", vote: 1, label: "가격>MA20>MA60" });
+    else if (close < ma20 && ma20 < ma60) votes.push({ signal: "price_trend", vote: -1, label: "가격<MA20<MA60" });
+    else votes.push({ signal: "price_trend", vote: 0, label: "추세 혼재" });
+  }
+
+  const voteSum = votes.reduce((s, v) => s + v.vote, 0);
+  const signals = votes.map((v) => v.label);
+
+  // HIGH_VOL: VIX >= 30 또는 종합 투표 ≤ -3
+  if ((vix != null && vix >= 30) || voteSum <= -3) {
+    const conf = vix != null && vix >= 30 ? 0.80 : clamp(0.60 + Math.abs(voteSum) * 0.04, 0.60, 0.85);
+    return { name: "HIGH_VOL", confidence: toRoundedNumber(conf, 2), voteSum, signals };
+  }
+
+  // STAGFLATION: 인플레 높고 스프레드 역전
+  if (cpiYoy != null && cpiYoy > 4 && t10y2y != null && t10y2y < 0) {
+    return { name: "STAGFLATION", confidence: 0.70, voteSum, signals };
+  }
+
+  // BULL: 다수 긍정 신호
+  if (voteSum >= 2 && marketScore >= 50) {
+    const conf = clamp(0.60 + voteSum * 0.04, 0.60, 0.85);
+    return { name: "BULL", confidence: toRoundedNumber(conf, 2), voteSum, signals };
+  }
+
+  // BEAR: 다수 부정 신호
+  if (voteSum <= -1 && marketScore <= 45) {
+    const conf = clamp(0.58 + Math.abs(voteSum) * 0.04, 0.58, 0.82);
+    return { name: "BEAR", confidence: toRoundedNumber(conf, 2), voteSum, signals };
+  }
+
+  return { name: "SIDEWAYS", confidence: 0.55, voteSum, signals };
+}
+
+function computeLeadingIndicatorScore(fred) {
+  if (!fred) return { score: 50, available: false };
+  const signals = fred.leading_signals ?? {};
+  const composite = signals.composite_score;
+  if (typeof composite !== "number") return { score: 50, available: false };
+  return {
+    score: Math.round(clamp(composite, 0, 100)),
+    available: true,
+    t10y2y: fred.T10Y2Y ?? null,
+    vix: fred.VIXCLS ?? null,
+    cpiYoy: fred.CPIAUCSL_YOY ?? null,
+    cgMomentum: fred.copper_gold_ratio?.momentum ?? null,
+  };
 }
 
 function valueOrFallback(value, fallback = 0) {
@@ -597,14 +676,16 @@ function effectiveWeights(profileName, coverage, regimeConfidence) {
     report: maxWeights.report * coverage.impactCoverage,
     regime: maxWeights.regime * regimeConfidence,
     stage2: maxWeights.stage2 * (coverage.stage2Available ? 1 : 0),
+    leading: (maxWeights.leading ?? 0) * (coverage.fredAvailable ? 1 : 0),
   };
-  const used = weights.tech + weights.report + weights.regime + weights.stage2;
+  const used = weights.tech + weights.report + weights.regime + weights.stage2 + weights.leading;
   return {
     allocation: toRoundedNumber(Math.max(0, 1 - used), 4),
     tech: toRoundedNumber(weights.tech, 4),
     report: toRoundedNumber(weights.report, 4),
     regime: toRoundedNumber(weights.regime, 4),
     stage2: toRoundedNumber(weights.stage2, 4),
+    leading: toRoundedNumber(weights.leading, 4),
   };
 }
 
@@ -615,6 +696,7 @@ function computeRiskPenalty({
   regime,
   regimeFit,
   riskCaps,
+  technicalMap,
 }) {
   const investable = (account.holdings ?? []).filter((holding) => (holding.marketValue ?? 0) > 0);
   const totalInvestable = investable.reduce((sum, holding) => sum + (holding.marketValue ?? 0), 0) || 1;
@@ -651,7 +733,53 @@ function computeRiskPenalty({
       ? clamp(((regimeStressExcess - 0.05) / 0.25) * riskCaps.regimeStress, 0, riskCaps.regimeStress)
       : 0;
 
-  const tailRiskTotal = 0;
+  // CVaR / MaxDrawdown (포트폴리오 가중 일별 수익률 기반)
+  const holdingReturns = investable
+    .map((holding) => {
+      const tech = technicalMap[holding.code];
+      return { weight: (holding.marketValue ?? 0) / totalInvestable, returns: tech?.daily_returns ?? [] };
+    })
+    .filter((h) => h.returns.length >= 10);
+
+  let tailRiskTotal = 0;
+  let maxDrawdown = null;
+  let cvar95 = null;
+
+  if (holdingReturns.length > 0) {
+    // 포트폴리오 일별 수익률 (가중 평균)
+    const minLen = Math.min(...holdingReturns.map((h) => h.returns.length));
+    const portReturns = Array.from({ length: minLen }, (_, i) =>
+      holdingReturns.reduce((sum, h) => sum + h.returns[h.returns.length - minLen + i] * h.weight, 0)
+    );
+
+    // MaxDrawdown: 누적 수익률 기준 최대 낙폭
+    let peak = 1;
+    let cumulative = 1;
+    let maxDD = 0;
+    for (const r of portReturns) {
+      cumulative *= 1 + r;
+      if (cumulative > peak) peak = cumulative;
+      const dd = (peak - cumulative) / peak;
+      if (dd > maxDD) maxDD = dd;
+    }
+    maxDrawdown = toRoundedNumber(maxDD * 100, 2);
+
+    // CVaR 95%: 하위 5% 수익률의 평균
+    const sorted = [...portReturns].sort((a, b) => a - b);
+    const cutoff = Math.max(1, Math.floor(sorted.length * 0.05));
+    const tail = sorted.slice(0, cutoff);
+    cvar95 = toRoundedNumber((tail.reduce((s, r) => s + r, 0) / tail.length) * 100, 4);
+
+    // 패널티 계산
+    let ddPenalty = 0;
+    if (maxDD > 0.25) ddPenalty = clamp(((maxDD - 0.25) / 0.15) * 10, 0, 10);
+    else if (maxDD > 0.15) ddPenalty = clamp(((maxDD - 0.15) / 0.10) * 5, 0, 5);
+
+    const cvarPct = Math.abs(cvar95);
+    const cvarPenalty = cvarPct > 3 ? clamp(((cvarPct - 3) / 3) * 5, 0, 5) : 0;
+
+    tailRiskTotal = clamp(ddPenalty + cvarPenalty, 0, riskCaps.tailRisk);
+  }
 
   const total = Math.round(
     clamp(
@@ -674,6 +802,9 @@ function computeRiskPenalty({
   if (concentrationTotal > 0) {
     notes.push("단일 포지션 또는 집중도가 높아 분산 패널티가 반영됐습니다.");
   }
+  if (tailRiskTotal > 0) {
+    notes.push(`최대낙폭 ${maxDrawdown}% / CVaR(95%) ${cvar95}% 수준으로 꼬리 리스크 패널티가 적용됐습니다.`);
+  }
 
   return {
     total,
@@ -693,9 +824,11 @@ function computeRiskPenalty({
         maxPositionPenalty: toRoundedNumber(maxPositionPenalty, 2),
       },
       tailRisk: {
-        total: tailRiskTotal,
-        method: "not_applied",
-        note: "가격 히스토리 기반 ES/CVaR·MDD는 데이터 정합성 확보 후 활성화합니다.",
+        total: toRoundedNumber(tailRiskTotal, 2),
+        method: holdingReturns.length > 0 ? "portfolio_weighted_returns" : "not_applicable",
+        maxDrawdownPct: maxDrawdown,
+        cvar95Pct: cvar95,
+        holdingsWithData: holdingReturns.length,
       },
       regimeStress: {
         total: toRoundedNumber(regimeStressTotal, 2),
@@ -757,13 +890,14 @@ function weightedAverage(items) {
 async function main() {
   const args = parseDateArgs(process.argv.slice(2));
   const stateDir = path.join(ROOT_DIR, "data", "analysis-state", args.date);
-  const [portfolio, strategy, technical, stage1, stage2, impactMap] = await Promise.all([
+  const [portfolio, strategy, technical, stage1, stage2, impactMap, fred] = await Promise.all([
     readJson(path.join(ROOT_DIR, "data", "portfolio", "latest.json"), { accounts: [] }),
     readJson(path.join(ROOT_DIR, "config", "strategy.json"), { accounts: {} }),
     readJson(path.join(ROOT_DIR, "data", "technical", `${args.date}.json`), { scores: {}, market_context: {} }),
     readJson(path.join(stateDir, "stage1-report-extracts-v2.json"), { extracts: [] }),
     readJson(path.join(stateDir, "stage2-strategy-options.json"), null),
     readJson(path.join(stateDir, "impact-map.json"), null),
+    readJson(path.join(ROOT_DIR, "data", "macro", `fred-${args.date}.json`), null),
   ]);
 
   const stage2Data =
@@ -772,7 +906,8 @@ async function main() {
       account_actions: [],
       candidate_scores: [],
     }));
-  const regime = detectRegime(technical);
+  const regime = detectRegime(technical, fred);
+  const leadingIndicator = computeLeadingIndicatorScore(fred);
   const technicalMap = technical.scores ?? {};
   const referenceDate = new Date(`${args.date}T00:00:00Z`);
   const profileName = chooseWeightProfile(strategy, regime);
@@ -882,6 +1017,7 @@ async function main() {
       techCoverage: toRoundedNumber(techCoverage, 4),
       impactCoverage: toRoundedNumber(impactCoverage, 4),
       stage2Available: Boolean(stage2Action),
+      fredAvailable: leadingIndicator.available,
     };
     accountCoverage[account.key] = coverage;
 
@@ -904,6 +1040,7 @@ async function main() {
       regime,
       regimeFit,
       riskCaps,
+      technicalMap,
     });
 
     const baseScore = clamp(
@@ -911,7 +1048,8 @@ async function main() {
         (techScore ?? allocationScore) * weights.tech +
         reportScore * weights.report +
         regimeFit.score * weights.regime +
-        stage2Score * weights.stage2,
+        stage2Score * weights.stage2 +
+        leadingIndicator.score * weights.leading,
       0,
       100,
     );
@@ -934,6 +1072,7 @@ async function main() {
         reportScore,
         regimeFit: regimeFit.score,
         stage2Score,
+        leadingScore: leadingIndicator.score,
         actionBlend: holdingsScore,
       },
       effectiveWeights: weights,
@@ -959,7 +1098,8 @@ async function main() {
       ((accountScores[account.key]?.baseScores?.techScore ?? 50) * (accountScores[account.key]?.effectiveWeights?.tech ?? 0)) +
       ((accountScores[account.key]?.baseScores?.reportScore ?? 50) * (accountScores[account.key]?.effectiveWeights?.report ?? 0)) +
       ((accountScores[account.key]?.baseScores?.regimeFit ?? 50) * (accountScores[account.key]?.effectiveWeights?.regime ?? 0)) +
-      ((accountScores[account.key]?.baseScores?.stage2Score ?? 50) * (accountScores[account.key]?.effectiveWeights?.stage2 ?? 0));
+      ((accountScores[account.key]?.baseScores?.stage2Score ?? 50) * (accountScores[account.key]?.effectiveWeights?.stage2 ?? 0)) +
+      ((accountScores[account.key]?.baseScores?.leadingScore ?? 50) * (accountScores[account.key]?.effectiveWeights?.leading ?? 0));
     return sum + accountBase * (assets / totalAssets);
   }, 0);
 
@@ -987,6 +1127,7 @@ async function main() {
       ...regime,
       market_context: technical.market_context ?? {},
     },
+    leadingIndicator,
     coverage: {
       techCoverage: toRoundedNumber(
         (portfolio.accounts ?? []).reduce((sum, account) => {

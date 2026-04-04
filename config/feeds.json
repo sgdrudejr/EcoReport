@@ -7,10 +7,16 @@
   ],
   "global": [
     { "name": "Reuters Business", "url": "https://feeds.reuters.com/reuters/businessNews", "category": "글로벌" },
-    { "name": "CNBC Top News", "url": "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=100003114", "category": "글로벌" }
+    { "name": "CNBC Top News", "url": "https://search.cnbc.com/rs/search/combinedcms/view.xml?partnerId=wrss01&id=100003114", "category": "글로벌" },
+    { "name": "Federal Reserve Press Releases", "url": "https://www.federalreserve.gov/feeds/press_all.xml", "category": "중앙은행", "note": "FOMC 성명, 금리 결정 발표" },
+    { "name": "Federal Reserve Speeches", "url": "https://www.federalreserve.gov/feeds/speeches.xml", "category": "중앙은행", "note": "파월 등 연준 위원 발언" },
+    { "name": "BIS Speeches", "url": "https://www.bis.org/doclist/cbspeeches.rss", "category": "중앙은행", "note": "국제결제은행 주요 인사 연설" },
+    { "name": "ECB Press Releases", "url": "https://www.ecb.europa.eu/rss/press.html", "category": "중앙은행", "note": "유럽중앙은행 통화정책 결정" }
   ],
   "sector": [
     { "name": "ETF Trends", "url": "https://www.etftrends.com/feed/", "category": "ETF" },
-    { "name": "Seeking Alpha Tech", "url": "https://seekingalpha.com/sector/technology.xml", "category": "기술" }
+    { "name": "Seeking Alpha Tech", "url": "https://seekingalpha.com/sector/technology.xml", "category": "기술" },
+    { "name": "Seeking Alpha ETF", "url": "https://seekingalpha.com/sector/etfs-and-funds.xml", "category": "ETF", "note": "ETF 분석 및 수급 동향" },
+    { "name": "MarketWatch Economy", "url": "https://feeds.marketwatch.com/marketwatch/economy-politics/", "category": "매크로", "note": "미국 경제 지표 해설" }
   ]
 }
