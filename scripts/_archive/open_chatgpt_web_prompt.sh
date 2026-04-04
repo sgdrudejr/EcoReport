@@ -14,7 +14,6 @@
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-IGZUN_ROOT="/Users/seo/igzun-daily-report"
 DATE="$(date +%F)"
 MODE="${1:-triage}"
 DEEP_RESEARCH_MODE="false"

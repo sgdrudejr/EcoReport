@@ -34,7 +34,7 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-ROOT_DIR="${ROOT_DIR:-$HOME/stock-pilot}"
+ROOT_DIR="${ROOT_DIR:-${ECOREPORT_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}}"
 REPORT_DIR="$ROOT_DIR/reports/daily"
 PROMPT_FILE="$REPORT_DIR/$DATE-$TIME-advisory-prompt.md"
 BRIEFING_FILE="$REPORT_DIR/$DATE-$TIME-briefing.md"

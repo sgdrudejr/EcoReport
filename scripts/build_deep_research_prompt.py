@@ -7,6 +7,7 @@ build_deep_research_prompt.py
 
 사용법:
   python scripts/build_deep_research_prompt.py --date 2026-04-03
+  python scripts/build_deep_research_prompt.py --date 2026-04-03 --mode monthly
 """
 
 import argparse
@@ -14,57 +15,79 @@ import json
 from datetime import date as date_type, datetime, timedelta
 from pathlib import Path
 
-PILOT_ROOT = Path(__file__).resolve().parent.parent
-IGZUN_ROOT = Path("/Users/seo/igzun-daily-report")
+ROOT = Path(__file__).resolve().parent.parent
+
+
+# ── 데이터 로더 ──────────────────────────────────────────────────────────────
+
+def load_json(path: Path):
+    if not path.exists():
+        return None
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return None
 
 
 def load_portfolio() -> dict:
-    p = IGZUN_ROOT / "data" / "portfolio_state.json"
-    if not p.exists():
-        return {}
-    return json.loads(p.read_text(encoding="utf-8"))
+    """data/portfolio/latest.json 로드."""
+    return load_json(ROOT / "data" / "portfolio" / "latest.json") or {}
 
 
-def load_recent_insights(date: str, days: int = 7) -> list[dict]:
-    """최근 N일 llm_insights 로드."""
+def get_accounts_dict(portfolio: dict) -> dict:
+    accounts = portfolio.get("accounts", {})
+    if isinstance(accounts, list):
+        return {a.get("key", a.get("label", str(i))): a for i, a in enumerate(accounts)}
+    return accounts
+
+
+def get_cash(account: dict) -> int:
+    return int(account.get("cashAvailable", account.get("cash", account.get("availableCash", 0))))
+
+
+def load_recent_scores(date: str, days: int = 7) -> list:
+    """최근 N일 stage3-quant-scores.json 로드."""
     end = datetime.strptime(date, "%Y-%m-%d").date()
-    insights = []
+    results = []
     for d in range(days):
         check = (end - timedelta(days=d)).strftime("%Y-%m-%d")
-        p = IGZUN_ROOT / "data" / "llm_insights" / f"{check}.json"
-        if p.exists():
-            try:
-                data = json.loads(p.read_text(encoding="utf-8"))
-                data["_date"] = check
-                insights.append(data)
-            except Exception:
-                pass
-    return insights
+        path  = ROOT / "data" / "analysis-state" / check / "stage3-quant-scores.json"
+        data  = load_json(path)
+        if data:
+            regime_obj = data.get("regime", {})
+            regime     = regime_obj.get("name", "N/A") if isinstance(regime_obj, dict) else str(regime_obj)
+            leading    = data.get("leadingIndicator", {})
+            score      = round(float(leading.get("score", data.get("portfolioScore", 50))), 1)
+            results.append({"_date": check, "regime": regime, "score": score,
+                             "vix": leading.get("vix"), "t10y2y": leading.get("t10y2y")})
+    return results
 
 
-def extract_themes(portfolio: dict) -> dict[str, list[str]]:
+def extract_themes(portfolio: dict) -> dict:
     """계좌별 보유 종목 테마 추출."""
-    themes: dict[str, list[str]] = {}
-    for acct_key, acct in portfolio.get("accounts", {}).items():
+    themes: dict = {}
+    for acct_key, acct in get_accounts_dict(portfolio).items():
         holdings = acct.get("holdings", [])
+        label    = acct.get("label", acct_key)
+        cash     = get_cash(acct)
         if holdings:
-            themes[acct_key] = [
-                h.get("name", h.get("code", "")) for h in holdings
-            ]
+            themes[f"{acct_key} ({label})"] = [h.get("name", h.get("code", "")) for h in holdings]
         else:
-            themes[acct_key] = [f"현금 {acct.get('cash', 0):,}원 (미투자)"]
+            themes[f"{acct_key} ({label})"] = [f"현금 {cash:,}원 (미투자)"]
     return themes
 
 
-def summarize_weekly_regime(insights: list[dict]) -> str:
-    if not insights:
-        return "주간 데이터 없음"
+def summarize_weekly_regime(scores: list) -> str:
+    if not scores:
+        return "주간 데이터 없음 (data/analysis-state/ 확인 필요)"
     lines = []
-    for ins in insights[:5]:
-        d = ins.get("_date", "")
-        score = ins.get("overall_score", ins.get("score", "N/A"))
-        regime = ins.get("regime", ins.get("macro_regime", "N/A"))
-        lines.append(f"- {d}: {regime} (score {score})")
+    for s in scores[:7]:
+        d      = s.get("_date", "")
+        score  = s.get("score", "N/A")
+        regime = s.get("regime", "N/A")
+        vix    = s.get("vix", "")
+        vix_s  = f" | VIX {vix:.1f}" if isinstance(vix, (int, float)) else ""
+        lines.append(f"- {d}: {regime} (score {score}{vix_s})")
     return "\n".join(lines)
 
 
@@ -76,22 +99,21 @@ def main():
     date = args.date
 
     portfolio = load_portfolio()
-    profile = portfolio.get("investment_profile", {})
-    themes = extract_themes(portfolio)
-    days = 7 if args.mode == "weekly" else 30
-    insights = load_recent_insights(date, days)
-    regime_summary = summarize_weekly_regime(insights)
+    themes    = extract_themes(portfolio)
+    days      = 7 if args.mode == "weekly" else 30
+    scores    = load_recent_scores(date, days)
+    regime_summary = summarize_weekly_regime(scores)
 
-    # 테마 섹션
     theme_lines = []
     for acct, names in themes.items():
         theme_lines.append(f"- {acct}: {', '.join(names)}")
     theme_section = "\n".join(theme_lines) if theme_lines else "- 보유 포지션 없음 (전액 현금)"
 
-    # 레짐 트렌드
-    latest = insights[0] if insights else {}
-    current_score = latest.get("overall_score", latest.get("score", "N/A"))
-    current_regime = latest.get("regime", latest.get("macro_regime", "N/A"))
+    latest         = scores[0] if scores else {}
+    current_score  = latest.get("score", "N/A")
+    current_regime = latest.get("regime", "N/A")
+    current_vix    = latest.get("vix", "")
+    vix_str        = f" | VIX {current_vix:.1f}" if isinstance(current_vix, (int, float)) else ""
 
     prompt = f"""# Deep Research 요청 ({args.mode})
 
@@ -103,14 +125,12 @@ def main():
 ## 내 포트폴리오 핵심 테마
 {theme_section}
 
-투자 스타일: {profile.get('style', 'N/A')} | 기간: {profile.get('horizon', 'N/A')} | 리스크: {profile.get('risk_tolerance', 'N/A')}
-
 ---
 
 ## 최근 {days}일 레짐 트렌드
 {regime_summary}
 
-**현재**: {current_regime} (스코어: {current_score}/100)
+**현재**: {current_regime} (스코어: {current_score}/100{vix_str})
 
 ---
 
@@ -155,7 +175,7 @@ def main():
 마지막에 **이번 주 실행 체크리스트**를 3개 이내로 요약해주세요.
 """
 
-    out_dir = PILOT_ROOT / "knowledge" / "weekly"
+    out_dir = ROOT / "knowledge" / "weekly"
     out_dir.mkdir(parents=True, exist_ok=True)
     out_file = out_dir / f"{date}-deep-research-prompt.md"
     out_file.write_text(prompt, encoding="utf-8")

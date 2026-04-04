@@ -44,7 +44,7 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
-ROOT_DIR="${ROOT_DIR:-$HOME/stock-pilot}"
+ROOT_DIR="${ROOT_DIR:-${ECOREPORT_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}}"
 LOG_DIR="$ROOT_DIR/logs"
 LOG_FILE="$LOG_DIR/$DATE-$TIME.log"
 

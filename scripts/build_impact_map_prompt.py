@@ -16,85 +16,130 @@ import sys
 from datetime import date as date_type
 from pathlib import Path
 
-PILOT_ROOT = Path(__file__).resolve().parent.parent
-IGZUN_ROOT = Path("/Users/seo/igzun-daily-report")
+ROOT = Path(__file__).resolve().parent.parent
+
+
+# ── 데이터 로더 ──────────────────────────────────────────────────────────────
+
+def load_json(path: Path):
+    if not path.exists():
+        return None
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return None
 
 
 def load_portfolio() -> dict:
-    p = IGZUN_ROOT / "data" / "portfolio_state.json"
-    if not p.exists():
-        return {}
-    return json.loads(p.read_text(encoding="utf-8"))
+    """data/portfolio/latest.json 로드."""
+    return load_json(ROOT / "data" / "portfolio" / "latest.json") or {}
 
 
-def load_llm_insights(date: str) -> dict | None:
-    p = IGZUN_ROOT / "data" / "llm_insights" / f"{date}.json"
-    if not p.exists():
+def get_accounts_dict(portfolio: dict) -> dict:
+    accounts = portfolio.get("accounts", {})
+    if isinstance(accounts, list):
+        return {a.get("key", a.get("label", str(i))): a for i, a in enumerate(accounts)}
+    return accounts
+
+
+def get_cash(account: dict) -> int:
+    return int(account.get("cashAvailable", account.get("cash", account.get("availableCash", 0))))
+
+
+def load_quant_scores(date: str) -> "dict | None":
+    """stage3-quant-scores.json에서 인사이트 호환 데이터 반환."""
+    path = ROOT / "data" / "analysis-state" / date / "stage3-quant-scores.json"
+    data = load_json(path)
+    if not data:
         return None
-    return json.loads(p.read_text(encoding="utf-8"))
+    regime_obj  = data.get("regime", {})
+    regime_name = regime_obj.get("name", "N/A") if isinstance(regime_obj, dict) else str(regime_obj)
+    leading     = data.get("leadingIndicator", {})
+    score       = round(float(leading.get("score", data.get("portfolioScore", 50))), 1)
+
+    # signals → recommendations 형식으로 변환
+    recs = {}
+    for h in data.get("holdings", []):
+        code   = h.get("code", "")
+        signal = h.get("signal", h.get("action", ""))
+        s      = h.get("actionScore", h.get("score", "N/A"))
+        if code:
+            recs[code] = {"action": signal, "score": s, "name": h.get("name", "")}
+
+    return {
+        "overall_score": score,
+        "regime": regime_name,
+        "recommendations": recs,
+    }
 
 
-def load_manual_summary(date: str) -> str | None:
-    p = IGZUN_ROOT / "data" / "manual_summary" / f"{date}.md"
-    if not p.exists():
+def find_manual_summary(date: str) -> "str | None":
+    """knowledge/daily/ 에서 브리핑/synthesis md 파일 탐색 (프롬프트 파일 제외)."""
+    daily_dir = ROOT / "knowledge" / "daily"
+    if not daily_dir.exists():
         return None
-    return p.read_text(encoding="utf-8")
+    for suffix in ("-synthesis.md", "-briefing.md", "-advisory.md", "-summary.md"):
+        p = daily_dir / f"{date}{suffix}"
+        if p.exists():
+            return p.read_text(encoding="utf-8")
+    for c in sorted(daily_dir.glob(f"{date}*.md")):
+        if "prompt" not in c.name:
+            return c.read_text(encoding="utf-8")
+    return None
 
+
+# ── 섹션 포매터 ───────────────────────────────────────────────────────────────
 
 def format_holdings_section(portfolio: dict) -> str:
-    accounts = portfolio.get("accounts", {})
+    accounts = get_accounts_dict(portfolio)
     lines = []
     for acct_key, acct in accounts.items():
-        label = acct.get("label", acct_key)
+        label    = acct.get("label", acct_key)
         holdings = acct.get("holdings", [])
-        cash = acct.get("cash", 0)
+        cash     = get_cash(acct)
         lines.append(f"\n### {label} ({acct_key})")
         if holdings:
             for h in holdings:
-                code = h.get("code", "")
-                name = h.get("name", "")
-                qty = h.get("qty", h.get("quantity", ""))
-                chg = h.get("change_pct", h.get("pnl_pct", ""))
-                chg_str = f" ({chg:+.2f}%)" if isinstance(chg, (int, float)) else ""
-                lines.append(f"- {code} {name} (보유 {qty}주{chg_str})")
+                code    = h.get("code", "")
+                name    = h.get("name", "")
+                qty     = h.get("quantity", h.get("qty", ""))
+                pnl_pct = h.get("profitRate", h.get("pnl_pct", ""))
+                pnl_str = f" ({float(pnl_pct):+.2f}%)" if isinstance(pnl_pct, (int, float)) else ""
+                lines.append(f"- {code} {name} (보유 {qty}주{pnl_str})")
         else:
             lines.append(f"- 현금 {cash:,}원 (미투자)")
     return "\n".join(lines)
 
 
-def build_prompt(date: str, portfolio: dict, insights: dict | None, summary: str | None) -> str:
+def build_prompt(date: str, portfolio: dict, insights: "dict | None", summary: "str | None") -> str:
     holdings_section = format_holdings_section(portfolio)
 
-    # 오늘 리포트 요약 섹션
     if insights:
-        score = insights.get("overall_score", insights.get("score", "N/A"))
-        regime = insights.get("regime", insights.get("macro_regime", "N/A"))
-        recommendations = insights.get("recommendations", insights.get("etf_scores", {}))
+        score   = insights.get("overall_score", "N/A")
+        regime  = insights.get("regime", "N/A")
+        recs    = insights.get("recommendations", {})
         rec_lines = []
-        if isinstance(recommendations, dict):
-            for ticker, info in list(recommendations.items())[:10]:
-                if isinstance(info, dict):
-                    rec_lines.append(f"  - {ticker}: {info.get('action', info.get('signal', ''))} "
-                                     f"(score: {info.get('score', 'N/A')})")
-                else:
-                    rec_lines.append(f"  - {ticker}: {info}")
-        recs_str = "\n".join(rec_lines) if rec_lines else "  (없음)"
-        insights_block = f"""### LLM 분석 스냅샷 ({date})
+        for code, info in list(recs.items())[:10]:
+            name   = info.get("name", code)
+            action = info.get("action", "")
+            s      = info.get("score", "N/A")
+            rec_lines.append(f"  - {code} {name}: {action} (score: {s})")
+        recs_str     = "\n".join(rec_lines) if rec_lines else "  (없음)"
+        insights_block = f"""### EcoReport Quant 분석 스냅샷 ({date})
 - 레짐: {regime}
 - 종합 스코어: {score}/100
-- 주요 ETF 권고:
+- 주요 종목 신호:
 {recs_str}"""
     else:
-        insights_block = f"### LLM 인사이트 없음 ({date})\n- 분석 미실행 또는 파일 없음"
+        insights_block = f"### Quant 분석 없음 ({date})\n- stage3 미실행 또는 파일 없음"
 
-    # manual_summary 요약본 (너무 길면 앞부분만)
     if summary:
-        summary_trimmed = summary[:3000] + ("\n...(이하 생략)" if len(summary) > 3000 else "")
-        summary_block = f"### 오늘의 종합 브리핑 요약\n\n{summary_trimmed}"
+        trimmed       = summary[:3000] + ("\n...(이하 생략)" if len(summary) > 3000 else "")
+        summary_block = f"### 오늘의 종합 브리핑 요약\n\n{trimmed}"
     else:
         summary_block = "### 오늘의 브리핑 없음"
 
-    prompt = f"""# EcoReport Impact Mapping 요청
+    return f"""# EcoReport Impact Mapping 요청
 
 날짜: {date}
 
@@ -145,7 +190,6 @@ def build_prompt(date: str, portfolio: dict, insights: dict | None, summary: str
 
 반드시 유효한 JSON 배열만 출력하세요. 설명 텍스트 없이 JSON만.
 """
-    return prompt
 
 
 def main():
@@ -155,19 +199,18 @@ def main():
     date = args.date
 
     portfolio = load_portfolio()
-    insights = load_llm_insights(date)
-    summary = load_manual_summary(date)
+    insights  = load_quant_scores(date)
+    summary   = find_manual_summary(date)
 
     if not portfolio:
-        print(f"[warn] portfolio_state.json not found", file=sys.stderr)
+        print("[warn] data/portfolio/latest.json 없음 — 포트폴리오 섹션 빈칸으로 생성", file=sys.stderr)
 
     prompt = build_prompt(date, portfolio, insights, summary)
 
-    out_dir = PILOT_ROOT / "knowledge" / "daily"
+    out_dir  = ROOT / "knowledge" / "daily"
     out_dir.mkdir(parents=True, exist_ok=True)
     out_file = out_dir / f"{date}-impact-map-prompt.md"
     out_file.write_text(prompt, encoding="utf-8")
-
     print(str(out_file))
 
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 set -euo pipefail
 
-ROOT="/Users/seo/stock-pilot"
+ROOT="${ECOREPORT_ROOT:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
 KNOWLEDGE_DIR="$ROOT/knowledge/daily"
 REPORTS_DIR="$ROOT/reports/daily"
 

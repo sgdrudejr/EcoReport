@@ -39,12 +39,14 @@ jobs:
           echo "value=$DATE" >> "$GITHUB_OUTPUT"
 
       - name: Run analysis cycle (Step 1–6)
-        run: bash scripts/run-cycle.sh "${{ steps.date.outputs.value }}"
+        # run-daily-system.sh: 최신 단일 진입점. --skip-push 로 push는 다음 step에서 분리
+        run: bash scripts/run-daily-system.sh --date "${{ steps.date.outputs.value }}" --skip-push
         env:
-          # 필요한 API 키 등은 GitHub Repository Secrets 에 등록
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          FRED_API_KEY:   ${{ secrets.FRED_API_KEY }}
-          BOK_API_KEY:    ${{ secrets.BOK_API_KEY }}
+          # API 키는 GitHub Repository Secrets 에 등록
+          GEMINI_API_KEY:    ${{ secrets.GEMINI_API_KEY }}
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          FRED_API_KEY:      ${{ secrets.FRED_API_KEY }}
+          BOK_API_KEY:       ${{ secrets.BOK_API_KEY }}
 
       - name: Push results to data branch
         run: bash scripts/push-to-github.sh "${{ steps.date.outputs.value }}"
