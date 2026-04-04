@@ -59,30 +59,34 @@ export default function ResearchSectionTabs({
 
   return (
     <div className="space-y-4">
-      <div className="-mx-1 overflow-x-auto pb-1">
-        <div className="flex min-w-max gap-2 px-1">
-          {sections.map((section) => {
-            const isActive = section.id === activeSection.id;
-            return (
-              <button
-                key={section.id}
-                type="button"
-                onClick={() => setSelectedSectionId(section.id)}
-                className={`min-w-[168px] rounded-2xl border px-4 py-3 text-left transition ${
-                  isActive
-                    ? "border-emerald-500/60 bg-emerald-950/20 shadow-[0_0_0_1px_rgba(16,185,129,0.16)]"
-                    : "border-zinc-800 bg-zinc-950"
-                }`}
-              >
-                <p className="text-[11px] uppercase tracking-wide text-zinc-500">
-                  {section.label}
-                </p>
-                <p className="mt-1 line-clamp-2 text-sm font-medium text-zinc-100">
-                  {section.title}
-                </p>
-              </button>
-            );
-          })}
+      <div className="sticky top-2 z-20 -mx-2 px-2">
+        <div className="rounded-2xl border border-zinc-800/80 bg-zinc-950/92 p-2 shadow-[0_10px_30px_rgba(0,0,0,0.28)] backdrop-blur">
+          <div className="-mx-1 overflow-x-auto pb-1">
+            <div className="flex min-w-max gap-2 px-1">
+              {sections.map((section) => {
+                const isActive = section.id === activeSection.id;
+                return (
+                  <button
+                    key={section.id}
+                    type="button"
+                    onClick={() => setSelectedSectionId(section.id)}
+                    className={`min-w-[168px] rounded-2xl border px-4 py-3 text-left transition ${
+                      isActive
+                        ? "border-emerald-500/60 bg-emerald-950/20 shadow-[0_0_0_1px_rgba(16,185,129,0.16)]"
+                        : "border-zinc-800 bg-zinc-950"
+                    }`}
+                  >
+                    <p className="text-[11px] uppercase tracking-wide text-zinc-500">
+                      {section.label}
+                    </p>
+                    <p className="mt-1 line-clamp-2 text-sm font-medium text-zinc-100">
+                      {section.title}
+                    </p>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
 
