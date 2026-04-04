@@ -6,10 +6,6 @@ import type { AccountGuide } from "@/lib/portfolio-guidance";
 
 type HoldingGuideItem = AccountGuide["holdingGuides"][number];
 
-function categoryBarWidth(value: number) {
-  return `${Math.max(0, Math.min(100, value * 100))}%`;
-}
-
 function formatSignedCurrency(value: number) {
   return `${value > 0 ? "+" : ""}${value.toLocaleString()}원`;
 }
@@ -577,37 +573,6 @@ export default function PortfolioGuidanceTabs({
 
         <div className="grid gap-4 xl:grid-cols-[0.95fr,1.05fr]">
           <div className="space-y-4">
-            <div className="rounded-2xl border border-zinc-800 bg-zinc-950 px-4 py-4">
-              <h4 className="text-sm font-medium text-zinc-200">현재 배분 vs 목표</h4>
-              <div className="mt-4 space-y-3">
-                {selectedAccount.categories.map((category) => (
-                  <div key={`${selectedAccount.key}-${category.category}`} className="space-y-1.5">
-                    <div className="flex items-center justify-between text-sm">
-                      <span className="text-zinc-200">{category.category}</span>
-                      <span
-                        className={
-                          category.action === "보강 필요"
-                            ? "text-amber-300"
-                            : category.action === "비중 축소"
-                              ? "text-red-300"
-                              : "text-zinc-400"
-                        }
-                      >
-                        {category.action}
-                      </span>
-                    </div>
-                    <div className="h-2 overflow-hidden rounded-full bg-zinc-800">
-                      <div className="h-2 bg-zinc-500/80" style={{ width: categoryBarWidth(category.currentPct) }} />
-                    </div>
-                    <div className="flex items-center justify-between text-xs text-zinc-500">
-                      <span>현재 {formatPercent(category.currentPct * 100)}</span>
-                      <span>목표 {formatPercent(category.targetPct * 100)}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
             <InfoBlock title="왜 이 점수인가" items={selectedAccount.scoreDrivers} />
             <InfoBlock title="점수를 올리려면" items={selectedAccount.improvementActions} />
           </div>
