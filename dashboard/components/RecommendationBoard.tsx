@@ -161,9 +161,9 @@ export default function RecommendationBoard({
                         <p className="mt-2 text-sm text-zinc-300">{item.rationale}</p>
                       </div>
 
-                      <div className="text-right">
+                      <div className="shrink-0 text-right">
                         <p className="text-xs text-zinc-500">종합 점수</p>
-                        <p className="mt-1 text-3xl font-semibold tabular-nums text-zinc-100">
+                        <p className="mt-1 whitespace-nowrap text-2xl font-semibold leading-none tabular-nums text-zinc-100 sm:text-3xl">
                           {item.score}
                         </p>
                       </div>
