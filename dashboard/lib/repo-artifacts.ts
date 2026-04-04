@@ -49,9 +49,13 @@ export function readRepoJsonFile<T>(relativePath: string): T | null {
 }
 
 export function listRepoFiles(relativeDir: string) {
+  const merged = new Set<string>();
+
   const localDir = absolutePath(relativeDir);
   if (fs.existsSync(localDir)) {
-    return fs.readdirSync(localDir);
+    for (const file of fs.readdirSync(localDir)) {
+      merged.add(file);
+    }
   }
 
   for (const ref of DATA_BRANCH_REFS) {
@@ -63,13 +67,13 @@ export function listRepoFiles(relativeDir: string) {
         .filter((line) => line && path.posix.dirname(line) === relativeDir)
         .map((line) => path.posix.basename(line));
 
-      if (files.length > 0) {
-        return files;
+      for (const file of files) {
+        merged.add(file);
       }
     } catch {
       // try next ref
     }
   }
 
-  return [];
+  return [...merged];
 }
