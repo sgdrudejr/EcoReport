@@ -68,6 +68,106 @@ function MetricCard({
   );
 }
 
+function clampPercent(value: number) {
+  return Math.max(0, Math.min(100, value));
+}
+
+function formatBarPercent(value: number) {
+  return `${clampPercent(value).toFixed(1)}%`;
+}
+
+function CapitalBar({
+  label,
+  amount,
+  percent,
+  tone,
+}: {
+  label: string;
+  amount: number;
+  percent: number;
+  tone: "emerald" | "sky" | "amber";
+}) {
+  const toneClass =
+    tone === "emerald"
+      ? "bg-emerald-400/90"
+      : tone === "sky"
+        ? "bg-sky-400/90"
+        : "bg-amber-300/90";
+
+  return (
+    <div className="space-y-2">
+      <div className="flex items-end justify-between gap-3">
+        <div>
+          <p className="text-[11px] leading-4 text-zinc-500 md:text-xs">{label}</p>
+          <p className="mt-1 text-sm font-medium tabular-nums text-zinc-100 md:text-base">
+            {amount.toLocaleString()}원
+          </p>
+        </div>
+        <p className="text-sm font-semibold tabular-nums text-zinc-300">
+          {formatBarPercent(percent)}
+        </p>
+      </div>
+      <div className="h-2.5 overflow-hidden rounded-full bg-zinc-800">
+        <div
+          className={`h-full rounded-full transition-[width] duration-300 ${toneClass}`}
+          style={{ width: `${clampPercent(percent)}%` }}
+        />
+      </div>
+    </div>
+  );
+}
+
+function CapitalOverviewCard({
+  totalAssets,
+  holdingsValue,
+  recommendedDeploy,
+  reserveCash,
+}: {
+  totalAssets: number;
+  holdingsValue: number;
+  recommendedDeploy: number;
+  reserveCash: number;
+}) {
+  const investedPct = totalAssets > 0 ? (holdingsValue / totalAssets) * 100 : 0;
+  const deployPct = totalAssets > 0 ? (recommendedDeploy / totalAssets) * 100 : 0;
+  const reservePct = totalAssets > 0 ? (reserveCash / totalAssets) * 100 : 0;
+
+  return (
+    <div className="rounded-2xl border border-zinc-800 bg-zinc-950 px-4 py-4 md:px-5">
+      <div className="flex items-center justify-between gap-3">
+        <div>
+          <p className="text-sm font-medium text-zinc-200">자금 배치 요약</p>
+          <p className="mt-1 text-xs text-zinc-500">
+            총 자산 대비 현재 투입, 이번 단계 투입, 대기 자금을 막대로 봅니다.
+          </p>
+        </div>
+        <p className="text-xs text-zinc-500">기준 {totalAssets.toLocaleString()}원</p>
+      </div>
+
+      <div className="mt-4 grid gap-4 md:grid-cols-3">
+        <CapitalBar
+          label="현재 투입 비중"
+          amount={holdingsValue}
+          percent={investedPct}
+          tone="emerald"
+        />
+        <CapitalBar
+          label="이번 단계 투입"
+          amount={recommendedDeploy}
+          percent={deployPct}
+          tone="sky"
+        />
+        <CapitalBar
+          label="대기 자금"
+          amount={reserveCash}
+          percent={reservePct}
+          tone="amber"
+        />
+      </div>
+    </div>
+  );
+}
+
 function getHoldingKey(holding: HoldingGuideItem) {
   return holding.code ?? holding.name;
 }
@@ -541,6 +641,13 @@ export default function PortfolioGuidanceTabs({
             <MetricCard label="보유 수익률" value={formatSignedPercent(selectedAccount.holdingsProfitRate)} tone={holdingsTone} />
           </div>
         </div>
+
+        <CapitalOverviewCard
+          totalAssets={selectedAccount.totalAssets}
+          holdingsValue={selectedAccount.holdingsValue}
+          recommendedDeploy={selectedAccount.recommendedDeploy}
+          reserveCash={selectedAccount.reserveCash}
+        />
 
         <div className="grid grid-cols-3 gap-3 xl:grid-cols-6">
           <MetricCard label="배분 점수" value={`${selectedAccount.allocationScore}점`} />
