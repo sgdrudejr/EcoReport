@@ -258,71 +258,75 @@ function HoldingScoreCard({ account }: { account: AccountGuide }) {
       <div className="mt-4">
         {account.holdingGuides.length > 0 && selectedHolding ? (
           <>
-            <div
-              ref={containerRef}
-              className="-mx-1 overflow-x-auto pb-2"
-            >
-              <div className="flex gap-2 px-1">
-                {account.holdingGuides.map((holding) => {
-                  const holdingKey = getHoldingKey(holding);
-                  return (
-                    <button
-                      key={`${account.key}-${holdingKey}`}
-                      type="button"
-                      onClick={() => setSelectedHoldingKey(holdingKey)}
-                      onPointerDown={(event) => {
-                        if (event.pointerType === "mouse") return;
-                        beginPress(holdingKey, event.clientX, event.clientY, event.timeStamp);
-                      }}
-                      onPointerMove={(event) => {
-                        if (event.pointerType === "mouse") return;
-                        updatePress(holdingKey, event.clientX, event.clientY);
-                      }}
-                      onPointerUp={(event) => {
-                        if (event.pointerType === "mouse") return;
-                        endPress(holdingKey, event.timeStamp);
-                      }}
-                      onPointerCancel={() => {
-                        resetTouchState();
-                      }}
-                      onTouchStart={(event) => {
-                        const touch = event.touches[0];
-                        if (!touch) return;
-                        beginPress(holdingKey, touch.clientX, touch.clientY, event.timeStamp);
-                      }}
-                      onTouchMove={(event) => {
-                        const touch = event.touches[0];
-                        if (!touch) return;
-                        updatePress(holdingKey, touch.clientX, touch.clientY);
-                      }}
-                      onTouchEnd={(event) => {
-                        endPress(holdingKey, event.timeStamp);
-                      }}
-                      onTouchCancel={() => {
-                        resetTouchState();
-                      }}
-                      className={`min-w-[220px] shrink-0 rounded-2xl border px-4 py-3 text-left transition active:scale-[0.99] touch-manipulation ${
-                        holdingKey === resolvedHoldingKey
-                          ? "border-emerald-500/60 bg-emerald-950/20 shadow-[0_0_0_1px_rgba(16,185,129,0.16)]"
-                          : "border-zinc-800 bg-zinc-900"
-                      }`}
-                    >
-                      <div className="flex items-center justify-between gap-3">
-                        <div className="min-w-0">
-                          <p className="truncate text-sm font-medium text-zinc-100">{holding.name}</p>
-                          <p className="mt-1 text-xs text-zinc-500">{holding.category}</p>
-                        </div>
-                        <p
-                          className={`shrink-0 text-lg font-semibold tabular-nums ${getHoldingScoreClass(
-                            holding.score,
-                          )}`}
+            <div className="sticky top-2 z-20 -mx-2 px-2">
+              <div className="rounded-2xl border border-zinc-800/80 bg-zinc-950/92 p-2 shadow-[0_10px_30px_rgba(0,0,0,0.28)] backdrop-blur">
+                <div
+                  ref={containerRef}
+                  className="-mx-1 overflow-x-auto pb-1"
+                >
+                  <div className="flex gap-2 px-1">
+                    {account.holdingGuides.map((holding) => {
+                      const holdingKey = getHoldingKey(holding);
+                      return (
+                        <button
+                          key={`${account.key}-${holdingKey}`}
+                          type="button"
+                          onClick={() => setSelectedHoldingKey(holdingKey)}
+                          onPointerDown={(event) => {
+                            if (event.pointerType === "mouse") return;
+                            beginPress(holdingKey, event.clientX, event.clientY, event.timeStamp);
+                          }}
+                          onPointerMove={(event) => {
+                            if (event.pointerType === "mouse") return;
+                            updatePress(holdingKey, event.clientX, event.clientY);
+                          }}
+                          onPointerUp={(event) => {
+                            if (event.pointerType === "mouse") return;
+                            endPress(holdingKey, event.timeStamp);
+                          }}
+                          onPointerCancel={() => {
+                            resetTouchState();
+                          }}
+                          onTouchStart={(event) => {
+                            const touch = event.touches[0];
+                            if (!touch) return;
+                            beginPress(holdingKey, touch.clientX, touch.clientY, event.timeStamp);
+                          }}
+                          onTouchMove={(event) => {
+                            const touch = event.touches[0];
+                            if (!touch) return;
+                            updatePress(holdingKey, touch.clientX, touch.clientY);
+                          }}
+                          onTouchEnd={(event) => {
+                            endPress(holdingKey, event.timeStamp);
+                          }}
+                          onTouchCancel={() => {
+                            resetTouchState();
+                          }}
+                          className={`min-w-[220px] shrink-0 rounded-2xl border px-4 py-3 text-left transition active:scale-[0.99] touch-manipulation ${
+                            holdingKey === resolvedHoldingKey
+                              ? "border-emerald-500/60 bg-emerald-950/20 shadow-[0_0_0_1px_rgba(16,185,129,0.16)]"
+                              : "border-zinc-800 bg-zinc-900"
+                          }`}
                         >
-                          {holding.score != null ? `${holding.score}점` : "-"}
-                        </p>
-                      </div>
-                    </button>
-                  );
-                })}
+                          <div className="flex items-center justify-between gap-3">
+                            <div className="min-w-0">
+                              <p className="truncate text-sm font-medium text-zinc-100">{holding.name}</p>
+                              <p className="mt-1 text-xs text-zinc-500">{holding.category}</p>
+                            </div>
+                            <p
+                              className={`shrink-0 text-lg font-semibold tabular-nums ${getHoldingScoreClass(
+                                holding.score,
+                              )}`}
+                            >
+                              {holding.score != null ? `${holding.score}점` : "-"}
+                            </p>
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
               </div>
             </div>
 

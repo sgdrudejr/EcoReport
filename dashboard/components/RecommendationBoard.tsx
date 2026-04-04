@@ -75,30 +75,34 @@ export default function RecommendationBoard({
       </div>
 
       <div className="rounded-2xl border border-zinc-800 bg-zinc-900 p-5">
-        <div className="-mx-1 overflow-x-auto pb-2">
-          <div className="flex gap-2 px-1">
-            {board.lanes.map((lane) => {
-              const isActive = lane.key === activeLane.key;
-              return (
-                <button
-                  key={lane.key}
-                  type="button"
-                  onClick={() => setSelectedLaneKey(lane.key)}
-                  className={`min-w-[150px] rounded-2xl border px-4 py-3 text-left transition ${
-                    isActive
-                      ? "border-emerald-500/60 bg-emerald-950/20 shadow-[0_0_0_1px_rgba(16,185,129,0.16)]"
-                      : "border-zinc-800 bg-zinc-950"
-                  }`}
-                >
-                  <div className="flex items-center justify-between gap-3">
-                    <p className="text-sm font-medium text-zinc-100">{lane.title}</p>
-                    <span className="rounded-full border border-zinc-800 bg-zinc-900 px-2 py-0.5 text-[11px] text-zinc-400">
-                      {lane.items.length}
-                    </span>
-                  </div>
-                </button>
-              );
-            })}
+        <div className="sticky top-2 z-20 -mx-2 px-2">
+          <div className="rounded-2xl border border-zinc-800/80 bg-zinc-950/92 p-2 shadow-[0_10px_30px_rgba(0,0,0,0.28)] backdrop-blur">
+            <div className="-mx-1 overflow-x-auto pb-1">
+              <div className="flex gap-2 px-1">
+                {board.lanes.map((lane) => {
+                  const isActive = lane.key === activeLane.key;
+                  return (
+                    <button
+                      key={lane.key}
+                      type="button"
+                      onClick={() => setSelectedLaneKey(lane.key)}
+                      className={`min-w-[150px] rounded-2xl border px-4 py-3 text-left transition ${
+                        isActive
+                          ? "border-emerald-500/60 bg-emerald-950/20 shadow-[0_0_0_1px_rgba(16,185,129,0.16)]"
+                          : "border-zinc-800 bg-zinc-950"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between gap-3">
+                        <p className="text-sm font-medium text-zinc-100">{lane.title}</p>
+                        <span className="rounded-full border border-zinc-800 bg-zinc-900 px-2 py-0.5 text-[11px] text-zinc-400">
+                          {lane.items.length}
+                        </span>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </div>
 
