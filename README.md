@@ -72,11 +72,11 @@ flowchart TD
 
 별도 아키텍처 문서:
 
-- [STAGE_1_4_ARCHITECTURE.md](/Users/seo/stock-pilot/docs/STAGE_1_4_ARCHITECTURE.md)
-- [OPERATOR_RUNBOOK.md](/Users/seo/stock-pilot/docs/OPERATOR_RUNBOOK.md)
-- [SCORE_SYSTEM_V2.md](/Users/seo/stock-pilot/docs/SCORE_SYSTEM_V2.md)
-- [PRIVATE_ACCESS_RUNBOOK.md](/Users/seo/stock-pilot/docs/PRIVATE_ACCESS_RUNBOOK.md)
-- [FAILURES_AND_FALLBACKS.md](/Users/seo/stock-pilot/FAILURES_AND_FALLBACKS.md)
+- [STAGE_1_4_ARCHITECTURE.md](docs/STAGE_1_4_ARCHITECTURE.md)
+- [OPERATOR_RUNBOOK.md](docs/OPERATOR_RUNBOOK.md)
+- [SCORE_SYSTEM_V2.md](docs/SCORE_SYSTEM_V2.md)
+- [PRIVATE_ACCESS_RUNBOOK.md](docs/PRIVATE_ACCESS_RUNBOOK.md)
+- [FAILURES_AND_FALLBACKS.md](FAILURES_AND_FALLBACKS.md)
 
 ## 매일 운영 명령
 
@@ -135,9 +135,9 @@ npm run dev -- --hostname 0.0.0.0
 
 운영 가이드는 아래 문서를 따릅니다.
 
-- [PRIVATE_ACCESS_RUNBOOK.md](/Users/seo/stock-pilot/docs/PRIVATE_ACCESS_RUNBOOK.md)
-- [UPDATE_LOG.md](/Users/seo/stock-pilot/docs/UPDATE_LOG.md)
-- [FAILURES_AND_FALLBACKS.md](/Users/seo/stock-pilot/FAILURES_AND_FALLBACKS.md)
+- [PRIVATE_ACCESS_RUNBOOK.md](docs/PRIVATE_ACCESS_RUNBOOK.md)
+- [UPDATE_LOG.md](docs/UPDATE_LOG.md)
+- [FAILURES_AND_FALLBACKS.md](FAILURES_AND_FALLBACKS.md)
 
 ### 대시보드 로컬 키 설정
 
@@ -433,11 +433,12 @@ npm run stage3:quant -- --date 2026-04-03
 npm run stage4:plan -- --date 2026-04-03
 ```
 
-### 4. 수동 GPT 스프린트
+### 4. 수동 프롬프트 브리핑
 
 ```bash
-cd /Users/seo/stock-pilot
-bash scripts/run-manual-gpt-sprint.sh --date 2026-04-03
+bash scripts/open-chatgpt-web-prompt.sh advisory
+bash scripts/open-chatgpt-web-prompt.sh synthesis
+bash scripts/open-chatgpt-web-prompt.sh triage
 ```
 
 ### 5. 개별 수동 프롬프트
@@ -452,8 +453,8 @@ bash scripts/open-chatgpt-web-prompt.sh ideas
 ## 다른 날짜 / 다른 사람 / 다른 에이전트가 이어받는 순서
 
 1. 이 README 읽기
-2. [STAGE_1_4_ARCHITECTURE.md](/Users/seo/stock-pilot/docs/STAGE_1_4_ARCHITECTURE.md) 읽기
-3. [OPERATOR_RUNBOOK.md](/Users/seo/stock-pilot/docs/OPERATOR_RUNBOOK.md) 읽기
+2. [STAGE_1_4_ARCHITECTURE.md](docs/STAGE_1_4_ARCHITECTURE.md) 읽기
+3. [OPERATOR_RUNBOOK.md](docs/OPERATOR_RUNBOOK.md) 읽기
 4. 해당 날짜의 아래 파일 존재 여부 확인
    - `data/reports/YYYY-MM-DD/index.json`
    - `data/reports/YYYY-MM-DD/text-manifest.json`
@@ -484,10 +485,11 @@ bash scripts/open-chatgpt-web-prompt.sh ideas
 
 다음 단계 핵심은 `impact-map.json`입니다.
 
-### 2. Stage 2 실제 LLM 연결
+### 2. Stage 2 Gemini 자동 실행
 
-지금은 mock JSON으로 Stage 3/4를 검증합니다.
-실제 전략 판단은 아직 사람이 LLM에 묻고 결과를 같은 스키마 JSON으로 저장해야 합니다.
+`GEMINI_API_KEY`가 `.env`에 있으면 `run-daily-system.sh`가 자동으로 `build-stage2-strategy-gemini.py`를 실행합니다.
+키가 없으면 mock JSON으로 Stage 3/4를 계속 검증합니다.
+수동으로 LLM에 묻고 싶다면 `open-chatgpt-web-prompt.sh` 또는 `knowledge/daily/manual-kit/` 프롬프트를 활용합니다.
 
 ### 3. Stage 1 품질 고도화
 
@@ -531,7 +533,7 @@ bash scripts/open-chatgpt-web-prompt.sh ideas
 
 ## 최근 상태 요약
 
-2026-04-04 기준으로 아래가 반영된 상태입니다.
+2026-04-05 기준으로 아래가 반영된 상태입니다.
 
 - 점수체계 v2: `BaseScore - RiskPenalty`
 - 현금파킹 자산은 일반 위험자산처럼 단순 RSI 점수로 처리하지 않도록 보정
@@ -539,10 +541,11 @@ bash scripts/open-chatgpt-web-prompt.sh ideas
 - 경제 리포트에 `활용 리포트`, `사용 청크`, `후보 청크`, `요약 전용` 통계 표시
 - 추천 보드는 `코어 ETF / 섹터 ETF / 개별주` 3레인 구조
 - 보고서 상세 페이지에 태그 칩, 액션 포인트, 마켓 보드, 섹션 카드 표시
+- **EcoReport 단일 본체화 완료**: igzun-daily-report 하드코딩 참조 전량 제거, 스텁/레거시 13개 스크립트 `_archive/`로 이동
 
 업데이트 내역은 아래 문서를 계속 누적합니다.
 
-- [UPDATE_LOG.md](/Users/seo/stock-pilot/docs/UPDATE_LOG.md)
+- [UPDATE_LOG.md](docs/UPDATE_LOG.md)
 
 ## 운영 철학
 
