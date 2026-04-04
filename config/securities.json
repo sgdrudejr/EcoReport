@@ -1,0 +1,370 @@
+{
+  "version": "1.1",
+  "last_updated": "2026-04-04",
+  "_comment": "Single Source of Truth for all security metadata. Edit here — pipeline-utils.js auto-generates CATEGORY_BY_CODE, HOLDING_TOPIC_HINTS, PREFERRED_LABEL_BY_CATEGORY from this file.",
+  "securities": [
+    {
+      "code": "360750",
+      "name": "TIGER 미국S&P500",
+      "type": "etf",
+      "bucket": "core_etf",
+      "asset_class": "equity",
+      "region": "US",
+      "categories": {
+        "default": "미국인덱스",
+        "ISA": "미국인덱스",
+        "PENSION": "S&P500"
+      },
+      "keywords": {
+        "topic_hints": ["s&p500", "s&p 500", "미국지수", "미국증시", "미국 주식"],
+        "aliases": ["tiger 미국s&p500", "s&p500 etf", "미국 s&p500 etf"],
+        "macro": ["s&p500", "s&p 500", "미국증시", "미국 주식"],
+        "theme": ["s&p500", "sp500", "미국", "대형주", "지수"]
+      },
+      "thematic_triggers": {
+        "sectors": ["반도체"],
+        "themes": ["AI 인프라", "HBM/메모리"]
+      }
+    },
+    {
+      "code": "133690",
+      "name": "TIGER 미국나스닥100",
+      "type": "etf",
+      "bucket": "core_etf",
+      "asset_class": "equity",
+      "region": "US",
+      "categories": {
+        "default": "나스닥100",
+        "PENSION": "나스닥100"
+      },
+      "keywords": {
+        "topic_hints": ["나스닥", "nasdaq", "기술주", "미국 빅테크"],
+        "aliases": ["tiger 미국나스닥100", "나스닥100 etf", "nasdaq100 etf"],
+        "macro": ["나스닥", "nasdaq", "미국 기술주", "빅테크"],
+        "theme": ["나스닥", "nasdaq", "기술주"]
+      },
+      "thematic_triggers": {
+        "sectors": ["반도체"],
+        "themes": ["AI 인프라", "HBM/메모리"]
+      }
+    },
+    {
+      "code": "458760",
+      "name": "TIGER 미국배당+7%프리미엄다우존스",
+      "type": "etf",
+      "bucket": "core_etf",
+      "asset_class": "mixed",
+      "region": "US",
+      "categories": {
+        "default": "배당/커버드콜",
+        "ISA": "배당/커버드콜"
+      },
+      "keywords": {
+        "topic_hints": ["배당", "커버드콜", "미국배당", "다우존스", "인컴"],
+        "aliases": ["미국배당+7%프리미엄다우존스", "프리미엄다우존스", "미국배당 커버드콜"],
+        "macro": ["배당", "인컴", "커버드콜", "다우존스"],
+        "theme": ["배당", "커버드콜", "다우", "프리미엄"]
+      },
+      "thematic_triggers": {
+        "sectors": [],
+        "themes": ["금리/매크로"]
+      }
+    },
+    {
+      "code": "132030",
+      "name": "KODEX 골드선물(H)",
+      "type": "etf",
+      "bucket": "core_etf",
+      "asset_class": "commodity",
+      "region": "GLOBAL",
+      "categories": {
+        "default": "금",
+        "ISA": "금",
+        "PENSION": "금"
+      },
+      "keywords": {
+        "topic_hints": ["gold", "금", "귀금속", "인플레이션 헤지"],
+        "aliases": ["kodex 골드선물", "골드선물(h)", "gold futures etf"],
+        "macro": ["gold", "금가격", "귀금속", "금 선물", "원자재", "유가"],
+        "theme": ["금", "gold", "안전자산"]
+      },
+      "thematic_triggers": {
+        "sectors": ["금"],
+        "themes": ["금/원자재"]
+      }
+    },
+    {
+      "code": "423160",
+      "name": "KODEX KOFR금리액티브",
+      "type": "etf",
+      "bucket": "core_etf",
+      "asset_class": "cash",
+      "region": "KR",
+      "categories": {
+        "default": "현금파킹",
+        "ISA": "현금파킹",
+        "PENSION": "현금파킹",
+        "TOSS": "현금파킹"
+      },
+      "keywords": {
+        "topic_hints": ["kofr", "금리", "단기채", "현금", "채권", "유동성"],
+        "aliases": ["kofr", "kofr금리", "kofr금리액티브", "kodex kofr"],
+        "macro": ["금리", "채권", "단기", "유동성", "현금"],
+        "theme": ["KOFR", "단기금리", "현금", "파킹"]
+      },
+      "thematic_triggers": {
+        "sectors": [],
+        "themes": ["금리/매크로"]
+      }
+    },
+    {
+      "code": "487240",
+      "name": "KODEX AI전력핵심설비",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "asset_class": "equity",
+      "region": "KR",
+      "categories": {
+        "default": "전력기기",
+        "TOSS": "전력기기"
+      },
+      "keywords": {
+        "topic_hints": ["전력", "변압기", "송배전", "ai 인프라", "데이터센터 전력"],
+        "aliases": ["kodex ai전력핵심설비", "ai전력핵심설비"],
+        "macro": [],
+        "theme": ["전력", "변압", "전력기기", "인프라", "데이터센터"]
+      },
+      "thematic_triggers": {
+        "sectors": ["전력기기"],
+        "themes": ["전력 인프라", "AI 인프라"]
+      }
+    },
+    {
+      "code": "449450",
+      "name": "PLUS K방산",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "asset_class": "equity",
+      "region": "KR",
+      "categories": {
+        "default": "방산",
+        "TOSS": "방산"
+      },
+      "keywords": {
+        "topic_hints": ["방산", "국방", "미사일", "방위산업", "nato"],
+        "aliases": ["plus k방산", "k방산 etf"],
+        "macro": [],
+        "theme": ["방산", "국방", "무기", "군수"]
+      },
+      "thematic_triggers": {
+        "sectors": ["방산"],
+        "themes": ["방산"]
+      }
+    },
+    {
+      "code": "434730",
+      "name": "HANARO 원자력iSelect",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "asset_class": "equity",
+      "region": "KR",
+      "categories": {
+        "default": "원자력",
+        "TOSS": "원자력"
+      },
+      "keywords": {
+        "topic_hints": ["원자력", "원전", "smr", "원자로"],
+        "aliases": ["hanaro 원자력iselect", "원자력iselect", "원자력 etf"],
+        "macro": [],
+        "theme": ["원자력", "원전", "SMR", "핵"]
+      },
+      "thematic_triggers": {
+        "sectors": ["원자력"],
+        "themes": ["원자력"]
+      }
+    },
+    {
+      "code": "2921050",
+      "name": "TIGER 코리아TOP10",
+      "type": "etf",
+      "bucket": "core_etf",
+      "asset_class": "equity",
+      "region": "KR",
+      "categories": {
+        "default": "국내대형주"
+      },
+      "keywords": {
+        "topic_hints": ["코리아 top10", "국내 코어", "코스피", "대형주"],
+        "aliases": ["tiger코리아top10", "코리아top10", "korea top10"],
+        "macro": ["코스피", "대형주", "국내 주식"],
+        "theme": ["코스피", "대형주", "국내"]
+      },
+      "thematic_triggers": {
+        "sectors": [],
+        "themes": []
+      }
+    },
+    {
+      "code": "005930",
+      "name": "삼성전자",
+      "type": "stock",
+      "bucket": "individual_stock",
+      "asset_class": "equity",
+      "region": "KR",
+      "categories": {
+        "default": "반도체"
+      },
+      "keywords": {
+        "topic_hints": ["삼성전자", "삼성", "갤럭시", "hbm", "메모리"],
+        "aliases": ["삼성전자", "samsung electronics"],
+        "macro": [],
+        "theme": ["반도체", "메모리", "hbm", "파운드리"]
+      },
+      "thematic_triggers": {
+        "sectors": ["반도체"],
+        "themes": ["HBM/메모리", "AI 인프라"]
+      }
+    },
+    {
+      "code": "000660",
+      "name": "SK하이닉스",
+      "type": "stock",
+      "bucket": "individual_stock",
+      "asset_class": "equity",
+      "region": "KR",
+      "categories": {
+        "default": "반도체"
+      },
+      "keywords": {
+        "topic_hints": ["sk하이닉스", "하이닉스", "hbm", "dram", "낸드"],
+        "aliases": ["sk하이닉스", "sk hynix"],
+        "macro": [],
+        "theme": ["반도체", "hbm", "dram", "낸드", "메모리"]
+      },
+      "thematic_triggers": {
+        "sectors": ["반도체"],
+        "themes": ["HBM/메모리", "AI 인프라"]
+      }
+    },
+    {
+      "code": "267260",
+      "name": "HD현대일렉트릭",
+      "type": "stock",
+      "bucket": "individual_stock",
+      "asset_class": "equity",
+      "region": "KR",
+      "categories": {
+        "default": "전력기기"
+      },
+      "keywords": {
+        "topic_hints": ["hd현대일렉트릭", "현대일렉트릭", "변압기", "전력기기"],
+        "aliases": ["hd현대일렉트릭", "현대일렉트릭"],
+        "macro": [],
+        "theme": ["변압기", "전력기기", "송배전"]
+      },
+      "thematic_triggers": {
+        "sectors": ["전력기기"],
+        "themes": ["전력 인프라", "AI 인프라"]
+      }
+    },
+    {
+      "code": "010120",
+      "name": "LS일렉트릭",
+      "type": "stock",
+      "bucket": "individual_stock",
+      "asset_class": "equity",
+      "region": "KR",
+      "categories": {
+        "default": "전력기기"
+      },
+      "keywords": {
+        "topic_hints": ["ls일렉트릭", "ls electric", "전력기기", "수배전"],
+        "aliases": ["ls일렉트릭", "ls electric"],
+        "macro": [],
+        "theme": ["전력기기", "수배전", "인프라"]
+      },
+      "thematic_triggers": {
+        "sectors": ["전력기기"],
+        "themes": ["전력 인프라", "AI 인프라"]
+      }
+    },
+    {
+      "code": "298040",
+      "name": "효성중공업",
+      "type": "stock",
+      "bucket": "individual_stock",
+      "asset_class": "equity",
+      "region": "KR",
+      "categories": {
+        "default": "전력기기"
+      },
+      "keywords": {
+        "topic_hints": ["효성중공업", "효성", "변압기", "초전도"],
+        "aliases": ["효성중공업"],
+        "macro": [],
+        "theme": ["변압기", "전력기기", "초전도"]
+      },
+      "thematic_triggers": {
+        "sectors": ["전력기기"],
+        "themes": ["전력 인프라"]
+      }
+    },
+    {
+      "code": "064350",
+      "name": "현대로템",
+      "type": "stock",
+      "bucket": "individual_stock",
+      "asset_class": "equity",
+      "region": "KR",
+      "categories": {
+        "default": "방산"
+      },
+      "keywords": {
+        "topic_hints": ["현대로템", "로템", "k2전차", "방산"],
+        "aliases": ["현대로템"],
+        "macro": [],
+        "theme": ["방산", "전차", "군수"]
+      },
+      "thematic_triggers": {
+        "sectors": ["방산"],
+        "themes": ["방산"]
+      }
+    },
+    {
+      "code": "047810",
+      "name": "한국항공우주",
+      "type": "stock",
+      "bucket": "individual_stock",
+      "asset_class": "equity",
+      "region": "KR",
+      "categories": {
+        "default": "방산"
+      },
+      "keywords": {
+        "topic_hints": ["한국항공우주", "kai", "항공", "방산"],
+        "aliases": ["한국항공우주", "kai"],
+        "macro": [],
+        "theme": ["방산", "항공", "우주", "군수"]
+      },
+      "thematic_triggers": {
+        "sectors": ["방산"],
+        "themes": ["방산"]
+      }
+    }
+  ],
+  "theme_category_rules": [
+    { "theme": "HBM/메모리",  "category": "S&P500",        "accountKey": "PENSION" },
+    { "theme": "HBM/메모리",  "category": "나스닥100",       "accountKey": "PENSION" },
+    { "theme": "AI 인프라",   "category": "전력기기",        "accountKey": "TOSS"    },
+    { "theme": "AI 인프라",   "category": "S&P500",         "accountKey": "PENSION" },
+    { "theme": "AI 인프라",   "category": "나스닥100",       "accountKey": "PENSION" },
+    { "theme": "전력 인프라", "category": "전력기기",        "accountKey": "TOSS"    },
+    { "theme": "방산",        "category": "방산",            "accountKey": "TOSS"    },
+    { "theme": "원자력",      "category": "원자력",          "accountKey": "TOSS"    },
+    { "theme": "금/원자재",   "category": "금",              "accountKey": "PENSION" },
+    { "theme": "금리/매크로", "category": "현금파킹",        "accountKey": "ISA"     },
+    { "theme": "금리/매크로", "category": "현금파킹",        "accountKey": "PENSION" },
+    { "theme": "금리/매크로", "category": "현금파킹",        "accountKey": "TOSS"    },
+    { "theme": "금리/매크로", "category": "배당/커버드콜",   "accountKey": "ISA"     }
+  ]
+}

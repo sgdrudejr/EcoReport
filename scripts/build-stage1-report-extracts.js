@@ -5,6 +5,8 @@ import path from "node:path";
 
 import {
   HOLDING_TOPIC_HINTS,
+  MACRO_KEYWORDS_BY_CODE,
+  THEMATIC_TRIGGERS_BY_CODE,
   ROOT_DIR,
   buildPortfolioMaps,
   clamp,
@@ -75,26 +77,16 @@ function holdingMatchesContext(holding, report, text, sector, themes) {
   }
 
   if (reportType === "macro") {
-    const macroSpecificMatches = {
-      "423160": ["금리", "채권", "단기", "유동성", "현금"],
-      "132030": ["gold", "금가격", "귀금속", "금 선물", "원자재", "유가"],
-      "133690": ["나스닥", "nasdaq", "미국 기술주", "빅테크"],
-      "360750": ["s&p500", "s&p 500", "미국증시", "미국 주식"],
-      "458760": ["배당", "인컴", "커버드콜", "다우존스"],
-    };
-    return (macroSpecificMatches[holding.code] ?? []).some((hint) => containsKeyword(normalized, hint));
+    // securities.json의 keywords.macro 기반 (MACRO_KEYWORDS_BY_CODE)
+    return (MACRO_KEYWORDS_BY_CODE[holding.code] ?? []).some((hint) => containsKeyword(normalized, hint));
   }
 
-  const thematicMatches = {
-    "487240": sector === "전력기기" || themes.includes("전력 인프라") || themes.includes("AI 인프라"),
-    "449450": sector === "방산" || themes.includes("방산"),
-    "434730": sector === "원자력" || themes.includes("원자력"),
-    "132030": sector === "금" || themes.includes("금/원자재"),
-    "133690": themes.includes("AI 인프라") || sector === "반도체",
-    "360750": themes.includes("AI 인프라") || sector === "반도체",
-  };
-
-  return thematicMatches[holding.code] === true;
+  // securities.json의 thematic_triggers 기반 (THEMATIC_TRIGGERS_BY_CODE)
+  const triggers = THEMATIC_TRIGGERS_BY_CODE[holding.code];
+  if (!triggers) return false;
+  const sectorMatch = (triggers.sectors ?? []).some((s) => sector === s);
+  const themeMatch = (triggers.themes ?? []).some((t) => themes.includes(t));
+  return sectorMatch || themeMatch;
 }
 
 function paragraphScore(paragraph, index, report, coverage) {

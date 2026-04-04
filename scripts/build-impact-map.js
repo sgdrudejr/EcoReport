@@ -5,6 +5,8 @@ import path from "node:path";
 
 import {
   CATEGORY_BY_CODE,
+  STRICT_ALIASES_BY_CODE,
+  THEME_CATEGORY_RULES,
   ROOT_DIR,
   buildPortfolioMaps,
   clamp,
@@ -32,33 +34,11 @@ const REPORT_TYPE_MULTIPLIERS = {
   macro: 0.64,
 };
 
-const STRICT_HOLDING_ALIASES = {
-  "423160": ["kofr", "kofr금리", "kofr금리액티브", "kodex kofr"],
-  "458760": ["미국배당+7%프리미엄다우존스", "프리미엄다우존스", "미국배당 커버드콜"],
-  "360750": ["tiger 미국s&p500", "s&p500 etf", "미국 s&p500 etf"],
-  "133690": ["tiger 미국나스닥100", "나스닥100 etf", "nasdaq100 etf"],
-  "132030": ["kodex 골드선물", "골드선물(h)", "gold futures etf"],
-  "487240": ["kodex ai전력핵심설비", "ai전력핵심설비"],
-  "449450": ["plus k방산", "k방산 etf"],
-  "434730": ["hanaro 원자력iselect", "원자력iselect", "원자력 etf"],
-  "2921050": ["tiger코리아top10", "코리아top10", "korea top10"],
-};
+// securities.json 기반 (STRICT_ALIASES_BY_CODE) — pipeline-utils.js에서 import
+const STRICT_HOLDING_ALIASES = STRICT_ALIASES_BY_CODE;
 
-const THEME_CATEGORY_RULES = [
-  { theme: "HBM/메모리", category: "S&P500", accountKey: "PENSION" },
-  { theme: "HBM/메모리", category: "나스닥100", accountKey: "PENSION" },
-  { theme: "AI 인프라", category: "전력기기", accountKey: "TOSS" },
-  { theme: "AI 인프라", category: "S&P500", accountKey: "PENSION" },
-  { theme: "AI 인프라", category: "나스닥100", accountKey: "PENSION" },
-  { theme: "전력 인프라", category: "전력기기", accountKey: "TOSS" },
-  { theme: "방산", category: "방산", accountKey: "TOSS" },
-  { theme: "원자력", category: "원자력", accountKey: "TOSS" },
-  { theme: "금/원자재", category: "금", accountKey: "PENSION" },
-  { theme: "금리/매크로", category: "현금파킹", accountKey: "ISA" },
-  { theme: "금리/매크로", category: "현금파킹", accountKey: "PENSION" },
-  { theme: "금리/매크로", category: "현금파킹", accountKey: "TOSS" },
-  { theme: "금리/매크로", category: "배당/커버드콜", accountKey: "ISA" },
-];
+// securities.json 기반 (THEME_CATEGORY_RULES) — pipeline-utils.js에서 import
+// (재할당 없이 바로 THEME_CATEGORY_RULES 사용)
 
 const MACRO_EVENT_RULES = [
   { label: "중동 지정학 리스크", pattern: /(이란|중동|호르무즈|지정학|전쟁)/i, regime: "HIGH_VOL", riskTag: "geopolitics" },

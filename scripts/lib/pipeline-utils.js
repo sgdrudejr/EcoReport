@@ -26,28 +26,99 @@ function resolveRootDir() {
 
 export const ROOT_DIR = resolveRootDir();
 
-export const CATEGORY_BY_CODE = {
-  "458760": { default: "배당/커버드콜", ISA: "배당/커버드콜" },
-  "132030": { default: "금", ISA: "금", PENSION: "금" },
-  "360750": { default: "미국인덱스", ISA: "미국인덱스", PENSION: "S&P500" },
-  "133690": { default: "나스닥100", PENSION: "나스닥100" },
-  "423160": { default: "현금파킹", ISA: "현금파킹", PENSION: "현금파킹", TOSS: "현금파킹" },
-  "487240": { default: "전력기기", TOSS: "전력기기" },
-  "449450": { default: "방산", TOSS: "방산" },
-  "434730": { default: "원자력", TOSS: "원자력" },
-};
+// ─────────────────────────────────────────────────────────────────────────────
+// Security Master: config/securities.json 을 Single Source of Truth로 사용.
+// 이 파일을 직접 수정하지 말 것. 종목/카테고리 정보는 securities.json 에서만 관리.
+// ─────────────────────────────────────────────────────────────────────────────
+function loadSecuritiesSync() {
+  const p = path.join(ROOT_DIR, "config", "securities.json");
+  try {
+    return JSON.parse(fsSync.readFileSync(p, "utf8"));
+  } catch {
+    return { securities: [], theme_category_rules: [] };
+  }
+}
 
-export const PREFERRED_LABEL_BY_CATEGORY = {
-  "배당/커버드콜": "TIGER 미국배당+7%프리미엄다우존스",
-  금: "KODEX 골드선물(H)",
-  미국인덱스: "TIGER 미국S&P500",
-  "S&P500": "TIGER 미국S&P500",
-  나스닥100: "TIGER 미국나스닥100",
-  현금파킹: "KODEX KOFR금리액티브",
-  전력기기: "KODEX AI전력핵심설비",
-  방산: "PLUS K방산",
-  원자력: "HANARO 원자력iSelect",
-};
+const _sm = loadSecuritiesSync();
+
+/** 전체 Security Master (raw JSON) */
+export const SECURITIES_MASTER = _sm;
+
+/** 코드 → Security 객체 빠른 조회 */
+export const SECURITIES_BY_CODE = Object.fromEntries(
+  (_sm.securities ?? []).map((s) => [s.code, s])
+);
+
+/**
+ * 코드와 계좌 키로 카테고리 반환.
+ * 기존 CATEGORY_BY_CODE[code]?.[accountKey] ?? CATEGORY_BY_CODE[code]?.default 를 대체.
+ */
+export function getCategory(code, accountKey) {
+  const cats = SECURITIES_BY_CODE[code]?.categories ?? {};
+  return (accountKey && cats[accountKey]) || cats.default || null;
+}
+
+/**
+ * 카테고리 → 대표 종목명 (PREFERRED_LABEL_BY_CATEGORY 대체).
+ * securities.json에서 해당 카테고리를 default로 갖는 첫 번째 종목명 반환.
+ */
+export function getPreferredLabel(category) {
+  const sec = (_sm.securities ?? []).find(
+    (s) => s.categories?.default === category || Object.values(s.categories ?? {}).includes(category)
+  );
+  return sec?.name ?? null;
+}
+
+// ─────────── Backward-Compatible exports (기존 import 코드 수정 불필요) ───────────
+export const CATEGORY_BY_CODE = Object.fromEntries(
+  (_sm.securities ?? [])
+    .filter((s) => s.categories && Object.keys(s.categories).length > 0)
+    .map((s) => [s.code, s.categories])
+);
+
+export const PREFERRED_LABEL_BY_CATEGORY = Object.fromEntries(
+  (_sm.securities ?? []).flatMap((s) =>
+    Object.values(s.categories ?? {}).map((cat) => [cat, s.name])
+  )
+);
+
+export const HOLDING_TOPIC_HINTS = Object.fromEntries(
+  (_sm.securities ?? [])
+    .filter((s) => s.keywords?.topic_hints?.length > 0)
+    .map((s) => [s.code, s.keywords.topic_hints])
+);
+
+// ─────────── New keyword helpers ───────────────────────────────────────────
+/** 리포트 impact-map용 strict alias 목록 (코드 → alias[]) */
+export const STRICT_ALIASES_BY_CODE = Object.fromEntries(
+  (_sm.securities ?? [])
+    .filter((s) => s.keywords?.aliases?.length > 0)
+    .map((s) => [s.code, s.keywords.aliases])
+);
+
+/** 매크로 리포트 매칭 키워드 (Stage 1 macroSpecificMatches 대체) */
+export const MACRO_KEYWORDS_BY_CODE = Object.fromEntries(
+  (_sm.securities ?? [])
+    .filter((s) => s.keywords?.macro?.length > 0)
+    .map((s) => [s.code, s.keywords.macro])
+);
+
+/** 테마/섹터 키워드 (Stage 3 codeThemeKeywords 대체) */
+export const THEME_KEYWORDS_BY_CODE = Object.fromEntries(
+  (_sm.securities ?? [])
+    .filter((s) => s.keywords?.theme?.length > 0)
+    .map((s) => [s.code, s.keywords.theme])
+);
+
+/** Stage 1 테마/섹터 트리거 (thematicMatches 대체) */
+export const THEMATIC_TRIGGERS_BY_CODE = Object.fromEntries(
+  (_sm.securities ?? [])
+    .filter((s) => s.thematic_triggers)
+    .map((s) => [s.code, s.thematic_triggers])
+);
+
+/** Impact-map THEME_CATEGORY_RULES */
+export const THEME_CATEGORY_RULES = _sm.theme_category_rules ?? [];
 
 export function parseDateArgs(argv) {
   const args = {
@@ -329,17 +400,7 @@ export function themesFromText(title, text) {
     .map(([theme]) => theme);
 }
 
-export const HOLDING_TOPIC_HINTS = {
-  "423160": ["kofr", "금리", "단기채", "현금", "채권", "유동성"],
-  "458760": ["배당", "커버드콜", "미국배당", "다우존스", "인컴"],
-  "360750": ["s&p500", "s&p 500", "미국지수", "미국증시", "미국 주식"],
-  "133690": ["나스닥", "nasdaq", "기술주", "미국 빅테크"],
-  "132030": ["gold", "금", "귀금속", "인플레이션 헤지"],
-  "487240": ["전력", "변압기", "송배전", "ai 인프라", "데이터센터 전력"],
-  "449450": ["방산", "국방", "미사일", "방위산업", "nato"],
-  "434730": ["원자력", "원전", "smr", "원자로"],
-  "2921050": ["코리아 top10", "국내 코어", "코스피", "대형주"],
-};
+// HOLDING_TOPIC_HINTS 는 위(line 85)에서 securities.json 기반으로 자동 생성됩니다.
 
 export function reportTypeFromMeta(report, text) {
   if (report.category === "경제분석") return "macro";

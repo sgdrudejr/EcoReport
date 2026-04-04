@@ -6,6 +6,7 @@ import path from "node:path";
 
 import {
   CATEGORY_BY_CODE,
+  THEME_KEYWORDS_BY_CODE,
   ROOT_DIR,
   clamp,
   parseDateArgs,
@@ -301,16 +302,9 @@ function deriveFeatureVector(technicalItem) {
   };
 }
 
-function codeThemeKeywords(code, category) {
-  if (code === "487240" || category === "전력기기") return ["전력", "변압", "전력기기", "인프라", "데이터센터"];
-  if (code === "449450" || category === "방산") return ["방산", "국방", "무기", "군수"];
-  if (code === "434730" || category === "원자력") return ["원자력", "원전", "SMR", "핵"];
-  if (code === "132030" || category === "금") return ["금", "gold", "안전자산"];
-  if (code === "458760" || category === "배당/커버드콜") return ["배당", "커버드콜", "다우", "프리미엄"];
-  if (code === "360750" || category === "S&P500" || category === "미국인덱스") return ["s&p500", "sp500", "미국", "대형주", "지수"];
-  if (code === "133690" || category === "나스닥100") return ["나스닥", "nasdaq", "기술주"];
-  if (code === "423160" || category === "현금파킹") return ["KOFR", "단기금리", "현금", "파킹"];
-  return [];
+function codeThemeKeywords(code, _category) {
+  // securities.json의 keywords.theme 기반 (THEME_KEYWORDS_BY_CODE)
+  return THEME_KEYWORDS_BY_CODE[code] ?? [];
 }
 
 function themeMatchesHolding(code, category, value) {
