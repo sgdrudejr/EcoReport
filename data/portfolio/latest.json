@@ -1,6 +1,6 @@
 {
   "date": "2026-04-04",
-  "updatedAt": "2026-04-04T15:46:02.010Z",
+  "updatedAt": "2026-04-04T15:54:39.993Z",
   "source": {
     "method": "screenshot_review",
     "reviewer": "seo",
@@ -13,10 +13,10 @@
       "accountNumber": "270-80-195368",
       "evaluationAmount": 8384240,
       "cashAvailable": 6277490,
-      "settlementCash": null,
+      "settlementCash": 6277490,
       "principal": 6304001,
-      "profitLoss": 2084749,
-      "profitRate": 33.07,
+      "profitLoss": 2080239,
+      "profitRate": 33,
       "screenshots": [
         "Screenshot_20260404_235200.jpg"
       ],
@@ -57,6 +57,28 @@
           "profitLoss": 700,
           "profitRate": null,
           "note": ""
+        },
+        {
+          "name": "TIGER 미국S&P500",
+          "quantity": 20,
+          "avgPrice": null,
+          "currentPrice": null,
+          "marketValue": 491400,
+          "purchaseValue": null,
+          "profitLoss": -1100,
+          "profitRate": -0.22,
+          "note": null
+        },
+        {
+          "name": "TIGER 미국배당다우존스스타데일리커...",
+          "quantity": 50,
+          "avgPrice": null,
+          "currentPrice": null,
+          "marketValue": 509250,
+          "purchaseValue": null,
+          "profitLoss": -1250,
+          "profitRate": -0.24,
+          "note": null
         }
       ]
     },
@@ -68,12 +90,12 @@
       "cashAvailable": 5565201,
       "settlementCash": 4047251,
       "principal": 1027340,
-      "profitLoss": -155,
-      "profitRate": -0.02,
+      "profitLoss": -2830,
+      "profitRate": -0.19,
       "screenshots": [
         "Screenshot_20260404_235333.jpg"
       ],
-      "incomplete": false,
+      "incomplete": true,
       "holdings": [
         {
           "code": "132030",
@@ -110,6 +132,39 @@
           "profitLoss": -100,
           "profitRate": -0.02,
           "note": null
+        },
+        {
+          "name": "KODEX KOFR금리액티브(합성)",
+          "quantity": 2,
+          "avgPrice": 110680,
+          "currentPrice": 110685,
+          "marketValue": 221370,
+          "purchaseValue": 221360,
+          "profitLoss": null,
+          "profitRate": null,
+          "note": null
+        },
+        {
+          "name": "TIGER 미국나스닥100",
+          "quantity": 3,
+          "avgPrice": 160520,
+          "currentPrice": 160160,
+          "marketValue": 480480,
+          "purchaseValue": 481560,
+          "profitLoss": null,
+          "profitRate": null,
+          "note": null
+        },
+        {
+          "name": "TIGER 미국S&P500",
+          "quantity": 20,
+          "avgPrice": 24625,
+          "currentPrice": 24570,
+          "marketValue": 491400,
+          "purchaseValue": 492500,
+          "profitLoss": null,
+          "profitRate": null,
+          "note": null
         }
       ]
     },
@@ -117,16 +172,16 @@
       "key": "TOSS",
       "label": "토스증권",
       "accountNumber": null,
-      "evaluationAmount": 1298790,
+      "evaluationAmount": 1297665,
       "cashAvailable": 3009844,
       "settlementCash": null,
       "principal": 1300945,
-      "profitLoss": -2155,
-      "profitRate": -0.17,
+      "profitLoss": -3280,
+      "profitRate": -0.25,
       "screenshots": [
         "스크린샷 2026-04-04 오후 11.53.18.png"
       ],
-      "incomplete": true,
+      "incomplete": false,
       "holdings": [
         {
           "code": "434730",
@@ -162,6 +217,39 @@
           "purchaseValue": 385800,
           "profitLoss": -1400,
           "profitRate": -0.36,
+          "note": null
+        },
+        {
+          "name": "HANARO 원자력iSelect",
+          "quantity": 7,
+          "avgPrice": 64095,
+          "currentPrice": 64170,
+          "marketValue": 443190,
+          "purchaseValue": 448670,
+          "profitLoss": 520,
+          "profitRate": 0.11,
+          "note": null
+        },
+        {
+          "name": "KODEX 선진국ESG",
+          "quantity": 15,
+          "avgPrice": 31098,
+          "currentPrice": 31000,
+          "marketValue": 465000,
+          "purchaseValue": 466475,
+          "profitLoss": -1475,
+          "profitRate": -0.31,
+          "note": null
+        },
+        {
+          "name": "PLUS V자산",
+          "quantity": 5,
+          "avgPrice": 77160,
+          "currentPrice": 76698,
+          "marketValue": 383475,
+          "purchaseValue": 385800,
+          "profitLoss": -2325,
+          "profitRate": -0.6,
           "note": null
         }
       ]
