@@ -1,6 +1,6 @@
 {
   "date": "2026-04-04",
-  "updatedAt": "2026-04-04T15:55:35.698Z",
+  "updatedAt": "2026-04-04T15:55:51.226Z",
   "source": {
     "method": "screenshot_review",
     "reviewer": "seo",
@@ -20,7 +20,7 @@
       "screenshots": [
         "Screenshot_20260404_235200.jpg"
       ],
-      "incomplete": true,
+      "incomplete": false,
       "holdings": [
         {
           "code": "423160",
@@ -95,7 +95,7 @@
       "screenshots": [
         "Screenshot_20260404_235333.jpg"
       ],
-      "incomplete": true,
+      "incomplete": false,
       "holdings": [
         {
           "code": "132030",
