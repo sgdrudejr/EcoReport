@@ -7,6 +7,7 @@ import { TrendingUp, TrendingDown, Minus } from "lucide-react";
 import PortfolioGuidanceTabs from "@/components/PortfolioGuidanceTabs";
 import RecommendationBoard from "@/components/RecommendationBoard";
 import TriggerButton from "@/components/TriggerButton";
+import { loadCycleChangeSummary } from "@/lib/cycle-changes";
 import { buildPortfolioGuide } from "@/lib/portfolio-guidance";
 import { loadRecommendationBoard } from "@/lib/recommendations";
 import {
@@ -332,6 +333,22 @@ function GuidanceScoreCard({
   );
 }
 
+function formatSignedPoints(value: number | null | undefined) {
+  if (typeof value !== "number" || Number.isNaN(value)) {
+    return "-";
+  }
+
+  return `${value > 0 ? "+" : ""}${value}점`;
+}
+
+function deltaToneClass(value: number | null | undefined) {
+  if (typeof value !== "number" || Number.isNaN(value) || value === 0) {
+    return "text-zinc-300";
+  }
+
+  return value > 0 ? "text-emerald-400" : "text-red-400";
+}
+
 function researchTagClass(tone: string) {
   if (tone === "rose") return "border-rose-500/30 bg-rose-950/20 text-rose-300";
   if (tone === "sky") return "border-sky-500/30 bg-sky-950/20 text-sky-300";
@@ -349,6 +366,7 @@ export default function DashboardPage() {
   const strategy = loadStrategy();
   const portfolio = loadLatestPortfolio();
   const portfolioGuide = portfolio ? buildPortfolioGuide(portfolio) : null;
+  const cycleChanges = loadCycleChangeSummary();
   const recommendationBoard = loadRecommendationBoard(
     briefing?.date ?? portfolio?.date ?? market?.date,
   );
@@ -567,6 +585,79 @@ export default function DashboardPage() {
             <div className="mb-4 rounded-xl border border-amber-900/50 bg-amber-950/30 px-4 py-3 text-sm text-amber-300">
               부분 캡처 계좌가 {portfolioGuide.incompleteCount}개 있어 일부 가이드는
               참고용입니다. 누락 종목을 채우면 정밀도가 올라갑니다.
+            </div>
+          )}
+
+          {cycleChanges && (
+            <div className="mb-4 rounded-2xl border border-sky-900/40 bg-sky-950/10 p-4 md:p-5">
+              <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+                <div>
+                  <p className="text-xs uppercase tracking-wide text-sky-300">전일 대비 변화</p>
+                  <p className="mt-1 text-sm text-zinc-300">
+                    {cycleChanges.previousDate} 대비 {cycleChanges.currentDate} 기준 변화입니다.
+                  </p>
+                </div>
+                <div className="text-sm text-zinc-400">
+                  포트폴리오 점수{" "}
+                  <span className={`font-medium ${deltaToneClass(cycleChanges.portfolioScoreDelta)}`}>
+                    {cycleChanges.previousPortfolioScore ?? "-"}점 → {cycleChanges.currentPortfolioScore ?? "-"}점
+                    {" "}
+                    ({formatSignedPoints(cycleChanges.portfolioScoreDelta)})
+                  </span>
+                </div>
+              </div>
+
+              <div className="mt-4 grid gap-3 xl:grid-cols-[0.95fr,1.05fr]">
+                <div className="rounded-2xl border border-zinc-800 bg-zinc-950 px-4 py-4">
+                  <p className="text-xs text-zinc-500">핵심 변경점</p>
+                  <ul className="mt-3 space-y-2 text-sm text-zinc-100">
+                    {cycleChanges.highlights.map((line) => (
+                      <li key={line}>- {line}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="grid gap-3 md:grid-cols-3">
+                  {cycleChanges.accounts.map((account) => (
+                    <div
+                      key={`change-${account.key}`}
+                      className="rounded-2xl border border-zinc-800 bg-zinc-950 px-4 py-4"
+                    >
+                      <div className="flex items-center justify-between gap-3">
+                        <p className="text-sm font-medium text-zinc-100">{account.label}</p>
+                        <span className={`text-sm font-medium ${deltaToneClass(account.scoreDelta)}`}>
+                          {formatSignedPoints(account.scoreDelta)}
+                        </span>
+                      </div>
+                      <p className="mt-2 text-xs text-zinc-500">
+                        점수 {account.previousScore ?? "-"}점 → {account.currentScore ?? "-"}점
+                      </p>
+                      <div className="mt-3 space-y-2 text-xs text-zinc-400">
+                        <p>
+                          bias {account.previousBias ?? "-"} →{" "}
+                          <span className="text-zinc-200">{account.currentBias ?? "-"}</span>
+                        </p>
+                        <p>
+                          패널티 {account.previousRiskPenalty ?? "-"} →{" "}
+                          <span className={deltaToneClass(account.riskPenaltyDelta)}>
+                            {account.currentRiskPenalty ?? "-"}
+                          </span>
+                        </p>
+                        <p>
+                          리포트 커버리지 {account.previousReportCoverage ?? "-"}% →{" "}
+                          <span className={deltaToneClass(account.reportCoverageDelta)}>
+                            {account.currentReportCoverage ?? "-"}%
+                          </span>
+                        </p>
+                        <p>
+                          우선 후보 {account.previousCandidate ?? "-"} →{" "}
+                          <span className="text-zinc-200">{account.currentCandidate ?? "-"}</span>
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           )}
 
