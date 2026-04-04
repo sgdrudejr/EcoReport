@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useMemo, useState } from "react";
+import HorizontalTabRail from "@/components/HorizontalTabRail";
 import type { AccountGuide } from "@/lib/portfolio-guidance";
 
 type HoldingGuideItem = AccountGuide["holdingGuides"][number];
@@ -167,69 +168,6 @@ function HoldingScoreCard({ account }: { account: AccountGuide }) {
   const [selectedHoldingKey, setSelectedHoldingKey] = useState(
     account.holdingGuides[0] ? getHoldingKey(account.holdingGuides[0]) : "",
   );
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const touchStateRef = useRef<{
-    key: string | null;
-    x: number;
-    y: number;
-    moved: boolean;
-    scrollLeft: number;
-    startedAt: number;
-  }>({
-    key: null,
-    x: 0,
-    y: 0,
-    moved: false,
-    scrollLeft: 0,
-    startedAt: 0,
-  });
-
-  function resetTouchState() {
-    touchStateRef.current = {
-      key: null,
-      x: 0,
-      y: 0,
-      moved: false,
-      scrollLeft: 0,
-      startedAt: 0,
-    };
-  }
-
-  function beginPress(key: string, clientX: number, clientY: number, startedAt: number) {
-    touchStateRef.current = {
-      key,
-      x: clientX,
-      y: clientY,
-      moved: false,
-      scrollLeft: containerRef.current?.scrollLeft ?? 0,
-      startedAt,
-    };
-  }
-
-  function updatePress(key: string, clientX: number, clientY: number) {
-    if (touchStateRef.current.key !== key) return;
-    const deltaX = Math.abs(clientX - touchStateRef.current.x);
-    const deltaY = Math.abs(clientY - touchStateRef.current.y);
-    if (deltaX > 18 || deltaY > 18) {
-      touchStateRef.current.moved = true;
-    }
-  }
-
-  function endPress(key: string, endedAt: number) {
-    const current = touchStateRef.current;
-    const scrollDelta = Math.abs((containerRef.current?.scrollLeft ?? 0) - current.scrollLeft);
-    const elapsed = endedAt - current.startedAt;
-    const shouldSelect =
-      current.key === key &&
-      scrollDelta < 8 &&
-      (!current.moved || elapsed < 220);
-
-    resetTouchState();
-
-    if (shouldSelect) {
-      setSelectedHoldingKey(key);
-    }
-  }
 
   const resolvedHoldingKey = account.holdingGuides.some(
     (holding) => getHoldingKey(holding) === selectedHoldingKey,
@@ -258,77 +196,31 @@ function HoldingScoreCard({ account }: { account: AccountGuide }) {
       <div className="mt-4">
         {account.holdingGuides.length > 0 && selectedHolding ? (
           <>
-            <div className="sticky top-2 z-20 -mx-2 px-2">
-              <div className="rounded-2xl border border-zinc-800/80 bg-zinc-950/92 p-2 shadow-[0_10px_30px_rgba(0,0,0,0.28)] backdrop-blur">
-                <div
-                  ref={containerRef}
-                  className="-mx-1 overflow-x-auto pb-1"
-                >
-                  <div className="flex gap-2 px-1">
-                    {account.holdingGuides.map((holding) => {
-                      const holdingKey = getHoldingKey(holding);
-                      return (
-                        <button
-                          key={`${account.key}-${holdingKey}`}
-                          type="button"
-                          onClick={() => setSelectedHoldingKey(holdingKey)}
-                          onPointerDown={(event) => {
-                            if (event.pointerType === "mouse") return;
-                            beginPress(holdingKey, event.clientX, event.clientY, event.timeStamp);
-                          }}
-                          onPointerMove={(event) => {
-                            if (event.pointerType === "mouse") return;
-                            updatePress(holdingKey, event.clientX, event.clientY);
-                          }}
-                          onPointerUp={(event) => {
-                            if (event.pointerType === "mouse") return;
-                            endPress(holdingKey, event.timeStamp);
-                          }}
-                          onPointerCancel={() => {
-                            resetTouchState();
-                          }}
-                          onTouchStart={(event) => {
-                            const touch = event.touches[0];
-                            if (!touch) return;
-                            beginPress(holdingKey, touch.clientX, touch.clientY, event.timeStamp);
-                          }}
-                          onTouchMove={(event) => {
-                            const touch = event.touches[0];
-                            if (!touch) return;
-                            updatePress(holdingKey, touch.clientX, touch.clientY);
-                          }}
-                          onTouchEnd={(event) => {
-                            endPress(holdingKey, event.timeStamp);
-                          }}
-                          onTouchCancel={() => {
-                            resetTouchState();
-                          }}
-                          className={`min-w-[220px] shrink-0 rounded-2xl border px-4 py-3 text-left transition active:scale-[0.99] touch-manipulation ${
-                            holdingKey === resolvedHoldingKey
-                              ? "border-emerald-500/60 bg-emerald-950/20 shadow-[0_0_0_1px_rgba(16,185,129,0.16)]"
-                              : "border-zinc-800 bg-zinc-900"
-                          }`}
-                        >
-                          <div className="flex items-center justify-between gap-3">
-                            <div className="min-w-0">
-                              <p className="truncate text-sm font-medium text-zinc-100">{holding.name}</p>
-                              <p className="mt-1 text-xs text-zinc-500">{holding.category}</p>
-                            </div>
-                            <p
-                              className={`shrink-0 text-lg font-semibold tabular-nums ${getHoldingScoreClass(
-                                holding.score,
-                              )}`}
-                            >
-                              {holding.score != null ? `${holding.score}점` : "-"}
-                            </p>
-                          </div>
-                        </button>
-                      );
-                    })}
+            <HorizontalTabRail
+              items={account.holdingGuides}
+              getKey={getHoldingKey}
+              selectedKey={resolvedHoldingKey}
+              onSelect={setSelectedHoldingKey}
+              sticky
+              itemClassName="min-w-[220px]"
+              selectedItemClassName="border-emerald-500/60 bg-emerald-950/20 shadow-[0_0_0_1px_rgba(16,185,129,0.16)]"
+              unselectedItemClassName="border-zinc-800 bg-zinc-900"
+              renderItem={(holding) => (
+                <div className="flex items-center justify-between gap-3">
+                  <div className="min-w-0">
+                    <p className="truncate text-sm font-medium text-zinc-100">{holding.name}</p>
+                    <p className="mt-1 text-xs text-zinc-500">{holding.category}</p>
                   </div>
+                  <p
+                    className={`shrink-0 text-lg font-semibold tabular-nums ${getHoldingScoreClass(
+                      holding.score,
+                    )}`}
+                  >
+                    {holding.score != null ? `${holding.score}점` : "-"}
+                  </p>
                 </div>
-              </div>
-            </div>
+              )}
+            />
 
             <div className="rounded-2xl border border-zinc-800 bg-zinc-900 px-4 py-4">
               <div className="flex items-start justify-between gap-3">
@@ -515,142 +407,36 @@ function MobileSelector({
   selectedKey: string;
   onSelect: (key: string) => void;
 }) {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const touchStateRef = useRef<{
-    key: string | null;
-    x: number;
-    y: number;
-    moved: boolean;
-    scrollLeft: number;
-    startedAt: number;
-  }>({
-    key: null,
-    x: 0,
-    y: 0,
-    moved: false,
-    scrollLeft: 0,
-    startedAt: 0,
-  });
-
-  function resetTouchState() {
-    touchStateRef.current = {
-      key: null,
-      x: 0,
-      y: 0,
-      moved: false,
-      scrollLeft: 0,
-      startedAt: 0,
-    };
-  }
-
-  function beginPress(key: string, clientX: number, clientY: number, startedAt: number) {
-    touchStateRef.current = {
-      key,
-      x: clientX,
-      y: clientY,
-      moved: false,
-      scrollLeft: containerRef.current?.scrollLeft ?? 0,
-      startedAt,
-    };
-  }
-
-  function updatePress(key: string, clientX: number, clientY: number) {
-    if (touchStateRef.current.key !== key) return;
-    const deltaX = Math.abs(clientX - touchStateRef.current.x);
-    const deltaY = Math.abs(clientY - touchStateRef.current.y);
-    if (deltaX > 18 || deltaY > 18) {
-      touchStateRef.current.moved = true;
-    }
-  }
-
-  function endPress(key: string, endedAt: number) {
-    const current = touchStateRef.current;
-    const scrollDelta = Math.abs((containerRef.current?.scrollLeft ?? 0) - current.scrollLeft);
-    const elapsed = endedAt - current.startedAt;
-    const shouldSelect =
-      current.key === key &&
-      scrollDelta < 8 &&
-      (!current.moved || elapsed < 220);
-
-    resetTouchState();
-
-    if (shouldSelect) {
-      onSelect(key);
-    }
-  }
-
   return (
-    <div className="sticky top-2 z-30 -mx-4 px-4 md:hidden">
-      <div className="rounded-2xl border border-zinc-800/80 bg-zinc-950/92 p-2 shadow-[0_10px_30px_rgba(0,0,0,0.28)] backdrop-blur">
-        <div className="mb-2 px-1 text-[11px] uppercase tracking-wide text-zinc-500">
-          계좌 전환
-        </div>
-        <div
-          ref={containerRef}
-          className="flex gap-2 overflow-x-auto pb-1 touch-pan-x snap-x snap-mandatory"
-        >
-          {accounts.map((account) => {
-            const isSelected = account.key === selectedKey;
-            return (
-              <button
-                key={account.key}
-                type="button"
-                aria-pressed={isSelected}
-                onClick={() => onSelect(account.key)}
-                onPointerDown={(event) => {
-                  if (event.pointerType === "mouse") return;
-                  beginPress(account.key, event.clientX, event.clientY, event.timeStamp);
-                }}
-                onPointerMove={(event) => {
-                  if (event.pointerType === "mouse") return;
-                  updatePress(account.key, event.clientX, event.clientY);
-                }}
-                onPointerUp={(event) => {
-                  if (event.pointerType === "mouse") return;
-                  endPress(account.key, event.timeStamp);
-                }}
-                onPointerCancel={() => {
-                  resetTouchState();
-                }}
-                onTouchStart={(event) => {
-                  const touch = event.touches[0];
-                  if (!touch) return;
-                  beginPress(account.key, touch.clientX, touch.clientY, event.timeStamp);
-                }}
-                onTouchMove={(event) => {
-                  const touch = event.touches[0];
-                  if (!touch) return;
-                  updatePress(account.key, touch.clientX, touch.clientY);
-                }}
-                onTouchEnd={(event) => {
-                  endPress(account.key, event.timeStamp);
-                }}
-                onTouchCancel={() => {
-                  resetTouchState();
-                }}
-                className={`min-w-[172px] shrink-0 snap-start rounded-2xl border px-4 py-3 text-left transition active:scale-[0.99] touch-manipulation ${
-                  isSelected
-                    ? "border-emerald-500/60 bg-emerald-950/25 shadow-[0_0_0_1px_rgba(16,185,129,0.18)]"
-                    : "border-zinc-800 bg-zinc-900"
-                }`}
+    <div className="md:hidden">
+      <HorizontalTabRail
+        items={accounts}
+        getKey={(account) => account.key}
+        selectedKey={selectedKey}
+        onSelect={onSelect}
+        sticky
+        stickyClassName="-mx-4 px-4 z-30"
+        frameLabel="계좌 전환"
+        itemClassName="min-w-[172px]"
+        selectedItemClassName="border-emerald-500/60 bg-emerald-950/25 shadow-[0_0_0_1px_rgba(16,185,129,0.18)]"
+        unselectedItemClassName="border-zinc-800 bg-zinc-900"
+        renderItem={(account) => (
+          <>
+            <div className="flex items-center justify-between gap-3">
+              <p className="text-sm font-semibold text-zinc-100">{account.label}</p>
+              <span
+                className={`rounded-full border px-2 py-1 text-[11px] ${getStatusClass(account.status)}`}
               >
-                <div className="flex items-center justify-between gap-3">
-                  <p className="text-sm font-semibold text-zinc-100">{account.label}</p>
-                  <span
-                    className={`rounded-full border px-2 py-1 text-[11px] ${getStatusClass(account.status)}`}
-                  >
-                    {account.score}점
-                  </span>
-                </div>
-                <p className="mt-2 text-xs text-zinc-500">{account.status}</p>
-                <p className="mt-2 text-sm text-zinc-300">
-                  {formatSignedCurrency(account.holdingsProfitLoss)}
-                </p>
-              </button>
-            );
-          })}
-        </div>
-      </div>
+                {account.score}점
+              </span>
+            </div>
+            <p className="mt-2 text-xs text-zinc-500">{account.status}</p>
+            <p className="mt-2 text-sm text-zinc-300">
+              {formatSignedCurrency(account.holdingsProfitLoss)}
+            </p>
+          </>
+        )}
+      />
     </div>
   );
 }
