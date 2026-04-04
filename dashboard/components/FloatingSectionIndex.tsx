@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 export type FloatingSectionIndexItem = {
   id: string;
   label: string;
+  secondaryLabel?: string;
 };
 
 export default function FloatingSectionIndex({
@@ -52,19 +53,19 @@ export default function FloatingSectionIndex({
 
   return (
     <div
-      className={`pointer-events-none fixed z-40 transition-all duration-200 md:bottom-4 md:left-4 ${
+      className={`pointer-events-none fixed inset-x-0 z-40 flex justify-center px-3 transition-all duration-200 md:px-6 ${
         isMobile
-          ? "bottom-[calc(env(safe-area-inset-bottom,0px)+0.75rem)] left-3 right-3"
-          : "bottom-4 left-4"
+          ? "bottom-[calc(env(safe-area-inset-bottom,0px)+0.5rem)]"
+          : "bottom-4"
       } ${
         isVisible ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
       }`}
     >
-      <div className="pointer-events-auto w-fit max-w-full rounded-2xl border border-zinc-800/80 bg-zinc-950 p-2 shadow-[0_12px_30px_rgba(0,0,0,0.35)] md:bg-zinc-950/92 md:backdrop-blur">
-        <div className="mb-2 px-2 text-[10px] uppercase tracking-[0.18em] text-zinc-500">
-          Index
-        </div>
-        <div className={`flex gap-1.5 ${isMobile ? "overflow-x-auto pb-1" : "flex-col"}`}>
+      <div className="pointer-events-auto w-full max-w-[34rem] rounded-[1.35rem] border border-zinc-800/80 bg-zinc-950/95 p-2 shadow-[0_12px_30px_rgba(0,0,0,0.35)] backdrop-blur">
+        <div
+          className="grid gap-1.5"
+          style={{ gridTemplateColumns: `repeat(${Math.max(items.length, 1)}, minmax(0, 1fr))` }}
+        >
           {items.map((item) => {
             const isActive = item.id === activeId;
             return (
@@ -77,13 +78,16 @@ export default function FloatingSectionIndex({
                   section.scrollIntoView({ behavior: "smooth", block: "start" });
                   setActiveId(item.id);
                 }}
-                className={`shrink-0 rounded-xl px-3 py-2 text-left text-xs transition ${
+                className={`flex min-h-[3.8rem] flex-col items-center justify-center rounded-xl px-2 py-2 text-center text-[11px] leading-tight transition ${
                   isActive
                     ? "bg-emerald-950/40 text-emerald-300"
                     : "text-zinc-300 hover:bg-zinc-900"
                 }`}
               >
-                {item.label}
+                <span>{item.label}</span>
+                {item.secondaryLabel ? (
+                  <span className="mt-0.5">{item.secondaryLabel}</span>
+                ) : null}
               </button>
             );
           })}

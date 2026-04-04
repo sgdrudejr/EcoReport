@@ -345,15 +345,15 @@ export default function DashboardPage() {
   const indices = market?.indices ?? {};
   const hasMarket = Object.keys(indices).length > 0;
   const totals = portfolio ? getPortfolioTotals(portfolio) : null;
-  const sectionIndexItems: FloatingSectionIndexItem[] = [
-    hasMarket ? { id: "market-overview", label: "시장지표" } : null,
-    portfolio ? { id: "portfolio-overview", label: "포트폴리오" } : null,
-    portfolioGuide ? { id: "portfolio-guide", label: "운용가이드" } : null,
-    recommendationBoard ? { id: "recommendation-board", label: "종목추천" } : null,
+  const sectionIndexItems = [
+    hasMarket ? { id: "market-overview", label: "시장", secondaryLabel: "지표" } : null,
+    portfolio ? { id: "portfolio-overview", label: "포트", secondaryLabel: "폴리오" } : null,
+    portfolioGuide ? { id: "portfolio-guide", label: "운용", secondaryLabel: "가이드" } : null,
+    recommendationBoard ? { id: "recommendation-board", label: "종목", secondaryLabel: "추천" } : null,
     researchBriefing && researchSections.length > 0
-      ? { id: "research-summary", label: "경제리포트" }
+      ? { id: "research-summary", label: "경제", secondaryLabel: "리포트" }
       : null,
-  ].filter((item): item is FloatingSectionIndexItem => item !== null);
+  ].filter(Boolean) as FloatingSectionIndexItem[];
 
   return (
     <main className="mx-auto w-full max-w-7xl px-4 py-6 md:px-6 md:py-8 space-y-8">
