@@ -25,6 +25,19 @@ function signalClass(signal: string | null) {
   return "text-zinc-400 border-zinc-800 bg-zinc-900";
 }
 
+function technicalBadgeLabel(signal: string | null, technicalScore: number | null) {
+  if (signal && technicalScore != null) {
+    return `기술 ${signal} · ${technicalScore}점`;
+  }
+  if (technicalScore != null) {
+    return `기술 ${technicalScore}점`;
+  }
+  if (signal) {
+    return `기술 ${signal}`;
+  }
+  return "기술 데이터 부족";
+}
+
 export default function RecommendationBoard({
   board,
 }: {
@@ -145,16 +158,11 @@ export default function RecommendationBoard({
                       <span
                         className={`rounded-full border px-2.5 py-1 text-xs ${signalClass(item.signal)}`}
                       >
-                        기술 {item.signal ?? "-"}
+                        {technicalBadgeLabel(item.signal, item.technicalScore)}
                       </span>
                       <span className="rounded-full border border-zinc-800 bg-zinc-900 px-2.5 py-1 text-xs text-zinc-300">
                         리포트 {item.reportScore}점
                       </span>
-                      {item.technicalScore != null && (
-                        <span className="rounded-full border border-zinc-800 bg-zinc-900 px-2.5 py-1 text-xs text-zinc-300">
-                          기술 {item.technicalScore}점
-                        </span>
-                      )}
                       {item.stage2Score != null && (
                         <span className="rounded-full border border-zinc-800 bg-zinc-900 px-2.5 py-1 text-xs text-zinc-300">
                           전략 {item.stage2Score}점
