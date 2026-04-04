@@ -1,6 +1,6 @@
 {
   "date": "2026-04-04",
-  "updatedAt": "2026-04-04T16:40:37.284Z",
+  "updatedAt": "2026-04-04T16:41:11.237Z",
   "source": {
     "method": "screenshot_review",
     "reviewer": "seo",
@@ -20,7 +20,7 @@
       "screenshots": [
         "Screenshot_20260404_235200.jpg"
       ],
-      "incomplete": true,
+      "incomplete": false,
       "holdings": [
         {
           "name": "TIGER 미국S&P500",
@@ -59,7 +59,7 @@
       "screenshots": [
         "Screenshot_20260404_235333.jpg"
       ],
-      "incomplete": true,
+      "incomplete": false,
       "holdings": [
         {
           "name": "KODEX KOFR금리액티브(합성)",
@@ -110,7 +110,7 @@
         "스크린샷 2026-04-04 오후 11.53.18.png",
         "스크린샷 2026-04-04 오후 11.53.18.png"
       ],
-      "incomplete": true,
+      "incomplete": false,
       "holdings": [
         {
           "name": "HANARO 원자력iSelect",
