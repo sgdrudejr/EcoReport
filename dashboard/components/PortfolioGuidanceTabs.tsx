@@ -196,33 +196,47 @@ function HoldingScoreCard({ account }: { account: AccountGuide }) {
       <div className="mt-4">
         {account.holdingGuides.length > 0 && selectedHolding ? (
           <>
-            <HorizontalTabRail
-              items={account.holdingGuides}
-              getKey={getHoldingKey}
-              selectedKey={resolvedHoldingKey}
-              onSelect={setSelectedHoldingKey}
-              sticky
-              itemClassName="min-w-[220px]"
-              selectedItemClassName="border-emerald-500/60 bg-emerald-950/20 shadow-[0_0_0_1px_rgba(16,185,129,0.16)]"
-              unselectedItemClassName="border-zinc-800 bg-zinc-900"
-              renderItem={(holding) => (
-                <div className="flex items-center justify-between gap-3">
-                  <div className="min-w-0">
-                    <p className="truncate text-sm font-medium text-zinc-100">{holding.name}</p>
-                    <p className="mt-1 text-xs text-zinc-500">{holding.category}</p>
-                  </div>
-                  <p
-                    className={`shrink-0 text-lg font-semibold tabular-nums ${getHoldingScoreClass(
-                      holding.score,
-                    )}`}
-                  >
-                    {holding.score != null ? `${holding.score}점` : "-"}
-                  </p>
+            <div className="grid gap-3 xl:grid-cols-[0.9fr,1.1fr]">
+              <div className="rounded-2xl border border-zinc-800 bg-zinc-900 px-3 py-3">
+                <div className="mb-2 flex items-center justify-between gap-3">
+                  <p className="text-xs text-zinc-500">종목 리스트</p>
+                  <p className="text-xs text-zinc-500">{account.holdingGuides.length}개</p>
                 </div>
-              )}
-            />
+                <div className="space-y-2">
+                  {account.holdingGuides.map((holding) => {
+                    const holdingKey = getHoldingKey(holding);
+                    const isSelected = holdingKey === resolvedHoldingKey;
+                    return (
+                      <button
+                        key={`${account.key}-${holdingKey}`}
+                        type="button"
+                        onClick={() => setSelectedHoldingKey(holdingKey)}
+                        className={`flex w-full items-center justify-between gap-3 rounded-2xl border px-4 py-3 text-left transition ${
+                          isSelected
+                            ? "border-emerald-500/60 bg-emerald-950/20 shadow-[0_0_0_1px_rgba(16,185,129,0.16)]"
+                            : "border-zinc-800 bg-zinc-950 hover:border-zinc-700"
+                        }`}
+                      >
+                        <div className="min-w-0">
+                          <p className="truncate text-sm font-medium text-zinc-100">
+                            {holding.name}
+                          </p>
+                          <p className="mt-1 text-xs text-zinc-500">{holding.category}</p>
+                        </div>
+                        <p
+                          className={`shrink-0 text-lg font-semibold tabular-nums ${getHoldingScoreClass(
+                            holding.score,
+                          )}`}
+                        >
+                          {holding.score != null ? `${holding.score}점` : "-"}
+                        </p>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
 
-            <div className="rounded-2xl border border-zinc-800 bg-zinc-900 px-4 py-4">
+              <div className="rounded-2xl border border-zinc-800 bg-zinc-900 px-4 py-4">
               <div className="flex items-start justify-between gap-3">
                 <div>
                   <p className="text-sm font-medium text-zinc-100">{selectedHolding.name}</p>
@@ -294,6 +308,7 @@ function HoldingScoreCard({ account }: { account: AccountGuide }) {
                     : " · 직접 연결된 리포트 근거 부족"}
                 </p>
               )}
+            </div>
             </div>
           </>
         ) : (
