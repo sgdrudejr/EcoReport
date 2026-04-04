@@ -1,9 +1,7 @@
-import fs from "fs";
 import path from "path";
-import { resolveRepoRoot } from "@/lib/repo-root";
+import { listRepoFiles, readRepoTextFile } from "@/lib/repo-artifacts";
 
-const REPO_ROOT = resolveRepoRoot();
-const REPORTS_DIR = path.join(REPO_ROOT, "reports", "daily");
+const REPORTS_DIR = "reports/daily";
 
 export interface ReportDocument {
   filename: string;
@@ -17,33 +15,36 @@ export function getReportsDir() {
 }
 
 export function loadReports(): ReportDocument[] {
-  if (!fs.existsSync(REPORTS_DIR)) return [];
-
-  return fs
-    .readdirSync(REPORTS_DIR)
+  return listRepoFiles(REPORTS_DIR)
     .filter((f) => f.endsWith("-briefing.md"))
     .sort()
     .reverse()
-    .map((filename) => ({
-      filename,
-      date: filename.slice(0, 10),
-      slug: filename.replace(/\.md$/, ""),
-      content: fs.readFileSync(path.join(REPORTS_DIR, filename), "utf-8"),
-    }));
+    .map((filename) => {
+      const relativePath = path.posix.join(REPORTS_DIR, filename);
+      const content = readRepoTextFile(relativePath);
+      if (!content) return null;
+
+      return {
+        filename,
+        date: filename.slice(0, 10),
+        slug: filename.replace(/\.md$/, ""),
+        content,
+      } satisfies ReportDocument;
+    })
+    .filter((report): report is ReportDocument => Boolean(report));
 }
 
 export function loadReportBySlug(slug: string): ReportDocument | null {
   if (!slug || slug.includes("/")) return null;
 
   const filename = `${slug}.md`;
-  const filePath = path.join(REPORTS_DIR, filename);
-  if (!fs.existsSync(filePath)) return null;
+  const content = readRepoTextFile(path.posix.join(REPORTS_DIR, filename));
+  if (!content) return null;
 
   return {
     filename,
     date: filename.slice(0, 10),
     slug,
-    content: fs.readFileSync(filePath, "utf-8"),
+    content,
   };
 }
-

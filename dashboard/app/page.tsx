@@ -9,6 +9,11 @@ import RecommendationBoard from "@/components/RecommendationBoard";
 import TriggerButton from "@/components/TriggerButton";
 import { buildPortfolioGuide } from "@/lib/portfolio-guidance";
 import { loadRecommendationBoard } from "@/lib/recommendations";
+import {
+  listRepoFiles,
+  readRepoJsonFile,
+  readRepoTextFile,
+} from "@/lib/repo-artifacts";
 import { resolveRepoRoot } from "@/lib/repo-root";
 import {
   extractResearchSections,
@@ -33,11 +38,8 @@ const REPO_ROOT = resolveRepoRoot();
 // ── 데이터 로더 ────────────────────────────────────────────────────────
 
 function loadLatestBriefing(): { date: string; content: string } | null {
-  const dir = path.join(REPO_ROOT, "reports", "daily");
-  if (!fs.existsSync(dir)) return null;
-
-  const files = fs
-    .readdirSync(dir)
+  const dir = "reports/daily";
+  const files = listRepoFiles(dir)
     .filter(
       (f) =>
         f.endsWith("-briefing.md") || f.endsWith("-stage4-execution-plan.md"),
@@ -45,11 +47,9 @@ function loadLatestBriefing(): { date: string; content: string } | null {
     .map((file) => ({
       file,
       priority: file.endsWith("-briefing.md") ? 1 : 0,
-      mtime: fs.statSync(path.join(dir, file)).mtimeMs,
     }))
     .sort((left, right) => {
       if (right.priority !== left.priority) return right.priority - left.priority;
-      if (right.mtime !== left.mtime) return right.mtime - left.mtime;
       return right.file.localeCompare(left.file);
     });
 
@@ -57,7 +57,8 @@ function loadLatestBriefing(): { date: string; content: string } | null {
 
   const file = files[0].file;
   const date = file.slice(0, 10);
-  const content = fs.readFileSync(path.join(dir, file), "utf-8");
+  const content = readRepoTextFile(path.posix.join(dir, file));
+  if (!content) return null;
   return { date, content };
 }
 
@@ -71,22 +72,15 @@ interface MarketData {
 }
 
 function loadLatestMarket(): MarketData | null {
-  const dir = path.join(REPO_ROOT, "data", "market");
-  if (!fs.existsSync(dir)) return null;
-
-  const files = fs
-    .readdirSync(dir)
+  const dir = "data/market";
+  const files = listRepoFiles(dir)
     .filter((f) => f.endsWith(".json"))
     .sort()
     .reverse();
 
   if (files.length === 0) return null;
 
-  try {
-    return JSON.parse(fs.readFileSync(path.join(dir, files[0]), "utf-8"));
-  } catch {
-    return null;
-  }
+  return readRepoJsonFile<MarketData>(path.posix.join(dir, files[0]));
 }
 
 interface Tranche {

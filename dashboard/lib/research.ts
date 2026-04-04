@@ -1,11 +1,13 @@
-import fs from "fs";
 import path from "path";
-import { resolveRepoRoot } from "@/lib/repo-root";
+import {
+  listRepoFiles,
+  readRepoJsonFile,
+  readRepoTextFile,
+} from "@/lib/repo-artifacts";
 
-const REPO_ROOT = resolveRepoRoot();
-const KNOWLEDGE_DAILY_DIR = path.join(REPO_ROOT, "knowledge", "daily");
-const MARKET_DIR = path.join(REPO_ROOT, "data", "market");
-const TECHNICAL_DIR = path.join(REPO_ROOT, "data", "technical");
+const KNOWLEDGE_DAILY_DIR = "knowledge/daily";
+const MARKET_DIR = "data/market";
+const TECHNICAL_DIR = "data/technical";
 
 export interface ResearchBriefingMeta {
   model?: string | null;
@@ -83,39 +85,30 @@ const RESEARCH_TAG_RULES: Array<{
 const ACTION_CUE_PATTERN =
   /(주목|체크|보강|확대|축소|유지|관망|경계|점검|매수|매도|준비|유의|확인)/;
 
-function parseJsonFile<T>(filePath: string): T | null {
-  try {
-    return JSON.parse(fs.readFileSync(filePath, "utf-8")) as T;
-  } catch {
-    return null;
-  }
-}
-
-function getResearchMeta(filePath: string) {
-  const metaPath = `${filePath}.meta.json`;
-  if (!fs.existsSync(metaPath)) return null;
-  return parseJsonFile<ResearchBriefingMeta>(metaPath);
+function getResearchMeta(relativePath: string) {
+  return readRepoJsonFile<ResearchBriefingMeta>(`${relativePath}.meta.json`);
 }
 
 export function loadResearchBriefings(): ResearchBriefingDocument[] {
-  if (!fs.existsSync(KNOWLEDGE_DAILY_DIR)) return [];
-
-  return fs
-    .readdirSync(KNOWLEDGE_DAILY_DIR)
+  return listRepoFiles(KNOWLEDGE_DAILY_DIR)
     .filter((filename) =>
       /^\d{4}-\d{2}-\d{2}-gemini-briefing(?:-rich)?\.md$/.test(filename),
     )
     .map((filename) => {
-      const filePath = path.join(KNOWLEDGE_DAILY_DIR, filename);
+      const relativePath = path.posix.join(KNOWLEDGE_DAILY_DIR, filename);
+      const content = readRepoTextFile(relativePath);
+      if (!content) return null;
+
       return {
         filename,
         slug: filename.replace(/\.md$/, ""),
         date: filename.slice(0, 10),
-        content: fs.readFileSync(filePath, "utf-8"),
+        content,
         variant: filename.includes("-rich.") ? "rich" : "standard",
-        meta: getResearchMeta(filePath),
+        meta: getResearchMeta(relativePath),
       } satisfies ResearchBriefingDocument;
     })
+    .filter((doc): doc is ResearchBriefingDocument => Boolean(doc))
     .sort((left, right) => {
       if (left.date !== right.date) {
         return right.date.localeCompare(left.date);
@@ -232,30 +225,27 @@ export function extractSectionActionPoints(section: ResearchSection, limit = 3) 
 }
 
 export function loadLatestMacroIndicators(date?: string): MacroIndicator[] {
-  if (!fs.existsSync(MARKET_DIR)) return [];
-
-  const marketFile =
+  const marketFilename =
     date != null
-      ? path.join(MARKET_DIR, `${date}.json`)
-      : fs
-          .readdirSync(MARKET_DIR)
-          .filter((f) => f.endsWith(".json"))
+      ? `${date}.json`
+      : listRepoFiles(MARKET_DIR)
+          .filter((file) => file.endsWith(".json"))
           .sort()
-          .reverse()
-          .map((f) => path.join(MARKET_DIR, f))[0];
+          .reverse()[0];
 
-  if (!marketFile || !fs.existsSync(marketFile)) return [];
+  if (!marketFilename) return [];
 
-  const market = parseJsonFile<{
+  const marketRelativePath = path.posix.join(MARKET_DIR, marketFilename);
+  const market = readRepoJsonFile<{
     indices?: Record<string, { close?: number | null; change_pct?: number | null }>;
     macro?: Record<string, { close?: number | null; change_pct?: number | null }>;
     date?: string;
-  }>(marketFile);
+  }>(marketRelativePath);
   if (!market) return [];
 
-  const marketDate = date ?? market.date ?? path.basename(marketFile, ".json");
-  const technical = parseJsonFile<{ market_context?: { signal?: string | null } }>(
-    path.join(TECHNICAL_DIR, `${marketDate}.json`),
+  const marketDate = date ?? market.date ?? path.posix.basename(marketFilename, ".json");
+  const technical = readRepoJsonFile<{ market_context?: { signal?: string | null } }>(
+    path.posix.join(TECHNICAL_DIR, `${marketDate}.json`),
   );
 
   const indicators: MacroIndicator[] = [
