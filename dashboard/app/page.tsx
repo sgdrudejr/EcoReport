@@ -270,26 +270,6 @@ function PortfolioAccountCard({
   );
 }
 
-function GuidanceScoreCard({
-  score,
-  label,
-}: {
-  score: number;
-  label: string;
-}) {
-  const color =
-    score >= 75 ? "text-emerald-400" : score >= 55 ? "text-amber-300" : "text-red-400";
-
-  return (
-    <div className="bg-zinc-900 rounded-xl border border-zinc-800 p-4">
-      <p className="text-xs text-zinc-500">{label}</p>
-      <p className={`mt-1 text-3xl font-semibold tabular-nums ${color}`}>
-        {score}점
-      </p>
-    </div>
-  );
-}
-
 function researchTagClass(tone: string) {
   if (tone === "rose") return "border-rose-500/30 bg-rose-950/20 text-rose-300";
   if (tone === "sky") return "border-sky-500/30 bg-sky-950/20 text-sky-300";
@@ -517,50 +497,27 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          <div className="mb-4 grid grid-cols-[1.02fr,0.98fr] gap-3 md:hidden">
-            <div className="rounded-xl border border-zinc-800 bg-zinc-900 p-4">
-              <p className="text-xs leading-5 text-zinc-500">
-                포트폴리오
-                <br />
-                운용 점수
-              </p>
-              <p className="mt-3 text-4xl font-semibold tabular-nums text-zinc-100">
-                {portfolioGuide.score}점
-              </p>
-            </div>
-            <div className="overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900">
-              <div className="p-4">
+          <div className="mb-4 -mx-1 overflow-x-auto pb-1">
+            <div className="flex gap-3 px-1">
+              <div className="min-w-[210px] rounded-xl border border-zinc-800 bg-zinc-900 p-4">
+                <p className="text-xs text-zinc-500">포트폴리오 운용 점수</p>
+                <p className="mt-2 text-3xl font-semibold tabular-nums text-zinc-100">
+                  {portfolioGuide.score}점
+                </p>
+              </div>
+              <div className="min-w-[210px] rounded-xl border border-zinc-800 bg-zinc-900 p-4">
                 <p className="text-xs text-zinc-500">총 현금 비중</p>
-                <p className="mt-2 text-2xl font-semibold tabular-nums text-zinc-100">
+                <p className="mt-2 text-3xl font-semibold tabular-nums text-zinc-100">
                   {formatPercent(portfolioGuide.totalCashPct * 100)}
                 </p>
               </div>
-              <div className="border-t border-zinc-800 p-4">
+              <div className="min-w-[210px] rounded-xl border border-zinc-800 bg-zinc-900 p-4">
                 <p className="text-xs text-zinc-500">이번 단계 기준</p>
-                <p className="mt-2 text-2xl font-semibold tabular-nums text-zinc-100">
+                <p className="mt-2 text-3xl font-semibold tabular-nums text-zinc-100">
                   {formatPercent(portfolioGuide.nextTranchePct * 100, 0)}
                 </p>
-                <p className="mt-1 text-[11px] text-zinc-500">다음 분할매수 비중</p>
+                <p className="mt-1 text-xs text-zinc-500">다음 분할매수 비중</p>
               </div>
-            </div>
-          </div>
-          <div className="hidden md:grid md:grid-cols-3 gap-3 mb-4">
-            <GuidanceScoreCard
-              score={portfolioGuide.score}
-              label="포트폴리오 운용 점수"
-            />
-            <div className="bg-zinc-900 rounded-xl border border-zinc-800 p-4">
-              <p className="text-xs text-zinc-500">총 현금 비중</p>
-              <p className="mt-1 text-3xl font-semibold tabular-nums text-zinc-100">
-                {formatPercent(portfolioGuide.totalCashPct * 100)}
-              </p>
-            </div>
-            <div className="bg-zinc-900 rounded-xl border border-zinc-800 p-4">
-              <p className="text-xs text-zinc-500">이번 단계 기준</p>
-              <p className="mt-1 text-3xl font-semibold tabular-nums text-zinc-100">
-                {formatPercent(portfolioGuide.nextTranchePct * 100, 0)}
-              </p>
-              <p className="mt-1 text-xs text-zinc-500">다음 분할매수 비중</p>
             </div>
           </div>
 
