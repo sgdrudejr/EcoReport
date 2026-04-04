@@ -1,0 +1,222 @@
+{
+  "date": "2026-04-03",
+  "macro_view": {
+    "regime": "HIGH_VOL",
+    "confidence": "HIGH",
+    "summary": "중동 지정학적 리스크 재확산, 국제 유가 급등, 인플레이션 압력 강화, 미국 금리 상승 압박 등으로 글로벌 금융시장의 변동성이 매우 높은 국면입니다. 국내 증시는 약세를 보이나, 일부 성장 섹터와 방어적 섹터는 기회 요인이 있습니다."
+  },
+  "strategy_changes": [
+    {
+      "theme": "방산/에너지 안보",
+      "direction": "reinforce",
+      "why_now": "중동 지정학적 리스크 심화와 국제 유가 급등으로 에너지 안보 및 국방 지출 확대의 중요성이 부각됩니다.",
+      "source_reports": [
+        "report_003",
+        "report_007"
+      ]
+    },
+    {
+      "theme": "AI 인프라/반도체",
+      "direction": "reinforce",
+      "why_now": "AI 모델 대형화에 따른 데이터센터 내 칩 연결 속도, 전력 효율성, 광 트랜시버, CPO 등 AI 인프라 기술 수요가 급증하고 있습니다.",
+      "source_reports": [
+        "report_010",
+        "report_012"
+      ]
+    },
+    {
+      "theme": "지배구조 개선/주주환원",
+      "direction": "reinforce",
+      "why_now": "상법 개정, 자사주 소각 의무화 등 주주환원 및 지배구조 개선 노력이 기업가치 리레이팅으로 이어질 가능성이 높습니다.",
+      "source_reports": [
+        "report_009"
+      ]
+    },
+    {
+      "theme": "금리/환율 변동성 관리",
+      "direction": "reduce",
+      "why_now": "미국 재정적자 우려, 유가 상승으로 인한 물가 압력, 원/달러 환율 상승 등으로 금리 상승 압박과 환율 변동성이 지속될 전망입니다.",
+      "source_reports": [
+        "report_001",
+        "report_005",
+        "report_007"
+      ]
+    }
+  ],
+  "account_actions": [
+    {
+      "account_key": "ISA",
+      "bias": "selective_add",
+      "rationale": "높은 현금 비중을 활용하여 지정학적 리스크 헤지 및 구조적 성장 테마에 선별적으로 투자합니다. 금리 상승 압박에 대비하여 금리 관련 상품은 비중을 축소합니다.",
+      "buy_candidates": [
+        "449450",
+        "487240"
+      ],
+      "trim_candidates": [
+        "423160"
+      ],
+      "hold_candidates": [
+        "458760"
+      ],
+      "reserve_cash_note": "시장 변동성 확대를 고려하여 일정 수준의 현금은 유지하되, 핵심 성장/방어 섹터에 대한 분할 매수 기회를 모색합니다."
+    },
+    {
+      "account_key": "PENSION",
+      "bias": "selective_add",
+      "rationale": "장기적 관점에서 미국 시장의 구조적 성장을 추구하되, 단기 변동성에 대비하여 방어적 자산 비중을 조절합니다. AI 인프라 등 핵심 성장 테마에 대한 노출을 확대합니다.",
+      "buy_candidates": [
+        "360750",
+        "487240",
+        "449450"
+      ],
+      "trim_candidates": [
+        "132030",
+        "133690"
+      ],
+      "hold_candidates": [],
+      "reserve_cash_note": "연금저축의 장기 투자 성격을 고려하여, 시장 조정 시 핵심 성장 자산에 대한 추가 매수 기회로 활용합니다."
+    },
+    {
+      "account_key": "TOSS",
+      "bias": "aggressive_add",
+      "rationale": "현재 보유 종목들이 시장의 핵심 성장/방어 테마와 잘 부합하므로, 현금 비중을 활용하여 이들 테마에 대한 집중도를 높입니다.",
+      "buy_candidates": [
+        "487240",
+        "449450"
+      ],
+      "trim_candidates": [],
+      "hold_candidates": [
+        "434730"
+      ],
+      "reserve_cash_note": "현재 보유 테마의 추가 상승 여력이 높으므로, 현금은 해당 테마 내 종목의 추가 매수 또는 신규 유망 종목 발굴에 활용합니다."
+    }
+  ],
+  "candidate_scores": [
+    {
+      "code": "449450",
+      "name": "PLUS K방산",
+      "stance": "buy",
+      "target_accounts": [
+        "ISA",
+        "PENSION",
+        "TOSS"
+      ],
+      "horizon": "3m",
+      "confidence": "HIGH",
+      "thesis": "중동 지정학적 리스크 심화 및 트럼프의 NATO 관련 발언으로 글로벌 국방 지출 확대 기대감이 높습니다. 기술적으로도 매수 신호가 강합니다.",
+      "risks": [
+        "지정학적 긴장 완화 시 모멘텀이 약화될 수 있습니다."
+      ]
+    },
+    {
+      "code": "487240",
+      "name": "KODEX AI전력핵심설비",
+      "stance": "buy",
+      "target_accounts": [
+        "ISA",
+        "PENSION",
+        "TOSS"
+      ],
+      "horizon": "3m",
+      "confidence": "HIGH",
+      "thesis": "AI 산업 성장에 따른 데이터센터 전력 수요 급증으로 AI 전력 인프라 관련 기업들의 구조적 성장이 기대됩니다. 섹터 전망이 매우 긍정적입니다.",
+      "risks": [
+        "AI 산업 성장 둔화 또는 전력 인프라 투자 지연 가능성이 있습니다."
+      ]
+    },
+    {
+      "code": "360750",
+      "name": "TIGER 미국S&P500",
+      "stance": "buy",
+      "target_accounts": [
+        "PENSION"
+      ],
+      "horizon": "6m",
+      "confidence": "HIGH",
+      "thesis": "미국 경제의 견조한 실물 지표와 장기적인 성장 잠재력을 바탕으로 핵심 자산으로서의 매력이 유지됩니다. 기술적으로도 매수 신호가 긍정적입니다.",
+      "risks": [
+        "미국 금리 인상 압박 및 경기 둔화 가능성이 있습니다."
+      ]
+    },
+    {
+      "code": "434730",
+      "name": "HANARO 원자력iSelect",
+      "stance": "hold",
+      "target_accounts": [
+        "ISA",
+        "TOSS"
+      ],
+      "horizon": "3m",
+      "confidence": "MEDIUM",
+      "thesis": "에너지 안보 중요성 부각 및 원자력 발전의 재평가 흐름 속에서 장기적인 성장 동력을 보유하고 있습니다.",
+      "risks": [
+        "정책 변화 또는 안전성 논란이 재부각될 수 있습니다."
+      ]
+    },
+    {
+      "code": "458760",
+      "name": "TIGER 미국배당+7%프리미엄다우존스",
+      "stance": "hold",
+      "target_accounts": [
+        "ISA"
+      ],
+      "horizon": "3m",
+      "confidence": "MEDIUM",
+      "thesis": "고배당 전략으로 시장 변동성 속에서 안정적인 수익을 추구할 수 있습니다. 기술적으로도 긍정적인 흐름을 보입니다.",
+      "risks": [
+        "금리 인상 지속 시 배당 매력이 감소할 수 있습니다."
+      ]
+    },
+    {
+      "code": "2921050",
+      "name": "TIGER코리아TOP10",
+      "stance": "hold",
+      "target_accounts": [
+        "ISA"
+      ],
+      "horizon": "3m",
+      "confidence": "LOW",
+      "thesis": "국내 증시의 저가 매수세 유입 가능성 및 지배구조 개선 기업에 대한 기대감이 있습니다.",
+      "risks": [
+        "국내 증시의 지정학적 리스크 및 매크로 불확실성이 지속될 수 있습니다."
+      ]
+    },
+    {
+      "code": "423160",
+      "name": "KODEX KOFR금리액티브(합성)",
+      "stance": "trim",
+      "target_accounts": [
+        "ISA"
+      ],
+      "horizon": "1m",
+      "confidence": "HIGH",
+      "thesis": "미국 재정적자 우려 및 금리 상승 압박으로 금리 관련 상품의 매력이 감소하고 있습니다. 기술적으로도 매도 신호입니다.",
+      "risks": [
+        "예상과 달리 금리 인하 기대감이 재부각될 경우 포지션이 불리해질 수 있습니다."
+      ]
+    },
+    {
+      "code": "132030",
+      "name": "KODEX 골드선물(H)",
+      "stance": "trim",
+      "target_accounts": [
+        "PENSION"
+      ],
+      "horizon": "1m",
+      "confidence": "HIGH",
+      "thesis": "금리 상승 압박 및 달러 강세 흐름으로 안전자산으로서의 금 매력이 감소하고 있습니다. 기술적으로도 비중 축소 신호입니다.",
+      "risks": [
+        "지정학적 리스크가 극대화될 경우 안전자산 선호 심리가 강화될 수 있습니다."
+      ]
+    }
+  ],
+  "portfolio_risks": [
+    "중동 지정학적 긴장 격화 및 장기화 가능성으로 인한 글로벌 경제 불확실성 증대",
+    "국제 유가 및 원자재 가격 급등으로 인한 글로벌 인플레이션 심화 및 각국 통화정책의 매파적 전환",
+    "미국 재정적자 확대 및 이로 인한 미 국채 금리 상승 압박 지속",
+    "원/달러 환율 변동성 확대가 국내 기업의 실질 원가 부담을 가중시켜 2분기 실적 하향 조정 가능성"
+  ],
+  "generatedAt": "2026-04-03T22:41:53.572078Z",
+  "source": "gemini",
+  "model": "gemini-2.5-flash"
+}

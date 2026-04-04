@@ -1,0 +1,4658 @@
+{
+  "date": "2026-04-03",
+  "generatedAt": "2026-04-04T04:42:00.355Z",
+  "regime": {
+    "name": "SIDEWAYS",
+    "confidence": 0.58,
+    "market_context": {
+      "index": "KOSPI",
+      "signal": "NEUTRAL",
+      "vix": null,
+      "score": 43,
+      "close": 5377.3,
+      "ma": {
+        "ma5": 5283.962,
+        "ma20": 5502.285,
+        "ma60": 5317.8267,
+        "ma120": 4658.6131
+      },
+      "rsi": 48.24,
+      "alerts": []
+    }
+  },
+  "coverage": {
+    "techCoverage": 0.8124,
+    "impactCoverage": 1,
+    "stage2Available": true
+  },
+  "configUsed": {
+    "weightProfile": "balanced",
+    "maxWeights": {
+      "allocation": 0.45,
+      "tech": 0.3,
+      "report": 0.15,
+      "regime": 0.05,
+      "stage2": 0.05
+    },
+    "riskPenaltyCaps": {
+      "concentration": 10,
+      "tailRisk": 15,
+      "dataQuality": 10,
+      "regimeStress": 10,
+      "total": 25
+    }
+  },
+  "holdings": {
+    "132030": {
+      "code": "132030",
+      "name": "KODEX 골드선물(H)",
+      "accountKey": "PENSION",
+      "accountLabel": "연금저축",
+      "category": "금",
+      "marketValue": 53300,
+      "technicalSignal": "REDUCE",
+      "technicalBaseScore": 24,
+      "actionScore": 70,
+      "direction": 0.75,
+      "timing": 0.462,
+      "reportScore": 1.847,
+      "probabilities": {
+        "p_buy": 0.879,
+        "p_hold": 0.11,
+        "p_sell": 0.0111
+      },
+      "conviction": "HIGH",
+      "signal": "HOLD",
+      "features": {
+        "maTrend": 0.41800371980898077,
+        "macdZ": -0.018299361030757508,
+        "rsiMid": -0.31439999999999996,
+        "adxTrend": 0.5458333333333334,
+        "bbDist": 0.45,
+        "rsiTiming": 0.39299999999999996,
+        "stochTiming": -0.04499999999999993,
+        "volumeZ": -0.729
+      },
+      "reportImpacts": [
+        {
+          "reportId": "report_050",
+          "title": "1Q26 Pre: 식품 호조 VS. 비식품 부진",
+          "broker": "하나증권",
+          "publishedDate": "2026-04-03",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "Key Data\nKOSPI 지수 (pt) 5,234.05\n 1Q26 Pre: 식품 호조 VS. 비식품 부진\n52주 최고/최저(원) 52,700/33,900\n시가총액(십억원) 1,655.5 1분기 연결 매출액 및 영업이익은 각각 2조 4,406억원(YoY 5.2%), 1,311억원(YoY 5.0%)\n시가총액비중(%) 0.0...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "5.2%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "5.0%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "14%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "8%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "10%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "4.1%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "4.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "5,234.05",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "52,700",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "33,900",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,655.5",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "4,406억원",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,311억원",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "44,140.8",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.6158
+        },
+        {
+          "reportId": "report_051",
+          "title": "1Q26 Preview: 우리도 아직 2회말이에요",
+          "broker": "유진투자증권",
+          "publishedDate": "2026-04-03",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "서버 및 네트워크향 산업용 고부가가치 MLCC에 대한 공급 부족 조짐이 관 0\n 25.4 25.10\n 측되는 중. 지난 2월 중순 무라타는 고부가가치 MLCC 제품군 가격 인상에\n 대한 내부 논의를 시작했음을 발표. 무라타의 선제적인 가격 인상 조치가 시가총액(십억원) 31,147\n 이루어진다면 삼성전기도 충분한 명분을 ...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "9.3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "40.6%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "38.3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "0.9%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "31.6%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "155%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "70%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "80%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "90%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "50%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "10%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "19.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "24.7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "14%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.6158
+        },
+        {
+          "reportId": "report_053",
+          "title": "광에 이어 RF 호재가 기대됩니다",
+          "broker": "하나증권",
+          "publishedDate": "2026-04-03",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "Key Data\nKOSDAQ 지수 (pt) 1,056.34\n RF머트리얼즈 투자의견 매수 유지, 목표주가는 120,000원으로 상향\n52주 최고/최저(원) 73,900/4,840\n시가총액(십억원) 585.3 RF머트리얼즈에 대한 투자의견 매수를 유지한다. 1) AI발 서버 트래픽이 급증한 덕에 내년\n시가총액비중(%) 0....",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "100%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,056.34",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "120,000원",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "73,900",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "4,840",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "8,495.1",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "2,500억",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,243",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "2,019",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "7,241",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "9,843",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,618",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "2,627",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,100",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.6158
+        },
+        {
+          "reportId": "report_055",
+          "title": "기술집약적 인프라혁신과 디지털전환 주도 기업",
+          "broker": "NICE평가정보",
+          "publishedDate": "2026-04-03",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "■ 동사 실적 전망\n 동사의 연결 실적은 전기공사 부문과 통신 부문으로 구성되며, 통신 부문에는 자회사 세종네트웍스㈜의 회선\n임대, IDC·인터넷, VoIP 등 통신 인프라 기반 사업 실적이 반영된다. 2025년 사업구조 재편 이후 IDC·인터\n넷 부문은 2023년 230억 원에서 2025년 315억 원으로 2년간 37....",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "37.3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "28.9%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "11%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "13.7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1.39%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "9.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "23.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "56.1%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "4,461",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "6,175",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "8,600",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "5,000",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "10,000,000",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.6158
+        },
+        {
+          "reportId": "report_056",
+          "title": "다변화가 시작될 한 해",
+          "broker": "유안타증권",
+          "publishedDate": "2026-04-03",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "투자포인트4. 재무 안정성 & 주주환원(자사주 매입&소각)\n전일(4/2일) 기준 시가총액은 2,078억원이다. 동사의 현금 및 현금성자산은 2023년 206억원에\n서 2024년 475억원으로, 2025년말 기준으로 887억원으로 상향되었다. 1년 이내에 현금화가 가\n능한 자산인 당좌자산을 살펴보면 2025년 기준 1,10...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "16.7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "100%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "30%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "15%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1.76%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "0.00%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "2,078억원",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,108억원",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "37,200원",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "5,585,624",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "38,656",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "80,200원",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "33,950원",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.6158
+        }
+      ],
+      "technical": {
+        "signal": "REDUCE",
+        "score": 24,
+        "rsi": 46.07,
+        "macd": {
+          "value": -697.7042,
+          "signal": -685.166,
+          "histogram": -12.5381
+        },
+        "bollinger": {
+          "upper": 30615.8097,
+          "middle": 27189.75,
+          "lower": 23763.6903,
+          "position": "lower_half"
+        },
+        "volumeRatio": 0.271
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "impactScore": 90,
+        "impactValue": 1.847,
+        "impactCount": 62,
+        "directAccountImpactScore": 50
+      },
+      "scores": {
+        "techScore": 24,
+        "reportScore": 90,
+        "actionScore": 70
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 24점",
+          "리포트 영향 90점 (62건 연결)",
+          "RSI 46.1"
+        ],
+        "warnings": []
+      }
+    },
+    "133690": {
+      "code": "133690",
+      "name": "TIGER 미국나스닥100",
+      "accountKey": "PENSION",
+      "accountLabel": "연금저축",
+      "category": "나스닥100",
+      "marketValue": 481440,
+      "technicalSignal": "SELL",
+      "technicalBaseScore": 17,
+      "actionScore": 65,
+      "direction": 0.494,
+      "timing": 0.251,
+      "reportScore": 1.811,
+      "probabilities": {
+        "p_buy": 0.829,
+        "p_hold": 0.1497,
+        "p_sell": 0.0213
+      },
+      "conviction": "MEDIUM",
+      "signal": "HOLD",
+      "features": {
+        "maTrend": -0.17332991482452176,
+        "macdZ": -0.17568385441041526,
+        "rsiMid": -0.06879999999999996,
+        "adxTrend": -0.3708333333333333,
+        "bbDist": 0.45,
+        "rsiTiming": 0.08599999999999994,
+        "stochTiming": -0.7141666666666667,
+        "volumeZ": -0.629
+      },
+      "reportImpacts": [
+        {
+          "reportId": "report_051",
+          "title": "1Q26 Preview: 우리도 아직 2회말이에요",
+          "broker": "유진투자증권",
+          "publishedDate": "2026-04-03",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "서버 및 네트워크향 산업용 고부가가치 MLCC에 대한 공급 부족 조짐이 관 0\n 25.4 25.10\n 측되는 중. 지난 2월 중순 무라타는 고부가가치 MLCC 제품군 가격 인상에\n 대한 내부 논의를 시작했음을 발표. 무라타의 선제적인 가격 인상 조치가 시가총액(십억원) 31,147\n 이루어진다면 삼성전기도 충분한 명분을 ...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "9.3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "40.6%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "38.3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "0.9%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "31.6%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "155%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "70%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "80%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "90%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "50%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "10%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "19.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "24.7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "14%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.6158
+        },
+        {
+          "reportId": "report_053",
+          "title": "광에 이어 RF 호재가 기대됩니다",
+          "broker": "하나증권",
+          "publishedDate": "2026-04-03",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "Key Data\nKOSDAQ 지수 (pt) 1,056.34\n RF머트리얼즈 투자의견 매수 유지, 목표주가는 120,000원으로 상향\n52주 최고/최저(원) 73,900/4,840\n시가총액(십억원) 585.3 RF머트리얼즈에 대한 투자의견 매수를 유지한다. 1) AI발 서버 트래픽이 급증한 덕에 내년\n시가총액비중(%) 0....",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "100%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,056.34",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "120,000원",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "73,900",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "4,840",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "8,495.1",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "2,500억",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,243",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "2,019",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "7,241",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "9,843",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,618",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "2,627",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,100",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.6158
+        },
+        {
+          "reportId": "report_055",
+          "title": "기술집약적 인프라혁신과 디지털전환 주도 기업",
+          "broker": "NICE평가정보",
+          "publishedDate": "2026-04-03",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "■ 동사 실적 전망\n 동사의 연결 실적은 전기공사 부문과 통신 부문으로 구성되며, 통신 부문에는 자회사 세종네트웍스㈜의 회선\n임대, IDC·인터넷, VoIP 등 통신 인프라 기반 사업 실적이 반영된다. 2025년 사업구조 재편 이후 IDC·인터\n넷 부문은 2023년 230억 원에서 2025년 315억 원으로 2년간 37....",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "37.3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "28.9%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "11%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "13.7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1.39%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "9.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "23.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "56.1%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "4,461",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "6,175",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "8,600",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "5,000",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "10,000,000",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.6158
+        },
+        {
+          "reportId": "report_060",
+          "title": "수출 확장 원년, 밸류업은 진행형",
+          "broker": "한국IR협의회",
+          "publishedDate": "2026-04-03",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "스노우피크 어패럴 브랜드를 전개하는 패션 전문 기업 Company Data\n 현재주가 (4/1) 5,540원\n감성코퍼레이션은 스노우피크 어패럴 브랜드의 국내 사업권을 기반으로 의류, 신발 및 패션용품 52주 최고가 7,370원\n 52주 최저가 3,560원\n을 제조·판매하는 패션 전문 기업. 2025년 매출액 2,502억원...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "96.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "16.35%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "29.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "161.0%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "3.1%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "6.7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "13.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "17.8%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1.4%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "45%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "33%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "40%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "65%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "390.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.6158
+        },
+        {
+          "reportId": "report_064",
+          "title": "자체 솔루션을 보유한 네트워크 통합 기업",
+          "broker": "한국IR협의회",
+          "publishedDate": "2026-04-03",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "2026년 실적 전망 에스넷의 2026년 실적은 매출 4,855억 원(yoy +6%), 영업이익 152억 원(yoy +43%, OPM 3.1%)으로 추정된다. 구\n매출액 4,855억 원(yoy +6%) 축사업부의 반등과 유지보수 사업의 안정적 성장이 이뤄지며 영업이익률이 3.1%로 전년대비 0.8%p 개선될 것으로\n영업이...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "6%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "43%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "3.1%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "0.8%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "39%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "52%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "48%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "80%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "40%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "46%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "72%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "55%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "63%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "59%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.6158
+        }
+      ],
+      "technical": {
+        "signal": "SELL",
+        "score": 17,
+        "rsi": 49.14,
+        "macd": {
+          "value": -812.1811,
+          "signal": -690.8159,
+          "histogram": -121.3652
+        },
+        "bollinger": {
+          "upper": 164783.8116,
+          "middle": 160704.25,
+          "lower": 156624.6884,
+          "position": "lower_half"
+        },
+        "volumeRatio": 0.371
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "impactScore": 90,
+        "impactValue": 1.811,
+        "impactCount": 44,
+        "directAccountImpactScore": 50
+      },
+      "scores": {
+        "techScore": 17,
+        "reportScore": 90,
+        "actionScore": 65
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 17점",
+          "리포트 영향 90점 (44건 연결)",
+          "RSI 49.1"
+        ],
+        "warnings": []
+      }
+    },
+    "360750": {
+      "code": "360750",
+      "name": "TIGER 미국S&P500",
+      "accountKey": "PENSION",
+      "accountLabel": "연금저축",
+      "category": "S&P500",
+      "marketValue": 492400,
+      "technicalSignal": "BUY",
+      "technicalBaseScore": 70,
+      "actionScore": 64,
+      "direction": 0.549,
+      "timing": -0.118,
+      "reportScore": 1.811,
+      "probabilities": {
+        "p_buy": 0.8122,
+        "p_hold": 0.1609,
+        "p_sell": 0.0268
+      },
+      "conviction": "MEDIUM",
+      "signal": "HOLD",
+      "features": {
+        "maTrend": -0.02839784200480766,
+        "macdZ": 0.048478000306247986,
+        "rsiMid": -0.03680000000000007,
+        "adxTrend": -0.6383333333333333,
+        "bbDist": -0.35,
+        "rsiTiming": 0.04600000000000008,
+        "stochTiming": -1.705416666666667,
+        "volumeZ": 0.18900000000000006
+      },
+      "reportImpacts": [
+        {
+          "reportId": "report_051",
+          "title": "1Q26 Preview: 우리도 아직 2회말이에요",
+          "broker": "유진투자증권",
+          "publishedDate": "2026-04-03",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "서버 및 네트워크향 산업용 고부가가치 MLCC에 대한 공급 부족 조짐이 관 0\n 25.4 25.10\n 측되는 중. 지난 2월 중순 무라타는 고부가가치 MLCC 제품군 가격 인상에\n 대한 내부 논의를 시작했음을 발표. 무라타의 선제적인 가격 인상 조치가 시가총액(십억원) 31,147\n 이루어진다면 삼성전기도 충분한 명분을 ...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "9.3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "40.6%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "38.3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "0.9%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "31.6%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "155%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "70%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "80%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "90%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "50%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "10%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "19.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "24.7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "14%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.6158
+        },
+        {
+          "reportId": "report_053",
+          "title": "광에 이어 RF 호재가 기대됩니다",
+          "broker": "하나증권",
+          "publishedDate": "2026-04-03",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "Key Data\nKOSDAQ 지수 (pt) 1,056.34\n RF머트리얼즈 투자의견 매수 유지, 목표주가는 120,000원으로 상향\n52주 최고/최저(원) 73,900/4,840\n시가총액(십억원) 585.3 RF머트리얼즈에 대한 투자의견 매수를 유지한다. 1) AI발 서버 트래픽이 급증한 덕에 내년\n시가총액비중(%) 0....",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "100%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,056.34",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "120,000원",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "73,900",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "4,840",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "8,495.1",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "2,500억",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,243",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "2,019",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "7,241",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "9,843",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,618",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "2,627",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,100",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.6158
+        },
+        {
+          "reportId": "report_055",
+          "title": "기술집약적 인프라혁신과 디지털전환 주도 기업",
+          "broker": "NICE평가정보",
+          "publishedDate": "2026-04-03",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "■ 동사 실적 전망\n 동사의 연결 실적은 전기공사 부문과 통신 부문으로 구성되며, 통신 부문에는 자회사 세종네트웍스㈜의 회선\n임대, IDC·인터넷, VoIP 등 통신 인프라 기반 사업 실적이 반영된다. 2025년 사업구조 재편 이후 IDC·인터\n넷 부문은 2023년 230억 원에서 2025년 315억 원으로 2년간 37....",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "37.3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "28.9%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "11%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "13.7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1.39%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "9.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "23.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "56.1%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "4,461",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "6,175",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "8,600",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "5,000",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "10,000,000",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.6158
+        },
+        {
+          "reportId": "report_060",
+          "title": "수출 확장 원년, 밸류업은 진행형",
+          "broker": "한국IR협의회",
+          "publishedDate": "2026-04-03",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "스노우피크 어패럴 브랜드를 전개하는 패션 전문 기업 Company Data\n 현재주가 (4/1) 5,540원\n감성코퍼레이션은 스노우피크 어패럴 브랜드의 국내 사업권을 기반으로 의류, 신발 및 패션용품 52주 최고가 7,370원\n 52주 최저가 3,560원\n을 제조·판매하는 패션 전문 기업. 2025년 매출액 2,502억원...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "96.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "16.35%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "29.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "161.0%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "3.1%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "6.7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "13.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "17.8%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1.4%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "45%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "33%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "40%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "65%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "390.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.6158
+        },
+        {
+          "reportId": "report_064",
+          "title": "자체 솔루션을 보유한 네트워크 통합 기업",
+          "broker": "한국IR협의회",
+          "publishedDate": "2026-04-03",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "2026년 실적 전망 에스넷의 2026년 실적은 매출 4,855억 원(yoy +6%), 영업이익 152억 원(yoy +43%, OPM 3.1%)으로 추정된다. 구\n매출액 4,855억 원(yoy +6%) 축사업부의 반등과 유지보수 사업의 안정적 성장이 이뤄지며 영업이익률이 3.1%로 전년대비 0.8%p 개선될 것으로\n영업이...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "6%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "43%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "3.1%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "0.8%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "39%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "52%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "48%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "80%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "40%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "46%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "72%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "55%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "63%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "59%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.6158
+        }
+      ],
+      "technical": {
+        "signal": "BUY",
+        "score": 70,
+        "rsi": 49.54,
+        "macd": {
+          "value": -90.1038,
+          "signal": -94.6945,
+          "histogram": 4.5906
+        },
+        "bollinger": {
+          "upper": 24960.8443,
+          "middle": 24569.75,
+          "lower": 24178.6557,
+          "position": "upper_half"
+        },
+        "volumeRatio": 1.189
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "impactScore": 90,
+        "impactValue": 1.811,
+        "impactCount": 43,
+        "directAccountImpactScore": 50
+      },
+      "scores": {
+        "techScore": 70,
+        "reportScore": 90,
+        "actionScore": 64
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 70점",
+          "리포트 영향 90점 (43건 연결)",
+          "RSI 49.5"
+        ],
+        "warnings": []
+      }
+    },
+    "423160": {
+      "code": "423160",
+      "name": "KODEX KOFR금리액티브(합성)",
+      "accountKey": "ISA",
+      "accountLabel": "ISA",
+      "category": "현금파킹",
+      "marketValue": 442720,
+      "technicalSignal": "SELL",
+      "technicalBaseScore": 12,
+      "actionScore": 65,
+      "direction": 0.091,
+      "timing": 1.06,
+      "reportScore": 1.759,
+      "probabilities": {
+        "p_buy": 0.8381,
+        "p_hold": 0.1398,
+        "p_sell": 0.0221
+      },
+      "conviction": "HIGH",
+      "signal": "HOLD",
+      "features": {
+        "maTrend": -0.005671030255003595,
+        "macdZ": -2.5,
+        "rsiMid": -0.5183999999999997,
+        "adxTrend": 0.0674999999999999,
+        "bbDist": 0.45,
+        "rsiTiming": 0.6479999999999997,
+        "stochTiming": 2.5,
+        "volumeZ": -0.751
+      },
+      "reportImpacts": [
+        {
+          "reportId": "report_050",
+          "title": "1Q26 Pre: 식품 호조 VS. 비식품 부진",
+          "broker": "하나증권",
+          "publishedDate": "2026-04-03",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "Key Data\nKOSPI 지수 (pt) 5,234.05\n 1Q26 Pre: 식품 호조 VS. 비식품 부진\n52주 최고/최저(원) 52,700/33,900\n시가총액(십억원) 1,655.5 1분기 연결 매출액 및 영업이익은 각각 2조 4,406억원(YoY 5.2%), 1,311억원(YoY 5.0%)\n시가총액비중(%) 0.0...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "5.2%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "5.0%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "14%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "8%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "10%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "4.1%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "4.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "5,234.05",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "52,700",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "33,900",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,655.5",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "4,406억원",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,311억원",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "44,140.8",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.6158
+        },
+        {
+          "reportId": "report_053",
+          "title": "광에 이어 RF 호재가 기대됩니다",
+          "broker": "하나증권",
+          "publishedDate": "2026-04-03",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "Key Data\nKOSDAQ 지수 (pt) 1,056.34\n RF머트리얼즈 투자의견 매수 유지, 목표주가는 120,000원으로 상향\n52주 최고/최저(원) 73,900/4,840\n시가총액(십억원) 585.3 RF머트리얼즈에 대한 투자의견 매수를 유지한다. 1) AI발 서버 트래픽이 급증한 덕에 내년\n시가총액비중(%) 0....",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "100%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,056.34",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "120,000원",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "73,900",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "4,840",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "8,495.1",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "2,500억",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,243",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "2,019",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "7,241",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "9,843",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,618",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "2,627",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,100",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.6158
+        },
+        {
+          "reportId": "report_056",
+          "title": "다변화가 시작될 한 해",
+          "broker": "유안타증권",
+          "publishedDate": "2026-04-03",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "투자포인트4. 재무 안정성 & 주주환원(자사주 매입&소각)\n전일(4/2일) 기준 시가총액은 2,078억원이다. 동사의 현금 및 현금성자산은 2023년 206억원에\n서 2024년 475억원으로, 2025년말 기준으로 887억원으로 상향되었다. 1년 이내에 현금화가 가\n능한 자산인 당좌자산을 살펴보면 2025년 기준 1,10...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "16.7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "100%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "30%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "15%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1.76%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "0.00%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "2,078억원",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,108억원",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "37,200원",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "5,585,624",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "38,656",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "80,200원",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "33,950원",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.6158
+        },
+        {
+          "reportId": "report_060",
+          "title": "수출 확장 원년, 밸류업은 진행형",
+          "broker": "한국IR협의회",
+          "publishedDate": "2026-04-03",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "스노우피크 어패럴 브랜드를 전개하는 패션 전문 기업 Company Data\n 현재주가 (4/1) 5,540원\n감성코퍼레이션은 스노우피크 어패럴 브랜드의 국내 사업권을 기반으로 의류, 신발 및 패션용품 52주 최고가 7,370원\n 52주 최저가 3,560원\n을 제조·판매하는 패션 전문 기업. 2025년 매출액 2,502억원...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "96.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "16.35%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "29.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "161.0%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "3.1%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "6.7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "13.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "17.8%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1.4%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "45%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "33%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "40%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "65%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "390.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.6158
+        },
+        {
+          "reportId": "report_047",
+          "title": "1분기부터 영업실적 개선 전망",
+          "broker": "하나증권",
+          "publishedDate": "2026-04-03",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.54,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "Key Data\nKOSPI 지수 (pt) 5,234.05\n 1분기 철강 스프레드 축소 반면, 국내 자회사들의 영업실적 개선 긍정적\n52주 최고/최저(원) 413,000/233,500\n시가총액(십억원) 27,598.1 2026년 1분기 POSCO홀딩스의 매출액과 영업이익은 각각 17.2조원(YoY -1.4%, QoQ\n시가총...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "1.4%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "2.1%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "0.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "405.8%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1.7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "3.7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "0.2%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "33.9%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "42.3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "5,234.05",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "413,000",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "233,500",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "27,598.1",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "79,241.5",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.5278
+        }
+      ],
+      "technical": {
+        "signal": "SELL",
+        "score": 12,
+        "rsi": 43.52,
+        "macd": {
+          "value": -14.2509,
+          "signal": -0.8478,
+          "histogram": -13.4031
+        },
+        "bollinger": {
+          "upper": 110864.8045,
+          "middle": 110737,
+          "lower": 110609.1955,
+          "position": "lower_half"
+        },
+        "volumeRatio": 0.249
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "impactScore": 89,
+        "impactValue": 1.759,
+        "impactCount": 33,
+        "directAccountImpactScore": 50
+      },
+      "scores": {
+        "techScore": 12,
+        "reportScore": 89,
+        "actionScore": 65
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 12점",
+          "리포트 영향 89점 (33건 연결)",
+          "RSI 43.5"
+        ],
+        "warnings": []
+      }
+    },
+    "434730": {
+      "code": "434730",
+      "name": "HANARO 원자력iSelect",
+      "accountKey": "TOSS",
+      "accountLabel": "토스증권",
+      "category": "원자력",
+      "marketValue": 447965,
+      "technicalSignal": "HOLD",
+      "technicalBaseScore": 43,
+      "actionScore": 67,
+      "direction": 0.651,
+      "timing": 0.716,
+      "reportScore": 0.858,
+      "probabilities": {
+        "p_buy": 0.773,
+        "p_hold": 0.1905,
+        "p_sell": 0.0365
+      },
+      "conviction": "MEDIUM",
+      "signal": "HOLD",
+      "features": {
+        "maTrend": 2.264847056963269,
+        "macdZ": -1.1215931176426526,
+        "rsiMid": -0.20560000000000003,
+        "adxTrend": -0.027499999999999858,
+        "bbDist": 0.45,
+        "rsiTiming": 0.257,
+        "stochTiming": 1.8995833333333334,
+        "volumeZ": -0.393
+      },
+      "reportImpacts": [
+        {
+          "reportId": "report_055",
+          "title": "기술집약적 인프라혁신과 디지털전환 주도 기업",
+          "broker": "NICE평가정보",
+          "publishedDate": "2026-04-03",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "■ 동사 실적 전망\n 동사의 연결 실적은 전기공사 부문과 통신 부문으로 구성되며, 통신 부문에는 자회사 세종네트웍스㈜의 회선\n임대, IDC·인터넷, VoIP 등 통신 인프라 기반 사업 실적이 반영된다. 2025년 사업구조 재편 이후 IDC·인터\n넷 부문은 2023년 230억 원에서 2025년 315억 원으로 2년간 37....",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "37.3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "28.9%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "11%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "13.7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1.39%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "9.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "23.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "56.1%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "4,461",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "6,175",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "8,600",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "5,000",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "10,000,000",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.6158
+        },
+        {
+          "reportId": "report_045",
+          "title": "신한 탑픽스 (4월 3일)",
+          "broker": "신한투자증권",
+          "publishedDate": "2026-04-03",
+          "reportType": "theme",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "전기전자 이수페타시스 (007660)\n종가 (4월 3일, 원) 102,600 ◆ 데이터센터, 네트워크 시장 성장 수혜 지속 전망 → 기술력을 통한 글로벌 시장 내 지위 확보\n시가총액 (십억원) 7,532 ◆ AI 시장 개화와 동시에 1) 90% 이상 가동률, 2) 설비 투자 확대 진행 중\nAnalyst 오강호 연구위원 ◆...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "90%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "8%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "20%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "18%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "29%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "25%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "6.6%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "15.6%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "102,600",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "7,532",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "34,250",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "4,557",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "151,100",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "16,882",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.5419
+        },
+        {
+          "reportId": "report_024",
+          "title": "해외 EPC 기업 실적 및 동향",
+          "broker": "유진투자증권",
+          "publishedDate": "2026-04-03",
+          "reportType": "industry",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.46,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "전통에너지 기반, 2026 년 가이던스는 매출 75~77 억 유로, EBITDA 5.5~5.8 억 유로. 동사는 새로\n 원전, SAF 등 운 에너지 패러다임으로 전통에너지(오일/가스)와 신규에너지(재생에너지, 원전,\n 포트폴리오 확장 저탄소)의 공존을 제시. 또한 NEXT-N 출범을 통한 SMR 시장 진출, NEXTCHE...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "10%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "9%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "14.3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1.4%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "29%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "12%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "20%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "34%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "38%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "6,719",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "7,204",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.3507
+        },
+        {
+          "reportId": "report_038",
+          "title": "신한 해외주식 Weekly (4월 3일)",
+          "broker": "신한투자증권",
+          "publishedDate": "2026-04-03",
+          "reportType": "strategy",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "1m",
+          "decayHalfLifeDays": 30,
+          "reason": "• 트럼프 대통령의 몽니에 중동 리스크 재점화되며 위험선호심리 위축. 브렌트유 110불\n 웃돌며 공급 충격 우려 반영. 미 10년물 국채금리와 달러지수 각각 4.3%, 100pt에서\n 하방경직성 강화. 세계 주식시장 중동 지정학 리스크에 연동되며 극심한 변동성 반복\n • 화학 비료 공급 부족 속 농산물 생산 감소 전망에 ...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "4.3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "30%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "65.0%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "12.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "0.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "32%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "43%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "3.9%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "12.0%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "2.1%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "52.4%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "2.0%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "15.0%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.1821
+        },
+        {
+          "reportId": "report_027",
+          "title": "[주식시황 위클리] 주간:知 - 흔들림 이후를 대비하는 법(4월 1주)",
+          "broker": "유안타증권",
+          "publishedDate": "2026-04-03",
+          "reportType": "strategy",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.37,
+          "confidence": 0.85,
+          "horizon": "1m",
+          "decayHalfLifeDays": 30,
+          "reason": "AI 효율성 증가 메모리 절감\n 시장 오해 130\n → GPU 수요 감소 → HBM/DRAM 수요 위축\n 120\n 단기 반응 엔비디아 주가 급락 메모리주 급락\n 110\n '25.1 '25.2\n AI 구동 비용 하락 메모리 사용 효율 개선\n 실제 1차 효과\n (Inference 비용 감소) (단위 비용 절감)\n (달러)\n ...",
+          "evidenceNumbers": [],
+          "contribution": 0.1069
+        }
+      ],
+      "technical": {
+        "signal": "HOLD",
+        "score": 43,
+        "rsi": 47.43,
+        "macd": {
+          "value": -89.9283,
+          "signal": 739.5838,
+          "histogram": -829.5121
+        },
+        "bollinger": {
+          "upper": 72863.5799,
+          "middle": 66921.75,
+          "lower": 60979.9201,
+          "position": "lower_half"
+        },
+        "volumeRatio": 0.607
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "impactScore": 74,
+        "impactValue": 0.858,
+        "impactCount": 6,
+        "directAccountImpactScore": 50
+      },
+      "scores": {
+        "techScore": 43,
+        "reportScore": 74,
+        "actionScore": 67
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 43점",
+          "리포트 영향 74점 (6건 연결)",
+          "RSI 47.4"
+        ],
+        "warnings": []
+      }
+    },
+    "449450": {
+      "code": "449450",
+      "name": "PLUS K방산",
+      "accountKey": "TOSS",
+      "accountLabel": "토스증권",
+      "category": "방산",
+      "marketValue": 384400,
+      "technicalSignal": "BUY",
+      "technicalBaseScore": 60,
+      "actionScore": 59,
+      "direction": 0.846,
+      "timing": -0.708,
+      "reportScore": 0.453,
+      "probabilities": {
+        "p_buy": 0.5852,
+        "p_hold": 0.2821,
+        "p_sell": 0.1327
+      },
+      "conviction": "MEDIUM",
+      "signal": "HOLD",
+      "features": {
+        "maTrend": 2.5,
+        "macdZ": -0.017887979840818226,
+        "rsiMid": 0.5688,
+        "adxTrend": -0.23166666666666677,
+        "bbDist": -0.35,
+        "rsiTiming": -0.711,
+        "stochTiming": -2.5,
+        "volumeZ": 0.1499999999999999
+      },
+      "reportImpacts": [
+        {
+          "reportId": "report_067",
+          "title": "AX=아이티센엔텍, 주가 상승 잠재력 가장 크다",
+          "broker": "SK증권",
+          "publishedDate": "2026-04-03",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.54,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "STOCK DATA 클라우드 구축부터 AX 까지\n주가(26/04/02) 995 원 아이티센엔텍은 정보시스템 구축 및 운영(SI, ITO)과 AI 전환(AX) 서비스를 제공하는\nKOSDAQ 1,056.34 pt IT 서비스 전문 기업이다. 공공기관, 국방, 금융, 기업(Enterprise) 등 다양한 영역에서\n52 주 최고...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "29.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "122.3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "39.21%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "0.00%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "2.68%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "95%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "85.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,056.34",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,525",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "5,720",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "6,512",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,700",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,500",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,300",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.5278
+        },
+        {
+          "reportId": "report_015",
+          "title": "무선 통신장비주 매수 서둘러야",
+          "broker": "하나증권",
+          "publishedDate": "2026-04-03",
+          "reportType": "industry",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.54,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": " T Mobile이 사모펀드 TPG와 연계하여 유니티 그룹 전체 혹은 일부를 인수할지도 모른단 보도가 나왔다. T Mobile은\n 유니티의 Kinetic FTTH(가정용 광섬유) 부문에 관심을 가지고 있으며, TPG는 유니티의 기업용 광섬유 부문에 관심이 있어서\n 양사가 공동입찰을 추진해서 유니티 전체를 인수후 분할할지...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "73%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "50%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "12.47%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "9.38%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1.16%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "14.00%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "21.72%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "12.14%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "10%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "60%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "80%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "120,000",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "100,000",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "80,000",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.4117
+        },
+        {
+          "reportId": "report_018",
+          "title": "신한 자동차/철강금속 Weekly (2026.04.03)",
+          "broker": "신한투자증권",
+          "publishedDate": "2026-04-03",
+          "reportType": "industry",
+          "targetType": "holding",
+          "direction": "negative",
+          "strength": 0.46,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "▶ 7개월 만에 확장 전환…중국 철강업 PMI 50.6 (스틸데일리) ▶ 아연괴 4월 고시價 톤당 528 만원···전월比 1.3%↓ (스틸데일리)\n: 3월 중국 철강 PMI가 50.6을 기록하며 7개월 만에 확장 국면 진입, 전월 대비 3.9p 상승 : 4월 국내 아연괴 고시가 톤당 528만 8,000원으로 MoM 1.3...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "1.3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "11%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "8.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "4.8%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "45%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "25%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "75%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "10%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "40.1%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "79%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "10.03%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "74.4%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1.2%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "7.7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": -0.3507
+        },
+        {
+          "reportId": "report_024",
+          "title": "해외 EPC 기업 실적 및 동향",
+          "broker": "유진투자증권",
+          "publishedDate": "2026-04-03",
+          "reportType": "industry",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.46,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "전통에너지 기반, 2026 년 가이던스는 매출 75~77 억 유로, EBITDA 5.5~5.8 억 유로. 동사는 새로\n 원전, SAF 등 운 에너지 패러다임으로 전통에너지(오일/가스)와 신규에너지(재생에너지, 원전,\n 포트폴리오 확장 저탄소)의 공존을 제시. 또한 NEXT-N 출범을 통한 SMR 시장 진출, NEXTCHE...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "10%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "9%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "14.3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1.4%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "29%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "12%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "20%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "34%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "38%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "6,719",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "7,204",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.3507
+        },
+        {
+          "reportId": "report_017",
+          "title": "미국의 NATO 탈퇴 위협 시즌2",
+          "broker": "하나증권",
+          "publishedDate": "2026-04-03",
+          "reportType": "industry",
+          "targetType": "holding",
+          "direction": "negative",
+          "strength": 0.37,
+          "confidence": 0.65,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "중장기적인 관점에서 미국의 NATO 회의론 강화는 결국 서방 국가들의 추가적인 국방지출\n 확대로 이어질 가능성이 높다. 전일(4/1) 그간 하락세를 보이던 유럽 방산주 주가 반등의\n 배경 중 하나로 해석된다(BAE Systems +4.3%, Rheinmetall +8.6%, Thales +5.7%,\n Leonardo +8...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "4.3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "8.6%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "5.7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "8.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "4.6%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "5.2%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "2%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": -0.2157
+        }
+      ],
+      "technical": {
+        "signal": "BUY",
+        "score": 60,
+        "rsi": 57.11,
+        "macd": {
+          "value": 477.0451,
+          "signal": 485.734,
+          "histogram": -8.6888
+        },
+        "bollinger": {
+          "upper": 80100.7373,
+          "middle": 73204.5,
+          "lower": 66308.2627,
+          "position": "upper_half"
+        },
+        "volumeRatio": 1.15
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "impactScore": 63,
+        "impactValue": 0.453,
+        "impactCount": 14,
+        "directAccountImpactScore": 50
+      },
+      "scores": {
+        "techScore": 60,
+        "reportScore": 63,
+        "actionScore": 59
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 60점",
+          "리포트 영향 63점 (14건 연결)",
+          "RSI 57.1"
+        ],
+        "warnings": []
+      }
+    },
+    "458760": {
+      "code": "458760",
+      "name": "TIGER 미국배당+7%프리미엄다우존스",
+      "accountKey": "ISA",
+      "accountLabel": "ISA",
+      "category": "배당/커버드콜",
+      "marketValue": 510250,
+      "technicalSignal": "BUY",
+      "technicalBaseScore": 76,
+      "actionScore": 71,
+      "direction": 0.901,
+      "timing": 0.347,
+      "reportScore": 1.716,
+      "probabilities": {
+        "p_buy": 0.88,
+        "p_hold": 0.1087,
+        "p_sell": 0.0113
+      },
+      "conviction": "HIGH",
+      "signal": "HOLD",
+      "features": {
+        "maTrend": 1.1873691973166856,
+        "macdZ": -0.183282998582808,
+        "rsiMid": 0.31839999999999974,
+        "adxTrend": 0.0408333333333332,
+        "bbDist": -0.35,
+        "rsiTiming": -0.3979999999999997,
+        "stochTiming": 1.1879166666666663,
+        "volumeZ": -0.373
+      },
+      "reportImpacts": [
+        {
+          "reportId": "report_051",
+          "title": "1Q26 Preview: 우리도 아직 2회말이에요",
+          "broker": "유진투자증권",
+          "publishedDate": "2026-04-03",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "서버 및 네트워크향 산업용 고부가가치 MLCC에 대한 공급 부족 조짐이 관 0\n 25.4 25.10\n 측되는 중. 지난 2월 중순 무라타는 고부가가치 MLCC 제품군 가격 인상에\n 대한 내부 논의를 시작했음을 발표. 무라타의 선제적인 가격 인상 조치가 시가총액(십억원) 31,147\n 이루어진다면 삼성전기도 충분한 명분을 ...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "9.3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "40.6%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "38.3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "0.9%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "31.6%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "155%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "70%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "80%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "90%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "50%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "10%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "19.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "24.7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "14%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.6158
+        },
+        {
+          "reportId": "report_056",
+          "title": "다변화가 시작될 한 해",
+          "broker": "유안타증권",
+          "publishedDate": "2026-04-03",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "투자포인트4. 재무 안정성 & 주주환원(자사주 매입&소각)\n전일(4/2일) 기준 시가총액은 2,078억원이다. 동사의 현금 및 현금성자산은 2023년 206억원에\n서 2024년 475억원으로, 2025년말 기준으로 887억원으로 상향되었다. 1년 이내에 현금화가 가\n능한 자산인 당좌자산을 살펴보면 2025년 기준 1,10...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "16.7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "100%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "30%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "15%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1.76%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "0.00%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "2,078억원",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,108억원",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "37,200원",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "5,585,624",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "38,656",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "80,200원",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "33,950원",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.6158
+        },
+        {
+          "reportId": "report_060",
+          "title": "수출 확장 원년, 밸류업은 진행형",
+          "broker": "한국IR협의회",
+          "publishedDate": "2026-04-03",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "스노우피크 어패럴 브랜드를 전개하는 패션 전문 기업 Company Data\n 현재주가 (4/1) 5,540원\n감성코퍼레이션은 스노우피크 어패럴 브랜드의 국내 사업권을 기반으로 의류, 신발 및 패션용품 52주 최고가 7,370원\n 52주 최저가 3,560원\n을 제조·판매하는 패션 전문 기업. 2025년 매출액 2,502억원...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "96.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "16.35%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "29.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "161.0%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "3.1%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "6.7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "13.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "17.8%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1.4%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "45%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "33%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "40%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "65%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "390.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.6158
+        },
+        {
+          "reportId": "report_048",
+          "title": "1Q26 프리뷰: 견조한 YoY 실적 성장 전망",
+          "broker": "유안타증권",
+          "publishedDate": "2026-04-03",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.54,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "1Q26 예상 매출액 +10.2% yoy, 영업이익 +34.4% yoy BUY (M)\n1Q26 예상 매출액은 1,552억원(+10.2% yoy), 영업이익은 264억원(+34.4% yoy)으로 전\n년동기대비 견조한 실적 성장 달성 예상한다. 신규 앨범 부재 공백에도 불구하고 주력 걸그 목표주가 88,000원 (M)\n룹 I...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "10.2%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "34.4%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "46%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "15.41%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1.21%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "30%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "15%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,552억원",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "88,000원",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "60,100원",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "21,355억원",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "35,532,492",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "375,012",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.5278
+        },
+        {
+          "reportId": "report_062",
+          "title": "실적은 양호, 성장 모멘텀은 점증 구간 진입",
+          "broker": "SK증권",
+          "publishedDate": "2026-04-03",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.54,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "Signal: 1Q26 실적은 컨센서스 소폭 상회 전망 목표주가: 630,000 원(유지)\n Key: 우호적인 환율과 HEV 판매 호조로 양호한 실적 전망 현재주가: 465,500 원\n Step: 4 월부터 로봇과 자율주행 기대감 점증 전망 상승여력: 35.3%",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "35.3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "5.3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "0.2%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "13.3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "86.0%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "6.7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "2.6%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "4.7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "0.8%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1.0%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "5.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "30.67%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "7.31%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1.2%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.5278
+        }
+      ],
+      "technical": {
+        "signal": "BUY",
+        "score": 76,
+        "rsi": 53.98,
+        "macd": {
+          "value": 83.5623,
+          "signal": 102.315,
+          "histogram": -18.7526
+        },
+        "bollinger": {
+          "upper": 11432.6794,
+          "middle": 11266.25,
+          "lower": 11099.8206,
+          "position": "upper_half"
+        },
+        "volumeRatio": 0.627
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "impactScore": 89,
+        "impactValue": 1.716,
+        "impactCount": 19,
+        "directAccountImpactScore": 50
+      },
+      "scores": {
+        "techScore": 76,
+        "reportScore": 89,
+        "actionScore": 71
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 76점",
+          "리포트 영향 89점 (19건 연결)",
+          "RSI 54.0"
+        ],
+        "warnings": []
+      }
+    },
+    "487240": {
+      "code": "487240",
+      "name": "KODEX AI전력핵심설비",
+      "accountKey": "TOSS",
+      "accountLabel": "토스증권",
+      "category": "전력기기",
+      "marketValue": 466425,
+      "technicalSignal": "HOLD",
+      "technicalBaseScore": 43,
+      "actionScore": 75,
+      "direction": 1.043,
+      "timing": 0.797,
+      "reportScore": 1.811,
+      "probabilities": {
+        "p_buy": 0.9178,
+        "p_hold": 0.077,
+        "p_sell": 0.0052
+      },
+      "conviction": "HIGH",
+      "signal": "BUY",
+      "features": {
+        "maTrend": 2.3623147341115938,
+        "macdZ": -0.6861139311462382,
+        "rsiMid": -0.09360000000000014,
+        "adxTrend": -0.5241666666666666,
+        "bbDist": 0.45,
+        "rsiTiming": 0.11700000000000017,
+        "stochTiming": 1.5458333333333334,
+        "volumeZ": -0.20799999999999996
+      },
+      "reportImpacts": [
+        {
+          "reportId": "report_051",
+          "title": "1Q26 Preview: 우리도 아직 2회말이에요",
+          "broker": "유진투자증권",
+          "publishedDate": "2026-04-03",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "서버 및 네트워크향 산업용 고부가가치 MLCC에 대한 공급 부족 조짐이 관 0\n 25.4 25.10\n 측되는 중. 지난 2월 중순 무라타는 고부가가치 MLCC 제품군 가격 인상에\n 대한 내부 논의를 시작했음을 발표. 무라타의 선제적인 가격 인상 조치가 시가총액(십억원) 31,147\n 이루어진다면 삼성전기도 충분한 명분을 ...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "9.3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "40.6%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "38.3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "0.9%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "31.6%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "155%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "70%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "80%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "90%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "50%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "10%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "19.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "24.7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "14%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.6158
+        },
+        {
+          "reportId": "report_053",
+          "title": "광에 이어 RF 호재가 기대됩니다",
+          "broker": "하나증권",
+          "publishedDate": "2026-04-03",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "Key Data\nKOSDAQ 지수 (pt) 1,056.34\n RF머트리얼즈 투자의견 매수 유지, 목표주가는 120,000원으로 상향\n52주 최고/최저(원) 73,900/4,840\n시가총액(십억원) 585.3 RF머트리얼즈에 대한 투자의견 매수를 유지한다. 1) AI발 서버 트래픽이 급증한 덕에 내년\n시가총액비중(%) 0....",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "100%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,056.34",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "120,000원",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "73,900",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "4,840",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "8,495.1",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "2,500억",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,243",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "2,019",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "7,241",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "9,843",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,618",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "2,627",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,100",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.6158
+        },
+        {
+          "reportId": "report_055",
+          "title": "기술집약적 인프라혁신과 디지털전환 주도 기업",
+          "broker": "NICE평가정보",
+          "publishedDate": "2026-04-03",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "■ 동사 실적 전망\n 동사의 연결 실적은 전기공사 부문과 통신 부문으로 구성되며, 통신 부문에는 자회사 세종네트웍스㈜의 회선\n임대, IDC·인터넷, VoIP 등 통신 인프라 기반 사업 실적이 반영된다. 2025년 사업구조 재편 이후 IDC·인터\n넷 부문은 2023년 230억 원에서 2025년 315억 원으로 2년간 37....",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "37.3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "28.9%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "11%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "13.7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1.39%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "9.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "23.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "56.1%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "4,461",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "6,175",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "8,600",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "5,000",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "10,000,000",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.6158
+        },
+        {
+          "reportId": "report_060",
+          "title": "수출 확장 원년, 밸류업은 진행형",
+          "broker": "한국IR협의회",
+          "publishedDate": "2026-04-03",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "스노우피크 어패럴 브랜드를 전개하는 패션 전문 기업 Company Data\n 현재주가 (4/1) 5,540원\n감성코퍼레이션은 스노우피크 어패럴 브랜드의 국내 사업권을 기반으로 의류, 신발 및 패션용품 52주 최고가 7,370원\n 52주 최저가 3,560원\n을 제조·판매하는 패션 전문 기업. 2025년 매출액 2,502억원...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "96.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "16.35%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "29.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "161.0%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "3.1%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "6.7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "13.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "17.8%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1.4%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "45%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "33%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "40%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "65%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "390.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.6158
+        },
+        {
+          "reportId": "report_064",
+          "title": "자체 솔루션을 보유한 네트워크 통합 기업",
+          "broker": "한국IR협의회",
+          "publishedDate": "2026-04-03",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "2026년 실적 전망 에스넷의 2026년 실적은 매출 4,855억 원(yoy +6%), 영업이익 152억 원(yoy +43%, OPM 3.1%)으로 추정된다. 구\n매출액 4,855억 원(yoy +6%) 축사업부의 반등과 유지보수 사업의 안정적 성장이 이뤄지며 영업이익률이 3.1%로 전년대비 0.8%p 개선될 것으로\n영업이...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "6%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "43%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "3.1%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "0.8%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "39%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "52%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "48%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "80%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "40%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "46%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "72%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "55%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "63%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "59%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.6158
+        }
+      ],
+      "technical": {
+        "signal": "HOLD",
+        "score": 43,
+        "rsi": 48.83,
+        "macd": {
+          "value": 161.5479,
+          "signal": 514.6705,
+          "histogram": -353.1226
+        },
+        "bollinger": {
+          "upper": 34679.1809,
+          "middle": 31774,
+          "lower": 28868.8191,
+          "position": "lower_half"
+        },
+        "volumeRatio": 0.792
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "impactScore": 90,
+        "impactValue": 1.811,
+        "impactCount": 42,
+        "directAccountImpactScore": 50
+      },
+      "scores": {
+        "techScore": 43,
+        "reportScore": 90,
+        "actionScore": 75
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 43점",
+          "리포트 영향 90점 (42건 연결)",
+          "RSI 48.8"
+        ],
+        "warnings": []
+      }
+    },
+    "2921050": {
+      "code": "2921050",
+      "name": "TIGER코리아TOP10",
+      "accountKey": "ISA",
+      "accountLabel": "ISA",
+      "category": "기타",
+      "marketValue": 574400,
+      "technicalSignal": "N/A",
+      "technicalBaseScore": null,
+      "actionScore": 50,
+      "direction": -0.32,
+      "timing": 0.175,
+      "reportScore": 0.972,
+      "probabilities": {
+        "p_buy": 0.483,
+        "p_hold": 0.3304,
+        "p_sell": 0.1865
+      },
+      "conviction": "LOW",
+      "signal": "WATCH",
+      "features": {
+        "maTrend": -2.5,
+        "macdZ": 0,
+        "rsiMid": 0,
+        "adxTrend": 0,
+        "bbDist": 0,
+        "rsiTiming": 0,
+        "stochTiming": 0,
+        "volumeZ": 0
+      },
+      "reportImpacts": [
+        {
+          "reportId": "report_058",
+          "title": "미국 재고 변수, 성장은 유효",
+          "broker": "IBK투자증권",
+          "publishedDate": "2026-04-03",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.54,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "1Q26 영업이익, 시장 기대치에 부합할 전망\n 매수 (유지) 1분기 연결 매출액과 영업이익은 각각 6,833억원(+29.2% yoy), 1,660억원(+23.9%\n yoy)으로 컨센서스(6,811억원/1,618억원)에 대체로 부합할 전망이다. 다만 당사 기존\n목표주가 (유지) 1,670,000원\n 추정치(7,305억원/...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "29.2%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "23.9%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "59%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "67%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "71%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "9.7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "11%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "34%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "15.3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "50%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "14.6%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "134%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "6,833억원",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,660억원",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.5278
+        },
+        {
+          "reportId": "report_046",
+          "title": "'MLCC 임베디드 PCB'의 미래",
+          "broker": "SK증권",
+          "publishedDate": "2026-04-03",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.46,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "STOCK DATA 가파른 성장세: 부품주문량, 기판 가동률, 공급단가\n주가(26/04/02) 417,000 원 1 분기 영업이익은 2,672 억원(+33%, YoY)로 전망된다. 이는 일회성 비용이 반영된\nKOSPI 5,234.05 pt 손익으로, 제외 시 이익규모는 기존 추정치(2,842 억원)을 크게 상회했다.\n52...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "33%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "100%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "61%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "23.79%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "11.00%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "38.29%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "43%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "57%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "43.9%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "93.63%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "6.37%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "0.00%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "14%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "417,000",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.4496
+        },
+        {
+          "reportId": "report_010",
+          "title": "[IBKS Daily] 인터넷/게임",
+          "broker": "IBK투자증권",
+          "publishedDate": "2026-04-03",
+          "reportType": "industry",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.54,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "2026.04.03\n IBK투자증권 인터넷/SW/게임\n 업종지수(전일 종가 기준)\n 시가총액 Performance(%) PER(배) △EPS PSR ROE\n 종목 현재가\n (조원) -1D -1W -1M -1Y 2025 2026 (%) (배) (%)\n 한국 코스피 5,234 4,180 -4.5 -4.2 -16.2 108.9...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "10%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "50%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "5,234",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "4,180",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,056",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,701",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "2,623",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "46,505",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "21,879",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "195,800",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "30,712",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "45,400",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "20,102",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "150,600",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.4117
+        },
+        {
+          "reportId": "report_023",
+          "title": "하나 Biweekly 제약/바이오: 정상화 되어 돌아올 때를 준비하자",
+          "broker": "하나증권",
+          "publishedDate": "2026-04-03",
+          "reportType": "industry",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.54,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "[Indepth] 제약/바이오(Overweight): 상승 곡선의 시작점, 유전자 치료제 (3/9)\n  차세대 핵심 모달리티는 유전자치료제로, 기존 약물이 접근하지 못한 타겟까지 공략 가능\n  Eli Lilly and Company 등 빅파마가 적극 투자하며 희귀질환에서 비만·대사질환 등 일반질환으로 확장 중\n  규...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "29%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "24%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "65%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "27%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "70%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "40%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "20%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "50%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "44%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "210,000원",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "2,050,000",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,585,000",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "610,000",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.4117
+        },
+        {
+          "reportId": "report_009",
+          "title": "[ESG] 상법 개정 이후 정기주총 - 지배구조, 상속세, 행동주의",
+          "broker": "한화투자증권",
+          "publishedDate": "2026-04-03",
+          "reportType": "industry",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.37,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "개편의 핵심은 기존 투자일임 방식을 단독펀드, 즉 출자 형태로 전환하는 것이\n다. 전환 이후 위탁운용사는 보유 지분에 대해 자사 명의로 직접 의결권을 행사\n하게 된다. 1차 이관 대상은 8개 운용사가 운용 중인 약 12조 9,000억 원 규모\n의 책임투자형 펀드로, 전체 위탁 규모의 약 10% 수준이다. 절대적 비중은 크...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "10%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "60%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "20%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "80%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "9,000억",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,000",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.2821
+        }
+      ],
+      "technical": {
+        "signal": null,
+        "score": null,
+        "rsi": null,
+        "macd": null,
+        "bollinger": null,
+        "volumeRatio": null
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "impactScore": 76,
+        "impactValue": 0.972,
+        "impactCount": 12,
+        "directAccountImpactScore": 50
+      },
+      "scores": {
+        "techScore": null,
+        "reportScore": 76,
+        "actionScore": 50
+      },
+      "explain": {
+        "topDrivers": [
+          "리포트 영향 76점 (12건 연결)"
+        ],
+        "warnings": [
+          "기술 스냅샷이 없어 리포트/배분 쪽 해석 비중이 커졌습니다.",
+          "WATCH 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    }
+  },
+  "accounts": {
+    "ISA": {
+      "key": "ISA",
+      "label": "ISA",
+      "allocationScore": 32,
+      "holdingsScore": 29,
+      "reportCoverageScore": 100,
+      "stage2Bias": "selective_add",
+      "totalScore": 32,
+      "note": "배분 괴리 또는 리스크 패널티가 커서 공격적 확대보다 재정비가 우선입니다.",
+      "coverage": {
+        "techCoverage": 0.6667,
+        "impactCoverage": 1,
+        "stage2Available": true
+      },
+      "baseScores": {
+        "allocationScore": 32,
+        "techScore": 29,
+        "reportScore": 79,
+        "regimeFit": 32,
+        "stage2Score": 58,
+        "actionBlend": 61
+      },
+      "effectiveWeights": {
+        "allocation": 0.571,
+        "tech": 0.2,
+        "report": 0.15,
+        "regime": 0.029,
+        "stage2": 0.05
+      },
+      "riskPenalty": {
+        "total": 8,
+        "breakdown": {
+          "dataQuality": {
+            "total": 8.27,
+            "incompletePenalty": 5,
+            "unmappedExposurePct": 6.85,
+            "unmappedPenalty": 3.25,
+            "missingTechnicalPenalty": 0.02
+          },
+          "concentration": {
+            "total": 0,
+            "hhi": 0.3371,
+            "hhiPenalty": 0,
+            "maxPositionPct": 37.61,
+            "maxPositionPenalty": 0
+          },
+          "tailRisk": {
+            "total": 0,
+            "method": "not_applied",
+            "note": "가격 히스토리 기반 ES/CVaR·MDD는 데이터 정합성 확보 후 활성화합니다."
+          },
+          "regimeStress": {
+            "total": 0,
+            "currentRiskPct": 0,
+            "desiredRiskPct": 25,
+            "excessRiskPct": 0
+          }
+        },
+        "notes": [
+          "부분 캡처 계좌라 데이터 품질 패널티가 적용됐습니다.",
+          "'기타' 비중 6.9%가 남아 분류 품질 패널티가 붙었습니다."
+        ]
+      },
+      "accountDirectImpact": {
+        "value": 0,
+        "score": 50,
+        "impacts": []
+      }
+    },
+    "PENSION": {
+      "key": "PENSION",
+      "label": "연금저축",
+      "allocationScore": 36,
+      "holdingsScore": 43,
+      "reportCoverageScore": 100,
+      "stage2Bias": "selective_add",
+      "totalScore": 44,
+      "note": "배분 괴리 또는 리스크 패널티가 커서 공격적 확대보다 재정비가 우선입니다.",
+      "coverage": {
+        "techCoverage": 1,
+        "impactCoverage": 1,
+        "stage2Available": true
+      },
+      "baseScores": {
+        "allocationScore": 36,
+        "techScore": 43,
+        "reportScore": 84,
+        "regimeFit": 36,
+        "stage2Score": 58,
+        "actionBlend": 65
+      },
+      "effectiveWeights": {
+        "allocation": 0.471,
+        "tech": 0.3,
+        "report": 0.15,
+        "regime": 0.029,
+        "stage2": 0.05
+      },
+      "riskPenalty": {
+        "total": 2,
+        "breakdown": {
+          "dataQuality": {
+            "total": 0,
+            "incompletePenalty": 0,
+            "unmappedExposurePct": 0,
+            "unmappedPenalty": 0,
+            "missingTechnicalPenalty": 0
+          },
+          "concentration": {
+            "total": 2.04,
+            "hhi": 0.4522,
+            "hhiPenalty": 1.57,
+            "maxPositionPct": 47.94,
+            "maxPositionPenalty": 0.47
+          },
+          "tailRisk": {
+            "total": 0,
+            "method": "not_applied",
+            "note": "가격 히스토리 기반 ES/CVaR·MDD는 데이터 정합성 확보 후 활성화합니다."
+          },
+          "regimeStress": {
+            "total": 0,
+            "currentRiskPct": 14.77,
+            "desiredRiskPct": 65,
+            "excessRiskPct": 0
+          }
+        },
+        "notes": [
+          "단일 포지션 또는 집중도가 높아 분산 패널티가 반영됐습니다."
+        ]
+      },
+      "accountDirectImpact": {
+        "value": 0,
+        "score": 50,
+        "impacts": []
+      }
+    },
+    "TOSS": {
+      "key": "TOSS",
+      "label": "토스증권",
+      "allocationScore": 55,
+      "holdingsScore": 48,
+      "reportCoverageScore": 100,
+      "stage2Bias": "aggressive_add",
+      "totalScore": 51,
+      "note": "배분 괴리 또는 리스크 패널티가 커서 공격적 확대보다 재정비가 우선입니다.",
+      "coverage": {
+        "techCoverage": 1,
+        "impactCoverage": 1,
+        "stage2Available": true
+      },
+      "baseScores": {
+        "allocationScore": 55,
+        "techScore": 48,
+        "reportScore": 73,
+        "regimeFit": 55,
+        "stage2Score": 64,
+        "actionBlend": 68
+      },
+      "effectiveWeights": {
+        "allocation": 0.471,
+        "tech": 0.3,
+        "report": 0.15,
+        "regime": 0.029,
+        "stage2": 0.05
+      },
+      "riskPenalty": {
+        "total": 5,
+        "breakdown": {
+          "dataQuality": {
+            "total": 5,
+            "incompletePenalty": 5,
+            "unmappedExposurePct": 0,
+            "unmappedPenalty": 0,
+            "missingTechnicalPenalty": 0
+          },
+          "concentration": {
+            "total": 0,
+            "hhi": 0.3355,
+            "hhiPenalty": 0,
+            "maxPositionPct": 35.91,
+            "maxPositionPenalty": 0
+          },
+          "tailRisk": {
+            "total": 0,
+            "method": "not_applied",
+            "note": "가격 히스토리 기반 ES/CVaR·MDD는 데이터 정합성 확보 후 활성화합니다."
+          },
+          "regimeStress": {
+            "total": 0,
+            "currentRiskPct": 30.14,
+            "desiredRiskPct": 75,
+            "excessRiskPct": 0
+          }
+        },
+        "notes": [
+          "부분 캡처 계좌라 데이터 품질 패널티가 적용됐습니다."
+        ]
+      },
+      "accountDirectImpact": {
+        "value": 0,
+        "score": 50,
+        "impacts": []
+      }
+    }
+  },
+  "portfolio": {
+    "totalScore": 38,
+    "baseScore": 44.25,
+    "riskPenalty": {
+      "total": 5.87
+    },
+    "note": "배분 괴리와 리스크 패널티를 먼저 줄여야 하는 구간"
+  }
+}

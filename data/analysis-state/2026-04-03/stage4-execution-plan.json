@@ -1,0 +1,332 @@
+{
+  "date": "2026-04-03",
+  "generatedAt": "2026-04-04T04:43:05.827Z",
+  "portfolioScore": 38,
+  "regime": {
+    "name": "SIDEWAYS",
+    "confidence": 0.58,
+    "market_context": {
+      "index": "KOSPI",
+      "signal": "NEUTRAL",
+      "vix": null,
+      "score": 43,
+      "close": 5377.3,
+      "ma": {
+        "ma5": 5283.962,
+        "ma20": 5502.285,
+        "ma60": 5317.8267,
+        "ma120": 4658.6131
+      },
+      "rsi": 48.24,
+      "alerts": []
+    }
+  },
+  "accountPlans": [
+    {
+      "key": "ISA",
+      "label": "ISA",
+      "totalScore": 32,
+      "stage2Bias": "selective_add",
+      "deployBudget": 3665433,
+      "reserveCash": 2612057,
+      "topGap": {
+        "category": "금",
+        "targetPct": 0.25,
+        "currentPct": 0,
+        "gapAmount": 2096060
+      },
+      "candidateFromGap": "KODEX 골드선물(H)",
+      "stage2Candidates": [
+        {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "score": null,
+          "reason": "금리 상승 압박 및 달러 강세 흐름으로 안전자산으로서의 금 매력이 감소하고 있습니다. 기술적으로도 비중 축소 신호입니다.",
+          "source": "stage2"
+        },
+        {
+          "code": "449450",
+          "name": "PLUS K방산",
+          "score": null,
+          "reason": "중동 지정학적 리스크 심화 및 트럼프의 NATO 관련 발언으로 글로벌 국방 지출 확대 기대감이 높습니다. 기술적으로도 매수 신호가 강합니다.",
+          "source": "stage2"
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "score": null,
+          "reason": "AI 산업 성장에 따른 데이터센터 전력 수요 급증으로 AI 전력 인프라 관련 기업들의 구조적 성장이 기대됩니다. 섹터 전망이 매우 긍정적입니다.",
+          "source": "stage2"
+        }
+      ],
+      "stagedBuys": [
+        {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "score": null,
+          "reason": "금리 상승 압박 및 달러 강세 흐름으로 안전자산으로서의 금 매력이 감소하고 있습니다. 기술적으로도 비중 축소 신호입니다.",
+          "source": "stage2",
+          "suggestedAmount": 1832717
+        },
+        {
+          "code": "449450",
+          "name": "PLUS K방산",
+          "score": null,
+          "reason": "중동 지정학적 리스크 심화 및 트럼프의 NATO 관련 발언으로 글로벌 국방 지출 확대 기대감이 높습니다. 기술적으로도 매수 신호가 강합니다.",
+          "source": "stage2",
+          "suggestedAmount": 1099630
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "score": null,
+          "reason": "AI 산업 성장에 따른 데이터센터 전력 수요 급증으로 AI 전력 인프라 관련 기업들의 구조적 성장이 기대됩니다. 섹터 전망이 매우 긍정적입니다.",
+          "source": "stage2",
+          "suggestedAmount": 733087
+        }
+      ],
+      "trims": [],
+      "holds": [
+        {
+          "code": "423160",
+          "name": "KODEX KOFR금리액티브(합성)",
+          "score": 65,
+          "reason": "Key Data\nKOSPI 지수 (pt) 5,234.05\n 1Q26 Pre: 식품 호조 VS. 비식품 부진\n52주 최고/최저(원) 52,700/33,900\n시가총액(십억원) 1,655.5 1분기 연결 매출액 및 영업이익은 각각 2조 4,406억원(YoY 5.2%), 1,311억원(YoY 5.0%)\n시가총액비중(%) 0.0..."
+        },
+        {
+          "code": "2921050",
+          "name": "TIGER코리아TOP10",
+          "score": 50,
+          "reason": "1Q26 영업이익, 시장 기대치에 부합할 전망\n 매수 (유지) 1분기 연결 매출액과 영업이익은 각각 6,833억원(+29.2% yoy), 1,660억원(+23.9%\n yoy)으로 컨센서스(6,811억원/1,618억원)에 대체로 부합할 전망이다. 다만 당사 기존\n목표주가 (유지) 1,670,000원\n 추정치(7,305억원/..."
+        }
+      ],
+      "watches": [],
+      "stage1Drivers": [
+        {
+          "id": "report_001",
+          "title": "[IBKS Economy Monitor] Focus on Week: 늘어지는 전황, 가장 부담스러운 것은 늘어나는 빚과 금리",
+          "thesis": "여기에 또 하나 중요하게 고려해야 하는 것은 트럼프 감세다. 전쟁 상황에서 크게 주목\n 받지 못하고 있지만 올해 11월 중간선거를 치르는데 트럼프 정부의 가장 중요한 전략무\n 기인 만큼 전쟁 종료되면 전쟁으로 인한 우려는 줄어드는 대신 감세와 관련한 논란이 다\n 시 표면화될 가능성이 높다. 관세로 인한 가장 우려되는 부작용이 물가라면 감세로 인한\n 부정적인 측면은 세수부족에 따른 재정적자다. 이란 전쟁으로 가속된 재정 우려가 ..."
+        },
+        {
+          "id": "report_002",
+          "title": "04/03 Weekly Macro",
+          "thesis": "다음 주에는 미국 소비자물가와 한국 금융통화위원회에 주목할 필요가 있다. 한 달 넘게 중동전쟁이\n 지속되는 가운데, 트럼프 대통령의 대국민 연설 역시 시장에 실망감을 주며 관련 불확실성이 이어지고\n 있다. 국제유가는 여전히 높은 수준에 머물고 있으며, 다음 주 발표될 3 월 미국 소비자물가에는 이러한\n 영향이 반영될 전망이다. 현재 시장 컨센서스는 전월비와 전년동월비 모두 지난달보다 큰 폭으로 상승할\n 것으로 보고 있다. 시장..."
+        },
+        {
+          "id": "report_003",
+          "title": "04/03, Kiwoom Morning Letter",
+          "thesis": "u Korea Sector Index Close D-1 D-5 D-20 u 수급(외국인/기관,억원) D-1 D-5 D-1 D-5 u US Sector Index Close D-1 D-5 D-20\nMKF 500 11,847.22 -4.82 -4.50 -6.74 MKF 500 기관순매수 외국인순매수 S&P 500\n에너지 9,435.67 -3.71 -3.86 -6.39 에너지 -25 +1,610 +78 +179 에너지 910.86 ..."
+        },
+        {
+          "id": "report_004",
+          "title": "신한 Econ Check-up; 지정학 긴장 속에도 탄탄한 경제지표",
+          "thesis": "✓ 미국 2월 내구재주문, 견조한 AI 투자에도 항공기 주문 되돌림 전망. 2월 PCE 서비스 물가 강세 속 하방경직적 흐름 예상\n 미국 내구재주문 미국 PCE 디플레이터\n (% MoM) (% YoY) (% YoY)\n PCE 디플레이터\n 20 MoM 40 8\n 핵심 PCE 디플레이터\n YoY\n 15 30\n 6\n 10 20"
+        }
+      ]
+    },
+    {
+      "key": "PENSION",
+      "label": "연금저축",
+      "totalScore": 44,
+      "stage2Bias": "selective_add",
+      "deployBudget": 1769368,
+      "reserveCash": 3795833,
+      "topGap": {
+        "category": "S&P500",
+        "targetPct": 0.4,
+        "currentPct": 0.07469273813354012,
+        "gapAmount": 2144536
+      },
+      "candidateFromGap": "TIGER 미국S&P500",
+      "stage2Candidates": [
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "score": null,
+          "reason": "미국 경제의 견조한 실물 지표와 장기적인 성장 잠재력을 바탕으로 핵심 자산으로서의 매력이 유지됩니다. 기술적으로도 매수 신호가 긍정적입니다.",
+          "source": "stage2"
+        },
+        {
+          "code": "449450",
+          "name": "PLUS K방산",
+          "score": null,
+          "reason": "중동 지정학적 리스크 심화 및 트럼프의 NATO 관련 발언으로 글로벌 국방 지출 확대 기대감이 높습니다. 기술적으로도 매수 신호가 강합니다.",
+          "source": "stage2"
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "score": null,
+          "reason": "AI 산업 성장에 따른 데이터센터 전력 수요 급증으로 AI 전력 인프라 관련 기업들의 구조적 성장이 기대됩니다. 섹터 전망이 매우 긍정적입니다.",
+          "source": "stage2"
+        }
+      ],
+      "stagedBuys": [
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "score": null,
+          "reason": "미국 경제의 견조한 실물 지표와 장기적인 성장 잠재력을 바탕으로 핵심 자산으로서의 매력이 유지됩니다. 기술적으로도 매수 신호가 긍정적입니다.",
+          "source": "stage2",
+          "suggestedAmount": 884684
+        },
+        {
+          "code": "449450",
+          "name": "PLUS K방산",
+          "score": null,
+          "reason": "중동 지정학적 리스크 심화 및 트럼프의 NATO 관련 발언으로 글로벌 국방 지출 확대 기대감이 높습니다. 기술적으로도 매수 신호가 강합니다.",
+          "source": "stage2",
+          "suggestedAmount": 530810
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "score": null,
+          "reason": "AI 산업 성장에 따른 데이터센터 전력 수요 급증으로 AI 전력 인프라 관련 기업들의 구조적 성장이 기대됩니다. 섹터 전망이 매우 긍정적입니다.",
+          "source": "stage2",
+          "suggestedAmount": 353874
+        }
+      ],
+      "trims": [],
+      "holds": [
+        {
+          "code": "133690",
+          "name": "TIGER 미국나스닥100",
+          "score": 65,
+          "reason": "서버 및 네트워크향 산업용 고부가가치 MLCC에 대한 공급 부족 조짐이 관 0\n 25.4 25.10\n 측되는 중. 지난 2월 중순 무라타는 고부가가치 MLCC 제품군 가격 인상에\n 대한 내부 논의를 시작했음을 발표. 무라타의 선제적인 가격 인상 조치가 시가총액(십억원) 31,147\n 이루어진다면 삼성전기도 충분한 명분을 ..."
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "score": 64,
+          "reason": "서버 및 네트워크향 산업용 고부가가치 MLCC에 대한 공급 부족 조짐이 관 0\n 25.4 25.10\n 측되는 중. 지난 2월 중순 무라타는 고부가가치 MLCC 제품군 가격 인상에\n 대한 내부 논의를 시작했음을 발표. 무라타의 선제적인 가격 인상 조치가 시가총액(십억원) 31,147\n 이루어진다면 삼성전기도 충분한 명분을 ..."
+        }
+      ],
+      "watches": [],
+      "stage1Drivers": [
+        {
+          "id": "report_001",
+          "title": "[IBKS Economy Monitor] Focus on Week: 늘어지는 전황, 가장 부담스러운 것은 늘어나는 빚과 금리",
+          "thesis": "여기에 또 하나 중요하게 고려해야 하는 것은 트럼프 감세다. 전쟁 상황에서 크게 주목\n 받지 못하고 있지만 올해 11월 중간선거를 치르는데 트럼프 정부의 가장 중요한 전략무\n 기인 만큼 전쟁 종료되면 전쟁으로 인한 우려는 줄어드는 대신 감세와 관련한 논란이 다\n 시 표면화될 가능성이 높다. 관세로 인한 가장 우려되는 부작용이 물가라면 감세로 인한\n 부정적인 측면은 세수부족에 따른 재정적자다. 이란 전쟁으로 가속된 재정 우려가 ..."
+        },
+        {
+          "id": "report_002",
+          "title": "04/03 Weekly Macro",
+          "thesis": "다음 주에는 미국 소비자물가와 한국 금융통화위원회에 주목할 필요가 있다. 한 달 넘게 중동전쟁이\n 지속되는 가운데, 트럼프 대통령의 대국민 연설 역시 시장에 실망감을 주며 관련 불확실성이 이어지고\n 있다. 국제유가는 여전히 높은 수준에 머물고 있으며, 다음 주 발표될 3 월 미국 소비자물가에는 이러한\n 영향이 반영될 전망이다. 현재 시장 컨센서스는 전월비와 전년동월비 모두 지난달보다 큰 폭으로 상승할\n 것으로 보고 있다. 시장..."
+        },
+        {
+          "id": "report_003",
+          "title": "04/03, Kiwoom Morning Letter",
+          "thesis": "u Korea Sector Index Close D-1 D-5 D-20 u 수급(외국인/기관,억원) D-1 D-5 D-1 D-5 u US Sector Index Close D-1 D-5 D-20\nMKF 500 11,847.22 -4.82 -4.50 -6.74 MKF 500 기관순매수 외국인순매수 S&P 500\n에너지 9,435.67 -3.71 -3.86 -6.39 에너지 -25 +1,610 +78 +179 에너지 910.86 ..."
+        },
+        {
+          "id": "report_004",
+          "title": "신한 Econ Check-up; 지정학 긴장 속에도 탄탄한 경제지표",
+          "thesis": "✓ 미국 2월 내구재주문, 견조한 AI 투자에도 항공기 주문 되돌림 전망. 2월 PCE 서비스 물가 강세 속 하방경직적 흐름 예상\n 미국 내구재주문 미국 PCE 디플레이터\n (% MoM) (% YoY) (% YoY)\n PCE 디플레이터\n 20 MoM 40 8\n 핵심 PCE 디플레이터\n YoY\n 15 30\n 6\n 10 20"
+        }
+      ]
+    },
+    {
+      "key": "TOSS",
+      "label": "토스증권",
+      "totalScore": 51,
+      "stage2Bias": "aggressive_add",
+      "deployBudget": 1077159,
+      "reserveCash": 1932685,
+      "topGap": {
+        "category": "전력기기",
+        "targetPct": 0.3,
+        "currentPct": 0.1082535671398406,
+        "gapAmount": 826165
+      },
+      "candidateFromGap": "KODEX AI전력핵심설비",
+      "stage2Candidates": [
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "score": null,
+          "reason": "AI 산업 성장에 따른 데이터센터 전력 수요 급증으로 AI 전력 인프라 관련 기업들의 구조적 성장이 기대됩니다. 섹터 전망이 매우 긍정적입니다.",
+          "source": "stage2"
+        },
+        {
+          "code": "449450",
+          "name": "PLUS K방산",
+          "score": null,
+          "reason": "중동 지정학적 리스크 심화 및 트럼프의 NATO 관련 발언으로 글로벌 국방 지출 확대 기대감이 높습니다. 기술적으로도 매수 신호가 강합니다.",
+          "source": "stage2"
+        },
+        {
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "score": null,
+          "reason": "에너지 안보 중요성 부각 및 원자력 발전의 재평가 흐름 속에서 장기적인 성장 동력을 보유하고 있습니다.",
+          "source": "stage2"
+        }
+      ],
+      "stagedBuys": [
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "score": null,
+          "reason": "AI 산업 성장에 따른 데이터센터 전력 수요 급증으로 AI 전력 인프라 관련 기업들의 구조적 성장이 기대됩니다. 섹터 전망이 매우 긍정적입니다.",
+          "source": "stage2",
+          "suggestedAmount": 538580
+        },
+        {
+          "code": "449450",
+          "name": "PLUS K방산",
+          "score": null,
+          "reason": "중동 지정학적 리스크 심화 및 트럼프의 NATO 관련 발언으로 글로벌 국방 지출 확대 기대감이 높습니다. 기술적으로도 매수 신호가 강합니다.",
+          "source": "stage2",
+          "suggestedAmount": 323148
+        },
+        {
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "score": null,
+          "reason": "에너지 안보 중요성 부각 및 원자력 발전의 재평가 흐름 속에서 장기적인 성장 동력을 보유하고 있습니다.",
+          "source": "stage2",
+          "suggestedAmount": 215432
+        }
+      ],
+      "trims": [],
+      "holds": [
+        {
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "score": 67,
+          "reason": "■ 동사 실적 전망\n 동사의 연결 실적은 전기공사 부문과 통신 부문으로 구성되며, 통신 부문에는 자회사 세종네트웍스㈜의 회선\n임대, IDC·인터넷, VoIP 등 통신 인프라 기반 사업 실적이 반영된다. 2025년 사업구조 재편 이후 IDC·인터\n넷 부문은 2023년 230억 원에서 2025년 315억 원으로 2년간 37...."
+        },
+        {
+          "code": "449450",
+          "name": "PLUS K방산",
+          "score": 59,
+          "reason": "STOCK DATA 클라우드 구축부터 AX 까지\n주가(26/04/02) 995 원 아이티센엔텍은 정보시스템 구축 및 운영(SI, ITO)과 AI 전환(AX) 서비스를 제공하는\nKOSDAQ 1,056.34 pt IT 서비스 전문 기업이다. 공공기관, 국방, 금융, 기업(Enterprise) 등 다양한 영역에서\n52 주 최고..."
+        }
+      ],
+      "watches": [],
+      "stage1Drivers": [
+        {
+          "id": "report_003",
+          "title": "04/03, Kiwoom Morning Letter",
+          "thesis": "u Korea Sector Index Close D-1 D-5 D-20 u 수급(외국인/기관,억원) D-1 D-5 D-1 D-5 u US Sector Index Close D-1 D-5 D-20\nMKF 500 11,847.22 -4.82 -4.50 -6.74 MKF 500 기관순매수 외국인순매수 S&P 500\n에너지 9,435.67 -3.71 -3.86 -6.39 에너지 -25 +1,610 +78 +179 에너지 910.86 ..."
+        },
+        {
+          "id": "report_008",
+          "title": "Market Weekly Check ME up!",
+          "thesis": "Sear] ACE ea PE 37 \"떼로 AER OS DAOL 다올투자증권\n본사영업점 | 서울특별시 영등포구 여의나루로 60. 여의도 포스트타워 27층"
+        },
+        {
+          "id": "report_009",
+          "title": "[ESG] 상법 개정 이후 정기주총 - 지배구조, 상속세, 행동주의",
+          "thesis": "개편의 핵심은 기존 투자일임 방식을 단독펀드, 즉 출자 형태로 전환하는 것이\n다. 전환 이후 위탁운용사는 보유 지분에 대해 자사 명의로 직접 의결권을 행사\n하게 된다. 1차 이관 대상은 8개 운용사가 운용 중인 약 12조 9,000억 원 규모\n의 책임투자형 펀드로, 전체 위탁 규모의 약 10% 수준이다. 절대적 비중은 크\n지 않으나 제도 전환의 의미가 크다. 위탁운용사의 의결권 행사 유인이 제도적\n으로 강화되는 방향으로 국내 ..."
+        },
+        {
+          "id": "report_010",
+          "title": "[IBKS Daily] 인터넷/게임",
+          "thesis": "2026.04.03\n IBK투자증권 인터넷/SW/게임\n 업종지수(전일 종가 기준)\n 시가총액 Performance(%) PER(배) △EPS PSR ROE\n 종목 현재가\n (조원) -1D -1W -1M -1Y 2025 2026 (%) (배) (%)\n 한국 코스피 5,234 4,180 -4.5 -4.2 -16.2 108.9 17.9 8.0 137.3 1.1 19.5\n 코스닥 1,056 584 -5.4 -7.1 -11.4 54.2..."
+        }
+      ]
+    }
+  ]
+}
