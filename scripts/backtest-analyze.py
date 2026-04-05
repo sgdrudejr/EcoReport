@@ -20,8 +20,13 @@ import sys
 import time
 from datetime import datetime, timedelta
 from pathlib import Path
+from urllib.parse import urlencode
+from urllib.request import Request, urlopen
 
-import requests
+try:
+    import requests  # type: ignore
+except ModuleNotFoundError:
+    requests = None
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -32,14 +37,39 @@ NAVER_HEADERS = {
 }
 
 
+def http_get_json(url: str, *, params: dict | None = None, headers: dict | None = None, timeout: int = 10):
+    if requests is not None:
+        resp = requests.get(url, params=params, headers=headers, timeout=timeout)
+        resp.raise_for_status()
+        return resp.json()
+
+    query = f"?{urlencode(params)}" if params else ""
+    request = Request(f"{url}{query}", headers=headers or {})
+    with urlopen(request, timeout=timeout) as resp:
+        return json.loads(resp.read().decode("utf-8"))
+
+
+def http_get_text(url: str, *, headers: dict | None = None, timeout: int = 10) -> str:
+    if requests is not None:
+        resp = requests.get(url, headers=headers, timeout=timeout)
+        resp.raise_for_status()
+        return resp.text
+
+    request = Request(url, headers=headers or {})
+    with urlopen(request, timeout=timeout) as resp:
+        return resp.read().decode("utf-8")
+
+
 def fetch_naver_prices(code: str, count: int = 60) -> dict[str, float]:
     """Naver Finance 모바일 API에서 일별 종가 딕셔너리 {YYYY-MM-DD: close} 반환."""
     try:
         url = f"https://m.stock.naver.com/api/stock/{code}/price"
-        resp = requests.get(url, params={"page": 1, "pageSize": count},
-                            headers=NAVER_HEADERS, timeout=10)
-        resp.raise_for_status()
-        items = resp.json()
+        items = http_get_json(
+            url,
+            params={"page": 1, "pageSize": count},
+            headers=NAVER_HEADERS,
+            timeout=10,
+        )
         if not isinstance(items, list):
             return {}
         result = {}
@@ -65,8 +95,7 @@ def fetch_stooq_prices(symbol: str, count: int = 60) -> dict[str, float]:
     """Stooq CSV API에서 일별 종가 딕셔너리 반환."""
     try:
         url = f"https://stooq.com/q/d/l/?s={symbol.lower()}&i=d"
-        resp = requests.get(url, timeout=10)
-        lines = resp.text.strip().split("\n")
+        lines = http_get_text(url, timeout=10).strip().split("\n")
         if len(lines) < 2:
             return {}
         result = {}
