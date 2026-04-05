@@ -10,6 +10,14 @@ EFFECTIVE_MARKET_DATE=""
 USE_MOCK_STAGE2=1
 USE_GEMINI_STAGE2=0
 
+python_bin() {
+  if [[ -x "$ROOT_DIR/.venv/bin/python" ]]; then
+    echo "$ROOT_DIR/.venv/bin/python"
+  else
+    echo "python3"
+  fi
+}
+
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --date)
@@ -63,7 +71,7 @@ node scripts/build-stage2-strategy-prompt.js --date "$DATE" --run-date "$RUN_DAT
 
 if [[ "$USE_GEMINI_STAGE2" == "1" ]]; then
   echo "== Stage 2 actual: Gemini strategy options =="
-  .venv/bin/python scripts/build-stage2-strategy-gemini.py --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"
+  "$(python_bin)" scripts/build-stage2-strategy-gemini.py --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"
 elif [[ "$USE_MOCK_STAGE2" == "1" ]]; then
   echo "== Stage 2 mock: strategy options =="
   node scripts/build-stage2-strategy-mock.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"

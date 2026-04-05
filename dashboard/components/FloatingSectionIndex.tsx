@@ -55,7 +55,7 @@ export default function FloatingSectionIndex({
     <div
       className={`pointer-events-none fixed inset-x-0 z-40 flex justify-center px-3 transition-all duration-200 md:px-6 ${
         isMobile
-          ? "bottom-[calc(env(safe-area-inset-bottom,0px)+0.5rem)]"
+          ? "bottom-[calc(env(safe-area-inset-bottom,0px)+5.6rem)]"
           : "bottom-4"
       } ${
         isVisible ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"

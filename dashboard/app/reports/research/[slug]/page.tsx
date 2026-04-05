@@ -3,11 +3,14 @@ import { notFound } from "next/navigation";
 import ResearchSectionTabs, {
   type ResearchSectionTabItem,
 } from "@/components/ResearchSectionTabs";
+import ScenarioTree from "@/components/ScenarioTree";
 import {
   extractResearchActionPoints,
+  extractResearchScenarioBranches,
   extractResearchSections,
   extractResearchTags,
   getResearchBriefingStats,
+  isStructuredResearchSectionTitle,
   loadLatestMacroIndicators,
   loadResearchBriefingBySlug,
 } from "@/lib/research";
@@ -35,7 +38,10 @@ export default async function ResearchDetailPage({
     notFound();
   }
 
-  const sections = extractResearchSections(briefing.content);
+  const sections = extractResearchSections(briefing.content).filter(
+    (section) => !isStructuredResearchSectionTitle(section.title),
+  );
+  const scenarioBranches = extractResearchScenarioBranches(briefing.content, 2);
   const indicators = loadLatestMacroIndicators(briefing.date);
   const stats = getResearchBriefingStats(briefing);
   const tags = extractResearchTags(briefing.content, 12);
@@ -125,6 +131,15 @@ export default async function ResearchDetailPage({
         </section>
       )}
 
+      {scenarioBranches.length > 0 && (
+        <section>
+          <ScenarioTree
+            branches={scenarioBranches}
+            description="시장 지표 바로 아래에서 향후 3~6개월의 기본 경로와 Plan B를 함께 확인할 수 있게 정리했습니다."
+          />
+        </section>
+      )}
+
       {(tags.length > 0 || actionPoints.length > 0) && (
         <section className="grid gap-4 md:grid-cols-[1.4fr,1fr]">
           <div className="rounded-2xl border border-zinc-800 bg-zinc-900 p-4">
@@ -153,7 +168,7 @@ export default async function ResearchDetailPage({
         </section>
       )}
 
-      <ResearchSectionTabs sections={sectionTabs} />
+      {sectionTabs.length > 0 && <ResearchSectionTabs sections={sectionTabs} />}
     </main>
   );
 }

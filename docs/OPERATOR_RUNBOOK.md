@@ -18,7 +18,7 @@
 가장 권장하는 방식은 아래 한 줄입니다.
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/EcoReport
 bash scripts/run-daily-system.sh --date YYYY-MM-DD
 ```
 
@@ -29,8 +29,9 @@ bash scripts/run-daily-system.sh --date YYYY-MM-DD
 3. 리포트/포트폴리오/병렬 RAG 재생성
 4. Gemini 경제 브리핑 생성(키가 있을 때)
 5. Stage 1~4 실행
-6. `data` 브랜치 동기화
-7. 일일 산출물 검증
+6. `knowledge/wiki/` 지속형 투자 위키 갱신
+7. `data` 브랜치 동기화
+8. 일일 산출물 검증
 
 ### 1. 포트폴리오 최신화
 
@@ -41,7 +42,7 @@ bash scripts/run-daily-system.sh --date YYYY-MM-DD
 ### 2. 리포트 수집 + 전문 텍스트화
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/EcoReport
 bash scripts/collect-report-assets.sh --date YYYY-MM-DD
 ```
 
@@ -55,7 +56,7 @@ bash scripts/collect-report-assets.sh --date YYYY-MM-DD
 ### 3. 필요시 RAG 코퍼스 재생성
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/EcoReport
 node scripts/build-report-rag-corpus.js --date YYYY-MM-DD
 node scripts/build-portfolio-rag-corpus.js --date YYYY-MM-DD
 node scripts/build-parallel-rag-corpus.js --date YYYY-MM-DD
@@ -64,14 +65,14 @@ node scripts/build-parallel-rag-corpus.js --date YYYY-MM-DD
 ### 4. Stage 1~4 파이프라인 실행
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/EcoReport
 bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD
 ```
 
 Gemini Stage 2를 실제로 붙이고 싶으면:
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/EcoReport
 bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD --gemini-stage2
 ```
 
@@ -80,9 +81,53 @@ bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD --gemini-stage2
 - `data/analysis-state/YYYY-MM-DD/stage1-report-extracts-v2.json`
 - `knowledge/daily/manual-kit/YYYY-MM-DD/08-stage2-strategy-prompt.md`
 - `data/analysis-state/YYYY-MM-DD/stage2-strategy-options.mock.json`
+- `data/analysis-state/YYYY-MM-DD/stage2-strategy-options.json`
 - `data/analysis-state/YYYY-MM-DD/stage3-quant-scores.json`
 - `data/analysis-state/YYYY-MM-DD/stage4-execution-plan.json`
-- `reports/daily/YYYY-MM-DD-stage4-execution-plan.md`
+- `reports/daily/YYYY-MM-DD-briefing.md`
+
+### 4.5. Gemini Deep Research 수동 오버레이
+
+Gemini 웹 리서치를 끼워 넣고 싶을 때는 아래 순서로 실행합니다.
+
+```bash
+cd /Users/seo/Documents/Playground/EcoReport
+npm run stage1.5:prompt -- --date YYYY-MM-DD
+npm run stage1.5:gemini:run -- --date YYYY-MM-DD --poll-sec 30 --timeout-sec 1800
+npm run stage1.6:briefing -- --date YYYY-MM-DD --run-date YYYY-MM-DD --effective-market-date YYYY-MM-DD
+bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD --run-date YYYY-MM-DD --effective-market-date YYYY-MM-DD --gemini-stage2
+```
+
+확인 파일:
+
+- `knowledge/daily/manual-kit/YYYY-MM-DD/07-stage1-5-gemini-deep-research-prompt.md`
+- `knowledge/daily/manual-kit/YYYY-MM-DD/09-stage1-5-gemini-deep-research-response.md`
+- `knowledge/daily/YYYY-MM-DD-gemini-briefing-rich.md`
+- `data/analysis-state/YYYY-MM-DD/stage2-strategy-options.json`
+- `reports/daily/YYYY-MM-DD-briefing.md`
+
+의도:
+
+- Stage 1 fact anchor를 유지한 채 Gemini Deep Research의 반박 시나리오, 대안 자산, 촉매 일정을 대시보드 매크로 브리핑으로 승격
+- 그 결과를 다시 Stage 2~4에 흘려보내 `Macro View -> Strategy -> Action` 전체를 갱신
+
+### 4.6. LLM Wiki 갱신
+
+```bash
+cd /Users/seo/Documents/Playground/EcoReport
+node scripts/build-llm-wiki.js --date YYYY-MM-DD
+```
+
+확인 파일:
+
+- `knowledge/wiki/index.md`
+- `knowledge/wiki/log.md`
+- `knowledge/wiki/daily/YYYY-MM-DD.md`
+- `knowledge/wiki/accounts/*.md`
+- `knowledge/wiki/securities/*.md`
+
+이 단계의 목적은 일일 결과를 장기적으로 재사용 가능한 투자 메모리로 바꾸는 것입니다.
+특히 계좌별 플레이북과 종목 thesis 페이지가 다음 날 판단 시간을 줄여줍니다.
 
 ### 5. 실제 LLM 전략 연결
 
@@ -94,7 +139,7 @@ bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD --gemini-stage2
 4. Stage 3/4만 다시 실행
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/EcoReport
 node scripts/build-stage3-quant-scores.js --date YYYY-MM-DD
 node scripts/build-stage4-execution-plan.js --date YYYY-MM-DD
 ```
@@ -102,7 +147,7 @@ node scripts/build-stage4-execution-plan.js --date YYYY-MM-DD
 ### 6. 일일 산출물 검증
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/EcoReport
 node scripts/verify-daily-system.js --date YYYY-MM-DD
 ```
 
@@ -121,8 +166,8 @@ node scripts/verify-daily-system.js --date YYYY-MM-DD
 2. `docs/STAGE_1_4_ARCHITECTURE.md`
 3. `docs/OPERATOR_RUNBOOK.md`
 4. `data/portfolio/latest.json`
-5. `data/reports/YYYY-MM-DD/crawl-manifest.md`
-6. `reports/daily/YYYY-MM-DD-stage4-execution-plan.md`
+5. `data/reports/YYYY-MM-DD/crawl-manifest.json`
+6. `reports/daily/YYYY-MM-DD-briefing.md`
 
 ## 현재 약점
 
@@ -145,7 +190,7 @@ node scripts/verify-daily-system.js --date YYYY-MM-DD
 ## 날짜를 바꿔서 실행할 때
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/EcoReport
 bash scripts/run-daily-system.sh --date 2026-04-10
 ```
 
@@ -153,7 +198,7 @@ bash scripts/run-daily-system.sh --date 2026-04-10
 
 Vercel이 실패하거나 불필요할 때는 아래 문서를 따릅니다.
 
-- [PRIVATE_ACCESS_RUNBOOK.md](/Users/seo/stock-pilot/docs/PRIVATE_ACCESS_RUNBOOK.md)
+- [PRIVATE_ACCESS_RUNBOOK.md](/Users/seo/Documents/Playground/EcoReport/docs/PRIVATE_ACCESS_RUNBOOK.md)
 
 핵심 원칙:
 

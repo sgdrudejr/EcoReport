@@ -142,24 +142,38 @@ type Stage3Analysis = {
 
 type Stage4AccountPlan = {
   key?: string;
+  label?: string;
+  deployBudget?: number;
+  reserveCash?: number;
+  candidateFromGap?: string | null;
   macroCommentary?: {
     summary?: string;
     drivers?: string[];
     assetFocus?: string[];
     actionLine?: string;
+    reserveNote?: string;
   };
   stagedBuys?: Array<{
+    code?: string;
     name?: string;
+    score?: number | null;
     suggestedAmount?: number;
     reason?: string;
+    source?: string;
   }>;
   trims?: Array<{
+    code?: string;
     name?: string;
     reason?: string;
+    suggestedAmount?: number;
+    source?: string;
   }>;
   holds?: Array<{
+    code?: string;
     name?: string;
     reason?: string;
+    suggestedAmount?: number;
+    source?: string;
   }>;
   stage2Candidates?: Array<{
     name?: string;
@@ -223,7 +237,11 @@ export type AccountGuide = {
   macroDrivers: string[];
   assetFocus: string[];
   actionLine: string | null;
+  executionReserveNote: string | null;
   candidates: string[];
+  executionBuys: ExecutionGuideItem[];
+  executionTrims: ExecutionGuideItem[];
+  executionHolds: ExecutionGuideItem[];
   categories: CategoryGuide[];
   topSignals: string[];
   scoreDrivers: string[];
@@ -231,6 +249,16 @@ export type AccountGuide = {
   evidenceNotes: string[];
   actionPoints: string[];
   holdingGuides: HoldingGuide[];
+};
+
+export type ExecutionGuideItem = {
+  code: string | null;
+  name: string;
+  suggestedAmount: number | null;
+  reason: string | null;
+  source: string | null;
+  score: number | null;
+  kind: "buy" | "trim" | "hold";
 };
 
 export type HoldingGuide = {
@@ -1025,6 +1053,33 @@ function buildActionPoints(stage4Account: Stage4AccountPlan | null) {
   return points.slice(0, 4);
 }
 
+function buildExecutionItems(
+  entries:
+    | Array<{
+        code?: string;
+        name?: string;
+        suggestedAmount?: number;
+        reason?: string;
+        source?: string;
+        score?: number | null;
+      }>
+    | undefined,
+  kind: ExecutionGuideItem["kind"],
+) {
+  return (entries ?? [])
+    .filter((entry): entry is NonNullable<typeof entry> & { name: string } => Boolean(entry?.name))
+    .map((entry) => ({
+      code: entry.code ?? null,
+      name: entry.name,
+      suggestedAmount:
+        typeof entry.suggestedAmount === "number" ? entry.suggestedAmount : null,
+      reason: entry.reason ?? null,
+      source: entry.source ?? null,
+      score: typeof entry.score === "number" ? entry.score : null,
+      kind,
+    }) satisfies ExecutionGuideItem);
+}
+
 function formatPctPoint(value: number) {
   const rounded = Number.parseFloat(value.toFixed(1));
   return `${rounded > 0 ? "+" : ""}${rounded}`;
@@ -1144,6 +1199,25 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
         .slice(0, 3);
       const evidenceNotes = buildEvidenceNotes(stage4Account);
       const actionPoints = buildActionPoints(stage4Account);
+      const stage4ExecutionBuys = buildExecutionItems(stage4Account?.stagedBuys, "buy");
+      const executionBuys =
+        stage4ExecutionBuys.length > 0
+          ? stage4ExecutionBuys
+          : recommendedDeploy > 0 && candidates.length > 0
+            ? [
+                {
+                  code: null,
+                  name: candidates[0],
+                  suggestedAmount: recommendedDeploy,
+                  reason: stage4Account?.macroCommentary?.actionLine ?? null,
+                  source: "fallback",
+                  score: null,
+                  kind: "buy" as const,
+                },
+              ]
+            : [];
+      const executionTrims = buildExecutionItems(stage4Account?.trims, "trim");
+      const executionHolds = buildExecutionItems(stage4Account?.holds, "hold");
       const holdingGuides = buildHoldingGuides(account, categories, stage3);
 
       return {
@@ -1189,7 +1263,11 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
         macroDrivers: stage4Account?.macroCommentary?.drivers ?? [],
         assetFocus: stage4Account?.macroCommentary?.assetFocus ?? [],
         actionLine: stage4Account?.macroCommentary?.actionLine ?? null,
+        executionReserveNote: stage4Account?.macroCommentary?.reserveNote ?? null,
         categories: categories.sort((left, right) => right.targetPct - left.targetPct),
+        executionBuys,
+        executionTrims,
+        executionHolds,
         topSignals,
         reportCoverageScore,
         stage2Bias: stage3Account?.stage2Bias ?? null,

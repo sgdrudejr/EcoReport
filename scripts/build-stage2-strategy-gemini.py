@@ -157,6 +157,7 @@ def main() -> None:
         generation_config={
             "temperature": args.temperature,
             "max_output_tokens": 8192,
+            "response_mime_type": "application/json",
         },
     )
     raw_text = (getattr(response, "text", None) or "").strip()

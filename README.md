@@ -39,7 +39,18 @@ flowchart TD
     C --> C1["stage1-report-extracts-v2.json"]
     C --> C2["stage1-report-extracts-v2.md"]
 
-    C1 --> D["Stage 2 Prompt<br/>build-stage2-strategy-prompt.js"]
+    C1 --> M["Stage 1.5 Prompt<br/>build-stage1-5-gemini-deep-research-prompt.js"]
+    P --> M
+    M --> M1["07-stage1-5-gemini-deep-research-prompt.md"]
+    M1 --> N["Gemini Web Deep Research<br/>run-gemini-deep-research-web.js"]
+    N --> N1["09-stage1-5-gemini-deep-research-response.md"]
+    C1 --> O["Stage 1.6 Rich Briefing<br/>build-stage1-6-rich-briefing.js"]
+    P --> O
+    N1 --> O
+    O --> O1["knowledge/daily/YYYY-MM-DD-gemini-briefing-rich.md"]
+
+    O1 --> D["Stage 2 Prompt<br/>build-stage2-strategy-prompt.js"]
+    C1 --> D
     C1 --> E["Stage 2 Mock<br/>build-stage2-strategy-mock.js"]
     T["Technical Snapshot<br/>data/technical/YYYY-MM-DD.json"] --> D
     T --> E
@@ -83,7 +94,7 @@ flowchart TD
 가장 권장하는 일일 실행 방법은 아래 한 줄입니다.
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/EcoReport
 bash scripts/run-daily-system.sh --date YYYY-MM-DD
 ```
 
@@ -94,13 +105,53 @@ bash scripts/run-daily-system.sh --date YYYY-MM-DD
 3. 리포트/포트폴리오/병렬 RAG 재생성
 4. Gemini 경제 브리핑 생성(키가 있을 때)
 5. Stage 1~4 실행
-6. `data` 브랜치 동기화
-7. 일일 시스템 검증 리포트 생성
+6. `knowledge/wiki/` 지속형 투자 위키 갱신
+7. `data` 브랜치 동기화
+8. 일일 시스템 검증 리포트 생성
 
 검증 결과는 아래에 저장됩니다.
 
 - `data/analysis-state/YYYY-MM-DD/system-health.json`
 - `knowledge/daily/YYYY-MM-DD-system-health.md`
+
+## LLM Wiki Layer
+
+EcoReport는 이제 일일 산출물을 `persistent wiki`로 다시 컴파일합니다.
+
+- 입력: `data/`, `knowledge/daily/`, `reports/daily/`
+- 지속형 메모리: `knowledge/wiki/`
+- 목적: 같은 리포트를 반복해서 다시 읽지 않고, 계좌/종목 thesis를 누적하는 것
+
+핵심 명령:
+
+```bash
+cd /Users/seo/Documents/Playground/EcoReport
+node scripts/build-llm-wiki.js --date YYYY-MM-DD
+node scripts/publish-llm-wiki-to-vault.js
+```
+
+생성물:
+
+- `knowledge/wiki/index.md`
+- `knowledge/wiki/log.md`
+- `knowledge/wiki/overview.md`
+- `knowledge/wiki/daily/YYYY-MM-DD.md`
+- `knowledge/wiki/accounts/*.md`
+- `knowledge/wiki/securities/*.md`
+
+Obsidian에서 바로 보려면 publish 결과도 같이 봅니다.
+
+- vault 기본 위치: `/Users/seo/my-wiki`
+- publish 위치: `/Users/seo/my-wiki/wiki/ecoreport`
+- raw context 위치: `/Users/seo/my-wiki/raw/ecoreport`
+
+이 레이어는 단순 기록용이 아니라, 실제 자본 배치에 도움이 되는 질문에 빠르게 답하기 위해 존재합니다.
+
+- 오늘 새 돈을 어디에 넣어야 하는가
+- 어떤 보유 자산의 thesis가 약해졌는가
+- 며칠째 반복해서 살아남는 후보는 무엇인가
+
+자세한 운영 개념은 [LLM_WIKI_SYSTEM.md](docs/LLM_WIKI_SYSTEM.md)를 참고합니다.
 
 ## 접속 방식
 
@@ -117,7 +168,7 @@ Vercel preview 실패가 있어도 일일 운영은 막히지 않도록 설계�
 개발/검증 중에는 아래를 기준으로 봅니다.
 
 ```bash
-cd /Users/seo/stock-pilot/dashboard
+cd /Users/seo/Documents/Playground/EcoReport/dashboard
 npm run dev -- --hostname 0.0.0.0
 ```
 
@@ -144,7 +195,7 @@ npm run dev -- --hostname 0.0.0.0
 로컬 대시보드에서 OCR과 GitHub 동기화를 자동으로 쓰려면 아래 파일을 채웁니다.
 
 ```bash
-cd /Users/seo/stock-pilot/dashboard
+cd /Users/seo/Documents/Playground/EcoReport/dashboard
 cp .env.local.example .env.local
 ```
 
@@ -205,6 +256,44 @@ GITHUB_TOKEN=...
 - 이 단계는 추천을 만드는 단계가 아니라 **리포트 연구 노트를 만드는 단계**입니다.
 - 최대한 많은 근거를 보존하고, 리포트-포트폴리오 관련성을 후보 수준으로 붙입니다.
 
+### Stage 1.5. Gemini Deep Research 수동 연동
+
+입력:
+
+- `data/analysis-state/YYYY-MM-DD/stage1-report-extracts-v2.json`
+- `data/portfolio/latest.json`
+
+출력:
+
+- `knowledge/daily/manual-kit/YYYY-MM-DD/07-stage1-5-gemini-deep-research-prompt.md`
+- `knowledge/daily/manual-kit/YYYY-MM-DD/09-stage1-5-gemini-deep-research-response.md`
+
+설명:
+
+- Stage 1 구조화 추출물과 최신 포트폴리오를 Gemini Web Deep Research용 프롬프트로 묶습니다.
+- Safari에서 Gemini 웹을 열고 `도구 -> Deep Research` 선택, 전송, 결과 저장/클립보드 복사까지 자동화할 수 있습니다.
+- 이 단계는 완전 자동 API 호출이 아니라 웹 기반 수동 리서치를 파이프라인 안에 안전하게 끼워 넣는 레이어입니다.
+
+### Stage 1.6. 최종 Rich Briefing 합성
+
+입력:
+
+- Stage 1 연구 노트
+- Stage 1.5 Gemini Deep Research 결과
+- 기존 어드바이저 브리핑
+- 포트폴리오 상태
+
+출력:
+
+- `knowledge/daily/YYYY-MM-DD-gemini-briefing-rich.md`
+- `knowledge/daily/YYYY-MM-DD-gemini-briefing-rich.md.meta.json`
+- `knowledge/daily/manual-kit/YYYY-MM-DD/10-stage1-6-final-research-briefing.md`
+
+설명:
+
+- Stage 1의 사실 근거와 Deep Research의 시나리오/대안 자산/촉매 해석을 다시 조합해 대시보드용 최종 매크로 브리핑을 만듭니다.
+- 대시보드의 `Macro View`는 이 rich briefing을 우선 읽습니다.
+
 ### Stage 2. 전략 탐색
 
 입력:
@@ -218,6 +307,7 @@ GITHUB_TOKEN=...
 
 - `knowledge/daily/manual-kit/YYYY-MM-DD/08-stage2-strategy-prompt.md`
 - `data/analysis-state/YYYY-MM-DD/stage2-strategy-options.mock.json`
+- `data/analysis-state/YYYY-MM-DD/stage2-strategy-options.json`
 
 설명:
 
@@ -259,6 +349,7 @@ GITHUB_TOKEN=...
 
 - `data/analysis-state/YYYY-MM-DD/stage4-execution-plan.json`
 - `reports/daily/YYYY-MM-DD-stage4-execution-plan.md`
+- `reports/daily/YYYY-MM-DD-briefing.md`
 
 설명:
 
@@ -273,7 +364,7 @@ GITHUB_TOKEN=...
 ## 디렉토리 구조
 
 ```text
-stock-pilot/
+EcoReport/
 ├── config/                    # 전략, 관심종목, RSS 피드, 알림 규칙
 ├── dashboard/                 # Next.js 대시보드
 ├── data/
@@ -402,36 +493,51 @@ stock-pilot/
 ### 1. 리포트 수집 + 텍스트화
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/EcoReport
 bash scripts/collect-report-assets.sh --date 2026-04-03
 ```
 
 ### 2. RAG 코퍼스 생성
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/EcoReport
 node scripts/build-report-rag-corpus.js --date 2026-04-03
 node scripts/build-portfolio-rag-corpus.js --date 2026-04-03
 node scripts/build-parallel-rag-corpus.js --date 2026-04-03
 ```
 
-### 3. Stage 1~4 전략 파이프라인 실행
+### 3. Stage 1~6 + 전략 파이프라인 실행
 
 ```bash
-cd /Users/seo/stock-pilot
-bash scripts/run-strategy-pipeline.sh --date 2026-04-03
+cd /Users/seo/Documents/Playground/EcoReport
+npm run stage1.5:prompt -- --date 2026-04-03
+npm run stage1.5:gemini:run -- --date 2026-04-03
+npm run stage1.6:briefing -- --date 2026-04-03 --run-date 2026-04-03 --effective-market-date 2026-04-03
+bash scripts/run-strategy-pipeline.sh --date 2026-04-03 --run-date 2026-04-03 --effective-market-date 2026-04-03 --gemini-stage2
 ```
 
 또는 개별 실행:
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/EcoReport
 npm run stage1:extracts -- --date 2026-04-03
+npm run stage1.5:prompt -- --date 2026-04-03
+npm run stage1.5:gemini:web -- --date 2026-04-03
+npm run stage1.5:gemini:run -- --date 2026-04-03 --poll-sec 30 --timeout-sec 1800
+npm run stage1.6:briefing -- --date 2026-04-03
 npm run stage2:prompt -- --date 2026-04-03
 npm run stage2:mock -- --date 2026-04-03
 npm run stage3:quant -- --date 2026-04-03
 npm run stage4:plan -- --date 2026-04-03
 ```
+
+핵심 산출물:
+
+- `knowledge/daily/manual-kit/YYYY-MM-DD/07-stage1-5-gemini-deep-research-prompt.md`
+- `knowledge/daily/manual-kit/YYYY-MM-DD/09-stage1-5-gemini-deep-research-response.md`
+- `knowledge/daily/YYYY-MM-DD-gemini-briefing-rich.md`
+- `data/analysis-state/YYYY-MM-DD/stage2-strategy-options.json`
+- `reports/daily/YYYY-MM-DD-briefing.md`
 
 ### 4. 수동 프롬프트 브리핑
 

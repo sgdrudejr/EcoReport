@@ -51,6 +51,8 @@ type Stage4AccountPlan = {
     code?: string;
     name?: string;
     suggestedAmount?: number;
+    reason?: string;
+    source?: string;
   }>;
   candidateFromGap?: string | null;
 };
@@ -97,6 +99,34 @@ type ThemeSummary = {
 
 export type RecommendationLaneKey = "core" | "sector" | "stock";
 
+export type RecommendationScoreBreakdown = {
+  technical: number | null;
+  report: number;
+  reportTheme: number;
+  directImpact: number | null;
+  stage2: number | null;
+  accountFit: number;
+  laneBonus: number;
+  signalPenalty: number;
+};
+
+export type RecommendationExplainability = {
+  signalReason: string | null;
+  stage2Thesis: string | null;
+  reportBasis: "theme" | "direct" | "mixed";
+  directImpactCount: number;
+  directImpactTitles: string[];
+  accountRationale: string;
+};
+
+export type RecommendationExecutionTarget = {
+  accountKey: string;
+  accountLabel: string;
+  suggestedAmount: number | null;
+  reason: string | null;
+  source: string | null;
+};
+
 export type RecommendationIdea = {
   code: string;
   name: string;
@@ -117,6 +147,9 @@ export type RecommendationIdea = {
   rationale: string;
   reasons: string[];
   risks: string[];
+  executionTargets: RecommendationExecutionTarget[];
+  scoreBreakdown: RecommendationScoreBreakdown;
+  xai: RecommendationExplainability;
 };
 
 export type RecommendationLane = {
@@ -533,15 +566,24 @@ function buildHeldCodeSet(portfolio: PortfolioSnapshot | null) {
   return held;
 }
 
-function buildStage4BuyMap(accountPlans: Stage4AccountPlan[]) {
-  const buyMap = new Map<string, string[]>();
+function buildStage4ExecutionMap(accountPlans: Stage4AccountPlan[]) {
+  const buyMap = new Map<string, RecommendationExecutionTarget[]>();
 
   for (const plan of accountPlans) {
     for (const stagedBuy of plan.stagedBuys ?? []) {
       if (!stagedBuy.code) continue;
       const current = buyMap.get(stagedBuy.code) ?? [];
-      if (!current.includes(plan.label)) {
-        current.push(plan.label);
+      if (!current.some((item) => item.accountKey === plan.key)) {
+        current.push({
+          accountKey: plan.key,
+          accountLabel: normalizeAccountLabel(plan.label),
+          suggestedAmount:
+            typeof stagedBuy.suggestedAmount === "number"
+              ? stagedBuy.suggestedAmount
+              : null,
+          reason: stagedBuy.reason ?? null,
+          source: stagedBuy.source ?? null,
+        });
       }
       buyMap.set(stagedBuy.code, current);
     }
@@ -629,7 +671,7 @@ export function loadRecommendationBoard(dateHint?: string): RecommendationBoard 
   const themeSummary = buildThemeSummary(stage1.extracts);
   const themeScoreMap = new Map(themeSummary.map((item) => [item.theme, item]));
   const stage2Map = new Map(stage2.candidates.map((item) => [item.code, item]));
-  const stage4BuyMap = buildStage4BuyMap(stage4.accountPlans);
+  const stage4ExecutionMap = buildStage4ExecutionMap(stage4.accountPlans);
 
   const ideas = universe
     .map((meta) => {
@@ -664,19 +706,37 @@ export function loadRecommendationBoard(dateHint?: string): RecommendationBoard 
         directImpacts.length > 0
           ? clamp(Math.round(50 + directImpactRaw * 25), 0, 100)
           : null;
+      const stage3ImpactTitles = (stage3Holding?.reportImpacts ?? [])
+        .map((impact) => impact.title)
+        .filter((title): title is string => Boolean(title));
+      const directImpactTitles = [
+        ...new Set(
+          [
+            ...directImpacts.map((impact) => impact.title),
+            ...stage3ImpactTitles,
+          ].filter((title): title is string => Boolean(title)),
+        ),
+      ].slice(0, 3);
 
       const reportScore =
         directImpactScore == null
           ? reportThemeScore
           : Math.round(reportThemeScore * 0.65 + directImpactScore * 0.35);
+      const reportBasis =
+        directImpactScore == null
+          ? "theme"
+          : meta.themes.length > 0
+            ? "mixed"
+            : "direct";
+      const executionTargets = stage4ExecutionMap.get(meta.code) ?? [];
 
       const targetAccounts = [
-        ...(stage4BuyMap.get(meta.code) ?? []),
+        ...executionTargets.map((item) => item.accountLabel),
         ...((stage2Candidate?.target_accounts ?? []).map(normalizeAccountLabel)),
         ...meta.preferredAccounts.map(normalizeAccountLabel),
       ].filter((value, index, array) => value && array.indexOf(value) === index);
 
-      const accountFitScore = stage4BuyMap.has(meta.code)
+      const accountFitScore = executionTargets.length > 0
         ? 82
         : stage2Candidate?.target_accounts?.length
           ? 70
@@ -742,6 +802,11 @@ export function loadRecommendationBoard(dateHint?: string): RecommendationBoard 
           ? ["기술 추세는 아직 보수적이라 분할 접근이 필요합니다."]
           : []),
       ].slice(0, 2);
+      const accountRationale = executionTargets.length > 0
+        ? `Stage 4 실행 계획에서 ${targetAccounts.join(", ")} 계좌 우선 후보로 연결됐습니다.`
+        : targetAccounts.length > 0
+          ? `현재 구조상 ${targetAccounts.join(", ")} 계좌와의 적합도가 높게 평가됩니다.`
+          : "직접 연결된 계좌 우선순위는 아직 약해 관찰 후보 성격이 더 강합니다.";
 
       return {
         code: meta.code,
@@ -763,6 +828,25 @@ export function loadRecommendationBoard(dateHint?: string): RecommendationBoard 
         rationale: thesis,
         reasons,
         risks,
+        executionTargets,
+        scoreBreakdown: {
+          technical: technicalScore,
+          report: reportScore,
+          reportTheme: reportThemeScore,
+          directImpact: directImpactScore,
+          stage2: stage2Score,
+          accountFit: accountFitScore,
+          laneBonus,
+          signalPenalty,
+        },
+        xai: {
+          signalReason: technicalItem?.signal_reason ?? null,
+          stage2Thesis: stage2Candidate?.thesis ?? null,
+          reportBasis,
+          directImpactCount: Math.max(directImpacts.length, stage3ImpactTitles.length),
+          directImpactTitles,
+          accountRationale,
+        },
       } satisfies RecommendationIdea;
     })
     .sort((left, right) => {

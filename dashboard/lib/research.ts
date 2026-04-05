@@ -65,6 +65,16 @@ export interface ResearchTag {
   kind: "market" | "macro" | "sector" | "risk" | "action";
 }
 
+export interface ResearchScenarioBranch {
+  id: string;
+  label: string;
+  probabilityPct: number | null;
+  probabilityLabel: string | null;
+  narrative: string;
+  response: string;
+  checkpoints: string[];
+}
+
 const RESEARCH_TAG_RULES: Array<{
   label: string;
   tone: ResearchTag["tone"];
@@ -90,6 +100,9 @@ const RESEARCH_TAG_RULES: Array<{
 
 const ACTION_CUE_PATTERN =
   /(주목|체크|보강|확대|축소|유지|관망|경계|점검|매수|매도|준비|유의|확인)/;
+
+const SCENARIO_SECTION_PATTERN =
+  /(3\s*[-~]\s*6개월.*시나리오|핵심 시나리오 트리|scenario tree)/i;
 
 function getResearchMeta(relativePath: string) {
   return readRepoJsonFile<ResearchBriefingMeta>(`${relativePath}.meta.json`);
@@ -248,6 +261,140 @@ export function extractSectionTags(section: ResearchSection, limit = 6) {
 
 export function extractSectionActionPoints(section: ResearchSection, limit = 3) {
   return extractResearchActionPoints(section.body, limit);
+}
+
+function cleanMarkdownInline(value: string) {
+  return value
+    .replace(/\[(.*?)\]\([^)]+\)/g, "$1")
+    .replace(/\*\*(.*?)\*\*/g, "$1")
+    .replace(/`([^`]+)`/g, "$1")
+    .replace(/^[-*]\s+/, "")
+    .trim();
+}
+
+function parseScenarioProbability(value: string) {
+  const match = value.match(/확률\s*(\d{1,3})%|(\d{1,3})%/i);
+  const parsed = Number.parseInt(match?.[1] ?? match?.[2] ?? "", 10);
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function stripScenarioProbabilityLabel(value: string) {
+  return value
+    .replace(/\((?:확률\s*)?\d{1,3}%\)/gi, "")
+    .replace(/\[(.*?)\]/g, "$1")
+    .replace(/\s{2,}/g, " ")
+    .trim();
+}
+
+function parseScenarioBlocks(body: string) {
+  const lines = body.replace(/\r\n/g, "\n").split("\n");
+  const blocks: Array<{ header: string; lines: string[] }> = [];
+  let current: { header: string; lines: string[] } | null = null;
+
+  for (const rawLine of lines) {
+    const topLevelMatch = rawLine.match(/^[-*]\s+(.+)$/);
+    if (topLevelMatch) {
+      if (current) blocks.push(current);
+      current = {
+        header: cleanMarkdownInline(topLevelMatch[1]),
+        lines: [],
+      };
+      continue;
+    }
+
+    if (!current) continue;
+
+    const nestedMatch = rawLine.match(/^\s{2,}[-*]\s+(.+)$/);
+    if (nestedMatch) {
+      current.lines.push(cleanMarkdownInline(nestedMatch[1]));
+      continue;
+    }
+
+    if (rawLine.trim()) {
+      current.lines.push(cleanMarkdownInline(rawLine.trim()));
+    }
+  }
+
+  if (current) blocks.push(current);
+  return blocks;
+}
+
+export function isStructuredResearchSectionTitle(title: string) {
+  return SCENARIO_SECTION_PATTERN.test(title);
+}
+
+export function extractResearchScenarioBranches(
+  content: string,
+  limit = 2,
+): ResearchScenarioBranch[] {
+  const section = extractResearchSections(content).find((item) =>
+    SCENARIO_SECTION_PATTERN.test(item.title),
+  );
+
+  if (!section) return [];
+
+  return parseScenarioBlocks(section.body)
+    .map((block, index) => {
+      const probabilityPct = parseScenarioProbability(block.header);
+      const label = stripScenarioProbabilityLabel(block.header);
+      const lineMap = new Map(
+        block.lines.map((line) => {
+          const match = line.match(/^([^:]+):\s*(.+)$/);
+          return match
+            ? [match[1].trim().toLowerCase(), match[2].trim()]
+            : [line.trim().toLowerCase(), line.trim()];
+        }),
+      );
+
+      let narrative =
+        lineMap.get("전개") ??
+        lineMap.get("시나리오") ??
+        lineMap.get("상황") ??
+        "";
+      let response =
+        lineMap.get("대응") ??
+        lineMap.get("포트폴리오 대응") ??
+        lineMap.get("액션") ??
+        lineMap.get("전략") ??
+        "";
+      const checkpoints = (
+        lineMap.get("체크포인트") ??
+        lineMap.get("관찰 포인트") ??
+        lineMap.get("확인 지표") ??
+        ""
+      )
+        .split(/\s*[,/]\s*|\s*\|\s*/)
+        .map((item) => item.trim())
+        .filter(Boolean);
+
+      if ((!narrative || !response) && /(?:->|→|대응[:：])/.test(block.header)) {
+        const [left, right] = block.header.split(/(?:->|→|대응[:：])/);
+        const leftText = left?.trim() ?? "";
+        const rightText = right?.trim() ?? "";
+        if (!narrative) {
+          narrative = stripScenarioProbabilityLabel(leftText);
+        }
+        if (!response) {
+          response = rightText;
+        }
+      }
+
+      if (!narrative) {
+        narrative = block.lines.find((line) => !/^(대응|체크포인트|관찰 포인트|확인 지표)\s*:/i.test(line)) ?? "";
+      }
+
+      return {
+        id: `scenario-${index + 1}`,
+        label: label || `Scenario ${index + 1}`,
+        probabilityPct,
+        probabilityLabel: probabilityPct != null ? `${probabilityPct}%` : null,
+        narrative,
+        response,
+        checkpoints,
+      } satisfies ResearchScenarioBranch;
+    })
+    .filter((item) => item.narrative || item.response)
+    .slice(0, limit);
 }
 
 export function loadLatestMacroIndicators(date?: string): MacroIndicator[] {

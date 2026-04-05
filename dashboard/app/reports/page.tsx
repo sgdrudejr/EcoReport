@@ -12,12 +12,15 @@ import {
 import ResearchSectionTabs, {
   type ResearchSectionTabItem,
 } from "@/components/ResearchSectionTabs";
+import ScenarioTree from "@/components/ScenarioTree";
 import { loadReports, type ReportDocument } from "@/lib/reports";
 import {
   extractResearchActionPoints,
+  extractResearchScenarioBranches,
   extractResearchSections,
   extractResearchTags,
   getResearchBriefingStats,
+  isStructuredResearchSectionTitle,
   loadLatestMacroIndicators,
   loadResearchBriefings,
   type MacroIndicator,
@@ -138,7 +141,10 @@ function ResearchBriefingCard({
 }: {
   briefing: ResearchBriefingDocument;
 }) {
-  const sections = extractResearchSections(briefing.content);
+  const sections = extractResearchSections(briefing.content).filter(
+    (section) => !isStructuredResearchSectionTitle(section.title),
+  );
+  const scenarioBranches = extractResearchScenarioBranches(briefing.content, 2);
   const indicators = loadLatestMacroIndicators(briefing.date);
   const stats = getResearchBriefingStats(briefing);
   const tags = extractResearchTags(briefing.content, 10);
@@ -275,9 +281,20 @@ function ResearchBriefingCard({
         </div>
       )}
 
-      <div className="px-5 py-5">
-        <ResearchSectionTabs sections={sectionTabs} />
-      </div>
+      {scenarioBranches.length > 0 && (
+        <div className="border-b border-zinc-800 px-5 py-5">
+          <ScenarioTree
+            branches={scenarioBranches}
+            description="향후 3~6개월 동안 기본 경로와 리스크 경로를 함께 잡아두고, 대응이 달라지는 지점을 바로 확인합니다."
+          />
+        </div>
+      )}
+
+      {sectionTabs.length > 0 && (
+        <div className="px-5 py-5">
+          <ResearchSectionTabs sections={sectionTabs} />
+        </div>
+      )}
     </div>
   );
 }

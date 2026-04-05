@@ -27,6 +27,34 @@
   "bull_case": ["상방 논리1", "상방 논리2"],
   "bear_case": ["하방 논리1", "하방 논리2"],
   "catalysts": ["촉매1", "촉매2"],
+  "scenario_branches": [
+    {
+      "name": "Main Scenario",
+      "probability_pct": 60,
+      "time_horizon": "3m|6m",
+      "path": "앞으로 3~6개월 전개될 핵심 경로",
+      "portfolio_response": "내 포트폴리오 대응 한 줄",
+      "watch_points": ["확인할 지표/조건 1", "확인할 지표/조건 2"]
+    },
+    {
+      "name": "Risk Scenario",
+      "probability_pct": 40,
+      "time_horizon": "3m|6m",
+      "path": "예상이 틀릴 때의 리스크 경로",
+      "portfolio_response": "Plan B 대응 한 줄",
+      "watch_points": ["깨질 때 먼저 볼 지표 1", "깨질 때 먼저 볼 지표 2"]
+    }
+  ],
+  "catalyst_timeline": [
+    {
+      "asset": "섹터/종목/ETF 이름",
+      "event": "실적 발표/정책 발표/수주/가격 전환점 등",
+      "expected_timing": "YYYY-MM|YYYY-Qn|1개월 내|2분기 초",
+      "direction": "upside|downside|mixed|neutral",
+      "why_it_matters": "왜 주가 상승/하락에 중요한지",
+      "related_holdings_in_my_portfolio": ["360750"]
+    }
+  ],
   "risks": ["리스크1", "리스크2"],
   "new_info": "새로운 사실이나 수치. 없으면 null",
   "themes": ["온디바이스AI", "HBM4"],
@@ -59,6 +87,14 @@
     "근거 문장 또는 숫자 요약 2"
   ]
 }
+
+추가 규칙:
+- `scenario_branches`는 반드시 2개만 채우세요: `Main Scenario`, `Risk Scenario`.
+- `scenario_branches`의 확률 합은 100이 되게 맞추세요.
+- `Main Scenario`는 현재 리포트에서 가장 가능성이 높은 기본 경로, `Risk Scenario`는 틀렸을 때 포트폴리오 대응이 달라질 하방/리스크 경로를 적으세요.
+- `catalyst_timeline`에는 향후 6개월 내 주가 상승/하락을 견인할 이벤트만 넣으세요.
+- 이벤트 날짜가 정확하지 않으면 `2026-Q3`, `2개월 내`, `하반기 초`처럼 근사 시기를 쓰세요.
+- `catalysts`는 짧은 키워드 요약, `catalyst_timeline`은 구조화된 일정/이유 설명으로 구분하세요.
 
 반드시 유효한 JSON 객체만 출력하세요.
 다른 텍스트, 설명, 마크다운 코드펜스를 포함하지 마세요.

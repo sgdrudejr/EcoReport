@@ -149,8 +149,33 @@ function summarizeManualReports(reports) {
           })
           .join(", ")}`
       : "";
+    const scenarios = Array.isArray(item.scenario_branches) && item.scenario_branches.length > 0
+      ? ` / 시나리오 ${item.scenario_branches
+          .slice(0, 2)
+          .map((branch) => {
+            const probability =
+              typeof branch?.probability_pct === "number" ? ` ${branch.probability_pct}%` : "";
+            const path = branch?.path ?? "경로 미상";
+            const response = branch?.portfolio_response
+              ? ` / 대응 ${branch.portfolio_response}`
+              : "";
+            return `${branch?.name ?? "Scenario"}${probability}: ${path}${response}`;
+          })
+          .join(" | ")}`
+      : "";
+    const catalystTimeline = Array.isArray(item.catalyst_timeline) && item.catalyst_timeline.length > 0
+      ? ` / 촉매일정 ${item.catalyst_timeline
+          .slice(0, 3)
+          .map((entry) => {
+            const asset = entry?.asset ?? "N/A";
+            const timing = entry?.expected_timing ? ` ${entry.expected_timing}` : "";
+            const event = entry?.event ?? "이벤트 미상";
+            return `${asset}${timing}: ${event}`;
+          })
+          .join(", ")}`
+      : "";
     const confidence = item.confidence ? ` / 신뢰도 ${item.confidence}` : "";
-    return `- [${item.broker}] ${item.title} / 섹터 ${item.sector ?? "N/A"} / 핵심 ${item.key_thesis ?? "N/A"} / 새 정보 ${item.new_info ?? "없음"}${changed}${numbers}${themes ? ` / 테마 ${themes}` : ""}${impacts}${confidence}`;
+    return `- [${item.broker}] ${item.title} / 섹터 ${item.sector ?? "N/A"} / 핵심 ${item.key_thesis ?? "N/A"} / 새 정보 ${item.new_info ?? "없음"}${changed}${numbers}${themes ? ` / 테마 ${themes}` : ""}${impacts}${scenarios}${catalystTimeline}${confidence}`;
   }).join("\n");
 }
 

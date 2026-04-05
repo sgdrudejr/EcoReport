@@ -7,6 +7,7 @@ import {
   CATEGORY_BY_CODE,
   PREFERRED_LABEL_BY_CATEGORY,
   ROOT_DIR,
+  enrichPortfolioWithSecurityCodes,
   parseDateArgs,
   readJson,
   won,
@@ -357,8 +358,9 @@ async function main() {
     readJson(path.join(stateDir, "impact-map.json"), { reports: [] }),
   ]);
   const stage2Data = stage2 ?? (await readJson(path.join(stateDir, "stage2-strategy-options.mock.json"), { account_actions: [], strategy_changes: [] }));
+  const normalizedPortfolio = enrichPortfolioWithSecurityCodes(portfolio);
 
-  const accountPlans = (portfolio.accounts ?? []).map((account) => {
+  const accountPlans = (normalizedPortfolio.accounts ?? []).map((account) => {
     const stage2Action =
       stage2Data.account_actions?.find((item) => item.account_key === account.key || item.account_key === normalizeStrategyAccountKey(account)) ??
       null;

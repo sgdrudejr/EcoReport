@@ -201,6 +201,79 @@ export function normalizeText(value) {
     .trim();
 }
 
+export function normalizeLooseName(value) {
+  return String(value ?? "")
+    .toLowerCase()
+    .replace(/\.\.\./g, "")
+    .replace(/\([^)]*\)/g, "")
+    .replace(/[^a-z0-9가-힣]+/g, "");
+}
+
+function buildSecurityLookups() {
+  const exact = new Map();
+  const loose = new Map();
+
+  function add(name, code) {
+    if (!name || !code) return;
+    exact.set(normalizeText(name), code);
+    const looseKey = normalizeLooseName(name);
+    if (looseKey) {
+      loose.set(looseKey, code);
+    }
+  }
+
+  for (const security of _sm.securities ?? []) {
+    add(security.name, security.code);
+    for (const alias of security.keywords?.aliases ?? []) {
+      add(alias, security.code);
+    }
+  }
+
+  return { exact, loose };
+}
+
+const SECURITY_LOOKUPS = buildSecurityLookups();
+
+export function resolveSecurityCode(nameOrCode) {
+  if (!nameOrCode) return null;
+  const token = String(nameOrCode).trim();
+  if (!token) return null;
+  if (SECURITIES_BY_CODE[token]) return token;
+
+  const exact = SECURITY_LOOKUPS.exact.get(normalizeText(token));
+  if (exact) return exact;
+
+  const looseKey = normalizeLooseName(token);
+  const loose = SECURITY_LOOKUPS.loose.get(looseKey);
+  if (loose) return loose;
+
+  for (const [candidate, code] of SECURITY_LOOKUPS.loose.entries()) {
+    if (!candidate || !looseKey) continue;
+    if (candidate.startsWith(looseKey) || looseKey.startsWith(candidate)) {
+      return code;
+    }
+  }
+
+  return null;
+}
+
+export function enrichPortfolioWithSecurityCodes(portfolio) {
+  if (!portfolio || !Array.isArray(portfolio.accounts)) {
+    return portfolio;
+  }
+
+  return {
+    ...portfolio,
+    accounts: portfolio.accounts.map((account) => ({
+      ...account,
+      holdings: (account.holdings ?? []).map((holding) => {
+        const resolvedCode = resolveSecurityCode(holding.code ?? holding.name);
+        return resolvedCode ? { ...holding, code: resolvedCode } : { ...holding };
+      }),
+    })),
+  };
+}
+
 export function compactWhitespace(value) {
   return String(value ?? "")
     .replace(/\r/g, "")
@@ -290,13 +363,14 @@ export function clamp(value, min, max) {
 }
 
 export function buildPortfolioMaps(portfolio, watchlist) {
+  const normalizedPortfolio = enrichPortfolioWithSecurityCodes(portfolio);
   const holdingsByCode = new Map();
   const holdingsByName = new Map();
   const accountsByKey = new Map();
   const watchByCode = new Map();
   const watchByName = new Map();
 
-  for (const account of portfolio?.accounts ?? []) {
+  for (const account of normalizedPortfolio?.accounts ?? []) {
     accountsByKey.set(account.key, account);
     for (const holding of account.holdings ?? []) {
       const enriched = {

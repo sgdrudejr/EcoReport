@@ -9,6 +9,7 @@ import {
   THEME_KEYWORDS_BY_CODE,
   ROOT_DIR,
   clamp,
+  enrichPortfolioWithSecurityCodes,
   parseDateArgs,
   readJson,
   sigmoid,
@@ -937,6 +938,7 @@ async function main() {
       account_actions: [],
       candidate_scores: [],
     }));
+  const normalizedPortfolio = enrichPortfolioWithSecurityCodes(portfolio);
   const regime = detectRegime(technical, fred);
   const leadingIndicator = computeLeadingIndicatorScore(fred);
   const technicalMap = technical.scores ?? {};
@@ -949,7 +951,7 @@ async function main() {
   const accountScores = {};
   const accountCoverage = {};
 
-  for (const account of portfolio.accounts ?? []) {
+  for (const account of normalizedPortfolio.accounts ?? []) {
     const allocationState = buildAllocationState(account, strategy);
     const allocationScore = allocationScoreForAccount(allocationState);
     const regimeFit = computeRegimeFit(allocationState, regime.name);
@@ -1136,12 +1138,12 @@ async function main() {
   }
 
   const totalAssets =
-    (portfolio.accounts ?? []).reduce(
+    (normalizedPortfolio.accounts ?? []).reduce(
       (sum, account) => sum + Math.max(account.evaluationAmount ?? 0, 0) + Math.max(account.cashAvailable ?? 0, 0),
       0,
     ) || 1;
 
-  const portfolioBaseScore = (portfolio.accounts ?? []).reduce((sum, account) => {
+  const portfolioBaseScore = (normalizedPortfolio.accounts ?? []).reduce((sum, account) => {
     const assets = Math.max(account.evaluationAmount ?? 0, 0) + Math.max(account.cashAvailable ?? 0, 0);
     const accountBase =
       (accountScores[account.key]?.baseScores?.allocationScore ?? 50) * (accountScores[account.key]?.effectiveWeights?.allocation ?? 1) +
@@ -1153,14 +1155,14 @@ async function main() {
     return sum + accountBase * (assets / totalAssets);
   }, 0);
 
-  const portfolioRiskPenaltyTotal = (portfolio.accounts ?? []).reduce((sum, account) => {
+  const portfolioRiskPenaltyTotal = (normalizedPortfolio.accounts ?? []).reduce((sum, account) => {
     const assets = Math.max(account.evaluationAmount ?? 0, 0) + Math.max(account.cashAvailable ?? 0, 0);
     return sum + (accountScores[account.key]?.riskPenalty?.total ?? 0) * (assets / totalAssets);
   }, 0);
 
   const portfolioScore = Math.round(
     clamp(
-      (portfolio.accounts ?? []).reduce((sum, account) => {
+      (normalizedPortfolio.accounts ?? []).reduce((sum, account) => {
         const assets = Math.max(account.evaluationAmount ?? 0, 0) + Math.max(account.cashAvailable ?? 0, 0);
         return sum + (accountScores[account.key]?.totalScore ?? 50) * (assets / totalAssets);
       }, 0),
@@ -1186,14 +1188,14 @@ async function main() {
     leadingIndicator,
     coverage: {
       techCoverage: toRoundedNumber(
-        (portfolio.accounts ?? []).reduce((sum, account) => {
+        (normalizedPortfolio.accounts ?? []).reduce((sum, account) => {
           const assets = Math.max(account.evaluationAmount ?? 0, 0) + Math.max(account.cashAvailable ?? 0, 0);
           return sum + (accountCoverage[account.key]?.techCoverage ?? 0) * (assets / totalAssets);
         }, 0),
         4,
       ),
       impactCoverage: toRoundedNumber(
-        (portfolio.accounts ?? []).reduce((sum, account) => {
+        (normalizedPortfolio.accounts ?? []).reduce((sum, account) => {
           const assets = Math.max(account.evaluationAmount ?? 0, 0) + Math.max(account.cashAvailable ?? 0, 0);
           return sum + (accountCoverage[account.key]?.impactCoverage ?? 0) * (assets / totalAssets);
         }, 0),

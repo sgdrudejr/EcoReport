@@ -202,6 +202,8 @@ elif [[ "$STAGE2_MODE" == "auto" ]] && has_gemini_key; then
 fi
 
 run_step "🧭 Stage 1~4 전략 파이프라인..." bash scripts/run-strategy-pipeline.sh "${PIPELINE_ARGS[@]}"
+run_step "📚 LLM Wiki 갱신..." node scripts/build-llm-wiki.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"
+run_step "🪄 Obsidian vault 게시..." node scripts/publish-llm-wiki-to-vault.js
 
 if [[ "$SKIP_PUSH" == "1" ]]; then
   log "📤 GitHub 동기화 건너뜀 (--skip-push)"

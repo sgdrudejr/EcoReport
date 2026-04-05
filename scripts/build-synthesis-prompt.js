@@ -56,6 +56,47 @@ function truncate(value, limit = MAX_EXCERPT) {
   return value.length > limit ? `${value.slice(0, limit)}...` : value;
 }
 
+function formatScenarioBranches(item) {
+  if (!Array.isArray(item?.scenario_branches) || item.scenario_branches.length === 0) {
+    return "";
+  }
+
+  return item.scenario_branches
+    .slice(0, 2)
+    .map((branch) => {
+      const name = branch?.name ?? "Scenario";
+      const probability =
+        typeof branch?.probability_pct === "number"
+          ? ` ${branch.probability_pct}%`
+          : "";
+      const path = branch?.path ? truncate(branch.path, 90) : "";
+      const response = branch?.portfolio_response
+        ? ` / 대응 ${truncate(branch.portfolio_response, 90)}`
+        : "";
+      const narrative = path ? `: ${path}` : "";
+      return `${name}${probability}${narrative}${response}`.trim();
+    })
+    .filter(Boolean)
+    .join(" | ");
+}
+
+function formatCatalystTimeline(item) {
+  if (!Array.isArray(item?.catalyst_timeline) || item.catalyst_timeline.length === 0) {
+    return "";
+  }
+
+  return item.catalyst_timeline
+    .slice(0, 3)
+    .map((entry) => {
+      const asset = entry?.asset ?? "N/A";
+      const timing = entry?.expected_timing ? ` ${entry.expected_timing}` : "";
+      const event = entry?.event ? ` ${truncate(entry.event, 70)}` : "";
+      return `${asset}${timing}:${event.trim()}`.trim();
+    })
+    .filter(Boolean)
+    .join(", ");
+}
+
 function groupReportsBySector(reports) {
   const grouped = new Map();
 
@@ -106,8 +147,10 @@ function formatCompressedReports(reports) {
               })
               .join(", ")}`
           : "";
+        const scenarios = formatScenarioBranches(item);
+        const catalysts = formatCatalystTimeline(item);
         const confidence = item.confidence ? ` / 신뢰도: ${item.confidence}` : "";
-        return `- [${item.broker}] ${item.title}${tickers} / 의견: ${item.opinion ?? "N/A"} / 핵심: ${item.key_thesis ?? "N/A"}${changed}${numbers}${themes}${impacts}${confidence}`;
+        return `- [${item.broker}] ${item.title}${tickers} / 의견: ${item.opinion ?? "N/A"} / 핵심: ${item.key_thesis ?? "N/A"}${changed}${numbers}${themes}${impacts}${scenarios ? ` / 시나리오: ${scenarios}` : ""}${catalysts ? ` / 촉매일정: ${catalysts}` : ""}${confidence}`;
       });
 
       return `### ${sector}\n${lines.join("\n")}`;

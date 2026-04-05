@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "EcoReport Dashboard",
-  description: "Stock Pilot daily analysis dashboard",
+  title: "EcoReport",
+  description: "Mobile-first portfolio intelligence dashboard for EcoReport",
 };
 
 export default function RootLayout({
@@ -28,9 +28,11 @@ export default function RootLayout({
       lang="ko"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
     >
-      <body className="min-h-full flex flex-col bg-zinc-950 text-zinc-100">
+      <body className="min-h-full overflow-x-hidden bg-zinc-950 text-zinc-100">
         <MainNav />
-        {children}
+        <div className="relative flex min-h-full flex-col">
+          {children}
+        </div>
       </body>
     </html>
   );

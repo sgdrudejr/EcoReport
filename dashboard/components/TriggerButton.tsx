@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { RefreshCw } from "lucide-react";
+import { RefreshCw, Sparkles } from "lucide-react";
 
 export default function TriggerButton() {
   const [state, setState] = useState<"idle" | "loading" | "ok" | "error">(
@@ -44,37 +44,52 @@ export default function TriggerButton() {
   }
 
   const labels = {
-    idle: "🔄 분석 실행",
-    loading: "전송 중…",
-    ok: "✓ 전송 완료",
-    error: "✕ 실패",
+    idle: "분석 실행",
+    loading: "전송 중",
+    ok: "전송 완료",
+    error: "전송 실패",
   };
 
   const colors = {
-    idle: "bg-emerald-600 hover:bg-emerald-500",
-    loading: "bg-zinc-700 cursor-not-allowed",
-    ok: "bg-emerald-700",
-    error: "bg-red-700",
+    idle:
+      "border-emerald-400/20 bg-[linear-gradient(135deg,rgba(16,185,129,0.28),rgba(15,23,42,0.94))] text-white hover:border-emerald-300/35 hover:shadow-[0_18px_45px_rgba(16,185,129,0.18)]",
+    loading:
+      "cursor-not-allowed border-white/10 bg-[linear-gradient(135deg,rgba(39,39,42,0.92),rgba(15,23,42,0.94))] text-zinc-200",
+    ok:
+      "border-emerald-400/20 bg-[linear-gradient(135deg,rgba(5,150,105,0.32),rgba(15,23,42,0.94))] text-white",
+    error:
+      "border-red-400/20 bg-[linear-gradient(135deg,rgba(185,28,28,0.32),rgba(15,23,42,0.94))] text-white",
   };
 
   return (
-    <div className="flex flex-col items-end gap-1">
+    <div className="flex w-full flex-col gap-2 sm:items-end">
       <button
         onClick={handleClick}
         disabled={state === "loading"}
-        className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-white transition-colors ${colors[state]}`}
+        className={`group relative w-full overflow-hidden rounded-[1.4rem] border px-4 py-3 text-left transition sm:w-auto sm:min-w-[13.5rem] ${colors[state]}`}
       >
-        <RefreshCw size={14} className={state === "loading" ? "animate-spin" : ""} />
-        {labels[state]}
+        <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.18),transparent_58%)] opacity-70 transition-opacity group-hover:opacity-100" />
+        <span className="relative flex items-center gap-3">
+          <span className="flex size-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/10">
+            <RefreshCw size={16} className={state === "loading" ? "animate-spin" : ""} />
+          </span>
+          <span className="min-w-0">
+            <span className="flex items-center gap-1 text-[11px] uppercase tracking-[0.2em] text-white/55">
+              <Sparkles size={11} />
+              analysis
+            </span>
+            <span className="mt-1 block text-sm font-semibold">{labels[state]}</span>
+          </span>
+        </span>
       </button>
       {message && (
-        <span
+        <p
           className={`text-xs ${
-            state === "error" ? "text-red-400" : "text-emerald-400"
+            state === "error" ? "text-red-300" : "text-emerald-200"
           }`}
         >
           {message}
-        </span>
+        </p>
       )}
     </div>
   );
