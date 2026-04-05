@@ -82,17 +82,24 @@ PY
 
 osascript <<APPLESCRIPT
 tell application "Safari"
-  activate
-  if (count of documents) = 0 then
-    make new document with properties {URL:"$GEMINI_URL"}
-  else
+  set targetDoc to missing value
+  repeat with currentDoc in documents
     try
-      set currentUrl to URL of front document
+      set currentUrl to URL of currentDoc
     on error
       set currentUrl to ""
     end try
-    if currentUrl does not start with "$GEMINI_URL" then
-      set URL of front document to "$GEMINI_URL"
+    if currentUrl starts with "$GEMINI_URL" then
+      set targetDoc to currentDoc
+      exit repeat
+    end if
+  end repeat
+  if targetDoc is missing value then
+    if (count of documents) = 0 then
+      make new document with properties {URL:"$GEMINI_URL"}
+    else
+      set targetDoc to front document
+      set URL of targetDoc to "$GEMINI_URL"
     end if
   end if
 end tell
@@ -104,7 +111,19 @@ RESULT_JSON=""
 for _ in {1..10}; do
   RESULT_JSON="$(osascript <<APPLESCRIPT
 tell application "Safari"
-  activate
+  set targetDoc to missing value
+  repeat with currentDoc in documents
+    try
+      set currentUrl to URL of currentDoc
+    on error
+      set currentUrl to ""
+    end try
+    if currentUrl starts with "$GEMINI_URL" then
+      set targetDoc to currentDoc
+      exit repeat
+    end if
+  end repeat
+  if targetDoc is missing value then error "gemini-document-not-found"
   set js to "(() => {
     const decodeBase64Utf8 = (value) => {
       const binary = atob(value);
@@ -156,7 +175,7 @@ tell application "Safari"
       editableLength: document.querySelector('[contenteditable=\"true\"]')?.textContent?.length || 0
     });
   })();"
-  return do JavaScript js in front document
+  return do JavaScript js in targetDoc
 end tell
 APPLESCRIPT
 )"

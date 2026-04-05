@@ -64,6 +64,11 @@ function summarizeTail(lines, limit = 8) {
   return lines.slice(-limit).join("\n").trim();
 }
 
+function checklistMark(status) {
+  if (status === "ok") return "x";
+  return " ";
+}
+
 function buildFailureHint(stepId) {
   switch (stepId) {
     case "baseline_daily_system":
@@ -307,6 +312,12 @@ async function writeSummary({
     `- logFile: ${summary.logFile}`,
     summary.systemHealthOverall ? `- systemHealth: ${summary.systemHealthOverall}` : null,
     "",
+    "## Completion Checklist",
+    ...summary.steps.map(
+      (step) =>
+        `- [${checklistMark(step.status)}] ${step.label}${step.status !== "ok" ? ` (${step.status})` : ""}`,
+    ),
+    "",
     "## Step Results",
     ...stepLines,
     "",
@@ -355,6 +366,8 @@ async function main() {
     "--gemini-stage2",
     "--skip-push",
     "--skip-verify",
+    "--skip-strategy",
+    "--skip-wiki",
   ];
   if (cli.forceCollect) {
     baselineArgs.push("--force-collect");

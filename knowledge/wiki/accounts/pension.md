@@ -39,8 +39,8 @@ account_key: PENSION
 ## Candidate Assets
 
 - TIGER 미국S&P500 / 378,422원
-- KODEX KOFR금리액티브(합성) / 227,053원
-- TIGER 미국나스닥100 / 151,369원
+- TIGER 미국나스닥100 / 227,053원
+- KODEX KOFR금리액티브(합성) / 151,369원
 
 ## Money-Making Rule
 

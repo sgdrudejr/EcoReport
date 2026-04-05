@@ -82,11 +82,29 @@ function runOsascript(script) {
   return execFileSync("osascript", ["-e", script], { encoding: "utf8" }).trim();
 }
 
+function findGeminiDocumentAppleScript() {
+  return `
+set targetDoc to missing value
+repeat with currentDoc in documents
+  try
+    set currentUrl to URL of currentDoc
+  on error
+    set currentUrl to ""
+  end try
+  if currentUrl starts with ${JSON.stringify(GEMINI_URL)} then
+    set targetDoc to currentDoc
+    exit repeat
+  end if
+end repeat
+`;
+}
+
 function runSafariJs(js) {
   const appleScript = `
 tell application "Safari"
-  activate
-  return do JavaScript ${JSON.stringify(js)} in front document
+  ${findGeminiDocumentAppleScript()}
+  if targetDoc is missing value then error "gemini-document-not-found"
+  return do JavaScript ${JSON.stringify(js)} in targetDoc
 end tell
 `;
   return runOsascript(appleScript);
@@ -95,17 +113,13 @@ end tell
 function openGeminiPage() {
   const appleScript = `
 tell application "Safari"
-  activate
-  if (count of documents) = 0 then
-    make new document with properties {URL:${JSON.stringify(GEMINI_URL)}}
-  else
-    try
-      set currentUrl to URL of front document
-    on error
-      set currentUrl to ""
-    end try
-    if currentUrl does not start with ${JSON.stringify(GEMINI_URL)} then
-      set URL of front document to ${JSON.stringify(GEMINI_URL)}
+  ${findGeminiDocumentAppleScript()}
+  if targetDoc is missing value then
+    if (count of documents) = 0 then
+      make new document with properties {URL:${JSON.stringify(GEMINI_URL)}}
+    else
+      set targetDoc to front document
+      set URL of targetDoc to ${JSON.stringify(GEMINI_URL)}
     end if
   end if
 end tell

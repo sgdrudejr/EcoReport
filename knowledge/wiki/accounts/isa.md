@@ -37,9 +37,8 @@ account_key: ISA
 
 ## Candidate Assets
 
-- TIGER 미국배당다우존스타겟커버드콜2호 / 1,832,717원
-- KODEX 골드선물(H) / 1,099,630원
-- TIGER 미국S&P500 / 733,087원
+- TIGER 미국배당다우존스타겟커버드콜2호 / 2,199,260원
+- KODEX 골드선물(H) / 1,466,173원
 - TIGER 미국배당다우존스스타데일리커...
 
 ## Money-Making Rule

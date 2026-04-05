@@ -11,6 +11,8 @@ SKIP_COLLECT=0
 SKIP_RAG=0
 SKIP_PUSH=0
 SKIP_VERIFY=0
+SKIP_STRATEGY=0
+SKIP_WIKI=0
 FORCE_COLLECT=0
 STAGE2_MODE="auto"
 RUN_GEMINI_BRIEFING="auto"
@@ -43,6 +45,14 @@ while [[ $# -gt 0 ]]; do
       ;;
     --skip-verify)
       SKIP_VERIFY=1
+      shift
+      ;;
+    --skip-strategy)
+      SKIP_STRATEGY=1
+      shift
+      ;;
+    --skip-wiki)
+      SKIP_WIKI=1
       shift
       ;;
     --force-collect)
@@ -201,9 +211,18 @@ elif [[ "$STAGE2_MODE" == "auto" ]] && has_gemini_key; then
   PIPELINE_ARGS+=(--gemini-stage2)
 fi
 
-run_step "🧭 Stage 1~4 전략 파이프라인..." bash scripts/run-strategy-pipeline.sh "${PIPELINE_ARGS[@]}"
-run_step "📚 LLM Wiki 갱신..." node scripts/build-llm-wiki.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"
-run_step "🪄 Obsidian vault 게시..." node scripts/publish-llm-wiki-to-vault.js
+if [[ "$SKIP_STRATEGY" == "1" ]]; then
+  log "🧭 전략 파이프라인 건너뜀 (--skip-strategy)"
+else
+  run_step "🧭 Stage 1~4 전략 파이프라인..." bash scripts/run-strategy-pipeline.sh "${PIPELINE_ARGS[@]}"
+fi
+
+if [[ "$SKIP_WIKI" == "1" ]]; then
+  log "📚 LLM Wiki 단계 건너뜀 (--skip-wiki)"
+else
+  run_step "📚 LLM Wiki 갱신..." node scripts/build-llm-wiki.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"
+  run_step "🪄 Obsidian vault 게시..." node scripts/publish-llm-wiki-to-vault.js
+fi
 
 if [[ "$SKIP_PUSH" == "1" ]]; then
   log "📤 GitHub 동기화 건너뜀 (--skip-push)"

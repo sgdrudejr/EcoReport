@@ -24,4 +24,3 @@
 - [KODEX KOFR금리액티브](securities/423160-kodex-kofr금리액티브.md)
 - [HANARO 원자력iSelect](securities/434730-hanaro-원자력iselect.md)
 - [TIGER 미국배당+7%프리미엄다우존스](securities/458760-tiger-미국배당-7-프리미엄다우존스.md)
-- [KODEX AI전력핵심설비](securities/487240-kodex-ai전력핵심설비.md)
