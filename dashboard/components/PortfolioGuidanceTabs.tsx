@@ -192,7 +192,7 @@ function HoldingScoreCard({ account }: { account: AccountGuide }) {
       <div className="mt-4">
         {account.holdingGuides.length > 0 && selectedHolding ? (
           <>
-            <div className="grid gap-3 xl:grid-cols-[0.9fr,1.1fr]">
+            <div className="grid gap-3 xl:grid-cols-[22rem,minmax(0,1fr)]">
               <div className="rounded-2xl border border-zinc-800 bg-zinc-900 px-3 py-3">
                 <div className="mb-2 flex items-center justify-between gap-3">
                   <p className="text-xs text-zinc-500">종목 리스트</p>
@@ -207,7 +207,7 @@ function HoldingScoreCard({ account }: { account: AccountGuide }) {
                         key={`${account.key}-${holdingKey}`}
                         type="button"
                         onClick={() => setSelectedHoldingKey(holdingKey)}
-                        className={`flex w-full items-center justify-between gap-3 rounded-2xl border px-4 py-3 text-left transition ${
+                        className={`grid w-full grid-cols-[minmax(0,1fr),auto] items-center gap-3 rounded-2xl border px-4 py-3 text-left transition ${
                           isSelected
                             ? "border-emerald-500/60 bg-emerald-950/20 shadow-[0_0_0_1px_rgba(16,185,129,0.16)]"
                             : "border-zinc-800 bg-zinc-950 hover:border-zinc-700"
@@ -233,78 +233,78 @@ function HoldingScoreCard({ account }: { account: AccountGuide }) {
               </div>
 
               <div className="rounded-2xl border border-zinc-800 bg-zinc-900 px-4 py-4">
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <p className="text-sm font-medium text-zinc-100">{selectedHolding.name}</p>
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <p className="text-sm font-medium text-zinc-100">{selectedHolding.name}</p>
+                    <p className="mt-1 text-xs text-zinc-500">
+                      {selectedHolding.category} · 비중 {formatPercent(selectedHolding.weightPct)}
+                    </p>
+                  </div>
+                  <div className="text-right">
+                    <p
+                      className={`text-2xl font-semibold tabular-nums ${getHoldingScoreClass(
+                        selectedHolding.score,
+                      )}`}
+                    >
+                      {selectedHolding.score != null ? `${selectedHolding.score}점` : "-"}
+                    </p>
+                    <span
+                      className={`mt-2 inline-flex rounded-full border px-2 py-1 text-[11px] ${getSignalClass(
+                        selectedHolding.signal ?? selectedHolding.technicalSignal,
+                      )}`}
+                    >
+                      {selectedHolding.signal ?? selectedHolding.technicalSignal ?? "N/A"}
+                    </span>
+                  </div>
+                </div>
+
+                <div className="mt-4 grid grid-cols-3 gap-2 text-xs">
+                  <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-3 py-2">
+                    <p className="text-zinc-500">계좌 적합도</p>
+                    <p className="mt-1 font-medium text-zinc-100">
+                      {selectedHolding.accountFitScore != null
+                        ? `${selectedHolding.accountFitScore}점`
+                        : "-"}
+                    </p>
+                  </div>
+                  <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-3 py-2">
+                    <p className="text-zinc-500">기술 점수</p>
+                    <p className="mt-1 font-medium text-zinc-100">
+                      {selectedHolding.technicalScore != null
+                        ? `${selectedHolding.technicalScore}점`
+                        : "-"}
+                    </p>
+                  </div>
+                  <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-3 py-2">
+                    <p className="text-zinc-500">리포트 점수</p>
+                    <p className="mt-1 font-medium text-zinc-100">
+                      {selectedHolding.reportStatus === "available" &&
+                      selectedHolding.reportScore != null
+                        ? `${selectedHolding.reportScore}점`
+                        : "미반영"}
+                    </p>
+                  </div>
+                </div>
+
+                {selectedHolding.topDrivers.length > 0 && (
+                  <p className="mt-3 text-xs text-zinc-400">
+                    핵심: {selectedHolding.topDrivers.slice(0, 2).join(" · ")}
+                  </p>
+                )}
+                {selectedHolding.warnings.length > 0 && (
                   <p className="mt-1 text-xs text-zinc-500">
-                    {selectedHolding.category} · 비중 {formatPercent(selectedHolding.weightPct)}
+                    주의: {selectedHolding.warnings[0]}
                   </p>
-                </div>
-                <div className="text-right">
-                  <p
-                    className={`text-2xl font-semibold tabular-nums ${getHoldingScoreClass(
-                      selectedHolding.score,
-                    )}`}
-                  >
-                    {selectedHolding.score != null ? `${selectedHolding.score}점` : "-"}
+                )}
+                {selectedHolding.reportStatus === "unavailable" && (
+                  <p className="mt-1 text-xs text-amber-300">
+                    리포트 미반영
+                    {selectedHolding.reportUnavailableReason === "no_report_input"
+                      ? " · 기준 거래일 리포트 입력 없음"
+                      : " · 직접 연결된 리포트 근거 부족"}
                   </p>
-                  <span
-                    className={`mt-2 inline-flex rounded-full border px-2 py-1 text-[11px] ${getSignalClass(
-                      selectedHolding.signal ?? selectedHolding.technicalSignal,
-                    )}`}
-                  >
-                    {selectedHolding.signal ?? selectedHolding.technicalSignal ?? "N/A"}
-                  </span>
-                </div>
+                )}
               </div>
-
-              <div className="mt-4 grid grid-cols-3 gap-2 text-xs">
-                <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-3 py-2">
-                  <p className="text-zinc-500">계좌 적합도</p>
-                  <p className="mt-1 font-medium text-zinc-100">
-                    {selectedHolding.accountFitScore != null
-                      ? `${selectedHolding.accountFitScore}점`
-                      : "-"}
-                  </p>
-                </div>
-                <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-3 py-2">
-                  <p className="text-zinc-500">기술 점수</p>
-                  <p className="mt-1 font-medium text-zinc-100">
-                    {selectedHolding.technicalScore != null
-                      ? `${selectedHolding.technicalScore}점`
-                      : "-"}
-                  </p>
-                </div>
-                <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-3 py-2">
-                  <p className="text-zinc-500">리포트 점수</p>
-                  <p className="mt-1 font-medium text-zinc-100">
-                    {selectedHolding.reportStatus === "available" &&
-                    selectedHolding.reportScore != null
-                      ? `${selectedHolding.reportScore}점`
-                      : "미반영"}
-                  </p>
-                </div>
-              </div>
-
-              {selectedHolding.topDrivers.length > 0 && (
-                <p className="mt-3 text-xs text-zinc-400">
-                  핵심: {selectedHolding.topDrivers.slice(0, 2).join(" · ")}
-                </p>
-              )}
-              {selectedHolding.warnings.length > 0 && (
-                <p className="mt-1 text-xs text-zinc-500">
-                  주의: {selectedHolding.warnings[0]}
-                </p>
-              )}
-              {selectedHolding.reportStatus === "unavailable" && (
-                <p className="mt-1 text-xs text-amber-300">
-                  리포트 미반영
-                  {selectedHolding.reportUnavailableReason === "no_report_input"
-                    ? " · 기준 거래일 리포트 입력 없음"
-                    : " · 직접 연결된 리포트 근거 부족"}
-                </p>
-              )}
-            </div>
             </div>
           </>
         ) : (
