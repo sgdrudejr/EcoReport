@@ -29,7 +29,7 @@ code: 487240
 
 ## Where It Shows Up In The Plan
 
-- 토스증권: 실행 후보 / 172,396원
+- 토스증권: 실행 후보 / 287,327원
 - 토스증권: 전략 후보
 
 ## Evidence

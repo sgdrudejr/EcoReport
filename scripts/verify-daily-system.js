@@ -49,6 +49,30 @@ async function main() {
     executionMd: path.join(ROOT_DIR, "reports", "daily", `${date}-stage4-execution-plan.md`),
     gemini: path.join(ROOT_DIR, "knowledge", "daily", `${date}-gemini-briefing.md`),
     geminiRich: path.join(ROOT_DIR, "knowledge", "daily", `${date}-gemini-briefing-rich.md`),
+    deepResearchPrompt: path.join(
+      ROOT_DIR,
+      "knowledge",
+      "daily",
+      "manual-kit",
+      date,
+      "07-stage1-5-gemini-deep-research-prompt.md",
+    ),
+    deepResearchResponse: path.join(
+      ROOT_DIR,
+      "knowledge",
+      "daily",
+      "manual-kit",
+      date,
+      "09-stage1-5-gemini-deep-research-response.md",
+    ),
+    deepResearchFinal: path.join(
+      ROOT_DIR,
+      "knowledge",
+      "daily",
+      "manual-kit",
+      date,
+      "10-stage1-6-final-research-briefing.md",
+    ),
   };
 
   const [
@@ -194,6 +218,33 @@ async function main() {
             ? "Gemini 브리핑 생성됨"
             : "Gemini 브리핑 없음",
       path: relative((await fileExists(paths.geminiRich)) ? paths.geminiRich : paths.gemini),
+    },
+    {
+      key: "deep_research_prompt",
+      label: "Deep Research 프롬프트",
+      status: statusFromCondition(await fileExists(paths.deepResearchPrompt), "warn"),
+      detail: (await fileExists(paths.deepResearchPrompt))
+        ? "Stage 1.5 프롬프트 생성됨"
+        : "Deep Research 프롬프트 없음",
+      path: relative(paths.deepResearchPrompt),
+    },
+    {
+      key: "deep_research_response",
+      label: "Deep Research 결과",
+      status: statusFromCondition(await fileExists(paths.deepResearchResponse), "warn"),
+      detail: (await fileExists(paths.deepResearchResponse))
+        ? "Gemini Deep Research 결과 저장됨"
+        : "Deep Research 결과 없음",
+      path: relative(paths.deepResearchResponse),
+    },
+    {
+      key: "deep_research_final",
+      label: "Deep Research 최종 브리핑",
+      status: statusFromCondition(await fileExists(paths.deepResearchFinal), "warn"),
+      detail: (await fileExists(paths.deepResearchFinal))
+        ? "Stage 1.6 최종 브리핑 저장됨"
+        : "Stage 1.6 최종 브리핑 없음",
+      path: relative(paths.deepResearchFinal),
     },
   ];
 

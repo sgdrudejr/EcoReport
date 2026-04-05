@@ -13,6 +13,7 @@ data/reports/**/index.json
 data/news/
 data/tweets/
 data/analysis-state/
+data/macro/
 data/market/
 data/etf-universe.db
 data/technical/
@@ -46,6 +47,7 @@ knowledge/daily/*-gemini-briefing-rich.md
 knowledge/daily/*-gemini-briefing-rich.md.meta.json
 knowledge/daily/*-stage1-report-extracts-v2.md
 knowledge/daily/*-system-health.md
+knowledge/daily/*-automation-cycle.md
 knowledge/daily/manual-kit/
 knowledge/daily/report-prompts/
 knowledge/rag/

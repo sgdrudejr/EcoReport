@@ -130,6 +130,42 @@ def validate_payload(payload: Any) -> dict[str, Any]:
     return payload
 
 
+def generate_json_response(model: Any, prompt: str, temperature: float) -> tuple[dict[str, Any], str]:
+    retry_suffixes = [
+        "",
+        "\n\n중요: 반드시 마지막 `}`까지 닫힌 완전한 JSON object 한 개만 반환하세요. 코드펜스나 설명 문장은 절대 붙이지 마세요.",
+        "\n\n이전 시도에서 JSON이 잘렸습니다. candidate_scores는 최대 6개, portfolio_risks는 최대 4개로 더 압축하고, 모든 필수 키를 유지한 완전한 JSON object 한 개만 반환하세요.",
+    ]
+
+    last_error: Exception | None = None
+    last_raw = ""
+
+    for suffix in retry_suffixes:
+        response = model.generate_content(
+            prompt + suffix,
+            generation_config={
+                "temperature": temperature,
+                "max_output_tokens": 8192,
+                "response_mime_type": "application/json",
+            },
+        )
+        raw_text = (getattr(response, "text", None) or "").strip()
+        if not raw_text:
+            last_error = RuntimeError("Gemini 응답이 비어 있습니다.")
+            continue
+
+        last_raw = raw_text
+        try:
+            payload = validate_payload(extract_json_block(raw_text))
+            return payload, raw_text
+        except Exception as exc:  # noqa: BLE001
+            last_error = exc
+
+    if last_error is None:
+        last_error = RuntimeError("Gemini 응답에서 유효한 JSON을 찾지 못했습니다.")
+    raise RuntimeError(f"{last_error} | raw_length={len(last_raw)}")
+
+
 def write_json(path: Path, payload: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -152,20 +188,8 @@ def main() -> None:
     prompt = read_prompt(prompt_path)
 
     model = genai.GenerativeModel(model_name)
-    response = model.generate_content(
-        prompt,
-        generation_config={
-            "temperature": args.temperature,
-            "max_output_tokens": 8192,
-            "response_mime_type": "application/json",
-        },
-    )
-    raw_text = (getattr(response, "text", None) or "").strip()
-    if not raw_text:
-        raise RuntimeError("Gemini 응답이 비어 있습니다.")
-
+    payload, raw_text = generate_json_response(model, prompt, args.temperature)
     write_text(raw_output_path, raw_text)
-    payload = validate_payload(extract_json_block(raw_text))
     payload["date"] = args.date
     payload["runDate"] = args.run_date or args.date
     payload["effectiveMarketDate"] = args.effective_market_date or args.date

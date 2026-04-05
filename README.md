@@ -98,6 +98,13 @@ cd /Users/seo/Documents/Playground/EcoReport
 bash scripts/run-daily-system.sh --date YYYY-MM-DD
 ```
 
+Gemini Deep Research 오버레이까지 포함한 완결형 자동 실행은 아래 명령을 사용합니다.
+
+```bash
+cd /Users/seo/Documents/Playground/EcoReport
+npm run automation:daily -- --date YYYY-MM-DD
+```
+
 이 러너는 다음을 한 번에 묶습니다.
 
 1. 리포트 수집 + 전문 텍스트화
@@ -113,6 +120,14 @@ bash scripts/run-daily-system.sh --date YYYY-MM-DD
 
 - `data/analysis-state/YYYY-MM-DD/system-health.json`
 - `knowledge/daily/YYYY-MM-DD-system-health.md`
+- `data/analysis-state/YYYY-MM-DD/automation-cycle.json`
+- `knowledge/daily/YYYY-MM-DD-automation-cycle.md`
+
+자동 실행 전제:
+
+- Mac이 잠겨 있지 않아야 합니다.
+- Safari가 Gemini에 로그인된 상태여야 합니다.
+- Deep Research 단계가 실패해도 baseline 리포트와 실패 요약은 남도록 설계합니다.
 
 ## LLM Wiki Layer
 

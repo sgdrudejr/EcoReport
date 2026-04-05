@@ -19,6 +19,7 @@
     "stage2:mock":      "node scripts/build-stage2-strategy-mock.js",
     "stage3:quant":     "node scripts/build-stage3-quant-scores.js",
     "stage4:plan":      "node scripts/build-stage4-execution-plan.js",
+    "automation:daily": "node scripts/run-daily-automation-cycle.js",
     "wiki:build":       "node scripts/build-llm-wiki.js",
     "wiki:publish":     "node scripts/publish-llm-wiki-to-vault.js",
     "strategy:pipeline":"bash scripts/run-strategy-pipeline.sh",

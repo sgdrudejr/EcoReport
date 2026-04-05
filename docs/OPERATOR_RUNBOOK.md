@@ -22,6 +22,13 @@ cd /Users/seo/Documents/Playground/EcoReport
 bash scripts/run-daily-system.sh --date YYYY-MM-DD
 ```
 
+Gemini Deep Research까지 포함한 무인 자동 실행은 아래 러너를 사용합니다.
+
+```bash
+cd /Users/seo/Documents/Playground/EcoReport
+npm run automation:daily -- --date YYYY-MM-DD
+```
+
 이 명령은 아래를 순서대로 수행합니다.
 
 1. 리포트 수집 + 전문 텍스트화
@@ -32,6 +39,19 @@ bash scripts/run-daily-system.sh --date YYYY-MM-DD
 6. `knowledge/wiki/` 지속형 투자 위키 갱신
 7. `data` 브랜치 동기화
 8. 일일 산출물 검증
+
+자동 실행 러너는 여기에 더해 아래를 수행합니다.
+
+9. Gemini Deep Research 웹 실행
+10. Stage 1.6 최종 rich briefing 생성
+11. Stage 2~4 재계산
+12. 실패/경고 요약을 `automation-cycle` JSON/Markdown으로 저장
+
+전제 조건:
+
+- Mac 화면이 잠겨 있지 않아야 함
+- Safari가 Gemini 로그인 상태여야 함
+- 실패해도 `logs/*.log`, `system-health`, `automation-cycle`에 원인을 남김
 
 ### 1. 포트폴리오 최신화
 
