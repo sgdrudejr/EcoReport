@@ -342,69 +342,76 @@ function DesktopSelector({
   onSelect: (key: string) => void;
 }) {
   return (
-    <div className="hidden md:grid md:grid-cols-3 gap-3">
-      {accounts.map((account) => {
-        const isSelected = account.key === selectedKey;
-        const toneClass =
-          account.holdingsProfitLoss > 0
-            ? "text-emerald-400"
-            : account.holdingsProfitLoss < 0
-              ? "text-red-400"
-              : "text-zinc-300";
+    <div className="hidden md:block sticky top-2 z-30 -mx-2 px-2">
+      <div className="rounded-2xl border border-zinc-800/80 bg-zinc-950/92 p-3 shadow-[0_10px_30px_rgba(0,0,0,0.28)] backdrop-blur">
+        <div className="mb-2 px-1 text-[11px] uppercase tracking-wide text-zinc-500">
+          계좌 전환
+        </div>
+        <div className="grid grid-cols-3 gap-3">
+          {accounts.map((account) => {
+            const isSelected = account.key === selectedKey;
+            const toneClass =
+              account.holdingsProfitLoss > 0
+                ? "text-emerald-400"
+                : account.holdingsProfitLoss < 0
+                  ? "text-red-400"
+                  : "text-zinc-300";
 
-        return (
-          <button
-            key={account.key}
-            type="button"
-            onClick={() => onSelect(account.key)}
-            className={`rounded-2xl border p-4 text-left transition ${
-              isSelected
-                ? "border-emerald-500/60 bg-emerald-950/20 shadow-[0_0_0_1px_rgba(16,185,129,0.16)]"
-                : "border-zinc-800 bg-zinc-900 hover:border-zinc-700"
-            }`}
-          >
-            <div className="flex items-start justify-between gap-3">
-              <div>
-                <p className="text-sm font-semibold text-zinc-100">{account.label}</p>
-                <p className="mt-1 text-xs text-zinc-500">계좌별 운용 점수</p>
-              </div>
-              <span className={`rounded-full border px-2 py-1 text-[11px] ${getStatusClass(account.status)}`}>
-                {account.status}
-              </span>
-            </div>
+            return (
+              <button
+                key={account.key}
+                type="button"
+                onClick={() => onSelect(account.key)}
+                className={`rounded-2xl border p-4 text-left transition ${
+                  isSelected
+                    ? "border-emerald-500/60 bg-emerald-950/20 shadow-[0_0_0_1px_rgba(16,185,129,0.16)]"
+                    : "border-zinc-800 bg-zinc-900 hover:border-zinc-700"
+                }`}
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <p className="text-sm font-semibold text-zinc-100">{account.label}</p>
+                    <p className="mt-1 text-xs text-zinc-500">계좌별 운용 점수</p>
+                  </div>
+                  <span className={`rounded-full border px-2 py-1 text-[11px] ${getStatusClass(account.status)}`}>
+                    {account.status}
+                  </span>
+                </div>
 
-            <div className="mt-4 flex items-end justify-between gap-3">
-              <p className="text-3xl font-semibold tabular-nums text-zinc-100">{account.score}점</p>
-              <div className="text-right text-xs text-zinc-500">
-                <p>이번 단계 투입</p>
-                <p className="mt-1 font-medium text-zinc-300">{account.recommendedDeploy.toLocaleString()}원</p>
-              </div>
-            </div>
+                <div className="mt-4 flex items-end justify-between gap-3">
+                  <p className="text-3xl font-semibold tabular-nums text-zinc-100">{account.score}점</p>
+                  <div className="text-right text-xs text-zinc-500">
+                    <p>이번 단계 투입</p>
+                    <p className="mt-1 font-medium text-zinc-300">{account.recommendedDeploy.toLocaleString()}원</p>
+                  </div>
+                </div>
 
-            <div className="mt-3 grid grid-cols-2 gap-3 text-xs">
-              <div>
-                <p className="text-zinc-500">보유 손익</p>
-                <p className={`mt-1 font-medium ${toneClass}`}>{formatSignedCurrency(account.holdingsProfitLoss)}</p>
-              </div>
-              <div>
-                <p className="text-zinc-500">보유 수익률</p>
-                <p className={`mt-1 font-medium ${toneClass}`}>{formatSignedPercent(account.holdingsProfitRate)}</p>
-              </div>
-            </div>
+                <div className="mt-3 grid grid-cols-2 gap-3 text-xs">
+                  <div>
+                    <p className="text-zinc-500">보유 손익</p>
+                    <p className={`mt-1 font-medium ${toneClass}`}>{formatSignedCurrency(account.holdingsProfitLoss)}</p>
+                  </div>
+                  <div>
+                    <p className="text-zinc-500">보유 수익률</p>
+                    <p className={`mt-1 font-medium ${toneClass}`}>{formatSignedPercent(account.holdingsProfitRate)}</p>
+                  </div>
+                </div>
 
-            <div className="mt-3 flex flex-wrap gap-2 text-[11px] text-zinc-500">
-              <span>배분 {account.allocationScore}점</span>
-              <span>기술 {account.technicalScore != null ? `${account.technicalScore}점` : "-"}</span>
-              {account.reportStatus === "available" && account.reportScore != null ? (
-                <span>리포트 {account.reportScore}점</span>
-              ) : (
-                <span>리포트 미반영</span>
-              )}
-              {account.riskPenaltyTotal != null && <span>패널티 {account.riskPenaltyTotal}점</span>}
-            </div>
-          </button>
-        );
-      })}
+                <div className="mt-3 flex flex-wrap gap-2 text-[11px] text-zinc-500">
+                  <span>배분 {account.allocationScore}점</span>
+                  <span>기술 {account.technicalScore != null ? `${account.technicalScore}점` : "-"}</span>
+                  {account.reportStatus === "available" && account.reportScore != null ? (
+                    <span>리포트 {account.reportScore}점</span>
+                  ) : (
+                    <span>리포트 미반영</span>
+                  )}
+                  {account.riskPenaltyTotal != null && <span>패널티 {account.riskPenaltyTotal}점</span>}
+                </div>
+              </button>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }
