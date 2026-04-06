@@ -82,7 +82,54 @@ function runOsascript(script) {
   return execFileSync("osascript", ["-e", script], { encoding: "utf8" }).trim();
 }
 
-function findGeminiDocumentAppleScript() {
+function findGeminiDocumentAppleScript(targetDocNumber = null, targetUrl = null) {
+  if (targetDocNumber !== null) {
+    return `
+set targetDoc to missing value
+try
+  set targetDoc to document ${targetDocNumber}
+end try
+if targetDoc is missing value then
+  ${findGeminiDocumentAppleScript(null, targetUrl)}
+end if
+`;
+  }
+
+  if (targetUrl) {
+    return `
+set targetDoc to missing value
+try
+  if URL of front document starts with ${JSON.stringify(targetUrl)} then set targetDoc to front document
+end try
+if targetDoc is missing value then
+  repeat with currentDoc in documents
+    try
+      set currentUrl to URL of currentDoc
+    on error
+      set currentUrl to ""
+    end try
+    if currentUrl starts with ${JSON.stringify(targetUrl)} then
+      set targetDoc to currentDoc
+      exit repeat
+    end if
+  end repeat
+end if
+if targetDoc is missing value then
+  repeat with currentDoc in documents
+    try
+      set currentUrl to URL of currentDoc
+    on error
+      set currentUrl to ""
+    end try
+    if currentUrl starts with ${JSON.stringify(GEMINI_URL)} then
+      set targetDoc to currentDoc
+      exit repeat
+    end if
+  end repeat
+end if
+`;
+  }
+
   return `
 set targetDoc to missing value
 repeat with currentDoc in documents
@@ -99,10 +146,10 @@ end repeat
 `;
 }
 
-function runSafariJs(js) {
+function runSafariJs(js, targetDocNumber = null, targetUrl = null) {
   const appleScript = `
 tell application "Safari"
-  ${findGeminiDocumentAppleScript()}
+  ${findGeminiDocumentAppleScript(targetDocNumber, targetUrl)}
   if targetDoc is missing value then error "gemini-document-not-found"
   return do JavaScript ${JSON.stringify(js)} in targetDoc
 end tell
@@ -113,18 +160,12 @@ end tell
 function openGeminiPage() {
   const appleScript = `
 tell application "Safari"
-  ${findGeminiDocumentAppleScript()}
-  if targetDoc is missing value then
-    if (count of documents) = 0 then
-      make new document with properties {URL:${JSON.stringify(GEMINI_URL)}}
-    else
-      set targetDoc to front document
-      set URL of targetDoc to ${JSON.stringify(GEMINI_URL)}
-    end if
-  end if
+  set existingCount to count of documents
+  make new document with properties {URL:${JSON.stringify(GEMINI_URL)}}
+  return count of documents
 end tell
 `;
-  runOsascript(appleScript);
+  return Number.parseInt(runOsascript(appleScript), 10);
 }
 
 function buildSnapshotJs() {
@@ -176,12 +217,12 @@ function buildSnapshotJs() {
   })();`;
 }
 
-function snapshotState() {
-  const raw = runSafariJs(buildSnapshotJs());
+function snapshotState(targetDocNumber, targetUrl) {
+  const raw = runSafariJs(buildSnapshotJs(), targetDocNumber, targetUrl);
   return JSON.parse(raw);
 }
 
-function clickButtonByPattern(patternSource) {
+function clickButtonByPattern(patternSource, targetDocNumber, targetUrl) {
   const js = `(() => {
     const pattern = new RegExp(${JSON.stringify(patternSource)}, 'i');
     const button = Array.from(document.querySelectorAll('button')).find((node) => {
@@ -192,10 +233,10 @@ function clickButtonByPattern(patternSource) {
     button.click();
     return 'clicked';
   })();`;
-  return runSafariJs(js);
+  return runSafariJs(js, targetDocNumber, targetUrl);
 }
 
-function injectPrompt(prompt) {
+function injectPrompt(prompt, targetDocNumber, targetUrl) {
   const promptBase64 = Buffer.from(prompt, "utf8").toString("base64");
   const js = `(() => {
     const decodeBase64Utf8 = (value) => {
@@ -226,7 +267,16 @@ function injectPrompt(prompt) {
     return 'editable';
   })();`;
 
-  return runSafariJs(js);
+  return runSafariJs(js, targetDocNumber, targetUrl);
+}
+
+function getDocumentUrl(targetDocNumber) {
+  const appleScript = `
+tell application "Safari"
+  return URL of document ${targetDocNumber}
+end tell
+`;
+  return runOsascript(appleScript);
 }
 
 function copyToClipboard(text) {
@@ -308,13 +358,14 @@ async function main() {
   await ensurePromptFile(promptPath, args.date);
   const prompt = fs.readFileSync(promptPath, "utf8");
 
-  openGeminiPage();
+  const targetDocNumber = openGeminiPage();
   await sleep(4000);
+  const targetUrl = getDocumentUrl(targetDocNumber);
 
-  let state = snapshotState();
+  let state = snapshotState(targetDocNumber, targetUrl);
   if (!state.composerFound) {
     await sleep(3000);
-    state = snapshotState();
+    state = snapshotState(targetDocNumber, targetUrl);
   }
 
   if (!state.composerFound) {
@@ -322,13 +373,15 @@ async function main() {
   }
 
   if ((state.textareaLength ?? 0) < prompt.length * 0.6 && (state.editableLength ?? 0) < prompt.length * 0.6) {
-    injectPrompt(prompt);
+    injectPrompt(prompt, targetDocNumber, targetUrl);
     await sleep(1000);
-    state = snapshotState();
+    state = snapshotState(targetDocNumber, targetUrl);
   }
 
   if (args.openOnly) {
-    console.log("Gemini page opened and prompt injected.");
+    console.log("Gemini page opened in a new window and prompt injected.");
+    console.log(`target_document: ${targetDocNumber}`);
+    console.log(`target_url: ${targetUrl}`);
     return;
   }
 
@@ -340,7 +393,7 @@ async function main() {
   let lastProgressLoggedAt = 0;
 
   while (Date.now() < deadline) {
-    state = snapshotState();
+    state = snapshotState(targetDocNumber, targetUrl);
 
     if ((state.messageCount ?? 0) > 0) {
       promptSubmitted = true;
@@ -354,22 +407,22 @@ async function main() {
 
     if (!promptSubmitted && !state.hasDeepResearchSelected) {
       if (!state.hasDeepResearchOption) {
-        clickButtonByPattern("(^|\\\\s)도구(\\\\s|$)");
+        clickButtonByPattern("(^|\\\\s)도구(\\\\s|$)", targetDocNumber, targetUrl);
         await sleep(1000);
-        state = snapshotState();
+        state = snapshotState(targetDocNumber, targetUrl);
       }
       if (state.hasDeepResearchOption && !state.hasDeepResearchSelected) {
-        clickButtonByPattern("Deep Research");
+        clickButtonByPattern("Deep Research", targetDocNumber, targetUrl);
         await sleep(1000);
-        state = snapshotState();
+        state = snapshotState(targetDocNumber, targetUrl);
       }
     }
 
     if (!promptSubmitted && state.messageCount === 0 && state.hasSendButton && !state.hasStopButton) {
-      clickButtonByPattern("메시지 보내기|send");
+      clickButtonByPattern("메시지 보내기|send", targetDocNumber, targetUrl);
       promptSubmitted = true;
       await sleep(3000);
-      state = snapshotState();
+      state = snapshotState(targetDocNumber, targetUrl);
     }
 
     if (!planMessage) {
@@ -389,10 +442,10 @@ async function main() {
       !state.hasResearchStartedMessage &&
       (planMessage || hasPlanMessage(state) || state.hasEditPlanButton)
     ) {
-      clickButtonByPattern("연구 시작|조사 시작|Start research|Begin research");
+      clickButtonByPattern("연구 시작|조사 시작|Start research|Begin research", targetDocNumber, targetUrl);
       researchStarted = true;
       await sleep(3000);
-      state = snapshotState();
+      state = snapshotState(targetDocNumber, targetUrl);
     }
 
     const finalResponse = extractFinalResponse(state, planMessage);

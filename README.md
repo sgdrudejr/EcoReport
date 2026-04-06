@@ -562,6 +562,8 @@ npm run stage3:quant -- --date 2026-04-03
 npm run stage4:plan -- --date 2026-04-03
 ```
 
+Gemini Deep Research 자동화는 기존 탭을 재사용하지 않고 항상 새 Safari 창을 열어 진행합니다.
+
 핵심 산출물:
 
 - `knowledge/daily/manual-kit/YYYY-MM-DD/07-stage1-5-gemini-deep-research-prompt.md`

@@ -80,49 +80,58 @@ print(base64.b64encode(text.encode("utf-8")).decode("ascii"))
 PY
 )"
 
-osascript <<APPLESCRIPT
+TARGET_DOC_NUMBER="$(osascript <<APPLESCRIPT
 tell application "Safari"
-  set targetDoc to missing value
-  repeat with currentDoc in documents
-    try
-      set currentUrl to URL of currentDoc
-    on error
-      set currentUrl to ""
-    end try
-    if currentUrl starts with "$GEMINI_URL" then
-      set targetDoc to currentDoc
-      exit repeat
-    end if
-  end repeat
-  if targetDoc is missing value then
-    if (count of documents) = 0 then
-      make new document with properties {URL:"$GEMINI_URL"}
-    else
-      set targetDoc to front document
-      set URL of targetDoc to "$GEMINI_URL"
-    end if
-  end if
+  set existingCount to count of documents
+  make new document with properties {URL:"$GEMINI_URL"}
+  return count of documents
 end tell
 APPLESCRIPT
+)"
 
 sleep 4
+
+TARGET_URL="$(osascript <<APPLESCRIPT
+tell application "Safari"
+  return URL of document $TARGET_DOC_NUMBER
+end tell
+APPLESCRIPT
+)"
 
 RESULT_JSON=""
 for _ in {1..10}; do
   RESULT_JSON="$(osascript <<APPLESCRIPT
 tell application "Safari"
   set targetDoc to missing value
-  repeat with currentDoc in documents
-    try
-      set currentUrl to URL of currentDoc
-    on error
-      set currentUrl to ""
-    end try
-    if currentUrl starts with "$GEMINI_URL" then
-      set targetDoc to currentDoc
-      exit repeat
-    end if
-  end repeat
+  try
+    set targetDoc to document $TARGET_DOC_NUMBER
+  end try
+  if targetDoc is missing value then
+    repeat with currentDoc in documents
+      try
+        set currentUrl to URL of currentDoc
+      on error
+        set currentUrl to ""
+      end try
+      if currentUrl starts with "$TARGET_URL" then
+        set targetDoc to currentDoc
+        exit repeat
+      end if
+    end repeat
+  end if
+  if targetDoc is missing value then
+    repeat with currentDoc in documents
+      try
+        set currentUrl to URL of currentDoc
+      on error
+        set currentUrl to ""
+      end try
+      if currentUrl starts with "$GEMINI_URL" then
+        set targetDoc to currentDoc
+        exit repeat
+      end if
+    end repeat
+  end if
   if targetDoc is missing value then error "gemini-document-not-found"
   set js to "(() => {
     const decodeBase64Utf8 = (value) => {
@@ -191,6 +200,10 @@ pbcopy < "$TARGET_FILE"
 echo "Opened Gemini web."
 echo "Loaded prompt:"
 echo "$TARGET_FILE"
+echo "Target document:"
+echo "$TARGET_DOC_NUMBER"
+echo "Target window:"
+echo "$TARGET_URL"
 echo "Submit mode: $SUBMIT"
 echo "Injection result: $RESULT_JSON"
 
