@@ -631,6 +631,7 @@ bash scripts/open-chatgpt-web-prompt.sh ideas
 `GEMINI_API_KEY`가 `.env`에 있으면 `run-daily-system.sh`가 자동으로 `build-stage2-strategy-gemini.py`를 실행합니다.
 키가 없으면 mock JSON으로 Stage 3/4를 계속 검증합니다.
 수동으로 LLM에 묻고 싶다면 `open-chatgpt-web-prompt.sh` 또는 `knowledge/daily/manual-kit/` 프롬프트를 활용합니다.
+Python 가상환경에는 `google-genai`가 설치되어 있어야 하며, 현재 Gemini Python 스크립트는 이 SDK 기준으로 동작합니다. 새 환경이면 `./.venv/bin/pip install google-genai`를 한 번 실행해 주세요.
 
 ### 3. Stage 1 품질 고도화
 

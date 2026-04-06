@@ -18,12 +18,12 @@ from __future__ import annotations
 import argparse
 import json
 import os
-from datetime import datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Tuple
 
 from dotenv import load_dotenv
-import google.generativeai as genai
+from google import genai
 
 
 SUMMARY_KEYWORDS = [
@@ -139,6 +139,10 @@ def load_api_key(project_root: Path) -> str:
     if not api_key:
         raise RuntimeError(".env에 GEMINI_API_KEY가 비어 있습니다.")
     return api_key
+
+
+def create_client(api_key: str) -> genai.Client:
+    return genai.Client(api_key=api_key)
 
 
 def normalized(text: Any) -> str:
@@ -371,12 +375,15 @@ def merge_chunks(rows: List[Dict[str, Any]]) -> str:
     return "\n".join(merged_parts).strip()
 
 
-def resolve_model_name(requested_model: str) -> str:
+def resolve_model_name(client: genai.Client, requested_model: str) -> str:
     try:
         available = {
             model.name.replace("models/", ""): model.name
-            for model in genai.list_models()
-            if "generateContent" in (getattr(model, "supported_generation_methods", []) or [])
+            for model in client.models.list()
+            if (
+                "generateContent" in (getattr(model, "supported_actions", []) or [])
+                or "generateContent" in (getattr(model, "supported_generation_methods", []) or [])
+            )
         }
     except Exception:
         return requested_model
@@ -396,11 +403,8 @@ def resolve_model_name(requested_model: str) -> str:
     return requested_model
 
 
-def call_gemini(api_key: str, model_name: str, prompt: str, merged_text: str) -> Tuple[str, str]:
-    genai.configure(api_key=api_key)
-    resolved_model = resolve_model_name(model_name)
-    model = genai.GenerativeModel(resolved_model)
-
+def call_gemini(client: genai.Client, model_name: str, prompt: str, merged_text: str) -> Tuple[str, str]:
+    resolved_model = resolve_model_name(client, model_name)
     final_prompt = (
         f"{prompt}\n\n"
         "출력 형식은 마크다운으로 해주세요.\n"
@@ -430,7 +434,10 @@ def call_gemini(api_key: str, model_name: str, prompt: str, merged_text: str) ->
         f"{merged_text}"
     )
 
-    response = model.generate_content(final_prompt)
+    response = client.models.generate_content(
+        model=resolved_model,
+        contents=final_prompt,
+    )
 
     if not getattr(response, "text", None):
         raise RuntimeError("Gemini 응답에 text가 없습니다.")
@@ -448,6 +455,7 @@ def main() -> None:
         raise FileNotFoundError(f"입력 파일이 없습니다: {input_path}")
 
     api_key = load_api_key(project_root)
+    client = create_client(api_key)
 
     rows = list(iter_jsonl(input_path))
     selected_rows, scored_rows = select_briefing_rows(
@@ -462,7 +470,7 @@ def main() -> None:
     merged_text = merge_chunks(selected_rows)
 
     gemini_output, resolved_model = call_gemini(
-        api_key=api_key,
+        client=client,
         model_name=args.model,
         prompt=args.prompt,
         merged_text=merged_text,
@@ -474,7 +482,7 @@ def main() -> None:
     report_coverage = len({str(row.get("report_id") or row.get("chunk_id")) for row in selected_rows})
     meta_path = output_path.with_suffix(output_path.suffix + ".meta.json")
     meta = {
-        "generated_at": datetime.now().isoformat(),
+        "generated_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
         "run_date": args.run_date,
         "effective_market_date": args.effective_market_date,
         "input_path": str(input_path),

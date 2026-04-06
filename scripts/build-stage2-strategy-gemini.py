@@ -18,7 +18,7 @@ from pathlib import Path
 from typing import Any
 
 from dotenv import load_dotenv
-import google.generativeai as genai
+from google import genai
 
 
 ROOT = Path(os.getenv("ECOREPORT_ROOT") or Path(__file__).resolve().parent.parent)
@@ -73,22 +73,27 @@ def load_api_key() -> str:
     return api_key
 
 
-def get_available_models() -> list[str]:
+def create_client(api_key: str) -> genai.Client:
+    return genai.Client(api_key=api_key)
+
+
+def get_available_models(client: genai.Client) -> list[str]:
     available = set()
-    for model in genai.list_models():
+    for model in client.models.list():
         name = model.name.replace("models/", "")
+        actions = set(getattr(model, "supported_actions", []) or [])
         methods = set(getattr(model, "supported_generation_methods", []) or [])
-        if "generateContent" in methods:
+        if "generateContent" in actions or "generateContent" in methods:
             available.add(name)
 
     return sorted(available)
 
 
-def choose_models(preferred: str | None) -> list[str]:
+def choose_models(client: genai.Client, preferred: str | None) -> list[str]:
     if preferred:
         return [preferred]
 
-    available = set(get_available_models())
+    available = set(get_available_models(client))
     candidates: list[str] = []
 
     for candidate in DEFAULT_PRIORITY_MODELS:
@@ -169,7 +174,12 @@ def is_retryable_quota_error(message: str) -> bool:
     )
 
 
-def generate_json_response(model: Any, prompt: str, temperature: float) -> tuple[dict[str, Any], str]:
+def generate_json_response(
+    client: genai.Client,
+    model_name: str,
+    prompt: str,
+    temperature: float,
+) -> tuple[dict[str, Any], str]:
     retry_suffixes = [
         "",
         "\n\n중요: 반드시 마지막 `}`까지 닫힌 완전한 JSON object 한 개만 반환하세요. 코드펜스나 설명 문장은 절대 붙이지 마세요.",
@@ -180,9 +190,10 @@ def generate_json_response(model: Any, prompt: str, temperature: float) -> tuple
     last_raw = ""
 
     for suffix in retry_suffixes:
-        response = model.generate_content(
-            prompt + suffix,
-            generation_config={
+        response = client.models.generate_content(
+            model=model_name,
+            contents=prompt + suffix,
+            config={
                 "temperature": temperature,
                 "max_output_tokens": 8192,
                 "response_mime_type": "application/json",
@@ -206,6 +217,7 @@ def generate_json_response(model: Any, prompt: str, temperature: float) -> tuple
 
 
 def generate_json_response_with_retry(
+    client: genai.Client,
     model_names: list[str],
     prompt: str,
     temperature: float,
@@ -216,9 +228,8 @@ def generate_json_response_with_retry(
 
     for attempt in range(1, max_retries + 1):
         for model_name in model_names:
-            model = genai.GenerativeModel(model_name)
             try:
-                payload, raw_text = generate_json_response(model, prompt, temperature)
+                payload, raw_text = generate_json_response(client, model_name, prompt, temperature)
                 return payload, raw_text, model_name
             except Exception as exc:  # noqa: BLE001
                 last_error = exc
@@ -263,11 +274,12 @@ def main() -> None:
     raw_output_path = output_path.with_suffix(".raw.txt")
 
     api_key = load_api_key()
-    genai.configure(api_key=api_key)
-    model_names = choose_models(args.model)
+    client = create_client(api_key)
+    model_names = choose_models(client, args.model)
     prompt = read_prompt(prompt_path)
 
     payload, raw_text, model_name = generate_json_response_with_retry(
+        client,
         model_names,
         prompt,
         args.temperature,
