@@ -35,9 +35,15 @@ import { loadReports } from "@/lib/reports";
 import { listRepoFiles, readRepoJsonFile } from "@/lib/repo-artifacts";
 import { resolveRepoRoot } from "@/lib/repo-root";
 import {
+  extractResearchActionGroups,
   extractResearchActionPoints,
+  extractResearchCatalystTimeline,
+  extractResearchCheckpoints,
+  extractResearchDiagnosis,
+  extractResearchPortfolioInsights,
   extractResearchScenarioBranches,
   extractResearchSections,
+  extractResearchStrategyGuide,
   extractResearchTags,
   getResearchBriefingStats,
   isStructuredResearchSectionTitle,
@@ -310,6 +316,44 @@ function researchTagClass(tone: string) {
   if (tone === "amber") return "border-amber-500/30 bg-amber-950/20 text-amber-300";
   if (tone === "fuchsia") return "border-fuchsia-500/30 bg-fuchsia-950/20 text-fuchsia-300";
   return "border-zinc-700 bg-zinc-900 text-zinc-300";
+}
+
+function buildResearchSectionLabel(title: string, index: number) {
+  const normalized = title.replace(/\([^)]*\)/g, "").trim();
+
+  if (/오늘 한 줄 진단/i.test(normalized)) return "진단";
+  if (/촉매/i.test(normalized)) return "촉매";
+  if (/macro/i.test(normalized) || /매크로|거시/.test(normalized)) return "매크로";
+  if (/strategy/i.test(normalized) || /이번 주 대응/.test(normalized)) return "전략";
+  if (/action/i.test(normalized) || /오늘 실행/.test(normalized)) return "실행";
+  if (/시사점/.test(normalized)) return "시사점";
+  if (/체크포인트/.test(normalized)) return "체크";
+
+  return `Section ${index + 1}`;
+}
+
+function normalizeLookupValue(value: string) {
+  return value.toLowerCase().replace(/[^a-z0-9가-힣]/g, "");
+}
+
+function formatResearchAccountLabel(
+  label: string,
+  accounts: PortfolioAccount[] | undefined,
+) {
+  const normalized = normalizeLookupValue(label);
+  const matched = accounts?.find((account) => {
+    const candidates = [account.key, account.label].filter(Boolean);
+    return candidates.some((candidate) => normalizeLookupValue(candidate) === normalized);
+  });
+
+  if (matched) {
+    return matched.label;
+  }
+
+  if (/pension|연금/i.test(label)) return "연금저축";
+  if (/toss|토스/i.test(label)) return "토스증권";
+  if (/isa/i.test(label)) return "ISA";
+  return label;
 }
 
 function buildMarketMood(indices: Record<string, MarketIndex>) {
@@ -824,8 +868,34 @@ export default function DashboardPage() {
   const researchSections = researchBriefing
     ? extractResearchSections(researchBriefing.content)
         .filter((section) => !isStructuredResearchSectionTitle(section.title))
-        .slice(0, 3)
     : [];
+  const researchDiagnosis = researchBriefing
+    ? extractResearchDiagnosis(researchBriefing.content)
+    : null;
+  const researchCatalysts = researchBriefing
+    ? extractResearchCatalystTimeline(researchBriefing.content, 6)
+    : [];
+  const researchCheckpoints = researchBriefing
+    ? extractResearchCheckpoints(researchBriefing.content, 8)
+    : [];
+  const researchStrategyGuide = researchBriefing
+    ? extractResearchStrategyGuide(researchBriefing.content)
+    : {
+        cashGuidance: null,
+        weeklyPriority: null,
+        accountGoals: [],
+        supportingPoints: [],
+      };
+  const researchActionGroups = researchBriefing
+    ? extractResearchActionGroups(researchBriefing.content, 4)
+    : [];
+  const researchPortfolioInsights = researchBriefing
+    ? extractResearchPortfolioInsights(researchBriefing.content)
+    : {
+        strengths: [],
+        vulnerabilities: [],
+        upgradeAxes: [],
+      };
   const researchScenarioBranches = researchBriefing
     ? extractResearchScenarioBranches(researchBriefing.content, 2)
     : [];
@@ -839,7 +909,7 @@ export default function DashboardPage() {
   const researchSectionTabs: ResearchSectionTabItem[] = researchSections.map(
     (section, index) => ({
       id: `dashboard-research-section-${index + 1}`,
-      label: `Section ${index + 1}`,
+      label: buildResearchSectionLabel(section.title, index),
       title: section.title,
       body: section.body,
       tags: extractResearchTags(`${section.title}\n${section.body}`, 5),
@@ -963,13 +1033,15 @@ export default function DashboardPage() {
   const scoreDrivers = focusAccount?.scoreDrivers.slice(0, 4) ?? [];
   const improvementActions = focusAccount?.improvementActions.slice(0, 3) ?? [];
   const heroDescription = mainScenario
-    ? `${marketMood.description} 현재 기본 시나리오는 ${mainScenario.narrative || mainScenario.label}이며, 이번 주 전략 초점은 ${
+    ? `${researchDiagnosis ?? marketMood.description} 현재 기본 시나리오는 ${
+        mainScenario.narrative || mainScenario.label
+      }이며, 이번 주 전략 초점은 ${
         portfolioGuide?.globalActions[0] ??
         mainScenario.response ??
         "현금 비중과 계좌별 목표 재정렬"
       } 입니다.`
     : portfolioGuide
-      ? `${marketMood.description} 현재 총 평가금액은 ${formatCurrency(
+      ? `${researchDiagnosis ?? marketMood.description} 현재 총 평가금액은 ${formatCurrency(
           totals?.totalEvaluationAmount,
         )}이며, 이번 주 전략 초점은 ${
           portfolioGuide.globalActions[0] ?? "우선순위 재정렬"
@@ -1546,6 +1618,113 @@ export default function DashboardPage() {
               analysisDateLabel={portfolioGuide.analysisDateLabel}
             />
           </div>
+
+          {(researchStrategyGuide.cashGuidance ||
+            researchStrategyGuide.weeklyPriority ||
+            researchStrategyGuide.accountGoals.length > 0 ||
+            researchPortfolioInsights.strengths.length > 0 ||
+            researchPortfolioInsights.vulnerabilities.length > 0 ||
+            researchPortfolioInsights.upgradeAxes.length > 0) && (
+            <div className="mt-5 grid gap-3 lg:grid-cols-3">
+              <div className="glass-panel-soft rounded-[1.5rem] p-4">
+                <p className="section-kicker">Report Overlay</p>
+                <h3 className="mt-2 text-lg font-semibold text-zinc-50">
+                  리포트 기반 주간 전략
+                </h3>
+                <ul className="mt-4 space-y-3 text-sm leading-6 text-zinc-300">
+                  {researchStrategyGuide.cashGuidance && (
+                    <li className="flex gap-2">
+                      <Target size={15} className="mt-1 shrink-0 text-amber-300" />
+                      <span>{researchStrategyGuide.cashGuidance}</span>
+                    </li>
+                  )}
+                  {researchStrategyGuide.weeklyPriority && (
+                    <li className="flex gap-2">
+                      <Target size={15} className="mt-1 shrink-0 text-emerald-300" />
+                      <span>{researchStrategyGuide.weeklyPriority}</span>
+                    </li>
+                  )}
+                  {researchStrategyGuide.supportingPoints.slice(0, 2).map((point) => (
+                    <li key={point} className="flex gap-2">
+                      <Target size={15} className="mt-1 shrink-0 text-sky-300" />
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="glass-panel-soft rounded-[1.5rem] p-4">
+                <p className="section-kicker">Account Goals</p>
+                <h3 className="mt-2 text-lg font-semibold text-zinc-50">
+                  계좌별 목표
+                </h3>
+                {researchStrategyGuide.accountGoals.length > 0 ? (
+                  <div className="mt-4 space-y-3">
+                    {researchStrategyGuide.accountGoals.map((item) => (
+                      <div
+                        key={`${item.account}-${item.goal}`}
+                        className="rounded-[1.05rem] border border-white/8 bg-white/[0.03] p-3"
+                      >
+                        <p className="text-[11px] uppercase tracking-[0.18em] text-zinc-500">
+                          {formatResearchAccountLabel(item.account, portfolio?.accounts)}
+                        </p>
+                        <p className="mt-2 text-sm leading-6 text-zinc-200">{item.goal}</p>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="mt-4 text-sm text-zinc-400">
+                    이번 브리핑에는 별도 계좌 목표가 구조화되어 있지 않습니다.
+                  </p>
+                )}
+              </div>
+
+              <div className="glass-panel-soft rounded-[1.5rem] p-4">
+                <p className="section-kicker">Portfolio Insight</p>
+                <h3 className="mt-2 text-lg font-semibold text-zinc-50">
+                  포트폴리오 시사점
+                </h3>
+                <div className="mt-4 space-y-4 text-sm">
+                  {researchPortfolioInsights.strengths.length > 0 && (
+                    <div>
+                      <p className="text-xs uppercase tracking-[0.16em] text-emerald-300">
+                        좋은 점
+                      </p>
+                      <ul className="mt-2 space-y-1.5 text-zinc-300">
+                        {researchPortfolioInsights.strengths.slice(0, 2).map((item) => (
+                          <li key={item}>- {item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  {researchPortfolioInsights.vulnerabilities.length > 0 && (
+                    <div>
+                      <p className="text-xs uppercase tracking-[0.16em] text-rose-300">
+                        취약점
+                      </p>
+                      <ul className="mt-2 space-y-1.5 text-zinc-300">
+                        {researchPortfolioInsights.vulnerabilities.slice(0, 2).map((item) => (
+                          <li key={item}>- {item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  {researchPortfolioInsights.upgradeAxes.length > 0 && (
+                    <div>
+                      <p className="text-xs uppercase tracking-[0.16em] text-sky-300">
+                        보완 축
+                      </p>
+                      <ul className="mt-2 space-y-1.5 text-zinc-300">
+                        {researchPortfolioInsights.upgradeAxes.slice(0, 3).map((item) => (
+                          <li key={item}>- {item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          )}
         </section>
       )}
 
@@ -1661,6 +1840,43 @@ export default function DashboardPage() {
               )}
             </div>
           </div>
+
+          {researchActionGroups.length > 0 && (
+            <div className="mt-5 glass-panel-soft rounded-[1.65rem] p-5">
+              <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+                <div>
+                  <p className="section-kicker">Report Action Overlay</p>
+                  <h3 className="mt-2 text-xl font-semibold text-zinc-50">
+                    새 리포트에서 올라온 오늘 실행안
+                  </h3>
+                  <p className="mt-1 text-sm text-zinc-400">
+                    기존 체크리스트에 없던 계좌별 실행 문구를 rich briefing에서 다시 꺼냈습니다.
+                  </p>
+                </div>
+                <span className="rounded-full border border-amber-500/25 bg-amber-950/20 px-3 py-1 text-xs text-amber-200">
+                  {researchActionGroups.length}개 계좌 구좌 연결
+                </span>
+              </div>
+
+              <div className="mt-4 grid gap-3 md:grid-cols-3">
+                {researchActionGroups.map((group) => (
+                  <div
+                    key={group.id}
+                    className="rounded-[1.15rem] border border-white/8 bg-white/[0.03] p-4"
+                  >
+                    <p className="text-[11px] uppercase tracking-[0.18em] text-zinc-500">
+                      {formatResearchAccountLabel(group.account, portfolio?.accounts)}
+                    </p>
+                    <ul className="mt-3 space-y-2 text-sm leading-6 text-zinc-200">
+                      {group.items.map((item) => (
+                        <li key={`${group.id}-${item}`}>- {item}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
 
           {portfolioGuide && (
             <div className="mt-5">
@@ -1788,6 +2004,79 @@ export default function DashboardPage() {
               compact
             />
           </div>
+
+          {(researchDiagnosis || researchCatalysts.length > 0 || researchCheckpoints.length > 0) && (
+            <div className="mt-5 grid gap-3 xl:grid-cols-[minmax(0,0.88fr),minmax(0,1.12fr)]">
+              {researchDiagnosis && (
+                <div className="glass-panel-soft rounded-[1.5rem] p-4">
+                  <p className="section-kicker">오늘 한 줄 진단</p>
+                  <p className="mt-3 text-base font-medium leading-7 text-zinc-100">
+                    {researchDiagnosis}
+                  </p>
+                </div>
+              )}
+
+              {researchCatalysts.length > 0 && (
+                <div className="glass-panel-soft rounded-[1.5rem] p-4">
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <p className="section-kicker">Catalyst Timeline</p>
+                      <h3 className="mt-2 text-lg font-semibold text-zinc-50">
+                        6개월 촉매 일정
+                      </h3>
+                    </div>
+                    <span className="rounded-full border border-sky-500/25 bg-sky-950/20 px-2.5 py-1 text-[11px] text-sky-200">
+                      {researchCatalysts.length}개
+                    </span>
+                  </div>
+
+                  <div className="mt-4 space-y-3">
+                    {researchCatalysts.map((item) => (
+                      <div
+                        key={item.id}
+                        className="rounded-[1.1rem] border border-white/8 bg-white/[0.03] p-3"
+                      >
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span className="rounded-full border border-emerald-500/25 bg-emerald-950/20 px-2.5 py-1 text-[11px] text-emerald-200">
+                            {item.scope}
+                          </span>
+                          <span className="text-xs text-zinc-500">{item.timing}</span>
+                        </div>
+                        <p className="mt-2 text-sm font-medium text-zinc-100">{item.event}</p>
+                        {item.why && (
+                          <p className="mt-1 text-xs leading-5 text-zinc-400">{item.why}</p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {researchCheckpoints.length > 0 && (
+                <div
+                  className={joinClasses(
+                    "glass-panel-soft rounded-[1.5rem] p-4",
+                    researchDiagnosis || researchCatalysts.length > 0 ? "xl:col-span-2" : "",
+                  )}
+                >
+                  <p className="section-kicker">Watchlist</p>
+                  <h3 className="mt-2 text-lg font-semibold text-zinc-50">
+                    다음 체크포인트
+                  </h3>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {researchCheckpoints.map((item) => (
+                      <span
+                        key={item.id}
+                        className="rounded-full border border-white/8 bg-white/[0.04] px-3 py-1.5 text-xs text-zinc-300"
+                      >
+                        {item.label}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
 
           {researchScenarioBranches.length > 0 && (
             <div className="mt-5">

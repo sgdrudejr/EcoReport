@@ -75,6 +75,43 @@ export interface ResearchScenarioBranch {
   checkpoints: string[];
 }
 
+export interface ResearchCatalystItem {
+  id: string;
+  scope: string;
+  timing: string;
+  event: string;
+  why: string;
+}
+
+export interface ResearchCheckpointItem {
+  id: string;
+  label: string;
+}
+
+export interface ResearchAccountGoal {
+  account: string;
+  goal: string;
+}
+
+export interface ResearchStrategyGuide {
+  cashGuidance: string | null;
+  weeklyPriority: string | null;
+  accountGoals: ResearchAccountGoal[];
+  supportingPoints: string[];
+}
+
+export interface ResearchActionGroup {
+  id: string;
+  account: string;
+  items: string[];
+}
+
+export interface ResearchPortfolioInsights {
+  strengths: string[];
+  vulnerabilities: string[];
+  upgradeAxes: string[];
+}
+
 const RESEARCH_TAG_RULES: Array<{
   label: string;
   tone: ResearchTag["tone"];
@@ -106,6 +143,10 @@ const SCENARIO_SECTION_PATTERN =
 
 function getResearchMeta(relativePath: string) {
   return readRepoJsonFile<ResearchBriefingMeta>(`${relativePath}.meta.json`);
+}
+
+function getResearchSectionByPattern(content: string, pattern: RegExp) {
+  return extractResearchSections(content).find((section) => pattern.test(section.title)) ?? null;
 }
 
 export function loadResearchBriefings(): ResearchBriefingDocument[] {
@@ -257,6 +298,250 @@ export function extractResearchActionPoints(content: string, limit = 4): string[
 
 export function extractSectionTags(section: ResearchSection, limit = 6) {
   return extractResearchTags(`${section.title}\n${section.body}`, limit);
+}
+
+function parseBulletGroups(body: string) {
+  const lines = body.replace(/\r\n/g, "\n").split("\n");
+  const groups: Array<{ header: string; items: string[] }> = [];
+  let current: { header: string; items: string[] } | null = null;
+
+  for (const rawLine of lines) {
+    const topLevelMatch = rawLine.match(/^[-*]\s+(.+)$/);
+    if (topLevelMatch) {
+      if (current) groups.push(current);
+      current = {
+        header: cleanMarkdownInline(topLevelMatch[1]),
+        items: [],
+      };
+      continue;
+    }
+
+    if (!current) continue;
+
+    const nestedMatch = rawLine.match(/^\s{2,}(?:[-*]|\d+\.)\s+(.+)$/);
+    if (nestedMatch) {
+      current.items.push(cleanMarkdownInline(nestedMatch[1]));
+      continue;
+    }
+
+    if (rawLine.trim()) {
+      current.items.push(cleanMarkdownInline(rawLine.trim()));
+    }
+  }
+
+  if (current) groups.push(current);
+  return groups;
+}
+
+function parseLabelValue(line: string) {
+  const normalized = cleanMarkdownInline(line);
+  const match = normalized.match(/^([^:：]+?)\s*[:：]\s*(.*)$/);
+  if (!match) {
+    return {
+      label: normalized,
+      value: "",
+    };
+  }
+
+  return {
+    label: match[1].trim(),
+    value: match[2].trim(),
+  };
+}
+
+function uniqueStrings(items: string[]) {
+  return [...new Set(items.map((item) => item.trim()).filter(Boolean))];
+}
+
+export function extractResearchDiagnosis(content: string) {
+  const section = getResearchSectionByPattern(content, /오늘 한 줄 진단|one line/i);
+  if (!section) return null;
+
+  const bullet = parseBulletGroups(section.body)[0];
+  if (bullet?.header) return bullet.header;
+
+  const firstLine = section.body
+    .replace(/\r\n/g, "\n")
+    .split("\n")
+    .map((line) => cleanMarkdownInline(line))
+    .find(Boolean);
+
+  return firstLine ?? null;
+}
+
+export function extractResearchCatalystTimeline(
+  content: string,
+  limit = 6,
+): ResearchCatalystItem[] {
+  const section = getResearchSectionByPattern(content, /촉매 일정|catalyst/i);
+  if (!section) return [];
+
+  return parseBulletGroups(section.body)
+    .map((group, index) => {
+      const line = cleanMarkdownInline(group.header);
+      const bracketMatch = line.match(/^\[(.+?)\]\s*(.+)$/);
+      const scope = bracketMatch?.[1]?.trim() ?? "시장";
+      const rest = bracketMatch?.[2]?.trim() ?? line;
+      const [timing = "", event = "", ...whyParts] = rest
+        .split(/\s*\/\s*/)
+        .map((item) => item.trim())
+        .filter(Boolean);
+
+      return {
+        id: `catalyst-${index + 1}`,
+        scope,
+        timing: timing || "시기 업데이트 대기",
+        event: event || rest,
+        why: whyParts.join(" / "),
+      } satisfies ResearchCatalystItem;
+    })
+    .filter((item) => item.event)
+    .slice(0, limit);
+}
+
+export function extractResearchCheckpoints(
+  content: string,
+  limit = 8,
+): ResearchCheckpointItem[] {
+  const section = getResearchSectionByPattern(content, /체크포인트|watch/i);
+  if (!section) return [];
+
+  const items = parseBulletGroups(section.body).flatMap((group) => {
+    const { value } = parseLabelValue(group.header);
+    if (group.items.length > 0) {
+      return group.items;
+    }
+    return value ? [value] : [group.header];
+  });
+
+  return uniqueStrings(items)
+    .slice(0, limit)
+    .map((label, index) => ({
+      id: `checkpoint-${index + 1}`,
+      label,
+    }));
+}
+
+export function extractResearchStrategyGuide(content: string): ResearchStrategyGuide {
+  const section = getResearchSectionByPattern(content, /^Strategy\b|이번 주 대응/i);
+  if (!section) {
+    return {
+      cashGuidance: null,
+      weeklyPriority: null,
+      accountGoals: [],
+      supportingPoints: [],
+    };
+  }
+
+  const guide: ResearchStrategyGuide = {
+    cashGuidance: null,
+    weeklyPriority: null,
+    accountGoals: [],
+    supportingPoints: [],
+  };
+
+  for (const group of parseBulletGroups(section.body)) {
+    const { label, value } = parseLabelValue(group.header);
+    const combined = uniqueStrings([value, ...group.items]);
+
+    if (/현금 비중/i.test(label)) {
+      guide.cashGuidance = combined[0] ?? null;
+      continue;
+    }
+
+    if (/계좌별 목표/i.test(label)) {
+      guide.accountGoals = uniqueStrings(
+        group.items.map((item) => {
+          const parsed = parseLabelValue(item);
+          if (parsed.value) {
+            return `${parsed.label}: ${parsed.value}`;
+          }
+          return item;
+        }),
+      ).map((item) => {
+        const parsed = parseLabelValue(item);
+        return {
+          account: parsed.label,
+          goal: parsed.value || item,
+        };
+      });
+      continue;
+    }
+
+    if (/우선순위/i.test(label)) {
+      guide.weeklyPriority = combined[0] ?? null;
+      continue;
+    }
+
+    guide.supportingPoints.push(...combined);
+  }
+
+  guide.supportingPoints = uniqueStrings(guide.supportingPoints);
+  return guide;
+}
+
+export function extractResearchActionGroups(
+  content: string,
+  limit = 4,
+): ResearchActionGroup[] {
+  const section = getResearchSectionByPattern(content, /^Action\b|오늘 실행/i);
+  if (!section) return [];
+
+  return parseBulletGroups(section.body)
+    .map((group, index) => {
+      const { label, value } = parseLabelValue(group.header);
+      const items = uniqueStrings([value, ...group.items]);
+
+      return {
+        id: `action-group-${index + 1}`,
+        account: label || `Action ${index + 1}`,
+        items,
+      } satisfies ResearchActionGroup;
+    })
+    .filter((group) => group.items.length > 0)
+    .slice(0, limit);
+}
+
+export function extractResearchPortfolioInsights(content: string): ResearchPortfolioInsights {
+  const section = getResearchSectionByPattern(content, /포트폴리오 관점 시사점|시사점/i);
+  if (!section) {
+    return {
+      strengths: [],
+      vulnerabilities: [],
+      upgradeAxes: [],
+    };
+  }
+
+  const insights: ResearchPortfolioInsights = {
+    strengths: [],
+    vulnerabilities: [],
+    upgradeAxes: [],
+  };
+
+  for (const group of parseBulletGroups(section.body)) {
+    const { label, value } = parseLabelValue(group.header);
+    const items = uniqueStrings([value, ...group.items]);
+
+    if (/좋은 점|강점/i.test(label)) {
+      insights.strengths.push(...items);
+      continue;
+    }
+
+    if (/취약점|약점|리스크/i.test(label)) {
+      insights.vulnerabilities.push(...items);
+      continue;
+    }
+
+    if (/보완 축|보완|업그레이드/i.test(label)) {
+      insights.upgradeAxes.push(...items);
+    }
+  }
+
+  return {
+    strengths: uniqueStrings(insights.strengths),
+    vulnerabilities: uniqueStrings(insights.vulnerabilities),
+    upgradeAxes: uniqueStrings(insights.upgradeAxes),
+  };
 }
 
 export function extractSectionActionPoints(section: ResearchSection, limit = 3) {
