@@ -7,6 +7,41 @@
 - 다른 사람/다른 에이전트가 이어받을 때 회복 시간 단축
 - README가 너무 길어지지 않게 최근 변경 사항을 별도로 추적
 
+## 2026-04-06
+
+### Gemini Deep Research 오버레이 고정
+
+- Stage 1 추출물과 포트폴리오를 묶는 `Stage 1.5` 프롬프트 생성 스크립트 추가
+- Safari Gemini 웹 자동 주입/응답 저장 스크립트 추가
+- Deep Research 결과를 Stage 1 fact anchor와 다시 합성하는 `Stage 1.6` rich briefing 단계 추가
+
+### 아침 자동화 사이클 추가
+
+- `npm run automation:daily` 러너 추가
+- baseline 파이프라인 + Gemini Deep Research + Stage 1.6 + Stage 2~4 재계산 + wiki 갱신 + 검증까지 한 번에 실행
+- 결과를 아래에 남기도록 고정
+  - `data/analysis-state/YYYY-MM-DD/automation-cycle.json`
+  - `knowledge/daily/YYYY-MM-DD-automation-cycle.md`
+
+### 자동화 안정성 보강
+
+- Safari focus churn 완화
+- Stage 2 Gemini JSON 재시도 로직 추가
+- baseline 단계에서 전략/위키 중복 실행을 줄여 아침 자동화 효율 개선
+
+### 대시보드 의사결정 구조 재배치
+
+- 홈 흐름을 `Macro View -> Strategy -> Action`으로 재배치
+- 시나리오 트리, 촉매 일정, 체크포인트, 계좌별 목표, 포트폴리오 시사점, 계좌별 실행안을 단계별 구좌에 노출
+
+### 문서 체계 재정리
+
+- `docs/DOCS_MAP.md`
+- `docs/MULTI_TOOL_HANDOFF.md`
+- `docs/EXPERIMENT_PLAYBOOK.md`
+
+를 추가해 여러 코딩 프로그램과 담당자가 같은 기준으로 작업할 수 있게 정리
+
 ## 2026-04-04
 
 ### 운영 기준 변경
@@ -127,7 +162,8 @@
 
 새 담당자/새 에이전트는 아래 순서로 확인합니다.
 
-1. [README.md](/Users/seo/stock-pilot/README.md)
-2. [docs/STAGE_1_4_ARCHITECTURE.md](/Users/seo/stock-pilot/docs/STAGE_1_4_ARCHITECTURE.md)
-3. [docs/OPERATOR_RUNBOOK.md](/Users/seo/stock-pilot/docs/OPERATOR_RUNBOOK.md)
-4. 이 [docs/UPDATE_LOG.md](/Users/seo/stock-pilot/docs/UPDATE_LOG.md)
+1. [README.md](../README.md)
+2. [docs/DOCS_MAP.md](DOCS_MAP.md)
+3. [docs/MULTI_TOOL_HANDOFF.md](MULTI_TOOL_HANDOFF.md)
+4. [docs/OPERATOR_RUNBOOK.md](OPERATOR_RUNBOOK.md)
+5. 이 [docs/UPDATE_LOG.md](UPDATE_LOG.md)

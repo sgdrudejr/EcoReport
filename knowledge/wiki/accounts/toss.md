@@ -1,8 +1,8 @@
 ---
 title: 토스증권 Account Playbook
 type: account
-updated: 2026-04-03
-source_date: 2026-04-03
+updated: 2026-04-06
+source_date: 2026-04-06
 account_key: TOSS
 ---
 
@@ -11,7 +11,7 @@ account_key: TOSS
 ## Role
 
 - 역할 요약: 중동 지정학 리스크와 유가 상승이 시장 변동성을 키우고 있습니다. 토스증권은 AI·전력 인프라 비중 조정이 핵심입니다. 전술 테마와 성장 섹터를 민첩하게 반영하는 역할로 작동하는 계좌입니다.
-- 현재 점수는 48 입니다.
+- 현재 점수는 47 입니다.
 - 현재 가용 현금은 1,000,945원 입니다.
 
 ## Target Allocation
@@ -25,7 +25,7 @@ account_key: TOSS
 
 | 종목 | 코드 | 카테고리 | 평가금액 | 수량 | Action Score |
 | --- | --- | --- | ---: | ---: | ---: |
-| HANARO 원자력iSelect | 434730 | 원자력 | 443,190원 | 7 | 66 |
+| HANARO 원자력iSelect | 434730 | 원자력 | 443,190원 | 7 | 60 |
 | KODEX 선진국ESG액티브 | N/A | 미분류 | 465,000원 | 15 | N/A |
 | PLUS V K생산 | N/A | 미분류 | 383,475원 | 5 | N/A |
 
@@ -38,7 +38,8 @@ account_key: TOSS
 
 ## Candidate Assets
 
-- HANARO 원자력iSelect / 574,653원
+- HANARO 원자력iSelect / 344,792원
+- PLUS K방산 / 229,861원
 - KODEX 선진국ESG액티브
 - PLUS V K생산
 

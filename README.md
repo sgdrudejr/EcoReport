@@ -83,11 +83,27 @@ flowchart TD
 
 별도 아키텍처 문서:
 
+- [DOCS_MAP.md](docs/DOCS_MAP.md)
+- [MULTI_TOOL_HANDOFF.md](docs/MULTI_TOOL_HANDOFF.md)
+- [EXPERIMENT_PLAYBOOK.md](docs/EXPERIMENT_PLAYBOOK.md)
 - [STAGE_1_4_ARCHITECTURE.md](docs/STAGE_1_4_ARCHITECTURE.md)
 - [OPERATOR_RUNBOOK.md](docs/OPERATOR_RUNBOOK.md)
 - [SCORE_SYSTEM_V2.md](docs/SCORE_SYSTEM_V2.md)
 - [PRIVATE_ACCESS_RUNBOOK.md](docs/PRIVATE_ACCESS_RUNBOOK.md)
 - [FAILURES_AND_FALLBACKS.md](FAILURES_AND_FALLBACKS.md)
+- [UPDATE_LOG.md](docs/UPDATE_LOG.md)
+
+## 문서 읽는 순서
+
+여러 코딩 프로그램이나 다른 담당자가 이어받을 수 있게 문서를 역할별로 나눴습니다.
+
+- 처음 들어오면: `README.md`
+- 어떤 문서를 읽어야 할지 모르겠으면: `docs/DOCS_MAP.md`
+- 여러 툴이 번갈아 작업하면: `docs/MULTI_TOOL_HANDOFF.md`
+- 실제 실행/운영은: `docs/OPERATOR_RUNBOOK.md`
+- 실험/검증/회귀 테스트는: `docs/EXPERIMENT_PLAYBOOK.md`
+- 실패 원인과 폴백은: `FAILURES_AND_FALLBACKS.md`
+- 최근 변경 이력은: `docs/UPDATE_LOG.md`
 
 ## 매일 운영 명령
 
@@ -574,13 +590,17 @@ bash scripts/open-chatgpt-web-prompt.sh ideas
 ## 다른 날짜 / 다른 사람 / 다른 에이전트가 이어받는 순서
 
 1. 이 README 읽기
-2. [STAGE_1_4_ARCHITECTURE.md](docs/STAGE_1_4_ARCHITECTURE.md) 읽기
-3. [OPERATOR_RUNBOOK.md](docs/OPERATOR_RUNBOOK.md) 읽기
-4. 해당 날짜의 아래 파일 존재 여부 확인
+2. [DOCS_MAP.md](docs/DOCS_MAP.md) 읽기
+3. [MULTI_TOOL_HANDOFF.md](docs/MULTI_TOOL_HANDOFF.md) 읽기
+4. [OPERATOR_RUNBOOK.md](docs/OPERATOR_RUNBOOK.md) 읽기
+5. 실험/검증이면 [EXPERIMENT_PLAYBOOK.md](docs/EXPERIMENT_PLAYBOOK.md) 읽기
+6. 해당 날짜의 아래 파일 존재 여부 확인
    - `data/reports/YYYY-MM-DD/index.json`
    - `data/reports/YYYY-MM-DD/text-manifest.json`
+   - `data/analysis-state/YYYY-MM-DD/automation-cycle.json`
+   - `data/analysis-state/YYYY-MM-DD/system-health.json`
    - `data/portfolio/latest.json`
-5. 없으면 수집부터, 있으면 `run-strategy-pipeline.sh`부터 시작
+7. 없으면 수집부터, 있으면 `run-strategy-pipeline.sh` 또는 `automation:daily`부터 시작
 
 ## 현재 잘 되는 것
 

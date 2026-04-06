@@ -1,8 +1,8 @@
 ---
 title: KODEX KOFR금리액티브
 type: security
-updated: 2026-04-03
-source_date: 2026-04-03
+updated: 2026-04-06
+source_date: 2026-04-06
 code: 423160
 ---
 
@@ -15,7 +15,7 @@ code: 423160
 - 버킷: core_etf
 - 자산군: cash
 - 지역: KR
-- 현재 신호: HOLD / action score 64
+- 현재 신호: HOLD / action score 60
 
 ## Why This Can Make Money
 

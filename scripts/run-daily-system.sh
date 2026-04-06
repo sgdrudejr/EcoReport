@@ -16,6 +16,7 @@ SKIP_WIKI=0
 FORCE_COLLECT=0
 STAGE2_MODE="auto"
 RUN_GEMINI_BRIEFING="auto"
+SOFT_FAILURE_COUNT=0
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -130,6 +131,14 @@ run_soft_step() {
   return 1
 }
 
+run_nonfatal_step() {
+  if run_soft_step "$@"; then
+    return 0
+  fi
+  SOFT_FAILURE_COUNT=$((SOFT_FAILURE_COUNT + 1))
+  return 0
+}
+
 has_gemini_key() {
   local env_file="$ROOT_DIR/.env"
   if [[ -f "$env_file" ]] && grep -Eq '^GEMINI_API_KEY=.+$' "$env_file"; then
@@ -167,7 +176,7 @@ run_step "📈 시장 데이터 수집..." node scripts/fetch-market-data.js --d
 # FRED API 키가 있으면 거시경제 선행지표 수집 (레짐 감지 + Stage 3 선행지표 스코어에 활용)
 PYTHON_BIN_DAILY="$(python_bin)"
 if grep -Eq '^FRED_API_KEY=.+$' "$ROOT_DIR/.env" 2>/dev/null || [[ -n "${FRED_API_KEY:-}" ]]; then
-  run_soft_step "🌐 FRED 거시경제 데이터 수집..." "$PYTHON_BIN_DAILY" scripts/fetch-fred-macro.py --date "$DATE"
+  run_nonfatal_step "🌐 FRED 거시경제 데이터 수집..." "$PYTHON_BIN_DAILY" scripts/fetch-fred-macro.py --date "$DATE"
 else
   log "🌐 FRED 수집 스킵 (FRED_API_KEY 없음 — .env에 추가하면 선행지표 스코어 활성화)"
 fi
@@ -184,7 +193,7 @@ fi
 
 if [[ "$RUN_GEMINI_BRIEFING" == "yes" ]] || { [[ "$RUN_GEMINI_BRIEFING" == "auto" ]] && has_gemini_key; }; then
   PYTHON_BIN="$(python_bin)"
-  run_soft_step "🧠 Gemini 경제 브리핑 생성..." \
+  run_nonfatal_step "🧠 Gemini 경제 브리핑 생성..." \
     "$PYTHON_BIN" scripts/generate_gemini_briefing.py \
       --run-date "$RUN_DATE" \
       --effective-market-date "$DATE" \
@@ -192,7 +201,7 @@ if [[ "$RUN_GEMINI_BRIEFING" == "yes" ]] || { [[ "$RUN_GEMINI_BRIEFING" == "auto
       --output "knowledge/daily/$DATE-gemini-briefing.md" \
       --min-chunks 15 \
       --max-chunks 20
-  run_soft_step "🧠 Gemini 리치 브리핑 생성..." \
+  run_nonfatal_step "🧠 Gemini 리치 브리핑 생성..." \
     "$PYTHON_BIN" scripts/generate_gemini_briefing.py \
       --run-date "$RUN_DATE" \
       --effective-market-date "$DATE" \
@@ -227,13 +236,17 @@ fi
 if [[ "$SKIP_PUSH" == "1" ]]; then
   log "📤 GitHub 동기화 건너뜀 (--skip-push)"
 else
-  run_soft_step "📤 data 브랜치 동기화..." bash scripts/push-to-github.sh "$DATE"
+  run_nonfatal_step "📤 data 브랜치 동기화..." bash scripts/push-to-github.sh "$DATE"
 fi
 
 if [[ "$SKIP_VERIFY" == "1" ]]; then
   log "🩺 시스템 검증 건너뜀 (--skip-verify)"
 else
   run_step "🩺 일일 산출물 검증..." node scripts/verify-daily-system.js --date "$DATE"
+fi
+
+if [[ "$SOFT_FAILURE_COUNT" -gt 0 ]]; then
+  log "⚠️ 소프트 실패 ${SOFT_FAILURE_COUNT}건이 있었지만 파이프라인은 계속 완료했습니다."
 fi
 
 log "=================================================="

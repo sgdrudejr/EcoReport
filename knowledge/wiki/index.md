@@ -8,7 +8,7 @@
 
 ## Daily
 
-- [2026-04-03](daily/2026-04-03.md)
+- [2026-04-06](daily/2026-04-06.md)
 
 ## Accounts
 
@@ -18,9 +18,9 @@
 
 ## Securities
 
-- [KODEX 골드선물(H)](securities/132030-kodex-골드선물-h.md)
 - [TIGER 미국나스닥100](securities/133690-tiger-미국나스닥100.md)
 - [TIGER 미국S&P500](securities/360750-tiger-미국s-and-p500.md)
 - [KODEX KOFR금리액티브](securities/423160-kodex-kofr금리액티브.md)
 - [HANARO 원자력iSelect](securities/434730-hanaro-원자력iselect.md)
+- [PLUS K방산](securities/449450-plus-k방산.md)
 - [TIGER 미국배당+7%프리미엄다우존스](securities/458760-tiger-미국배당-7-프리미엄다우존스.md)

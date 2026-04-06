@@ -1,8 +1,8 @@
 ---
 title: HANARO 원자력iSelect
 type: security
-updated: 2026-04-03
-source_date: 2026-04-03
+updated: 2026-04-06
+source_date: 2026-04-06
 code: 434730
 ---
 
@@ -15,7 +15,7 @@ code: 434730
 - 버킷: satellite_etf
 - 자산군: equity
 - 지역: KR
-- 현재 신호: HOLD / action score 66
+- 현재 신호: HOLD / action score 60
 
 ## Why This Can Make Money
 
@@ -29,7 +29,7 @@ code: 434730
 
 ## Where It Shows Up In The Plan
 
-- 토스증권: 실행 후보 / 574,653원
+- 토스증권: 실행 후보 / 344,792원
 - 토스증권: 전략 후보
 - 토스증권: 보유 유지
 

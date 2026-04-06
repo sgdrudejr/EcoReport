@@ -275,6 +275,22 @@ function hasCompletionMessage(state) {
     .some((item) => /^연구를 완료했어요\./.test(item));
 }
 
+function inferResearchStarted(state) {
+  if (state.hasResearchStartedMessage || state.hasStopButton || hasCompletionMessage(state)) {
+    return true;
+  }
+
+  if (state.hasPlanGenerating) {
+    return true;
+  }
+
+  if (state.hasReportGenerating && !state.hasResearchStartButton) {
+    return true;
+  }
+
+  return false;
+}
+
 async function ensurePromptFile(promptPath, date) {
   if (fs.existsSync(promptPath)) return;
 
@@ -331,11 +347,7 @@ async function main() {
     }
 
     if (
-      state.hasResearchStartedMessage ||
-      state.hasStopButton ||
-      state.hasPlanGenerating ||
-      state.hasReportGenerating ||
-      hasCompletionMessage(state)
+      inferResearchStarted(state)
     ) {
       researchStarted = true;
     }

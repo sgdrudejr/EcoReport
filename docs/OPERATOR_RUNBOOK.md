@@ -4,6 +4,16 @@
 
 다른 날짜, 다른 사람, 다른 에이전트가 EcoReport를 이어받아도 같은 순서로 실행할 수 있도록 운영 절차를 고정합니다.
 
+## 관련 문서
+
+운영 전에 아래 문서를 같이 보면 훨씬 빠릅니다.
+
+- 전체 문서 지도: `docs/DOCS_MAP.md`
+- 여러 툴 handoff 규칙: `docs/MULTI_TOOL_HANDOFF.md`
+- 실험/검증 절차: `docs/EXPERIMENT_PLAYBOOK.md`
+- 실패와 폴백: `FAILURES_AND_FALLBACKS.md`
+- 최근 변경 이력: `docs/UPDATE_LOG.md`
+
 ## 기본 원칙
 
 - `igzun-daily-report`는 참고용 레퍼런스이며 EcoReport 런타임 의존성이 아닙니다.
@@ -183,11 +193,14 @@ node scripts/verify-daily-system.js --date YYYY-MM-DD
 새 담당자가 가장 먼저 볼 파일:
 
 1. `README.md`
-2. `docs/STAGE_1_4_ARCHITECTURE.md`
-3. `docs/OPERATOR_RUNBOOK.md`
-4. `data/portfolio/latest.json`
-5. `data/reports/YYYY-MM-DD/crawl-manifest.json`
-6. `reports/daily/YYYY-MM-DD-briefing.md`
+2. `docs/DOCS_MAP.md`
+3. `docs/MULTI_TOOL_HANDOFF.md`
+4. `docs/OPERATOR_RUNBOOK.md`
+5. `data/analysis-state/YYYY-MM-DD/automation-cycle.json`
+6. `data/analysis-state/YYYY-MM-DD/system-health.json`
+7. `data/portfolio/latest.json`
+8. `data/reports/YYYY-MM-DD/crawl-manifest.json`
+9. `reports/daily/YYYY-MM-DD-briefing.md`
 
 ## 현재 약점
 

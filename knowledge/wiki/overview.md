@@ -1,8 +1,8 @@
 ---
 title: EcoReport LLM Wiki Overview
 type: overview
-updated: 2026-04-03
-source_date: 2026-04-03
+updated: 2026-04-06
+source_date: 2026-04-06
 ---
 
 # EcoReport LLM Wiki
@@ -35,6 +35,7 @@ source_date: 2026-04-03
 
 ## Recent Daily Pages
 
+- [2026-04-06](daily/2026-04-06.md)
 - [2026-04-03](daily/2026-04-03.md)
 
 ## Related Docs

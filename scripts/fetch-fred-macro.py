@@ -13,7 +13,7 @@ import argparse
 import json
 import os
 import sys
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import requests
@@ -165,7 +165,10 @@ def main():
 
     print(f"📊 FRED 데이터 수집 시작 ({args.date})")
 
-    data: dict = {"date": args.date, "collected_at": datetime.utcnow().isoformat() + "Z"}
+    data: dict = {
+        "date": args.date,
+        "collected_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+    }
     raw: dict = {}
 
     for series_id, name, lookback, desc in SERIES:

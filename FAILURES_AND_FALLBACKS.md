@@ -147,7 +147,7 @@
 - 키가 없으면 mock 사용
 
 사용자가 해야 할 일:
-- `/Users/seo/stock-pilot/.env` 에 `GEMINI_API_KEY` 입력
+- `/Users/seo/Documents/Playground/EcoReport/.env` 에 `GEMINI_API_KEY` 입력
 
 ### 3-3. 웹 검색 기반 ETF 발굴
 
@@ -199,4 +199,3 @@
 - Stage 3에서 리포트 커버리지가 과도하게 높지 않은가
 - Stage 4 코멘트가 실제 읽을 만한 문장인가
 - `localhost:3000` 홈/리포트/포트폴리오가 모두 정상인가
-

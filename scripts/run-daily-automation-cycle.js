@@ -368,6 +368,7 @@ async function main() {
     "--skip-verify",
     "--skip-strategy",
     "--skip-wiki",
+    "--no-gemini-briefing",
   ];
   if (cli.forceCollect) {
     baselineArgs.push("--force-collect");

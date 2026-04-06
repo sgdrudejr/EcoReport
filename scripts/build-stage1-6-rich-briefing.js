@@ -19,6 +19,7 @@ import {
 
 const DEFAULT_MODEL = "gemini-2.5-flash";
 const DEFAULT_ARCHIVE_NAME = "10-stage1-6-final-research-briefing.md";
+const DEFAULT_MAX_RETRIES = 3;
 
 function parseArgs(argv) {
   const base = parseDateArgs(argv);
@@ -29,6 +30,7 @@ function parseArgs(argv) {
     output: base.output ?? null,
     archive: null,
     maxExtracts: 18,
+    maxRetries: DEFAULT_MAX_RETRIES,
   };
 
   for (let index = 0; index < argv.length; index += 1) {
@@ -45,10 +47,41 @@ function parseArgs(argv) {
     } else if (token === "--max-extracts" && argv[index + 1]) {
       args.maxExtracts = Number.parseInt(argv[index + 1], 10) || args.maxExtracts;
       index += 1;
+    } else if (token === "--max-retries" && argv[index + 1]) {
+      args.maxRetries = Number.parseInt(argv[index + 1], 10) || args.maxRetries;
+      index += 1;
     }
   }
 
   return args;
+}
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function parseRetryDelayMs(message) {
+  const retryInMatch = String(message ?? "").match(/Please retry in\s+([0-9.]+)s/i);
+  if (retryInMatch) {
+    const seconds = Number.parseFloat(retryInMatch[1]);
+    if (Number.isFinite(seconds) && seconds > 0) {
+      return Math.ceil(seconds * 1000) + 1000;
+    }
+  }
+
+  const secondsMatch = String(message ?? "").match(/retry_delay\s*\{\s*seconds:\s*(\d+)/i);
+  if (secondsMatch) {
+    const seconds = Number.parseInt(secondsMatch[1], 10);
+    if (Number.isFinite(seconds) && seconds > 0) {
+      return seconds * 1000 + 1000;
+    }
+  }
+
+  return null;
+}
+
+function isRetryableQuotaError(message) {
+  return /(quota exceeded|resourceexhausted|retry in\s+[0-9.]+s)/i.test(String(message ?? ""));
 }
 
 function resolveAbsolute(target) {
@@ -384,6 +417,29 @@ async function callGemini({ apiKey, model, prompt }) {
   return { text, payload };
 }
 
+async function callGeminiWithRetry({ apiKey, model, prompt, maxRetries }) {
+  let attempt = 0;
+
+  while (true) {
+    try {
+      return await callGemini({ apiKey, model, prompt });
+    } catch (error) {
+      attempt += 1;
+      const message = error instanceof Error ? error.message : String(error);
+      const canRetry = attempt < maxRetries && isRetryableQuotaError(message);
+      if (!canRetry) {
+        throw error;
+      }
+
+      const delayMs = parseRetryDelayMs(message) ?? attempt * 30000;
+      console.warn(
+        `stage1.6 Gemini quota/backoff 감지: ${Math.ceil(delayMs / 1000)}초 후 재시도 (${attempt}/${maxRetries - 1})`,
+      );
+      await sleep(delayMs);
+    }
+  }
+}
+
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const paths = resolvePaths(args);
@@ -413,10 +469,11 @@ async function main() {
     deepResearch: compact(deepResearch),
   });
 
-  const { text } = await callGemini({
+  const { text } = await callGeminiWithRetry({
     apiKey,
     model: args.model,
     prompt,
+    maxRetries: args.maxRetries,
   });
 
   const meta = {

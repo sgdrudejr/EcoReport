@@ -12,7 +12,8 @@ import argparse
 import json
 import os
 import re
-from datetime import datetime
+import time
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -26,6 +27,7 @@ DEFAULT_PRIORITY_MODELS = [
     "gemini-2.0-flash",
     "gemini-1.5-flash",
 ]
+DEFAULT_MAX_RETRIES = 3
 
 
 def parse_args() -> argparse.Namespace:
@@ -52,6 +54,12 @@ def parse_args() -> argparse.Namespace:
         default=0.2,
         help="생성 온도",
     )
+    parser.add_argument(
+        "--max-retries",
+        type=int,
+        default=DEFAULT_MAX_RETRIES,
+        help="quota/429 발생 시 전체 호출 재시도 횟수",
+    )
     return parser.parse_args()
 
 
@@ -65,10 +73,7 @@ def load_api_key() -> str:
     return api_key
 
 
-def choose_model(preferred: str | None) -> str:
-    if preferred:
-        return preferred
-
+def get_available_models() -> list[str]:
     available = set()
     for model in genai.list_models():
         name = model.name.replace("models/", "")
@@ -76,15 +81,28 @@ def choose_model(preferred: str | None) -> str:
         if "generateContent" in methods:
             available.add(name)
 
+    return sorted(available)
+
+
+def choose_models(preferred: str | None) -> list[str]:
+    if preferred:
+        return [preferred]
+
+    available = set(get_available_models())
+    candidates: list[str] = []
+
     for candidate in DEFAULT_PRIORITY_MODELS:
         if candidate in available:
-            return candidate
+            candidates.append(candidate)
 
     for name in sorted(available):
-        if "flash" in name:
-            return name
+        if "flash" in name and name not in candidates:
+            candidates.append(name)
 
-    raise RuntimeError("사용 가능한 Gemini Flash 모델을 찾지 못했습니다.")
+    if not candidates:
+        raise RuntimeError("사용 가능한 Gemini Flash 모델을 찾지 못했습니다.")
+
+    return candidates
 
 
 def extract_json_block(text: str) -> Any:
@@ -130,6 +148,27 @@ def validate_payload(payload: Any) -> dict[str, Any]:
     return payload
 
 
+def extract_exception_message(exc: Exception) -> str:
+    return str(exc).strip()
+
+
+def parse_retry_delay_seconds(message: str) -> int | None:
+    match = re.search(r"Please retry in ([0-9.]+)s", message)
+    if not match:
+        return None
+    return max(1, int(float(match.group(1))) + 1)
+
+
+def is_retryable_quota_error(message: str) -> bool:
+    lowered = message.lower()
+    return (
+        "resourceexhausted" in lowered
+        or "quota exceeded" in lowered
+        or "please retry in" in lowered
+        or "429" in lowered
+    )
+
+
 def generate_json_response(model: Any, prompt: str, temperature: float) -> tuple[dict[str, Any], str]:
     retry_suffixes = [
         "",
@@ -166,6 +205,47 @@ def generate_json_response(model: Any, prompt: str, temperature: float) -> tuple
     raise RuntimeError(f"{last_error} | raw_length={len(last_raw)}")
 
 
+def generate_json_response_with_retry(
+    model_names: list[str],
+    prompt: str,
+    temperature: float,
+    max_retries: int,
+) -> tuple[dict[str, Any], str, str]:
+    last_error: Exception | None = None
+    sleep_seconds = 0
+
+    for attempt in range(1, max_retries + 1):
+        for model_name in model_names:
+            model = genai.GenerativeModel(model_name)
+            try:
+                payload, raw_text = generate_json_response(model, prompt, temperature)
+                return payload, raw_text, model_name
+            except Exception as exc:  # noqa: BLE001
+                last_error = exc
+                message = extract_exception_message(exc)
+                delay = parse_retry_delay_seconds(message)
+                if delay:
+                    sleep_seconds = max(sleep_seconds, delay)
+
+                if is_retryable_quota_error(message):
+                    continue
+                raise
+
+        if attempt < max_retries:
+            wait_for = sleep_seconds or min(60, 15 * attempt)
+            print(
+                f"[stage2-gemini] quota/retryable 오류로 {wait_for}s 대기 후 재시도 "
+                f"({attempt}/{max_retries})",
+                flush=True,
+            )
+            time.sleep(wait_for)
+            sleep_seconds = 0
+
+    if last_error is None:
+        raise RuntimeError("Gemini Stage 2 호출에 실패했습니다.")
+    raise last_error
+
+
 def write_json(path: Path, payload: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -184,16 +264,23 @@ def main() -> None:
 
     api_key = load_api_key()
     genai.configure(api_key=api_key)
-    model_name = choose_model(args.model)
+    model_names = choose_models(args.model)
     prompt = read_prompt(prompt_path)
 
-    model = genai.GenerativeModel(model_name)
-    payload, raw_text = generate_json_response(model, prompt, args.temperature)
+    payload, raw_text, model_name = generate_json_response_with_retry(
+        model_names,
+        prompt,
+        args.temperature,
+        max(1, args.max_retries),
+    )
     write_text(raw_output_path, raw_text)
     payload["date"] = args.date
     payload["runDate"] = args.run_date or args.date
     payload["effectiveMarketDate"] = args.effective_market_date or args.date
-    payload["generatedAt"] = payload.get("generatedAt") or datetime.utcnow().isoformat() + "Z"
+    payload["generatedAt"] = (
+        payload.get("generatedAt")
+        or datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
+    )
     payload["source"] = "gemini"
     payload["model"] = model_name
 

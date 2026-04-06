@@ -92,7 +92,7 @@ EcoReport의 기준 데이터는 Mac Mini의 로컬 파일입니다.
 일일 루프는 아래만 돌면 됩니다.
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/EcoReport
 bash scripts/run-daily-system.sh --date YYYY-MM-DD --skip-push
 ```
 
@@ -111,14 +111,14 @@ bash scripts/run-daily-system.sh --date YYYY-MM-DD --skip-push
 대시보드 실행:
 
 ```bash
-cd /Users/seo/stock-pilot/dashboard
+cd /Users/seo/Documents/Playground/EcoReport/dashboard
 npm run dev
 ```
 
 또는 운영 모드:
 
 ```bash
-cd /Users/seo/stock-pilot/dashboard
+cd /Users/seo/Documents/Playground/EcoReport/dashboard
 npm run build
 npm run start
 ```
@@ -126,7 +126,7 @@ npm run start
 파이프라인 실행:
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/EcoReport
 bash scripts/run-daily-system.sh --date YYYY-MM-DD --skip-push
 ```
 
