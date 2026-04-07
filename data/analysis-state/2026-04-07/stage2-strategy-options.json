@@ -1,0 +1,243 @@
+{
+  "date": "2026-04-07",
+  "macro_view": {
+    "regime": "HIGH_VOL",
+    "confidence": "HIGH",
+    "summary": "AI 인프라 투자와 중동발 지정학적 리스크가 충돌하며 고유가발 인플레이션 압력이 커지는 가운데, 국내 증시는 선방했으나 시장의 불확실성은 여전합니다."
+  },
+  "strategy_changes": [
+    {
+      "theme": "AI 인프라",
+      "direction": "reinforce",
+      "why_now": "AI 인프라 투자 확대가 기술 섹터 성장을 견인하며, 특히 광통신 등 핵심 병목 구간의 직접적인 노출이 필요합니다.",
+      "source_reports": [
+        "report_006",
+        "report_004"
+      ]
+    },
+    {
+      "theme": "방산/원자력/원자재",
+      "direction": "reinforce",
+      "why_now": "중동 지정학적 리스크 완화 기대감 속에서도 고유가 압력과 구조적 국방비 확대 기조가 지속되어 관련 섹터의 비중 확대가 유효합니다.",
+      "source_reports": [
+        "report_009",
+        "report_008",
+        "report_007",
+        "report_001"
+      ]
+    },
+    {
+      "theme": "인플레이션 헤지/방어",
+      "direction": "reinforce",
+      "why_now": "고유가로 인한 물가 압력 상승이 예상되어 인플레이션 헤지 및 방어적 성격의 자산 편입을 통해 포트폴리오 안정성을 높여야 합니다.",
+      "source_reports": [
+        "report_002"
+      ]
+    },
+    {
+      "theme": "현금 활용",
+      "direction": "reduce",
+      "why_now": "현재 높은 현금 비중을 활용하여 핵심 자산 편입 기회를 잡고, 시장 변동성 확대 시 추가 매수 여력을 확보합니다.",
+      "source_reports": [
+        "report_001",
+        "report_002"
+      ]
+    }
+  ],
+  "account_actions": [
+    {
+      "account_key": "ISA",
+      "bias": "aggressive_add",
+      "rationale": "비과세 혜택을 활용하여 방산 및 AI 인프라 관련 국내 상장 ETF 비중을 확대하여 수익 극대화를 추구합니다.",
+      "buy_candidates": [
+        "449450",
+        "458770"
+      ],
+      "trim_candidates": [],
+      "hold_candidates": [
+        "360750",
+        "458760"
+      ],
+      "reserve_cash_note": "가용 현금의 약 60%를 핵심 자산 편입에 활용하고, 나머지는 시장 변동성 확대 시 추가 매수 기회로 보유합니다."
+    },
+    {
+      "account_key": "PENSION",
+      "bias": "selective_add",
+      "rationale": "장기 안정적 복리 성장을 위해 미국 지수 및 배당 테마를 유지하되, 인플레이션 방어를 위한 방어적 섹터 ETF를 일부 편입합니다.",
+      "buy_candidates": [
+        "458760"
+      ],
+      "trim_candidates": [
+        "423160"
+      ],
+      "hold_candidates": [
+        "133690",
+        "360750"
+      ],
+      "reserve_cash_note": "장기적 관점에서 시장 조정 시 매수 기회를 위해 현금 일부를 유지합니다."
+    },
+    {
+      "account_key": "TOSS",
+      "bias": "selective_add",
+      "rationale": "글로벌 대안 자산(원자재, 해외 AI 인프라 기업)에 직접 투자하여 포트폴리오의 알파 수익을 창출합니다.",
+      "buy_candidates": [
+        "434730"
+      ],
+      "trim_candidates": [],
+      "hold_candidates": [
+        "KODEX 선진국ESG액티브",
+        "PLUS V K생산"
+      ],
+      "reserve_cash_note": "해외 AI 인프라 기업 및 원자재 ETF 추가 매수를 위한 현금을 확보합니다."
+    },
+    {
+      "account_key": "KIS_MAIN",
+      "bias": "aggressive_add",
+      "rationale": "글로벌 대안 자산(원자재, 해외 AI 인프라 기업)에 직접 투자하여 포트폴리오의 알파 수익을 창출합니다.",
+      "buy_candidates": [
+        "COPX"
+      ],
+      "trim_candidates": [],
+      "hold_candidates": [
+        "434730",
+        "449450"
+      ],
+      "reserve_cash_note": "해외 AI 인프라 기업 및 원자재 ETF 분할 매수를 위한 현금을 유지합니다."
+    }
+  ],
+  "candidate_scores": [
+    {
+      "code": "449450",
+      "name": "PLUS K방산",
+      "stance": "buy",
+      "target_accounts": [
+        "ISA",
+        "KIS_MAIN"
+      ],
+      "horizon": "3m",
+      "confidence": "HIGH",
+      "thesis": "지정학적 리스크 확대와 구조적 국방비 증강 기조 속에서 K-방산의 성장이 기대됩니다.",
+      "risks": [
+        "중동 지역 긴장 완화 시 단기 조정 가능성",
+        "현지화 전략 실패 시 성장 둔화"
+      ]
+    },
+    {
+      "code": "360750",
+      "name": "TIGER 미국S&P500",
+      "stance": "hold",
+      "target_accounts": [
+        "ISA",
+        "PENSION"
+      ],
+      "horizon": "3m",
+      "confidence": "HIGH",
+      "thesis": "AI 인프라 투자 확대가 기술 섹터 성장을 견인하며 미국 시장의 상승 추세를 지지할 것입니다.",
+      "risks": [
+        "고유가발 인플레이션 압력 지속",
+        "미국 연준의 금리 인하 지연"
+      ]
+    },
+    {
+      "code": "458760",
+      "name": "TIGER 미국배당다우존스스타데일리커...",
+      "stance": "buy",
+      "target_accounts": [
+        "PENSION"
+      ],
+      "horizon": "3m",
+      "confidence": "MEDIUM",
+      "thesis": "장기 안정적 복리 성장을 추구하며, 인플레이션 헤지를 위한 배당 테마의 매력이 유효합니다.",
+      "risks": [
+        "금리 인하 지연 시 성장주 대비 상대적 매력 감소"
+      ]
+    },
+    {
+      "code": "133690",
+      "name": "TIGER 미국나스닥100",
+      "stance": "hold",
+      "target_accounts": [
+        "PENSION"
+      ],
+      "horizon": "3m",
+      "confidence": "MEDIUM",
+      "thesis": "AI 성장 동력의 핵심인 기술주에 대한 노출을 유지하며 장기 성장을 기대합니다.",
+      "risks": [
+        "기술주 버블 논란 재점화",
+        "고금리 환경 지속 시 밸류에이션 부담"
+      ]
+    },
+    {
+      "code": "434730",
+      "name": "HANARO 원자력iSelect",
+      "stance": "buy",
+      "target_accounts": [
+        "TOSS",
+        "KIS_MAIN"
+      ],
+      "horizon": "3m",
+      "confidence": "MEDIUM",
+      "thesis": "지정학적 리스크 헤지 및 에너지 전환 시대의 구조적 성장 테마에 투자합니다.",
+      "risks": [
+        "정책 변화에 따른 불확실성",
+        "건설 지연 리스크"
+      ]
+    },
+    {
+      "code": "423160",
+      "name": "KODEX KOFR금리액티브(합성)",
+      "stance": "trim",
+      "target_accounts": [
+        "PENSION"
+      ],
+      "horizon": "1m",
+      "confidence": "HIGH",
+      "thesis": "시장 불확실성 속 방어적 자산이나, 금리 인하 기대감 약화 및 인플레이션 압력으로 매력도가 낮아지고 있습니다.",
+      "risks": [
+        "금리 인상 가능성 재부각 시 추가 하락"
+      ]
+    },
+    {
+      "code": "COPX",
+      "name": "Global X Copper Miners ETF",
+      "stance": "buy",
+      "target_accounts": [
+        "KIS_MAIN"
+      ],
+      "horizon": "3m",
+      "confidence": "HIGH",
+      "thesis": "AI 인프라 및 에너지 전환에 필수적인 구리 수요 증가로 인한 원자재 가격 상승에 대비합니다.",
+      "risks": [
+        "글로벌 경기 둔화 시 수요 감소",
+        "공급망 안정화 시 가격 하락"
+      ]
+    },
+    {
+      "code": "458770",
+      "name": "TIGER 반도체나노",
+      "stance": "buy",
+      "target_accounts": [
+        "ISA"
+      ],
+      "horizon": "3m",
+      "confidence": "HIGH",
+      "thesis": "국내 반도체 기업의 실적 개선과 AI 인프라 투자 확대에 따른 소부장 섹터의 성장이 기대됩니다.",
+      "risks": [
+        "글로벌 반도체 경기 둔화",
+        "경쟁 심화로 인한 수익성 악화"
+      ]
+    }
+  ],
+  "portfolio_risks": [
+    "중동 지정학적 리스크 장기화 및 유가 급등으로 인한 글로벌 스태그플레이션 심화 가능성.",
+    "미국 연준의 금리 인하 지연 또는 '역금리 인상' 가능성.",
+    "AI 인프라의 핵심 병목 구간(냉각, 광통신)에 대한 직접적인 노출 부족.",
+    "원자재(특히 구리)에 대한 직접적인 투자 비중이 낮아 인플레이션 헤지 효과가 제한적일 수 있습니다."
+  ],
+  "runDate": "2026-04-07",
+  "effectiveMarketDate": "2026-04-07",
+  "runId": "2026-04-07-022738",
+  "generatedAt": "2026-04-07T02:30:07.714380Z",
+  "source": "gemini",
+  "model": "gemini-2.5-flash"
+}

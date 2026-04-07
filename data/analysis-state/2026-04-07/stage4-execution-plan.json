@@ -1,0 +1,459 @@
+{
+  "date": "2026-04-07",
+  "runDate": "2026-04-07",
+  "effectiveMarketDate": "2026-04-07",
+  "runId": "2026-04-07-022738",
+  "generatedAt": "2026-04-07T02:30:08.170Z",
+  "portfolioScore": 67,
+  "regime": {
+    "name": "BEAR",
+    "confidence": 0.62,
+    "voteSum": -1,
+    "signals": [
+      "VIX 23.87>=20",
+      "T10Y2Y 0.5 (플랫)",
+      "추세 혼재"
+    ],
+    "market_context": {
+      "index": "KOSPI",
+      "signal": "NEUTRAL",
+      "vix": null,
+      "score": 43,
+      "close": 5462.03,
+      "ma": {
+        "ma5": 5400.078,
+        "ma20": 5508.579,
+        "ma60": 5348.39,
+        "ma120": 4689.8675
+      },
+      "rsi": 50.01,
+      "alerts": []
+    }
+  },
+  "accountPlans": [
+    {
+      "key": "ISA",
+      "label": "ISA",
+      "totalScore": 70,
+      "stage2Bias": "aggressive_add",
+      "deployBudget": 3665433,
+      "reserveCash": 2612057,
+      "topGap": {
+        "category": "금",
+        "targetPct": 0.25,
+        "currentPct": 0,
+        "gapAmount": 2096060
+      },
+      "candidateFromGap": "KODEX 골드선물(H)",
+      "stage2Candidates": [
+        {
+          "code": "449450",
+          "name": "PLUS K방산",
+          "score": null,
+          "reason": "지정학적 리스크 확대와 구조적 국방비 증강 기조 속에서 K-방산의 성장이 기대됩니다.",
+          "source": "stage2"
+        },
+        {
+          "code": "458770",
+          "name": "TIGER 반도체나노",
+          "score": null,
+          "reason": "국내 반도체 기업의 실적 개선과 AI 인프라 투자 확대에 따른 소부장 섹터의 성장이 기대됩니다.",
+          "source": "stage2"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "score": null,
+          "reason": "AI 인프라 투자 확대가 기술 섹터 성장을 견인하며 미국 시장의 상승 추세를 지지할 것입니다.",
+          "source": "stage2"
+        }
+      ],
+      "stagedBuys": [
+        {
+          "code": "449450",
+          "name": "PLUS K방산",
+          "score": null,
+          "reason": "지정학적 리스크 확대와 구조적 국방비 증강 기조 속에서 K-방산의 성장이 기대됩니다.",
+          "source": "stage2",
+          "suggestedAmount": 1832717
+        },
+        {
+          "code": "458770",
+          "name": "TIGER 반도체나노",
+          "score": null,
+          "reason": "국내 반도체 기업의 실적 개선과 AI 인프라 투자 확대에 따른 소부장 섹터의 성장이 기대됩니다.",
+          "source": "stage2",
+          "suggestedAmount": 1099630
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "score": null,
+          "reason": "AI 인프라 투자 확대가 기술 섹터 성장을 견인하며 미국 시장의 상승 추세를 지지할 것입니다.",
+          "source": "stage2",
+          "suggestedAmount": 733087
+        }
+      ],
+      "trims": [],
+      "holds": [
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "score": 55,
+          "reason": "20 률 11.1%(+8.4%p) 예상. 4Q25 계획 대비 지연되었던 원전 및 화력발전의 계획예 61 0 방정비 및 개보수공사가 1Q26에 준공됨에 따라 매출 증가 및 수익성 개선에 성공 -20 할 것으로 기대. 참고로 1Q25에는 원전 계획예방정비공사, 4Q25에는 화력 개보 53 -40 수공사 매출 부진, 재료비의 급격한 증가 등으로 부진한 실적을 기록한 바있음 -60 44 -80 20..."
+        },
+        {
+          "code": "458760",
+          "name": "TIGER 미국배당다우존스스타데일리커...",
+          "score": 55,
+          "reason": "10,000 KOSDAQ 50 쿠콘이 추진하고 있는 신사업은 1) 글로벌페이 및 스테이블코인 결제 사업, 2) 의료 마이데이터 사 0 0 '25/3 '25/7 '25/11 '26/3 업과 3) AI에이전트 기반 데이터 상품 출시. 시장의 주요 관심 사항인 글로벌 결제 및 스테이블 코 인 인프라 선점을 위해 동사는 크로스보더 비즈니스를 확대할 계획. 전략은 글로벌 페이사의 대규 Stock Da..."
+        }
+      ],
+      "watches": [],
+      "macroCommentary": {
+        "summary": "중동 지정학 리스크와 유가 상승이 시장 변동성을 키우고 있습니다. ISA은 방어자산과 원자재 헤지 비중 조정이 핵심입니다. 절세 계좌 특성상 국내 ETF 중심의 방어·인컴·테마 배치를 유연하게 조정하는 역할로 작동하는 계좌입니다.",
+        "drivers": [
+          "중동 지정학 리스크와 유가 상승이 시장 변동성을 키우고 있습니다.",
+          "비과세 혜택을 활용하여 방산 및 AI 인프라 관련 국내 상장 ETF 비중을 확대하여 수익 극대화를 추구합니다.",
+          "04/07, Kiwoom Morning Letter는 배당/커버드콜에 부정 신호를 줍니다 (유가).",
+          "04/07, Kiwoom Morning Letter는 ISA에 부정 신호를 줍니다 (유가)."
+        ],
+        "assetFocus": [
+          "방어자산과 원자재 헤지",
+          "금",
+          "배당/커버드콜"
+        ],
+        "actionLine": "ISA은 금을 우선 보강하고, PLUS K방산를 중심으로 3,665,433원 한도에서 분할 접근하는 편이 좋습니다.",
+        "reserveNote": "가용 현금의 약 60%를 핵심 자산 편입에 활용하고, 나머지는 시장 변동성 확대 시 추가 매수 기회로 보유합니다."
+      },
+      "stage1Drivers": [
+        {
+          "id": "report_001",
+          "title": "04/07, Kiwoom Morning Letter",
+          "thesis": "u Korea Sector Index Close D-1 D-5 D-20 u 수급(외국인/기관,억원) D-1 D-5 D-1 D-5 u US Sector Index Close D-1 D-5 D-20\nMKF 500 12,354.15 +1.41 +3.17 +3.63 MKF 500 기관순매수 외국인순매수 S&P 500\n에너지 9,948.92 +0.87 +2.86 +0.09 에너지 +474 +2,350 -586 +1,713 에너지 917..."
+        },
+        {
+          "id": "report_003",
+          "title": "’26년 정기주주총회 리뷰 - 의결권 전쟁",
+          "thesis": "ᆞ 재무지표: ROE 8~10% 달성 지향(’27 년)\nA267250 HD 현대 ᆞ 주주환원: 배당성향 70% 이상 추진(FY2025~FY2027) 2026-04-01\n ᆞ 지배구조: 핵심지표 준수율 87% 달성(’27 년)"
+        },
+        {
+          "id": "report_009",
+          "title": "전쟁의 시대: 해답은 K-방산",
+          "thesis": "결론적으로 두 프로그램 모두 EU 회원국 또는 연합국 내 현지 생산 거점을 확보하\nEU 내 현지 생산·JV 확보가\n유럽 방산 시장 진입의 핵심 조건 는 것이 중요한 전략적 요소이자 향후 유럽 방산 시장에 진입할 수 있는 입장 티켓\n한화에어로스페이스·현대로템, 이나 다름없기 때문에 한국 방산 업체들은 EU 내 생산시설 보유 및 JV 형태의 협\n유럽 거점 구축 선도 력 생산 및 조달이 반드시 필요하다."
+        },
+        {
+          "id": "report_011",
+          "title": "4/6 KB 리서치 장마감코멘트",
+          "thesis": "장마감코멘트 투자지표\n- KOSPI 5,450pt (+1.36%), KOSDAQ 1,047pt (-1.54%) 코스피 5,450pt +1.36%\n- 국내는 삼성전자를 필두로 KOSPI 상승, 바이오주 부진에 KOSDAQ 하락\n 코스닥 1,047pt -1.54%\n- 지난주 금요일 발표된 미 고용지표는 실업률 4.3% (컨센서스 4.4%), 비농업 신규고용\n 매매동향 (억원) 코스피 코스닥\n17.8만명 증가 (컨센서스 6.5만명 ..."
+        }
+      ]
+    },
+    {
+      "key": "PENSION",
+      "label": "연금저축",
+      "totalScore": 77,
+      "stage2Bias": "selective_add",
+      "deployBudget": 756843,
+      "reserveCash": 758257,
+      "topGap": {
+        "category": "S&P500",
+        "targetPct": 0.4,
+        "currentPct": 0.1814388834530249,
+        "gapAmount": 591940
+      },
+      "candidateFromGap": "TIGER 미국S&P500",
+      "stage2Candidates": [
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "score": null,
+          "reason": "AI 인프라 투자 확대가 기술 섹터 성장을 견인하며 미국 시장의 상승 추세를 지지할 것입니다.",
+          "source": "stage2"
+        },
+        {
+          "code": "458760",
+          "name": "TIGER 미국배당다우존스스타데일리커...",
+          "score": null,
+          "reason": "장기 안정적 복리 성장을 추구하며, 인플레이션 헤지를 위한 배당 테마의 매력이 유효합니다.",
+          "source": "stage2"
+        },
+        {
+          "code": "133690",
+          "name": "TIGER 미국나스닥100",
+          "score": null,
+          "reason": "AI 성장 동력의 핵심인 기술주에 대한 노출을 유지하며 장기 성장을 기대합니다.",
+          "source": "stage2"
+        }
+      ],
+      "stagedBuys": [
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "score": null,
+          "reason": "AI 인프라 투자 확대가 기술 섹터 성장을 견인하며 미국 시장의 상승 추세를 지지할 것입니다.",
+          "source": "stage2",
+          "suggestedAmount": 378422
+        },
+        {
+          "code": "458760",
+          "name": "TIGER 미국배당다우존스스타데일리커...",
+          "score": null,
+          "reason": "장기 안정적 복리 성장을 추구하며, 인플레이션 헤지를 위한 배당 테마의 매력이 유효합니다.",
+          "source": "stage2",
+          "suggestedAmount": 227053
+        },
+        {
+          "code": "133690",
+          "name": "TIGER 미국나스닥100",
+          "score": null,
+          "reason": "AI 성장 동력의 핵심인 기술주에 대한 노출을 유지하며 장기 성장을 기대합니다.",
+          "source": "stage2",
+          "suggestedAmount": 151369
+        }
+      ],
+      "trims": [],
+      "holds": [
+        {
+          "code": "423160",
+          "name": "KODEX KOFR금리액티브(합성)",
+          "score": 51,
+          "reason": "10,000 KOSDAQ 50 쿠콘이 추진하고 있는 신사업은 1) 글로벌페이 및 스테이블코인 결제 사업, 2) 의료 마이데이터 사 0 0 '25/3 '25/7 '25/11 '26/3 업과 3) AI에이전트 기반 데이터 상품 출시. 시장의 주요 관심 사항인 글로벌 결제 및 스테이블 코 인 인프라 선점을 위해 동사는 크로스보더 비즈니스를 확대할 계획. 전략은 글로벌 페이사의 대규 Stock Da..."
+        },
+        {
+          "code": "133690",
+          "name": "TIGER 미국나스닥100",
+          "score": 55,
+          "reason": "20 률 11.1%(+8.4%p) 예상. 4Q25 계획 대비 지연되었던 원전 및 화력발전의 계획예 61 0 방정비 및 개보수공사가 1Q26에 준공됨에 따라 매출 증가 및 수익성 개선에 성공 -20 할 것으로 기대. 참고로 1Q25에는 원전 계획예방정비공사, 4Q25에는 화력 개보 53 -40 수공사 매출 부진, 재료비의 급격한 증가 등으로 부진한 실적을 기록한 바있음 -60 44 -80 20..."
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "score": 55,
+          "reason": "20 률 11.1%(+8.4%p) 예상. 4Q25 계획 대비 지연되었던 원전 및 화력발전의 계획예 61 0 방정비 및 개보수공사가 1Q26에 준공됨에 따라 매출 증가 및 수익성 개선에 성공 -20 할 것으로 기대. 참고로 1Q25에는 원전 계획예방정비공사, 4Q25에는 화력 개보 53 -40 수공사 매출 부진, 재료비의 급격한 증가 등으로 부진한 실적을 기록한 바있음 -60 44 -80 20..."
+        }
+      ],
+      "watches": [],
+      "macroCommentary": {
+        "summary": "중동 지정학 리스크와 유가 상승이 시장 변동성을 키우고 있습니다. 연금저축은 미국 코어 인덱스 비중 조정이 핵심입니다. 장기 복리 관점에서 미국 코어 자산과 방어 자산을 안정적으로 쌓는 역할로 작동하는 계좌입니다.",
+        "drivers": [
+          "중동 지정학 리스크와 유가 상승이 시장 변동성을 키우고 있습니다.",
+          "장기 안정적 복리 성장을 위해 미국 지수 및 배당 테마를 유지하되, 인플레이션 방어를 위한 방어적 섹터 ETF를 일부 편입합니다.",
+          "04/07, Kiwoom Morning Letter는 S&P500에 부정 신호를 줍니다 (유가).",
+          "04/07, Kiwoom Morning Letter는 나스닥100에 부정 신호를 줍니다 (유가)."
+        ],
+        "assetFocus": [
+          "미국 코어 인덱스",
+          "S&P500",
+          "금"
+        ],
+        "actionLine": "연금저축은 S&P500을 우선 보강하고, TIGER 미국S&P500를 중심으로 756,843원 한도에서 분할 접근하는 편이 좋습니다.",
+        "reserveNote": "장기적 관점에서 시장 조정 시 매수 기회를 위해 현금 일부를 유지합니다."
+      },
+      "stage1Drivers": [
+        {
+          "id": "report_001",
+          "title": "04/07, Kiwoom Morning Letter",
+          "thesis": "u Korea Sector Index Close D-1 D-5 D-20 u 수급(외국인/기관,억원) D-1 D-5 D-1 D-5 u US Sector Index Close D-1 D-5 D-20\nMKF 500 12,354.15 +1.41 +3.17 +3.63 MKF 500 기관순매수 외국인순매수 S&P 500\n에너지 9,948.92 +0.87 +2.86 +0.09 에너지 +474 +2,350 -586 +1,713 에너지 917..."
+        },
+        {
+          "id": "report_002",
+          "title": "급격히 높아질 미국 물가 지표 대비",
+          "thesis": "Check Point\n고유가에 따른 물가 충격이 점차 가시화되고 있음: 3월 ISM 제조업 및 서비스지수 중 가격지수 급등\n10일 발표 예정인 3월 소비자물가와 4월 기대인플레이션이 급등할 전망\n물가 불안 해소를 위해서도 이란사태 출구전략 추진이 필요한 트럼프 대통령"
+        },
+        {
+          "id": "report_003",
+          "title": "’26년 정기주주총회 리뷰 - 의결권 전쟁",
+          "thesis": "ᆞ 재무지표: ROE 8~10% 달성 지향(’27 년)\nA267250 HD 현대 ᆞ 주주환원: 배당성향 70% 이상 추진(FY2025~FY2027) 2026-04-01\n ᆞ 지배구조: 핵심지표 준수율 87% 달성(’27 년)"
+        },
+        {
+          "id": "report_004",
+          "title": "[IBKS Daily] 인터넷/게임",
+          "thesis": "2026.04.07\n IBK투자증권 인터넷/SW/게임\n 업종지수(전일 종가 기준)\n 시가총액 Performance(%) PER(배) △EPS PSR ROE\n 종목 현재가\n (조원) -1D -1W -1M -1Y 2025 2026 (%) (배) (%)\n 한국 코스피 5,450 4,353 1.4 3.3 -2.4 121.1 18.7 8.1 145.7 1.1 20.1\n 코스닥 1,047 580 -1.5 -5.4 -9.3 52.4 51...."
+        }
+      ]
+    },
+    {
+      "key": "TOSS",
+      "label": "토스증권",
+      "totalScore": 48,
+      "stage2Bias": "selective_add",
+      "deployBudget": 574653,
+      "reserveCash": 426292,
+      "topGap": {
+        "category": "전력기기",
+        "targetPct": 0.3,
+        "currentPct": 0,
+        "gapAmount": 687783
+      },
+      "candidateFromGap": "효성중공업",
+      "stage2Candidates": [
+        {
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "score": null,
+          "reason": "지정학적 리스크 헤지 및 에너지 전환 시대의 구조적 성장 테마에 투자합니다.",
+          "source": "stage2"
+        }
+      ],
+      "stagedBuys": [
+        {
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "score": null,
+          "reason": "지정학적 리스크 헤지 및 에너지 전환 시대의 구조적 성장 테마에 투자합니다.",
+          "source": "stage2",
+          "suggestedAmount": 574653
+        }
+      ],
+      "trims": [
+        {
+          "name": "KODEX 선진국ESG액티브",
+          "score": 37,
+          "reason": "N/A"
+        },
+        {
+          "name": "PLUS V K생산",
+          "score": 37,
+          "reason": "N/A"
+        }
+      ],
+      "holds": [
+        {
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "score": 58,
+          "reason": "20\n 률 11.1%(+8.4%p) 예상. 4Q25 계획 대비 지연되었던 원전 및 화력발전의 계획예\n 61\n 0 방정비 및 개보수공사가 1Q26에 준공됨에 따라 매출 증가 및 수익성 개선에 성공\n -20 할 것으로 기대. 참고로 1Q25에는 원전 계획예방정비공사, 4Q25에는 화력 개보\n 53\n -40 수공사 매출 부진,..."
+        }
+      ],
+      "watches": [],
+      "macroCommentary": {
+        "summary": "중동 지정학 리스크와 유가 상승이 시장 변동성을 키우고 있습니다. 토스증권은 AI·전력 인프라 비중 조정이 핵심입니다. 전술 테마와 성장 섹터를 민첩하게 반영하는 역할로 작동하는 계좌입니다.",
+        "drivers": [
+          "중동 지정학 리스크와 유가 상승이 시장 변동성을 키우고 있습니다.",
+          "글로벌 대안 자산(원자재, 해외 AI 인프라 기업)에 직접 투자하여 포트폴리오의 알파 수익을 창출합니다."
+        ],
+        "assetFocus": [
+          "AI·전력 인프라",
+          "전력기기",
+          "방산"
+        ],
+        "actionLine": "토스증권은 전력기기을 우선 보강하고, HANARO 원자력iSelect를 중심으로 574,653원 한도에서 분할 접근하는 편이 좋습니다.",
+        "reserveNote": "해외 AI 인프라 기업 및 원자재 ETF 추가 매수를 위한 현금을 확보합니다."
+      },
+      "stage1Drivers": []
+    },
+    {
+      "key": "KIS_MAIN",
+      "label": "한투 일반",
+      "totalScore": 63,
+      "stage2Bias": "aggressive_add",
+      "deployBudget": 1504700,
+      "reserveCash": 1505144,
+      "topGap": {
+        "category": "방산",
+        "targetPct": 0.3,
+        "currentPct": 0.067433680704553,
+        "gapAmount": 782605
+      },
+      "candidateFromGap": "한국항공우주",
+      "stage2Candidates": [
+        {
+          "code": "449450",
+          "name": "PLUS K방산",
+          "score": null,
+          "reason": "지정학적 리스크 확대와 구조적 국방비 증강 기조 속에서 K-방산의 성장이 기대됩니다.",
+          "source": "stage2"
+        },
+        {
+          "code": "COPX",
+          "name": "Global X Copper Miners ETF",
+          "score": null,
+          "reason": "AI 인프라 및 에너지 전환에 필수적인 구리 수요 증가로 인한 원자재 가격 상승에 대비합니다.",
+          "source": "stage2"
+        },
+        {
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "score": null,
+          "reason": "지정학적 리스크 헤지 및 에너지 전환 시대의 구조적 성장 테마에 투자합니다.",
+          "source": "stage2"
+        }
+      ],
+      "stagedBuys": [
+        {
+          "code": "449450",
+          "name": "PLUS K방산",
+          "score": null,
+          "reason": "지정학적 리스크 확대와 구조적 국방비 증강 기조 속에서 K-방산의 성장이 기대됩니다.",
+          "source": "stage2",
+          "suggestedAmount": 752350
+        },
+        {
+          "code": "COPX",
+          "name": "Global X Copper Miners ETF",
+          "score": null,
+          "reason": "AI 인프라 및 에너지 전환에 필수적인 구리 수요 증가로 인한 원자재 가격 상승에 대비합니다.",
+          "source": "stage2",
+          "suggestedAmount": 451410
+        },
+        {
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "score": null,
+          "reason": "지정학적 리스크 헤지 및 에너지 전환 시대의 구조적 성장 테마에 투자합니다.",
+          "source": "stage2",
+          "suggestedAmount": 300940
+        }
+      ],
+      "trims": [],
+      "holds": [
+        {
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "score": 58,
+          "reason": "20\n 률 11.1%(+8.4%p) 예상. 4Q25 계획 대비 지연되었던 원전 및 화력발전의 계획예\n 61\n 0 방정비 및 개보수공사가 1Q26에 준공됨에 따라 매출 증가 및 수익성 개선에 성공\n -20 할 것으로 기대. 참고로 1Q25에는 원전 계획예방정비공사, 4Q25에는 화력 개보\n 53\n -40 수공사 매출 부진,..."
+        }
+      ],
+      "watches": [],
+      "macroCommentary": {
+        "summary": "중동 지정학 리스크와 유가 상승이 시장 변동성을 키우고 있습니다. 한투 일반은 지정학 민감 방산 비중 조정이 핵심입니다. 전술 테마와 현금 운용을 함께 조절하며 국내 ETF 알파를 쌓는 역할로 작동하는 계좌입니다.",
+        "drivers": [
+          "중동 지정학 리스크와 유가 상승이 시장 변동성을 키우고 있습니다.",
+          "글로벌 대안 자산(원자재, 해외 AI 인프라 기업)에 직접 투자하여 포트폴리오의 알파 수익을 창출합니다.",
+          "04/07, Kiwoom Morning Letter는 KIS_MAIN에 부정 신호를 줍니다 (유가).",
+          "바뀐 네트워크의 중심 Everything Goes Optical는 KIS_MAIN에 긍정 신호를 줍니다 (유가)."
+        ],
+        "assetFocus": [
+          "지정학 민감 방산",
+          "방산",
+          "원자력"
+        ],
+        "actionLine": "한투 일반은 방산을 우선 보강하고, PLUS K방산를 중심으로 1,504,700원 한도에서 분할 접근하는 편이 좋습니다.",
+        "reserveNote": "해외 AI 인프라 기업 및 원자재 ETF 분할 매수를 위한 현금을 유지합니다."
+      },
+      "stage1Drivers": [
+        {
+          "id": "report_001",
+          "title": "04/07, Kiwoom Morning Letter",
+          "thesis": "u Korea Sector Index Close D-1 D-5 D-20 u 수급(외국인/기관,억원) D-1 D-5 D-1 D-5 u US Sector Index Close D-1 D-5 D-20\nMKF 500 12,354.15 +1.41 +3.17 +3.63 MKF 500 기관순매수 외국인순매수 S&P 500\n에너지 9,948.92 +0.87 +2.86 +0.09 에너지 +474 +2,350 -586 +1,713 에너지 917..."
+        },
+        {
+          "id": "report_006",
+          "title": "바뀐 네트워크의 중심 Everything Goes Optical",
+          "thesis": " 네트워크 망의 운영 주체 역시 변화하고 있음. 사용자와 데이터센터를 연결하는 Metro 및 Last-haul 구간은 여전히 통신사가 핵심 운영주체로 활동함.\n 해당 구간은 소비자의 접속을 기반으로 한 전통적인 통신 인프라 영역에 속함\n 반면, 데이터센터 간 직접 연결을 의미하는 DCI (Data Center Interconnection) 구간에서는 구조가 다름. 대규모 AI 연산 수요에 대응하기 위해 하이퍼\n 스케일러들이..."
+        },
+        {
+          "id": "report_008",
+          "title": "안녕하세요 데일리에요(로봇/방산/조선)",
+          "thesis": "요\n ◼ 로봇 관련 ETF 상장이 계속됨. 오늘은 한투운용의 ◼ 국내외 언론에서 UAE가 프랑스 차세대 라팔 전투기 ◼ 3월 글로벌 조선 점유율은 한국 39%, 중국 53%로\n ‘ACE K 휴머노이드 로봇 산업TOP2+’가 상장 예정. 구매 철회했다고 보도. UAE 측에서 프랑스에 기술 격차 축소. 다만, 1Q 누계 기준으로는 중국이 70%,\n 로봇 분야의 핵심 기업인 현대자동차와 로보티즈를 이전을 요구했지만, 프랑스가 이를 ..."
+        },
+        {
+          "id": "report_009",
+          "title": "전쟁의 시대: 해답은 K-방산",
+          "thesis": "결론적으로 두 프로그램 모두 EU 회원국 또는 연합국 내 현지 생산 거점을 확보하\nEU 내 현지 생산·JV 확보가\n유럽 방산 시장 진입의 핵심 조건 는 것이 중요한 전략적 요소이자 향후 유럽 방산 시장에 진입할 수 있는 입장 티켓\n한화에어로스페이스·현대로템, 이나 다름없기 때문에 한국 방산 업체들은 EU 내 생산시설 보유 및 JV 형태의 협\n유럽 거점 구축 선도 력 생산 및 조달이 반드시 필요하다."
+        }
+      ]
+    }
+  ]
+}

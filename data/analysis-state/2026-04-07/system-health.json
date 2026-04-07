@@ -2,9 +2,9 @@
   "date": "2026-04-07",
   "runDate": "2026-04-07",
   "effectiveMarketDate": "2026-04-07",
-  "runId": "2026-04-07-021230",
-  "generatedAt": "2026-04-07T02:17:02.542Z",
-  "overallStatus": "error",
+  "runId": "2026-04-07-022738",
+  "generatedAt": "2026-04-07T02:30:08.442Z",
+  "overallStatus": "warn",
   "counts": {
     "accounts": 4,
     "reports": 55,
@@ -12,7 +12,7 @@
     "ocrUsedReports": 2,
     "stage1Extracts": 55,
     "unresolvedPortfolioHoldings": 2,
-    "unresolvedStage4Mentions": 0
+    "unresolvedStage4Mentions": 6
   },
   "artifacts": [
     {
@@ -20,21 +20,21 @@
       "label": "Stage 1",
       "path": "data/analysis-state/2026-04-07/stage1-report-extracts-v2.json",
       "meta": {
-        "runId": "2026-04-07-021230",
+        "runId": "2026-04-07-022738",
         "runDate": "2026-04-07",
         "effectiveMarketDate": "2026-04-07",
-        "generatedAt": "2026-04-07T02:13:49.232Z"
+        "generatedAt": "2026-04-07T02:29:32.891Z"
       }
     },
     {
       "key": "stage2",
       "label": "Stage 2",
-      "path": "data/analysis-state/2026-04-07/stage2-strategy-options.mock.json",
+      "path": "data/analysis-state/2026-04-07/stage2-strategy-options.json",
       "meta": {
-        "runId": null,
-        "runDate": null,
-        "effectiveMarketDate": null,
-        "generatedAt": null
+        "runId": "2026-04-07-022738",
+        "runDate": "2026-04-07",
+        "effectiveMarketDate": "2026-04-07",
+        "generatedAt": "2026-04-07T02:30:07.714380Z"
       }
     },
     {
@@ -42,10 +42,10 @@
       "label": "Impact Map",
       "path": "data/analysis-state/2026-04-07/impact-map.json",
       "meta": {
-        "runId": null,
-        "runDate": null,
-        "effectiveMarketDate": null,
-        "generatedAt": null
+        "runId": "2026-04-07-022738",
+        "runDate": "2026-04-07",
+        "effectiveMarketDate": "2026-04-07",
+        "generatedAt": "2026-04-07T02:30:08.013Z"
       }
     },
     {
@@ -53,10 +53,10 @@
       "label": "Stage 3",
       "path": "data/analysis-state/2026-04-07/stage3-quant-scores.json",
       "meta": {
-        "runId": null,
-        "runDate": null,
-        "effectiveMarketDate": null,
-        "generatedAt": null
+        "runId": "2026-04-07-022738",
+        "runDate": "2026-04-07",
+        "effectiveMarketDate": "2026-04-07",
+        "generatedAt": "2026-04-07T02:30:08.094Z"
       }
     },
     {
@@ -64,10 +64,10 @@
       "label": "Stage 4",
       "path": "data/analysis-state/2026-04-07/stage4-execution-plan.json",
       "meta": {
-        "runId": null,
-        "runDate": null,
-        "effectiveMarketDate": null,
-        "generatedAt": null
+        "runId": "2026-04-07-022738",
+        "runDate": "2026-04-07",
+        "effectiveMarketDate": "2026-04-07",
+        "generatedAt": "2026-04-07T02:30:08.170Z"
       }
     },
     {
@@ -75,10 +75,10 @@
       "label": "Briefing",
       "path": "reports/daily/2026-04-07-briefing.md",
       "meta": {
-        "runId": null,
-        "runDate": null,
-        "effectiveMarketDate": null,
-        "generatedAt": null
+        "runId": "2026-04-07-022738",
+        "runDate": "2026-04-07",
+        "effectiveMarketDate": "2026-04-07",
+        "generatedAt": "2026-04-07T02:30:08.170Z"
       }
     },
     {
@@ -86,10 +86,10 @@
       "label": "LLM Wiki Daily",
       "path": "knowledge/wiki/daily/2026-04-07.md",
       "meta": {
-        "runId": null,
-        "runDate": null,
-        "effectiveMarketDate": null,
-        "generatedAt": null
+        "runId": "2026-04-07-022738",
+        "runDate": "2026-04-07",
+        "effectiveMarketDate": "2026-04-07",
+        "generatedAt": "2026-04-07T02:30:08.238Z"
       }
     }
   ],
@@ -146,51 +146,51 @@
     {
       "key": "stage2",
       "label": "Stage 2 전략 탐색",
-      "status": "warn",
-      "detail": "stage2 결과 없음",
-      "path": "data/analysis-state/2026-04-07/stage2-strategy-options.mock.json"
+      "status": "ok",
+      "detail": "Gemini 실제 결과 (gemini-2.5-flash)",
+      "path": "data/analysis-state/2026-04-07/stage2-strategy-options.json"
     },
     {
       "key": "impact_map",
       "label": "Impact Map",
-      "status": "warn",
-      "detail": "impact-map 누락",
+      "status": "ok",
+      "detail": "리포트 55건",
       "path": "data/analysis-state/2026-04-07/impact-map.json"
     },
     {
       "key": "stage3",
       "label": "Stage 3 퀀트 점수",
-      "status": "error",
-      "detail": "stage3 누락",
+      "status": "ok",
+      "detail": "포트폴리오 67점",
       "path": "data/analysis-state/2026-04-07/stage3-quant-scores.json"
     },
     {
       "key": "stage4",
       "label": "Stage 4 실행 계획",
-      "status": "error",
-      "detail": "stage4 누락",
+      "status": "ok",
+      "detail": "계좌 계획 4개",
       "path": "data/analysis-state/2026-04-07/stage4-execution-plan.json"
     },
     {
       "key": "briefing",
       "label": "일일 브리핑",
-      "status": "error",
-      "detail": "briefing.md 누락",
+      "status": "ok",
+      "detail": "briefing.md 생성됨",
       "path": "reports/daily/2026-04-07-briefing.md"
     },
     {
       "key": "llm_wiki_daily",
       "label": "LLM Wiki Daily",
-      "status": "warn",
-      "detail": "daily wiki 누락",
+      "status": "ok",
+      "detail": "daily wiki 생성됨",
       "path": "knowledge/wiki/daily/2026-04-07.md"
     },
     {
       "key": "gemini_briefing",
       "label": "경제 리포트 브리핑",
-      "status": "warn",
-      "detail": "Gemini 브리핑 없음",
-      "path": "knowledge/daily/2026-04-07-gemini-briefing.md"
+      "status": "ok",
+      "detail": "rich Gemini 브리핑 생성됨",
+      "path": "knowledge/daily/2026-04-07-gemini-briefing-rich.md"
     },
     {
       "key": "deep_research_prompt",
@@ -202,29 +202,29 @@
     {
       "key": "deep_research_response",
       "label": "Deep Research 결과",
-      "status": "warn",
-      "detail": "Deep Research 결과 없음",
+      "status": "ok",
+      "detail": "Gemini Deep Research 결과 저장됨",
       "path": "knowledge/daily/manual-kit/2026-04-07/09-stage1-5-gemini-deep-research-response.md"
     },
     {
       "key": "deep_research_final",
       "label": "Deep Research 최종 브리핑",
-      "status": "warn",
-      "detail": "Stage 1.6 최종 브리핑 없음",
+      "status": "ok",
+      "detail": "Stage 1.6 최종 브리핑 저장됨",
       "path": "knowledge/daily/manual-kit/2026-04-07/10-stage1-6-final-research-briefing.md"
     },
     {
       "key": "freshness_run_id",
       "label": "Freshness / Run ID",
       "status": "ok",
-      "detail": "run-id 2026-04-07-021230 일치",
+      "detail": "run-id 2026-04-07-022738 일치",
       "path": "data/analysis-state/2026-04-07/stage4-execution-plan.json"
     },
     {
       "key": "security_normalization",
       "label": "종목 코드 정규화",
       "status": "warn",
-      "detail": "portfolio 2건 / stage4 0건 미해결 (토스증권:KODEX 선진국ESG액티브, 토스증권:PLUS V K생산)",
+      "detail": "portfolio 2건 / stage4 6건 미해결 (토스증권:KODEX 선진국ESG액티브, 토스증권:PLUS V K생산, ISA:stage2Candidates:TIGER 반도체나노, ISA:stagedBuys:TIGER 반도체나노 외 4건)",
       "path": "data/portfolio/latest.json"
     }
   ]
