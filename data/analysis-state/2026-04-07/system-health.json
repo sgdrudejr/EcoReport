@@ -1,0 +1,231 @@
+{
+  "date": "2026-04-07",
+  "runDate": "2026-04-07",
+  "effectiveMarketDate": "2026-04-07",
+  "runId": "2026-04-07-021230",
+  "generatedAt": "2026-04-07T02:17:02.542Z",
+  "overallStatus": "error",
+  "counts": {
+    "accounts": 4,
+    "reports": 55,
+    "extractedReports": 55,
+    "ocrUsedReports": 2,
+    "stage1Extracts": 55,
+    "unresolvedPortfolioHoldings": 2,
+    "unresolvedStage4Mentions": 0
+  },
+  "artifacts": [
+    {
+      "key": "stage1",
+      "label": "Stage 1",
+      "path": "data/analysis-state/2026-04-07/stage1-report-extracts-v2.json",
+      "meta": {
+        "runId": "2026-04-07-021230",
+        "runDate": "2026-04-07",
+        "effectiveMarketDate": "2026-04-07",
+        "generatedAt": "2026-04-07T02:13:49.232Z"
+      }
+    },
+    {
+      "key": "stage2",
+      "label": "Stage 2",
+      "path": "data/analysis-state/2026-04-07/stage2-strategy-options.mock.json",
+      "meta": {
+        "runId": null,
+        "runDate": null,
+        "effectiveMarketDate": null,
+        "generatedAt": null
+      }
+    },
+    {
+      "key": "impact_map",
+      "label": "Impact Map",
+      "path": "data/analysis-state/2026-04-07/impact-map.json",
+      "meta": {
+        "runId": null,
+        "runDate": null,
+        "effectiveMarketDate": null,
+        "generatedAt": null
+      }
+    },
+    {
+      "key": "stage3",
+      "label": "Stage 3",
+      "path": "data/analysis-state/2026-04-07/stage3-quant-scores.json",
+      "meta": {
+        "runId": null,
+        "runDate": null,
+        "effectiveMarketDate": null,
+        "generatedAt": null
+      }
+    },
+    {
+      "key": "stage4",
+      "label": "Stage 4",
+      "path": "data/analysis-state/2026-04-07/stage4-execution-plan.json",
+      "meta": {
+        "runId": null,
+        "runDate": null,
+        "effectiveMarketDate": null,
+        "generatedAt": null
+      }
+    },
+    {
+      "key": "briefing",
+      "label": "Briefing",
+      "path": "reports/daily/2026-04-07-briefing.md",
+      "meta": {
+        "runId": null,
+        "runDate": null,
+        "effectiveMarketDate": null,
+        "generatedAt": null
+      }
+    },
+    {
+      "key": "wiki_daily",
+      "label": "LLM Wiki Daily",
+      "path": "knowledge/wiki/daily/2026-04-07.md",
+      "meta": {
+        "runId": null,
+        "runDate": null,
+        "effectiveMarketDate": null,
+        "generatedAt": null
+      }
+    }
+  ],
+  "checks": [
+    {
+      "key": "portfolio_snapshot",
+      "label": "포트폴리오 스냅샷",
+      "status": "ok",
+      "detail": "계좌 4개",
+      "path": "data/portfolio/latest.json"
+    },
+    {
+      "key": "report_index",
+      "label": "리포트 인덱스",
+      "status": "ok",
+      "detail": "리포트 55건",
+      "path": "data/reports/2026-04-07/index.json"
+    },
+    {
+      "key": "textification",
+      "label": "전문 텍스트화",
+      "status": "ok",
+      "detail": "성공 55/55 · OCR 2건",
+      "path": "data/reports/2026-04-07/text-manifest.json"
+    },
+    {
+      "key": "market_snapshot",
+      "label": "시장 데이터",
+      "status": "ok",
+      "detail": "market 스냅샷 생성됨",
+      "path": "data/market/2026-04-07.json"
+    },
+    {
+      "key": "technical_snapshot",
+      "label": "기술 점수",
+      "status": "ok",
+      "detail": "종목 15개",
+      "path": "data/technical/2026-04-07.json"
+    },
+    {
+      "key": "rag_pipeline",
+      "label": "RAG 코퍼스",
+      "status": "ok",
+      "detail": "리포트 341 / 포트폴리오 19 / 병렬 360",
+      "path": "knowledge/rag/2026-04-07/parallel-manifest.json"
+    },
+    {
+      "key": "stage1",
+      "label": "Stage 1 연구 노트",
+      "status": "ok",
+      "detail": "추출 55건",
+      "path": "data/analysis-state/2026-04-07/stage1-report-extracts-v2.json"
+    },
+    {
+      "key": "stage2",
+      "label": "Stage 2 전략 탐색",
+      "status": "warn",
+      "detail": "stage2 결과 없음",
+      "path": "data/analysis-state/2026-04-07/stage2-strategy-options.mock.json"
+    },
+    {
+      "key": "impact_map",
+      "label": "Impact Map",
+      "status": "warn",
+      "detail": "impact-map 누락",
+      "path": "data/analysis-state/2026-04-07/impact-map.json"
+    },
+    {
+      "key": "stage3",
+      "label": "Stage 3 퀀트 점수",
+      "status": "error",
+      "detail": "stage3 누락",
+      "path": "data/analysis-state/2026-04-07/stage3-quant-scores.json"
+    },
+    {
+      "key": "stage4",
+      "label": "Stage 4 실행 계획",
+      "status": "error",
+      "detail": "stage4 누락",
+      "path": "data/analysis-state/2026-04-07/stage4-execution-plan.json"
+    },
+    {
+      "key": "briefing",
+      "label": "일일 브리핑",
+      "status": "error",
+      "detail": "briefing.md 누락",
+      "path": "reports/daily/2026-04-07-briefing.md"
+    },
+    {
+      "key": "llm_wiki_daily",
+      "label": "LLM Wiki Daily",
+      "status": "warn",
+      "detail": "daily wiki 누락",
+      "path": "knowledge/wiki/daily/2026-04-07.md"
+    },
+    {
+      "key": "gemini_briefing",
+      "label": "경제 리포트 브리핑",
+      "status": "warn",
+      "detail": "Gemini 브리핑 없음",
+      "path": "knowledge/daily/2026-04-07-gemini-briefing.md"
+    },
+    {
+      "key": "deep_research_prompt",
+      "label": "Deep Research 프롬프트",
+      "status": "ok",
+      "detail": "Stage 1.5 프롬프트 생성됨",
+      "path": "knowledge/daily/manual-kit/2026-04-07/07-stage1-5-gemini-deep-research-prompt.md"
+    },
+    {
+      "key": "deep_research_response",
+      "label": "Deep Research 결과",
+      "status": "warn",
+      "detail": "Deep Research 결과 없음",
+      "path": "knowledge/daily/manual-kit/2026-04-07/09-stage1-5-gemini-deep-research-response.md"
+    },
+    {
+      "key": "deep_research_final",
+      "label": "Deep Research 최종 브리핑",
+      "status": "warn",
+      "detail": "Stage 1.6 최종 브리핑 없음",
+      "path": "knowledge/daily/manual-kit/2026-04-07/10-stage1-6-final-research-briefing.md"
+    },
+    {
+      "key": "freshness_run_id",
+      "label": "Freshness / Run ID",
+      "status": "ok",
+      "detail": "run-id 2026-04-07-021230 일치",
+      "path": "data/analysis-state/2026-04-07/stage4-execution-plan.json"
+    },
+    {
+      "key": "security_normalization",
+      "label": "종목 코드 정규화",
+      "status": "warn",
+      "detail": "portfolio 2건 / stage4 0건 미해결 (토스증권:KODEX 선진국ESG액티브, 토스증권:PLUS V K생산)",
+      "path": "data/portfolio/latest.json"
+    }
+  ]
+}

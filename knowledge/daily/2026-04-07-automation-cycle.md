@@ -1,0 +1,59 @@
+# EcoReport Automation Cycle (2026-04-07)
+- overallStatus: **warn**
+- runDate: 2026-04-07
+- effectiveMarketDate: 2026-04-07
+- runId: 2026-04-07-021230
+- resolutionReason: requested
+- generatedAt: 2026-04-07T02:17:02.549Z
+- logFile: /Users/seo/Documents/Playground/EcoReport/logs/2026-04-07-021230-automation-cycle.log
+- systemHealth: error
+## Completion Checklist
+- [x] Baseline Daily System
+- [x] Stage 1 Extracts
+- [ ] Gemini Deep Research Web (warn)
+- [ ] Stage 1.6 Rich Briefing Overlay (skipped)
+- [ ] Strategy Refresh After Deep Research (skipped)
+- [ ] LLM Wiki Rebuild (skipped)
+- [ ] LLM Wiki Publish (skipped)
+- [ ] Verify Outputs (warn)
+## Step Results
+- [OK] Baseline Daily System (1m 18s)
+  - command: bash scripts/run-daily-system.sh --date 2026-04-07 --run-date 2026-04-07 --effective-market-date 2026-04-07 --run-id 2026-04-07-021230 --gemini-stage2 --skip-push --skip-verify --skip-strategy --skip-wiki --no-gemini-briefing
+  - tail: 🧠 Gemini 브리핑 스킵 (API 키 없음 또는 --no-gemini-briefing) | 🧭 전략 파이프라인 건너뜀 (--skip-strategy) | 📚 LLM Wiki 단계 건너뜀 (--skip-wiki) | 📤 GitHub 동기화 건너뜀 (--skip-push) | 🩺 시스템 검증 건너뜀 (--skip-verify) | ================================================== | ✅ EcoReport Daily System 종료 (run: 2026-04-07 / effective: 2026-04-07) | ==================================================
+- [OK] Stage 1 Extracts (1s)
+  - command: node scripts/build-stage1-report-extracts.js --date 2026-04-07 --run-date 2026-04-07 --effective-market-date 2026-04-07 --run-id 2026-04-07-021230
+  - tail: /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-07/stage1-report-extracts-v2.json
+- [WARN] Gemini Deep Research Web (3m 13s)
+  - command: npm run stage1.5:gemini:run -- --date 2026-04-07 --poll-sec 30 --timeout-sec 1800
+  - reason: Gemini Deep Research Web 실패 (exit 1)
+  - tail: > ecoreport@1.0.0 stage1.5:gemini:run | > node scripts/run-gemini-deep-research-web.js --date 2026-04-07 --poll-sec 30 --timeout-sec 1800 | {"title":"Google Gemini","messageCount":0,"promptSubmitted":true,"researchStarted":false,"hasDeepResearchSelected":true,"hasResearchStartButton":false,"hasStopButton":true,"hasPlanGenerating":false,"hasReportGenerating":false} | {"title":"Google Gemini","messageCount":0,"promptSubmitted":true,"researchStarted":false,"hasDeepResearchSelected":true,"hasResearchStartButton":false,"hasStopButton":true,"hasPlanGenerating":false,"hasReportGenerating":false} | {"title":"Google Gemini","messageCount":0,"promptSubmitted":true,"researchStarted":true,"hasDeepResearchSelected":true,"hasResearchStartButton":false,"hasStopButton":true,"hasPlanGenerating":true,"hasReportGenerating":false} | {"title":"Google Gemini","messageCount":0,"promptSubmitted":true,"researchStarted":true,"hasDeepResearchSelected":true,"hasResearchStartButton":false,"hasStopButton":true,"hasPlanGenerating":true,"hasReportGenerating":false} | run-gemini-deep-research-web 실패: PLAN_PREFIX is not defined
+  - debug: Safari가 잠겨 있지 않은지, Gemini 로그인 상태인지, Deep Research 도구가 노출되는지 확인하세요.
+- [SKIPPED] Stage 1.6 Rich Briefing Overlay (0s)
+  - command: npm run stage1.6:briefing -- --date 2026-04-07 --run-date 2026-04-07 --effective-market-date 2026-04-07
+- [SKIPPED] Strategy Refresh After Deep Research (0s)
+  - command: bash scripts/run-strategy-pipeline.sh --date 2026-04-07 --run-date 2026-04-07 --effective-market-date 2026-04-07 --run-id 2026-04-07-021230 --gemini-stage2
+- [SKIPPED] LLM Wiki Rebuild (0s)
+  - command: node scripts/build-llm-wiki.js --date 2026-04-07 --run-date 2026-04-07 --effective-market-date 2026-04-07 --run-id 2026-04-07-021230
+- [SKIPPED] LLM Wiki Publish (0s)
+  - command: node scripts/publish-llm-wiki-to-vault.js
+- [WARN] Verify Outputs (0s)
+  - command: node scripts/verify-daily-system.js --date 2026-04-07 --run-date 2026-04-07 --effective-market-date 2026-04-07 --run-id 2026-04-07-021230
+  - reason: Verify Outputs 실패 (exit 1)
+  - tail: /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-07/system-health.json
+  - debug: system-health 리포트의 warn/error 체크를 기준으로 빠진 산출물을 확인하세요.
+## Failed Or Warned Steps
+- Gemini Deep Research Web: Gemini Deep Research Web 실패 (exit 1)
+- Verify Outputs: Verify Outputs 실패 (exit 1)
+## Artifacts
+- [OK] /Users/seo/Documents/Playground/EcoReport/logs/2026-04-07-021230-automation-cycle.log
+- [OK] /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-07/stage1-report-extracts-v2.json
+- [OK] /Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-07/07-stage1-5-gemini-deep-research-prompt.md
+- [MISS] /Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-07/09-stage1-5-gemini-deep-research-response.md
+- [MISS] /Users/seo/Documents/Playground/EcoReport/knowledge/daily/2026-04-07-gemini-briefing-rich.md
+- [MISS] /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-07/stage2-strategy-options.json
+- [MISS] /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-07/stage4-execution-plan.json
+- [MISS] /Users/seo/Documents/Playground/EcoReport/reports/daily/2026-04-07-briefing.md
+- [MISS] /Users/seo/Documents/Playground/EcoReport/knowledge/wiki/daily/2026-04-07.md
+- [OK] /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-07/system-health.json
+- [OK] /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-07/automation-cycle.json
+- [OK] /Users/seo/Documents/Playground/EcoReport/knowledge/daily/2026-04-07-automation-cycle.md
