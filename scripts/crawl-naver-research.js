@@ -16,8 +16,14 @@ const PAGE_TIMEOUT_MS = 15_000;
 const FETCH_TIMEOUT_MS = 20_000;
 const RETRIES = 3;
 const RETRY_DELAY_MS = 5_000;
+const TRANSIENT_NETWORK_RETRY_DELAY_MS = 15_000;
 const PDF_TEXT_LIMIT = 12_000;
 const MAX_PAGES = 50;
+const NAVER_FINANCE_BASE = 'https://finance.naver.com/';
+const NAVER_RESEARCH_BASE = 'https://finance.naver.com/research/';
+const NAVER_USER_AGENT =
+  'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36';
+const NAVER_HTML_DECODER = new TextDecoder('euc-kr');
 
 const CATEGORY_CONFIG = [
   {
@@ -119,12 +125,158 @@ function sanitizeWhitespace(value) {
   return value?.replace(/\s+/g, ' ').trim() ?? '';
 }
 
+function absoluteUrl(href, baseUrl = NAVER_RESEARCH_BASE) {
+  if (!href) {
+    return null;
+  }
+
+  return new URL(href, baseUrl).href;
+}
+
+function decodeHtmlEntities(value) {
+  if (!value) {
+    return '';
+  }
+
+  const named = {
+    amp: '&',
+    lt: '<',
+    gt: '>',
+    quot: '"',
+    apos: "'",
+    nbsp: ' ',
+    middot: '·',
+    lsquo: "'",
+    rsquo: "'",
+    ldquo: '"',
+    rdquo: '"',
+    hellip: '...',
+  };
+
+  return value.replace(/&(#x?[0-9a-f]+|[a-z]+);/gi, (entity, code) => {
+    const normalized = String(code).toLowerCase();
+    if (normalized.startsWith('#x')) {
+      const point = Number.parseInt(normalized.slice(2), 16);
+      return Number.isFinite(point) ? String.fromCodePoint(point) : entity;
+    }
+    if (normalized.startsWith('#')) {
+      const point = Number.parseInt(normalized.slice(1), 10);
+      return Number.isFinite(point) ? String.fromCodePoint(point) : entity;
+    }
+    return named[normalized] ?? entity;
+  });
+}
+
+function htmlToText(value) {
+  return sanitizeWhitespace(
+    decodeHtmlEntities(
+      value
+        ?.replace(/<br\s*\/?>/gi, ' ')
+        .replace(/<\/p>/gi, ' ')
+        .replace(/<[^>]+>/g, ' ') ?? '',
+    ),
+  );
+}
+
+function extractResearchTableRows(html) {
+  const match =
+    html.match(
+      /<table[^>]*(?:summary="[^"]*게시판 글목록[^"]*"[^>]*class="type_1"|class="type_1"[^>]*summary="[^"]*게시판 글목록[^"]*")[^>]*>[\s\S]*?<\/table>/i,
+    ) ??
+    html.match(/<table[^>]*class="type_1"[^>]*>[\s\S]*?<\/table>/i);
+
+  return match?.[0].match(/<tr[\s\S]*?<\/tr>/gi) ?? [];
+}
+
+function extractCells(rowHtml) {
+  return Array.from(rowHtml.matchAll(/<td\b[^>]*>([\s\S]*?)<\/td>/gi), (match) => match[1]);
+}
+
+function extractFirstAnchor(html, baseUrl = NAVER_RESEARCH_BASE) {
+  const match = html.match(/<a\b[^>]*href="([^"]+)"[^>]*?(?:title="([^"]*)")?[^>]*>([\s\S]*?)<\/a>/i);
+  if (!match) {
+    return null;
+  }
+
+  return {
+    href: absoluteUrl(match[1], baseUrl),
+    titleAttr: decodeHtmlEntities(match[2] ?? ''),
+    text: htmlToText(match[3]),
+  };
+}
+
+function extractPdfUrl(html, baseUrl = NAVER_RESEARCH_BASE) {
+  const match = html.match(/<a\b[^>]*href="([^"]+\.pdf[^"]*)"[^>]*>/i);
+  return match ? absoluteUrl(match[1], baseUrl) : null;
+}
+
+function parseListRowFromHtml(rowHtml, detailKind) {
+  const cells = extractCells(rowHtml);
+  if (cells.length === 0) {
+    return null;
+  }
+
+  if (detailKind === 'company' && cells.length >= 5) {
+    const stockAnchor = extractFirstAnchor(cells[0], NAVER_FINANCE_BASE);
+    const titleAnchor = extractFirstAnchor(cells[1]);
+    const pdfUrl = extractPdfUrl(cells[3]);
+    if (!stockAnchor || !titleAnchor || !pdfUrl) {
+      return null;
+    }
+
+    return {
+      ticker: parseTickerFromHref(stockAnchor.href),
+      ticker_name: stockAnchor.titleAttr || stockAnchor.text || null,
+      title: titleAnchor.text,
+      detail_url: titleAnchor.href,
+      broker: htmlToText(cells[2]),
+      pdf_url: pdfUrl,
+      date: htmlToText(cells[4]),
+    };
+  }
+
+  if (detailKind === 'industry' && cells.length >= 5) {
+    const titleAnchor = extractFirstAnchor(cells[1]);
+    const pdfUrl = extractPdfUrl(cells[3]);
+    if (!titleAnchor || !pdfUrl) {
+      return null;
+    }
+
+    return {
+      sector: htmlToText(cells[0]),
+      title: titleAnchor.text,
+      detail_url: titleAnchor.href,
+      broker: htmlToText(cells[2]),
+      pdf_url: pdfUrl,
+      date: htmlToText(cells[4]),
+    };
+  }
+
+  if ((detailKind === 'economy' || detailKind === 'simple') && cells.length >= 4) {
+    const titleAnchor = extractFirstAnchor(cells[0]);
+    const pdfUrl = extractPdfUrl(cells[2]);
+    if (!titleAnchor || !pdfUrl) {
+      return null;
+    }
+
+    return {
+      title: titleAnchor.text,
+      detail_url: titleAnchor.href,
+      broker: htmlToText(cells[1]),
+      pdf_url: pdfUrl,
+      date: htmlToText(cells[3]),
+    };
+  }
+
+  return null;
+}
+
 function parseTickerFromHref(href) {
   if (!href) {
     return null;
   }
 
-  const match = href.match(/code=(\d{6})/);
+  const match = href.match(/code=([0-9A-Z]{6})/i);
   return match?.[1] ?? null;
 }
 
@@ -153,6 +305,29 @@ function withTimeoutSignal(timeoutMs) {
   return { signal: controller.signal, clear: () => clearTimeout(timeoutId) };
 }
 
+function isLikelyTransientNetworkError(error) {
+  const message = String(error instanceof Error ? error.message : error).toLowerCase();
+  return [
+    'enotfound',
+    'eai_again',
+    'econnreset',
+    'ecanceled',
+    'etimedout',
+    'timeout',
+    'the operation was aborted',
+    'fetch failed',
+    'dns',
+  ].some((token) => message.includes(token));
+}
+
+function retryDelayMsFor(error, attempt) {
+  const multiplier = Math.max(attempt, 1);
+  if (isLikelyTransientNetworkError(error)) {
+    return TRANSIENT_NETWORK_RETRY_DELAY_MS * multiplier;
+  }
+  return RETRY_DELAY_MS * multiplier;
+}
+
 async function withRetry(label, task) {
   let lastError;
 
@@ -164,7 +339,7 @@ async function withRetry(label, task) {
       const message = error instanceof Error ? error.message : String(error);
       console.warn(`⚠️ ${label} 실패 (${attempt}/${RETRIES}): ${message}`);
       if (attempt < RETRIES) {
-        await sleep(RETRY_DELAY_MS);
+        await sleep(retryDelayMsFor(error, attempt));
       }
     }
   }
@@ -298,6 +473,143 @@ async function collectCategoryRows(browserContext, categoryConfig, targetDate, c
   }
 
   return collected;
+}
+
+async function fetchDecodedText(url, { decoder = null, referer = undefined } = {}) {
+  const { signal, clear } = withTimeoutSignal(FETCH_TIMEOUT_MS);
+
+  try {
+    const response = await fetch(url, {
+      signal,
+      headers: {
+        'user-agent': NAVER_USER_AGENT,
+        accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        ...(referer ? { referer } : {}),
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+
+    const buffer = Buffer.from(await response.arrayBuffer());
+    if (!decoder) {
+      return buffer.toString('utf8');
+    }
+
+    return decoder.decode(buffer);
+  } finally {
+    clear();
+  }
+}
+
+async function fetchNaverHtml(url, referer = undefined) {
+  return fetchDecodedText(url, {
+    decoder: NAVER_HTML_DECODER,
+    referer,
+  });
+}
+
+async function collectCategoryRowsWithoutBrowser(categoryConfig, targetDate, crawlStats) {
+  const collected = [];
+
+  for (let currentPage = 1; currentPage <= MAX_PAGES; currentPage += 1) {
+    const listUrl = `${categoryConfig.listUrl}?page=${currentPage}`;
+    const html = await withRetry(`${categoryConfig.category} 목록 ${currentPage}페이지`, async () =>
+      fetchNaverHtml(listUrl, categoryConfig.listUrl),
+    );
+
+    const rawRows = extractResearchTableRows(html)
+      .map((rowHtml) => parseListRowFromHtml(rowHtml, categoryConfig.detailKind))
+      .filter(Boolean);
+
+    if (rawRows.length === 0) {
+      break;
+    }
+
+    const normalizedRows = rawRows.map((row) => ({
+      ...row,
+      source: categoryConfig.source,
+      category: categoryConfig.category,
+      date: naverDateToIso(row.date),
+    }));
+
+    const pageMatches = normalizedRows.filter((row) => row.date === targetDate);
+    const hasOlderRows = normalizedRows.some((row) => row.date && row.date < targetDate);
+
+    collected.push(...pageMatches);
+    crawlStats.pageLogs.push({
+      source: categoryConfig.source,
+      category: categoryConfig.category,
+      page: currentPage,
+      matchedCount: pageMatches.length,
+      totalRowsOnPage: normalizedRows.length,
+    });
+
+    console.log(`- ${categoryConfig.category} ${currentPage}페이지: ${pageMatches.length}건 수집`);
+
+    if (hasOlderRows || pageMatches.length === 0) {
+      break;
+    }
+  }
+
+  return collected;
+}
+
+function parseDetailMetaFromHtml(html) {
+  const headerHtml = html.match(/<th[^>]*class="view_sbj"[^>]*>([\s\S]*?)<\/th>/i)?.[1] ?? '';
+  const labelHtml = headerHtml.match(/<span>\s*<em>([\s\S]*?)<\/em>\s*<\/span>/i)?.[1] ?? '';
+  const titleHtml = headerHtml
+    .replace(/<p\b[^>]*class="source"[^>]*>[\s\S]*?<\/p>/i, ' ')
+    .replace(/<span[\s\S]*?<\/span>/i, ' ');
+  const targetPriceHtml =
+    html.match(/<em\b[^>]*class="money"[^>]*>[\s\S]*?<strong>([\s\S]*?)<\/strong>/i)?.[1] ?? '';
+  const opinionHtml = html.match(/<em\b[^>]*class="coment"[^>]*>([\s\S]*?)<\/em>/i)?.[1] ?? '';
+
+  return {
+    title: htmlToText(titleHtml) || null,
+    label: htmlToText(labelHtml) || null,
+    opinion: htmlToText(opinionHtml) || null,
+    targetPrice: parseMoney(htmlToText(targetPriceHtml)),
+  };
+}
+
+async function enrichRowsWithoutBrowser(items) {
+  if (items.length === 0) {
+    return items;
+  }
+
+  for (const item of items) {
+    if (!item.detail_url || item.source === '신한투자증권') {
+      continue;
+    }
+
+    try {
+      const html = await withRetry(`상세 메타 ${item.ticker_name || item.title}`, async () =>
+        fetchNaverHtml(item.detail_url, NAVER_RESEARCH_BASE),
+      );
+      const meta = parseDetailMetaFromHtml(html);
+
+      item.title = meta.title || item.title;
+      if (item.category === '종목분석') {
+        item.ticker_name = meta.label || item.ticker_name;
+      }
+
+      if (item.category === '산업분석') {
+        item.sector = meta.label || item.sector;
+      }
+
+      item.opinion = meta.opinion ?? null;
+      item.target_price = meta.targetPrice ?? null;
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      console.warn(`⚠️ 상세 메타 수집 스킵 (${item.ticker_name || item.title}): ${message}`);
+      item.opinion = item.opinion ?? null;
+      item.target_price = item.target_price ?? null;
+    }
+  }
+
+  return items;
 }
 
 function shinhanDateToIso(value) {
@@ -499,8 +811,7 @@ async function downloadPdf(url, destinationPath) {
       const response = await fetch(url, {
         signal,
         headers: {
-          'user-agent':
-            'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
+          'user-agent': NAVER_USER_AGENT,
           accept: 'application/pdf,*/*',
           referer: 'https://finance.naver.com/',
         },
@@ -620,6 +931,7 @@ async function writeCrawlManifest(targetDate, outputDir, crawlStats, entries) {
       },
     ],
     page_logs: crawlStats.pageLogs,
+    category_failures: crawlStats.categoryFailures,
     total_matched_before_dedupe: crawlStats.totalMatchedBeforeDedupe,
     total_unique_after_dedupe: crawlStats.totalUniqueAfterDedupe,
     downloaded_count: entries.length,
@@ -640,6 +952,7 @@ async function writeCrawlManifest(targetDate, outputDir, crawlStats, entries) {
     `- 매칭 건수(중복 제거 전): ${manifest.total_matched_before_dedupe}`,
     `- 저장 건수(중복 제거 후/PDF 다운로드 성공): ${manifest.downloaded_count}`,
     `- 다운로드 실패: ${manifest.failed_download_count}`,
+    `- 카테고리/소스 실패: ${manifest.category_failures.length}`,
     '',
     '## 출처별 건수',
     ...Object.entries(manifest.source_counts).map(([key, value]) => `- ${key}: ${value}건`),
@@ -658,6 +971,15 @@ async function writeCrawlManifest(targetDate, outputDir, crawlStats, entries) {
         `- ${pageLog.source} / ${pageLog.category} / ${pageLog.page}페이지: ${pageLog.matchedCount}건 (페이지 원본 ${pageLog.totalRowsOnPage}건)`,
     ),
   ];
+
+  if (manifest.category_failures.length > 0) {
+    markdownLines.push('', '## 카테고리/소스 실패');
+    markdownLines.push(
+      ...manifest.category_failures.map(
+        (failure) => `- ${failure.source} / ${failure.category}: ${failure.error}`,
+      ),
+    );
+  }
 
   if (manifest.download_failures.length > 0) {
     markdownLines.push('', '## 다운로드 실패');
@@ -689,31 +1011,120 @@ async function main() {
 
   await fs.mkdir(outputDir, { recursive: true });
 
-  const browser = await ensureBrowser();
-  const context = await browser.newContext({
-    userAgent:
-      'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
-  });
+  let browser = null;
+  let context = null;
+  let useBrowser = false;
+
+  try {
+    browser = await ensureBrowser();
+    context = await browser.newContext({
+      userAgent: NAVER_USER_AGENT,
+    });
+    useBrowser = true;
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.warn(`⚠️ Playwright 브라우저 실행 실패, fetch 폴백으로 계속합니다: ${message}`);
+    try {
+      await context?.close();
+    } catch {
+      // no-op
+    }
+    try {
+      await browser?.close();
+    } catch {
+      // no-op
+    }
+    browser = null;
+    context = null;
+  }
 
   try {
     const collectedRows = [];
     const crawlStats = {
       pageLogs: [],
       downloadFailures: [],
+      categoryFailures: [],
       totalMatchedBeforeDedupe: 0,
       totalUniqueAfterDedupe: 0,
     };
 
     for (const categoryConfig of CATEGORY_CONFIG) {
-      const categoryRows = await collectCategoryRows(context, categoryConfig, args.date, crawlStats);
+      let categoryRows = [];
+
+      if (useBrowser) {
+        try {
+          categoryRows = await collectCategoryRows(context, categoryConfig, args.date, crawlStats);
+        } catch (error) {
+          const message = error instanceof Error ? error.message : String(error);
+          console.warn(`⚠️ ${categoryConfig.category} 브라우저 수집 실패, fetch 폴백으로 전환합니다: ${message}`);
+          crawlStats.categoryFailures.push({
+            source: categoryConfig.source,
+            category: categoryConfig.category,
+            mode: 'browser',
+            error: message,
+          });
+
+          try {
+            categoryRows = await collectCategoryRowsWithoutBrowser(categoryConfig, args.date, crawlStats);
+          } catch (fallbackError) {
+            const fallbackMessage =
+              fallbackError instanceof Error ? fallbackError.message : String(fallbackError);
+            console.warn(`⚠️ ${categoryConfig.category} fetch 폴백도 실패했습니다: ${fallbackMessage}`);
+            crawlStats.categoryFailures.push({
+              source: categoryConfig.source,
+              category: categoryConfig.category,
+              mode: 'fetch',
+              error: fallbackMessage,
+            });
+            categoryRows = [];
+          }
+        }
+      } else {
+        try {
+          categoryRows = await collectCategoryRowsWithoutBrowser(categoryConfig, args.date, crawlStats);
+        } catch (error) {
+          const message = error instanceof Error ? error.message : String(error);
+          console.warn(`⚠️ ${categoryConfig.category} fetch 수집 실패, 다음 카테고리로 진행합니다: ${message}`);
+          crawlStats.categoryFailures.push({
+            source: categoryConfig.source,
+            category: categoryConfig.category,
+            mode: 'fetch',
+            error: message,
+          });
+          categoryRows = [];
+        }
+      }
+
       collectedRows.push(...categoryRows);
     }
 
-    const shinhanResult = await fetchShinhanRows(args.date);
-    collectedRows.push(...shinhanResult.rows);
-    crawlStats.pageLogs.push(...shinhanResult.pageLogs);
+    try {
+      const shinhanResult = await fetchShinhanRows(args.date);
+      collectedRows.push(...shinhanResult.rows);
+      crawlStats.pageLogs.push(...shinhanResult.pageLogs);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      console.warn(`⚠️ 신한투자증권 수집 실패, 다른 소스 결과로 계속합니다: ${message}`);
+      crawlStats.categoryFailures.push({
+        source: '신한투자증권',
+        category: '전체',
+        mode: 'api',
+        error: message,
+      });
+    }
 
-    await enrichRows(context, collectedRows);
+    if (collectedRows.length === 0) {
+      const reasons = crawlStats.categoryFailures
+        .map((failure) => `${failure.source}/${failure.category}:${failure.error}`)
+        .join(' | ');
+      throw new Error(reasons || '수집 가능한 리포트가 없습니다.');
+    }
+
+    if (useBrowser) {
+      await enrichRows(context, collectedRows);
+    } else {
+      await enrichRowsWithoutBrowser(collectedRows);
+    }
     crawlStats.totalMatchedBeforeDedupe = collectedRows.length;
 
     const uniqueRows = dedupeRows(collectedRows);
@@ -732,8 +1143,12 @@ async function main() {
     console.log(`✅ 리포트 ${entries.length}건 저장 완료`);
     console.log(`📁 ${indexPath}`);
   } finally {
-    await context.close();
-    await browser.close();
+    if (context) {
+      await context.close();
+    }
+    if (browser) {
+      await browser.close();
+    }
   }
 }
 

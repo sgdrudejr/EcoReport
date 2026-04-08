@@ -7,6 +7,7 @@ ROOT_DIR="${ROOT_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
 REQUESTED_DATE=""
 RUN_DATE="${RUN_DATE:-$(node "$ROOT_DIR/scripts/resolve-cycle-date.js" --field run_date)}"
 EFFECTIVE_MARKET_DATE=""
+RUN_ID="${ECOREPORT_RUN_ID:-}"
 SKIP_COLLECT=0
 SKIP_RAG=0
 SKIP_PUSH=0
@@ -30,6 +31,10 @@ while [[ $# -gt 0 ]]; do
       ;;
     --effective-market-date)
       EFFECTIVE_MARKET_DATE="$2"
+      shift 2
+      ;;
+    --run-id)
+      RUN_ID="$2"
       shift 2
       ;;
     --skip-collect)
@@ -95,6 +100,10 @@ if [[ -z "$EFFECTIVE_MARKET_DATE" ]]; then
 fi
 
 DATE="$EFFECTIVE_MARKET_DATE"
+if [[ -z "$RUN_ID" ]]; then
+  RUN_ID="${RUN_DATE}-$(date -u +%H%M%S)"
+fi
+export ECOREPORT_RUN_ID="$RUN_ID"
 RESOLVE_REASON_ARGS=()
 if [[ -n "$REQUESTED_DATE" ]]; then
   RESOLVE_REASON_ARGS+=(--date "$REQUESTED_DATE")
@@ -108,6 +117,9 @@ LOG_DIR="$ROOT_DIR/logs"
 mkdir -p "$LOG_DIR"
 TIME="$(date +%H%M)"
 LOG_FILE="$LOG_DIR/$DATE-$TIME-daily-system.log"
+FALLBACK_SUMMARY_JSON="$ROOT_DIR/data/analysis-state/$DATE/fallback-summary.json"
+FALLBACK_SUMMARY_MD="$ROOT_DIR/data/analysis-state/$DATE/fallback-summary.md"
+rm -f "$FALLBACK_SUMMARY_JSON" "$FALLBACK_SUMMARY_MD"
 
 log() {
   echo "$1" | tee -a "$LOG_FILE"
@@ -118,6 +130,32 @@ run_step() {
   shift
   log "$label"
   "$@" >>"$LOG_FILE" 2>&1
+}
+
+run_retrying_step() {
+  local label="$1"
+  local attempts="$2"
+  shift 2
+
+  local attempt=1
+  local exit_code=0
+
+  while [[ "$attempt" -le "$attempts" ]]; do
+    log "$label (attempt $attempt/$attempts)"
+    if "$@" >>"$LOG_FILE" 2>&1; then
+      return 0
+    fi
+
+    exit_code=$?
+    if [[ "$attempt" -lt "$attempts" ]]; then
+      log "⚠️ 단계 실패 (exit $exit_code), 잠시 후 재시도합니다."
+      sleep 2
+    fi
+    attempt=$((attempt + 1))
+  done
+
+  log "⚠️ 단계가 모든 재시도 후에도 실패했습니다. (exit $exit_code)"
+  return "$exit_code"
 }
 
 run_soft_step() {
@@ -157,6 +195,7 @@ python_bin() {
 
 log "=================================================="
 log "🚀 EcoReport Daily System 시작 (run: $RUN_DATE / effective: $DATE)"
+log "🧬 run-id: $RUN_ID"
 log "🗓️ 날짜 해석 사유: $RESOLUTION_REASON"
 log "📁 로그: $LOG_FILE"
 log "=================================================="
@@ -168,10 +207,47 @@ else
   if [[ "$FORCE_COLLECT" == "1" ]]; then
     COLLECT_ARGS+=(--force)
   fi
-  run_step "📡 리포트 수집 + 전문 텍스트화..." bash scripts/collect-report-assets.sh "${COLLECT_ARGS[@]}"
+  if ! run_retrying_step "📡 리포트 수집 + 전문 텍스트화..." 2 bash scripts/collect-report-assets.sh "${COLLECT_ARGS[@]}"; then
+    log "⚠️ 리포트 수집 실패, 빈 fallback 리포트 자산으로 계속 진행합니다."
+    node scripts/ensure-daily-fallbacks.js \
+      --date "$DATE" \
+      --run-date "$RUN_DATE" \
+      --effective-market-date "$DATE" \
+      --mode reports \
+      --reason "collect-report-assets failed after retries" >>"$LOG_FILE" 2>&1
+    SOFT_FAILURE_COUNT=$((SOFT_FAILURE_COUNT + 1))
+  fi
 fi
 
-run_step "📈 시장 데이터 수집..." node scripts/fetch-market-data.js --date "$DATE"
+node scripts/ensure-daily-fallbacks.js \
+  --date "$DATE" \
+  --run-date "$RUN_DATE" \
+  --effective-market-date "$DATE" \
+  --mode reports \
+  --reason "post-collect validation" >>"$LOG_FILE" 2>&1
+
+if ! run_retrying_step "🏦 KIS 포트폴리오 동기화..." 2 node scripts/sync-kis-portfolio.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"; then
+  log "⚠️ KIS 포트폴리오 동기화 실패, 기존 latest.json 으로 계속 진행합니다."
+  SOFT_FAILURE_COUNT=$((SOFT_FAILURE_COUNT + 1))
+fi
+
+if ! run_retrying_step "📈 시장 데이터 수집..." 2 node scripts/fetch-market-data.js --date "$DATE"; then
+  log "⚠️ 시장 데이터 수집 실패, fallback market snapshot으로 계속 진행합니다."
+  node scripts/ensure-daily-fallbacks.js \
+    --date "$DATE" \
+    --run-date "$RUN_DATE" \
+    --effective-market-date "$DATE" \
+    --mode market \
+    --reason "fetch-market-data failed after retries" >>"$LOG_FILE" 2>&1
+  SOFT_FAILURE_COUNT=$((SOFT_FAILURE_COUNT + 1))
+fi
+
+node scripts/ensure-daily-fallbacks.js \
+  --date "$DATE" \
+  --run-date "$RUN_DATE" \
+  --effective-market-date "$DATE" \
+  --mode market \
+  --reason "post-market validation" >>"$LOG_FILE" 2>&1
 
 # FRED API 키가 있으면 거시경제 선행지표 수집 (레짐 감지 + Stage 3 선행지표 스코어에 활용)
 PYTHON_BIN_DAILY="$(python_bin)"
@@ -181,14 +257,30 @@ else
   log "🌐 FRED 수집 스킵 (FRED_API_KEY 없음 — .env에 추가하면 선행지표 스코어 활성화)"
 fi
 
-run_step "📊 기술 지표 계산..." node scripts/calc-technicals.js --date "$DATE"
+if ! run_retrying_step "📊 기술 지표 계산..." 2 node scripts/calc-technicals.js --date "$DATE"; then
+  log "⚠️ 기술 지표 계산 실패, fallback technical snapshot으로 계속 진행합니다."
+  node scripts/ensure-daily-fallbacks.js \
+    --date "$DATE" \
+    --run-date "$RUN_DATE" \
+    --effective-market-date "$DATE" \
+    --mode technical \
+    --reason "calc-technicals failed after retries" >>"$LOG_FILE" 2>&1
+  SOFT_FAILURE_COUNT=$((SOFT_FAILURE_COUNT + 1))
+fi
+
+node scripts/ensure-daily-fallbacks.js \
+  --date "$DATE" \
+  --run-date "$RUN_DATE" \
+  --effective-market-date "$DATE" \
+  --mode technical \
+  --reason "post-technical validation" >>"$LOG_FILE" 2>&1
 
 if [[ "$SKIP_RAG" == "1" ]]; then
   log "🧱 RAG 코퍼스 단계 건너뜀 (--skip-rag)"
 else
-  run_step "🧱 리포트 RAG 코퍼스 생성..." node scripts/build-report-rag-corpus.js --date "$DATE"
-  run_step "🧱 포트폴리오 RAG 코퍼스 생성..." node scripts/build-portfolio-rag-corpus.js --date "$DATE"
-  run_step "🧱 병렬 RAG 코퍼스 생성..." node scripts/build-parallel-rag-corpus.js --date "$DATE"
+  run_nonfatal_step "🧱 리포트 RAG 코퍼스 생성..." node scripts/build-report-rag-corpus.js --date "$DATE"
+  run_nonfatal_step "🧱 포트폴리오 RAG 코퍼스 생성..." node scripts/build-portfolio-rag-corpus.js --date "$DATE"
+  run_nonfatal_step "🧱 병렬 RAG 코퍼스 생성..." node scripts/build-parallel-rag-corpus.js --date "$DATE"
 fi
 
 if [[ "$RUN_GEMINI_BRIEFING" == "yes" ]] || { [[ "$RUN_GEMINI_BRIEFING" == "auto" ]] && has_gemini_key; }; then

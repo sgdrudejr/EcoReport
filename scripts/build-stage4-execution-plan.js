@@ -7,23 +7,35 @@ import {
   CATEGORY_BY_CODE,
   PREFERRED_LABEL_BY_CATEGORY,
   ROOT_DIR,
+  buildRunMetadata,
   enrichPortfolioWithSecurityCodes,
   parseDateArgs,
   readJson,
+  resolveSecurityCodeFromCandidates,
   won,
   writeJson,
   writeText,
 } from "./lib/pipeline-utils.js";
 
-function normalizeStrategyAccountKey(account) {
-  if (account.key === "ISA") return "ISA";
-  if (account.key === "PENSION") return "연금저축";
-  if (account.key === "TOSS") return "토스증권";
+function normalizeStrategyAccountKey(account, strategy) {
+  const candidates = [
+    account.key,
+    account.label,
+    account.key === "PENSION" ? "연금저축" : null,
+    account.key === "TOSS" ? "토스증권" : null,
+    account.key === "ISA" ? "ISA" : null,
+  ].filter(Boolean);
+
+  for (const candidate of candidates) {
+    if (strategy?.accounts?.[candidate]) {
+      return candidate;
+    }
+  }
   return null;
 }
 
 function buildCategoryGaps(account, strategy) {
-  const strategyKey = normalizeStrategyAccountKey(account);
+  const strategyKey = normalizeStrategyAccountKey(account, strategy);
   const targetAllocation = strategy?.accounts?.[strategyKey]?.target_allocation ?? {};
   const holdingsValue = (account.holdings ?? []).reduce((sum, holding) => sum + (holding.marketValue ?? 0), 0);
   const totalAssets = Math.max(account.evaluationAmount ?? 0, holdingsValue + (account.cashAvailable ?? 0));
@@ -64,12 +76,16 @@ function executionBuckets(account, quant, stage2Action, strategy) {
   const watch = [];
 
   for (const holding of account.holdings ?? []) {
-    const score = quant.holdings?.[holding.code]?.actionScore ?? 50;
+    const quantHolding =
+      quant.positions?.[`${account.key}:${holding.code}`] ??
+      quant.holdings?.[holding.code] ??
+      null;
+    const score = quantHolding?.actionScore ?? 50;
     const entry = {
       code: holding.code,
       name: holding.name,
       score,
-      reason: quant.holdings?.[holding.code]?.reportImpacts?.[0]?.reason ?? quant.holdings?.[holding.code]?.technicalSignal ?? "점수 기반 분류",
+      reason: quantHolding?.reportImpacts?.[0]?.reason ?? quantHolding?.technicalSignal ?? "점수 기반 분류",
     };
     if (score >= 68) buy.push(entry);
     else if (score <= 38) trim.push(entry);
@@ -95,7 +111,10 @@ function executionBuckets(account, quant, stage2Action, strategy) {
 }
 
 function resolveStage2Candidates(account, stage2Data, bucket) {
-  const allCandidates = stage2Data?.candidate_scores ?? [];
+  const allCandidates = (stage2Data?.candidate_scores ?? []).map((item) => ({
+    ...item,
+    resolvedCode: resolveSecurityCodeFromCandidates(item.code, item.name),
+  }));
   const accountKeyHints = new Set([account.key, account.label]);
   const buyCodes = new Set(bucket.stage2Bias ? (stage2Data?.account_actions ?? [])
     .find((item) => item.account_key === account.key || item.account_key === account.label)?.buy_candidates ?? [] : []);
@@ -104,31 +123,33 @@ function resolveStage2Candidates(account, stage2Data, bucket) {
   const matched = allCandidates.filter((item) => {
     const targets = item.target_accounts ?? [];
     const matchesAccount = targets.some((target) => accountKeyHints.has(target));
+    const itemCode = item.resolvedCode ?? item.code;
     const itemCategory =
-      CATEGORY_BY_CODE[item.code]?.[account.key] ??
-      CATEGORY_BY_CODE[item.code]?.default ??
+      CATEGORY_BY_CODE[itemCode]?.[account.key] ??
+      CATEGORY_BY_CODE[itemCode]?.default ??
       null;
     const matchesCategory = desiredCategory != null && itemCategory === desiredCategory;
-    const alreadyHeld = (account.holdings ?? []).some((holding) => holding.code === item.code);
+    const alreadyHeld = (account.holdings ?? []).some((holding) => holding.code === itemCode);
     const matchesGapLabel =
       bucket.candidateFromGap &&
       (item.name === bucket.candidateFromGap ||
-        item.code === bucket.candidateFromGap ||
+        itemCode === bucket.candidateFromGap ||
         (item.thesis ?? "").includes(bucket.candidateFromGap));
-    const matchesBuyCode = buyCodes.has(item.code);
+    const matchesBuyCode = buyCodes.has(itemCode);
     return matchesCategory || matchesGapLabel || (matchesAccount && (alreadyHeld || itemCategory !== "기타")) || matchesBuyCode;
   });
 
   const sorted = matched
     .map((item) => {
+      const itemCode = item.resolvedCode ?? item.code;
       const itemCategory =
-        CATEGORY_BY_CODE[item.code]?.[account.key] ??
-        CATEGORY_BY_CODE[item.code]?.default ??
+        CATEGORY_BY_CODE[itemCode]?.[account.key] ??
+        CATEGORY_BY_CODE[itemCode]?.default ??
         null;
       const categoryBonus = desiredCategory != null && itemCategory === desiredCategory ? 4 : 0;
       const gapBonus = bucket.candidateFromGap && item.name === bucket.candidateFromGap ? 3 : 0;
-      const buyCodeBonus = buyCodes.has(item.code) ? 2 : 0;
-      const holdBonus = (account.holdings ?? []).some((holding) => holding.code === item.code) ? 1 : 0;
+      const buyCodeBonus = buyCodes.has(itemCode) ? 2 : 0;
+      const holdBonus = (account.holdings ?? []).some((holding) => holding.code === itemCode) ? 1 : 0;
       return {
         ...item,
         __rank: categoryBonus + gapBonus + buyCodeBonus + holdBonus,
@@ -137,7 +158,7 @@ function resolveStage2Candidates(account, stage2Data, bucket) {
     .sort((left, right) => right.__rank - left.__rank);
 
   return sorted.slice(0, 3).map((item) => ({
-    code: item.code,
+    code: item.resolvedCode ?? item.code,
     name: item.name,
     score: null,
     reason: item.thesis ?? "Stage 2 후보 논리",
@@ -204,6 +225,9 @@ function accountPersona(accountKey) {
   }
   if (accountKey === "TOSS") {
     return "전술 테마와 성장 섹터를 민첩하게 반영하는 역할";
+  }
+  if (accountKey === "KIS_MAIN") {
+    return "전술 테마와 현금 운용을 함께 조절하며 국내 ETF 알파를 쌓는 역할";
   }
   return "계좌 목적에 맞는 자산 배분 역할";
 }
@@ -404,12 +428,10 @@ async function main() {
     args.markdown ?? path.join(ROOT_DIR, "reports", "daily", `${args.date}-stage4-execution-plan.md`);
   const outputBriefing =
     args.briefing ?? path.join(ROOT_DIR, "reports", "daily", `${args.date}-briefing.md`);
+  const runMeta = buildRunMetadata(args);
 
   const payload = {
-    date: args.date,
-    runDate: args.runDate,
-    effectiveMarketDate: args.effectiveMarketDate,
-    generatedAt: new Date().toISOString(),
+    ...runMeta,
     portfolioScore: quant.portfolio?.totalScore ?? 50,
     regime: quant.regime ?? null,
     accountPlans,
@@ -421,8 +443,9 @@ async function main() {
   const markdown = [
     `# EcoReport Stage 4 Execution Plan (${args.date})`,
     "",
-    `- 실행일: ${args.runDate}`,
-    `- 기준 거래일: ${args.effectiveMarketDate}`,
+    `- 실행일: ${runMeta.runDate}`,
+    `- 기준 거래일: ${runMeta.effectiveMarketDate}`,
+    `- run_id: ${runMeta.runId ?? "N/A"}`,
     `- 포트폴리오 총점: ${quant.portfolio?.totalScore ?? "N/A"}점`,
     `- 레짐: ${quant.regime?.name ?? "N/A"} (신뢰도 ${regimeConfidence})`,
     "",
@@ -466,9 +489,10 @@ async function main() {
   const briefing = [
     `# EcoReport 어드바이저 브리핑 (${args.date})`,
     "",
-    `- run_date: ${args.runDate}`,
-    `- effective_market_date: ${args.effectiveMarketDate}`,
-    `- generated_at: ${new Date().toISOString()}`,
+    `- run_date: ${runMeta.runDate}`,
+    `- effective_market_date: ${runMeta.effectiveMarketDate}`,
+    `- run_id: ${runMeta.runId ?? "N/A"}`,
+    `- generated_at: ${runMeta.generatedAt}`,
     `- 포트폴리오 총점: ${quant.portfolio?.totalScore ?? "N/A"}점`,
     `- 현재 레짐: ${quant.regime?.name ?? "N/A"} / 신뢰도 ${regimeConfidence}`,
     `- 핵심 코멘트: ${quant.portfolio?.note ?? "요약 없음"}`,

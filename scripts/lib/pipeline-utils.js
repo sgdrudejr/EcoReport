@@ -128,6 +128,7 @@ export function parseDateArgs(argv) {
     date: defaultRunDate,
     runDate: defaultRunDate,
     effectiveMarketDate: null,
+    runId: process.env.ECOREPORT_RUN_ID?.trim() || null,
     output: null,
     markdown: null,
     force: false,
@@ -145,6 +146,9 @@ export function parseDateArgs(argv) {
       args.effectiveMarketDate = argv[index + 1];
       args.date = argv[index + 1];
       index += 1;
+    } else if (token === "--run-id" && argv[index + 1]) {
+      args.runId = argv[index + 1];
+      index += 1;
     } else if (token === "--output" && argv[index + 1]) {
       args.output = argv[index + 1];
       index += 1;
@@ -161,6 +165,20 @@ export function parseDateArgs(argv) {
   }
 
   return args;
+}
+
+export function createGeneratedAt() {
+  return new Date().toISOString();
+}
+
+export function buildRunMetadata(args, overrides = {}) {
+  return {
+    date: overrides.date ?? args.date,
+    runDate: overrides.runDate ?? args.runDate,
+    effectiveMarketDate: overrides.effectiveMarketDate ?? args.effectiveMarketDate,
+    runId: overrides.runId ?? args.runId ?? null,
+    generatedAt: overrides.generatedAt ?? createGeneratedAt(),
+  };
 }
 
 export async function ensureDir(filePath) {
@@ -257,6 +275,14 @@ export function resolveSecurityCode(nameOrCode) {
   return null;
 }
 
+export function resolveSecurityCodeFromCandidates(...values) {
+  for (const value of values) {
+    const resolved = resolveSecurityCode(value);
+    if (resolved) return resolved;
+  }
+  return null;
+}
+
 export function enrichPortfolioWithSecurityCodes(portfolio) {
   if (!portfolio || !Array.isArray(portfolio.accounts)) {
     return portfolio;
@@ -267,7 +293,7 @@ export function enrichPortfolioWithSecurityCodes(portfolio) {
     accounts: portfolio.accounts.map((account) => ({
       ...account,
       holdings: (account.holdings ?? []).map((holding) => {
-        const resolvedCode = resolveSecurityCode(holding.code ?? holding.name);
+        const resolvedCode = resolveSecurityCodeFromCandidates(holding.code, holding.name);
         return resolvedCode ? { ...holding, code: resolvedCode } : { ...holding };
       }),
     })),

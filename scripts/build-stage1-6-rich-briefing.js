@@ -8,6 +8,7 @@ import dotenv from "dotenv";
 
 import {
   ROOT_DIR,
+  buildRunMetadata,
   parseDateArgs,
   readJson,
   readText,
@@ -17,15 +18,16 @@ import {
   writeText,
 } from "./lib/pipeline-utils.js";
 
-const DEFAULT_MODEL = "gemini-2.5-flash";
+const DEFAULT_PRIORITY_MODELS = ["gemini-2.5-flash", "gemini-2.0-flash"];
+const DEFAULT_MODEL = DEFAULT_PRIORITY_MODELS[0];
 const DEFAULT_ARCHIVE_NAME = "10-stage1-6-final-research-briefing.md";
-const DEFAULT_MAX_RETRIES = 3;
+const DEFAULT_MAX_RETRIES = 5;
 
 function parseArgs(argv) {
   const base = parseDateArgs(argv);
   const args = {
     ...base,
-    model: DEFAULT_MODEL,
+    model: null,
     deepResearch: null,
     output: base.output ?? null,
     archive: null,
@@ -81,7 +83,13 @@ function parseRetryDelayMs(message) {
 }
 
 function isRetryableQuotaError(message) {
-  return /(quota exceeded|resourceexhausted|retry in\s+[0-9.]+s)/i.test(String(message ?? ""));
+  return /(quota exceeded|resourceexhausted|retry in\s+[0-9.]+s|503|unavailable|high demand|temporarily unavailable|deadline exceeded|timed out)/i.test(
+    String(message ?? ""),
+  );
+}
+
+function isUnsupportedModelError(message) {
+  return /(is not found|not supported for generateContent)/i.test(String(message ?? ""));
 }
 
 function resolveAbsolute(target) {
@@ -143,6 +151,16 @@ function singleLine(value, limit = 220) {
   return truncate(compact(value).replace(/\n+/g, " "), limit);
 }
 
+function collectTextSnippets(text, limit = 6, lineLimit = 180) {
+  return String(text ?? "")
+    .split("\n")
+    .map((line) => line.replace(/^[-*#>\d.\s]+/, "").trim())
+    .filter((line) => line.length >= 12)
+    .map((line) => singleLine(line, lineLimit))
+    .filter(Boolean)
+    .slice(0, limit);
+}
+
 function confidenceScore(value) {
   switch (String(value ?? "").toUpperCase()) {
     case "HIGH":
@@ -173,6 +191,40 @@ function pickTopExtracts(extracts, predicate, limit) {
     .map((item) => ({ ...item, _score: scoreExtract(item) }))
     .sort((left, right) => right._score - left._score)
     .slice(0, limit);
+}
+
+function buildStage1Selection(stage1, maxExtracts) {
+  const extracts = stage1?.extracts ?? [];
+  const macro = pickTopExtracts(
+    extracts,
+    (item) => item.report_type === "macro",
+    Math.max(4, Math.floor(maxExtracts / 3)),
+  );
+  const portfolioLinked = pickTopExtracts(
+    extracts,
+    (item) =>
+      (item.related_holdings_in_my_portfolio ?? []).length > 0 ||
+      (item.portfolio_impacts_candidate ?? []).length > 0,
+    Math.max(6, Math.floor(maxExtracts / 2)),
+  );
+  const catalystHeavy = pickTopExtracts(
+    extracts,
+    (item) => (item.catalysts ?? []).length > 0 || (item.what_changed ?? []).length > 0,
+    Math.max(4, Math.floor(maxExtracts / 3)),
+  );
+  const selectedIds = new Set(
+    [...macro, ...portfolioLinked, ...catalystHeavy]
+      .map((item) => item.id || `${item.title || "untitled"}::${item.broker || "unknown"}`)
+      .filter(Boolean),
+  );
+
+  return {
+    macro,
+    portfolioLinked,
+    catalystHeavy,
+    selectedExtractCount: selectedIds.size,
+    selectedReportCount: selectedIds.size,
+  };
 }
 
 function formatExtractList(label, extracts) {
@@ -266,24 +318,11 @@ function summarizePortfolio(portfolio) {
   return lines.join("\n");
 }
 
-function buildStage1Digest(stage1, maxExtracts) {
-  const extracts = stage1?.extracts ?? [];
-  const macro = pickTopExtracts(extracts, (item) => item.report_type === "macro", Math.max(4, Math.floor(maxExtracts / 3)));
-  const portfolioLinked = pickTopExtracts(
-    extracts,
-    (item) =>
-      (item.related_holdings_in_my_portfolio ?? []).length > 0 ||
-      (item.portfolio_impacts_candidate ?? []).length > 0,
-    Math.max(6, Math.floor(maxExtracts / 2)),
-  );
-  const catalystHeavy = pickTopExtracts(
-    extracts,
-    (item) => (item.catalysts ?? []).length > 0 || (item.what_changed ?? []).length > 0,
-    Math.max(4, Math.floor(maxExtracts / 3)),
-  );
+function buildStage1Digest(stage1, selection) {
+  const { macro, portfolioLinked, catalystHeavy } = selection;
 
   return [
-    `- Stage 1 리포트 수: ${stage1?.reportCount ?? extracts.length}`,
+    `- Stage 1 리포트 수: ${stage1?.reportCount ?? (stage1?.extracts ?? []).length}`,
     `- 실행일: ${stage1?.runDate ?? "N/A"} / 기준 거래일: ${stage1?.effectiveMarketDate ?? stage1?.date ?? "N/A"}`,
     "",
     formatExtractList("매크로/레짐 근거", macro),
@@ -341,6 +380,7 @@ function buildPrompt({ args, portfolioSummary, stage1Digest, priorBriefing, deep
     "- ISA: 오늘 실행 1~2개",
     "- PENSION: 오늘 실행 1~2개",
     "- TOSS: 오늘 실행 1~2개",
+    "- KIS_MAIN: 오늘 실행 1~2개",
     "",
     "## 포트폴리오 관점 시사점",
     "- 지금 포트폴리오에서 좋은 점 / 취약점 / 보완 축",
@@ -362,6 +402,103 @@ function buildPrompt({ args, portfolioSummary, stage1Digest, priorBriefing, deep
     "",
     "## Gemini Deep Research 결과",
     deepResearch,
+  ].join("\n");
+}
+
+function buildFallbackBriefing({ args, portfolio, priorBriefing, deepResearch, selection }) {
+  const macroLines = selection.macro
+    .map((item) => singleLine(item.key_thesis || item.key_points?.[0] || item.title, 180))
+    .filter(Boolean);
+  const portfolioLines = selection.portfolioLinked
+    .map((item) => singleLine(item.key_thesis || item.portfolio_impacts_candidate?.[0]?.summary || item.title, 180))
+    .filter(Boolean);
+  const catalystLines = selection.catalystHeavy
+    .flatMap((item) => [...(item.catalysts ?? []), ...(item.what_changed ?? [])])
+    .map((item) => singleLine(item, 160))
+    .filter(Boolean)
+    .slice(0, 6);
+  const researchLines = collectTextSnippets(deepResearch, 6, 180);
+  const advisorLines = collectTextSnippets(priorBriefing, 4, 180);
+  const accountByKey = new Map((portfolio?.accounts ?? []).map((account) => [account.key, account]));
+  const actionLineFor = (key, fallbackLabel) => {
+    const account = accountByKey.get(key);
+    const label = account?.label ?? fallbackLabel;
+    const firstHolding = account?.holdings?.[0];
+    if (!account) {
+      return `- ${key}: ${fallbackLabel} 계좌 상태와 현금 여력을 먼저 점검하세요.`;
+    }
+    return `- ${key}: ${
+      firstHolding
+        ? `${firstHolding.name} 중심으로 비중과 현금 여력을 다시 확인하고 분할 대응하세요.`
+        : `${label} 계좌는 현금 비중과 후보군 우선순위를 다시 점검하세요.`
+    }`;
+  };
+
+  const mainScenario =
+    researchLines[0] ??
+    macroLines[0] ??
+    "리포트 상 확인된 우위 테마를 중심으로 선별 대응이 유효한 구간입니다.";
+  const riskScenario =
+    researchLines[1] ??
+    macroLines[1] ??
+    "외부 변수 변동성이 재확대되면 방어 비중과 현금 운용이 다시 중요해질 수 있습니다.";
+  const strategyLines = [
+    advisorLines[0] ?? portfolioLines[0] ?? "기존 우위 포지션은 유지하되 신규 대응은 분할 접근을 우선합니다.",
+    advisorLines[1] ?? "계좌별 현금 여력과 실행 우선순위를 먼저 맞춘 뒤 액션을 좁힙니다.",
+  ].filter(Boolean);
+  const implicationLines = portfolioLines.length
+    ? portfolioLines.slice(0, 3)
+    : ["포트폴리오 연결 근거는 Stage 1 상위 추출과 Deep Research 메모를 기준으로 재확인합니다."];
+  const checkpointLines = [...catalystLines, ...researchLines.slice(2, 4), ...macroLines.slice(1, 3)].slice(
+    0,
+    6,
+  );
+
+  return [
+    "> Gemini API 과부하로 LLM 합성이 지연되어 Stage 1, 기존 브리핑, Deep Research 메모를 바탕으로 로컬 fallback 브리핑을 생성했습니다.",
+    "",
+    "## 오늘 한 줄 진단",
+    `- ${mainScenario}`,
+    "",
+    "## 3-6개월 핵심 시나리오 트리",
+    "- Main Scenario (확률 60%)",
+    `  - 전개: ${mainScenario}`,
+    `  - 대응: ${strategyLines[0]}`,
+    `  - 체크포인트: ${checkpointLines[0] ?? "상위 리포트의 촉매와 레짐 변화를 재확인"}`,
+    "- Risk Scenario (확률 40%)",
+    `  - 전개: ${riskScenario}`,
+    `  - 대응: ${strategyLines[1] ?? "현금 비중과 방어 포지션을 먼저 점검"}`,
+    `  - 체크포인트: ${checkpointLines[1] ?? "변동성 확대 여부와 핵심 이벤트 일정 재확인"}`,
+    "",
+    "## 6-개월 촉매 일정",
+    ...(checkpointLines.length > 0
+      ? checkpointLines.map((line) => `- ${line}`)
+      : ["- 상위 리포트와 Deep Research 메모에서 확인된 일정 변화 없음"]),
+    "",
+    "## Macro View",
+    ...macroLines.slice(0, 3).map((line) => `- ${line}`),
+    ...(macroLines.length === 0 ? ["- 상위 리포트 기준 시장 레짐과 매크로 변수 재확인 필요"] : []),
+    "",
+    "## Strategy (이번 주 대응)",
+    ...strategyLines.map((line) => `- ${line}`),
+    "",
+    "## Action (오늘 실행)",
+    actionLineFor("ISA", "ISA"),
+    actionLineFor("PENSION", "연금저축"),
+    actionLineFor("TOSS", "토스"),
+    actionLineFor("KIS_MAIN", "한국투자 일반"),
+    "",
+    "## 포트폴리오 관점 시사점",
+    ...implicationLines.map((line) => `- ${line}`),
+    "",
+    "## 체크포인트",
+    ...(checkpointLines.length > 0
+      ? checkpointLines.map((line) => `- ${line}`)
+      : ["- 주요 촉매와 계좌별 현금 여력을 다시 점검하세요."]),
+    "",
+    `- run_id: ${args.runId ?? "N/A"}`,
+    `- run_date: ${args.runDate}`,
+    `- effective_market_date: ${args.effectiveMarketDate}`,
   ].join("\n");
 }
 
@@ -417,27 +554,44 @@ async function callGemini({ apiKey, model, prompt }) {
   return { text, payload };
 }
 
-async function callGeminiWithRetry({ apiKey, model, prompt, maxRetries }) {
-  let attempt = 0;
+async function callGeminiWithRetry({ apiKey, modelCandidates, prompt, maxRetries }) {
+  let lastError = null;
+  let delayMs = 0;
 
-  while (true) {
-    try {
-      return await callGemini({ apiKey, model, prompt });
-    } catch (error) {
-      attempt += 1;
-      const message = error instanceof Error ? error.message : String(error);
-      const canRetry = attempt < maxRetries && isRetryableQuotaError(message);
-      if (!canRetry) {
-        throw error;
+  for (let attempt = 1; attempt <= maxRetries; attempt += 1) {
+    for (const model of modelCandidates) {
+      try {
+        const response = await callGemini({ apiKey, model, prompt });
+        return { ...response, model };
+      } catch (error) {
+        lastError = error;
+        const message = error instanceof Error ? error.message : String(error);
+        if (isUnsupportedModelError(message)) {
+          continue;
+        }
+        if (!isRetryableQuotaError(message)) {
+          throw error;
+        }
+        delayMs = Math.max(
+          delayMs,
+          parseRetryDelayMs(message) ?? Math.min(180_000, 45_000 * attempt),
+        );
       }
+    }
 
-      const delayMs = parseRetryDelayMs(message) ?? attempt * 30000;
+    if (attempt < maxRetries) {
       console.warn(
-        `stage1.6 Gemini quota/backoff 감지: ${Math.ceil(delayMs / 1000)}초 후 재시도 (${attempt}/${maxRetries - 1})`,
+        `stage1.6 Gemini 외부 오류 감지: ${Math.ceil(delayMs / 1000)}초 후 재시도 (${attempt}/${maxRetries})`,
       );
       await sleep(delayMs);
+      delayMs = 0;
     }
   }
+
+  if (lastError) {
+    throw lastError;
+  }
+  throw new Error("stage1.6 Gemini 호출에 실패했습니다.");
 }
 
 async function main() {
@@ -460,7 +614,8 @@ async function main() {
   }
 
   const portfolioSummary = summarizePortfolio(portfolio);
-  const stage1Digest = buildStage1Digest(stage1, args.maxExtracts);
+  const stage1Selection = buildStage1Selection(stage1, args.maxExtracts);
+  const stage1Digest = buildStage1Digest(stage1, stage1Selection);
   const prompt = buildPrompt({
     args,
     portfolioSummary,
@@ -469,22 +624,59 @@ async function main() {
     deepResearch: compact(deepResearch),
   });
 
-  const { text } = await callGeminiWithRetry({
-    apiKey,
-    model: args.model,
-    prompt,
-    maxRetries: args.maxRetries,
-  });
+  const runMeta = buildRunMetadata(args);
+  const modelCandidates = args.model ? [args.model] : DEFAULT_PRIORITY_MODELS;
+
+  let text;
+  let source = "gemini";
+  let usedModel = args.model ?? DEFAULT_MODEL;
+
+  try {
+    const response = await callGeminiWithRetry({
+      apiKey,
+      modelCandidates,
+      prompt,
+      maxRetries: args.maxRetries,
+    });
+    text = response.text;
+    usedModel = response.model;
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.warn(`stage1.6 Gemini fallback 활성화: ${message}`);
+    text = buildFallbackBriefing({
+      args,
+      portfolio,
+      priorBriefing,
+      deepResearch,
+      selection: stage1Selection,
+    });
+    source = "fallback";
+    usedModel = "local-fallback";
+  }
 
   const meta = {
-    generated_at: new Date().toISOString(),
-    run_date: args.runDate,
-    effective_market_date: args.effectiveMarketDate,
-    date: args.date,
-    model: args.model,
+    generated_at: runMeta.generatedAt,
+    generatedAt: runMeta.generatedAt,
+    run_id: runMeta.runId,
+    runId: runMeta.runId,
+    run_date: runMeta.runDate,
+    runDate: runMeta.runDate,
+    effective_market_date: runMeta.effectiveMarketDate,
+    effectiveMarketDate: runMeta.effectiveMarketDate,
+    date: runMeta.date,
+    model: usedModel,
+    requested_model: args.model ?? DEFAULT_MODEL,
+    source,
     workflow: "stage1 + manual deep research -> rich briefing",
     stage1_report_count: stage1.reportCount ?? (stage1.extracts ?? []).length,
     selected_extract_budget: args.maxExtracts,
+    selected_extract_count: stage1Selection.selectedExtractCount,
+    selected_chunk_count: stage1Selection.selectedExtractCount,
+    used_chunk_count: stage1Selection.selectedExtractCount,
+    selected_report_count: stage1Selection.selectedReportCount,
+    covered_report_count: stage1Selection.selectedReportCount,
+    briefing_candidate_count: stage1.reportCount ?? (stage1.extracts ?? []).length,
+    merged_text_char_length: prompt.length,
     source_paths: {
       stage1: paths.stage1,
       portfolio: paths.portfolio,

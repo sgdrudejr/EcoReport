@@ -3,7 +3,18 @@
 
 import path from "node:path";
 
-import { ROOT_DIR, parseDateArgs, readJson, writeJson, writeText } from "./lib/pipeline-utils.js";
+import {
+  ROOT_DIR,
+  buildRunMetadata,
+  enrichPortfolioWithSecurityCodes,
+  parseDateArgs,
+  readJson,
+  readText,
+  resolveSecurityCode,
+  resolveSecurityCodeFromCandidates,
+  writeJson,
+  writeText,
+} from "./lib/pipeline-utils.js";
 
 function statusFromCondition(condition, failLevel = "error") {
   if (condition) return "ok";
@@ -22,6 +33,63 @@ async function fileExists(filePath) {
 
 function relative(filePath) {
   return path.relative(ROOT_DIR, filePath);
+}
+
+function extractJsonMeta(payload) {
+  if (!payload || typeof payload !== "object") {
+    return {
+      runId: null,
+      runDate: null,
+      effectiveMarketDate: null,
+      generatedAt: null,
+    };
+  }
+
+  return {
+    runId: payload.runId ?? null,
+    runDate: payload.runDate ?? null,
+    effectiveMarketDate: payload.effectiveMarketDate ?? null,
+    generatedAt: payload.generatedAt ?? null,
+  };
+}
+
+function extractMarkdownMeta(text) {
+  const content = String(text ?? "");
+  const pick = (patterns) => {
+    for (const pattern of patterns) {
+      const match = content.match(pattern);
+      if (match?.[1]) return match[1].trim();
+    }
+    return null;
+  };
+
+  return {
+    runId: pick([/^run_id:\s+(.+)$/m, /^- run_id:\s+(.+)$/m, /^runId:\s+(.+)$/m]),
+    runDate: pick([/^run_date:\s+(.+)$/m, /^- run_date:\s+(.+)$/m, /^runDate:\s+(.+)$/m]),
+    effectiveMarketDate: pick([
+      /^effective_market_date:\s+(.+)$/m,
+      /^- effective_market_date:\s+(.+)$/m,
+      /^effectiveMarketDate:\s+(.+)$/m,
+    ]),
+    generatedAt: pick([
+      /^generated_at:\s+(.+)$/m,
+      /^- generated_at:\s+(.+)$/m,
+      /^generatedAt:\s+(.+)$/m,
+      /^- generatedAt:\s+(.+)$/m,
+    ]),
+  };
+}
+
+function parseTimestamp(value) {
+  if (!value) return null;
+  const timestamp = Date.parse(value);
+  return Number.isNaN(timestamp) ? null : timestamp;
+}
+
+function summarizeItems(values, limit = 4) {
+  if (!values.length) return "";
+  const head = values.slice(0, limit).join(", ");
+  return values.length > limit ? `${head} 외 ${values.length - limit}건` : head;
 }
 
 async function main() {
@@ -43,12 +111,15 @@ async function main() {
     stage1: path.join(analysisDir, "stage1-report-extracts-v2.json"),
     stage2: path.join(analysisDir, "stage2-strategy-options.json"),
     stage2Mock: path.join(analysisDir, "stage2-strategy-options.mock.json"),
+    impactMap: path.join(analysisDir, "impact-map.json"),
     stage3: path.join(analysisDir, "stage3-quant-scores.json"),
     stage4: path.join(analysisDir, "stage4-execution-plan.json"),
     briefing: path.join(ROOT_DIR, "reports", "daily", `${date}-briefing.md`),
     executionMd: path.join(ROOT_DIR, "reports", "daily", `${date}-stage4-execution-plan.md`),
+    wikiDaily: path.join(ROOT_DIR, "knowledge", "wiki", "daily", `${date}.md`),
     gemini: path.join(ROOT_DIR, "knowledge", "daily", `${date}-gemini-briefing.md`),
     geminiRich: path.join(ROOT_DIR, "knowledge", "daily", `${date}-gemini-briefing-rich.md`),
+    geminiRichMeta: path.join(ROOT_DIR, "knowledge", "daily", `${date}-gemini-briefing-rich.md.meta.json`),
     deepResearchPrompt: path.join(
       ROOT_DIR,
       "knowledge",
@@ -73,6 +144,7 @@ async function main() {
       date,
       "10-stage1-6-final-research-briefing.md",
     ),
+    fallbackSummary: path.join(analysisDir, "fallback-summary.json"),
   };
 
   const [
@@ -88,8 +160,13 @@ async function main() {
     stage1,
     stage2,
     stage2Mock,
+    impactMap,
     stage3,
     stage4,
+    briefingText,
+    wikiDailyText,
+    fallbackSummary,
+    geminiRichMeta,
   ] = await Promise.all([
     readJson(paths.portfolio, null),
     readJson(paths.reportIndex, []),
@@ -103,8 +180,13 @@ async function main() {
     readJson(paths.stage1, null),
     readJson(paths.stage2, null),
     readJson(paths.stage2Mock, null),
+    readJson(paths.impactMap, null),
     readJson(paths.stage3, null),
     readJson(paths.stage4, null),
+    readText(paths.briefing, ""),
+    readText(paths.wikiDaily, ""),
+    readJson(paths.fallbackSummary, null),
+    readJson(paths.geminiRichMeta, null),
   ]);
 
   const reportCount = Array.isArray(reportIndex) ? reportIndex.length : 0;
@@ -113,7 +195,73 @@ async function main() {
   const ocrCount = Number(textManifest?.ocr_used_count ?? 0);
   const stage1Extracts = Number(stage1?.extracts?.length ?? 0);
   const accountCount = Number(portfolio?.accounts?.length ?? 0);
-  const stage2Mode = stage2 ? "gemini" : stage2Mock ? "mock" : "missing";
+  const resolvedStage2 = stage2 ?? stage2Mock;
+  const stage2Mode =
+    resolvedStage2?.source === "mock"
+      ? "mock"
+      : stage2
+        ? "gemini"
+        : stage2Mock
+          ? "mock"
+          : "missing";
+  const normalizedPortfolio = enrichPortfolioWithSecurityCodes(portfolio);
+  const unresolvedPortfolioHoldings = (normalizedPortfolio?.accounts ?? []).flatMap((account) =>
+    (account.holdings ?? [])
+      .filter((holding) => !holding.code)
+      .map((holding) => `${account.label ?? account.key}:${holding.name ?? "Unknown"}`),
+  );
+  const unresolvedStage4Mentions = (stage4?.accountPlans ?? []).flatMap((plan) =>
+    ["stage2Candidates", "stagedBuys", "trims", "holds", "watches"].flatMap((bucket) =>
+      (plan?.[bucket] ?? [])
+        .filter((item) => !resolveSecurityCodeFromCandidates(item.code, item.name))
+        .map((item) => `${plan.label ?? plan.key}:${bucket}:${item.name ?? item.code ?? "Unknown"}`),
+    ),
+  );
+
+  const artifactMetas = [
+    { key: "stage1", label: "Stage 1", path: relative(paths.stage1), meta: extractJsonMeta(stage1) },
+    {
+      key: "stage2",
+      label: "Stage 2",
+      path: relative(stage2 ? paths.stage2 : paths.stage2Mock),
+      meta: extractJsonMeta(stage2 ?? stage2Mock),
+    },
+    { key: "impact_map", label: "Impact Map", path: relative(paths.impactMap), meta: extractJsonMeta(impactMap) },
+    { key: "stage3", label: "Stage 3", path: relative(paths.stage3), meta: extractJsonMeta(stage3) },
+    { key: "stage4", label: "Stage 4", path: relative(paths.stage4), meta: extractJsonMeta(stage4) },
+    { key: "briefing", label: "Briefing", path: relative(paths.briefing), meta: extractMarkdownMeta(briefingText) },
+    { key: "wiki_daily", label: "LLM Wiki Daily", path: relative(paths.wikiDaily), meta: extractMarkdownMeta(wikiDailyText) },
+  ];
+  const existingArtifactMetas = artifactMetas.filter((item) => item.meta.runDate || item.meta.generatedAt || item.meta.runId);
+  const distinctRunIds = [...new Set(existingArtifactMetas.map((item) => item.meta.runId).filter(Boolean))];
+  const missingRunIdLabels = existingArtifactMetas
+    .filter((item) => !item.meta.runId)
+    .map((item) => item.label);
+
+  const stage4GeneratedAt = parseTimestamp(stage4?.generatedAt ?? null);
+  const staleDownstreams = [
+    { label: "Briefing", meta: extractMarkdownMeta(briefingText) },
+    { label: "LLM Wiki Daily", meta: extractMarkdownMeta(wikiDailyText) },
+  ].filter((item) => {
+    const generatedAt = parseTimestamp(item.meta.generatedAt);
+    return stage4GeneratedAt != null && generatedAt != null && generatedAt + 1000 < stage4GeneratedAt;
+  });
+
+  let freshnessStatus = "ok";
+  let freshnessDetail = distinctRunIds.length > 0 ? `run-id ${distinctRunIds[0]} 일치` : "run-id 메타데이터 미검출";
+  if (distinctRunIds.length > 1) {
+    freshnessStatus = "error";
+    freshnessDetail = `run-id 혼재: ${distinctRunIds.join(", ")}`;
+  } else if (missingRunIdLabels.length > 0 || staleDownstreams.length > 0 || existingArtifactMetas.length === 0) {
+    freshnessStatus = "warn";
+    const details = [];
+    if (existingArtifactMetas.length === 0) details.push("핵심 산출물 메타데이터 없음");
+    if (missingRunIdLabels.length > 0) details.push(`run-id 누락: ${missingRunIdLabels.join(", ")}`);
+    if (staleDownstreams.length > 0) {
+      details.push(`stage4보다 오래된 downstream: ${staleDownstreams.map((item) => item.label).join(", ")}`);
+    }
+    freshnessDetail = details.join(" / ");
+  }
 
   const checks = [
     {
@@ -184,6 +332,13 @@ async function main() {
       path: relative(stage2 ? paths.stage2 : paths.stage2Mock),
     },
     {
+      key: "impact_map",
+      label: "Impact Map",
+      status: statusFromCondition(Boolean(impactMap?.reports?.length), "warn"),
+      detail: impactMap?.reports?.length ? `리포트 ${impactMap.reports.length}건` : "impact-map 누락",
+      path: relative(paths.impactMap),
+    },
+    {
       key: "stage3",
       label: "Stage 3 퀀트 점수",
       status: statusFromCondition(Boolean(stage3?.portfolio)),
@@ -208,12 +363,21 @@ async function main() {
       path: relative(paths.briefing),
     },
     {
+      key: "llm_wiki_daily",
+      label: "LLM Wiki Daily",
+      status: statusFromCondition(await fileExists(paths.wikiDaily), "warn"),
+      detail: (await fileExists(paths.wikiDaily)) ? "daily wiki 생성됨" : "daily wiki 누락",
+      path: relative(paths.wikiDaily),
+    },
+    {
       key: "gemini_briefing",
       label: "경제 리포트 브리핑",
       status: statusFromCondition((await fileExists(paths.geminiRich)) || (await fileExists(paths.gemini)), "warn"),
       detail:
         (await fileExists(paths.geminiRich))
-          ? "rich Gemini 브리핑 생성됨"
+          ? geminiRichMeta?.source === "fallback"
+            ? "rich briefing fallback 생성됨"
+            : "rich Gemini 브리핑 생성됨"
           : (await fileExists(paths.gemini))
             ? "Gemini 브리핑 생성됨"
             : "Gemini 브리핑 없음",
@@ -246,11 +410,51 @@ async function main() {
         : "Stage 1.6 최종 브리핑 없음",
       path: relative(paths.deepResearchFinal),
     },
+    {
+      key: "freshness_run_id",
+      label: "Freshness / Run ID",
+      status: freshnessStatus,
+      detail: freshnessDetail,
+      path: relative(paths.stage4),
+    },
+    {
+      key: "security_normalization",
+      label: "종목 코드 정규화",
+      status: statusFromCondition(
+        unresolvedPortfolioHoldings.length === 0 && unresolvedStage4Mentions.length === 0,
+        "warn",
+      ),
+      detail:
+        unresolvedPortfolioHoldings.length === 0 && unresolvedStage4Mentions.length === 0
+          ? "포트폴리오/실행계획 종목 코드 해석 완료"
+          : `portfolio ${unresolvedPortfolioHoldings.length}건 / stage4 ${unresolvedStage4Mentions.length}건 미해결 (${summarizeItems([
+              ...unresolvedPortfolioHoldings,
+              ...unresolvedStage4Mentions,
+            ])})`,
+      path: relative(paths.portfolio),
+    },
+    {
+      key: "fallback_recovery",
+      label: "Fallback Recovery",
+      status: statusFromCondition((fallbackSummary?.entries?.length ?? 0) === 0, "warn"),
+      detail:
+        (fallbackSummary?.entries?.length ?? 0) === 0
+          ? "추가 복구 fallback 없음"
+          : fallbackSummary.entries
+              .map((entry) =>
+                entry.sourceDate
+                  ? `${entry.kind}:${entry.sourceDate} 기준 복구`
+                  : `${entry.kind}:placeholder 복구`,
+              )
+              .join(" / "),
+      path: relative(paths.fallbackSummary),
+    },
   ];
 
+  const canonicalRunId = distinctRunIds.length === 1 ? distinctRunIds[0] : args.runId ?? null;
+  const summaryMeta = buildRunMetadata(args, { runId: canonicalRunId, date });
   const summary = {
-    date,
-    generatedAt: new Date().toISOString(),
+    ...summaryMeta,
     overallStatus: checks.some((item) => item.status === "error")
       ? "error"
       : checks.some((item) => item.status === "warn")
@@ -262,7 +466,10 @@ async function main() {
       extractedReports: successCount,
       ocrUsedReports: ocrCount,
       stage1Extracts,
+      unresolvedPortfolioHoldings: unresolvedPortfolioHoldings.length,
+      unresolvedStage4Mentions: unresolvedStage4Mentions.length,
     },
+    artifacts: artifactMetas,
     checks,
   };
 
@@ -274,6 +481,9 @@ async function main() {
     "",
     `- overallStatus: **${summary.overallStatus}**`,
     `- generatedAt: ${summary.generatedAt}`,
+    `- runId: ${summary.runId ?? "N/A"}`,
+    `- runDate: ${summary.runDate}`,
+    `- effectiveMarketDate: ${summary.effectiveMarketDate}`,
     `- reports: ${reportCount}건 / textified ${successCount}건 / OCR ${ocrCount}건`,
     `- stage1 extracts: ${stage1Extracts}건`,
     "",

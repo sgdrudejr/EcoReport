@@ -1,6 +1,6 @@
 {
-  "version": "1.1",
-  "last_updated": "2026-04-04",
+  "version": "1.2",
+  "last_updated": "2026-04-08",
   "_comment": "Single Source of Truth for all security metadata. Edit here — pipeline-utils.js auto-generates CATEGORY_BY_CODE, HOLDING_TOPIC_HINTS, PREFERRED_LABEL_BY_CATEGORY from this file.",
   "securities": [
     {
@@ -61,7 +61,15 @@
       },
       "keywords": {
         "topic_hints": ["배당", "커버드콜", "미국배당", "다우존스", "인컴"],
-        "aliases": ["미국배당+7%프리미엄다우존스", "프리미엄다우존스", "미국배당 커버드콜"],
+        "aliases": [
+          "미국배당+7%프리미엄다우존스",
+          "프리미엄다우존스",
+          "미국배당 커버드콜",
+          "TIGER 미국배당다우존스타겟커버드콜2호",
+          "미국배당다우존스타겟커버드콜2호",
+          "TIGER 미국배당다우존스스타데일리커...",
+          "미국배당다우존스스타데일리커..."
+        ],
         "macro": ["배당", "인컴", "커버드콜", "다우존스"],
         "theme": ["배당", "커버드콜", "다우", "프리미엄"]
       },
@@ -108,7 +116,14 @@
       },
       "keywords": {
         "topic_hints": ["kofr", "금리", "단기채", "현금", "채권", "유동성"],
-        "aliases": ["kofr", "kofr금리", "kofr금리액티브", "kodex kofr"],
+        "aliases": [
+          "kofr",
+          "kofr금리",
+          "kofr금리액티브",
+          "kodex kofr",
+          "kodex kofr금리액티브(합성)",
+          "kofr금리액티브(합성)"
+        ],
         "macro": ["금리", "채권", "단기", "유동성", "현금"],
         "theme": ["KOFR", "단기금리", "현금", "파킹"]
       },
@@ -152,7 +167,7 @@
       },
       "keywords": {
         "topic_hints": ["방산", "국방", "미사일", "방위산업", "nato"],
-        "aliases": ["plus k방산", "k방산 etf"],
+        "aliases": ["plus k방산", "k방산 etf", "plus v k생산", "plus vk생산"],
         "macro": [],
         "theme": ["방산", "국방", "무기", "군수"]
       },
@@ -181,6 +196,74 @@
       "thematic_triggers": {
         "sectors": ["원자력"],
         "themes": ["원자력"]
+      }
+    },
+    {
+      "code": "138910",
+      "name": "KODEX 구리선물(H)",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "asset_class": "commodity",
+      "region": "GLOBAL",
+      "categories": {
+        "default": "기타"
+      },
+      "keywords": {
+        "topic_hints": ["구리", "copper", "구리선물", "원자재"],
+        "aliases": ["kodex 구리선물", "kodex 구리선물(h)", "구리선물(h)", "copper futures etf"],
+        "macro": ["구리", "원자재", "산업금속"],
+        "theme": ["구리", "원자재", "산업금속"]
+      },
+      "thematic_triggers": {
+        "sectors": [],
+        "themes": ["금/원자재"]
+      }
+    },
+    {
+      "code": "251350",
+      "name": "KODEX MSCI선진국",
+      "type": "etf",
+      "bucket": "core_etf",
+      "asset_class": "equity",
+      "region": "GLOBAL",
+      "categories": {
+        "default": "기타"
+      },
+      "keywords": {
+        "topic_hints": ["선진국", "msci world", "글로벌 주식", "세계 주식"],
+        "aliases": [
+          "kodex msci선진국",
+          "kodex 선진국esg액티브",
+          "kodex 선진국 esg 액티브",
+          "선진국esg액티브"
+        ],
+        "macro": ["선진국", "글로벌 주식", "세계 증시"],
+        "theme": ["선진국", "글로벌", "msci"]
+      },
+      "thematic_triggers": {
+        "sectors": [],
+        "themes": []
+      }
+    },
+    {
+      "code": "396500",
+      "name": "TIGER 반도체TOP10",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "asset_class": "equity",
+      "region": "KR",
+      "categories": {
+        "default": "기타"
+      },
+      "keywords": {
+        "topic_hints": ["반도체", "메모리", "hbm", "반도체 top10"],
+        "aliases": ["tiger 반도체top10", "tiger 반도체나노", "반도체나노"],
+        "macro": ["반도체", "메모리", "hbm"],
+        "theme": ["반도체", "메모리", "hbm"]
+      },
+      "thematic_triggers": {
+        "sectors": ["반도체"],
+        "themes": ["HBM/메모리", "AI 인프라"]
       }
     },
     {

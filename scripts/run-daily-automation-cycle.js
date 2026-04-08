@@ -8,20 +8,23 @@ import { spawn } from "node:child_process";
 
 import {
   ROOT_DIR,
+  createGeneratedAt,
   readJson,
   writeJson,
   writeText,
 } from "./lib/pipeline-utils.js";
-import { resolveTradingDateContext } from "./lib/trading-calendar.js";
+import { isTradingDay, previousDate, resolveTradingDateContext } from "./lib/trading-calendar.js";
 
 function parseArgs(argv) {
   const args = {
     date: "",
     runDate: "",
+    runId: "",
     pollSec: 30,
     timeoutSec: 1800,
     skipPush: false,
     forceCollect: false,
+    reuseFrontDocument: false,
   };
 
   for (let index = 0; index < argv.length; index += 1) {
@@ -31,6 +34,9 @@ function parseArgs(argv) {
       index += 1;
     } else if (token === "--run-date" && argv[index + 1]) {
       args.runDate = argv[index + 1];
+      index += 1;
+    } else if (token === "--run-id" && argv[index + 1]) {
+      args.runId = argv[index + 1];
       index += 1;
     } else if (token === "--poll-sec" && argv[index + 1]) {
       args.pollSec = Number.parseInt(argv[index + 1], 10) || args.pollSec;
@@ -42,6 +48,8 @@ function parseArgs(argv) {
       args.skipPush = true;
     } else if (token === "--force-collect") {
       args.forceCollect = true;
+    } else if (token === "--reuse-front-document") {
+      args.reuseFrontDocument = true;
     }
   }
 
@@ -73,6 +81,8 @@ function buildFailureHint(stepId) {
   switch (stepId) {
     case "baseline_daily_system":
       return "수집, 시장 데이터, Stage 2 Python 의존성, 또는 기본 파이프라인 로그를 먼저 확인하세요.";
+    case "stage1_extracts":
+      return "리포트 인덱스, 전문 텍스트, 포트폴리오 스냅샷이 모두 생성됐는지와 Stage 1 추출 로그를 확인하세요.";
     case "deep_research_web":
       return "Safari가 잠겨 있지 않은지, Gemini 로그인 상태인지, Deep Research 도구가 노출되는지 확인하세요.";
     case "rich_briefing_overlay":
@@ -227,6 +237,7 @@ async function runCommand({
 function buildArtifactMap(date, logFile) {
   return {
     logFile,
+    stage1: path.join(ROOT_DIR, "data", "analysis-state", date, "stage1-report-extracts-v2.json"),
     deepResearchPrompt: path.join(
       ROOT_DIR,
       "knowledge",
@@ -273,6 +284,140 @@ async function buildArtifactStatus(artifacts) {
   );
 }
 
+function formatPctChange(value) {
+  if (value == null || Number.isNaN(value)) return null;
+  const signed = value >= 0 ? "+" : "";
+  return `${signed}${(value * 100).toFixed(2)}%`;
+}
+
+function formatArrowChange(previous, current, formatter = (value) => String(value)) {
+  if (previous == null || current == null) return null;
+  return `${formatter(previous)}→${formatter(current)}`;
+}
+
+function flattenUniqueStagedBuys(stage4) {
+  const totals = new Map();
+
+  for (const accountPlan of stage4?.accountPlans ?? []) {
+    for (const buy of accountPlan?.stagedBuys ?? []) {
+      const name = buy?.name?.trim() || buy?.code?.trim();
+      if (!name) continue;
+      const amount = Number(buy?.suggestedAmount ?? 0) || 0;
+      totals.set(name, (totals.get(name) ?? 0) + amount);
+    }
+  }
+
+  return Array.from(totals.entries())
+    .sort((left, right) => right[1] - left[1] || left[0].localeCompare(right[0], "ko"))
+    .map(([name, amount]) => ({ name, amount }));
+}
+
+function formatFocusList(items, limit = 2) {
+  return items
+    .slice(0, limit)
+    .map((item) => item.name)
+    .join("·");
+}
+
+async function readReportCount(indexPath) {
+  const payload = await readJson(indexPath, null);
+  return Array.isArray(payload) ? payload.length : null;
+}
+
+async function findPreviousSummaryDate(date, maxLookbackDays = 14) {
+  let cursor = previousDate(date);
+
+  for (let index = 0; index < maxLookbackDays; index += 1) {
+    if (!isTradingDay(cursor)) {
+      cursor = previousDate(cursor);
+      continue;
+    }
+
+    const stage4Path = path.join(ROOT_DIR, "data", "analysis-state", cursor, "stage4-execution-plan.json");
+    const marketPath = path.join(ROOT_DIR, "data", "market", `${cursor}.json`);
+    const reportsPath = path.join(ROOT_DIR, "data", "reports", cursor, "index.json");
+    if (await fileExists(stage4Path) || await fileExists(marketPath) || await fileExists(reportsPath)) {
+      return cursor;
+    }
+
+    cursor = previousDate(cursor);
+  }
+
+  return null;
+}
+
+async function buildPreviousDayChangeSummary(date) {
+  const previousTradingDate = await findPreviousSummaryDate(date);
+  if (!previousTradingDate) {
+    return {
+      previousTradingDate: null,
+      line: null,
+    };
+  }
+
+  const [
+    currentStage4,
+    previousStage4,
+    currentMarket,
+    previousMarket,
+    currentReportCount,
+    previousReportCount,
+  ] = await Promise.all([
+    readJson(path.join(ROOT_DIR, "data", "analysis-state", date, "stage4-execution-plan.json"), null),
+    readJson(path.join(ROOT_DIR, "data", "analysis-state", previousTradingDate, "stage4-execution-plan.json"), null),
+    readJson(path.join(ROOT_DIR, "data", "market", `${date}.json`), null),
+    readJson(path.join(ROOT_DIR, "data", "market", `${previousTradingDate}.json`), null),
+    readReportCount(path.join(ROOT_DIR, "data", "reports", date, "index.json")),
+    readReportCount(path.join(ROOT_DIR, "data", "reports", previousTradingDate, "index.json")),
+  ]);
+
+  const parts = [`전일(${previousTradingDate}) 대비`];
+
+  const currentKospi = currentMarket?.indices?.KOSPI ?? null;
+  const previousKospi = previousMarket?.indices?.KOSPI ?? null;
+  if (currentKospi?.close != null && previousKospi?.close != null && previousKospi.close !== 0) {
+    const delta = (currentKospi.close - previousKospi.close) / previousKospi.close;
+    parts.push(`KOSPI ${formatPctChange(delta)}`);
+  }
+
+  const scoreChange = formatArrowChange(previousStage4?.portfolioScore, currentStage4?.portfolioScore);
+  if (scoreChange) {
+    parts.push(`포트폴리오 점수 ${scoreChange}`);
+  }
+
+  const previousRegime = previousStage4?.regime?.name ?? null;
+  const currentRegime = currentStage4?.regime?.name ?? null;
+  if (previousRegime && currentRegime && previousRegime !== currentRegime) {
+    parts.push(`레짐 ${previousRegime}→${currentRegime}`);
+  } else if (currentRegime) {
+    parts.push(`레짐 ${currentRegime} 유지`);
+  }
+
+  const reportCountChange = formatArrowChange(previousReportCount, currentReportCount);
+  if (reportCountChange) {
+    parts.push(`리포트 ${reportCountChange}건`);
+  }
+
+  const currentFocus = flattenUniqueStagedBuys(currentStage4);
+  const previousFocus = flattenUniqueStagedBuys(previousStage4);
+  const previousNames = new Set(previousFocus.map((item) => item.name));
+  const currentNames = new Set(currentFocus.map((item) => item.name));
+  const addedFocus = currentFocus.filter((item) => !previousNames.has(item.name));
+  const removedFocus = previousFocus.filter((item) => !currentNames.has(item.name));
+
+  if (addedFocus.length > 0) {
+    parts.push(`신규 포커스 ${formatFocusList(addedFocus)}`);
+  }
+  if (removedFocus.length > 0) {
+    parts.push(`제외 ${formatFocusList(removedFocus)}`);
+  }
+
+  return {
+    previousTradingDate,
+    line: parts.length > 1 ? parts.join(", ") : null,
+  };
+}
+
 async function writeSummary({
   summaryPathJson,
   summaryPathMarkdown,
@@ -307,10 +452,13 @@ async function writeSummary({
     `- overallStatus: **${summary.overallStatus}**`,
     `- runDate: ${summary.runDate}`,
     `- effectiveMarketDate: ${summary.effectiveMarketDate}`,
+    summary.previousTradingDate ? `- previousTradingDate: ${summary.previousTradingDate}` : null,
+    `- runId: ${summary.runId ?? "N/A"}`,
     `- resolutionReason: ${summary.resolutionReason}`,
     `- generatedAt: ${summary.generatedAt}`,
     `- logFile: ${summary.logFile}`,
     summary.systemHealthOverall ? `- systemHealth: ${summary.systemHealthOverall}` : null,
+    summary.changeSummary ? `- changeSummary: ${summary.changeSummary}` : null,
     "",
     "## Completion Checklist",
     ...summary.steps.map(
@@ -344,6 +492,11 @@ async function main() {
 
   const date = resolved.effectiveMarketDate;
   const runDate = resolved.runDate;
+  const runId =
+    cli.runId ||
+    process.env.ECOREPORT_RUN_ID ||
+    `${runDate}-${createGeneratedAt().slice(11, 19).replace(/:/g, "")}`;
+  process.env.ECOREPORT_RUN_ID = runId;
   const timeLabel = new Date().toISOString().slice(11, 19).replace(/:/g, "");
   const logFile = path.join(ROOT_DIR, "logs", `${date}-${timeLabel}-automation-cycle.log`);
   const logger = createLogger(logFile);
@@ -351,6 +504,7 @@ async function main() {
 
   logger.write("==================================================");
   logger.write(`🤖 EcoReport Automation Cycle 시작 (run: ${runDate} / effective: ${date})`);
+  logger.write(`🧬 run-id: ${runId}`);
   logger.write(`🗓️ 날짜 해석 사유: ${resolved.reason}`);
   logger.write(`📁 로그: ${logFile}`);
   logger.write("==================================================");
@@ -359,13 +513,15 @@ async function main() {
     "scripts/run-daily-system.sh",
     "--date",
     date,
-    "--run-date",
-    runDate,
-    "--effective-market-date",
-    date,
-    "--gemini-stage2",
-    "--skip-push",
-    "--skip-verify",
+      "--run-date",
+      runDate,
+      "--effective-market-date",
+      date,
+      "--run-id",
+      runId,
+      "--gemini-stage2",
+      "--skip-push",
+      "--skip-verify",
     "--skip-strategy",
     "--skip-wiki",
     "--no-gemini-briefing",
@@ -386,6 +542,33 @@ async function main() {
   });
   steps.push({ ...baseline, debugHint: baseline.status === "ok" ? null : buildFailureHint(baseline.id) });
 
+  const stage1Extracts = await runCommand({
+    id: "stage1_extracts",
+    label: "Stage 1 Extracts",
+    command: "node",
+    args: [
+      "scripts/build-stage1-report-extracts.js",
+      "--date",
+      date,
+      "--run-date",
+      runDate,
+      "--effective-market-date",
+      date,
+      "--run-id",
+      runId,
+    ],
+    logger,
+    soft: false,
+    skip: baseline.status !== "ok",
+  });
+  steps.push({
+    ...stage1Extracts,
+    debugHint:
+      stage1Extracts.status === "ok" || stage1Extracts.status === "skipped"
+        ? null
+        : buildFailureHint(stage1Extracts.id),
+  });
+
   const deepResearch = await runCommand({
     id: "deep_research_web",
     label: "Gemini Deep Research Web",
@@ -400,10 +583,11 @@ async function main() {
       String(cli.pollSec),
       "--timeout-sec",
       String(cli.timeoutSec),
+      ...(cli.reuseFrontDocument ? ["--reuse-front-document"] : []),
     ],
     logger,
     soft: true,
-    skip: baseline.status !== "ok",
+    skip: baseline.status !== "ok" || stage1Extracts.status !== "ok",
   });
   steps.push({ ...deepResearch, debugHint: deepResearch.status === "ok" ? null : deepResearch.status === "skipped" ? null : buildFailureHint(deepResearch.id) });
 
@@ -440,11 +624,13 @@ async function main() {
       runDate,
       "--effective-market-date",
       date,
+      "--run-id",
+      runId,
       "--gemini-stage2",
     ],
     logger,
     soft: true,
-    skip: richBriefing.status !== "ok",
+    skip: stage1Extracts.status !== "ok",
   });
   steps.push({ ...strategyRefresh, debugHint: strategyRefresh.status === "ok" ? null : strategyRefresh.status === "skipped" ? null : buildFailureHint(strategyRefresh.id) });
 
@@ -460,10 +646,12 @@ async function main() {
       runDate,
       "--effective-market-date",
       date,
+      "--run-id",
+      runId,
     ],
     logger,
     soft: true,
-    skip: richBriefing.status !== "ok",
+    skip: strategyRefresh.status !== "ok",
   });
   steps.push({ ...wikiRebuild, debugHint: wikiRebuild.status === "ok" ? null : wikiRebuild.status === "skipped" ? null : buildFailureHint(wikiRebuild.id) });
 
@@ -482,7 +670,17 @@ async function main() {
     id: "verify_outputs",
     label: "Verify Outputs",
     command: "node",
-    args: ["scripts/verify-daily-system.js", "--date", date],
+    args: [
+      "scripts/verify-daily-system.js",
+      "--date",
+      date,
+      "--run-date",
+      runDate,
+      "--effective-market-date",
+      date,
+      "--run-id",
+      runId,
+    ],
     logger,
     soft: true,
     skip: false,
@@ -491,6 +689,7 @@ async function main() {
 
   const systemHealth = await readJson(artifacts.systemHealth, null);
   const artifactStatus = await buildArtifactStatus(artifacts);
+  const changeSummary = await buildPreviousDayChangeSummary(date);
 
   const overallStatus = steps.some((step) => step.id === "baseline_daily_system" && step.status === "error")
     ? "error"
@@ -504,11 +703,14 @@ async function main() {
     date,
     runDate,
     effectiveMarketDate: date,
+    runId,
     resolutionReason: resolved.reason,
     generatedAt: new Date().toISOString(),
     overallStatus,
     logFile,
     systemHealthOverall: systemHealth?.overallStatus ?? null,
+    previousTradingDate: changeSummary.previousTradingDate,
+    changeSummary: changeSummary.line,
     steps,
     artifacts: artifactStatus,
   };
@@ -552,6 +754,9 @@ async function main() {
 
   logger.write("==================================================");
   logger.write(`🏁 EcoReport Automation Cycle 종료 (${summary.overallStatus.toUpperCase()})`);
+  if (summary.changeSummary) {
+    logger.write(`↔ 전일 대비: ${summary.changeSummary}`);
+  }
   logger.write(`🧾 요약 JSON: ${artifacts.automationJson}`);
   logger.write(`🧾 요약 MD: ${artifacts.automationMarkdown}`);
   logger.write("==================================================");

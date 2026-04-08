@@ -27,7 +27,7 @@ DEFAULT_PRIORITY_MODELS = [
     "gemini-2.0-flash",
     "gemini-1.5-flash",
 ]
-DEFAULT_MAX_RETRIES = 3
+DEFAULT_MAX_RETRIES = 5
 
 
 def parse_args() -> argparse.Namespace:
@@ -159,18 +159,29 @@ def extract_exception_message(exc: Exception) -> str:
 
 def parse_retry_delay_seconds(message: str) -> int | None:
     match = re.search(r"Please retry in ([0-9.]+)s", message)
-    if not match:
-        return None
-    return max(1, int(float(match.group(1))) + 1)
+    if match:
+        return max(1, int(float(match.group(1))) + 1)
+
+    seconds_match = re.search(r"retry_delay\s*\{\s*seconds:\s*(\d+)", message)
+    if seconds_match:
+        return max(1, int(seconds_match.group(1)) + 1)
+
+    return None
 
 
-def is_retryable_quota_error(message: str) -> bool:
+def is_retryable_transient_error(message: str) -> bool:
     lowered = message.lower()
     return (
         "resourceexhausted" in lowered
         or "quota exceeded" in lowered
         or "please retry in" in lowered
         or "429" in lowered
+        or "503" in lowered
+        or "unavailable" in lowered
+        or "high demand" in lowered
+        or "temporarily unavailable" in lowered
+        or "deadline exceeded" in lowered
+        or "timed out" in lowered
     )
 
 
@@ -238,14 +249,14 @@ def generate_json_response_with_retry(
                 if delay:
                     sleep_seconds = max(sleep_seconds, delay)
 
-                if is_retryable_quota_error(message):
+                if is_retryable_transient_error(message):
                     continue
                 raise
 
         if attempt < max_retries:
-            wait_for = sleep_seconds or min(60, 15 * attempt)
+            wait_for = sleep_seconds or min(180, 45 * attempt)
             print(
-                f"[stage2-gemini] quota/retryable 오류로 {wait_for}s 대기 후 재시도 "
+                f"[stage2-gemini] 일시적 외부 오류로 {wait_for}s 대기 후 재시도 "
                 f"({attempt}/{max_retries})",
                 flush=True,
             )
@@ -289,6 +300,7 @@ def main() -> None:
     payload["date"] = args.date
     payload["runDate"] = args.run_date or args.date
     payload["effectiveMarketDate"] = args.effective_market_date or args.date
+    payload["runId"] = payload.get("runId") or (os.getenv("ECOREPORT_RUN_ID") or "").strip() or None
     payload["generatedAt"] = (
         payload.get("generatedAt")
         or datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")

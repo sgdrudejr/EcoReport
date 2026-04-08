@@ -7,8 +7,10 @@ ROOT_DIR="${ROOT_DIR:-$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)}"
 REQUESTED_DATE=""
 RUN_DATE="${RUN_DATE:-$(node "$ROOT_DIR/scripts/resolve-cycle-date.js" --field run_date)}"
 EFFECTIVE_MARKET_DATE=""
+RUN_ID="${ECOREPORT_RUN_ID:-}"
 USE_MOCK_STAGE2=1
 USE_GEMINI_STAGE2=0
+ALLOW_STAGE2_MOCK_FALLBACK=1
 
 python_bin() {
   if [[ -x "$ROOT_DIR/.venv/bin/python" ]]; then
@@ -32,6 +34,10 @@ while [[ $# -gt 0 ]]; do
       EFFECTIVE_MARKET_DATE="$2"
       shift 2
       ;;
+    --run-id)
+      RUN_ID="$2"
+      shift 2
+      ;;
     --no-mock-stage2)
       USE_MOCK_STAGE2=0
       shift
@@ -39,6 +45,10 @@ while [[ $# -gt 0 ]]; do
     --gemini-stage2)
       USE_GEMINI_STAGE2=1
       USE_MOCK_STAGE2=0
+      shift
+      ;;
+    --strict-gemini-stage2)
+      ALLOW_STAGE2_MOCK_FALLBACK=0
       shift
       ;;
     *)
@@ -60,8 +70,15 @@ if [[ -z "$EFFECTIVE_MARKET_DATE" ]]; then
 fi
 
 DATE="$EFFECTIVE_MARKET_DATE"
+if [[ -z "$RUN_ID" ]]; then
+  RUN_ID="${RUN_DATE}-$(date -u +%H%M%S)"
+fi
+export ECOREPORT_RUN_ID="$RUN_ID"
 
 cd "$ROOT_DIR"
+
+echo "== Run Metadata =="
+echo "run_id=$RUN_ID / run_date=$RUN_DATE / effective_market_date=$DATE"
 
 echo "== Stage 1: report extracts =="
 node scripts/build-stage1-report-extracts.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"
@@ -71,7 +88,13 @@ node scripts/build-stage2-strategy-prompt.js --date "$DATE" --run-date "$RUN_DAT
 
 if [[ "$USE_GEMINI_STAGE2" == "1" ]]; then
   echo "== Stage 2 actual: Gemini strategy options =="
-  "$(python_bin)" scripts/build-stage2-strategy-gemini.py --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"
+  if ! "$(python_bin)" scripts/build-stage2-strategy-gemini.py --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"; then
+    if [[ "$ALLOW_STAGE2_MOCK_FALLBACK" != "1" ]]; then
+      exit 1
+    fi
+    echo "!! Gemini Stage 2 실패 -> mock fallback으로 계속 진행"
+    node scripts/build-stage2-strategy-mock.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE" --output "data/analysis-state/$DATE/stage2-strategy-options.json"
+  fi
 elif [[ "$USE_MOCK_STAGE2" == "1" ]]; then
   echo "== Stage 2 mock: strategy options =="
   node scripts/build-stage2-strategy-mock.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"

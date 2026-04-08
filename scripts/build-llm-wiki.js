@@ -6,13 +6,15 @@ import path from "node:path";
 
 import {
   ROOT_DIR,
-  SECURITIES_MASTER,
   SECURITIES_BY_CODE,
+  buildRunMetadata,
   compactWhitespace,
+  enrichPortfolioWithSecurityCodes,
   getCategory,
   parseDateArgs,
   readJson,
   readText,
+  resolveSecurityCodeFromCandidates,
   won,
   writeText,
 } from "./lib/pipeline-utils.js";
@@ -22,14 +24,8 @@ const ACCOUNT_LABEL_BY_KEY = {
   ISA: "ISA",
   PENSION: "연금저축",
   TOSS: "토스증권",
+  KIS_MAIN: "한투 일반",
 };
-
-function normalizeText(value) {
-  return String(value ?? "")
-    .toLowerCase()
-    .replace(/\s+/g, " ")
-    .trim();
-}
 
 function slugify(value) {
   return String(value ?? "")
@@ -51,6 +47,17 @@ function cleanSentence(value) {
   return /[.!?]|다\.|입니다\.$/.test(text) ? text : `${text}.`;
 }
 
+function impactTypeLabel(targetType) {
+  const mapping = {
+    holding: "종목 직접",
+    category: "카테고리",
+    theme: "테마",
+    account: "계좌",
+    portfolio: "포트폴리오",
+  };
+  return mapping[targetType] ?? targetType ?? "unknown";
+}
+
 function bucketLabel(bucket) {
   const mapping = {
     stagedBuys: "실행 후보",
@@ -69,57 +76,8 @@ function normalizeAccountKey(value) {
   if (upper === "ISA") return "ISA";
   if (upper === "PENSION" || text === "연금저축") return "PENSION";
   if (upper === "TOSS" || text === "토스증권") return "TOSS";
+  if (upper === "KIS_MAIN" || upper === "KIS" || text === "한투 일반" || text === "한투증권" || text === "한국투자증권") return "KIS_MAIN";
   return text;
-}
-
-function buildSecurityLookups() {
-  const exact = new Map();
-  const loose = new Map();
-
-  function add(name, code) {
-    if (!name || !code) return;
-    exact.set(normalizeText(name), code);
-    const looseKey = normalizeLooseName(name);
-    if (looseKey) loose.set(looseKey, code);
-  }
-
-  for (const security of SECURITIES_MASTER.securities ?? []) {
-    add(security.name, security.code);
-    for (const alias of security.keywords?.aliases ?? []) {
-      add(alias, security.code);
-    }
-  }
-
-  return { exact, loose };
-}
-
-function normalizeLooseName(value) {
-  return String(value ?? "")
-    .toLowerCase()
-    .replace(/\.\.\./g, "")
-    .replace(/\([^)]*\)/g, "")
-    .replace(/[^a-z0-9가-힣]+/g, "");
-}
-
-function resolveSecurityCode(nameOrCode, lookups) {
-  if (!nameOrCode) return null;
-  const token = String(nameOrCode).trim();
-  if (SECURITIES_BY_CODE[token]) return token;
-
-  const exact = lookups.exact.get(normalizeText(token));
-  if (exact) return exact;
-
-  const looseKey = normalizeLooseName(token);
-  if (lookups.loose.has(looseKey)) return lookups.loose.get(looseKey);
-
-  for (const [candidate, code] of lookups.loose.entries()) {
-    if (!candidate || !looseKey) continue;
-    if (candidate.startsWith(looseKey) || looseKey.startsWith(candidate)) {
-      return code;
-    }
-  }
-
-  return null;
 }
 
 function markdownLink(fromFile, targetFile, label) {
@@ -141,6 +99,20 @@ function frontmatter(fields) {
   }
   lines.push("---", "");
   return lines.join("\n");
+}
+
+function buildPageMeta(runMeta, title, type, extra = {}) {
+  return {
+    title,
+    type,
+    updated: runMeta.date,
+    source_date: runMeta.date,
+    run_date: runMeta.runDate,
+    effective_market_date: runMeta.effectiveMarketDate,
+    run_id: runMeta.runId ?? "N/A",
+    generated_at: runMeta.generatedAt,
+    ...extra,
+  };
 }
 
 async function existingDates(dir) {
@@ -187,11 +159,13 @@ function topCandidates(plan, limit = 3) {
     .slice(0, limit);
 }
 
-function stage3HoldingsIndex(stage3, lookups) {
+function stage3HoldingsIndex(stage3) {
   const byCode = new Map();
   for (const [rawCode, entry] of Object.entries(stage3?.holdings ?? {})) {
     const resolvedCode =
-      SECURITIES_BY_CODE[rawCode] ? rawCode : resolveSecurityCode(entry?.name ?? rawCode, lookups);
+      SECURITIES_BY_CODE[rawCode]
+        ? rawCode
+        : resolveSecurityCodeFromCandidates(entry?.code, entry?.name, rawCode);
     if (resolvedCode) byCode.set(resolvedCode, entry);
   }
   return byCode;
@@ -201,20 +175,25 @@ function stage4PlansIndex(stage4) {
   return new Map((stage4?.accountPlans ?? []).map((plan) => [normalizeAccountKey(plan.key), plan]));
 }
 
-function allSecurityCodes({ portfolio, stage4, lookups }) {
+function allSecurityCodes({ portfolio, stage3, stage4 }) {
   const codes = new Set();
 
   for (const account of portfolio?.accounts ?? []) {
     for (const holding of account.holdings ?? []) {
-      const code = resolveSecurityCode(holding.code ?? holding.name, lookups);
+      const code = resolveSecurityCodeFromCandidates(holding.code, holding.name);
       if (code) codes.add(code);
     }
+  }
+
+  for (const [rawCode, entry] of Object.entries(stage3?.holdings ?? {})) {
+    const code = resolveSecurityCodeFromCandidates(rawCode, entry?.code, entry?.name);
+    if (code) codes.add(code);
   }
 
   for (const plan of stage4?.accountPlans ?? []) {
     for (const bucket of ["stage2Candidates", "stagedBuys", "trims", "holds", "watches"]) {
       for (const item of plan[bucket] ?? []) {
-        const code = resolveSecurityCode(item.code ?? item.name, lookups);
+        const code = resolveSecurityCodeFromCandidates(item.code, item.name);
         if (code) codes.add(code);
       }
     }
@@ -223,10 +202,10 @@ function allSecurityCodes({ portfolio, stage4, lookups }) {
   return [...codes];
 }
 
-function holdingRows(account, stage3ByCode, lookups) {
+function holdingRows(account, stage3ByCode) {
   const rows = [];
   for (const holding of account?.holdings ?? []) {
-    const code = resolveSecurityCode(holding.code ?? holding.name, lookups);
+    const code = resolveSecurityCodeFromCandidates(holding.code, holding.name);
     const security = code ? SECURITIES_BY_CODE[code] : null;
     const score = code ? stage3ByCode.get(code)?.actionScore : null;
     rows.push({
@@ -241,7 +220,7 @@ function holdingRows(account, stage3ByCode, lookups) {
   return rows;
 }
 
-function extractRecentEvidence(stage1, impactMap, code, securityName) {
+function extractRecentEvidence({ stage1, stage3Entry, code, securityName }) {
   const relatedExtracts = (stage1?.extracts ?? []).filter((extract) => {
     const haystack = [
       extract?.ticker,
@@ -264,22 +243,70 @@ function extractRecentEvidence(stage1, impactMap, code, securityName) {
     return `- ${extract.title ?? "Untitled report"}: ${thesis}`;
   });
 
-  const relatedImpactLines = [];
-  for (const report of impactMap?.reports ?? []) {
-    for (const impact of report?.impacts ?? []) {
-      const targetCode = impact?.target?.code;
-      if (targetCode && targetCode === code) {
-        relatedImpactLines.push(
-          `- ${report.title ?? "Untitled report"}: ${impact.direction ?? "neutral"} / strength ${impact.strength ?? "N/A"} / confidence ${impact.confidence ?? "N/A"}`
-        );
-      }
+  if (evidence.length === 0) {
+    for (const impact of stage3Entry?.reportImpacts ?? []) {
+      const thesis = cleanSentence(impact.reason ?? "impact-map 근거");
+      evidence.push(`- ${impact.title ?? impact.reportId ?? "Untitled report"}: ${thesis}`);
+      if (evidence.length >= 3) break;
     }
   }
 
-  return {
-    evidence,
-    impactLines: relatedImpactLines,
+  return evidence;
+}
+
+function buildImpactLines({ impactMap, stage3Entry, relatedAccounts, relatedCategories }) {
+  const lines = [];
+  const seen = new Set();
+
+  const pushLine = (key, value) => {
+    if (!value || seen.has(key)) return;
+    seen.add(key);
+    lines.push(value);
   };
+
+  for (const impact of stage3Entry?.reportImpacts ?? []) {
+    const key = [impact.reportId, impact.targetType, impact.direction, impact.reason].join("|");
+    const contribution =
+      typeof impact.contribution === "number" ? impact.contribution.toFixed(3) : "N/A";
+    pushLine(
+      key,
+      `- ${impact.title ?? impact.reportId ?? "Untitled report"}: ${impactTypeLabel(impact.targetType)} / ${impact.direction ?? "neutral"} / 기여 ${contribution} / ${cleanSentence(impact.reason ?? "impact-map 근거")}`,
+    );
+  }
+
+  for (const report of impactMap?.reports ?? []) {
+    for (const impact of report?.impacts ?? []) {
+      const target = impact?.target ?? {};
+      const accountKey = normalizeAccountKey(target.accountKey ?? target.name ?? "");
+      const isRelevantAccount = target.type === "account" && relatedAccounts.has(accountKey);
+      const isRelevantPortfolio = target.type === "portfolio";
+      const isRelevantCategory = target.type === "category" && relatedCategories.has(target.name ?? "");
+      if (!isRelevantAccount && !isRelevantPortfolio && !isRelevantCategory) continue;
+
+      const scope =
+        target.type === "account"
+          ? `${impactTypeLabel(target.type)}(${ACCOUNT_LABEL_BY_KEY[accountKey] ?? accountKey ?? "N/A"})`
+          : target.type === "category"
+            ? `${impactTypeLabel(target.type)}(${target.name ?? "N/A"})`
+            : impactTypeLabel(target.type);
+      const reason = cleanSentence(
+        impact.evidence?.snippets?.[0] ?? impact.evidence?.numbers?.[0] ?? "impact-map 근거",
+      );
+      const key = [
+        report.reportId,
+        target.type,
+        accountKey ?? target.name ?? "",
+        impact.direction,
+        reason,
+      ].join("|");
+      pushLine(
+        key,
+        `- ${report.title ?? "Untitled report"}: ${scope} / ${impact.direction ?? "neutral"} / 강도 ${impact.strength ?? "N/A"} / 신뢰 ${impact.confidence ?? "N/A"} / ${reason}`,
+      );
+    }
+  }
+
+  return lines.slice(0, 6);
 }
 
 function buildOpportunityMemo({ security, plans, holdings, stage3Entry }) {
@@ -317,15 +344,11 @@ function buildOpportunityMemo({ security, plans, holdings, stage3Entry }) {
   ];
 }
 
-async function buildOverviewPage({ date, recentDates }) {
+async function buildOverviewPage({ runMeta, recentDates }) {
+  const date = runMeta.date;
   const file = path.join(WIKI_ROOT, "overview.md");
   const content = [
-    frontmatter({
-      title: "EcoReport LLM Wiki Overview",
-      type: "overview",
-      updated: date,
-      source_date: date,
-    }),
+    frontmatter(buildPageMeta(runMeta, "EcoReport LLM Wiki Overview", "overview")),
     "# EcoReport LLM Wiki",
     "",
     "이 위키의 목적은 `매일 리포트를 읽는 것`이 아니라 `돈이 되는 투자 메모리`를 누적하는 것입니다.",
@@ -368,7 +391,8 @@ async function buildOverviewPage({ date, recentDates }) {
   return file;
 }
 
-async function buildDailyPage({ date, portfolio, stage1, stage3, stage4, dailyPagesDir }) {
+async function buildDailyPage({ runMeta, portfolio, stage1, stage3, stage4, dailyPagesDir }) {
+  const date = runMeta.date;
   const file = path.join(dailyPagesDir, `${date}.md`);
   const accountBlocks = (stage4?.accountPlans ?? []).map((plan) => {
     const buyLines = (plan.stagedBuys ?? []).slice(0, 4).map((item) => {
@@ -407,12 +431,7 @@ async function buildDailyPage({ date, portfolio, stage1, stage3, stage4, dailyPa
     .slice(0, 5);
 
   const content = [
-    frontmatter({
-      title: `EcoReport Daily Wiki ${date}`,
-      type: "daily",
-      updated: date,
-      source_date: date,
-    }),
+    frontmatter(buildPageMeta(runMeta, `EcoReport Daily Wiki ${date}`, "daily")),
     `# Daily Decision Memo - ${date}`,
     "",
     "## Snapshot",
@@ -445,8 +464,9 @@ async function buildDailyPage({ date, portfolio, stage1, stage3, stage4, dailyPa
   return file;
 }
 
-async function buildAccountPages({ date, portfolio, strategy, stage3, stage4, accountDir, lookups }) {
-  const stage3ByCode = stage3HoldingsIndex(stage3, lookups);
+async function buildAccountPages({ runMeta, portfolio, strategy, stage3, stage4, accountDir }) {
+  const date = runMeta.date;
+  const stage3ByCode = stage3HoldingsIndex(stage3);
   const plansByKey = stage4PlansIndex(stage4);
   const accountFiles = [];
 
@@ -455,7 +475,7 @@ async function buildAccountPages({ date, portfolio, strategy, stage3, stage4, ac
     const label = ACCOUNT_LABEL_BY_KEY[key] ?? account.label ?? key;
     const plan = plansByKey.get(key);
     const strategyAccount = loadStrategyAccount(strategy, key);
-    const rows = holdingRows(account, stage3ByCode, lookups);
+    const rows = holdingRows(account, stage3ByCode);
     const file = path.join(accountDir, `${slugify(key.toLowerCase())}.md`);
     const holdingsTable = rows.length > 0
       ? [
@@ -475,13 +495,7 @@ async function buildAccountPages({ date, portfolio, strategy, stage3, stage4, ac
     });
 
     const content = [
-      frontmatter({
-        title: `${label} Account Playbook`,
-        type: "account",
-        updated: date,
-        source_date: date,
-        account_key: key,
-      }),
+      frontmatter(buildPageMeta(runMeta, `${label} Account Playbook`, "account", { account_key: key })),
       `# ${label} Account Playbook`,
       "",
       "## Role",
@@ -523,7 +537,7 @@ async function buildAccountPages({ date, portfolio, strategy, stage3, stage4, ac
 }
 
 async function buildSecurityPages({
-  date,
+  runMeta,
   portfolio,
   stage1,
   impactMap,
@@ -531,20 +545,20 @@ async function buildSecurityPages({
   stage4,
   strategy,
   securityDir,
-  lookups,
 }) {
-  const stage3ByCode = stage3HoldingsIndex(stage3, lookups);
+  const date = runMeta.date;
+  const stage3ByCode = stage3HoldingsIndex(stage3);
   const plansByKey = stage4PlansIndex(stage4);
   const files = [];
 
-  for (const code of allSecurityCodes({ portfolio, stage4, lookups })) {
+  for (const code of allSecurityCodes({ portfolio, stage3, stage4 })) {
     const security = SECURITIES_BY_CODE[code];
     if (!security) continue;
 
     const currentHoldings = [];
     for (const account of portfolio?.accounts ?? []) {
       for (const holding of account.holdings ?? []) {
-        const holdingCode = resolveSecurityCode(holding.code ?? holding.name, lookups);
+        const holdingCode = resolveSecurityCodeFromCandidates(holding.code, holding.name);
         if (holdingCode === code) {
           currentHoldings.push({
             accountKey: normalizeAccountKey(account.key),
@@ -560,7 +574,7 @@ async function buildSecurityPages({
     for (const [accountKey, plan] of plansByKey.entries()) {
       for (const bucket of ["stagedBuys", "stage2Candidates", "trims", "holds", "watches"]) {
         for (const item of plan?.[bucket] ?? []) {
-          const mentionCode = resolveSecurityCode(item.code ?? item.name, lookups);
+          const mentionCode = resolveSecurityCodeFromCandidates(item.code, item.name);
           if (mentionCode !== code) continue;
           mentions.push({
             accountKey,
@@ -572,8 +586,23 @@ async function buildSecurityPages({
       }
     }
 
-    const { evidence, impactLines } = extractRecentEvidence(stage1, impactMap, code, security.name);
     const stage3Entry = stage3ByCode.get(code);
+    const relatedAccounts = new Set([
+      ...currentHoldings.map((item) => item.accountKey).filter(Boolean),
+      ...mentions.map((item) => item.accountKey).filter(Boolean),
+    ]);
+    const relatedCategories = new Set([
+      security.categories?.default,
+      ...currentHoldings.map((item) => item.category),
+      ...mentions.map((item) => getCategory(code, item.accountKey)),
+    ].filter(Boolean));
+    const evidence = extractRecentEvidence({ stage1, stage3Entry, code, securityName: security.name });
+    const impactLines = buildImpactLines({
+      impactMap,
+      stage3Entry,
+      relatedAccounts,
+      relatedCategories,
+    });
     const file = path.join(securityDir, `${code}-${slugify(security.name)}.md`);
     const opportunityLines = buildOpportunityMemo({
       security,
@@ -594,13 +623,7 @@ async function buildSecurityPages({
     });
 
     const content = [
-      frontmatter({
-        title: security.name,
-        type: "security",
-        updated: date,
-        source_date: date,
-        code,
-      }),
+      frontmatter(buildPageMeta(runMeta, security.name, "security", { code })),
       `# ${security.name}`,
       "",
       "## Snapshot",
@@ -611,6 +634,7 @@ async function buildSecurityPages({
       `- 자산군: ${security.asset_class ?? "N/A"}`,
       `- 지역: ${security.region ?? "N/A"}`,
       `- 현재 신호: ${stage3Entry?.signal ?? "N/A"} / action score ${stage3Entry?.actionScore ?? "N/A"}`,
+      `- 리포트 영향 점수: ${stage3Entry?.report?.impactScore ?? "N/A"} / 계좌 오버레이 ${stage3Entry?.report?.directAccountImpactScore ?? "N/A"}`,
       "",
       "## Why This Can Make Money",
       "",
@@ -719,10 +743,11 @@ async function ensureWikiDirs() {
 
 async function main() {
   const args = parseDateArgs(process.argv.slice(2));
-  const date = args.date;
-  const lookups = buildSecurityLookups();
+  const runMeta = buildRunMetadata(args);
+  const date = runMeta.date;
 
-  const portfolio = await readJson(path.join(ROOT_DIR, "data", "portfolio", "latest.json"), {});
+  const portfolioRaw = await readJson(path.join(ROOT_DIR, "data", "portfolio", "latest.json"), {});
+  const portfolio = enrichPortfolioWithSecurityCodes(portfolioRaw);
   const strategy = await readJson(path.join(ROOT_DIR, "config", "strategy.json"), {});
   const stage1 = await readJson(path.join(ROOT_DIR, "data", "analysis-state", date, "stage1-report-extracts-v2.json"), {});
   const impactMap = await readJson(path.join(ROOT_DIR, "data", "analysis-state", date, "impact-map.json"), {});
@@ -735,20 +760,19 @@ async function main() {
 
   await ensureWikiDirs();
   const dailyPagesDir = path.join(WIKI_ROOT, "daily");
-  const dailyFile = await buildDailyPage({ date, portfolio, stage1, stage3, stage4, dailyPagesDir });
+  const dailyFile = await buildDailyPage({ runMeta, portfolio, stage1, stage3, stage4, dailyPagesDir });
   const recentDates = await existingDates(dailyPagesDir);
-  const overviewFile = await buildOverviewPage({ date, recentDates });
+  const overviewFile = await buildOverviewPage({ runMeta, recentDates });
   const accountFiles = await buildAccountPages({
-    date,
+    runMeta,
     portfolio,
     strategy,
     stage3,
     stage4,
     accountDir: path.join(WIKI_ROOT, "accounts"),
-    lookups,
   });
   const securityFiles = await buildSecurityPages({
-    date,
+    runMeta,
     portfolio,
     stage1,
     impactMap,
@@ -756,7 +780,6 @@ async function main() {
     stage4,
     strategy,
     securityDir: path.join(WIKI_ROOT, "securities"),
-    lookups,
   });
   await buildIndexPage({ overviewFile, dailyFile, accountFiles, securityFiles });
   await updateLog(date);
