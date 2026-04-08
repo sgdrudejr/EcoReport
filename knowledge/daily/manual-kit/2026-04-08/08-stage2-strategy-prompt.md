@@ -9,7 +9,7 @@
 ## 내 현재 계좌
 - ISA(ISA): 평가 8,384,240원 / 예수금 6,277,490원 / 보유 TIGER 미국S&P500(360750) 20주, TIGER 미국배당다우존스스타데일리커...(458760) 50주
 - 연금저축(PENSION): 평가 1,512,270원 / 예수금 1,515,100원 / 보유 KODEX KOFR금리액티브(합성)(423160) 2주, TIGER 미국나스닥100(133690) 3주, TIGER 미국S&P500(360750) 20주
-- 토스증권(TOSS): 평가 1,297,665원 / 예수금 1,000,945원 / 보유 HANARO 원자력iSelect(434730) 7주, KODEX 선진국ESG액티브(N/A) 15주, PLUS V K생산(N/A) 5주
+- 토스증권(TOSS): 평가 1,297,665원 / 예수금 1,000,945원 / 보유 HANARO 원자력iSelect(434730) 7주, KODEX 선진국ESG액티브(251350) 15주, PLUS V K생산(449450) 5주
 - 한투 일반(KIS_MAIN): 평가 3,037,064원 / 예수금 2,653,714원 / 보유 KODEX 구리선물(H)(138910) 58주, HANARO 원자력iSelect(434730) 2주, PLUS K방산(449450) 3주
 
 ## 시장/섹터 브리핑
@@ -125,6 +125,12 @@ AI 혁신 기대감이 시장을 지지하나, 중동 지정학적 리스크와 
         "accountLabel": "연금저축"
       },
       {
+        "code": "251350",
+        "name": "KODEX 선진국ESG액티브",
+        "accountKey": "TOSS",
+        "accountLabel": "토스증권"
+      },
+      {
         "code": "449450",
         "name": "PLUS K방산",
         "accountKey": "KIS_MAIN",
@@ -133,6 +139,7 @@ AI 혁신 기대감이 시장을 지지하나, 중동 지정학적 리스크와 
     ],
     "related_accounts": [
       "PENSION",
+      "TOSS",
       "KIS_MAIN"
     ],
     "key_thesis": "전월 말 전월대비 YTD 밴드 방향성 코멘트\n - 전쟁 양상에 따른 변동성 구간 지속\n ▲76.1 ▲71.5\n 원/달러 1,516.1 1,460~1,530 ▼ - 상방 리스크는 지난달처럼 크지 않을 것\n (+5.3%) (+4.9%)\n - 전쟁이 끝나면 단기 급락 가능성\n ▲64.0 ▲66.3\n NDF 3M 1,502.5 - 환율이 추가 상승할 가능성은 높지 않다는 전망\n (+4.5%) (+4.6%)",
@@ -579,6 +586,12 @@ AI 혁신 기대감이 시장을 지지하나, 중동 지정학적 리스크와 
         "name": "PLUS K방산",
         "accountKey": "KIS_MAIN",
         "accountLabel": "한투 일반"
+      },
+      {
+        "code": "138910",
+        "name": "KODEX 구리선물(H)",
+        "accountKey": "KIS_MAIN",
+        "accountLabel": "한투 일반"
       }
     ],
     "related_accounts": [
@@ -724,6 +737,17 @@ AI 혁신 기대감이 시장을 지지하나, 중동 지정학적 리스크와 
         "target_type": "holding",
         "target_code": "449450",
         "target_name": "PLUS K방산",
+        "account_key": "KIS_MAIN",
+        "direction": "positive",
+        "horizon": "3m",
+        "strength": 0.46,
+        "reason": "AI 반도체 국산화의 핵심 수혜 기업\n1) 오픈엣지테크놀로지는 AI SoC 와 저전력 Memory 간의 연결을 위해 필요한 통합적인 IP 를\n공급할 수 있는 기업으로 국내 AI 지원 사업의 핵심 수혜 기업으로 부각될 전망이다. K-온디바\n이스 AI 반도체 사업에서는 더 두각을 나타낼 것으로 전망한다. K-온디바이스 AI ...",
+        "action_hint": "보강"
+      },
+      {
+        "target_type": "holding",
+        "target_code": "138910",
+        "target_name": "KODEX 구리선물(H)",
         "account_key": "KIS_MAIN",
         "direction": "positive",
         "horizon": "3m",
@@ -962,10 +986,17 @@ AI 혁신 기대감이 시장을 지지하나, 중동 지정학적 리스크와 
         "name": "TIGER 미국나스닥100",
         "accountKey": "PENSION",
         "accountLabel": "연금저축"
+      },
+      {
+        "code": "138910",
+        "name": "KODEX 구리선물(H)",
+        "accountKey": "KIS_MAIN",
+        "accountLabel": "한투 일반"
       }
     ],
     "related_accounts": [
-      "PENSION"
+      "PENSION",
+      "KIS_MAIN"
     ],
     "key_thesis": "LPU는 HBM을 좀 더 결론적으로는 LPU는 HBM의 decode 부담을 덜어주는 역할을 한다고 볼 수 있다. 이를\n활용할 수 있게 통해서 HBM은 좀 더 prefill에 충실하고 decode 중에서도 핵심 영역을 담당하게 된다.",
     "key_points": [
@@ -1093,6 +1124,17 @@ AI 혁신 기대감이 시장을 지지하나, 중동 지정학적 리스크와 
         "strength": 0.63,
         "reason": "LPU는 HBM을 좀 더 결론적으로는 LPU는 HBM의 decode 부담을 덜어주는 역할을 한다고 볼 수 있다. 이를\n활용할 수 있게 통해서 HBM은 좀 더 prefill에 충실하고 decode 중에서도 핵심 영역을 담당하게 된다.",
         "action_hint": "감축"
+      },
+      {
+        "target_type": "holding",
+        "target_code": "138910",
+        "target_name": "KODEX 구리선물(H)",
+        "account_key": "KIS_MAIN",
+        "direction": "negative",
+        "horizon": "3m",
+        "strength": 0.63,
+        "reason": "LPU는 HBM을 좀 더 결론적으로는 LPU는 HBM의 decode 부담을 덜어주는 역할을 한다고 볼 수 있다. 이를\n활용할 수 있게 통해서 HBM은 좀 더 prefill에 충실하고 decode 중에서도 핵심 영역을 담당하게 된다.",
+        "action_hint": "감축"
       }
     ],
     "confidence": "HIGH",
@@ -1158,11 +1200,18 @@ AI 혁신 기대감이 시장을 지지하나, 중동 지정학적 리스크와 
         "name": "KODEX KOFR금리액티브(합성)",
         "accountKey": "PENSION",
         "accountLabel": "연금저축"
+      },
+      {
+        "code": "138910",
+        "name": "KODEX 구리선물(H)",
+        "accountKey": "KIS_MAIN",
+        "accountLabel": "한투 일반"
       }
     ],
     "related_accounts": [
       "ISA",
-      "PENSION"
+      "PENSION",
+      "KIS_MAIN"
     ],
     "key_thesis": "Top Picks 및 관심종목 최소 2분기까지는 이어질 업황의 불확실성\nCJ ENM(035760)\nBUY | TP 77,000원(하향) | CP 52,000원\n TV광고 업황은 높은 기저효과에 더해 드라마 편성 확대로 개선될 것으로 예상했으나, 이\n 란 전쟁의 불확실성으로 1분기도 부진하지만 2분기도 불확실하다. TV광고만 회복한다면\n스튜디오드래곤(253450)\nBUY | TP 50,000원(하향) | CP 33,400원 CJ...",
     "key_points": [
@@ -1278,6 +1327,17 @@ AI 혁신 기대감이 시장을 지지하나, 중동 지정학적 리스크와 
         "strength": 0.28,
         "reason": "Top Picks 및 관심종목 최소 2분기까지는 이어질 업황의 불확실성\nCJ ENM(035760)\nBUY | TP 77,000원(하향) | CP 52,000원\n TV광고 업황은 높은 기저효과에 더해 드라마 편성 확대로 개선될 것으로 예상했으나, 이\n 란 전쟁의 불확실성으로 1분기도 부진하지만 2분기도 불확실하다. TV광고...",
         "action_hint": "관찰"
+      },
+      {
+        "target_type": "holding",
+        "target_code": "138910",
+        "target_name": "KODEX 구리선물(H)",
+        "account_key": "KIS_MAIN",
+        "direction": "neutral",
+        "horizon": "3m",
+        "strength": 0.28,
+        "reason": "Top Picks 및 관심종목 최소 2분기까지는 이어질 업황의 불확실성\nCJ ENM(035760)\nBUY | TP 77,000원(하향) | CP 52,000원\n TV광고 업황은 높은 기저효과에 더해 드라마 편성 확대로 개선될 것으로 예상했으나, 이\n 란 전쟁의 불확실성으로 1분기도 부진하지만 2분기도 불확실하다. TV광고...",
+        "action_hint": "관찰"
       }
     ],
     "confidence": "HIGH",
@@ -1357,11 +1417,18 @@ AI 혁신 기대감이 시장을 지지하나, 중동 지정학적 리스크와 
         "name": "TIGER 미국나스닥100",
         "accountKey": "PENSION",
         "accountLabel": "연금저축"
+      },
+      {
+        "code": "138910",
+        "name": "KODEX 구리선물(H)",
+        "accountKey": "KIS_MAIN",
+        "accountLabel": "한투 일반"
       }
     ],
     "related_accounts": [
       "PENSION",
-      "ISA"
+      "ISA",
+      "KIS_MAIN"
     ],
     "key_thesis": "한국금융지주 1Q26 한국금융지주의 1분기 지배주주순이익은 전년동기대비 51% 증가한 6,915억원으로 시장\n컨센서스 17% 상회 전망 기대치를 17% 상회할 것으로 전망한다. 거래대금 증가에 따른 브로커리지 실적 호조와\n 자산 증가에 따른 이자손익과 운용 및 기타손익의 견조한 성장세가 이어질 것으로 보인\n투자의견 Buy, 다.\n목표주가 310,000원 유지",
     "key_points": [
@@ -1507,6 +1574,17 @@ AI 혁신 기대감이 시장을 지지하나, 중동 지정학적 리스크와 
         "strength": 0.63,
         "reason": "한국금융지주 1Q26 한국금융지주의 1분기 지배주주순이익은 전년동기대비 51% 증가한 6,915억원으로 시장\n컨센서스 17% 상회 전망 기대치를 17% 상회할 것으로 전망한다. 거래대금 증가에 따른 브로커리지 실적 호조와\n 자산 증가에 따른 이자손익과 운용 및 기타손익의 견조한 성장세가 이어질 것으로 보인\n투자의견 Buy...",
         "action_hint": "보강"
+      },
+      {
+        "target_type": "holding",
+        "target_code": "138910",
+        "target_name": "KODEX 구리선물(H)",
+        "account_key": "KIS_MAIN",
+        "direction": "positive",
+        "horizon": "3m",
+        "strength": 0.63,
+        "reason": "한국금융지주 1Q26 한국금융지주의 1분기 지배주주순이익은 전년동기대비 51% 증가한 6,915억원으로 시장\n컨센서스 17% 상회 전망 기대치를 17% 상회할 것으로 전망한다. 거래대금 증가에 따른 브로커리지 실적 호조와\n 자산 증가에 따른 이자손익과 운용 및 기타손익의 견조한 성장세가 이어질 것으로 보인\n투자의견 Buy...",
+        "action_hint": "보강"
       }
     ],
     "confidence": "HIGH",
@@ -1592,6 +1670,12 @@ AI 혁신 기대감이 시장을 지지하나, 중동 지정학적 리스크와 
       {
         "code": "434730",
         "name": "HANARO 원자력iSelect",
+        "accountKey": "KIS_MAIN",
+        "accountLabel": "한투 일반"
+      },
+      {
+        "code": "138910",
+        "name": "KODEX 구리선물(H)",
         "accountKey": "KIS_MAIN",
         "accountLabel": "한투 일반"
       }
@@ -1758,6 +1842,17 @@ AI 혁신 기대감이 시장을 지지하나, 중동 지정학적 리스크와 
         "strength": 0.63,
         "reason": "3. 투자전략\n22 1Q26 Preview: 아직도 YoY +40%, 높은 시장 기대치 충족\n24 전력기기 Overweight: 전력 설비 = 핵심 국가 안보\n26 TOP-PICK: 산일전기, LS ELECTRIC",
         "action_hint": "보강"
+      },
+      {
+        "target_type": "holding",
+        "target_code": "138910",
+        "target_name": "KODEX 구리선물(H)",
+        "account_key": "KIS_MAIN",
+        "direction": "positive",
+        "horizon": "3m",
+        "strength": 0.63,
+        "reason": "3. 투자전략\n22 1Q26 Preview: 아직도 YoY +40%, 높은 시장 기대치 충족\n24 전력기기 Overweight: 전력 설비 = 핵심 국가 안보\n26 TOP-PICK: 산일전기, LS ELECTRIC",
+        "action_hint": "보강"
       }
     ],
     "confidence": "HIGH",
@@ -1824,11 +1919,18 @@ AI 혁신 기대감이 시장을 지지하나, 중동 지정학적 리스크와 
         "name": "KODEX KOFR금리액티브(합성)",
         "accountKey": "PENSION",
         "accountLabel": "연금저축"
+      },
+      {
+        "code": "138910",
+        "name": "KODEX 구리선물(H)",
+        "accountKey": "KIS_MAIN",
+        "accountLabel": "한투 일반"
       }
     ],
     "related_accounts": [
       "ISA",
-      "PENSION"
+      "PENSION",
+      "KIS_MAIN"
     ],
     "key_thesis": "(QoQ) 양행 기준 분기 NIM은 1bp QoQ 상승할 것으로 기대된다. 은행 원화대출(QoQ)은 기\n 양행 NIM +1bp 업이 1% 감소하고, 외국인 대상, 햇살론 등 전략대출과 중도금 대출을 중심으로 가계가\n 원화대출 +1% 5% 증가하며 전체 1%대 성장할 전망이다. 업권의 가계대출 증가율 목표치가 1%대로\n CCR -15bp 제시된 점을 고려하면 분기 성장률이 높다. 이후 계열 은행들의 가계대 성장이 제한될\n 것으로...",
     "key_points": [
@@ -1952,6 +2054,17 @@ AI 혁신 기대감이 시장을 지지하나, 중동 지정학적 리스크와 
         "strength": 0.54,
         "reason": "(QoQ) 양행 기준 분기 NIM은 1bp QoQ 상승할 것으로 기대된다. 은행 원화대출(QoQ)은 기\n 양행 NIM +1bp 업이 1% 감소하고, 외국인 대상, 햇살론 등 전략대출과 중도금 대출을 중심으로 가계가\n 원화대출 +1% 5% 증가하며 전체 1%대 성장할 전망이다. 업권의 가계대출 증가율 목표치가 1%대로\n C...",
         "action_hint": "보강"
+      },
+      {
+        "target_type": "holding",
+        "target_code": "138910",
+        "target_name": "KODEX 구리선물(H)",
+        "account_key": "KIS_MAIN",
+        "direction": "positive",
+        "horizon": "3m",
+        "strength": 0.54,
+        "reason": "(QoQ) 양행 기준 분기 NIM은 1bp QoQ 상승할 것으로 기대된다. 은행 원화대출(QoQ)은 기\n 양행 NIM +1bp 업이 1% 감소하고, 외국인 대상, 햇살론 등 전략대출과 중도금 대출을 중심으로 가계가\n 원화대출 +1% 5% 증가하며 전체 1%대 성장할 전망이다. 업권의 가계대출 증가율 목표치가 1%대로\n C...",
+        "action_hint": "보강"
       }
     ],
     "confidence": "HIGH",
@@ -2031,11 +2144,18 @@ AI 혁신 기대감이 시장을 지지하나, 중동 지정학적 리스크와 
         "name": "TIGER 미국나스닥100",
         "accountKey": "PENSION",
         "accountLabel": "연금저축"
+      },
+      {
+        "code": "138910",
+        "name": "KODEX 구리선물(H)",
+        "accountKey": "KIS_MAIN",
+        "accountLabel": "한투 일반"
       }
     ],
     "related_accounts": [
       "PENSION",
-      "ISA"
+      "ISA",
+      "KIS_MAIN"
     ],
     "key_thesis": "- Murata(JP-6981), Taiyo Yuden(JP-6976)은 일본 MLCC 기업들은 엔화 약세와 AI 수요 강세가 겹치며 호실적 전망",
     "key_points": [
@@ -2181,6 +2301,17 @@ AI 혁신 기대감이 시장을 지지하나, 중동 지정학적 리스크와 
         "strength": 0.37,
         "reason": "- Murata(JP-6981), Taiyo Yuden(JP-6976)은 일본 MLCC 기업들은 엔화 약세와 AI 수요 강세가 겹치며 호실적 전망",
         "action_hint": "보강"
+      },
+      {
+        "target_type": "holding",
+        "target_code": "138910",
+        "target_name": "KODEX 구리선물(H)",
+        "account_key": "KIS_MAIN",
+        "direction": "positive",
+        "horizon": "3m",
+        "strength": 0.37,
+        "reason": "- Murata(JP-6981), Taiyo Yuden(JP-6976)은 일본 MLCC 기업들은 엔화 약세와 AI 수요 강세가 겹치며 호실적 전망",
+        "action_hint": "보강"
       }
     ],
     "confidence": "HIGH",
@@ -2266,6 +2397,12 @@ AI 혁신 기대감이 시장을 지지하나, 중동 지정학적 리스크와 
       {
         "code": "434730",
         "name": "HANARO 원자력iSelect",
+        "accountKey": "KIS_MAIN",
+        "accountLabel": "한투 일반"
+      },
+      {
+        "code": "138910",
+        "name": "KODEX 구리선물(H)",
         "accountKey": "KIS_MAIN",
         "accountLabel": "한투 일반"
       }
@@ -2432,6 +2569,17 @@ AI 혁신 기대감이 시장을 지지하나, 중동 지정학적 리스크와 
         "strength": 0.63,
         "reason": "Company Data\n • IRA AMPC 세액 공제 금액 포함한 수치 * AMPC 제외 시 1Q26 잠정 영업이익은 -3,975억원(OPM -6.1%)\n현재가(04/07) 408,500 원 • 1) 자동차전지: 업황 부진이 지속되는 구간. 북미 중심으로 수요 회복이 지연, 고객사 가동률도 낮은 수준 유지\n액면가(원) ...",
         "action_hint": "보강"
+      },
+      {
+        "target_type": "holding",
+        "target_code": "138910",
+        "target_name": "KODEX 구리선물(H)",
+        "account_key": "KIS_MAIN",
+        "direction": "positive",
+        "horizon": "3m",
+        "strength": 0.63,
+        "reason": "Company Data\n • IRA AMPC 세액 공제 금액 포함한 수치 * AMPC 제외 시 1Q26 잠정 영업이익은 -3,975억원(OPM -6.1%)\n현재가(04/07) 408,500 원 • 1) 자동차전지: 업황 부진이 지속되는 구간. 북미 중심으로 수요 회복이 지연, 고객사 가동률도 낮은 수준 유지\n액면가(원) ...",
+        "action_hint": "보강"
       }
     ],
     "confidence": "HIGH",
@@ -2511,11 +2659,18 @@ AI 혁신 기대감이 시장을 지지하나, 중동 지정학적 리스크와 
         "name": "TIGER 미국나스닥100",
         "accountKey": "PENSION",
         "accountLabel": "연금저축"
+      },
+      {
+        "code": "138910",
+        "name": "KODEX 구리선물(H)",
+        "accountKey": "KIS_MAIN",
+        "accountLabel": "한투 일반"
       }
     ],
     "related_accounts": [
       "PENSION",
-      "ISA"
+      "ISA",
+      "KIS_MAIN"
     ],
     "key_thesis": "직접 상업화로 현금흐름을 만든 Madrigal은 이를 외부 기술 도입에 재투자하는 선순환 구조를 만들기\n 시작했다. 2024년 MASH 치료제로 최초 승인받은 Rezdiffra(resmetirom)을 직접 출시해 조기에 시장\n 점유율을 확보한 Madrigal은 이를 기반으로 중국 바이오텍 Robo Life Science와 최대 $4.4bn\n 규모의 siRNA 파이프라인 도입 계약을 체결했다. 선급금 $60mn을 지급하고 MAS...",
     "key_points": [
@@ -2658,6 +2813,17 @@ AI 혁신 기대감이 시장을 지지하나, 중동 지정학적 리스크와 
         "strength": 0.63,
         "reason": "직접 상업화로 현금흐름을 만든 Madrigal은 이를 외부 기술 도입에 재투자하는 선순환 구조를 만들기\n 시작했다. 2024년 MASH 치료제로 최초 승인받은 Rezdiffra(resmetirom)을 직접 출시해 조기에 시장\n 점유율을 확보한 Madrigal은 이를 기반으로 중국 바이오텍 Robo Life Science와...",
         "action_hint": "보강"
+      },
+      {
+        "target_type": "holding",
+        "target_code": "138910",
+        "target_name": "KODEX 구리선물(H)",
+        "account_key": "KIS_MAIN",
+        "direction": "positive",
+        "horizon": "3m",
+        "strength": 0.63,
+        "reason": "직접 상업화로 현금흐름을 만든 Madrigal은 이를 외부 기술 도입에 재투자하는 선순환 구조를 만들기\n 시작했다. 2024년 MASH 치료제로 최초 승인받은 Rezdiffra(resmetirom)을 직접 출시해 조기에 시장\n 점유율을 확보한 Madrigal은 이를 기반으로 중국 바이오텍 Robo Life Science와...",
+        "action_hint": "보강"
       }
     ],
     "confidence": "HIGH",
@@ -2727,6 +2893,12 @@ AI 혁신 기대감이 시장을 지지하나, 중동 지정학적 리스크와 
         "accountLabel": "연금저축"
       },
       {
+        "code": "251350",
+        "name": "KODEX 선진국ESG액티브",
+        "accountKey": "TOSS",
+        "accountLabel": "토스증권"
+      },
+      {
         "code": "449450",
         "name": "PLUS K방산",
         "accountKey": "KIS_MAIN",
@@ -2735,6 +2907,7 @@ AI 혁신 기대감이 시장을 지지하나, 중동 지정학적 리스크와 
     ],
     "related_accounts": [
       "PENSION",
+      "TOSS",
       "KIS_MAIN"
     ],
     "key_thesis": "전월 말 전월대비 YTD 밴드 방향성 코멘트\n - 전쟁 양상에 따른 변동성 구간 지속\n ▲76.1 ▲71.5\n 원/달러 1,516.1 1,460~1,530 ▼ - 상방 리스크는 지난달처럼 크지 않을 것\n (+5.3%) (+4.9%)\n - 전쟁이 끝나면 단기 급락 가능성\n ▲64.0 ▲66.3\n NDF 3M 1,502.5 - 환율이 추가 상승할 가능성은 높지 않다는 전망\n (+4.5%) (+4.6%)",

@@ -2,8 +2,8 @@
   "date": "2026-04-08",
   "runDate": "2026-04-08",
   "effectiveMarketDate": "2026-04-08",
-  "runId": "2026-04-08-122720",
-  "generatedAt": "2026-04-08T12:38:23.109Z",
+  "runId": "2026-04-08-130953",
+  "generatedAt": "2026-04-08T13:20:02.476Z",
   "reportCount": 100,
   "extracts": [
     {
@@ -33,6 +33,12 @@
           "accountLabel": "연금저축"
         },
         {
+          "code": "251350",
+          "name": "KODEX 선진국ESG액티브",
+          "accountKey": "TOSS",
+          "accountLabel": "토스증권"
+        },
+        {
           "code": "449450",
           "name": "PLUS K방산",
           "accountKey": "KIS_MAIN",
@@ -41,6 +47,7 @@
       ],
       "related_accounts": [
         "PENSION",
+        "TOSS",
         "KIS_MAIN"
       ],
       "key_thesis": "전월 말 전월대비 YTD 밴드 방향성 코멘트\n - 전쟁 양상에 따른 변동성 구간 지속\n ▲76.1 ▲71.5\n 원/달러 1,516.1 1,460~1,530 ▼ - 상방 리스크는 지난달처럼 크지 않을 것\n (+5.3%) (+4.9%)\n - 전쟁이 끝나면 단기 급락 가능성\n ▲64.0 ▲66.3\n NDF 3M 1,502.5 - 환율이 추가 상승할 가능성은 높지 않다는 전망\n (+4.5%) (+4.6%)",
@@ -487,6 +494,12 @@
           "name": "PLUS K방산",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
@@ -632,6 +645,17 @@
           "target_type": "holding",
           "target_code": "449450",
           "target_name": "PLUS K방산",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.46,
+          "reason": "AI 반도체 국산화의 핵심 수혜 기업\n1) 오픈엣지테크놀로지는 AI SoC 와 저전력 Memory 간의 연결을 위해 필요한 통합적인 IP 를\n공급할 수 있는 기업으로 국내 AI 지원 사업의 핵심 수혜 기업으로 부각될 전망이다. K-온디바\n이스 AI 반도체 사업에서는 더 두각을 나타낼 것으로 전망한다. K-온디바이스 AI ...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
           "account_key": "KIS_MAIN",
           "direction": "positive",
           "horizon": "3m",
@@ -870,10 +894,17 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
-        "PENSION"
+        "PENSION",
+        "KIS_MAIN"
       ],
       "key_thesis": "LPU는 HBM을 좀 더 결론적으로는 LPU는 HBM의 decode 부담을 덜어주는 역할을 한다고 볼 수 있다. 이를\n활용할 수 있게 통해서 HBM은 좀 더 prefill에 충실하고 decode 중에서도 핵심 영역을 담당하게 된다.",
       "key_points": [
@@ -1001,6 +1032,17 @@
           "strength": 0.63,
           "reason": "LPU는 HBM을 좀 더 결론적으로는 LPU는 HBM의 decode 부담을 덜어주는 역할을 한다고 볼 수 있다. 이를\n활용할 수 있게 통해서 HBM은 좀 더 prefill에 충실하고 decode 중에서도 핵심 영역을 담당하게 된다.",
           "action_hint": "감축"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "negative",
+          "horizon": "3m",
+          "strength": 0.63,
+          "reason": "LPU는 HBM을 좀 더 결론적으로는 LPU는 HBM의 decode 부담을 덜어주는 역할을 한다고 볼 수 있다. 이를\n활용할 수 있게 통해서 HBM은 좀 더 prefill에 충실하고 decode 중에서도 핵심 영역을 담당하게 된다.",
+          "action_hint": "감축"
         }
       ],
       "confidence": "HIGH",
@@ -1066,11 +1108,18 @@
           "name": "KODEX KOFR금리액티브(합성)",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "ISA",
-        "PENSION"
+        "PENSION",
+        "KIS_MAIN"
       ],
       "key_thesis": "Top Picks 및 관심종목 최소 2분기까지는 이어질 업황의 불확실성\nCJ ENM(035760)\nBUY | TP 77,000원(하향) | CP 52,000원\n TV광고 업황은 높은 기저효과에 더해 드라마 편성 확대로 개선될 것으로 예상했으나, 이\n 란 전쟁의 불확실성으로 1분기도 부진하지만 2분기도 불확실하다. TV광고만 회복한다면\n스튜디오드래곤(253450)\nBUY | TP 50,000원(하향) | CP 33,400원 CJ...",
       "key_points": [
@@ -1186,6 +1235,17 @@
           "strength": 0.28,
           "reason": "Top Picks 및 관심종목 최소 2분기까지는 이어질 업황의 불확실성\nCJ ENM(035760)\nBUY | TP 77,000원(하향) | CP 52,000원\n TV광고 업황은 높은 기저효과에 더해 드라마 편성 확대로 개선될 것으로 예상했으나, 이\n 란 전쟁의 불확실성으로 1분기도 부진하지만 2분기도 불확실하다. TV광고...",
           "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "neutral",
+          "horizon": "3m",
+          "strength": 0.28,
+          "reason": "Top Picks 및 관심종목 최소 2분기까지는 이어질 업황의 불확실성\nCJ ENM(035760)\nBUY | TP 77,000원(하향) | CP 52,000원\n TV광고 업황은 높은 기저효과에 더해 드라마 편성 확대로 개선될 것으로 예상했으나, 이\n 란 전쟁의 불확실성으로 1분기도 부진하지만 2분기도 불확실하다. TV광고...",
+          "action_hint": "관찰"
         }
       ],
       "confidence": "HIGH",
@@ -1265,11 +1325,18 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "ISA"
+        "ISA",
+        "KIS_MAIN"
       ],
       "key_thesis": "한국금융지주 1Q26 한국금융지주의 1분기 지배주주순이익은 전년동기대비 51% 증가한 6,915억원으로 시장\n컨센서스 17% 상회 전망 기대치를 17% 상회할 것으로 전망한다. 거래대금 증가에 따른 브로커리지 실적 호조와\n 자산 증가에 따른 이자손익과 운용 및 기타손익의 견조한 성장세가 이어질 것으로 보인\n투자의견 Buy, 다.\n목표주가 310,000원 유지",
       "key_points": [
@@ -1415,6 +1482,17 @@
           "strength": 0.63,
           "reason": "한국금융지주 1Q26 한국금융지주의 1분기 지배주주순이익은 전년동기대비 51% 증가한 6,915억원으로 시장\n컨센서스 17% 상회 전망 기대치를 17% 상회할 것으로 전망한다. 거래대금 증가에 따른 브로커리지 실적 호조와\n 자산 증가에 따른 이자손익과 운용 및 기타손익의 견조한 성장세가 이어질 것으로 보인\n투자의견 Buy...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.63,
+          "reason": "한국금융지주 1Q26 한국금융지주의 1분기 지배주주순이익은 전년동기대비 51% 증가한 6,915억원으로 시장\n컨센서스 17% 상회 전망 기대치를 17% 상회할 것으로 전망한다. 거래대금 증가에 따른 브로커리지 실적 호조와\n 자산 증가에 따른 이자손익과 운용 및 기타손익의 견조한 성장세가 이어질 것으로 보인\n투자의견 Buy...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -1500,6 +1578,12 @@
         {
           "code": "434730",
           "name": "HANARO 원자력iSelect",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
         }
@@ -1666,6 +1750,17 @@
           "strength": 0.63,
           "reason": "3. 투자전략\n22 1Q26 Preview: 아직도 YoY +40%, 높은 시장 기대치 충족\n24 전력기기 Overweight: 전력 설비 = 핵심 국가 안보\n26 TOP-PICK: 산일전기, LS ELECTRIC",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.63,
+          "reason": "3. 투자전략\n22 1Q26 Preview: 아직도 YoY +40%, 높은 시장 기대치 충족\n24 전력기기 Overweight: 전력 설비 = 핵심 국가 안보\n26 TOP-PICK: 산일전기, LS ELECTRIC",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -1732,11 +1827,18 @@
           "name": "KODEX KOFR금리액티브(합성)",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "ISA",
-        "PENSION"
+        "PENSION",
+        "KIS_MAIN"
       ],
       "key_thesis": "(QoQ) 양행 기준 분기 NIM은 1bp QoQ 상승할 것으로 기대된다. 은행 원화대출(QoQ)은 기\n 양행 NIM +1bp 업이 1% 감소하고, 외국인 대상, 햇살론 등 전략대출과 중도금 대출을 중심으로 가계가\n 원화대출 +1% 5% 증가하며 전체 1%대 성장할 전망이다. 업권의 가계대출 증가율 목표치가 1%대로\n CCR -15bp 제시된 점을 고려하면 분기 성장률이 높다. 이후 계열 은행들의 가계대 성장이 제한될\n 것으로...",
       "key_points": [
@@ -1860,6 +1962,17 @@
           "strength": 0.54,
           "reason": "(QoQ) 양행 기준 분기 NIM은 1bp QoQ 상승할 것으로 기대된다. 은행 원화대출(QoQ)은 기\n 양행 NIM +1bp 업이 1% 감소하고, 외국인 대상, 햇살론 등 전략대출과 중도금 대출을 중심으로 가계가\n 원화대출 +1% 5% 증가하며 전체 1%대 성장할 전망이다. 업권의 가계대출 증가율 목표치가 1%대로\n C...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.54,
+          "reason": "(QoQ) 양행 기준 분기 NIM은 1bp QoQ 상승할 것으로 기대된다. 은행 원화대출(QoQ)은 기\n 양행 NIM +1bp 업이 1% 감소하고, 외국인 대상, 햇살론 등 전략대출과 중도금 대출을 중심으로 가계가\n 원화대출 +1% 5% 증가하며 전체 1%대 성장할 전망이다. 업권의 가계대출 증가율 목표치가 1%대로\n C...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -1939,11 +2052,18 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "ISA"
+        "ISA",
+        "KIS_MAIN"
       ],
       "key_thesis": "- Murata(JP-6981), Taiyo Yuden(JP-6976)은 일본 MLCC 기업들은 엔화 약세와 AI 수요 강세가 겹치며 호실적 전망",
       "key_points": [
@@ -2089,6 +2209,17 @@
           "strength": 0.37,
           "reason": "- Murata(JP-6981), Taiyo Yuden(JP-6976)은 일본 MLCC 기업들은 엔화 약세와 AI 수요 강세가 겹치며 호실적 전망",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.37,
+          "reason": "- Murata(JP-6981), Taiyo Yuden(JP-6976)은 일본 MLCC 기업들은 엔화 약세와 AI 수요 강세가 겹치며 호실적 전망",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -2174,6 +2305,12 @@
         {
           "code": "434730",
           "name": "HANARO 원자력iSelect",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
         }
@@ -2340,6 +2477,17 @@
           "strength": 0.63,
           "reason": "Company Data\n • IRA AMPC 세액 공제 금액 포함한 수치 * AMPC 제외 시 1Q26 잠정 영업이익은 -3,975억원(OPM -6.1%)\n현재가(04/07) 408,500 원 • 1) 자동차전지: 업황 부진이 지속되는 구간. 북미 중심으로 수요 회복이 지연, 고객사 가동률도 낮은 수준 유지\n액면가(원) ...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.63,
+          "reason": "Company Data\n • IRA AMPC 세액 공제 금액 포함한 수치 * AMPC 제외 시 1Q26 잠정 영업이익은 -3,975억원(OPM -6.1%)\n현재가(04/07) 408,500 원 • 1) 자동차전지: 업황 부진이 지속되는 구간. 북미 중심으로 수요 회복이 지연, 고객사 가동률도 낮은 수준 유지\n액면가(원) ...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -2419,11 +2567,18 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "ISA"
+        "ISA",
+        "KIS_MAIN"
       ],
       "key_thesis": "직접 상업화로 현금흐름을 만든 Madrigal은 이를 외부 기술 도입에 재투자하는 선순환 구조를 만들기\n 시작했다. 2024년 MASH 치료제로 최초 승인받은 Rezdiffra(resmetirom)을 직접 출시해 조기에 시장\n 점유율을 확보한 Madrigal은 이를 기반으로 중국 바이오텍 Robo Life Science와 최대 $4.4bn\n 규모의 siRNA 파이프라인 도입 계약을 체결했다. 선급금 $60mn을 지급하고 MAS...",
       "key_points": [
@@ -2566,6 +2721,17 @@
           "strength": 0.63,
           "reason": "직접 상업화로 현금흐름을 만든 Madrigal은 이를 외부 기술 도입에 재투자하는 선순환 구조를 만들기\n 시작했다. 2024년 MASH 치료제로 최초 승인받은 Rezdiffra(resmetirom)을 직접 출시해 조기에 시장\n 점유율을 확보한 Madrigal은 이를 기반으로 중국 바이오텍 Robo Life Science와...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.63,
+          "reason": "직접 상업화로 현금흐름을 만든 Madrigal은 이를 외부 기술 도입에 재투자하는 선순환 구조를 만들기\n 시작했다. 2024년 MASH 치료제로 최초 승인받은 Rezdiffra(resmetirom)을 직접 출시해 조기에 시장\n 점유율을 확보한 Madrigal은 이를 기반으로 중국 바이오텍 Robo Life Science와...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -2633,10 +2799,17 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
-        "PENSION"
+        "PENSION",
+        "KIS_MAIN"
       ],
       "key_thesis": "Top Picks 및 관심종목 미국 스페이스X 추가 주파수 취득 예고, 지상망 투자 본격화 예상\n*CP 2026년 04월 07일\n 스페이스X가 2026년 6월로 예정된 AWS 3 밴드 주파수 경매에 참여할 의사를 밝혔다. 이미 총\n쏠리드(050890)\n 23조원을 들여 45MHz를 확보한 상황에서 추가 입찰에 나선다는 입장이어서 주목을 끈다. 스페\nBUY | TP 20,000원 | CP 14,420원\n 이스X가 저궤도 위성을 ...",
       "key_points": [
@@ -2754,6 +2927,17 @@
           "strength": 0.54,
           "reason": "Top Picks 및 관심종목 미국 스페이스X 추가 주파수 취득 예고, 지상망 투자 본격화 예상\n*CP 2026년 04월 07일\n 스페이스X가 2026년 6월로 예정된 AWS 3 밴드 주파수 경매에 참여할 의사를 밝혔다. 이미 총\n쏠리드(050890)\n 23조원을 들여 45MHz를 확보한 상황에서 추가 입찰에 나선다는 입...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.54,
+          "reason": "Top Picks 및 관심종목 미국 스페이스X 추가 주파수 취득 예고, 지상망 투자 본격화 예상\n*CP 2026년 04월 07일\n 스페이스X가 2026년 6월로 예정된 AWS 3 밴드 주파수 경매에 참여할 의사를 밝혔다. 이미 총\n쏠리드(050890)\n 23조원을 들여 45MHz를 확보한 상황에서 추가 입찰에 나선다는 입...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -2825,6 +3009,12 @@
         {
           "code": "449450",
           "name": "PLUS K방산",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
         }
@@ -2907,6 +3097,17 @@
           "strength": 0.37,
           "reason": "리\n ◼\n ◼ 애지봇, 오픈소스 이기종 데이터 세트 공개 ◼ 미 해군, PAC-3 MSE 미사일 405발 구매 요청\n ◼ 일본, AI 로봇 전략 발표 ◼ 미 해군, 27년까지 토마호크 구매 1200% 증량 요청 [해외]\n ◼ 제너럴 아토믹스 CCA 시제기 캘리포니아에서 추락 ◼ 美 골든패스 LNG 수출 프로젝트가 가동 단...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.37,
+          "reason": "리\n ◼\n ◼ 애지봇, 오픈소스 이기종 데이터 세트 공개 ◼ 미 해군, PAC-3 MSE 미사일 405발 구매 요청\n ◼ 일본, AI 로봇 전략 발표 ◼ 미 해군, 27년까지 토마호크 구매 1200% 증량 요청 [해외]\n ◼ 제너럴 아토믹스 CCA 시제기 캘리포니아에서 추락 ◼ 美 골든패스 LNG 수출 프로젝트가 가동 단...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -2973,11 +3174,18 @@
           "name": "KODEX KOFR금리액티브(합성)",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "ISA",
-        "PENSION"
+        "PENSION",
+        "KIS_MAIN"
       ],
       "key_thesis": "1분기 실적은 하회할 전망. 전쟁이 길어지면 부담. 주가 동력은 로봇과 자율주행\n Top Picks 현대차/기아에 대한 투자의견 BUY와 목표주가 66만원/21만원을 유지한다. 현대차의 1분\n*CP 2026년 04월 07일\n 기 영업이익은 2.55조원, 기아는 2.20조원으로 시장 기대치를 하회할 것으로 예상한다. 국\n현대차(005380)\n 제 정세의 악화로 시장수요가 부진(특히, 아중동)하면서 중국을 제외한 글로벌 도매판매\n...",
       "key_points": [
@@ -3098,6 +3306,17 @@
           "strength": 0.37,
           "reason": "1분기 실적은 하회할 전망. 전쟁이 길어지면 부담. 주가 동력은 로봇과 자율주행\n Top Picks 현대차/기아에 대한 투자의견 BUY와 목표주가 66만원/21만원을 유지한다. 현대차의 1분\n*CP 2026년 04월 07일\n 기 영업이익은 2.55조원, 기아는 2.20조원으로 시장 기대치를 하회할 것으로 예상한다. 국\n현...",
           "action_hint": "감축"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "negative",
+          "horizon": "3m",
+          "strength": 0.37,
+          "reason": "1분기 실적은 하회할 전망. 전쟁이 길어지면 부담. 주가 동력은 로봇과 자율주행\n Top Picks 현대차/기아에 대한 투자의견 BUY와 목표주가 66만원/21만원을 유지한다. 현대차의 1분\n*CP 2026년 04월 07일\n 기 영업이익은 2.55조원, 기아는 2.20조원으로 시장 기대치를 하회할 것으로 예상한다. 국\n현...",
+          "action_hint": "감축"
         }
       ],
       "confidence": "HIGH",
@@ -3158,6 +3377,12 @@
           "name": "PLUS K방산",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
@@ -3212,6 +3437,17 @@
           "target_type": "holding",
           "target_code": "449450",
           "target_name": "PLUS K방산",
+          "account_key": "KIS_MAIN",
+          "direction": "negative",
+          "horizon": "3m",
+          "strength": 0.37,
+          "reason": "에너지/소재 [에너지/소재]\n이동욱 원유 다음은 알루미늄, 호르무즈 위기의 비철금속 확산\n02) 6915-5671\ntreestump@ibks.com 미국-이스라엘 연합군, 이란 최대 알루미늄 업체 공습\n 금일 미국-이스라엘 연합군이 이란 최대 알루미늄 생산업체인 IRALCO를 공습한 것으로 보\n 인다. 이번 공격은 단독 ...",
+          "action_hint": "감축"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
           "account_key": "KIS_MAIN",
           "direction": "negative",
           "horizon": "3m",
@@ -3289,6 +3525,12 @@
         {
           "code": "449450",
           "name": "PLUS K방산",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
         }
@@ -3444,6 +3686,17 @@
           "target_type": "holding",
           "target_code": "449450",
           "target_name": "PLUS K방산",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.54,
+          "reason": "▪ 전략투자(2,000억 달러): 에너지, 인공지능 등 ▪ 에너지: 원전, 송전망, 가스 등 ▪ 전략산업: 반도체, 신재생, 제약\n 투자 분야 ▪ 조선협력(1,500억 달러) ▪ 첨단산업: AI, 전자부품, 광물 등 ▪ 제조: 첨단 제조 시설\n ※ 한국 벤더 및 감독 업체 우선권",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
           "account_key": "KIS_MAIN",
           "direction": "positive",
           "horizon": "3m",
@@ -3719,11 +3972,18 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "ISA"
+        "ISA",
+        "KIS_MAIN"
       ],
       "key_thesis": "SKT 번이 +13.9만 - 1Q26 번호이동 시장에서 SKT 가입자 누적 순증 규모는 13.9만건. 동기간 LGU+ +4.8만명 순증, KT -23.8만명 순감\nMVNO로의 이탈 - MVNO로의 지속적 가입자 이탈로 SKT M/S는 39%대 기록\n - 무선 점유율 40% 탈환은 3년 이상 장기 과제로 분류. 이에 따라 SKT의 무선시장 핵심 전략은 양적 팽창에서 질적 성장으로 이동",
       "key_points": [
@@ -3848,6 +4108,17 @@
           "strength": 0.28,
           "reason": "SKT 번이 +13.9만 - 1Q26 번호이동 시장에서 SKT 가입자 누적 순증 규모는 13.9만건. 동기간 LGU+ +4.8만명 순증, KT -23.8만명 순감\nMVNO로의 이탈 - MVNO로의 지속적 가입자 이탈로 SKT M/S는 39%대 기록\n - 무선 점유율 40% 탈환은 3년 이상 장기 과제로 분류. 이에 따라 ...",
           "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "neutral",
+          "horizon": "3m",
+          "strength": 0.28,
+          "reason": "SKT 번이 +13.9만 - 1Q26 번호이동 시장에서 SKT 가입자 누적 순증 규모는 13.9만건. 동기간 LGU+ +4.8만명 순증, KT -23.8만명 순감\nMVNO로의 이탈 - MVNO로의 지속적 가입자 이탈로 SKT M/S는 39%대 기록\n - 무선 점유율 40% 탈환은 3년 이상 장기 과제로 분류. 이에 따라 ...",
+          "action_hint": "관찰"
         }
       ],
       "confidence": "HIGH",
@@ -3929,11 +4200,18 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "ISA"
+        "ISA",
+        "KIS_MAIN"
       ],
       "key_thesis": "최선호주 비에이치 / 차선호주 삼성전기\n 2026년 2Q, 반도체 패키지 중심의 주가 상승이 연성PCB 분야로 확산될 전망.\n 현 시점에서 비에이치를 최선호주로 제시. ① 애플의 신모델인 폴더블폰 출시,\n 2026년 9월에 아이폰 폴드 형태로 추정. 기존의 바(Bar) 형태 대비 디스플레이\n 의 대면적(2개 연결)을 감안하면 신규로 수량(Q) 및 가격(P)이 동시에 상승\n ② 2026년 하반기 추가 매출은 약 3천억원으로 추정...",
       "key_points": [
@@ -4081,6 +4359,17 @@
           "strength": 0.63,
           "reason": "최선호주 비에이치 / 차선호주 삼성전기\n 2026년 2Q, 반도체 패키지 중심의 주가 상승이 연성PCB 분야로 확산될 전망.\n 현 시점에서 비에이치를 최선호주로 제시. ① 애플의 신모델인 폴더블폰 출시,\n 2026년 9월에 아이폰 폴드 형태로 추정. 기존의 바(Bar) 형태 대비 디스플레이\n 의 대면적(2개 연결)을 감안...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.63,
+          "reason": "최선호주 비에이치 / 차선호주 삼성전기\n 2026년 2Q, 반도체 패키지 중심의 주가 상승이 연성PCB 분야로 확산될 전망.\n 현 시점에서 비에이치를 최선호주로 제시. ① 애플의 신모델인 폴더블폰 출시,\n 2026년 9월에 아이폰 폴드 형태로 추정. 기존의 바(Bar) 형태 대비 디스플레이\n 의 대면적(2개 연결)을 감안...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -4147,11 +4436,18 @@
           "name": "KODEX KOFR금리액티브(합성)",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "ISA",
-        "PENSION"
+        "PENSION",
+        "KIS_MAIN"
       ],
       "key_thesis": "참석 기업 3사 주요 IR 내용 요약\n [F&F; 투자의견 BUY, 목표주가 99,000원] 1Q26 국내 의복 소매판매 (+)\n 성장 추세 및 백화점 기존 점포 두 자리 매출 신장세에 힘입어 동사도\n MLB 브랜드 매출 성장 중. 디스커버리 브랜드도 전년동기 매출 수준까지\n 회복 중인 것으로 파악. 북촌 플래그십 매장 등 관광 상권 위주 외국인 관\n 광객 수요도 매출 기여 높이는 중. 중국 MLB 브랜드 중심 점포당 매출은\n...",
       "key_points": [
@@ -4230,6 +4526,17 @@
           "target_code": "423160",
           "target_name": "KODEX KOFR금리액티브(합성)",
           "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.63,
+          "reason": "참석 기업 3사 주요 IR 내용 요약\n [F&F; 투자의견 BUY, 목표주가 99,000원] 1Q26 국내 의복 소매판매 (+)\n 성장 추세 및 백화점 기존 점포 두 자리 매출 신장세에 힘입어 동사도\n MLB 브랜드 매출 성장 중. 디스커버리 브랜드도 전년동기 매출 수준까지\n 회복 중인 것으로 파악. 북촌 플래그십 매장 ...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
           "direction": "positive",
           "horizon": "3m",
           "strength": 0.63,
@@ -4459,6 +4766,12 @@
           "name": "PLUS K방산",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
@@ -4555,6 +4868,17 @@
           "strength": 0.46,
           "reason": " 3월 전쟁이 지수를 누르는 동안 이익추정치 상향은 지속. KOSPI 12개월 선행 EPS 전일 종가 기준 726Pt.\n 12개월 선행 PER 7.56배로 과거 20년간 PER 백분위 하위 1% 이하에 속하는 딥밸류 구간. 20년 평균 PER\n 10배 적용해도 현재 EPS 기준 7,260Pt. 금일 삼성전자 실적 Rev...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.46,
+          "reason": " 3월 전쟁이 지수를 누르는 동안 이익추정치 상향은 지속. KOSPI 12개월 선행 EPS 전일 종가 기준 726Pt.\n 12개월 선행 PER 7.56배로 과거 20년간 PER 백분위 하위 1% 이하에 속하는 딥밸류 구간. 20년 평균 PER\n 10배 적용해도 현재 EPS 기준 7,260Pt. 금일 삼성전자 실적 Rev...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "LOW",
@@ -4633,6 +4957,12 @@
         {
           "code": "449450",
           "name": "PLUS K방산",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
         }
@@ -4780,6 +5110,17 @@
           "strength": 0.46,
           "reason": "한편 미국 관리는 로이터 통신에 군사 목표물에 대한 추가 공습이 석유 기반 시설에 영향을 미치지 않았다고 전함 (조원) 시가총액 한화에어로스페이스 6.0\n 200 한화시스템 3.2\n익명을 요구한 한 관계자는 로이터 통신과의 인터뷰에서 이번 공격 중 일부는 이전에도 공격을 받았던 곳을 겨냥한 것이며, 공격 LIG넥스원 2....",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.46,
+          "reason": "한편 미국 관리는 로이터 통신에 군사 목표물에 대한 추가 공습이 석유 기반 시설에 영향을 미치지 않았다고 전함 (조원) 시가총액 한화에어로스페이스 6.0\n 200 한화시스템 3.2\n익명을 요구한 한 관계자는 로이터 통신과의 인터뷰에서 이번 공격 중 일부는 이전에도 공격을 받았던 곳을 겨냥한 것이며, 공격 LIG넥스원 2....",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -4859,11 +5200,18 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "ISA"
+        "ISA",
+        "KIS_MAIN"
       ],
       "key_thesis": "중동전쟁 휴전 기대감: 미국 이란 공격 유예 시한을 하루 앞두고 미\n국과 이란 사이에 종전안 협의 중인 상황. 중동전쟁 리스크 지속되는 주목할만한 주요 Event\n가운데 삼성전자 어닝서프라이즈에 코스피 코스피(+0.82%) 강보합 - 한국 2월 경상수지\n마감한 가운데 코스닥(-1.02%) 하락 마감하는 모습 보임. 업종별로 - 미국 30년 모기지금리\n반도체, 상사/자본재 업종이 상승 마감한 가운데 에너지, 미디어/교 - 트럼프...",
       "key_points": [
@@ -5008,6 +5356,17 @@
           "strength": 0.37,
           "reason": "중동전쟁 휴전 기대감: 미국 이란 공격 유예 시한을 하루 앞두고 미\n국과 이란 사이에 종전안 협의 중인 상황. 중동전쟁 리스크 지속되는 주목할만한 주요 Event\n가운데 삼성전자 어닝서프라이즈에 코스피 코스피(+0.82%) 강보합 - 한국 2월 경상수지\n마감한 가운데 코스닥(-1.02%) 하락 마감하는 모습 보임. 업종별...",
           "action_hint": "감축"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "negative",
+          "horizon": "1m",
+          "strength": 0.37,
+          "reason": "중동전쟁 휴전 기대감: 미국 이란 공격 유예 시한을 하루 앞두고 미\n국과 이란 사이에 종전안 협의 중인 상황. 중동전쟁 리스크 지속되는 주목할만한 주요 Event\n가운데 삼성전자 어닝서프라이즈에 코스피 코스피(+0.82%) 강보합 - 한국 2월 경상수지\n마감한 가운데 코스닥(-1.02%) 하락 마감하는 모습 보임. 업종별...",
+          "action_hint": "감축"
         }
       ],
       "confidence": "HIGH",
@@ -5091,6 +5450,12 @@
         {
           "code": "449450",
           "name": "PLUS K방산",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
         }
@@ -5246,6 +5611,17 @@
           "strength": 0.37,
           "reason": "장마감코멘트 투자지표\n- KOSPI 5,494pt (+0.82%), KOSDAQ 1,036pt (-1.02%) 코스피 5,494pt +0.82%\n- 지정학적 불확실성 확대에 전강후약 장세 시현하며 KOSPI 상승 마감, KOSDAQ 하락\n 코스닥 1,036pt -1.02%\n지속\n 매매동향 (억원) 코스피 코스닥\n- 미 증...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.37,
+          "reason": "장마감코멘트 투자지표\n- KOSPI 5,494pt (+0.82%), KOSDAQ 1,036pt (-1.02%) 코스피 5,494pt +0.82%\n- 지정학적 불확실성 확대에 전강후약 장세 시현하며 KOSPI 상승 마감, KOSDAQ 하락\n 코스닥 1,036pt -1.02%\n지속\n 매매동향 (억원) 코스피 코스닥\n- 미 증...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "MEDIUM",
@@ -5312,11 +5688,18 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "ISA"
+        "ISA",
+        "KIS_MAIN"
       ],
       "key_thesis": "KB 리서치 모닝코멘트\n 투자전략정보팀 Analyst\n [리서치본부 투자전략정보팀]\n 임정은 jungeun.lim@kbfg.com\n 2026년 4월 8일 (수)\n 태윤선 ystae@kbfg.com",
       "key_points": [
@@ -5453,6 +5836,17 @@
           "strength": 0.63,
           "reason": "KB 리서치 모닝코멘트\n 투자전략정보팀 Analyst\n [리서치본부 투자전략정보팀]\n 임정은 jungeun.lim@kbfg.com\n 2026년 4월 8일 (수)\n 태윤선 ystae@kbfg.com",
           "action_hint": "감축"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "negative",
+          "horizon": "1m",
+          "strength": 0.63,
+          "reason": "KB 리서치 모닝코멘트\n 투자전략정보팀 Analyst\n [리서치본부 투자전략정보팀]\n 임정은 jungeun.lim@kbfg.com\n 2026년 4월 8일 (수)\n 태윤선 ystae@kbfg.com",
+          "action_hint": "감축"
         }
       ],
       "confidence": "HIGH",
@@ -5520,6 +5914,12 @@
         {
           "code": "449450",
           "name": "PLUS K방산",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
         }
@@ -5677,6 +6077,17 @@
           "strength": 0.37,
           "reason": "-3.5%, 현대로템 -2.1%) 차익 매물 출회됐고 에너지 위기 대두 6,000 KOSDAQ(우축)\n 전일종가\n 1,110",
           "action_hint": "감축"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "negative",
+          "horizon": "1m",
+          "strength": 0.37,
+          "reason": "-3.5%, 현대로템 -2.1%) 차익 매물 출회됐고 에너지 위기 대두 6,000 KOSDAQ(우축)\n 전일종가\n 1,110",
+          "action_hint": "감축"
         }
       ],
       "confidence": "MEDIUM",
@@ -5761,6 +6172,12 @@
         {
           "code": "449450",
           "name": "PLUS K방산",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
         }
@@ -5922,6 +6339,17 @@
           "strength": 0.54,
           "reason": " 미국 주식시장은 상승. S&P500 +0.4%, NASDAQ +0.5%, 필라델피아 반도체지수 +1.1%. 지정학적 갈등, 트럼프 최후 통첩 하\n 루 앞두고 협상 제안과 거절 등 평행선 달리며 지속되는 양상. 엔비디아(+0.1%) 포함 빅테크 양호, 마이크론(+3.2%),\n WDC(+3.1%) 등 메모리 업종 삼성전자...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.54,
+          "reason": " 미국 주식시장은 상승. S&P500 +0.4%, NASDAQ +0.5%, 필라델피아 반도체지수 +1.1%. 지정학적 갈등, 트럼프 최후 통첩 하\n 루 앞두고 협상 제안과 거절 등 평행선 달리며 지속되는 양상. 엔비디아(+0.1%) 포함 빅테크 양호, 마이크론(+3.2%),\n WDC(+3.1%) 등 메모리 업종 삼성전자...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "LOW",
@@ -6002,11 +6430,18 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "ISA"
+        "ISA",
+        "KIS_MAIN"
       ],
       "key_thesis": "15 1M 수급 헬스케어 롱셩석유화학 002493.SZ CN 5.1 3.6 (18.4) (9.4) 26/01/23\n 종합 0.2 바이오/ 일라이 릴리 LLY.US US 3.0 0.4 1.2 (6.0) 51.6 24/01/04\n * 이익: 12개월 선행 EPS의 변화율\n 헬스케어 가던트헬스 GH.US US 2.0 4.1 1.0 2.3 6.4 26/04/02\n * 수급: 미국 ETF AUM대비 가중평균 업종별 모멘텀 2.6 기업명...",
       "key_points": [
@@ -6123,6 +6558,17 @@
           "strength": 0.37,
           "reason": "15 1M 수급 헬스케어 롱셩석유화학 002493.SZ CN 5.1 3.6 (18.4) (9.4) 26/01/23\n 종합 0.2 바이오/ 일라이 릴리 LLY.US US 3.0 0.4 1.2 (6.0) 51.6 24/01/04\n * 이익: 12개월 선행 EPS의 변화율\n 헬스케어 가던트헬스 GH.US US 2.0 4.1 1...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.37,
+          "reason": "15 1M 수급 헬스케어 롱셩석유화학 002493.SZ CN 5.1 3.6 (18.4) (9.4) 26/01/23\n 종합 0.2 바이오/ 일라이 릴리 LLY.US US 3.0 0.4 1.2 (6.0) 51.6 24/01/04\n * 이익: 12개월 선행 EPS의 변화율\n 헬스케어 가던트헬스 GH.US US 2.0 4.1 1...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -6189,6 +6635,12 @@
         {
           "code": "449450",
           "name": "PLUS K방산",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
         }
@@ -6335,6 +6787,17 @@
           "strength": 0.37,
           "reason": "KOSPI는 5.6% 상승한 5,801.7p. 이란 안전 보장 및 호르무즈 해협 개방 조건으로 2주 휴전 선언\n :악재는 가격에 반영되고 호재에 민감한 상황에서 2주 휴전 합의+호르무즈 개방 소식에 대기 매수세 폭발\n :호르무즈 해협 봉쇄 최대 피해국 지목(美 CSIS)된 한국 사이드카 발동. 아시아도 반등(Nikkei2...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.37,
+          "reason": "KOSPI는 5.6% 상승한 5,801.7p. 이란 안전 보장 및 호르무즈 해협 개방 조건으로 2주 휴전 선언\n :악재는 가격에 반영되고 호재에 민감한 상황에서 2주 휴전 합의+호르무즈 개방 소식에 대기 매수세 폭발\n :호르무즈 해협 봉쇄 최대 피해국 지목(美 CSIS)된 한국 사이드카 발동. 아시아도 반등(Nikkei2...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "LOW",
@@ -6411,6 +6874,12 @@
         {
           "code": "449450",
           "name": "PLUS K방산",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
         }
@@ -6574,6 +7043,17 @@
           "target_type": "holding",
           "target_code": "449450",
           "target_name": "PLUS K방산",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.54,
+          "reason": "로 인한 실적 효과분 상쇄 (장중 고가 +4.9% →+1.8%). 다만, 데드라인 지나고 단기 충격 소화한 이후 시장 회복하는 과\n 외국인 순매수 상위 기관 순매수 상위\n정에서 반도체 사이클에 대한 의구심에 강력한 힘을 실어줄 수 있는 요인으로 작용할 것으로 전망\n 기업명 금액(십억원) 수익률(%) 기업명 금액(십억원) ...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
           "account_key": "KIS_MAIN",
           "direction": "positive",
           "horizon": "1m",
@@ -6753,6 +7233,12 @@
           "name": "PLUS K방산",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
@@ -6891,6 +7377,17 @@
           "strength": 0.28,
           "reason": "유럽 협상 데드라인 경계감 고조에 상승분 반납하며 하락 마감\nㆍ 트럼프 경고 발언과 이란 민간 인프라 공격 위협에 투자심리 위축 25/04 25/06 25/08 25/10 25/12 26/02",
           "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "유럽 협상 데드라인 경계감 고조에 상승분 반납하며 하락 마감\nㆍ 트럼프 경고 발언과 이란 민간 인프라 공격 위협에 투자심리 위축 25/04 25/06 25/08 25/10 25/12 26/02",
+          "action_hint": "관찰"
         }
       ],
       "confidence": "HIGH",
@@ -6958,10 +7455,17 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
-        "PENSION"
+        "PENSION",
+        "KIS_MAIN"
       ],
       "key_thesis": "글로벌 배출권 가격 2026-04-08\n 지역 종목 단위 가격 원화 환산 1D(%) 1W(%) 1M(%) 3M(%) Price Flow\n 유럽 EUA 유로/톤 71.5 124,287 -0.3 -1.4 1.3 -18.9\n (선물) UKA 파운드/톤 41.1 82,149 -0.9 -1.0 2.6 -40.3\n 미국 RGGI 달러/톤 30.0 45,104 1.7 4.1 24.1 10.5\n (선물) CCA 달러/톤 29.0 43,542...",
       "key_points": [
@@ -7076,6 +7580,17 @@
           "strength": 0.28,
           "reason": "글로벌 배출권 가격 2026-04-08\n 지역 종목 단위 가격 원화 환산 1D(%) 1W(%) 1M(%) 3M(%) Price Flow\n 유럽 EUA 유로/톤 71.5 124,287 -0.3 -1.4 1.3 -18.9\n (선물) UKA 파운드/톤 41.1 82,149 -0.9 -1.0 2.6 -40.3\n 미국 RGGI 달...",
           "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "글로벌 배출권 가격 2026-04-08\n 지역 종목 단위 가격 원화 환산 1D(%) 1W(%) 1M(%) 3M(%) Price Flow\n 유럽 EUA 유로/톤 71.5 124,287 -0.3 -1.4 1.3 -18.9\n (선물) UKA 파운드/톤 41.1 82,149 -0.9 -1.0 2.6 -40.3\n 미국 RGGI 달...",
+          "action_hint": "관찰"
         }
       ],
       "confidence": "MEDIUM",
@@ -7154,11 +7669,25 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "251350",
+          "name": "KODEX 선진국ESG액티브",
+          "accountKey": "TOSS",
+          "accountLabel": "토스증권"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "ISA"
+        "ISA",
+        "TOSS",
+        "KIS_MAIN"
       ],
       "key_thesis": "▶ 연준 금리 동결 전망 92%...4월 금통위 방향은 <매경이코노미> 브라질 8,728.80 +1.74 +2.50 -1.38 KOSDAQ 1,047.37 1,047.37 1,063.75 1,056.34",
       "key_points": [
@@ -7280,6 +7809,17 @@
           "strength": 0.28,
           "reason": "▶ 연준 금리 동결 전망 92%...4월 금통위 방향은 <매경이코노미> 브라질 8,728.80 +1.74 +2.50 -1.38 KOSDAQ 1,047.37 1,047.37 1,063.75 1,056.34",
           "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "▶ 연준 금리 동결 전망 92%...4월 금통위 방향은 <매경이코노미> 브라질 8,728.80 +1.74 +2.50 -1.38 KOSDAQ 1,047.37 1,047.37 1,063.75 1,056.34",
+          "action_hint": "관찰"
         }
       ],
       "confidence": "HIGH",
@@ -7352,10 +7892,17 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
-        "PENSION"
+        "PENSION",
+        "KIS_MAIN"
       ],
       "key_thesis": " HD현대 조선그룹이 과거 호황기와 달라진 점은 풍부한 순현금 구조에서도 투\n 자 효율성 극대화, 이는 향후 다양한 지역에 대한 투자를 고려한 것으로 판단\n  3) HHIP는 과거 수빅조선소 실패에 따른 현지의 부정적 이미지를 극복 중. 현\n 지인 고용 확충, 지역경제 활성화가 다져지면 인근 사외 전환 추진, 필리핀 정\n 부 기관과의 협력을 통한 부지 검토 등이 진행될 것. 필리핀 마르코스 대통령은\n HHIP를 기방문, 필...",
       "key_points": [
@@ -7460,6 +8007,17 @@
           "strength": 0.63,
           "reason": " HD현대 조선그룹이 과거 호황기와 달라진 점은 풍부한 순현금 구조에서도 투\n 자 효율성 극대화, 이는 향후 다양한 지역에 대한 투자를 고려한 것으로 판단\n  3) HHIP는 과거 수빅조선소 실패에 따른 현지의 부정적 이미지를 극복 중. 현\n 지인 고용 확충, 지역경제 활성화가 다져지면 인근 사외 전환 추진, 필리핀 ...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.63,
+          "reason": " HD현대 조선그룹이 과거 호황기와 달라진 점은 풍부한 순현금 구조에서도 투\n 자 효율성 극대화, 이는 향후 다양한 지역에 대한 투자를 고려한 것으로 판단\n  3) HHIP는 과거 수빅조선소 실패에 따른 현지의 부정적 이미지를 극복 중. 현\n 지인 고용 확충, 지역경제 활성화가 다져지면 인근 사외 전환 추진, 필리핀 ...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "LOW",
@@ -7507,10 +8065,17 @@
           "name": "KODEX KOFR금리액티브(합성)",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
-        "PENSION"
+        "PENSION",
+        "KIS_MAIN"
       ],
       "key_thesis": "기계 A267260 HD현대일렉트릭 IT",
       "key_points": [
@@ -7532,15 +8097,15 @@
       "sentiment_score": 0,
       "portfolio_impacts_candidate": [
         {
-          "target_type": "theme",
-          "target_code": null,
-          "target_name": "금/원자재",
-          "account_key": null,
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
           "direction": "neutral",
           "horizon": "3m",
-          "strength": 0.23,
+          "strength": 0.28,
           "reason": "기계 A267260 HD현대일렉트릭 IT",
-          "action_hint": "주의"
+          "action_hint": "관찰"
         }
       ],
       "confidence": "LOW",
@@ -7619,11 +8184,18 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "ISA"
+        "ISA",
+        "KIS_MAIN"
       ],
       "key_thesis": "기업분석부 I 김아람 연구원\n☎ 02-3772-2668\nkimaram@shinhan.com\nI. 투자 전략\n포트폴리오 안정성을 더해 줄 통신주\n 투자포인트는 실적 안정성과 주주환원\n 이란 전쟁, 인플레이션 불확실성 지속되는 한 계속해서 완만한 주가 상승 예상\n 3사 간 차별화 요인 크지 않은 가운데, 상반기 자사주 수급 지속될 KT Top Pick 유지\n 1분기 실적발표일은 5/7 LG유플러스(10시), SK텔레콤(16...",
       "key_points": [
@@ -7750,6 +8322,17 @@
           "strength": 0.37,
           "reason": "기업분석부 I 김아람 연구원\n☎ 02-3772-2668\nkimaram@shinhan.com\nI. 투자 전략\n포트폴리오 안정성을 더해 줄 통신주\n 투자포인트는 실적 안정성과 주주환원\n 이란 전쟁, 인플레이션 불확실성 지속되는 한 계속해서 완만한 주가 상승 예상\n 3사 간 차별화 요인 크지 않은 가운데, 상반기 자사주 ...",
           "action_hint": "감축"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "negative",
+          "horizon": "3m",
+          "strength": 0.37,
+          "reason": "기업분석부 I 김아람 연구원\n☎ 02-3772-2668\nkimaram@shinhan.com\nI. 투자 전략\n포트폴리오 안정성을 더해 줄 통신주\n 투자포인트는 실적 안정성과 주주환원\n 이란 전쟁, 인플레이션 불확실성 지속되는 한 계속해서 완만한 주가 상승 예상\n 3사 간 차별화 요인 크지 않은 가운데, 상반기 자사주 ...",
+          "action_hint": "감축"
         }
       ],
       "confidence": "HIGH",
@@ -7829,11 +8412,18 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "ISA"
+        "ISA",
+        "KIS_MAIN"
       ],
       "key_thesis": "LG전자 1Q 예상 상회!\n (066570) 달라진 체력을 확인!\n 박강호  1Q26 영업이익은 1.67조원(33% yoy)으로 컨센서스대비 21% 증가\n kangho.park@daishin.com  MS 및 VS 부문에서 수익성 확대, 고부가 중심의 매출 확대\n 서지원RA\n jiwon0.seo@daishin.cor  밸류에이션의 저평가 지속, 로봇과 AI향 공조 사업 확대",
       "key_points": [
@@ -7976,6 +8566,17 @@
           "strength": 0.46,
           "reason": "LG전자 1Q 예상 상회!\n (066570) 달라진 체력을 확인!\n 박강호  1Q26 영업이익은 1.67조원(33% yoy)으로 컨센서스대비 21% 증가\n kangho.park@daishin.com  MS 및 VS 부문에서 수익성 확대, 고부가 중심의 매출 확대\n 서지원RA\n jiwon0.seo@daishin.cor ...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.46,
+          "reason": "LG전자 1Q 예상 상회!\n (066570) 달라진 체력을 확인!\n 박강호  1Q26 영업이익은 1.67조원(33% yoy)으로 컨센서스대비 21% 증가\n kangho.park@daishin.com  MS 및 VS 부문에서 수익성 확대, 고부가 중심의 매출 확대\n 서지원RA\n jiwon0.seo@daishin.cor ...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -8055,11 +8656,18 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "ISA"
+        "ISA",
+        "KIS_MAIN"
       ],
       "key_thesis": ">> AMPC 효과의 경우, 전분기 대비 북미향 출하량이 줄어들며 규모가 감소(3,328억원 > 1,897억원). 주요 고객사\n 인 GM의 경우 올해 상반기 Ultium Cells 공장의 가동을 중단하는 등 전기차 생산 속도조절 및 배터리 재고조정\n 에 진입한 것으로 추정되며, 특히 지난해 9월 30일 미국 전기차 세액공제(최대 $7,500)가 종료됨에 따라 지난 4\n 분기부터 GM 전기차 인도량이 급감(1Q26 BEV 25,...",
       "key_points": [
@@ -8205,6 +8813,17 @@
           "strength": 0.28,
           "reason": ">> AMPC 효과의 경우, 전분기 대비 북미향 출하량이 줄어들며 규모가 감소(3,328억원 > 1,897억원). 주요 고객사\n 인 GM의 경우 올해 상반기 Ultium Cells 공장의 가동을 중단하는 등 전기차 생산 속도조절 및 배터리 재고조정\n 에 진입한 것으로 추정되며, 특히 지난해 9월 30일 미국 전기차 세액공...",
           "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "neutral",
+          "horizon": "3m",
+          "strength": 0.28,
+          "reason": ">> AMPC 효과의 경우, 전분기 대비 북미향 출하량이 줄어들며 규모가 감소(3,328억원 > 1,897억원). 주요 고객사\n 인 GM의 경우 올해 상반기 Ultium Cells 공장의 가동을 중단하는 등 전기차 생산 속도조절 및 배터리 재고조정\n 에 진입한 것으로 추정되며, 특히 지난해 9월 30일 미국 전기차 세액공...",
+          "action_hint": "관찰"
         }
       ],
       "confidence": "MEDIUM",
@@ -8264,10 +8883,17 @@
           "name": "TIGER 미국배당다우존스스타데일리커...",
           "accountKey": "ISA",
           "accountLabel": "ISA"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
-        "ISA"
+        "ISA",
+        "KIS_MAIN"
       ],
       "key_thesis": "자동차/2차전지 [LG에너지솔루션]\n이현욱 1Q26 잠정 실적 코멘트\n02) 6915-5659\nhwle1125@ibks.com 2026년 1분기, 매출액 컨센서스 상회\n 1) LG에너지솔루션의 1Q26 실적\n 매출액 6.6조원(QoQ +1.2%), 영업이익 -2,078억원(QoQ 적자지속),\n AMPC 1,897억원(QoQ -43.0%), OPM -3.2%(QoQ -1.2%pt)를 기록\n AMPC를 제외 시 영업이익은 -3,9...",
       "key_points": [
@@ -8369,6 +8995,17 @@
           "strength": 0.37,
           "reason": "자동차/2차전지 [LG에너지솔루션]\n이현욱 1Q26 잠정 실적 코멘트\n02) 6915-5659\nhwle1125@ibks.com 2026년 1분기, 매출액 컨센서스 상회\n 1) LG에너지솔루션의 1Q26 실적\n 매출액 6.6조원(QoQ +1.2%), 영업이익 -2,078억원(QoQ 적자지속),\n AMPC 1,897억원(Qo...",
           "action_hint": "감축"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "negative",
+          "horizon": "3m",
+          "strength": 0.37,
+          "reason": "자동차/2차전지 [LG에너지솔루션]\n이현욱 1Q26 잠정 실적 코멘트\n02) 6915-5659\nhwle1125@ibks.com 2026년 1분기, 매출액 컨센서스 상회\n 1) LG에너지솔루션의 1Q26 실적\n 매출액 6.6조원(QoQ +1.2%), 영업이익 -2,078억원(QoQ 적자지속),\n AMPC 1,897억원(Qo...",
+          "action_hint": "감축"
         }
       ],
       "confidence": "MEDIUM",
@@ -8406,8 +9043,17 @@
       ],
       "text_path": "data/reports/2026-04-08/text/report_043.txt",
       "text_length": 11355,
-      "related_holdings_in_my_portfolio": [],
-      "related_accounts": [],
+      "related_holdings_in_my_portfolio": [
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        }
+      ],
+      "related_accounts": [
+        "KIS_MAIN"
+      ],
       "key_thesis": "■ 2026년 2분기 전망 및 주가 흐름\n - 당사의 기존 2Q26 실적 추정치는 매출액 6.2조 원, 영업이익 80억 원(OPM 0.1%), AMPC 제외 시 영업적자\n 1,960억 원(OPM -3.2%) 수준(vs. 컨센서스: 매출액 6.3조 원, 영업이익 1,254억 원)\n - 2Q26 실적은 컨센서스를 하회할 것으로 전망. GM의 재고 소진 과정에서 얼티엄셀즈 가동 중단 영향으로 파\n 우치 전지 부문의 대규모 적자가 지...",
       "key_points": [
         "■ 2026년 2분기 전망 및 주가 흐름\n - 당사의 기존 2Q26 실적 추정치는 매출액 6.2조 원, 영업이익 80억 원(OPM 0.1%), AMPC 제외 시 영업적자\n 1,960억 원(OPM -3.2%) 수준(vs. 컨센서스: 매출액 6.3조 원, 영업이익 1,254억 원)\n - 2Q26 실적은 컨센서스를 하회할 것으로 전망. GM의 재고 소진 과정에서 얼티엄셀즈 가동 중단 영향으로 파\n 우치 전지 부문의 대규모 적자가 지...",
@@ -8507,15 +9153,15 @@
       "sentiment_score": 0.5,
       "portfolio_impacts_candidate": [
         {
-          "target_type": "theme",
-          "target_code": null,
-          "target_name": "금/원자재",
-          "account_key": null,
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
           "direction": "positive",
           "horizon": "3m",
-          "strength": 0.41,
+          "strength": 0.46,
           "reason": "■ 2026년 2분기 전망 및 주가 흐름\n - 당사의 기존 2Q26 실적 추정치는 매출액 6.2조 원, 영업이익 80억 원(OPM 0.1%), AMPC 제외 시 영업적자\n 1,960억 원(OPM -3.2%) 수준(vs. 컨센서스: 매출액 6.3조 원, 영업이익 1,254억 원)\n - 2Q26 실적은 컨센서스를 하회할 것으...",
-          "action_hint": "관찰"
+          "action_hint": "보강"
         }
       ],
       "confidence": "MEDIUM",
@@ -8595,11 +9241,18 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "ISA"
+        "ISA",
+        "KIS_MAIN"
       ],
       "key_thesis": "열려 있다. 이를 감안하면 이제는 부정적 요인에 대한 우려보다 긍정적 변화가 주가에 매출액(십억원) 23,672 29,746 36,866 43,928\n 영업이익(십억원) 1,346 593 3,540 5,479\n미치는 영향력에 보다 주목해야 할 시점이라고 판단한다. 향후 이차전지 업종 주가의\n 순이익(십억원) -1,073 236 2,762 4,025\n상승 모멘텀으로 작용할 수 있는 요인은 크게 두 가지다. 첫째는 AIDC 시대에...",
       "key_points": [
@@ -8737,6 +9390,17 @@
           "strength": 0.46,
           "reason": "열려 있다. 이를 감안하면 이제는 부정적 요인에 대한 우려보다 긍정적 변화가 주가에 매출액(십억원) 23,672 29,746 36,866 43,928\n 영업이익(십억원) 1,346 593 3,540 5,479\n미치는 영향력에 보다 주목해야 할 시점이라고 판단한다. 향후 이차전지 업종 주가의\n 순이익(십억원) -1,073 ...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.46,
+          "reason": "열려 있다. 이를 감안하면 이제는 부정적 요인에 대한 우려보다 긍정적 변화가 주가에 매출액(십억원) 23,672 29,746 36,866 43,928\n 영업이익(십억원) 1,346 593 3,540 5,479\n미치는 영향력에 보다 주목해야 할 시점이라고 판단한다. 향후 이차전지 업종 주가의\n 순이익(십억원) -1,073 ...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -8816,11 +9480,18 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "ISA"
+        "ISA",
+        "KIS_MAIN"
       ],
       "key_thesis": "Key Data\nKOSPI 지수(pt)\n 2026년 1분기 컨센서스 32% 상회 예상\n52주최고/최저(원) 5,494.78\n시가총액(십억원) 73,282/8,463 2026년 1분기 연결 지배주주순이익은 1.2조원(YoY +348.9%, QoQ +101.2%)으로 컨센서스\n시가총액비중(%) 34,152.0\n발행주식수(천주) 0.75\n (8,790억원)를 약 32.1% 상회할 전망이다. 이에 따른 1분기 연환산 연결 ROE는 3...",
       "key_points": [
@@ -8963,6 +9634,17 @@
           "strength": 0.54,
           "reason": "Key Data\nKOSPI 지수(pt)\n 2026년 1분기 컨센서스 32% 상회 예상\n52주최고/최저(원) 5,494.78\n시가총액(십억원) 73,282/8,463 2026년 1분기 연결 지배주주순이익은 1.2조원(YoY +348.9%, QoQ +101.2%)으로 컨센서스\n시가총액비중(%) 34,152.0\n발행주식수(천주...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.54,
+          "reason": "Key Data\nKOSPI 지수(pt)\n 2026년 1분기 컨센서스 32% 상회 예상\n52주최고/최저(원) 5,494.78\n시가총액(십억원) 73,282/8,463 2026년 1분기 연결 지배주주순이익은 1.2조원(YoY +348.9%, QoQ +101.2%)으로 컨센서스\n시가총액비중(%) 34,152.0\n발행주식수(천주...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -9028,11 +9710,18 @@
           "name": "KODEX KOFR금리액티브(합성)",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "ISA",
-        "PENSION"
+        "PENSION",
+        "KIS_MAIN"
       ],
       "key_thesis": "Key Data\nKOSDAQ 지수 (pt) 1,036.73\n 1Q26 Pre: 시장 기대 소폭 하회 예상\n52주 최고/최저(원) 36,050/21,700\n시가총액(십억원) 311.6 1분기 연결 매출액 및 영업이익을 각각 8,437억원(YoY 5.6%), 108억원(YoY 1.4%)으로 추\n시가총액비중(%) 0.05\n발행주식수(천주) 11,871.6\n 정한다. 손익은 온라인 채널 확장 관련 마케팅비 지출 기인해 시장 기대를 소...",
       "key_points": [
@@ -9142,6 +9831,17 @@
           "strength": 0.63,
           "reason": "Key Data\nKOSDAQ 지수 (pt) 1,036.73\n 1Q26 Pre: 시장 기대 소폭 하회 예상\n52주 최고/최저(원) 36,050/21,700\n시가총액(십억원) 311.6 1분기 연결 매출액 및 영업이익을 각각 8,437억원(YoY 5.6%), 108억원(YoY 1.4%)으로 추\n시가총액비중(%) 0.05\n발행...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.63,
+          "reason": "Key Data\nKOSDAQ 지수 (pt) 1,036.73\n 1Q26 Pre: 시장 기대 소폭 하회 예상\n52주 최고/최저(원) 36,050/21,700\n시가총액(십억원) 311.6 1분기 연결 매출액 및 영업이익을 각각 8,437억원(YoY 5.6%), 108억원(YoY 1.4%)으로 추\n시가총액비중(%) 0.05\n발행...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -9221,11 +9921,18 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "ISA"
+        "ISA",
+        "KIS_MAIN"
       ],
       "key_thesis": "STOCK DATA 분기 지배주주순이익 처음으로 4,000 억원대 전망\n주가(26/04/07) 95,200 원 1Q26 지배주주순이익은 4,046 억원(YoY +62.9%, QoQ +87.1%)으로 컨센서스를\nKOSPI 5,494.78 pt 18.6% 상회할 것으로 예상한다. 주식시장 강세에 따른 브로커리지 관련 손익 증가가 실적\n52 주 최고가 114,500 원 성장의 주된 배경이며, 비우호적인 금리 환경에도 운용손익이 선방...",
       "key_points": [
@@ -9371,6 +10078,17 @@
           "strength": 0.63,
           "reason": "STOCK DATA 분기 지배주주순이익 처음으로 4,000 억원대 전망\n주가(26/04/07) 95,200 원 1Q26 지배주주순이익은 4,046 억원(YoY +62.9%, QoQ +87.1%)으로 컨센서스를\nKOSPI 5,494.78 pt 18.6% 상회할 것으로 예상한다. 주식시장 강세에 따른 브로커리지 관련 손익 증...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.63,
+          "reason": "STOCK DATA 분기 지배주주순이익 처음으로 4,000 억원대 전망\n주가(26/04/07) 95,200 원 1Q26 지배주주순이익은 4,046 억원(YoY +62.9%, QoQ +87.1%)으로 컨센서스를\nKOSPI 5,494.78 pt 18.6% 상회할 것으로 예상한다. 주식시장 강세에 따른 브로커리지 관련 손익 증...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -9436,11 +10154,18 @@
           "name": "KODEX KOFR금리액티브(합성)",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "ISA",
-        "PENSION"
+        "PENSION",
+        "KIS_MAIN"
       ],
       "key_thesis": "-20\n 150\n 투자의견 BUY 유지 및 목표주가 430,000원 유지. 현재 신세계 백화점은 외국인 방문율이\n 100\n-30\n 50 높은 명동, 부산 지역 등에서 높은 외국인 매출 성장률을 보이고 있는 것으로 추정됨\n-40 0\n (1Q26 YoY 본점 140%, 센텀 91% 추정). 또한 향후 시내 면세점의 현 수익성 (HSD%\n 수준) 지속 여부에 따라 추정치 상향 여지 존재. 1) 명품 카테고리와 외국인 매출 성장에\n ...",
       "key_points": [
@@ -9551,6 +10276,17 @@
           "strength": 0.63,
           "reason": "-20\n 150\n 투자의견 BUY 유지 및 목표주가 430,000원 유지. 현재 신세계 백화점은 외국인 방문율이\n 100\n-30\n 50 높은 명동, 부산 지역 등에서 높은 외국인 매출 성장률을 보이고 있는 것으로 추정됨\n-40 0\n (1Q26 YoY 본점 140%, 센텀 91% 추정). 또한 향후 시내 면세점의 현 수익성...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.63,
+          "reason": "-20\n 150\n 투자의견 BUY 유지 및 목표주가 430,000원 유지. 현재 신세계 백화점은 외국인 방문율이\n 100\n-30\n 50 높은 명동, 부산 지역 등에서 높은 외국인 매출 성장률을 보이고 있는 것으로 추정됨\n-40 0\n (1Q26 YoY 본점 140%, 센텀 91% 추정). 또한 향후 시내 면세점의 현 수익성...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -9616,11 +10352,18 @@
           "name": "KODEX KOFR금리액티브(합성)",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "ISA",
-        "PENSION"
+        "PENSION",
+        "KIS_MAIN"
       ],
       "key_thesis": "③ 지누스: 매출액 1,912억원(YoY –23.5%), 영업적자 233억원(YoY 적전) 전망. 작년 하\n 반기 가격 인상에 따른 최종 수요 회복 지연과 주요 고객사의 보수적인 오더에 기반하여\n 매출액은 지속 역성장 기조를 보일 것으로 추정. 향후 가격 적응에 따른 최종 수요 회복이\n 실적 개선의 핵심 변수가 될 전망\n (%) KOSPI상대수익률 (좌측) (천원)\n 30 현대백화점주가 (우측) 120",
       "key_points": [
@@ -9729,6 +10472,17 @@
           "strength": 0.63,
           "reason": "③ 지누스: 매출액 1,912억원(YoY –23.5%), 영업적자 233억원(YoY 적전) 전망. 작년 하\n 반기 가격 인상에 따른 최종 수요 회복 지연과 주요 고객사의 보수적인 오더에 기반하여\n 매출액은 지속 역성장 기조를 보일 것으로 추정. 향후 가격 적응에 따른 최종 수요 회복이\n 실적 개선의 핵심 변수가 될 전망\n...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.63,
+          "reason": "③ 지누스: 매출액 1,912억원(YoY –23.5%), 영업적자 233억원(YoY 적전) 전망. 작년 하\n 반기 가격 인상에 따른 최종 수요 회복 지연과 주요 고객사의 보수적인 오더에 기반하여\n 매출액은 지속 역성장 기조를 보일 것으로 추정. 향후 가격 적응에 따른 최종 수요 회복이\n 실적 개선의 핵심 변수가 될 전망\n...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -9813,6 +10567,12 @@
         {
           "code": "449450",
           "name": "PLUS K방산",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
         }
@@ -9974,6 +10734,17 @@
           "strength": 0.63,
           "reason": " 1Q26 Preview: 대덕전자의 1분기 실적은 매출액 3,280억원(YoY +37%, (원) 주가\n 100,000\n QoQ +3%), 영업이익 430억원(YoY 흑전, QoQ +48%, OPM 13.1%)으로\n 당사 기존 추정치를 상회할 전망. 메모리 및 비메모리 PKG, MLB까지 전 사 80,000",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.63,
+          "reason": " 1Q26 Preview: 대덕전자의 1분기 실적은 매출액 3,280억원(YoY +37%, (원) 주가\n 100,000\n QoQ +3%), 영업이익 430억원(YoY 흑전, QoQ +48%, OPM 13.1%)으로\n 당사 기존 추정치를 상회할 전망. 메모리 및 비메모리 PKG, MLB까지 전 사 80,000",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -10039,11 +10810,18 @@
           "name": "KODEX KOFR금리액티브(합성)",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "ISA",
-        "PENSION"
+        "PENSION",
+        "KIS_MAIN"
       ],
       "key_thesis": "BUY 유지 1Q2\n 6Pr\n eview\n :전쟁속에서도\n 더강해진실적\nTP\n 190,000\n 원 유지 1분기 연결 매출액 및 영업이익은 각각 1.7조원(YoY 14%), 3,548억원(YoY 24%)으로 시\n 장기대치 상회 전망. 해외궐련 매출액이 YoY 20%대 견조한 성장을 이어가는 가운데, 국내\nCompany Data 궐련, NGP 모두 M/S 상승 흐름 긍정적.\n현재가(04/07) 154,700 원\n액면가(원) 5,0...",
       "key_points": [
@@ -10158,6 +10936,17 @@
           "strength": 0.54,
           "reason": "BUY 유지 1Q2\n 6Pr\n eview\n :전쟁속에서도\n 더강해진실적\nTP\n 190,000\n 원 유지 1분기 연결 매출액 및 영업이익은 각각 1.7조원(YoY 14%), 3,548억원(YoY 24%)으로 시\n 장기대치 상회 전망. 해외궐련 매출액이 YoY 20%대 견조한 성장을 이어가는 가운데, 국내\nCompany Da...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.54,
+          "reason": "BUY 유지 1Q2\n 6Pr\n eview\n :전쟁속에서도\n 더강해진실적\nTP\n 190,000\n 원 유지 1분기 연결 매출액 및 영업이익은 각각 1.7조원(YoY 14%), 3,548억원(YoY 24%)으로 시\n 장기대치 상회 전망. 해외궐련 매출액이 YoY 20%대 견조한 성장을 이어가는 가운데, 국내\nCompany Da...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -10236,11 +11025,18 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "ISA"
+        "ISA",
+        "KIS_MAIN"
       ],
       "key_thesis": " ES: 중동의 지정학적 이벤트 영향으로 타 사업부 대비 해외 매출 확대 부 주가상승률(%) 1M 6M 12M\n -9.2 40.2 57.3\n 진, 전년비 역성장 실현. 판가 하락 및 시장 전반의 불확실성이 지속되는 중.\n (원, 십억원) 현재 직전 변동\n 동시에 AI DC 등 미래 신성장 분야의 인력 채용에 따른 고정비 증가로 수익 투자의견 BUY BUY -\n 성 역시 전년비 소폭 부진 목표주가 132,000 117,000 ...",
       "key_points": [
@@ -10375,6 +11171,17 @@
           "strength": 0.63,
           "reason": " ES: 중동의 지정학적 이벤트 영향으로 타 사업부 대비 해외 매출 확대 부 주가상승률(%) 1M 6M 12M\n -9.2 40.2 57.3\n 진, 전년비 역성장 실현. 판가 하락 및 시장 전반의 불확실성이 지속되는 중.\n (원, 십억원) 현재 직전 변동\n 동시에 AI DC 등 미래 신성장 분야의 인력 채용에 따른 고정비...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.63,
+          "reason": " ES: 중동의 지정학적 이벤트 영향으로 타 사업부 대비 해외 매출 확대 부 주가상승률(%) 1M 6M 12M\n -9.2 40.2 57.3\n 진, 전년비 역성장 실현. 판가 하락 및 시장 전반의 불확실성이 지속되는 중.\n (원, 십억원) 현재 직전 변동\n 동시에 AI DC 등 미래 신성장 분야의 인력 채용에 따른 고정비...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -10454,11 +11261,18 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "ISA"
+        "ISA",
+        "KIS_MAIN"
       ],
       "key_thesis": "200\n 140\n 120\n 은 50% 상승으로 가정한다. 빅테크를 필두로 한 서버 고객사는 물론 모바일 고객사 역시\n 150 100\n 80 가격 상승을 감내하는 것으로 파악된다. 모바일 고객사들은 원가 상승 구간을 점유율 확\n 100 60\n 50\n 40\n 20\n 대 기회로 활용하는 전략을 관철하고 있다. 아울러 하반기부터 AI 시스템에 탑재되는 각종\n 0 0\n 25.3 25.6 25.9 25.12 26.3 CPU, DPU, L...",
       "key_points": [
@@ -10583,6 +11397,17 @@
           "strength": 0.46,
           "reason": "200\n 140\n 120\n 은 50% 상승으로 가정한다. 빅테크를 필두로 한 서버 고객사는 물론 모바일 고객사 역시\n 150 100\n 80 가격 상승을 감내하는 것으로 파악된다. 모바일 고객사들은 원가 상승 구간을 점유율 확\n 100 60\n 50\n 40\n 20\n 대 기회로 활용하는 전략을 관철하고 있다. 아울러 하반기부터...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.46,
+          "reason": "200\n 140\n 120\n 은 50% 상승으로 가정한다. 빅테크를 필두로 한 서버 고객사는 물론 모바일 고객사 역시\n 150 100\n 80 가격 상승을 감내하는 것으로 파악된다. 모바일 고객사들은 원가 상승 구간을 점유율 확\n 100 60\n 50\n 40\n 20\n 대 기회로 활용하는 전략을 관철하고 있다. 아울러 하반기부터...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -10663,11 +11488,18 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "ISA"
+        "ISA",
+        "KIS_MAIN"
       ],
       "key_thesis": "- 삼성전자의 계열회사, 스마트폰, 자동차향 수동부품, 카메라모듈, 기판\n 중심의 종합전자부품업체\n - MLCC 는 시장 재편 및 프리미엄 스마트폰의 하드웨어 경쟁으로 수요\n 패키지\n 증가. 5G 투자를 반영하면 호황 국면 지속 예상 솔루션,\n - 자산 14.59조원, 부채 4.79조원, 자본 9.79조원(2025년 12월말 기준) 22%",
       "key_points": [
@@ -10767,6 +11599,17 @@
           "strength": 0.46,
           "reason": "- 삼성전자의 계열회사, 스마트폰, 자동차향 수동부품, 카메라모듈, 기판\n 중심의 종합전자부품업체\n - MLCC 는 시장 재편 및 프리미엄 스마트폰의 하드웨어 경쟁으로 수요\n 패키지\n 증가. 5G 투자를 반영하면 호황 국면 지속 예상 솔루션,\n - 자산 14.59조원, 부채 4.79조원, 자본 9.79조원(2025년 12...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.46,
+          "reason": "- 삼성전자의 계열회사, 스마트폰, 자동차향 수동부품, 카메라모듈, 기판\n 중심의 종합전자부품업체\n - MLCC 는 시장 재편 및 프리미엄 스마트폰의 하드웨어 경쟁으로 수요\n 패키지\n 증가. 5G 투자를 반영하면 호황 국면 지속 예상 솔루션,\n - 자산 14.59조원, 부채 4.79조원, 자본 9.79조원(2025년 12...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -10847,11 +11690,18 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "ISA"
+        "ISA",
+        "KIS_MAIN"
       ],
       "key_thesis": "투자의견 BUY 투자의견 '매수' 유지, 목표주가 1,100,000원으로 상향\n 매수, 유지\n 목표주가를 1,100,000원('28년 예상 EPS x PER 24배)으로 상향 ('28년 실적 전망치\n 6개월 목표주가 1,100,000 상향 반영). '26년 매출액 컨센서스 4.78조원 대비 낮은 가이던스 4.35조원을 공시함에\n 상향 따라 주가가 조정을 받은 바 있음. 가이던스 가정 환율은 1,350원/달러 기준으로 현재\n 현...",
       "key_points": [
@@ -10995,6 +11845,17 @@
           "strength": 0.63,
           "reason": "투자의견 BUY 투자의견 '매수' 유지, 목표주가 1,100,000원으로 상향\n 매수, 유지\n 목표주가를 1,100,000원('28년 예상 EPS x PER 24배)으로 상향 ('28년 실적 전망치\n 6개월 목표주가 1,100,000 상향 반영). '26년 매출액 컨센서스 4.78조원 대비 낮은 가이던스 4.35조원을 공...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.63,
+          "reason": "투자의견 BUY 투자의견 '매수' 유지, 목표주가 1,100,000원으로 상향\n 매수, 유지\n 목표주가를 1,100,000원('28년 예상 EPS x PER 24배)으로 상향 ('28년 실적 전망치\n 6개월 목표주가 1,100,000 상향 반영). '26년 매출액 컨센서스 4.78조원 대비 낮은 가이던스 4.35조원을 공...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -11074,11 +11935,18 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "ISA"
+        "ISA",
+        "KIS_MAIN"
       ],
       "key_thesis": "살펴보면, 2Q26 24회(북미 15회, 유럽 2회, 한국 5회, 일본 2회), 3Q26 24회(북미 52주 주가 215,000~404,500원\n 60일평균거래량 369,828주\n16회, 유럽 8회)가 예정돼 있다. BTS 신보 판매량은 누적 480만장으로 자체 최고\n 60일평균거래대금 128.5십억원\n기록을 경신했고, 스포티파이 월간 청취자 수는 신보 발매(3/20) 이후 60% 이상\n급증하며 현재 4,100만명을 상회했다....",
       "key_points": [
@@ -11225,6 +12093,17 @@
           "strength": 0.46,
           "reason": "살펴보면, 2Q26 24회(북미 15회, 유럽 2회, 한국 5회, 일본 2회), 3Q26 24회(북미 52주 주가 215,000~404,500원\n 60일평균거래량 369,828주\n16회, 유럽 8회)가 예정돼 있다. BTS 신보 판매량은 누적 480만장으로 자체 최고\n 60일평균거래대금 128.5십억원\n기록을 경신했고, ...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.46,
+          "reason": "살펴보면, 2Q26 24회(북미 15회, 유럽 2회, 한국 5회, 일본 2회), 3Q26 24회(북미 52주 주가 215,000~404,500원\n 60일평균거래량 369,828주\n16회, 유럽 8회)가 예정돼 있다. BTS 신보 판매량은 누적 480만장으로 자체 최고\n 60일평균거래대금 128.5십억원\n기록을 경신했고, ...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -11303,11 +12182,18 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "ISA"
+        "ISA",
+        "KIS_MAIN"
       ],
       "key_thesis": " 1Q26 매출 1.1조원(-0% yoy), OP 290억원(+4,017% yoy) 전망\n 김회재\n  티빙, Fifth Season의 실적 개선에 힘입어 전사 이익 개선 전망",
       "key_points": [
@@ -11433,6 +12319,17 @@
           "strength": 0.37,
           "reason": " 1Q26 매출 1.1조원(-0% yoy), OP 290억원(+4,017% yoy) 전망\n 김회재\n  티빙, Fifth Season의 실적 개선에 힘입어 전사 이익 개선 전망",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.37,
+          "reason": " 1Q26 매출 1.1조원(-0% yoy), OP 290억원(+4,017% yoy) 전망\n 김회재\n  티빙, Fifth Season의 실적 개선에 힘입어 전사 이익 개선 전망",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -11498,11 +12395,18 @@
           "name": "KODEX KOFR금리액티브(합성)",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "ISA",
-        "PENSION"
+        "PENSION",
+        "KIS_MAIN"
       ],
       "key_thesis": "총발행주식수 69,050,589주\n 해외는 지역별로 온도차가 존재한다. 중화권은 구조조정 영향으로 매출액 23% 감소가 예상\n 60일 평균 거래대금 427억원\n 되며 BEP 수준의 수익성이 전망된다. 미주는 유통사의 보수적인 매입 기조 영향으로 1분기\n 60일 평균 거래량 303,675주\n 성장률은 +9% YoY가 예상된다. 유럽은 중동 전쟁 영향에 따른 마케팅 지연 및 유통사 매입\n 52주 고/저 165,100원 / 101,...",
       "key_points": [
@@ -11624,6 +12528,17 @@
           "strength": 0.63,
           "reason": "총발행주식수 69,050,589주\n 해외는 지역별로 온도차가 존재한다. 중화권은 구조조정 영향으로 매출액 23% 감소가 예상\n 60일 평균 거래대금 427억원\n 되며 BEP 수준의 수익성이 전망된다. 미주는 유통사의 보수적인 매입 기조 영향으로 1분기\n 60일 평균 거래량 303,675주\n 성장률은 +9% YoY가 예상된...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.63,
+          "reason": "총발행주식수 69,050,589주\n 해외는 지역별로 온도차가 존재한다. 중화권은 구조조정 영향으로 매출액 23% 감소가 예상\n 60일 평균 거래대금 427억원\n 되며 BEP 수준의 수익성이 전망된다. 미주는 유통사의 보수적인 매입 기조 영향으로 1분기\n 60일 평균 거래량 303,675주\n 성장률은 +9% YoY가 예상된...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -11694,6 +12609,12 @@
         {
           "code": "449450",
           "name": "PLUS K방산",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
         }
@@ -11801,6 +12722,17 @@
           "strength": 0.54,
           "reason": "분기별 유형별 매출액 추이 및 전망 분기별 고객별 매출액 추이 및 전망\n (십억원) (십억원)\n 용역매출 기타\n 25 기타 25\n 현대로템\n 민수\n 20 무기체계 시스템 20 한화시스템\n 무기탑재용 컴퓨터장치 LIG넥스원\n 15 군용 전시기 15\n 싱글보드컴퓨터\n 10 10",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.54,
+          "reason": "분기별 유형별 매출액 추이 및 전망 분기별 고객별 매출액 추이 및 전망\n (십억원) (십억원)\n 용역매출 기타\n 25 기타 25\n 현대로템\n 민수\n 20 무기체계 시스템 20 한화시스템\n 무기탑재용 컴퓨터장치 LIG넥스원\n 15 군용 전시기 15\n 싱글보드컴퓨터\n 10 10",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -11881,11 +12813,18 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "ISA"
+        "ISA",
+        "KIS_MAIN"
       ],
       "key_thesis": "삼성전자 사업 부문별 영업이익 추이 및 전망\n (십억원) DS 영업이익 MX, 네트워크 영업이익\n350,000\n SDC 영업이익 VD,생활가전 영업이익\n280,000",
       "key_points": [
@@ -11997,6 +12936,17 @@
           "strength": 0.28,
           "reason": "삼성전자 사업 부문별 영업이익 추이 및 전망\n (십억원) DS 영업이익 MX, 네트워크 영업이익\n350,000\n SDC 영업이익 VD,생활가전 영업이익\n280,000",
           "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "neutral",
+          "horizon": "3m",
+          "strength": 0.28,
+          "reason": "삼성전자 사업 부문별 영업이익 추이 및 전망\n (십억원) DS 영업이익 MX, 네트워크 영업이익\n350,000\n SDC 영업이익 VD,생활가전 영업이익\n280,000",
+          "action_hint": "관찰"
         }
       ],
       "confidence": "HIGH",
@@ -12067,6 +13017,12 @@
         {
           "code": "434730",
           "name": "HANARO 원자력iSelect",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
         }
@@ -12195,6 +13151,17 @@
           "strength": 0.46,
           "reason": "Key Data\nKOSPI 지수 (pt) 5,494.78\n 1Q26 추정: 매출액 1.6조원, 영업이익 1,044억원(OPM 6.4%)\n52주 최고/최저(원) 77,200/38,000\n시가총액(십억원) 2,925.2 1Q26 매출액 1.6조원(-9.3%yoy), 영업이익 1,044억원(+28.9%yoy)으로 추정한다. G...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.46,
+          "reason": "Key Data\nKOSPI 지수 (pt) 5,494.78\n 1Q26 추정: 매출액 1.6조원, 영업이익 1,044억원(OPM 6.4%)\n52주 최고/최저(원) 77,200/38,000\n시가총액(십억원) 2,925.2 1Q26 매출액 1.6조원(-9.3%yoy), 영업이익 1,044억원(+28.9%yoy)으로 추정한다. G...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -12265,6 +13232,12 @@
         {
           "code": "434730",
           "name": "HANARO 원자력iSelect",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
         }
@@ -12382,6 +13355,17 @@
           "strength": 0.37,
           "reason": "1Q26 Preview: 영업이익 컨센서스 부합 전망 BUY (M)\n동사 2026년 1분기 연결 실적은 매출액 6조 3,634억원(-14.6% YoY), 영업이익 1,450억\n원(-32.2% YoY, OPM 2.3%)으로 영업이익 컨센서스 1,403억원에 부합할 것으로 전망한 목표주가 202,000원 (M)\n다. 1분기 ...",
           "action_hint": "감축"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "negative",
+          "horizon": "3m",
+          "strength": 0.37,
+          "reason": "1Q26 Preview: 영업이익 컨센서스 부합 전망 BUY (M)\n동사 2026년 1분기 연결 실적은 매출액 6조 3,634억원(-14.6% YoY), 영업이익 1,450억\n원(-32.2% YoY, OPM 2.3%)으로 영업이익 컨센서스 1,403억원에 부합할 것으로 전망한 목표주가 202,000원 (M)\n다. 1분기 ...",
+          "action_hint": "감축"
         }
       ],
       "confidence": "HIGH",
@@ -12460,11 +13444,18 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "ISA"
+        "ISA",
+        "KIS_MAIN"
       ],
       "key_thesis": "Financial Data (십억원, %, 배, 원) 연결기준 26년 매출 91조 8,220억원(YoY +3%), 영업이익 3조 4,411억원(YoY +40%, OPM\n투자지표 2024 2025 2026F 2027F\n매출액 87,728.2 89,200.9 91,822.0 95,515.0\n 3.7%), 별도기준으로는 매출 69조 5,388억원(YoY +2.7%), 영업이익 2조 5,023억원(YoY\n영업이익 3,419.7 2,4...",
       "key_points": [
@@ -12587,6 +13578,17 @@
           "strength": 0.63,
           "reason": "Financial Data (십억원, %, 배, 원) 연결기준 26년 매출 91조 8,220억원(YoY +3%), 영업이익 3조 4,411억원(YoY +40%, OPM\n투자지표 2024 2025 2026F 2027F\n매출액 87,728.2 89,200.9 91,822.0 95,515.0\n 3.7%), 별도기준으로는 매출 ...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.63,
+          "reason": "Financial Data (십억원, %, 배, 원) 연결기준 26년 매출 91조 8,220억원(YoY +3%), 영업이익 3조 4,411억원(YoY +40%, OPM\n투자지표 2024 2025 2026F 2027F\n매출액 87,728.2 89,200.9 91,822.0 95,515.0\n 3.7%), 별도기준으로는 매출 ...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -12670,6 +13672,12 @@
         {
           "code": "434730",
           "name": "HANARO 원자력iSelect",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
         }
@@ -12819,6 +13827,17 @@
           "strength": 0.46,
           "reason": "Stock Price 딜리 공사는 중단 없이 진행 중이며, 아직 자재 우회 방안 등을 고려할 수준은 아니다. 원전\n 관련해서는 i-SMR 초도호기 설계에 참여하기로 했으며, 대형원전은 베트남 팀코리아 입찰\n (천원) GS건설(좌)\n 35 상대지수(우) 140\n 30 120\n 을 2분기 중에 넣을 것으로 전망한다. GS건설...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.46,
+          "reason": "Stock Price 딜리 공사는 중단 없이 진행 중이며, 아직 자재 우회 방안 등을 고려할 수준은 아니다. 원전\n 관련해서는 i-SMR 초도호기 설계에 참여하기로 했으며, 대형원전은 베트남 팀코리아 입찰\n (천원) GS건설(좌)\n 35 상대지수(우) 140\n 30 120\n 을 2분기 중에 넣을 것으로 전망한다. GS건설...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -12902,6 +13921,12 @@
         {
           "code": "434730",
           "name": "HANARO 원자력iSelect",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
         }
@@ -13067,6 +14092,17 @@
           "strength": 0.37,
           "reason": "DL이앤씨 1분기 영업이익은 시장 컨센서스를 상회할 것으로 전망된다. 단기 실적은\n 건설 Analyst 신대현 국내 납사 수급에 따른 건축자재 수급 우려로 부담이 있을 것으로 판단된다. 다만,\n shin8d@kiwoom.com SMR 모멘텀에 따른 주가 상승은 지속될 것으로 판단된다. 이번 표준화 설계가 잘 마\n 무리될 ...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.37,
+          "reason": "DL이앤씨 1분기 영업이익은 시장 컨센서스를 상회할 것으로 전망된다. 단기 실적은\n 건설 Analyst 신대현 국내 납사 수급에 따른 건축자재 수급 우려로 부담이 있을 것으로 판단된다. 다만,\n shin8d@kiwoom.com SMR 모멘텀에 따른 주가 상승은 지속될 것으로 판단된다. 이번 표준화 설계가 잘 마\n 무리될 ...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -13132,11 +14168,18 @@
           "name": "KODEX KOFR금리액티브(합성)",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "ISA",
-        "PENSION"
+        "PENSION",
+        "KIS_MAIN"
       ],
       "key_thesis": "Key Data 1Q26 Pre: 컨센서스 하회 전망\nKOSPI 지수 (pt) 5,494.78\n52주 최고/최저(원) 58,500/28,200 시프트업은 1분기 영업수익 438억원(+3.6%YoY, -31.7%QoQ), 영업이익 236억원(-\n시가총액(십억원) 1,887.5\n시가총액비중(%) 0.04 10.3%YoY, -36.4%QoQ, OPM 53.8%)으로 컨센서스를 하회하는 실적을 기록할 전망이다.\n발행주식수(천주) 58...",
       "key_points": [
@@ -13249,6 +14292,17 @@
           "strength": 0.37,
           "reason": "Key Data 1Q26 Pre: 컨센서스 하회 전망\nKOSPI 지수 (pt) 5,494.78\n52주 최고/최저(원) 58,500/28,200 시프트업은 1분기 영업수익 438억원(+3.6%YoY, -31.7%QoQ), 영업이익 236억원(-\n시가총액(십억원) 1,887.5\n시가총액비중(%) 0.04 10.3%YoY, -...",
           "action_hint": "감축"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "negative",
+          "horizon": "3m",
+          "strength": 0.37,
+          "reason": "Key Data 1Q26 Pre: 컨센서스 하회 전망\nKOSPI 지수 (pt) 5,494.78\n52주 최고/최저(원) 58,500/28,200 시프트업은 1분기 영업수익 438억원(+3.6%YoY, -31.7%QoQ), 영업이익 236억원(-\n시가총액(십억원) 1,887.5\n시가총액비중(%) 0.04 10.3%YoY, -...",
+          "action_hint": "감축"
         }
       ],
       "confidence": "HIGH",
@@ -13327,11 +14381,18 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "ISA"
+        "ISA",
+        "KIS_MAIN"
       ],
       "key_thesis": ", 8% 2,000 8%\n2,500 om 6%\n2.000 6 1,500 20\n1,500 4% 1,000 2%",
       "key_points": [
@@ -13444,6 +14505,17 @@
           "strength": 0.28,
           "reason": ", 8% 2,000 8%\n2,500 om 6%\n2.000 6 1,500 20\n1,500 4% 1,000 2%",
           "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "neutral",
+          "horizon": "3m",
+          "strength": 0.28,
+          "reason": ", 8% 2,000 8%\n2,500 om 6%\n2.000 6 1,500 20\n1,500 4% 1,000 2%",
+          "action_hint": "관찰"
         }
       ],
       "confidence": "HIGH",
@@ -13506,10 +14578,17 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
-        "PENSION"
+        "PENSION",
+        "KIS_MAIN"
       ],
       "key_thesis": "[ 기업 투자기간 및 투자등급 ] 향후 6개월 기준, 2015.6.1(Strong Buy 등급 삭제)\n Buy(매수): KOSPI 대비 기대수익률 10%이상 Trading Buy: KOSPI 대비 10%이상 초과수익 예상되나 불확실성 높은 경우\n Hold(보유): KOSPI 대비 기대수익률 -10~10% Sell(매도): KOSPI 대비 기대수익률 -10% 이하",
       "key_points": [
@@ -13570,6 +14649,17 @@
           "target_code": "133690",
           "target_name": "TIGER 미국나스닥100",
           "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.37,
+          "reason": "[ 기업 투자기간 및 투자등급 ] 향후 6개월 기준, 2015.6.1(Strong Buy 등급 삭제)\n Buy(매수): KOSPI 대비 기대수익률 10%이상 Trading Buy: KOSPI 대비 10%이상 초과수익 예상되나 불확실성 높은 경우\n Hold(보유): KOSPI 대비 기대수익률 -10~10% Sell(매도):...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
           "direction": "positive",
           "horizon": "3m",
           "strength": 0.37,
@@ -13654,11 +14744,18 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "ISA"
+        "ISA",
+        "KIS_MAIN"
       ],
       "key_thesis": "Buy (유지) 투자 포인트\n 삼성전자를 반도체 업종 내 대형주 Top Pick으로 제시. 동사는 이미 높\n 목표주가(상향): 300,000원 아진 시장의 기대치를 대폭 상회하는 실적을 시현하며 1Q26 매출액\n현재 주가(4/7) 196,500원 133조원(QoQ +41.8%, 컨센서스 대비 +12%), 영업이익 57.2조원\n상승여력 ▲52.7% (QoQ +185.2%, 컨센서스 대비 +49%)을 기록. 동사에 대한 당사 연\n...",
       "key_points": [
@@ -13802,6 +14899,17 @@
           "strength": 0.46,
           "reason": "Buy (유지) 투자 포인트\n 삼성전자를 반도체 업종 내 대형주 Top Pick으로 제시. 동사는 이미 높\n 목표주가(상향): 300,000원 아진 시장의 기대치를 대폭 상회하는 실적을 시현하며 1Q26 매출액\n현재 주가(4/7) 196,500원 133조원(QoQ +41.8%, 컨센서스 대비 +12%), 영업이익 57.2...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.46,
+          "reason": "Buy (유지) 투자 포인트\n 삼성전자를 반도체 업종 내 대형주 Top Pick으로 제시. 동사는 이미 높\n 목표주가(상향): 300,000원 아진 시장의 기대치를 대폭 상회하는 실적을 시현하며 1Q26 매출액\n현재 주가(4/7) 196,500원 133조원(QoQ +41.8%, 컨센서스 대비 +12%), 영업이익 57.2...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -13881,11 +14989,18 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "ISA"
+        "ISA",
+        "KIS_MAIN"
       ],
       "key_thesis": "③ VS: 매출 3.1조원 (+8% YoY, +10% QoQ), 영업이익 1,840억원 (+47% YoY,\n Price Trend\n영업이익률 5.9%)으로 추정. 고부가 수주를 기반으로 한 IVI의 성장에 더해, ePT의\n 000'S\n개선도 맞물린 것으로 추측. 고유가 지속 시 친환경차 수요 개선 가능성 기대 161.0\n LG전자\n 1.10\n (2025/04/07~2026/04/07)\n④ ES: 매출 2.8조원 (-8% YoY...",
       "key_points": [
@@ -14027,6 +15142,17 @@
           "strength": 0.54,
           "reason": "③ VS: 매출 3.1조원 (+8% YoY, +10% QoQ), 영업이익 1,840억원 (+47% YoY,\n Price Trend\n영업이익률 5.9%)으로 추정. 고부가 수주를 기반으로 한 IVI의 성장에 더해, ePT의\n 000'S\n개선도 맞물린 것으로 추측. 고유가 지속 시 친환경차 수요 개선 가능성 기대 161.0\n...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.54,
+          "reason": "③ VS: 매출 3.1조원 (+8% YoY, +10% QoQ), 영업이익 1,840억원 (+47% YoY,\n Price Trend\n영업이익률 5.9%)으로 추정. 고부가 수주를 기반으로 한 IVI의 성장에 더해, ePT의\n 000'S\n개선도 맞물린 것으로 추측. 고유가 지속 시 친환경차 수요 개선 가능성 기대 161.0\n...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -14097,6 +15223,12 @@
         {
           "code": "434730",
           "name": "HANARO 원자력iSelect",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
         }
@@ -14239,6 +15371,17 @@
           "strength": 0.46,
           "reason": "1 분기 영업이익은 시장 기대치를 부합한 것으로 추정됩니다. 원전 분\n Buy (유지) 야에서의 압도적 입지를 바탕으로 건설업종 밸류에이션 상단의 키를\n 쥐고 있다는 판단하에 최선호주 의견을 유지하며, 목표주가를 200,000\n 목표주가(상향): 200,000원\n 원으로 상향합니다.\n현재 주가(4/7) 155,900원\n상...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.46,
+          "reason": "1 분기 영업이익은 시장 기대치를 부합한 것으로 추정됩니다. 원전 분\n Buy (유지) 야에서의 압도적 입지를 바탕으로 건설업종 밸류에이션 상단의 키를\n 쥐고 있다는 판단하에 최선호주 의견을 유지하며, 목표주가를 200,000\n 목표주가(상향): 200,000원\n 원으로 상향합니다.\n현재 주가(4/7) 155,900원\n상...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -14319,11 +15462,18 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "ISA"
+        "ISA",
+        "KIS_MAIN"
       ],
       "key_thesis": "매수 투자의견 유지. 목표주가를 30만원으로 상향\n삼성전자의 1Q26 매출과 영업이익이 Memory 부문의 이익 급증과 원-달러 환율 상승 Buy (Maintain)\n및 MX/NW 부문의 선전에 따라 133조원과 57.2조원을 기록해 시장 예상치 및 당사 목표주가(12M) 300,000원(상향)\n전망치를 대폭 상회했다. 2Q26 이후 Memory BOM Cost 부담에 따른 Set 부문의 종가(2026.04.07) 196,50...",
       "key_points": [
@@ -14472,6 +15622,17 @@
           "strength": 0.54,
           "reason": "매수 투자의견 유지. 목표주가를 30만원으로 상향\n삼성전자의 1Q26 매출과 영업이익이 Memory 부문의 이익 급증과 원-달러 환율 상승 Buy (Maintain)\n및 MX/NW 부문의 선전에 따라 133조원과 57.2조원을 기록해 시장 예상치 및 당사 목표주가(12M) 300,000원(상향)\n전망치를 대폭 상회했다. ...",
           "action_hint": "감축"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "negative",
+          "horizon": "3m",
+          "strength": 0.54,
+          "reason": "매수 투자의견 유지. 목표주가를 30만원으로 상향\n삼성전자의 1Q26 매출과 영업이익이 Memory 부문의 이익 급증과 원-달러 환율 상승 Buy (Maintain)\n및 MX/NW 부문의 선전에 따라 133조원과 57.2조원을 기록해 시장 예상치 및 당사 목표주가(12M) 300,000원(상향)\n전망치를 대폭 상회했다. ...",
+          "action_hint": "감축"
         }
       ],
       "confidence": "HIGH",
@@ -14551,11 +15712,18 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "ISA"
+        "ISA",
+        "KIS_MAIN"
       ],
       "key_thesis": "삼성전자 005930 Company Analysis\n진짜 놀랐습니다..\n1Q26 영업이익 57.2조원 발표\n삼성전자 1Q26 매출액 133조원(+68% YoY, +42% QoQ), 영업이익 57.2조원 이수림 반도체\n 02-709-2661\n(+755% YoY, +185% QoQ, OPM 43%)으로 당사 추정치와 컨센서스를 모두\n surim.lee@ds-sec.co.kr\n크게 상회하는 실적을 기록하였다. 사업부별 영업이익은 D...",
       "key_points": [
@@ -14698,6 +15866,17 @@
           "strength": 0.54,
           "reason": "삼성전자 005930 Company Analysis\n진짜 놀랐습니다..\n1Q26 영업이익 57.2조원 발표\n삼성전자 1Q26 매출액 133조원(+68% YoY, +42% QoQ), 영업이익 57.2조원 이수림 반도체\n 02-709-2661\n(+755% YoY, +185% QoQ, OPM 43%)으로 당사 추정치와 컨센서스...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.54,
+          "reason": "삼성전자 005930 Company Analysis\n진짜 놀랐습니다..\n1Q26 영업이익 57.2조원 발표\n삼성전자 1Q26 매출액 133조원(+68% YoY, +42% QoQ), 영업이익 57.2조원 이수림 반도체\n 02-709-2661\n(+755% YoY, +185% QoQ, OPM 43%)으로 당사 추정치와 컨센서스...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -14777,11 +15956,18 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "ISA"
+        "ISA",
+        "KIS_MAIN"
       ],
       "key_thesis": "최근 2년간 주가 그래프 및 목표주가(대상 시점 1년) 변동 추이 (▲) 매수, (■) Trading Buy (중립), (●) 중립, (◆) 축소, (■) Not Rated / 담당자 변경\n 괴리율(%)\n 삼성전자 추천일자 투자의견 목표가(원)\n 평균 최고/최저\n 2024.04.05 매수 110,000 -29.60 -20.18\n (원) 2024.10.02 매수 95,000 -40.29 -35.79\n 2024.12.17 매수 8...",
       "key_points": [
@@ -14922,6 +16108,17 @@
           "strength": 0.37,
           "reason": "최근 2년간 주가 그래프 및 목표주가(대상 시점 1년) 변동 추이 (▲) 매수, (■) Trading Buy (중립), (●) 중립, (◆) 축소, (■) Not Rated / 담당자 변경\n 괴리율(%)\n 삼성전자 추천일자 투자의견 목표가(원)\n 평균 최고/최저\n 2024.04.05 매수 110,000 -29.60 -20...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.37,
+          "reason": "최근 2년간 주가 그래프 및 목표주가(대상 시점 1년) 변동 추이 (▲) 매수, (■) Trading Buy (중립), (●) 중립, (◆) 축소, (■) Not Rated / 담당자 변경\n 괴리율(%)\n 삼성전자 추천일자 투자의견 목표가(원)\n 평균 최고/최저\n 2024.04.05 매수 110,000 -29.60 -20...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -15000,11 +16197,18 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "ISA"
+        "ISA",
+        "KIS_MAIN"
       ],
       "key_thesis": "[투자의견 비율공시]\n 구분 Buy(매수) Marketperform(중립) Underperform(매도)\n 비율 90.5% 9.5% 0.0%\n (기준일자: 20260404)",
       "key_points": [
@@ -15124,6 +16328,17 @@
           "strength": 0.46,
           "reason": "[투자의견 비율공시]\n 구분 Buy(매수) Marketperform(중립) Underperform(매도)\n 비율 90.5% 9.5% 0.0%\n (기준일자: 20260404)",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.46,
+          "reason": "[투자의견 비율공시]\n 구분 Buy(매수) Marketperform(중립) Underperform(매도)\n 비율 90.5% 9.5% 0.0%\n (기준일자: 20260404)",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -15203,11 +16418,18 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "ISA"
+        "ISA",
+        "KIS_MAIN"
       ],
       "key_thesis": "ㆍ [DS부문] 영업이익 53조원 추정(메모리 54조, 파운드리/LSI -1.3조). DRAM·NAND ASP\n +90% 급등이 주도, 출하량 보합 속 적극적 가격 정책과 유리한 가격 구조가 전략적\n 으로 작동. 파운드리는 선단공정 가동률 확대에도 수율 안정화 미흡으로 적자 지속",
       "key_points": [
@@ -15317,6 +16539,17 @@
           "strength": 0.37,
           "reason": "ㆍ [DS부문] 영업이익 53조원 추정(메모리 54조, 파운드리/LSI -1.3조). DRAM·NAND ASP\n +90% 급등이 주도, 출하량 보합 속 적극적 가격 정책과 유리한 가격 구조가 전략적\n 으로 작동. 파운드리는 선단공정 가동률 확대에도 수율 안정화 미흡으로 적자 지속",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.37,
+          "reason": "ㆍ [DS부문] 영업이익 53조원 추정(메모리 54조, 파운드리/LSI -1.3조). DRAM·NAND ASP\n +90% 급등이 주도, 출하량 보합 속 적극적 가격 정책과 유리한 가격 구조가 전략적\n 으로 작동. 파운드리는 선단공정 가동률 확대에도 수율 안정화 미흡으로 적자 지속",
+          "action_hint": "보강"
         }
       ],
       "confidence": "LOW",
@@ -15382,11 +16615,18 @@
           "name": "KODEX KOFR금리액티브(합성)",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "ISA",
-        "PENSION"
+        "PENSION",
+        "KIS_MAIN"
       ],
       "key_thesis": "1Q26P 1Q25 4Q25\n 잠정 실적 컨센서스 차이(%) 실적 YoY(%) 실적 QoQ(%)\n 매출액 6,555.0 5,862.4 +11.8 6,722.7 -2.5 6,474.3 +1.2",
       "key_points": [
@@ -15500,6 +16740,17 @@
           "strength": 0.46,
           "reason": "1Q26P 1Q25 4Q25\n 잠정 실적 컨센서스 차이(%) 실적 YoY(%) 실적 QoQ(%)\n 매출액 6,555.0 5,862.4 +11.8 6,722.7 -2.5 6,474.3 +1.2",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.46,
+          "reason": "1Q26P 1Q25 4Q25\n 잠정 실적 컨센서스 차이(%) 실적 YoY(%) 실적 QoQ(%)\n 매출액 6,555.0 5,862.4 +11.8 6,722.7 -2.5 6,474.3 +1.2",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -15565,11 +16816,18 @@
           "name": "KODEX KOFR금리액티브(합성)",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "ISA",
-        "PENSION"
+        "PENSION",
+        "KIS_MAIN"
       ],
       "key_thesis": "26년 연결 영업수익은 27.7조원(-1.9% YoY), 영업이익 2.0조원(-17.4% YoY, OPM 52주 고/저 68,900원 / 46,350원\n7.4%)으로 전망한다. 부동산 분양수익 3,300억원 등이 반영되며 전년도 높았던 일회성 기 외인지분율 49.00%\n저효과를 일부 상쇄할 것으로 예상된다. 1월 위약금 면제로 급격히 확대됐던 번호이동 시장 배당수익률 4.56%\n은 안정화되며, 마케팅 경쟁 강도는 평년 수준으로...",
       "key_points": [
@@ -15695,6 +16953,17 @@
           "strength": 0.54,
           "reason": "26년 연결 영업수익은 27.7조원(-1.9% YoY), 영업이익 2.0조원(-17.4% YoY, OPM 52주 고/저 68,900원 / 46,350원\n7.4%)으로 전망한다. 부동산 분양수익 3,300억원 등이 반영되며 전년도 높았던 일회성 기 외인지분율 49.00%\n저효과를 일부 상쇄할 것으로 예상된다. 1월 위약금 ...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.54,
+          "reason": "26년 연결 영업수익은 27.7조원(-1.9% YoY), 영업이익 2.0조원(-17.4% YoY, OPM 52주 고/저 68,900원 / 46,350원\n7.4%)으로 전망한다. 부동산 분양수익 3,300억원 등이 반영되며 전년도 높았던 일회성 기 외인지분율 49.00%\n저효과를 일부 상쇄할 것으로 예상된다. 1월 위약금 ...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -15775,11 +17044,18 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "ISA"
+        "ISA",
+        "KIS_MAIN"
       ],
       "key_thesis": "서지원RA  메모리반도체 초호황에 대한 재평가 필요. 적극적 매수 전략 유효.\n jiwon0.seo@daishin.com\n 투자전략: 이 정도로 놀라긴 이르다\n 투자의견 BUY\n 매수, 유지 목표주가 270,000원과 매수의견 유지. 시장은 삼성전자의 폭발적 이익 성장\n 6개월 목표주가 270,000 을 지속 체감하게 될 것이고, 메모리반도체 초호황의 가치를 재평가할 것.\n 유지 - 2Q26의 경우, 모바일향 메모리반도체에서...",
       "key_points": [
@@ -15923,6 +17199,17 @@
           "strength": 0.54,
           "reason": "서지원RA  메모리반도체 초호황에 대한 재평가 필요. 적극적 매수 전략 유효.\n jiwon0.seo@daishin.com\n 투자전략: 이 정도로 놀라긴 이르다\n 투자의견 BUY\n 매수, 유지 목표주가 270,000원과 매수의견 유지. 시장은 삼성전자의 폭발적 이익 성장\n 6개월 목표주가 270,000 을 지속 체감하게 ...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.54,
+          "reason": "서지원RA  메모리반도체 초호황에 대한 재평가 필요. 적극적 매수 전략 유효.\n jiwon0.seo@daishin.com\n 투자전략: 이 정도로 놀라긴 이르다\n 투자의견 BUY\n 매수, 유지 목표주가 270,000원과 매수의견 유지. 시장은 삼성전자의 폭발적 이익 성장\n 6개월 목표주가 270,000 을 지속 체감하게 ...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -15989,11 +17276,18 @@
           "name": "KODEX KOFR금리액티브(합성)",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "ISA",
-        "PENSION"
+        "PENSION",
+        "KIS_MAIN"
       ],
       "key_thesis": "Key Data\nKOSPI 지수 (pt) 5,494.78\n 2026년 가이던스: 매출액 +6%, 영업이익 +16%.\n52주 최고/최저(원) 35,050/26,400\n시가총액(십억원) 1,120.1 롯데렌탈은 2026년 가이던스로 매출액 3조 950억원(+6% (YoY)), 영업이익 3,620억원\n시가총액비중(%) 0.02\n발행주식수(천주) 36,309.4\n (+16%, 영업이익률 11.7%), 당기순이익 1,400억원을 제시했...",
       "key_points": [
@@ -16117,6 +17411,17 @@
           "strength": 0.54,
           "reason": "Key Data\nKOSPI 지수 (pt) 5,494.78\n 2026년 가이던스: 매출액 +6%, 영업이익 +16%.\n52주 최고/최저(원) 35,050/26,400\n시가총액(십억원) 1,120.1 롯데렌탈은 2026년 가이던스로 매출액 3조 950억원(+6% (YoY)), 영업이익 3,620억원\n시가총액비중(%) 0.02...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.54,
+          "reason": "Key Data\nKOSPI 지수 (pt) 5,494.78\n 2026년 가이던스: 매출액 +6%, 영업이익 +16%.\n52주 최고/최저(원) 35,050/26,400\n시가총액(십억원) 1,120.1 롯데렌탈은 2026년 가이던스로 매출액 3조 950억원(+6% (YoY)), 영업이익 3,620억원\n시가총액비중(%) 0.02...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -16201,8 +17506,20 @@
           "accountLabel": "연금저축"
         },
         {
+          "code": "251350",
+          "name": "KODEX 선진국ESG액티브",
+          "accountKey": "TOSS",
+          "accountLabel": "토스증권"
+        },
+        {
           "code": "449450",
           "name": "PLUS K방산",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
         }
@@ -16210,6 +17527,7 @@
       "related_accounts": [
         "PENSION",
         "ISA",
+        "TOSS",
         "KIS_MAIN"
       ],
       "key_thesis": "와이엠티는 전자부품 소재(FPCB/PCB 등 제조에 필요한 약품, 첨가제) 기업 Company Data\n 현재주가 (4/6) 15,070원\n와이엠티는 1999년 ‘유일재료기술’ 이라는 사명으로 설립되어 2017년 코스닥 시장에 상장. 매출 52주 최고가 18,170원\n 52주 최저가 8,070원\n비중은 화학약품 부문 91.6%, 기판가공 부문 6.3%, 설비제조 부문 1.3%, 소재유통 부문 0.7%\n KOSDAQ (4/6) ...",
@@ -16367,6 +17685,17 @@
           "strength": 0.63,
           "reason": "와이엠티는 전자부품 소재(FPCB/PCB 등 제조에 필요한 약품, 첨가제) 기업 Company Data\n 현재주가 (4/6) 15,070원\n와이엠티는 1999년 ‘유일재료기술’ 이라는 사명으로 설립되어 2017년 코스닥 시장에 상장. 매출 52주 최고가 18,170원\n 52주 최저가 8,070원\n비중은 화학약품 부문 91...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.63,
+          "reason": "와이엠티는 전자부품 소재(FPCB/PCB 등 제조에 필요한 약품, 첨가제) 기업 Company Data\n 현재주가 (4/6) 15,070원\n와이엠티는 1999년 ‘유일재료기술’ 이라는 사명으로 설립되어 2017년 코스닥 시장에 상장. 매출 52주 최고가 18,170원\n 52주 최저가 8,070원\n비중은 화학약품 부문 91...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -16433,11 +17762,18 @@
           "name": "KODEX KOFR금리액티브(합성)",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "ISA",
-        "PENSION"
+        "PENSION",
+        "KIS_MAIN"
       ],
       "key_thesis": "IBKS Bond Inside 채권/크레딧",
       "key_points": [
@@ -16470,6 +17806,17 @@
           "target_code": "423160",
           "target_name": "KODEX KOFR금리액티브(합성)",
           "account_key": "PENSION",
+          "direction": "neutral",
+          "horizon": "3m",
+          "strength": 0.28,
+          "reason": "IBKS Bond Inside 채권/크레딧",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
           "direction": "neutral",
           "horizon": "3m",
           "strength": 0.28,
@@ -16675,11 +18022,18 @@
           "name": "KODEX KOFR금리액티브(합성)",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "ISA",
-        "PENSION"
+        "PENSION",
+        "KIS_MAIN"
       ],
       "key_thesis": "Fixed Income (단위: %,bp, 틱) 외국인 3년 국채선물(KTB) 수급 외국인 10년 국채선물(LKTB) 수급\n 4/7일 1D 1W YTD KTB 국채선물가격(좌) (p) LKTB 국채선물가격(좌) (만계약)\n (p) (만계약)\n 한국 국고채 3년물 3.451% 1.9 -10.1 49.8 112 외국인 KTB 국채선물 누적순매수(우) 50 126 외국인 LKTB 국채선물 누적순매수(우) 21\n 국내\n 한국 국고채 ...",
       "key_points": [
@@ -16801,6 +18155,17 @@
           "strength": 0.46,
           "reason": "Fixed Income (단위: %,bp, 틱) 외국인 3년 국채선물(KTB) 수급 외국인 10년 국채선물(LKTB) 수급\n 4/7일 1D 1W YTD KTB 국채선물가격(좌) (p) LKTB 국채선물가격(좌) (만계약)\n (p) (만계약)\n 한국 국고채 3년물 3.451% 1.9 -10.1 49.8 112 외국인 KTB...",
           "action_hint": "감축"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "negative",
+          "horizon": "3m",
+          "strength": 0.46,
+          "reason": "Fixed Income (단위: %,bp, 틱) 외국인 3년 국채선물(KTB) 수급 외국인 10년 국채선물(LKTB) 수급\n 4/7일 1D 1W YTD KTB 국채선물가격(좌) (p) LKTB 국채선물가격(좌) (만계약)\n (p) (만계약)\n 한국 국고채 3년물 3.451% 1.9 -10.1 49.8 112 외국인 KTB...",
+          "action_hint": "감축"
         }
       ],
       "confidence": "MEDIUM",
@@ -16885,6 +18250,12 @@
         {
           "code": "434730",
           "name": "HANARO 원자력iSelect",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
         }
@@ -17011,6 +18382,17 @@
           "strength": 0.28,
           "reason": "3월 KP 시장은 중동발 지정학 리스크와 미국 국채 금리 급등이라는 비우호적인 대외\n 환경 속에서 2월까지 이어졌던 강세를 일부 되돌리는 흐름이 진행되었다. KP 달러채\n 스프레드의 경우 2월 말 대비 7.0bp 확대되며 아시아(일본 제외) 투자등급(IG) 7.2bp\n 와 유럽 IG 14.7bp 대비 상대적으로 선방하는 ...",
           "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "neutral",
+          "horizon": "3m",
+          "strength": 0.28,
+          "reason": "3월 KP 시장은 중동발 지정학 리스크와 미국 국채 금리 급등이라는 비우호적인 대외\n 환경 속에서 2월까지 이어졌던 강세를 일부 되돌리는 흐름이 진행되었다. KP 달러채\n 스프레드의 경우 2월 말 대비 7.0bp 확대되며 아시아(일본 제외) 투자등급(IG) 7.2bp\n 와 유럽 IG 14.7bp 대비 상대적으로 선방하는 ...",
+          "action_hint": "관찰"
         }
       ],
       "confidence": "HIGH",
@@ -17076,10 +18458,17 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
-        "PENSION"
+        "PENSION",
+        "KIS_MAIN"
       ],
       "key_thesis": "향후 미국 시장 의존도 분산 여부가 중요할 것\n 결론적으로 현재 인도의 대미 의약품 수출은 제네릭 중심이기 때문에 금번 관세 정책\n 이 단기 실적에 미치는 영향은 제한적이다. 다만 미국 내 제네릭 수요가 커 관세 부과\n 가 쉽지 않다는 현실을 감안하더라도 정부가 이번 면제를 한시적이라 명시한 만큼 관\n 련 불확실성은 당분간 지속될 전망이다. 아울러 미국의 보호주의 기조가 이어질 경우\n 인도 제약사들이 고부가 제품 비중을 확대해...",
       "key_points": [
@@ -17173,6 +18562,17 @@
           "strength": 0.54,
           "reason": "향후 미국 시장 의존도 분산 여부가 중요할 것\n 결론적으로 현재 인도의 대미 의약품 수출은 제네릭 중심이기 때문에 금번 관세 정책\n 이 단기 실적에 미치는 영향은 제한적이다. 다만 미국 내 제네릭 수요가 커 관세 부과\n 가 쉽지 않다는 현실을 감안하더라도 정부가 이번 면제를 한시적이라 명시한 만큼 관\n 련 불확실성은 당분...",
           "action_hint": "감축"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "negative",
+          "horizon": "1m",
+          "strength": 0.54,
+          "reason": "향후 미국 시장 의존도 분산 여부가 중요할 것\n 결론적으로 현재 인도의 대미 의약품 수출은 제네릭 중심이기 때문에 금번 관세 정책\n 이 단기 실적에 미치는 영향은 제한적이다. 다만 미국 내 제네릭 수요가 커 관세 부과\n 가 쉽지 않다는 현실을 감안하더라도 정부가 이번 면제를 한시적이라 명시한 만큼 관\n 련 불확실성은 당분...",
+          "action_hint": "감축"
         }
       ],
       "confidence": "MEDIUM",
@@ -17256,8 +18656,20 @@
           "accountLabel": "연금저축"
         },
         {
+          "code": "251350",
+          "name": "KODEX 선진국ESG액티브",
+          "accountKey": "TOSS",
+          "accountLabel": "토스증권"
+        },
+        {
           "code": "449450",
           "name": "PLUS K방산",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
         }
@@ -17265,6 +18677,7 @@
       "related_accounts": [
         "PENSION",
         "ISA",
+        "TOSS",
         "KIS_MAIN"
       ],
       "key_thesis": "(%)\n 분기 OP YoY 코스피(우)\n (p) (%) 반도체 제외 OP YoY와 환율 추이 (원)\n 170 6,100 153\n 170 1,600\n 126 분기 OP YoY 원/달러(우)\n 121 5,600\n 108 1,500\n 120 5,100 120 102\n 88\n 59 64 66 4,600 63 1,400\n 70 52 59\n 4344 45 45 4,100 70 42\n 30 24 26 31\n 1515 13 20 21 172...",
@@ -17421,6 +18834,17 @@
           "strength": 0.46,
           "reason": "(%)\n 분기 OP YoY 코스피(우)\n (p) (%) 반도체 제외 OP YoY와 환율 추이 (원)\n 170 6,100 153\n 170 1,600\n 126 분기 OP YoY 원/달러(우)\n 121 5,600\n 108 1,500\n 120 5,100 120 102\n 88\n 59 64 66 4,600 63 1,400\n 70 5...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.46,
+          "reason": "(%)\n 분기 OP YoY 코스피(우)\n (p) (%) 반도체 제외 OP YoY와 환율 추이 (원)\n 170 6,100 153\n 170 1,600\n 126 분기 OP YoY 원/달러(우)\n 121 5,600\n 108 1,500\n 120 5,100 120 102\n 88\n 59 64 66 4,600 63 1,400\n 70 5...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -17501,11 +18925,25 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "251350",
+          "name": "KODEX 선진국ESG액티브",
+          "accountKey": "TOSS",
+          "accountLabel": "토스증권"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "ISA"
+        "ISA",
+        "TOSS",
+        "KIS_MAIN"
       ],
       "key_thesis": "에너지/원자재 순유입, 소형주 대비 대형주 우위\n섹터별로는 미국-이란 전쟁 장기화에 따라 에너지(+1.0%)가 가장 큰 순유입을 기록하였으\n며, 원자재(+0.3%)는 4주 만에 순유입 전환. 이는 금, 구리 등 주요 원자재 가격의 반등에\n기인. 종전 기대감과 회의론이 공존하는 가운데, 지난주 투심은 리스크 완화 및 시장금리\n하향 안정화 쪽에 다소 무게를 두었음을 방증. Tech(+0.3%)의 순유입 전환 역시 같은 맥락\n에서 ...",
       "key_points": [
@@ -17654,6 +19092,17 @@
           "strength": 0.46,
           "reason": "에너지/원자재 순유입, 소형주 대비 대형주 우위\n섹터별로는 미국-이란 전쟁 장기화에 따라 에너지(+1.0%)가 가장 큰 순유입을 기록하였으\n며, 원자재(+0.3%)는 4주 만에 순유입 전환. 이는 금, 구리 등 주요 원자재 가격의 반등에\n기인. 종전 기대감과 회의론이 공존하는 가운데, 지난주 투심은 리스크 완화 및 시장금...",
           "action_hint": "감축"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "negative",
+          "horizon": "1m",
+          "strength": 0.46,
+          "reason": "에너지/원자재 순유입, 소형주 대비 대형주 우위\n섹터별로는 미국-이란 전쟁 장기화에 따라 에너지(+1.0%)가 가장 큰 순유입을 기록하였으\n며, 원자재(+0.3%)는 4주 만에 순유입 전환. 이는 금, 구리 등 주요 원자재 가격의 반등에\n기인. 종전 기대감과 회의론이 공존하는 가운데, 지난주 투심은 리스크 완화 및 시장금...",
+          "action_hint": "감축"
         }
       ],
       "confidence": "HIGH",
@@ -17739,6 +19188,12 @@
         {
           "code": "449450",
           "name": "PLUS K방산",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
         }
@@ -17894,6 +19349,17 @@
           "strength": 0.28,
           "reason": "증시 Comment (전일 아시아 증시) 증시 Comment (미국 & 유럽) Midnight News\n▶ 한국증시 ▶ 미국증시 ▶ 미국 내구재 주문 -1.4%(예상치 -1.2%)\n- 삼성전자의 예상치를 상회하는 잠정 실적 발표에 상승. 트럼프 대통령이 정한 - 파키스탄 측이 미국-이란에 2주간의 휴전을 긴급 제안하며 상...",
           "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "증시 Comment (전일 아시아 증시) 증시 Comment (미국 & 유럽) Midnight News\n▶ 한국증시 ▶ 미국증시 ▶ 미국 내구재 주문 -1.4%(예상치 -1.2%)\n- 삼성전자의 예상치를 상회하는 잠정 실적 발표에 상승. 트럼프 대통령이 정한 - 파키스탄 측이 미국-이란에 2주간의 휴전을 긴급 제안하며 상...",
+          "action_hint": "관찰"
         }
       ],
       "confidence": "HIGH",
@@ -17940,10 +19406,17 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
-        "PENSION"
+        "PENSION",
+        "KIS_MAIN"
       ],
       "key_thesis": "이에 4월 3일 발간한 [젠슨 황이 보는 양자 컴퓨터 – 엔비디아 생태계에 들어온\n 양자 컴퓨팅] 에서 언급한 것처럼 결국 양자 컴퓨팅의 가치는 범용 업무 처리보\n 다는 고전 컴퓨팅이 풀기 어려운 ‘양자 영역’의 문제 해결에 있으며, 양자 컴퓨팅\n 이 본격화 되더라도 고성능 GPU와 AI 슈퍼컴퓨팅의 역할이 오히려 더욱 중요해\n 질 수 있다는 판단이다. 산업 역시 점진적 성능 개선과 오류 정정 기술 발전을\n 거쳐 2030년 전...",
       "key_points": [
@@ -17990,6 +19463,17 @@
           "target_code": "133690",
           "target_name": "TIGER 미국나스닥100",
           "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.54,
+          "reason": "이에 4월 3일 발간한 [젠슨 황이 보는 양자 컴퓨터 – 엔비디아 생태계에 들어온\n 양자 컴퓨팅] 에서 언급한 것처럼 결국 양자 컴퓨팅의 가치는 범용 업무 처리보\n 다는 고전 컴퓨팅이 풀기 어려운 ‘양자 영역’의 문제 해결에 있으며, 양자 컴퓨팅\n 이 본격화 되더라도 고성능 GPU와 AI 슈퍼컴퓨팅의 역할이 오히려 더욱 ...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
           "direction": "positive",
           "horizon": "1m",
           "strength": 0.54,
@@ -18074,11 +19558,18 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "ISA"
+        "ISA",
+        "KIS_MAIN"
       ],
       "key_thesis": "투자전략팀\n 채권전략 안예하 yhahn@kiwoom.com 달러, 이란 협상 기대에 약세\n 원자재/디지털 심수빈 sb.shim@kiwoom.com",
       "key_points": [
@@ -18143,6 +19634,17 @@
           "target_code": "133690",
           "target_name": "TIGER 미국나스닥100",
           "account_key": "PENSION",
+          "direction": "negative",
+          "horizon": "1m",
+          "strength": 0.63,
+          "reason": "투자전략팀\n 채권전략 안예하 yhahn@kiwoom.com 달러, 이란 협상 기대에 약세\n 원자재/디지털 심수빈 sb.shim@kiwoom.com",
+          "action_hint": "감축"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
           "direction": "negative",
           "horizon": "1m",
           "strength": 0.63,
@@ -18227,11 +19729,18 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "ISA"
+        "ISA",
+        "KIS_MAIN"
       ],
       "key_thesis": "그러나 지금은 실적시즌 극 초반부이기에, 선제적인 비중 조절보다 향후 추가 상방 재료가 등장할 가능성을 열\n어두는 것이 합리적인 선택일 수 있음. 최소한 삼성전자의 세부 사업 부문별 실적 및 컨퍼런스콜, SK하이닉스의\n1분기 실적, 미국 M7 실적 이벤트가 몰린 4월 말~5월 초까지는 상기 고민들을 보류하는 것이 적절. 따라서, 현\n시점에서는 기존 주도주 비중 확대 기조를 유지한 채, 4월 말 이후 애널리스트들의 추정치 및 컨...",
       "key_points": [
@@ -18358,6 +19867,17 @@
           "strength": 0.63,
           "reason": "그러나 지금은 실적시즌 극 초반부이기에, 선제적인 비중 조절보다 향후 추가 상방 재료가 등장할 가능성을 열\n어두는 것이 합리적인 선택일 수 있음. 최소한 삼성전자의 세부 사업 부문별 실적 및 컨퍼런스콜, SK하이닉스의\n1분기 실적, 미국 M7 실적 이벤트가 몰린 4월 말~5월 초까지는 상기 고민들을 보류하는 것이 적절. ...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.63,
+          "reason": "그러나 지금은 실적시즌 극 초반부이기에, 선제적인 비중 조절보다 향후 추가 상방 재료가 등장할 가능성을 열\n어두는 것이 합리적인 선택일 수 있음. 최소한 삼성전자의 세부 사업 부문별 실적 및 컨퍼런스콜, SK하이닉스의\n1분기 실적, 미국 M7 실적 이벤트가 몰린 4월 말~5월 초까지는 상기 고민들을 보류하는 것이 적절. ...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "MEDIUM",
@@ -18424,11 +19944,24 @@
           "name": "HANARO 원자력iSelect",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
+        },
+        {
+          "code": "251350",
+          "name": "KODEX 선진국ESG액티브",
+          "accountKey": "TOSS",
+          "accountLabel": "토스증권"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "KIS_MAIN"
+        "KIS_MAIN",
+        "TOSS"
       ],
       "key_thesis": "중동 위기 이후, 정부의 재생에너지 전환 가속화 전망\n ✓ 미국-이란 전쟁으로 에너지 공급망 교란이 현실화되고 있는 가운데 글로벌 에너지 안보의 중요성이 확대되고\n 있는 흐름. 추후 중동 사태가 진정된다고 할지라도, 에너지 공급망 충격으로 고유가 흐름은 당분간 이어질\n 가능성 상존. 이 과정에서 화석연료 의존도를 구조적으로 낮추기 위해 주요국들은 현실적 대안으로서 원전,\n 신재생 등 대체에너지의 수요를 확대할 것으로 전망. 실...",
       "key_points": [
@@ -18488,6 +20021,17 @@
           "target_type": "holding",
           "target_code": "434730",
           "target_name": "HANARO 원자력iSelect",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.37,
+          "reason": "중동 위기 이후, 정부의 재생에너지 전환 가속화 전망\n ✓ 미국-이란 전쟁으로 에너지 공급망 교란이 현실화되고 있는 가운데 글로벌 에너지 안보의 중요성이 확대되고\n 있는 흐름. 추후 중동 사태가 진정된다고 할지라도, 에너지 공급망 충격으로 고유가 흐름은 당분간 이어질\n 가능성 상존. 이 과정에서 화석연료 의존도를 구조적으...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
           "account_key": "KIS_MAIN",
           "direction": "positive",
           "horizon": "1m",
@@ -18668,6 +20212,12 @@
           "name": "PLUS K방산",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
@@ -18811,6 +20361,17 @@
           "strength": 0.37,
           "reason": "- 삼성전자는 1분기 잠정실적으로 매출 133조원(YoY +68%), 영업이익 57조원(YoY +755%)을 발표하\n 며 예상치를 큰 폭으로 상회. AI 산업 확장에 따른 메모리반도체 수요 확대와 제한적인 공급 여건이 맞\n 물리며 메모리 가격이 상승. 이에 따라 이익 성장도 크게 확대된 모습\n - 어닝 서프라이즈를 발표한...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.37,
+          "reason": "- 삼성전자는 1분기 잠정실적으로 매출 133조원(YoY +68%), 영업이익 57조원(YoY +755%)을 발표하\n 며 예상치를 큰 폭으로 상회. AI 산업 확장에 따른 메모리반도체 수요 확대와 제한적인 공급 여건이 맞\n 물리며 메모리 가격이 상승. 이에 따라 이익 성장도 크게 확대된 모습\n - 어닝 서프라이즈를 발표한...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -18890,11 +20451,18 @@
           "name": "TIGER 미국나스닥100",
           "accountKey": "PENSION",
           "accountLabel": "연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
         "PENSION",
-        "ISA"
+        "ISA",
+        "KIS_MAIN"
       ],
       "key_thesis": "IVV iShares Core S&P500 BlackRock S&P 500 Index 20000515 722,253 0.03 658.96 7,468.67 7,669.09 5,606.37\n 미국주식\n 360750 TIGER 미국S&P500 미래에셋자산운용 S&P 500 20200807 150,699 0.0068 24,570 2,758 2,605 1,978",
       "key_points": [
@@ -19015,6 +20583,17 @@
           "strength": 0.46,
           "reason": "IVV iShares Core S&P500 BlackRock S&P 500 Index 20000515 722,253 0.03 658.96 7,468.67 7,669.09 5,606.37\n 미국주식\n 360750 TIGER 미국S&P500 미래에셋자산운용 S&P 500 20200807 150,699 0.0068 24,570...",
           "action_hint": "감축"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "negative",
+          "horizon": "1m",
+          "strength": 0.46,
+          "reason": "IVV iShares Core S&P500 BlackRock S&P 500 Index 20000515 722,253 0.03 658.96 7,468.67 7,669.09 5,606.37\n 미국주식\n 360750 TIGER 미국S&P500 미래에셋자산운용 S&P 500 20200807 150,699 0.0068 24,570...",
+          "action_hint": "감축"
         }
       ],
       "confidence": "HIGH",
@@ -19107,6 +20686,12 @@
         {
           "code": "449450",
           "name": "PLUS K방산",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
         }
@@ -19283,6 +20868,17 @@
           "strength": 0.37,
           "reason": "3월 12일 14기 전국인민대표대회는 정부업무보고 초안, 15차 5개년 계획 개요 초안,\n 2026년 예산안 등 11개 안건을 가결하며 폐막했다. 이번 양회의 핵심은 신질생산력(新\n 質生産力) 중심 산업 구조 전환에 있다. 경제성장률 전망치를 하향 조정하면서도 AI·반\n 도체·로봇·항공우주·바이오·신에너지 등 첨단산업에 ...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.37,
+          "reason": "3월 12일 14기 전국인민대표대회는 정부업무보고 초안, 15차 5개년 계획 개요 초안,\n 2026년 예산안 등 11개 안건을 가결하며 폐막했다. 이번 양회의 핵심은 신질생산력(新\n 質生産力) 중심 산업 구조 전환에 있다. 경제성장률 전망치를 하향 조정하면서도 AI·반\n 도체·로봇·항공우주·바이오·신에너지 등 첨단산업에 ...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -19375,6 +20971,12 @@
         {
           "code": "449450",
           "name": "PLUS K방산",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
         }
@@ -19520,6 +21122,17 @@
           "strength": 0.46,
           "reason": "생산적 금융,\n 공공 주도 크레딧 수급 환경\nCredit Analyst 정부가 그리는 큰 그림. 부동산금융 탈피와 생산적 금융 전환\n김상인\n☎ (02) 3772-2636 2026년 초우량물발 공급 우려가 제기되고 있다. 생산적 금융 정책 핵심은 부동\n ksi0612@shinhan.com 산금융 탈피와 첨단전략산업 진흥이...",
           "action_hint": "감축"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "negative",
+          "horizon": "3m",
+          "strength": 0.46,
+          "reason": "생산적 금융,\n 공공 주도 크레딧 수급 환경\nCredit Analyst 정부가 그리는 큰 그림. 부동산금융 탈피와 생산적 금융 전환\n김상인\n☎ (02) 3772-2636 2026년 초우량물발 공급 우려가 제기되고 있다. 생산적 금융 정책 핵심은 부동\n ksi0612@shinhan.com 산금융 탈피와 첨단전략산업 진흥이...",
+          "action_hint": "감축"
         }
       ],
       "confidence": "HIGH",
@@ -19611,8 +21224,20 @@
           "accountLabel": "한투 일반"
         },
         {
+          "code": "251350",
+          "name": "KODEX 선진국ESG액티브",
+          "accountKey": "TOSS",
+          "accountLabel": "토스증권"
+        },
+        {
           "code": "449450",
           "name": "PLUS K방산",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
         }
@@ -19620,7 +21245,8 @@
       "related_accounts": [
         "PENSION",
         "ISA",
-        "KIS_MAIN"
+        "KIS_MAIN",
+        "TOSS"
       ],
       "key_thesis": "램리서치 (LRCX.US) I 선단공정 내 식각장비 중요도 확대, 반도체 제조사 CapEx 상향 본격화\n 편입일 2025-09-30  주요 반도체 제조사 CapEx 상향 본격화. 올해 장비 출하량 최소 30% 증가. CapEx 증가 구간 2~3년 지속 전망\n 누적수익률 66.6%  중국 익스포저 30% 이상, 3월 중국 반도체 기업들의 상장 이후 장비주 수급 개선 기대, 2분기 실적 상승 가시화\n %)\n 루멘텀홀딩스 (LI...",
       "key_points": [
@@ -19793,6 +21419,17 @@
           "strength": 0.46,
           "reason": "램리서치 (LRCX.US) I 선단공정 내 식각장비 중요도 확대, 반도체 제조사 CapEx 상향 본격화\n 편입일 2025-09-30  주요 반도체 제조사 CapEx 상향 본격화. 올해 장비 출하량 최소 30% 증가. CapEx 증가 구간 2~3년 지속 전망\n 누적수익률 66.6%  중국 익스포저 30% 이상, 3월 중...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.46,
+          "reason": "램리서치 (LRCX.US) I 선단공정 내 식각장비 중요도 확대, 반도체 제조사 CapEx 상향 본격화\n 편입일 2025-09-30  주요 반도체 제조사 CapEx 상향 본격화. 올해 장비 출하량 최소 30% 증가. CapEx 증가 구간 2~3년 지속 전망\n 누적수익률 66.6%  중국 익스포저 30% 이상, 3월 중...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "HIGH",
@@ -19878,6 +21515,12 @@
         {
           "code": "449450",
           "name": "PLUS K방산",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
         }
@@ -20036,6 +21679,17 @@
           "target_type": "holding",
           "target_code": "449450",
           "target_name": "PLUS K방산",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.46,
+          "reason": "GLD 금 1.0 4.2 (8.8) CORN 옥수수 (1.3) (1.3) (2.5) 베트남 VN 1,678 0.2 0.9 (5.1)\n✚ 중국 Daily Review Summary ✚ 유럽 Daily Review Summary ✚ 일본 Daily Review Summary\n-상해종합 +0.3%. 석유화학 강세 속 강보합 마...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
           "account_key": "KIS_MAIN",
           "direction": "positive",
           "horizon": "3m",

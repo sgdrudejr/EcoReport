@@ -1,8 +1,8 @@
 # EcoReport Daily Health (2026-04-08)
 
-- overallStatus: **warn**
-- generatedAt: 2026-04-08T12:38:59.905Z
-- runId: 2026-04-08-122720
+- overallStatus: **error**
+- generatedAt: 2026-04-08T13:20:09.550Z
+- runId: 2026-04-08-130953
 - runDate: 2026-04-08
 - effectiveMarketDate: 2026-04-08
 - reports: 100건 / textified 100건 / OCR 1건
@@ -26,6 +26,6 @@
 - [OK] Deep Research 프롬프트: Stage 1.5 프롬프트 생성됨 (knowledge/daily/manual-kit/2026-04-08/07-stage1-5-gemini-deep-research-prompt.md)
 - [OK] Deep Research 결과: Gemini Deep Research 결과 저장됨 (knowledge/daily/manual-kit/2026-04-08/09-stage1-5-gemini-deep-research-response.md)
 - [OK] Deep Research 최종 브리핑: Stage 1.6 최종 브리핑 저장됨 (knowledge/daily/manual-kit/2026-04-08/10-stage1-6-final-research-briefing.md)
-- [OK] Freshness / Run ID: run-id 2026-04-08-122720 일치 (data/analysis-state/2026-04-08/stage4-execution-plan.json)
-- [WARN] 종목 코드 정규화: portfolio 2건 / stage4 7건 미해결 (토스증권:KODEX 선진국ESG액티브, 토스증권:PLUS V K생산, 연금저축:stage2Candidates:KODEX 구리선물(H), 연금저축:stagedBuys:KODEX 구리선물(H) 외 5건) (data/portfolio/latest.json)
+- [ERROR] Freshness / Run ID: run-id 혼재: 2026-04-08-130953, 2026-04-08-122720 (data/analysis-state/2026-04-08/stage4-execution-plan.json)
+- [OK] 종목 코드 정규화: 포트폴리오/실행계획 종목 코드 해석 완료 (data/portfolio/latest.json)
 - [OK] Fallback Recovery: 추가 복구 fallback 없음 (data/analysis-state/2026-04-08/fallback-summary.json)

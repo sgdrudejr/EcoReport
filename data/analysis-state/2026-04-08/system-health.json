@@ -2,17 +2,17 @@
   "date": "2026-04-08",
   "runDate": "2026-04-08",
   "effectiveMarketDate": "2026-04-08",
-  "runId": "2026-04-08-122720",
-  "generatedAt": "2026-04-08T12:38:59.905Z",
-  "overallStatus": "warn",
+  "runId": "2026-04-08-130953",
+  "generatedAt": "2026-04-08T13:20:09.550Z",
+  "overallStatus": "error",
   "counts": {
     "accounts": 4,
     "reports": 100,
     "extractedReports": 100,
     "ocrUsedReports": 1,
     "stage1Extracts": 100,
-    "unresolvedPortfolioHoldings": 2,
-    "unresolvedStage4Mentions": 7
+    "unresolvedPortfolioHoldings": 0,
+    "unresolvedStage4Mentions": 0
   },
   "artifacts": [
     {
@@ -20,10 +20,10 @@
       "label": "Stage 1",
       "path": "data/analysis-state/2026-04-08/stage1-report-extracts-v2.json",
       "meta": {
-        "runId": "2026-04-08-122720",
+        "runId": "2026-04-08-130953",
         "runDate": "2026-04-08",
         "effectiveMarketDate": "2026-04-08",
-        "generatedAt": "2026-04-08T12:38:23.109Z"
+        "generatedAt": "2026-04-08T13:20:02.476Z"
       }
     },
     {
@@ -216,15 +216,15 @@
     {
       "key": "freshness_run_id",
       "label": "Freshness / Run ID",
-      "status": "ok",
-      "detail": "run-id 2026-04-08-122720 일치",
+      "status": "error",
+      "detail": "run-id 혼재: 2026-04-08-130953, 2026-04-08-122720",
       "path": "data/analysis-state/2026-04-08/stage4-execution-plan.json"
     },
     {
       "key": "security_normalization",
       "label": "종목 코드 정규화",
-      "status": "warn",
-      "detail": "portfolio 2건 / stage4 7건 미해결 (토스증권:KODEX 선진국ESG액티브, 토스증권:PLUS V K생산, 연금저축:stage2Candidates:KODEX 구리선물(H), 연금저축:stagedBuys:KODEX 구리선물(H) 외 5건)",
+      "status": "ok",
+      "detail": "포트폴리오/실행계획 종목 코드 해석 완료",
       "path": "data/portfolio/latest.json"
     },
     {

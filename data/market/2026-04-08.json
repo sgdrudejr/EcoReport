@@ -1,6 +1,6 @@
 {
   "date": "2026-04-08",
-  "collected_at": "2026-04-08T12:28:21.273Z",
+  "collected_at": "2026-04-08T13:10:56.656Z",
   "indices": {
     "KOSPI": {
       "name": "코스피",
@@ -56,7 +56,7 @@
       "name": "GOLD",
       "symbol": "GC.F",
       "source": "stooq",
-      "close": 4805.72,
+      "close": 4818.87,
       "previous_close": null,
       "change": null,
       "change_pct": null,
@@ -66,7 +66,7 @@
       "volume": null,
       "currency": null,
       "exchange": null,
-      "traded_at": "20260408T142836"
+      "traded_at": "20260408T151113"
     },
     "USDKRW": {
       "name": "USDKRW",
@@ -88,7 +88,7 @@
       "name": "WTI",
       "symbol": "CL.F",
       "source": "stooq",
-      "close": 94.25,
+      "close": 92.48,
       "previous_close": null,
       "change": null,
       "change_pct": null,
@@ -98,7 +98,7 @@
       "volume": null,
       "currency": null,
       "exchange": null,
-      "traded_at": "20260408T142839"
+      "traded_at": "20260408T151115"
     }
   },
   "watchlist": {

@@ -1,6 +1,6 @@
 {
   "date": "2026-04-08",
-  "generated_at": "2026-04-08T12:27:44.040Z",
+  "generated_at": "2026-04-08T13:10:18.126Z",
   "input_sources": [
     {
       "source": "네이버증권",
@@ -230,6 +230,7 @@
       "totalRowsOnPage": 10
     }
   ],
+  "category_failures": [],
   "total_matched_before_dedupe": 290,
   "total_unique_after_dedupe": 100,
   "downloaded_count": 100,

@@ -1,6 +1,6 @@
 {
   "date": "2026-04-08",
-  "updatedAt": "2026-04-08T12:28:21.174Z",
+  "updatedAt": "2026-04-08T13:10:56.559Z",
   "source": {
     "method": "broker_api_sync",
     "reviewer": "seo",
@@ -138,7 +138,8 @@
           "purchaseValue": 466475,
           "profitLoss": -1475,
           "profitRate": -0.31,
-          "note": null
+          "note": null,
+          "code": "251350"
         },
         {
           "name": "PLUS V K생산",
@@ -149,7 +150,8 @@
           "purchaseValue": 385800,
           "profitLoss": -2325,
           "profitRate": -0.6,
-          "note": null
+          "note": null,
+          "code": "449450"
         }
       ]
     },
@@ -159,7 +161,7 @@
       "accountNumber": "44367266-01",
       "evaluationAmount": 3037064,
       "cashAvailable": 2653714,
-      "settlementCash": 3037064,
+      "settlementCash": 2145274,
       "principal": 864460,
       "profitLoss": 27330,
       "profitRate": 3.16,

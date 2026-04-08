@@ -1,52 +1,58 @@
 # EcoReport Automation Cycle (2026-04-08)
-- overallStatus: **ok**
+- overallStatus: **warn**
 - runDate: 2026-04-08
 - effectiveMarketDate: 2026-04-08
 - previousTradingDate: 2026-04-07
-- runId: 2026-04-08-122720
+- runId: 2026-04-08-130953
 - resolutionReason: requested
-- generatedAt: 2026-04-08T12:38:59.923Z
-- logFile: /Users/seo/Documents/Playground/EcoReport/logs/2026-04-08-122720-automation-cycle.log
-- systemHealth: warn
+- generatedAt: 2026-04-08T13:20:09.567Z
+- logFile: /Users/seo/Documents/Playground/EcoReport/logs/2026-04-08-130953-automation-cycle.log
+- systemHealth: error
 - changeSummary: 전일(2026-04-07) 대비, KOSPI +7.51%, 포트폴리오 점수 67→65, 레짐 BEAR→SIDEWAYS, 리포트 55→100건, 신규 포커스 KODEX 구리선물(H)·KODEX AI전력핵심설비, 제외 TIGER 반도체나노·Global X Copper Miners ETF
 ## Completion Checklist
 - [x] Baseline Daily System
 - [x] Stage 1 Extracts
 - [x] Gemini Deep Research Web
-- [x] Stage 1.6 Rich Briefing Overlay
-- [x] Strategy Refresh After Deep Research
-- [x] LLM Wiki Rebuild
-- [x] LLM Wiki Publish
-- [x] Verify Outputs
+- [ ] Stage 1.6 Rich Briefing Overlay (warn)
+- [ ] Strategy Refresh After Deep Research (warn)
+- [ ] LLM Wiki Rebuild (skipped)
+- [ ] LLM Wiki Publish (skipped)
+- [ ] Verify Outputs (warn)
 ## Step Results
-- [OK] Baseline Daily System (1m 43s)
-  - command: bash scripts/run-daily-system.sh --date 2026-04-08 --run-date 2026-04-08 --effective-market-date 2026-04-08 --run-id 2026-04-08-122720 --gemini-stage2 --skip-push --skip-verify --skip-strategy --skip-wiki --no-gemini-briefing --force-collect
+- [OK] Baseline Daily System (1m 46s)
+  - command: bash scripts/run-daily-system.sh --date 2026-04-08 --run-date 2026-04-08 --effective-market-date 2026-04-08 --run-id 2026-04-08-130953 --gemini-stage2 --skip-push --skip-verify --skip-strategy --skip-wiki --no-gemini-briefing --force-collect
   - tail: 🧠 Gemini 브리핑 스킵 (API 키 없음 또는 --no-gemini-briefing) | 🧭 전략 파이프라인 건너뜀 (--skip-strategy) | 📚 LLM Wiki 단계 건너뜀 (--skip-wiki) | 📤 GitHub 동기화 건너뜀 (--skip-push) | 🩺 시스템 검증 건너뜀 (--skip-verify) | ================================================== | ✅ EcoReport Daily System 종료 (run: 2026-04-08 / effective: 2026-04-08) | ==================================================
 - [OK] Stage 1 Extracts (1s)
-  - command: node scripts/build-stage1-report-extracts.js --date 2026-04-08 --run-date 2026-04-08 --effective-market-date 2026-04-08 --run-id 2026-04-08-122720
+  - command: node scripts/build-stage1-report-extracts.js --date 2026-04-08 --run-date 2026-04-08 --effective-market-date 2026-04-08 --run-id 2026-04-08-130953
   - tail: /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-08/stage1-report-extracts-v2.json
-- [OK] Gemini Deep Research Web (8m 48s)
+- [OK] Gemini Deep Research Web (8m 18s)
   - command: npm run stage1.5:gemini:run -- --date 2026-04-08 --poll-sec 30 --timeout-sec 1800
-  - tail: {"title":"Google Gemini","messageCount":1,"promptSubmitted":true,"researchStarted":true,"hasDeepResearchSelected":true,"hasResearchStartButton":true,"hasStopButton":true,"hasPlanGenerating":false,"hasReportGenerating":true} | {"title":"Google Gemini","messageCount":2,"promptSubmitted":true,"researchStarted":true,"hasDeepResearchSelected":true,"hasResearchStartButton":false,"hasStopButton":true,"hasPlanGenerating":false,"hasReportGenerating":true} | {"title":"Google Gemini","messageCount":2,"promptSubmitted":true,"researchStarted":true,"hasDeepResearchSelected":true,"hasResearchStartButton":false,"hasStopButton":true,"hasPlanGenerating":false,"hasReportGenerating":true} | {"title":"Google Gemini","messageCount":2,"promptSubmitted":true,"researchStarted":true,"hasDeepResearchSelected":true,"hasResearchStartButton":false,"hasStopButton":true,"hasPlanGenerating":false,"hasReportGenerating":true} | {"title":"Google Gemini","messageCount":2,"promptSubmitted":true,"researchStarted":true,"hasDeepResearchSelected":true,"hasResearchStartButton":false,"hasStopButton":true,"hasPlanGenerating":false,"hasReportGenerating":true} | closed: closed-tab | saved: /Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-08/09-stage1-5-gemini-deep-research-response.md | copied_chars: 8787
-- [OK] Stage 1.6 Rich Briefing Overlay (29s)
+  - tail: {"title":"Google Gemini","messageCount":1,"promptSubmitted":true,"researchStarted":true,"hasDeepResearchSelected":true,"hasResearchStartButton":true,"hasStopButton":true,"hasPlanGenerating":false,"hasReportGenerating":true} | {"title":"Google Gemini","messageCount":2,"promptSubmitted":true,"researchStarted":true,"hasDeepResearchSelected":true,"hasResearchStartButton":false,"hasStopButton":true,"hasPlanGenerating":false,"hasReportGenerating":true} | {"title":"Google Gemini","messageCount":2,"promptSubmitted":true,"researchStarted":true,"hasDeepResearchSelected":true,"hasResearchStartButton":false,"hasStopButton":true,"hasPlanGenerating":false,"hasReportGenerating":true} | {"title":"Google Gemini","messageCount":2,"promptSubmitted":true,"researchStarted":true,"hasDeepResearchSelected":true,"hasResearchStartButton":false,"hasStopButton":true,"hasPlanGenerating":false,"hasReportGenerating":true} | {"title":"Google Gemini","messageCount":2,"promptSubmitted":true,"researchStarted":true,"hasDeepResearchSelected":true,"hasResearchStartButton":false,"hasStopButton":true,"hasPlanGenerating":false,"hasReportGenerating":true} | closed: closed-tab | saved: /Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-08/09-stage1-5-gemini-deep-research-response.md | copied_chars: 8848
+- [WARN] Stage 1.6 Rich Briefing Overlay (2s)
   - command: npm run stage1.6:briefing -- --date 2026-04-08 --run-date 2026-04-08 --effective-market-date 2026-04-08
-  - tail: > ecoreport@1.0.0 stage1.6:briefing | > node scripts/build-stage1-6-rich-briefing.js --date 2026-04-08 --run-date 2026-04-08 --effective-market-date 2026-04-08 | /Users/seo/Documents/Playground/EcoReport/knowledge/daily/2026-04-08-gemini-briefing-rich.md
-- [OK] Strategy Refresh After Deep Research (38s)
-  - command: bash scripts/run-strategy-pipeline.sh --date 2026-04-08 --run-date 2026-04-08 --effective-market-date 2026-04-08 --run-id 2026-04-08-122720 --gemini-stage2
-  - tail: /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-08/stage2-strategy-options.json | == Stage 2.5: impact map == | /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-08/impact-map.json | == Stage 3: quant scores == | /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-08/stage3-quant-scores.json | == Stage 4: execution plan == | /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-08/stage4-execution-plan.json | Done.
-- [OK] LLM Wiki Rebuild (0s)
-  - command: node scripts/build-llm-wiki.js --date 2026-04-08 --run-date 2026-04-08 --effective-market-date 2026-04-08 --run-id 2026-04-08-122720
-  - tail: /Users/seo/Documents/Playground/EcoReport/knowledge/wiki
-- [OK] LLM Wiki Publish (0s)
+  - reason: Stage 1.6 Rich Briefing Overlay 실패 (exit 1)
+  - tail: > ecoreport@1.0.0 stage1.6:briefing | > node scripts/build-stage1-6-rich-briefing.js --date 2026-04-08 --run-date 2026-04-08 --effective-market-date 2026-04-08 | stage1.6 rich briefing 생성 실패: This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.
+  - debug: 09-stage1-5 결과 파일과 GEMINI_API_KEY, 그리고 Stage 1 추출물이 모두 있는지 확인하세요.
+- [WARN] Strategy Refresh After Deep Research (8s)
+  - command: bash scripts/run-strategy-pipeline.sh --date 2026-04-08 --run-date 2026-04-08 --effective-market-date 2026-04-08 --run-id 2026-04-08-130953 --gemini-stage2
+  - reason: Strategy Refresh After Deep Research 실패 (exit 1)
+  - tail: errors.APIError.raise_for_response(response) |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^ |   File "/Users/seo/Documents/Playground/EcoReport/.venv/lib/python3.14/site-packages/google/genai/errors.py", line 155, in raise_for_response |     cls.raise_error(response.status_code, response_json, response) |     ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ |   File "/Users/seo/Documents/Playground/EcoReport/.venv/lib/python3.14/site-packages/google/genai/errors.py", line 186, in raise_error |     raise ServerError(status_code, response_json, response) | google.genai.errors.ServerError: 503 UNAVAILABLE. {'error': {'code': 503, 'message': 'This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.', 'status': 'UNAVAILABLE'}}
+  - debug: stage2 raw 응답과 종목 alias 매핑, Gemini JSON 응답 형식을 확인하세요.
+- [SKIPPED] LLM Wiki Rebuild (0s)
+  - command: node scripts/build-llm-wiki.js --date 2026-04-08 --run-date 2026-04-08 --effective-market-date 2026-04-08 --run-id 2026-04-08-130953
+- [SKIPPED] LLM Wiki Publish (0s)
   - command: node scripts/publish-llm-wiki-to-vault.js
-  - tail: /Users/seo/my-wiki/wiki/ecoreport
-- [OK] Verify Outputs (0s)
-  - command: node scripts/verify-daily-system.js --date 2026-04-08 --run-date 2026-04-08 --effective-market-date 2026-04-08 --run-id 2026-04-08-122720
+- [WARN] Verify Outputs (0s)
+  - command: node scripts/verify-daily-system.js --date 2026-04-08 --run-date 2026-04-08 --effective-market-date 2026-04-08 --run-id 2026-04-08-130953
+  - reason: Verify Outputs 실패 (exit 1)
   - tail: /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-08/system-health.json
+  - debug: system-health 리포트의 warn/error 체크를 기준으로 빠진 산출물을 확인하세요.
 ## Failed Or Warned Steps
-- 없음
+- Stage 1.6 Rich Briefing Overlay: Stage 1.6 Rich Briefing Overlay 실패 (exit 1)
+- Strategy Refresh After Deep Research: Strategy Refresh After Deep Research 실패 (exit 1)
+- Verify Outputs: Verify Outputs 실패 (exit 1)
 ## Artifacts
-- [OK] /Users/seo/Documents/Playground/EcoReport/logs/2026-04-08-122720-automation-cycle.log
+- [OK] /Users/seo/Documents/Playground/EcoReport/logs/2026-04-08-130953-automation-cycle.log
 - [OK] /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-08/stage1-report-extracts-v2.json
 - [OK] /Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-08/07-stage1-5-gemini-deep-research-prompt.md
 - [OK] /Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-08/09-stage1-5-gemini-deep-research-response.md
