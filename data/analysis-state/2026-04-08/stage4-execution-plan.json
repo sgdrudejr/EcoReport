@@ -1,0 +1,470 @@
+{
+  "date": "2026-04-08",
+  "runDate": "2026-04-08",
+  "effectiveMarketDate": "2026-04-08",
+  "runId": "2026-04-08-122720",
+  "generatedAt": "2026-04-08T12:38:59.607Z",
+  "portfolioScore": 65,
+  "regime": {
+    "name": "SIDEWAYS",
+    "confidence": 0.55,
+    "voteSum": 1,
+    "signals": [
+      "VIX 24.17>=20",
+      "T10Y2Y 0.52>0.5",
+      "가격>MA20>MA60"
+    ],
+    "market_context": {
+      "index": "KOSPI",
+      "signal": "BULLISH",
+      "vix": null,
+      "score": 84,
+      "close": 5872.34,
+      "ma": {
+        "ma5": 5485.76,
+        "ma20": 5523.437,
+        "ma60": 5370.969,
+        "ma120": 4709.2222
+      },
+      "rsi": 58.17,
+      "alerts": [
+        "MACD 시그널 상향 돌파"
+      ]
+    }
+  },
+  "accountPlans": [
+    {
+      "key": "ISA",
+      "label": "ISA",
+      "totalScore": 65,
+      "stage2Bias": "selective_add",
+      "deployBudget": 3665433,
+      "reserveCash": 2612057,
+      "topGap": {
+        "category": "금",
+        "targetPct": 0.25,
+        "currentPct": 0,
+        "gapAmount": 2096060
+      },
+      "candidateFromGap": "KODEX 골드선물(H)",
+      "stage2Candidates": [
+        {
+          "code": "458760",
+          "name": "TIGER 미국배당다우존스스타데일리커...",
+          "score": null,
+          "reason": "인플레이션 헤지 및 안정적인 현금 흐름 확보에 유리하며, ISA 계좌의 장기 배당 전략에 부합합니다.",
+          "source": "stage2"
+        },
+        {
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "score": null,
+          "reason": "데이터센터 전력 수요 증가 및 정부 정책 수혜로 에너지 안보 테마를 강화합니다.",
+          "source": "stage2"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "score": null,
+          "reason": "AI 혁신을 주도하는 미국 시장의 장기 성장 잠재력과 견조한 기술 점수를 보유하고 있습니다.",
+          "source": "stage2"
+        }
+      ],
+      "stagedBuys": [
+        {
+          "code": "458760",
+          "name": "TIGER 미국배당다우존스스타데일리커...",
+          "score": null,
+          "reason": "인플레이션 헤지 및 안정적인 현금 흐름 확보에 유리하며, ISA 계좌의 장기 배당 전략에 부합합니다.",
+          "source": "stage2",
+          "suggestedAmount": 1832717
+        },
+        {
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "score": null,
+          "reason": "데이터센터 전력 수요 증가 및 정부 정책 수혜로 에너지 안보 테마를 강화합니다.",
+          "source": "stage2",
+          "suggestedAmount": 1099630
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "score": null,
+          "reason": "AI 혁신을 주도하는 미국 시장의 장기 성장 잠재력과 견조한 기술 점수를 보유하고 있습니다.",
+          "source": "stage2",
+          "suggestedAmount": 733087
+        }
+      ],
+      "trims": [],
+      "holds": [
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "score": 64,
+          "reason": "STOCK DATA 분기 지배주주순이익 처음으로 4,000 억원대 전망 주가(26/04/07) 95,200 원 1Q26 지배주주순이익은 4,046 억원(YoY +62.9%, QoQ +87.1%)으로 컨센서스를 KOSPI 5,494.78 pt 18.6% 상회할 것으로 예상한다. 주식시장 강세에 따른 브로커리지 관련 손익 증가가 실적 52 주 최고가 114,500 원 성장의 주된 배경이며, 비우..."
+        }
+      ],
+      "watches": [],
+      "macroCommentary": {
+        "summary": "중동 지정학 리스크와 유가 상승이 시장 변동성을 키우고 있습니다. ISA은 방어자산과 원자재 헤지 비중 조정이 핵심입니다. 절세 계좌 특성상 국내 ETF 중심의 방어·인컴·테마 배치를 유연하게 조정하는 역할로 작동하는 계좌입니다.",
+        "drivers": [
+          "중동 지정학 리스크와 유가 상승이 시장 변동성을 키우고 있습니다.",
+          "장기 성장 및 배당 전략을 유지하며, AI 성장주와 에너지 안보 테마 ETF 비중을 확대하여 포트폴리오를 강화합니다.",
+          "원/달러 보릿고개는 배당/커버드콜에 부정 신호를 줍니다 (유가).",
+          "04/08, Kiwoom Morning Letter는 배당/커버드콜에 부정 신호를 줍니다 (유가)."
+        ],
+        "assetFocus": [
+          "방어자산과 원자재 헤지",
+          "금",
+          "배당/커버드콜"
+        ],
+        "actionLine": "ISA은 금을 우선 보강하고, TIGER 미국배당다우존스스타데일리커...를 중심으로 3,665,433원 한도에서 분할 접근하는 편이 좋습니다.",
+        "reserveNote": "ISA 한도 내에서 현금 비중을 점진적으로 줄여 핵심 테마 자산으로 전환합니다."
+      },
+      "stage1Drivers": [
+        {
+          "id": "report_002",
+          "title": "04/08, Kiwoom Morning Letter",
+          "thesis": "u Korea Sector Index Close D-1 D-5 D-20 u 수급(외국인/기관,억원) D-1 D-5 D-1 D-5 u US Sector Index Close D-1 D-5 D-20\nMKF 500 12,473.17 +0.96 +9.17 -1.04 MKF 500 기관순매수 외국인순매수 S&P 500\n에너지 9,713.70 -2.36 +4.69 -4.21 에너지 -86 +1,615 +89 +2,039 에너지 925.0..."
+        },
+        {
+          "id": "report_003",
+          "title": "[왜 이 기업일까 4월] AI 반도체 국산화의 원천",
+          "thesis": "AI 반도체 국산화의 핵심 수혜 기업\n1) 오픈엣지테크놀로지는 AI SoC 와 저전력 Memory 간의 연결을 위해 필요한 통합적인 IP 를\n공급할 수 있는 기업으로 국내 AI 지원 사업의 핵심 수혜 기업으로 부각될 전망이다. K-온디바\n이스 AI 반도체 사업에서는 더 두각을 나타낼 것으로 전망한다. K-온디바이스 AI 반도체 사업의\n목표는 Edge Computing 용 AI 반도체 국산화에 있다. 즉, 관련된 핵심 로직, I..."
+        },
+        {
+          "id": "report_006",
+          "title": "15개 분기 연속 하락세인 TV광고",
+          "thesis": "Top Picks 및 관심종목 최소 2분기까지는 이어질 업황의 불확실성\nCJ ENM(035760)\nBUY | TP 77,000원(하향) | CP 52,000원\n TV광고 업황은 높은 기저효과에 더해 드라마 편성 확대로 개선될 것으로 예상했으나, 이\n 란 전쟁의 불확실성으로 1분기도 부진하지만 2분기도 불확실하다. TV광고만 회복한다면\n스튜디오드래곤(253450)\nBUY | TP 50,000원(하향) | CP 33,400원 CJ..."
+        },
+        {
+          "id": "report_007",
+          "title": "1Q26 Pre: 모두 사이좋게 역대급 실적",
+          "thesis": "한국금융지주 1Q26 한국금융지주의 1분기 지배주주순이익은 전년동기대비 51% 증가한 6,915억원으로 시장\n컨센서스 17% 상회 전망 기대치를 17% 상회할 것으로 전망한다. 거래대금 증가에 따른 브로커리지 실적 호조와\n 자산 증가에 따른 이자손익과 운용 및 기타손익의 견조한 성장세가 이어질 것으로 보인\n투자의견 Buy, 다.\n목표주가 310,000원 유지"
+        }
+      ]
+    },
+    {
+      "key": "PENSION",
+      "label": "연금저축",
+      "totalScore": 79,
+      "stage2Bias": "selective_add",
+      "deployBudget": 756843,
+      "reserveCash": 758257,
+      "topGap": {
+        "category": "S&P500",
+        "targetPct": 0.4,
+        "currentPct": 0.1814388834530249,
+        "gapAmount": 591940
+      },
+      "candidateFromGap": "TIGER 미국S&P500",
+      "stage2Candidates": [
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "score": null,
+          "reason": "AI 혁신을 주도하는 미국 시장의 장기 성장 잠재력과 견조한 기술 점수를 보유하고 있습니다.",
+          "source": "stage2"
+        },
+        {
+          "code": "133690",
+          "name": "TIGER 미국나스닥100",
+          "score": null,
+          "reason": "AI 혁신을 주도하는 기술주 중심의 장기 성장 잠재력을 활용하며, PENSION 계좌의 절세 효과를 극대화합니다.",
+          "source": "stage2"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "score": null,
+          "reason": "전력 인프라 및 AI 데이터센터 수요 증가에 따른 구리 가격 강세 전망에 대응합니다.",
+          "source": "stage2"
+        }
+      ],
+      "stagedBuys": [
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "score": null,
+          "reason": "AI 혁신을 주도하는 미국 시장의 장기 성장 잠재력과 견조한 기술 점수를 보유하고 있습니다.",
+          "source": "stage2",
+          "suggestedAmount": 378422
+        },
+        {
+          "code": "133690",
+          "name": "TIGER 미국나스닥100",
+          "score": null,
+          "reason": "AI 혁신을 주도하는 기술주 중심의 장기 성장 잠재력을 활용하며, PENSION 계좌의 절세 효과를 극대화합니다.",
+          "source": "stage2",
+          "suggestedAmount": 227053
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "score": null,
+          "reason": "전력 인프라 및 AI 데이터센터 수요 증가에 따른 구리 가격 강세 전망에 대응합니다.",
+          "source": "stage2",
+          "suggestedAmount": 151369
+        }
+      ],
+      "trims": [],
+      "holds": [
+        {
+          "code": "423160",
+          "name": "KODEX KOFR금리액티브(합성)",
+          "score": 64,
+          "reason": "STOCK DATA 분기 지배주주순이익 처음으로 4,000 억원대 전망 주가(26/04/07) 95,200 원 1Q26 지배주주순이익은 4,046 억원(YoY +62.9%, QoQ +87.1%)으로 컨센서스를 KOSPI 5,494.78 pt 18.6% 상회할 것으로 예상한다. 주식시장 강세에 따른 브로커리지 관련 손익 증가가 실적 52 주 최고가 114,500 원 성장의 주된 배경이며, 비우..."
+        },
+        {
+          "code": "133690",
+          "name": "TIGER 미국나스닥100",
+          "score": 64,
+          "reason": "STOCK DATA 분기 지배주주순이익 처음으로 4,000 억원대 전망 주가(26/04/07) 95,200 원 1Q26 지배주주순이익은 4,046 억원(YoY +62.9%, QoQ +87.1%)으로 컨센서스를 KOSPI 5,494.78 pt 18.6% 상회할 것으로 예상한다. 주식시장 강세에 따른 브로커리지 관련 손익 증가가 실적 52 주 최고가 114,500 원 성장의 주된 배경이며, 비우..."
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "score": 64,
+          "reason": "STOCK DATA 분기 지배주주순이익 처음으로 4,000 억원대 전망 주가(26/04/07) 95,200 원 1Q26 지배주주순이익은 4,046 억원(YoY +62.9%, QoQ +87.1%)으로 컨센서스를 KOSPI 5,494.78 pt 18.6% 상회할 것으로 예상한다. 주식시장 강세에 따른 브로커리지 관련 손익 증가가 실적 52 주 최고가 114,500 원 성장의 주된 배경이며, 비우..."
+        }
+      ],
+      "watches": [],
+      "macroCommentary": {
+        "summary": "중동 지정학 리스크와 유가 상승이 시장 변동성을 키우고 있습니다. 연금저축은 미국 코어 인덱스 비중 조정이 핵심입니다. 장기 복리 관점에서 미국 코어 자산과 방어 자산을 안정적으로 쌓는 역할로 작동하는 계좌입니다.",
+        "drivers": [
+          "중동 지정학 리스크와 유가 상승이 시장 변동성을 키우고 있습니다.",
+          "절세 효과를 활용하여 장기적 관점에서 AI, 에너지, 원자재 테마 ETF 비중을 확대합니다.",
+          "원/달러 보릿고개는 S&P500에 부정 신호를 줍니다 (유가).",
+          "원/달러 보릿고개는 나스닥100에 부정 신호를 줍니다 (유가)."
+        ],
+        "assetFocus": [
+          "미국 코어 인덱스",
+          "S&P500",
+          "금"
+        ],
+        "actionLine": "연금저축은 S&P500을 우선 보강하고, TIGER 미국S&P500를 중심으로 756,843원 한도에서 분할 접근하는 편이 좋습니다.",
+        "reserveNote": "가용 현금을 활용하여 장기 성장 테마 자산으로 분할 매수를 시작합니다."
+      },
+      "stage1Drivers": [
+        {
+          "id": "report_001",
+          "title": "[FX] 원/달러 보릿고개",
+          "thesis": "전월 말 전월대비 YTD 밴드 방향성 코멘트\n - 전쟁 양상에 따른 변동성 구간 지속\n ▲76.1 ▲71.5\n 원/달러 1,516.1 1,460~1,530 ▼ - 상방 리스크는 지난달처럼 크지 않을 것\n (+5.3%) (+4.9%)\n - 전쟁이 끝나면 단기 급락 가능성\n ▲64.0 ▲66.3\n NDF 3M 1,502.5 - 환율이 추가 상승할 가능성은 높지 않다는 전망\n (+4.5%) (+4.6%)"
+        },
+        {
+          "id": "report_002",
+          "title": "04/08, Kiwoom Morning Letter",
+          "thesis": "u Korea Sector Index Close D-1 D-5 D-20 u 수급(외국인/기관,억원) D-1 D-5 D-1 D-5 u US Sector Index Close D-1 D-5 D-20\nMKF 500 12,473.17 +0.96 +9.17 -1.04 MKF 500 기관순매수 외국인순매수 S&P 500\n에너지 9,713.70 -2.36 +4.69 -4.21 에너지 -86 +1,615 +89 +2,039 에너지 925.0..."
+        },
+        {
+          "id": "report_003",
+          "title": "[왜 이 기업일까 4월] AI 반도체 국산화의 원천",
+          "thesis": "AI 반도체 국산화의 핵심 수혜 기업\n1) 오픈엣지테크놀로지는 AI SoC 와 저전력 Memory 간의 연결을 위해 필요한 통합적인 IP 를\n공급할 수 있는 기업으로 국내 AI 지원 사업의 핵심 수혜 기업으로 부각될 전망이다. K-온디바\n이스 AI 반도체 사업에서는 더 두각을 나타낼 것으로 전망한다. K-온디바이스 AI 반도체 사업의\n목표는 Edge Computing 용 AI 반도체 국산화에 있다. 즉, 관련된 핵심 로직, I..."
+        },
+        {
+          "id": "report_004",
+          "title": "[IBKS Daily] 인터넷/게임",
+          "thesis": "2026.04.08\n IBK투자증권 인터넷/SW/게임\n 업종지수(전일 종가 기준)\n 시가총액 Performance(%) PER(배) △EPS PSR ROE\n 종목 현재가\n (조원) -1D -1W -1M -1Y 2025 2026 (%) (배) (%)\n 한국 코스피 5,495 4,388 0.8 8.8 -1.6 136.0 18.8 8.0 150.9 1.1 20.5\n 코스닥 1,037 574 -1.0 -1.5 -10.2 59.2 50..."
+        }
+      ]
+    },
+    {
+      "key": "TOSS",
+      "label": "토스증권",
+      "totalScore": 50,
+      "stage2Bias": "aggressive_add",
+      "deployBudget": 574653,
+      "reserveCash": 426292,
+      "topGap": {
+        "category": "전력기기",
+        "targetPct": 0.3,
+        "currentPct": 0,
+        "gapAmount": 687783
+      },
+      "candidateFromGap": "효성중공업",
+      "stage2Candidates": [
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "score": null,
+          "reason": "AI 데이터센터 전력 수요 증가에 따른 전력 인프라 핵심 설비 투자 확대 수혜를 기대합니다.",
+          "source": "stage2"
+        },
+        {
+          "code": "449450",
+          "name": "PLUS K방산",
+          "score": null,
+          "reason": "중동 지정학적 리스크 고조에 따른 방산 산업 성장 및 포트폴리오 헤지 강화를 목표로 합니다.",
+          "source": "stage2"
+        }
+      ],
+      "stagedBuys": [
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "score": null,
+          "reason": "AI 데이터센터 전력 수요 증가에 따른 전력 인프라 핵심 설비 투자 확대 수혜를 기대합니다.",
+          "source": "stage2",
+          "suggestedAmount": 344792
+        },
+        {
+          "code": "449450",
+          "name": "PLUS K방산",
+          "score": null,
+          "reason": "중동 지정학적 리스크 고조에 따른 방산 산업 성장 및 포트폴리오 헤지 강화를 목표로 합니다.",
+          "source": "stage2",
+          "suggestedAmount": 229861
+        }
+      ],
+      "trims": [],
+      "holds": [],
+      "watches": [
+        {
+          "name": "KODEX 선진국ESG액티브",
+          "score": 41,
+          "reason": "N/A"
+        },
+        {
+          "name": "PLUS V K생산",
+          "score": 41,
+          "reason": "N/A"
+        }
+      ],
+      "macroCommentary": {
+        "summary": "중동 지정학 리스크와 유가 상승이 시장 변동성을 키우고 있습니다. 토스증권은 AI·전력 인프라 비중 조정이 핵심입니다. 전술 테마와 성장 섹터를 민첩하게 반영하는 역할로 작동하는 계좌입니다.",
+        "drivers": [
+          "중동 지정학 리스크와 유가 상승이 시장 변동성을 키우고 있습니다.",
+          "단기 모멘텀과 알파 수익을 추구하며, 지정학적 리스크 헤지 및 AI 관련 테마 ETF 비중을 확대합니다."
+        ],
+        "assetFocus": [
+          "AI·전력 인프라",
+          "전력기기",
+          "방산"
+        ],
+        "actionLine": "토스증권은 전력기기을 우선 보강하고, KODEX AI전력핵심설비를 중심으로 574,653원 한도에서 분할 접근하는 편이 좋습니다.",
+        "reserveNote": "현금 비중을 적극적으로 줄여 모멘텀이 강한 테마 자산으로 전환합니다."
+      },
+      "stage1Drivers": []
+    },
+    {
+      "key": "KIS_MAIN",
+      "label": "한투 일반",
+      "totalScore": 62,
+      "stage2Bias": "selective_add",
+      "deployBudget": 1422695,
+      "reserveCash": 1231019,
+      "topGap": {
+        "category": "방산",
+        "targetPct": 0.3,
+        "currentPct": 0.06515293735389947,
+        "gapAmount": 832651
+      },
+      "candidateFromGap": "한국항공우주",
+      "stage2Candidates": [
+        {
+          "code": "449450",
+          "name": "PLUS K방산",
+          "score": null,
+          "reason": "중동 지정학적 리스크 고조에 따른 방산 산업 성장 및 포트폴리오 헤지 강화를 목표로 합니다.",
+          "source": "stage2"
+        },
+        {
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "score": null,
+          "reason": "데이터센터 전력 수요 증가 및 정부 정책 수혜로 에너지 안보 테마를 강화합니다.",
+          "source": "stage2"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "score": null,
+          "reason": "전력 인프라 및 AI 데이터센터 수요 증가에 따른 구리 가격 강세 전망에 대응합니다.",
+          "source": "stage2"
+        }
+      ],
+      "stagedBuys": [
+        {
+          "code": "449450",
+          "name": "PLUS K방산",
+          "score": null,
+          "reason": "중동 지정학적 리스크 고조에 따른 방산 산업 성장 및 포트폴리오 헤지 강화를 목표로 합니다.",
+          "source": "stage2",
+          "suggestedAmount": 711348
+        },
+        {
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "score": null,
+          "reason": "데이터센터 전력 수요 증가 및 정부 정책 수혜로 에너지 안보 테마를 강화합니다.",
+          "source": "stage2",
+          "suggestedAmount": 426809
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "score": null,
+          "reason": "전력 인프라 및 AI 데이터센터 수요 증가에 따른 구리 가격 강세 전망에 대응합니다.",
+          "source": "stage2",
+          "suggestedAmount": 284539
+        }
+      ],
+      "trims": [],
+      "holds": [
+        {
+          "code": "449450",
+          "name": "PLUS K방산",
+          "score": 67,
+          "reason": " 1Q26 Preview: 대덕전자의 1분기 실적은 매출액 3,280억원(YoY +37%, (원) 주가\n 100,000\n QoQ +3%), 영업이익 430억원(YoY 흑전, QoQ +48%, OPM 13.1%)으로\n 당사 기존 추정치를 상회할 전망. 메모리 및 비메모리 PKG, MLB까지 전 사 80,000"
+        }
+      ],
+      "watches": [
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "score": 41,
+          "reason": "N/A"
+        }
+      ],
+      "macroCommentary": {
+        "summary": "중동 지정학 리스크와 유가 상승이 시장 변동성을 키우고 있습니다. 한투 일반은 지정학 민감 방산 비중 조정이 핵심입니다. 전술 테마와 현금 운용을 함께 조절하며 국내 ETF 알파를 쌓는 역할로 작동하는 계좌입니다.",
+        "drivers": [
+          "중동 지정학 리스크와 유가 상승이 시장 변동성을 키우고 있습니다.",
+          "단기 모멘텀과 알파 수익을 추구하며, 지정학적 리스크 헤지 및 AI 전력 테마를 강화합니다.",
+          "원/달러 보릿고개는 KIS_MAIN에 부정 신호를 줍니다 (유가).",
+          "04/08, Kiwoom Morning Letter는 KIS_MAIN에 부정 신호를 줍니다 (유가)."
+        ],
+        "assetFocus": [
+          "지정학 민감 방산",
+          "방산",
+          "원자력"
+        ],
+        "actionLine": "한투 일반은 방산을 우선 보강하고, PLUS K방산를 중심으로 1,422,695원 한도에서 분할 접근하는 편이 좋습니다.",
+        "reserveNote": "가용 현금을 활용하여 핵심 테마 자산의 비중을 확대합니다."
+      },
+      "stage1Drivers": [
+        {
+          "id": "report_001",
+          "title": "[FX] 원/달러 보릿고개",
+          "thesis": "전월 말 전월대비 YTD 밴드 방향성 코멘트\n - 전쟁 양상에 따른 변동성 구간 지속\n ▲76.1 ▲71.5\n 원/달러 1,516.1 1,460~1,530 ▼ - 상방 리스크는 지난달처럼 크지 않을 것\n (+5.3%) (+4.9%)\n - 전쟁이 끝나면 단기 급락 가능성\n ▲64.0 ▲66.3\n NDF 3M 1,502.5 - 환율이 추가 상승할 가능성은 높지 않다는 전망\n (+4.5%) (+4.6%)"
+        },
+        {
+          "id": "report_002",
+          "title": "04/08, Kiwoom Morning Letter",
+          "thesis": "u Korea Sector Index Close D-1 D-5 D-20 u 수급(외국인/기관,억원) D-1 D-5 D-1 D-5 u US Sector Index Close D-1 D-5 D-20\nMKF 500 12,473.17 +0.96 +9.17 -1.04 MKF 500 기관순매수 외국인순매수 S&P 500\n에너지 9,713.70 -2.36 +4.69 -4.21 에너지 -86 +1,615 +89 +2,039 에너지 925.0..."
+        },
+        {
+          "id": "report_003",
+          "title": "[왜 이 기업일까 4월] AI 반도체 국산화의 원천",
+          "thesis": "AI 반도체 국산화의 핵심 수혜 기업\n1) 오픈엣지테크놀로지는 AI SoC 와 저전력 Memory 간의 연결을 위해 필요한 통합적인 IP 를\n공급할 수 있는 기업으로 국내 AI 지원 사업의 핵심 수혜 기업으로 부각될 전망이다. K-온디바\n이스 AI 반도체 사업에서는 더 두각을 나타낼 것으로 전망한다. K-온디바이스 AI 반도체 사업의\n목표는 Edge Computing 용 AI 반도체 국산화에 있다. 즉, 관련된 핵심 로직, I..."
+        },
+        {
+          "id": "report_008",
+          "title": "1Q26 Preview: 밀어주고, 끌어주고",
+          "thesis": "3. 투자전략\n22 1Q26 Preview: 아직도 YoY +40%, 높은 시장 기대치 충족\n24 전력기기 Overweight: 전력 설비 = 핵심 국가 안보\n26 TOP-PICK: 산일전기, LS ELECTRIC"
+        }
+      ]
+    }
+  ]
+}

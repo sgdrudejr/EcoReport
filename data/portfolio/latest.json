@@ -1,6 +1,6 @@
 {
-  "date": "2026-04-07",
-  "updatedAt": "2026-04-07T02:28:16.158Z",
+  "date": "2026-04-08",
+  "updatedAt": "2026-04-08T12:28:21.174Z",
   "source": {
     "method": "broker_api_sync",
     "reviewer": "seo",
@@ -157,25 +157,37 @@
       "key": "KIS_MAIN",
       "label": "한투 일반",
       "accountNumber": "44367266-01",
-      "evaluationAmount": 3008954,
-      "cashAvailable": 3009844,
-      "settlementCash": 2653714,
-      "principal": 356090,
-      "profitLoss": -850,
-      "profitRate": -0.24,
+      "evaluationAmount": 3037064,
+      "cashAvailable": 2653714,
+      "settlementCash": 3037064,
+      "principal": 864460,
+      "profitLoss": 27330,
+      "profitRate": 3.16,
       "screenshots": [],
       "incomplete": false,
       "holdings": [
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "quantity": 58,
+          "avgPrice": 8765,
+          "currentPrice": 8950,
+          "marketValue": 519100,
+          "purchaseValue": 508370,
+          "profitLoss": 10730,
+          "profitRate": 2.11,
+          "note": null
+        },
         {
           "code": "434730",
           "name": "HANARO 원자력iSelect",
           "quantity": 2,
           "avgPrice": 64630,
-          "currentPrice": 64160,
-          "marketValue": 128320,
+          "currentPrice": 70845,
+          "marketValue": 141690,
           "purchaseValue": 129260,
-          "profitLoss": -940,
-          "profitRate": -0.72,
+          "profitLoss": 12430,
+          "profitRate": 9.61,
           "note": null
         },
         {
@@ -183,11 +195,11 @@
           "name": "PLUS K방산",
           "quantity": 3,
           "avgPrice": 75610,
-          "currentPrice": 75640,
-          "marketValue": 226920,
+          "currentPrice": 77000,
+          "marketValue": 231000,
           "purchaseValue": 226830,
-          "profitLoss": 90,
-          "profitRate": 0.03,
+          "profitLoss": 4170,
+          "profitRate": 1.83,
           "note": null
         }
       ]

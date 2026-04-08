@@ -1,0 +1,271 @@
+{
+  "date": "2026-04-08",
+  "generated_at": "2026-04-08T12:27:44.040Z",
+  "input_sources": [
+    {
+      "source": "네이버증권",
+      "category": "종목분석",
+      "list_url": "https://finance.naver.com/research/company_list.naver"
+    },
+    {
+      "source": "네이버증권",
+      "category": "산업분석",
+      "list_url": "https://finance.naver.com/research/industry_list.naver"
+    },
+    {
+      "source": "네이버증권",
+      "category": "경제분석",
+      "list_url": "https://finance.naver.com/research/economy_list.naver"
+    },
+    {
+      "source": "네이버증권",
+      "category": "시황정보",
+      "list_url": "https://finance.naver.com/research/market_info_list.naver"
+    },
+    {
+      "source": "네이버증권",
+      "category": "투자전략",
+      "list_url": "https://finance.naver.com/research/invest_list.naver"
+    },
+    {
+      "source": "네이버증권",
+      "category": "채권분석",
+      "list_url": "https://finance.naver.com/research/debenture_list.naver"
+    },
+    {
+      "source": "신한투자증권",
+      "category": "전체",
+      "list_url": "https://www.shinhansec.com/siw/insights/research/list/view-popup.do",
+      "api_url": "https://www.shinhansec.com/siw/etc/browse/search05/data.do"
+    }
+  ],
+  "page_logs": [
+    {
+      "source": "네이버증권",
+      "category": "종목분석",
+      "page": 1,
+      "matchedCount": 29,
+      "totalRowsOnPage": 29
+    },
+    {
+      "source": "네이버증권",
+      "category": "종목분석",
+      "page": 2,
+      "matchedCount": 13,
+      "totalRowsOnPage": 29
+    },
+    {
+      "source": "네이버증권",
+      "category": "산업분석",
+      "page": 1,
+      "matchedCount": 19,
+      "totalRowsOnPage": 25
+    },
+    {
+      "source": "네이버증권",
+      "category": "경제분석",
+      "page": 1,
+      "matchedCount": 2,
+      "totalRowsOnPage": 26
+    },
+    {
+      "source": "네이버증권",
+      "category": "시황정보",
+      "page": 1,
+      "matchedCount": 11,
+      "totalRowsOnPage": 22
+    },
+    {
+      "source": "네이버증권",
+      "category": "투자전략",
+      "page": 1,
+      "matchedCount": 12,
+      "totalRowsOnPage": 27
+    },
+    {
+      "source": "네이버증권",
+      "category": "채권분석",
+      "page": 1,
+      "matchedCount": 4,
+      "totalRowsOnPage": 26
+    },
+    {
+      "source": "신한투자증권",
+      "category": "전체",
+      "page": 1,
+      "matchedCount": 10,
+      "totalRowsOnPage": 10
+    },
+    {
+      "source": "신한투자증권",
+      "category": "전체",
+      "page": 2,
+      "matchedCount": 10,
+      "totalRowsOnPage": 10
+    },
+    {
+      "source": "신한투자증권",
+      "category": "전체",
+      "page": 3,
+      "matchedCount": 10,
+      "totalRowsOnPage": 10
+    },
+    {
+      "source": "신한투자증권",
+      "category": "전체",
+      "page": 4,
+      "matchedCount": 10,
+      "totalRowsOnPage": 10
+    },
+    {
+      "source": "신한투자증권",
+      "category": "전체",
+      "page": 5,
+      "matchedCount": 10,
+      "totalRowsOnPage": 10
+    },
+    {
+      "source": "신한투자증권",
+      "category": "전체",
+      "page": 6,
+      "matchedCount": 10,
+      "totalRowsOnPage": 10
+    },
+    {
+      "source": "신한투자증권",
+      "category": "전체",
+      "page": 7,
+      "matchedCount": 10,
+      "totalRowsOnPage": 10
+    },
+    {
+      "source": "신한투자증권",
+      "category": "전체",
+      "page": 8,
+      "matchedCount": 10,
+      "totalRowsOnPage": 10
+    },
+    {
+      "source": "신한투자증권",
+      "category": "전체",
+      "page": 9,
+      "matchedCount": 10,
+      "totalRowsOnPage": 10
+    },
+    {
+      "source": "신한투자증권",
+      "category": "전체",
+      "page": 10,
+      "matchedCount": 10,
+      "totalRowsOnPage": 10
+    },
+    {
+      "source": "신한투자증권",
+      "category": "전체",
+      "page": 11,
+      "matchedCount": 10,
+      "totalRowsOnPage": 10
+    },
+    {
+      "source": "신한투자증권",
+      "category": "전체",
+      "page": 12,
+      "matchedCount": 10,
+      "totalRowsOnPage": 10
+    },
+    {
+      "source": "신한투자증권",
+      "category": "전체",
+      "page": 13,
+      "matchedCount": 10,
+      "totalRowsOnPage": 10
+    },
+    {
+      "source": "신한투자증권",
+      "category": "전체",
+      "page": 14,
+      "matchedCount": 10,
+      "totalRowsOnPage": 10
+    },
+    {
+      "source": "신한투자증권",
+      "category": "전체",
+      "page": 15,
+      "matchedCount": 10,
+      "totalRowsOnPage": 10
+    },
+    {
+      "source": "신한투자증권",
+      "category": "전체",
+      "page": 16,
+      "matchedCount": 10,
+      "totalRowsOnPage": 10
+    },
+    {
+      "source": "신한투자증권",
+      "category": "전체",
+      "page": 17,
+      "matchedCount": 10,
+      "totalRowsOnPage": 10
+    },
+    {
+      "source": "신한투자증권",
+      "category": "전체",
+      "page": 18,
+      "matchedCount": 10,
+      "totalRowsOnPage": 10
+    },
+    {
+      "source": "신한투자증권",
+      "category": "전체",
+      "page": 19,
+      "matchedCount": 10,
+      "totalRowsOnPage": 10
+    },
+    {
+      "source": "신한투자증권",
+      "category": "전체",
+      "page": 20,
+      "matchedCount": 10,
+      "totalRowsOnPage": 10
+    }
+  ],
+  "total_matched_before_dedupe": 290,
+  "total_unique_after_dedupe": 100,
+  "downloaded_count": 100,
+  "failed_download_count": 0,
+  "source_counts": {
+    "네이버증권": 90,
+    "신한투자증권": 10
+  },
+  "category_counts": {
+    "종목분석": 42,
+    "산업분석": 20,
+    "시황정보": 14,
+    "투자전략": 12,
+    "채권분석": 4,
+    "신한 속보": 3,
+    "경제분석": 2,
+    "Daily 신한생각": 2,
+    "해외 채권": 1
+  },
+  "top_brokers": {
+    "하나증권": 15,
+    "대신증권": 10,
+    "신한투자증권": 10,
+    "교보증권": 9,
+    "키움증권": 9,
+    "유안타증권": 8,
+    "IBK투자증권": 8,
+    "유진투자증권": 6,
+    "SK증권": 6,
+    "한화투자증권": 5,
+    "iM증권": 5,
+    "DS투자증권": 3,
+    "다올투자증권": 2,
+    "KB증권": 2,
+    "미래에셋증권": 1,
+    "한국IR협의회": 1
+  },
+  "download_failures": []
+}

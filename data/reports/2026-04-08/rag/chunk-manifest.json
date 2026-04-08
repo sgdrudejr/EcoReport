@@ -1,0 +1,23 @@
+{
+  "date": "2026-04-08",
+  "generated_at": "2026-04-08T12:29:03.213Z",
+  "total_reports": 100,
+  "unique_reports": 100,
+  "duplicate_reports": 0,
+  "total_chunks": 804,
+  "target_chars": 1200,
+  "max_chars": 1800,
+  "overlap_paragraphs": 1,
+  "output_files": {
+    "merged_markdown": "data/reports/2026-04-08/rag/merged-reports.md",
+    "corpus_json": "data/reports/2026-04-08/rag/report-corpus.json",
+    "chunks_jsonl": "data/reports/2026-04-08/rag/chunks.jsonl",
+    "sqlite_db": "data/reports/2026-04-08/rag/report-rag.db"
+  },
+  "duplicate_entries": [],
+  "chunk_type_counts": {
+    "analysis": 102,
+    "table": 635,
+    "disclaimer": 67
+  }
+}

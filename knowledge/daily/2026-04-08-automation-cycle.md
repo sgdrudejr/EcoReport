@@ -1,0 +1,60 @@
+# EcoReport Automation Cycle (2026-04-08)
+- overallStatus: **ok**
+- runDate: 2026-04-08
+- effectiveMarketDate: 2026-04-08
+- previousTradingDate: 2026-04-07
+- runId: 2026-04-08-122720
+- resolutionReason: requested
+- generatedAt: 2026-04-08T12:38:59.923Z
+- logFile: /Users/seo/Documents/Playground/EcoReport/logs/2026-04-08-122720-automation-cycle.log
+- systemHealth: warn
+- changeSummary: 전일(2026-04-07) 대비, KOSPI +7.51%, 포트폴리오 점수 67→65, 레짐 BEAR→SIDEWAYS, 리포트 55→100건, 신규 포커스 KODEX 구리선물(H)·KODEX AI전력핵심설비, 제외 TIGER 반도체나노·Global X Copper Miners ETF
+## Completion Checklist
+- [x] Baseline Daily System
+- [x] Stage 1 Extracts
+- [x] Gemini Deep Research Web
+- [x] Stage 1.6 Rich Briefing Overlay
+- [x] Strategy Refresh After Deep Research
+- [x] LLM Wiki Rebuild
+- [x] LLM Wiki Publish
+- [x] Verify Outputs
+## Step Results
+- [OK] Baseline Daily System (1m 43s)
+  - command: bash scripts/run-daily-system.sh --date 2026-04-08 --run-date 2026-04-08 --effective-market-date 2026-04-08 --run-id 2026-04-08-122720 --gemini-stage2 --skip-push --skip-verify --skip-strategy --skip-wiki --no-gemini-briefing --force-collect
+  - tail: 🧠 Gemini 브리핑 스킵 (API 키 없음 또는 --no-gemini-briefing) | 🧭 전략 파이프라인 건너뜀 (--skip-strategy) | 📚 LLM Wiki 단계 건너뜀 (--skip-wiki) | 📤 GitHub 동기화 건너뜀 (--skip-push) | 🩺 시스템 검증 건너뜀 (--skip-verify) | ================================================== | ✅ EcoReport Daily System 종료 (run: 2026-04-08 / effective: 2026-04-08) | ==================================================
+- [OK] Stage 1 Extracts (1s)
+  - command: node scripts/build-stage1-report-extracts.js --date 2026-04-08 --run-date 2026-04-08 --effective-market-date 2026-04-08 --run-id 2026-04-08-122720
+  - tail: /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-08/stage1-report-extracts-v2.json
+- [OK] Gemini Deep Research Web (8m 48s)
+  - command: npm run stage1.5:gemini:run -- --date 2026-04-08 --poll-sec 30 --timeout-sec 1800
+  - tail: {"title":"Google Gemini","messageCount":1,"promptSubmitted":true,"researchStarted":true,"hasDeepResearchSelected":true,"hasResearchStartButton":true,"hasStopButton":true,"hasPlanGenerating":false,"hasReportGenerating":true} | {"title":"Google Gemini","messageCount":2,"promptSubmitted":true,"researchStarted":true,"hasDeepResearchSelected":true,"hasResearchStartButton":false,"hasStopButton":true,"hasPlanGenerating":false,"hasReportGenerating":true} | {"title":"Google Gemini","messageCount":2,"promptSubmitted":true,"researchStarted":true,"hasDeepResearchSelected":true,"hasResearchStartButton":false,"hasStopButton":true,"hasPlanGenerating":false,"hasReportGenerating":true} | {"title":"Google Gemini","messageCount":2,"promptSubmitted":true,"researchStarted":true,"hasDeepResearchSelected":true,"hasResearchStartButton":false,"hasStopButton":true,"hasPlanGenerating":false,"hasReportGenerating":true} | {"title":"Google Gemini","messageCount":2,"promptSubmitted":true,"researchStarted":true,"hasDeepResearchSelected":true,"hasResearchStartButton":false,"hasStopButton":true,"hasPlanGenerating":false,"hasReportGenerating":true} | closed: closed-tab | saved: /Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-08/09-stage1-5-gemini-deep-research-response.md | copied_chars: 8787
+- [OK] Stage 1.6 Rich Briefing Overlay (29s)
+  - command: npm run stage1.6:briefing -- --date 2026-04-08 --run-date 2026-04-08 --effective-market-date 2026-04-08
+  - tail: > ecoreport@1.0.0 stage1.6:briefing | > node scripts/build-stage1-6-rich-briefing.js --date 2026-04-08 --run-date 2026-04-08 --effective-market-date 2026-04-08 | /Users/seo/Documents/Playground/EcoReport/knowledge/daily/2026-04-08-gemini-briefing-rich.md
+- [OK] Strategy Refresh After Deep Research (38s)
+  - command: bash scripts/run-strategy-pipeline.sh --date 2026-04-08 --run-date 2026-04-08 --effective-market-date 2026-04-08 --run-id 2026-04-08-122720 --gemini-stage2
+  - tail: /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-08/stage2-strategy-options.json | == Stage 2.5: impact map == | /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-08/impact-map.json | == Stage 3: quant scores == | /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-08/stage3-quant-scores.json | == Stage 4: execution plan == | /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-08/stage4-execution-plan.json | Done.
+- [OK] LLM Wiki Rebuild (0s)
+  - command: node scripts/build-llm-wiki.js --date 2026-04-08 --run-date 2026-04-08 --effective-market-date 2026-04-08 --run-id 2026-04-08-122720
+  - tail: /Users/seo/Documents/Playground/EcoReport/knowledge/wiki
+- [OK] LLM Wiki Publish (0s)
+  - command: node scripts/publish-llm-wiki-to-vault.js
+  - tail: /Users/seo/my-wiki/wiki/ecoreport
+- [OK] Verify Outputs (0s)
+  - command: node scripts/verify-daily-system.js --date 2026-04-08 --run-date 2026-04-08 --effective-market-date 2026-04-08 --run-id 2026-04-08-122720
+  - tail: /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-08/system-health.json
+## Failed Or Warned Steps
+- 없음
+## Artifacts
+- [OK] /Users/seo/Documents/Playground/EcoReport/logs/2026-04-08-122720-automation-cycle.log
+- [OK] /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-08/stage1-report-extracts-v2.json
+- [OK] /Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-08/07-stage1-5-gemini-deep-research-prompt.md
+- [OK] /Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-08/09-stage1-5-gemini-deep-research-response.md
+- [OK] /Users/seo/Documents/Playground/EcoReport/knowledge/daily/2026-04-08-gemini-briefing-rich.md
+- [OK] /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-08/stage2-strategy-options.json
+- [OK] /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-08/stage4-execution-plan.json
+- [OK] /Users/seo/Documents/Playground/EcoReport/reports/daily/2026-04-08-briefing.md
+- [OK] /Users/seo/Documents/Playground/EcoReport/knowledge/wiki/daily/2026-04-08.md
+- [OK] /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-08/system-health.json
+- [OK] /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-08/automation-cycle.json
+- [OK] /Users/seo/Documents/Playground/EcoReport/knowledge/daily/2026-04-08-automation-cycle.md

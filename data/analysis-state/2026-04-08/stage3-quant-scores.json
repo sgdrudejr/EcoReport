@@ -1,0 +1,2446 @@
+{
+  "date": "2026-04-08",
+  "runDate": "2026-04-08",
+  "effectiveMarketDate": "2026-04-08",
+  "runId": "2026-04-08-122720",
+  "generatedAt": "2026-04-08T12:38:59.528Z",
+  "reportInputs": {
+    "reportCount": 100,
+    "available": true
+  },
+  "regime": {
+    "name": "SIDEWAYS",
+    "confidence": 0.55,
+    "voteSum": 1,
+    "signals": [
+      "VIX 24.17>=20",
+      "T10Y2Y 0.52>0.5",
+      "가격>MA20>MA60"
+    ],
+    "market_context": {
+      "index": "KOSPI",
+      "signal": "BULLISH",
+      "vix": null,
+      "score": 84,
+      "close": 5872.34,
+      "ma": {
+        "ma5": 5485.76,
+        "ma20": 5523.437,
+        "ma60": 5370.969,
+        "ma120": 4709.2222
+      },
+      "rsi": 58.17,
+      "alerts": [
+        "MACD 시그널 상향 돌파"
+      ]
+    }
+  },
+  "leadingIndicator": {
+    "score": 60,
+    "available": true,
+    "t10y2y": 0.52,
+    "vix": 24.17,
+    "cpiYoy": null,
+    "cgMomentum": null
+  },
+  "coverage": {
+    "techCoverage": 0.8665,
+    "impactCoverage": 0.6849,
+    "stage2Available": true
+  },
+  "configUsed": {
+    "weightProfile": "balanced",
+    "maxWeights": {
+      "allocation": 0.45,
+      "tech": 0.3,
+      "report": 0.1,
+      "regime": 0.05,
+      "stage2": 0.05,
+      "leading": 0.05
+    },
+    "riskPenaltyCaps": {
+      "concentration": 10,
+      "tailRisk": 15,
+      "dataQuality": 10,
+      "regimeStress": 10,
+      "total": 25
+    }
+  },
+  "holdings": {
+    "133690": {
+      "code": "133690",
+      "name": "TIGER 미국나스닥100",
+      "accountKey": "PENSION",
+      "accountLabel": "연금저축",
+      "category": "나스닥100",
+      "marketValue": 480480,
+      "technicalSignal": "BUY",
+      "technicalBaseScore": 74,
+      "actionScore": 64,
+      "direction": 0.747,
+      "timing": -0.44,
+      "reportScore": 1.843,
+      "probabilities": {
+        "p_buy": 0.8259,
+        "p_hold": 0.1493,
+        "p_sell": 0.0248
+      },
+      "conviction": "MEDIUM",
+      "signal": "HOLD",
+      "features": {
+        "maTrend": -0.0038768030283276023,
+        "macdZ": 0.5537910062810438,
+        "rsiMid": 0.6168,
+        "adxTrend": -0.525,
+        "bbDist": -0.35,
+        "rsiTiming": -0.7710000000000001,
+        "stochTiming": -2.5,
+        "volumeZ": 0.4610000000000001
+      },
+      "reportImpacts": [
+        {
+          "reportId": "report_047",
+          "title": "1Q26 Preview: 걱정 없음",
+          "broker": "SK증권",
+          "publishedDate": "2026-04-08",
+          "reportType": "stock",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.567,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "STOCK DATA 분기 지배주주순이익 처음으로 4,000 억원대 전망 주가(26/04/07) 95,200 원 1Q26 지배주주순이익은 4,046 억원(YoY +62.9%, QoQ +87.1%)으로 컨센서스를 KOSPI 5,494.78 pt 18.6% 상회할 것으로 예상한다. 주식시장 강세에 따른 브로커리지 관련 손익 증가가 실적 52 주 최고가 114,500 원 성장의 주된 배경이며, 비우...",
+          "evidenceNumbers": [
+            "핵심 수치: 62.9%",
+            "핵심 수치: 87.1%",
+            "핵심 수치: 18.6%",
+            "핵심 수치: 27.05%"
+          ],
+          "contribution": 0.4304
+        },
+        {
+          "reportId": "report_050",
+          "title": "1Q26 Preview: 안산의 삼성전자",
+          "broker": "유진투자증권",
+          "publishedDate": "2026-04-08",
+          "reportType": "stock",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.567,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": " 1Q26 Preview: 대덕전자의 1분기 실적은 매출액 3,280억원(YoY +37%, (원) 주가 100,000 QoQ +3%), 영업이익 430억원(YoY 흑전, QoQ +48%, OPM 13.1%)으로 당사 기존 추정치를 상회할 전망. 메모리 및 비메모리 PKG, MLB까지 전 사 80,000",
+          "evidenceNumbers": [
+            "핵심 수치: 37%",
+            "핵심 수치: 3%",
+            "핵심 수치: 48%",
+            "핵심 수치: 13.1%"
+          ],
+          "contribution": 0.4304
+        },
+        {
+          "reportId": "report_052",
+          "title": "1Q26P Review: 시작이 좋다",
+          "broker": "유진투자증권",
+          "publishedDate": "2026-04-08",
+          "reportType": "stock",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.567,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": " ES: 중동의 지정학적 이벤트 영향으로 타 사업부 대비 해외 매출 확대 부 주가상승률(%) 1M 6M 12M -9.2 40.2 57.3 진, 전년비 역성장 실현. 판가 하락 및 시장 전반의 불확실성이 지속되는 중. (원, 십억원) 현재 직전 변동 동시에 AI DC 등 미래 신성장 분야의 인력 채용에 따른 고정비 증가로 수익 투자의견 BUY BUY - 성 역시 전년비 소폭 부진 목표주가 1...",
+          "evidenceNumbers": [
+            "핵심 수치: 2.5%",
+            "핵심 수치: 7.4%",
+            "핵심 수치: 4%",
+            "핵심 수치: 0.5%"
+          ],
+          "contribution": 0.4304
+        },
+        {
+          "reportId": "report_055",
+          "title": "2026년에도 수주 및 매출액 가이던스 상회 전망",
+          "broker": "대신증권",
+          "publishedDate": "2026-04-08",
+          "reportType": "stock",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.567,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "투자의견 BUY 투자의견 '매수' 유지, 목표주가 1,100,000원으로 상향 매수, 유지 목표주가를 1,100,000원('28년 예상 EPS x PER 24배)으로 상향 ('28년 실적 전망치 6개월 목표주가 1,100,000 상향 반영). '26년 매출액 컨센서스 4.78조원 대비 낮은 가이던스 4.35조원을 공시함에 상향 따라 주가가 조정을 받은 바 있음. 가이던스 가정 환율은 1,35...",
+          "evidenceNumbers": [
+            "핵심 수치: 19%",
+            "핵심 수치: 25.1%",
+            "핵심 수치: 1.6%",
+            "핵심 수치: 39%"
+          ],
+          "contribution": 0.4304
+        },
+        {
+          "reportId": "report_063",
+          "title": "본업의 정상화에 로봇 모멘텀 추가",
+          "broker": "하나증권",
+          "publishedDate": "2026-04-08",
+          "reportType": "stock",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.567,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "Financial Data (십억원, %, 배, 원) 연결기준 26년 매출 91조 8,220억원(YoY +3%), 영업이익 3조 4,411억원(YoY +40%, OPM 투자지표 2024 2025 2026F 2027F 매출액 87,728.2 89,200.9 91,822.0 95,515.0 3.7%), 별도기준으로는 매출 69조 5,388억원(YoY +2.7%), 영업이익 2조 5,023억원(Y...",
+          "evidenceNumbers": [
+            "핵심 수치: 3%",
+            "핵심 수치: 40%",
+            "핵심 수치: 3.7%",
+            "핵심 수치: 2.7%"
+          ],
+          "contribution": 0.4304
+        }
+      ],
+      "technical": {
+        "signal": "BUY",
+        "score": 74,
+        "adjustedScore": 74,
+        "rsi": 57.71,
+        "macd": {
+          "value": -259.0921,
+          "signal": -580.6519,
+          "histogram": 321.5598
+        },
+        "bollinger": {
+          "upper": 164714.6975,
+          "middle": 160640,
+          "lower": 156565.3025,
+          "position": "upper_half"
+        },
+        "volumeRatio": 1.461
+      },
+      "report": {
+        "sourceLayer": "impact-map",
+        "available": true,
+        "unavailableReason": null,
+        "impactScore": 90,
+        "impactValue": 1.843,
+        "impactCount": 56,
+        "coverageWeight": 0.55,
+        "directAccountImpactScore": 59
+      },
+      "scores": {
+        "techScore": 74,
+        "reportScore": 90,
+        "actionScore": 64
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 74점",
+          "리포트 영향 90점 (56건 연결)",
+          "RSI 57.7"
+        ],
+        "warnings": []
+      }
+    },
+    "138910": {
+      "code": "138910",
+      "name": "KODEX 구리선물(H)",
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "category": "기타",
+      "marketValue": 519100,
+      "technicalSignal": "N/A",
+      "technicalBaseScore": null,
+      "actionScore": 41,
+      "direction": -0.65,
+      "timing": 0,
+      "reportScore": 0,
+      "probabilities": {
+        "p_buy": 0.1619,
+        "p_hold": 0.3164,
+        "p_sell": 0.5217
+      },
+      "conviction": "LOW",
+      "signal": "REDUCE",
+      "features": {
+        "maTrend": -2.5,
+        "macdZ": 0,
+        "rsiMid": 0,
+        "adxTrend": 0,
+        "bbDist": 0,
+        "rsiTiming": 0,
+        "stochTiming": 0,
+        "volumeZ": 0
+      },
+      "reportImpacts": [],
+      "technical": {
+        "signal": null,
+        "score": null,
+        "adjustedScore": null,
+        "rsi": null,
+        "macd": null,
+        "bollinger": null,
+        "volumeRatio": null
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "available": false,
+        "unavailableReason": "no_linked_report",
+        "impactScore": null,
+        "impactValue": 0,
+        "impactCount": 0,
+        "coverageWeight": 0,
+        "directAccountImpactScore": 58
+      },
+      "scores": {
+        "techScore": null,
+        "reportScore": null,
+        "actionScore": 41
+      },
+      "explain": {
+        "topDrivers": [],
+        "warnings": [
+          "기술 스냅샷이 없어 리포트/배분 쪽 해석 비중이 커졌습니다.",
+          "REDUCE 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    },
+    "360750": {
+      "code": "360750",
+      "name": "TIGER 미국S&P500",
+      "accountKey": "PENSION",
+      "accountLabel": "연금저축",
+      "category": "S&P500",
+      "marketValue": 491400,
+      "technicalSignal": "STRONG_BUY",
+      "technicalBaseScore": 82,
+      "actionScore": 64,
+      "direction": 0.723,
+      "timing": -0.417,
+      "reportScore": 1.843,
+      "probabilities": {
+        "p_buy": 0.8236,
+        "p_hold": 0.1511,
+        "p_sell": 0.0253
+      },
+      "conviction": "MEDIUM",
+      "signal": "HOLD",
+      "features": {
+        "maTrend": 0.05855201016321576,
+        "macdZ": 0.5620733575865942,
+        "rsiMid": 0.47839999999999977,
+        "adxTrend": -0.7775,
+        "bbDist": -0.35,
+        "rsiTiming": -0.5979999999999996,
+        "stochTiming": -2.5,
+        "volumeZ": 0.30699999999999994
+      },
+      "reportImpacts": [
+        {
+          "reportId": "report_047",
+          "title": "1Q26 Preview: 걱정 없음",
+          "broker": "SK증권",
+          "publishedDate": "2026-04-08",
+          "reportType": "stock",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.567,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "STOCK DATA 분기 지배주주순이익 처음으로 4,000 억원대 전망 주가(26/04/07) 95,200 원 1Q26 지배주주순이익은 4,046 억원(YoY +62.9%, QoQ +87.1%)으로 컨센서스를 KOSPI 5,494.78 pt 18.6% 상회할 것으로 예상한다. 주식시장 강세에 따른 브로커리지 관련 손익 증가가 실적 52 주 최고가 114,500 원 성장의 주된 배경이며, 비우...",
+          "evidenceNumbers": [
+            "핵심 수치: 62.9%",
+            "핵심 수치: 87.1%",
+            "핵심 수치: 18.6%",
+            "핵심 수치: 27.05%"
+          ],
+          "contribution": 0.4304
+        },
+        {
+          "reportId": "report_050",
+          "title": "1Q26 Preview: 안산의 삼성전자",
+          "broker": "유진투자증권",
+          "publishedDate": "2026-04-08",
+          "reportType": "stock",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.567,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": " 1Q26 Preview: 대덕전자의 1분기 실적은 매출액 3,280억원(YoY +37%, (원) 주가 100,000 QoQ +3%), 영업이익 430억원(YoY 흑전, QoQ +48%, OPM 13.1%)으로 당사 기존 추정치를 상회할 전망. 메모리 및 비메모리 PKG, MLB까지 전 사 80,000",
+          "evidenceNumbers": [
+            "핵심 수치: 37%",
+            "핵심 수치: 3%",
+            "핵심 수치: 48%",
+            "핵심 수치: 13.1%"
+          ],
+          "contribution": 0.4304
+        },
+        {
+          "reportId": "report_052",
+          "title": "1Q26P Review: 시작이 좋다",
+          "broker": "유진투자증권",
+          "publishedDate": "2026-04-08",
+          "reportType": "stock",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.567,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": " ES: 중동의 지정학적 이벤트 영향으로 타 사업부 대비 해외 매출 확대 부 주가상승률(%) 1M 6M 12M -9.2 40.2 57.3 진, 전년비 역성장 실현. 판가 하락 및 시장 전반의 불확실성이 지속되는 중. (원, 십억원) 현재 직전 변동 동시에 AI DC 등 미래 신성장 분야의 인력 채용에 따른 고정비 증가로 수익 투자의견 BUY BUY - 성 역시 전년비 소폭 부진 목표주가 1...",
+          "evidenceNumbers": [
+            "핵심 수치: 2.5%",
+            "핵심 수치: 7.4%",
+            "핵심 수치: 4%",
+            "핵심 수치: 0.5%"
+          ],
+          "contribution": 0.4304
+        },
+        {
+          "reportId": "report_055",
+          "title": "2026년에도 수주 및 매출액 가이던스 상회 전망",
+          "broker": "대신증권",
+          "publishedDate": "2026-04-08",
+          "reportType": "stock",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.567,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "투자의견 BUY 투자의견 '매수' 유지, 목표주가 1,100,000원으로 상향 매수, 유지 목표주가를 1,100,000원('28년 예상 EPS x PER 24배)으로 상향 ('28년 실적 전망치 6개월 목표주가 1,100,000 상향 반영). '26년 매출액 컨센서스 4.78조원 대비 낮은 가이던스 4.35조원을 공시함에 상향 따라 주가가 조정을 받은 바 있음. 가이던스 가정 환율은 1,35...",
+          "evidenceNumbers": [
+            "핵심 수치: 19%",
+            "핵심 수치: 25.1%",
+            "핵심 수치: 1.6%",
+            "핵심 수치: 39%"
+          ],
+          "contribution": 0.4304
+        },
+        {
+          "reportId": "report_063",
+          "title": "본업의 정상화에 로봇 모멘텀 추가",
+          "broker": "하나증권",
+          "publishedDate": "2026-04-08",
+          "reportType": "stock",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.567,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "Financial Data (십억원, %, 배, 원) 연결기준 26년 매출 91조 8,220억원(YoY +3%), 영업이익 3조 4,411억원(YoY +40%, OPM 투자지표 2024 2025 2026F 2027F 매출액 87,728.2 89,200.9 91,822.0 95,515.0 3.7%), 별도기준으로는 매출 69조 5,388억원(YoY +2.7%), 영업이익 2조 5,023억원(Y...",
+          "evidenceNumbers": [
+            "핵심 수치: 3%",
+            "핵심 수치: 40%",
+            "핵심 수치: 3.7%",
+            "핵심 수치: 2.7%"
+          ],
+          "contribution": 0.4304
+        }
+      ],
+      "technical": {
+        "signal": "STRONG_BUY",
+        "score": 82,
+        "adjustedScore": 82,
+        "rsi": 55.98,
+        "macd": {
+          "value": -32.5257,
+          "signal": -74.2718,
+          "histogram": 41.7462
+        },
+        "bollinger": {
+          "upper": 24959.2735,
+          "middle": 24566.5,
+          "lower": 24173.7265,
+          "position": "upper_half"
+        },
+        "volumeRatio": 1.307
+      },
+      "report": {
+        "sourceLayer": "impact-map",
+        "available": true,
+        "unavailableReason": null,
+        "impactScore": 90,
+        "impactValue": 1.843,
+        "impactCount": 57,
+        "coverageWeight": 0.55,
+        "directAccountImpactScore": 59
+      },
+      "scores": {
+        "techScore": 82,
+        "reportScore": 90,
+        "actionScore": 64
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 82점",
+          "리포트 영향 90점 (57건 연결)",
+          "RSI 56.0"
+        ],
+        "warnings": []
+      }
+    },
+    "423160": {
+      "code": "423160",
+      "name": "KODEX KOFR금리액티브(합성)",
+      "accountKey": "PENSION",
+      "accountLabel": "연금저축",
+      "category": "현금파킹",
+      "marketValue": 221370,
+      "technicalSignal": "SELL",
+      "technicalBaseScore": 52,
+      "actionScore": 64,
+      "direction": 0.253,
+      "timing": 0.81,
+      "reportScore": 1.331,
+      "probabilities": {
+        "p_buy": 0.7839,
+        "p_hold": 0.1803,
+        "p_sell": 0.0358
+      },
+      "conviction": "MEDIUM",
+      "signal": "HOLD",
+      "features": {
+        "maTrend": -0.0037355299693613286,
+        "macdZ": -0.8616723450334098,
+        "rsiMid": -0.2495999999999998,
+        "adxTrend": -0.13416666666666663,
+        "bbDist": 0.45,
+        "rsiTiming": 0.3119999999999997,
+        "stochTiming": 1.5824999999999998,
+        "volumeZ": 0.2729999999999999
+      },
+      "reportImpacts": [
+        {
+          "reportId": "report_047",
+          "title": "1Q26 Preview: 걱정 없음",
+          "broker": "SK증권",
+          "publishedDate": "2026-04-08",
+          "reportType": "stock",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.567,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "STOCK DATA 분기 지배주주순이익 처음으로 4,000 억원대 전망 주가(26/04/07) 95,200 원 1Q26 지배주주순이익은 4,046 억원(YoY +62.9%, QoQ +87.1%)으로 컨센서스를 KOSPI 5,494.78 pt 18.6% 상회할 것으로 예상한다. 주식시장 강세에 따른 브로커리지 관련 손익 증가가 실적 52 주 최고가 114,500 원 성장의 주된 배경이며, 비우...",
+          "evidenceNumbers": [
+            "핵심 수치: 62.9%",
+            "핵심 수치: 87.1%",
+            "핵심 수치: 18.6%",
+            "핵심 수치: 27.05%"
+          ],
+          "contribution": 0.4304
+        },
+        {
+          "reportId": "report_055",
+          "title": "2026년에도 수주 및 매출액 가이던스 상회 전망",
+          "broker": "대신증권",
+          "publishedDate": "2026-04-08",
+          "reportType": "stock",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.567,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "투자의견 BUY 투자의견 '매수' 유지, 목표주가 1,100,000원으로 상향 매수, 유지 목표주가를 1,100,000원('28년 예상 EPS x PER 24배)으로 상향 ('28년 실적 전망치 6개월 목표주가 1,100,000 상향 반영). '26년 매출액 컨센서스 4.78조원 대비 낮은 가이던스 4.35조원을 공시함에 상향 따라 주가가 조정을 받은 바 있음. 가이던스 가정 환율은 1,35...",
+          "evidenceNumbers": [
+            "핵심 수치: 19%",
+            "핵심 수치: 25.1%",
+            "핵심 수치: 1.6%",
+            "핵심 수치: 39%"
+          ],
+          "contribution": 0.4304
+        },
+        {
+          "reportId": "report_081",
+          "title": "PCB 업계 내 숨어있는 강소기업",
+          "broker": "한국IR협의회",
+          "publishedDate": "2026-04-08",
+          "reportType": "stock",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.567,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "와이엠티는 전자부품 소재(FPCB/PCB 등 제조에 필요한 약품, 첨가제) 기업 Company Data 현재주가 (4/6) 15,070원 와이엠티는 1999년 ‘유일재료기술’ 이라는 사명으로 설립되어 2017년 코스닥 시장에 상장. 매출 52주 최고가 18,170원 52주 최저가 8,070원 비중은 화학약품 부문 91.6%, 기판가공 부문 6.3%, 설비제조 부문 1.3%, 소재유통 부문 0...",
+          "evidenceNumbers": [
+            "핵심 수치: 91.6%",
+            "핵심 수치: 6.3%",
+            "핵심 수치: 1.3%",
+            "핵심 수치: 0.7%"
+          ],
+          "contribution": 0.4304
+        },
+        {
+          "reportId": "report_045",
+          "title": "1Q26 Pre - SpaceX 가 끝이 아님",
+          "broker": "하나증권",
+          "publishedDate": "2026-04-08",
+          "reportType": "stock",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.486,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "Key Data KOSPI 지수(pt) 2026년 1분기 컨센서스 32% 상회 예상 52주최고/최저(원) 5,494.78 시가총액(십억원) 73,282/8,463 2026년 1분기 연결 지배주주순이익은 1.2조원(YoY +348.9%, QoQ +101.2%)으로 컨센서스 시가총액비중(%) 34,152.0 발행주식수(천주) 0.75 (8,790억원)를 약 32.1% 상회할 전망이다. 이에 따른...",
+          "evidenceNumbers": [
+            "핵심 수치: 32%",
+            "핵심 수치: 348.9%",
+            "핵심 수치: 101.2%",
+            "핵심 수치: 32.1%"
+          ],
+          "contribution": 0.3689
+        },
+        {
+          "reportId": "report_070",
+          "title": "악재만 반영한 주가",
+          "broker": "iM증권",
+          "publishedDate": "2026-04-08",
+          "reportType": "stock",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.486,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "③ VS: 매출 3.1조원 (+8% YoY, +10% QoQ), 영업이익 1,840억원 (+47% YoY, Price Trend 영업이익률 5.9%)으로 추정. 고부가 수주를 기반으로 한 IVI의 성장에 더해, ePT의 000'S 개선도 맞물린 것으로 추측. 고유가 지속 시 친환경차 수요 개선 가능성 기대 161.0 LG전자 1.10 (2025/04/07~2026/04/07) ④ ES: 매출...",
+          "evidenceNumbers": [
+            "핵심 수치: 8%",
+            "핵심 수치: 10%",
+            "핵심 수치: 47%",
+            "핵심 수치: 5.9%"
+          ],
+          "contribution": 0.3689
+        }
+      ],
+      "technical": {
+        "signal": "SELL",
+        "score": 17,
+        "adjustedScore": 52,
+        "rsi": 46.88,
+        "macd": {
+          "value": -14.0977,
+          "signal": -7.5726,
+          "histogram": -6.5251
+        },
+        "bollinger": {
+          "upper": 110864.8045,
+          "middle": 110737,
+          "lower": 110609.1955,
+          "position": "lower_half"
+        },
+        "volumeRatio": 1.273
+      },
+      "report": {
+        "sourceLayer": "impact-map",
+        "available": true,
+        "unavailableReason": null,
+        "impactScore": 83,
+        "impactValue": 1.331,
+        "impactCount": 40,
+        "coverageWeight": 0.55,
+        "directAccountImpactScore": 59
+      },
+      "scores": {
+        "techScore": 52,
+        "reportScore": 83,
+        "actionScore": 64
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 17점",
+          "리포트 영향 83점 (40건 연결)",
+          "RSI 46.9"
+        ],
+        "warnings": []
+      }
+    },
+    "434730": {
+      "code": "434730",
+      "name": "HANARO 원자력iSelect",
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "category": "원자력",
+      "marketValue": 141690,
+      "technicalSignal": "BUY",
+      "technicalBaseScore": 64,
+      "actionScore": 70,
+      "direction": 1.121,
+      "timing": -0.107,
+      "reportScore": 1.47,
+      "probabilities": {
+        "p_buy": 0.862,
+        "p_hold": 0.1218,
+        "p_sell": 0.0162
+      },
+      "conviction": "MEDIUM",
+      "signal": "HOLD",
+      "features": {
+        "maTrend": 2.5,
+        "macdZ": -0.483835618175154,
+        "rsiMid": 0.6039999999999998,
+        "adxTrend": -0.13833333333333334,
+        "bbDist": -0.35,
+        "rsiTiming": -0.7549999999999997,
+        "stochTiming": -0.9995833333333332,
+        "volumeZ": 1.121
+      },
+      "reportImpacts": [
+        {
+          "reportId": "report_008",
+          "title": "1Q26 Preview: 밀어주고, 끌어주고",
+          "broker": "교보증권",
+          "publishedDate": "2026-04-08",
+          "reportType": "industry",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "3. 투자전략\n22 1Q26 Preview: 아직도 YoY +40%, 높은 시장 기대치 충족\n24 전력기기 Overweight: 전력 설비 = 핵심 국가 안보\n26 TOP-PICK: 산일전기, LS ELECTRIC",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "40%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "31.7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "54.6%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "3.6%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "9.9%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "7.6%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "34.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "21.70%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "48.46%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "8.79%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "52.6%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "52.1%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "37.8%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "14.1%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.4803
+        },
+        {
+          "reportId": "report_011",
+          "title": "2차전지 봄이 오나 봄",
+          "broker": "교보증권",
+          "publishedDate": "2026-04-08",
+          "reportType": "industry",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "Company Data\n • IRA AMPC 세액 공제 금액 포함한 수치 * AMPC 제외 시 1Q26 잠정 영업이익은 -3,975억원(OPM -6.1%)\n현재가(04/07) 408,500 원 • 1) 자동차전지: 업황 부진이 지속되는 구간. 북미 중심으로 수요 회복이 지연, 고객사 가동률도 낮은 수준 유지\n액면가(원) ...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "6.1%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "5.07%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "79.38%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "10%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "40%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "25%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "65%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "10.3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "13.7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "348%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "76%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1.8%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "2%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "14.20%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.4803
+        },
+        {
+          "reportId": "report_061",
+          "title": "무난한 1분기",
+          "broker": "하나증권",
+          "publishedDate": "2026-04-08",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.46,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "Key Data\nKOSPI 지수 (pt) 5,494.78\n 1Q26 추정: 매출액 1.6조원, 영업이익 1,044억원(OPM 6.4%)\n52주 최고/최저(원) 77,200/38,000\n시가총액(십억원) 2,925.2 1Q26 매출액 1.6조원(-9.3%yoy), 영업이익 1,044억원(+28.9%yoy)으로 추정한다. G...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "6.4%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "9.3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "28.9%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "17.0%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "10.0%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "14.8%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "90%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "81.8%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "5,494.78",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,044억원",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "77,200",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "38,000",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "2,925.2",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "38,693.6",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.4496
+        },
+        {
+          "reportId": "report_064",
+          "title": "상반기 1만세대 분양 페이스",
+          "broker": "하나증권",
+          "publishedDate": "2026-04-08",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.46,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "Stock Price 딜리 공사는 중단 없이 진행 중이며, 아직 자재 우회 방안 등을 고려할 수준은 아니다. 원전\n 관련해서는 i-SMR 초도호기 설계에 참여하기로 했으며, 대형원전은 베트남 팀코리아 입찰\n (천원) GS건설(좌)\n 35 상대지수(우) 140\n 30 120\n 을 2분기 중에 넣을 것으로 전망한다. GS건설...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "13.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "25%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "62.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "3.6%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "9.7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "41.3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "7.0%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "11.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "8.0%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "15.0%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "80%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "17.65%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "32.71%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "4.79%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.4496
+        },
+        {
+          "reportId": "report_071",
+          "title": "전쟁도 막지 못한",
+          "broker": "한화투자증권",
+          "publishedDate": "2026-04-08",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.46,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "1 분기 영업이익은 시장 기대치를 부합한 것으로 추정됩니다. 원전 분\n Buy (유지) 야에서의 압도적 입지를 바탕으로 건설업종 밸류에이션 상단의 키를\n 쥐고 있다는 판단하에 최선호주 의견을 유지하며, 목표주가를 200,000\n 목표주가(상향): 200,000원\n 원으로 상향합니다.\n현재 주가(4/7) 155,900원\n상...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "28.3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "10.6%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "23.9%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "24.3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "34.9%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "10.3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "0.0%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "12.9%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "0.5%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "0.39%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "15%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "200,000",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "200,000원",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.4496
+        }
+      ],
+      "technical": {
+        "signal": "BUY",
+        "score": 64,
+        "adjustedScore": 64,
+        "rsi": 57.55,
+        "macd": {
+          "value": 179.1301,
+          "signal": 347.0408,
+          "histogram": -167.9107
+        },
+        "bollinger": {
+          "upper": 73201.9565,
+          "middle": 67190.25,
+          "lower": 61178.5435,
+          "position": "upper_half"
+        },
+        "volumeRatio": 2.121
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "available": true,
+        "unavailableReason": null,
+        "impactScore": 85,
+        "impactValue": 1.47,
+        "impactCount": 16,
+        "coverageWeight": 1,
+        "directAccountImpactScore": 58
+      },
+      "scores": {
+        "techScore": 64,
+        "reportScore": 85,
+        "actionScore": 70
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 64점",
+          "리포트 영향 85점 (16건 연결)",
+          "RSI 57.5"
+        ],
+        "warnings": []
+      }
+    },
+    "449450": {
+      "code": "449450",
+      "name": "PLUS K방산",
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "category": "방산",
+      "marketValue": 231000,
+      "technicalSignal": "STRONG_BUY",
+      "technicalBaseScore": 96,
+      "actionScore": 67,
+      "direction": 1.206,
+      "timing": -0.59,
+      "reportScore": 1.172,
+      "probabilities": {
+        "p_buy": 0.8113,
+        "p_hold": 0.1573,
+        "p_sell": 0.0314
+      },
+      "conviction": "MEDIUM",
+      "signal": "HOLD",
+      "features": {
+        "maTrend": 2.5,
+        "macdZ": 0.6216399568144091,
+        "rsiMid": 0.5768000000000001,
+        "adxTrend": -0.23916666666666675,
+        "bbDist": -0.35,
+        "rsiTiming": -0.7210000000000001,
+        "stochTiming": -2.5,
+        "volumeZ": 0.05899999999999994
+      },
+      "reportImpacts": [
+        {
+          "reportId": "report_050",
+          "title": "1Q26 Preview: 안산의 삼성전자",
+          "broker": "유진투자증권",
+          "publishedDate": "2026-04-08",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": " 1Q26 Preview: 대덕전자의 1분기 실적은 매출액 3,280억원(YoY +37%, (원) 주가\n 100,000\n QoQ +3%), 영업이익 430억원(YoY 흑전, QoQ +48%, OPM 13.1%)으로\n 당사 기존 추정치를 상회할 전망. 메모리 및 비메모리 PKG, MLB까지 전 사 80,000",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "37%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "48%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "13.1%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "57%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "90%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "55%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "60%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "0.0%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "0.6%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "95%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "27%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "3,280억원",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "100,000",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.6158
+        },
+        {
+          "reportId": "report_081",
+          "title": "PCB 업계 내 숨어있는 강소기업",
+          "broker": "한국IR협의회",
+          "publishedDate": "2026-04-08",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "와이엠티는 전자부품 소재(FPCB/PCB 등 제조에 필요한 약품, 첨가제) 기업 Company Data\n 현재주가 (4/6) 15,070원\n와이엠티는 1999년 ‘유일재료기술’ 이라는 사명으로 설립되어 2017년 코스닥 시장에 상장. 매출 52주 최고가 18,170원\n 52주 최저가 8,070원\n비중은 화학약품 부문 91...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "91.6%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "6.3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1.3%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "0.7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "5.28%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "36.56%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "4.2%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "70.05%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "8.4%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "10.7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "10.1%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "9.2%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "42.0%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "7.0%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.6158
+        },
+        {
+          "reportId": "report_059",
+          "title": "글로벌 진출 성공, 저평가된 방산 핵심부품 수혜주",
+          "broker": "유진투자증권",
+          "publishedDate": "2026-04-08",
+          "reportType": "stock",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.54,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "분기별 유형별 매출액 추이 및 전망 분기별 고객별 매출액 추이 및 전망\n (십억원) (십억원)\n 용역매출 기타\n 25 기타 25\n 현대로템\n 민수\n 20 무기체계 시스템 20 한화시스템\n 무기탑재용 컴퓨터장치 LIG넥스원\n 15 군용 전시기 15\n 싱글보드컴퓨터\n 10 10",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "9.2%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "3.8%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "29.9%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "0.4%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "21.7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "25.9%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,578",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,402",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,585",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,768",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,990",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.5278
+        },
+        {
+          "reportId": "report_017",
+          "title": "원전, 조연은 없다",
+          "broker": "유진투자증권",
+          "publishedDate": "2026-04-08",
+          "reportType": "industry",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.54,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "▪ 전략투자(2,000억 달러): 에너지, 인공지능 등 ▪ 에너지: 원전, 송전망, 가스 등 ▪ 전략산업: 반도체, 신재생, 제약\n 투자 분야 ▪ 조선협력(1,500억 달러) ▪ 첨단산업: AI, 전자부품, 광물 등 ▪ 제조: 첨단 제조 시설\n ※ 한국 벤더 및 감독 업체 우선권",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "37.2%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "6.6%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "27%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "67.7%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "4.2%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "2,000억",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,500억",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "5,500억",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "6,000억",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "3,500억",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,111억원",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "80,300",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "37,150",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "1,180억원",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": 0.4117
+        },
+        {
+          "reportId": "report_098",
+          "title": "국내크레딧; 생산적 금융, 공공 주도 크레딧 수급 환경",
+          "broker": "신한투자증권",
+          "publishedDate": "2026-04-08",
+          "reportType": "theme",
+          "targetType": "holding",
+          "direction": "negative",
+          "strength": 0.46,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "생산적 금융,\n 공공 주도 크레딧 수급 환경\nCredit Analyst 정부가 그리는 큰 그림. 부동산금융 탈피와 생산적 금융 전환\n김상인\n☎ (02) 3772-2636 2026년 초우량물발 공급 우려가 제기되고 있다. 생산적 금융 정책 핵심은 부동\n ksi0612@shinhan.com 산금융 탈피와 첨단전략산업 진흥이...",
+          "evidenceNumbers": [
+            {
+              "label": "핵심 수치",
+              "value": "0%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "15%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "20%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "25%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "400%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "100%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            },
+            {
+              "label": "핵심 수치",
+              "value": "10%",
+              "why_it_matters": "리포트 핵심 논리나 변화 강도를 판단하는 데 사용"
+            }
+          ],
+          "contribution": -0.3957
+        }
+      ],
+      "technical": {
+        "signal": "STRONG_BUY",
+        "score": 96,
+        "adjustedScore": 96,
+        "rsi": 57.21,
+        "macd": {
+          "value": 1195.9079,
+          "signal": 737.4682,
+          "histogram": 458.4397
+        },
+        "bollinger": {
+          "upper": 80065.2923,
+          "middle": 73198,
+          "lower": 66330.7077,
+          "position": "upper_half"
+        },
+        "volumeRatio": 1.059
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "available": true,
+        "unavailableReason": null,
+        "impactScore": 80,
+        "impactValue": 1.172,
+        "impactCount": 20,
+        "coverageWeight": 1,
+        "directAccountImpactScore": 58
+      },
+      "scores": {
+        "techScore": 96,
+        "reportScore": 80,
+        "actionScore": 67
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 96점",
+          "리포트 영향 80점 (20건 연결)",
+          "RSI 57.2"
+        ],
+        "warnings": []
+      }
+    },
+    "458760": {
+      "code": "458760",
+      "name": "TIGER 미국배당다우존스스타데일리커...",
+      "accountKey": "ISA",
+      "accountLabel": "ISA",
+      "category": "배당/커버드콜",
+      "marketValue": 509250,
+      "technicalSignal": "HOLD",
+      "technicalBaseScore": 43,
+      "actionScore": 70,
+      "direction": 0.623,
+      "timing": 1.004,
+      "reportScore": 1.331,
+      "probabilities": {
+        "p_buy": 0.8534,
+        "p_hold": 0.1299,
+        "p_sell": 0.0166
+      },
+      "conviction": "HIGH",
+      "signal": "HOLD",
+      "features": {
+        "maTrend": 1.0388530471723596,
+        "macdZ": -0.37164095354744503,
+        "rsiMid": -0.17120000000000005,
+        "adxTrend": -0.12083333333333328,
+        "bbDist": 0.45,
+        "rsiTiming": 0.21400000000000005,
+        "stochTiming": 2.5,
+        "volumeZ": 0.41100000000000003
+      },
+      "reportImpacts": [
+        {
+          "reportId": "report_047",
+          "title": "1Q26 Preview: 걱정 없음",
+          "broker": "SK증권",
+          "publishedDate": "2026-04-08",
+          "reportType": "stock",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.567,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "STOCK DATA 분기 지배주주순이익 처음으로 4,000 억원대 전망 주가(26/04/07) 95,200 원 1Q26 지배주주순이익은 4,046 억원(YoY +62.9%, QoQ +87.1%)으로 컨센서스를 KOSPI 5,494.78 pt 18.6% 상회할 것으로 예상한다. 주식시장 강세에 따른 브로커리지 관련 손익 증가가 실적 52 주 최고가 114,500 원 성장의 주된 배경이며, 비우...",
+          "evidenceNumbers": [
+            "핵심 수치: 62.9%",
+            "핵심 수치: 87.1%",
+            "핵심 수치: 18.6%",
+            "핵심 수치: 27.05%"
+          ],
+          "contribution": 0.4304
+        },
+        {
+          "reportId": "report_055",
+          "title": "2026년에도 수주 및 매출액 가이던스 상회 전망",
+          "broker": "대신증권",
+          "publishedDate": "2026-04-08",
+          "reportType": "stock",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.567,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "투자의견 BUY 투자의견 '매수' 유지, 목표주가 1,100,000원으로 상향 매수, 유지 목표주가를 1,100,000원('28년 예상 EPS x PER 24배)으로 상향 ('28년 실적 전망치 6개월 목표주가 1,100,000 상향 반영). '26년 매출액 컨센서스 4.78조원 대비 낮은 가이던스 4.35조원을 공시함에 상향 따라 주가가 조정을 받은 바 있음. 가이던스 가정 환율은 1,35...",
+          "evidenceNumbers": [
+            "핵심 수치: 19%",
+            "핵심 수치: 25.1%",
+            "핵심 수치: 1.6%",
+            "핵심 수치: 39%"
+          ],
+          "contribution": 0.4304
+        },
+        {
+          "reportId": "report_081",
+          "title": "PCB 업계 내 숨어있는 강소기업",
+          "broker": "한국IR협의회",
+          "publishedDate": "2026-04-08",
+          "reportType": "stock",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.567,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "와이엠티는 전자부품 소재(FPCB/PCB 등 제조에 필요한 약품, 첨가제) 기업 Company Data 현재주가 (4/6) 15,070원 와이엠티는 1999년 ‘유일재료기술’ 이라는 사명으로 설립되어 2017년 코스닥 시장에 상장. 매출 52주 최고가 18,170원 52주 최저가 8,070원 비중은 화학약품 부문 91.6%, 기판가공 부문 6.3%, 설비제조 부문 1.3%, 소재유통 부문 0...",
+          "evidenceNumbers": [
+            "핵심 수치: 91.6%",
+            "핵심 수치: 6.3%",
+            "핵심 수치: 1.3%",
+            "핵심 수치: 0.7%"
+          ],
+          "contribution": 0.4304
+        },
+        {
+          "reportId": "report_045",
+          "title": "1Q26 Pre - SpaceX 가 끝이 아님",
+          "broker": "하나증권",
+          "publishedDate": "2026-04-08",
+          "reportType": "stock",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.486,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "Key Data KOSPI 지수(pt) 2026년 1분기 컨센서스 32% 상회 예상 52주최고/최저(원) 5,494.78 시가총액(십억원) 73,282/8,463 2026년 1분기 연결 지배주주순이익은 1.2조원(YoY +348.9%, QoQ +101.2%)으로 컨센서스 시가총액비중(%) 34,152.0 발행주식수(천주) 0.75 (8,790억원)를 약 32.1% 상회할 전망이다. 이에 따른...",
+          "evidenceNumbers": [
+            "핵심 수치: 32%",
+            "핵심 수치: 348.9%",
+            "핵심 수치: 101.2%",
+            "핵심 수치: 32.1%"
+          ],
+          "contribution": 0.3689
+        },
+        {
+          "reportId": "report_070",
+          "title": "악재만 반영한 주가",
+          "broker": "iM증권",
+          "publishedDate": "2026-04-08",
+          "reportType": "stock",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.486,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "③ VS: 매출 3.1조원 (+8% YoY, +10% QoQ), 영업이익 1,840억원 (+47% YoY, Price Trend 영업이익률 5.9%)으로 추정. 고부가 수주를 기반으로 한 IVI의 성장에 더해, ePT의 000'S 개선도 맞물린 것으로 추측. 고유가 지속 시 친환경차 수요 개선 가능성 기대 161.0 LG전자 1.10 (2025/04/07~2026/04/07) ④ ES: 매출...",
+          "evidenceNumbers": [
+            "핵심 수치: 8%",
+            "핵심 수치: 10%",
+            "핵심 수치: 47%",
+            "핵심 수치: 5.9%"
+          ],
+          "contribution": 0.3689
+        }
+      ],
+      "technical": {
+        "signal": "HOLD",
+        "score": 43,
+        "adjustedScore": 43,
+        "rsi": 47.86,
+        "macd": {
+          "value": 52.0719,
+          "signal": 82.8695,
+          "histogram": -30.7977
+        },
+        "bollinger": {
+          "upper": 11422.7287,
+          "middle": 11275.75,
+          "lower": 11128.7713,
+          "position": "lower_half"
+        },
+        "volumeRatio": 1.411
+      },
+      "report": {
+        "sourceLayer": "impact-map",
+        "available": true,
+        "unavailableReason": null,
+        "impactScore": 83,
+        "impactValue": 1.331,
+        "impactCount": 40,
+        "coverageWeight": 0.55,
+        "directAccountImpactScore": 59
+      },
+      "scores": {
+        "techScore": 43,
+        "reportScore": 83,
+        "actionScore": 70
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 43점",
+          "리포트 영향 83점 (40건 연결)",
+          "RSI 47.9"
+        ],
+        "warnings": []
+      }
+    },
+    "undefined": {
+      "name": "PLUS V K생산",
+      "accountKey": "TOSS",
+      "accountLabel": "토스증권",
+      "category": "기타",
+      "marketValue": 383475,
+      "technicalSignal": "N/A",
+      "technicalBaseScore": null,
+      "actionScore": 41,
+      "direction": -0.65,
+      "timing": 0,
+      "reportScore": 0,
+      "probabilities": {
+        "p_buy": 0.1619,
+        "p_hold": 0.3164,
+        "p_sell": 0.5217
+      },
+      "conviction": "LOW",
+      "signal": "REDUCE",
+      "features": {
+        "maTrend": -2.5,
+        "macdZ": 0,
+        "rsiMid": 0,
+        "adxTrend": 0,
+        "bbDist": 0,
+        "rsiTiming": 0,
+        "stochTiming": 0,
+        "volumeZ": 0
+      },
+      "reportImpacts": [],
+      "technical": {
+        "signal": null,
+        "score": null,
+        "adjustedScore": null,
+        "rsi": null,
+        "macd": null,
+        "bollinger": null,
+        "volumeRatio": null
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "available": false,
+        "unavailableReason": "no_linked_report",
+        "impactScore": null,
+        "impactValue": 0,
+        "impactCount": 0,
+        "coverageWeight": 0,
+        "directAccountImpactScore": 50
+      },
+      "scores": {
+        "techScore": null,
+        "reportScore": null,
+        "actionScore": 41
+      },
+      "explain": {
+        "topDrivers": [],
+        "warnings": [
+          "기술 스냅샷이 없어 리포트/배분 쪽 해석 비중이 커졌습니다.",
+          "REDUCE 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    }
+  },
+  "accounts": {
+    "ISA": {
+      "key": "ISA",
+      "label": "ISA",
+      "allocationScore": 76,
+      "holdingsScore": 64,
+      "reportCoverageScore": 78,
+      "reportStatus": "available",
+      "reportUnavailableReason": null,
+      "stage2Bias": "selective_add",
+      "totalScore": 65,
+      "note": "선별적 보강은 가능하지만 약한 자산군과 패널티 요인을 함께 줄여야 합니다.",
+      "coverage": {
+        "techCoverage": 1,
+        "impactCoverage": 0.775,
+        "stage2Available": true,
+        "fredAvailable": true
+      },
+      "baseScores": {
+        "allocationScore": 76,
+        "techScore": 64,
+        "reportScore": 60,
+        "regimeFit": 71,
+        "stage2Score": 58,
+        "leadingScore": 60,
+        "actionBlend": 55
+      },
+      "effectiveWeights": {
+        "allocation": 0.495,
+        "tech": 0.3,
+        "report": 0.0775,
+        "regime": 0.0275,
+        "stage2": 0.05,
+        "leading": 0.05
+      },
+      "riskPenalty": {
+        "total": 4,
+        "breakdown": {
+          "dataQuality": {
+            "total": 0,
+            "incompletePenalty": 0,
+            "unmappedExposurePct": 0,
+            "unmappedPenalty": 0,
+            "missingTechnicalPenalty": 0
+          },
+          "concentration": {
+            "total": 3.95,
+            "hhi": 0.5002,
+            "hhiPenalty": 3,
+            "maxPositionPct": 50.89,
+            "maxPositionPenalty": 0.94
+          },
+          "tailRisk": {
+            "total": 0,
+            "method": "portfolio_weighted_returns",
+            "maxDrawdownPct": 3.32,
+            "cvar95Pct": -1.429,
+            "holdingsWithData": 2
+          },
+          "regimeStress": {
+            "total": 0,
+            "currentRiskPct": 5.86,
+            "desiredRiskPct": 25,
+            "excessRiskPct": 0
+          }
+        },
+        "notes": [
+          "단일 포지션 또는 집중도가 높아 분산 패널티가 반영됐습니다."
+        ]
+      },
+      "accountDirectImpact": {
+        "value": 0.348,
+        "score": 59,
+        "impacts": [
+          {
+            "reportId": "report_050",
+            "title": "1Q26 Preview: 안산의 삼성전자",
+            "broker": "유진투자증권",
+            "publishedDate": "2026-04-08",
+            "reportType": "stock",
+            "targetType": "account",
+            "direction": "positive",
+            "strength": 0.353,
+            "confidence": 0.82,
+            "horizon": "3m",
+            "decayHalfLifeDays": 45,
+            "reason": " 1Q26 Preview: 대덕전자의 1분기 실적은 매출액 3,280억원(YoY +37%, (원) 주가 100,000 QoQ +3%), 영업이익 430억원(YoY 흑전, QoQ +48%, OPM 13.1%)으로 당사 기존 추정치를 상회할 전망. 메모리 및 비메모리 PKG, MLB까지 전 사 80,000",
+            "evidenceNumbers": [
+              "핵심 수치: 37%",
+              "핵심 수치: 3%",
+              "핵심 수치: 48%",
+              "핵심 수치: 13.1%"
+            ],
+            "contribution": 0.1165
+          },
+          {
+            "reportId": "report_052",
+            "title": "1Q26P Review: 시작이 좋다",
+            "broker": "유진투자증권",
+            "publishedDate": "2026-04-08",
+            "reportType": "stock",
+            "targetType": "account",
+            "direction": "positive",
+            "strength": 0.353,
+            "confidence": 0.82,
+            "horizon": "3m",
+            "decayHalfLifeDays": 45,
+            "reason": " ES: 중동의 지정학적 이벤트 영향으로 타 사업부 대비 해외 매출 확대 부 주가상승률(%) 1M 6M 12M -9.2 40.2 57.3 진, 전년비 역성장 실현. 판가 하락 및 시장 전반의 불확실성이 지속되는 중. (원, 십억원) 현재 직전 변동 동시에 AI DC 등 미래 신성장 분야의 인력 채용에 따른 고정비 증가로 수익 투자의견 BUY BUY - 성 역시 전년비 소폭 부진 목표주가 1...",
+            "evidenceNumbers": [
+              "핵심 수치: 2.5%",
+              "핵심 수치: 7.4%",
+              "핵심 수치: 4%",
+              "핵심 수치: 0.5%"
+            ],
+            "contribution": 0.1165
+          },
+          {
+            "reportId": "report_058",
+            "title": "국내 견조, 해외 온도차",
+            "broker": "유안타증권",
+            "publishedDate": "2026-04-08",
+            "reportType": "stock",
+            "targetType": "account",
+            "direction": "positive",
+            "strength": 0.353,
+            "confidence": 0.82,
+            "horizon": "3m",
+            "decayHalfLifeDays": 45,
+            "reason": "총발행주식수 69,050,589주 해외는 지역별로 온도차가 존재한다. 중화권은 구조조정 영향으로 매출액 23% 감소가 예상 60일 평균 거래대금 427억원 되며 BEP 수준의 수익성이 전망된다. 미주는 유통사의 보수적인 매입 기조 영향으로 1분기 60일 평균 거래량 303,675주 성장률은 +9% YoY가 예상된다. 유럽은 중동 전쟁 영향에 따른 마케팅 지연 및 유통사 매입 52주 고/저 1...",
+            "evidenceNumbers": [
+              "핵심 수치: 23%",
+              "핵심 수치: 9%",
+              "핵심 수치: 3%",
+              "핵심 수치: 26.01%"
+            ],
+            "contribution": 0.1165
+          },
+          {
+            "reportId": "report_063",
+            "title": "본업의 정상화에 로봇 모멘텀 추가",
+            "broker": "하나증권",
+            "publishedDate": "2026-04-08",
+            "reportType": "stock",
+            "targetType": "account",
+            "direction": "positive",
+            "strength": 0.353,
+            "confidence": 0.82,
+            "horizon": "3m",
+            "decayHalfLifeDays": 45,
+            "reason": "Financial Data (십억원, %, 배, 원) 연결기준 26년 매출 91조 8,220억원(YoY +3%), 영업이익 3조 4,411억원(YoY +40%, OPM 투자지표 2024 2025 2026F 2027F 매출액 87,728.2 89,200.9 91,822.0 95,515.0 3.7%), 별도기준으로는 매출 69조 5,388억원(YoY +2.7%), 영업이익 2조 5,023억원(Y...",
+            "evidenceNumbers": [
+              "핵심 수치: 3%",
+              "핵심 수치: 40%",
+              "핵심 수치: 3.7%",
+              "핵심 수치: 2.7%"
+            ],
+            "contribution": 0.1165
+          }
+        ]
+      }
+    },
+    "PENSION": {
+      "key": "PENSION",
+      "label": "연금저축",
+      "allocationScore": 84,
+      "holdingsScore": 77,
+      "reportCoverageScore": 55,
+      "reportStatus": "available",
+      "reportUnavailableReason": null,
+      "stage2Bias": "selective_add",
+      "totalScore": 79,
+      "note": "배분·기술·리포트가 비교적 균형적이며 리스크 패널티도 낮습니다.",
+      "coverage": {
+        "techCoverage": 1,
+        "impactCoverage": 0.55,
+        "stage2Available": true,
+        "fredAvailable": true
+      },
+      "baseScores": {
+        "allocationScore": 84,
+        "techScore": 77,
+        "reportScore": 85,
+        "regimeFit": 82,
+        "stage2Score": 58,
+        "leadingScore": 60,
+        "actionBlend": 64
+      },
+      "effectiveWeights": {
+        "allocation": 0.5175,
+        "tech": 0.3,
+        "report": 0.055,
+        "regime": 0.0275,
+        "stage2": 0.05,
+        "leading": 0.05
+      },
+      "riskPenalty": {
+        "total": 0,
+        "breakdown": {
+          "dataQuality": {
+            "total": 0,
+            "incompletePenalty": 0,
+            "unmappedExposurePct": 0,
+            "unmappedPenalty": 0,
+            "missingTechnicalPenalty": 0
+          },
+          "concentration": {
+            "total": 0,
+            "hhi": 0.3661,
+            "hhiPenalty": 0,
+            "maxPositionPct": 41.18,
+            "maxPositionPenalty": 0
+          },
+          "tailRisk": {
+            "total": 0,
+            "method": "portfolio_weighted_returns",
+            "maxDrawdownPct": 5.47,
+            "cvar95Pct": -1.5443,
+            "holdingsWithData": 3
+          },
+          "regimeStress": {
+            "total": 0,
+            "currentRiskPct": 35.88,
+            "desiredRiskPct": 65,
+            "excessRiskPct": 0
+          }
+        },
+        "notes": []
+      },
+      "accountDirectImpact": {
+        "value": 0.328,
+        "score": 59,
+        "impacts": [
+          {
+            "reportId": "report_058",
+            "title": "국내 견조, 해외 온도차",
+            "broker": "유안타증권",
+            "publishedDate": "2026-04-08",
+            "reportType": "stock",
+            "targetType": "account",
+            "direction": "positive",
+            "strength": 0.353,
+            "confidence": 0.82,
+            "horizon": "3m",
+            "decayHalfLifeDays": 45,
+            "reason": "총발행주식수 69,050,589주 해외는 지역별로 온도차가 존재한다. 중화권은 구조조정 영향으로 매출액 23% 감소가 예상 60일 평균 거래대금 427억원 되며 BEP 수준의 수익성이 전망된다. 미주는 유통사의 보수적인 매입 기조 영향으로 1분기 60일 평균 거래량 303,675주 성장률은 +9% YoY가 예상된다. 유럽은 중동 전쟁 영향에 따른 마케팅 지연 및 유통사 매입 52주 고/저 1...",
+            "evidenceNumbers": [
+              "핵심 수치: 23%",
+              "핵심 수치: 9%",
+              "핵심 수치: 3%",
+              "핵심 수치: 26.01%"
+            ],
+            "contribution": 0.1165
+          },
+          {
+            "reportId": "report_046",
+            "title": "1Q26 Pre: 온라인 채널 확대 위한 마케팅비 지출",
+            "broker": "하나증권",
+            "publishedDate": "2026-04-08",
+            "reportType": "stock",
+            "targetType": "account",
+            "direction": "positive",
+            "strength": 0.353,
+            "confidence": 0.78,
+            "horizon": "3m",
+            "decayHalfLifeDays": 45,
+            "reason": "Key Data KOSDAQ 지수 (pt) 1,036.73 1Q26 Pre: 시장 기대 소폭 하회 예상 52주 최고/최저(원) 36,050/21,700 시가총액(십억원) 311.6 1분기 연결 매출액 및 영업이익을 각각 8,437억원(YoY 5.6%), 108억원(YoY 1.4%)으로 추 시가총액비중(%) 0.05 발행주식수(천주) 11,871.6 정한다. 손익은 온라인 채널 확장 관련 마케...",
+            "evidenceNumbers": [
+              "핵심 수치: 5.6%",
+              "핵심 수치: 1.4%",
+              "핵심 수치: 8.0%",
+              "핵심 수치: 5.0%"
+            ],
+            "contribution": 0.1108
+          },
+          {
+            "reportId": "report_048",
+            "title": "1Q26 Preview: 백화점 너 정말 실적의 **핵심을 찔렀어**",
+            "broker": "교보증권",
+            "publishedDate": "2026-04-08",
+            "reportType": "stock",
+            "targetType": "account",
+            "direction": "positive",
+            "strength": 0.353,
+            "confidence": 0.78,
+            "horizon": "3m",
+            "decayHalfLifeDays": 45,
+            "reason": "-20 150 투자의견 BUY 유지 및 목표주가 430,000원 유지. 현재 신세계 백화점은 외국인 방문율이 100 -30 50 높은 명동, 부산 지역 등에서 높은 외국인 매출 성장률을 보이고 있는 것으로 추정됨 -40 0 (1Q26 YoY 본점 140%, 센텀 91% 추정). 또한 향후 시내 면세점의 현 수익성 (HSD% 수준) 지속 여부에 따라 추정치 상향 여지 존재. 1) 명품 카테고리...",
+            "evidenceNumbers": [
+              "핵심 수치: 140%",
+              "핵심 수치: 91%",
+              "핵심 수치: 9.2%",
+              "핵심 수치: 28.8%"
+            ],
+            "contribution": 0.1108
+          },
+          {
+            "reportId": "report_049",
+            "title": "1Q26 Preview: 백화점 수익성 개선 많이 될거야",
+            "broker": "교보증권",
+            "publishedDate": "2026-04-08",
+            "reportType": "stock",
+            "targetType": "account",
+            "direction": "positive",
+            "strength": 0.353,
+            "confidence": 0.78,
+            "horizon": "3m",
+            "decayHalfLifeDays": 45,
+            "reason": "③ 지누스: 매출액 1,912억원(YoY –23.5%), 영업적자 233억원(YoY 적전) 전망. 작년 하 반기 가격 인상에 따른 최종 수요 회복 지연과 주요 고객사의 보수적인 오더에 기반하여 매출액은 지속 역성장 기조를 보일 것으로 추정. 향후 가격 적응에 따른 최종 수요 회복이 실적 개선의 핵심 변수가 될 전망 (%) KOSPI상대수익률 (좌측) (천원) 30 현대백화점주가 (우측) 12...",
+            "evidenceNumbers": [
+              "핵심 수치: 23.5%",
+              "핵심 수치: 6.2%",
+              "핵심 수치: 31.5%",
+              "핵심 수치: 6.9%"
+            ],
+            "contribution": 0.1108
+          }
+        ]
+      }
+    },
+    "TOSS": {
+      "key": "TOSS",
+      "label": "토스증권",
+      "allocationScore": 57,
+      "holdingsScore": 64,
+      "reportCoverageScore": 33,
+      "reportStatus": "available",
+      "reportUnavailableReason": null,
+      "stage2Bias": "aggressive_add",
+      "totalScore": 50,
+      "note": "배분 괴리 또는 리스크 패널티가 커서 공격적 확대보다 재정비가 우선입니다.",
+      "coverage": {
+        "techCoverage": 0.3333,
+        "impactCoverage": 0.3333,
+        "stage2Available": true,
+        "fredAvailable": true
+      },
+      "baseScores": {
+        "allocationScore": 57,
+        "techScore": 64,
+        "reportScore": 64,
+        "regimeFit": 56,
+        "stage2Score": 64,
+        "leadingScore": 60,
+        "actionBlend": 55
+      },
+      "effectiveWeights": {
+        "allocation": 0.7392,
+        "tech": 0.1,
+        "report": 0.0333,
+        "regime": 0.0275,
+        "stage2": 0.05,
+        "leading": 0.05
+      },
+      "riskPenalty": {
+        "total": 8,
+        "breakdown": {
+          "dataQuality": {
+            "total": 7.02,
+            "incompletePenalty": 0,
+            "unmappedExposurePct": 37.01,
+            "unmappedPenalty": 5,
+            "missingTechnicalPenalty": 2.02
+          },
+          "concentration": {
+            "total": 0,
+            "hhi": 0.3355,
+            "hhiPenalty": 0,
+            "maxPositionPct": 36,
+            "maxPositionPenalty": 0
+          },
+          "tailRisk": {
+            "total": 0.75,
+            "method": "portfolio_weighted_returns",
+            "maxDrawdownPct": 8.36,
+            "cvar95Pct": -3.4511,
+            "holdingsWithData": 1
+          },
+          "regimeStress": {
+            "total": 0,
+            "currentRiskPct": 19.33,
+            "desiredRiskPct": 75,
+            "excessRiskPct": 0
+          }
+        },
+        "notes": [
+          "'기타' 비중 37%가 남아 분류 품질 패널티가 붙었습니다.",
+          "최대낙폭 8.36% / CVaR(95%) -3.4511% 수준으로 꼬리 리스크 패널티가 적용됐습니다."
+        ]
+      },
+      "accountDirectImpact": {
+        "value": 0,
+        "score": 50,
+        "impacts": []
+      }
+    },
+    "KIS_MAIN": {
+      "key": "KIS_MAIN",
+      "label": "한투 일반",
+      "allocationScore": 69,
+      "holdingsScore": 84,
+      "reportCoverageScore": 67,
+      "reportStatus": "available",
+      "reportUnavailableReason": null,
+      "stage2Bias": "selective_add",
+      "totalScore": 62,
+      "note": "선별적 보강은 가능하지만 약한 자산군과 패널티 요인을 함께 줄여야 합니다.",
+      "coverage": {
+        "techCoverage": 0.6667,
+        "impactCoverage": 0.6667,
+        "stage2Available": true,
+        "fredAvailable": true
+      },
+      "baseScores": {
+        "allocationScore": 69,
+        "techScore": 84,
+        "reportScore": 67,
+        "regimeFit": 65,
+        "stage2Score": 58,
+        "leadingScore": 60,
+        "actionBlend": 56
+      },
+      "effectiveWeights": {
+        "allocation": 0.6058,
+        "tech": 0.2,
+        "report": 0.0667,
+        "regime": 0.0275,
+        "stage2": 0.05,
+        "leading": 0.05
+      },
+      "riskPenalty": {
+        "total": 9,
+        "breakdown": {
+          "dataQuality": {
+            "total": 4.31,
+            "incompletePenalty": 0,
+            "unmappedExposurePct": 14.64,
+            "unmappedPenalty": 4.29,
+            "missingTechnicalPenalty": 0.02
+          },
+          "concentration": {
+            "total": 3.05,
+            "hhi": 0.4312,
+            "hhiPenalty": 0.93,
+            "maxPositionPct": 58.21,
+            "maxPositionPenalty": 2.11
+          },
+          "tailRisk": {
+            "total": 1.57,
+            "method": "portfolio_weighted_returns",
+            "maxDrawdownPct": 6.79,
+            "cvar95Pct": -3.9407,
+            "holdingsWithData": 2
+          },
+          "regimeStress": {
+            "total": 0,
+            "currentRiskPct": 10.51,
+            "desiredRiskPct": 75,
+            "excessRiskPct": 0
+          }
+        },
+        "notes": [
+          "'기타' 비중 14.6%가 남아 분류 품질 패널티가 붙었습니다.",
+          "단일 포지션 또는 집중도가 높아 분산 패널티가 반영됐습니다.",
+          "최대낙폭 6.79% / CVaR(95%) -3.9407% 수준으로 꼬리 리스크 패널티가 적용됐습니다."
+        ]
+      },
+      "accountDirectImpact": {
+        "value": 0.304,
+        "score": 58,
+        "impacts": [
+          {
+            "reportId": "report_050",
+            "title": "1Q26 Preview: 안산의 삼성전자",
+            "broker": "유진투자증권",
+            "publishedDate": "2026-04-08",
+            "reportType": "stock",
+            "targetType": "account",
+            "direction": "positive",
+            "strength": 0.353,
+            "confidence": 0.82,
+            "horizon": "3m",
+            "decayHalfLifeDays": 45,
+            "reason": " 1Q26 Preview: 대덕전자의 1분기 실적은 매출액 3,280억원(YoY +37%, (원) 주가 100,000 QoQ +3%), 영업이익 430억원(YoY 흑전, QoQ +48%, OPM 13.1%)으로 당사 기존 추정치를 상회할 전망. 메모리 및 비메모리 PKG, MLB까지 전 사 80,000",
+            "evidenceNumbers": [
+              "핵심 수치: 37%",
+              "핵심 수치: 3%",
+              "핵심 수치: 48%",
+              "핵심 수치: 13.1%"
+            ],
+            "contribution": 0.1165
+          },
+          {
+            "reportId": "report_081",
+            "title": "PCB 업계 내 숨어있는 강소기업",
+            "broker": "한국IR협의회",
+            "publishedDate": "2026-04-08",
+            "reportType": "stock",
+            "targetType": "account",
+            "direction": "positive",
+            "strength": 0.353,
+            "confidence": 0.82,
+            "horizon": "3m",
+            "decayHalfLifeDays": 45,
+            "reason": "와이엠티는 전자부품 소재(FPCB/PCB 등 제조에 필요한 약품, 첨가제) 기업 Company Data 현재주가 (4/6) 15,070원 와이엠티는 1999년 ‘유일재료기술’ 이라는 사명으로 설립되어 2017년 코스닥 시장에 상장. 매출 52주 최고가 18,170원 52주 최저가 8,070원 비중은 화학약품 부문 91.6%, 기판가공 부문 6.3%, 설비제조 부문 1.3%, 소재유통 부문 0...",
+            "evidenceNumbers": [
+              "핵심 수치: 91.6%",
+              "핵심 수치: 6.3%",
+              "핵심 수치: 1.3%",
+              "핵심 수치: 0.7%"
+            ],
+            "contribution": 0.1165
+          },
+          {
+            "reportId": "report_059",
+            "title": "글로벌 진출 성공, 저평가된 방산 핵심부품 수혜주",
+            "broker": "유진투자증권",
+            "publishedDate": "2026-04-08",
+            "reportType": "stock",
+            "targetType": "account",
+            "direction": "positive",
+            "strength": 0.302,
+            "confidence": 0.82,
+            "horizon": "3m",
+            "decayHalfLifeDays": 45,
+            "reason": "분기별 유형별 매출액 추이 및 전망 분기별 고객별 매출액 추이 및 전망 (십억원) (십억원) 용역매출 기타 25 기타 25 현대로템 민수 20 무기체계 시스템 20 한화시스템 무기탑재용 컴퓨터장치 LIG넥스원 15 군용 전시기 15 싱글보드컴퓨터 10 10",
+            "evidenceNumbers": [
+              "핵심 수치: 9.2%",
+              "핵심 수치: 3.8%",
+              "핵심 수치: 29.9%",
+              "핵심 수치: 0.4%"
+            ],
+            "contribution": 0.0997
+          },
+          {
+            "reportId": "report_008",
+            "title": "1Q26 Preview: 밀어주고, 끌어주고",
+            "broker": "교보증권",
+            "publishedDate": "2026-04-08",
+            "reportType": "industry",
+            "targetType": "account",
+            "direction": "positive",
+            "strength": 0.353,
+            "confidence": 0.82,
+            "horizon": "3m",
+            "decayHalfLifeDays": 45,
+            "reason": "3. 투자전략 22 1Q26 Preview: 아직도 YoY +40%, 높은 시장 기대치 충족 24 전력기기 Overweight: 전력 설비 = 핵심 국가 안보 26 TOP-PICK: 산일전기, LS ELECTRIC",
+            "evidenceNumbers": [
+              "핵심 수치: 40%",
+              "핵심 수치: 31.7%",
+              "핵심 수치: 54.6%",
+              "핵심 수치: 3.6%"
+            ],
+            "contribution": 0.0909
+          }
+        ]
+      }
+    }
+  },
+  "portfolio": {
+    "totalScore": 65,
+    "baseScore": 69.85,
+    "riskPenalty": {
+      "total": 4.99
+    },
+    "note": "선별적 추가와 방어를 병행해야 하는 구간"
+  }
+}

@@ -1,0 +1,234 @@
+{
+  "date": "2026-04-08",
+  "macro_view": {
+    "regime": "BULL|HIGH_VOL",
+    "confidence": "HIGH",
+    "summary": "AI 혁신 기대감으로 시장은 지지되나, 구조적 인플레이션과 중동 지정학적 리스크로 변동성이 높습니다."
+  },
+  "strategy_changes": [
+    {
+      "theme": "AI 하드웨어/인프라",
+      "direction": "reinforce",
+      "why_now": "AI 추론 및 엣지 AI, 로보틱스 등 다음 단계의 AI 산업 노출이 부족하며, 관련 국산화 정책 수혜가 기대됩니다.",
+      "source_reports": [
+        "report_003",
+        "report_005"
+      ]
+    },
+    {
+      "theme": "에너지 안보 및 전력 인프라",
+      "direction": "reinforce",
+      "why_now": "데이터센터 전력 수요 증가와 전력 설비의 국가 안보 중요성 부각으로 구조적 성장이 예상됩니다.",
+      "source_reports": [
+        "report_008"
+      ]
+    },
+    {
+      "theme": "지정학적 리스크 헤지",
+      "direction": "reinforce",
+      "why_now": "중동 지정학적 긴장 지속 및 원자재 가격 강세 전망으로 인플레이션 헤지 및 리스크 방어가 필요합니다.",
+      "source_reports": [
+        "report_001",
+        "report_002"
+      ]
+    },
+    {
+      "theme": "현금 비중 축소",
+      "direction": "reduce",
+      "why_now": "과도한 현금 비중은 인플레이션 환경에서 실질 가치 하락 위험이 있으며, 핵심 테마 자산으로 전환하여 시장 참여도를 높여야 합니다.",
+      "source_reports": []
+    }
+  ],
+  "account_actions": [
+    {
+      "account_key": "ISA",
+      "bias": "selective_add",
+      "rationale": "장기 성장 및 배당 전략을 유지하며, AI 성장주와 에너지 안보 테마 ETF 비중을 확대하여 포트폴리오를 강화합니다.",
+      "buy_candidates": [
+        "434730",
+        "458760"
+      ],
+      "trim_candidates": [],
+      "hold_candidates": [
+        "360750"
+      ],
+      "reserve_cash_note": "ISA 한도 내에서 현금 비중을 점진적으로 줄여 핵심 테마 자산으로 전환합니다."
+    },
+    {
+      "account_key": "PENSION",
+      "bias": "selective_add",
+      "rationale": "절세 효과를 활용하여 장기적 관점에서 AI, 에너지, 원자재 테마 ETF 비중을 확대합니다.",
+      "buy_candidates": [
+        "138910",
+        "133690"
+      ],
+      "trim_candidates": [
+        "423160"
+      ],
+      "hold_candidates": [
+        "360750"
+      ],
+      "reserve_cash_note": "가용 현금을 활용하여 장기 성장 테마 자산으로 분할 매수를 시작합니다."
+    },
+    {
+      "account_key": "TOSS",
+      "bias": "aggressive_add",
+      "rationale": "단기 모멘텀과 알파 수익을 추구하며, 지정학적 리스크 헤지 및 AI 관련 테마 ETF 비중을 확대합니다.",
+      "buy_candidates": [
+        "449450",
+        "487240"
+      ],
+      "trim_candidates": [
+        "KODEX 선진국ESG액티브"
+      ],
+      "hold_candidates": [
+        "434730"
+      ],
+      "reserve_cash_note": "현금 비중을 적극적으로 줄여 모멘텀이 강한 테마 자산으로 전환합니다."
+    },
+    {
+      "account_key": "KIS_MAIN",
+      "bias": "selective_add",
+      "rationale": "단기 모멘텀과 알파 수익을 추구하며, 지정학적 리스크 헤지 및 AI 전력 테마를 강화합니다.",
+      "buy_candidates": [
+        "138910",
+        "434730"
+      ],
+      "trim_candidates": [],
+      "hold_candidates": [
+        "449450"
+      ],
+      "reserve_cash_note": "가용 현금을 활용하여 핵심 테마 자산의 비중을 확대합니다."
+    }
+  ],
+  "candidate_scores": [
+    {
+      "code": "360750",
+      "name": "TIGER 미국S&P500",
+      "stance": "buy",
+      "target_accounts": [
+        "ISA",
+        "PENSION"
+      ],
+      "horizon": "3m",
+      "confidence": "HIGH",
+      "thesis": "AI 혁신을 주도하는 미국 시장의 장기 성장 잠재력과 견조한 기술 점수를 보유하고 있습니다.",
+      "risks": [
+        "중동 지정학적 리스크",
+        "AI 투자 수익성 악화 가능성"
+      ]
+    },
+    {
+      "code": "458760",
+      "name": "TIGER 미국배당다우존스스타데일리커...",
+      "stance": "buy",
+      "target_accounts": [
+        "ISA"
+      ],
+      "horizon": "3m",
+      "confidence": "MEDIUM",
+      "thesis": "인플레이션 헤지 및 안정적인 현금 흐름 확보에 유리하며, ISA 계좌의 장기 배당 전략에 부합합니다.",
+      "risks": [
+        "중동 지정학적 리스크",
+        "시장 변동성 확대"
+      ]
+    },
+    {
+      "code": "423160",
+      "name": "KODEX KOFR금리액티브(합성)",
+      "stance": "trim",
+      "target_accounts": [
+        "PENSION"
+      ],
+      "horizon": "1m",
+      "confidence": "HIGH",
+      "thesis": "높은 현금 비중 축소 및 시장 참여도 확대를 위해 단기 유동성 자산 비중을 줄입니다.",
+      "risks": [
+        "시장 급락 시 방어력 약화"
+      ]
+    },
+    {
+      "code": "133690",
+      "name": "TIGER 미국나스닥100",
+      "stance": "buy",
+      "target_accounts": [
+        "PENSION"
+      ],
+      "horizon": "3m",
+      "confidence": "HIGH",
+      "thesis": "AI 혁신을 주도하는 기술주 중심의 장기 성장 잠재력을 활용하며, PENSION 계좌의 절세 효과를 극대화합니다.",
+      "risks": [
+        "AI 투자 수익성 악화 가능성",
+        "기술주 변동성"
+      ]
+    },
+    {
+      "code": "434730",
+      "name": "HANARO 원자력iSelect",
+      "stance": "buy",
+      "target_accounts": [
+        "ISA",
+        "KIS_MAIN"
+      ],
+      "horizon": "3m",
+      "confidence": "HIGH",
+      "thesis": "데이터센터 전력 수요 증가 및 정부 정책 수혜로 에너지 안보 테마를 강화합니다.",
+      "risks": [
+        "정책 변화",
+        "원자력 발전 관련 규제"
+      ]
+    },
+    {
+      "code": "138910",
+      "name": "KODEX 구리선물(H)",
+      "stance": "buy",
+      "target_accounts": [
+        "PENSION",
+        "KIS_MAIN"
+      ],
+      "horizon": "3m",
+      "confidence": "HIGH",
+      "thesis": "전력 인프라 및 AI 데이터센터 수요 증가에 따른 구리 가격 강세 전망에 대응합니다.",
+      "risks": [
+        "글로벌 경기 둔화",
+        "공급망 안정화"
+      ]
+    },
+    {
+      "code": "449450",
+      "name": "PLUS K방산",
+      "stance": "buy",
+      "target_accounts": [
+        "TOSS",
+        "KIS_MAIN"
+      ],
+      "horizon": "3m",
+      "confidence": "HIGH",
+      "thesis": "중동 지정학적 리스크 고조에 따른 방산 산업 성장 및 포트폴리오 헤지 강화를 목표로 합니다.",
+      "risks": [
+        "지정학적 긴장 완화",
+        "정부 정책 변화"
+      ]
+    },
+    {
+      "code": "487240",
+      "name": "KODEX AI전력핵심설비",
+      "stance": "buy",
+      "target_accounts": [
+        "TOSS"
+      ],
+      "horizon": "3m",
+      "confidence": "MEDIUM",
+      "thesis": "AI 데이터센터 전력 수요 증가에 따른 전력 인프라 핵심 설비 투자 확대 수혜를 기대합니다.",
+      "risks": [
+        "AI 투자 지연",
+        "전력 인프라 구축 지연"
+      ]
+    }
+  ],
+  "portfolio_risks": [
+    "중동 전면전 확산 및 에너지 공급망에 심각한 차질 발생 가능성",
+    "AI 인프라 투자 대비 실제 기업 수익 창출 지연 및 반도체 섹터 피크아웃 가능성",
+    "과도한 현금 비중으로 인한 인플레이션 환경에서의 실질 구매력 손실 위험"
+  ]
+}
