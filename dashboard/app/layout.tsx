@@ -26,9 +26,9 @@ export default function RootLayout({
   return (
     <html
       lang="ko"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased dark`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full overflow-x-hidden bg-zinc-950 text-zinc-100">
+      <body className="theme-light min-h-full overflow-x-hidden bg-white text-slate-900">
         <MainNav />
         <div className="relative flex min-h-full flex-col">
           {children}

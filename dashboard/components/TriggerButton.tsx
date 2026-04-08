@@ -52,13 +52,13 @@ export default function TriggerButton() {
 
   const colors = {
     idle:
-      "border-emerald-400/20 bg-[linear-gradient(135deg,rgba(16,185,129,0.28),rgba(15,23,42,0.94))] text-white hover:border-emerald-300/35 hover:shadow-[0_18px_45px_rgba(16,185,129,0.18)]",
+      "border-blue-200 bg-[linear-gradient(135deg,rgba(219,234,254,0.98),rgba(255,255,255,0.98))] text-slate-900 hover:border-blue-300 hover:shadow-[0_18px_40px_rgba(59,130,246,0.12)]",
     loading:
-      "cursor-not-allowed border-white/10 bg-[linear-gradient(135deg,rgba(39,39,42,0.92),rgba(15,23,42,0.94))] text-zinc-200",
+      "cursor-not-allowed border-slate-200 bg-[linear-gradient(135deg,rgba(248,250,252,0.98),rgba(241,245,249,0.98))] text-slate-500",
     ok:
-      "border-emerald-400/20 bg-[linear-gradient(135deg,rgba(5,150,105,0.32),rgba(15,23,42,0.94))] text-white",
+      "border-blue-200 bg-[linear-gradient(135deg,rgba(219,234,254,0.98),rgba(239,246,255,0.98))] text-blue-700",
     error:
-      "border-red-400/20 bg-[linear-gradient(135deg,rgba(185,28,28,0.32),rgba(15,23,42,0.94))] text-white",
+      "border-rose-200 bg-[linear-gradient(135deg,rgba(255,241,242,0.98),rgba(255,255,255,0.98))] text-rose-700",
   };
 
   return (
@@ -68,13 +68,13 @@ export default function TriggerButton() {
         disabled={state === "loading"}
         className={`group relative w-full overflow-hidden rounded-[1.4rem] border px-4 py-3 text-left transition sm:w-auto sm:min-w-[13.5rem] ${colors[state]}`}
       >
-        <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.18),transparent_58%)] opacity-70 transition-opacity group-hover:opacity-100" />
+        <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.1),transparent_58%)] opacity-70 transition-opacity group-hover:opacity-100" />
         <span className="relative flex items-center gap-3">
-          <span className="flex size-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/10">
+          <span className="flex size-10 shrink-0 items-center justify-center rounded-full border border-slate-200 bg-white">
             <RefreshCw size={16} className={state === "loading" ? "animate-spin" : ""} />
           </span>
           <span className="min-w-0">
-            <span className="flex items-center gap-1 text-[11px] uppercase tracking-[0.2em] text-white/55">
+            <span className="flex items-center gap-1 text-[11px] uppercase tracking-[0.2em] text-slate-400">
               <Sparkles size={11} />
               analysis
             </span>
@@ -85,7 +85,7 @@ export default function TriggerButton() {
       {message && (
         <p
           className={`text-xs ${
-            state === "error" ? "text-red-300" : "text-emerald-200"
+            state === "error" ? "text-rose-600" : "text-blue-700"
           }`}
         >
           {message}

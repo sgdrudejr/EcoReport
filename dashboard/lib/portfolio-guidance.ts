@@ -24,7 +24,7 @@ const STRATEGY_FILE = path.join(REPO_ROOT, "config", "strategy.json");
 const TECHNICAL_DIR = "data/technical";
 const ANALYSIS_DIR = "data/analysis-state";
 
-type StrategyAccountKey = "ISA" | "연금저축" | "토스증권";
+type StrategyAccountKey = string;
 
 type StrategyAllocation = {
   name?: string;
@@ -67,6 +67,13 @@ type RiskPenaltyBreakdown = {
   concentration?: {
     total?: number;
   };
+  covariance?: {
+    total?: number;
+    annualizedVolatility?: number | null;
+  };
+  tailRisk?: {
+    total?: number;
+  };
   regimeStress?: {
     total?: number;
   };
@@ -75,17 +82,21 @@ type RiskPenaltyBreakdown = {
 type Stage3Account = {
   baseScores?: {
     allocationScore?: number;
+    factorScore?: number | null;
     techScore?: number;
     reportScore?: number | null;
     regimeFit?: number;
     stage2Score?: number;
   };
   allocationScore?: number;
+  factorScore?: number | null;
+  preTaxScore?: number | null;
   holdingsScore?: number;
   reportCoverageScore?: number | null;
   reportStatus?: "available" | "unavailable";
   reportUnavailableReason?: string | null;
   coverage?: {
+    factorCoverage?: number;
     impactCoverage?: number;
     techCoverage?: number;
   };
@@ -93,6 +104,10 @@ type Stage3Account = {
     total?: number;
     breakdown?: RiskPenaltyBreakdown | null;
   };
+  taxAdjustment?: {
+    multiplier?: number | null;
+    addedScore?: number | null;
+  } | null;
   effectiveWeights?: Record<string, number> | null;
   totalScore?: number;
   note?: string | null;
@@ -100,16 +115,23 @@ type Stage3Account = {
 };
 
 type Stage3Holding = {
+  positionKey?: string;
   code?: string;
   name?: string;
   accountKey?: string;
   accountLabel?: string;
   category?: string;
   marketValue?: number;
+  incomeYield?: number | null;
   technicalSignal?: string | null;
   technicalBaseScore?: number | null;
   signal?: string | null;
+  factor?: {
+    score?: number | null;
+    factorCoverage?: number | null;
+  };
   scores?: {
+    factorScore?: number | null;
     techScore?: number | null;
     reportScore?: number | null;
     actionScore?: number | null;
@@ -131,12 +153,14 @@ type Stage3Analysis = {
   generatedAt?: string | null;
   accounts?: Record<string, Stage3Account>;
   holdings?: Record<string, Stage3Holding>;
+  positions?: Record<string, Stage3Holding>;
   reportInputs?: {
     reportCount?: number;
     available?: boolean;
   };
   portfolio?: {
     totalScore?: number;
+    preTaxScore?: number | null;
   };
 };
 
@@ -296,16 +320,16 @@ export type PortfolioGuide = {
 
 const TARGET_LABEL_BY_CODE: Record<
   string,
-  { default: string; ISA?: string; PENSION?: string; TOSS?: string }
+  { default: string; ISA?: string; PENSION?: string; TOSS?: string; KIS_MAIN?: string }
 > = {
   "458760": { default: "배당/커버드콜", ISA: "배당/커버드콜" },
   "132030": { default: "금", ISA: "금", PENSION: "금" },
   "360750": { default: "미국인덱스", ISA: "미국인덱스", PENSION: "S&P500" },
   "133690": { default: "나스닥100", PENSION: "나스닥100" },
-  "423160": { default: "현금파킹", ISA: "현금파킹", PENSION: "현금파킹", TOSS: "현금파킹" },
+  "423160": { default: "현금파킹", ISA: "현금파킹", PENSION: "현금파킹", TOSS: "현금파킹", KIS_MAIN: "현금파킹" },
   "487240": { default: "전력기기", TOSS: "전력기기" },
-  "449450": { default: "방산", TOSS: "방산" },
-  "434730": { default: "원자력", TOSS: "원자력" },
+  "449450": { default: "방산", TOSS: "방산", KIS_MAIN: "방산" },
+  "434730": { default: "원자력", TOSS: "원자력", KIS_MAIN: "원자력" },
 };
 
 const PREFERRED_LABEL_BY_CATEGORY: Record<string, string> = {
@@ -437,10 +461,25 @@ function readStage4Analysis(dateHint?: string) {
   return null;
 }
 
-function normalizeStrategyAccountKey(account: PortfolioAccount): StrategyAccountKey | null {
-  if (account.key === "ISA") return "ISA";
-  if (account.key === "PENSION") return "연금저축";
-  if (account.key === "TOSS") return "토스증권";
+function normalizeStrategyAccountKey(
+  account: PortfolioAccount,
+  strategy: StrategyAllocation | null,
+): StrategyAccountKey | null {
+  const candidates = [
+    account.key,
+    account.label,
+    account.key === "PENSION" ? "연금저축" : null,
+    account.key === "TOSS" ? "토스증권" : null,
+    account.key === "KIS_MAIN" ? "한투 일반" : null,
+    account.key === "ISA" ? "ISA" : null,
+  ].filter((candidate): candidate is string => Boolean(candidate));
+
+  for (const candidate of candidates) {
+    if (strategy?.accounts?.[candidate]) {
+      return candidate;
+    }
+  }
+
   return null;
 }
 
@@ -451,6 +490,7 @@ function getCategoryForHolding(account: PortfolioAccount, code?: string | null) 
   if (account.key === "ISA" && mapping.ISA) return mapping.ISA;
   if (account.key === "PENSION" && mapping.PENSION) return mapping.PENSION;
   if (account.key === "TOSS" && mapping.TOSS) return mapping.TOSS;
+  if (account.key === "KIS_MAIN" && mapping.KIS_MAIN) return mapping.KIS_MAIN;
   return mapping.default;
 }
 
@@ -655,7 +695,11 @@ function buildHoldingGuides(
 
   const holdingGuides = account.holdings.map((holding) => {
     const inferredCode = inferHoldingCode(holding.name, holding.code);
-    let stage3Holding = inferredCode ? stage3?.holdings?.[inferredCode] ?? null : null;
+    let stage3Holding = inferredCode
+      ? stage3?.positions?.[`${account.key}:${inferredCode}`] ??
+        stage3?.holdings?.[inferredCode] ??
+        null
+      : null;
 
     if (!stage3Holding) {
       const normalizedName = normalizeHoldingName(holding.name);
@@ -803,6 +847,7 @@ function buildScoreDrivers(
   account: PortfolioAccount,
   score: number,
   allocationScore: number,
+  factorScore: number | null,
   technicalScore: number | null,
   reportScore: number | null,
   reportCoverageScore: number | null,
@@ -810,9 +855,13 @@ function buildScoreDrivers(
   reportUnavailableReason: string | null,
   regimeFitScore: number | null,
   stage2Score: number | null,
+  preTaxScore: number | null,
+  taxMultiplier: number | null,
+  taxAddedScore: number | null,
   riskPenaltyTotal: number | null,
   riskPenaltyBreakdown: RiskPenaltyBreakdown | null,
   effectiveWeights: Record<string, number> | null,
+  factorCoverage: number | null,
   techCoverage: number | null,
   impactCoverage: number | null,
   cashPct: number,
@@ -824,6 +873,7 @@ function buildScoreDrivers(
 
   const baseScoreParts = [
     `배분 ${allocationScore}점`,
+    factorScore != null ? `팩터 ${factorScore}점` : null,
     technicalScore != null ? `기술 ${technicalScore}점` : "기술 데이터 부족",
     reportScore != null ? `리포트 ${reportScore}점` : null,
     regimeFitScore != null ? `레짐 적합 ${regimeFitScore}점` : null,
@@ -832,7 +882,7 @@ function buildScoreDrivers(
 
   drivers.push(
     riskPenaltyTotal != null
-      ? `최종 ${score}점은 기본 점수에서 리스크 패널티 ${riskPenaltyTotal}점을 차감한 결과입니다. (${baseScoreParts.join(" · ")})`
+      ? `최종 ${score}점은 기본 점수에서 리스크 패널티 ${riskPenaltyTotal}점을 차감${taxAddedScore != null && taxAddedScore > 0 ? `한 뒤 세후 조정 ${taxAddedScore.toFixed(1)}점을 더한 결과` : "한 결과"}입니다. (${baseScoreParts.join(" · ")})`
       : `최종 ${score}점은 ${baseScoreParts.join(" · ")}를 합산해 계산됩니다.`,
   );
 
@@ -843,12 +893,19 @@ function buildScoreDrivers(
   if (effectiveWeights) {
     const parts = [
       `배분 ${formatPercent((effectiveWeights.allocation ?? 0) * 100)}`,
+      `팩터 ${formatPercent((effectiveWeights.factor ?? 0) * 100)}`,
       `기술 ${formatPercent((effectiveWeights.tech ?? 0) * 100)}`,
       `리포트 ${formatPercent((effectiveWeights.report ?? 0) * 100)}`,
       `레짐 ${formatPercent((effectiveWeights.regime ?? 0) * 100)}`,
       `Stage2 ${formatPercent((effectiveWeights.stage2 ?? 0) * 100)}`,
     ];
     drivers.push(`현재 데이터 커버리지 기준 반영 비중은 ${parts.join(" / ")} 입니다.`);
+  }
+
+  if (factorScore != null) {
+    const coverageText =
+      factorCoverage != null ? ` (커버리지 ${formatPercent(factorCoverage * 100)})` : "";
+    drivers.push(`팩터 점수 ${factorScore}점: 모멘텀, 리서치 강도, 인컴 수익률, 레짐 적합도를 교차단면 정규화해 합성합니다${coverageText}.`);
   }
 
   if (technicalScore != null) {
@@ -885,9 +942,23 @@ function buildScoreDrivers(
     drivers.push(`집중도 패널티 ${concentrationPenalty}점: 특정 종목/테마 쏠림이 점수를 눌렀습니다.`);
   }
 
+  const covariancePenalty = riskPenaltyBreakdown?.covariance?.total ?? 0;
+  if (covariancePenalty > 0) {
+    const volText = riskPenaltyBreakdown?.covariance?.annualizedVolatility;
+    drivers.push(
+      `공분산 패널티 ${covariancePenalty}점: 자산 간 상관구조를 반영한 연율 변동성${volText != null ? ` ${volText.toFixed(1)}%` : ""} 기준 감점입니다.`,
+    );
+  }
+
   const regimeStressPenalty = riskPenaltyBreakdown?.regimeStress?.total ?? 0;
   if (regimeStressPenalty > 0) {
     drivers.push(`레짐 스트레스 패널티 ${regimeStressPenalty}점: 현재 레짐 대비 위험자산 비중이 높습니다.`);
+  }
+
+  if (preTaxScore != null && taxMultiplier != null && taxMultiplier > 1) {
+    drivers.push(
+      `세후 승수 ${taxMultiplier.toFixed(3)}x가 적용돼 세전 ${preTaxScore.toFixed(1)}점이 세후 기준으로 보정됐습니다.`,
+    );
   }
 
   if (cashPct > targetCashPct + 0.05) {
@@ -919,7 +990,7 @@ function buildScoreDrivers(
     );
   }
 
-  return drivers.slice(0, 6);
+  return drivers.slice(0, 7);
 }
 
 function buildImprovementActions(
@@ -1115,7 +1186,7 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
 
   const accounts = snapshot.accounts
     .map((account): AccountGuide | null => {
-      const strategyKey = normalizeStrategyAccountKey(account);
+      const strategyKey = normalizeStrategyAccountKey(account, strategy);
       if (!strategyKey) return null;
 
       const targetAllocation =
@@ -1133,6 +1204,10 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
         stage3Account?.baseScores?.allocationScore ??
         stage3Account?.allocationScore ??
         fallbackAllocationScore;
+      const factorScore =
+        stage3Account?.baseScores?.factorScore ??
+        stage3Account?.factorScore ??
+        null;
       const technicalScore =
         stage3Account?.baseScores?.techScore ??
         stage3Account?.holdingsScore ??
@@ -1157,9 +1232,16 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
         reportStatus === "available" ? rawReportCoverageScore : null;
       const regimeFitScore = stage3Account?.baseScores?.regimeFit ?? null;
       const stage2Score = stage3Account?.baseScores?.stage2Score ?? null;
+      const preTaxScore = stage3Account?.preTaxScore ?? null;
+      const taxMultiplier = stage3Account?.taxAdjustment?.multiplier ?? null;
+      const taxAddedScore = stage3Account?.taxAdjustment?.addedScore ?? null;
       const riskPenaltyTotal = stage3Account?.riskPenalty?.total ?? null;
       const riskPenaltyBreakdown = stage3Account?.riskPenalty?.breakdown ?? null;
       const effectiveWeights = stage3Account?.effectiveWeights ?? null;
+      const factorCoverage =
+        typeof stage3Account?.coverage?.factorCoverage === "number"
+          ? stage3Account.coverage.factorCoverage
+          : null;
       const techCoverage =
         typeof stage3Account?.coverage?.techCoverage === "number"
           ? stage3Account.coverage.techCoverage
@@ -1275,6 +1357,7 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
           account,
           score,
           allocationScore,
+          factorScore,
           technicalScore,
           reportScore,
           reportCoverageScore,
@@ -1282,9 +1365,13 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
           reportUnavailableReason,
           regimeFitScore,
           stage2Score,
+          preTaxScore,
+          taxMultiplier,
+          taxAddedScore,
           riskPenaltyTotal,
           riskPenaltyBreakdown,
           effectiveWeights,
+          factorCoverage,
           techCoverage,
           impactCoverage,
           cashPct,

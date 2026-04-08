@@ -161,6 +161,7 @@ def main():
 - ISA:
 - PENSION:
 - TOSS:
+- KIS_MAIN:
 
 ---
 

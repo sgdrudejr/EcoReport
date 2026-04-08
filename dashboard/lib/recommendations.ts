@@ -467,6 +467,7 @@ function loadWatchlistUniverse() {
 function normalizeAccountLabel(account: string) {
   if (account === "PENSION") return "연금저축";
   if (account === "TOSS") return "토스증권";
+  if (account === "KIS_MAIN") return "한투 일반";
   return account;
 }
 

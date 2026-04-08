@@ -20,28 +20,28 @@ export type ResearchSectionTabItem = {
 };
 
 function researchTagClass(tone: SectionTag["tone"]) {
-  if (tone === "rose") return "border-rose-500/30 bg-rose-950/20 text-rose-300";
-  if (tone === "sky") return "border-sky-500/30 bg-sky-950/20 text-sky-300";
-  if (tone === "emerald") return "border-emerald-500/30 bg-emerald-950/20 text-emerald-300";
-  if (tone === "amber") return "border-amber-500/30 bg-amber-950/20 text-amber-300";
-  if (tone === "fuchsia") return "border-fuchsia-500/30 bg-fuchsia-950/20 text-fuchsia-300";
-  return "border-zinc-700 bg-zinc-900 text-zinc-300";
+  if (tone === "rose") return "border-rose-500/30 bg-rose-500/12 text-rose-200";
+  if (tone === "sky") return "border-sky-500/30 bg-sky-500/12 text-sky-200";
+  if (tone === "emerald") return "border-blue-500/30 bg-blue-500/12 text-blue-200";
+  if (tone === "amber") return "border-amber-500/30 bg-amber-500/12 text-amber-200";
+  if (tone === "fuchsia") return "border-indigo-500/30 bg-indigo-500/12 text-indigo-200";
+  return "border-white/8 bg-white/[0.03] text-zinc-300";
 }
 
 function getSectionTone(title: string) {
   if (title.includes("핵심")) {
-    return "border-sky-900/50 bg-sky-950/20";
+    return "text-blue-200";
   }
   if (title.includes("거시") || title.includes("매크로")) {
-    return "border-amber-900/50 bg-amber-950/20";
+    return "text-amber-200";
   }
   if (title.includes("섹터") || title.includes("성장")) {
-    return "border-emerald-900/50 bg-emerald-950/20";
+    return "text-sky-200";
   }
   if (title.includes("포트폴리오") || title.includes("시사점")) {
-    return "border-fuchsia-900/50 bg-fuchsia-950/20";
+    return "text-indigo-200";
   }
-  return "border-zinc-800 bg-zinc-950/70";
+  return "text-zinc-100";
 }
 
 export default function ResearchSectionTabs({
@@ -67,8 +67,8 @@ export default function ResearchSectionTabs({
         onSelect={setSelectedSectionId}
         sticky
         itemClassName="min-w-[168px]"
-        selectedItemClassName="border-emerald-500/60 bg-emerald-950/20 shadow-[0_0_0_1px_rgba(16,185,129,0.16)]"
-        unselectedItemClassName="border-zinc-800 bg-zinc-950"
+        selectedItemClassName="border-blue-500/60 bg-blue-500/12 shadow-[0_0_0_1px_rgba(59,130,246,0.18)]"
+        unselectedItemClassName="border-white/8 bg-white/[0.03]"
         renderItem={(section) => (
           <>
             <p className="text-[11px] uppercase tracking-wide text-zinc-500">
@@ -81,16 +81,13 @@ export default function ResearchSectionTabs({
         )}
       />
 
-      <section
-        id={activeSection.id}
-        className={`rounded-2xl border p-5 ${getSectionTone(activeSection.title)}`}
-      >
+      <section id={activeSection.id} className="section-block">
         <div className="mb-3 flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
           <div>
             <p className="text-xs uppercase tracking-wide text-zinc-500">
               {activeSection.label}
             </p>
-            <h3 className="mt-1 text-xl font-semibold text-zinc-100">
+            <h3 className={`mt-1 text-xl font-semibold ${getSectionTone(activeSection.title)}`}>
               {activeSection.title}
             </h3>
           </div>
@@ -115,7 +112,7 @@ export default function ResearchSectionTabs({
         </div>
 
         {activeSection.actionPoints.length > 0 && (
-          <div className="mt-4 rounded-2xl border border-zinc-800 bg-zinc-950 p-4">
+          <div className="mt-4 border-t border-white/8 pt-4">
             <p className="text-xs text-zinc-500">체크할 포인트</p>
             <ul className="mt-2 space-y-1.5 text-sm text-zinc-100">
               {activeSection.actionPoints.map((point) => (

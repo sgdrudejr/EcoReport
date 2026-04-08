@@ -1,0 +1,14 @@
+{
+  "sources": [
+    {
+      "type": "kis",
+      "enabled": true,
+      "portfolioKey": "KIS_MAIN",
+      "label": "한투 일반",
+      "env": "real",
+      "account": "",
+      "includeInLatest": true,
+      "skipRealized": false
+    }
+  ]
+}

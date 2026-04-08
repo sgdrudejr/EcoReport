@@ -11,7 +11,7 @@ const SUPPORTED_MIME_TYPES = new Set([
   "image/heif",
 ]);
 
-export type PortfolioAccountKey = "ISA" | "PENSION" | "TOSS" | "UNKNOWN";
+export type PortfolioAccountKey = "ISA" | "PENSION" | "TOSS" | "KIS_MAIN" | "UNKNOWN";
 
 export type ExtractedHolding = {
   code: string | null;
@@ -196,6 +196,16 @@ export function normalizeAccountKey(value: unknown): PortfolioAccountKey {
   if (normalized === "TOSS" || normalized === "토스" || normalized === "토스증권") {
     return "TOSS";
   }
+  if (
+    normalized === "KIS_MAIN" ||
+    normalized === "KIS" ||
+    normalized === "한투" ||
+    normalized === "한투 일반" ||
+    normalized === "한투증권" ||
+    normalized === "한국투자증권"
+  ) {
+    return "KIS_MAIN";
+  }
   return "UNKNOWN";
 }
 
@@ -286,8 +296,8 @@ export function buildSingleAccountPrompt({
 export function buildBatchPrompt(fileNames: string[]) {
   return [
     "You are classifying and extracting Korean brokerage screenshots for a portfolio tracker.",
-    "Possible account keys are exactly: ISA, PENSION, TOSS, UNKNOWN.",
-    "ISA means Korean ISA accounts, PENSION means pension savings or retirement accounts such as 연금저축, and TOSS means Toss Securities screens.",
+    "Possible account keys are exactly: ISA, PENSION, TOSS, KIS_MAIN, UNKNOWN.",
+    "ISA means Korean ISA accounts, PENSION means pension savings or retirement accounts such as 연금저축, TOSS means Toss Securities screens, and KIS_MAIN means Korea Investment & Securities screens such as 한국투자증권 or 한투.",
     "Classify each screenshot into one of those account keys using visible clues only.",
     "Then combine screenshots belonging to the same account and extract the visible account totals and holdings.",
     `The uploaded screenshot file names are: ${fileNames.join(", ")}.`,

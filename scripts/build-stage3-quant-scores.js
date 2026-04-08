@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-// 3단계(v2): 배분/기술/리포트/레짐을 coverage-aware 가중치로 합성하고,
-// 리스크 패널티를 별도 계산해 종목·계좌·포트폴리오 점수를 산출합니다.
+// 3단계(v3): 교차단면 팩터 정규화, 공분산 기반 리스크 패널티,
+// 계좌별 tax-aware 조정을 결합해 종목·계좌·포트폴리오 점수를 산출합니다.
 
 import path from "node:path";
 
@@ -8,6 +8,7 @@ import {
   CATEGORY_BY_CODE,
   THEME_KEYWORDS_BY_CODE,
   ROOT_DIR,
+  buildRunMetadata,
   clamp,
   enrichPortfolioWithSecurityCodes,
   parseDateArgs,
@@ -41,21 +42,67 @@ const REGIME_WEIGHTS = {
 };
 
 const MAX_WEIGHT_PROFILES = {
-  // leading: FRED 선행지표 스코어 (T10Y2Y, VIX, CPI, 구리/금 비율)
-  // report 가중치를 0.05 줄여 leading에 할당
-  balanced:     { allocation: 0.45, tech: 0.30, report: 0.10, regime: 0.05, stage2: 0.05, leading: 0.05 },
-  dataSparse:   { allocation: 0.70, tech: 0.15, report: 0.05, regime: 0.10, stage2: 0.00, leading: 0.00 },
-  reportHeavy:  { allocation: 0.35, tech: 0.25, report: 0.25, regime: 0.05, stage2: 0.05, leading: 0.05 },
-  tactical:     { allocation: 0.25, tech: 0.50, report: 0.10, regime: 0.05, stage2: 0.05, leading: 0.05 },
-  riskOff:      { allocation: 0.45, tech: 0.20, report: 0.05, regime: 0.15, stage2: 0.10, leading: 0.05 },
+  // allocation은 나머지 가중치의 residual로 계산된다.
+  balanced:     { allocation: 0.40, factor: 0.10, tech: 0.25, report: 0.10, regime: 0.05, stage2: 0.05, leading: 0.05 },
+  dataSparse:   { allocation: 0.65, factor: 0.05, tech: 0.15, report: 0.05, regime: 0.10, stage2: 0.00, leading: 0.00 },
+  reportHeavy:  { allocation: 0.30, factor: 0.10, tech: 0.20, report: 0.25, regime: 0.05, stage2: 0.05, leading: 0.05 },
+  tactical:     { allocation: 0.20, factor: 0.10, tech: 0.45, report: 0.10, regime: 0.05, stage2: 0.05, leading: 0.05 },
+  riskOff:      { allocation: 0.35, factor: 0.05, tech: 0.20, report: 0.05, regime: 0.15, stage2: 0.10, leading: 0.10 },
 };
 
 const DEFAULT_RISK_CAPS = {
   concentration: 10,
+  covariance: 8,
   tailRisk: 15,
   dataQuality: 10,
   regimeStress: 10,
-  total: 25,
+  total: 30,
+};
+
+const DEFAULT_FACTOR_MODEL = {
+  winsorZ: 3.5,
+  scoreScale: 14,
+  weights: {
+    momentum: 0.35,
+    research: 0.3,
+    income: 0.15,
+    macroFit: 0.2,
+  },
+};
+
+const DEFAULT_COVARIANCE_MODEL = {
+  enabled: true,
+  shrinkage: 0.35,
+  lambda: 0.55,
+  minHistory: 20,
+  annualization: 252,
+  ridge: 0.000001,
+};
+
+const DEFAULT_TAX_AWARE_MODEL = {
+  enabled: true,
+  alpha: 1.6,
+  normalTaxRate: 0.154,
+  minRiskFloor: 0.08,
+  maxMultiplier: 1.15,
+  defaultYieldByCategory: {
+    "배당/커버드콜": 0.07,
+    "현금파킹": 0.032,
+    "금": 0,
+    "S&P500": 0.013,
+    "미국인덱스": 0.013,
+    "나스닥100": 0.006,
+    "전력기기": 0.004,
+    "방산": 0.004,
+    "원자력": 0.004,
+    "기타": 0,
+  },
+  accountTaxRates: {
+    ISA: 0.099,
+    PENSION: 0.154,
+    TOSS: 0.154,
+    KIS_MAIN: 0.154,
+  },
 };
 
 const STAGE2_SCORE_BY_BIAS = {
@@ -93,6 +140,14 @@ const SCORE_WEIGHT_MULTIPLIERS = {
   defensive: 0.82,
   cash: 0.22,
   other: 0.55,
+};
+
+const STAGE2_STANCE_RAW = {
+  buy: 0.65,
+  hold: 0.15,
+  watch: -0.1,
+  trim: -0.55,
+  reduce: -0.7,
 };
 
 function detectRegime(technical, fred) {
@@ -624,18 +679,28 @@ function computeActionScore(technicalItem, reportImpact, regimeName) {
   };
 }
 
-function normalizeStrategyAccountKey(account) {
-  if (account.key === "ISA") return "ISA";
-  if (account.key === "PENSION") return "연금저축";
-  if (account.key === "TOSS") return "토스증권";
+function normalizeStrategyAccountKey(account, strategy) {
+  const candidates = [
+    account.key,
+    account.label,
+    account.key === "PENSION" ? "연금저축" : null,
+    account.key === "TOSS" ? "토스증권" : null,
+    account.key === "ISA" ? "ISA" : null,
+  ].filter(Boolean);
+
+  for (const candidate of candidates) {
+    if (strategy?.accounts?.[candidate]) {
+      return candidate;
+    }
+  }
   return null;
 }
 
 function buildAllocationState(account, strategy) {
-  const strategyKey = normalizeStrategyAccountKey(account);
+  const strategyKey = normalizeStrategyAccountKey(account, strategy);
   const targetAllocation = strategy?.accounts?.[strategyKey]?.target_allocation ?? {};
   const holdingsValue = (account.holdings ?? []).reduce((sum, holding) => sum + (holding.marketValue ?? 0), 0);
-  const totalAssets = Math.max(account.evaluationAmount ?? 0, holdingsValue + (account.cashAvailable ?? 0));
+  const totalAssets = accountTotalAssets(account);
   const amounts = new Map();
   for (const holding of account.holdings ?? []) {
     const category = holdingCategory(account.key, holding.code);
@@ -706,15 +771,17 @@ function chooseWeightProfile(strategy, regime) {
 function effectiveWeights(profileName, coverage, regimeConfidence) {
   const maxWeights = MAX_WEIGHT_PROFILES[profileName] ?? MAX_WEIGHT_PROFILES.balanced;
   const weights = {
+    factor: (maxWeights.factor ?? 0) * (coverage.factorCoverage ?? 0),
     tech: maxWeights.tech * coverage.techCoverage,
     report: maxWeights.report * coverage.impactCoverage,
     regime: maxWeights.regime * regimeConfidence,
     stage2: maxWeights.stage2 * (coverage.stage2Available ? 1 : 0),
     leading: (maxWeights.leading ?? 0) * (coverage.fredAvailable ? 1 : 0),
   };
-  const used = weights.tech + weights.report + weights.regime + weights.stage2 + weights.leading;
+  const used = weights.factor + weights.tech + weights.report + weights.regime + weights.stage2 + weights.leading;
   return {
     allocation: toRoundedNumber(Math.max(0, 1 - used), 4),
+    factor: toRoundedNumber(weights.factor, 4),
     tech: toRoundedNumber(weights.tech, 4),
     report: toRoundedNumber(weights.report, 4),
     regime: toRoundedNumber(weights.regime, 4),
@@ -731,6 +798,7 @@ function computeRiskPenalty({
   regimeFit,
   riskCaps,
   technicalMap,
+  covarianceModel,
 }) {
   const investable = (account.holdings ?? []).filter((holding) => (holding.marketValue ?? 0) > 0);
   const totalInvestable = investable.reduce((sum, holding) => sum + (holding.marketValue ?? 0), 0) || 1;
@@ -765,6 +833,42 @@ function computeRiskPenalty({
   const regimeStressTotal =
     regime.name === "HIGH_VOL" || regime.name === "BEAR"
       ? clamp(((regimeStressExcess - 0.05) / 0.25) * riskCaps.regimeStress, 0, riskCaps.regimeStress)
+      : 0;
+
+  const covarianceInputs = investable
+    .map((holding) => {
+      const tech = technicalMap[holding.code];
+      return {
+        code: holding.code,
+        weight: (holding.marketValue ?? 0) / totalInvestable,
+        returns: tech?.daily_returns ?? [],
+      };
+    })
+    .filter((entry) => entry.returns.length >= (covarianceModel?.minHistory ?? DEFAULT_COVARIANCE_MODEL.minHistory));
+  const sampleCovariance = computeSampleCovarianceMatrix(covarianceInputs);
+  const shrunkCovariance = covarianceModel?.enabled
+    ? shrinkCovarianceMatrix(
+        sampleCovariance?.matrix ?? null,
+        covarianceModel?.shrinkage ?? DEFAULT_COVARIANCE_MODEL.shrinkage,
+        covarianceModel?.ridge ?? DEFAULT_COVARIANCE_MODEL.ridge,
+      )
+    : null;
+  const covarianceVariance =
+    covarianceInputs.length > 1 && shrunkCovariance
+      ? quadraticForm(
+          covarianceInputs.map((entry) => entry.weight),
+          shrunkCovariance,
+        )
+      : 0;
+  const portfolioVolatility =
+    covarianceVariance > 0
+      ? Math.sqrt(covarianceVariance * (covarianceModel?.annualization ?? DEFAULT_COVARIANCE_MODEL.annualization))
+      : 0;
+  const covariancePenaltyRaw =
+    (covarianceModel?.lambda ?? DEFAULT_COVARIANCE_MODEL.lambda) * portfolioVolatility * 10;
+  const covarianceTotal =
+    covarianceInputs.length > 1
+      ? clamp(covariancePenaltyRaw, 0, riskCaps.covariance ?? DEFAULT_RISK_CAPS.covariance)
       : 0;
 
   // CVaR / MaxDrawdown (포트폴리오 가중 일별 수익률 기반)
@@ -817,7 +921,7 @@ function computeRiskPenalty({
 
   const total = Math.round(
     clamp(
-      dataQualityTotal + concentrationTotal + tailRiskTotal + regimeStressTotal,
+      dataQualityTotal + concentrationTotal + covarianceTotal + tailRiskTotal + regimeStressTotal,
       0,
       riskCaps.total,
     ),
@@ -836,12 +940,16 @@ function computeRiskPenalty({
   if (concentrationTotal > 0) {
     notes.push("단일 포지션 또는 집중도가 높아 분산 패널티가 반영됐습니다.");
   }
+  if (covarianceTotal > 0) {
+    notes.push(`축소 공분산 기준 연율 변동성 ${toRoundedNumber(portfolioVolatility * 100, 2)}%로 상관 리스크 패널티가 반영됐습니다.`);
+  }
   if (tailRiskTotal > 0) {
     notes.push(`최대낙폭 ${maxDrawdown}% / CVaR(95%) ${cvar95}% 수준으로 꼬리 리스크 패널티가 적용됐습니다.`);
   }
 
   return {
     total,
+    portfolioVolatility: toRoundedNumber(portfolioVolatility, 4),
     breakdown: {
       dataQuality: {
         total: toRoundedNumber(dataQualityTotal, 2),
@@ -856,6 +964,14 @@ function computeRiskPenalty({
         hhiPenalty: toRoundedNumber(hhiPenalty, 2),
         maxPositionPct: toRoundedNumber(maxPosition * 100, 2),
         maxPositionPenalty: toRoundedNumber(maxPositionPenalty, 2),
+      },
+      covariance: {
+        total: toRoundedNumber(covarianceTotal, 2),
+        annualizedVolatility: toRoundedNumber(portfolioVolatility * 100, 2),
+        sampleCount: sampleCovariance?.sampleCount ?? null,
+        holdingsWithData: covarianceInputs.length,
+        shrinkage: toRoundedNumber(covarianceModel?.shrinkage ?? DEFAULT_COVARIANCE_MODEL.shrinkage, 3),
+        lambda: toRoundedNumber(covarianceModel?.lambda ?? DEFAULT_COVARIANCE_MODEL.lambda, 3),
       },
       tailRisk: {
         total: toRoundedNumber(tailRiskTotal, 2),
@@ -919,6 +1035,294 @@ function weightedAverage(items) {
   return items.reduce((sum, item) => sum + item.value * (item.weight / totalWeight), 0);
 }
 
+function accountTotalAssets(account) {
+  const holdingsValue = (account.holdings ?? []).reduce((sum, holding) => sum + (holding.marketValue ?? 0), 0);
+  return Math.max(account.evaluationAmount ?? 0, holdingsValue + (account.cashAvailable ?? 0));
+}
+
+function normalizeStage2CandidateMap(stage2Data) {
+  const entries = (stage2Data?.candidate_scores ?? []).map((item) => {
+    const confidence = normalizeConfidence(item?.confidence);
+    return [
+      item.code,
+      {
+        stance: item?.stance ?? "hold",
+        confidence,
+        targetAccounts: item?.target_accounts ?? [],
+      },
+    ];
+  });
+  return new Map(entries);
+}
+
+function positionKey(accountKey, code) {
+  return `${accountKey}:${code}`;
+}
+
+function mean(values) {
+  if (!values.length) return 0;
+  return values.reduce((sum, value) => sum + value, 0) / values.length;
+}
+
+function sampleStd(values, center) {
+  if (values.length <= 1) return 0;
+  const avg = typeof center === "number" ? center : mean(values);
+  const variance =
+    values.reduce((sum, value) => sum + (value - avg) ** 2, 0) /
+    Math.max(values.length - 1, 1);
+  return Math.sqrt(Math.max(variance, 0));
+}
+
+function stage2ResearchRaw(candidate) {
+  if (!candidate) return 0;
+  const stance = STAGE2_STANCE_RAW[candidate.stance] ?? 0;
+  return stance + (candidate.confidence - 0.5) * 0.8;
+}
+
+function factorAvailability(rawFactors) {
+  const availability = {
+    momentum: rawFactors.momentumAvailable ? 1 : 0,
+    research: rawFactors.researchAvailable ? 1 : 0,
+    income: 1,
+    macroFit: 1,
+  };
+  const factorCoverage = mean(Object.values(availability));
+  return {
+    availability,
+    factorCoverage: toRoundedNumber(factorCoverage, 4),
+  };
+}
+
+function estimateIncomeYield(category, taxAwareConfig) {
+  const defaultYieldMap = taxAwareConfig?.defaultYieldByCategory ?? {};
+  return clamp(valueOrFallback(defaultYieldMap[category], 0), 0, 0.25);
+}
+
+function computeFactorRawInputs({
+  technicalItem,
+  reportImpact,
+  stage2Candidate,
+  category,
+  allocationState,
+  regimeFit,
+  taxAwareConfig,
+}) {
+  const features = deriveFeatureVector(technicalItem);
+  const currentPct =
+    allocationState.categories.find((item) => item.category === category)?.currentPct ?? 0;
+  const desiredPct = regimeFit.desiredAllocation?.[category] ?? 0;
+  const macroGap = desiredPct - currentPct;
+  const momentum =
+    features.maTrend * 0.36 +
+    features.macdZ * 0.28 +
+    features.rsiMid * 0.2 +
+    features.adxTrend * 0.16;
+  const research =
+    reportImpact.value * 0.7 +
+    stage2ResearchRaw(stage2Candidate) * 0.3;
+  const income = estimateIncomeYield(category, taxAwareConfig);
+  const macroFit = clamp(macroGap * 8, -2.5, 2.5);
+
+  return {
+    values: {
+      momentum,
+      research,
+      income,
+      macroFit,
+    },
+    momentumAvailable: typeof technicalItem?.score === "number",
+    researchAvailable: reportImpact.impactCount > 0 || Boolean(stage2Candidate),
+  };
+}
+
+function computeCrossSectionalFactorScores(positionRows, factorModel) {
+  const factorNames = Object.keys(factorModel.weights ?? DEFAULT_FACTOR_MODEL.weights);
+  const statsByFactor = {};
+  for (const factorName of factorNames) {
+    const values = positionRows
+      .map((row) => row.factorRaw?.values?.[factorName])
+      .filter((value) => typeof value === "number" && Number.isFinite(value));
+    const center = mean(values);
+    const dispersion = sampleStd(values, center);
+    statsByFactor[factorName] = {
+      mean: center,
+      std: dispersion,
+      count: values.length,
+    };
+  }
+
+  for (const row of positionRows) {
+    const zScores = {};
+    let weightedZ = 0;
+    for (const factorName of factorNames) {
+      const rawValue = row.factorRaw?.values?.[factorName];
+      const stats = statsByFactor[factorName];
+      const z =
+        typeof rawValue === "number" &&
+        Number.isFinite(rawValue) &&
+        stats?.std > 1e-9
+          ? (rawValue - stats.mean) / stats.std
+          : 0;
+      const winsorized = clamp(z, -(factorModel.winsorZ ?? 3.5), factorModel.winsorZ ?? 3.5);
+      zScores[factorName] = toRoundedNumber(winsorized, 4);
+      weightedZ += winsorized * (factorModel.weights?.[factorName] ?? 0);
+    }
+
+    const boundedScore = clamp(50 + weightedZ * (factorModel.scoreScale ?? 14), 0, 100);
+    const availability = factorAvailability(row.factorRaw);
+    row.factor = {
+      raw: Object.fromEntries(
+        factorNames.map((factorName) => [
+          factorName,
+          toRoundedNumber(row.factorRaw?.values?.[factorName] ?? 0, 4),
+        ]),
+      ),
+      zScores,
+      weightedZ: toRoundedNumber(weightedZ, 4),
+      score: Math.round(boundedScore),
+      factorCoverage: availability.factorCoverage,
+      availability: availability.availability,
+    };
+  }
+
+  return {
+    factorNames,
+    statsByFactor: Object.fromEntries(
+      Object.entries(statsByFactor).map(([factorName, stats]) => [
+        factorName,
+        {
+          mean: toRoundedNumber(stats.mean, 4),
+          std: toRoundedNumber(stats.std, 4),
+          count: stats.count,
+        },
+      ]),
+    ),
+  };
+}
+
+function computeSampleCovarianceMatrix(returnSeries) {
+  const sampleCount = Math.min(...returnSeries.map((entry) => entry.returns.length));
+  if (!Number.isFinite(sampleCount) || sampleCount <= 1) return null;
+
+  const aligned = returnSeries.map((entry) => ({
+    ...entry,
+    returns: entry.returns.slice(entry.returns.length - sampleCount),
+  }));
+  const means = aligned.map((entry) => mean(entry.returns));
+
+  const matrix = aligned.map((left, leftIndex) =>
+    aligned.map((right, rightIndex) => {
+      let cov = 0;
+      for (let index = 0; index < sampleCount; index += 1) {
+        cov += (left.returns[index] - means[leftIndex]) * (right.returns[index] - means[rightIndex]);
+      }
+      return cov / Math.max(sampleCount - 1, 1);
+    }),
+  );
+
+  return { matrix, sampleCount };
+}
+
+function shrinkCovarianceMatrix(sampleCovariance, shrinkage = 0.35, ridge = 0.000001) {
+  if (!sampleCovariance) return null;
+  const size = sampleCovariance.length;
+  const variances = sampleCovariance.map((row, index) => Math.max(row[index], ridge));
+  const correlations = [];
+
+  for (let rowIndex = 0; rowIndex < size; rowIndex += 1) {
+    for (let columnIndex = rowIndex + 1; columnIndex < size; columnIndex += 1) {
+      const denom = Math.sqrt(variances[rowIndex] * variances[columnIndex]) || 1;
+      correlations.push(sampleCovariance[rowIndex][columnIndex] / denom);
+    }
+  }
+
+  const averageCorrelation = correlations.length > 0 ? mean(correlations) : 0;
+  return sampleCovariance.map((row, rowIndex) =>
+    row.map((value, columnIndex) => {
+      const varianceLeft = variances[rowIndex];
+      const varianceRight = variances[columnIndex];
+      const target =
+        rowIndex === columnIndex
+          ? varianceLeft + ridge
+          : averageCorrelation * Math.sqrt(varianceLeft * varianceRight);
+      return (1 - shrinkage) * value + shrinkage * target;
+    }),
+  );
+}
+
+function quadraticForm(weights, matrix) {
+  if (!matrix || !weights.length) return 0;
+  let total = 0;
+  for (let rowIndex = 0; rowIndex < weights.length; rowIndex += 1) {
+    for (let columnIndex = 0; columnIndex < weights.length; columnIndex += 1) {
+      total += weights[rowIndex] * matrix[rowIndex][columnIndex] * weights[columnIndex];
+    }
+  }
+  return total;
+}
+
+function computeTaxAwareAdjustment({
+  account,
+  positions,
+  taxAwareConfig,
+  preTaxScore,
+  portfolioVolatility,
+}) {
+  if (!taxAwareConfig?.enabled) {
+    return {
+      enabled: false,
+      preTaxScore,
+      afterTaxScore: preTaxScore,
+      multiplier: 1,
+      expectedYield: null,
+      taxSpread: null,
+      riskProxy: portfolioVolatility,
+      lift: 0,
+    };
+  }
+
+  const investable = positions.filter((position) => (position.marketValue ?? 0) > 0);
+  const totalInvestable = investable.reduce((sum, position) => sum + Math.max(position.marketValue ?? 0, 0), 0) || 1;
+  const portfolioYield = investable.reduce((sum, position) => {
+    const weight = Math.max(position.marketValue ?? 0, 0) / totalInvestable;
+    return sum + (position.incomeYield ?? 0) * weight;
+  }, 0);
+  const accountTaxRate =
+    taxAwareConfig.accountTaxRates?.[account.key] ??
+    taxAwareConfig.accountTaxRates?.[account.label] ??
+    taxAwareConfig.normalTaxRate ??
+    DEFAULT_TAX_AWARE_MODEL.normalTaxRate;
+  const normalTaxRate = taxAwareConfig.normalTaxRate ?? DEFAULT_TAX_AWARE_MODEL.normalTaxRate;
+  const taxSpread = Math.max(normalTaxRate - accountTaxRate, 0);
+  const riskProxy = Math.max(
+    valueOrFallback(portfolioVolatility, 0),
+    taxAwareConfig.minRiskFloor ?? DEFAULT_TAX_AWARE_MODEL.minRiskFloor,
+  );
+  const lift =
+    taxAwareConfig.alpha *
+    ((portfolioYield * taxSpread) / riskProxy);
+  const multiplier = clamp(
+    1 + lift,
+    0.9,
+    taxAwareConfig.maxMultiplier ?? DEFAULT_TAX_AWARE_MODEL.maxMultiplier,
+  );
+  const afterTaxScore = clamp(preTaxScore * multiplier, 0, 100);
+
+  return {
+    enabled: true,
+    preTaxScore: toRoundedNumber(preTaxScore, 2),
+    afterTaxScore: toRoundedNumber(afterTaxScore, 2),
+    multiplier: toRoundedNumber(multiplier, 4),
+    expectedYield: toRoundedNumber(portfolioYield, 4),
+    normalTaxRate: toRoundedNumber(normalTaxRate, 4),
+    accountTaxRate: toRoundedNumber(accountTaxRate, 4),
+    taxSpread: toRoundedNumber(taxSpread, 4),
+    riskProxy: toRoundedNumber(riskProxy, 4),
+    lift: toRoundedNumber(lift, 4),
+    addedScore: toRoundedNumber(afterTaxScore - preTaxScore, 2),
+  };
+}
+
 async function main() {
   const args = parseDateArgs(process.argv.slice(2));
   const stateDir = path.join(ROOT_DIR, "data", "analysis-state", args.date);
@@ -944,12 +1348,43 @@ async function main() {
   const technicalMap = technical.scores ?? {};
   const referenceDate = new Date(`${args.date}T00:00:00Z`);
   const profileName = chooseWeightProfile(strategy, regime);
-  const riskCaps = strategy?.scoring?.riskPenaltyCaps ?? DEFAULT_RISK_CAPS;
+  const factorModel = {
+    ...DEFAULT_FACTOR_MODEL,
+    ...(strategy?.scoring?.factorModel ?? {}),
+    weights: {
+      ...DEFAULT_FACTOR_MODEL.weights,
+      ...(strategy?.scoring?.factorModel?.weights ?? {}),
+    },
+  };
+  const covarianceModel = {
+    ...DEFAULT_COVARIANCE_MODEL,
+    ...(strategy?.scoring?.covarianceModel ?? {}),
+  };
+  const taxAwareConfig = {
+    ...DEFAULT_TAX_AWARE_MODEL,
+    ...(strategy?.scoring?.taxAware ?? {}),
+    defaultYieldByCategory: {
+      ...DEFAULT_TAX_AWARE_MODEL.defaultYieldByCategory,
+      ...(strategy?.scoring?.taxAware?.defaultYieldByCategory ?? {}),
+    },
+    accountTaxRates: {
+      ...DEFAULT_TAX_AWARE_MODEL.accountTaxRates,
+      ...(strategy?.scoring?.taxAware?.accountTaxRates ?? {}),
+    },
+  };
+  const riskCaps = {
+    ...DEFAULT_RISK_CAPS,
+    ...(strategy?.scoring?.riskPenaltyCaps ?? {}),
+  };
   const stage1ReportCount = stage1.reportCount ?? stage1.extracts?.length ?? 0;
+  const stage2CandidateMap = normalizeStage2CandidateMap(stage2Data);
 
   const holdingScores = {};
+  const positionScores = {};
   const accountScores = {};
   const accountCoverage = {};
+  const accountContext = {};
+  const positionRows = [];
 
   for (const account of normalizedPortfolio.accounts ?? []) {
     const allocationState = buildAllocationState(account, strategy);
@@ -969,10 +1404,16 @@ async function main() {
       accountKey: account.key,
       referenceDate,
     });
-
-    const weightedTech = [];
-    const weightedReport = [];
-    const weightedAction = [];
+    accountContext[account.key] = {
+      account,
+      allocationState,
+      allocationScore,
+      regimeFit,
+      stage2Action,
+      stage2Bias,
+      stage2Score,
+      accountDirectImpact,
+    };
 
     for (const holding of account.holdings ?? []) {
       const technicalItem = technicalMap[holding.code] ?? null;
@@ -995,71 +1436,137 @@ async function main() {
       });
       const scoreWeight = categoryScoreWeight(category, holding.marketValue ?? 0);
       const explanation = holdingExplanation(holding, technicalItem, reportImpact, computed);
-      const holdingKey = holding.code;
-      const holdingReportAvailable = reportImpact.impactCount > 0;
-      const holdingReportUnavailableReason =
-        holdingReportAvailable
-          ? null
-          : stage1ReportCount <= 0
-            ? "no_report_input"
-            : "no_linked_report";
+      const stage2Candidate = stage2CandidateMap.get(holding.code) ?? null;
+      const factorRaw = computeFactorRawInputs({
+        technicalItem,
+        reportImpact,
+        stage2Candidate,
+        category,
+        allocationState,
+        regimeFit,
+        taxAwareConfig,
+      });
 
-      holdingScores[holdingKey] = {
+      positionRows.push({
+        positionKey: positionKey(account.key, holding.code),
         code: holding.code,
         name: holding.name,
         accountKey: account.key,
         accountLabel: account.label,
-        category,
         marketValue: holding.marketValue ?? 0,
-        technicalSignal: technicalItem?.signal ?? "N/A",
+        category,
+        scoreWeight,
+        holding,
+        technicalItem,
         technicalBaseScore: techBaseScore,
-        ...computed,
-        reportImpacts: reportImpact.impacts,
-        technical: {
-          signal: technicalItem?.signal ?? null,
-          score: rawTechBaseScore,
-          adjustedScore: techBaseScore,
-          rsi: technicalItem?.rsi ?? null,
-          macd: technicalItem?.macd ?? null,
-          bollinger: technicalItem?.bollinger ?? null,
-          volumeRatio: technicalItem?.volume_ratio ?? null,
-        },
-        report: {
-          sourceLayer: reportImpact.sourceLayer,
-          available: holdingReportAvailable,
-          unavailableReason: holdingReportUnavailableReason,
-          impactScore: holdingReportAvailable ? reportImpact.score : null,
-          impactValue: toRoundedNumber(reportImpact.value),
-          impactCount: reportImpact.impactCount,
-          coverageWeight: reportImpact.coverageWeight,
-          directAccountImpactScore: accountDirectImpact.score,
-        },
-        scores: {
-          techScore: techBaseScore,
-          reportScore: holdingReportAvailable ? reportImpact.score : null,
-          actionScore: computed.actionScore,
-        },
-        explain: explanation,
-      };
+        rawTechBaseScore,
+        reportImpact,
+        computed,
+        explanation,
+        accountDirectImpact,
+        factorRaw,
+        incomeYield: estimateIncomeYield(category, taxAwareConfig),
+      });
+    }
+  }
 
-      const weight = Math.max(holding.marketValue ?? 0, 0);
-      if (typeof techBaseScore === "number") weightedTech.push({ weight: scoreWeight, value: techBaseScore });
-      if (typeof reportImpact.score === "number") weightedReport.push({ weight: scoreWeight, value: reportImpact.score });
-      weightedAction.push({ weight: scoreWeight, value: computed.actionScore });
+  const factorStats = computeCrossSectionalFactorScores(positionRows, factorModel);
+  const bestHoldingWeightByCode = new Map();
+
+  for (const row of positionRows) {
+    const holdingReportAvailable = row.reportImpact.impactCount > 0;
+    const holdingReportUnavailableReason =
+      holdingReportAvailable
+        ? null
+        : stage1ReportCount <= 0
+          ? "no_report_input"
+          : "no_linked_report";
+    const payload = {
+      positionKey: row.positionKey,
+      code: row.code,
+      name: row.name,
+      accountKey: row.accountKey,
+      accountLabel: row.accountLabel,
+      category: row.category,
+      marketValue: row.marketValue,
+      incomeYield: toRoundedNumber(row.incomeYield, 4),
+      technicalSignal: row.technicalItem?.signal ?? "N/A",
+      technicalBaseScore: row.technicalBaseScore,
+      ...row.computed,
+      reportImpacts: row.reportImpact.impacts,
+      technical: {
+        signal: row.technicalItem?.signal ?? null,
+        score: row.rawTechBaseScore,
+        adjustedScore: row.technicalBaseScore,
+        rsi: row.technicalItem?.rsi ?? null,
+        macd: row.technicalItem?.macd ?? null,
+        bollinger: row.technicalItem?.bollinger ?? null,
+        volumeRatio: row.technicalItem?.volume_ratio ?? null,
+      },
+      report: {
+        sourceLayer: row.reportImpact.sourceLayer,
+        available: holdingReportAvailable,
+        unavailableReason: holdingReportUnavailableReason,
+        impactScore: holdingReportAvailable ? row.reportImpact.score : null,
+        impactValue: toRoundedNumber(row.reportImpact.value),
+        impactCount: row.reportImpact.impactCount,
+        coverageWeight: row.reportImpact.coverageWeight,
+        directAccountImpactScore: row.accountDirectImpact.score,
+      },
+      factor: row.factor,
+      scores: {
+        factorScore: row.factor.score,
+        techScore: row.technicalBaseScore,
+        reportScore: holdingReportAvailable ? row.reportImpact.score : null,
+        actionScore: row.computed.actionScore,
+      },
+      explain: row.explanation,
+    };
+    positionScores[row.positionKey] = payload;
+
+    const bestWeight = bestHoldingWeightByCode.get(row.code) ?? -1;
+    if (row.scoreWeight >= bestWeight) {
+      holdingScores[row.code] = payload;
+      bestHoldingWeightByCode.set(row.code, row.scoreWeight);
+    }
+  }
+
+  for (const account of normalizedPortfolio.accounts ?? []) {
+    const context = accountContext[account.key];
+    const accountPositions = positionRows.filter((row) => row.accountKey === account.key);
+    const weightedTech = [];
+    const weightedFactor = [];
+    const weightedReport = [];
+    const weightedAction = [];
+
+    for (const row of accountPositions) {
+      if (typeof row.technicalBaseScore === "number") {
+        weightedTech.push({ weight: row.scoreWeight, value: row.technicalBaseScore });
+      }
+      if (typeof row.factor?.score === "number") {
+        weightedFactor.push({ weight: row.scoreWeight, value: row.factor.score });
+      }
+      if (typeof row.reportImpact.score === "number") {
+        weightedReport.push({ weight: row.scoreWeight, value: row.reportImpact.score });
+      }
+      weightedAction.push({ weight: row.scoreWeight, value: row.computed.actionScore });
     }
 
     const techCoverage =
-      (account.holdings ?? []).filter((holding) => typeof technicalMap[holding.code]?.score === "number").length /
-      Math.max((account.holdings ?? []).length, 1);
+      (accountPositions.filter((row) => typeof row.rawTechBaseScore === "number").length /
+        Math.max(accountPositions.length, 1));
+    const factorCoverage =
+      mean(accountPositions.map((row) => row.factor?.factorCoverage ?? 0));
     const impactCoverage =
-      (account.holdings ?? []).reduce(
-        (sum, holding) => sum + (holdingScores[holding.code]?.report?.coverageWeight ?? 0),
+      accountPositions.reduce(
+        (sum, row) => sum + (row.reportImpact.coverageWeight ?? 0),
         0,
-      ) / Math.max((account.holdings ?? []).length, 1);
+      ) / Math.max(accountPositions.length, 1);
     const coverage = {
+      factorCoverage: toRoundedNumber(factorCoverage, 4),
       techCoverage: toRoundedNumber(techCoverage, 4),
       impactCoverage: toRoundedNumber(impactCoverage, 4),
-      stage2Available: Boolean(stage2Action),
+      stage2Available: Boolean(context.stage2Action),
       fredAvailable: leadingIndicator.available,
     };
     accountCoverage[account.key] = coverage;
@@ -1068,10 +1575,12 @@ async function main() {
 
     const techScoreRaw = weightedAverage(weightedTech);
     const techScore = techScoreRaw != null ? Math.round(techScoreRaw) : null;
+    const factorScoreRaw = weightedAverage(weightedFactor);
+    const factorScore = factorScoreRaw != null ? Math.round(factorScoreRaw) : null;
     const holdingReportScore = weightedAverage(weightedReport);
     const reportScore = Math.round(
       clamp(
-        (holdingReportScore ?? 50) * 0.85 + (accountDirectImpact.score ?? 50) * 0.15,
+        (holdingReportScore ?? 50) * 0.85 + (context.accountDirectImpact.score ?? 50) * 0.15,
         0,
         100,
       ),
@@ -1085,68 +1594,84 @@ async function main() {
           : "no_mapped_impacts";
     const riskPenalty = computeRiskPenalty({
       account,
-      allocationState,
+      allocationState: context.allocationState,
       coverage,
       regime,
-      regimeFit,
+      regimeFit: context.regimeFit,
       riskCaps,
       technicalMap,
+      covarianceModel,
     });
 
     const baseScore = clamp(
-      allocationScore * weights.allocation +
-        (techScore ?? allocationScore) * weights.tech +
+      context.allocationScore * weights.allocation +
+        (factorScore ?? 50) * (weights.factor ?? 0) +
+        (techScore ?? context.allocationScore) * weights.tech +
         reportScore * weights.report +
-        regimeFit.score * weights.regime +
-        stage2Score * weights.stage2 +
+        context.regimeFit.score * weights.regime +
+        context.stage2Score * weights.stage2 +
         leadingIndicator.score * weights.leading,
       0,
       100,
     );
-    const totalScore = Math.round(clamp(baseScore - riskPenalty.total, 0, 100));
+    const preTaxScore = clamp(baseScore - riskPenalty.total, 0, 100);
+    const taxAdjustment = computeTaxAwareAdjustment({
+      account,
+      positions: accountPositions,
+      taxAwareConfig,
+      preTaxScore,
+      portfolioVolatility: riskPenalty.portfolioVolatility,
+    });
+    const totalScore = Math.round(clamp(taxAdjustment.afterTaxScore ?? preTaxScore, 0, 100));
     const holdingsScore = Math.round(weightedAverage(weightedAction) ?? 50);
 
     accountScores[account.key] = {
       key: account.key,
       label: account.label,
-      allocationScore,
-      holdingsScore: techScore ?? null,
+      allocationScore: context.allocationScore,
+      holdingsScore,
+      factorScore,
       reportCoverageScore: reportAvailable ? Math.round(impactCoverage * 100) : null,
       reportStatus: reportAvailable ? "available" : "unavailable",
       reportUnavailableReason,
-      stage2Bias,
+      stage2Bias: context.stage2Bias,
+      preTaxScore: toRoundedNumber(preTaxScore, 2),
+      baseScore: toRoundedNumber(baseScore, 2),
       totalScore,
       note: accountNote(totalScore, riskPenalty.total),
       coverage,
       baseScores: {
-        allocationScore,
+        allocationScore: context.allocationScore,
+        factorScore,
         techScore,
         reportScore: reportAvailable ? reportScore : null,
-        regimeFit: regimeFit.score,
-        stage2Score,
+        regimeFit: context.regimeFit.score,
+        stage2Score: context.stage2Score,
         leadingScore: leadingIndicator.score,
         actionBlend: holdingsScore,
       },
       effectiveWeights: weights,
       riskPenalty,
+      taxAdjustment,
       accountDirectImpact: {
-        value: toRoundedNumber(accountDirectImpact.value),
-        score: accountDirectImpact.score,
-        impacts: accountDirectImpact.impacts,
+        value: toRoundedNumber(context.accountDirectImpact.value),
+        score: context.accountDirectImpact.score,
+        impacts: context.accountDirectImpact.impacts,
       },
     };
   }
 
   const totalAssets =
     (normalizedPortfolio.accounts ?? []).reduce(
-      (sum, account) => sum + Math.max(account.evaluationAmount ?? 0, 0) + Math.max(account.cashAvailable ?? 0, 0),
+      (sum, account) => sum + accountTotalAssets(account),
       0,
     ) || 1;
 
   const portfolioBaseScore = (normalizedPortfolio.accounts ?? []).reduce((sum, account) => {
-    const assets = Math.max(account.evaluationAmount ?? 0, 0) + Math.max(account.cashAvailable ?? 0, 0);
+    const assets = accountTotalAssets(account);
     const accountBase =
       (accountScores[account.key]?.baseScores?.allocationScore ?? 50) * (accountScores[account.key]?.effectiveWeights?.allocation ?? 1) +
+      ((accountScores[account.key]?.baseScores?.factorScore ?? 50) * (accountScores[account.key]?.effectiveWeights?.factor ?? 0)) +
       ((accountScores[account.key]?.baseScores?.techScore ?? 50) * (accountScores[account.key]?.effectiveWeights?.tech ?? 0)) +
       ((accountScores[account.key]?.baseScores?.reportScore ?? 50) * (accountScores[account.key]?.effectiveWeights?.report ?? 0)) +
       ((accountScores[account.key]?.baseScores?.regimeFit ?? 50) * (accountScores[account.key]?.effectiveWeights?.regime ?? 0)) +
@@ -1156,14 +1681,24 @@ async function main() {
   }, 0);
 
   const portfolioRiskPenaltyTotal = (normalizedPortfolio.accounts ?? []).reduce((sum, account) => {
-    const assets = Math.max(account.evaluationAmount ?? 0, 0) + Math.max(account.cashAvailable ?? 0, 0);
+    const assets = accountTotalAssets(account);
     return sum + (accountScores[account.key]?.riskPenalty?.total ?? 0) * (assets / totalAssets);
+  }, 0);
+
+  const portfolioPreTaxScore = (normalizedPortfolio.accounts ?? []).reduce((sum, account) => {
+    const assets = accountTotalAssets(account);
+    return sum + (accountScores[account.key]?.preTaxScore ?? 50) * (assets / totalAssets);
+  }, 0);
+
+  const portfolioTaxAdded = (normalizedPortfolio.accounts ?? []).reduce((sum, account) => {
+    const assets = accountTotalAssets(account);
+    return sum + (accountScores[account.key]?.taxAdjustment?.addedScore ?? 0) * (assets / totalAssets);
   }, 0);
 
   const portfolioScore = Math.round(
     clamp(
       (normalizedPortfolio.accounts ?? []).reduce((sum, account) => {
-        const assets = Math.max(account.evaluationAmount ?? 0, 0) + Math.max(account.cashAvailable ?? 0, 0);
+        const assets = accountTotalAssets(account);
         return sum + (accountScores[account.key]?.totalScore ?? 50) * (assets / totalAssets);
       }, 0),
       0,
@@ -1172,11 +1707,9 @@ async function main() {
   );
 
   const outputPath = args.output ?? path.join(stateDir, "stage3-quant-scores.json");
+  const runMeta = buildRunMetadata(args);
   await writeJson(outputPath, {
-    date: args.date,
-    runDate: args.runDate,
-    effectiveMarketDate: args.effectiveMarketDate,
-    generatedAt: new Date().toISOString(),
+    ...runMeta,
     reportInputs: {
       reportCount: stage1ReportCount,
       available: stage1ReportCount > 0,
@@ -1187,16 +1720,23 @@ async function main() {
     },
     leadingIndicator,
     coverage: {
+      factorCoverage: toRoundedNumber(
+        (normalizedPortfolio.accounts ?? []).reduce((sum, account) => {
+          const assets = accountTotalAssets(account);
+          return sum + (accountCoverage[account.key]?.factorCoverage ?? 0) * (assets / totalAssets);
+        }, 0),
+        4,
+      ),
       techCoverage: toRoundedNumber(
         (normalizedPortfolio.accounts ?? []).reduce((sum, account) => {
-          const assets = Math.max(account.evaluationAmount ?? 0, 0) + Math.max(account.cashAvailable ?? 0, 0);
+          const assets = accountTotalAssets(account);
           return sum + (accountCoverage[account.key]?.techCoverage ?? 0) * (assets / totalAssets);
         }, 0),
         4,
       ),
       impactCoverage: toRoundedNumber(
         (normalizedPortfolio.accounts ?? []).reduce((sum, account) => {
-          const assets = Math.max(account.evaluationAmount ?? 0, 0) + Math.max(account.cashAvailable ?? 0, 0);
+          const assets = accountTotalAssets(account);
           return sum + (accountCoverage[account.key]?.impactCoverage ?? 0) * (assets / totalAssets);
         }, 0),
         4,
@@ -1206,15 +1746,31 @@ async function main() {
     configUsed: {
       weightProfile: profileName,
       maxWeights: MAX_WEIGHT_PROFILES[profileName],
+      factorModel,
+      covarianceModel,
+      taxAware: {
+        enabled: taxAwareConfig.enabled,
+        alpha: taxAwareConfig.alpha,
+        normalTaxRate: taxAwareConfig.normalTaxRate,
+        minRiskFloor: taxAwareConfig.minRiskFloor,
+        maxMultiplier: taxAwareConfig.maxMultiplier,
+      },
       riskPenaltyCaps: riskCaps,
     },
+    factorStats,
     holdings: holdingScores,
+    positions: positionScores,
     accounts: accountScores,
     portfolio: {
       totalScore: portfolioScore,
       baseScore: toRoundedNumber(portfolioBaseScore, 2),
+      preTaxScore: toRoundedNumber(portfolioPreTaxScore, 2),
       riskPenalty: {
         total: toRoundedNumber(portfolioRiskPenaltyTotal, 2),
+      },
+      taxAdjustment: {
+        addedScore: toRoundedNumber(portfolioTaxAdded, 2),
+        afterTaxScore: toRoundedNumber(portfolioPreTaxScore + portfolioTaxAdded, 2),
       },
       note:
         portfolioScore >= 72

@@ -8,19 +8,23 @@
 
 ## Daily
 
-- [2026-04-06](daily/2026-04-06.md)
+- [2026-04-08](daily/2026-04-08.md)
 
 ## Accounts
 
 - [ISA](accounts/isa.md)
 - [연금저축](accounts/pension.md)
 - [토스증권](accounts/toss.md)
+- [한투 일반](accounts/kis-main.md)
 
 ## Securities
 
 - [TIGER 미국나스닥100](securities/133690-tiger-미국나스닥100.md)
+- [KODEX 구리선물(H)](securities/138910-kodex-구리선물-h.md)
+- [KODEX MSCI선진국](securities/251350-kodex-msci선진국.md)
 - [TIGER 미국S&P500](securities/360750-tiger-미국s-and-p500.md)
 - [KODEX KOFR금리액티브](securities/423160-kodex-kofr금리액티브.md)
 - [HANARO 원자력iSelect](securities/434730-hanaro-원자력iselect.md)
 - [PLUS K방산](securities/449450-plus-k방산.md)
 - [TIGER 미국배당+7%프리미엄다우존스](securities/458760-tiger-미국배당-7-프리미엄다우존스.md)
+- [KODEX AI전력핵심설비](securities/487240-kodex-ai전력핵심설비.md)

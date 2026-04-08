@@ -6,13 +6,10 @@ import remarkGfm from "remark-gfm";
 import {
   ArrowUpRight,
   ChevronsDown,
-  Minus,
   ShieldAlert,
   ShieldCheck,
   Sparkles,
   Target,
-  TrendingDown,
-  TrendingUp,
 } from "lucide-react";
 import FloatingSectionIndex, {
   type FloatingSectionIndexItem,
@@ -45,7 +42,7 @@ import {
   extractResearchSections,
   extractResearchStrategyGuide,
   extractResearchTags,
-  getResearchBriefingStats,
+  getResearchBriefingOverview,
   isStructuredResearchSectionTitle,
   loadResearchBriefings,
 } from "@/lib/research";
@@ -62,6 +59,11 @@ import { formatDateContextLine } from "@/lib/trading-calendar";
 export const dynamic = "force-dynamic";
 
 const REPO_ROOT = resolveRepoRoot();
+const NUMBER_FORMATTER = new Intl.NumberFormat("ko-KR");
+const MARKET_VALUE_FORMATTER = new Intl.NumberFormat("en-US", {
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2,
+});
 
 interface MarketIndex {
   close: number;
@@ -206,16 +208,89 @@ function formatPercent(value: number | null | undefined, digits = 1) {
 }
 
 function formatCurrency(value: number | null | undefined) {
-  return `${(value ?? 0).toLocaleString()}원`;
+  return `${NUMBER_FORMATTER.format(value ?? 0)}원`;
 }
 
 function formatSignedCurrency(value: number | null | undefined) {
   const safeValue = value ?? 0;
-  return `${safeValue > 0 ? "+" : ""}${safeValue.toLocaleString()}원`;
+  return `${safeValue > 0 ? "+" : ""}${NUMBER_FORMATTER.format(safeValue)}원`;
+}
+
+function formatMetricCount(
+  value: number | null | undefined,
+  unit: string,
+  fallback = "집계 중",
+) {
+  if (typeof value !== "number" || Number.isNaN(value)) {
+    return fallback;
+  }
+
+  return `${NUMBER_FORMATTER.format(value)}${unit}`;
 }
 
 function formatPctPoint(value: number) {
   return `${value > 0 ? "+" : ""}${value.toFixed(1)}%p`;
+}
+
+function formatMarketIndexLevel(value: number | null | undefined) {
+  if (typeof value !== "number" || !Number.isFinite(value)) {
+    return "-";
+  }
+
+  return MARKET_VALUE_FORMATTER.format(value);
+}
+
+function describeMarketFlow(value: number | null | undefined) {
+  if (typeof value !== "number" || !Number.isFinite(value)) {
+    return "등락 대기";
+  }
+
+  if (value === 0) {
+    return "보합";
+  }
+
+  return value > 0 ? "상승 우위" : "하락 우위";
+}
+
+function cleanDisplayText(value: string | null | undefined) {
+  if (!value) return "";
+
+  return value
+    .replace(/\*\*/g, "")
+    .replace(/^[-*•\s]+/, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function dedupeDisplayLines(items: Array<string | null | undefined>) {
+  const seen = new Set<string>();
+  const cleanedItems: string[] = [];
+
+  for (const item of items) {
+    const cleaned = cleanDisplayText(item);
+    if (!cleaned) continue;
+
+    const key = cleaned.toLowerCase();
+    if (seen.has(key)) continue;
+    seen.add(key);
+    cleanedItems.push(cleaned);
+  }
+
+  return cleanedItems;
+}
+
+function summarizeNarrative(value: string | null | undefined, maxLength = 120) {
+  const cleaned = cleanDisplayText(value);
+  if (!cleaned) return null;
+
+  const firstSentence =
+    cleaned.split(/(?<=[.!?。]|다\.)\s+/).find((sentence) => sentence.trim().length > 0) ??
+    cleaned;
+  const summary = firstSentence.length >= 28 ? firstSentence : cleaned;
+
+  return summary.length > maxLength
+    ? `${summary.slice(0, maxLength).trimEnd()}...`
+    : summary;
 }
 
 function normalizeMarketChangePct(value: number | null | undefined) {
@@ -274,9 +349,9 @@ function scoreMeta(score: number | null | undefined) {
     return {
       label: "데이터 준비 중",
       description: "아직 충분한 근거가 쌓이지 않았습니다.",
-      chipClass: "border-zinc-700 bg-zinc-900 text-zinc-300",
+      chipClass: "border-white/8 bg-white/[0.03] text-zinc-300",
       accentClass: "text-zinc-100",
-      cardClass: "border-zinc-800/80 bg-zinc-900/80",
+      cardClass: "border-white/8 bg-white/[0.03]",
     };
   }
 
@@ -284,9 +359,9 @@ function scoreMeta(score: number | null | undefined) {
     return {
       label: "안정 구간",
       description: "현 배분이 비교적 목표 범위에 근접합니다.",
-      chipClass: "border-emerald-500/30 bg-emerald-950/25 text-emerald-200",
-      accentClass: "text-emerald-300",
-      cardClass: "border-emerald-500/18 bg-emerald-950/12",
+      chipClass: "border-blue-500/30 bg-blue-500/14 text-blue-200",
+      accentClass: "text-blue-300",
+      cardClass: "border-blue-500/18 bg-blue-500/10",
     };
   }
 
@@ -294,28 +369,28 @@ function scoreMeta(score: number | null | undefined) {
     return {
       label: "보강 필요",
       description: "보완할 자산과 계좌가 분명하게 보입니다.",
-      chipClass: "border-amber-500/30 bg-amber-950/25 text-amber-200",
+      chipClass: "border-amber-500/30 bg-amber-500/12 text-amber-200",
       accentClass: "text-amber-200",
-      cardClass: "border-amber-500/18 bg-amber-950/12",
+      cardClass: "border-amber-500/18 bg-amber-500/10",
     };
   }
 
   return {
     label: "조정 우선",
     description: "배분과 근거를 먼저 재정렬할 시점입니다.",
-    chipClass: "border-red-500/30 bg-red-950/25 text-red-200",
-    accentClass: "text-red-200",
-    cardClass: "border-red-500/18 bg-red-950/12",
+    chipClass: "border-rose-500/30 bg-rose-500/14 text-rose-200",
+    accentClass: "text-rose-200",
+    cardClass: "border-rose-500/18 bg-rose-500/10",
   };
 }
 
 function researchTagClass(tone: string) {
-  if (tone === "rose") return "border-rose-500/30 bg-rose-950/20 text-rose-300";
-  if (tone === "sky") return "border-sky-500/30 bg-sky-950/20 text-sky-300";
-  if (tone === "emerald") return "border-emerald-500/30 bg-emerald-950/20 text-emerald-300";
-  if (tone === "amber") return "border-amber-500/30 bg-amber-950/20 text-amber-300";
-  if (tone === "fuchsia") return "border-fuchsia-500/30 bg-fuchsia-950/20 text-fuchsia-300";
-  return "border-zinc-700 bg-zinc-900 text-zinc-300";
+  if (tone === "rose") return "border-rose-500/30 bg-rose-500/14 text-rose-300";
+  if (tone === "sky") return "border-blue-500/30 bg-blue-500/14 text-blue-300";
+  if (tone === "emerald") return "border-sky-500/30 bg-sky-500/14 text-sky-300";
+  if (tone === "amber") return "border-amber-500/30 bg-amber-500/14 text-amber-300";
+  if (tone === "fuchsia") return "border-indigo-500/30 bg-indigo-500/14 text-indigo-300";
+  return "border-white/8 bg-white/[0.03] text-zinc-300";
 }
 
 function buildResearchSectionLabel(title: string, index: number) {
@@ -352,6 +427,7 @@ function formatResearchAccountLabel(
 
   if (/pension|연금/i.test(label)) return "연금저축";
   if (/toss|토스/i.test(label)) return "토스증권";
+  if (/kis|한투|한국투자/i.test(label)) return "한투 일반";
   if (/isa/i.test(label)) return "ISA";
   return label;
 }
@@ -365,7 +441,7 @@ function buildMarketMood(indices: Record<string, MarketIndex>) {
     return {
       label: "시장 데이터 대기",
       description: "핵심 지수가 들어오면 시장 모멘텀을 이곳에 압축해 보여줍니다.",
-      chipClass: "border-zinc-700 bg-zinc-900 text-zinc-300",
+      chipClass: "border-white/8 bg-white/[0.03] text-zinc-300",
     };
   }
 
@@ -376,7 +452,7 @@ function buildMarketMood(indices: Record<string, MarketIndex>) {
     return {
       label: "리스크 온",
       description: "주요 지수의 상승 우위가 확인됩니다. 공격적 비중 확대는 기술 신호와 함께 확인하는 편이 안전합니다.",
-      chipClass: "border-emerald-500/30 bg-emerald-950/20 text-emerald-200",
+      chipClass: "border-rose-500/30 bg-rose-500/14 text-rose-200",
     };
   }
 
@@ -384,14 +460,14 @@ function buildMarketMood(indices: Record<string, MarketIndex>) {
     return {
       label: "리스크 오프",
       description: "주요 지수에 하방 압력이 있습니다. 신규 진입보다 현금 여력과 방어 자산 비중을 먼저 점검하는 흐름입니다.",
-      chipClass: "border-red-500/30 bg-red-950/20 text-red-200",
+      chipClass: "border-sky-500/30 bg-sky-500/14 text-sky-200",
     };
   }
 
   return {
     label: "혼조 장세",
     description: "지수 방향성이 엇갈립니다. 거시 요약과 계좌별 목표 배분을 같이 보고 선택지를 좁히는 구간입니다.",
-    chipClass: "border-sky-500/30 bg-sky-950/20 text-sky-200",
+    chipClass: "border-blue-500/30 bg-blue-500/14 text-blue-200",
   };
 }
 
@@ -435,7 +511,7 @@ function buildDataQualitySummary(
     return {
       label: "주의",
       detail: `부분 캡처 계좌 ${portfolioGuide?.incompleteCount ?? 0}개가 있어 일부 계산은 참고용입니다.`,
-      tone: "amber" as const,
+      tone: "caution" as const,
     };
   }
 
@@ -443,14 +519,14 @@ function buildDataQualitySummary(
     return {
       label: `패널티 ${dataQualityPenalty.toFixed(1)}점`,
       detail: "누락 또는 미분류 노출이 감지돼 데이터 품질 감점이 반영됐습니다.",
-      tone: "amber" as const,
+      tone: "caution" as const,
     };
   }
 
   return {
     label: "정상",
     detail: "현재 스냅샷 기준 큰 데이터 누락 없이 점수 계산에 반영됐습니다.",
-    tone: "emerald" as const,
+    tone: "brand" as const,
   };
 }
 
@@ -458,24 +534,28 @@ function SummaryMetricCard({
   kicker,
   value,
   detail,
-  tone = "zinc",
+  tone = "neutral",
   compact = false,
 }: {
   kicker: string;
   value: string;
   detail: string;
-  tone?: "emerald" | "amber" | "rose" | "sky" | "zinc";
+  tone?: "brand" | "up" | "down" | "caution" | "risk" | "info" | "neutral";
   compact?: boolean;
 }) {
   const toneClasses =
-    tone === "emerald"
-      ? "border-emerald-500/18 bg-emerald-950/14"
-      : tone === "amber"
-        ? "border-amber-500/18 bg-amber-950/14"
-        : tone === "rose"
-          ? "border-red-500/18 bg-red-950/14"
-          : tone === "sky"
-            ? "border-sky-500/18 bg-sky-950/14"
+    tone === "brand"
+      ? "border-blue-500/18 bg-blue-500/10"
+      : tone === "up"
+        ? "border-rose-500/18 bg-rose-500/10"
+        : tone === "down"
+          ? "border-sky-500/18 bg-sky-500/10"
+          : tone === "caution"
+            ? "border-amber-500/18 bg-amber-500/10"
+            : tone === "risk"
+              ? "border-rose-500/18 bg-rose-500/10"
+              : tone === "info"
+                ? "border-indigo-500/18 bg-indigo-500/10"
             : "border-white/8 bg-white/[0.03]";
 
   return (
@@ -509,13 +589,13 @@ function ScoreFactorTile({
 }) {
   const toneClasses =
     tone === "emerald"
-      ? "border-emerald-500/16 bg-emerald-950/12 text-emerald-200"
+      ? "border-blue-500/16 bg-blue-500/10 text-blue-200"
       : tone === "amber"
-        ? "border-amber-500/16 bg-amber-950/12 text-amber-200"
+        ? "border-amber-500/16 bg-amber-500/10 text-amber-200"
         : tone === "rose"
-          ? "border-red-500/16 bg-red-950/12 text-red-200"
+          ? "border-rose-500/16 bg-rose-500/10 text-rose-200"
           : tone === "sky"
-            ? "border-sky-500/16 bg-sky-950/12 text-sky-200"
+            ? "border-sky-500/16 bg-sky-500/10 text-sky-200"
             : "border-white/8 bg-white/[0.03] text-zinc-100";
 
   return (
@@ -532,8 +612,8 @@ function ScoreFactorTile({
 function PriorityGapCard({ item }: { item: PriorityGapItem }) {
   const isBuildUp = item.action === "보강 필요";
   const toneClass = isBuildUp
-    ? "border-emerald-500/16 bg-emerald-950/12"
-    : "border-amber-500/16 bg-amber-950/12";
+    ? "border-blue-500/16 bg-blue-500/10"
+    : "border-amber-500/16 bg-amber-500/10";
 
   return (
     <article className={joinClasses("glass-panel-soft rounded-[1.45rem] p-4", toneClass)}>
@@ -550,8 +630,8 @@ function PriorityGapCard({ item }: { item: PriorityGapItem }) {
           className={joinClasses(
             "rounded-full border px-2.5 py-1 text-[11px] font-medium",
             isBuildUp
-              ? "border-emerald-500/30 bg-emerald-950/25 text-emerald-200"
-              : "border-amber-500/30 bg-amber-950/25 text-amber-200",
+              ? "border-blue-500/30 bg-blue-500/14 text-blue-200"
+              : "border-amber-500/30 bg-amber-500/14 text-amber-200",
           )}
         >
           {item.action}
@@ -560,7 +640,7 @@ function PriorityGapCard({ item }: { item: PriorityGapItem }) {
 
       <p className="mt-3 text-sm text-zinc-300">
         {isBuildUp ? "목표보다 " : "목표 대비 "}
-        <span className={isBuildUp ? "text-emerald-200" : "text-amber-200"}>
+        <span className={isBuildUp ? "text-blue-200" : "text-amber-200"}>
           {formatPctPoint(Math.abs(item.gapPct) * 100)}
         </span>
         {isBuildUp ? " 부족합니다." : " 초과입니다."}
@@ -577,121 +657,40 @@ function PriorityGapCard({ item }: { item: PriorityGapItem }) {
   );
 }
 
-function MarketCard({
+function MarketIndexRow({
   label,
   close,
   changePct,
-  history = [],
 }: {
   label: string;
   close: number | null | undefined;
   changePct: number | null | undefined;
-  history?: number[];
 }) {
-  const safeClose = typeof close === "number" ? close : 0;
   const hasChangePct = typeof changePct === "number" && Number.isFinite(changePct);
-  const safeChangePct = hasChangePct ? changePct : 0;
-  const positive = safeChangePct > 0;
-  const neutral = hasChangePct && safeChangePct === 0;
-  const Icon = !hasChangePct ? Minus : neutral ? Minus : positive ? TrendingUp : TrendingDown;
-  const valueTone = !hasChangePct
-    ? "text-zinc-300"
-    : neutral
-      ? "text-zinc-300"
-      : positive
-        ? "text-emerald-200"
-        : "text-red-200";
-  const barTone = !hasChangePct
-    ? "bg-zinc-500/60"
-    : neutral
-      ? "bg-zinc-500/60"
-      : positive
-        ? "bg-emerald-400"
-        : "bg-red-400";
-  const barWidth = hasChangePct
-    ? Math.min(100, Math.abs(safeChangePct) * 18 + 18)
-    : 22;
-  const sparklineSeries = history.filter((value) => Number.isFinite(value));
-  const minSeries = Math.min(...sparklineSeries);
-  const maxSeries = Math.max(...sparklineSeries);
-  const span = Math.max(maxSeries - minSeries, 1);
-  const sparklinePoints =
-    sparklineSeries.length >= 2
-      ? sparklineSeries
-          .map((value, index) => {
-            const x =
-              sparklineSeries.length === 1
-                ? 0
-                : (index / (sparklineSeries.length - 1)) * 100;
-            const y = 30 - ((value - minSeries) / span) * 24;
-            return `${x},${y}`;
-          })
-          .join(" ")
-      : null;
+  const toneClass = !hasChangePct
+    ? "text-zinc-400"
+    : changePct > 0
+      ? "text-rose-200"
+      : changePct < 0
+        ? "text-sky-200"
+        : "text-zinc-300";
 
   return (
-    <div className="glass-panel-soft rounded-[1.45rem] p-4">
-      <div className="flex items-start justify-between gap-3">
-        <div>
-          <p className="text-[11px] uppercase tracking-[0.18em] text-zinc-500">
-            {label}
-          </p>
-          <p className="mt-2 text-2xl font-semibold tabular-nums text-zinc-50">
-            {safeClose.toLocaleString()}
-          </p>
-        </div>
-        <span
-          className={joinClasses(
-            "inline-flex items-center gap-1 rounded-full border px-2.5 py-1 text-xs font-medium",
-            !hasChangePct
-              ? "border-zinc-700 bg-zinc-900 text-zinc-300"
-              : neutral
-              ? "border-zinc-700 bg-zinc-900 text-zinc-300"
-              : positive
-                ? "border-emerald-500/25 bg-emerald-950/20 text-emerald-200"
-                : "border-red-500/25 bg-red-950/20 text-red-200",
-          )}
-        >
-          <Icon size={13} />
-          {hasChangePct ? (
-            <>
-              {safeChangePct > 0 ? "+" : ""}
-              {safeChangePct.toFixed(2)}%
-            </>
-          ) : (
-            "변화 대기"
-          )}
+    <div className="flex flex-col gap-1 border-b border-white/6 py-3 last:border-b-0 md:flex-row md:items-center md:justify-between">
+      <div className="flex items-baseline gap-3">
+        <p className="text-[11px] uppercase tracking-[0.18em] text-zinc-500">
+          {label}
+        </p>
+        <p className="text-sm font-semibold tabular-nums text-zinc-100 md:text-base">
+          {formatMarketIndexLevel(close)}
+        </p>
+      </div>
+      <div className="flex items-center gap-3 text-sm">
+        <span className={joinClasses("font-medium tabular-nums", toneClass)}>
+          {hasChangePct ? formatSignedPercent(changePct, 2) : "등락 대기"}
         </span>
+        <span className="text-zinc-500">{describeMarketFlow(changePct)}</span>
       </div>
-
-      <div className="mt-4 overflow-hidden rounded-full bg-white/6">
-        <div className={joinClasses("h-1.5 rounded-full", barTone)} style={{ width: `${barWidth}%` }} />
-      </div>
-
-      {sparklinePoints && (
-        <div className="mt-4 rounded-2xl border border-white/6 bg-white/[0.03] px-3 py-2">
-          <svg viewBox="0 0 100 32" className="h-9 w-full">
-            <polyline
-              fill="none"
-              stroke={positive ? "rgb(52 211 153)" : neutral ? "rgb(161 161 170)" : "rgb(248 113 113)"}
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              points={sparklinePoints}
-            />
-          </svg>
-        </div>
-      )}
-
-      <p className={joinClasses("mt-3 text-xs font-medium", valueTone)}>
-        {!hasChangePct
-          ? "등락 데이터 연결 대기"
-          : neutral
-          ? "보합권"
-          : positive
-            ? "상승 우위 흐름"
-            : "하락 압력 우위"}
-      </p>
     </div>
   );
 }
@@ -706,18 +705,18 @@ function PortfolioAccountCard({
   const profitPositive = (account.profitLoss ?? 0) > 0;
   const profitNegative = (account.profitLoss ?? 0) < 0;
   const profitClass = profitPositive
-    ? "text-emerald-300"
+    ? "text-rose-300"
     : profitNegative
-      ? "text-red-300"
+      ? "text-sky-300"
       : "text-zinc-300";
 
   const holdingsProfitLoss = getAccountHoldingsProfitLoss(account);
   const holdingsProfitRate = getAccountHoldingsProfitRate(account);
   const holdingsProfitClass =
     holdingsProfitLoss > 0
-      ? "text-emerald-300"
+      ? "text-rose-300"
       : holdingsProfitLoss < 0
-        ? "text-red-300"
+        ? "text-sky-300"
         : "text-zinc-300";
   const guideMeta = scoreMeta(guideScore);
 
@@ -824,10 +823,10 @@ function StageSeparator({
 }) {
   const toneClasses =
     tone === "emerald"
-      ? "border-emerald-500/18 bg-emerald-950/12 text-emerald-200"
+      ? "border-blue-500/18 bg-blue-500/10 text-blue-200"
       : tone === "amber"
-        ? "border-amber-500/18 bg-amber-950/12 text-amber-200"
-        : "border-sky-500/18 bg-sky-950/12 text-sky-200";
+        ? "border-amber-500/18 bg-amber-500/10 text-amber-200"
+        : "border-indigo-500/18 bg-indigo-500/10 text-indigo-200";
 
   return (
     <section className={joinClasses("scroll-mt-32", orderClass)}>
@@ -899,12 +898,13 @@ export default function DashboardPage() {
   const researchScenarioBranches = researchBriefing
     ? extractResearchScenarioBranches(researchBriefing.content, 2)
     : [];
-  const researchStats = getResearchBriefingStats(researchBriefing);
+  const researchOverview = getResearchBriefingOverview(researchBriefing);
+  const researchMetricTones = ["info", "brand", "neutral", "caution"] as const;
   const researchTags = researchBriefing
     ? extractResearchTags(researchBriefing.content, 8)
     : [];
   const researchActionPoints = researchBriefing
-    ? extractResearchActionPoints(researchBriefing.content, 4)
+    ? dedupeDisplayLines(extractResearchActionPoints(researchBriefing.content, 4))
     : [];
   const researchSectionTabs: ResearchSectionTabItem[] = researchSections.map(
     (section, index) => ({
@@ -913,7 +913,7 @@ export default function DashboardPage() {
       title: section.title,
       body: section.body,
       tags: extractResearchTags(`${section.title}\n${section.body}`, 5),
-      actionPoints: extractResearchActionPoints(section.body, 2),
+      actionPoints: dedupeDisplayLines(extractResearchActionPoints(section.body, 2)),
     }),
   );
   const briefingDateLine = briefing
@@ -933,6 +933,38 @@ export default function DashboardPage() {
   const hasMarket = Object.keys(indices).length > 0;
   const totals = portfolio ? getPortfolioTotals(portfolio) : null;
   const marketMood = buildMarketMood(indices);
+  const mainScenario =
+    researchScenarioBranches.find((branch) => /(main|base|기준|메인)/i.test(branch.label)) ??
+    researchScenarioBranches[0] ??
+    null;
+  const heroMacroSummary = summarizeNarrative(
+    researchDiagnosis ?? marketMood.description,
+    150,
+  );
+  const heroStrategySummary = summarizeNarrative(
+    portfolioGuide?.globalActions[0] ??
+      researchStrategyGuide.weeklyPriority ??
+      mainScenario?.response ??
+      null,
+    100,
+  );
+  const decisionMacroSummary =
+    summarizeNarrative(
+      mainScenario?.response ?? researchDiagnosis ?? marketMood.description,
+      96,
+    ) ?? marketMood.description;
+  const decisionStrategySummary =
+    summarizeNarrative(
+      portfolioGuide?.globalActions[0] ??
+        researchStrategyGuide.weeklyPriority ??
+        "이번 주는 계좌별 목표 비중과 대기 자금 배치를 먼저 확인합니다.",
+      92,
+    ) ?? "이번 주는 계좌별 목표 비중과 대기 자금 배치를 먼저 확인합니다.";
+  const showResearchStrategyCards =
+    researchStrategyGuide.accountGoals.length > 0 ||
+    researchPortfolioInsights.strengths.length > 0 ||
+    researchPortfolioInsights.vulnerabilities.length > 0 ||
+    researchPortfolioInsights.upgradeAxes.length > 0;
   const macroTargetId =
     researchBriefing && (researchSections.length > 0 || researchScenarioBranches.length > 0)
       ? "macro-view"
@@ -941,10 +973,6 @@ export default function DashboardPage() {
         : null;
   const strategyTargetId = portfolioGuide ? "strategy-overview" : portfolio ? "strategy-overview" : null;
   const actionTargetId = portfolioGuide || recommendationBoard ? "action-overview" : null;
-  const mainScenario =
-    researchScenarioBranches.find((branch) => /(main|base|기준|메인)/i.test(branch.label)) ??
-    researchScenarioBranches[0] ??
-    null;
   const hasMacroView =
     hasMarket ||
     !!researchBriefing ||
@@ -1033,26 +1061,24 @@ export default function DashboardPage() {
   const scoreDrivers = focusAccount?.scoreDrivers.slice(0, 4) ?? [];
   const improvementActions = focusAccount?.improvementActions.slice(0, 3) ?? [];
   const heroDescription = mainScenario
-    ? `${researchDiagnosis ?? marketMood.description} 현재 기본 시나리오는 ${
-        mainScenario.narrative || mainScenario.label
-      }이며, 이번 주 전략 초점은 ${
-        portfolioGuide?.globalActions[0] ??
-        mainScenario.response ??
-        "현금 비중과 계좌별 목표 재정렬"
-      } 입니다.`
+    ? [heroMacroSummary, heroStrategySummary ? `이번 주 전략은 ${heroStrategySummary}` : null]
+        .filter(Boolean)
+        .join(" ")
     : portfolioGuide
-      ? `${researchDiagnosis ?? marketMood.description} 현재 총 평가금액은 ${formatCurrency(
-          totals?.totalEvaluationAmount,
-        )}이며, 이번 주 전략 초점은 ${
-          portfolioGuide.globalActions[0] ?? "우선순위 재정렬"
-        } 입니다.`
+      ? [
+          heroMacroSummary ??
+            `현재 총 평가금액은 ${formatCurrency(totals?.totalEvaluationAmount)}입니다.`,
+          heroStrategySummary ? `이번 주 전략은 ${heroStrategySummary}` : null,
+        ]
+          .filter(Boolean)
+          .join(" ")
       : "거시 방향성부터 이번 주 전략, 오늘 실행 순서로 판단할 수 있게 화면을 재정렬했습니다.";
 
   return (
-    <main className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-8 px-4 py-6 md:px-6 md:py-8">
-      <section className="glass-panel relative overflow-hidden rounded-[2rem] p-5 md:p-7 lg:p-8">
-        <div className="absolute -right-12 -top-14 h-44 w-44 rounded-full bg-emerald-400/12 blur-3xl" />
-        <div className="absolute bottom-0 left-1/3 h-36 w-36 rounded-full bg-sky-400/12 blur-3xl" />
+    <main className="mx-auto flex w-full max-w-7xl flex-1 flex-col gap-5 px-2.5 py-4 md:gap-8 md:px-6 md:py-8">
+      <section className="glass-panel relative overflow-hidden rounded-[1.7rem] p-4 md:p-7 lg:p-8">
+        <div className="absolute -right-12 -top-14 h-44 w-44 rounded-full bg-blue-400/12 blur-3xl" />
+        <div className="absolute bottom-0 left-1/3 h-36 w-36 rounded-full bg-indigo-400/12 blur-3xl" />
 
         <div className="relative grid gap-6 xl:grid-cols-[minmax(0,1.35fr),22rem]">
           <div>
@@ -1067,10 +1093,7 @@ export default function DashboardPage() {
               )}
             </div>
 
-            <h1 className="mt-4 max-w-3xl text-3xl font-semibold tracking-tight text-zinc-50 md:text-5xl">
-              왜 이 매매를 해야 하는지부터 보여줍니다.
-            </h1>
-            <p className="mt-3 max-w-3xl text-sm leading-6 text-zinc-300 md:text-base">
+            <p className="mt-4 max-w-3xl text-sm leading-6 text-zinc-300 md:text-base">
               {heroDescription}
             </p>
 
@@ -1087,7 +1110,7 @@ export default function DashboardPage() {
                 </span>
               ))}
               {strategyProgress && (
-                <span className="rounded-full border border-sky-500/30 bg-sky-950/20 px-3 py-1 text-xs text-sky-200">
+                <span className="rounded-full border border-blue-500/30 bg-blue-500/14 px-3 py-1 text-xs text-blue-200">
                   분할매수 {strategyProgress}
                 </span>
               )}
@@ -1101,7 +1124,7 @@ export default function DashboardPage() {
                   totals?.totalHoldingsProfitLoss,
                 )} · 수익률 ${formatSignedPercent(totals?.totalHoldingsProfitRate)}`}
                 tone={
-                  (totals?.totalHoldingsProfitLoss ?? 0) >= 0 ? "emerald" : "rose"
+                  (totals?.totalHoldingsProfitLoss ?? 0) >= 0 ? "up" : "down"
                 }
               />
               <SummaryMetricCard
@@ -1114,10 +1137,10 @@ export default function DashboardPage() {
                 detail={globalScoreMeta.description}
                 tone={
                   portfolioGuide?.score != null && portfolioGuide.score >= 75
-                    ? "emerald"
+                    ? "brand"
                     : portfolioGuide?.score != null && portfolioGuide.score >= 55
-                      ? "amber"
-                      : "rose"
+                      ? "caution"
+                      : "risk"
                 }
               />
               <SummaryMetricCard
@@ -1134,7 +1157,7 @@ export default function DashboardPage() {
                       )} · 예상 영향 ${formatSignedCurrency(topPriority.gapAmount)}`
                     : "급한 보강보다 기존 비중 유지가 우선입니다."
                 }
-                tone={topPriority?.action === "보강 필요" ? "emerald" : "amber"}
+                tone={topPriority?.action === "보강 필요" ? "brand" : "caution"}
                 compact
               />
               <SummaryMetricCard
@@ -1147,7 +1170,7 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          <aside className="glass-panel-soft rounded-[1.75rem] p-4 md:p-5">
+          <aside className="mobile-flat-chrome glass-panel-soft rounded-[1.5rem] p-0 md:p-5">
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="section-kicker">Decision Flow</p>
@@ -1164,7 +1187,7 @@ export default function DashboardPage() {
             </div>
 
             <div className="mt-5 space-y-3">
-              <div className="rounded-[1.2rem] border border-sky-500/20 bg-sky-950/12 p-3">
+              <div className="rounded-[1.2rem] border border-blue-500/20 bg-blue-500/10 p-3">
                 <p className="text-[11px] uppercase tracking-[0.18em] text-zinc-500">
                   1. Macro View
                 </p>
@@ -1174,11 +1197,11 @@ export default function DashboardPage() {
                     : marketMood.label}
                 </p>
                 <p className="mt-2 text-xs leading-5 text-zinc-400">
-                  {mainScenario?.narrative || marketMood.description}
+                  {decisionMacroSummary}
                 </p>
               </div>
 
-              <div className="rounded-[1.2rem] border border-emerald-500/20 bg-emerald-950/12 p-3">
+              <div className="rounded-[1.2rem] border border-indigo-500/20 bg-indigo-500/10 p-3">
                 <p className="text-[11px] uppercase tracking-[0.18em] text-zinc-500">
                   2. Strategy
                 </p>
@@ -1187,12 +1210,11 @@ export default function DashboardPage() {
                   {portfolioGuide ? formatPercent(portfolioGuide.nextTranchePct * 100, 0) : "-"}
                 </p>
                 <p className="mt-2 text-xs leading-5 text-zinc-400">
-                  {portfolioGuide?.globalActions[0] ??
-                    "이번 주는 계좌별 목표 비중과 대기 자금 배치를 먼저 확인합니다."}
+                  {decisionStrategySummary}
                 </p>
               </div>
 
-              <div className="rounded-[1.2rem] border border-amber-500/20 bg-amber-950/12 p-3">
+              <div className="rounded-[1.2rem] border border-amber-500/20 bg-amber-500/10 p-3">
                 <p className="text-[11px] uppercase tracking-[0.18em] text-zinc-500">
                   3. Action
                 </p>
@@ -1246,7 +1268,7 @@ export default function DashboardPage() {
               ? "market-overview"
               : "macro-view"
           }
-          className="glass-panel order-20 scroll-mt-32 rounded-[2rem] p-5 md:p-6"
+          className="section-shell order-20 scroll-mt-32"
         >
           <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
             <div>
@@ -1263,29 +1285,13 @@ export default function DashboardPage() {
             </span>
           </div>
 
-          <div className="mt-5 md:hidden -mx-5 overflow-x-auto px-5">
-            <div className="flex min-w-max gap-3">
-              {Object.entries(indices).map(([key, value]) => (
-                <div key={key} className="min-w-[210px] max-w-[210px]">
-                  <MarketCard
-                    label={key}
-                    close={value.close}
-                    changePct={value.change_pct}
-                    history={value.history}
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="mt-5 hidden gap-3 md:grid md:grid-cols-2 xl:grid-cols-6">
+          <div className="mt-5 border-y border-white/8 px-1 md:px-2">
             {Object.entries(indices).map(([key, value]) => (
-              <MarketCard
+              <MarketIndexRow
                 key={key}
                 label={key}
                 close={value.close}
                 changePct={value.change_pct}
-                history={value.history}
               />
             ))}
           </div>
@@ -1295,7 +1301,7 @@ export default function DashboardPage() {
       {(portfolio || strategy) && (
         <section
           id={portfolioGuide ? "portfolio-overview" : "strategy-overview"}
-          className="glass-panel order-50 scroll-mt-32 rounded-[2rem] p-5 md:p-6"
+          className="section-shell order-50 scroll-mt-32"
         >
           <div className="flex flex-col gap-4 xl:flex-row xl:items-end xl:justify-between">
             <div>
@@ -1307,7 +1313,7 @@ export default function DashboardPage() {
                 전략과 실행을 본 뒤, 마지막에 계좌별 잔고와 보유 상태를 세부적으로 확인합니다.
               </p>
               {strategyProgress && (
-                <p className="mt-3 text-sm text-sky-200">
+                <p className="mt-3 text-sm text-blue-200">
                   분할매수 진행 {strategyProgress}
                   {nextStrategyStep?.target_date
                     ? ` · 다음 단계 예정 ${nextStrategyStep.target_date}`
@@ -1325,7 +1331,7 @@ export default function DashboardPage() {
               </Link>
               <Link
                 href="/portfolio/update"
-                className="inline-flex items-center rounded-full border border-emerald-500/25 bg-emerald-950/20 px-4 py-2 text-sm font-medium text-emerald-100 transition hover:bg-emerald-950/35"
+                className="inline-flex items-center rounded-full border border-blue-500/25 bg-blue-500/14 px-4 py-2 text-sm font-medium text-blue-100 transition hover:bg-blue-500/20"
               >
                 캡처 업데이트
               </Link>
@@ -1339,13 +1345,13 @@ export default function DashboardPage() {
                   kicker="총 평가금액"
                   value={formatCurrency(totals?.totalEvaluationAmount)}
                   detail="최신 스냅샷 기준 자산 합계"
-                  tone="sky"
+                  tone="info"
                 />
                 <SummaryMetricCard
                   kicker="보유 종목"
                   value={`${totals?.totalHoldingCount ?? 0}개`}
                   detail="전체 계좌 합산 기준"
-                  tone="zinc"
+                  tone="neutral"
                   compact
                 />
                 <SummaryMetricCard
@@ -1353,7 +1359,7 @@ export default function DashboardPage() {
                   value={formatSignedCurrency(totals?.totalHoldingsProfitLoss)}
                   detail={`수익률 ${formatSignedPercent(totals?.totalHoldingsProfitRate)}`}
                   tone={
-                    (totals?.totalHoldingsProfitLoss ?? 0) >= 0 ? "emerald" : "rose"
+                    (totals?.totalHoldingsProfitLoss ?? 0) >= 0 ? "up" : "down"
                   }
                   compact
                 />
@@ -1365,12 +1371,12 @@ export default function DashboardPage() {
                       : "-"
                   }
                   detail="대기 자금과 방어 비중을 함께 반영"
-                  tone="amber"
+                  tone="caution"
                   compact
                 />
               </div>
 
-              <div className="mt-5 md:hidden -mx-5 overflow-x-auto px-5">
+              <div className="mt-5 md:hidden -mx-3 overflow-x-auto px-3">
                 <div className="flex gap-3 pb-1">
                   {portfolio.accounts.map((account) => (
                     <div key={account.key} className="min-w-[305px] max-w-[305px]">
@@ -1410,7 +1416,7 @@ export default function DashboardPage() {
       {portfolioGuide && (
         <section
           id="strategy-overview"
-          className="glass-panel order-30 scroll-mt-32 rounded-[2rem] p-5 md:p-6"
+          className="order-30 scroll-mt-32"
         >
           <div className="flex flex-col gap-4 xl:flex-row xl:items-end xl:justify-between">
             <div>
@@ -1438,7 +1444,7 @@ export default function DashboardPage() {
           </div>
 
           <div className="mt-5 grid gap-3 xl:grid-cols-[minmax(0,1.15fr),minmax(0,0.85fr)]">
-            <div className="glass-panel-soft rounded-[1.65rem] p-5">
+            <div className="section-block">
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <p className="section-kicker">Explainable Score</p>
@@ -1481,7 +1487,7 @@ export default function DashboardPage() {
                 <ul className="mt-4 space-y-2 text-sm text-zinc-300">
                   {scoreDrivers.map((driver) => (
                     <li key={driver} className="flex gap-2">
-                      <Sparkles size={15} className="mt-0.5 shrink-0 text-emerald-300" />
+                      <Sparkles size={15} className="mt-0.5 shrink-0 text-blue-300" />
                       <span>{driver}</span>
                     </li>
                   ))}
@@ -1490,7 +1496,7 @@ export default function DashboardPage() {
             </div>
 
             <div className="space-y-3">
-              <div className="glass-panel-soft rounded-[1.65rem] p-5">
+              <div className="section-block">
                 <p className="section-kicker">This Week Response</p>
                 <h3 className="mt-2 text-xl font-semibold text-zinc-50">
                   현금 비중과 계좌별 목표
@@ -1504,7 +1510,7 @@ export default function DashboardPage() {
                     </span>
                   </li>
                   <li className="flex gap-2">
-                    <Target size={15} className="mt-1 shrink-0 text-sky-300" />
+                    <Target size={15} className="mt-1 shrink-0 text-blue-300" />
                     <span>
                       다음 분할매수 기준은 {formatPercent(portfolioGuide.nextTranchePct * 100, 0)}
                       입니다.
@@ -1512,7 +1518,7 @@ export default function DashboardPage() {
                   </li>
                   {portfolioGuide.globalActions.slice(0, 2).map((action) => (
                     <li key={action} className="flex gap-2">
-                      <Target size={15} className="mt-1 shrink-0 text-emerald-300" />
+                      <Target size={15} className="mt-1 shrink-0 text-blue-300" />
                       <span>{action}</span>
                     </li>
                   ))}
@@ -1530,10 +1536,10 @@ export default function DashboardPage() {
                 )}
               </div>
 
-              <div className="glass-panel-soft rounded-[1.65rem] p-5">
+              <div className="section-block">
                 <div className="flex items-start gap-3">
-                  {dataQualitySummary.tone === "emerald" ? (
-                    <ShieldCheck className="mt-0.5 shrink-0 text-emerald-300" size={18} />
+                  {dataQualitySummary.tone === "brand" ? (
+                    <ShieldCheck className="mt-0.5 shrink-0 text-blue-300" size={18} />
                   ) : (
                     <ShieldAlert className="mt-0.5 shrink-0 text-amber-300" size={18} />
                   )}
@@ -1548,7 +1554,7 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          <div className="mt-5 md:hidden -mx-5 overflow-x-auto px-5">
+          <div className="mt-5 md:hidden -mx-3 overflow-x-auto px-3">
             <div className="flex gap-3 pb-1">
               <SummaryMetricCard
                 kicker="포트폴리오 운용 점수"
@@ -1556,23 +1562,23 @@ export default function DashboardPage() {
                 detail={globalScoreMeta.description}
                 tone={
                   portfolioGuide.score >= 75
-                    ? "emerald"
+                    ? "brand"
                     : portfolioGuide.score >= 55
-                      ? "amber"
-                      : "rose"
+                      ? "caution"
+                      : "risk"
                 }
               />
               <SummaryMetricCard
                 kicker="총 현금 비중"
                 value={formatPercent(portfolioGuide.totalCashPct * 100)}
                 detail="현금 파킹 포함"
-                tone="amber"
+                tone="caution"
               />
               <SummaryMetricCard
                 kicker="이번 단계 기준"
                 value={formatPercent(portfolioGuide.nextTranchePct * 100, 0)}
                 detail="다음 분할매수 비중"
-                tone="sky"
+                tone="info"
               />
             </div>
           </div>
@@ -1584,23 +1590,23 @@ export default function DashboardPage() {
               detail={globalScoreMeta.description}
               tone={
                 portfolioGuide.score >= 75
-                  ? "emerald"
+                  ? "brand"
                   : portfolioGuide.score >= 55
-                    ? "amber"
-                    : "rose"
+                    ? "caution"
+                    : "risk"
               }
             />
             <SummaryMetricCard
               kicker="총 현금 비중"
               value={formatPercent(portfolioGuide.totalCashPct * 100)}
               detail="현금 파킹 포함"
-              tone="amber"
+              tone="caution"
             />
             <SummaryMetricCard
               kicker="이번 단계 기준"
               value={formatPercent(portfolioGuide.nextTranchePct * 100, 0)}
               detail="다음 분할매수 비중"
-              tone="sky"
+              tone="info"
             />
           </div>
 
@@ -1619,41 +1625,9 @@ export default function DashboardPage() {
             />
           </div>
 
-          {(researchStrategyGuide.cashGuidance ||
-            researchStrategyGuide.weeklyPriority ||
-            researchStrategyGuide.accountGoals.length > 0 ||
-            researchPortfolioInsights.strengths.length > 0 ||
-            researchPortfolioInsights.vulnerabilities.length > 0 ||
-            researchPortfolioInsights.upgradeAxes.length > 0) && (
-            <div className="mt-5 grid gap-3 lg:grid-cols-3">
-              <div className="glass-panel-soft rounded-[1.5rem] p-4">
-                <p className="section-kicker">Report Overlay</p>
-                <h3 className="mt-2 text-lg font-semibold text-zinc-50">
-                  리포트 기반 주간 전략
-                </h3>
-                <ul className="mt-4 space-y-3 text-sm leading-6 text-zinc-300">
-                  {researchStrategyGuide.cashGuidance && (
-                    <li className="flex gap-2">
-                      <Target size={15} className="mt-1 shrink-0 text-amber-300" />
-                      <span>{researchStrategyGuide.cashGuidance}</span>
-                    </li>
-                  )}
-                  {researchStrategyGuide.weeklyPriority && (
-                    <li className="flex gap-2">
-                      <Target size={15} className="mt-1 shrink-0 text-emerald-300" />
-                      <span>{researchStrategyGuide.weeklyPriority}</span>
-                    </li>
-                  )}
-                  {researchStrategyGuide.supportingPoints.slice(0, 2).map((point) => (
-                    <li key={point} className="flex gap-2">
-                      <Target size={15} className="mt-1 shrink-0 text-sky-300" />
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="glass-panel-soft rounded-[1.5rem] p-4">
+          {showResearchStrategyCards && (
+            <div className="mt-5 grid gap-3 lg:grid-cols-2">
+              <div className="section-block">
                 <p className="section-kicker">Account Goals</p>
                 <h3 className="mt-2 text-lg font-semibold text-zinc-50">
                   계좌별 목표
@@ -1679,7 +1653,7 @@ export default function DashboardPage() {
                 )}
               </div>
 
-              <div className="glass-panel-soft rounded-[1.5rem] p-4">
+              <div className="section-block">
                 <p className="section-kicker">Portfolio Insight</p>
                 <h3 className="mt-2 text-lg font-semibold text-zinc-50">
                   포트폴리오 시사점
@@ -1687,7 +1661,7 @@ export default function DashboardPage() {
                 <div className="mt-4 space-y-4 text-sm">
                   {researchPortfolioInsights.strengths.length > 0 && (
                     <div>
-                      <p className="text-xs uppercase tracking-[0.16em] text-emerald-300">
+                      <p className="text-xs uppercase tracking-[0.16em] text-blue-300">
                         좋은 점
                       </p>
                       <ul className="mt-2 space-y-1.5 text-zinc-300">
@@ -1742,7 +1716,7 @@ export default function DashboardPage() {
       {hasActionView && (
         <section
           id="action-overview"
-          className="glass-panel order-40 scroll-mt-32 rounded-[2rem] p-5 md:p-6"
+          className="section-shell order-40 scroll-mt-32"
         >
           <div className="flex flex-col gap-4 xl:flex-row xl:items-end xl:justify-between">
             <div>
@@ -1755,14 +1729,14 @@ export default function DashboardPage() {
               </p>
             </div>
             {topPriority && (
-              <span className="rounded-full border border-emerald-500/30 bg-emerald-950/20 px-3 py-1.5 text-sm font-medium text-emerald-200">
+              <span className="rounded-full border border-blue-500/30 bg-blue-500/14 px-3 py-1.5 text-sm font-medium text-blue-200">
                 1순위 {topPriority.accountLabel} · {topPriority.category}
               </span>
             )}
           </div>
 
           <div className="mt-5 grid gap-3 xl:grid-cols-[minmax(0,0.85fr),minmax(0,1.15fr)]">
-            <div className="glass-panel-soft rounded-[1.65rem] p-5">
+            <div className="section-block">
               <div className="flex items-start justify-between gap-4">
                 <div>
                   <p className="section-kicker">Action Console</p>
@@ -1805,7 +1779,7 @@ export default function DashboardPage() {
               </div>
             </div>
 
-            <div className="glass-panel-soft rounded-[1.65rem] p-5">
+            <div className="section-block">
               <p className="section-kicker">Today Checklist</p>
               <h3 className="mt-2 text-xl font-semibold text-zinc-50">
                 오늘의 우선 지침
@@ -1814,7 +1788,7 @@ export default function DashboardPage() {
                 {portfolioGuide?.globalActions?.length ? (
                   portfolioGuide.globalActions.map((action) => (
                     <li key={action} className="flex gap-2">
-                      <Target size={15} className="mt-1 shrink-0 text-emerald-300" />
+                      <Target size={15} className="mt-1 shrink-0 text-blue-300" />
                       <span>{action}</span>
                     </li>
                   ))
@@ -1842,21 +1816,21 @@ export default function DashboardPage() {
           </div>
 
           {researchActionGroups.length > 0 && (
-            <div className="mt-5 glass-panel-soft rounded-[1.65rem] p-5">
-              <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <details className="section-block mt-5 [&_summary::-webkit-details-marker]:hidden">
+              <summary className="flex cursor-pointer list-none flex-col gap-3 md:flex-row md:items-end md:justify-between">
                 <div>
                   <p className="section-kicker">Report Action Overlay</p>
                   <h3 className="mt-2 text-xl font-semibold text-zinc-50">
-                    새 리포트에서 올라온 오늘 실행안
+                    리포트 추가 실행 메모
                   </h3>
                   <p className="mt-1 text-sm text-zinc-400">
-                    기존 체크리스트에 없던 계좌별 실행 문구를 rich briefing에서 다시 꺼냈습니다.
+                    체크리스트와 겹치는 긴 문장은 접어두고, 필요할 때만 원문 실행 메모를 확인합니다.
                   </p>
                 </div>
-                <span className="rounded-full border border-amber-500/25 bg-amber-950/20 px-3 py-1 text-xs text-amber-200">
-                  {researchActionGroups.length}개 계좌 구좌 연결
+                <span className="rounded-full border border-amber-500/25 bg-amber-500/10 px-3 py-1 text-xs text-amber-200">
+                  {researchActionGroups.length}개 계좌 메모
                 </span>
-              </div>
+              </summary>
 
               <div className="mt-4 grid gap-3 md:grid-cols-3">
                 {researchActionGroups.map((group) => (
@@ -1869,13 +1843,13 @@ export default function DashboardPage() {
                     </p>
                     <ul className="mt-3 space-y-2 text-sm leading-6 text-zinc-200">
                       {group.items.map((item) => (
-                        <li key={`${group.id}-${item}`}>- {item}</li>
+                        <li key={`${group.id}-${item}`}>- {cleanDisplayText(item)}</li>
                       ))}
                     </ul>
                   </div>
                 ))}
               </div>
-            </div>
+            </details>
           )}
 
           {portfolioGuide && (
@@ -1907,7 +1881,7 @@ export default function DashboardPage() {
         (researchSections.length > 0 || researchScenarioBranches.length > 0) && (
         <section
           id="macro-view"
-          className="glass-panel order-10 scroll-mt-32 rounded-[2rem] p-5 md:p-6"
+          className="section-shell order-10 scroll-mt-32"
         >
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
@@ -1941,74 +1915,38 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          <div className="mt-5 md:hidden -mx-5 overflow-x-auto px-5">
+          <div className="mt-5 md:hidden -mx-3 overflow-x-auto px-3">
             <div className="flex min-w-max gap-3">
-              <SummaryMetricCard
-                kicker="활용 리포트"
-                value={`${researchStats.coveredReportCount ?? "-"}건`}
-                detail="요약에 직접 활용된 리포트 수"
-                tone="sky"
-                compact
-              />
-              <SummaryMetricCard
-                kicker="사용 청크"
-                value={`${researchStats.usedChunkCount ?? "-"}개`}
-                detail="실제 인용에 반영된 텍스트 조각"
-                tone="emerald"
-                compact
-              />
-              <SummaryMetricCard
-                kicker="후보 청크"
-                value={`${researchStats.candidateChunkCount ?? "-"}개`}
-                detail="검토 후보로 올라온 텍스트 조각"
-                tone="zinc"
-                compact
-              />
-              <SummaryMetricCard
-                kicker="요약 전용"
-                value={`${researchStats.summaryChunkCount ?? "-"}개`}
-                detail="배경 설명 위주 청크"
-                tone="amber"
-                compact
-              />
+              {researchOverview.metricItems.map((item, index) => (
+                <SummaryMetricCard
+                  key={item.key}
+                  kicker={item.label}
+                  value={formatMetricCount(item.value, item.unit)}
+                  detail={item.detail}
+                  tone={researchMetricTones[index] ?? "neutral"}
+                  compact
+                />
+              ))}
             </div>
           </div>
 
           <div className="mt-5 hidden gap-3 md:grid md:grid-cols-4">
-            <SummaryMetricCard
-              kicker="활용 리포트"
-              value={`${researchStats.coveredReportCount ?? "-"}건`}
-              detail="요약에 직접 활용된 리포트 수"
-              tone="sky"
-              compact
-            />
-            <SummaryMetricCard
-              kicker="사용 청크"
-              value={`${researchStats.usedChunkCount ?? "-"}개`}
-              detail="실제 인용에 반영된 텍스트 조각"
-              tone="emerald"
-              compact
-            />
-            <SummaryMetricCard
-              kicker="후보 청크"
-              value={`${researchStats.candidateChunkCount ?? "-"}개`}
-              detail="검토 후보로 올라온 텍스트 조각"
-              tone="zinc"
-              compact
-            />
-            <SummaryMetricCard
-              kicker="요약 전용"
-              value={`${researchStats.summaryChunkCount ?? "-"}개`}
-              detail="배경 설명 위주 청크"
-              tone="amber"
-              compact
-            />
+            {researchOverview.metricItems.map((item, index) => (
+              <SummaryMetricCard
+                key={item.key}
+                kicker={item.label}
+                value={formatMetricCount(item.value, item.unit)}
+                detail={item.detail}
+                tone={researchMetricTones[index] ?? "neutral"}
+                compact
+              />
+            ))}
           </div>
 
           {(researchDiagnosis || researchCatalysts.length > 0 || researchCheckpoints.length > 0) && (
             <div className="mt-5 grid gap-3 xl:grid-cols-[minmax(0,0.88fr),minmax(0,1.12fr)]">
               {researchDiagnosis && (
-                <div className="glass-panel-soft rounded-[1.5rem] p-4">
+                <div className="section-block">
                   <p className="section-kicker">오늘 한 줄 진단</p>
                   <p className="mt-3 text-base font-medium leading-7 text-zinc-100">
                     {researchDiagnosis}
@@ -2017,7 +1955,7 @@ export default function DashboardPage() {
               )}
 
               {researchCatalysts.length > 0 && (
-                <div className="glass-panel-soft rounded-[1.5rem] p-4">
+                <div className="section-block">
                   <div className="flex items-start justify-between gap-3">
                     <div>
                       <p className="section-kicker">Catalyst Timeline</p>
@@ -2025,7 +1963,7 @@ export default function DashboardPage() {
                         6개월 촉매 일정
                       </h3>
                     </div>
-                    <span className="rounded-full border border-sky-500/25 bg-sky-950/20 px-2.5 py-1 text-[11px] text-sky-200">
+                    <span className="rounded-full border border-blue-500/25 bg-blue-500/14 px-2.5 py-1 text-[11px] text-blue-200">
                       {researchCatalysts.length}개
                     </span>
                   </div>
@@ -2037,7 +1975,7 @@ export default function DashboardPage() {
                         className="rounded-[1.1rem] border border-white/8 bg-white/[0.03] p-3"
                       >
                         <div className="flex flex-wrap items-center gap-2">
-                          <span className="rounded-full border border-emerald-500/25 bg-emerald-950/20 px-2.5 py-1 text-[11px] text-emerald-200">
+                          <span className="rounded-full border border-blue-500/25 bg-blue-500/14 px-2.5 py-1 text-[11px] text-blue-200">
                             {item.scope}
                           </span>
                           <span className="text-xs text-zinc-500">{item.timing}</span>
@@ -2055,7 +1993,7 @@ export default function DashboardPage() {
               {researchCheckpoints.length > 0 && (
                 <div
                   className={joinClasses(
-                    "glass-panel-soft rounded-[1.5rem] p-4",
+                    "section-block",
                     researchDiagnosis || researchCatalysts.length > 0 ? "xl:col-span-2" : "",
                   )}
                 >
@@ -2086,7 +2024,7 @@ export default function DashboardPage() {
 
           {(researchTags.length > 0 || researchActionPoints.length > 0) && (
             <div className="mt-5 grid gap-3 md:grid-cols-[1.5fr,1fr]">
-              <div className="glass-panel-soft rounded-[1.5rem] p-4">
+              <div className="section-block">
                 <p className="section-kicker">핵심 태그</p>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {researchTags.map((tag) => (
@@ -2099,7 +2037,7 @@ export default function DashboardPage() {
                   ))}
                 </div>
               </div>
-              <div className="glass-panel-soft rounded-[1.5rem] p-4">
+              <div className="section-block">
                 <p className="section-kicker">액션 포인트</p>
                 <ul className="mt-3 space-y-2 text-sm text-zinc-100">
                   {researchActionPoints.length > 0 ? (
@@ -2113,14 +2051,31 @@ export default function DashboardPage() {
           )}
 
           {researchSectionTabs.length > 0 && (
-            <div className="mt-5">
-              <ResearchSectionTabs sections={researchSectionTabs} />
-            </div>
+            <details className="section-block mt-5 [&_summary::-webkit-details-marker]:hidden">
+              <summary className="flex cursor-pointer list-none flex-col gap-3 md:flex-row md:items-end md:justify-between">
+                <div>
+                  <p className="section-kicker">Research Sections</p>
+                  <h3 className="mt-2 text-lg font-semibold text-zinc-50">
+                    원문 섹션 펼쳐보기
+                  </h3>
+                  <p className="mt-1 text-sm text-zinc-400">
+                    상단 요약과 중복되는 긴 본문은 접어두고, 필요할 때만 원문 흐름을 확인합니다.
+                  </p>
+                </div>
+                <span className="rounded-full border border-white/8 bg-white/[0.03] px-3 py-1 text-xs text-zinc-400">
+                  {researchSectionTabs.length}개 섹션
+                </span>
+              </summary>
+
+              <div className="mt-4">
+                <ResearchSectionTabs sections={researchSectionTabs} />
+              </div>
+            </details>
           )}
         </section>
       )}
 
-      <section className="glass-panel order-60 rounded-[2rem] p-5 md:p-6">
+      <section className="section-shell order-60">
         <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="section-kicker">Advisor Briefing</p>
@@ -2139,13 +2094,30 @@ export default function DashboardPage() {
         </div>
 
         {briefing ? (
-          <div className="glass-panel-soft mt-5 rounded-[1.6rem] p-5 prose prose-invert prose-sm max-w-none">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
-              {briefing.content}
-            </ReactMarkdown>
-          </div>
+          <details className="section-block mt-5 [&_summary::-webkit-details-marker]:hidden">
+            <summary className="flex cursor-pointer list-none flex-col gap-3 md:flex-row md:items-end md:justify-between">
+              <div>
+                <p className="section-kicker">Advisor Source</p>
+                <h3 className="mt-2 text-lg font-semibold text-zinc-50">
+                  원문 브리핑 펼쳐보기
+                </h3>
+                <p className="mt-1 text-sm text-zinc-400">
+                  위 요약과 겹치는 장문 브리핑은 기본으로 접어두고, 필요할 때만 원문을 확인합니다.
+                </p>
+              </div>
+              <span className="rounded-full border border-white/8 bg-white/[0.03] px-3 py-1 text-xs text-zinc-400">
+                원문 보기
+              </span>
+            </summary>
+
+            <div className="prose prose-invert prose-sm mt-4 max-w-none">
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {briefing.content}
+              </ReactMarkdown>
+            </div>
+          </details>
         ) : (
-          <div className="glass-panel-soft mt-5 rounded-[1.6rem] p-5 text-sm text-zinc-400">
+          <div className="section-block mt-5 text-sm text-zinc-400">
             아직 브리핑이 없습니다. 분석을 실행하면 여기에 표시됩니다.
           </div>
         )}

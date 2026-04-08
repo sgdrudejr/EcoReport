@@ -139,6 +139,18 @@ npm run automation:daily -- --date YYYY-MM-DD
 - `data/analysis-state/YYYY-MM-DD/automation-cycle.json`
 - `knowledge/daily/YYYY-MM-DD-automation-cycle.md`
 
+포트폴리오가 한국투자증권 Open API와 연결되어 있다면, 일일 러너는 시작 전에
+`data/portfolio/latest.json`에 KIS 계좌 스냅샷을 먼저 반영합니다.
+
+수동으로만 먼저 갱신하고 싶을 때는 아래 명령을 사용합니다.
+
+```bash
+cd /Users/seo/Documents/Playground/EcoReport
+npm run portfolio:sync:kis -- --date YYYY-MM-DD
+```
+
+계좌 매핑은 `config/portfolio-sync.json`에서 관리합니다.
+
 자동 실행 전제:
 
 - Mac이 잠겨 있지 않아야 합니다.
@@ -362,9 +374,11 @@ GITHUB_TOKEN=...
 설명:
 
 - 종목, 계좌, 포트폴리오 점수를 계산합니다.
-- 현재 v2는 `BaseScore - RiskPenalty` 구조입니다.
-- BaseScore는 `배분 + 기술 + 리포트 + 레짐 적합도 + Stage 2 점수`를 coverage-aware 가중치로 합성합니다.
-- RiskPenalty는 `데이터 품질 + 집중도 + 레짐 스트레스(+ 추후 tail risk)`를 별도 감점으로 관리합니다.
+- 현재 Stage 3는 `교차단면 팩터 점수 + coverage-aware base score - 리스크 패널티 + tax-aware 조정` 구조입니다.
+- BaseScore는 `배분 + 팩터 + 기술 + 리포트 + 레짐 적합도 + Stage 2 점수 + 선행지표`를 coverage-aware 가중치로 합성합니다.
+- 팩터 점수는 `모멘텀 / 리서치 강도 / 인컴 수익률 / 레짐 적합도`를 Z-score 정규화 후 bounded score로 변환합니다.
+- RiskPenalty는 `데이터 품질 + 집중도 + 축소 공분산 기반 변동성 + 레짐 스트레스 + tail risk`를 별도 감점으로 관리합니다.
+- 계좌별 최종 점수는 예상 인컴 수익률과 계좌 세율 가정을 사용해 tax-aware multiplier로 한 번 더 보정합니다.
 - 대시보드는 이 파일의 `baseScores`, `effectiveWeights`, `riskPenalty`를 읽어 “왜 이 점수인지 / 뭘 하면 점수가 올라가는지”를 설명합니다.
 
 ### Stage 4. 실행 계획 생성

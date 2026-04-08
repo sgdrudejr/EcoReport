@@ -7,23 +7,23 @@ function joinClasses(...parts: Array<string | false | null | undefined>) {
 function branchTone(label: string) {
   if (/(main|base|기준|메인)/i.test(label)) {
     return {
-      card: "border-sky-500/20 bg-sky-950/12",
-      badge: "border-sky-500/30 bg-sky-950/25 text-sky-200",
-      accent: "text-sky-200",
+      card: "border-blue-500/18 bg-blue-500/10",
+      badge: "border-blue-500/30 bg-blue-500/12 text-blue-200",
+      accent: "text-blue-100",
     };
   }
 
   if (/(risk|bear|down|하방|리스크)/i.test(label)) {
     return {
-      card: "border-rose-500/20 bg-rose-950/12",
-      badge: "border-rose-500/30 bg-rose-950/25 text-rose-200",
+      card: "border-rose-500/18 bg-rose-500/10",
+      badge: "border-rose-500/30 bg-rose-500/12 text-rose-200",
       accent: "text-rose-200",
     };
   }
 
   return {
     card: "border-white/8 bg-white/[0.03]",
-    badge: "border-zinc-700 bg-zinc-900 text-zinc-300",
+    badge: "border-white/8 bg-white/[0.03] text-zinc-300",
     accent: "text-zinc-100",
   };
 }
@@ -40,7 +40,7 @@ export default function ScenarioTree({
   if (branches.length === 0) return null;
 
   return (
-    <div className="rounded-[1.5rem] border border-white/8 bg-white/[0.03] p-4 md:p-5">
+    <div className="space-y-4">
       <div>
         <p className="section-kicker">Scenario Tree</p>
         <h3 className="mt-2 text-lg font-semibold text-zinc-50">{title}</h3>
@@ -54,7 +54,7 @@ export default function ScenarioTree({
           return (
             <article
               key={branch.id}
-              className={joinClasses("rounded-[1.35rem] border p-4", tone.card)}
+              className={joinClasses("rounded-[1.2rem] border px-4 py-4 md:px-5", tone.card)}
             >
               <div className="flex items-start justify-between gap-3">
                 <div>
@@ -89,7 +89,7 @@ export default function ScenarioTree({
               )}
 
               {branch.response && (
-                <div className="mt-4 rounded-[1rem] border border-white/8 bg-black/20 p-3">
+                <div className="mt-4 border-t border-white/8 pt-4">
                   <p className="text-[11px] uppercase tracking-[0.16em] text-zinc-500">
                     대응
                   </p>

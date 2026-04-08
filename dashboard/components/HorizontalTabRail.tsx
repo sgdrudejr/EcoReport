@@ -46,12 +46,12 @@ export default function HorizontalTabRail<T>({
     >
       <div
         className={joinClasses(
-          "rounded-2xl border border-zinc-800/80 bg-zinc-950/92 p-2 shadow-[0_10px_30px_rgba(0,0,0,0.28)] backdrop-blur",
+          "rounded-2xl border border-slate-200 bg-white/92 p-2 shadow-[0_10px_30px_rgba(15,23,42,0.08)] backdrop-blur",
           frameClassName,
         )}
       >
         {frameLabel ? (
-          <div className="mb-2 px-1 text-[11px] uppercase tracking-wide text-zinc-500">
+          <div className="mb-2 px-1 text-[11px] uppercase tracking-wide text-slate-500">
             {frameLabel}
           </div>
         ) : null}

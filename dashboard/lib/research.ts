@@ -4,11 +4,21 @@ import {
   readRepoJsonFile,
   readRepoTextFile,
 } from "@/lib/repo-artifacts";
+import { resolveRepoRoot } from "@/lib/repo-root";
 import { normalizeArtifactDateContext } from "@/lib/trading-calendar";
 
 const KNOWLEDGE_DAILY_DIR = "knowledge/daily";
 const MARKET_DIR = "data/market";
 const TECHNICAL_DIR = "data/technical";
+const REPO_ROOT = resolveRepoRoot();
+
+interface ResearchBriefingSourcePaths {
+  stage1?: string | null;
+  portfolio?: string | null;
+  prior_briefing?: string | null;
+  deep_research?: string | null;
+  archive_output?: string | null;
+}
 
 export interface ResearchBriefingMeta {
   model?: string | null;
@@ -23,6 +33,14 @@ export interface ResearchBriefingMeta {
   merged_text_char_length?: number | null;
   run_date?: string | null;
   effective_market_date?: string | null;
+  workflow?: string | null;
+  stage1_report_count?: number | null;
+  selected_extract_budget?: number | null;
+  selected_extract_count?: number | null;
+  prompt_char_length?: number | null;
+  deep_research_char_length?: number | null;
+  prior_briefing_char_length?: number | null;
+  source_paths?: ResearchBriefingSourcePaths | null;
 }
 
 export interface ResearchBriefingDocument {
@@ -38,12 +56,33 @@ export interface ResearchBriefingDocument {
 }
 
 export interface ResearchBriefingStats {
+  variant: "rich" | "standard";
   model: string | null;
   usedChunkCount: number | null;
   coveredReportCount: number | null;
   mergedTextLength: number | null;
   summaryChunkCount: number | null;
   candidateChunkCount: number | null;
+  sourceReportCount: number | null;
+  selectedExtractCount: number | null;
+  deepResearchCharLength: number | null;
+  promptCharLength: number | null;
+  workflow: string | null;
+}
+
+export interface ResearchBriefingMetricItem {
+  key: string;
+  label: string;
+  value: number | null;
+  unit: string;
+  detail: string;
+}
+
+export interface ResearchBriefingOverview {
+  description: string;
+  metricItems: ResearchBriefingMetricItem[];
+  lengthLabel: string;
+  lengthValue: number | null;
 }
 
 export interface MacroIndicator {
@@ -112,6 +151,30 @@ export interface ResearchPortfolioInsights {
   upgradeAxes: string[];
 }
 
+interface Stage1Extract {
+  id?: string | null;
+  title?: string | null;
+  broker?: string | null;
+  report_type?: string | null;
+  confidence?: string | null;
+  related_holdings_in_my_portfolio?: unknown[];
+  portfolio_impacts_candidate?: unknown[];
+  catalysts?: unknown[];
+  risks?: unknown[];
+  what_changed?: unknown[];
+}
+
+interface Stage1ExtractState {
+  reportCount?: number | null;
+  extracts?: Stage1Extract[];
+}
+
+interface RichSelectionSummary {
+  stage1ReportCount: number | null;
+  selectedExtractCount: number | null;
+  selectedReportCount: number | null;
+}
+
 const RESEARCH_TAG_RULES: Array<{
   label: string;
   tone: ResearchTag["tone"];
@@ -147,6 +210,120 @@ function getResearchMeta(relativePath: string) {
 
 function getResearchSectionByPattern(content: string, pattern: RegExp) {
   return extractResearchSections(content).find((section) => pattern.test(section.title)) ?? null;
+}
+
+function toRepoRelativePath(target: string | null | undefined) {
+  if (!target) return null;
+
+  const absoluteTarget = path.resolve(target);
+  if (!absoluteTarget.startsWith(REPO_ROOT)) {
+    return null;
+  }
+
+  return path.relative(REPO_ROOT, absoluteTarget).split(path.sep).join(path.posix.sep);
+}
+
+function confidenceScore(value: string | null | undefined) {
+  switch (String(value ?? "").toUpperCase()) {
+    case "HIGH":
+      return 3;
+    case "MEDIUM":
+      return 2;
+    case "LOW":
+      return 1;
+    default:
+      return 0;
+  }
+}
+
+function scoreStage1Extract(item: Stage1Extract) {
+  let score = confidenceScore(item.confidence);
+  if (item.report_type === "macro") score += 3;
+  if ((item.related_holdings_in_my_portfolio ?? []).length > 0) score += 4;
+  if ((item.portfolio_impacts_candidate ?? []).length > 0) score += 3;
+  if ((item.catalysts ?? []).length > 0) score += 2;
+  if ((item.risks ?? []).length > 0) score += 1;
+  if ((item.what_changed ?? []).length > 0) score += 1;
+  return score;
+}
+
+function pickTopStage1Extracts(
+  extracts: Stage1Extract[],
+  predicate: (item: Stage1Extract) => boolean,
+  limit: number,
+) {
+  return extracts
+    .filter(predicate)
+    .map((item) => ({ item, score: scoreStage1Extract(item) }))
+    .sort((left, right) => right.score - left.score)
+    .slice(0, limit)
+    .map(({ item }) => item);
+}
+
+function deriveRichSelectionSummary(
+  meta: ResearchBriefingMeta | null,
+): RichSelectionSummary | null {
+  if (!meta) return null;
+
+  const fallbackStage1Count = meta.stage1_report_count ?? null;
+  const stage1Path = toRepoRelativePath(meta.source_paths?.stage1 ?? null);
+  if (!stage1Path) {
+    return {
+      stage1ReportCount: fallbackStage1Count,
+      selectedExtractCount: meta.selected_extract_count ?? meta.selected_extract_budget ?? null,
+      selectedReportCount: meta.selected_extract_count ?? meta.selected_extract_budget ?? null,
+    };
+  }
+
+  const stage1 = readRepoJsonFile<Stage1ExtractState>(stage1Path);
+  const extracts = stage1?.extracts ?? [];
+  if (extracts.length === 0) {
+    return {
+      stage1ReportCount: stage1?.reportCount ?? fallbackStage1Count,
+      selectedExtractCount: meta.selected_extract_count ?? meta.selected_extract_budget ?? null,
+      selectedReportCount: meta.selected_extract_count ?? meta.selected_extract_budget ?? null,
+    };
+  }
+
+  const maxExtracts = Math.max(meta.selected_extract_budget ?? 18, 1);
+  const macro = pickTopStage1Extracts(
+    extracts,
+    (item) => item.report_type === "macro",
+    Math.max(4, Math.floor(maxExtracts / 3)),
+  );
+  const portfolioLinked = pickTopStage1Extracts(
+    extracts,
+    (item) =>
+      (item.related_holdings_in_my_portfolio ?? []).length > 0 ||
+      (item.portfolio_impacts_candidate ?? []).length > 0,
+    Math.max(6, Math.floor(maxExtracts / 2)),
+  );
+  const catalystHeavy = pickTopStage1Extracts(
+    extracts,
+    (item) => (item.catalysts ?? []).length > 0 || (item.what_changed ?? []).length > 0,
+    Math.max(4, Math.floor(maxExtracts / 3)),
+  );
+
+  const selectedIds = new Set<string>();
+  for (const item of [...macro, ...portfolioLinked, ...catalystHeavy]) {
+    const itemId =
+      item.id?.trim() ||
+      [item.title?.trim(), item.broker?.trim(), item.report_type?.trim()]
+        .filter(Boolean)
+        .join("::");
+    if (itemId) {
+      selectedIds.add(itemId);
+    }
+  }
+
+  const selectedCount =
+    meta.selected_extract_count ?? (selectedIds.size > 0 ? selectedIds.size : null);
+
+  return {
+    stage1ReportCount: stage1?.reportCount ?? extracts.length ?? fallbackStage1Count,
+    selectedExtractCount: selectedCount,
+    selectedReportCount: selectedCount,
+  };
 }
 
 export function loadResearchBriefings(): ResearchBriefingDocument[] {
@@ -208,26 +385,139 @@ export function getResearchBriefingStats(
   briefing: ResearchBriefingDocument | null,
 ): ResearchBriefingStats {
   const meta = briefing?.meta ?? null;
+  const richSummary = briefing?.variant === "rich" ? deriveRichSelectionSummary(meta) : null;
+  const selectedExtractCount =
+    meta?.selected_extract_count ??
+    richSummary?.selectedExtractCount ??
+    meta?.selected_extract_budget ??
+    null;
+  const sourceReportCount =
+    meta?.stage1_report_count ?? richSummary?.stage1ReportCount ?? null;
+
   return {
+    variant: briefing?.variant ?? "standard",
     model: meta?.model ?? null,
     usedChunkCount:
       meta?.selected_chunk_count ??
       meta?.used_chunk_count ??
+      selectedExtractCount ??
       meta?.summary_chunk_count ??
       null,
     coveredReportCount:
       meta?.selected_report_count ??
       meta?.covered_report_count ??
+      richSummary?.selectedReportCount ??
       null,
     mergedTextLength:
       meta?.merged_text_char_length ??
       meta?.merged_text_length ??
+      meta?.prompt_char_length ??
       null,
     summaryChunkCount: meta?.summary_chunk_count ?? null,
     candidateChunkCount:
       meta?.briefing_candidate_count ??
       meta?.candidate_chunk_count ??
+      sourceReportCount ??
       null,
+    sourceReportCount,
+    selectedExtractCount,
+    deepResearchCharLength: meta?.deep_research_char_length ?? null,
+    promptCharLength: meta?.prompt_char_length ?? null,
+    workflow: meta?.workflow ?? null,
+  };
+}
+
+export function getResearchBriefingOverview(
+  briefing: ResearchBriefingDocument | null,
+): ResearchBriefingOverview {
+  const stats = getResearchBriefingStats(briefing);
+
+  if (briefing?.variant === "rich") {
+    const sourceReportLabel =
+      typeof stats.sourceReportCount === "number"
+        ? `${stats.sourceReportCount.toLocaleString()}건`
+        : "여러 건";
+    const selectedExtractLabel =
+      typeof stats.selectedExtractCount === "number"
+        ? `상위 ${stats.selectedExtractCount.toLocaleString()}개 추출`
+        : "핵심 추출";
+
+    return {
+      description: `${sourceReportLabel} 리포트에서 ${selectedExtractLabel}과 딥리서치를 다시 엮은 최종 브리핑입니다.`,
+      metricItems: [
+        {
+          key: "source-reports",
+          label: "원천 리포트",
+          value: stats.sourceReportCount,
+          unit: "건",
+          detail: "Stage 1에서 구조화 추출한 전체 리포트 수",
+        },
+        {
+          key: "selected-extracts",
+          label: "선정 추출",
+          value: stats.selectedExtractCount,
+          unit: "개",
+          detail: "최종 브리핑 프롬프트에 실린 핵심 추출 수",
+        },
+        {
+          key: "deep-research",
+          label: "딥리서치",
+          value: stats.deepResearchCharLength,
+          unit: "자",
+          detail: "보강용 Deep Research 원문 길이",
+        },
+        {
+          key: "combined-input",
+          label: "결합 입력",
+          value: stats.promptCharLength ?? stats.mergedTextLength,
+          unit: "자",
+          detail: "최종 브리핑 생성에 사용한 전체 입력 길이",
+        },
+      ],
+      lengthLabel: "결합 입력 길이",
+      lengthValue: stats.promptCharLength ?? stats.mergedTextLength,
+    };
+  }
+
+  const reportCoverageLabel =
+    typeof stats.coveredReportCount === "number"
+      ? `${stats.coveredReportCount.toLocaleString()}건 리포트`
+      : "여러 증권사 리포트";
+
+  return {
+    description: `${reportCoverageLabel}에서 추린 핵심 섹션을 계층적으로 정리한 브리핑입니다.`,
+    metricItems: [
+      {
+        key: "covered-reports",
+        label: "활용 리포트",
+        value: stats.coveredReportCount,
+        unit: "건",
+        detail: "요약에 직접 활용된 리포트 수",
+      },
+      {
+        key: "used-chunks",
+        label: "사용 청크",
+        value: stats.usedChunkCount,
+        unit: "개",
+        detail: "실제 인용에 반영된 텍스트 조각",
+      },
+      {
+        key: "candidate-chunks",
+        label: "후보 청크",
+        value: stats.candidateChunkCount,
+        unit: "개",
+        detail: "검토 후보로 올라온 텍스트 조각",
+      },
+      {
+        key: "summary-chunks",
+        label: "요약 전용",
+        value: stats.summaryChunkCount,
+        unit: "개",
+        detail: "배경 설명 위주 청크",
+      },
+    ],
+    lengthLabel: "원문 길이",
+    lengthValue: stats.mergedTextLength,
   };
 }
 

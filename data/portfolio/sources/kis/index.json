@@ -1,0 +1,14 @@
+{
+  "date": "2026-04-08",
+  "updatedAt": "2026-04-08T13:28:20.593Z",
+  "accounts": [
+    {
+      "portfolioKey": "KIS_MAIN",
+      "label": "한투 일반",
+      "rawPath": "data/portfolio/sources/kis/KIS_MAIN.json",
+      "accountNumber": "44367266-01",
+      "holdings": 3,
+      "evaluationAmount": 3037064
+    }
+  ]
+}

@@ -9,6 +9,7 @@ import {
   extractResearchScenarioBranches,
   extractResearchSections,
   extractResearchTags,
+  getResearchBriefingOverview,
   getResearchBriefingStats,
   isStructuredResearchSectionTitle,
   loadLatestMacroIndicators,
@@ -24,6 +25,10 @@ function researchTagClass(tone: string) {
   if (tone === "amber") return "border-amber-500/30 bg-amber-950/20 text-amber-300";
   if (tone === "fuchsia") return "border-fuchsia-500/30 bg-fuchsia-950/20 text-fuchsia-300";
   return "border-zinc-700 bg-zinc-900 text-zinc-300";
+}
+
+function formatOverviewMetric(value: number | null | undefined, unit: string) {
+  return typeof value === "number" ? `${value.toLocaleString()}${unit}` : "-";
 }
 
 export default async function ResearchDetailPage({
@@ -44,6 +49,7 @@ export default async function ResearchDetailPage({
   const scenarioBranches = extractResearchScenarioBranches(briefing.content, 2);
   const indicators = loadLatestMacroIndicators(briefing.date);
   const stats = getResearchBriefingStats(briefing);
+  const overview = getResearchBriefingOverview(briefing);
   const tags = extractResearchTags(briefing.content, 12);
   const actionPoints = extractResearchActionPoints(briefing.content, 6);
   const sectionTabs: ResearchSectionTabItem[] = sections.map((section, index) => ({
@@ -63,25 +69,21 @@ export default async function ResearchDetailPage({
           <h1 className="mt-1 text-2xl font-bold text-zinc-100">
             {briefing.variant === "rich" ? "리치 경제 리포트" : "경제 리포트"}
           </h1>
+          <p className="mt-1 text-sm text-zinc-500">{overview.description}</p>
           <div className="mt-4 space-y-3">
             <div className="-mx-1 overflow-x-auto pb-1">
               <div className="flex min-w-max gap-3 px-1">
-                <div className="min-w-[132px] rounded-xl border border-zinc-800 bg-zinc-900 px-4 py-3">
-                  <p className="text-xs text-zinc-500">활용 리포트</p>
-                  <p className="mt-1 font-medium text-zinc-100">{stats.coveredReportCount ?? "-"}건</p>
-                </div>
-                <div className="min-w-[132px] rounded-xl border border-zinc-800 bg-zinc-900 px-4 py-3">
-                  <p className="text-xs text-zinc-500">사용 청크</p>
-                  <p className="mt-1 font-medium text-zinc-100">{stats.usedChunkCount ?? "-"}개</p>
-                </div>
-                <div className="min-w-[132px] rounded-xl border border-zinc-800 bg-zinc-900 px-4 py-3">
-                  <p className="text-xs text-zinc-500">후보 청크</p>
-                  <p className="mt-1 font-medium text-zinc-100">{stats.candidateChunkCount ?? "-"}개</p>
-                </div>
-                <div className="min-w-[132px] rounded-xl border border-zinc-800 bg-zinc-900 px-4 py-3">
-                  <p className="text-xs text-zinc-500">요약 전용</p>
-                  <p className="mt-1 font-medium text-zinc-100">{stats.summaryChunkCount ?? "-"}개</p>
-                </div>
+                {overview.metricItems.map((item) => (
+                  <div
+                    key={item.key}
+                    className="min-w-[132px] rounded-xl border border-zinc-800 bg-zinc-900 px-4 py-3"
+                  >
+                    <p className="text-xs text-zinc-500">{item.label}</p>
+                    <p className="mt-1 font-medium text-zinc-100">
+                      {formatOverviewMetric(item.value, item.unit)}
+                    </p>
+                  </div>
+                ))}
               </div>
             </div>
             <div className="grid max-w-md grid-cols-2 gap-3">
@@ -90,11 +92,9 @@ export default async function ResearchDetailPage({
                 <p className="mt-1 font-medium text-zinc-100">{stats.model ?? "수동/로컬"}</p>
               </div>
               <div className="rounded-xl border border-zinc-800 bg-zinc-900 px-4 py-3">
-                <p className="text-xs text-zinc-500">원문 길이</p>
+                <p className="text-xs text-zinc-500">{overview.lengthLabel}</p>
                 <p className="mt-1 font-medium text-zinc-100">
-                  {stats.mergedTextLength != null
-                    ? `${stats.mergedTextLength.toLocaleString()}자`
-                    : "-"}
+                  {formatOverviewMetric(overview.lengthValue, "자")}
                 </p>
               </div>
             </div>

@@ -8,6 +8,7 @@ import {
   STRICT_ALIASES_BY_CODE,
   THEME_CATEGORY_RULES,
   ROOT_DIR,
+  buildRunMetadata,
   buildPortfolioMaps,
   clamp,
   containsKeyword,
@@ -411,12 +412,10 @@ async function main() {
     });
   }
 
+  const runMeta = buildRunMetadata(args);
   const payload = {
     schemaVersion: 1,
-    date: args.date,
-    runDate: args.runDate,
-    effectiveMarketDate: args.effectiveMarketDate,
-    generatedAt: new Date().toISOString(),
+    ...runMeta,
     provenance: {
       source: stage2 ? "hybrid" : "manual",
       stage1_input: "stage1-report-extracts-v2.json",
@@ -429,8 +428,9 @@ async function main() {
   const markdown = [
     `# Impact Map (${args.date})`,
     "",
-    `- 실행일: ${args.runDate}`,
-    `- 기준 거래일: ${args.effectiveMarketDate}`,
+    `- 실행일: ${runMeta.runDate}`,
+    `- 기준 거래일: ${runMeta.effectiveMarketDate}`,
+    `- run_id: ${runMeta.runId ?? "N/A"}`,
     `- 리포트 수: ${reports.length}`,
     `- 영향 이벤트 수: ${reports.reduce((sum, report) => sum + report.impacts.length, 0)}`,
     "",

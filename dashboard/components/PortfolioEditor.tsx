@@ -621,7 +621,7 @@ export default function PortfolioEditor({
             : "";
         setBatchState("error");
         setBatchMessage(
-          `Gemini가 ${payload.screenshotCount ?? batchFiles.length}장 이미지를 읽었지만 ISA/연금/TOSS로 확실히 분류하지 못했습니다.${warnings}`,
+          `Gemini가 ${payload.screenshotCount ?? batchFiles.length}장 이미지를 읽었지만 ISA/연금/TOSS/한투로 확실히 분류하지 못했습니다.${warnings}`,
         );
         return;
       }
@@ -726,7 +726,7 @@ export default function PortfolioEditor({
               포트폴리오 업데이트
             </h2>
             <p className="text-sm text-zinc-500 mt-1">
-              계좌별로 캡처를 올리거나, 여러 장을 한 번에 올려 ISA/연금/TOSS로
+              계좌별로 캡처를 올리거나, 여러 장을 한 번에 올려 ISA/연금/TOSS/한투로
               자동 분류할 수 있습니다. 추출 후에는 값만 빠르게 검토하고 바로
               저장하면 됩니다.
             </p>
@@ -779,7 +779,7 @@ export default function PortfolioEditor({
               </h3>
               <p className="text-xs text-zinc-500 mt-1">
                 계좌 전체 요약 화면과 보유 종목 화면을 한 번에 넣으면 Gemini가
-                ISA, 연금저축, 토스증권으로 자동 배정해 각 카드에 반영합니다.
+                ISA, 연금저축, 토스증권, 한투 일반으로 자동 배정해 각 카드에 반영합니다.
               </p>
             </div>
             <div className="flex flex-wrap items-center gap-2">

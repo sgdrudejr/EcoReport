@@ -25,6 +25,12 @@ function summarizeAccounts(portfolio) {
     .join("\n");
 }
 
+function listAccountKeys(portfolio) {
+  return (portfolio?.accounts ?? [])
+    .map((account) => account.key)
+    .filter(Boolean);
+}
+
 function buildTechnicalSubset(portfolio, technical, watchlist) {
   const portfolioMaps = buildPortfolioMaps(portfolio);
   const codes = new Set([
@@ -77,6 +83,8 @@ async function main() {
   const macroExtracts = stage1.extracts.filter((item) => item.report_type === "macro").slice(0, 5);
   const technicalSubset = buildTechnicalSubset(portfolio, technical, watchlist);
   const briefingSummary = truncate(briefing, 5000);
+  const accountKeys = listAccountKeys(portfolio);
+  const accountKeyHint = accountKeys.length > 0 ? accountKeys.join("|") : "ACCOUNT_KEY";
 
   const prompt = [
     "# EcoReport Stage 2 Strategy Exploration",
@@ -133,7 +141,7 @@ async function main() {
         ],
         account_actions: [
           {
-            account_key: "ISA|PENSION|TOSS",
+            account_key: accountKeyHint,
             bias: "aggressive_add|selective_add|hold|defensive",
             rationale: "계좌 운용 핵심 논리",
             buy_candidates: ["360750"],
@@ -147,7 +155,7 @@ async function main() {
             code: "360750",
             name: "TIGER 미국S&P500",
             stance: "buy|hold|trim|watch",
-            target_accounts: ["PENSION"],
+            target_accounts: [accountKeys[0] ?? "ACCOUNT_KEY"],
             horizon: "1m|3m|6m",
             confidence: "HIGH|MEDIUM|LOW",
             thesis: "핵심 투자 논리",

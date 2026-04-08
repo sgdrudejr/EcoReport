@@ -22,9 +22,10 @@ cleanup() {
 
 trap cleanup EXIT
 
-git fetch origin data >/dev/null 2>&1 || true
-
-if git show-ref --verify --quiet refs/heads/data; then
+if git ls-remote --exit-code --heads origin data >/dev/null 2>&1; then
+  git fetch origin data >/dev/null
+  git worktree add --detach "$TMP_WORKTREE" "$(git rev-parse FETCH_HEAD)" >/dev/null
+elif git show-ref --verify --quiet refs/heads/data; then
   git worktree add --force "$TMP_WORKTREE" data >/dev/null
 else
   git worktree add --detach "$TMP_WORKTREE" >/dev/null
@@ -109,6 +110,6 @@ if [ "$RUN_DATE" != "$DATE" ]; then
   COMMIT_MESSAGE="${COMMIT_MESSAGE} (run ${RUN_DATE})"
 fi
 git -C "$TMP_WORKTREE" commit -m "$COMMIT_MESSAGE" >/dev/null
-git -C "$TMP_WORKTREE" push -u origin data >/dev/null
+git -C "$TMP_WORKTREE" push -u origin HEAD:data >/dev/null
 
 echo "[push-to-github] push 완료."

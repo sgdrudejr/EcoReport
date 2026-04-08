@@ -5,6 +5,7 @@ import path from "node:path";
 
 import {
   ROOT_DIR,
+  buildRunMetadata,
   parseDateArgs,
   readJson,
   writeJson,
@@ -14,6 +15,7 @@ const ACCOUNT_KEY_MAP = {
   ISA: "ISA",
   PENSION: "PENSION",
   TOSS: "TOSS",
+  KIS_MAIN: "KIS_MAIN",
 };
 
 function regimeFromTechnical(technical) {
@@ -105,7 +107,8 @@ function normalizeAccountHint(itemAccount, account) {
     itemAccount === account.label ||
     itemAccount === account.key ||
     (itemAccount === "연금저축" && account.key === "PENSION") ||
-    (itemAccount === "토스" && account.key === "TOSS")
+    (itemAccount === "토스" && account.key === "TOSS") ||
+    ((itemAccount === "한투" || itemAccount === "한투 일반" || itemAccount === "한국투자증권") && account.key === "KIS_MAIN")
   );
 }
 
@@ -161,12 +164,10 @@ async function main() {
 
   const outputPath =
     args.output ?? path.join(stateDir, "stage2-strategy-options.mock.json");
+  const runMeta = buildRunMetadata(args);
 
   const payload = {
-    date: args.date,
-    runDate: args.runDate,
-    effectiveMarketDate: args.effectiveMarketDate,
-    generatedAt: new Date().toISOString(),
+    ...runMeta,
     source: "mock",
     macro_view: regimeFromTechnical(technical),
     strategy_changes: aggregateThemes(stage1),

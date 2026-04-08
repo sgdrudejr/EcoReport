@@ -24,6 +24,7 @@
     "wiki:publish":     "node scripts/publish-llm-wiki-to-vault.js",
     "strategy:pipeline":"bash scripts/run-strategy-pipeline.sh",
 
+    "portfolio:sync:kis": "node scripts/sync-kis-portfolio.js",
     "portfolio:rag":    "node scripts/build-portfolio-rag-corpus.js",
     "parallel:rag":     "node scripts/build-parallel-rag-corpus.js",
     "parallel:search":  "node scripts/search-parallel-rag.js",

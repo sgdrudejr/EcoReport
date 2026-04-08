@@ -176,8 +176,8 @@ def build_prompt(date: str, portfolio: dict, insights: "dict | None", summary: "
     "impacts": [
       {{
         "targetType": "holding|cash|account",
-        "targetCode": "종목코드 또는 계좌키(ISA/TOSS/PENSION)",
-        "accountKey": "ISA|TOSS|PENSION",
+        "targetCode": "종목코드 또는 계좌키(ISA/TOSS/PENSION/KIS_MAIN)",
+        "accountKey": "ISA|TOSS|PENSION|KIS_MAIN",
         "direction": "positive|negative|neutral",
         "horizon": "1d|1w|1m|3m|6m",
         "strength": 0.0,

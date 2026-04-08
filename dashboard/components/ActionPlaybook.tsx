@@ -16,6 +16,8 @@ import type {
   ExecutionGuideItem,
 } from "@/lib/portfolio-guidance";
 
+const NUMBER_FORMATTER = new Intl.NumberFormat("ko-KR");
+
 type PreflightSelection = {
   accountKey: string;
   code: string | null;
@@ -30,7 +32,7 @@ function formatCurrency(value: number | null | undefined) {
     return "가이드 확인";
   }
 
-  return `${value.toLocaleString()}원`;
+  return `${NUMBER_FORMATTER.format(value)}원`;
 }
 
 function formatPercent(value: number | null | undefined, digits = 1) {
@@ -53,6 +55,15 @@ function normalizeAccountKey(value: string | null | undefined) {
   if (normalized === "TOSS" || normalized === "토스증권".toUpperCase()) {
     return "TOSS";
   }
+  if (
+    normalized === "KIS_MAIN" ||
+    normalized === "KIS" ||
+    normalized === "한투 일반".toUpperCase() ||
+    normalized === "한투증권".toUpperCase() ||
+    normalized === "한국투자증권".toUpperCase()
+  ) {
+    return "KIS_MAIN";
+  }
 
   return null;
 }
@@ -65,12 +76,12 @@ function getExecutionLabel(kind: ExecutionGuideItem["kind"]) {
 
 function getExecutionTone(kind: ExecutionGuideItem["kind"]) {
   if (kind === "trim") {
-    return "border-amber-500/25 bg-amber-950/20 text-amber-200";
+    return "border-amber-500/25 bg-amber-500/12 text-amber-200";
   }
   if (kind === "hold") {
-    return "border-zinc-700 bg-zinc-900 text-zinc-300";
+    return "border-white/8 bg-white/[0.03] text-zinc-300";
   }
-  return "border-emerald-500/25 bg-emerald-950/20 text-emerald-200";
+  return "border-blue-500/25 bg-blue-500/12 text-blue-200";
 }
 
 function getExecutionItems(account: AccountGuide) {
@@ -165,11 +176,11 @@ function ActionPreflightSheet({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-end justify-center bg-black/70 px-3 py-6 backdrop-blur-sm md:items-center"
+      className="fixed inset-0 z-50 flex items-end justify-center bg-slate-900/18 px-3 py-6 backdrop-blur-[6px] md:items-center"
       onClick={onClose}
     >
       <div
-        className="max-h-[92vh] w-full max-w-3xl overflow-y-auto rounded-[1.8rem] border border-zinc-800 bg-zinc-950 px-4 pb-6 pt-4 shadow-[0_24px_80px_rgba(0,0,0,0.5)] md:px-6 md:pb-8"
+        className="max-h-[92vh] w-full max-w-3xl overflow-y-auto rounded-[1.8rem] border border-slate-200 bg-white/96 px-4 pb-6 pt-4 shadow-[0_24px_80px_rgba(15,23,42,0.12)] md:px-6 md:pb-8"
         onClick={(event) => event.stopPropagation()}
       >
         <div className="mx-auto h-1.5 w-14 rounded-full bg-zinc-700 md:hidden" />
@@ -187,7 +198,7 @@ function ActionPreflightSheet({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-full border border-zinc-800 bg-zinc-900 p-2 text-zinc-400 transition hover:bg-zinc-800"
+            className="rounded-full border border-white/8 bg-white/[0.03] p-2 text-zinc-400 transition hover:bg-white/[0.06]"
             aria-label="닫기"
           >
             <X size={16} />
@@ -208,8 +219,8 @@ function ActionPreflightSheet({
                   className={joinClasses(
                     "rounded-full border px-3 py-1.5 text-xs transition",
                     isSelected
-                      ? "border-emerald-500/60 bg-emerald-950/20 text-emerald-200"
-                      : "border-zinc-800 bg-zinc-900 text-zinc-300 hover:border-zinc-700",
+                      ? "border-blue-500/60 bg-blue-500/12 text-blue-200"
+                      : "border-white/8 bg-white/[0.03] text-zinc-300 hover:border-white/15",
                   )}
                 >
                   {candidate.name}
@@ -220,9 +231,9 @@ function ActionPreflightSheet({
         )}
 
         <div className="mt-5 grid gap-3 md:grid-cols-[1.05fr,0.95fr]">
-          <div className="rounded-[1.5rem] border border-emerald-500/20 bg-emerald-950/12 p-5">
+          <div className="rounded-[1.5rem] border border-blue-500/20 bg-blue-500/10 p-5">
             <div className="flex items-center gap-2">
-              <Wallet size={16} className="text-emerald-300" />
+              <Wallet size={16} className="text-blue-300" />
               <p className="text-sm font-medium text-zinc-100">권장 집행 금액</p>
             </div>
             <p className="mt-3 text-3xl font-semibold tabular-nums text-zinc-50">
@@ -244,7 +255,7 @@ function ActionPreflightSheet({
             </div>
           </div>
 
-          <div className="rounded-[1.5rem] border border-zinc-800 bg-zinc-900 p-5">
+          <div className="rounded-[1.5rem] border border-white/8 bg-white/[0.03] p-5">
             <div className="flex items-center gap-2">
               <ShieldCheck size={16} className="text-sky-300" />
               <p className="text-sm font-medium text-zinc-100">실행 컨텍스트</p>
@@ -258,13 +269,13 @@ function ActionPreflightSheet({
               >
                 {getExecutionLabel(item.kind)}
               </span>
-              <span className="rounded-full border border-zinc-800 bg-zinc-950 px-2.5 py-1 text-xs text-zinc-300">
+              <span className="rounded-full border border-white/8 bg-black/10 px-2.5 py-1 text-xs text-zinc-300">
                 현금 {formatPercent(account.cashPct * 100)}
               </span>
-              <span className="rounded-full border border-zinc-800 bg-zinc-950 px-2.5 py-1 text-xs text-zinc-300">
+              <span className="rounded-full border border-white/8 bg-black/10 px-2.5 py-1 text-xs text-zinc-300">
                 목표 현금 {formatPercent(account.targetCashPct * 100)}
               </span>
-              <span className="rounded-full border border-zinc-800 bg-zinc-950 px-2.5 py-1 text-xs text-zinc-300">
+              <span className="rounded-full border border-white/8 bg-black/10 px-2.5 py-1 text-xs text-zinc-300">
                 운용 점수 {account.score}점
               </span>
             </div>
@@ -280,9 +291,9 @@ function ActionPreflightSheet({
         </div>
 
         <div className="mt-5 grid gap-3 md:grid-cols-2">
-          <div className="rounded-[1.5rem] border border-zinc-800 bg-zinc-900 p-5">
+          <div className="rounded-[1.5rem] border border-white/8 bg-white/[0.03] p-5">
             <div className="flex items-center gap-2">
-              <Sparkles size={16} className="text-emerald-300" />
+              <Sparkles size={16} className="text-blue-300" />
               <p className="text-sm font-medium text-zinc-100">왜 지금인가</p>
             </div>
             <ul className="mt-4 space-y-2 text-sm leading-6 text-zinc-300">
@@ -292,7 +303,7 @@ function ActionPreflightSheet({
             </ul>
           </div>
 
-          <div className="rounded-[1.5rem] border border-zinc-800 bg-zinc-900 p-5">
+          <div className="rounded-[1.5rem] border border-white/8 bg-white/[0.03] p-5">
             <div className="flex items-center gap-2">
               <ClipboardCheck size={16} className="text-sky-300" />
               <p className="text-sm font-medium text-zinc-100">실행 전 체크</p>
@@ -311,7 +322,7 @@ function ActionPreflightSheet({
             targetId="strategy-overview"
             focusAccountKey={account.key}
             clearSearchParams={["actionAccount", "actionCode", "preflight"]}
-            className="inline-flex items-center gap-2 rounded-full border border-sky-500/25 bg-sky-950/20 px-4 py-2 text-sm text-sky-100 transition hover:bg-sky-950/35"
+            className="inline-flex items-center gap-2 rounded-full border border-indigo-500/25 bg-indigo-500/12 px-4 py-2 text-sm text-indigo-100 transition hover:bg-indigo-500/20"
           >
             계좌 전략 보기
             <ArrowUpRight size={14} />
@@ -325,7 +336,7 @@ function ActionPreflightSheet({
           </Link>
           <Link
             href="/reports"
-            className="inline-flex items-center gap-2 rounded-full border border-emerald-500/25 bg-emerald-950/20 px-4 py-2 text-sm text-emerald-100 transition hover:bg-emerald-950/35"
+            className="inline-flex items-center gap-2 rounded-full border border-blue-500/25 bg-blue-500/12 px-4 py-2 text-sm text-blue-100 transition hover:bg-blue-500/20"
           >
             근거 리포트 보기
             <ArrowUpRight size={14} />
@@ -452,7 +463,7 @@ export default function ActionPlaybook({
           return (
             <article
               key={plan.account.key}
-              className="glass-panel-soft rounded-[1.45rem] p-4"
+              className="section-block"
             >
               <div className="flex items-start justify-between gap-3">
                 <div>
@@ -465,10 +476,10 @@ export default function ActionPlaybook({
                   className={joinClasses(
                     "rounded-full border px-2.5 py-1 text-[11px] font-medium",
                     plan.account.status === "양호"
-                      ? "border-emerald-500/25 bg-emerald-950/20 text-emerald-200"
+                      ? "border-blue-500/25 bg-blue-500/12 text-blue-200"
                       : plan.account.status === "보강 필요"
-                        ? "border-amber-500/25 bg-amber-950/20 text-amber-200"
-                        : "border-red-500/25 bg-red-950/20 text-red-200",
+                        ? "border-amber-500/25 bg-amber-500/12 text-amber-200"
+                        : "border-rose-500/25 bg-rose-500/12 text-rose-200",
                   )}
                 >
                   {plan.account.status}
@@ -497,7 +508,7 @@ export default function ActionPlaybook({
                   {plan.executionItems.slice(0, 3).map((item, index) => (
                     <div
                       key={`${plan.account.key}-${item.kind}-${item.code ?? item.name}-${index}`}
-                      className="rounded-2xl border border-zinc-800 bg-zinc-950 px-3 py-3"
+                      className="rounded-2xl border border-white/8 bg-white/[0.03] px-3 py-3"
                     >
                       <div className="flex items-center justify-between gap-3">
                         <div className="min-w-0">
@@ -532,7 +543,7 @@ export default function ActionPlaybook({
                   <button
                     type="button"
                     onClick={() => openPreflight(plan.account.key, primaryItem.code)}
-                    className="inline-flex items-center gap-2 rounded-full border border-emerald-500/25 bg-emerald-950/20 px-4 py-2 text-sm text-emerald-100 transition hover:bg-emerald-950/35"
+                    className="inline-flex items-center gap-2 rounded-full border border-blue-500/25 bg-blue-500/12 px-4 py-2 text-sm text-blue-100 transition hover:bg-blue-500/20"
                   >
                     주문 프리플로우
                   </button>
@@ -541,7 +552,7 @@ export default function ActionPlaybook({
                   targetId="strategy-overview"
                   focusAccountKey={plan.account.key}
                   clearSearchParams={["actionAccount", "actionCode", "preflight"]}
-                  className="inline-flex items-center gap-2 rounded-full border border-sky-500/25 bg-sky-950/20 px-4 py-2 text-sm text-sky-100 transition hover:bg-sky-950/35"
+                  className="inline-flex items-center gap-2 rounded-full border border-indigo-500/25 bg-indigo-500/12 px-4 py-2 text-sm text-indigo-100 transition hover:bg-indigo-500/20"
                 >
                   계좌 전략 열기
                   <ArrowUpRight size={14} />

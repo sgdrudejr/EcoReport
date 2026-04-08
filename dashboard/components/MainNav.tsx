@@ -34,18 +34,18 @@ export default function MainNav() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 hidden border-b border-white/6 bg-zinc-950/75 backdrop-blur-2xl md:block">
+      <header className="sticky top-0 z-50 hidden border-b border-slate-200/90 bg-white/96 backdrop-blur-2xl md:block">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4">
           <Link href="/" className="flex items-center gap-3">
-            <div className="flex size-10 items-center justify-center rounded-2xl border border-emerald-400/20 bg-emerald-400/10 text-emerald-300 shadow-[0_10px_30px_rgba(16,185,129,0.15)]">
+            <div className="flex size-10 items-center justify-center rounded-2xl bg-slate-950 text-white shadow-[0_12px_24px_rgba(15,23,42,0.12)]">
               <PenSquare size={18} />
             </div>
             <div>
-              <p className="text-sm font-semibold tracking-[0.18em] text-zinc-100">
-                ECOREPORT
+              <p className="text-sm font-semibold tracking-[0.08em] text-slate-950">
+                EcoReport
               </p>
-              <p className="text-xs text-zinc-500">
-                Portfolio intelligence cockpit
+              <p className="text-xs text-slate-500">
+                White research dashboard
               </p>
             </div>
           </Link>
@@ -58,10 +58,10 @@ export default function MainNav() {
                   key={link.href}
                   href={link.href}
                   className={joinClasses(
-                    "rounded-full border px-4 py-2 text-sm transition-colors",
+                    "rounded-full border px-4 py-2 text-sm font-medium transition-colors",
                     isActive
-                      ? "border-emerald-400/30 bg-emerald-400/10 text-emerald-200"
-                      : "border-white/0 text-zinc-400 hover:border-white/8 hover:bg-white/5 hover:text-zinc-100",
+                      ? "border-slate-900 bg-slate-900 text-white"
+                      : "border-transparent text-slate-500 hover:border-slate-200 hover:bg-slate-50 hover:text-slate-900",
                   )}
                 >
                   {link.label}
@@ -72,8 +72,8 @@ export default function MainNav() {
         </div>
       </header>
 
-      <div className="pointer-events-none fixed inset-x-0 bottom-0 z-50 px-3 pb-[calc(env(safe-area-inset-bottom,0px)+0.75rem)] md:hidden">
-        <nav className="pointer-events-auto mx-auto max-w-xl rounded-[1.6rem] border border-white/10 bg-zinc-950/86 p-1.5 shadow-[0_18px_60px_rgba(0,0,0,0.45)] backdrop-blur-2xl">
+      <div className="pointer-events-none fixed inset-x-0 bottom-0 z-50 px-2.5 pb-[calc(env(safe-area-inset-bottom,0px)+0.6rem)] md:hidden">
+        <nav className="pointer-events-auto mx-auto max-w-xl rounded-[1.5rem] border border-slate-200/90 bg-white/96 p-1 shadow-[0_18px_40px_rgba(15,23,42,0.08)] backdrop-blur-2xl">
           <div className="grid grid-cols-5 gap-1">
             {links.map((link) => {
               const Icon = link.icon;
@@ -84,10 +84,10 @@ export default function MainNav() {
                   key={link.href}
                   href={link.href}
                   className={joinClasses(
-                    "flex min-h-[4.1rem] flex-col items-center justify-center gap-1 rounded-[1.1rem] px-2 text-[11px] font-medium transition",
+                    "flex min-h-[3.75rem] flex-col items-center justify-center gap-1 rounded-[1.05rem] px-2 text-[10.5px] font-medium transition",
                     isActive
-                      ? "bg-emerald-400/12 text-emerald-200"
-                      : "text-zinc-400 hover:bg-white/5 hover:text-zinc-100",
+                      ? "bg-slate-950 text-white shadow-[0_10px_18px_rgba(15,23,42,0.12)]"
+                      : "text-slate-500 hover:bg-slate-50 hover:text-slate-900",
                   )}
                 >
                   <Icon size={17} />

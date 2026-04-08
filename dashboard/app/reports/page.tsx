@@ -19,6 +19,7 @@ import {
   extractResearchScenarioBranches,
   extractResearchSections,
   extractResearchTags,
+  getResearchBriefingOverview,
   getResearchBriefingStats,
   isStructuredResearchSectionTitle,
   loadLatestMacroIndicators,
@@ -136,6 +137,10 @@ function researchTagClass(tone: string) {
   return "border-zinc-700 bg-zinc-900 text-zinc-300";
 }
 
+function formatOverviewMetric(value: number | null | undefined, unit: string) {
+  return typeof value === "number" ? `${value.toLocaleString()}${unit}` : "-";
+}
+
 function ResearchBriefingCard({
   briefing,
 }: {
@@ -147,6 +152,7 @@ function ResearchBriefingCard({
   const scenarioBranches = extractResearchScenarioBranches(briefing.content, 2);
   const indicators = loadLatestMacroIndicators(briefing.date);
   const stats = getResearchBriefingStats(briefing);
+  const overview = getResearchBriefingOverview(briefing);
   const tags = extractResearchTags(briefing.content, 10);
   const actionPoints = extractResearchActionPoints(briefing.content, 5);
   const sectionTabs: ResearchSectionTabItem[] = sections.map((section, index) => ({
@@ -172,7 +178,7 @@ function ResearchBriefingCard({
                 {briefing.date} 시장·경제 리포트
               </h2>
               <p className="mt-1 text-sm text-zinc-500">
-                79건 리포트에서 추린 핵심 섹션을 계층적으로 정리한 브리핑입니다.
+                {overview.description}
               </p>
               {formatDateContextLine({
                 runDate: briefing.runDate,
@@ -191,22 +197,15 @@ function ResearchBriefingCard({
           <div className="space-y-3 lg:min-w-[320px]">
             <div className="-mx-1 overflow-x-auto pb-1">
               <div className="flex min-w-max gap-3 px-1 text-sm text-zinc-300">
-                <div className="min-w-[132px] rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
-                  <p className="text-xs text-zinc-500">활용 리포트</p>
-                  <p className="mt-1 font-medium">{stats.coveredReportCount ?? "-"}건</p>
-                </div>
-                <div className="min-w-[132px] rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
-                  <p className="text-xs text-zinc-500">사용 청크</p>
-                  <p className="mt-1 font-medium">{stats.usedChunkCount ?? "-"}개</p>
-                </div>
-                <div className="min-w-[132px] rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
-                  <p className="text-xs text-zinc-500">후보 청크</p>
-                  <p className="mt-1 font-medium">{stats.candidateChunkCount ?? "-"}개</p>
-                </div>
-                <div className="min-w-[132px] rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
-                  <p className="text-xs text-zinc-500">요약 전용</p>
-                  <p className="mt-1 font-medium">{stats.summaryChunkCount ?? "-"}개</p>
-                </div>
+                {overview.metricItems.map((item) => (
+                  <div
+                    key={item.key}
+                    className="min-w-[132px] rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3"
+                  >
+                    <p className="text-xs text-zinc-500">{item.label}</p>
+                    <p className="mt-1 font-medium">{formatOverviewMetric(item.value, item.unit)}</p>
+                  </div>
+                ))}
               </div>
             </div>
             <div className="grid grid-cols-2 gap-3 text-sm text-zinc-300">
@@ -215,11 +214,9 @@ function ResearchBriefingCard({
                 <p className="mt-1 font-medium">{stats.model ?? "수동/로컬 생성"}</p>
               </div>
               <div className="rounded-xl border border-zinc-800 bg-zinc-950 px-4 py-3">
-                <p className="text-xs text-zinc-500">원문 길이</p>
+                <p className="text-xs text-zinc-500">{overview.lengthLabel}</p>
                 <p className="mt-1 font-medium">
-                  {stats.mergedTextLength != null
-                    ? `${stats.mergedTextLength.toLocaleString()}자`
-                    : "-"}
+                  {formatOverviewMetric(overview.lengthValue, "자")}
                 </p>
               </div>
             </div>

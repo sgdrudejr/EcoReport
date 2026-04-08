@@ -9,7 +9,10 @@ import { ROOT_DIR, parseDateArgs, writeText } from "./lib/pipeline-utils.js";
 
 const GEMINI_URL = "https://gemini.google.com/app";
 const DEFAULT_OUTPUT_NAME = "09-stage1-5-gemini-deep-research-response.md";
-const PLAN_PREFIX = "그 주제를 다루기 위한 제 계획이에요.";
+const PLAN_PREFIXES = [
+  "그 주제를 다루기 위한 제 계획이에요.",
+  "연구 계획을 짜봤어요.",
+];
 
 function parseRunnerArgs(argv) {
   const base = parseDateArgs(argv);
@@ -20,6 +23,7 @@ function parseRunnerArgs(argv) {
     timeoutSec: 1800,
     pollSec: 30,
     openOnly: false,
+    reuseFrontDocument: false,
   };
 
   for (let index = 0; index < argv.length; index += 1) {
@@ -38,6 +42,8 @@ function parseRunnerArgs(argv) {
       index += 1;
     } else if (token === "--open-only") {
       args.openOnly = true;
+    } else if (token === "--reuse-front-document") {
+      args.reuseFrontDocument = true;
     }
   }
 
@@ -83,6 +89,12 @@ function runOsascript(script) {
 }
 
 function findGeminiDocumentAppleScript(targetDocNumber = null, targetUrl = null) {
+  if (targetDocNumber === "front") {
+    return `
+set targetDoc to front document
+`;
+  }
+
   if (targetDocNumber !== null) {
     return `
 set targetDoc to missing value
@@ -160,12 +172,57 @@ end tell
 function openGeminiPage() {
   const appleScript = `
 tell application "Safari"
-  set existingCount to count of documents
-  make new document with properties {URL:${JSON.stringify(GEMINI_URL)}}
-  return count of documents
+  activate
+  if (count of windows) = 0 then
+    make new document with properties {URL:${JSON.stringify(GEMINI_URL)}}
+  else
+    tell front window
+      set current tab to (make new tab with properties {URL:${JSON.stringify(GEMINI_URL)}})
+    end tell
+  end if
+  delay 1
+  return URL of front document
 end tell
 `;
-  return Number.parseInt(runOsascript(appleScript), 10);
+  return runOsascript(appleScript).trim() || GEMINI_URL;
+}
+
+function getFrontDocumentUrl() {
+  const appleScript = `
+tell application "Safari"
+  return URL of front document
+end tell
+`;
+  return runOsascript(appleScript).trim();
+}
+
+function closeFrontGeminiPage(targetUrl) {
+  const appleScript = `
+tell application "Safari"
+  if (count of windows) = 0 then return "no-window"
+
+  set currentUrl to ""
+  try
+    set currentUrl to URL of front document
+  end try
+
+  if currentUrl does not start with ${JSON.stringify(targetUrl)} and currentUrl does not start with ${JSON.stringify(GEMINI_URL)} then
+    return "skip-non-gemini"
+  end if
+
+  tell front window
+    if (count of tabs) > 1 then
+      close current tab
+      return "closed-tab"
+    end if
+  end tell
+
+  close front document
+  return "closed-document"
+end tell
+`;
+
+  return runOsascript(appleScript);
 }
 
 function buildSnapshotJs() {
@@ -188,7 +245,8 @@ function buildSnapshotJs() {
       document.querySelector('rich-textarea textarea');
 
     const body = document.body.innerText || '';
-    const hasButton = (pattern) => buttons.some((item) => pattern.test(\`\${item.text} \${item.aria}\`));
+    const hasButton = (pattern) =>
+      buttons.some((item) => !item.disabled && pattern.test(\`\${item.text} \${item.aria}\`));
     const latestMessage = messageContents.at(-1) || '';
 
     return JSON.stringify({
@@ -270,21 +328,16 @@ function injectPrompt(prompt, targetDocNumber, targetUrl) {
   return runSafariJs(js, targetDocNumber, targetUrl);
 }
 
-function getDocumentUrl(targetDocNumber) {
-  const appleScript = `
-tell application "Safari"
-  return URL of document ${targetDocNumber}
-end tell
-`;
-  return runOsascript(appleScript);
-}
-
 function copyToClipboard(text) {
   const result = spawnSync("pbcopy", { input: text, encoding: "utf8" });
   if (result.error) throw result.error;
   if (result.status !== 0) {
     throw new Error(result.stderr?.trim() || "pbcopy failed");
   }
+}
+
+function isPlanMessage(text) {
+  return PLAN_PREFIXES.some((prefix) => text.startsWith(prefix));
 }
 
 function extractFinalResponse(state, planMessage) {
@@ -300,7 +353,7 @@ function extractFinalResponse(state, planMessage) {
 
   const candidates = filtered.filter((item) => {
     if (item === planMessage) return false;
-    if (item.startsWith(PLAN_PREFIX)) return false;
+    if (isPlanMessage(item)) return false;
     if (/조사 계획 생성 중|보고서 생성|몇 분 후 완료/i.test(item)) return false;
     if (/^연구를 완료했어요\./.test(item) && item.length < 200) return false;
     return true;
@@ -316,7 +369,7 @@ function extractFinalResponse(state, planMessage) {
 function hasPlanMessage(state) {
   return (state.messageContents ?? [])
     .map((item) => item.trim())
-    .some((item) => item.startsWith(PLAN_PREFIX));
+    .some((item) => isPlanMessage(item));
 }
 
 function hasCompletionMessage(state) {
@@ -326,7 +379,7 @@ function hasCompletionMessage(state) {
 }
 
 function inferResearchStarted(state) {
-  if (state.hasResearchStartedMessage || state.hasStopButton || hasCompletionMessage(state)) {
+  if (state.hasResearchStartedMessage || hasCompletionMessage(state)) {
     return true;
   }
 
@@ -358,9 +411,9 @@ async function main() {
   await ensurePromptFile(promptPath, args.date);
   const prompt = fs.readFileSync(promptPath, "utf8");
 
-  const targetDocNumber = openGeminiPage();
+  const targetDocNumber = "front";
+  const targetUrl = args.reuseFrontDocument ? getFrontDocumentUrl() : openGeminiPage();
   await sleep(4000);
-  const targetUrl = getDocumentUrl(targetDocNumber);
 
   let state = snapshotState(targetDocNumber, targetUrl);
   if (!state.composerFound) {
@@ -372,14 +425,18 @@ async function main() {
     throw new Error("Gemini 입력창을 찾지 못했습니다.");
   }
 
-  if ((state.textareaLength ?? 0) < prompt.length * 0.6 && (state.editableLength ?? 0) < prompt.length * 0.6) {
+  if (
+    (state.messageCount ?? 0) === 0 &&
+    (state.textareaLength ?? 0) < prompt.length * 0.6 &&
+    (state.editableLength ?? 0) < prompt.length * 0.6
+  ) {
     injectPrompt(prompt, targetDocNumber, targetUrl);
     await sleep(1000);
     state = snapshotState(targetDocNumber, targetUrl);
   }
 
   if (args.openOnly) {
-    console.log("Gemini page opened in a new window and prompt injected.");
+    console.log("Gemini page opened in a new tab and prompt injected.");
     console.log(`target_document: ${targetDocNumber}`);
     console.log(`target_url: ${targetUrl}`);
     return;
@@ -428,7 +485,7 @@ async function main() {
     if (!planMessage) {
       const planCandidate = (state.messageContents ?? [])
         .map((item) => item.trim())
-        .find((item) => item.startsWith(PLAN_PREFIX));
+        .find((item) => isPlanMessage(item));
       if (planCandidate) {
         planMessage = planCandidate;
       }
@@ -436,9 +493,7 @@ async function main() {
 
     if (
       promptSubmitted &&
-      !researchStarted &&
       state.hasResearchStartButton &&
-      !state.hasStopButton &&
       !state.hasResearchStartedMessage &&
       (planMessage || hasPlanMessage(state) || state.hasEditPlanButton)
     ) {
@@ -452,6 +507,14 @@ async function main() {
     if (finalResponse) {
       await writeText(outputPath, `${finalResponse}\n`);
       copyToClipboard(finalResponse);
+      if (!args.reuseFrontDocument) {
+        try {
+          const closeResult = closeFrontGeminiPage(targetUrl);
+          console.log(`closed: ${closeResult}`);
+        } catch (error) {
+          console.warn(`close-warning: ${error.message}`);
+        }
+      }
       console.log(`saved: ${outputPath}`);
       console.log(`copied_chars: ${finalResponse.length}`);
       return;

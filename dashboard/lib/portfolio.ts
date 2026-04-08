@@ -97,6 +97,20 @@ export function getDefaultPortfolioSnapshot(): PortfolioSnapshot {
         incomplete: true,
         holdings: [],
       },
+      {
+        key: "KIS_MAIN",
+        label: "한투 일반",
+        accountNumber: "",
+        evaluationAmount: null,
+        cashAvailable: null,
+        settlementCash: null,
+        principal: null,
+        profitLoss: null,
+        profitRate: null,
+        screenshots: [],
+        incomplete: true,
+        holdings: [],
+      },
     ],
   };
 }
