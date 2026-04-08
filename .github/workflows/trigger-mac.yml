@@ -6,6 +6,8 @@ on:
     - cron: "0 1 * * *"
 
   # .deploy-trigger 파일 push → Claude Code 등 외부에서 원격 트리거
+  # - 'YYYY-MM-DD'         → 해당 날짜로 전체 분석 사이클 실행
+  # - 'push-only:YYYY-MM-DD' → 분석 없이 로컬 데이터만 data 브랜치에 push
   push:
     branches: [main]
     paths:
@@ -22,6 +24,10 @@ on:
         description: "분석 날짜 (YYYY-MM-DD, 비워두면 오늘)"
         required: false
         default: ""
+      push_only:
+        description: "분석 없이 데이터 push만 (true/false)"
+        required: false
+        default: "false"
 
 jobs:
   run-cycle:
@@ -33,19 +39,31 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: main
-          fetch-depth: 0          # push-to-github.sh 에서 data 브랜치 전환 필요
+          fetch-depth: 0
 
-      - name: Resolve date
-        id: date
+      - name: Resolve date and mode
+        id: opts
         run: |
-          # workflow_dispatch 입력값 → repository_dispatch payload → .deploy-trigger 파일 → 오늘 날짜 순으로 fallback
+          PUSH_ONLY="false"
           REQUESTED_DATE="${{ github.event.inputs.date }}"
+
+          # workflow_dispatch push_only 플래그
+          if [ "${{ github.event.inputs.push_only }}" = "true" ]; then
+            PUSH_ONLY="true"
+          fi
+
+          # repository_dispatch
           if [ -z "$REQUESTED_DATE" ]; then
             REQUESTED_DATE="${{ github.event.client_payload.date }}"
           fi
+
+          # .deploy-trigger 파일 파싱
           if [ -z "$REQUESTED_DATE" ] && [ -f ".deploy-trigger" ]; then
             TRIGGER_CONTENT="$(cat .deploy-trigger | tr -d '[:space:]')"
-            if echo "$TRIGGER_CONTENT" | grep -Eq '^[0-9]{4}-[0-9]{2}-[0-9]{2}$'; then
+            if echo "$TRIGGER_CONTENT" | grep -Eq '^push-only:[0-9]{4}-[0-9]{2}-[0-9]{2}$'; then
+              PUSH_ONLY="true"
+              REQUESTED_DATE="${TRIGGER_CONTENT#push-only:}"
+            elif echo "$TRIGGER_CONTENT" | grep -Eq '^[0-9]{4}-[0-9]{2}-[0-9]{2}$'; then
               REQUESTED_DATE="$TRIGGER_CONTENT"
             fi
           fi
@@ -60,22 +78,21 @@ jobs:
 
           echo "value=$DATE" >> "$GITHUB_OUTPUT"
           echo "reason=$REASON" >> "$GITHUB_OUTPUT"
-          echo "resolved cycle date: $DATE ($REASON)"
+          echo "push_only=$PUSH_ONLY" >> "$GITHUB_OUTPUT"
+          echo "resolved: $DATE ($REASON) / push_only=$PUSH_ONLY"
 
       - name: Run analysis cycle (Step 1–6)
-        # run-daily-system.sh: 최신 단일 진입점. --skip-push 로 push는 다음 step에서 분리
-        run: bash scripts/run-daily-system.sh --date "${{ steps.date.outputs.value }}" --skip-push
+        if: steps.opts.outputs.push_only != 'true'
+        run: bash scripts/run-daily-system.sh --date "${{ steps.opts.outputs.value }}" --skip-push
         env:
-          # API 키는 GitHub Repository Secrets 에 등록
           GEMINI_API_KEY:    ${{ secrets.GEMINI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           FRED_API_KEY:      ${{ secrets.FRED_API_KEY }}
           BOK_API_KEY:       ${{ secrets.BOK_API_KEY }}
 
       - name: Push results to data branch
-        run: bash scripts/push-to-github.sh "${{ steps.date.outputs.value }}"
+        run: bash scripts/push-to-github.sh "${{ steps.opts.outputs.value }}"
         env:
-          # self-hosted runner 는 기본적으로 GITHUB_TOKEN 으로 push 가능
           GIT_AUTHOR_NAME:  "github-actions[bot]"
           GIT_AUTHOR_EMAIL: "github-actions[bot]@users.noreply.github.com"
           GIT_COMMITTER_NAME:  "github-actions[bot]"
