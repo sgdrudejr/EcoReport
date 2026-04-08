@@ -5,6 +5,12 @@ on:
   schedule:
     - cron: "0 1 * * *"
 
+  # .deploy-trigger 파일 push → Claude Code 등 외부에서 원격 트리거
+  push:
+    branches: [main]
+    paths:
+      - ".deploy-trigger"
+
   # 대시보드 API 또는 GitHub API 에서 repository_dispatch 로 트리거
   repository_dispatch:
     types: [run-cycle]
@@ -32,10 +38,16 @@ jobs:
       - name: Resolve date
         id: date
         run: |
-          # workflow_dispatch 입력값 → repository_dispatch payload → 오늘 날짜 순으로 fallback
+          # workflow_dispatch 입력값 → repository_dispatch payload → .deploy-trigger 파일 → 오늘 날짜 순으로 fallback
           REQUESTED_DATE="${{ github.event.inputs.date }}"
           if [ -z "$REQUESTED_DATE" ]; then
             REQUESTED_DATE="${{ github.event.client_payload.date }}"
+          fi
+          if [ -z "$REQUESTED_DATE" ] && [ -f ".deploy-trigger" ]; then
+            TRIGGER_CONTENT="$(cat .deploy-trigger | tr -d '[:space:]')"
+            if echo "$TRIGGER_CONTENT" | grep -Eq '^[0-9]{4}-[0-9]{2}-[0-9]{2}$'; then
+              REQUESTED_DATE="$TRIGGER_CONTENT"
+            fi
           fi
 
           if [ -n "$REQUESTED_DATE" ]; then
