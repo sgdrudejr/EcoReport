@@ -83,6 +83,9 @@ async function collectSignals() {
         category: holding.category,
         signal,                         // BUY / HOLD / REDUCE / WATCH
         actionScore: holding.actionScore ?? null,
+        rawActionScore: holding.rawActionScore ?? holding.scores?.rawActionScore ?? null,
+        factorScore: holding.factor?.score ?? holding.scores?.factorScore ?? null,
+        actionBlendDelta: holding.actionBlend?.delta ?? null,
         technicalBaseScore: holding.technicalBaseScore ?? null,
         conviction: holding.conviction ?? null,
         p_buy: holding.probabilities?.p_buy ?? null,

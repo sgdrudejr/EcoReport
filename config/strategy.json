@@ -76,6 +76,15 @@
         "macroFit": 0.2
       }
     },
+    "holdingBlend": {
+      "enabled": true,
+      "actionWeight": 0.92,
+      "factorWeight": 0.08,
+      "minFactorCoverage": 0.35,
+      "maxAdjustment": 18,
+      "gateMode": "sameSignal",
+      "minFactorDistance": 8
+    },
     "covarianceModel": {
       "enabled": true,
       "shrinkage": 0.35,

@@ -1,12 +1,12 @@
 ---
 title: 연금저축 Account Playbook
 type: account
-updated: 2026-04-08
-source_date: 2026-04-08
-run_date: 2026-04-08
-effective_market_date: 2026-04-08
-run_id: 2026-04-08-133845
-generated_at: 2026-04-08T13:44:25.022Z
+updated: 2026-04-09
+source_date: 2026-04-09
+run_date: 2026-04-09
+effective_market_date: 2026-04-09
+run_id: 2026-04-09-032037
+generated_at: 2026-04-09T03:23:16.066Z
 account_key: PENSION
 ---
 
@@ -14,8 +14,8 @@ account_key: PENSION
 
 ## Role
 
-- 역할 요약: AI 인프라와 전력 수요가 구조적 성장 축으로 다시 부각되고 있습니다. 연금저축은 미국 코어 인덱스 비중 조정이 핵심입니다. 장기 복리 관점에서 미국 코어 자산과 방어 자산을 안정적으로 쌓는 역할로 작동하는 계좌입니다.
-- 현재 점수는 76 입니다.
+- 역할 요약: 중동 지정학 리스크와 유가 상승이 시장 변동성을 키우고 있습니다. 연금저축은 미국 코어 인덱스 비중 조정이 핵심입니다. 장기 복리 관점에서 미국 코어 자산과 방어 자산을 안정적으로 쌓는 역할로 작동하는 계좌입니다.
+- 현재 점수는 75 입니다.
 - 현재 가용 현금은 1,515,100원 입니다.
 
 ## Target Allocation
@@ -29,9 +29,9 @@ account_key: PENSION
 
 | 종목 | 코드 | 카테고리 | 평가금액 | 수량 | Action Score |
 | --- | --- | --- | ---: | ---: | ---: |
-| KODEX KOFR금리액티브 | 423160 | 현금파킹 | 221,370원 | 2 | 64 |
-| TIGER 미국나스닥100 | 133690 | 나스닥100 | 480,480원 | 3 | 64 |
-| TIGER 미국S&P500 | 360750 | S&P500 | 491,400원 | 20 | 64 |
+| KODEX KOFR금리액티브 | 423160 | 현금파킹 | 221,370원 | 2 | 63 |
+| TIGER 미국나스닥100 | 133690 | 나스닥100 | 480,480원 | 3 | 63 |
+| TIGER 미국S&P500 | 360750 | S&P500 | 491,400원 | 20 | 63 |
 
 ## What To Do Next
 
@@ -43,8 +43,8 @@ account_key: PENSION
 ## Candidate Assets
 
 - TIGER 미국S&P500 / 378,422원
-- TIGER 미국나스닥100 / 227,053원
-- HANARO 원자력iSelect / 151,369원
+- KODEX KOFR금리액티브(합성) / 227,053원
+- TIGER 미국나스닥100 / 151,369원
 
 ## Money-Making Rule
 

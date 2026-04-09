@@ -144,9 +144,9 @@ run_retrying_step() {
     log "$label (attempt $attempt/$attempts)"
     if "$@" >>"$LOG_FILE" 2>&1; then
       return 0
+    else
+      exit_code=$?
     fi
-
-    exit_code=$?
     if [[ "$attempt" -lt "$attempts" ]]; then
       log "⚠️ 단계 실패 (exit $exit_code), 잠시 후 재시도합니다."
       sleep 2
@@ -162,10 +162,13 @@ run_soft_step() {
   local label="$1"
   shift
   log "$label"
+  local exit_code=0
   if "$@" >>"$LOG_FILE" 2>&1; then
     return 0
+  else
+    exit_code=$?
   fi
-  log "⚠️ 단계 실패, 다음 단계로 계속 진행합니다."
+  log "⚠️ 단계 실패 (exit $exit_code), 다음 단계로 계속 진행합니다."
   return 1
 }
 
@@ -193,6 +196,54 @@ python_bin() {
   fi
 }
 
+read_report_count() {
+  node -e "const fs=require('fs');const p=process.argv[1];try{const raw=JSON.parse(fs.readFileSync(p,'utf8'));process.stdout.write(String(Array.isArray(raw)?raw.length:0));}catch{process.stdout.write('0');}" "$ROOT_DIR/data/reports/$DATE/index.json"
+}
+
+read_report_text_success_count() {
+  node -e "const fs=require('fs');const p=process.argv[1];try{const raw=JSON.parse(fs.readFileSync(p,'utf8'));process.stdout.write(String(Number(raw?.success_count ?? 0)));}catch{process.stdout.write('0');}" "$ROOT_DIR/data/reports/$DATE/text-manifest.json"
+}
+
+log_network_probe() {
+  local label="$1"
+  local targets="$2"
+  local summary
+  summary="$(node scripts/check-network-health.js --targets "$targets" --field summary --attempts 1 --timeout-ms 8000 2>/dev/null || true)"
+  if [[ -n "$summary" ]]; then
+    log "🌐 $label 네트워크 상태: $summary"
+  fi
+}
+
+recover_same_day_collection() {
+  local delays=(20 40 80)
+  local report_count
+  local text_success
+  local attempt=1
+
+  report_count="$(read_report_count)"
+  text_success="$(read_report_text_success_count)"
+  if [[ "${report_count:-0}" -gt 0 && "${text_success:-0}" -gt 0 ]]; then
+    return 0
+  fi
+
+  for delay in "${delays[@]}"; do
+    log "⚠️ same-day 리포트 산출물이 부족합니다. ${delay}s 대기 후 강제 재수집합니다. (recovery $attempt/${#delays[@]})"
+    log_network_probe "리포트 수집" "https://finance.naver.com/research/company_list.naver?page=1,https://www.shinhansec.com/siw/etc/browse/search05/data.do"
+    sleep "$delay"
+    if run_retrying_step "📡 리포트 수집 + 전문 텍스트화 (same-day recovery)..." 1 bash scripts/collect-report-assets.sh --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE" --force; then
+      report_count="$(read_report_count)"
+      text_success="$(read_report_text_success_count)"
+      if [[ "${report_count:-0}" -gt 0 && "${text_success:-0}" -gt 0 ]]; then
+        log "✅ same-day 리포트 수집 복구 완료: ${report_count}건 / 전문 ${text_success}건"
+        return 0
+      fi
+    fi
+    attempt=$((attempt + 1))
+  done
+
+  return 1
+}
+
 log "=================================================="
 log "🚀 EcoReport Daily System 시작 (run: $RUN_DATE / effective: $DATE)"
 log "🧬 run-id: $RUN_ID"
@@ -207,14 +258,19 @@ else
   if [[ "$FORCE_COLLECT" == "1" ]]; then
     COLLECT_ARGS+=(--force)
   fi
-  if ! run_retrying_step "📡 리포트 수집 + 전문 텍스트화..." 2 bash scripts/collect-report-assets.sh "${COLLECT_ARGS[@]}"; then
-    log "⚠️ 리포트 수집 실패, 빈 fallback 리포트 자산으로 계속 진행합니다."
+  collect_ready=0
+  if run_retrying_step "📡 리포트 수집 + 전문 텍스트화..." 2 bash scripts/collect-report-assets.sh "${COLLECT_ARGS[@]}"; then
+    collect_ready=1
+  fi
+
+  if [[ "$collect_ready" != "1" ]] || ! recover_same_day_collection; then
+    log "⚠️ same-day 리포트 수집 복구에 실패했습니다. placeholder fallback으로 계속 진행합니다."
     node scripts/ensure-daily-fallbacks.js \
       --date "$DATE" \
       --run-date "$RUN_DATE" \
       --effective-market-date "$DATE" \
       --mode reports \
-      --reason "collect-report-assets failed after retries" >>"$LOG_FILE" 2>&1
+      --reason "same-day report recovery exhausted" >>"$LOG_FILE" 2>&1
     SOFT_FAILURE_COUNT=$((SOFT_FAILURE_COUNT + 1))
   fi
 fi

@@ -105,6 +105,16 @@ const DEFAULT_TAX_AWARE_MODEL = {
   },
 };
 
+const DEFAULT_HOLDING_BLEND_MODEL = {
+  enabled: true,
+  actionWeight: 0.92,
+  factorWeight: 0.08,
+  minFactorCoverage: 0.35,
+  maxAdjustment: 18,
+  gateMode: "sameSignal",
+  minFactorDistance: 8,
+};
+
 const STAGE2_SCORE_BY_BIAS = {
   aggressive_add: 64,
   selective_add: 58,
@@ -661,7 +671,7 @@ function computeActionScore(technicalItem, reportImpact, regimeName) {
     Math.sign(direction || 0) === Math.sign(reportImpact.value || 0);
   const magnitude = Math.abs(direction) + Math.abs(timing) + Math.abs(reportImpact.value);
   const conviction = sameSign && magnitude > 2.8 ? "HIGH" : magnitude > 1.7 ? "MEDIUM" : "LOW";
-  const signal = actionScore >= 72 ? "BUY" : actionScore >= 58 ? "HOLD" : actionScore >= 42 ? "WATCH" : "REDUCE";
+  const signal = actionSignalFromScore(actionScore);
 
   return {
     actionScore,
@@ -677,6 +687,10 @@ function computeActionScore(technicalItem, reportImpact, regimeName) {
     signal,
     features,
   };
+}
+
+function actionSignalFromScore(actionScore) {
+  return actionScore >= 72 ? "BUY" : actionScore >= 58 ? "HOLD" : actionScore >= 42 ? "WATCH" : "REDUCE";
 }
 
 function normalizeStrategyAccountKey(account, strategy) {
@@ -991,9 +1005,10 @@ function computeRiskPenalty({
   };
 }
 
-function holdingExplanation(holding, technicalItem, reportImpact, action) {
+function holdingExplanation(holding, technicalItem, reportImpact, action, finalAction = null) {
   const topDrivers = [];
   const warnings = [];
+  const effectiveAction = finalAction ?? action;
 
   if (technicalItem?.score != null) {
     topDrivers.push(`기술 기본점수 ${technicalItem.score}점`);
@@ -1009,8 +1024,13 @@ function holdingExplanation(holding, technicalItem, reportImpact, action) {
     topDrivers.push(`RSI ${technicalItem.rsi.toFixed(1)}`);
   }
 
-  if (action.signal === "REDUCE" || action.signal === "WATCH") {
-    warnings.push(`${action.signal} 구간이라 비중 확대보다 관찰/점검이 우선입니다.`);
+  if (effectiveAction?.blended && Math.abs(effectiveAction.delta ?? 0) >= 4) {
+    const signedDelta = `${(effectiveAction.delta ?? 0) > 0 ? "+" : ""}${effectiveAction.delta}`;
+    topDrivers.push(`팩터 보정 ${signedDelta}점`);
+  }
+
+  if (effectiveAction?.signal === "REDUCE" || effectiveAction?.signal === "WATCH") {
+    warnings.push(`${effectiveAction.signal} 구간이라 비중 확대보다 관찰/점검이 우선입니다.`);
   }
 
   return { topDrivers, warnings };
@@ -1096,6 +1116,113 @@ function factorAvailability(rawFactors) {
 function estimateIncomeYield(category, taxAwareConfig) {
   const defaultYieldMap = taxAwareConfig?.defaultYieldByCategory ?? {};
   return clamp(valueOrFallback(defaultYieldMap[category], 0), 0, 0.25);
+}
+
+function shouldApplyFactorBlend(rawScore, factorScore, holdingBlendConfig) {
+  const gateMode = holdingBlendConfig?.gateMode ?? "none";
+  if (gateMode === "none") return true;
+
+  if (gateMode === "sameSide50") {
+    return (
+      Math.sign(rawScore - 50) === Math.sign(factorScore - 50) ||
+      rawScore === 50 ||
+      factorScore === 50
+    );
+  }
+
+  const rawSignal = actionSignalFromScore(rawScore);
+  const factorSignal = actionSignalFromScore(factorScore);
+  if (gateMode === "sameSignal") {
+    return rawSignal === factorSignal;
+  }
+
+  if (gateMode === "sameSignalStrong") {
+    return (
+      rawSignal === factorSignal &&
+      Math.abs(factorScore - 50) >= Math.max(valueOrFallback(holdingBlendConfig?.minFactorDistance, 8), 0)
+    );
+  }
+
+  return true;
+}
+
+function blendHoldingActionScore({
+  rawActionScore,
+  factorScore,
+  factorCoverage,
+  holdingBlendConfig,
+}) {
+  const rawScore = clamp(Math.round(valueOrFallback(rawActionScore, 50)), 0, 100);
+  const coverage = clamp(valueOrFallback(factorCoverage, 0), 0, 1);
+  const factorAvailable = typeof factorScore === "number" && Number.isFinite(factorScore);
+  const roundedFactorScore =
+    factorAvailable
+      ? Math.round(clamp(factorScore, 0, 100))
+      : null;
+  const rawSignal = actionSignalFromScore(rawScore);
+  const factorSignal = roundedFactorScore != null ? actionSignalFromScore(roundedFactorScore) : null;
+  const factorAllowed =
+    roundedFactorScore != null &&
+    shouldApplyFactorBlend(rawScore, roundedFactorScore, holdingBlendConfig);
+
+  if (!holdingBlendConfig?.enabled || !factorAvailable || !factorAllowed) {
+    return {
+      score: rawScore,
+      signal: rawSignal,
+      blended: false,
+      rawActionScore: rawScore,
+      factorScore: roundedFactorScore,
+      actionWeight: 1,
+      factorWeight: 0,
+      factorCoverage: toRoundedNumber(coverage, 4),
+      delta: 0,
+      gateMode: holdingBlendConfig?.gateMode ?? "none",
+      factorApplied: false,
+      rawSignal,
+      factorSignal,
+    };
+  }
+
+  const baseActionWeight = Math.max(valueOrFallback(holdingBlendConfig.actionWeight, 0.72), 0);
+  const baseFactorWeight = Math.max(valueOrFallback(holdingBlendConfig.factorWeight, 0.28), 0);
+  const minFactorCoverage = clamp(
+    valueOrFallback(holdingBlendConfig.minFactorCoverage, 0.35),
+    0,
+    1,
+  );
+  const factorCoverageMultiplier =
+    minFactorCoverage + coverage * (1 - minFactorCoverage);
+  const effectiveActionWeight = baseActionWeight;
+  const effectiveFactorWeight = baseFactorWeight * factorCoverageMultiplier;
+  const totalWeight = effectiveActionWeight + effectiveFactorWeight;
+  const normalizedActionWeight = totalWeight > 0 ? effectiveActionWeight / totalWeight : 1;
+  const normalizedFactorWeight = totalWeight > 0 ? effectiveFactorWeight / totalWeight : 0;
+  const unconstrainedScore =
+    rawScore * normalizedActionWeight +
+    clamp(factorScore, 0, 100) * normalizedFactorWeight;
+  const maxAdjustment = Math.max(valueOrFallback(holdingBlendConfig.maxAdjustment, 18), 0);
+  const blendedScore = clamp(
+    unconstrainedScore,
+    rawScore - maxAdjustment,
+    rawScore + maxAdjustment,
+  );
+  const finalScore = Math.round(clamp(blendedScore, 0, 100));
+
+  return {
+    score: finalScore,
+    signal: actionSignalFromScore(finalScore),
+    blended: true,
+    rawActionScore: rawScore,
+    factorScore: roundedFactorScore,
+    actionWeight: toRoundedNumber(normalizedActionWeight, 4),
+    factorWeight: toRoundedNumber(normalizedFactorWeight, 4),
+    factorCoverage: toRoundedNumber(coverage, 4),
+    delta: toRoundedNumber(finalScore - rawScore, 2),
+    gateMode: holdingBlendConfig?.gateMode ?? "none",
+    factorApplied: true,
+    rawSignal,
+    factorSignal,
+  };
 }
 
 function computeFactorRawInputs({
@@ -1372,6 +1499,10 @@ async function main() {
       ...(strategy?.scoring?.taxAware?.accountTaxRates ?? {}),
     },
   };
+  const holdingBlendConfig = {
+    ...DEFAULT_HOLDING_BLEND_MODEL,
+    ...(strategy?.scoring?.holdingBlend ?? {}),
+  };
   const riskCaps = {
     ...DEFAULT_RISK_CAPS,
     ...(strategy?.scoring?.riskPenaltyCaps ?? {}),
@@ -1435,7 +1566,6 @@ async function main() {
         allocationState,
       });
       const scoreWeight = categoryScoreWeight(category, holding.marketValue ?? 0);
-      const explanation = holdingExplanation(holding, technicalItem, reportImpact, computed);
       const stage2Candidate = stage2CandidateMap.get(holding.code) ?? null;
       const factorRaw = computeFactorRawInputs({
         technicalItem,
@@ -1462,7 +1592,6 @@ async function main() {
         rawTechBaseScore,
         reportImpact,
         computed,
-        explanation,
         accountDirectImpact,
         factorRaw,
         incomeYield: estimateIncomeYield(category, taxAwareConfig),
@@ -1472,6 +1601,15 @@ async function main() {
 
   const factorStats = computeCrossSectionalFactorScores(positionRows, factorModel);
   const bestHoldingWeightByCode = new Map();
+
+  for (const row of positionRows) {
+    row.finalAction = blendHoldingActionScore({
+      rawActionScore: row.computed.actionScore,
+      factorScore: row.factor?.score,
+      factorCoverage: row.factor?.factorCoverage,
+      holdingBlendConfig,
+    });
+  }
 
   for (const row of positionRows) {
     const holdingReportAvailable = row.reportImpact.impactCount > 0;
@@ -1493,6 +1631,10 @@ async function main() {
       technicalSignal: row.technicalItem?.signal ?? "N/A",
       technicalBaseScore: row.technicalBaseScore,
       ...row.computed,
+      actionScore: row.finalAction.score,
+      rawActionScore: row.finalAction.rawActionScore,
+      signal: row.finalAction.signal,
+      rawSignal: row.computed.signal,
       reportImpacts: row.reportImpact.impacts,
       technical: {
         signal: row.technicalItem?.signal ?? null,
@@ -1514,13 +1656,21 @@ async function main() {
         directAccountImpactScore: row.accountDirectImpact.score,
       },
       factor: row.factor,
+      actionBlend: row.finalAction,
       scores: {
         factorScore: row.factor.score,
         techScore: row.technicalBaseScore,
         reportScore: holdingReportAvailable ? row.reportImpact.score : null,
-        actionScore: row.computed.actionScore,
+        actionScore: row.finalAction.score,
+        rawActionScore: row.finalAction.rawActionScore,
       },
-      explain: row.explanation,
+      explain: holdingExplanation(
+        row.holding,
+        row.technicalItem,
+        row.reportImpact,
+        row.computed,
+        row.finalAction,
+      ),
     };
     positionScores[row.positionKey] = payload;
 
@@ -1538,6 +1688,7 @@ async function main() {
     const weightedFactor = [];
     const weightedReport = [];
     const weightedAction = [];
+    const weightedRawAction = [];
 
     for (const row of accountPositions) {
       if (typeof row.technicalBaseScore === "number") {
@@ -1549,7 +1700,8 @@ async function main() {
       if (typeof row.reportImpact.score === "number") {
         weightedReport.push({ weight: row.scoreWeight, value: row.reportImpact.score });
       }
-      weightedAction.push({ weight: row.scoreWeight, value: row.computed.actionScore });
+      weightedAction.push({ weight: row.scoreWeight, value: row.finalAction.score });
+      weightedRawAction.push({ weight: row.scoreWeight, value: row.computed.actionScore });
     }
 
     const techCoverage =
@@ -1624,6 +1776,7 @@ async function main() {
     });
     const totalScore = Math.round(clamp(taxAdjustment.afterTaxScore ?? preTaxScore, 0, 100));
     const holdingsScore = Math.round(weightedAverage(weightedAction) ?? 50);
+    const rawHoldingsScore = Math.round(weightedAverage(weightedRawAction) ?? 50);
 
     accountScores[account.key] = {
       key: account.key,
@@ -1649,7 +1802,9 @@ async function main() {
         stage2Score: context.stage2Score,
         leadingScore: leadingIndicator.score,
         actionBlend: holdingsScore,
+        rawActionBlend: rawHoldingsScore,
       },
+      rawHoldingsScore,
       effectiveWeights: weights,
       riskPenalty,
       taxAdjustment,
@@ -1747,6 +1902,7 @@ async function main() {
       weightProfile: profileName,
       maxWeights: MAX_WEIGHT_PROFILES[profileName],
       factorModel,
+      holdingBlend: holdingBlendConfig,
       covarianceModel,
       taxAware: {
         enabled: taxAwareConfig.enabled,

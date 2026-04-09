@@ -1,6 +1,6 @@
 {
-  "date": "2026-04-08",
-  "updatedAt": "2026-04-08T13:28:20.593Z",
+  "date": "2026-04-09",
+  "updatedAt": "2026-04-09T03:21:25.984Z",
   "accounts": [
     {
       "portfolioKey": "KIS_MAIN",
@@ -8,7 +8,7 @@
       "rawPath": "data/portfolio/sources/kis/KIS_MAIN.json",
       "accountNumber": "44367266-01",
       "holdings": 3,
-      "evaluationAmount": 3037064
+      "evaluationAmount": 3034239
     }
   ]
 }

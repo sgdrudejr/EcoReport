@@ -9,6 +9,14 @@ RUN_DATE="${RUN_DATE:-$(node "$ROOT_DIR/scripts/resolve-cycle-date.js" --field r
 EFFECTIVE_MARKET_DATE=""
 FORCE=0
 
+read_report_count() {
+  node -e "const fs=require('fs');const p=process.argv[1];try{const raw=JSON.parse(fs.readFileSync(p,'utf8'));process.stdout.write(String(Array.isArray(raw)?raw.length:0));}catch{process.stdout.write('0');}" "$1"
+}
+
+read_text_success_count() {
+  node -e "const fs=require('fs');const p=process.argv[1];try{const raw=JSON.parse(fs.readFileSync(p,'utf8'));process.stdout.write(String(Number(raw?.success_count ?? 0)));}catch{process.stdout.write('0');}" "$1"
+}
+
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --date)
@@ -62,5 +70,20 @@ node scripts/crawl-naver-research.js "${CRAWL_ARGS[@]}"
 
 echo "📝 전문 텍스트화 시작 (effective: $DATE)"
 node scripts/dump-report-texts.js "${TEXTIFY_ARGS[@]}"
+
+REPORT_INDEX_PATH="$ROOT_DIR/data/reports/$DATE/index.json"
+TEXT_MANIFEST_PATH="$ROOT_DIR/data/reports/$DATE/text-manifest.json"
+REPORT_COUNT="$(read_report_count "$REPORT_INDEX_PATH")"
+TEXT_SUCCESS_COUNT="$(read_text_success_count "$TEXT_MANIFEST_PATH")"
+
+if [[ "${REPORT_COUNT:-0}" -le 0 ]]; then
+  echo "❌ 리포트 수집 결과가 0건입니다. same-day 재시도가 필요합니다."
+  exit 11
+fi
+
+if [[ "${TEXT_SUCCESS_COUNT:-0}" -le 0 ]]; then
+  echo "❌ 전문 텍스트화 성공 건수가 0건입니다. same-day 재시도가 필요합니다."
+  exit 12
+fi
 
 echo "✅ 리포트 자산 수집 완료 (run: $RUN_DATE / effective: $DATE)"

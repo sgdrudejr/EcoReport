@@ -3,6 +3,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
+import os from "node:os";
 
 import {
   ROOT_DIR,
@@ -223,6 +224,17 @@ function buildDefaultSnapshot(date) {
   };
 }
 
+function ensureKisAuthWritable(date) {
+  const homeDir = process.env.HOME || os.homedir();
+  const configRoot = path.join(homeDir, "KIS", "config");
+  const tokenPath = path.join(configRoot, `KIS${compactDate(date)}`);
+  fs.mkdirSync(configRoot, { recursive: true });
+  fs.writeFileSync(tokenPath, "", { flag: "a" });
+  fs.accessSync(configRoot, fs.constants.W_OK);
+  fs.accessSync(tokenPath, fs.constants.W_OK);
+  return { configRoot, tokenPath };
+}
+
 async function runSourceSync(source, context) {
   const rawPath = path.join(
     ROOT_DIR,
@@ -281,6 +293,7 @@ async function main() {
   }
 
   const openApi = resolveOpenTradingApiPaths();
+  ensureKisAuthWritable(args.date);
   const synced = [];
 
   for (const source of sources) {

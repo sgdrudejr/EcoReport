@@ -940,7 +940,8 @@ export function extractResearchScenarioBranches(
       )
         .split(/\s*[,/]\s*|\s*\|\s*/)
         .map((item) => item.trim())
-        .filter(Boolean);
+        .filter(Boolean)
+        .filter((item, index, items) => items.indexOf(item) === index);
 
       if ((!narrative || !response) && /(?:->|→|대응[:：])/.test(block.header)) {
         const [left, right] = block.header.split(/(?:->|→|대응[:：])/);

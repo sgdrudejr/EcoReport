@@ -22,8 +22,54 @@ cleanup() {
 
 trap cleanup EXIT
 
-if git ls-remote --exit-code --heads origin data >/dev/null 2>&1; then
-  git fetch origin data >/dev/null
+wait_for_github() {
+  local delays=(0 15 30)
+  local delay
+  local index=0
+
+  for delay in "${delays[@]}"; do
+    if node "$REPO_ROOT/scripts/check-network-health.js" --targets "https://github.com" --field ready --attempts 1 --timeout-ms 8000 >/dev/null 2>&1; then
+      return 0
+    fi
+
+    if [[ "$delay" -gt 0 && "$index" -lt $((${#delays[@]} - 1)) ]]; then
+      echo "[push-to-github] github.com 네트워크 회복 대기 ${delay}s"
+      sleep "$delay"
+    fi
+    index=$((index + 1))
+  done
+
+  echo "[push-to-github] github.com 네트워크 점검 실패"
+  node "$REPO_ROOT/scripts/check-network-health.js" --targets "https://github.com" --field summary --attempts 1 --timeout-ms 8000 || true
+  return 1
+}
+
+run_git_with_retry() {
+  local label="$1"
+  shift
+  local attempt
+  local exit_code=0
+
+  for attempt in 1 2 3; do
+    if "$@"; then
+      return 0
+    else
+      exit_code=$?
+    fi
+    echo "[push-to-github] ${label} 실패 (attempt ${attempt}/3, exit ${exit_code})"
+    if [[ "$attempt" -lt 3 ]]; then
+      wait_for_github || true
+      sleep 2
+    fi
+  done
+
+  return "$exit_code"
+}
+
+wait_for_github
+
+if run_git_with_retry "ls-remote data" git ls-remote --exit-code --heads origin data >/dev/null 2>&1; then
+  run_git_with_retry "fetch data" git fetch origin data >/dev/null
   git worktree add --detach "$TMP_WORKTREE" "$(git rev-parse FETCH_HEAD)" >/dev/null
 elif git show-ref --verify --quiet refs/heads/data; then
   git worktree add --force "$TMP_WORKTREE" data >/dev/null
@@ -110,6 +156,6 @@ if [ "$RUN_DATE" != "$DATE" ]; then
   COMMIT_MESSAGE="${COMMIT_MESSAGE} (run ${RUN_DATE})"
 fi
 git -C "$TMP_WORKTREE" commit -m "$COMMIT_MESSAGE" >/dev/null
-git -C "$TMP_WORKTREE" push -u origin HEAD:data >/dev/null
+run_git_with_retry "push data" git -C "$TMP_WORKTREE" push -u origin HEAD:data >/dev/null
 
 echo "[push-to-github] push 완료."

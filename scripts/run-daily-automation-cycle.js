@@ -77,6 +77,35 @@ function checklistMark(status) {
   return " ";
 }
 
+function buildSameDayStatus(steps, artifacts) {
+  const blockingStepIds = [
+    "baseline_daily_system",
+    "stage1_extracts",
+    "strategy_refresh",
+    "verify_outputs",
+  ];
+  const missingBlockingStep = blockingStepIds.some((stepId) => {
+    const step = steps.find((item) => item.id === stepId);
+    return !step || step.status !== "ok";
+  });
+  if (missingBlockingStep) {
+    return "incomplete";
+  }
+
+  const requiredArtifactKeys = [
+    "stage1",
+    "deepResearchPrompt",
+    "finalResearchBriefing",
+    "stage2",
+    "stage4",
+    "dailyBriefing",
+    "wikiDaily",
+    "systemHealth",
+  ];
+  const missingArtifact = requiredArtifactKeys.some((key) => !artifacts?.[key]?.exists);
+  return missingArtifact ? "incomplete" : "complete";
+}
+
 function buildFailureHint(stepId) {
   switch (stepId) {
     case "baseline_daily_system":
@@ -232,6 +261,28 @@ async function runCommand({
       });
     });
   });
+}
+
+function reuseArtifactStep({
+  id,
+  label,
+  artifactPath,
+  note,
+}) {
+  const timestamp = new Date().toISOString();
+  return {
+    id,
+    label,
+    status: "ok",
+    soft: false,
+    commandLine: `reuse-existing-artifact ${artifactPath}`,
+    startedAt: timestamp,
+    endedAt: timestamp,
+    durationMs: 0,
+    exitCode: 0,
+    errorMessage: null,
+    outputTail: note ?? `existing artifact reused: ${artifactPath}`,
+  };
 }
 
 function buildArtifactMap(date, logFile) {
@@ -450,6 +501,7 @@ async function writeSummary({
     `# EcoReport Automation Cycle (${summary.date})`,
     "",
     `- overallStatus: **${summary.overallStatus}**`,
+    summary.sameDayStatus ? `- sameDayStatus: **${summary.sameDayStatus}**` : null,
     `- runDate: ${summary.runDate}`,
     `- effectiveMarketDate: ${summary.effectiveMarketDate}`,
     summary.previousTradingDate ? `- previousTradingDate: ${summary.previousTradingDate}` : null,
@@ -569,26 +621,37 @@ async function main() {
         : buildFailureHint(stage1Extracts.id),
   });
 
-  const deepResearch = await runCommand({
-    id: "deep_research_web",
-    label: "Gemini Deep Research Web",
-    command: "npm",
-    args: [
-      "run",
-      "stage1.5:gemini:run",
-      "--",
-      "--date",
-      date,
-      "--poll-sec",
-      String(cli.pollSec),
-      "--timeout-sec",
-      String(cli.timeoutSec),
-      ...(cli.reuseFrontDocument ? ["--reuse-front-document"] : []),
-    ],
-    logger,
-    soft: true,
-    skip: baseline.status !== "ok" || stage1Extracts.status !== "ok",
-  });
+  const existingDeepResearch = await fileExists(artifacts.deepResearchResponse);
+  const deepResearch =
+    baseline.status === "ok" &&
+    stage1Extracts.status === "ok" &&
+    existingDeepResearch
+      ? reuseArtifactStep({
+          id: "deep_research_web",
+          label: "Gemini Deep Research Web",
+          artifactPath: artifacts.deepResearchResponse,
+          note: `same-day Deep Research 응답 재사용: ${artifacts.deepResearchResponse}`,
+        })
+      : await runCommand({
+          id: "deep_research_web",
+          label: "Gemini Deep Research Web",
+          command: "npm",
+          args: [
+            "run",
+            "stage1.5:gemini:run",
+            "--",
+            "--date",
+            date,
+            "--poll-sec",
+            String(cli.pollSec),
+            "--timeout-sec",
+            String(cli.timeoutSec),
+            ...(cli.reuseFrontDocument ? ["--reuse-front-document"] : []),
+          ],
+          logger,
+          soft: true,
+          skip: baseline.status !== "ok" || stage1Extracts.status !== "ok",
+        });
   steps.push({ ...deepResearch, debugHint: deepResearch.status === "ok" ? null : deepResearch.status === "skipped" ? null : buildFailureHint(deepResearch.id) });
 
   const richBriefing = await runCommand({
@@ -709,6 +772,7 @@ async function main() {
     resolutionReason: resolved.reason,
     generatedAt: new Date().toISOString(),
     overallStatus,
+    sameDayStatus: buildSameDayStatus(steps, artifactStatus),
     logFile,
     systemHealthOverall: systemHealth?.overallStatus ?? null,
     previousTradingDate: changeSummary.previousTradingDate,
@@ -747,6 +811,7 @@ async function main() {
         : "warn";
     summary.steps = steps;
     summary.artifacts = await buildArtifactStatus(artifacts);
+    summary.sameDayStatus = buildSameDayStatus(summary.steps, summary.artifacts);
     await writeSummary({
       summaryPathJson: artifacts.automationJson,
       summaryPathMarkdown: artifacts.automationMarkdown,

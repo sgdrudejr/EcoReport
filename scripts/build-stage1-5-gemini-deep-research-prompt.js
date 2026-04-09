@@ -299,12 +299,21 @@ async function main() {
     .replace("{{STAGE1_DATA}}", stage1Markdown);
 
   await writeText(outputPath, `${prompt}\n`);
-  copyToClipboard(prompt);
+  let clipboardCopied = false;
+  try {
+    copyToClipboard(prompt);
+    clipboardCopied = true;
+  } catch (error) {
+    console.warn(
+      `clipboard-warning: ${error instanceof Error ? error.message : String(error)}`,
+    );
+  }
 
   console.log(`saved: ${outputPath}`);
   console.log(`stage1: ${stage1Path}`);
   console.log(`portfolio: ${portfolioPath}`);
   console.log(`clipboard_chars: ${prompt.length}`);
+  console.log(`clipboard_copied: ${clipboardCopied}`);
 }
 
 main().catch((error) => {
