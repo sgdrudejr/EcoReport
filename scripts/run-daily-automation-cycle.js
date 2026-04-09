@@ -605,10 +605,12 @@ async function main() {
       runDate,
       "--effective-market-date",
       date,
+      "--run-id",
+      runId,
     ],
     logger,
     soft: true,
-    skip: deepResearch.status !== "ok",
+    skip: stage1Extracts.status !== "ok",
   });
   steps.push({ ...richBriefing, debugHint: richBriefing.status === "ok" ? null : richBriefing.status === "skipped" ? null : buildFailureHint(richBriefing.id) });
 

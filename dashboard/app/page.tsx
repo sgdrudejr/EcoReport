@@ -863,7 +863,17 @@ export default function DashboardPage() {
   const recommendationBoard = loadRecommendationBoard(
     briefing?.date ?? portfolio?.date ?? market?.date,
   );
-  const researchBriefing = loadResearchBriefings()[0] ?? null;
+  const researchBriefings = loadResearchBriefings();
+  const targetResearchDate =
+    briefing?.effectiveMarketDate ?? briefing?.date ?? portfolio?.date ?? market?.date ?? null;
+  const researchBriefing = targetResearchDate
+    ? researchBriefings.find(
+        (doc) =>
+          doc.effectiveMarketDate === targetResearchDate ||
+          doc.runDate === targetResearchDate ||
+          doc.date === targetResearchDate,
+      ) ?? null
+    : researchBriefings[0] ?? null;
   const researchSections = researchBriefing
     ? extractResearchSections(researchBriefing.content)
         .filter((section) => !isStructuredResearchSectionTitle(section.title))

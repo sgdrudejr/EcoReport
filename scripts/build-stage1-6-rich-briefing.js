@@ -453,9 +453,12 @@ function buildFallbackBriefing({ args, portfolio, priorBriefing, deepResearch, s
     0,
     6,
   );
+  const fallbackReason = deepResearch.trim()
+    ? "Deep Research 결과 또는 Gemini 합성이 불안정해"
+    : "Deep Research 결과가 아직 저장되지 않아";
 
   return [
-    "> Gemini API 과부하로 LLM 합성이 지연되어 Stage 1, 기존 브리핑, Deep Research 메모를 바탕으로 로컬 fallback 브리핑을 생성했습니다.",
+    `> ${fallbackReason} 같은 날짜 Stage 1/브리핑/포트폴리오 데이터를 바탕으로 로컬 fallback 브리핑을 생성했습니다.`,
     "",
     "## 오늘 한 줄 진단",
     `- ${mainScenario}`,
@@ -597,7 +600,6 @@ async function callGeminiWithRetry({ apiKey, modelCandidates, prompt, maxRetries
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const paths = resolvePaths(args);
-  const apiKey = loadApiKey();
 
   const [stage1, portfolio, priorBriefing, deepResearch] = await Promise.all([
     readJson(paths.stage1, null),
@@ -609,19 +611,24 @@ async function main() {
   if (!stage1) {
     throw new Error(`Stage 1 추출 파일이 없습니다: ${paths.stage1}`);
   }
-  if (!deepResearch.trim()) {
-    throw new Error(`Deep Research 결과 파일이 없습니다: ${paths.deepResearch}`);
-  }
 
   const portfolioSummary = summarizePortfolio(portfolio);
   const stage1Selection = buildStage1Selection(stage1, args.maxExtracts);
   const stage1Digest = buildStage1Digest(stage1, stage1Selection);
+  const deepResearchInput = compact(deepResearch);
+  const promptDeepResearch =
+    deepResearchInput ||
+    [
+      "Deep Research 결과 파일이 아직 생성되지 않았습니다.",
+      "같은 날짜의 Stage 1 추출물, 포트폴리오 스냅샷, 기존 어드바이저 브리핑만으로 보수적인 fallback 연구 브리핑을 작성하세요.",
+      "과거 날짜 자료로 보강하지 말고, 오늘 실행 기준 문맥만 유지하세요.",
+    ].join("\n");
   const prompt = buildPrompt({
     args,
     portfolioSummary,
     stage1Digest,
     priorBriefing: compact(priorBriefing),
-    deepResearch: compact(deepResearch),
+    deepResearch: promptDeepResearch,
   });
 
   const runMeta = buildRunMetadata(args);
@@ -632,6 +639,7 @@ async function main() {
   let usedModel = args.model ?? DEFAULT_MODEL;
 
   try {
+    const apiKey = loadApiKey();
     const response = await callGeminiWithRetry({
       apiKey,
       modelCandidates,
@@ -667,6 +675,7 @@ async function main() {
     model: usedModel,
     requested_model: args.model ?? DEFAULT_MODEL,
     source,
+    deep_research_available: Boolean(deepResearchInput),
     workflow: "stage1 + manual deep research -> rich briefing",
     stage1_report_count: stage1.reportCount ?? (stage1.extracts ?? []).length,
     selected_extract_budget: args.maxExtracts,
@@ -685,7 +694,7 @@ async function main() {
       archive_output: paths.archive,
     },
     prompt_char_length: prompt.length,
-    deep_research_char_length: deepResearch.length,
+    deep_research_char_length: deepResearchInput.length,
     prior_briefing_char_length: priorBriefing.length,
   };
 
