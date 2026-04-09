@@ -1,8 +1,8 @@
 {
   "date": "2026-04-09",
-  "generated_at": "2026-04-09T01:11:07.951Z",
-  "total_chunks": 20,
-  "report_chunks": 0,
+  "generated_at": "2026-04-09T03:22:08.166Z",
+  "total_chunks": 618,
+  "report_chunks": 598,
   "portfolio_chunks": 20,
   "output_files": {
     "merged_markdown": "knowledge/rag/2026-04-09/parallel-corpus.md",
@@ -10,6 +10,7 @@
     "sqlite_db": "knowledge/rag/2026-04-09/parallel-rag.db"
   },
   "source_type_counts": {
-    "portfolio": 20
+    "portfolio": 20,
+    "report": 598
   }
 }

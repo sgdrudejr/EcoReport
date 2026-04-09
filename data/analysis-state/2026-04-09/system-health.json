@@ -2,15 +2,15 @@
   "date": "2026-04-09",
   "runDate": "2026-04-09",
   "effectiveMarketDate": "2026-04-09",
-  "runId": "2026-04-09-010030",
-  "generatedAt": "2026-04-09T02:34:29.584Z",
-  "overallStatus": "warn",
+  "runId": "2026-04-09-032037",
+  "generatedAt": "2026-04-09T03:23:16.285Z",
+  "overallStatus": "ok",
   "counts": {
     "accounts": 4,
-    "reports": 0,
-    "extractedReports": 0,
-    "ocrUsedReports": 0,
-    "stage1Extracts": 0,
+    "reports": 69,
+    "extractedReports": 69,
+    "ocrUsedReports": 1,
+    "stage1Extracts": 69,
     "unresolvedPortfolioHoldings": 0,
     "unresolvedStage4Mentions": 0
   },
@@ -20,10 +20,10 @@
       "label": "Stage 1",
       "path": "data/analysis-state/2026-04-09/stage1-report-extracts-v2.json",
       "meta": {
-        "runId": "2026-04-09-010030",
+        "runId": "2026-04-09-032037",
         "runDate": "2026-04-09",
         "effectiveMarketDate": "2026-04-09",
-        "generatedAt": "2026-04-09T01:11:08.398Z"
+        "generatedAt": "2026-04-09T03:22:39.146Z"
       }
     },
     {
@@ -31,10 +31,10 @@
       "label": "Stage 2",
       "path": "data/analysis-state/2026-04-09/stage2-strategy-options.json",
       "meta": {
-        "runId": "2026-04-09-010030",
+        "runId": "2026-04-09-032037",
         "runDate": "2026-04-09",
         "effectiveMarketDate": "2026-04-09",
-        "generatedAt": "2026-04-09T01:11:09.060Z"
+        "generatedAt": "2026-04-09T03:23:15.453287Z"
       }
     },
     {
@@ -42,10 +42,10 @@
       "label": "Impact Map",
       "path": "data/analysis-state/2026-04-09/impact-map.json",
       "meta": {
-        "runId": "2026-04-09-010030",
+        "runId": "2026-04-09-032037",
         "runDate": "2026-04-09",
         "effectiveMarketDate": "2026-04-09",
-        "generatedAt": "2026-04-09T01:11:09.119Z"
+        "generatedAt": "2026-04-09T03:23:15.797Z"
       }
     },
     {
@@ -53,10 +53,10 @@
       "label": "Stage 3",
       "path": "data/analysis-state/2026-04-09/stage3-quant-scores.json",
       "meta": {
-        "runId": "2026-04-09-010030",
+        "runId": "2026-04-09-032037",
         "runDate": "2026-04-09",
         "effectiveMarketDate": "2026-04-09",
-        "generatedAt": "2026-04-09T01:11:09.181Z"
+        "generatedAt": "2026-04-09T03:23:15.878Z"
       }
     },
     {
@@ -64,10 +64,10 @@
       "label": "Stage 4",
       "path": "data/analysis-state/2026-04-09/stage4-execution-plan.json",
       "meta": {
-        "runId": "2026-04-09-010030",
+        "runId": "2026-04-09-032037",
         "runDate": "2026-04-09",
         "effectiveMarketDate": "2026-04-09",
-        "generatedAt": "2026-04-09T01:11:09.244Z"
+        "generatedAt": "2026-04-09T03:23:15.997Z"
       }
     },
     {
@@ -75,10 +75,10 @@
       "label": "Briefing",
       "path": "reports/daily/2026-04-09-briefing.md",
       "meta": {
-        "runId": "2026-04-09-010030",
+        "runId": "2026-04-09-032037",
         "runDate": "2026-04-09",
         "effectiveMarketDate": "2026-04-09",
-        "generatedAt": "2026-04-09T01:11:09.244Z"
+        "generatedAt": "2026-04-09T03:23:15.997Z"
       }
     },
     {
@@ -86,10 +86,10 @@
       "label": "LLM Wiki Daily",
       "path": "knowledge/wiki/daily/2026-04-09.md",
       "meta": {
-        "runId": "2026-04-09-010030",
+        "runId": "2026-04-09-032037",
         "runDate": "2026-04-09",
         "effectiveMarketDate": "2026-04-09",
-        "generatedAt": "2026-04-09T01:11:09.304Z"
+        "generatedAt": "2026-04-09T03:23:16.066Z"
       }
     }
   ],
@@ -104,15 +104,15 @@
     {
       "key": "report_index",
       "label": "리포트 인덱스",
-      "status": "warn",
-      "detail": "수집 리포트 0건",
+      "status": "ok",
+      "detail": "리포트 69건",
       "path": "data/reports/2026-04-09/index.json"
     },
     {
       "key": "textification",
       "label": "전문 텍스트화",
-      "status": "warn",
-      "detail": "성공 0/0 · OCR 0건",
+      "status": "ok",
+      "detail": "성공 69/69 · OCR 1건",
       "path": "data/reports/2026-04-09/text-manifest.json"
     },
     {
@@ -126,35 +126,35 @@
       "key": "technical_snapshot",
       "label": "기술 점수",
       "status": "ok",
-      "detail": "종목 0개",
+      "detail": "종목 15개",
       "path": "data/technical/2026-04-09.json"
     },
     {
       "key": "rag_pipeline",
       "label": "RAG 코퍼스",
       "status": "ok",
-      "detail": "리포트 0 / 포트폴리오 20 / 병렬 20",
+      "detail": "리포트 598 / 포트폴리오 20 / 병렬 618",
       "path": "knowledge/rag/2026-04-09/parallel-manifest.json"
     },
     {
       "key": "stage1",
       "label": "Stage 1 연구 노트",
-      "status": "warn",
-      "detail": "stage1 산출물 누락",
+      "status": "ok",
+      "detail": "추출 69건",
       "path": "data/analysis-state/2026-04-09/stage1-report-extracts-v2.json"
     },
     {
       "key": "stage2",
       "label": "Stage 2 전략 탐색",
       "status": "ok",
-      "detail": "mock 결과 사용",
+      "detail": "Gemini 실제 결과 (gemini-2.5-flash)",
       "path": "data/analysis-state/2026-04-09/stage2-strategy-options.json"
     },
     {
       "key": "impact_map",
       "label": "Impact Map",
-      "status": "warn",
-      "detail": "impact-map 누락",
+      "status": "ok",
+      "detail": "리포트 69건",
       "path": "data/analysis-state/2026-04-09/impact-map.json"
     },
     {
@@ -202,8 +202,8 @@
     {
       "key": "deep_research_response",
       "label": "Deep Research 결과",
-      "status": "warn",
-      "detail": "Deep Research 결과 없음",
+      "status": "ok",
+      "detail": "Gemini Deep Research 결과 저장됨",
       "path": "knowledge/daily/manual-kit/2026-04-09/09-stage1-5-gemini-deep-research-response.md"
     },
     {
@@ -217,7 +217,7 @@
       "key": "freshness_run_id",
       "label": "Freshness / Run ID",
       "status": "ok",
-      "detail": "run-id 2026-04-09-010030 일치",
+      "detail": "run-id 2026-04-09-032037 일치",
       "path": "data/analysis-state/2026-04-09/stage4-execution-plan.json"
     },
     {
@@ -230,8 +230,8 @@
     {
       "key": "fallback_recovery",
       "label": "Fallback Recovery",
-      "status": "warn",
-      "detail": "reports:placeholder 복구",
+      "status": "ok",
+      "detail": "추가 복구 fallback 없음",
       "path": "data/analysis-state/2026-04-09/fallback-summary.json"
     }
   ]

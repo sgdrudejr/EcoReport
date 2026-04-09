@@ -1,6 +1,6 @@
 {
-  "date": "2026-04-08",
-  "updatedAt": "2026-04-08T13:28:20.592Z",
+  "date": "2026-04-09",
+  "updatedAt": "2026-04-09T03:21:25.983Z",
   "source": {
     "method": "broker_api_sync",
     "reviewer": "seo",
@@ -159,12 +159,12 @@
       "key": "KIS_MAIN",
       "label": "한투 일반",
       "accountNumber": "44367266-01",
-      "evaluationAmount": 3037064,
-      "cashAvailable": 2653714,
+      "evaluationAmount": 3034239,
+      "cashAvailable": 2145274,
       "settlementCash": 2145274,
       "principal": 864460,
-      "profitLoss": 27330,
-      "profitRate": 3.16,
+      "profitLoss": 24505,
+      "profitRate": 2.83,
       "screenshots": [],
       "incomplete": false,
       "holdings": [
@@ -173,11 +173,11 @@
           "name": "KODEX 구리선물(H)",
           "quantity": 58,
           "avgPrice": 8765,
-          "currentPrice": 8950,
-          "marketValue": 519100,
+          "currentPrice": 8940,
+          "marketValue": 518520,
           "purchaseValue": 508370,
-          "profitLoss": 10730,
-          "profitRate": 2.11,
+          "profitLoss": 10150,
+          "profitRate": 1.99,
           "note": null
         },
         {
@@ -185,11 +185,11 @@
           "name": "HANARO 원자력iSelect",
           "quantity": 2,
           "avgPrice": 64630,
-          "currentPrice": 70845,
-          "marketValue": 141690,
+          "currentPrice": 70000,
+          "marketValue": 140000,
           "purchaseValue": 129260,
-          "profitLoss": 12430,
-          "profitRate": 9.61,
+          "profitLoss": 10740,
+          "profitRate": 8.3,
           "note": null
         },
         {
@@ -197,11 +197,11 @@
           "name": "PLUS K방산",
           "quantity": 3,
           "avgPrice": 75610,
-          "currentPrice": 77000,
-          "marketValue": 231000,
+          "currentPrice": 76815,
+          "marketValue": 230445,
           "purchaseValue": 226830,
-          "profitLoss": 4170,
-          "profitRate": 1.83,
+          "profitLoss": 3615,
+          "profitRate": 1.59,
           "note": null
         }
       ]

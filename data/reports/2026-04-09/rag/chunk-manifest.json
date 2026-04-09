@@ -1,10 +1,10 @@
 {
   "date": "2026-04-09",
-  "generated_at": "2026-04-09T01:11:07.794Z",
-  "total_reports": 0,
-  "unique_reports": 0,
+  "generated_at": "2026-04-09T03:22:07.937Z",
+  "total_reports": 69,
+  "unique_reports": 69,
   "duplicate_reports": 0,
-  "total_chunks": 0,
+  "total_chunks": 598,
   "target_chars": 1200,
   "max_chars": 1800,
   "overlap_paragraphs": 1,
@@ -15,5 +15,9 @@
     "sqlite_db": "data/reports/2026-04-09/rag/report-rag.db"
   },
   "duplicate_entries": [],
-  "chunk_type_counts": {}
+  "chunk_type_counts": {
+    "table": 456,
+    "analysis": 104,
+    "disclaimer": 38
+  }
 }
