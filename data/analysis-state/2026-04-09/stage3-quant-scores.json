@@ -1,0 +1,2228 @@
+{
+  "date": "2026-04-09",
+  "runDate": "2026-04-09",
+  "effectiveMarketDate": "2026-04-09",
+  "runId": "2026-04-09-010030",
+  "generatedAt": "2026-04-09T01:11:09.181Z",
+  "reportInputs": {
+    "reportCount": 0,
+    "available": false
+  },
+  "regime": {
+    "name": "SIDEWAYS",
+    "confidence": 0.55,
+    "voteSum": 0,
+    "signals": [],
+    "market_context": {}
+  },
+  "leadingIndicator": {
+    "score": 50,
+    "available": true,
+    "t10y2y": null,
+    "vix": null,
+    "cpiYoy": null,
+    "cgMomentum": null
+  },
+  "coverage": {
+    "factorCoverage": 0.75,
+    "techCoverage": 0,
+    "impactCoverage": 0,
+    "stage2Available": true
+  },
+  "configUsed": {
+    "weightProfile": "balanced",
+    "maxWeights": {
+      "allocation": 0.4,
+      "factor": 0.1,
+      "tech": 0.25,
+      "report": 0.1,
+      "regime": 0.05,
+      "stage2": 0.05,
+      "leading": 0.05
+    },
+    "factorModel": {
+      "winsorZ": 3.5,
+      "scoreScale": 14,
+      "weights": {
+        "momentum": 0.35,
+        "research": 0.3,
+        "income": 0.15,
+        "macroFit": 0.2
+      }
+    },
+    "covarianceModel": {
+      "enabled": true,
+      "shrinkage": 0.35,
+      "lambda": 0.55,
+      "minHistory": 20,
+      "annualization": 252,
+      "ridge": 0.000001
+    },
+    "taxAware": {
+      "enabled": true,
+      "alpha": 1.6,
+      "normalTaxRate": 0.154,
+      "minRiskFloor": 0.08,
+      "maxMultiplier": 1.15
+    },
+    "riskPenaltyCaps": {
+      "concentration": 10,
+      "covariance": 8,
+      "tailRisk": 15,
+      "dataQuality": 10,
+      "regimeStress": 10,
+      "total": 30
+    }
+  },
+  "factorStats": {
+    "factorNames": [
+      "momentum",
+      "research",
+      "income",
+      "macroFit"
+    ],
+    "statsByFactor": {
+      "momentum": {
+        "mean": -0.9,
+        "std": 0,
+        "count": 11
+      },
+      "research": {
+        "mean": 0.033,
+        "std": 0,
+        "count": 11
+      },
+      "income": {
+        "mean": 0.0136,
+        "std": 0.0208,
+        "count": 11
+      },
+      "macroFit": {
+        "mean": 0.4323,
+        "std": 1.5619,
+        "count": 11
+      }
+    }
+  },
+  "holdings": {
+    "133690": {
+      "positionKey": "PENSION:133690",
+      "code": "133690",
+      "name": "TIGER 미국나스닥100",
+      "accountKey": "PENSION",
+      "accountLabel": "연금저축",
+      "category": "나스닥100",
+      "marketValue": 480480,
+      "incomeYield": 0.006,
+      "technicalSignal": "N/A",
+      "technicalBaseScore": null,
+      "actionScore": 41,
+      "direction": -0.65,
+      "timing": 0,
+      "reportScore": 0,
+      "probabilities": {
+        "p_buy": 0.1619,
+        "p_hold": 0.3164,
+        "p_sell": 0.5217
+      },
+      "conviction": "LOW",
+      "signal": "REDUCE",
+      "features": {
+        "maTrend": -2.5,
+        "macdZ": 0,
+        "rsiMid": 0,
+        "adxTrend": 0,
+        "bbDist": 0,
+        "rsiTiming": 0,
+        "stochTiming": 0,
+        "volumeZ": 0
+      },
+      "reportImpacts": [],
+      "technical": {
+        "signal": null,
+        "score": null,
+        "adjustedScore": null,
+        "rsi": null,
+        "macd": null,
+        "bollinger": null,
+        "volumeRatio": null
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "available": false,
+        "unavailableReason": "no_report_input",
+        "impactScore": null,
+        "impactValue": 0,
+        "impactCount": 0,
+        "coverageWeight": 0,
+        "directAccountImpactScore": 50
+      },
+      "factor": {
+        "raw": {
+          "momentum": -0.9,
+          "research": 0.033,
+          "income": 0.006,
+          "macroFit": 0.5807
+        },
+        "zScores": {
+          "momentum": 0,
+          "research": 0,
+          "income": -0.3676,
+          "macroFit": 0.0951
+        },
+        "weightedZ": -0.0361,
+        "score": 49,
+        "factorCoverage": 0.75,
+        "availability": {
+          "momentum": 0,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "scores": {
+        "factorScore": 49,
+        "techScore": null,
+        "reportScore": null,
+        "actionScore": 41
+      },
+      "explain": {
+        "topDrivers": [],
+        "warnings": [
+          "기술 스냅샷이 없어 리포트/배분 쪽 해석 비중이 커졌습니다.",
+          "REDUCE 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    },
+    "138910": {
+      "positionKey": "KIS_MAIN:138910",
+      "code": "138910",
+      "name": "KODEX 구리선물(H)",
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "category": "기타",
+      "marketValue": 519100,
+      "incomeYield": 0,
+      "technicalSignal": "N/A",
+      "technicalBaseScore": null,
+      "actionScore": 41,
+      "direction": -0.65,
+      "timing": 0,
+      "reportScore": 0,
+      "probabilities": {
+        "p_buy": 0.1619,
+        "p_hold": 0.3164,
+        "p_sell": 0.5217
+      },
+      "conviction": "LOW",
+      "signal": "REDUCE",
+      "features": {
+        "maTrend": -2.5,
+        "macdZ": 0,
+        "rsiMid": 0,
+        "adxTrend": 0,
+        "bbDist": 0,
+        "rsiTiming": 0,
+        "stochTiming": 0,
+        "volumeZ": 0
+      },
+      "reportImpacts": [],
+      "technical": {
+        "signal": null,
+        "score": null,
+        "adjustedScore": null,
+        "rsi": null,
+        "macd": null,
+        "bollinger": null,
+        "volumeRatio": null
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "available": false,
+        "unavailableReason": "no_report_input",
+        "impactScore": null,
+        "impactValue": 0,
+        "impactCount": 0,
+        "coverageWeight": 0,
+        "directAccountImpactScore": 50
+      },
+      "factor": {
+        "raw": {
+          "momentum": -0.9,
+          "research": 0.033,
+          "income": 0,
+          "macroFit": -1.1713
+        },
+        "zScores": {
+          "momentum": 0,
+          "research": 0,
+          "income": -0.6563,
+          "macroFit": -1.0267
+        },
+        "weightedZ": -0.3038,
+        "score": 46,
+        "factorCoverage": 0.75,
+        "availability": {
+          "momentum": 0,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "scores": {
+        "factorScore": 46,
+        "techScore": null,
+        "reportScore": null,
+        "actionScore": 41
+      },
+      "explain": {
+        "topDrivers": [],
+        "warnings": [
+          "기술 스냅샷이 없어 리포트/배분 쪽 해석 비중이 커졌습니다.",
+          "REDUCE 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    },
+    "251350": {
+      "positionKey": "TOSS:251350",
+      "code": "251350",
+      "name": "KODEX 선진국ESG액티브",
+      "accountKey": "TOSS",
+      "accountLabel": "토스증권",
+      "category": "기타",
+      "marketValue": 465000,
+      "incomeYield": 0,
+      "technicalSignal": "N/A",
+      "technicalBaseScore": null,
+      "actionScore": 41,
+      "direction": -0.65,
+      "timing": 0,
+      "reportScore": 0,
+      "probabilities": {
+        "p_buy": 0.1619,
+        "p_hold": 0.3164,
+        "p_sell": 0.5217
+      },
+      "conviction": "LOW",
+      "signal": "REDUCE",
+      "features": {
+        "maTrend": -2.5,
+        "macdZ": 0,
+        "rsiMid": 0,
+        "adxTrend": 0,
+        "bbDist": 0,
+        "rsiTiming": 0,
+        "stochTiming": 0,
+        "volumeZ": 0
+      },
+      "reportImpacts": [],
+      "technical": {
+        "signal": null,
+        "score": null,
+        "adjustedScore": null,
+        "rsi": null,
+        "macd": null,
+        "bollinger": null,
+        "volumeRatio": null
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "available": false,
+        "unavailableReason": "no_report_input",
+        "impactScore": null,
+        "impactValue": 0,
+        "impactCount": 0,
+        "coverageWeight": 0,
+        "directAccountImpactScore": 50
+      },
+      "factor": {
+        "raw": {
+          "momentum": -0.9,
+          "research": 0.033,
+          "income": 0,
+          "macroFit": -1.6226
+        },
+        "zScores": {
+          "momentum": 0,
+          "research": 0,
+          "income": -0.6563,
+          "macroFit": -1.3156
+        },
+        "weightedZ": -0.3616,
+        "score": 45,
+        "factorCoverage": 0.75,
+        "availability": {
+          "momentum": 0,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "scores": {
+        "factorScore": 45,
+        "techScore": null,
+        "reportScore": null,
+        "actionScore": 41
+      },
+      "explain": {
+        "topDrivers": [],
+        "warnings": [
+          "기술 스냅샷이 없어 리포트/배분 쪽 해석 비중이 커졌습니다.",
+          "REDUCE 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    },
+    "360750": {
+      "positionKey": "PENSION:360750",
+      "code": "360750",
+      "name": "TIGER 미국S&P500",
+      "accountKey": "PENSION",
+      "accountLabel": "연금저축",
+      "category": "S&P500",
+      "marketValue": 491400,
+      "incomeYield": 0.013,
+      "technicalSignal": "N/A",
+      "technicalBaseScore": null,
+      "actionScore": 41,
+      "direction": -0.65,
+      "timing": 0,
+      "reportScore": 0,
+      "probabilities": {
+        "p_buy": 0.1619,
+        "p_hold": 0.3164,
+        "p_sell": 0.5217
+      },
+      "conviction": "LOW",
+      "signal": "REDUCE",
+      "features": {
+        "maTrend": -2.5,
+        "macdZ": 0,
+        "rsiMid": 0,
+        "adxTrend": 0,
+        "bbDist": 0,
+        "rsiTiming": 0,
+        "stochTiming": 0,
+        "volumeZ": 0
+      },
+      "reportImpacts": [],
+      "technical": {
+        "signal": null,
+        "score": null,
+        "adjustedScore": null,
+        "rsi": null,
+        "macd": null,
+        "bollinger": null,
+        "volumeRatio": null
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "available": false,
+        "unavailableReason": "no_report_input",
+        "impactScore": null,
+        "impactValue": 0,
+        "impactCount": 0,
+        "coverageWeight": 0,
+        "directAccountImpactScore": 50
+      },
+      "factor": {
+        "raw": {
+          "momentum": -0.9,
+          "research": 0.033,
+          "income": 0.013,
+          "macroFit": 1.7485
+        },
+        "zScores": {
+          "momentum": 0,
+          "research": 0,
+          "income": -0.0306,
+          "macroFit": 0.8427
+        },
+        "weightedZ": 0.1639,
+        "score": 52,
+        "factorCoverage": 0.75,
+        "availability": {
+          "momentum": 0,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "scores": {
+        "factorScore": 52,
+        "techScore": null,
+        "reportScore": null,
+        "actionScore": 41
+      },
+      "explain": {
+        "topDrivers": [],
+        "warnings": [
+          "기술 스냅샷이 없어 리포트/배분 쪽 해석 비중이 커졌습니다.",
+          "REDUCE 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    },
+    "423160": {
+      "positionKey": "PENSION:423160",
+      "code": "423160",
+      "name": "KODEX KOFR금리액티브(합성)",
+      "accountKey": "PENSION",
+      "accountLabel": "연금저축",
+      "category": "현금파킹",
+      "marketValue": 221370,
+      "incomeYield": 0.032,
+      "technicalSignal": "N/A",
+      "technicalBaseScore": null,
+      "actionScore": 41,
+      "direction": -0.65,
+      "timing": 0,
+      "reportScore": 0,
+      "probabilities": {
+        "p_buy": 0.1619,
+        "p_hold": 0.3164,
+        "p_sell": 0.5217
+      },
+      "conviction": "LOW",
+      "signal": "REDUCE",
+      "features": {
+        "maTrend": -2.5,
+        "macdZ": 0,
+        "rsiMid": 0,
+        "adxTrend": 0,
+        "bbDist": 0,
+        "rsiTiming": 0,
+        "stochTiming": 0,
+        "volumeZ": 0
+      },
+      "reportImpacts": [],
+      "technical": {
+        "signal": null,
+        "score": null,
+        "adjustedScore": null,
+        "rsi": null,
+        "macd": null,
+        "bollinger": null,
+        "volumeRatio": null
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "available": false,
+        "unavailableReason": "no_report_input",
+        "impactScore": null,
+        "impactValue": 0,
+        "impactCount": 0,
+        "coverageWeight": 0,
+        "directAccountImpactScore": 50
+      },
+      "factor": {
+        "raw": {
+          "momentum": -0.9,
+          "research": 0.033,
+          "income": 0.032,
+          "macroFit": -2.5
+        },
+        "zScores": {
+          "momentum": 0,
+          "research": 0,
+          "income": 0.8839,
+          "macroFit": -1.8773
+        },
+        "weightedZ": -0.2429,
+        "score": 47,
+        "factorCoverage": 0.75,
+        "availability": {
+          "momentum": 0,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "scores": {
+        "factorScore": 47,
+        "techScore": null,
+        "reportScore": null,
+        "actionScore": 41
+      },
+      "explain": {
+        "topDrivers": [],
+        "warnings": [
+          "기술 스냅샷이 없어 리포트/배분 쪽 해석 비중이 커졌습니다.",
+          "REDUCE 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    },
+    "434730": {
+      "positionKey": "TOSS:434730",
+      "code": "434730",
+      "name": "HANARO 원자력iSelect",
+      "accountKey": "TOSS",
+      "accountLabel": "토스증권",
+      "category": "원자력",
+      "marketValue": 443190,
+      "incomeYield": 0.004,
+      "technicalSignal": "N/A",
+      "technicalBaseScore": null,
+      "actionScore": 41,
+      "direction": -0.65,
+      "timing": 0,
+      "reportScore": 0,
+      "probabilities": {
+        "p_buy": 0.1619,
+        "p_hold": 0.3164,
+        "p_sell": 0.5217
+      },
+      "conviction": "LOW",
+      "signal": "REDUCE",
+      "features": {
+        "maTrend": -2.5,
+        "macdZ": 0,
+        "rsiMid": 0,
+        "adxTrend": 0,
+        "bbDist": 0,
+        "rsiTiming": 0,
+        "stochTiming": 0,
+        "volumeZ": 0
+      },
+      "reportImpacts": [],
+      "technical": {
+        "signal": null,
+        "score": null,
+        "adjustedScore": null,
+        "rsi": null,
+        "macd": null,
+        "bollinger": null,
+        "volumeRatio": null
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "available": false,
+        "unavailableReason": "no_report_input",
+        "impactScore": null,
+        "impactValue": 0,
+        "impactCount": 0,
+        "coverageWeight": 0,
+        "directAccountImpactScore": 50
+      },
+      "factor": {
+        "raw": {
+          "momentum": -0.9,
+          "research": 0.033,
+          "income": 0.004,
+          "macroFit": 0.0535
+        },
+        "zScores": {
+          "momentum": 0,
+          "research": 0,
+          "income": -0.4638,
+          "macroFit": -0.2425
+        },
+        "weightedZ": -0.1181,
+        "score": 48,
+        "factorCoverage": 0.75,
+        "availability": {
+          "momentum": 0,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "scores": {
+        "factorScore": 48,
+        "techScore": null,
+        "reportScore": null,
+        "actionScore": 41
+      },
+      "explain": {
+        "topDrivers": [],
+        "warnings": [
+          "기술 스냅샷이 없어 리포트/배분 쪽 해석 비중이 커졌습니다.",
+          "REDUCE 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    },
+    "449450": {
+      "positionKey": "TOSS:449450",
+      "code": "449450",
+      "name": "PLUS V K생산",
+      "accountKey": "TOSS",
+      "accountLabel": "토스증권",
+      "category": "방산",
+      "marketValue": 383475,
+      "incomeYield": 0.004,
+      "technicalSignal": "N/A",
+      "technicalBaseScore": null,
+      "actionScore": 41,
+      "direction": -0.65,
+      "timing": 0,
+      "reportScore": 0,
+      "probabilities": {
+        "p_buy": 0.1619,
+        "p_hold": 0.3164,
+        "p_sell": 0.5217
+      },
+      "conviction": "LOW",
+      "signal": "REDUCE",
+      "features": {
+        "maTrend": -2.5,
+        "macdZ": 0,
+        "rsiMid": 0,
+        "adxTrend": 0,
+        "bbDist": 0,
+        "rsiTiming": 0,
+        "stochTiming": 0,
+        "volumeZ": 0
+      },
+      "reportImpacts": [],
+      "technical": {
+        "signal": null,
+        "score": null,
+        "adjustedScore": null,
+        "rsi": null,
+        "macd": null,
+        "bollinger": null,
+        "volumeRatio": null
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "available": false,
+        "unavailableReason": "no_report_input",
+        "impactScore": null,
+        "impactValue": 0,
+        "impactCount": 0,
+        "coverageWeight": 0,
+        "directAccountImpactScore": 50
+      },
+      "factor": {
+        "raw": {
+          "momentum": -0.9,
+          "research": 0.033,
+          "income": 0.004,
+          "macroFit": 0.6619
+        },
+        "zScores": {
+          "momentum": 0,
+          "research": 0,
+          "income": -0.4638,
+          "macroFit": 0.147
+        },
+        "weightedZ": -0.0402,
+        "score": 49,
+        "factorCoverage": 0.75,
+        "availability": {
+          "momentum": 0,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "scores": {
+        "factorScore": 49,
+        "techScore": null,
+        "reportScore": null,
+        "actionScore": 41
+      },
+      "explain": {
+        "topDrivers": [],
+        "warnings": [
+          "기술 스냅샷이 없어 리포트/배분 쪽 해석 비중이 커졌습니다.",
+          "REDUCE 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    },
+    "458760": {
+      "positionKey": "ISA:458760",
+      "code": "458760",
+      "name": "TIGER 미국배당다우존스스타데일리커...",
+      "accountKey": "ISA",
+      "accountLabel": "ISA",
+      "category": "배당/커버드콜",
+      "marketValue": 509250,
+      "incomeYield": 0.07,
+      "technicalSignal": "N/A",
+      "technicalBaseScore": null,
+      "actionScore": 41,
+      "direction": -0.65,
+      "timing": 0,
+      "reportScore": 0,
+      "probabilities": {
+        "p_buy": 0.1619,
+        "p_hold": 0.3164,
+        "p_sell": 0.5217
+      },
+      "conviction": "LOW",
+      "signal": "REDUCE",
+      "features": {
+        "maTrend": -2.5,
+        "macdZ": 0,
+        "rsiMid": 0,
+        "adxTrend": 0,
+        "bbDist": 0,
+        "rsiTiming": 0,
+        "stochTiming": 0,
+        "volumeZ": 0
+      },
+      "reportImpacts": [],
+      "technical": {
+        "signal": null,
+        "score": null,
+        "adjustedScore": null,
+        "rsi": null,
+        "macd": null,
+        "bollinger": null,
+        "volumeRatio": null
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "available": false,
+        "unavailableReason": "no_report_input",
+        "impactScore": null,
+        "impactValue": 0,
+        "impactCount": 0,
+        "coverageWeight": 0,
+        "directAccountImpactScore": 50
+      },
+      "factor": {
+        "raw": {
+          "momentum": -0.9,
+          "research": 0.033,
+          "income": 0.07,
+          "macroFit": 1.9141
+        },
+        "zScores": {
+          "momentum": 0,
+          "research": 0,
+          "income": 2.7129,
+          "macroFit": 0.9487
+        },
+        "weightedZ": 0.5967,
+        "score": 58,
+        "factorCoverage": 0.75,
+        "availability": {
+          "momentum": 0,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "scores": {
+        "factorScore": 58,
+        "techScore": null,
+        "reportScore": null,
+        "actionScore": 41
+      },
+      "explain": {
+        "topDrivers": [],
+        "warnings": [
+          "기술 스냅샷이 없어 리포트/배분 쪽 해석 비중이 커졌습니다.",
+          "REDUCE 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    }
+  },
+  "positions": {
+    "ISA:360750": {
+      "positionKey": "ISA:360750",
+      "code": "360750",
+      "name": "TIGER 미국S&P500",
+      "accountKey": "ISA",
+      "accountLabel": "ISA",
+      "category": "미국인덱스",
+      "marketValue": 491400,
+      "incomeYield": 0.013,
+      "technicalSignal": "N/A",
+      "technicalBaseScore": null,
+      "actionScore": 41,
+      "direction": -0.65,
+      "timing": 0,
+      "reportScore": 0,
+      "probabilities": {
+        "p_buy": 0.1619,
+        "p_hold": 0.3164,
+        "p_sell": 0.5217
+      },
+      "conviction": "LOW",
+      "signal": "REDUCE",
+      "features": {
+        "maTrend": -2.5,
+        "macdZ": 0,
+        "rsiMid": 0,
+        "adxTrend": 0,
+        "bbDist": 0,
+        "rsiTiming": 0,
+        "stochTiming": 0,
+        "volumeZ": 0
+      },
+      "reportImpacts": [],
+      "technical": {
+        "signal": null,
+        "score": null,
+        "adjustedScore": null,
+        "rsi": null,
+        "macd": null,
+        "bollinger": null,
+        "volumeRatio": null
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "available": false,
+        "unavailableReason": "no_report_input",
+        "impactScore": null,
+        "impactValue": 0,
+        "impactCount": 0,
+        "coverageWeight": 0,
+        "directAccountImpactScore": 50
+      },
+      "factor": {
+        "raw": {
+          "momentum": -0.9,
+          "research": 0.033,
+          "income": 0.013,
+          "macroFit": 1.5311
+        },
+        "zScores": {
+          "momentum": 0,
+          "research": 0,
+          "income": -0.0306,
+          "macroFit": 0.7035
+        },
+        "weightedZ": 0.1361,
+        "score": 52,
+        "factorCoverage": 0.75,
+        "availability": {
+          "momentum": 0,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "scores": {
+        "factorScore": 52,
+        "techScore": null,
+        "reportScore": null,
+        "actionScore": 41
+      },
+      "explain": {
+        "topDrivers": [],
+        "warnings": [
+          "기술 스냅샷이 없어 리포트/배분 쪽 해석 비중이 커졌습니다.",
+          "REDUCE 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    },
+    "ISA:458760": {
+      "positionKey": "ISA:458760",
+      "code": "458760",
+      "name": "TIGER 미국배당다우존스스타데일리커...",
+      "accountKey": "ISA",
+      "accountLabel": "ISA",
+      "category": "배당/커버드콜",
+      "marketValue": 509250,
+      "incomeYield": 0.07,
+      "technicalSignal": "N/A",
+      "technicalBaseScore": null,
+      "actionScore": 41,
+      "direction": -0.65,
+      "timing": 0,
+      "reportScore": 0,
+      "probabilities": {
+        "p_buy": 0.1619,
+        "p_hold": 0.3164,
+        "p_sell": 0.5217
+      },
+      "conviction": "LOW",
+      "signal": "REDUCE",
+      "features": {
+        "maTrend": -2.5,
+        "macdZ": 0,
+        "rsiMid": 0,
+        "adxTrend": 0,
+        "bbDist": 0,
+        "rsiTiming": 0,
+        "stochTiming": 0,
+        "volumeZ": 0
+      },
+      "reportImpacts": [],
+      "technical": {
+        "signal": null,
+        "score": null,
+        "adjustedScore": null,
+        "rsi": null,
+        "macd": null,
+        "bollinger": null,
+        "volumeRatio": null
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "available": false,
+        "unavailableReason": "no_report_input",
+        "impactScore": null,
+        "impactValue": 0,
+        "impactCount": 0,
+        "coverageWeight": 0,
+        "directAccountImpactScore": 50
+      },
+      "factor": {
+        "raw": {
+          "momentum": -0.9,
+          "research": 0.033,
+          "income": 0.07,
+          "macroFit": 1.9141
+        },
+        "zScores": {
+          "momentum": 0,
+          "research": 0,
+          "income": 2.7129,
+          "macroFit": 0.9487
+        },
+        "weightedZ": 0.5967,
+        "score": 58,
+        "factorCoverage": 0.75,
+        "availability": {
+          "momentum": 0,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "scores": {
+        "factorScore": 58,
+        "techScore": null,
+        "reportScore": null,
+        "actionScore": 41
+      },
+      "explain": {
+        "topDrivers": [],
+        "warnings": [
+          "기술 스냅샷이 없어 리포트/배분 쪽 해석 비중이 커졌습니다.",
+          "REDUCE 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    },
+    "PENSION:423160": {
+      "positionKey": "PENSION:423160",
+      "code": "423160",
+      "name": "KODEX KOFR금리액티브(합성)",
+      "accountKey": "PENSION",
+      "accountLabel": "연금저축",
+      "category": "현금파킹",
+      "marketValue": 221370,
+      "incomeYield": 0.032,
+      "technicalSignal": "N/A",
+      "technicalBaseScore": null,
+      "actionScore": 41,
+      "direction": -0.65,
+      "timing": 0,
+      "reportScore": 0,
+      "probabilities": {
+        "p_buy": 0.1619,
+        "p_hold": 0.3164,
+        "p_sell": 0.5217
+      },
+      "conviction": "LOW",
+      "signal": "REDUCE",
+      "features": {
+        "maTrend": -2.5,
+        "macdZ": 0,
+        "rsiMid": 0,
+        "adxTrend": 0,
+        "bbDist": 0,
+        "rsiTiming": 0,
+        "stochTiming": 0,
+        "volumeZ": 0
+      },
+      "reportImpacts": [],
+      "technical": {
+        "signal": null,
+        "score": null,
+        "adjustedScore": null,
+        "rsi": null,
+        "macd": null,
+        "bollinger": null,
+        "volumeRatio": null
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "available": false,
+        "unavailableReason": "no_report_input",
+        "impactScore": null,
+        "impactValue": 0,
+        "impactCount": 0,
+        "coverageWeight": 0,
+        "directAccountImpactScore": 50
+      },
+      "factor": {
+        "raw": {
+          "momentum": -0.9,
+          "research": 0.033,
+          "income": 0.032,
+          "macroFit": -2.5
+        },
+        "zScores": {
+          "momentum": 0,
+          "research": 0,
+          "income": 0.8839,
+          "macroFit": -1.8773
+        },
+        "weightedZ": -0.2429,
+        "score": 47,
+        "factorCoverage": 0.75,
+        "availability": {
+          "momentum": 0,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "scores": {
+        "factorScore": 47,
+        "techScore": null,
+        "reportScore": null,
+        "actionScore": 41
+      },
+      "explain": {
+        "topDrivers": [],
+        "warnings": [
+          "기술 스냅샷이 없어 리포트/배분 쪽 해석 비중이 커졌습니다.",
+          "REDUCE 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    },
+    "PENSION:133690": {
+      "positionKey": "PENSION:133690",
+      "code": "133690",
+      "name": "TIGER 미국나스닥100",
+      "accountKey": "PENSION",
+      "accountLabel": "연금저축",
+      "category": "나스닥100",
+      "marketValue": 480480,
+      "incomeYield": 0.006,
+      "technicalSignal": "N/A",
+      "technicalBaseScore": null,
+      "actionScore": 41,
+      "direction": -0.65,
+      "timing": 0,
+      "reportScore": 0,
+      "probabilities": {
+        "p_buy": 0.1619,
+        "p_hold": 0.3164,
+        "p_sell": 0.5217
+      },
+      "conviction": "LOW",
+      "signal": "REDUCE",
+      "features": {
+        "maTrend": -2.5,
+        "macdZ": 0,
+        "rsiMid": 0,
+        "adxTrend": 0,
+        "bbDist": 0,
+        "rsiTiming": 0,
+        "stochTiming": 0,
+        "volumeZ": 0
+      },
+      "reportImpacts": [],
+      "technical": {
+        "signal": null,
+        "score": null,
+        "adjustedScore": null,
+        "rsi": null,
+        "macd": null,
+        "bollinger": null,
+        "volumeRatio": null
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "available": false,
+        "unavailableReason": "no_report_input",
+        "impactScore": null,
+        "impactValue": 0,
+        "impactCount": 0,
+        "coverageWeight": 0,
+        "directAccountImpactScore": 50
+      },
+      "factor": {
+        "raw": {
+          "momentum": -0.9,
+          "research": 0.033,
+          "income": 0.006,
+          "macroFit": 0.5807
+        },
+        "zScores": {
+          "momentum": 0,
+          "research": 0,
+          "income": -0.3676,
+          "macroFit": 0.0951
+        },
+        "weightedZ": -0.0361,
+        "score": 49,
+        "factorCoverage": 0.75,
+        "availability": {
+          "momentum": 0,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "scores": {
+        "factorScore": 49,
+        "techScore": null,
+        "reportScore": null,
+        "actionScore": 41
+      },
+      "explain": {
+        "topDrivers": [],
+        "warnings": [
+          "기술 스냅샷이 없어 리포트/배분 쪽 해석 비중이 커졌습니다.",
+          "REDUCE 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    },
+    "PENSION:360750": {
+      "positionKey": "PENSION:360750",
+      "code": "360750",
+      "name": "TIGER 미국S&P500",
+      "accountKey": "PENSION",
+      "accountLabel": "연금저축",
+      "category": "S&P500",
+      "marketValue": 491400,
+      "incomeYield": 0.013,
+      "technicalSignal": "N/A",
+      "technicalBaseScore": null,
+      "actionScore": 41,
+      "direction": -0.65,
+      "timing": 0,
+      "reportScore": 0,
+      "probabilities": {
+        "p_buy": 0.1619,
+        "p_hold": 0.3164,
+        "p_sell": 0.5217
+      },
+      "conviction": "LOW",
+      "signal": "REDUCE",
+      "features": {
+        "maTrend": -2.5,
+        "macdZ": 0,
+        "rsiMid": 0,
+        "adxTrend": 0,
+        "bbDist": 0,
+        "rsiTiming": 0,
+        "stochTiming": 0,
+        "volumeZ": 0
+      },
+      "reportImpacts": [],
+      "technical": {
+        "signal": null,
+        "score": null,
+        "adjustedScore": null,
+        "rsi": null,
+        "macd": null,
+        "bollinger": null,
+        "volumeRatio": null
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "available": false,
+        "unavailableReason": "no_report_input",
+        "impactScore": null,
+        "impactValue": 0,
+        "impactCount": 0,
+        "coverageWeight": 0,
+        "directAccountImpactScore": 50
+      },
+      "factor": {
+        "raw": {
+          "momentum": -0.9,
+          "research": 0.033,
+          "income": 0.013,
+          "macroFit": 1.7485
+        },
+        "zScores": {
+          "momentum": 0,
+          "research": 0,
+          "income": -0.0306,
+          "macroFit": 0.8427
+        },
+        "weightedZ": 0.1639,
+        "score": 52,
+        "factorCoverage": 0.75,
+        "availability": {
+          "momentum": 0,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "scores": {
+        "factorScore": 52,
+        "techScore": null,
+        "reportScore": null,
+        "actionScore": 41
+      },
+      "explain": {
+        "topDrivers": [],
+        "warnings": [
+          "기술 스냅샷이 없어 리포트/배분 쪽 해석 비중이 커졌습니다.",
+          "REDUCE 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    },
+    "TOSS:434730": {
+      "positionKey": "TOSS:434730",
+      "code": "434730",
+      "name": "HANARO 원자력iSelect",
+      "accountKey": "TOSS",
+      "accountLabel": "토스증권",
+      "category": "원자력",
+      "marketValue": 443190,
+      "incomeYield": 0.004,
+      "technicalSignal": "N/A",
+      "technicalBaseScore": null,
+      "actionScore": 41,
+      "direction": -0.65,
+      "timing": 0,
+      "reportScore": 0,
+      "probabilities": {
+        "p_buy": 0.1619,
+        "p_hold": 0.3164,
+        "p_sell": 0.5217
+      },
+      "conviction": "LOW",
+      "signal": "REDUCE",
+      "features": {
+        "maTrend": -2.5,
+        "macdZ": 0,
+        "rsiMid": 0,
+        "adxTrend": 0,
+        "bbDist": 0,
+        "rsiTiming": 0,
+        "stochTiming": 0,
+        "volumeZ": 0
+      },
+      "reportImpacts": [],
+      "technical": {
+        "signal": null,
+        "score": null,
+        "adjustedScore": null,
+        "rsi": null,
+        "macd": null,
+        "bollinger": null,
+        "volumeRatio": null
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "available": false,
+        "unavailableReason": "no_report_input",
+        "impactScore": null,
+        "impactValue": 0,
+        "impactCount": 0,
+        "coverageWeight": 0,
+        "directAccountImpactScore": 50
+      },
+      "factor": {
+        "raw": {
+          "momentum": -0.9,
+          "research": 0.033,
+          "income": 0.004,
+          "macroFit": 0.0535
+        },
+        "zScores": {
+          "momentum": 0,
+          "research": 0,
+          "income": -0.4638,
+          "macroFit": -0.2425
+        },
+        "weightedZ": -0.1181,
+        "score": 48,
+        "factorCoverage": 0.75,
+        "availability": {
+          "momentum": 0,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "scores": {
+        "factorScore": 48,
+        "techScore": null,
+        "reportScore": null,
+        "actionScore": 41
+      },
+      "explain": {
+        "topDrivers": [],
+        "warnings": [
+          "기술 스냅샷이 없어 리포트/배분 쪽 해석 비중이 커졌습니다.",
+          "REDUCE 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    },
+    "TOSS:251350": {
+      "positionKey": "TOSS:251350",
+      "code": "251350",
+      "name": "KODEX 선진국ESG액티브",
+      "accountKey": "TOSS",
+      "accountLabel": "토스증권",
+      "category": "기타",
+      "marketValue": 465000,
+      "incomeYield": 0,
+      "technicalSignal": "N/A",
+      "technicalBaseScore": null,
+      "actionScore": 41,
+      "direction": -0.65,
+      "timing": 0,
+      "reportScore": 0,
+      "probabilities": {
+        "p_buy": 0.1619,
+        "p_hold": 0.3164,
+        "p_sell": 0.5217
+      },
+      "conviction": "LOW",
+      "signal": "REDUCE",
+      "features": {
+        "maTrend": -2.5,
+        "macdZ": 0,
+        "rsiMid": 0,
+        "adxTrend": 0,
+        "bbDist": 0,
+        "rsiTiming": 0,
+        "stochTiming": 0,
+        "volumeZ": 0
+      },
+      "reportImpacts": [],
+      "technical": {
+        "signal": null,
+        "score": null,
+        "adjustedScore": null,
+        "rsi": null,
+        "macd": null,
+        "bollinger": null,
+        "volumeRatio": null
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "available": false,
+        "unavailableReason": "no_report_input",
+        "impactScore": null,
+        "impactValue": 0,
+        "impactCount": 0,
+        "coverageWeight": 0,
+        "directAccountImpactScore": 50
+      },
+      "factor": {
+        "raw": {
+          "momentum": -0.9,
+          "research": 0.033,
+          "income": 0,
+          "macroFit": -1.6226
+        },
+        "zScores": {
+          "momentum": 0,
+          "research": 0,
+          "income": -0.6563,
+          "macroFit": -1.3156
+        },
+        "weightedZ": -0.3616,
+        "score": 45,
+        "factorCoverage": 0.75,
+        "availability": {
+          "momentum": 0,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "scores": {
+        "factorScore": 45,
+        "techScore": null,
+        "reportScore": null,
+        "actionScore": 41
+      },
+      "explain": {
+        "topDrivers": [],
+        "warnings": [
+          "기술 스냅샷이 없어 리포트/배분 쪽 해석 비중이 커졌습니다.",
+          "REDUCE 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    },
+    "TOSS:449450": {
+      "positionKey": "TOSS:449450",
+      "code": "449450",
+      "name": "PLUS V K생산",
+      "accountKey": "TOSS",
+      "accountLabel": "토스증권",
+      "category": "방산",
+      "marketValue": 383475,
+      "incomeYield": 0.004,
+      "technicalSignal": "N/A",
+      "technicalBaseScore": null,
+      "actionScore": 41,
+      "direction": -0.65,
+      "timing": 0,
+      "reportScore": 0,
+      "probabilities": {
+        "p_buy": 0.1619,
+        "p_hold": 0.3164,
+        "p_sell": 0.5217
+      },
+      "conviction": "LOW",
+      "signal": "REDUCE",
+      "features": {
+        "maTrend": -2.5,
+        "macdZ": 0,
+        "rsiMid": 0,
+        "adxTrend": 0,
+        "bbDist": 0,
+        "rsiTiming": 0,
+        "stochTiming": 0,
+        "volumeZ": 0
+      },
+      "reportImpacts": [],
+      "technical": {
+        "signal": null,
+        "score": null,
+        "adjustedScore": null,
+        "rsi": null,
+        "macd": null,
+        "bollinger": null,
+        "volumeRatio": null
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "available": false,
+        "unavailableReason": "no_report_input",
+        "impactScore": null,
+        "impactValue": 0,
+        "impactCount": 0,
+        "coverageWeight": 0,
+        "directAccountImpactScore": 50
+      },
+      "factor": {
+        "raw": {
+          "momentum": -0.9,
+          "research": 0.033,
+          "income": 0.004,
+          "macroFit": 0.6619
+        },
+        "zScores": {
+          "momentum": 0,
+          "research": 0,
+          "income": -0.4638,
+          "macroFit": 0.147
+        },
+        "weightedZ": -0.0402,
+        "score": 49,
+        "factorCoverage": 0.75,
+        "availability": {
+          "momentum": 0,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "scores": {
+        "factorScore": 49,
+        "techScore": null,
+        "reportScore": null,
+        "actionScore": 41
+      },
+      "explain": {
+        "topDrivers": [],
+        "warnings": [
+          "기술 스냅샷이 없어 리포트/배분 쪽 해석 비중이 커졌습니다.",
+          "REDUCE 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    },
+    "KIS_MAIN:138910": {
+      "positionKey": "KIS_MAIN:138910",
+      "code": "138910",
+      "name": "KODEX 구리선물(H)",
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "category": "기타",
+      "marketValue": 519100,
+      "incomeYield": 0,
+      "technicalSignal": "N/A",
+      "technicalBaseScore": null,
+      "actionScore": 41,
+      "direction": -0.65,
+      "timing": 0,
+      "reportScore": 0,
+      "probabilities": {
+        "p_buy": 0.1619,
+        "p_hold": 0.3164,
+        "p_sell": 0.5217
+      },
+      "conviction": "LOW",
+      "signal": "REDUCE",
+      "features": {
+        "maTrend": -2.5,
+        "macdZ": 0,
+        "rsiMid": 0,
+        "adxTrend": 0,
+        "bbDist": 0,
+        "rsiTiming": 0,
+        "stochTiming": 0,
+        "volumeZ": 0
+      },
+      "reportImpacts": [],
+      "technical": {
+        "signal": null,
+        "score": null,
+        "adjustedScore": null,
+        "rsi": null,
+        "macd": null,
+        "bollinger": null,
+        "volumeRatio": null
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "available": false,
+        "unavailableReason": "no_report_input",
+        "impactScore": null,
+        "impactValue": 0,
+        "impactCount": 0,
+        "coverageWeight": 0,
+        "directAccountImpactScore": 50
+      },
+      "factor": {
+        "raw": {
+          "momentum": -0.9,
+          "research": 0.033,
+          "income": 0,
+          "macroFit": -1.1713
+        },
+        "zScores": {
+          "momentum": 0,
+          "research": 0,
+          "income": -0.6563,
+          "macroFit": -1.0267
+        },
+        "weightedZ": -0.3038,
+        "score": 46,
+        "factorCoverage": 0.75,
+        "availability": {
+          "momentum": 0,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "scores": {
+        "factorScore": 46,
+        "techScore": null,
+        "reportScore": null,
+        "actionScore": 41
+      },
+      "explain": {
+        "topDrivers": [],
+        "warnings": [
+          "기술 스냅샷이 없어 리포트/배분 쪽 해석 비중이 커졌습니다.",
+          "REDUCE 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    },
+    "KIS_MAIN:434730": {
+      "positionKey": "KIS_MAIN:434730",
+      "code": "434730",
+      "name": "HANARO 원자력iSelect",
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "category": "원자력",
+      "marketValue": 141690,
+      "incomeYield": 0.004,
+      "technicalSignal": "N/A",
+      "technicalBaseScore": null,
+      "actionScore": 41,
+      "direction": -0.65,
+      "timing": 0,
+      "reportScore": 0,
+      "probabilities": {
+        "p_buy": 0.1619,
+        "p_hold": 0.3164,
+        "p_sell": 0.5217
+      },
+      "conviction": "LOW",
+      "signal": "REDUCE",
+      "features": {
+        "maTrend": -2.5,
+        "macdZ": 0,
+        "rsiMid": 0,
+        "adxTrend": 0,
+        "bbDist": 0,
+        "rsiTiming": 0,
+        "stochTiming": 0,
+        "volumeZ": 0
+      },
+      "reportImpacts": [],
+      "technical": {
+        "signal": null,
+        "score": null,
+        "adjustedScore": null,
+        "rsi": null,
+        "macd": null,
+        "bollinger": null,
+        "volumeRatio": null
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "available": false,
+        "unavailableReason": "no_report_input",
+        "impactScore": null,
+        "impactValue": 0,
+        "impactCount": 0,
+        "coverageWeight": 0,
+        "directAccountImpactScore": 50
+      },
+      "factor": {
+        "raw": {
+          "momentum": -0.9,
+          "research": 0.033,
+          "income": 0.004,
+          "macroFit": 1.6803
+        },
+        "zScores": {
+          "momentum": 0,
+          "research": 0,
+          "income": -0.4638,
+          "macroFit": 0.799
+        },
+        "weightedZ": 0.0902,
+        "score": 51,
+        "factorCoverage": 0.75,
+        "availability": {
+          "momentum": 0,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "scores": {
+        "factorScore": 51,
+        "techScore": null,
+        "reportScore": null,
+        "actionScore": 41
+      },
+      "explain": {
+        "topDrivers": [],
+        "warnings": [
+          "기술 스냅샷이 없어 리포트/배분 쪽 해석 비중이 커졌습니다.",
+          "REDUCE 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    },
+    "KIS_MAIN:449450": {
+      "positionKey": "KIS_MAIN:449450",
+      "code": "449450",
+      "name": "PLUS K방산",
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "category": "방산",
+      "marketValue": 231000,
+      "incomeYield": 0.004,
+      "technicalSignal": "N/A",
+      "technicalBaseScore": null,
+      "actionScore": 41,
+      "direction": -0.65,
+      "timing": 0,
+      "reportScore": 0,
+      "probabilities": {
+        "p_buy": 0.1619,
+        "p_hold": 0.3164,
+        "p_sell": 0.5217
+      },
+      "conviction": "LOW",
+      "signal": "REDUCE",
+      "features": {
+        "maTrend": -2.5,
+        "macdZ": 0,
+        "rsiMid": 0,
+        "adxTrend": 0,
+        "bbDist": 0,
+        "rsiTiming": 0,
+        "stochTiming": 0,
+        "volumeZ": 0
+      },
+      "reportImpacts": [],
+      "technical": {
+        "signal": null,
+        "score": null,
+        "adjustedScore": null,
+        "rsi": null,
+        "macd": null,
+        "bollinger": null,
+        "volumeRatio": null
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "available": false,
+        "unavailableReason": "no_report_input",
+        "impactScore": null,
+        "impactValue": 0,
+        "impactCount": 0,
+        "coverageWeight": 0,
+        "directAccountImpactScore": 50
+      },
+      "factor": {
+        "raw": {
+          "momentum": -0.9,
+          "research": 0.033,
+          "income": 0.004,
+          "macroFit": 1.8788
+        },
+        "zScores": {
+          "momentum": 0,
+          "research": 0,
+          "income": -0.4638,
+          "macroFit": 0.9261
+        },
+        "weightedZ": 0.1156,
+        "score": 52,
+        "factorCoverage": 0.75,
+        "availability": {
+          "momentum": 0,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "scores": {
+        "factorScore": 52,
+        "techScore": null,
+        "reportScore": null,
+        "actionScore": 41
+      },
+      "explain": {
+        "topDrivers": [],
+        "warnings": [
+          "기술 스냅샷이 없어 리포트/배분 쪽 해석 비중이 커졌습니다.",
+          "REDUCE 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    }
+  },
+  "accounts": {
+    "ISA": {
+      "key": "ISA",
+      "label": "ISA",
+      "allocationScore": 76,
+      "holdingsScore": 41,
+      "factorScore": 55,
+      "reportCoverageScore": null,
+      "reportStatus": "unavailable",
+      "reportUnavailableReason": "no_report_input",
+      "stage2Bias": "hold",
+      "preTaxScore": 63.69,
+      "baseScore": 71.69,
+      "totalScore": 67,
+      "note": "선별적 보강은 가능하지만 약한 자산군과 패널티 요인을 함께 줄여야 합니다.",
+      "coverage": {
+        "factorCoverage": 0.75,
+        "techCoverage": 0,
+        "impactCoverage": 0,
+        "stage2Available": true,
+        "fredAvailable": true
+      },
+      "baseScores": {
+        "allocationScore": 76,
+        "factorScore": 55,
+        "techScore": null,
+        "reportScore": null,
+        "regimeFit": 71,
+        "stage2Score": 50,
+        "leadingScore": 50,
+        "actionBlend": 41
+      },
+      "effectiveWeights": {
+        "allocation": 0.7975,
+        "factor": 0.075,
+        "tech": 0,
+        "report": 0,
+        "regime": 0.0275,
+        "stage2": 0.05,
+        "leading": 0.05
+      },
+      "riskPenalty": {
+        "total": 8,
+        "portfolioVolatility": 0,
+        "breakdown": {
+          "dataQuality": {
+            "total": 4,
+            "incompletePenalty": 0,
+            "unmappedExposurePct": 0,
+            "unmappedPenalty": 0,
+            "missingTechnicalPenalty": 4
+          },
+          "concentration": {
+            "total": 3.95,
+            "hhi": 0.5002,
+            "hhiPenalty": 3,
+            "maxPositionPct": 50.89,
+            "maxPositionPenalty": 0.94
+          },
+          "covariance": {
+            "total": 0,
+            "annualizedVolatility": 0,
+            "sampleCount": null,
+            "holdingsWithData": 0,
+            "shrinkage": 0.35,
+            "lambda": 0.55
+          },
+          "tailRisk": {
+            "total": 0,
+            "method": "not_applicable",
+            "maxDrawdownPct": null,
+            "cvar95Pct": null,
+            "holdingsWithData": 0
+          },
+          "regimeStress": {
+            "total": 0,
+            "currentRiskPct": 5.86,
+            "desiredRiskPct": 25,
+            "excessRiskPct": 0
+          }
+        },
+        "notes": [
+          "단일 포지션 또는 집중도가 높아 분산 패널티가 반영됐습니다."
+        ]
+      },
+      "taxAdjustment": {
+        "enabled": true,
+        "preTaxScore": 63.69,
+        "afterTaxScore": 66.63,
+        "multiplier": 1.0462,
+        "expectedYield": 0.042,
+        "normalTaxRate": 0.154,
+        "accountTaxRate": 0.099,
+        "taxSpread": 0.055,
+        "riskProxy": 0.08,
+        "lift": 0.0462,
+        "addedScore": 2.94
+      },
+      "accountDirectImpact": {
+        "value": 0,
+        "score": 50,
+        "impacts": []
+      }
+    },
+    "PENSION": {
+      "key": "PENSION",
+      "label": "연금저축",
+      "allocationScore": 84,
+      "holdingsScore": 41,
+      "factorScore": 50,
+      "reportCoverageScore": null,
+      "reportStatus": "unavailable",
+      "reportUnavailableReason": "no_report_input",
+      "stage2Bias": "hold",
+      "preTaxScore": 73.99,
+      "baseScore": 77.99,
+      "totalScore": 74,
+      "note": "배분·기술·리포트가 비교적 균형적이며 리스크 패널티도 낮습니다.",
+      "coverage": {
+        "factorCoverage": 0.75,
+        "techCoverage": 0,
+        "impactCoverage": 0,
+        "stage2Available": true,
+        "fredAvailable": true
+      },
+      "baseScores": {
+        "allocationScore": 84,
+        "factorScore": 50,
+        "techScore": null,
+        "reportScore": null,
+        "regimeFit": 82,
+        "stage2Score": 50,
+        "leadingScore": 50,
+        "actionBlend": 41
+      },
+      "effectiveWeights": {
+        "allocation": 0.7975,
+        "factor": 0.075,
+        "tech": 0,
+        "report": 0,
+        "regime": 0.0275,
+        "stage2": 0.05,
+        "leading": 0.05
+      },
+      "riskPenalty": {
+        "total": 4,
+        "portfolioVolatility": 0,
+        "breakdown": {
+          "dataQuality": {
+            "total": 4,
+            "incompletePenalty": 0,
+            "unmappedExposurePct": 0,
+            "unmappedPenalty": 0,
+            "missingTechnicalPenalty": 4
+          },
+          "concentration": {
+            "total": 0,
+            "hhi": 0.3661,
+            "hhiPenalty": 0,
+            "maxPositionPct": 41.18,
+            "maxPositionPenalty": 0
+          },
+          "covariance": {
+            "total": 0,
+            "annualizedVolatility": 0,
+            "sampleCount": null,
+            "holdingsWithData": 0,
+            "shrinkage": 0.35,
+            "lambda": 0.55
+          },
+          "tailRisk": {
+            "total": 0,
+            "method": "not_applicable",
+            "maxDrawdownPct": null,
+            "cvar95Pct": null,
+            "holdingsWithData": 0
+          },
+          "regimeStress": {
+            "total": 0,
+            "currentRiskPct": 35.88,
+            "desiredRiskPct": 65,
+            "excessRiskPct": 0
+          }
+        },
+        "notes": []
+      },
+      "taxAdjustment": {
+        "enabled": true,
+        "preTaxScore": 73.99,
+        "afterTaxScore": 73.99,
+        "multiplier": 1,
+        "expectedYield": 0.0137,
+        "normalTaxRate": 0.154,
+        "accountTaxRate": 0.154,
+        "taxSpread": 0,
+        "riskProxy": 0.08,
+        "lift": 0,
+        "addedScore": 0
+      },
+      "accountDirectImpact": {
+        "value": 0,
+        "score": 50,
+        "impacts": []
+      }
+    },
+    "TOSS": {
+      "key": "TOSS",
+      "label": "토스증권",
+      "allocationScore": 74,
+      "holdingsScore": 41,
+      "factorScore": 48,
+      "reportCoverageScore": null,
+      "reportStatus": "unavailable",
+      "reportUnavailableReason": "no_report_input",
+      "stage2Bias": "hold",
+      "preTaxScore": 60.59,
+      "baseScore": 69.59,
+      "totalScore": 61,
+      "note": "선별적 보강은 가능하지만 약한 자산군과 패널티 요인을 함께 줄여야 합니다.",
+      "coverage": {
+        "factorCoverage": 0.75,
+        "techCoverage": 0,
+        "impactCoverage": 0,
+        "stage2Available": true,
+        "fredAvailable": true
+      },
+      "baseScores": {
+        "allocationScore": 74,
+        "factorScore": 48,
+        "techScore": null,
+        "reportScore": null,
+        "regimeFit": 72,
+        "stage2Score": 50,
+        "leadingScore": 50,
+        "actionBlend": 41
+      },
+      "effectiveWeights": {
+        "allocation": 0.7975,
+        "factor": 0.075,
+        "tech": 0,
+        "report": 0,
+        "regime": 0.0275,
+        "stage2": 0.05,
+        "leading": 0.05
+      },
+      "riskPenalty": {
+        "total": 9,
+        "portfolioVolatility": 0,
+        "breakdown": {
+          "dataQuality": {
+            "total": 9,
+            "incompletePenalty": 0,
+            "unmappedExposurePct": 20.28,
+            "unmappedPenalty": 5,
+            "missingTechnicalPenalty": 4
+          },
+          "concentration": {
+            "total": 0,
+            "hhi": 0.3355,
+            "hhiPenalty": 0,
+            "maxPositionPct": 36,
+            "maxPositionPenalty": 0
+          },
+          "covariance": {
+            "total": 0,
+            "annualizedVolatility": 0,
+            "sampleCount": null,
+            "holdingsWithData": 0,
+            "shrinkage": 0.35,
+            "lambda": 0.55
+          },
+          "tailRisk": {
+            "total": 0,
+            "method": "not_applicable",
+            "maxDrawdownPct": null,
+            "cvar95Pct": null,
+            "holdingsWithData": 0
+          },
+          "regimeStress": {
+            "total": 0,
+            "currentRiskPct": 36.06,
+            "desiredRiskPct": 75,
+            "excessRiskPct": 0
+          }
+        },
+        "notes": [
+          "'기타' 비중 20.3%가 남아 분류 품질 패널티가 붙었습니다."
+        ]
+      },
+      "taxAdjustment": {
+        "enabled": true,
+        "preTaxScore": 60.59,
+        "afterTaxScore": 60.59,
+        "multiplier": 1,
+        "expectedYield": 0.0026,
+        "normalTaxRate": 0.154,
+        "accountTaxRate": 0.154,
+        "taxSpread": 0,
+        "riskProxy": 0.08,
+        "lift": 0,
+        "addedScore": 0
+      },
+      "accountDirectImpact": {
+        "value": 0,
+        "score": 50,
+        "impacts": []
+      }
+    },
+    "KIS_MAIN": {
+      "key": "KIS_MAIN",
+      "label": "한투 일반",
+      "allocationScore": 69,
+      "holdingsScore": 41,
+      "factorScore": 49,
+      "reportCoverageScore": null,
+      "reportStatus": "unavailable",
+      "reportUnavailableReason": "no_report_input",
+      "stage2Bias": "hold",
+      "preTaxScore": 54.49,
+      "baseScore": 65.49,
+      "totalScore": 54,
+      "note": "기본 점수보다 리스크 패널티가 점수를 크게 누르고 있어 구조 조정이 우선입니다.",
+      "coverage": {
+        "factorCoverage": 0.75,
+        "techCoverage": 0,
+        "impactCoverage": 0,
+        "stage2Available": true,
+        "fredAvailable": true
+      },
+      "baseScores": {
+        "allocationScore": 69,
+        "factorScore": 49,
+        "techScore": null,
+        "reportScore": null,
+        "regimeFit": 65,
+        "stage2Score": 50,
+        "leadingScore": 50,
+        "actionBlend": 41
+      },
+      "effectiveWeights": {
+        "allocation": 0.7975,
+        "factor": 0.075,
+        "tech": 0,
+        "report": 0,
+        "regime": 0.0275,
+        "stage2": 0.05,
+        "leading": 0.05
+      },
+      "riskPenalty": {
+        "total": 11,
+        "portfolioVolatility": 0,
+        "breakdown": {
+          "dataQuality": {
+            "total": 8.29,
+            "incompletePenalty": 0,
+            "unmappedExposurePct": 14.64,
+            "unmappedPenalty": 4.29,
+            "missingTechnicalPenalty": 4
+          },
+          "concentration": {
+            "total": 3.05,
+            "hhi": 0.4312,
+            "hhiPenalty": 0.93,
+            "maxPositionPct": 58.21,
+            "maxPositionPenalty": 2.11
+          },
+          "covariance": {
+            "total": 0,
+            "annualizedVolatility": 0,
+            "sampleCount": null,
+            "holdingsWithData": 0,
+            "shrinkage": 0.35,
+            "lambda": 0.55
+          },
+          "tailRisk": {
+            "total": 0,
+            "method": "not_applicable",
+            "maxDrawdownPct": null,
+            "cvar95Pct": null,
+            "holdingsWithData": 0
+          },
+          "regimeStress": {
+            "total": 0,
+            "currentRiskPct": 10.51,
+            "desiredRiskPct": 75,
+            "excessRiskPct": 0
+          }
+        },
+        "notes": [
+          "'기타' 비중 14.6%가 남아 분류 품질 패널티가 붙었습니다.",
+          "단일 포지션 또는 집중도가 높아 분산 패널티가 반영됐습니다."
+        ]
+      },
+      "taxAdjustment": {
+        "enabled": true,
+        "preTaxScore": 54.49,
+        "afterTaxScore": 54.49,
+        "multiplier": 1,
+        "expectedYield": 0.0017,
+        "normalTaxRate": 0.154,
+        "accountTaxRate": 0.154,
+        "taxSpread": 0,
+        "riskProxy": 0.08,
+        "lift": 0,
+        "addedScore": 0
+      },
+      "accountDirectImpact": {
+        "value": 0,
+        "score": 50,
+        "impacts": []
+      }
+    }
+  },
+  "portfolio": {
+    "totalScore": 65,
+    "baseScore": 71.12,
+    "preTaxScore": 62.99,
+    "riskPenalty": {
+      "total": 8.12
+    },
+    "taxAdjustment": {
+      "addedScore": 1.46,
+      "afterTaxScore": 64.45
+    },
+    "note": "선별적 추가와 방어를 병행해야 하는 구간"
+  }
+}

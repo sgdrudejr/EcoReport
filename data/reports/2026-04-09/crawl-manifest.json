@@ -1,0 +1,14 @@
+{
+  "date": "2026-04-09",
+  "generated_at": "2026-04-09T01:11:04.193Z",
+  "total_matched_before_dedupe": 0,
+  "downloaded_count": 0,
+  "failed_download_count": 0,
+  "source_counts": {},
+  "category_counts": {},
+  "top_brokers": {},
+  "page_logs": [],
+  "download_failures": [],
+  "fallback": true,
+  "fallback_reason": "post-collect validation"
+}

@@ -1,0 +1,415 @@
+{
+  "date": "2026-04-09",
+  "runDate": "2026-04-09",
+  "effectiveMarketDate": "2026-04-09",
+  "runId": "2026-04-09-010030",
+  "generatedAt": "2026-04-09T01:11:09.244Z",
+  "portfolioScore": 65,
+  "regime": {
+    "name": "SIDEWAYS",
+    "confidence": 0.55,
+    "voteSum": 0,
+    "signals": [],
+    "market_context": {}
+  },
+  "accountPlans": [
+    {
+      "key": "ISA",
+      "label": "ISA",
+      "totalScore": 67,
+      "stage2Bias": "hold",
+      "deployBudget": 3665433,
+      "reserveCash": 2612057,
+      "topGap": {
+        "category": "금",
+        "targetPct": 0.25,
+        "currentPct": 0,
+        "gapAmount": 2096060
+      },
+      "candidateFromGap": "KODEX 골드선물(H)",
+      "stage2Candidates": [
+        {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "score": null,
+          "reason": "기술점수와 현재 배분 상태를 기준으로 분류",
+          "source": "stage2"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "score": null,
+          "reason": "기술점수와 현재 배분 상태를 기준으로 분류",
+          "source": "stage2"
+        },
+        {
+          "code": "458760",
+          "name": "TIGER 미국배당다우존스스타데일리커...",
+          "score": null,
+          "reason": "기술점수와 현재 배분 상태를 기준으로 분류",
+          "source": "stage2"
+        }
+      ],
+      "stagedBuys": [
+        {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "score": null,
+          "reason": "기술점수와 현재 배분 상태를 기준으로 분류",
+          "source": "stage2",
+          "suggestedAmount": 1832717
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "score": null,
+          "reason": "기술점수와 현재 배분 상태를 기준으로 분류",
+          "source": "stage2",
+          "suggestedAmount": 1099630
+        },
+        {
+          "code": "458760",
+          "name": "TIGER 미국배당다우존스스타데일리커...",
+          "score": null,
+          "reason": "기술점수와 현재 배분 상태를 기준으로 분류",
+          "source": "stage2",
+          "suggestedAmount": 733087
+        }
+      ],
+      "trims": [],
+      "holds": [],
+      "watches": [
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "score": 41,
+          "reason": "N/A"
+        },
+        {
+          "code": "458760",
+          "name": "TIGER 미국배당다우존스스타데일리커...",
+          "score": 41,
+          "reason": "N/A"
+        }
+      ],
+      "macroCommentary": {
+        "summary": "방향성보다 선별이 중요한 횡보 장세 ISA은 방어자산과 원자재 헤지 비중 조정이 핵심입니다. 절세 계좌 특성상 국내 ETF 중심의 방어·인컴·테마 배치를 유연하게 조정하는 역할로 작동하는 계좌입니다.",
+        "drivers": [
+          "방향성보다 선별이 중요한 횡보 장세",
+          "배분 유지와 선택적 관찰이 적절한 상태"
+        ],
+        "assetFocus": [
+          "방어자산과 원자재 헤지",
+          "금",
+          "배당/커버드콜"
+        ],
+        "actionLine": "ISA은 금을 우선 보강하고, KODEX 골드선물(H)를 중심으로 3,665,433원 한도에서 분할 접근하는 편이 좋습니다.",
+        "reserveNote": "다음 tranche 전까지 예수금 일부를 유지하며 분할 접근"
+      },
+      "stage1Drivers": []
+    },
+    {
+      "key": "PENSION",
+      "label": "연금저축",
+      "totalScore": 74,
+      "stage2Bias": "hold",
+      "deployBudget": 756843,
+      "reserveCash": 758257,
+      "topGap": {
+        "category": "S&P500",
+        "targetPct": 0.4,
+        "currentPct": 0.1814388834530249,
+        "gapAmount": 591940
+      },
+      "candidateFromGap": "TIGER 미국S&P500",
+      "stage2Candidates": [
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "score": null,
+          "reason": "기술점수와 현재 배분 상태를 기준으로 분류",
+          "source": "stage2"
+        },
+        {
+          "code": "423160",
+          "name": "KODEX KOFR금리액티브(합성)",
+          "score": null,
+          "reason": "기술점수와 현재 배분 상태를 기준으로 분류",
+          "source": "stage2"
+        },
+        {
+          "code": "133690",
+          "name": "TIGER 미국나스닥100",
+          "score": null,
+          "reason": "기술점수와 현재 배분 상태를 기준으로 분류",
+          "source": "stage2"
+        }
+      ],
+      "stagedBuys": [
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "score": null,
+          "reason": "기술점수와 현재 배분 상태를 기준으로 분류",
+          "source": "stage2",
+          "suggestedAmount": 378422
+        },
+        {
+          "code": "423160",
+          "name": "KODEX KOFR금리액티브(합성)",
+          "score": null,
+          "reason": "기술점수와 현재 배분 상태를 기준으로 분류",
+          "source": "stage2",
+          "suggestedAmount": 227053
+        },
+        {
+          "code": "133690",
+          "name": "TIGER 미국나스닥100",
+          "score": null,
+          "reason": "기술점수와 현재 배분 상태를 기준으로 분류",
+          "source": "stage2",
+          "suggestedAmount": 151369
+        }
+      ],
+      "trims": [],
+      "holds": [],
+      "watches": [
+        {
+          "code": "423160",
+          "name": "KODEX KOFR금리액티브(합성)",
+          "score": 41,
+          "reason": "N/A"
+        },
+        {
+          "code": "133690",
+          "name": "TIGER 미국나스닥100",
+          "score": 41,
+          "reason": "N/A"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "score": 41,
+          "reason": "N/A"
+        }
+      ],
+      "macroCommentary": {
+        "summary": "방향성보다 선별이 중요한 횡보 장세 연금저축은 미국 코어 인덱스 비중 조정이 핵심입니다. 장기 복리 관점에서 미국 코어 자산과 방어 자산을 안정적으로 쌓는 역할로 작동하는 계좌입니다.",
+        "drivers": [
+          "방향성보다 선별이 중요한 횡보 장세",
+          "배분 유지와 선택적 관찰이 적절한 상태"
+        ],
+        "assetFocus": [
+          "미국 코어 인덱스",
+          "S&P500",
+          "금"
+        ],
+        "actionLine": "연금저축은 S&P500을 우선 보강하고, TIGER 미국S&P500를 중심으로 756,843원 한도에서 분할 접근하는 편이 좋습니다.",
+        "reserveNote": "다음 tranche 전까지 예수금 일부를 유지하며 분할 접근"
+      },
+      "stage1Drivers": []
+    },
+    {
+      "key": "TOSS",
+      "label": "토스증권",
+      "totalScore": 61,
+      "stage2Bias": "hold",
+      "deployBudget": 574653,
+      "reserveCash": 426292,
+      "topGap": {
+        "category": "전력기기",
+        "targetPct": 0.3,
+        "currentPct": 0,
+        "gapAmount": 687783
+      },
+      "candidateFromGap": "효성중공업",
+      "stage2Candidates": [
+        {
+          "code": "298040",
+          "name": "효성중공업",
+          "score": null,
+          "reason": "기술점수와 현재 배분 상태를 기준으로 분류",
+          "source": "stage2"
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "score": null,
+          "reason": "기술점수와 현재 배분 상태를 기준으로 분류",
+          "source": "stage2"
+        },
+        {
+          "code": "267260",
+          "name": "HD현대일렉트릭",
+          "score": null,
+          "reason": "기술점수와 현재 배분 상태를 기준으로 분류",
+          "source": "stage2"
+        }
+      ],
+      "stagedBuys": [
+        {
+          "code": "298040",
+          "name": "효성중공업",
+          "score": null,
+          "reason": "기술점수와 현재 배분 상태를 기준으로 분류",
+          "source": "stage2",
+          "suggestedAmount": 287327
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "score": null,
+          "reason": "기술점수와 현재 배분 상태를 기준으로 분류",
+          "source": "stage2",
+          "suggestedAmount": 172396
+        },
+        {
+          "code": "267260",
+          "name": "HD현대일렉트릭",
+          "score": null,
+          "reason": "기술점수와 현재 배분 상태를 기준으로 분류",
+          "source": "stage2",
+          "suggestedAmount": 114931
+        }
+      ],
+      "trims": [],
+      "holds": [],
+      "watches": [
+        {
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "score": 41,
+          "reason": "N/A"
+        },
+        {
+          "code": "251350",
+          "name": "KODEX 선진국ESG액티브",
+          "score": 41,
+          "reason": "N/A"
+        },
+        {
+          "code": "449450",
+          "name": "PLUS V K생산",
+          "score": 41,
+          "reason": "N/A"
+        }
+      ],
+      "macroCommentary": {
+        "summary": "방향성보다 선별이 중요한 횡보 장세 토스증권은 AI·전력 인프라 비중 조정이 핵심입니다. 전술 테마와 성장 섹터를 민첩하게 반영하는 역할로 작동하는 계좌입니다.",
+        "drivers": [
+          "방향성보다 선별이 중요한 횡보 장세",
+          "배분 유지와 선택적 관찰이 적절한 상태"
+        ],
+        "assetFocus": [
+          "AI·전력 인프라",
+          "전력기기",
+          "방산"
+        ],
+        "actionLine": "토스증권은 전력기기을 우선 보강하고, 효성중공업를 중심으로 574,653원 한도에서 분할 접근하는 편이 좋습니다.",
+        "reserveNote": "다음 tranche 전까지 예수금 일부를 유지하며 분할 접근"
+      },
+      "stage1Drivers": []
+    },
+    {
+      "key": "KIS_MAIN",
+      "label": "한투 일반",
+      "totalScore": 54,
+      "stage2Bias": "hold",
+      "deployBudget": 1422695,
+      "reserveCash": 1231019,
+      "topGap": {
+        "category": "방산",
+        "targetPct": 0.3,
+        "currentPct": 0.06515293735389947,
+        "gapAmount": 832651
+      },
+      "candidateFromGap": "한국항공우주",
+      "stage2Candidates": [
+        {
+          "code": "047810",
+          "name": "한국항공우주",
+          "score": null,
+          "reason": "기술점수와 현재 배분 상태를 기준으로 분류",
+          "source": "stage2"
+        },
+        {
+          "code": "449450",
+          "name": "PLUS V K생산",
+          "score": null,
+          "reason": "기술점수와 현재 배분 상태를 기준으로 분류",
+          "source": "stage2"
+        },
+        {
+          "code": "064350",
+          "name": "현대로템",
+          "score": null,
+          "reason": "기술점수와 현재 배분 상태를 기준으로 분류",
+          "source": "stage2"
+        }
+      ],
+      "stagedBuys": [
+        {
+          "code": "047810",
+          "name": "한국항공우주",
+          "score": null,
+          "reason": "기술점수와 현재 배분 상태를 기준으로 분류",
+          "source": "stage2",
+          "suggestedAmount": 711348
+        },
+        {
+          "code": "449450",
+          "name": "PLUS V K생산",
+          "score": null,
+          "reason": "기술점수와 현재 배분 상태를 기준으로 분류",
+          "source": "stage2",
+          "suggestedAmount": 426809
+        },
+        {
+          "code": "064350",
+          "name": "현대로템",
+          "score": null,
+          "reason": "기술점수와 현재 배분 상태를 기준으로 분류",
+          "source": "stage2",
+          "suggestedAmount": 284539
+        }
+      ],
+      "trims": [],
+      "holds": [],
+      "watches": [
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "score": 41,
+          "reason": "N/A"
+        },
+        {
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "score": 41,
+          "reason": "N/A"
+        },
+        {
+          "code": "449450",
+          "name": "PLUS K방산",
+          "score": 41,
+          "reason": "N/A"
+        }
+      ],
+      "macroCommentary": {
+        "summary": "방향성보다 선별이 중요한 횡보 장세 한투 일반은 지정학 민감 방산 비중 조정이 핵심입니다. 전술 테마와 현금 운용을 함께 조절하며 국내 ETF 알파를 쌓는 역할로 작동하는 계좌입니다.",
+        "drivers": [
+          "방향성보다 선별이 중요한 횡보 장세",
+          "배분 유지와 선택적 관찰이 적절한 상태"
+        ],
+        "assetFocus": [
+          "지정학 민감 방산",
+          "방산",
+          "원자력"
+        ],
+        "actionLine": "한투 일반은 방산을 우선 보강하고, 한국항공우주를 중심으로 1,422,695원 한도에서 분할 접근하는 편이 좋습니다.",
+        "reserveNote": "다음 tranche 전까지 예수금 일부를 유지하며 분할 접근"
+      },
+      "stage1Drivers": []
+    }
+  ]
+}

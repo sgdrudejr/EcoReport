@@ -1,0 +1,15 @@
+{
+  "date": "2026-04-09",
+  "generated_at": "2026-04-09T01:11:04.193Z",
+  "total_reports": 0,
+  "success_count": 0,
+  "failed_count": 0,
+  "ocr_used_count": 0,
+  "ocr_trigger_length": null,
+  "preview_text_limit": null,
+  "command_availability": {},
+  "method_counts": {},
+  "entries": [],
+  "fallback": true,
+  "fallback_reason": "post-collect validation"
+}

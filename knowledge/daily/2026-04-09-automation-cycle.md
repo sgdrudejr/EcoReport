@@ -1,0 +1,71 @@
+# EcoReport Automation Cycle (2026-04-09)
+- overallStatus: **warn**
+- runDate: 2026-04-09
+- effectiveMarketDate: 2026-04-09
+- previousTradingDate: 2026-04-08
+- runId: 2026-04-09-010030
+- resolutionReason: today
+- generatedAt: 2026-04-09T01:11:09.940Z
+- logFile: /Users/seo/Documents/Playground/EcoReport/logs/2026-04-09-010030-automation-cycle.log
+- systemHealth: warn
+- changeSummary: 전일(2026-04-08) 대비, 포트폴리오 점수 64→65, 레짐 SIDEWAYS 유지, 리포트 100→0건, 신규 포커스 KODEX 골드선물(H)·TIGER 미국배당다우존스스타데일리커..., 제외 TIGER 미국배당다우존스타겟커버드콜2호·PLUS K방산
+## Completion Checklist
+- [x] Baseline Daily System
+- [x] Stage 1 Extracts
+- [ ] Gemini Deep Research Web (warn)
+- [ ] Stage 1.6 Rich Briefing Overlay (skipped)
+- [x] Strategy Refresh After Deep Research
+- [x] LLM Wiki Rebuild
+- [ ] LLM Wiki Publish (warn)
+- [x] Verify Outputs
+- [ ] Push Data Branch (warn)
+## Step Results
+- [OK] Baseline Daily System (10m 37s)
+  - command: bash scripts/run-daily-system.sh --date 2026-04-09 --run-date 2026-04-09 --effective-market-date 2026-04-09 --run-id 2026-04-09-010030 --gemini-stage2 --skip-push --skip-verify --skip-strategy --skip-wiki --no-gemini-briefing
+  - tail: 🧠 Gemini 브리핑 스킵 (API 키 없음 또는 --no-gemini-briefing) | 🧭 전략 파이프라인 건너뜀 (--skip-strategy) | 📚 LLM Wiki 단계 건너뜀 (--skip-wiki) | 📤 GitHub 동기화 건너뜀 (--skip-push) | 🩺 시스템 검증 건너뜀 (--skip-verify) | ================================================== | ✅ EcoReport Daily System 종료 (run: 2026-04-09 / effective: 2026-04-09) | ==================================================
+- [OK] Stage 1 Extracts (0s)
+  - command: node scripts/build-stage1-report-extracts.js --date 2026-04-09 --run-date 2026-04-09 --effective-market-date 2026-04-09 --run-id 2026-04-09-010030
+  - tail: /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-09/stage1-report-extracts-v2.json
+- [WARN] Gemini Deep Research Web (0s)
+  - command: npm run stage1.5:gemini:run -- --date 2026-04-09 --poll-sec 30 --timeout-sec 1800
+  - reason: Gemini Deep Research Web 실패 (exit 1)
+  - tail: > ecoreport@1.0.0 stage1.5:gemini:run | > node scripts/run-gemini-deep-research-web.js --date 2026-04-09 --poll-sec 30 --timeout-sec 1800 | run-gemini-deep-research-web 실패: Command failed: node /Users/seo/Documents/Playground/EcoReport/scripts/build-stage1-5-gemini-deep-research-prompt.js --date 2026-04-09
+  - debug: Safari가 잠겨 있지 않은지, Gemini 로그인 상태인지, Deep Research 도구가 노출되는지 확인하세요.
+- [SKIPPED] Stage 1.6 Rich Briefing Overlay (0s)
+  - command: npm run stage1.6:briefing -- --date 2026-04-09 --run-date 2026-04-09 --effective-market-date 2026-04-09
+- [OK] Strategy Refresh After Deep Research (1s)
+  - command: bash scripts/run-strategy-pipeline.sh --date 2026-04-09 --run-date 2026-04-09 --effective-market-date 2026-04-09 --run-id 2026-04-09-010030 --gemini-stage2
+  - tail: data/analysis-state/2026-04-09/stage2-strategy-options.json | == Stage 2.5: impact map == | /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-09/impact-map.json | == Stage 3: quant scores == | /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-09/stage3-quant-scores.json | == Stage 4: execution plan == | /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-09/stage4-execution-plan.json | Done.
+- [OK] LLM Wiki Rebuild (0s)
+  - command: node scripts/build-llm-wiki.js --date 2026-04-09 --run-date 2026-04-09 --effective-market-date 2026-04-09 --run-id 2026-04-09-010030
+  - tail: /Users/seo/Documents/Playground/EcoReport/knowledge/wiki
+- [WARN] LLM Wiki Publish (0s)
+  - command: node scripts/publish-llm-wiki-to-vault.js
+  - reason: LLM Wiki Publish 실패 (exit 1)
+  - tail: EPERM: operation not permitted, copyfile '/Users/seo/Documents/Playground/EcoReport/knowledge/wiki/AGENTS.md' -> '/Users/seo/my-wiki/wiki/ecoreport/AGENTS.md'
+  - debug: knowledge/wiki 생성 권한과 Obsidian vault 경로를 확인하세요.
+- [OK] Verify Outputs (0s)
+  - command: node scripts/verify-daily-system.js --date 2026-04-09 --run-date 2026-04-09 --effective-market-date 2026-04-09 --run-id 2026-04-09-010030
+  - tail: /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-09/system-health.json
+- [WARN] Push Data Branch (1s)
+  - command: bash scripts/push-to-github.sh 2026-04-09
+  - reason: Push Data Branch 실패 (exit 128)
+  - tail: + knowledge/daily/manual-kit/2026-04-09/07-stage1-5-gemini-deep-research-prompt.md |   + knowledge/daily/manual-kit/2026-04-09/08-stage2-strategy-prompt.md |   + knowledge/rag/2026-04-09/parallel-manifest.json |   + knowledge/rag/2026-04-09/parallel-corpus.md |   + reports/daily/2026-04-09-briefing.md |   + reports/daily/2026-04-09-stage4-execution-plan.md |   + config/strategy.json | fatal: unable to access 'https://github.com/sgdrudejr/EcoReport.git/': Could not resolve host: github.com
+  - debug: Git 인증과 origin/data 브랜치 push 권한을 확인하세요.
+## Failed Or Warned Steps
+- Gemini Deep Research Web: Gemini Deep Research Web 실패 (exit 1)
+- LLM Wiki Publish: LLM Wiki Publish 실패 (exit 1)
+- Push Data Branch: Push Data Branch 실패 (exit 128)
+## Artifacts
+- [OK] /Users/seo/Documents/Playground/EcoReport/logs/2026-04-09-010030-automation-cycle.log
+- [OK] /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-09/stage1-report-extracts-v2.json
+- [OK] /Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-09/07-stage1-5-gemini-deep-research-prompt.md
+- [MISS] /Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-09/09-stage1-5-gemini-deep-research-response.md
+- [MISS] /Users/seo/Documents/Playground/EcoReport/knowledge/daily/2026-04-09-gemini-briefing-rich.md
+- [OK] /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-09/stage2-strategy-options.json
+- [OK] /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-09/stage4-execution-plan.json
+- [OK] /Users/seo/Documents/Playground/EcoReport/reports/daily/2026-04-09-briefing.md
+- [OK] /Users/seo/Documents/Playground/EcoReport/knowledge/wiki/daily/2026-04-09.md
+- [OK] /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-09/system-health.json
+- [OK] /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-09/automation-cycle.json
+- [OK] /Users/seo/Documents/Playground/EcoReport/knowledge/daily/2026-04-09-automation-cycle.md

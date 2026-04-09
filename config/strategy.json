@@ -63,5 +63,68 @@
     "wti_low": 70,
     "stock_daily_drop": -0.08,
     "cash_floor_pct": 0.1
+  },
+  "scoring": {
+    "weightProfile": "balanced",
+    "factorModel": {
+      "winsorZ": 3.5,
+      "scoreScale": 14,
+      "weights": {
+        "momentum": 0.35,
+        "research": 0.3,
+        "income": 0.15,
+        "macroFit": 0.2
+      }
+    },
+    "holdingBlend": {
+      "enabled": true,
+      "actionWeight": 0.92,
+      "factorWeight": 0.08,
+      "minFactorCoverage": 0.35,
+      "maxAdjustment": 18,
+      "gateMode": "sameSignal",
+      "minFactorDistance": 8
+    },
+    "covarianceModel": {
+      "enabled": true,
+      "shrinkage": 0.35,
+      "lambda": 0.55,
+      "minHistory": 20,
+      "annualization": 252,
+      "ridge": 0.000001
+    },
+    "riskPenaltyCaps": {
+      "concentration": 10,
+      "covariance": 8,
+      "tailRisk": 15,
+      "dataQuality": 10,
+      "regimeStress": 10,
+      "total": 30
+    },
+    "taxAware": {
+      "enabled": true,
+      "alpha": 1.6,
+      "normalTaxRate": 0.154,
+      "minRiskFloor": 0.08,
+      "maxMultiplier": 1.15,
+      "defaultYieldByCategory": {
+        "배당/커버드콜": 0.07,
+        "현금파킹": 0.032,
+        "금": 0,
+        "S&P500": 0.013,
+        "미국인덱스": 0.013,
+        "나스닥100": 0.006,
+        "전력기기": 0.004,
+        "방산": 0.004,
+        "원자력": 0.004,
+        "기타": 0
+      },
+      "accountTaxRates": {
+        "ISA": 0.099,
+        "PENSION": 0.154,
+        "TOSS": 0.154,
+        "KIS_MAIN": 0.154
+      }
+    }
   }
 }

@@ -1,0 +1,191 @@
+{
+  "date": "2026-04-09",
+  "runDate": "2026-04-09",
+  "effectiveMarketDate": "2026-04-09",
+  "runId": "2026-04-09-010030",
+  "resolutionReason": "today",
+  "generatedAt": "2026-04-09T01:11:09.940Z",
+  "overallStatus": "warn",
+  "logFile": "/Users/seo/Documents/Playground/EcoReport/logs/2026-04-09-010030-automation-cycle.log",
+  "systemHealthOverall": "warn",
+  "previousTradingDate": "2026-04-08",
+  "changeSummary": "전일(2026-04-08) 대비, 포트폴리오 점수 64→65, 레짐 SIDEWAYS 유지, 리포트 100→0건, 신규 포커스 KODEX 골드선물(H)·TIGER 미국배당다우존스스타데일리커..., 제외 TIGER 미국배당다우존스타겟커버드콜2호·PLUS K방산",
+  "steps": [
+    {
+      "id": "baseline_daily_system",
+      "label": "Baseline Daily System",
+      "status": "ok",
+      "soft": false,
+      "commandLine": "bash scripts/run-daily-system.sh --date 2026-04-09 --run-date 2026-04-09 --effective-market-date 2026-04-09 --run-id 2026-04-09-010030 --gemini-stage2 --skip-push --skip-verify --skip-strategy --skip-wiki --no-gemini-briefing",
+      "startedAt": "2026-04-09T01:00:30.624Z",
+      "endedAt": "2026-04-09T01:11:07.970Z",
+      "durationMs": 637346,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "🧠 Gemini 브리핑 스킵 (API 키 없음 또는 --no-gemini-briefing)\n🧭 전략 파이프라인 건너뜀 (--skip-strategy)\n📚 LLM Wiki 단계 건너뜀 (--skip-wiki)\n📤 GitHub 동기화 건너뜀 (--skip-push)\n🩺 시스템 검증 건너뜀 (--skip-verify)\n==================================================\n✅ EcoReport Daily System 종료 (run: 2026-04-09 / effective: 2026-04-09)\n==================================================",
+      "debugHint": null
+    },
+    {
+      "id": "stage1_extracts",
+      "label": "Stage 1 Extracts",
+      "status": "ok",
+      "soft": false,
+      "commandLine": "node scripts/build-stage1-report-extracts.js --date 2026-04-09 --run-date 2026-04-09 --effective-market-date 2026-04-09 --run-id 2026-04-09-010030",
+      "startedAt": "2026-04-09T01:11:07.970Z",
+      "endedAt": "2026-04-09T01:11:08.030Z",
+      "durationMs": 60,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-09/stage1-report-extracts-v2.json",
+      "debugHint": null
+    },
+    {
+      "id": "deep_research_web",
+      "label": "Gemini Deep Research Web",
+      "status": "warn",
+      "soft": true,
+      "commandLine": "npm run stage1.5:gemini:run -- --date 2026-04-09 --poll-sec 30 --timeout-sec 1800",
+      "startedAt": "2026-04-09T01:11:08.031Z",
+      "endedAt": "2026-04-09T01:11:08.284Z",
+      "durationMs": 253,
+      "exitCode": 1,
+      "errorMessage": "Gemini Deep Research Web 실패 (exit 1)",
+      "outputTail": "> ecoreport@1.0.0 stage1.5:gemini:run\n> node scripts/run-gemini-deep-research-web.js --date 2026-04-09 --poll-sec 30 --timeout-sec 1800\nrun-gemini-deep-research-web 실패: Command failed: node /Users/seo/Documents/Playground/EcoReport/scripts/build-stage1-5-gemini-deep-research-prompt.js --date 2026-04-09",
+      "debugHint": "Safari가 잠겨 있지 않은지, Gemini 로그인 상태인지, Deep Research 도구가 노출되는지 확인하세요."
+    },
+    {
+      "id": "rich_briefing_overlay",
+      "label": "Stage 1.6 Rich Briefing Overlay",
+      "status": "skipped",
+      "soft": true,
+      "commandLine": "npm run stage1.6:briefing -- --date 2026-04-09 --run-date 2026-04-09 --effective-market-date 2026-04-09",
+      "startedAt": "2026-04-09T01:11:08.284Z",
+      "endedAt": "2026-04-09T01:11:08.284Z",
+      "durationMs": 0,
+      "exitCode": null,
+      "errorMessage": null,
+      "outputTail": "",
+      "debugHint": null
+    },
+    {
+      "id": "strategy_refresh",
+      "label": "Strategy Refresh After Deep Research",
+      "status": "ok",
+      "soft": true,
+      "commandLine": "bash scripts/run-strategy-pipeline.sh --date 2026-04-09 --run-date 2026-04-09 --effective-market-date 2026-04-09 --run-id 2026-04-09-010030 --gemini-stage2",
+      "startedAt": "2026-04-09T01:11:08.284Z",
+      "endedAt": "2026-04-09T01:11:09.249Z",
+      "durationMs": 965,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "data/analysis-state/2026-04-09/stage2-strategy-options.json\n== Stage 2.5: impact map ==\n/Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-09/impact-map.json\n== Stage 3: quant scores ==\n/Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-09/stage3-quant-scores.json\n== Stage 4: execution plan ==\n/Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-09/stage4-execution-plan.json\nDone.",
+      "debugHint": null
+    },
+    {
+      "id": "wiki_rebuild",
+      "label": "LLM Wiki Rebuild",
+      "status": "ok",
+      "soft": true,
+      "commandLine": "node scripts/build-llm-wiki.js --date 2026-04-09 --run-date 2026-04-09 --effective-market-date 2026-04-09 --run-id 2026-04-09-010030",
+      "startedAt": "2026-04-09T01:11:09.249Z",
+      "endedAt": "2026-04-09T01:11:09.319Z",
+      "durationMs": 70,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/Documents/Playground/EcoReport/knowledge/wiki",
+      "debugHint": null
+    },
+    {
+      "id": "wiki_publish",
+      "label": "LLM Wiki Publish",
+      "status": "warn",
+      "soft": true,
+      "commandLine": "node scripts/publish-llm-wiki-to-vault.js",
+      "startedAt": "2026-04-09T01:11:09.319Z",
+      "endedAt": "2026-04-09T01:11:09.367Z",
+      "durationMs": 48,
+      "exitCode": 1,
+      "errorMessage": "LLM Wiki Publish 실패 (exit 1)",
+      "outputTail": "EPERM: operation not permitted, copyfile '/Users/seo/Documents/Playground/EcoReport/knowledge/wiki/AGENTS.md' -> '/Users/seo/my-wiki/wiki/ecoreport/AGENTS.md'",
+      "debugHint": "knowledge/wiki 생성 권한과 Obsidian vault 경로를 확인하세요."
+    },
+    {
+      "id": "verify_outputs",
+      "label": "Verify Outputs",
+      "status": "ok",
+      "soft": true,
+      "commandLine": "node scripts/verify-daily-system.js --date 2026-04-09 --run-date 2026-04-09 --effective-market-date 2026-04-09 --run-id 2026-04-09-010030",
+      "startedAt": "2026-04-09T01:11:09.367Z",
+      "endedAt": "2026-04-09T01:11:09.429Z",
+      "durationMs": 62,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-09/system-health.json",
+      "debugHint": null
+    },
+    {
+      "id": "push_data_branch",
+      "label": "Push Data Branch",
+      "status": "warn",
+      "soft": true,
+      "commandLine": "bash scripts/push-to-github.sh 2026-04-09",
+      "startedAt": "2026-04-09T01:11:09.438Z",
+      "endedAt": "2026-04-09T01:11:09.940Z",
+      "durationMs": 502,
+      "exitCode": 128,
+      "errorMessage": "Push Data Branch 실패 (exit 128)",
+      "outputTail": "+ knowledge/daily/manual-kit/2026-04-09/07-stage1-5-gemini-deep-research-prompt.md\n  + knowledge/daily/manual-kit/2026-04-09/08-stage2-strategy-prompt.md\n  + knowledge/rag/2026-04-09/parallel-manifest.json\n  + knowledge/rag/2026-04-09/parallel-corpus.md\n  + reports/daily/2026-04-09-briefing.md\n  + reports/daily/2026-04-09-stage4-execution-plan.md\n  + config/strategy.json\nfatal: unable to access 'https://github.com/sgdrudejr/EcoReport.git/': Could not resolve host: github.com",
+      "debugHint": "Git 인증과 origin/data 브랜치 push 권한을 확인하세요."
+    }
+  ],
+  "artifacts": {
+    "logFile": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/logs/2026-04-09-010030-automation-cycle.log",
+      "exists": true
+    },
+    "stage1": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-09/stage1-report-extracts-v2.json",
+      "exists": true
+    },
+    "deepResearchPrompt": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-09/07-stage1-5-gemini-deep-research-prompt.md",
+      "exists": true
+    },
+    "deepResearchResponse": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-09/09-stage1-5-gemini-deep-research-response.md",
+      "exists": false
+    },
+    "finalResearchBriefing": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/knowledge/daily/2026-04-09-gemini-briefing-rich.md",
+      "exists": false
+    },
+    "stage2": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-09/stage2-strategy-options.json",
+      "exists": true
+    },
+    "stage4": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-09/stage4-execution-plan.json",
+      "exists": true
+    },
+    "dailyBriefing": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/reports/daily/2026-04-09-briefing.md",
+      "exists": true
+    },
+    "wikiDaily": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/knowledge/wiki/daily/2026-04-09.md",
+      "exists": true
+    },
+    "systemHealth": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-09/system-health.json",
+      "exists": true
+    },
+    "automationJson": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-09/automation-cycle.json",
+      "exists": true
+    },
+    "automationMarkdown": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/knowledge/daily/2026-04-09-automation-cycle.md",
+      "exists": true
+    }
+  }
+}
