@@ -96,6 +96,15 @@ function resolveOutputPath(args) {
 }
 
 function resolveDebugPath(args) {
+  if (args.output) {
+    const outputPath = resolveOutputPath(args);
+    const ext = path.extname(outputPath);
+    if (ext) {
+      return outputPath.replace(new RegExp(`${ext}$`), "-debug.json");
+    }
+    return `${outputPath}-debug.json`;
+  }
+
   return path.join(
     ROOT_DIR,
     "knowledge",
@@ -327,15 +336,19 @@ function buildSnapshotJs({ profile = "full" } = {}) {
       }
       return kept.map((item) => item.slice(0, TEXT_BLOCK_LENGTH_LIMIT));
     };
-    const buttons = Array.from(document.querySelectorAll('button')).map((button, index) => ({
-      const rect = button.getBoundingClientRect();
-      const style = getComputedStyle(button);
-      index,
-      text: (button.textContent || '').trim().replace(/\\s+/g, ' ').slice(0, 240),
-      aria: button.getAttribute('aria-label') || '',
-      disabled: Boolean(button.disabled),
-      visible: Boolean(rect.width > 0 && rect.height > 0 && style.visibility !== 'hidden' && style.display !== 'none'),
-    })).filter((item) => item.text || item.aria);
+    const buttons = Array.from(document.querySelectorAll('button'))
+      .map((button, index) => {
+        const rect = button.getBoundingClientRect();
+        const style = getComputedStyle(button);
+        return {
+          index,
+          text: (button.textContent || '').trim().replace(/\\s+/g, ' ').slice(0, 240),
+          aria: button.getAttribute('aria-label') || '',
+          disabled: Boolean(button.disabled),
+          visible: Boolean(rect.width > 0 && rect.height > 0 && style.visibility !== 'hidden' && style.display !== 'none'),
+        };
+      })
+      .filter((item) => item.text || item.aria);
 
     const selectorCandidates = [
       'message-content',
@@ -474,6 +487,13 @@ function looksLikeInvalidSavedOutput(text, promptPreview) {
   const normalizedText = normalizeComparableText(text);
   if (!normalizedText) return true;
   if (isPromptEcho(normalizedText, promptPreview)) return true;
+  if (
+    normalizedText.includes("익준님, 안녕하세요") ||
+    normalizedText.includes("무엇을 도와드릴까요?") ||
+    (normalizedText.includes("Gemini와의 대화") && normalizedText.includes("이미지 만들기"))
+  ) {
+    return true;
+  }
   if (
     normalizedText.startsWith("Gemini와의 대화") &&
     normalizedText.includes("무엇을 도와드릴까요?")
@@ -908,7 +928,7 @@ async function main() {
     }
 
     const finalResponse = extractFinalResponse(state, planMessage, promptPreview);
-    if (finalResponse) {
+    if (finalResponse && !looksLikeInvalidSavedOutput(finalResponse, promptPreview)) {
       await writeText(outputPath, `${finalResponse}\n`);
       await writeDebugSnapshot(debugPath, {
         savedAt: new Date().toISOString(),
@@ -967,7 +987,7 @@ async function main() {
   }
 
   const recoveredResponse = extractBestEffortResponse(lastState, planMessage, promptPreview);
-  if (recoveredResponse) {
+  if (recoveredResponse && !looksLikeInvalidSavedOutput(recoveredResponse, promptPreview)) {
     await writeText(outputPath, `${recoveredResponse}\n`);
     await writeDebugSnapshot(debugPath, {
       savedAt: new Date().toISOString(),

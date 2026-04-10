@@ -1,12 +1,12 @@
 ---
 title: EcoReport LLM Wiki Overview
 type: overview
-updated: 2026-04-09
-source_date: 2026-04-09
-run_date: 2026-04-09
-effective_market_date: 2026-04-09
-run_id: 2026-04-09-032037
-generated_at: 2026-04-09T03:23:16.066Z
+updated: 2026-04-10
+source_date: 2026-04-10
+run_date: 2026-04-10
+effective_market_date: 2026-04-10
+run_id: 2026-04-10-1905-retry
+generated_at: 2026-04-10T10:15:16.205Z
 ---
 
 # EcoReport LLM Wiki
@@ -34,11 +34,13 @@ generated_at: 2026-04-09T03:23:16.066Z
 - `daily/`: 날짜별 의사결정 로그
 - `accounts/`: 계좌별 플레이북
 - `securities/`: 종목/ETF thesis 페이지
+- `memory/`: 운영 규칙, 리서치 백로그, 의사결정 저널
 - `index.md`: 위키 카탈로그
 - `log.md`: 위키 업데이트 이력
 
 ## Recent Daily Pages
 
+- [2026-04-10](daily/2026-04-10.md)
 - [2026-04-09](daily/2026-04-09.md)
 - [2026-04-08](daily/2026-04-08.md)
 - [2026-04-07](daily/2026-04-07.md)

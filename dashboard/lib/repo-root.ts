@@ -2,11 +2,16 @@ import fs from "fs";
 import path from "path";
 
 function isRepoRoot(candidate: string) {
-  return (
-    fs.existsSync(path.join(candidate, "dashboard")) &&
+  const hasSharedArtifacts =
     fs.existsSync(path.join(candidate, "config")) &&
-    fs.existsSync(path.join(candidate, "data"))
-  );
+    fs.existsSync(path.join(candidate, "data"));
+
+  const hasMonorepoLayout = fs.existsSync(path.join(candidate, "dashboard"));
+  const hasFlattenedAppLayout =
+    fs.existsSync(path.join(candidate, "app")) &&
+    fs.existsSync(path.join(candidate, "package.json"));
+
+  return hasSharedArtifacts && (hasMonorepoLayout || hasFlattenedAppLayout);
 }
 
 export function resolveRepoRoot() {
@@ -24,4 +29,3 @@ export function resolveRepoRoot() {
 
   return path.resolve(process.cwd(), "..");
 }
-

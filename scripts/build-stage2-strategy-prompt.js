@@ -13,6 +13,7 @@ import {
   writeText,
   won,
 } from "./lib/pipeline-utils.js";
+import { allRefinementArtifactPaths } from "./lib/refinement-rounds.js";
 
 function summarizeAccounts(portfolio) {
   return (portfolio?.accounts ?? [])
@@ -58,6 +59,50 @@ function buildTechnicalSubset(portfolio, technical, watchlist) {
     .slice(0, 24);
 }
 
+function summarizeRefinementMaps(refinementMaps) {
+  return refinementMaps.flatMap((entry) =>
+    (entry?.map?.topics ?? []).slice(0, entry.round >= 3 ? 4 : 6).map((topic) => ({
+      round: entry.round,
+      label: entry.label,
+      topic: topic.label,
+      scope: topic.scope,
+      reason: topic.reason,
+      accountKeys: topic.accountKeys ?? [],
+      keywords: (topic.keywords ?? []).slice(0, 8),
+      questions: (topic.questions ?? []).slice(0, 3),
+      gaps: topic.gaps ?? [],
+    })),
+  );
+}
+
+function summarizeRules(text) {
+  return String(text ?? "")
+    .split("\n")
+    .filter((line) => /^[-*]\s+/.test(line.trim()))
+    .map((line) => line.replace(/^[-*]\s*/, "").trim())
+    .filter(Boolean)
+    .filter((line) => !/^(---|title:|type:|updated:|source_date:|run_date:|effective_market_date:|run_id:|generated_at:)/i.test(line))
+    .filter((line) => line.length <= 140)
+    .slice(0, 8);
+}
+
+function summarizeDecisionMemory(text) {
+  const lines = String(text ?? "")
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .filter((line) => /^## \[\d{4}-\d{2}-\d{2}\]/.test(line) || /^- /.test(line));
+
+  return lines.slice(0, 16).join("\n");
+}
+
+function summarizeRefinementResponses(refinementResponses) {
+  return refinementResponses
+    .filter((entry) => entry.text)
+    .map((entry) => `## Round ${entry.round} · ${entry.label}\n${truncate(entry.text, 2400)}`)
+    .join("\n\n");
+}
+
 async function main() {
   const args = parseDateArgs(process.argv.slice(2));
   const stateDir = path.join(ROOT_DIR, "data", "analysis-state", args.date);
@@ -65,16 +110,31 @@ async function main() {
   const portfolioPath = path.join(ROOT_DIR, "data", "portfolio", "latest.json");
   const technicalPath = path.join(ROOT_DIR, "data", "technical", `${args.date}.json`);
   const richBriefingPath = path.join(ROOT_DIR, "knowledge", "daily", `${args.date}-gemini-briefing-rich.md`);
+  const refinementArtifacts = allRefinementArtifactPaths({ date: args.date });
+  const operatingRulesPath = path.join(ROOT_DIR, "knowledge", "wiki", "memory", "operating-rules.md");
+  const decisionJournalPath = path.join(ROOT_DIR, "knowledge", "wiki", "memory", "decision-journal.md");
   const outputPath =
     args.output ??
     path.join(ROOT_DIR, "knowledge", "daily", "manual-kit", args.date, "08-stage2-strategy-prompt.md");
 
-  const [stage1, portfolio, technical, briefing, watchlist] = await Promise.all([
+  const [stage1, portfolio, technical, briefing, refinementMapsRaw, refinementResponsesRaw, watchlist, operatingRules, decisionJournal] = await Promise.all([
     readJson(stage1Path, { extracts: [] }),
     readJson(portfolioPath, { accounts: [] }),
     readJson(technicalPath, { market_context: {}, scores: {} }),
     readText(richBriefingPath, ""),
+    Promise.all(refinementArtifacts.map(async (artifact) => ({
+      round: artifact.spec.round,
+      label: artifact.spec.label,
+      map: await readJson(artifact.mapJson, null),
+    }))),
+    Promise.all(refinementArtifacts.map(async (artifact) => ({
+      round: artifact.spec.round,
+      label: artifact.spec.label,
+      text: await readText(artifact.response, ""),
+    }))),
     readJson(path.join(ROOT_DIR, "config", "watchlist.json"), {}),
+    readText(operatingRulesPath, ""),
+    readText(decisionJournalPath, ""),
   ]);
 
   const directExtracts = stage1.extracts
@@ -83,6 +143,14 @@ async function main() {
   const macroExtracts = stage1.extracts.filter((item) => item.report_type === "macro").slice(0, 5);
   const technicalSubset = buildTechnicalSubset(portfolio, technical, watchlist);
   const briefingSummary = truncate(briefing, 5000);
+  const refinementMaps = refinementMapsRaw.filter((entry) => entry.map);
+  const refinementResponses = refinementResponsesRaw
+    .map((entry) => ({ ...entry, text: String(entry.text ?? "").trim() }))
+    .filter((entry) => entry.text);
+  const followUpResearchSummary = JSON.stringify(summarizeRefinementMaps(refinementMaps), null, 2);
+  const followUpDeepResearchSummary = summarizeRefinementResponses(refinementResponses);
+  const operatingRuleSummary = summarizeRules(operatingRules).join("\n");
+  const decisionMemorySummary = summarizeDecisionMemory(decisionJournal);
   const accountKeys = listAccountKeys(portfolio);
   const accountKeyHint = accountKeys.length > 0 ? accountKeys.join("|") : "ACCOUNT_KEY";
 
@@ -100,6 +168,18 @@ async function main() {
     "",
     "## 시장/섹터 브리핑",
     briefingSummary || "- rich briefing 없음",
+    "",
+    "## 다회 refinement 재인덱싱 메모",
+    followUpResearchSummary || "- follow-up research map 없음",
+    "",
+    "## 다회 Deep Research 보강",
+    followUpDeepResearchSummary || "- 2차 Deep Research 응답 없음",
+    "",
+    "## 운영 룰 / 금지사항",
+    operatingRuleSummary || "- 운영 룰 위키 없음",
+    "",
+    "## 최근 의사결정 메모리",
+    decisionMemorySummary || "- 누적 의사결정 메모리 없음",
     "",
     "## 직접 관련 리포트 연구 노트",
     JSON.stringify(directExtracts, null, 2),
@@ -122,6 +202,8 @@ async function main() {
     "문장은 짧게, 각 문자열은 1~2문장 이내로 유지하세요.",
     "strategy_changes는 최대 4개, candidate_scores는 최대 8개까지만 반환하세요.",
     "buy_candidates / trim_candidates / hold_candidates는 각 계좌당 최대 3개까지만 반환하세요.",
+    "refinement map에서 반복 확인이 필요한 토픽은 실제 전략 변화로 연결되는 경우만 반영하고, 근거가 얕으면 watch 또는 보류로 남기세요.",
+    "계좌 역할과 맞지 않는 공격적 제안, 무효화 조건 없는 제안, 메타 표현(stage2 근거 등)은 쓰지 마세요.",
     "",
     JSON.stringify(
       {

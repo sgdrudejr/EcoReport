@@ -102,6 +102,7 @@ type Stage3Account = {
   };
   riskPenalty?: {
     total?: number;
+    notes?: string[];
     breakdown?: RiskPenaltyBreakdown | null;
   };
   taxAdjustment?: {
@@ -272,6 +273,7 @@ export type AccountGuide = {
   improvementActions: string[];
   evidenceNotes: string[];
   actionPoints: string[];
+  riskNotes: string[];
   holdingGuides: HoldingGuide[];
 };
 
@@ -845,8 +847,6 @@ function buildAccountNote(
 
 function buildScoreDrivers(
   account: PortfolioAccount,
-  score: number,
-  allocationScore: number,
   factorScore: number | null,
   technicalScore: number | null,
   reportScore: number | null,
@@ -854,16 +854,11 @@ function buildScoreDrivers(
   reportStatus: "available" | "unavailable",
   reportUnavailableReason: string | null,
   regimeFitScore: number | null,
-  stage2Score: number | null,
   preTaxScore: number | null,
   taxMultiplier: number | null,
-  taxAddedScore: number | null,
-  riskPenaltyTotal: number | null,
   riskPenaltyBreakdown: RiskPenaltyBreakdown | null,
-  effectiveWeights: Record<string, number> | null,
   factorCoverage: number | null,
   techCoverage: number | null,
-  impactCoverage: number | null,
   cashPct: number,
   targetCashPct: number,
   categories: CategoryGuide[],
@@ -871,35 +866,8 @@ function buildScoreDrivers(
   const drivers: string[] = [];
   const cashCategory = categories.find((category) => category.category === "현금파킹");
 
-  const baseScoreParts = [
-    `배분 ${allocationScore}점`,
-    factorScore != null ? `팩터 ${factorScore}점` : null,
-    technicalScore != null ? `기술 ${technicalScore}점` : "기술 데이터 부족",
-    reportScore != null ? `리포트 ${reportScore}점` : null,
-    regimeFitScore != null ? `레짐 적합 ${regimeFitScore}점` : null,
-    stage2Score != null ? `Stage2 ${stage2Score}점` : null,
-  ].filter(Boolean);
-
-  drivers.push(
-    riskPenaltyTotal != null
-      ? `최종 ${score}점은 기본 점수에서 리스크 패널티 ${riskPenaltyTotal}점을 차감${taxAddedScore != null && taxAddedScore > 0 ? `한 뒤 세후 조정 ${taxAddedScore.toFixed(1)}점을 더한 결과` : "한 결과"}입니다. (${baseScoreParts.join(" · ")})`
-      : `최종 ${score}점은 ${baseScoreParts.join(" · ")}를 합산해 계산됩니다.`,
-  );
-
   if (account.incomplete) {
     drivers.push("부분 캡처 계좌라 보유 누락 가능성이 있어 데이터 품질 패널티가 적용됐습니다.");
-  }
-
-  if (effectiveWeights) {
-    const parts = [
-      `배분 ${formatPercent((effectiveWeights.allocation ?? 0) * 100)}`,
-      `팩터 ${formatPercent((effectiveWeights.factor ?? 0) * 100)}`,
-      `기술 ${formatPercent((effectiveWeights.tech ?? 0) * 100)}`,
-      `리포트 ${formatPercent((effectiveWeights.report ?? 0) * 100)}`,
-      `레짐 ${formatPercent((effectiveWeights.regime ?? 0) * 100)}`,
-      `Stage2 ${formatPercent((effectiveWeights.stage2 ?? 0) * 100)}`,
-    ];
-    drivers.push(`현재 데이터 커버리지 기준 반영 비중은 ${parts.join(" / ")} 입니다.`);
   }
 
   if (factorScore != null) {
@@ -1234,7 +1202,6 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
       const stage2Score = stage3Account?.baseScores?.stage2Score ?? null;
       const preTaxScore = stage3Account?.preTaxScore ?? null;
       const taxMultiplier = stage3Account?.taxAdjustment?.multiplier ?? null;
-      const taxAddedScore = stage3Account?.taxAdjustment?.addedScore ?? null;
       const riskPenaltyTotal = stage3Account?.riskPenalty?.total ?? null;
       const riskPenaltyBreakdown = stage3Account?.riskPenalty?.breakdown ?? null;
       const effectiveWeights = stage3Account?.effectiveWeights ?? null;
@@ -1355,8 +1322,6 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
         stage2Bias: stage3Account?.stage2Bias ?? null,
         scoreDrivers: buildScoreDrivers(
           account,
-          score,
-          allocationScore,
           factorScore,
           technicalScore,
           reportScore,
@@ -1364,16 +1329,11 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
           reportStatus,
           reportUnavailableReason,
           regimeFitScore,
-          stage2Score,
           preTaxScore,
           taxMultiplier,
-          taxAddedScore,
-          riskPenaltyTotal,
           riskPenaltyBreakdown,
-          effectiveWeights,
           factorCoverage,
           techCoverage,
-          impactCoverage,
           cashPct,
           targetCashPct,
           categories,
@@ -1393,6 +1353,7 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
         ),
         evidenceNotes,
         actionPoints,
+        riskNotes: stage3Account?.riskPenalty?.notes ?? [],
         holdingGuides,
       };
     })

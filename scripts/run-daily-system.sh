@@ -264,7 +264,7 @@ else
   fi
 
   if [[ "$collect_ready" != "1" ]] || ! recover_same_day_collection; then
-    log "⚠️ same-day 리포트 수집 복구에 실패했습니다. placeholder fallback으로 계속 진행합니다."
+    log "⚠️ same-day 리포트 수집 복구에 실패했습니다. 이전 거래일 리포트 fallback 또는 placeholder로 계속 진행합니다."
     node scripts/ensure-daily-fallbacks.js \
       --date "$DATE" \
       --run-date "$RUN_DATE" \

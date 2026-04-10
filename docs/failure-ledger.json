@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "lastReviewed": "2026-04-09",
+  "entries": [
+    {
+      "id": "impact_map_empty_with_stage1_candidates",
+      "title": "Stage 1 후보가 있는데 impact map이 비어 있음",
+      "status": "open",
+      "severity": "high",
+      "summary": "리포트 후보가 계좌 영향으로 번역되지 않으면 Stage 3/4의 설명력과 정밀도가 급격히 떨어진다.",
+      "validatorCheckId": "impact_map_empty_with_stage1_candidates",
+      "repairPlaybook": "docs/rules/repair-playbooks.md#impact-map-empty",
+      "owners": [
+        "agent",
+        "operator"
+      ],
+      "notes": [
+        "target_code와 포트폴리오 holding code 불일치 확인",
+        "config/securities.json alias / thematic trigger 보강 후보"
+      ]
+    },
+    {
+      "id": "stage2_missing_or_mock",
+      "title": "Stage 2 실제 전략 대신 mock 또는 누락 상태",
+      "status": "open",
+      "severity": "medium",
+      "summary": "구조 점검용으로는 허용되지만 실전 의사결정에서는 mock 여부를 명확히 드러내야 한다.",
+      "validatorCheckId": "stage2_missing_or_mock",
+      "repairPlaybook": "docs/rules/repair-playbooks.md#stage-2-missing-or-mock",
+      "owners": [
+        "agent",
+        "operator"
+      ],
+      "notes": [
+        ".env GEMINI_API_KEY 확인",
+        "실제 Stage 2와 mock 결과를 혼동하지 않기"
+      ]
+    },
+    {
+      "id": "portfolio_snapshot_incomplete",
+      "title": "포트폴리오 snapshot이 불완전하거나 holding code가 누락됨",
+      "status": "open",
+      "severity": "high",
+      "summary": "포트폴리오의 code 누락은 impact-map, stage3, stage4 전체의 연결 품질을 악화시킨다.",
+      "validatorCheckId": "portfolio_snapshot_incomplete",
+      "repairPlaybook": "docs/rules/repair-playbooks.md#portfolio-snapshot-incomplete",
+      "owners": [
+        "operator"
+      ],
+      "notes": [
+        "OCR/수기 보정 단계에서 code 누락 확인",
+        "불완전하면 공격적 액션 대신 데이터 품질 경고 우선"
+      ]
+    },
+    {
+      "id": "stage4_missing_stage1_drivers",
+      "title": "Stage 4 액션은 있는데 Stage 1 근거 드라이버가 비어 있음",
+      "status": "open",
+      "severity": "medium",
+      "summary": "실행 계획이 생성돼도 근거 사슬이 비면 재검증과 사후 회고가 어려워진다.",
+      "validatorCheckId": "stage4_missing_stage1_drivers",
+      "repairPlaybook": "docs/rules/repair-playbooks.md#stage-4-missing-stage-1-drivers",
+      "owners": [
+        "agent"
+      ],
+      "notes": [
+        "stage4-execution-plan.json의 stage1Drivers 연결 확인",
+        "impact-map과 stage3 reportImpacts 매핑 상태 확인"
+      ]
+    }
+  ]
+}

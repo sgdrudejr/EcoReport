@@ -21,8 +21,8 @@ Examples:
   bash scripts/open-chatgpt-web-prompt.sh coach
   bash scripts/open-chatgpt-web-prompt.sh ideas
   bash scripts/open-chatgpt-web-prompt.sh ask "오늘 내 포트폴리오에서 제일 위험한 계좌는 어디야?"
-  bash scripts/open-chatgpt-web-prompt.sh file /Users/seo/Documents/Playground/EcoReport/knowledge/daily/report-prompts/2026-04-03/report_001.md
-  bash scripts/open-chatgpt-web-prompt.sh --no-auto-save file /Users/seo/Documents/Playground/EcoReport/knowledge/daily/report-prompts/2026-04-03/report_001.md
+  bash scripts/open-chatgpt-web-prompt.sh file /Users/seo/stock-pilot/knowledge/daily/report-prompts/2026-04-03/report_001.md
+  bash scripts/open-chatgpt-web-prompt.sh --no-auto-save file /Users/seo/stock-pilot/knowledge/daily/report-prompts/2026-04-03/report_001.md
 EOF
 }
 

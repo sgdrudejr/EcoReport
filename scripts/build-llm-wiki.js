@@ -18,6 +18,7 @@ import {
   won,
   writeText,
 } from "./lib/pipeline-utils.js";
+import { allRefinementArtifactPaths } from "./lib/refinement-rounds.js";
 
 const WIKI_ROOT = path.join(ROOT_DIR, "knowledge", "wiki");
 const ACCOUNT_LABEL_BY_KEY = {
@@ -45,6 +46,73 @@ function cleanSentence(value) {
   const text = compactWhitespace(value ?? "");
   if (!text) return "";
   return /[.!?]|다\.|입니다\.$/.test(text) ? text : `${text}.`;
+}
+
+function uniqueStrings(items) {
+  return [...new Set((items ?? []).map((item) => compactWhitespace(item ?? "")).filter(Boolean))];
+}
+
+function normalizeRuleKey(value) {
+  return compactWhitespace(value ?? "")
+    .toLowerCase()
+    .replace(/[“”"'`]/g, "")
+    .replace(/[(){}\[\].,/:;!?-]/g, " ")
+    .replace(/\s+/g, " ")
+    .replace(/합니다|한다/g, "")
+    .trim();
+}
+
+function uniqueRuleStrings(items) {
+  const seen = new Set();
+  const output = [];
+  for (const item of items ?? []) {
+    const text = compactWhitespace(item ?? "");
+    if (!text) continue;
+    const key = normalizeRuleKey(text);
+    if (!key || seen.has(key)) continue;
+    seen.add(key);
+    output.push(text);
+  }
+  return output;
+}
+
+function looksLikeNoisyDecisionReason(value) {
+  const text = compactWhitespace(value ?? "");
+  if (!text) return true;
+  if (text.length > 220) return true;
+  if (text.includes("...")) return true;
+  if (/Compliance Notice|STOCK DATA|목표주가|컨센서스|영업이익|매출액|분기 실적|적자폭/i.test(text)) return true;
+  const digitCount = (text.match(/\d/g) ?? []).length;
+  if (digitCount >= 20) return true;
+  return false;
+}
+
+function summarizeDecisionReason({ rawReason, plan, item, bucket }) {
+  const cleaned = cleanSentence(rawReason);
+  if (!looksLikeNoisyDecisionReason(cleaned)) {
+    return cleaned.length > 160 ? `${cleaned.slice(0, 160)}...` : cleaned;
+  }
+
+  const name = item?.name ?? "해당 자산";
+  const accountLabel = plan?.label ?? ACCOUNT_LABEL_BY_KEY[normalizeAccountKey(plan?.key)] ?? "해당";
+  const category = plan?.topGap?.category ? `${plan.topGap.category} ` : "";
+
+  if (bucket === "stagedBuys") {
+    return `${name}은 ${accountLabel} 계좌에서 ${category}갭을 보강하기 위한 실행 후보입니다.`;
+  }
+  if (bucket === "trims") {
+    return `${name}은 ${accountLabel} 계좌에서 확대보다 축소 또는 재평가 우선순위가 높습니다.`;
+  }
+  if (bucket === "holds") {
+    return `${name}은 ${accountLabel} 계좌의 기존 보유 자산으로, 유지 이유와 재판단 조건을 계속 추적합니다.`;
+  }
+  if (bucket === "watches") {
+    return `${name}은 ${accountLabel} 계좌에서 아직 관찰 단계이며 직접 근거가 더 필요합니다.`;
+  }
+  if (bucket === "stage2Candidates") {
+    return `${name}은 ${accountLabel} 계좌의 전략 후보이며 실행 전 추가 검증이 필요합니다.`;
+  }
+  return `${name}에 대한 의사결정 근거를 다음 사이클에서 다시 확인해야 합니다.`;
 }
 
 function impactTypeLabel(targetType) {
@@ -83,6 +151,21 @@ function normalizeAccountKey(value) {
 function markdownLink(fromFile, targetFile, label) {
   const relative = path.relative(path.dirname(fromFile), targetFile).split(path.sep).join("/");
   return `[${label}](${relative})`;
+}
+
+async function analysisDates() {
+  const analysisDir = path.join(ROOT_DIR, "data", "analysis-state");
+  try {
+    const entries = await fs.readdir(analysisDir, { withFileTypes: true });
+    return entries
+      .filter((entry) => entry.isDirectory())
+      .map((entry) => entry.name)
+      .filter((name) => /^\d{4}-\d{2}-\d{2}$/.test(name))
+      .sort()
+      .reverse();
+  } catch {
+    return [];
+  }
 }
 
 function frontmatter(fields) {
@@ -344,6 +427,217 @@ function buildOpportunityMemo({ security, plans, holdings, stage3Entry }) {
   ];
 }
 
+async function buildDecisionHistoryIndex() {
+  const byCode = new Map();
+  const byAccount = new Map();
+  const all = [];
+  const dates = await analysisDates();
+
+  for (const date of dates) {
+    const [stage1, stage4] = await Promise.all([
+      readJson(path.join(ROOT_DIR, "data", "analysis-state", date, "stage1-report-extracts-v2.json"), {}),
+      readJson(path.join(ROOT_DIR, "data", "analysis-state", date, "stage4-execution-plan.json"), {}),
+    ]);
+
+    for (const plan of stage4?.accountPlans ?? []) {
+      for (const bucket of ["stagedBuys", "trims", "holds", "watches", "stage2Candidates"]) {
+        for (const item of plan?.[bucket] ?? []) {
+          const code = resolveSecurityCodeFromCandidates(item?.code, item?.name);
+          const relatedThemes = (stage1?.extracts ?? [])
+            .filter(
+              (extract) =>
+                (code && extract?.related_holdings_in_my_portfolio?.some((holding) => holding?.code === code)) ||
+                compactWhitespace(extract?.title ?? "").includes(compactWhitespace(item?.name ?? "")),
+            )
+            .flatMap((extract) => extract?.themes ?? []);
+
+          const entry = {
+            date,
+            accountKey: normalizeAccountKey(plan?.key),
+            accountLabel: plan?.label ?? ACCOUNT_LABEL_BY_KEY[normalizeAccountKey(plan?.key)] ?? plan?.key ?? "N/A",
+            action: bucketLabel(bucket),
+            bucket,
+            code: code ?? null,
+            name: item?.name ?? SECURITIES_BY_CODE[code]?.name ?? "Unknown",
+            amount: item?.suggestedAmount ?? null,
+            reason: summarizeDecisionReason({
+              rawReason: item?.reason ?? plan?.macroCommentary?.actionLine ?? "",
+              plan,
+              item,
+              bucket,
+            }),
+            keywords: uniqueStrings([
+              ...(plan?.macroCommentary?.assetFocus ?? []),
+              plan?.topGap?.category,
+              ...relatedThemes,
+            ]).slice(0, 6),
+          };
+
+          all.push(entry);
+
+          if (entry.code) {
+            const codeEntries = byCode.get(entry.code) ?? [];
+            codeEntries.push(entry);
+            byCode.set(entry.code, codeEntries);
+          }
+
+          if (entry.accountKey) {
+            const accountEntries = byAccount.get(entry.accountKey) ?? [];
+            accountEntries.push(entry);
+            byAccount.set(entry.accountKey, accountEntries);
+          }
+        }
+      }
+    }
+  }
+
+  return {
+    byCode,
+    byAccount,
+    all: all.sort((left, right) => right.date.localeCompare(left.date)),
+  };
+}
+
+function formatDecisionEntry(entry) {
+  const amount = typeof entry.amount === "number" ? ` / ${won(entry.amount)}` : "";
+  const keywords = (entry.keywords ?? []).length > 0 ? ` / 키워드: ${(entry.keywords ?? []).join(", ")}` : "";
+  return `- ${entry.date} / ${entry.accountLabel} / ${entry.action} / ${entry.name}${amount}${keywords} / ${entry.reason}`;
+}
+
+async function buildOperatingRulesPage({ runMeta, refinementMaps, memoryDir }) {
+  const file = path.join(memoryDir, "operating-rules.md");
+  const avoidRules = refinementMaps.flatMap((entry) => entry?.map?.lessons?.avoid ?? []);
+  const improveRulesFromMaps = refinementMaps.flatMap((entry) => entry?.map?.lessons?.improve ?? []);
+  const noGoRules = uniqueRuleStrings([
+    "계좌 역할과 맞지 않는 추천을 하지 않는다.",
+    "직접 리포트 근거가 약한 자산을 고확신 매수처럼 포장하지 않는다.",
+    "Morning Letter 표, 수급 수치, boilerplate 문장을 thesis로 오인하지 않는다.",
+    "메타 표현(stage2 근거, 모델상, 시스템상)을 사용자-facing 문구에 노출하지 않는다.",
+    "보유·관망 사유를 말줄임표나 한 줄 결론으로 끝내지 않는다.",
+    "좋은 이야기만 남기지 말고 무효화 조건과 보류 조건을 반드시 같이 남긴다.",
+    ...avoidRules,
+  ]);
+  const improveRules = uniqueRuleStrings([
+    "2차 질문은 전반 브리핑이 아니라 계좌·종목·카테고리별 빈틈 보강용으로 쪼갠다.",
+    "실행 금액이 큰 후보는 follow-up research map에서 별도 트랙으로 재검토한다.",
+    "대시보드 문구는 실제 투자자가 이해할 이유와 체크포인트 중심으로 쓴다.",
+    "3차 질문은 새 아이디어 확장보다 무효화 조건, 대체재, 계좌 번역 정밀화에 집중한다.",
+    ...improveRulesFromMaps,
+  ]);
+
+  const content = [
+    frontmatter(buildPageMeta(runMeta, "EcoReport Operating Rules", "memory")),
+    "# EcoReport Operating Rules",
+    "",
+    "이 페이지는 우리가 반복해서 실패하기 쉬운 지점을 미리 차단하기 위한 운영 규칙입니다.",
+    "",
+    "## 절대 하지 말 것",
+    "",
+    ...noGoRules.map((item) => `- ${item}`),
+    "",
+    "## 계속 개선할 것",
+    "",
+    ...improveRules.map((item) => `- ${item}`),
+    "",
+    "## Why This Exists",
+    "",
+    "- 좋은 분석이 있어도 계좌 역할, 무효화 조건, 근거 두께가 빠지면 실제 자금 배치 품질이 떨어집니다.",
+    "- 이 규칙은 프롬프트, 브리핑, 위키, 대시보드 문구를 한 방향으로 묶기 위해 존재합니다.",
+  ].join("\n");
+
+  await writeText(file, `${content}\n`);
+  return file;
+}
+
+async function buildResearchBacklogPage({ runMeta, refinementMaps, memoryDir }) {
+  const file = path.join(memoryDir, "research-backlog.md");
+  const sections = refinementMaps
+    .filter((entry) => (entry?.map?.topics ?? []).length > 0)
+    .map((entry) => ({
+      round: entry.round,
+      label: entry.label,
+      topics: (entry.map?.topics ?? []).slice(0, entry.round >= 3 ? 6 : 8),
+    }));
+  const content = [
+    frontmatter(buildPageMeta(runMeta, "EcoReport Research Backlog", "memory")),
+    "# EcoReport Research Backlog",
+    "",
+    "오늘 stage를 모두 돌린 뒤에도 다시 확인해야 하는 토픽을 남기는 페이지입니다.",
+    "",
+    "## Carry-Forward Topics",
+    "",
+    ...(sections.length > 0
+      ? sections.flatMap((section) => [
+          `### Round ${section.round} · ${section.label}`,
+          "",
+          ...section.topics.flatMap((topic) => [
+            `#### ${topic.label}`,
+            `- why_now: ${topic.reason}`,
+            `- keywords: ${(topic.keywords ?? []).slice(0, 8).join(" / ")}`,
+            ...((topic.questions ?? []).slice(0, 3).map((item) => `- question: ${item}`)),
+            ...((topic.gaps ?? []).slice(0, 2).map((item) => `- gap: ${item}`)),
+            "",
+          ]),
+        ])
+      : ["- 현재 follow-up backlog 없음."]),
+  ].join("\n");
+
+  await writeText(file, `${content}\n`);
+  return file;
+}
+
+async function buildDecisionJournalPage({ runMeta, decisionHistory, memoryDir }) {
+  const file = path.join(memoryDir, "decision-journal.md");
+  const entries = (decisionHistory?.all ?? []).slice(0, 80);
+  const grouped = new Map();
+
+  for (const entry of entries) {
+    const current = grouped.get(entry.date) ?? [];
+    current.push(entry);
+    grouped.set(entry.date, current);
+  }
+
+  const sections = [];
+  for (const [date, dateEntries] of grouped.entries()) {
+    sections.push(`## [${date}]`);
+    sections.push("");
+    for (const entry of dateEntries.slice(0, 12)) {
+      sections.push(formatDecisionEntry(entry));
+    }
+    sections.push("");
+  }
+
+  const recurring = uniqueStrings(
+    (decisionHistory?.all ?? [])
+      .filter((entry, index, array) => array.findIndex((candidate) => candidate.name === entry.name) !== index)
+      .map((entry) => entry.name),
+  ).slice(0, 8);
+
+  const content = [
+    frontmatter(buildPageMeta(runMeta, "EcoReport Decision Journal", "memory")),
+    "# EcoReport Decision Journal",
+    "",
+    "이 페이지는 실제 체결 내역이 아니라, EcoReport가 날짜별로 어떤 자산을 왜 사거나 줄이라고 했는지 기억하는 저널입니다.",
+    "",
+    "## How To Use",
+    "",
+    "- 같은 종목이 며칠 연속 살아남는지 확인합니다.",
+    "- 어떤 키워드와 서사에서 추천이 나왔는지 복기합니다.",
+    "- 나중에 thesis가 틀렸을 때 어떤 조건을 놓쳤는지 되짚는 근거로 씁니다.",
+    "",
+    "## Recurring Names",
+    "",
+    ...(recurring.length > 0 ? recurring.map((item) => `- ${item}`) : ["- 아직 반복 등장 종목이 많지 않습니다."]),
+    "",
+    "## Recent Entries",
+    "",
+    ...sections,
+  ].join("\n");
+
+  await writeText(file, `${content}\n`);
+  return file;
+}
+
 async function buildOverviewPage({ runMeta, recentDates }) {
   const date = runMeta.date;
   const file = path.join(WIKI_ROOT, "overview.md");
@@ -374,6 +668,7 @@ async function buildOverviewPage({ runMeta, recentDates }) {
     "- `daily/`: 날짜별 의사결정 로그",
     "- `accounts/`: 계좌별 플레이북",
     "- `securities/`: 종목/ETF thesis 페이지",
+    "- `memory/`: 운영 규칙, 리서치 백로그, 의사결정 저널",
     "- `index.md`: 위키 카탈로그",
     "- `log.md`: 위키 업데이트 이력",
     "",
@@ -458,13 +753,19 @@ async function buildDailyPage({ runMeta, portfolio, stage1, stage3, stage4, dail
     `- [Stage 3](../../data/analysis-state/${date}/stage3-quant-scores.json)`,
     `- [Stage 4](../../data/analysis-state/${date}/stage4-execution-plan.json)`,
     `- [Portfolio](../../data/portfolio/latest.json)`,
+    "",
+    "## Memory Links",
+    "",
+    "- [Operating Rules](../memory/operating-rules.md)",
+    "- [Research Backlog](../memory/research-backlog.md)",
+    "- [Decision Journal](../memory/decision-journal.md)",
   ].join("\n");
 
   await writeText(file, `${content}\n`);
   return file;
 }
 
-async function buildAccountPages({ runMeta, portfolio, strategy, stage3, stage4, accountDir }) {
+async function buildAccountPages({ runMeta, portfolio, strategy, stage3, stage4, decisionHistory, accountDir }) {
   const date = runMeta.date;
   const stage3ByCode = stage3HoldingsIndex(stage3);
   const plansByKey = stage4PlansIndex(stage4);
@@ -477,6 +778,7 @@ async function buildAccountPages({ runMeta, portfolio, strategy, stage3, stage4,
     const strategyAccount = loadStrategyAccount(strategy, key);
     const rows = holdingRows(account, stage3ByCode);
     const file = path.join(accountDir, `${slugify(key.toLowerCase())}.md`);
+    const recentMemory = (decisionHistory?.byAccount?.get(key) ?? []).slice(0, 5);
     const holdingsTable = rows.length > 0
       ? [
           "| 종목 | 코드 | 카테고리 | 평가금액 | 수량 | Action Score |",
@@ -523,6 +825,12 @@ async function buildAccountPages({ runMeta, portfolio, strategy, stage3, stage4,
       "",
       ...(candidateLines.length > 0 ? candidateLines : ["- 없음"]),
       "",
+      "## Recent Decision Memory",
+      "",
+      ...(recentMemory.length > 0
+        ? recentMemory.map((entry) => formatDecisionEntry(entry))
+        : ["- 아직 누적 의사결정 메모리가 충분하지 않습니다."]),
+      "",
       "## Money-Making Rule",
       "",
       "- 이 페이지는 단순 현황판이 아니라, 어떤 카테고리 갭을 언제 메워야 복리가 좋아지는지 기억하는 플레이북이어야 합니다.",
@@ -544,6 +852,7 @@ async function buildSecurityPages({
   stage3,
   stage4,
   strategy,
+  decisionHistory,
   securityDir,
 }) {
   const date = runMeta.date;
@@ -603,6 +912,7 @@ async function buildSecurityPages({
       relatedAccounts,
       relatedCategories,
     });
+    const decisionMemory = (decisionHistory?.byCode?.get(code) ?? []).slice(0, 6);
     const file = path.join(securityDir, `${code}-${slugify(security.name)}.md`);
     const opportunityLines = buildOpportunityMemo({
       security,
@@ -656,6 +966,12 @@ async function buildSecurityPages({
       "",
       ...(impactLines.length > 0 ? impactLines : ["- 현재 확정 impact-map 근거 없음"]),
       "",
+      "## Decision Memory",
+      "",
+      ...(decisionMemory.length > 0
+        ? decisionMemory.map((entry) => formatDecisionEntry(entry))
+        : ["- 아직 누적 의사결정 메모리가 충분하지 않습니다."]),
+      "",
       "## Next Review Trigger",
       "",
       "- 다음 일일 러너에서 이 종목이 `stagedBuys`에 남는지 확인합니다.",
@@ -670,7 +986,7 @@ async function buildSecurityPages({
   return files;
 }
 
-async function buildIndexPage({ overviewFile, dailyFile, accountFiles, securityFiles }) {
+async function buildIndexPage({ overviewFile, dailyFile, accountFiles, securityFiles, memoryFiles }) {
   const file = path.join(WIKI_ROOT, "index.md");
   const accountLinks = await Promise.all(
     accountFiles.map(async (item) => {
@@ -686,6 +1002,12 @@ async function buildIndexPage({ overviewFile, dailyFile, accountFiles, securityF
         const title = await pageTitle(item, path.basename(item, ".md"));
         return `- ${markdownLink(file, item, title)}`;
       }),
+  );
+  const memoryLinks = await Promise.all(
+    (memoryFiles ?? []).map(async (item) => {
+      const title = await pageTitle(item, path.basename(item, ".md"));
+      return `- ${markdownLink(file, item, title)}`;
+    }),
   );
   const content = [
     "# EcoReport Wiki Index",
@@ -707,6 +1029,10 @@ async function buildIndexPage({ overviewFile, dailyFile, accountFiles, securityF
     "## Securities",
     "",
     ...securityLinks,
+    "",
+    "## Memory",
+    "",
+    ...memoryLinks,
   ].join("\n");
 
   await writeText(file, `${content}\n`);
@@ -728,6 +1054,7 @@ async function updateLog(date) {
     "- Built daily decision memo from Stage 1~4 outputs.",
     "- Refreshed account playbooks from portfolio, strategy, and execution plan.",
     "- Refreshed security thesis pages for holdings and active candidates.",
+    "- Refreshed operating rules, research backlog, and decision journal memory pages.",
     "",
   ].join("\n");
 
@@ -739,12 +1066,14 @@ async function ensureWikiDirs() {
   await fs.mkdir(path.join(WIKI_ROOT, "daily"), { recursive: true });
   await fs.mkdir(path.join(WIKI_ROOT, "accounts"), { recursive: true });
   await fs.mkdir(path.join(WIKI_ROOT, "securities"), { recursive: true });
+  await fs.mkdir(path.join(WIKI_ROOT, "memory"), { recursive: true });
 }
 
 async function main() {
   const args = parseDateArgs(process.argv.slice(2));
   const runMeta = buildRunMetadata(args);
   const date = runMeta.date;
+  const refinementArtifacts = allRefinementArtifactPaths({ date });
 
   const portfolioRaw = await readJson(path.join(ROOT_DIR, "data", "portfolio", "latest.json"), {});
   const portfolio = enrichPortfolioWithSecurityCodes(portfolioRaw);
@@ -753,22 +1082,37 @@ async function main() {
   const impactMap = await readJson(path.join(ROOT_DIR, "data", "analysis-state", date, "impact-map.json"), {});
   const stage3 = await readJson(path.join(ROOT_DIR, "data", "analysis-state", date, "stage3-quant-scores.json"), {});
   const stage4 = await readJson(path.join(ROOT_DIR, "data", "analysis-state", date, "stage4-execution-plan.json"), {});
+  const refinementMaps = (
+    await Promise.all(
+      refinementArtifacts.map(async (artifact) => ({
+        round: artifact.spec.round,
+        label: artifact.spec.label,
+        map: await readJson(artifact.mapJson, null),
+      })),
+    )
+  ).filter((entry) => entry.map);
 
   if (!stage4 || Object.keys(stage4).length === 0) {
     throw new Error(`Missing Stage 4 execution plan for ${date}`);
   }
 
   await ensureWikiDirs();
+  const decisionHistory = await buildDecisionHistoryIndex();
+  const memoryDir = path.join(WIKI_ROOT, "memory");
   const dailyPagesDir = path.join(WIKI_ROOT, "daily");
   const dailyFile = await buildDailyPage({ runMeta, portfolio, stage1, stage3, stage4, dailyPagesDir });
   const recentDates = await existingDates(dailyPagesDir);
   const overviewFile = await buildOverviewPage({ runMeta, recentDates });
+  const operatingRulesFile = await buildOperatingRulesPage({ runMeta, refinementMaps, memoryDir });
+  const researchBacklogFile = await buildResearchBacklogPage({ runMeta, refinementMaps, memoryDir });
+  const decisionJournalFile = await buildDecisionJournalPage({ runMeta, decisionHistory, memoryDir });
   const accountFiles = await buildAccountPages({
     runMeta,
     portfolio,
     strategy,
     stage3,
     stage4,
+    decisionHistory,
     accountDir: path.join(WIKI_ROOT, "accounts"),
   });
   const securityFiles = await buildSecurityPages({
@@ -779,9 +1123,16 @@ async function main() {
     stage3,
     stage4,
     strategy,
+    decisionHistory,
     securityDir: path.join(WIKI_ROOT, "securities"),
   });
-  await buildIndexPage({ overviewFile, dailyFile, accountFiles, securityFiles });
+  await buildIndexPage({
+    overviewFile,
+    dailyFile,
+    accountFiles,
+    securityFiles,
+    memoryFiles: [operatingRulesFile, researchBacklogFile, decisionJournalFile],
+  });
   await updateLog(date);
 
   console.log(WIKI_ROOT);

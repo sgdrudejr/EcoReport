@@ -8,8 +8,10 @@
 
 :root {
   color-scheme: light;
-  --page-base: #ffffff;
-  --page-subtle: #f8fafc;
+  --desktop-nav-offset: 5.25rem;
+  --account-tabs-gap: 0.25rem;
+  --page-base: #f4f5f7;
+  --page-subtle: #fafbfc;
   --surface-panel: rgba(255, 255, 255, 0.98);
   --surface-soft: rgba(255, 255, 255, 0.94);
   --surface-tint: rgba(248, 250, 252, 0.96);
@@ -25,9 +27,9 @@ html {
 
 body {
   background:
-    radial-gradient(circle at top, rgba(59, 130, 246, 0.05), transparent 24%),
-    radial-gradient(circle at 88% 6%, rgba(125, 211, 252, 0.07), transparent 16%),
-    linear-gradient(180deg, #ffffff 0%, #fcfdff 42%, #f7faff 100%);
+    radial-gradient(circle at top, rgba(148, 163, 184, 0.08), transparent 24%),
+    radial-gradient(circle at 88% 6%, rgba(226, 232, 240, 0.7), transparent 18%),
+    linear-gradient(180deg, #f6f7f8 0%, #f8f9fb 40%, #f3f5f7 100%);
 }
 
 ::selection {

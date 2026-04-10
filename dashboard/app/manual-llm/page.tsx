@@ -73,7 +73,7 @@ function loadSynthesisSection(): PromptSection {
     targetPath: toRepoRelative(targetFile),
     initialContent: readTextIfExists(targetFile),
     commandHint:
-      "bash /Users/seo/Documents/Playground/EcoReport/scripts/open-chatgpt-web-prompt.sh synthesis",
+      "bash /Users/seo/stock-pilot/scripts/open-chatgpt-web-prompt.sh synthesis",
   };
 }
 
@@ -94,7 +94,7 @@ function loadAdvisorySection(): PromptSection {
     targetPath: toRepoRelative(targetFile),
     initialContent: readTextIfExists(targetFile),
     commandHint:
-      "bash /Users/seo/Documents/Playground/EcoReport/scripts/open-chatgpt-web-prompt.sh advisory",
+      "bash /Users/seo/stock-pilot/scripts/open-chatgpt-web-prompt.sh advisory",
   };
 }
 

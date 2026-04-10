@@ -28,14 +28,14 @@
 가장 권장하는 방식은 아래 한 줄입니다.
 
 ```bash
-cd /Users/seo/Documents/Playground/EcoReport
+cd /Users/seo/stock-pilot
 bash scripts/run-daily-system.sh --date YYYY-MM-DD
 ```
 
 Gemini Deep Research까지 포함한 무인 자동 실행은 아래 러너를 사용합니다.
 
 ```bash
-cd /Users/seo/Documents/Playground/EcoReport
+cd /Users/seo/stock-pilot
 npm run automation:daily -- --date YYYY-MM-DD
 ```
 
@@ -53,9 +53,12 @@ npm run automation:daily -- --date YYYY-MM-DD
 자동 실행 러너는 여기에 더해 아래를 수행합니다.
 
 9. Gemini Deep Research 웹 실행
-10. Stage 1.6 최종 rich briefing 생성
-11. Stage 2~4 재계산
-12. 실패/경고 요약을 `automation-cycle` JSON/Markdown으로 저장
+10. 1차 합성 기준 Stage 2~4 재계산 + 위키 메모리 갱신
+11. 2차 재인덱싱 / 2차 Deep Research / rich briefing 재합성
+12. 2차 합성 기준 Stage 2~4 재계산 + 위키 메모리 재갱신
+13. 3차 세부화 / 3차 Deep Research / 최종 rich briefing 재합성
+14. 최종 Stage 2~4 재계산 + 위키 메모리 최종 갱신
+15. 실패/경고 요약을 `automation-cycle` JSON/Markdown으로 저장
 
 전제 조건:
 
@@ -72,7 +75,7 @@ npm run automation:daily -- --date YYYY-MM-DD
 ### 2. 리포트 수집 + 전문 텍스트화
 
 ```bash
-cd /Users/seo/Documents/Playground/EcoReport
+cd /Users/seo/stock-pilot
 bash scripts/collect-report-assets.sh --date YYYY-MM-DD
 ```
 
@@ -86,7 +89,7 @@ bash scripts/collect-report-assets.sh --date YYYY-MM-DD
 ### 3. 필요시 RAG 코퍼스 재생성
 
 ```bash
-cd /Users/seo/Documents/Playground/EcoReport
+cd /Users/seo/stock-pilot
 node scripts/build-report-rag-corpus.js --date YYYY-MM-DD
 node scripts/build-portfolio-rag-corpus.js --date YYYY-MM-DD
 node scripts/build-parallel-rag-corpus.js --date YYYY-MM-DD
@@ -95,14 +98,14 @@ node scripts/build-parallel-rag-corpus.js --date YYYY-MM-DD
 ### 4. Stage 1~4 파이프라인 실행
 
 ```bash
-cd /Users/seo/Documents/Playground/EcoReport
+cd /Users/seo/stock-pilot
 bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD
 ```
 
 Gemini Stage 2를 실제로 붙이고 싶으면:
 
 ```bash
-cd /Users/seo/Documents/Playground/EcoReport
+cd /Users/seo/stock-pilot
 bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD --gemini-stage2
 ```
 
@@ -121,9 +124,21 @@ bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD --gemini-stage2
 Gemini 웹 리서치를 끼워 넣고 싶을 때는 아래 순서로 실행합니다.
 
 ```bash
-cd /Users/seo/Documents/Playground/EcoReport
+cd /Users/seo/stock-pilot
 npm run stage1.5:prompt -- --date YYYY-MM-DD
 npm run stage1.5:gemini:run -- --date YYYY-MM-DD --poll-sec 30 --timeout-sec 1800
+npm run stage1.6:briefing -- --date YYYY-MM-DD --run-date YYYY-MM-DD --effective-market-date YYYY-MM-DD
+bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD --run-date YYYY-MM-DD --effective-market-date YYYY-MM-DD --gemini-stage2
+node scripts/build-llm-wiki.js --date YYYY-MM-DD
+npm run stage1.7:map -- --date YYYY-MM-DD
+npm run stage1.7:prompt -- --date YYYY-MM-DD
+# Gemini 웹에 12-stage1-7... 프롬프트 실행 후 13-stage1-7... 응답 저장
+npm run stage1.6:briefing -- --date YYYY-MM-DD --run-date YYYY-MM-DD --effective-market-date YYYY-MM-DD
+bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD --run-date YYYY-MM-DD --effective-market-date YYYY-MM-DD --gemini-stage2
+node scripts/build-llm-wiki.js --date YYYY-MM-DD
+npm run stage1.8:map -- --date YYYY-MM-DD
+npm run stage1.8:prompt -- --date YYYY-MM-DD
+# Gemini 웹에 15-stage1-8... 프롬프트 실행 후 16-stage1-8... 응답 저장
 npm run stage1.6:briefing -- --date YYYY-MM-DD --run-date YYYY-MM-DD --effective-market-date YYYY-MM-DD
 bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD --run-date YYYY-MM-DD --effective-market-date YYYY-MM-DD --gemini-stage2
 ```
@@ -132,6 +147,12 @@ bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD --run-date YYYY-MM-DD --
 
 - `knowledge/daily/manual-kit/YYYY-MM-DD/07-stage1-5-gemini-deep-research-prompt.md`
 - `knowledge/daily/manual-kit/YYYY-MM-DD/09-stage1-5-gemini-deep-research-response.md`
+- `knowledge/daily/manual-kit/YYYY-MM-DD/11-stage1-7-followup-research-map.md`
+- `knowledge/daily/manual-kit/YYYY-MM-DD/12-stage1-7-gemini-follow-up-prompt.md`
+- `knowledge/daily/manual-kit/YYYY-MM-DD/13-stage1-7-gemini-follow-up-response.md`
+- `knowledge/daily/manual-kit/YYYY-MM-DD/14-stage1-8-final-refinement-map.md`
+- `knowledge/daily/manual-kit/YYYY-MM-DD/15-stage1-8-gemini-final-refinement-prompt.md`
+- `knowledge/daily/manual-kit/YYYY-MM-DD/16-stage1-8-gemini-final-refinement-response.md`
 - `knowledge/daily/YYYY-MM-DD-gemini-briefing-rich.md`
 - `data/analysis-state/YYYY-MM-DD/stage2-strategy-options.json`
 - `reports/daily/YYYY-MM-DD-briefing.md`
@@ -139,12 +160,13 @@ bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD --run-date YYYY-MM-DD --
 의도:
 
 - Stage 1 fact anchor를 유지한 채 Gemini Deep Research의 반박 시나리오, 대안 자산, 촉매 일정을 대시보드 매크로 브리핑으로 승격
-- 그 결과를 다시 Stage 2~4에 흘려보내 `Macro View -> Strategy -> Action` 전체를 갱신
+- 그 결과를 다시 Stage 2~4와 위키 메모리에 흘려보낸 뒤, 남은 빈틈만 2차/3차 refinement로 더 좁게 다시 묻습니다.
+- 마지막 라운드는 새 general thesis 확대보다 `무효화 조건 / 대체재 / 계좌 번역 / 정확한 체크포인트`를 정리하는 데 목적이 있습니다.
 
 ### 4.6. LLM Wiki 갱신
 
 ```bash
-cd /Users/seo/Documents/Playground/EcoReport
+cd /Users/seo/stock-pilot
 node scripts/build-llm-wiki.js --date YYYY-MM-DD
 ```
 
@@ -169,7 +191,7 @@ node scripts/build-llm-wiki.js --date YYYY-MM-DD
 4. Stage 3/4만 다시 실행
 
 ```bash
-cd /Users/seo/Documents/Playground/EcoReport
+cd /Users/seo/stock-pilot
 node scripts/build-stage3-quant-scores.js --date YYYY-MM-DD
 node scripts/build-stage4-execution-plan.js --date YYYY-MM-DD
 ```
@@ -177,7 +199,7 @@ node scripts/build-stage4-execution-plan.js --date YYYY-MM-DD
 ### 6. 일일 산출물 검증
 
 ```bash
-cd /Users/seo/Documents/Playground/EcoReport
+cd /Users/seo/stock-pilot
 node scripts/verify-daily-system.js --date YYYY-MM-DD
 ```
 
@@ -223,7 +245,7 @@ node scripts/verify-daily-system.js --date YYYY-MM-DD
 ## 날짜를 바꿔서 실행할 때
 
 ```bash
-cd /Users/seo/Documents/Playground/EcoReport
+cd /Users/seo/stock-pilot
 bash scripts/run-daily-system.sh --date 2026-04-10
 ```
 
@@ -231,7 +253,7 @@ bash scripts/run-daily-system.sh --date 2026-04-10
 
 Vercel이 실패하거나 불필요할 때는 아래 문서를 따릅니다.
 
-- [PRIVATE_ACCESS_RUNBOOK.md](/Users/seo/Documents/Playground/EcoReport/docs/PRIVATE_ACCESS_RUNBOOK.md)
+- [PRIVATE_ACCESS_RUNBOOK.md](/Users/seo/stock-pilot/docs/PRIVATE_ACCESS_RUNBOOK.md)
 
 핵심 원칙:
 

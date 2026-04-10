@@ -25,6 +25,8 @@ node_modules/
 dashboard/node_modules/
 dashboard/.next/
 dashboard/out/
+.vercel/
+open-trading-api/
 
 # 로그
 logs/

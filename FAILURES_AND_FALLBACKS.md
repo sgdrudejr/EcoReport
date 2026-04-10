@@ -147,7 +147,7 @@
 - 키가 없으면 mock 사용
 
 사용자가 해야 할 일:
-- `/Users/seo/Documents/Playground/EcoReport/.env` 에 `GEMINI_API_KEY` 입력
+- `/Users/seo/stock-pilot/.env` 에 `GEMINI_API_KEY` 입력
 
 ### 3-3. 웹 검색 기반 ETF 발굴
 

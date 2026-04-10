@@ -13,6 +13,7 @@ import {
   writeJson,
   writeText,
 } from "./lib/pipeline-utils.js";
+import { allRefinementArtifactPaths } from "./lib/refinement-rounds.js";
 import { isTradingDay, previousDate, resolveTradingDateContext } from "./lib/trading-calendar.js";
 
 function parseArgs(argv) {
@@ -81,7 +82,7 @@ function buildSameDayStatus(steps, artifacts) {
   const blockingStepIds = [
     "baseline_daily_system",
     "stage1_extracts",
-    "strategy_refresh",
+    "strategy_refresh_round3_final",
     "verify_outputs",
   ];
   const missingBlockingStep = blockingStepIds.some((stepId) => {
@@ -96,6 +97,9 @@ function buildSameDayStatus(steps, artifacts) {
     "stage1",
     "deepResearchPrompt",
     "finalResearchBriefing",
+    "round3Map",
+    "round3Prompt",
+    "round3Response",
     "stage2",
     "stage4",
     "dailyBriefing",
@@ -118,7 +122,30 @@ function buildFailureHint(stepId) {
       return "09-stage1-5 결과 파일과 GEMINI_API_KEY, 그리고 Stage 1 추출물이 모두 있는지 확인하세요.";
     case "strategy_refresh":
       return "stage2 raw 응답과 종목 alias 매핑, Gemini JSON 응답 형식을 확인하세요.";
-    case "wiki_rebuild":
+    case "followup_reindex":
+      return "Stage 1 extract, Stage 4 plan, 리포트 전문 텍스트 경로가 모두 살아 있는지 확인하세요.";
+    case "followup_prompt":
+      return "stage1-followup-research-map.json과 wiki memory 파일이 정상 생성됐는지 확인하세요.";
+    case "deep_research_follow_up_web":
+      return "Safari/Gemini 로그인 상태와 follow-up prompt 파일 경로를 확인하세요.";
+    case "wiki_rebuild_initial":
+    case "wiki_rebuild_mid":
+    case "wiki_rebuild_final":
+      return "knowledge/wiki 생성 권한, refinement map 산출물, stage4 실행계획 파일을 함께 확인하세요.";
+    case "round3_reindex":
+      return "round 2 위키 메모리와 stage1-final-refinement-map 입력 파일이 정상인지 확인하세요.";
+    case "round3_prompt":
+      return "3차 refinement map과 wiki memory 파일이 정상 생성됐는지 확인하세요.";
+    case "deep_research_round3_web":
+      return "Safari/Gemini 로그인 상태와 3차 refinement prompt 경로를 확인하세요.";
+    case "rich_briefing_round3_final":
+      return "3차 refinement 응답과 rich briefing 입력 파일이 모두 최신인지 확인하세요.";
+    case "strategy_refresh_round3_final":
+      return "Stage 2 prompt에 3차 refinement 결과가 정상 주입됐는지 확인하세요.";
+    case "rich_briefing_final":
+      return "follow-up map, follow-up deep research 응답, GEMINI_API_KEY를 함께 확인하세요.";
+    case "strategy_refresh_final":
+      return "Stage 2 prompt에 follow-up map/response가 정상 주입됐는지와 Gemini JSON 응답 형식을 확인하세요.";
     case "wiki_publish":
       return "knowledge/wiki 생성 권한과 Obsidian vault 경로를 확인하세요.";
     case "verify_outputs":
@@ -286,9 +313,15 @@ function reuseArtifactStep({
 }
 
 function buildArtifactMap(date, logFile) {
+  const refinementArtifacts = allRefinementArtifactPaths({ date });
+  const round2 = refinementArtifacts.find((item) => item.spec.round === 2);
+  const round3 = refinementArtifacts.find((item) => item.spec.round === 3);
+
   return {
     logFile,
     stage1: path.join(ROOT_DIR, "data", "analysis-state", date, "stage1-report-extracts-v2.json"),
+    followUpMap: round2?.mapJson,
+    followUpMapMarkdown: round2?.mapMarkdown,
     deepResearchPrompt: path.join(
       ROOT_DIR,
       "knowledge",
@@ -305,6 +338,12 @@ function buildArtifactMap(date, logFile) {
       date,
       "09-stage1-5-gemini-deep-research-response.md",
     ),
+    deepResearchFollowUpPrompt: round2?.prompt,
+    deepResearchFollowUpResponse: round2?.response,
+    round3Map: round3?.mapJson,
+    round3MapMarkdown: round3?.mapMarkdown,
+    round3Prompt: round3?.prompt,
+    round3Response: round3?.response,
     finalResearchBriefing: path.join(
       ROOT_DIR,
       "knowledge",
@@ -315,6 +354,9 @@ function buildArtifactMap(date, logFile) {
     stage4: path.join(ROOT_DIR, "data", "analysis-state", date, "stage4-execution-plan.json"),
     dailyBriefing: path.join(ROOT_DIR, "reports", "daily", `${date}-briefing.md`),
     wikiDaily: path.join(ROOT_DIR, "knowledge", "wiki", "daily", `${date}.md`),
+    wikiOperatingRules: path.join(ROOT_DIR, "knowledge", "wiki", "memory", "operating-rules.md"),
+    wikiResearchBacklog: path.join(ROOT_DIR, "knowledge", "wiki", "memory", "research-backlog.md"),
+    wikiDecisionJournal: path.join(ROOT_DIR, "knowledge", "wiki", "memory", "decision-journal.md"),
     systemHealth: path.join(ROOT_DIR, "data", "analysis-state", date, "system-health.json"),
     automationJson: path.join(ROOT_DIR, "data", "analysis-state", date, "automation-cycle.json"),
     automationMarkdown: path.join(ROOT_DIR, "knowledge", "daily", `${date}-automation-cycle.md`),
@@ -326,7 +368,7 @@ async function buildArtifactStatus(artifacts) {
     Object.entries(artifacts).map(async ([key, filePath]) => ({
       key,
       path: filePath,
-      exists: await fileExists(filePath),
+      exists: filePath ? await fileExists(filePath) : false,
     })),
   );
 
@@ -699,9 +741,9 @@ async function main() {
   });
   steps.push({ ...strategyRefresh, debugHint: strategyRefresh.status === "ok" ? null : strategyRefresh.status === "skipped" ? null : buildFailureHint(strategyRefresh.id) });
 
-  const wikiRebuild = await runCommand({
-    id: "wiki_rebuild",
-    label: "LLM Wiki Rebuild",
+  const wikiRebuildInitial = await runCommand({
+    id: "wiki_rebuild_initial",
+    label: "LLM Wiki Rebuild After First Synthesis",
     command: "node",
     args: [
       "scripts/build-llm-wiki.js",
@@ -718,7 +760,302 @@ async function main() {
     soft: true,
     skip: strategyRefresh.status !== "ok",
   });
-  steps.push({ ...wikiRebuild, debugHint: wikiRebuild.status === "ok" ? null : wikiRebuild.status === "skipped" ? null : buildFailureHint(wikiRebuild.id) });
+  steps.push({ ...wikiRebuildInitial, debugHint: wikiRebuildInitial.status === "ok" ? null : wikiRebuildInitial.status === "skipped" ? null : buildFailureHint(wikiRebuildInitial.id) });
+
+  const followUpReindex = await runCommand({
+    id: "followup_reindex",
+    label: "Stage 1.7 Follow-up Research Map",
+    command: "node",
+    args: [
+      "scripts/build-stage1-7-followup-research-map.js",
+      "--date",
+      date,
+      "--run-date",
+      runDate,
+      "--effective-market-date",
+      date,
+      "--run-id",
+      runId,
+    ],
+    logger,
+    soft: true,
+    skip: strategyRefresh.status !== "ok",
+  });
+  steps.push({ ...followUpReindex, debugHint: followUpReindex.status === "ok" ? null : followUpReindex.status === "skipped" ? null : buildFailureHint(followUpReindex.id) });
+
+  const followUpPrompt = await runCommand({
+    id: "followup_prompt",
+    label: "Stage 1.7 Gemini Follow-up Prompt",
+    command: "node",
+    args: [
+      "scripts/build-stage1-7-gemini-follow-up-prompt.js",
+      "--date",
+      date,
+      "--run-date",
+      runDate,
+      "--effective-market-date",
+      date,
+      "--run-id",
+      runId,
+    ],
+    logger,
+    soft: true,
+    skip: followUpReindex.status !== "ok",
+  });
+  steps.push({ ...followUpPrompt, debugHint: followUpPrompt.status === "ok" ? null : followUpPrompt.status === "skipped" ? null : buildFailureHint(followUpPrompt.id) });
+
+  const existingFollowUpDeepResearch = await fileExists(artifacts.deepResearchFollowUpResponse);
+  const deepResearchFollowUp =
+    followUpPrompt.status === "ok" &&
+    existingFollowUpDeepResearch
+      ? reuseArtifactStep({
+          id: "deep_research_follow_up_web",
+          label: "Gemini Deep Research Follow-up Web",
+          artifactPath: artifacts.deepResearchFollowUpResponse,
+          note: `same-day Deep Research follow-up 응답 재사용: ${artifacts.deepResearchFollowUpResponse}`,
+        })
+      : await runCommand({
+          id: "deep_research_follow_up_web",
+          label: "Gemini Deep Research Follow-up Web",
+          command: "node",
+          args: [
+            "scripts/run-gemini-deep-research-web.js",
+            "--date",
+            date,
+            "--prompt",
+            artifacts.deepResearchFollowUpPrompt,
+            "--output",
+            artifacts.deepResearchFollowUpResponse,
+            "--poll-sec",
+            String(cli.pollSec),
+            "--timeout-sec",
+            String(cli.timeoutSec),
+            ...(cli.reuseFrontDocument ? ["--reuse-front-document"] : []),
+          ],
+          logger,
+          soft: true,
+          skip: followUpPrompt.status !== "ok",
+        });
+  steps.push({ ...deepResearchFollowUp, debugHint: deepResearchFollowUp.status === "ok" ? null : deepResearchFollowUp.status === "skipped" ? null : buildFailureHint(deepResearchFollowUp.id) });
+
+  const richBriefingFinal = await runCommand({
+    id: "rich_briefing_final",
+    label: "Stage 1.6 Rich Briefing Final",
+    command: "npm",
+    args: [
+      "run",
+      "stage1.6:briefing",
+      "--",
+      "--date",
+      date,
+      "--run-date",
+      runDate,
+      "--effective-market-date",
+      date,
+      "--run-id",
+      runId,
+    ],
+    logger,
+    soft: true,
+    skip: followUpReindex.status !== "ok",
+  });
+  steps.push({ ...richBriefingFinal, debugHint: richBriefingFinal.status === "ok" ? null : richBriefingFinal.status === "skipped" ? null : buildFailureHint(richBriefingFinal.id) });
+
+  const strategyRefreshFinal = await runCommand({
+    id: "strategy_refresh_final",
+    label: "Strategy Refresh After Follow-up Research",
+    command: "bash",
+    args: [
+      "scripts/run-strategy-pipeline.sh",
+      "--date",
+      date,
+      "--run-date",
+      runDate,
+      "--effective-market-date",
+      date,
+      "--run-id",
+      runId,
+      "--gemini-stage2",
+    ],
+    logger,
+    soft: true,
+    skip: followUpReindex.status !== "ok",
+  });
+  steps.push({ ...strategyRefreshFinal, debugHint: strategyRefreshFinal.status === "ok" ? null : strategyRefreshFinal.status === "skipped" ? null : buildFailureHint(strategyRefreshFinal.id) });
+
+  const wikiRebuildMid = await runCommand({
+    id: "wiki_rebuild_mid",
+    label: "LLM Wiki Rebuild After Round 2",
+    command: "node",
+    args: [
+      "scripts/build-llm-wiki.js",
+      "--date",
+      date,
+      "--run-date",
+      runDate,
+      "--effective-market-date",
+      date,
+      "--run-id",
+      runId,
+    ],
+    logger,
+    soft: true,
+    skip: strategyRefreshFinal.status !== "ok",
+  });
+  steps.push({ ...wikiRebuildMid, debugHint: wikiRebuildMid.status === "ok" ? null : wikiRebuildMid.status === "skipped" ? null : buildFailureHint(wikiRebuildMid.id) });
+
+  const round3Reindex = await runCommand({
+    id: "round3_reindex",
+    label: "Stage 1.8 Final Refinement Map",
+    command: "node",
+    args: [
+      "scripts/build-stage1-7-followup-research-map.js",
+      "--date",
+      date,
+      "--run-date",
+      runDate,
+      "--effective-market-date",
+      date,
+      "--run-id",
+      runId,
+      "--round",
+      "3",
+    ],
+    logger,
+    soft: true,
+    skip: strategyRefreshFinal.status !== "ok",
+  });
+  steps.push({ ...round3Reindex, debugHint: round3Reindex.status === "ok" ? null : round3Reindex.status === "skipped" ? null : buildFailureHint(round3Reindex.id) });
+
+  const round3Prompt = await runCommand({
+    id: "round3_prompt",
+    label: "Stage 1.8 Gemini Final Refinement Prompt",
+    command: "node",
+    args: [
+      "scripts/build-stage1-7-gemini-follow-up-prompt.js",
+      "--date",
+      date,
+      "--run-date",
+      runDate,
+      "--effective-market-date",
+      date,
+      "--run-id",
+      runId,
+      "--round",
+      "3",
+    ],
+    logger,
+    soft: true,
+    skip: round3Reindex.status !== "ok",
+  });
+  steps.push({ ...round3Prompt, debugHint: round3Prompt.status === "ok" ? null : round3Prompt.status === "skipped" ? null : buildFailureHint(round3Prompt.id) });
+
+  const existingRound3DeepResearch = artifacts.round3Response
+    ? await fileExists(artifacts.round3Response)
+    : false;
+  const deepResearchRound3 =
+    round3Prompt.status === "ok" &&
+    existingRound3DeepResearch
+      ? reuseArtifactStep({
+          id: "deep_research_round3_web",
+          label: "Gemini Deep Research Round 3 Web",
+          artifactPath: artifacts.round3Response,
+          note: `same-day Deep Research round3 응답 재사용: ${artifacts.round3Response}`,
+        })
+      : await runCommand({
+          id: "deep_research_round3_web",
+          label: "Gemini Deep Research Round 3 Web",
+          command: "node",
+          args: [
+            "scripts/run-gemini-deep-research-web.js",
+            "--date",
+            date,
+            "--prompt",
+            artifacts.round3Prompt,
+            "--output",
+            artifacts.round3Response,
+            "--poll-sec",
+            String(cli.pollSec),
+            "--timeout-sec",
+            String(cli.timeoutSec),
+            ...(cli.reuseFrontDocument ? ["--reuse-front-document"] : []),
+          ],
+          logger,
+          soft: true,
+          skip: round3Prompt.status !== "ok" || !artifacts.round3Prompt || !artifacts.round3Response,
+        });
+  steps.push({ ...deepResearchRound3, debugHint: deepResearchRound3.status === "ok" ? null : deepResearchRound3.status === "skipped" ? null : buildFailureHint(deepResearchRound3.id) });
+
+  const richBriefingRound3Final = await runCommand({
+    id: "rich_briefing_round3_final",
+    label: "Stage 1.6 Rich Briefing Final After Round 3",
+    command: "npm",
+    args: [
+      "run",
+      "stage1.6:briefing",
+      "--",
+      "--date",
+      date,
+      "--run-date",
+      runDate,
+      "--effective-market-date",
+      date,
+      "--run-id",
+      runId,
+    ],
+    logger,
+    soft: true,
+    skip: round3Reindex.status !== "ok",
+  });
+  steps.push({ ...richBriefingRound3Final, debugHint: richBriefingRound3Final.status === "ok" ? null : richBriefingRound3Final.status === "skipped" ? null : buildFailureHint(richBriefingRound3Final.id) });
+
+  const strategyRefreshRound3Final = await runCommand({
+    id: "strategy_refresh_round3_final",
+    label: "Strategy Refresh After Round 3",
+    command: "bash",
+    args: [
+      "scripts/run-strategy-pipeline.sh",
+      "--date",
+      date,
+      "--run-date",
+      runDate,
+      "--effective-market-date",
+      date,
+      "--run-id",
+      runId,
+      "--gemini-stage2",
+    ],
+    logger,
+    soft: true,
+    skip: round3Reindex.status !== "ok",
+  });
+  steps.push({ ...strategyRefreshRound3Final, debugHint: strategyRefreshRound3Final.status === "ok" ? null : strategyRefreshRound3Final.status === "skipped" ? null : buildFailureHint(strategyRefreshRound3Final.id) });
+
+  const strategyReadyForFinalWiki =
+    strategyRefreshRound3Final.status === "ok" ||
+    strategyRefreshFinal.status === "ok" ||
+    strategyRefresh.status === "ok";
+
+  const wikiRebuildFinal = await runCommand({
+    id: "wiki_rebuild_final",
+    label: "LLM Wiki Rebuild Final",
+    command: "node",
+    args: [
+      "scripts/build-llm-wiki.js",
+      "--date",
+      date,
+      "--run-date",
+      runDate,
+      "--effective-market-date",
+      date,
+      "--run-id",
+      runId,
+    ],
+    logger,
+    soft: true,
+    skip: !strategyReadyForFinalWiki,
+  });
+  steps.push({ ...wikiRebuildFinal, debugHint: wikiRebuildFinal.status === "ok" ? null : wikiRebuildFinal.status === "skipped" ? null : buildFailureHint(wikiRebuildFinal.id) });
 
   const wikiPublish = await runCommand({
     id: "wiki_publish",
@@ -727,7 +1064,7 @@ async function main() {
     args: ["scripts/publish-llm-wiki-to-vault.js"],
     logger,
     soft: true,
-    skip: wikiRebuild.status !== "ok",
+    skip: wikiRebuildFinal.status !== "ok",
   });
   steps.push({ ...wikiPublish, debugHint: wikiPublish.status === "ok" ? null : wikiPublish.status === "skipped" ? null : buildFailureHint(wikiPublish.id) });
 

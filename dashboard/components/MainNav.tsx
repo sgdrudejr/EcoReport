@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -12,8 +13,8 @@ import {
 } from "lucide-react";
 
 const links = [
-  { href: "/", label: "대시보드", mobileLabel: "홈", icon: LayoutGrid },
-  { href: "/reports", label: "리포트", mobileLabel: "리포트", icon: ScrollText },
+  { href: "/", label: "대시보드 Test", mobileLabel: "테스트", icon: LayoutGrid },
+  { href: "/dashboard", label: "기존 대시보드", mobileLabel: "기존", icon: ScrollText },
   { href: "/portfolio", label: "포트폴리오", mobileLabel: "자산", icon: WalletCards },
   { href: "/portfolio/update", label: "업데이트", mobileLabel: "업데이트", icon: RefreshCw },
   { href: "/manual-llm", label: "LLM 저장", mobileLabel: "AI 노트", icon: BrainCircuit },
@@ -24,33 +25,87 @@ function joinClasses(...parts: Array<string | false | null | undefined>) {
 }
 
 function isActivePath(pathname: string, href: string) {
-  if (href === "/") return pathname === "/";
+  if (href === "/") return pathname === "/" || pathname === "/dashboard-test";
   if (href === "/portfolio") return pathname === "/portfolio";
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
 export default function MainNav() {
   const pathname = usePathname();
+  const [isCondensed, setIsCondensed] = useState(false);
+
+  useEffect(() => {
+    const updateNavState = () => {
+      const nextCondensed = window.scrollY > 28;
+      setIsCondensed((current) => (current === nextCondensed ? current : nextCondensed));
+      document.documentElement.style.setProperty(
+        "--desktop-nav-offset",
+        nextCondensed ? "4.15rem" : "5.25rem",
+      );
+      document.documentElement.style.setProperty(
+        "--account-tabs-gap",
+        "0.25rem",
+      );
+    };
+
+    updateNavState();
+    window.addEventListener("scroll", updateNavState, { passive: true });
+    window.addEventListener("resize", updateNavState);
+
+    return () => {
+      window.removeEventListener("scroll", updateNavState);
+      window.removeEventListener("resize", updateNavState);
+      document.documentElement.style.setProperty("--desktop-nav-offset", "5.25rem");
+      document.documentElement.style.setProperty("--account-tabs-gap", "0.25rem");
+    };
+  }, []);
 
   return (
     <>
-      <header className="sticky top-0 z-50 hidden border-b border-slate-200/90 bg-white/96 backdrop-blur-2xl md:block">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4">
-          <Link href="/" className="flex items-center gap-3">
-            <div className="flex size-10 items-center justify-center rounded-2xl bg-slate-950 text-white shadow-[0_12px_24px_rgba(15,23,42,0.12)]">
-              <PenSquare size={18} />
+      <header
+        className={joinClasses(
+          "sticky top-0 z-50 hidden border-b border-slate-200/90 bg-white/96 backdrop-blur-2xl transition-all duration-300 md:block",
+          isCondensed ? "shadow-[0_10px_24px_rgba(15,23,42,0.06)]" : "",
+        )}
+      >
+        <div
+          className={joinClasses(
+            "mx-auto flex max-w-7xl items-center justify-between px-6 transition-all duration-300",
+            isCondensed ? "gap-4 py-2.5" : "gap-6 py-4",
+          )}
+        >
+          <Link href="/" className={joinClasses("flex items-center transition-all duration-300", isCondensed ? "gap-2.5" : "gap-3")}>
+            <div
+              className={joinClasses(
+                "flex items-center justify-center bg-slate-950 text-white transition-all duration-300",
+                isCondensed
+                  ? "size-8 rounded-xl shadow-[0_8px_18px_rgba(15,23,42,0.08)]"
+                  : "size-10 rounded-2xl shadow-[0_12px_24px_rgba(15,23,42,0.12)]",
+              )}
+            >
+              <PenSquare size={isCondensed ? 15 : 18} />
             </div>
             <div>
-              <p className="text-sm font-semibold tracking-[0.08em] text-slate-950">
+              <p
+                className={joinClasses(
+                  "font-semibold tracking-[0.08em] text-slate-950 transition-all duration-300",
+                  isCondensed ? "text-[13px]" : "text-sm",
+                )}
+              >
                 EcoReport
               </p>
-              <p className="text-xs text-slate-500">
+              <p
+                className={joinClasses(
+                  "overflow-hidden text-slate-500 transition-all duration-300",
+                  isCondensed ? "max-h-0 text-[11px] opacity-0" : "max-h-5 text-xs opacity-100",
+                )}
+              >
                 White research dashboard
               </p>
             </div>
           </Link>
 
-          <nav className="flex items-center gap-2">
+          <nav className={joinClasses("flex items-center transition-all duration-300", isCondensed ? "gap-1.5" : "gap-2")}>
             {links.map((link) => {
               const isActive = isActivePath(pathname, link.href);
               return (
@@ -58,7 +113,8 @@ export default function MainNav() {
                   key={link.href}
                   href={link.href}
                   className={joinClasses(
-                    "rounded-full border px-4 py-2 text-sm font-medium transition-colors",
+                    "rounded-full border font-medium transition-all duration-300",
+                    isCondensed ? "px-3.5 py-1.5 text-[13px]" : "px-4 py-2 text-sm",
                     isActive
                       ? "border-slate-900 bg-slate-900 text-white"
                       : "border-transparent text-slate-500 hover:border-slate-200 hover:bg-slate-50 hover:text-slate-900",

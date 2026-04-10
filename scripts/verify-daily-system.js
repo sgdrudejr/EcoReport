@@ -15,6 +15,7 @@ import {
   writeJson,
   writeText,
 } from "./lib/pipeline-utils.js";
+import { allRefinementArtifactPaths } from "./lib/refinement-rounds.js";
 
 function statusFromCondition(condition, failLevel = "error") {
   if (condition) return "ok";
@@ -32,6 +33,7 @@ async function fileExists(filePath) {
 }
 
 function relative(filePath) {
+  if (!filePath) return "(missing)";
   return path.relative(ROOT_DIR, filePath);
 }
 
@@ -97,6 +99,9 @@ async function main() {
   const date = args.date;
   const reportDir = path.join(ROOT_DIR, "data", "reports", date);
   const analysisDir = path.join(ROOT_DIR, "data", "analysis-state", date);
+  const refinementArtifacts = allRefinementArtifactPaths({ date });
+  const round2 = refinementArtifacts.find((item) => item.spec.round === 2);
+  const round3 = refinementArtifacts.find((item) => item.spec.round === 3);
 
   const paths = {
     portfolio: path.join(ROOT_DIR, "data", "portfolio", "latest.json"),
@@ -136,6 +141,14 @@ async function main() {
       date,
       "09-stage1-5-gemini-deep-research-response.md",
     ),
+    followUpMap: round2?.mapJson,
+    followUpMapMarkdown: round2?.mapMarkdown,
+    deepResearchFollowUpPrompt: round2?.prompt,
+    deepResearchFollowUpResponse: round2?.response,
+    round3Map: round3?.mapJson,
+    round3MapMarkdown: round3?.mapMarkdown,
+    round3Prompt: round3?.prompt,
+    round3Response: round3?.response,
     deepResearchFinal: path.join(
       ROOT_DIR,
       "knowledge",
@@ -144,6 +157,9 @@ async function main() {
       date,
       "10-stage1-6-final-research-briefing.md",
     ),
+    wikiOperatingRules: path.join(ROOT_DIR, "knowledge", "wiki", "memory", "operating-rules.md"),
+    wikiResearchBacklog: path.join(ROOT_DIR, "knowledge", "wiki", "memory", "research-backlog.md"),
+    wikiDecisionJournal: path.join(ROOT_DIR, "knowledge", "wiki", "memory", "decision-journal.md"),
     fallbackSummary: path.join(analysisDir, "fallback-summary.json"),
   };
 
@@ -229,6 +245,18 @@ async function main() {
     { key: "impact_map", label: "Impact Map", path: relative(paths.impactMap), meta: extractJsonMeta(impactMap) },
     { key: "stage3", label: "Stage 3", path: relative(paths.stage3), meta: extractJsonMeta(stage3) },
     { key: "stage4", label: "Stage 4", path: relative(paths.stage4), meta: extractJsonMeta(stage4) },
+    {
+      key: "refinement_round2",
+      label: "Refinement Round 2",
+      path: relative(paths.followUpMap),
+      meta: extractJsonMeta(await readJson(paths.followUpMap, null)),
+    },
+    {
+      key: "refinement_round3",
+      label: "Refinement Round 3",
+      path: relative(paths.round3Map),
+      meta: extractJsonMeta(await readJson(paths.round3Map, null)),
+    },
     { key: "briefing", label: "Briefing", path: relative(paths.briefing), meta: extractMarkdownMeta(briefingText) },
     { key: "wiki_daily", label: "LLM Wiki Daily", path: relative(paths.wikiDaily), meta: extractMarkdownMeta(wikiDailyText) },
   ];
@@ -411,6 +439,60 @@ async function main() {
       path: relative(paths.deepResearchFinal),
     },
     {
+      key: "followup_research_map",
+      label: "Follow-up Research Map",
+      status: statusFromCondition(await fileExists(paths.followUpMap), "warn"),
+      detail: (await fileExists(paths.followUpMap))
+        ? "Stage 1.7 follow-up reindex map 생성됨"
+        : "follow-up reindex map 없음",
+      path: relative(paths.followUpMap),
+    },
+    {
+      key: "followup_deep_research_prompt",
+      label: "Follow-up Deep Research 프롬프트",
+      status: statusFromCondition(await fileExists(paths.deepResearchFollowUpPrompt), "warn"),
+      detail: (await fileExists(paths.deepResearchFollowUpPrompt))
+        ? "2차 Deep Research 프롬프트 생성됨"
+        : "2차 Deep Research 프롬프트 없음",
+      path: relative(paths.deepResearchFollowUpPrompt),
+    },
+    {
+      key: "followup_deep_research_response",
+      label: "Follow-up Deep Research 결과",
+      status: statusFromCondition(await fileExists(paths.deepResearchFollowUpResponse), "warn"),
+      detail: (await fileExists(paths.deepResearchFollowUpResponse))
+        ? "2차 Deep Research 결과 저장됨"
+        : "2차 Deep Research 결과 없음",
+      path: relative(paths.deepResearchFollowUpResponse),
+    },
+    {
+      key: "round3_research_map",
+      label: "Round 3 Refinement Map",
+      status: statusFromCondition(await fileExists(paths.round3Map), "warn"),
+      detail: (await fileExists(paths.round3Map))
+        ? "3차 refinement map 생성됨"
+        : "3차 refinement map 없음",
+      path: relative(paths.round3Map),
+    },
+    {
+      key: "round3_deep_research_prompt",
+      label: "Round 3 Deep Research 프롬프트",
+      status: statusFromCondition(await fileExists(paths.round3Prompt), "warn"),
+      detail: (await fileExists(paths.round3Prompt))
+        ? "3차 Deep Research 프롬프트 생성됨"
+        : "3차 Deep Research 프롬프트 없음",
+      path: relative(paths.round3Prompt),
+    },
+    {
+      key: "round3_deep_research_response",
+      label: "Round 3 Deep Research 결과",
+      status: statusFromCondition(await fileExists(paths.round3Response), "warn"),
+      detail: (await fileExists(paths.round3Response))
+        ? "3차 Deep Research 결과 저장됨"
+        : "3차 Deep Research 결과 없음",
+      path: relative(paths.round3Response),
+    },
+    {
       key: "freshness_run_id",
       label: "Freshness / Run ID",
       status: freshnessStatus,
@@ -448,6 +530,23 @@ async function main() {
               )
               .join(" / "),
       path: relative(paths.fallbackSummary),
+    },
+    {
+      key: "wiki_memory",
+      label: "LLM Wiki Memory",
+      status: statusFromCondition(
+        (await fileExists(paths.wikiOperatingRules)) &&
+          (await fileExists(paths.wikiResearchBacklog)) &&
+          (await fileExists(paths.wikiDecisionJournal)),
+        "warn",
+      ),
+      detail:
+        (await fileExists(paths.wikiOperatingRules)) &&
+        (await fileExists(paths.wikiResearchBacklog)) &&
+        (await fileExists(paths.wikiDecisionJournal))
+          ? "operating rules / research backlog / decision journal 생성됨"
+          : "wiki memory 일부 누락",
+      path: relative(paths.wikiDecisionJournal),
     },
   ];
 

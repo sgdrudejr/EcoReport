@@ -17,6 +17,7 @@ import {
   writeJson,
   writeText,
 } from "./lib/pipeline-utils.js";
+import { allRefinementArtifactPaths } from "./lib/refinement-rounds.js";
 
 const DEFAULT_PRIORITY_MODELS = ["gemini-2.5-flash", "gemini-2.0-flash"];
 const DEFAULT_MODEL = DEFAULT_PRIORITY_MODELS[0];
@@ -99,9 +100,11 @@ function resolveAbsolute(target) {
 
 function resolvePaths(args) {
   const stateDir = path.join(ROOT_DIR, "data", "analysis-state", args.date);
+  const refinementArtifacts = allRefinementArtifactPaths({ date: args.date });
   return {
     stage1: path.join(stateDir, "stage1-report-extracts-v2.json"),
     portfolio: path.join(ROOT_DIR, "data", "portfolio", "latest.json"),
+    technical: path.join(ROOT_DIR, "data", "technical", `${args.date}.json`),
     priorBriefing: path.join(ROOT_DIR, "reports", "daily", `${args.date}-briefing.md`),
     deepResearch:
       resolveAbsolute(args.deepResearch) ??
@@ -113,6 +116,7 @@ function resolvePaths(args) {
         args.date,
         "09-stage1-5-gemini-deep-research-response.md",
       ),
+    refinementArtifacts,
     output:
       resolveAbsolute(args.output) ??
       path.join(ROOT_DIR, "knowledge", "daily", `${args.date}-gemini-briefing-rich.md`),
@@ -318,6 +322,48 @@ function summarizePortfolio(portfolio) {
   return lines.join("\n");
 }
 
+function summarizeTechnicalSnapshot(portfolio, technical) {
+  const accounts = portfolio?.accounts ?? [];
+  const scores = technical?.scores ?? {};
+  const lines = [];
+
+  for (const account of accounts) {
+    lines.push(`- ${account.label} (${account.key})`);
+
+    const holdings = account?.holdings ?? [];
+    if (holdings.length === 0) {
+      lines.push("  - 보유 종목 없음");
+      continue;
+    }
+
+    for (const holding of holdings) {
+      const item = holding?.code ? scores?.[holding.code] : null;
+      if (!item) {
+        lines.push(`  - ${holding.name}${holding.code ? `(${holding.code})` : ""}: 기술 스냅샷 없음`);
+        continue;
+      }
+
+      const parts = [
+        `기술점수 ${typeof item.score === "number" ? Math.round(item.score) : "N/A"}점`,
+        `시그널 ${item.signal ?? "N/A"}`,
+      ];
+      if (typeof item?.rsi === "number") {
+        parts.push(`RSI ${item.rsi.toFixed(1)}`);
+      }
+      if (typeof item?.macd?.histogram === "number") {
+        parts.push(`MACD hist ${item.macd.histogram.toFixed(2)}`);
+      }
+      if (item?.bollinger?.position) {
+        parts.push(`볼린저 ${item.bollinger.position}`);
+      }
+
+      lines.push(`  - ${holding.name}${holding.code ? `(${holding.code})` : ""}: ${parts.join(" / ")}`);
+    }
+  }
+
+  return lines.join("\n");
+}
+
 function buildStage1Digest(stage1, selection) {
   const { macro, portfolioLinked, catalystHeavy } = selection;
 
@@ -332,23 +378,85 @@ function buildStage1Digest(stage1, selection) {
   ].join("\n");
 }
 
-function buildPrompt({ args, portfolioSummary, stage1Digest, priorBriefing, deepResearch }) {
+function summarizeRefinementMaps(refinementMaps) {
+  const lines = [];
+
+  for (const entry of refinementMaps) {
+    const topics = (entry?.map?.topics ?? []).slice(0, 4);
+    if (topics.length === 0) continue;
+
+    lines.push(`### Round ${entry.round} · ${entry.label}`);
+    for (const topic of topics) {
+      const evidence = (topic.evidence ?? [])
+        .slice(0, 2)
+        .map((item) => `${item.title}: ${item.excerpt}`)
+        .join(" / ");
+      lines.push(`- ${topic.label} [${topic.scope}]`);
+      lines.push(`  - why_now: ${topic.reason}`);
+      lines.push(`  - keywords: ${(topic.keywords ?? []).slice(0, 6).join(" / ")}`);
+      if (evidence) {
+        lines.push(`  - evidence: ${evidence}`);
+      }
+      if ((topic.gaps ?? []).length > 0) {
+        lines.push(`  - gaps: ${(topic.gaps ?? []).join(" / ")}`);
+      }
+    }
+    lines.push("");
+  }
+
+  return lines.length > 0 ? lines.join("\n").trim() : "- refinement map 없음";
+}
+
+function summarizeRefinementResponses(refinementResponses) {
+  const sections = refinementResponses
+    .filter((entry) => entry.text)
+    .map(
+      (entry) =>
+        `## Round ${entry.round} · ${entry.label}\n${truncate(entry.text, entry.round >= 3 ? 3500 : 4500)}`,
+    );
+
+  return sections.length > 0 ? sections.join("\n\n") : "";
+}
+
+function buildPrompt({
+  args,
+  portfolioSummary,
+  technicalSummary,
+  stage1Digest,
+  priorBriefing,
+  deepResearch,
+  refinementMapSummary,
+}) {
   return [
     `당신은 EcoReport의 최종 편집장 겸 포트폴리오 전략가입니다.`,
     `기준 거래일은 ${args.effectiveMarketDate}, 실행일은 ${args.runDate} 입니다.`,
     "",
-    "아래 4개 재료를 충돌 없이 통합해, 대시보드가 바로 읽을 수 있는 최종 연구 브리핑 마크다운을 작성하세요.",
+    "아래 다층 연구 재료를 충돌 없이 통합해, 대시보드가 바로 읽을 수 있는 최종 연구 브리핑 마크다운을 작성하세요.",
     "1. Stage 1 구조화 리포트 추출물: 오늘 수집한 증권사 리포트의 핵심 사실 앵커",
     "2. 기존 어드바이저 브리핑: 현재 시스템이 만든 액션 초안",
     "3. 내 포트폴리오 상태: 계좌/현금/보유 종목",
-    "4. Gemini Deep Research 결과: 반박 시나리오, 대안 자산, 촉매, 과거 유사 국면 비교",
+    "4. 보유 종목 기술 스냅샷: RSI, MACD, 점수, 시그널",
+    "5. Gemini Deep Research 1차 결과: 반박 시나리오, 대안 자산, 촉매, 과거 유사 국면 비교",
+    "6. 다회 refinement map: 2차/3차 재인덱싱으로 다시 확인해야 할 토픽과 빈틈",
+    "7. Gemini Deep Research 2차 결과: 1차 답변 이후 세부 보강과 정밀 체크포인트",
+    "8. Gemini Deep Research 3차 결과(있다면): 마지막 실행 디테일, 무효화 조건, 대체재 정리",
     "",
     "[편집 원칙]",
     "- Stage 1 추출물을 사실 기반의 1차 근거로 사용하세요.",
     "- Deep Research는 시나리오의 깊이, 반박 시나리오, 대안 자산, 촉매 일정, 과거 유사 국면 해석을 보강하는 용도로 사용하세요.",
+    "- refinement map은 '무엇이 아직 얕은지'를 알려주는 재인덱싱 레이어입니다. 라운드가 올라갈수록 새 일반론보다 무효화 조건과 실행 디테일 보강에 더 큰 비중을 두세요.",
+    "- 기술 스냅샷은 종목별 추세 상태와 진입/보류 해석을 보강하는 데 사용하세요.",
     "- 근거가 약한 숫자/정확 날짜/ETF 종목명은 새로 지어내지 마세요. 모호하면 '4월 말', '2분기 중', '몇 주 내'처럼 보수적으로 표현하세요.",
     "- 한국 투자자가 바로 실행할 수 있는 언어로 정리하세요. 필요하면 해외 자산 아이디어를 한국 상장 ETF/국내 계좌 실행 관점으로 번역하세요.",
     "- 문장은 짧게 쓰고, 섹션마다 실제 대응이 달라지도록 구체적으로 쓰세요.",
+    "- 보유 종목 코멘트는 반드시 계좌 성격을 반영하세요. ISA는 절세형 방어·인컴, 연금은 장기 복리, 토스는 전술 알파, 한투 일반은 실전형 테마 계좌입니다.",
+    "- 보유 종목별 `핵심 내용`과 `유의할 점`은 각각 최소 2문장 이상 작성하세요. 한 줄 요약으로 끝내지 마세요.",
+    "- 계좌별 투자 방향성은 반드시 '무엇을 왜 늘리고 줄이는지'가 드러나게 3~5문장으로 쓰세요. 제네럴한 문장만 반복하지 마세요.",
+    "- 계좌별 투자 방향성에는 반드시 계좌 역할, 늘릴 자산, 줄일 자산, 이미 보유 중인 종목 중 유지/재점검 대상, 판단을 바꿀 체크포인트를 포함하세요.",
+    "- 추천 실행 방향에서는 `stage2 근거`, `시스템상`, `모델상` 같은 메타 표현을 쓰지 마세요. 투자자에게 설명하듯 실제 이유만 써 주세요.",
+    "- 기술적 타이밍은 언제나 말하지 말고, 골든크로스/20일선 이탈/MACD 상향 돌파/의미 있는 RSI 과열·과매도처럼 실제 판단 시점일 때만 언급하세요.",
+    "- 가능하면 헤지 관계와 계좌 내 역할을 드러내세요. 예: 금은 주식 헤지, KOFR는 대기 자금, 방산은 지정학 헤지, 전력기기는 AI 인프라 직결 수혜.",
+    "- 보유·관망 사유도 말줄임 없이 끝까지 쓰세요. 유지 이유와 재판단 조건이 둘 다 보여야 합니다.",
     "",
     "[출력 형식]",
     "반드시 아래 순서의 마크다운 섹션을 사용하세요.",
@@ -375,12 +483,27 @@ function buildPrompt({ args, portfolioSummary, stage1Digest, priorBriefing, deep
     "",
     "## Strategy (이번 주 대응)",
     "- 현금 비중, 계좌별 목표, 이번 주 우선순위",
+    "- ISA / PENSION / TOSS / KIS_MAIN 각각 왜 그렇게 운용하는지 1문단씩",
     "",
     "## Action (오늘 실행)",
-    "- ISA: 오늘 실행 1~2개",
-    "- PENSION: 오늘 실행 1~2개",
-    "- TOSS: 오늘 실행 1~2개",
-    "- KIS_MAIN: 오늘 실행 1~2개",
+    "- ISA: 오늘 실행 1~2개와 실제 이유",
+    "- PENSION: 오늘 실행 1~2개와 실제 이유",
+    "- TOSS: 오늘 실행 1~2개와 실제 이유",
+    "- KIS_MAIN: 오늘 실행 1~2개와 실제 이유",
+    "",
+    "## 계좌별 보유 종목 심층 코멘트",
+    "### ISA",
+    "- [종목명] ([티커])",
+    "  - 핵심 내용: 2~4문장",
+    "  - 유의할 점: 2~4문장",
+    "  - 체크포인트: 1~3개",
+    "  - 대응: 추가매수 / 보유 / 축소 / 관망 중 하나",
+    "### PENSION",
+    "- 같은 형식 반복",
+    "### TOSS",
+    "- 같은 형식 반복",
+    "### KIS_MAIN",
+    "- 같은 형식 반복",
     "",
     "## 포트폴리오 관점 시사점",
     "- 지금 포트폴리오에서 좋은 점 / 취약점 / 보완 축",
@@ -394,15 +517,64 @@ function buildPrompt({ args, portfolioSummary, stage1Digest, priorBriefing, deep
     "## 내 포트폴리오 상태",
     portfolioSummary,
     "",
+    "## 보유 종목 기술 스냅샷",
+    technicalSummary || "- 기술 스냅샷 없음",
+    "",
     "## 기존 어드바이저 브리핑 초안",
     priorBriefing || "- 기존 브리핑 없음",
     "",
     "## Stage 1 구조화 리포트 추출물 요약",
     stage1Digest,
     "",
+    "## Multi-Round Refinement Maps",
+    refinementMapSummary || "- refinement map 없음",
+    "",
     "## Gemini Deep Research 결과",
     deepResearch,
   ].join("\n");
+}
+
+function buildFallbackHoldingCommentary(portfolio) {
+  const lines = ["## 계좌별 보유 종목 심층 코멘트"];
+  const accounts = portfolio?.accounts ?? [];
+
+  if (accounts.length === 0) {
+    lines.push("- 포트폴리오 계좌 데이터가 없습니다.");
+    return lines.join("\n");
+  }
+
+  for (const account of accounts) {
+    lines.push(`### ${account.key}`);
+
+    const holdings = account?.holdings ?? [];
+    if (holdings.length === 0) {
+      lines.push("- 보유 종목 없음");
+      lines.push("");
+      continue;
+    }
+
+    for (const holding of holdings) {
+      const profitRate =
+        typeof holding?.profitRate === "number" ? `${holding.profitRate.toFixed(2)}%` : null;
+      lines.push(`- ${holding.name}${holding.code ? ` (${holding.code})` : ""}`);
+      lines.push(
+        `  - 핵심 내용: ${account.label} 안에서 ${holding.name}은 현재 보유 중인 핵심 노출입니다. ${
+          profitRate ? `현재 수익률은 ${profitRate} 수준이며,` : ""
+        } 계좌 성격과 상위 리포트 흐름을 함께 놓고 보유 논리를 점검해야 합니다.`,
+      );
+      lines.push(
+        "  - 유의할 점: 이번 fallback 브리핑은 저장된 Deep Research 구조화 결과가 충분하지 않아 세부 인과는 보수적으로 해석해야 합니다. 추가 비중 확대는 다음 리포트 업데이트와 기술 신호를 확인한 뒤 판단하는 편이 안전합니다.",
+      );
+      lines.push(
+        "  - 체크포인트: 다음 실적/정책 이벤트, 관련 리포트 업데이트, 계좌 내 현금 여력.",
+      );
+      lines.push("  - 대응: 보유");
+    }
+
+    lines.push("");
+  }
+
+  return lines.join("\n");
 }
 
 function buildFallbackBriefing({ args, portfolio, priorBriefing, deepResearch, selection }) {
@@ -456,6 +628,7 @@ function buildFallbackBriefing({ args, portfolio, priorBriefing, deepResearch, s
   const fallbackReason = deepResearch.trim()
     ? "Deep Research 결과 또는 Gemini 합성이 불안정해"
     : "Deep Research 결과가 아직 저장되지 않아";
+  const holdingCommentary = buildFallbackHoldingCommentary(portfolio);
 
   return [
     `> ${fallbackReason} 같은 날짜 Stage 1/브리핑/포트폴리오 데이터를 바탕으로 로컬 fallback 브리핑을 생성했습니다.`,
@@ -490,6 +663,8 @@ function buildFallbackBriefing({ args, portfolio, priorBriefing, deepResearch, s
     actionLineFor("PENSION", "연금저축"),
     actionLineFor("TOSS", "토스"),
     actionLineFor("KIS_MAIN", "한국투자 일반"),
+    "",
+    holdingCommentary,
     "",
     "## 포트폴리오 관점 시사점",
     ...implicationLines.map((line) => `- ${line}`),
@@ -601,11 +776,22 @@ async function main() {
   const args = parseArgs(process.argv.slice(2));
   const paths = resolvePaths(args);
 
-  const [stage1, portfolio, priorBriefing, deepResearch] = await Promise.all([
+  const [stage1, portfolio, technical, priorBriefing, deepResearch, refinementMapsRaw, refinementResponsesRaw] = await Promise.all([
     readJson(paths.stage1, null),
     readJson(paths.portfolio, { accounts: [] }),
+    readJson(paths.technical, null),
     readText(paths.priorBriefing, ""),
     readText(paths.deepResearch, ""),
+    Promise.all(paths.refinementArtifacts.map(async (artifact) => ({
+      round: artifact.spec.round,
+      label: artifact.spec.label,
+      map: await readJson(artifact.mapJson, null),
+    }))),
+    Promise.all(paths.refinementArtifacts.map(async (artifact) => ({
+      round: artifact.spec.round,
+      label: artifact.spec.label,
+      text: compact(await readText(artifact.response, "")),
+    }))),
   ]);
 
   if (!stage1) {
@@ -613,11 +799,23 @@ async function main() {
   }
 
   const portfolioSummary = summarizePortfolio(portfolio);
+  const technicalSummary = summarizeTechnicalSnapshot(portfolio, technical);
   const stage1Selection = buildStage1Selection(stage1, args.maxExtracts);
   const stage1Digest = buildStage1Digest(stage1, stage1Selection);
   const deepResearchInput = compact(deepResearch);
+  const refinementMaps = refinementMapsRaw.filter((entry) => entry.map);
+  const refinementResponses = refinementResponsesRaw.filter((entry) => entry.text);
+  const refinementMapSummary = summarizeRefinementMaps(refinementMaps);
+  const refinementResponseSummary = summarizeRefinementResponses(refinementResponses);
+  const combinedDeepResearchInput = [
+    deepResearchInput,
+    refinementMapSummary ? `## Refinement Maps\n${refinementMapSummary}` : "",
+    refinementResponseSummary ? `## Refinement Deep Research\n${refinementResponseSummary}` : "",
+  ]
+    .filter(Boolean)
+    .join("\n\n");
   const promptDeepResearch =
-    deepResearchInput ||
+    combinedDeepResearchInput ||
     [
       "Deep Research 결과 파일이 아직 생성되지 않았습니다.",
       "같은 날짜의 Stage 1 추출물, 포트폴리오 스냅샷, 기존 어드바이저 브리핑만으로 보수적인 fallback 연구 브리핑을 작성하세요.",
@@ -626,9 +824,11 @@ async function main() {
   const prompt = buildPrompt({
     args,
     portfolioSummary,
+    technicalSummary,
     stage1Digest,
     priorBriefing: compact(priorBriefing),
     deepResearch: promptDeepResearch,
+    refinementMapSummary,
   });
 
   const runMeta = buildRunMetadata(args);
@@ -675,8 +875,8 @@ async function main() {
     model: usedModel,
     requested_model: args.model ?? DEFAULT_MODEL,
     source,
-    deep_research_available: Boolean(deepResearchInput),
-    workflow: "stage1 + manual deep research -> rich briefing",
+    deep_research_available: Boolean(deepResearchInput || refinementResponses.length > 0),
+    workflow: "stage1 + primary deep research + multi-round refinement -> rich briefing",
     stage1_report_count: stage1.reportCount ?? (stage1.extracts ?? []).length,
     selected_extract_budget: args.maxExtracts,
     selected_extract_count: stage1Selection.selectedExtractCount,
@@ -689,12 +889,15 @@ async function main() {
     source_paths: {
       stage1: paths.stage1,
       portfolio: paths.portfolio,
+      technical: paths.technical,
       prior_briefing: paths.priorBriefing,
       deep_research: paths.deepResearch,
+      refinement_maps: paths.refinementArtifacts.map((artifact) => artifact.mapJson),
+      refinement_responses: paths.refinementArtifacts.map((artifact) => artifact.response),
       archive_output: paths.archive,
     },
     prompt_char_length: prompt.length,
-    deep_research_char_length: deepResearchInput.length,
+    deep_research_char_length: combinedDeepResearchInput.length,
     prior_briefing_char_length: priorBriefing.length,
   };
 

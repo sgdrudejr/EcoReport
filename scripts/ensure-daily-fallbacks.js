@@ -53,22 +53,6 @@ async function ensureDir(dirPath) {
   await fs.mkdir(dirPath, { recursive: true });
 }
 
-async function writeJsonIfMissing(filePath, payload) {
-  if (await fileExists(filePath)) {
-    return false;
-  }
-  await writeJson(filePath, payload);
-  return true;
-}
-
-async function writeTextIfMissing(filePath, payload) {
-  if (await fileExists(filePath)) {
-    return false;
-  }
-  await writeText(filePath, payload);
-  return true;
-}
-
 async function resolveLatestAvailableDate(date, filePathBuilder, explicitSourceDate = "", lookbackDays = 14) {
   if (explicitSourceDate) {
     const explicitPath = filePathBuilder(explicitSourceDate);
@@ -93,6 +77,67 @@ async function resolveLatestAvailableDate(date, filePathBuilder, explicitSourceD
   return null;
 }
 
+function hasUsableReportPayload(indexEntries, textManifest) {
+  return (
+    Array.isArray(indexEntries) &&
+    indexEntries.length > 0 &&
+    Number(textManifest?.success_count ?? 0) > 0
+  );
+}
+
+function rewriteReportRelativePath(filePath, sourceDate, targetDate) {
+  if (typeof filePath !== "string" || filePath.length === 0) {
+    return filePath;
+  }
+  return filePath.replace(`data/reports/${sourceDate}/`, `data/reports/${targetDate}/`);
+}
+
+async function resolveLatestAvailableReportDate(date, explicitSourceDate = "", lookbackDays = 14) {
+  async function isUsable(candidate) {
+    const candidateDir = path.join(ROOT_DIR, "data", "reports", candidate);
+    const [indexEntries, textManifest] = await Promise.all([
+      readJson(path.join(candidateDir, "index.json"), []),
+      readJson(path.join(candidateDir, "text-manifest.json"), null),
+    ]);
+    return hasUsableReportPayload(indexEntries, textManifest);
+  }
+
+  if (explicitSourceDate && (await isUsable(explicitSourceDate))) {
+    return explicitSourceDate;
+  }
+
+  let cursor = previousDate(date);
+  for (let index = 0; index < lookbackDays; index += 1) {
+    if (!isTradingDay(cursor)) {
+      cursor = previousDate(cursor);
+      continue;
+    }
+
+    if (await isUsable(cursor)) {
+      return cursor;
+    }
+    cursor = previousDate(cursor);
+  }
+
+  return null;
+}
+
+async function copyReportArtifact(sourceRelativePath, targetRelativePath) {
+  if (!sourceRelativePath || !targetRelativePath) {
+    return null;
+  }
+
+  const sourcePath = path.join(ROOT_DIR, sourceRelativePath);
+  const targetPath = path.join(ROOT_DIR, targetRelativePath);
+  if (!(await fileExists(sourcePath))) {
+    return null;
+  }
+
+  await ensureDir(path.dirname(targetPath));
+  await fs.copyFile(sourcePath, targetPath);
+  return targetPath;
+}
+
 async function ensureReportsFallback(args) {
   const reportDir = path.join(ROOT_DIR, "data", "reports", args.date);
   const indexPath = path.join(reportDir, "index.json");
@@ -100,100 +145,198 @@ async function ensureReportsFallback(args) {
   const crawlManifestMdPath = path.join(reportDir, "crawl-manifest.md");
   const textManifestPath = path.join(reportDir, "text-manifest.json");
   const textManifestMdPath = path.join(reportDir, "text-manifest.md");
-  const createdPaths = [];
   const generatedAt = createGeneratedAt();
   const reason = args.reason || "report collection unavailable";
 
-  await ensureDir(path.join(reportDir, "pdf"));
+  const [currentIndex, currentTextManifest] = await Promise.all([
+    readJson(indexPath, []),
+    readJson(textManifestPath, null),
+  ]);
+  if (hasUsableReportPayload(currentIndex, currentTextManifest)) {
+    return null;
+  }
+
+  await ensureDir(reportDir);
   await ensureDir(path.join(reportDir, "text"));
 
-  if (
-    await writeJsonIfMissing(indexPath, [])
-  ) {
-    createdPaths.push(indexPath);
-  }
+  const sourceDate = await resolveLatestAvailableReportDate(args.date, args.sourceDate);
+  if (sourceDate) {
+    const sourceDir = path.join(ROOT_DIR, "data", "reports", sourceDate);
+    const [sourceIndex, sourceCrawlManifest, sourceTextManifest] = await Promise.all([
+      readJson(path.join(sourceDir, "index.json"), []),
+      readJson(path.join(sourceDir, "crawl-manifest.json"), {}),
+      readJson(path.join(sourceDir, "text-manifest.json"), { entries: [] }),
+    ]);
 
-  if (
-    await writeJsonIfMissing(crawlManifestPath, {
-      date: args.date,
-      generated_at: generatedAt,
-      total_matched_before_dedupe: 0,
-      downloaded_count: 0,
-      failed_download_count: 0,
-      source_counts: {},
-      category_counts: {},
-      top_brokers: {},
-      page_logs: [],
-      download_failures: [],
-      fallback: true,
-      fallback_reason: reason,
-    })
-  ) {
-    createdPaths.push(crawlManifestPath);
-  }
+    if (hasUsableReportPayload(sourceIndex, sourceTextManifest)) {
+      const targetIndex = sourceIndex.map((entry) => ({
+        ...entry,
+        date: args.date,
+        pdf_path: rewriteReportRelativePath(entry.pdf_path, sourceDate, args.date),
+        full_text_path: rewriteReportRelativePath(entry.full_text_path, sourceDate, args.date),
+      }));
+      const targetTextEntries = (sourceTextManifest.entries ?? []).map((entry) => ({
+        ...entry,
+        pdf_path: rewriteReportRelativePath(entry.pdf_path, sourceDate, args.date),
+        text_path: rewriteReportRelativePath(entry.text_path, sourceDate, args.date),
+      }));
 
-  if (
-    await writeTextIfMissing(
-      crawlManifestMdPath,
-      [
-        `# ${args.date} 리포트 수집 매니페스트`,
-        "",
-        "- fallback: true",
-        `- fallback_reason: ${reason}`,
-        `- generated_at: ${generatedAt}`,
-        "- 저장 건수: 0",
-      ].join("\n"),
-    )
-  ) {
-    createdPaths.push(crawlManifestMdPath);
-  }
+      const copiedPaths = [];
+      const seenSourcePaths = new Set();
+      for (const entry of sourceIndex) {
+        for (const filePath of [entry.pdf_path, entry.full_text_path]) {
+          if (!filePath || seenSourcePaths.has(filePath)) {
+            continue;
+          }
+          seenSourcePaths.add(filePath);
+          const copiedPath = await copyReportArtifact(
+            filePath,
+            rewriteReportRelativePath(filePath, sourceDate, args.date),
+          );
+          if (copiedPath) copiedPaths.push(copiedPath);
+        }
+      }
+      for (const entry of sourceTextManifest.entries ?? []) {
+        const filePath = entry.text_path;
+        if (!filePath || seenSourcePaths.has(filePath)) {
+          continue;
+        }
+        seenSourcePaths.add(filePath);
+        const copiedPath = await copyReportArtifact(
+          filePath,
+          rewriteReportRelativePath(filePath, sourceDate, args.date),
+        );
+        if (copiedPath) copiedPaths.push(copiedPath);
+      }
 
-  if (
-    await writeJsonIfMissing(textManifestPath, {
-      date: args.date,
-      generated_at: generatedAt,
-      total_reports: 0,
-      success_count: 0,
-      failed_count: 0,
-      ocr_used_count: 0,
-      ocr_trigger_length: null,
-      preview_text_limit: null,
-      command_availability: {},
-      method_counts: {},
-      entries: [],
-      fallback: true,
-      fallback_reason: reason,
-    })
-  ) {
-    createdPaths.push(textManifestPath);
-  }
+      await writeJson(indexPath, targetIndex);
+      await writeJson(crawlManifestPath, {
+        ...sourceCrawlManifest,
+        date: args.date,
+        generated_at: generatedAt,
+        fallback: true,
+        fallback_reason: reason,
+        recovered_from_date: sourceDate,
+      });
+      await writeText(
+        crawlManifestMdPath,
+        [
+          `# ${args.date} 리포트 수집 매니페스트`,
+          "",
+          "- fallback: true",
+          `- fallback_reason: ${reason}`,
+          `- generated_at: ${generatedAt}`,
+          `- recovered_from_date: ${sourceDate}`,
+          `- 저장 건수: ${targetIndex.length}`,
+        ].join("\n"),
+      );
+      await writeJson(textManifestPath, {
+        ...sourceTextManifest,
+        date: args.date,
+        generated_at: generatedAt,
+        entries: targetTextEntries,
+        fallback: true,
+        fallback_reason: reason,
+        recovered_from_date: sourceDate,
+      });
+      await writeText(
+        textManifestMdPath,
+        [
+          `# ${args.date} 전문 텍스트 매니페스트`,
+          "",
+          "- fallback: true",
+          `- fallback_reason: ${reason}`,
+          `- generated_at: ${generatedAt}`,
+          `- recovered_from_date: ${sourceDate}`,
+          `- 성공: ${Number(sourceTextManifest.success_count ?? 0)}/${Number(sourceTextManifest.total_reports ?? 0)}`,
+        ].join("\n"),
+      );
 
-  if (
-    await writeTextIfMissing(
-      textManifestMdPath,
-      [
-        `# ${args.date} 전문 텍스트 매니페스트`,
-        "",
-        "- fallback: true",
-        `- fallback_reason: ${reason}`,
-        `- generated_at: ${generatedAt}`,
-        "- 성공: 0/0",
-      ].join("\n"),
-    )
-  ) {
-    createdPaths.push(textManifestMdPath);
-  }
-
-  return createdPaths.length > 0
-    ? {
+      return {
         kind: "reports",
         status: "recovered",
-        detail: "빈 리포트 index/text manifest로 복구했습니다.",
+        detail: `리포트 산출물을 ${sourceDate} 기준 ${targetIndex.length}건으로 복구했습니다.`,
         reason,
-        createdPaths,
-        sourceDate: null,
-      }
-    : null;
+        createdPaths: [
+          indexPath,
+          crawlManifestPath,
+          crawlManifestMdPath,
+          textManifestPath,
+          textManifestMdPath,
+          ...copiedPaths,
+        ],
+        sourceDate,
+      };
+    }
+  }
+
+  await writeJson(indexPath, []);
+  await writeJson(crawlManifestPath, {
+    date: args.date,
+    generated_at: generatedAt,
+    total_matched_before_dedupe: 0,
+    downloaded_count: 0,
+    failed_download_count: 0,
+    source_counts: {},
+    category_counts: {},
+    top_brokers: {},
+    page_logs: [],
+    download_failures: [],
+    fallback: true,
+    fallback_reason: reason,
+  });
+  await writeText(
+    crawlManifestMdPath,
+    [
+      `# ${args.date} 리포트 수집 매니페스트`,
+      "",
+      "- fallback: true",
+      `- fallback_reason: ${reason}`,
+      `- generated_at: ${generatedAt}`,
+      "- 저장 건수: 0",
+    ].join("\n"),
+  );
+  await writeJson(textManifestPath, {
+    date: args.date,
+    generated_at: generatedAt,
+    total_reports: 0,
+    success_count: 0,
+    failed_count: 0,
+    ocr_used_count: 0,
+    ocr_trigger_length: null,
+    preview_text_limit: null,
+    command_availability: {},
+    method_counts: {},
+    entries: [],
+    fallback: true,
+    fallback_reason: reason,
+  });
+  await writeText(
+    textManifestMdPath,
+    [
+      `# ${args.date} 전문 텍스트 매니페스트`,
+      "",
+      "- fallback: true",
+      `- fallback_reason: ${reason}`,
+      `- generated_at: ${generatedAt}`,
+      "- 성공: 0/0",
+    ].join("\n"),
+  );
+
+  return {
+    kind: "reports",
+    status: "recovered",
+    detail: "빈 리포트 index/text manifest로 복구했습니다.",
+    reason,
+    createdPaths: [
+      indexPath,
+      crawlManifestPath,
+      crawlManifestMdPath,
+      textManifestPath,
+      textManifestMdPath,
+    ],
+    sourceDate: null,
+  };
 }
 
 async function ensureMarketFallback(args) {

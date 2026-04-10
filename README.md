@@ -110,14 +110,14 @@ flowchart TD
 가장 권장하는 일일 실행 방법은 아래 한 줄입니다.
 
 ```bash
-cd /Users/seo/Documents/Playground/EcoReport
+cd /Users/seo/stock-pilot
 bash scripts/run-daily-system.sh --date YYYY-MM-DD
 ```
 
 Gemini Deep Research 오버레이까지 포함한 완결형 자동 실행은 아래 명령을 사용합니다.
 
 ```bash
-cd /Users/seo/Documents/Playground/EcoReport
+cd /Users/seo/stock-pilot
 npm run automation:daily -- --date YYYY-MM-DD
 ```
 
@@ -145,7 +145,7 @@ npm run automation:daily -- --date YYYY-MM-DD
 수동으로만 먼저 갱신하고 싶을 때는 아래 명령을 사용합니다.
 
 ```bash
-cd /Users/seo/Documents/Playground/EcoReport
+cd /Users/seo/stock-pilot
 npm run portfolio:sync:kis -- --date YYYY-MM-DD
 ```
 
@@ -168,7 +168,7 @@ EcoReport는 이제 일일 산출물을 `persistent wiki`로 다시 컴파일합
 핵심 명령:
 
 ```bash
-cd /Users/seo/Documents/Playground/EcoReport
+cd /Users/seo/stock-pilot
 node scripts/build-llm-wiki.js --date YYYY-MM-DD
 node scripts/publish-llm-wiki-to-vault.js
 ```
@@ -211,7 +211,7 @@ Vercel preview 실패가 있어도 일일 운영은 막히지 않도록 설계�
 개발/검증 중에는 아래를 기준으로 봅니다.
 
 ```bash
-cd /Users/seo/Documents/Playground/EcoReport/dashboard
+cd /Users/seo/stock-pilot/dashboard
 npm run dev -- --hostname 0.0.0.0
 ```
 
@@ -230,6 +230,7 @@ npm run dev -- --hostname 0.0.0.0
 운영 가이드는 아래 문서를 따릅니다.
 
 - [PRIVATE_ACCESS_RUNBOOK.md](docs/PRIVATE_ACCESS_RUNBOOK.md)
+- [VERCEL_DEPLOY_RUNBOOK.md](docs/VERCEL_DEPLOY_RUNBOOK.md)
 - [UPDATE_LOG.md](docs/UPDATE_LOG.md)
 - [FAILURES_AND_FALLBACKS.md](FAILURES_AND_FALLBACKS.md)
 
@@ -238,7 +239,7 @@ npm run dev -- --hostname 0.0.0.0
 로컬 대시보드에서 OCR과 GitHub 동기화를 자동으로 쓰려면 아래 파일을 채웁니다.
 
 ```bash
-cd /Users/seo/Documents/Playground/EcoReport/dashboard
+cd /Users/seo/stock-pilot/dashboard
 cp .env.local.example .env.local
 ```
 
@@ -538,14 +539,14 @@ EcoReport/
 ### 1. 리포트 수집 + 텍스트화
 
 ```bash
-cd /Users/seo/Documents/Playground/EcoReport
+cd /Users/seo/stock-pilot
 bash scripts/collect-report-assets.sh --date 2026-04-03
 ```
 
 ### 2. RAG 코퍼스 생성
 
 ```bash
-cd /Users/seo/Documents/Playground/EcoReport
+cd /Users/seo/stock-pilot
 node scripts/build-report-rag-corpus.js --date 2026-04-03
 node scripts/build-portfolio-rag-corpus.js --date 2026-04-03
 node scripts/build-parallel-rag-corpus.js --date 2026-04-03
@@ -554,7 +555,7 @@ node scripts/build-parallel-rag-corpus.js --date 2026-04-03
 ### 3. Stage 1~6 + 전략 파이프라인 실행
 
 ```bash
-cd /Users/seo/Documents/Playground/EcoReport
+cd /Users/seo/stock-pilot
 npm run stage1.5:prompt -- --date 2026-04-03
 npm run stage1.5:gemini:run -- --date 2026-04-03
 npm run stage1.6:briefing -- --date 2026-04-03 --run-date 2026-04-03 --effective-market-date 2026-04-03
@@ -564,7 +565,7 @@ bash scripts/run-strategy-pipeline.sh --date 2026-04-03 --run-date 2026-04-03 --
 또는 개별 실행:
 
 ```bash
-cd /Users/seo/Documents/Playground/EcoReport
+cd /Users/seo/stock-pilot
 npm run stage1:extracts -- --date 2026-04-03
 npm run stage1.5:prompt -- --date 2026-04-03
 npm run stage1.5:gemini:web -- --date 2026-04-03
@@ -687,7 +688,12 @@ Python 가상환경에는 `google-genai`가 설치되어 있어야 하며, 현�
 
 - 운영 기준은 `localhost:3000`
 - `data` 브랜치와 원격 배포는 참고/보조 용도
-- 구조가 더 안정되면 다시 외부 배포를 강화합니다
+- Mac Mini 로컬 배포는 계속 반영
+- `Vercel` 배포는 수동 실행, `repository_dispatch`, 또는 `.vercel-deploy-trigger` Git 신호가 있을 때만 실행
+
+실행 방법은 아래 문서를 따릅니다.
+
+- [VERCEL_DEPLOY_RUNBOOK.md](docs/VERCEL_DEPLOY_RUNBOOK.md)
 
 ## 최근 상태 요약
 

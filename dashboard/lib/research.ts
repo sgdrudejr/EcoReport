@@ -643,6 +643,30 @@ function uniqueStrings(items: string[]) {
   return [...new Set(items.map((item) => item.trim()).filter(Boolean))];
 }
 
+function splitPortfolioInsightParagraph(paragraph: string) {
+  const normalized = cleanMarkdownInline(paragraph).replace(/\s+/g, " ").trim();
+  if (!normalized) return [];
+
+  const trimmed = normalized
+    .replace(/^포트폴리오 관점 시사점[:：]?\s*/i, "")
+    .replace(/^현재 포트폴리오는\s*/i, "현재 포트폴리오는 ")
+    .replace(/^취약점은\s*/i, "")
+    .replace(/^향후 포트폴리오 보완 축은\s*/i, "")
+    .replace(/^보완 축은\s*/i, "")
+    .trim();
+
+  const ordinalChunks = trimmed
+    .split(/(?=(?:첫째|둘째|셋째|넷째|다섯째)\s*,)/)
+    .map((item) => item.trim())
+    .filter(Boolean);
+
+  const items = (ordinalChunks.length > 1 ? ordinalChunks : [trimmed]).map((item) =>
+    item.replace(/^(?:첫째|둘째|셋째|넷째|다섯째)\s*,\s*/i, "").trim(),
+  );
+
+  return uniqueStrings(items);
+}
+
 export function extractResearchDiagnosis(content: string) {
   const section = getResearchSectionByPattern(content, /오늘 한 줄 진단|one line/i);
   if (!section) return null;
@@ -808,7 +832,9 @@ export function extractResearchPortfolioInsights(content: string): ResearchPortf
     upgradeAxes: [],
   };
 
-  for (const group of parseBulletGroups(section.body)) {
+  const bulletGroups = parseBulletGroups(section.body);
+
+  for (const group of bulletGroups) {
     const { label, value } = parseLabelValue(group.header);
     const items = uniqueStrings([value, ...group.items]);
 
@@ -824,6 +850,46 @@ export function extractResearchPortfolioInsights(content: string): ResearchPortf
 
     if (/보완 축|보완|업그레이드/i.test(label)) {
       insights.upgradeAxes.push(...items);
+    }
+  }
+
+  if (
+    insights.strengths.length === 0 &&
+    insights.vulnerabilities.length === 0 &&
+    insights.upgradeAxes.length === 0
+  ) {
+    const paragraphs = section.body
+      .replace(/\r\n/g, "\n")
+      .split(/\n{2,}/)
+      .map((item) => item.trim())
+      .filter(Boolean);
+
+    for (const paragraph of paragraphs) {
+      const items = splitPortfolioInsightParagraph(paragraph);
+      if (items.length === 0) continue;
+
+      const normalizedParagraph = cleanMarkdownInline(paragraph).replace(/\s+/g, " ").trim();
+
+      if (/^(취약점|약점|리스크)(?:은|는|:|：|\s|$)/i.test(normalizedParagraph)) {
+        insights.vulnerabilities.push(...items);
+        continue;
+      }
+
+      if (
+        /^(향후\s+포트폴리오\s+보완 축|보완 축|업그레이드|향후)(?:은|는|:|：|\s|$)/i.test(
+          normalizedParagraph,
+        )
+      ) {
+        insights.upgradeAxes.push(...items);
+        continue;
+      }
+
+      if (
+        /^(강점|좋은 점|장점)(?:은|는|:|：|\s|$)/i.test(normalizedParagraph) ||
+        insights.strengths.length === 0
+      ) {
+        insights.strengths.push(...items);
+      }
     }
   }
 
