@@ -2,6 +2,7 @@
 // 3단계(v3): 교차단면 팩터 정규화, 공분산 기반 리스크 패널티,
 // 계좌별 tax-aware 조정을 결합해 종목·계좌·포트폴리오 점수를 산출합니다.
 
+import fsSync from "node:fs";
 import path from "node:path";
 
 import {
@@ -558,9 +559,83 @@ function directionSign(direction) {
   return 0;
 }
 
-function impactContribution(impact, referenceDate) {
+function loadLatestFeedbackAnalysis(dateHint) {
+  const feedbackDir = path.join(ROOT_DIR, "data", "feedback", "analysis");
+  if (!fsSync.existsSync(feedbackDir)) return null;
+
+  const candidateFiles = fsSync
+    .readdirSync(feedbackDir)
+    .filter((file) => file.endsWith(".json"))
+    .sort()
+    .reverse();
+  const preferredFiles = dateHint ? [`${dateHint}-feedback.json`, `${dateHint}.json`] : [];
+  const filesToTry = [...new Set([...preferredFiles, ...candidateFiles])];
+
+  for (const fileName of filesToTry) {
+    try {
+      const raw = fsSync.readFileSync(path.join(feedbackDir, fileName), "utf8");
+      return JSON.parse(raw);
+    } catch {
+      // try next candidate
+    }
+  }
+
+  return null;
+}
+
+function buildResearchSourceAccuracyMap(feedbackAnalysis) {
+  const raw =
+    feedbackAnalysis?.researchSourceAccuracy ??
+    feedbackAnalysis?.sourceAccuracy ??
+    null;
+  const entries = Array.isArray(raw)
+    ? raw.map((item) => [normalizeText(item?.source), item])
+    : Object.entries(raw ?? {}).map(([source, value]) => [normalizeText(source), value]);
+
+  return new Map(
+    entries
+      .filter(([source]) => Boolean(source))
+      .map(([source, value]) => [
+        source,
+        {
+          buyHitRate:
+            typeof value?.buyHitRate === "number" && Number.isFinite(value.buyHitRate)
+              ? value.buyHitRate
+              : null,
+          sampleSize:
+            typeof value?.sampleSize === "number" && Number.isFinite(value.sampleSize)
+              ? value.sampleSize
+              : null,
+        },
+      ]),
+  );
+}
+
+function sourceAccuracyMultiplier(source, sourceAccuracyMap) {
+  const key = normalizeText(source);
+  const accuracy = key ? sourceAccuracyMap.get(key) ?? null : null;
+  const buyHitRate = accuracy?.buyHitRate ?? null;
+
+  if (typeof buyHitRate !== "number") {
+    return { multiplier: 1, buyHitRate: null, sampleSize: accuracy?.sampleSize ?? null };
+  }
+  if (buyHitRate > 0.5) {
+    return { multiplier: 1.2, buyHitRate, sampleSize: accuracy?.sampleSize ?? null };
+  }
+  if (buyHitRate < 0.2) {
+    return { multiplier: 0.7, buyHitRate, sampleSize: accuracy?.sampleSize ?? null };
+  }
+  return { multiplier: 1, buyHitRate, sampleSize: accuracy?.sampleSize ?? null };
+}
+
+function impactContribution(impact, referenceDate, sourceAccuracyMap) {
   const sign = directionSign(impact.direction);
-  const strength = clamp(valueOrFallback(impact.strength, 0.3), 0, 1);
+  const sourceAdjustment = sourceAccuracyMultiplier(impact.broker, sourceAccuracyMap);
+  const strength = clamp(
+    valueOrFallback(impact.strength, 0.3) * sourceAdjustment.multiplier,
+    0,
+    1.2,
+  );
   const confidence = normalizeConfidence(impact.confidence);
   const horizonWeight = {
     "1w": 0.8,
@@ -578,7 +653,13 @@ function impactContribution(impact, referenceDate) {
   const reportTypeWeight = REPORT_TYPE_WEIGHTS[impact.reportType] ?? 0.45;
   const halfLifeDays = impact.decayHalfLifeDays ?? IMPACT_HALF_LIFE_BY_HORIZON[impact.horizon] ?? 30;
   const decay = decayWeight(referenceDate, impact.publishedDate, halfLifeDays);
-  return sign * strength * confidence * horizonWeight * typeWeight * reportTypeWeight * decay;
+  return {
+    contribution:
+      sign * strength * confidence * horizonWeight * typeWeight * reportTypeWeight * decay,
+    sourceMultiplier: sourceAdjustment.multiplier,
+    sourceBuyHitRate: sourceAdjustment.buyHitRate,
+    sourceSampleSize: sourceAdjustment.sampleSize,
+  };
 }
 
 function normalizeImpactMapEntries(impactMap, targetCode, accountKey, category) {
@@ -662,7 +743,15 @@ function normalizeStage1Entries(stage1Extracts, targetCode, accountKey, category
   return entries;
 }
 
-function aggregateHoldingReportImpacts({ impactMap, stage1Extracts, targetCode, accountKey, category, referenceDate }) {
+function aggregateHoldingReportImpacts({
+  impactMap,
+  stage1Extracts,
+  targetCode,
+  accountKey,
+  category,
+  referenceDate,
+  sourceAccuracyMap,
+}) {
   const confirmed = normalizeImpactMapEntries(impactMap, targetCode, accountKey, category).filter(
     (item) => item.targetType !== "account" && item.targetType !== "portfolio",
   );
@@ -681,11 +770,15 @@ function aggregateHoldingReportImpacts({ impactMap, stage1Extracts, targetCode, 
       relationType: relation.relationType,
       relationWeight: relation.relationWeight,
       evidenceScore: relation.evidenceScore,
-      contribution: impactContribution(impact, referenceDate) * relation.relationWeight,
+      ...impactContribution(impact, referenceDate, sourceAccuracyMap),
     };
   });
   const rawImpacts = relationCandidates
     .filter((impact) => impact.relationWeight > 0)
+    .map((impact) => ({
+      ...impact,
+      contribution: impact.contribution * impact.relationWeight,
+    }))
     .filter((impact) => Math.abs(impact.contribution) >= 0.025)
     .sort((left, right) => {
       if (right.evidenceScore !== left.evidenceScore) return right.evidenceScore - left.evidenceScore;
@@ -741,7 +834,13 @@ function aggregateHoldingReportImpacts({ impactMap, stage1Extracts, targetCode, 
   };
 }
 
-function aggregateAccountDirectImpacts({ impactMap, stage1Extracts, accountKey, referenceDate }) {
+function aggregateAccountDirectImpacts({
+  impactMap,
+  stage1Extracts,
+  accountKey,
+  referenceDate,
+  sourceAccuracyMap,
+}) {
   const confirmed = normalizeImpactMapEntries(impactMap, null, accountKey, null).filter(
     (item) => item.targetType === "account" || item.targetType === "portfolio",
   );
@@ -749,10 +848,13 @@ function aggregateAccountDirectImpacts({ impactMap, stage1Extracts, accountKey, 
     (item) => item.targetType === "account",
   );
   const rawImpacts = (confirmed.length > 0 ? confirmed : fallback)
-    .map((impact) => ({
-      ...impact,
-      contribution: impactContribution(impact, referenceDate),
-    }))
+    .map((impact) => {
+      const contribution = impactContribution(impact, referenceDate, sourceAccuracyMap);
+      return {
+        ...impact,
+        ...contribution,
+      };
+    })
     .filter((impact) => Math.abs(impact.contribution) >= 0.03)
     .sort((left, right) => Math.abs(right.contribution) - Math.abs(left.contribution));
 
@@ -1860,6 +1962,8 @@ async function main() {
   const leadingIndicator = computeLeadingIndicatorScore(fred);
   const technicalMap = technical.scores ?? {};
   const referenceDate = new Date(`${args.date}T00:00:00Z`);
+  const feedbackAnalysis = loadLatestFeedbackAnalysis(args.date);
+  const sourceAccuracyMap = buildResearchSourceAccuracyMap(feedbackAnalysis);
   const profileName = chooseWeightProfile(strategy, regime);
   const { factorModel, autoAdjustMeta } = await resolveFeedbackAdjustedFactorModel(strategy);
   const covarianceModel = {
@@ -1917,6 +2021,7 @@ async function main() {
       stage1Extracts: stage1.extracts,
       accountKey: account.key,
       referenceDate,
+      sourceAccuracyMap,
     });
     accountContext[account.key] = {
       account,
@@ -1939,6 +2044,7 @@ async function main() {
         accountKey: account.key,
         category,
         referenceDate,
+        sourceAccuracyMap,
       });
       const computed = computeActionScore(technicalItem, reportImpact, regime.name);
       const rawTechBaseScore = technicalItem?.score ?? null;
@@ -2328,6 +2434,7 @@ async function main() {
         maxMultiplier: taxAwareConfig.maxMultiplier,
       },
       riskPenaltyCaps: riskCaps,
+      researchSourceAccuracyLoaded: sourceAccuracyMap.size > 0,
     },
     factorStats,
     holdings: holdingScores,

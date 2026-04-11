@@ -1,14 +1,85 @@
 {
   "analysisDate": "2026-04-11",
-  "generatedAt": "2026-04-11T12:06:00.603Z",
-  "snapshotCount": 1,
-  "positionCount": 13,
+  "generatedAt": "2026-04-11T16:25:48.068Z",
+  "snapshotCount": 7,
+  "positionCount": 80,
   "horizons": [
     5,
     10,
     20
   ],
+  "snapshotDates": [
+    "2026-04-03",
+    "2026-04-05",
+    "2026-04-06",
+    "2026-04-07",
+    "2026-04-08",
+    "2026-04-09",
+    "2026-04-10"
+  ],
+  "sampleSize": 0,
   "scoreReturnCorrelation": {
+    "actionScore_vs_ret5d": null,
+    "actionScore_vs_ret10d": null,
+    "actionScore_vs_ret20d": null
+  },
+  "signalHitRates": {
+    "buy_hit_5d": null,
+    "hold_hit_5d": null,
+    "trim_negative_5d": null
+  },
+  "factorCorrelations": {
+    "momentum": {
+      "vs_ret5d": null,
+      "vs_ret10d": null,
+      "count": 0
+    },
+    "research": {
+      "vs_ret5d": null,
+      "vs_ret10d": null,
+      "count": 0
+    },
+    "income": {
+      "vs_ret5d": null,
+      "vs_ret10d": null,
+      "count": 0
+    },
+    "macroFit": {
+      "vs_ret5d": null,
+      "vs_ret10d": null,
+      "count": 0
+    }
+  },
+  "regimeAccuracy": {},
+  "worstMispredictions": {
+    "highScoreLosers": [],
+    "lowScoreWinners": []
+  },
+  "weightSuggestions": [
+    {
+      "factor": "momentum",
+      "correlation_5d": null,
+      "suggestion": "유지"
+    },
+    {
+      "factor": "research",
+      "correlation_5d": null,
+      "suggestion": "유지"
+    },
+    {
+      "factor": "income",
+      "correlation_5d": null,
+      "suggestion": "유지"
+    },
+    {
+      "factor": "macroFit",
+      "correlation_5d": null,
+      "suggestion": "유지"
+    }
+  ],
+  "sourceAccuracy": [],
+  "researchSourceAccuracy": [],
+  "scoreReturnCorrelationDetailed": {
     "ret_5d": {
       "correlation": null,
       "sampleCount": 0
@@ -85,12 +156,12 @@
       }
     }
   },
-  "regimeAccuracy": {
+  "regimeAccuracyByHorizon": {
     "ret_5d": {},
     "ret_10d": {},
     "ret_20d": {}
   },
-  "worstMispredictions": [],
+  "worstMispredictionsDetailed": [],
   "alerts": [],
   "autoAdjustment": {
     "enabled": true,

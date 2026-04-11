@@ -14,6 +14,8 @@ USE_CLAUDE_STAGE2=0
 ALLOW_STAGE2_MOCK_FALLBACK=1
 BUILD_STAGE1_5_PROMPT=1
 STAGE1_5_PID=""
+AUTO_TUNE_WEIGHTS=0
+AUTO_TUNE_DRY_RUN=0
 
 python_bin() {
   if [[ -x "$ROOT_DIR/.venv/bin/python" ]]; then
@@ -106,6 +108,16 @@ while [[ $# -gt 0 ]]; do
       BUILD_STAGE1_5_PROMPT=0
       shift
       ;;
+    --auto-tune)
+      AUTO_TUNE_WEIGHTS=1
+      AUTO_TUNE_DRY_RUN=0
+      shift
+      ;;
+    --auto-tune-dry-run)
+      AUTO_TUNE_WEIGHTS=1
+      AUTO_TUNE_DRY_RUN=1
+      shift
+      ;;
     *)
       REQUESTED_DATE="$1"
       shift
@@ -147,21 +159,57 @@ fi
 echo "== Stage 2: strategy prompt =="
 node scripts/build-stage2-strategy-prompt.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"
 
-if [[ "$USE_GEMINI_STAGE2" == "1" ]]; then
-  echo "== Stage 2 actual: Gemini strategy options =="
-  if ! preflight_output="$(ROOT_DIR="$ROOT_DIR" stage2_gemini_preflight 2>&1)"; then
-    if [[ "$ALLOW_STAGE2_MOCK_FALLBACK" != "1" ]]; then
-      echo "$preflight_output" >&2
-      exit 1
-    fi
-    echo "!! Gemini Stage 2 사전 점검 실패 -> mock fallback으로 계속 진행 (${preflight_output})"
-    node scripts/build-stage2-strategy-mock.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE" --output "data/analysis-state/$DATE/stage2-strategy-options.json"
-  elif ! "$(python_bin)" scripts/build-stage2-strategy-gemini.py --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"; then
-    if [[ "$ALLOW_STAGE2_MOCK_FALLBACK" != "1" ]]; then
-      exit 1
-    fi
-    echo "!! Gemini Stage 2 실패 -> mock fallback으로 계속 진행"
-    node scripts/build-stage2-strategy-mock.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE" --output "data/analysis-state/$DATE/stage2-strategy-options.json"
+STAGE2_COMMON_ARGS=(--date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE")
+STAGE2_MOCK_FALLBACK_CMD=(node scripts/build-stage2-strategy-mock.js "${STAGE2_COMMON_ARGS[@]}" --mock-mode fallback --output "data/analysis-state/$DATE/stage2-strategy-options.json")
+STAGE2_LOG="data/analysis-state/$DATE/stage2-run-log.json"
+STAGE2_START=$(date +%s)
+STAGE2_PROVIDER=""
+STAGE2_ATTEMPTS=()
+STAGE2_FINAL_STATUS=""
+
+stage2_log_attempt() {
+  local provider="$1" status="$2" elapsed="$3" error="${4:-}"
+  STAGE2_ATTEMPTS+=("{\"provider\":\"$provider\",\"status\":\"$status\",\"elapsed_sec\":$elapsed,\"error\":$(printf '%s' "$error" | python3 -c 'import sys,json; print(json.dumps(sys.stdin.read().strip() or None))')}")
+}
+
+stage2_write_log() {
+  local total_elapsed=$(( $(date +%s) - STAGE2_START ))
+  local attempts_json
+  attempts_json=$(printf '%s,' "${STAGE2_ATTEMPTS[@]}" | sed 's/,$//')
+  mkdir -p "data/analysis-state/$DATE"
+  cat > "$STAGE2_LOG" <<LOGEOF
+{
+  "date": "$DATE",
+  "runId": "$RUN_ID",
+  "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+  "finalProvider": "$STAGE2_PROVIDER",
+  "finalStatus": "$STAGE2_FINAL_STATUS",
+  "totalElapsedSec": $total_elapsed,
+  "attempts": [$attempts_json]
+}
+LOGEOF
+  echo "== Stage 2 run log: $STAGE2_LOG =="
+}
+
+stage2_mock_fallback() {
+  echo "!! $1 -> mock fallback으로 계속 진행"
+  local fb_start=$(date +%s)
+  "${STAGE2_MOCK_FALLBACK_CMD[@]}"
+  stage2_log_attempt "mock" "success" "$(( $(date +%s) - fb_start ))"
+  STAGE2_PROVIDER="mock"
+  STAGE2_FINAL_STATUS="fallback"
+}
+
+stage2_run_gemini() {
+  local t0=$(date +%s)
+  if "$(python_bin)" scripts/build-stage2-strategy-gemini.py "${STAGE2_COMMON_ARGS[@]}" 2>/tmp/stage2-gemini-err.txt; then
+    stage2_log_attempt "gemini" "success" "$(( $(date +%s) - t0 ))"
+    STAGE2_PROVIDER="gemini"
+    STAGE2_FINAL_STATUS="success"
+    return 0
+  else
+    stage2_log_attempt "gemini" "failed" "$(( $(date +%s) - t0 ))" "$(cat /tmp/stage2-gemini-err.txt)"
+    return 1
   fi
 }
 
@@ -217,6 +265,9 @@ node scripts/build-impact-map.js --date "$DATE" --run-date "$RUN_DATE" --effecti
 echo "== Stage 3: quant scores =="
 node scripts/build-stage3-quant-scores.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"
 
+echo "== Holding clusters =="
+node scripts/build-holding-clusters.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE" || echo "!! Holding clusters 생성 실패 (non-blocking)"
+
 echo "== Stage 4: execution plan =="
 node scripts/build-stage4-execution-plan.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"
 
@@ -228,5 +279,22 @@ node scripts/build-feedback-analysis.js --date "$DATE" --run-date "$RUN_DATE" --
 
 echo "== Feedback: report =="
 node scripts/build-feedback-report.js --date "$DATE"
+
+if [[ "$AUTO_TUNE_WEIGHTS" == "1" ]]; then
+  echo "== Auto-tune factor weights =="
+  AUTO_TUNE_ARGS=(--date "$DATE")
+  if [[ "$AUTO_TUNE_DRY_RUN" == "1" ]]; then
+    AUTO_TUNE_ARGS+=(--dry-run)
+  fi
+  node scripts/auto-tune-weights.js "${AUTO_TUNE_ARGS[@]}"
+fi
+
+if [[ -n "$STAGE1_5_PID" ]]; then
+  if wait "$STAGE1_5_PID"; then
+    echo "== Stage 1.5: deep research prompt complete =="
+  else
+    echo "!! Stage 1.5 prompt 생성 실패 (non-blocking)"
+  fi
+fi
 
 echo "Done."

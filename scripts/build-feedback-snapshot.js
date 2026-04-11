@@ -80,6 +80,19 @@ function normalizeStage4Plan(plan) {
   };
 }
 
+function extractReportSources(stage3Position) {
+  return [
+    ...new Set(
+      (stage3Position?.reportImpacts ?? []).flatMap((impact) => [
+        impact?.broker ?? null,
+        impact?.reportType
+          ? `${impact.reportType}:${impact.broker ?? "unknown"}`
+          : null,
+      ]),
+    ),
+  ].filter(Boolean);
+}
+
 function normalizePosition(positionKey, stage3Position, portfolioPosition) {
   return {
     positionKey,
@@ -136,6 +149,15 @@ function normalizePosition(positionKey, stage3Position, portfolioPosition) {
       impactCount: stage3Position?.report?.impactCount ?? null,
       unavailableReason: stage3Position?.report?.unavailableReason ?? null,
     },
+    reportScore:
+      stage3Position?.report?.impactScore ??
+      stage3Position?.scores?.reportScore ??
+      null,
+    reportImpactCount:
+      stage3Position?.report?.impactCount ??
+      (stage3Position?.reportImpacts ?? []).length ??
+      null,
+    reportSources: extractReportSources(stage3Position),
     probabilities: stage3Position?.probabilities ?? {},
     explain: {
       topDrivers: stage3Position?.explain?.topDrivers ?? [],

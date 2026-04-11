@@ -16,6 +16,7 @@ export default function FloatingSectionIndex({
 }) {
   const [isVisible, setIsVisible] = useState(false);
   const [activeId, setActiveId] = useState<string | null>(items[0]?.id ?? null);
+  const [visibleItems, setVisibleItems] = useState(items);
 
   useEffect(() => {
     if (items.length === 0) return;
@@ -23,11 +24,13 @@ export default function FloatingSectionIndex({
     const update = () => {
       const mobileViewport = window.innerWidth < 768;
       setIsVisible(!mobileViewport);
+      const existingItems = items.filter((item) => document.getElementById(item.id));
+      setVisibleItems(existingItems);
 
       const offset = 160;
-      let currentId = items[0]?.id ?? null;
+      let currentId = existingItems[0]?.id ?? null;
 
-      for (const item of items) {
+      for (const item of existingItems) {
         const section = document.getElementById(item.id);
         if (!section) continue;
         if (section.getBoundingClientRect().top <= offset) {
@@ -47,7 +50,7 @@ export default function FloatingSectionIndex({
     };
   }, [items]);
 
-  if (items.length === 0) return null;
+  if (visibleItems.length === 0) return null;
 
   return (
     <div
@@ -62,7 +65,7 @@ export default function FloatingSectionIndex({
           </p>
         </div>
         <div className="grid justify-items-end gap-1.5">
-          {items.map((item) => {
+          {visibleItems.map((item) => {
             const isActive = item.id === activeId;
             return (
               <button

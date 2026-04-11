@@ -384,6 +384,39 @@ function buildAlerts(factorMetrics, primaryHorizonDays) {
     .filter(Boolean);
 }
 
+function average(values) {
+  if (!values || values.length === 0) return null;
+  return Math.round((values.reduce((sum, value) => sum + value, 0) / values.length) * 10000) / 10000;
+}
+
+function sourceBuyHitRate(items) {
+  const strictBuyItems = items.filter(
+    (item) =>
+      typeof item.actionScore === "number" &&
+      item.actionScore >= 68 &&
+      item.bestReturn != null,
+  );
+  if (strictBuyItems.length >= 2) {
+    return Math.round(
+      (strictBuyItems.filter((item) => item.bestReturn > 0).length / strictBuyItems.length) * 10000,
+    ) / 10000;
+  }
+
+  const actionableItems = items.filter(
+    (item) =>
+      typeof item.actionScore === "number" &&
+      item.actionScore >= 58 &&
+      item.bestReturn != null,
+  );
+  if (actionableItems.length >= 2) {
+    return Math.round(
+      (actionableItems.filter((item) => item.bestReturn > 0).length / actionableItems.length) * 10000,
+    ) / 10000;
+  }
+
+  return null;
+}
+
 async function main() {
   const args = parseDateArgs(process.argv.slice(2));
   const horizons = DEFAULT_HORIZONS;
@@ -439,6 +472,11 @@ async function main() {
         signal: position.signal,
         actionScore: position.actionScore,
         regimeName: snapshot.regime?.name ?? "UNKNOWN",
+        reportSources: position.reportSources ?? [],
+        reportScore:
+          position.reportScore ??
+          position.report?.impactScore ??
+          null,
         factors: {
           raw: position.factors?.raw ?? {},
           zScores: position.factors?.zScores ?? {},
@@ -516,6 +554,141 @@ async function main() {
     factorPrimaryMetrics,
     autoAdjust,
   );
+  const signalAccuracy = summarizeSignalStats(evaluations, horizons);
+  const regimeAccuracyByHorizon = summarizeRegimeStats(evaluations, horizons);
+  const enrichedEvaluations = evaluations
+    .map((item) => ({
+      ...item,
+      regime: item.regimeName,
+      bestReturn: item.ret_5d ?? item[primaryHorizonKey] ?? item.ret_20d ?? null,
+      bestReturnPeriod:
+        typeof item.ret_5d === "number"
+          ? "5d"
+          : typeof item[primaryHorizonKey] === "number"
+            ? `${primaryHorizonDays}d`
+            : typeof item.ret_20d === "number"
+              ? "20d"
+              : null,
+    }))
+    .filter((item) => item.bestReturn != null);
+  const scoreReturnCorrelationSimple = {
+    actionScore_vs_ret5d: scoreReturnCorrelation?.ret_5d?.correlation ?? null,
+    actionScore_vs_ret10d: scoreReturnCorrelation?.ret_10d?.correlation ?? null,
+    actionScore_vs_ret20d: scoreReturnCorrelation?.ret_20d?.correlation ?? null,
+  };
+  const factorCorrelations = Object.fromEntries(
+    Object.entries(factorMetrics).map(([factorName, metric]) => [
+      factorName,
+      {
+        vs_ret5d: metric?.ret_5d?.correlation ?? null,
+        vs_ret10d: metric?.ret_10d?.correlation ?? null,
+        count:
+          metric?.[primaryHorizonKey]?.sampleCount ??
+          metric?.ret_5d?.sampleCount ??
+          0,
+      },
+    ]),
+  );
+  const regimeAccuracy = Object.fromEntries(
+    Object.entries(regimeAccuracyByHorizon?.ret_5d ?? {}).map(([regimeName, stat]) => [
+      regimeName,
+      {
+        count: stat?.sampleCount ?? 0,
+        avgReturn5d: stat?.avgReturnPct ?? null,
+        scoreCorr5d: stat?.scoreCorrelation ?? null,
+        buyHitRate: stat?.buyHitRate ?? null,
+      },
+    ]),
+  );
+  const pickSignalHitRate = (candidates) => {
+    for (const signal of candidates) {
+      const hitRate = signalAccuracy?.ret_5d?.[signal]?.hitRate;
+      if (typeof hitRate === "number") {
+        return hitRate;
+      }
+    }
+    return null;
+  };
+  const signalHitRates = {
+    buy_hit_5d: pickSignalHitRate([...BUY_SIGNALS]),
+    hold_hit_5d: pickSignalHitRate(["HOLD", "WATCH"]),
+    trim_negative_5d: pickSignalHitRate([...TRIM_SIGNALS]),
+  };
+  const worstMispredictions = {
+    highScoreLosers: enrichedEvaluations
+      .filter((item) => item.actionScore >= 68 && item.bestReturn < -2)
+      .sort((left, right) => left.bestReturn - right.bestReturn)
+      .slice(0, 5)
+      .map((item) => ({
+        date: item.date,
+        code: item.code,
+        name: item.name,
+        score: item.actionScore,
+        bestReturn: item.bestReturn,
+        period: item.bestReturnPeriod,
+      })),
+    lowScoreWinners: enrichedEvaluations
+      .filter((item) => item.actionScore <= 38 && item.bestReturn > 2)
+      .sort((left, right) => right.bestReturn - left.bestReturn)
+      .slice(0, 5)
+      .map((item) => ({
+        date: item.date,
+        code: item.code,
+        name: item.name,
+        score: item.actionScore,
+        bestReturn: item.bestReturn,
+        period: item.bestReturnPeriod,
+      })),
+  };
+  const uiWeightSuggestions = Object.entries(factorCorrelations).map(
+    ([factor, metric]) => {
+      const correlation = metric?.vs_ret5d ?? null;
+      let suggestion = "유지";
+      if (correlation != null && correlation > 0.15) {
+        suggestion = "비중↑ (양의 예측력)";
+      } else if (correlation != null && correlation < -0.1) {
+        suggestion = "비중↓ (음의 예측력)";
+      } else if (correlation != null && Math.abs(correlation) < 0.05) {
+        suggestion = "비중↓ (예측력 거의 없음)";
+      }
+      return { factor, correlation_5d: correlation, suggestion };
+    },
+  );
+  const sourceBuckets = new Map();
+  for (const item of enrichedEvaluations) {
+    for (const source of item.reportSources ?? []) {
+      if (!sourceBuckets.has(source)) {
+        sourceBuckets.set(source, []);
+      }
+      sourceBuckets.get(source).push(item);
+    }
+  }
+  const sourceAccuracy = [...sourceBuckets.entries()]
+    .map(([source, items]) => {
+      const buyHitRate = sourceBuyHitRate(items);
+      return {
+        source,
+        sampleSize: items.length,
+        avgReturn5d: average(
+          items.map((item) => item.ret_5d).filter((value) => value != null),
+        ),
+        buyHitRate,
+        avgReportScore: average(
+          items.map((item) => item.reportScore).filter((value) => value != null),
+        ),
+        note:
+          buyHitRate == null
+            ? "표본 부족"
+            : "68점 BUY 우선, 부족 시 58점 실행권 기준",
+      };
+    })
+    .filter((item) => item.sampleSize >= 2)
+    .sort(
+      (left, right) =>
+        right.sampleSize - left.sampleSize ||
+        (right.avgReturn5d ?? -999) - (left.avgReturn5d ?? -999),
+    )
+    .slice(0, 12);
 
   const payload = {
     analysisDate,
@@ -523,11 +696,21 @@ async function main() {
     snapshotCount: maturedSnapshots.length,
     positionCount: evaluations.length,
     horizons,
-    scoreReturnCorrelation,
-    signalAccuracy: summarizeSignalStats(evaluations, horizons),
+    snapshotDates: maturedSnapshots.map((snapshot) => snapshot?.date).filter(Boolean),
+    sampleSize: enrichedEvaluations.length,
+    scoreReturnCorrelation: scoreReturnCorrelationSimple,
+    signalHitRates,
+    factorCorrelations,
+    regimeAccuracy,
+    worstMispredictions,
+    weightSuggestions: uiWeightSuggestions,
+    sourceAccuracy,
+    researchSourceAccuracy: sourceAccuracy,
+    scoreReturnCorrelationDetailed: scoreReturnCorrelation,
+    signalAccuracy,
     factorPredictivePower: factorMetrics,
-    regimeAccuracy: summarizeRegimeStats(evaluations, horizons),
-    worstMispredictions: buildMispredictions(evaluations, primaryHorizonDays),
+    regimeAccuracyByHorizon,
+    worstMispredictionsDetailed: buildMispredictions(evaluations, primaryHorizonDays),
     alerts: buildAlerts(factorMetrics, primaryHorizonDays),
     autoAdjustment: {
       enabled: autoAdjust.enabled !== false,
