@@ -10,6 +10,7 @@ import {
   buildRunMetadata,
   enrichPortfolioWithSecurityCodes,
   parseDateArgs,
+  readJson,
   resolveSecurityCodeFromCandidates,
   won,
   writeJson,
@@ -361,6 +362,117 @@ function categoryNarrative(category) {
   return category;
 }
 
+function resolveExecutionCategory(accountKey, code) {
+  if (!code) return null;
+  return CATEGORY_BY_CODE[code]?.[accountKey] ?? CATEGORY_BY_CODE[code]?.default ?? null;
+}
+
+function detectVolatilityBucket({ technicalItem, category }) {
+  let score = 0;
+  const normalizedCategory = String(category ?? "");
+
+  if (
+    ["방산", "원자력", "전력기기", "구리", "개별주"].includes(normalizedCategory)
+  ) {
+    score += 2;
+  } else if (
+    ["나스닥100", "미국인덱스", "S&P500", "금", "배당/커버드콜", "현금파킹"].includes(
+      normalizedCategory,
+    )
+  ) {
+    score += 0;
+  } else {
+    score += 1;
+  }
+
+  const absoluteMove = Math.abs(Number(technicalItem?.change_pct ?? 0));
+  if (absoluteMove >= 0.03) score += 1;
+  if (absoluteMove >= 0.05) score += 1;
+
+  const rsi = Number(technicalItem?.rsi ?? 50);
+  if (rsi >= 68 || rsi <= 32) score += 1;
+
+  const volumeRatio = Number(technicalItem?.volume_ratio ?? 1);
+  if (volumeRatio >= 1.8) score += 1;
+
+  const bollingerPosition = technicalItem?.bollinger?.position ?? null;
+  if (bollingerPosition === "above_upper" || bollingerPosition === "below_lower") {
+    score += 1;
+  }
+
+  if ((technicalItem?.alerts ?? []).length > 0) {
+    score += 1;
+  }
+
+  if (score >= 5) return "high";
+  if (score >= 3) return "medium";
+  return "low";
+}
+
+function buildExecutionGuardrails({ account, bucket, item, technicalItem, category }) {
+  const deployPct =
+    bucket.deployBudget > 0 && typeof item.suggestedAmount === "number"
+      ? item.suggestedAmount / bucket.deployBudget
+      : null;
+  const accountBase = Math.max(
+    account.evaluationAmount ?? 0,
+    (account.evaluationAmount ?? 0) + (account.cashAvailable ?? 0),
+  );
+  const accountPct =
+    accountBase > 0 && typeof item.suggestedAmount === "number"
+      ? item.suggestedAmount / accountBase
+      : null;
+  const volatilityBucket = detectVolatilityBucket({ technicalItem, category });
+
+  const positionSizeLabel =
+    deployPct == null
+      ? null
+      : deployPct <= 0.2
+        ? "소"
+        : deployPct <= 0.45
+          ? "중"
+          : "대";
+
+  const baseStopLoss =
+    volatilityBucket === "high" ? 0.08 : volatilityBucket === "medium" ? 0.06 : 0.04;
+  const stopLossPct =
+    ["방산", "원자력", "전력기기", "개별주"].includes(String(category ?? ""))
+      ? baseStopLoss + 0.01
+      : baseStopLoss;
+
+  const rsi = Number(technicalItem?.rsi ?? 50);
+  const bollingerPosition = technicalItem?.bollinger?.position ?? null;
+
+  let entryCondition;
+  if (volatilityBucket === "high") {
+    entryCondition =
+      "고변동성 구간이라 장대 양봉 추격 대신 2~3회 분할 접근이 우선입니다.";
+  } else if (rsi >= 68 || bollingerPosition === "above_upper") {
+    entryCondition =
+      "단기 과열 신호가 있어 시가 추격보다 눌림 또는 종가 안정 확인 후 진입하는 편이 좋습니다.";
+  } else if (rsi <= 35 || bollingerPosition === "below_lower") {
+    entryCondition =
+      "과매도 반등 초입일 수 있어 1차 소액 진입 후 후속 확인을 붙이는 방식이 적절합니다.";
+  } else {
+    entryCondition =
+      "특별한 과열 신호는 없어도 한 번에 넣기보다 2회 이상 분할 진입이 안정적입니다.";
+  }
+
+  const stopLossNote = `${Math.round(stopLossPct * 100)}% 손실 또는 20일선/핵심 논리 훼손 시 재평가`;
+
+  return {
+    volatilityBucket,
+    entryCondition,
+    stopLossPct: Number.parseFloat((stopLossPct * 100).toFixed(1)),
+    stopLossNote,
+    positionSizePctOfDeployBudget:
+      deployPct == null ? null : Number.parseFloat((deployPct * 100).toFixed(1)),
+    positionSizePctOfAccount:
+      accountPct == null ? null : Number.parseFloat((accountPct * 100).toFixed(1)),
+    positionSizeLabel,
+  };
+}
+
 function accountPersona(accountKey) {
   if (accountKey === "ISA") {
     return "절세 계좌 특성상 국내 ETF 중심의 방어·인컴·테마 배치를 유연하게 조정하는 역할";
@@ -375,6 +487,27 @@ function accountPersona(accountKey) {
     return "전술 테마와 현금 운용을 함께 조절하며 국내 ETF 알파를 쌓는 역할";
   }
   return "계좌 목적에 맞는 자산 배분 역할";
+}
+
+function buildClusterWarningLookup(holdingClusters) {
+  const warningByCode = new Map();
+
+  for (const cluster of holdingClusters?.clusters ?? []) {
+    if ((cluster?.holdings ?? []).length < 3) continue;
+    for (const holding of cluster.holdings ?? []) {
+      if (!holding?.code) continue;
+      warningByCode.set(holding.code, {
+        clusterId: cluster.id ?? null,
+        warning:
+          cluster.warning ??
+          `⚠ 같은 클러스터에 ${(cluster.holdings ?? []).length}종목 이상 집중`,
+        holdingCount: (cluster.holdings ?? []).length,
+        avgCorrelation: cluster.avgCorrelation ?? null,
+      });
+    }
+  }
+
+  return warningByCode;
 }
 
 function topImpactReasons(impactMap, account, limit = 3) {
@@ -524,6 +657,7 @@ async function main() {
     stage2: true,
     stage2Mock: true,
     stage3: true,
+    technical: true,
     impactMap: true,
     stage2Resolved: true,
   });
@@ -535,7 +669,12 @@ async function main() {
   const quant = data.stage3;
   const impactMap = data.impactMap;
   const stage2Data = data.stage2Data;
+  const technicalMap = data.technical?.scores ?? {};
   const normalizedPortfolio = enrichPortfolioWithSecurityCodes(portfolio);
+  const holdingClusters = await readJson(path.join(stateDir, "holding-clusters.json"), {
+    clusters: [],
+  });
+  const clusterWarningByCode = buildClusterWarningLookup(holdingClusters);
 
   const accountPlans = (normalizedPortfolio.accounts ?? []).map((account) => {
     const stage2Action =
@@ -549,11 +688,11 @@ async function main() {
       .filter((item) => item.related_accounts?.includes(account.key))
       .slice(0, 4)
       .map((item) => ({ id: item.id, title: item.title, thesis: item.primary_claim?.summary ?? item.key_thesis }));
-    const stagedBuys = distributeBudget(bucket, stage2Candidates);
+    const rawStagedBuys = distributeBudget(bucket, stage2Candidates);
     const validation = validateExecutionPlan({
       account,
       bucket,
-      stagedBuys,
+      stagedBuys: rawStagedBuys,
       trims: bucket.trim.slice(0, 3),
       holds: bucket.hold.slice(0, 3),
       rejectedAlternatives: stage2Resolution.rejected,
@@ -569,6 +708,32 @@ async function main() {
     if (validation.noAction) {
       macroCommentary.actionLine = `${account.label}은 오늘은 no_action으로 유지합니다. ${validation.noActionReason}`;
     }
+    const stagedBuys = validation.stagedBuys.map((item) => {
+      const technicalItem = item.code ? technicalMap[item.code] ?? null : null;
+      const category =
+        resolveExecutionCategory(account.key, item.code) ??
+        bucket.topGap?.category ??
+        null;
+      const clusterInfo = item.code ? clusterWarningByCode.get(item.code) ?? null : null;
+      return {
+        ...item,
+        ...buildExecutionGuardrails({
+          account,
+          bucket,
+          item,
+          technicalItem,
+          category,
+        }),
+        clusterId: clusterInfo?.clusterId ?? null,
+        clusterWarning: clusterInfo?.warning ?? null,
+        clusterHoldingCount: clusterInfo?.holdingCount ?? null,
+        clusterAvgCorrelation: clusterInfo?.avgCorrelation ?? null,
+      };
+    });
+    const clusterWarnings = stagedBuys
+      .filter((item) => item.clusterWarning)
+      .map((item) => item.clusterWarning);
+
     return {
       key: account.key,
       label: account.label,
@@ -579,13 +744,14 @@ async function main() {
       topGap: bucket.topGap,
       candidateFromGap: bucket.candidateFromGap,
       stage2Candidates,
-      stagedBuys: validation.stagedBuys,
+      stagedBuys,
       trims: bucket.trim.slice(0, 3),
       holds: bucket.hold.slice(0, 3),
       watches: bucket.watch.slice(0, 3),
       macroCommentary,
       stage1Drivers,
       validatorFlags: validation.validatorFlags,
+      clusterWarnings,
       rejectedAlternatives: validation.rejectedAlternatives,
       noAction: validation.noAction,
       noActionReason: validation.noActionReason,
@@ -628,13 +794,17 @@ async function main() {
       `- 남길 예수금: ${won(account.reserveCash)}`,
       `- 검증 confidence: ${account.confidence ?? 0}`,
       `- validator flags: ${account.validatorFlags?.join(", ") || "없음"}`,
+      `- cluster warnings: ${account.clusterWarnings?.join(", ") || "없음"}`,
       `- 가장 부족한 자산군: ${account.topGap ? `${account.topGap.category} / ${won(Math.max(account.topGap.gapAmount, 0))}` : "없음"}`,
       `- 우선 보강 후보: ${account.candidateFromGap ?? "없음"}`,
       `- 매크로 → 자산군 → 액션: ${account.macroCommentary?.actionLine ?? "요약 없음"}`,
       "",
       "### 1차 실행",
       ...(account.stagedBuys.length > 0
-        ? account.stagedBuys.map((item) => `- ${item.name}${item.code ? `(${item.code})` : ""} ${won(item.suggestedAmount)} / 이유: ${item.reason}`)
+        ? account.stagedBuys.map(
+            (item) =>
+              `- ${item.name}${item.code ? `(${item.code})` : ""} ${won(item.suggestedAmount)} / 사이징: ${item.positionSizeLabel ?? "-"}${item.positionSizePctOfDeployBudget != null ? ` (${item.positionSizePctOfDeployBudget}% of deploy)` : ""} / 진입: ${item.entryCondition ?? "-"} / 리스크: ${item.stopLossNote ?? "-"}${item.clusterWarning ? ` / 클러스터: ${item.clusterWarning}` : ""} / 이유: ${item.reason}`,
+          )
         : [`- 즉시 매수 후보 없음${account.noActionReason ? ` / ${account.noActionReason}` : ""}`]),
       "",
       "### 비중 축소/재점검",
@@ -690,6 +860,9 @@ async function main() {
       `- 부족한 자산군: ${account.topGap ? `${account.topGap.category} (${won(Math.max(account.topGap.gapAmount, 0))})` : "없음"}`,
       `- 남길 예수금: ${won(account.reserveCash)}`,
       `- validator: ${account.validatorFlags?.join(", ") || "없음"}`,
+      ...(account.clusterWarnings?.length > 0
+        ? [`- 클러스터 경고: ${account.clusterWarnings.join(", ")}`]
+        : []),
       `- 우선 후보: ${account.stage2Candidates.length > 0 ? account.stage2Candidates.map((item) => item.name).join(", ") : account.candidateFromGap ?? "없음"}`,
       ...(account.macroCommentary?.actionLine ? [`- 액션 연결: ${account.macroCommentary.actionLine}`] : []),
       ...(account.rejectedAlternatives?.length > 0

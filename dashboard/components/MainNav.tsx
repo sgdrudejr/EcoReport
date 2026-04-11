@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LayoutGrid, Newspaper } from "lucide-react";
+import { useExperimentalUi } from "@/components/ExperimentalUiProvider";
 
 const links = [
   { href: "/", label: "대시보드", icon: LayoutGrid },
@@ -21,22 +21,10 @@ function isActivePath(pathname: string, href: string) {
 
 export default function MainNav() {
   const pathname = usePathname();
-  const [holdingsPreviewEnabled, setHoldingsPreviewEnabled] = useState(false);
-
-  useEffect(() => {
-    if (holdingsPreviewEnabled) {
-      document.documentElement.dataset.holdingsPreview = "true";
-    } else {
-      delete document.documentElement.dataset.holdingsPreview;
-    }
-
-    return () => {
-      delete document.documentElement.dataset.holdingsPreview;
-    };
-  }, [holdingsPreviewEnabled]);
+  const { enabled, setEnabled } = useExperimentalUi();
 
   return (
-    <div className="pointer-events-none fixed right-5 top-5 z-50 flex flex-col items-end gap-2">
+    <div className="pointer-events-none fixed right-5 top-5 z-50 flex flex-col items-end">
       <nav className="pointer-events-auto flex flex-col items-stretch gap-1.5 rounded-[1.35rem] border border-slate-200/80 bg-white/88 p-1.5 shadow-[0_14px_30px_rgba(15,23,42,0.09)]">
         {links.map((link) => {
           const Icon = link.icon;
@@ -58,14 +46,13 @@ export default function MainNav() {
           );
         })}
       </nav>
-
-      <label className="pointer-events-auto flex items-center gap-2 rounded-[1rem] border border-slate-200/80 bg-white/88 px-3 py-2 text-[11px] font-medium text-slate-600 shadow-[0_10px_24px_rgba(15,23,42,0.08)]">
-        <span>보유종목 탭 테스트</span>
+      <label className="pointer-events-auto mt-2 flex items-center gap-2 rounded-full border border-slate-200/80 bg-white/92 px-3 py-2 text-sm font-medium text-slate-700 shadow-[0_14px_30px_rgba(15,23,42,0.09)]">
+        <span>테스트 UI</span>
         <input
           type="checkbox"
-          checked={holdingsPreviewEnabled}
-          onChange={(event) => setHoldingsPreviewEnabled(event.target.checked)}
-          className="size-3.5 rounded border-slate-300 accent-indigo-600"
+          checked={enabled}
+          onChange={(event) => setEnabled(event.target.checked)}
+          className="h-4 w-4 rounded border-slate-300 text-slate-900 focus:ring-slate-400"
         />
       </label>
     </div>

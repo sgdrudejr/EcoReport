@@ -11,10 +11,15 @@ import {
 } from "lucide-react";
 
 import AccountTabs from "@/components/AccountTabs";
+import AllocationHeatmap from "@/components/AllocationHeatmap";
+import ClusterMap, { type HoldingCluster } from "@/components/ClusterMap";
 import CompactContentTabs from "@/components/CompactContentTabs";
+import ExperimentalVisibility from "@/components/ExperimentalVisibility";
 import ExecutionListTable from "@/components/ExecutionListTable";
 import ExecutionNarrativeCard from "@/components/ExecutionNarrativeCard";
+import FeedbackPanel, { type FeedbackAnalysis } from "@/components/FeedbackPanel";
 import FloatingSectionIndex from "@/components/FloatingSectionIndex";
+import HoldingTabs from "@/components/HoldingTabs";
 import RecommendationTabs from "@/components/RecommendationTabs";
 import {
   buildPortfolioGuide,
@@ -267,6 +272,11 @@ type MarketVoiceArtifact = {
   }>;
 };
 
+type HoldingClustersArtifact = {
+  clusters?: HoldingCluster[];
+  threshold?: number | null;
+};
+
 type HighlightSpec = {
   token: string;
   tone: "negative" | "neutral" | "positive" | "defensive" | "other";
@@ -301,8 +311,9 @@ type ExecutionListRow = {
   name: string;
   code: string | null;
   amountLabel: string;
-  targetReturnLabel: string;
   reason: string;
+  hitRateBadge?: string | null;
+  confidenceLevel?: "high" | "medium" | "low" | null;
 };
 
 const INLINE_HIGHLIGHT_LIBRARY = [
@@ -422,6 +433,33 @@ function loadLatestTechnicalSnapshot(dateHint?: string | null) {
 
   if (!latestFile) return null;
   return readRepoJsonFile<TechnicalSnapshot>(path.posix.join("data/technical", latestFile));
+}
+
+function loadLatestFeedbackAnalysis(dateHint?: string | null) {
+  const candidateFiles = listRepoFiles("data/feedback/analysis")
+    .filter((file) => file.endsWith(".json"))
+    .sort()
+    .reverse();
+
+  const preferredFiles = dateHint ? [`${dateHint}-feedback.json`, `${dateHint}.json`] : [];
+  const filesToTry = [...new Set([...preferredFiles, ...candidateFiles])];
+
+  for (const fileName of filesToTry) {
+    const data = readRepoJsonFile<FeedbackAnalysis>(
+      path.posix.join("data/feedback/analysis", fileName),
+    );
+    if (data) {
+      return {
+        fileName,
+        data,
+      };
+    }
+  }
+
+  return {
+    fileName: null,
+    data: null,
+  };
 }
 
 function joinClasses(...parts: Array<string | false | null | undefined>) {
@@ -2014,54 +2052,92 @@ function executionKindClassName(kind: ExecutionGuideItem["kind"]) {
   return "bg-slate-900/5 text-slate-600 ring-1 ring-inset ring-slate-200";
 }
 
-function buildExecutionTargetReturnLabel(params: {
-  item: ExecutionGuideItem;
-  holding: PortfolioHolding | null;
-  holdingGuide: HoldingGuide | null;
-  recommendation: RecommendationIdea | null;
+function formatHitRateBadgePercent(value: number) {
+  return `${Math.round(value * 100)}%`;
+}
+
+function buildExecutionConfidenceBadge(params: {
+  kind: ExecutionGuideItem["kind"];
+  feedbackAnalysis: FeedbackAnalysis | null;
+  regime: string | null | undefined;
 }) {
-  const { item, holding, holdingGuide, recommendation } = params;
-  const currentProfitRate = holding ? getHoldingProfitRate(holding) : null;
+  const { kind, feedbackAnalysis, regime } = params;
+  const normalizedRegime = String(regime ?? "").toUpperCase();
 
-  if (item.kind === "trim") {
-    if (typeof currentProfitRate === "number") {
-      return currentProfitRate >= 0
-        ? `${formatSignedPercent(currentProfitRate, 1)} 수익 보전`
-        : `${formatSignedPercent(currentProfitRate, 1)} 손익 방어`;
+  if (kind === "buy") {
+    const regimeRate = normalizedRegime
+      ? feedbackAnalysis?.regimeAccuracy?.[normalizedRegime]?.buyHitRate ?? null
+      : null;
+    const signalRate = feedbackAnalysis?.signalHitRates?.buy_hit_5d ?? null;
+    const effectiveRate = regimeRate ?? signalRate;
+
+    if (normalizedRegime === "SIDEWAYS" && regimeRate != null && regimeRate <= 0) {
+      return {
+        hitRateBadge: "🔴 이 레짐에서 BUY 적중률 0%",
+        confidenceLevel: "low" as const,
+      };
     }
-    return "손익 방어 우선";
-  }
-
-  if (item.kind === "hold") {
-    if (typeof currentProfitRate === "number") {
-      return currentProfitRate >= 0
-        ? `${formatSignedPercent(currentProfitRate, 1)} 유지`
-        : `${formatSignedPercent(currentProfitRate, 1)} 회복 관찰`;
+    if (typeof effectiveRate === "number" && effectiveRate > 0.6) {
+      return {
+        hitRateBadge: `🟢 BUY 적중률 ${formatHitRateBadgePercent(effectiveRate)}`,
+        confidenceLevel: "high" as const,
+      };
     }
-    return "현재 비중 유지";
+    if (typeof effectiveRate === "number") {
+      return {
+        hitRateBadge: `🟡 BUY 적중률 ${formatHitRateBadgePercent(effectiveRate)}`,
+        confidenceLevel: "medium" as const,
+      };
+    }
+    return {
+      hitRateBadge: "🟡 BUY 적중 데이터 부족",
+      confidenceLevel: "medium" as const,
+    };
   }
 
-  const theme = executionThemeKey(item.name, item.code);
-  const assetKind = recommendation?.lane ?? holdingKind(item.name, holdingGuide?.category);
-  let range: [number, number];
-
-  if (theme === "cash") {
-    range = [3, 4];
-  } else if (theme === "gold") {
-    range = [5, 8];
-  } else if (assetKind === "stock" || assetKind === "개별주") {
-    range = [10, 15];
-  } else if (assetKind === "sector" || ["power", "defense", "nuclear", "copper"].includes(theme)) {
-    range = [8, 12];
-  } else {
-    range = [6, 9];
+  if (kind === "hold") {
+    const holdRate = feedbackAnalysis?.signalHitRates?.hold_hit_5d ?? null;
+    if (typeof holdRate === "number" && holdRate > 0.7) {
+      return {
+        hitRateBadge: `🟢 HOLD 적중률 ${formatHitRateBadgePercent(holdRate)}`,
+        confidenceLevel: "high" as const,
+      };
+    }
+    if (typeof holdRate === "number") {
+      return {
+        hitRateBadge: `🟡 HOLD 적중률 ${formatHitRateBadgePercent(holdRate)}`,
+        confidenceLevel: "medium" as const,
+      };
+    }
+    return {
+      hitRateBadge: "🟡 HOLD 적중 데이터 부족",
+      confidenceLevel: "medium" as const,
+    };
   }
 
-  if (typeof item.score === "number" && item.score >= 80) {
-    range = [range[0] + 1, range[1] + 1];
+  const trimRate = feedbackAnalysis?.signalHitRates?.trim_negative_5d ?? null;
+  if (typeof trimRate === "number" && trimRate > 0.6) {
+    return {
+      hitRateBadge: `🟢 TRIM 적중률 ${formatHitRateBadgePercent(trimRate)}`,
+      confidenceLevel: "high" as const,
+    };
   }
-
-  return `${range[0]}~${range[1]}%`;
+  if (typeof trimRate === "number" && trimRate <= 0.2) {
+    return {
+      hitRateBadge: `🔴 TRIM 적중률 ${formatHitRateBadgePercent(trimRate)}`,
+      confidenceLevel: "low" as const,
+    };
+  }
+  if (typeof trimRate === "number") {
+    return {
+      hitRateBadge: `🟡 TRIM 적중률 ${formatHitRateBadgePercent(trimRate)}`,
+      confidenceLevel: "medium" as const,
+    };
+  }
+  return {
+    hitRateBadge: "🟡 TRIM 적중 데이터 부족",
+    confidenceLevel: "medium" as const,
+  };
 }
 
 function buildExecutionListReason(params: {
@@ -2118,8 +2194,17 @@ function buildExecutionListRows(params: {
   technical: TechnicalSnapshot | null;
   impactMap: ImpactMap | null;
   recommendationBoard: ReturnType<typeof loadRecommendationBoard>;
+  feedbackAnalysis: FeedbackAnalysis | null;
 }) {
-  const { accountEntries, stage2, stage3, technical, impactMap, recommendationBoard } = params;
+  const {
+    accountEntries,
+    stage2,
+    stage3,
+    technical,
+    impactMap,
+    recommendationBoard,
+    feedbackAnalysis,
+  } = params;
   const grouped = new Map<
     string,
     {
@@ -2130,7 +2215,8 @@ function buildExecutionListRows(params: {
       code: string | null;
       amount: number | null;
       reasonCandidates: string[];
-      targetCandidates: string[];
+      hitRateBadge: string | null;
+      confidenceLevel: "high" | "medium" | "low" | null;
     }
   >();
 
@@ -2191,18 +2277,17 @@ function buildExecutionListRows(params: {
         recommendation,
         narrative,
       });
-      const targetReturnLabel = buildExecutionTargetReturnLabel({
-        item,
-        holding: relatedHolding,
-        holdingGuide: relatedHoldingGuide,
-        recommendation,
-      });
       const amountValue =
         typeof item.suggestedAmount === "number"
           ? item.suggestedAmount
           : item.kind === "hold"
             ? relatedHolding?.marketValue ?? null
             : null;
+      const confidenceBadge = buildExecutionConfidenceBadge({
+        kind: item.kind,
+        feedbackAnalysis,
+        regime: stage2?.macro_view?.regime,
+      });
       const key = `${item.kind}:${item.code ?? normalizeName(item.name)}`;
       const current = grouped.get(key);
 
@@ -2210,14 +2295,13 @@ function buildExecutionListRows(params: {
         current.accountKeys = uniqueStrings([...current.accountKeys, account.key]);
         current.accounts = uniqueStrings([...current.accounts, account.label]);
         current.reasonCandidates = uniqueStrings([...current.reasonCandidates, reason]);
-        current.targetCandidates = uniqueStrings([
-          ...current.targetCandidates,
-          targetReturnLabel,
-        ]);
         current.amount =
           typeof current.amount === "number" || typeof amountValue === "number"
             ? (current.amount ?? 0) + (amountValue ?? 0)
             : null;
+        current.hitRateBadge = current.hitRateBadge ?? confidenceBadge.hitRateBadge;
+        current.confidenceLevel =
+          current.confidenceLevel ?? confidenceBadge.confidenceLevel;
         continue;
       }
 
@@ -2229,7 +2313,8 @@ function buildExecutionListRows(params: {
         code: item.code,
         amount: amountValue,
         reasonCandidates: [reason],
-        targetCandidates: [targetReturnLabel],
+        hitRateBadge: confidenceBadge.hitRateBadge,
+        confidenceLevel: confidenceBadge.confidenceLevel,
       });
     }
   }
@@ -2255,8 +2340,9 @@ function buildExecutionListRows(params: {
         name: value.name,
         code: value.code,
         amountLabel,
-        targetReturnLabel: value.targetCandidates[0] ?? "중립",
         reason: truncateText(value.reasonCandidates.slice(0, 2).join(" "), 240),
+        hitRateBadge: value.hitRateBadge,
+        confidenceLevel: value.confidenceLevel,
       } satisfies ExecutionListRow;
     })
     .sort((left, right) => {
@@ -2310,6 +2396,46 @@ function joinNaturalList(items: string[]) {
   if (items.length <= 1) return items[0] ?? "";
   if (items.length === 2) return `${items[0]}와 ${items[1]}`;
   return `${items.slice(0, -1).join(", ")}, ${items[items.length - 1]}`;
+}
+
+function buildAllocationHeatmapData(
+  accountEntries: Array<{
+    account: PortfolioAccount;
+    accountGuide: AccountGuide | null;
+  }>,
+) {
+  const categories = [...new Set(
+    accountEntries.flatMap(({ accountGuide }) =>
+      (accountGuide?.categories ?? []).map((category) => category.category),
+    ),
+  )];
+
+  const rows = accountEntries.map(({ account, accountGuide }) => ({
+    accountKey: account.key,
+    accountLabel: account.label,
+    cells: categories
+      .map((categoryName) => {
+        const category = accountGuide?.categories.find((item) => item.category === categoryName);
+        if (!category) return null;
+        return {
+          category: categoryName,
+          targetPct: category.targetPct,
+          currentPct: category.currentPct,
+          gapPct: category.gapPct,
+        };
+      })
+      .filter(Boolean) as Array<{
+      category: string;
+      targetPct: number;
+      currentPct: number;
+      gapPct: number;
+    }>,
+  }));
+
+  return {
+    categories,
+    rows,
+  };
 }
 
 function buildHeroNarrative(params: {
@@ -2395,7 +2521,13 @@ export function DashboardPage() {
     "marketvoice-linked.json",
     portfolio.date,
   ).data;
+  const holdingClusters = loadLatestDatedJson<HoldingClustersArtifact>(
+    "holding-clusters.json",
+    portfolio.date,
+  ).data;
   const technical = loadLatestTechnicalSnapshot(portfolio.date);
+  const latestFeedbackAnalysis = loadLatestFeedbackAnalysis(portfolio.date);
+  const feedbackAnalysis = latestFeedbackAnalysis.data;
 
   const latestBriefing =
     loadResearchBriefings().find((item) => item.variant === "rich") ??
@@ -2606,11 +2738,18 @@ export function DashboardPage() {
     technical,
     impactMap,
     recommendationBoard,
+    feedbackAnalysis,
   });
   const executionListAccounts = accountEntries.map(({ account }) => ({
     key: account.key,
     label: account.label,
   }));
+  const allocationHeatmap = buildAllocationHeatmapData(
+    accountEntries.map(({ account, accountGuide }) => ({
+      account,
+      accountGuide,
+    })),
+  );
   const sectionIndexItems = [
     { number: "1", id: "today-actions", label: "오늘의 실행 리스트" },
     { number: "2", id: "portfolio-diagnosis", label: "핵심 진단" },
@@ -2620,6 +2759,8 @@ export function DashboardPage() {
     { number: "6", id: "market-guide", label: "시황 가이드와 추천 종목" },
     { number: "7", id: "market-voice", label: "머니토링 이벤트 레이어" },
     { number: "8", id: "recommendations", label: "추천 종목" },
+    { number: "9", id: "feedback-dashboard", label: "피드백 대시보드" },
+    { number: "10", id: "cluster-map", label: "상관관계 클러스터" },
   ];
   const sectionHeading = (id: string) => {
     const item = sectionIndexItems.find((section) => section.id === id);
@@ -2794,7 +2935,16 @@ export function DashboardPage() {
             </span>
           </div>
 
-          <div className="mt-4">
+          <ExperimentalVisibility>
+            <div className="mt-4">
+              <AllocationHeatmap
+                rows={allocationHeatmap.rows}
+                categories={allocationHeatmap.categories}
+              />
+            </div>
+          </ExperimentalVisibility>
+
+          <div className="mt-5">
             <AccountTabs
               tabs={accountEntries.map(({ account, accountGuide }) => ({
                 key: account.key,
@@ -2971,40 +3121,6 @@ export function DashboardPage() {
                       </div>
 
                       <div className="space-y-6 pt-4">
-                    <div className="holdings-preview-rail sticky top-[calc(var(--desktop-nav-offset,1rem)+var(--account-tabs-gap,0.25rem)+4.8rem)] z-20 -mt-1">
-                      <div className="rounded-[1.25rem] border border-slate-200/80 bg-white/96 px-3 py-2 shadow-[0_10px_24px_rgba(15,23,42,0.06)]">
-                        <div className="overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                          <div className="flex min-w-max items-stretch gap-2">
-                            {account.holdings.map((holding) => {
-                              const profitLoss = getHoldingProfitLoss(holding);
-                              const profitRate = getHoldingProfitRate(holding);
-
-                              return (
-                                <button
-                                  key={`preview-${account.key}-${holding.code ?? holding.name}`}
-                                  type="button"
-                                  className="flex min-w-[12.5rem] flex-col items-start rounded-[1rem] border border-slate-200/80 bg-slate-50/82 px-3 py-2 text-left transition hover:border-slate-300 hover:bg-white"
-                                >
-                                  <span className="max-w-full truncate text-[12.5px] font-semibold text-slate-900">
-                                    {holding.name}
-                                  </span>
-                                  <div className="mt-1 flex items-center gap-2 text-[11px] leading-5">
-                                    <span className={joinClasses("font-semibold", scoreTone(profitRate))}>
-                                      {formatSignedPercent(profitRate)}
-                                    </span>
-                                    <span className="text-slate-300">/</span>
-                                    <span className={joinClasses("font-medium", scoreTone(profitLoss))}>
-                                      {formatSignedCurrency(profitLoss)}
-                                    </span>
-                                  </div>
-                                </button>
-                              );
-                            })}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
                     <section id="account-holdings" className="scroll-mt-36 space-y-4">
                       <div className="section-header-row flex items-start justify-between gap-4">
                         <div className="section-header-band">
@@ -3018,7 +3134,287 @@ export function DashboardPage() {
                         </span>
                       </div>
 
-                      <div className="divide-y divide-slate-200/80">
+                      <div className="holdings-preview-rail">
+                        <HoldingTabs
+                          tabs={account.holdings.map((holding) => ({
+                            key: `${account.key}-${holding.code ?? holding.name}`,
+                            label: holding.name,
+                            code: holding.code ?? null,
+                            profitRate: formatSignedPercent(getHoldingProfitRate(holding)),
+                            profitRateValue: getHoldingProfitRate(holding),
+                            profitLoss: formatSignedCurrency(getHoldingProfitLoss(holding)),
+                            profitLossValue: getHoldingProfitLoss(holding),
+                          }))}
+                        >
+                          {account.holdings.map((holding) => {
+                            const holdingGuide = findHoldingGuide(accountGuide, holding);
+                            const stage3Holding = findStage3Holding(stage3, account.key, holding);
+                            const technicalItem =
+                              holding.code && technical?.scores?.[holding.code]
+                                ? technical.scores[holding.code]
+                                : null;
+                            const candidate = findCandidateByCodeOrName(stage2, holding);
+                            const impactContext = getHoldingImpactContext(
+                              impactMap,
+                              account.key,
+                              holdingGuide,
+                            );
+                            const summary = buildHoldingSummary({
+                              account,
+                              holding,
+                              holdingGuide,
+                              stage3Holding,
+                              technicalItem,
+                              impactContext,
+                              candidate,
+                            });
+                            const itemSignal = signalTone(
+                              holdingGuide?.signal ??
+                                holdingGuide?.technicalSignal ??
+                                technicalItem?.signal,
+                            );
+                            const holdingHighlights = buildHoldingHighlightSpecs({
+                              accountHighlights: story.highlights,
+                              holding,
+                              holdingGuide,
+                              technicalItem,
+                              summary,
+                            });
+                            const itemAction = getHoldingActionKind(
+                              holding,
+                              accountGuide,
+                              candidate,
+                            );
+                            const profitLoss = getHoldingProfitLoss(holding);
+                            const profitRate = getHoldingProfitRate(holding);
+
+                            return (
+                              <div
+                                key={`holding-tab-panel-${account.key}-${holding.code ?? holding.name}`}
+                                className="px-1 py-1"
+                              >
+                                <div className="space-y-4">
+                                  <div>
+                                    <div className="flex flex-wrap items-center gap-2">
+                                      <h5 className="text-lg font-semibold tracking-tight text-slate-950">
+                                        {holding.name}
+                                      </h5>
+                                      <span className="rounded-full bg-slate-900/5 px-2.5 py-1 text-[11px] font-medium text-slate-600 ring-1 ring-inset ring-slate-200">
+                                        {holding.code ?? "티커 미입력"}
+                                      </span>
+                                      <span className="rounded-full bg-sky-500/10 px-2.5 py-1 text-[11px] font-medium text-sky-700 ring-1 ring-inset ring-sky-500/20">
+                                        {holdingKind(holding.name, holdingGuide?.category)}
+                                      </span>
+                                      <span
+                                        className={joinClasses(
+                                          "rounded-full px-2.5 py-1 text-[11px] font-medium",
+                                          itemSignal.badge,
+                                        )}
+                                      >
+                                        {itemAction} · {itemSignal.label}
+                                      </span>
+                                    </div>
+                                    <p className={joinClasses("mt-2", BODY_NOTE_MUTED_CLASS, "text-slate-500")}>
+                                      평가금액 {formatCurrency(holding.marketValue)} · 손익{" "}
+                                      <span className={scoreTone(profitLoss)}>
+                                        {formatSignedCurrency(profitLoss)}
+                                      </span>{" "}
+                                      · 수익률{" "}
+                                      <span className={scoreTone(profitRate)}>
+                                        {formatSignedPercent(profitRate)}
+                                      </span>
+                                    </p>
+                                    <div className="mt-3">
+                                      {renderMetaLine(summary.chips, { limit: 6, tone: "subtle" })}
+                                    </div>
+                                  </div>
+
+                                  <div className="grid grid-cols-4 gap-2">
+                                    <div className="rounded-2xl bg-slate-50 px-3 py-2">
+                                      <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-slate-400">
+                                        기술 종합 점수
+                                      </p>
+                                      <p className="mt-1 text-base font-semibold text-slate-950">
+                                        {formatScore(
+                                          holdingGuide?.technicalScore ?? technicalItem?.score,
+                                        )}
+                                      </p>
+                                    </div>
+                                    <div className="rounded-2xl bg-slate-50 px-3 py-2">
+                                      <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-slate-400">
+                                        총 평가 점수
+                                      </p>
+                                      <p className="mt-1 text-base font-semibold text-slate-950">
+                                        {formatScore(holdingGuide?.score)}
+                                      </p>
+                                    </div>
+                                    <div className="rounded-2xl bg-slate-50 px-3 py-2">
+                                      <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-slate-400">
+                                        리포트 근거
+                                      </p>
+                                      <p className="mt-1 text-base font-semibold text-slate-950">
+                                        {summary.reportCount > 0 ? `${summary.reportCount}건` : "얕음"}
+                                      </p>
+                                    </div>
+                                    <div className="rounded-2xl bg-slate-50 px-3 py-2">
+                                      <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-slate-400">
+                                        리스크 균형
+                                      </p>
+                                      <p className="mt-1 text-base font-semibold text-slate-950">
+                                        {summary.negativeCount > 0
+                                          ? `긍정 ${summary.positiveCount} / 주의 ${summary.negativeCount}`
+                                          : summary.positiveCount > 0
+                                            ? `긍정 ${summary.positiveCount}건`
+                                            : "중립"}
+                                      </p>
+                                    </div>
+                                  </div>
+
+                                  <div className="mt-4 space-y-4">
+                                    <div>
+                                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+                                        핵심 내용
+                                      </p>
+                                      <div className="mt-2 space-y-2">
+                                        {summary.insights.length > 0 ? (
+                                          summary.insights.map((item) => (
+                                            <p
+                                              key={item}
+                                              className={joinClasses(BODY_NOTE_CLASS, "text-slate-700")}
+                                            >
+                                              {renderHighlightedText(item, holdingHighlights, {
+                                                multiline: true,
+                                              })}
+                                            </p>
+                                          ))
+                                        ) : (
+                                          <p className={joinClasses(BODY_NOTE_MUTED_CLASS, "text-slate-500")}>
+                                            관련 리포트/딥리서치 요약이 더 구조화되면 이 영역의 설명력이 크게 좋아집니다.
+                                          </p>
+                                        )}
+                                      </div>
+                                    </div>
+
+                                    <div className="rounded-2xl border border-slate-200/80 bg-slate-50/80 px-4 py-4">
+                                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+                                        유의할 점
+                                      </p>
+                                      <div className="mt-2 space-y-2">
+                                        {summary.cautions.length > 0 ? (
+                                          summary.cautions.map((item) => (
+                                            <p
+                                              key={item}
+                                              className={joinClasses(BODY_NOTE_CLASS, "text-slate-700")}
+                                            >
+                                              {renderHighlightedText(item, holdingHighlights, {
+                                                multiline: true,
+                                              })}
+                                            </p>
+                                          ))
+                                        ) : (
+                                          <p className={joinClasses(BODY_NOTE_MUTED_CLASS, "text-slate-500")}>
+                                            현재 기준 즉시 주의 신호는 크지 않지만, 리포트 커버리지가 약한 종목은 보수적으로 해석해야 합니다.
+                                          </p>
+                                        )}
+                                      </div>
+
+                                      <details className="mt-4 border-t border-slate-200/80 pt-4">
+                                        <summary className="cursor-pointer list-none text-sm font-medium text-slate-700">
+                                          세부 근거 펼치기
+                                        </summary>
+                                        <div className="mt-3 grid grid-cols-2 gap-3">
+                                          <div className="rounded-2xl bg-white px-4 py-3">
+                                            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                                              기술 신호
+                                            </p>
+                                            <div className="mt-2 space-y-1.5 text-sm">
+                                              <p>
+                                                <span className="text-slate-500">RSI </span>
+                                                <span
+                                                  className={joinClasses(
+                                                    "font-medium",
+                                                    buySellBiasTone(rsiBias(technicalItem?.rsi)),
+                                                  )}
+                                                >
+                                                  {technicalItem?.rsi?.toFixed(2) ?? "-"}
+                                                </span>
+                                              </p>
+                                              <p>
+                                                <span className="text-slate-500">MACD 히스토그램 </span>
+                                                <span
+                                                  className={joinClasses(
+                                                    "font-medium",
+                                                    buySellBiasTone(macdBias(technicalItem?.macd?.histogram)),
+                                                  )}
+                                                >
+                                                  {technicalItem?.macd?.histogram?.toFixed(2) ?? "-"}
+                                                </span>
+                                              </p>
+                                              <p>
+                                                <span className="text-slate-500">볼린저 위치 </span>
+                                                <span
+                                                  className={joinClasses(
+                                                    "font-medium",
+                                                    buySellBiasTone(
+                                                      bollingerBias(technicalItem?.bollinger?.position),
+                                                    ),
+                                                  )}
+                                                >
+                                                  {technicalItem?.bollinger?.position
+                                                    ? describeBollingerPosition(
+                                                        technicalItem.bollinger.position,
+                                                      )
+                                                    : "미집계"}
+                                                </span>
+                                              </p>
+                                              <p>
+                                                <span className="text-slate-500">최근 등락 </span>
+                                                <span
+                                                  className={joinClasses(
+                                                    "font-medium",
+                                                    signedMetricTone(technicalItem?.change_pct),
+                                                  )}
+                                                >
+                                                  {formatSignedPercent(technicalItem?.change_pct)}
+                                                </span>
+                                              </p>
+                                            </div>
+                                          </div>
+                                          <div className="rounded-2xl bg-white px-4 py-3">
+                                            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                                              리포트/영향 근거
+                                            </p>
+                                            <div className="mt-2 space-y-2 text-sm text-slate-600">
+                                              {impactContext.length > 0 ? (
+                                                impactContext.map((item) => (
+                                                  <div key={`${item.title}-${item.horizon}`}>
+                                                    <p className="font-medium text-slate-800">
+                                                      {item.title}
+                                                    </p>
+                                                    <p>
+                                                      {formatDirection(item.direction)} · 강도{" "}
+                                                      {item.strength?.toFixed(2) ?? "-"} · 시계{" "}
+                                                      {item.horizon ?? "미지정"}
+                                                    </p>
+                                                  </div>
+                                                ))
+                                              ) : (
+                                                <p>카테고리 기준 impact map 연결은 아직 약합니다.</p>
+                                              )}
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </details>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </HoldingTabs>
+                      </div>
+
+                      <div className="holdings-preview-default divide-y divide-slate-200/80">
                         {account.holdings.map((holding) => {
                           const holdingGuide = findHoldingGuide(accountGuide, holding);
                           const stage3Holding = findStage3Holding(stage3, account.key, holding);
@@ -3289,14 +3685,16 @@ export function DashboardPage() {
 
                     <section
                       id="account-direction"
-                      className="scroll-mt-36 space-y-6 border-t border-slate-200/80 pt-5"
+                      className="scroll-mt-36 space-y-6 pt-5"
                     >
                       <div>
-                        <div className="section-header-band">
-                          <p className="section-kicker">Investment Direction</p>
-                          <h4 className="mt-1.5 text-[1.02rem] font-semibold tracking-tight text-slate-950">
-                            {sectionHeading("account-direction")}
-                          </h4>
+                        <div className="section-header-row">
+                          <div className="section-header-band">
+                            <p className="section-kicker">Investment Direction</p>
+                            <h4 className="mt-1.5 text-[1.02rem] font-semibold tracking-tight text-slate-950">
+                              {sectionHeading("account-direction")}
+                            </h4>
+                          </div>
                         </div>
                         <div className="mt-4 space-y-3">
                           {insightLines.map((line, index) => (
@@ -3321,9 +3719,6 @@ export function DashboardPage() {
                           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
                             추천 실행 방향
                           </p>
-                          <span className="rounded-full bg-slate-950 px-2.5 py-1 text-[11px] font-medium text-white">
-                            {actionHeadline}
-                          </span>
                         </div>
 
                         <div className="mt-4 space-y-4">
@@ -4312,6 +4707,66 @@ export function DashboardPage() {
             )}
           </div>
         </section>
+
+        <ExperimentalVisibility>
+          <section
+            id="feedback-dashboard"
+            className="glass-panel scroll-mt-28 rounded-2xl px-6 py-6"
+          >
+            <div className="section-header-row flex flex-wrap items-center justify-between gap-4">
+              <div className="section-header-band">
+                <p className="section-kicker">Feedback Loop</p>
+                <h2 className="mt-1.5 text-[1.3rem] font-semibold tracking-tight text-slate-950">
+                  {sectionHeading("feedback-dashboard")}
+                </h2>
+              </div>
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="rounded-full bg-slate-900 px-3 py-1 text-xs font-medium text-white">
+                  표본 {feedbackAnalysis?.sampleSize ?? 0}건
+                </span>
+                {latestFeedbackAnalysis.fileName ? (
+                  <span className="rounded-full bg-slate-900/5 px-3 py-1 text-xs font-medium text-slate-600 ring-1 ring-inset ring-slate-200">
+                    {latestFeedbackAnalysis.fileName}
+                  </span>
+                ) : null}
+              </div>
+            </div>
+
+            <div className="section-block mt-5">
+              <FeedbackPanel
+                analysis={feedbackAnalysis}
+                fileName={latestFeedbackAnalysis.fileName}
+              />
+            </div>
+          </section>
+        </ExperimentalVisibility>
+
+        <ExperimentalVisibility>
+          <section id="cluster-map" className="glass-panel scroll-mt-28 rounded-2xl px-6 py-6">
+            <div className="section-header-row flex flex-wrap items-center justify-between gap-4">
+              <div className="section-header-band">
+                <p className="section-kicker">Holding Overlap</p>
+                <h2 className="mt-1.5 text-[1.3rem] font-semibold tracking-tight text-slate-950">
+                  {sectionHeading("cluster-map")}
+                </h2>
+              </div>
+              <div className="flex flex-wrap items-center gap-2">
+                <span className="rounded-full bg-slate-900 px-3 py-1 text-xs font-medium text-white">
+                  클러스터 {(holdingClusters?.clusters ?? []).length}개
+                </span>
+                {holdingClusters?.threshold != null ? (
+                  <span className="rounded-full bg-slate-900/5 px-3 py-1 text-xs font-medium text-slate-600 ring-1 ring-inset ring-slate-200">
+                    임계치 {holdingClusters.threshold}
+                  </span>
+                ) : null}
+              </div>
+            </div>
+
+            <div className="section-block mt-5">
+              <ClusterMap clusters={holdingClusters?.clusters ?? []} />
+            </div>
+          </section>
+        </ExperimentalVisibility>
 
       </section>
       <FloatingSectionIndex items={sectionIndexItems} />

@@ -43,11 +43,21 @@ async function main() {
   }
 
   const techScores = technical?.scores ?? {};
-  const holdings = stage3.holdings ?? {};
+  const positionsMap =
+    Object.keys(stage3?.positions ?? {}).length > 0
+      ? stage3.positions
+      : stage3.holdings ?? {};
+  const uniqueStrings = (items) => [...new Set((items ?? []).filter(Boolean))];
 
   // 포지션별 스냅샷 추출
-  const positions = Object.values(holdings).map((h) => {
+  const positions = Object.values(positionsMap).map((h) => {
     const tech = techScores[h.code] ?? {};
+    const reportSources = uniqueStrings(
+      (h.reportImpacts ?? []).flatMap((impact) => [
+        impact?.broker ?? null,
+        impact?.reportType ? `${impact.reportType}:${impact.broker ?? "unknown"}` : null,
+      ]),
+    );
     return {
       code: h.code,
       name: h.name,
@@ -60,6 +70,8 @@ async function main() {
       factorScore: h.scores?.factorScore ?? null,
       techScore: h.scores?.techScore ?? null,
       reportScore: h.scores?.reportScore ?? null,
+      reportImpactCount: h.report?.impactCount ?? (h.reportImpacts ?? []).length ?? 0,
+      reportSources,
       factors: h.factor?.zScores ?? h.factor?.raw ?? null,
       closePrice: tech.close ?? null,
       rsi: tech.rsi ?? null,

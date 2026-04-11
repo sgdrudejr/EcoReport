@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useExperimentalUi } from "@/components/ExperimentalUiProvider";
 import HorizontalTabRail from "@/components/HorizontalTabRail";
 
 type ExecutionRow = {
@@ -11,8 +12,9 @@ type ExecutionRow = {
   name: string;
   code: string | null;
   amountLabel: string;
-  targetReturnLabel: string;
   reason: string;
+  hitRateBadge?: string | null;
+  confidenceLevel?: "high" | "medium" | "low" | null;
 };
 
 type ExecutionAccountFilter = {
@@ -40,6 +42,16 @@ function executionKindClassName(kind: ExecutionRow["kind"]) {
   return "bg-slate-900/5 text-slate-600 ring-1 ring-inset ring-slate-200";
 }
 
+function confidenceBadgeClassName(level: ExecutionRow["confidenceLevel"]) {
+  if (level === "high") {
+    return "bg-emerald-50 text-emerald-700 ring-1 ring-inset ring-emerald-500/20";
+  }
+  if (level === "low") {
+    return "bg-rose-50 text-rose-700 ring-1 ring-inset ring-rose-500/20";
+  }
+  return "bg-amber-50 text-amber-700 ring-1 ring-inset ring-amber-500/20";
+}
+
 export default function ExecutionListTable({
   rows,
   accounts,
@@ -52,6 +64,7 @@ export default function ExecutionListTable({
   bodyNoteMutedClass: string;
 }) {
   const [selectedAccountKey, setSelectedAccountKey] = useState("all");
+  const { enabled: experimentalUiEnabled } = useExperimentalUi();
 
   const tabs = useMemo(
     () => [
@@ -148,17 +161,15 @@ export default function ExecutionListTable({
             <table className="w-full table-fixed border-collapse">
               <colgroup>
                 <col style={{ width: "12%" }} />
-                <col style={{ width: "18%" }} />
+                <col style={{ width: "20%" }} />
                 <col style={{ width: "14%" }} />
-                <col style={{ width: "12%" }} />
-                <col style={{ width: "44%" }} />
+                <col style={{ width: "54%" }} />
               </colgroup>
               <thead className="sticky top-0 z-10 bg-slate-50 backdrop-blur">
                 <tr className="border-b border-slate-200 text-left text-[11px] font-semibold uppercase tracking-[0.15em] text-slate-400">
                   <th className="px-4 py-3">실행 계좌</th>
                   <th className="px-4 py-3">실행 종목</th>
                   <th className="px-4 py-3">실행 금액</th>
-                  <th className="px-4 py-3">목표 수익률</th>
                   <th className="px-4 py-3">실행을 위한 구체적인 이유</th>
                 </tr>
               </thead>
@@ -187,6 +198,18 @@ export default function ExecutionListTable({
                         >
                           {executionKindLabel(row.kind)}
                         </span>
+                        {experimentalUiEnabled && row.hitRateBadge ? (
+                          <div>
+                            <span
+                              className={joinClasses(
+                                "inline-flex rounded-full px-2.5 py-1 text-[11px] font-medium",
+                                confidenceBadgeClassName(row.confidenceLevel),
+                              )}
+                            >
+                              {row.hitRateBadge}
+                            </span>
+                          </div>
+                        ) : null}
                         <div className="min-w-0">
                           <p className="break-keep text-sm font-semibold text-slate-900">
                             {row.name}
@@ -199,9 +222,6 @@ export default function ExecutionListTable({
                     </td>
                     <td className="px-4 py-4 text-sm font-medium text-slate-900">
                       {row.amountLabel}
-                    </td>
-                    <td className="px-4 py-4 text-sm font-medium text-slate-700">
-                      {row.targetReturnLabel}
                     </td>
                     <td className="px-4 py-4">
                       <p className={joinClasses(bodyCopyClass, "text-slate-700")}>

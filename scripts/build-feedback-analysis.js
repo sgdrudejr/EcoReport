@@ -84,6 +84,39 @@ function hitRate(items, scoreFn, returnFn, threshold) {
   return Math.round((hits / filtered.length) * 10000) / 10000;
 }
 
+function average(values) {
+  if (!values || values.length === 0) return null;
+  return Math.round((values.reduce((sum, value) => sum + value, 0) / values.length) * 10000) / 10000;
+}
+
+function sourceBuyHitRate(items) {
+  const strictBuyItems = items.filter(
+    (item) =>
+      typeof item.actionScore === "number" &&
+      item.actionScore >= 68 &&
+      item.bestReturn != null,
+  );
+  if (strictBuyItems.length >= 2) {
+    return Math.round(
+      (strictBuyItems.filter((item) => item.bestReturn > 0).length / strictBuyItems.length) * 10000,
+    ) / 10000;
+  }
+
+  const actionableItems = items.filter(
+    (item) =>
+      typeof item.actionScore === "number" &&
+      item.actionScore >= 58 &&
+      item.bestReturn != null,
+  );
+  if (actionableItems.length >= 2) {
+    return Math.round(
+      (actionableItems.filter((item) => item.bestReturn > 0).length / actionableItems.length) * 10000,
+    ) / 10000;
+  }
+
+  return null;
+}
+
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   await fs.mkdir(ANALYSIS_DIR, { recursive: true });
@@ -258,6 +291,34 @@ async function main() {
     return { factor, correlation_5d: c, suggestion };
   });
 
+  const sourceBuckets = new Map();
+  for (const item of withReturns) {
+    for (const source of item.reportSources ?? []) {
+      if (!sourceBuckets.has(source)) {
+        sourceBuckets.set(source, []);
+      }
+      sourceBuckets.get(source).push(item);
+    }
+  }
+
+  const sourceAccuracy = [...sourceBuckets.entries()]
+    .map(([source, items]) => {
+      const buyHitRate = sourceBuyHitRate(items);
+      return {
+        source,
+        sampleSize: items.length,
+        avgReturn5d: average(items.map((item) => item.bestReturn).filter((value) => value != null)),
+        buyHitRate,
+        avgReportScore: average(
+          items.map((item) => item.reportScore).filter((value) => value != null),
+        ),
+        note: buyHitRate == null ? "표본 부족" : "68점 BUY 우선, 부족 시 58점 실행권 기준",
+      };
+    })
+    .filter((item) => item.sampleSize >= 2)
+    .sort((left, right) => right.sampleSize - left.sampleSize || (right.avgReturn5d ?? -999) - (left.avgReturn5d ?? -999))
+    .slice(0, 12);
+
   const analysis = {
     generatedAt: new Date().toISOString(),
     snapshotDates: eligibleFiles.map((f) => f.replace(".json", "")),
@@ -268,6 +329,8 @@ async function main() {
     regimeAccuracy,
     worstMispredictions,
     weightSuggestions,
+    sourceAccuracy,
+    researchSourceAccuracy: sourceAccuracy,
   };
 
   const analysisPath = path.join(ANALYSIS_DIR, `${new Date().toISOString().slice(0, 10)}-feedback.json`);
@@ -326,6 +389,15 @@ async function main() {
       `- ${e.date} ${e.name}(${e.code}): score=${e.score}, ret(${e.period})=${e.bestReturn}%`,
     ),
     ...(worstMispredictions.lowScoreWinners.length === 0 ? ["- 해당 없음"] : []),
+    "",
+    "## 6. 리서치 소스 정확도",
+    "",
+    `| 소스 | 샘플 | 평균수익(5d) | BUY적중률 | 평균 리포트점수 |`,
+    `|------|------|-------------|----------|-----------------|`,
+    ...sourceAccuracy.map((item) =>
+      `| ${item.source} | ${item.sampleSize} | ${item.avgReturn5d ?? "N/A"}% | ${item.buyHitRate ?? "N/A"} | ${item.avgReportScore ?? "N/A"} |`,
+    ),
+    ...(sourceAccuracy.length === 0 ? ["| 데이터 부족 | 0 | N/A | N/A | N/A |"] : []),
     "",
   ].join("\n");
 

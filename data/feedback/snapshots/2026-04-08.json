@@ -1,0 +1,444 @@
+{
+  "date": "2026-04-08",
+  "runDate": "2026-04-12",
+  "effectiveMarketDate": "2026-04-08",
+  "runId": null,
+  "generatedAt": "2026-04-11T16:07:34.372Z",
+  "regime": "SIDEWAYS",
+  "regimeConfidence": 0.55,
+  "portfolioScore": 63,
+  "marketClose": 5872.34,
+  "positions": [
+    {
+      "code": "360750",
+      "name": "TIGER 미국S&P500",
+      "accountKey": "ISA",
+      "category": "미국인덱스",
+      "marketValue": 491400,
+      "actionScore": 43,
+      "signal": "WATCH",
+      "conviction": "LOW",
+      "factorScore": 44,
+      "techScore": 82,
+      "reportScore": 41,
+      "reportImpactCount": 1,
+      "reportSources": [
+        "SK증권",
+        "strategy:SK증권"
+      ],
+      "factors": {
+        "momentum": -0.22,
+        "research": -1.8239,
+        "income": 0.0438,
+        "macroFit": 1.0439
+      },
+      "closePrice": 24825,
+      "rsi": 55.98
+    },
+    {
+      "code": "458760",
+      "name": "TIGER 미국배당다우존스스타데일리커...",
+      "accountKey": "ISA",
+      "category": "배당/커버드콜",
+      "marketValue": 509250,
+      "actionScore": 65,
+      "signal": "HOLD",
+      "conviction": "MEDIUM",
+      "factorScore": 58,
+      "techScore": 43,
+      "reportScore": 74,
+      "reportImpactCount": 24,
+      "reportSources": [
+        "키움증권",
+        "industry:키움증권",
+        "교보증권",
+        "industry:교보증권",
+        "대신증권",
+        "industry:대신증권"
+      ],
+      "factors": {
+        "momentum": -0.1246,
+        "research": -0.344,
+        "income": 2.9959,
+        "macroFit": 1.3034
+      },
+      "closePrice": 11170,
+      "rsi": 47.86
+    },
+    {
+      "code": "423160",
+      "name": "KODEX KOFR금리액티브(합성)",
+      "accountKey": "PENSION",
+      "category": "현금파킹",
+      "marketValue": 221370,
+      "actionScore": 60,
+      "signal": "HOLD",
+      "conviction": "MEDIUM",
+      "factorScore": 41,
+      "techScore": 52,
+      "reportScore": 74,
+      "reportImpactCount": 22,
+      "reportSources": [
+        "키움증권",
+        "industry:키움증권",
+        "교보증권",
+        "industry:교보증권",
+        "대신증권",
+        "industry:대신증권"
+      ],
+      "factors": {
+        "momentum": -0.8836,
+        "research": -0.5593,
+        "income": 1.0279,
+        "macroFit": -1.6867
+      },
+      "closePrice": 110705,
+      "rsi": 46.88
+    },
+    {
+      "code": "133690",
+      "name": "TIGER 미국나스닥100",
+      "accountKey": "PENSION",
+      "category": "나스닥100",
+      "marketValue": 480480,
+      "actionScore": 54,
+      "signal": "WATCH",
+      "conviction": "MEDIUM",
+      "factorScore": 51,
+      "techScore": 74,
+      "reportScore": 72,
+      "reportImpactCount": 28,
+      "reportSources": [
+        "키움증권",
+        "industry:키움증권",
+        "교보증권",
+        "industry:교보증권",
+        "하나증권",
+        "industry:하나증권",
+        "유진투자증권",
+        "industry:유진투자증권"
+      ],
+      "factors": {
+        "momentum": -0.158,
+        "research": 0.2475,
+        "income": -0.3187,
+        "macroFit": 0.4002
+      },
+      "closePrice": 163095,
+      "rsi": 57.71
+    },
+    {
+      "code": "360750",
+      "name": "TIGER 미국S&P500",
+      "accountKey": "PENSION",
+      "category": "S&P500",
+      "marketValue": 491400,
+      "actionScore": 52,
+      "signal": "WATCH",
+      "conviction": "LOW",
+      "factorScore": 52,
+      "techScore": 82,
+      "reportScore": 68,
+      "reportImpactCount": 29,
+      "reportSources": [
+        "SK증권",
+        "strategy:SK증권",
+        "키움증권",
+        "industry:키움증권",
+        "교보증권",
+        "industry:교보증권",
+        "하나증권",
+        "industry:하나증권"
+      ],
+      "factors": {
+        "momentum": -0.22,
+        "research": -0.0927,
+        "income": 0.0438,
+        "macroFit": 1.1912
+      },
+      "closePrice": 24825,
+      "rsi": 55.98
+    },
+    {
+      "code": "434730",
+      "name": "HANARO 원자력iSelect",
+      "accountKey": "TOSS",
+      "category": "원자력",
+      "marketValue": 443190,
+      "actionScore": 68,
+      "signal": "HOLD",
+      "conviction": "MEDIUM",
+      "factorScore": 57,
+      "techScore": 64,
+      "reportScore": 82,
+      "reportImpactCount": 10,
+      "reportSources": [
+        "교보증권",
+        "industry:교보증권",
+        "유진투자증권",
+        "industry:유진투자증권",
+        "신한투자증권",
+        "theme:신한투자증권",
+        "하나증권",
+        "theme:하나증권"
+      ],
+      "factors": {
+        "momentum": 0.801,
+        "research": 0.9491,
+        "income": -0.4223,
+        "macroFit": 0.043
+      },
+      "closePrice": 70845,
+      "rsi": 57.55
+    },
+    {
+      "code": "251350",
+      "name": "KODEX 선진국ESG액티브",
+      "accountKey": "TOSS",
+      "category": "기타",
+      "marketValue": 465000,
+      "actionScore": 40,
+      "signal": "REDUCE",
+      "conviction": "LOW",
+      "factorScore": 29,
+      "techScore": null,
+      "reportScore": null,
+      "reportImpactCount": 0,
+      "reportSources": [],
+      "factors": {
+        "momentum": -1.7221,
+        "research": -1.9827,
+        "income": -0.6295,
+        "macroFit": -1.0924
+      },
+      "closePrice": null,
+      "rsi": null
+    },
+    {
+      "code": "449450",
+      "name": "PLUS V K생산",
+      "accountKey": "TOSS",
+      "category": "방산",
+      "marketValue": 383475,
+      "actionScore": 64,
+      "signal": "HOLD",
+      "conviction": "MEDIUM",
+      "factorScore": 57,
+      "techScore": 96,
+      "reportScore": 72,
+      "reportImpactCount": 15,
+      "reportSources": [
+        "유진투자증권",
+        "industry:유진투자증권",
+        "신한투자증권",
+        "theme:신한투자증권",
+        "교보증권",
+        "industry:교보증권",
+        "유안타증권",
+        "strategy:유안타증권"
+      ],
+      "factors": {
+        "momentum": 1.2131,
+        "research": 0.2145,
+        "income": -0.4223,
+        "macroFit": 0.4551
+      },
+      "closePrice": 77000,
+      "rsi": 57.21
+    },
+    {
+      "code": "047810",
+      "name": "한국항공우주",
+      "accountKey": "KIS_MAIN",
+      "category": "방산",
+      "marketValue": 999500,
+      "actionScore": 62,
+      "signal": "HOLD",
+      "conviction": "MEDIUM",
+      "factorScore": 52,
+      "techScore": 76,
+      "reportScore": 70,
+      "reportImpactCount": 1,
+      "reportSources": [
+        "유진투자증권",
+        "industry:유진투자증권"
+      ],
+      "factors": {
+        "momentum": 0.9595,
+        "research": 0.065,
+        "income": -0.4223,
+        "macroFit": -0.7134
+      },
+      "closePrice": 190400,
+      "rsi": 55.53
+    },
+    {
+      "code": "064350",
+      "name": "현대로템",
+      "accountKey": "KIS_MAIN",
+      "category": "방산",
+      "marketValue": 210000,
+      "actionScore": 61,
+      "signal": "HOLD",
+      "conviction": "MEDIUM",
+      "factorScore": 52,
+      "techScore": 86,
+      "reportScore": 81,
+      "reportImpactCount": 3,
+      "reportSources": [
+        "유진투자증권",
+        "stock:유진투자증권",
+        "industry:유진투자증권",
+        "KB증권",
+        "strategy:KB증권"
+      ],
+      "factors": {
+        "momentum": 0.0628,
+        "research": 1.0354,
+        "income": -0.4223,
+        "macroFit": -0.7134
+      },
+      "closePrice": 206500,
+      "rsi": 53.83
+    },
+    {
+      "code": "138910",
+      "name": "KODEX 구리선물(H)",
+      "accountKey": "KIS_MAIN",
+      "category": "기타",
+      "marketValue": 525480,
+      "actionScore": 55,
+      "signal": "WATCH",
+      "conviction": "MEDIUM",
+      "factorScore": 43,
+      "techScore": null,
+      "reportScore": 87,
+      "reportImpactCount": 35,
+      "reportSources": [
+        "키움증권",
+        "industry:키움증권",
+        "교보증권",
+        "industry:교보증권",
+        "하나증권",
+        "industry:하나증권",
+        "유진투자증권",
+        "industry:유진투자증권"
+      ],
+      "factors": {
+        "momentum": -1.7221,
+        "research": 1.1276,
+        "income": -0.6295,
+        "macroFit": -0.6921
+      },
+      "closePrice": null,
+      "rsi": null
+    },
+    {
+      "code": "434730",
+      "name": "HANARO 원자력iSelect",
+      "accountKey": "KIS_MAIN",
+      "category": "원자력",
+      "marketValue": 140620,
+      "actionScore": 67,
+      "signal": "HOLD",
+      "conviction": "MEDIUM",
+      "factorScore": 60,
+      "techScore": 64,
+      "reportScore": 82,
+      "reportImpactCount": 10,
+      "reportSources": [
+        "교보증권",
+        "industry:교보증권",
+        "유진투자증권",
+        "industry:유진투자증권",
+        "신한투자증권",
+        "theme:신한투자증권",
+        "하나증권",
+        "theme:하나증권"
+      ],
+      "factors": {
+        "momentum": 0.801,
+        "research": 0.9491,
+        "income": -0.4223,
+        "macroFit": 1.1745
+      },
+      "closePrice": 70845,
+      "rsi": 57.55
+    },
+    {
+      "code": "449450",
+      "name": "PLUS K방산",
+      "accountKey": "KIS_MAIN",
+      "category": "방산",
+      "marketValue": 554400,
+      "actionScore": 64,
+      "signal": "HOLD",
+      "conviction": "MEDIUM",
+      "factorScore": 54,
+      "techScore": 96,
+      "reportScore": 72,
+      "reportImpactCount": 15,
+      "reportSources": [
+        "유진투자증권",
+        "industry:유진투자증권",
+        "신한투자증권",
+        "theme:신한투자증권",
+        "교보증권",
+        "industry:교보증권",
+        "유안타증권",
+        "strategy:유안타증권"
+      ],
+      "factors": {
+        "momentum": 1.2131,
+        "research": 0.2145,
+        "income": -0.4223,
+        "macroFit": -0.7134
+      },
+      "closePrice": 77000,
+      "rsi": 57.21
+    }
+  ],
+  "accountSummaries": [
+    {
+      "key": "ISA",
+      "totalScore": 64,
+      "stage2Bias": "selective_add",
+      "deployBudget": 3665433,
+      "buysCount": 0,
+      "holdsCount": 1,
+      "trimsCount": 0,
+      "watchesCount": 1
+    },
+    {
+      "key": "PENSION",
+      "totalScore": 74,
+      "stage2Bias": "selective_add",
+      "deployBudget": 756843,
+      "buysCount": 1,
+      "holdsCount": 3,
+      "trimsCount": 0,
+      "watchesCount": 0
+    },
+    {
+      "key": "TOSS",
+      "totalScore": 59,
+      "stage2Bias": "selective_add",
+      "deployBudget": 574653,
+      "buysCount": 0,
+      "holdsCount": 1,
+      "trimsCount": 0,
+      "watchesCount": 1
+    },
+    {
+      "key": "KIS_MAIN",
+      "totalScore": 58,
+      "stage2Bias": "aggressive_add",
+      "deployBudget": 1047842,
+      "buysCount": 1,
+      "holdsCount": 3,
+      "trimsCount": 0,
+      "watchesCount": 0
+    }
+  ],
+  "stage2Source": null
+}

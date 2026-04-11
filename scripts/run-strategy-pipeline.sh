@@ -14,6 +14,8 @@ USE_CLAUDE_STAGE2=0
 ALLOW_STAGE2_MOCK_FALLBACK=1
 BUILD_STAGE1_5_PROMPT=1
 STAGE1_5_PID=""
+AUTO_TUNE_WEIGHTS=0
+AUTO_TUNE_DRY_RUN=0
 
 python_bin() {
   if [[ -x "$ROOT_DIR/.venv/bin/python" ]]; then
@@ -67,6 +69,16 @@ while [[ $# -gt 0 ]]; do
       ;;
     --skip-stage1-5-prompt)
       BUILD_STAGE1_5_PROMPT=0
+      shift
+      ;;
+    --auto-tune)
+      AUTO_TUNE_WEIGHTS=1
+      AUTO_TUNE_DRY_RUN=0
+      shift
+      ;;
+    --auto-tune-dry-run)
+      AUTO_TUNE_WEIGHTS=1
+      AUTO_TUNE_DRY_RUN=1
       shift
       ;;
     *)
@@ -216,11 +228,26 @@ node scripts/build-impact-map.js --date "$DATE" --run-date "$RUN_DATE" --effecti
 echo "== Stage 3: quant scores =="
 node scripts/build-stage3-quant-scores.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"
 
+echo "== Holding clusters =="
+node scripts/build-holding-clusters.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE" || echo "!! Holding clusters 생성 실패 (non-blocking)"
+
 echo "== Stage 4: execution plan =="
 node scripts/build-stage4-execution-plan.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"
 
 echo "== Feedback snapshot =="
 node scripts/build-feedback-snapshot.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE" || echo "!! Feedback snapshot 실패 (non-blocking)"
+
+if [[ "$AUTO_TUNE_WEIGHTS" == "1" ]]; then
+  echo "== Feedback analysis =="
+  node scripts/build-feedback-analysis.js || echo "!! Feedback analysis 실패 (non-blocking)"
+
+  echo "== Auto-tune factor weights =="
+  AUTO_TUNE_ARGS=(--date "$DATE")
+  if [[ "$AUTO_TUNE_DRY_RUN" == "1" ]]; then
+    AUTO_TUNE_ARGS+=(--dry-run)
+  fi
+  node scripts/auto-tune-weights.js "${AUTO_TUNE_ARGS[@]}"
+fi
 
 if [[ -n "$STAGE1_5_PID" ]]; then
   if wait "$STAGE1_5_PID"; then
