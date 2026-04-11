@@ -8,7 +8,8 @@
 
 :root {
   color-scheme: light;
-  --desktop-nav-offset: 5.25rem;
+  --dashboard-fixed-width: 1200px;
+  --desktop-nav-offset: 1rem;
   --account-tabs-gap: 0.25rem;
 
   /* 페이지 기반색 - 더 중립적인 cool gray */
@@ -39,6 +40,7 @@ html {
   background: var(--page-base);
   /* 기본 폰트 크기를 약간 줄여 정보 밀도 향상 */
   font-size: 15px;
+  min-width: var(--dashboard-fixed-width);
 }
 
 body {
@@ -48,6 +50,8 @@ body {
   /* 한국어 단어 단위 줄바꿈 */
   word-break: keep-all;
   overflow-wrap: break-word;
+  min-width: var(--dashboard-fixed-width);
+  overflow-x: auto;
 }
 
 ::selection {
@@ -121,6 +125,45 @@ body {
   inset: 0 0 auto;
   height: 1px;
   background: rgba(226, 232, 240, 0.9);
+}
+
+.section-header-band {
+  position: relative;
+  min-width: 0;
+  width: auto;
+  max-width: none;
+  flex: 0 1 auto;
+  transition:
+    background-color 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    transform 220ms ease;
+}
+
+.section-header-band > * {
+  position: relative;
+  z-index: 1;
+}
+
+.section-header-row {
+  position: relative;
+  margin: -1.5rem -1.5rem 0;
+  padding: 1.1rem 1.5rem 1rem;
+  border-radius: calc(1rem - 1px) calc(1rem - 1px) 0 0;
+  background: linear-gradient(
+    180deg,
+    rgba(191, 219, 254, 0.3) 0%,
+    rgba(219, 234, 254, 0.18) 44%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+.holdings-preview-rail {
+  display: none;
+}
+
+html[data-holdings-preview="true"] .holdings-preview-rail {
+  display: block;
 }
 
 /* ─── Prose ─────────────────────────────── */

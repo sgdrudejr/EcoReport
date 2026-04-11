@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 
 export type FloatingSectionIndexItem = {
+  number: string;
   id: string;
   label: string;
   secondaryLabel?: string;
@@ -21,8 +22,7 @@ export default function FloatingSectionIndex({
 
     const update = () => {
       const mobileViewport = window.innerWidth < 768;
-      const scrollY = window.scrollY;
-      setIsVisible(!mobileViewport && scrollY > 240);
+      setIsVisible(!mobileViewport);
 
       const offset = 160;
       let currentId = items[0]?.id ?? null;
@@ -51,15 +51,17 @@ export default function FloatingSectionIndex({
 
   return (
     <div
-      className={`pointer-events-none fixed inset-x-0 bottom-4 z-40 hidden justify-center px-4 transition-all duration-200 md:flex md:px-6 ${
+      className={`pointer-events-none fixed bottom-5 right-5 z-40 hidden transition-all duration-200 md:block ${
         isVisible ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"
       }`}
     >
-      <div className="pointer-events-auto w-full max-w-[34rem] rounded-[1.35rem] border border-slate-200 bg-white/92 p-2 shadow-[0_12px_30px_rgba(15,23,42,0.12)] backdrop-blur">
-        <div
-          className="grid gap-1.5"
-          style={{ gridTemplateColumns: `repeat(${Math.max(items.length, 1)}, minmax(0, 1fr))` }}
-        >
+      <div className="pointer-events-auto group inline-flex flex-col items-end rounded-[1.35rem] border border-white/20 bg-white/10 p-2.5 text-right shadow-[0_16px_38px_rgba(15,23,42,0.12)] transition-colors duration-200 hover:bg-white/80">
+        <div className="mb-2 px-1.5">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-slate-900/40 transition-colors duration-200 group-hover:text-slate-900/80">
+            Section Index
+          </p>
+        </div>
+        <div className="grid justify-items-end gap-1.5">
           {items.map((item) => {
             const isActive = item.id === activeId;
             return (
@@ -72,15 +74,31 @@ export default function FloatingSectionIndex({
                   section.scrollIntoView({ behavior: "smooth", block: "start" });
                   setActiveId(item.id);
                 }}
-                className={`flex min-h-[3.8rem] flex-col items-center justify-center rounded-xl px-2 py-2 text-center text-[11px] leading-tight transition ${
+                className={`flex w-auto max-w-full flex-col items-end rounded-[1rem] px-3 py-2.5 text-right text-[11px] leading-tight transition duration-200 ${
                   isActive
-                    ? "bg-blue-500/12 text-blue-200 shadow-[0_0_0_1px_rgba(59,130,246,0.18)]"
-                    : "text-slate-500 hover:bg-slate-50"
+                    ? "bg-indigo-500/14 text-slate-900/80 shadow-[0_0_0_1px_rgba(99,102,241,0.18)]"
+                    : "text-slate-900/40 hover:-translate-x-0.5 hover:bg-white/24 hover:text-slate-900/80 hover:shadow-[0_8px_18px_rgba(15,23,42,0.10)] group-hover:text-slate-900/80"
                 }`}
+                title={item.label}
               >
-                <span>{item.label}</span>
+                <div className="flex items-center justify-end gap-2">
+                  <span className="font-medium">
+                    {item.label}
+                  </span>
+                  <span
+                    className={`inline-flex size-5 items-center justify-center rounded-full border text-[10px] font-semibold ${
+                      isActive
+                        ? "border-indigo-500/40 bg-indigo-500/12 text-slate-900/80"
+                        : "border-slate-900/15 bg-white/20 text-slate-900/40 group-hover:text-slate-900/80"
+                    }`}
+                  >
+                    {item.number}
+                  </span>
+                </div>
                 {item.secondaryLabel ? (
-                  <span className="mt-0.5">{item.secondaryLabel}</span>
+                  <span className="mt-0.5 text-slate-900/40 transition-colors duration-200 group-hover:text-slate-900/80">
+                    {item.secondaryLabel}
+                  </span>
                 ) : null}
               </button>
             );

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import MainNav from "@/components/MainNav";
@@ -18,6 +18,11 @@ export const metadata: Metadata = {
   description: "Mobile-first portfolio intelligence dashboard for EcoReport",
 };
 
+export const viewport: Viewport = {
+  width: 1280,
+  initialScale: 1,
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -28,7 +33,7 @@ export default function RootLayout({
       lang="ko"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="theme-light min-h-full overflow-x-hidden bg-[#f1f3f5] text-slate-900">
+      <body className="theme-light min-h-full overflow-x-auto bg-[#f1f3f5] text-slate-900">
         <MainNav />
         <div className="relative flex min-h-full flex-col">
           {children}

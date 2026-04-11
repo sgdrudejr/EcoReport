@@ -116,7 +116,7 @@ export default function AccountTabs({
         selectedKey={tabs[selectedIndex]?.key ?? tabs[0].key}
         onSelect={setSelectedKey}
         sticky
-        stickyClassName="top-2 z-30 md:top-[calc(var(--desktop-nav-offset,5.25rem)+var(--account-tabs-gap,0.25rem))]"
+        stickyClassName="top-[calc(var(--desktop-nav-offset,5.25rem)+var(--account-tabs-gap,0.25rem))] z-30"
         frameLabel={null}
         frameClassName="rounded-xl border border-slate-200 bg-slate-50/80 p-1.5 shadow-none"
         listClassName="pb-0"

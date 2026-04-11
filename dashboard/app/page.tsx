@@ -2,7 +2,6 @@ import path from "path";
 import type { ReactNode } from "react";
 import {
   BadgeCheck,
-  ChevronsDown,
   CircleDashed,
   ExternalLink,
   LayoutGrid,
@@ -13,7 +12,9 @@ import {
 
 import AccountTabs from "@/components/AccountTabs";
 import CompactContentTabs from "@/components/CompactContentTabs";
+import ExecutionListTable from "@/components/ExecutionListTable";
 import ExecutionNarrativeCard from "@/components/ExecutionNarrativeCard";
+import FloatingSectionIndex from "@/components/FloatingSectionIndex";
 import RecommendationTabs from "@/components/RecommendationTabs";
 import {
   buildPortfolioGuide,
@@ -32,7 +33,6 @@ import {
 } from "@/lib/portfolio";
 import {
   extractResearchActionGroups,
-  extractResearchCatalystTimeline,
   extractResearchCheckpoints,
   extractResearchDiagnosis,
   extractResearchPortfolioInsights,
@@ -196,6 +196,31 @@ type TechnicalSnapshot = {
       bollinger?: {
         position?: string | null;
       } | null;
+      technical_analysis?: {
+        execution_bias?: {
+          side?: "buy_side" | "neutral" | "sell_side";
+          label?: string | null;
+          summary?: string | null;
+        } | null;
+        indicators?: {
+          rsi?: {
+            side?: "buy_side" | "neutral" | "sell_side";
+            summary?: string | null;
+          } | null;
+          macd?: {
+            side?: "buy_side" | "neutral" | "sell_side";
+            summary?: string | null;
+          } | null;
+          bollinger?: {
+            side?: "buy_side" | "neutral" | "sell_side";
+            summary?: string | null;
+          } | null;
+          movingAverage?: {
+            side?: "buy_side" | "neutral" | "sell_side";
+            summary?: string | null;
+          } | null;
+        } | null;
+      } | null;
       alerts?: string[];
     }
   >;
@@ -271,6 +296,7 @@ type HoldingSummary = {
 type ExecutionListRow = {
   key: string;
   kind: ExecutionGuideItem["kind"];
+  accountKeys: string[];
   accounts: string[];
   name: string;
   code: string | null;
@@ -1079,34 +1105,52 @@ function buildTechnicalNarrative(
 
   const score = technicalItem.score ?? null;
   const signal = String(technicalItem.signal ?? "").toUpperCase();
-  const rsiLabel =
-    typeof technicalItem.rsi === "number" ? `RSI ${technicalItem.rsi.toFixed(1)}` : null;
+  const rsi = technicalItem.rsi ?? null;
   const macdHistogram = technicalItem.macd?.histogram ?? null;
+  const bollingerPosition = technicalItem.bollinger?.position ?? null;
+
+  const rsiLabel =
+    typeof rsi === "number"
+      ? rsi >= 68
+        ? `RSI ${rsi.toFixed(1)}로 단기 과열권에 가까워 신규 추격 매수보다는 비중 조절이나 눌림 대기가 더 적절합니다.`
+        : rsi >= 58
+          ? `RSI ${rsi.toFixed(1)}는 이미 단기 상승이 꽤 진행됐다는 뜻이라, 신규 매수라면 지금 바로 추격하기보다 눌림에서 분할 진입하는 편이 좋습니다.`
+          : rsi <= 38
+            ? `RSI ${rsi.toFixed(1)}는 과매도에 가까워 반등 시도 구간으로 볼 수 있지만, 실제 반전 확인 전에는 한 번에 크게 들어가기보다 시험 매수에 그치는 편이 안전합니다.`
+            : `RSI ${rsi.toFixed(1)}는 중립권이라, RSI만으로 강한 매수·매도 결론을 내리기보다는 다른 지표와 함께 봐야 합니다.`
+      : null;
   const macdLabel =
     typeof macdHistogram === "number"
       ? macdHistogram >= 0
-        ? "MACD 모멘텀이 아직 플러스입니다."
-        : "MACD 모멘텀이 아직 마이너스 구간입니다."
+        ? "MACD가 플러스라는 뜻은 상승 추세가 아직 완전히 꺾이지 않았다는 의미입니다. 다만 이것만으로 지금 당장 추격 매수하라는 뜻은 아니고, 기존 보유자는 보유 우위, 신규 진입자는 눌림 확인 후 접근 쪽에 가깝습니다."
+        : "MACD가 마이너스라는 뜻은 반등이 나와도 아직 하락 추세 안의 되돌림일 수 있다는 의미라, 성급한 신규 매수보다는 추세 복구 확인이 먼저입니다."
       : null;
-  const bandLabel = technicalItem.bollinger?.position
-    ? `${describeBollingerPosition(technicalItem.bollinger.position)}에 머물고 있습니다.`
-    : null;
+  const bandLabel =
+    bollingerPosition === "above_upper"
+      ? "볼린저 상단 돌파는 강한 추세라는 뜻이지만 동시에 단기 과열 구간일 가능성도 큽니다. 이미 보유 중이면 추세를 따라가되, 신규 매수는 시가 추격보다 1~3일 눌림이나 재안착 확인 후 분할 접근이 더 낫습니다."
+      : bollingerPosition === "upper_half"
+        ? "볼린저 상단권은 힘이 위쪽에 있다는 뜻이지만, 상단에 가까울수록 기대수익보다 단기 흔들림 위험도 함께 커집니다."
+        : bollingerPosition === "below_lower"
+          ? "볼린저 하단 이탈은 과매도 반등 후보일 수 있지만, 하락 추세가 끝났다는 확인은 아니라서 반등 확인 없는 선매수는 보수적으로 접근해야 합니다."
+          : bollingerPosition === "lower_half"
+            ? "볼린저 하단권은 아직 매도 압력이 남아 있을 수 있어, 기술 반등만 보고 성급히 비중을 키우는 건 조심하는 편이 좋습니다."
+            : null;
 
   const posture =
     typeof score === "number" && score >= 75
-      ? "기술적으로는 추세 훼손보다 강세 흐름이 우위인 편입니다."
+      ? "기술적으로는 추세가 아직 살아 있어 기존 보유자는 우선 보유 쪽이 맞습니다."
       : typeof score === "number" && score >= 55
-        ? "기술적으로는 완전한 추세 붕괴는 아니지만 강한 추격 신호까지는 아닙니다."
+        ? "기술적으로는 완전한 추세 붕괴는 아니지만, 공격적으로 추격 매수할 정도로 싼 자리는 아닙니다."
         : typeof score === "number"
-          ? "기술적으로는 아직 확신이 강한 자리라기보다 확인이 더 필요한 구간입니다."
+          ? "기술적으로는 아직 확신보다 확인이 더 필요한 자리라, 신규 진입은 보수적으로 접근하는 편이 좋습니다."
           : "기술 신호는 중립적으로 해석하는 편이 좋습니다.";
 
   const signalLine =
     signal.includes("SELL") || signal.includes("REDUCE")
-      ? "현재 시그널은 방어적으로 접근하라는 쪽에 가깝습니다."
+      ? "현재 시그널은 반등이 와도 비중 확대보다 방어와 재점검을 우선하라는 쪽에 가깝습니다."
       : signal.includes("BUY")
-        ? "현재 시그널은 매수 우위지만 추격 강도는 계좌 성격에 맞춰 조절할 필요가 있습니다."
-        : "현재 시그널은 보유 또는 관찰 쪽에 더 가깝습니다.";
+        ? "현재 시그널은 매수 우위라는 뜻이지만, 이는 '보유 유지 또는 눌림 분할매수 우위'에 가깝고 '지금 가격에서 바로 세게 추격 매수'를 뜻하진 않습니다."
+        : "현재 시그널은 보유 또는 관찰 쪽에 더 가깝고, 강한 방향성은 추가 확인이 필요합니다.";
 
   return uniqueStrings([posture, signalLine, rsiLabel, macdLabel, bandLabel]).join(" ");
 }
@@ -1123,13 +1167,13 @@ function buildTechnicalCaution(
   const score = technicalItem.score ?? null;
 
   if (typeof score === "number" && score >= 75) {
-    return "기술 점수가 높더라도 이미 추세가 반영된 구간일 수 있어, 이벤트 직후 추격 매수보다 눌림 또는 거래량 재확인을 기다리는 편이 낫습니다.";
+    return "기술 점수가 높아도 이미 좋은 흐름이 가격에 반영됐을 수 있습니다. 그래서 신규 자금은 장대 양봉 당일 추격보다, 눌림이 나오거나 상단 돌파 뒤 재안착이 확인될 때 나눠 들어가는 편이 더 낫습니다.";
   }
   if (typeof score === "number" && score <= 45) {
     return "기술 점수가 아직 낮은 편이라 테마 서사가 좋아 보여도 가격 구조가 따라오지 않으면 비중 확대는 성급할 수 있습니다.";
   }
   if (typeof rsi === "number" && rsi >= 62) {
-    return "RSI가 중상단에 올라와 있어 단기 과열 해소 없이 바로 탄력이 이어질지 확인이 필요합니다.";
+    return "RSI가 60대 이상이면 이미 단기 매수세가 꽤 붙은 상태라, 지금 진입은 기대수익보다 흔들림을 먼저 감수할 수 있습니다. 신규 매수라면 지금 한 번에 사기보다 눌림 때 분할하는 편이 더 합리적입니다.";
   }
   if (typeof rsi === "number" && rsi <= 42) {
     return "RSI가 약한 구간에 머물면 좋은 논리도 실제 매수세가 붙기 전까지는 시간이 더 필요할 수 있습니다.";
@@ -1528,12 +1572,24 @@ function buildExecutionTechnicalCue(
   const signal = String(technicalItem.signal ?? "").toUpperCase();
   const score = technicalItem.score ?? null;
   const alerts = technicalItem.alerts ?? [];
+  const rsi = technicalItem.rsi ?? null;
+  const bollingerPosition = technicalItem.bollinger?.position ?? null;
+  const macdHistogram = technicalItem.macd?.histogram ?? null;
 
   if (alerts.includes("골든크로스(5일/20일) 발생")) {
     return "기술적으로는 5일선과 20일선 골든크로스가 확인돼, 눌림 이후 다시 방향을 잡는 초기 구간으로 해석할 여지가 있습니다.";
   }
   if (alerts.includes("MACD 시그널 상향 돌파")) {
     return "기술적으로는 MACD 시그널 상향 돌파가 확인돼, 모멘텀이 다시 살아나는 초입인지 볼 타이밍입니다.";
+  }
+  if (
+    typeof rsi === "number" &&
+    rsi >= 58 &&
+    typeof macdHistogram === "number" &&
+    macdHistogram >= 0 &&
+    (bollingerPosition === "upper_half" || bollingerPosition === "above_upper")
+  ) {
+    return "지금은 '상승 추세는 살아 있지만 이미 위쪽에서 달리는 자리'에 가깝습니다. 기존 보유자는 보유 우위지만, 신규 매수는 바로 추격하기보다 눌림이 나올 때 1차만 나눠 담고 나머지는 재돌파 확인 후 접근하는 편이 좋습니다.";
   }
   if (signal.includes("SELL") || (typeof score === "number" && score <= 25)) {
     return "기술적으로는 20일선 아래이거나 모멘텀이 약해, 서사만 좋다고 바로 비중을 늘릴 구간은 아닙니다.";
@@ -2068,6 +2124,7 @@ function buildExecutionListRows(params: {
     string,
     {
       kind: ExecutionGuideItem["kind"];
+      accountKeys: string[];
       accounts: string[];
       name: string;
       code: string | null;
@@ -2150,6 +2207,7 @@ function buildExecutionListRows(params: {
       const current = grouped.get(key);
 
       if (current) {
+        current.accountKeys = uniqueStrings([...current.accountKeys, account.key]);
         current.accounts = uniqueStrings([...current.accounts, account.label]);
         current.reasonCandidates = uniqueStrings([...current.reasonCandidates, reason]);
         current.targetCandidates = uniqueStrings([
@@ -2165,6 +2223,7 @@ function buildExecutionListRows(params: {
 
       grouped.set(key, {
         kind: item.kind,
+        accountKeys: [account.key],
         accounts: [account.label],
         name: item.name,
         code: item.code,
@@ -2191,6 +2250,7 @@ function buildExecutionListRows(params: {
       return {
         key,
         kind: value.kind,
+        accountKeys: value.accountKeys,
         accounts: value.accounts,
         name: value.name,
         code: value.code,
@@ -2346,7 +2406,6 @@ export function DashboardPage() {
   const diagnosis = extractResearchDiagnosis(latestBriefingContent);
   const researchTags = extractResearchTags(latestBriefingContent, 10).map((item) => item.label);
   const scenarios = extractResearchScenarioBranches(latestBriefingContent, 2);
-  const catalysts = extractResearchCatalystTimeline(latestBriefingContent, 6);
   const checkpoints = extractResearchCheckpoints(latestBriefingContent, 6);
   const actionGroups = extractResearchActionGroups(latestBriefingContent, 4);
   const strategyGuide = extractResearchStrategyGuide(latestBriefingContent);
@@ -2548,135 +2607,50 @@ export function DashboardPage() {
     impactMap,
     recommendationBoard,
   });
-  const executionSummary = {
-    total: executionListRows.length,
-    buy: executionListRows.filter((item) => item.kind === "buy").length,
-    trim: executionListRows.filter((item) => item.kind === "trim").length,
-    hold: executionListRows.filter((item) => item.kind === "hold").length,
+  const executionListAccounts = accountEntries.map(({ account }) => ({
+    key: account.key,
+    label: account.label,
+  }));
+  const sectionIndexItems = [
+    { number: "1", id: "today-actions", label: "오늘의 실행 리스트" },
+    { number: "2", id: "portfolio-diagnosis", label: "핵심 진단" },
+    { number: "3", id: "accounts-overview", label: "계좌 현황과 실행 방향성" },
+    { number: "4", id: "account-holdings", label: "보유 종목" },
+    { number: "5", id: "account-direction", label: "투자 방향성" },
+    { number: "6", id: "market-guide", label: "시황 가이드와 추천 종목" },
+    { number: "7", id: "market-voice", label: "머니토링 이벤트 레이어" },
+    { number: "8", id: "recommendations", label: "추천 종목" },
+  ];
+  const sectionHeading = (id: string) => {
+    const item = sectionIndexItems.find((section) => section.id === id);
+    return item ? `${item.number}. ${item.label}` : id;
   };
 
   const content = (
-    <main className="pb-20 md:pb-14">
-      <section className="mx-auto flex w-full max-w-[1200px] flex-col gap-4 px-4 pb-8 pt-5 sm:px-5 lg:px-6">
-        <details className="glass-panel rounded-2xl px-5 py-5 md:px-6 md:py-6 [&_summary::-webkit-details-marker]:hidden" open>
-          <summary className="flex cursor-pointer list-none items-start justify-between gap-4">
-            <div>
+    <main className="pb-14">
+      <section className="mx-auto flex w-full max-w-[calc(var(--dashboard-fixed-width)-8px)] flex-col gap-4 px-1 pb-8 pt-5">
+        <details
+          id="today-actions"
+          className="glass-panel scroll-mt-28 rounded-2xl px-6 py-6 [&_summary::-webkit-details-marker]:hidden"
+          open
+        >
+          <summary className="section-header-row flex cursor-pointer list-none items-start justify-between gap-4">
+            <div className="section-header-band">
               <p className="section-kicker">Today&apos;s Action List</p>
               <h2 className="mt-1.5 text-[1.3rem] font-semibold tracking-tight text-slate-950">
-                오늘의 실행 리스트
+                {sectionHeading("today-actions")}
               </h2>
-              <p className="mt-1.5 text-[13px] text-slate-500">
-                계좌 실행안과 추천 보드, 리포트 근거를 한 장으로 압축한 요약표
-              </p>
-            </div>
-
-            <div className="flex shrink-0 flex-col items-end gap-2">
-              <div className="flex flex-wrap justify-end gap-2">
-                <span className="rounded-full bg-slate-950 px-3 py-1 text-xs font-medium text-white">
-                  총 {executionSummary.total}건
-                </span>
-                {executionSummary.buy > 0 ? (
-                  <span className="rounded-full bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-700 ring-1 ring-inset ring-emerald-500/20">
-                    매수 {executionSummary.buy}
-                  </span>
-                ) : null}
-                {executionSummary.trim > 0 ? (
-                  <span className="rounded-full bg-rose-500/10 px-3 py-1 text-xs font-medium text-rose-700 ring-1 ring-inset ring-rose-500/20">
-                    매도 {executionSummary.trim}
-                  </span>
-                ) : null}
-                {executionSummary.hold > 0 ? (
-                  <span className="rounded-full bg-slate-900/5 px-3 py-1 text-xs font-medium text-slate-600 ring-1 ring-inset ring-slate-200">
-                    보유 {executionSummary.hold}
-                  </span>
-                ) : null}
-              </div>
-              <span className="inline-flex items-center gap-1 text-xs font-medium text-slate-500">
-                펼쳐서 보기
-                <ChevronsDown size={15} className="text-slate-400" />
-              </span>
             </div>
           </summary>
 
           <div className="section-block mt-5">
-            <p className="text-sm leading-6 text-slate-600">
-              오늘 바로 실행하거나 유지 판단이 필요한 항목만 남겼고, 같은 종목은 계좌를 묶어 한 줄로 압축했습니다.
-            </p>
-          </div>
-
-          <div className="section-block mt-5">
             {executionListRows.length > 0 ? (
-              <div className="overflow-hidden rounded-[1.35rem] border border-slate-200 bg-white">
-                <div className="max-h-[26rem] overflow-x-hidden overflow-y-auto">
-                  <table className="w-full table-fixed border-collapse">
-                    <colgroup>
-                      <col style={{ width: "18%" }} />
-                      <col style={{ width: "18%" }} />
-                      <col style={{ width: "14%" }} />
-                      <col style={{ width: "14%" }} />
-                      <col style={{ width: "36%" }} />
-                    </colgroup>
-                    <thead className="sticky top-0 z-10 bg-slate-50 backdrop-blur">
-                      <tr className="border-b border-slate-200 text-left text-[11px] font-semibold uppercase tracking-[0.15em] text-slate-400">
-                        <th className="px-4 py-3">실행 계좌</th>
-                        <th className="px-4 py-3">실행 종목</th>
-                        <th className="px-4 py-3">실행 금액</th>
-                        <th className="px-4 py-3">목표 수익률</th>
-                        <th className="px-4 py-3">실행을 위한 구체적인 이유</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-slate-200">
-                      {executionListRows.map((row) => (
-                        <tr key={row.key} className="align-top">
-                          <td className="px-4 py-4">
-                            <div className="flex flex-wrap gap-1.5">
-                              {row.accounts.map((accountLabel) => (
-                                <span
-                                  key={`${row.key}-${accountLabel}`}
-                                  className="rounded-full bg-slate-900/5 px-2.5 py-1 text-[11px] font-medium text-slate-600 ring-1 ring-inset ring-slate-200"
-                                >
-                                  {accountLabel}
-                                </span>
-                              ))}
-                            </div>
-                          </td>
-                          <td className="px-4 py-4">
-                            <div className="min-w-0 space-y-2">
-                              <span
-                                className={joinClasses(
-                                  "inline-flex rounded-full px-2.5 py-1 text-[11px] font-medium",
-                                  executionKindClassName(row.kind),
-                                )}
-                              >
-                                {executionKindLabel(row.kind)}
-                              </span>
-                              <div className="min-w-0">
-                                <p className="break-keep text-sm font-semibold text-slate-900">
-                                  {row.name}
-                                </p>
-                                {row.code ? (
-                                  <p className="mt-1 text-xs text-slate-400">{row.code}</p>
-                                ) : null}
-                              </div>
-                            </div>
-                          </td>
-                          <td className="px-4 py-4 text-sm font-medium text-slate-900">
-                            {row.amountLabel}
-                          </td>
-                          <td className="px-4 py-4 text-sm font-medium text-slate-700">
-                            {row.targetReturnLabel}
-                          </td>
-                          <td className="px-4 py-4">
-                            <p className={joinClasses(BODY_COPY_CLASS, "text-slate-700")}>
-                              {row.reason}
-                            </p>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+              <ExecutionListTable
+                rows={executionListRows}
+                accounts={executionListAccounts}
+                bodyCopyClass={BODY_COPY_CLASS}
+                bodyNoteMutedClass={BODY_NOTE_MUTED_CLASS}
+              />
             ) : (
               <div
                 className={joinClasses(
@@ -2691,17 +2665,25 @@ export function DashboardPage() {
           </div>
         </details>
 
-        <section className="glass-panel rounded-2xl px-5 py-5 md:px-6 md:py-6">
+        <section
+          id="portfolio-diagnosis"
+          className="glass-panel scroll-mt-28 rounded-2xl px-6 py-6"
+        >
           {/* 헤더 행: 진단 라벨 · 날짜 왼쪽, 점수 오른쪽 */}
-          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
-            <div className="flex items-center gap-2.5">
-              <p className="section-kicker">핵심 진단</p>
-              <span className="rounded-full bg-slate-900 px-2.5 py-0.5 text-xs font-medium text-white">
-                {portfolio.date}
-              </span>
-              <BadgeCheck className="text-emerald-500" size={15} />
+          <div className="section-header-row flex flex-wrap items-start justify-between gap-3 border-b border-slate-100 pb-4">
+            <div className="section-header-band">
+              <p className="section-kicker">Portfolio Diagnosis</p>
+              <h2 className="mt-1.5 text-[1.3rem] font-semibold tracking-tight text-slate-950">
+                {sectionHeading("portfolio-diagnosis")}
+              </h2>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap items-center justify-end gap-3">
+              <div className="flex items-center gap-2.5">
+                <span className="rounded-full bg-slate-900 px-2.5 py-0.5 text-xs font-medium text-white">
+                  {portfolio.date}
+                </span>
+                <BadgeCheck className="text-emerald-500" size={15} />
+              </div>
               <div className="flex items-baseline gap-1.5">
                 <span className="text-2xl font-bold tracking-tight text-slate-950">
                   {formatScore(portfolioGuide?.score)}
@@ -2734,7 +2716,7 @@ export function DashboardPage() {
             </p>
           )}
 
-          <div className="mt-6 grid gap-4 border-t border-slate-200/80 pt-5 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0">
+          <div className="mt-6 grid grid-cols-4 gap-0 border-t border-slate-200/80 pt-5">
             {[
               {
                 icon: WalletCards,
@@ -2768,8 +2750,8 @@ export function DashboardPage() {
                 <div
                   key={item.label}
                   className={joinClasses(
-                    "px-1 py-1 lg:px-6",
-                    index > 0 && "lg:border-l lg:border-slate-200/80",
+                    "px-6 py-1",
+                    index > 0 && "border-l border-slate-200/80",
                   )}
                 >
                   <div className="flex items-center gap-3">
@@ -2796,12 +2778,15 @@ export function DashboardPage() {
           </div>
         </section>
 
-        <section className="glass-panel rounded-2xl px-5 py-5 md:px-6 md:py-6">
-          <div className="flex items-center justify-between gap-4">
-            <div>
+        <section
+          id="accounts-overview"
+          className="glass-panel scroll-mt-28 rounded-2xl px-6 py-6"
+        >
+          <div className="section-header-row flex items-center justify-between gap-4">
+            <div className="section-header-band">
               <p className="section-kicker">Accounts First</p>
               <h2 className="mt-1.5 text-[1.3rem] font-semibold tracking-tight text-slate-950">
-                1. 계좌 현황과 실행 방향성
+                {sectionHeading("accounts-overview")}
               </h2>
             </div>
             <span className="rounded-full bg-slate-900/5 px-3 py-1 text-xs font-medium text-slate-600 ring-1 ring-inset ring-slate-200">
@@ -2859,7 +2844,7 @@ export function DashboardPage() {
                   return (
                     <article key={account.key} className="space-y-6 py-1">
                       <div className="space-y-4">
-                        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+                        <div className="grid grid-cols-6 gap-3">
                           {accountSummaryItems.map((item) => (
                             <div
                               key={item.label}
@@ -2920,73 +2905,114 @@ export function DashboardPage() {
                           )}
                         </div>
 
-                        <div className="grid gap-4 border-t border-slate-200/80 pt-4 md:grid-cols-3 md:gap-0">
-                          {story.cards.map((card, index) => (
-                            <div
-                              key={`${account.key}-${card.title}`}
-                              className={joinClasses(
-                                "pt-0 md:px-4",
-                                index > 0 && "md:border-l md:border-slate-200/80",
-                              )}
-                            >
-                              <p
+                        <div className="rounded-[1.65rem] border border-slate-200 bg-slate-50/80 px-5 py-5">
+                          <div className="grid grid-cols-3 gap-0">
+                            {story.cards.map((card, index) => (
+                              <div
+                                key={`${account.key}-${card.title}`}
                                 className={joinClasses(
-                                  "text-xs font-semibold uppercase tracking-[0.14em]",
-                                  card.title === "계좌 역할"
-                                    ? "text-slate-500"
-                                    : card.title === "지금 중요 변수"
-                                      ? "text-amber-700"
-                                      : "text-sky-700",
+                                  "px-4 pt-0",
+                                  index > 0 && "border-l border-slate-200/80",
                                 )}
                               >
-                                {card.title}
-                              </p>
-                              <p className={joinClasses("mt-2", BODY_NOTE_CLASS, "text-slate-700")}>
-                                {renderHighlightedText(card.body, story.highlights, {
-                                  multiline: true,
-                                })}
-                              </p>
+                                <p
+                                  className={joinClasses(
+                                    "text-xs font-semibold uppercase tracking-[0.14em]",
+                                    card.title === "계좌 역할"
+                                      ? "text-slate-500"
+                                      : card.title === "지금 중요 변수"
+                                        ? "text-amber-700"
+                                        : "text-sky-700",
+                                  )}
+                                >
+                                  {card.title}
+                                </p>
+                                <p className={joinClasses("mt-2", BODY_NOTE_CLASS, "text-slate-700")}>
+                                  {renderHighlightedText(card.body, story.highlights, {
+                                    multiline: true,
+                                  })}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+
+                          <details className="mt-4">
+                            <summary className="list-none">
+                              <span className="inline-flex cursor-pointer items-center rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-semibold text-slate-800 transition hover:border-slate-300 hover:bg-slate-100">
+                                점수 상세 보기
+                              </span>
+                            </summary>
+                            <div className="mt-4 grid grid-cols-4 gap-3">
+                              {scoreItems.map((item) => (
+                                <div
+                                  key={item.label}
+                                  className="rounded-2xl border border-slate-200 bg-white px-4 py-3"
+                                >
+                                  <p className="text-xs font-medium uppercase tracking-[0.15em] text-slate-400">
+                                    {item.label}
+                                  </p>
+                                  <p className="mt-2 text-base font-semibold text-slate-900">
+                                    {item.value}
+                                  </p>
+                                </div>
+                              ))}
                             </div>
-                          ))}
+                            {!!accountGuide?.scoreDrivers.length && (
+                              <div className="mt-4 grid gap-2">
+                                {accountGuide.scoreDrivers.slice(0, 4).map((item) => (
+                                  <p key={item} className="text-sm leading-6 text-slate-600">
+                                    {item}
+                                  </p>
+                                ))}
+                              </div>
+                            )}
+                          </details>
                         </div>
                       </div>
 
-                      <details className="section-block">
-                        <summary className="cursor-pointer list-none text-sm font-semibold text-slate-800">
-                          점수 상세 보기
-                        </summary>
-                        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-                          {scoreItems.map((item) => (
-                            <div
-                              key={item.label}
-                              className="rounded-2xl border border-slate-200 bg-white px-4 py-3"
-                            >
-                              <p className="text-xs font-medium uppercase tracking-[0.15em] text-slate-400">
-                                {item.label}
-                              </p>
-                              <p className="mt-2 text-base font-semibold text-slate-900">
-                                {item.value}
-                              </p>
-                            </div>
-                          ))}
-                        </div>
-                        {!!accountGuide?.scoreDrivers.length && (
-                          <div className="mt-4 grid gap-2">
-                            {accountGuide.scoreDrivers.slice(0, 4).map((item) => (
-                              <p key={item} className="text-sm leading-6 text-slate-600">
-                                {item}
-                              </p>
-                            ))}
-                          </div>
-                        )}
-                      </details>
+                      <div className="space-y-6 pt-4">
+                    <div className="holdings-preview-rail sticky top-[calc(var(--desktop-nav-offset,1rem)+var(--account-tabs-gap,0.25rem)+4.8rem)] z-20 -mt-1">
+                      <div className="rounded-[1.25rem] border border-slate-200/80 bg-white/96 px-3 py-2 shadow-[0_10px_24px_rgba(15,23,42,0.06)]">
+                        <div className="overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                          <div className="flex min-w-max items-stretch gap-2">
+                            {account.holdings.map((holding) => {
+                              const profitLoss = getHoldingProfitLoss(holding);
+                              const profitRate = getHoldingProfitRate(holding);
 
-                      <div className="section-block space-y-6">
-                    <section className="space-y-4">
-                      <div className="flex items-center justify-between gap-4">
-                        <h4 className="text-sm font-semibold uppercase tracking-[0.18em] text-slate-500">
-                          보유 종목
-                        </h4>
+                              return (
+                                <button
+                                  key={`preview-${account.key}-${holding.code ?? holding.name}`}
+                                  type="button"
+                                  className="flex min-w-[12.5rem] flex-col items-start rounded-[1rem] border border-slate-200/80 bg-slate-50/82 px-3 py-2 text-left transition hover:border-slate-300 hover:bg-white"
+                                >
+                                  <span className="max-w-full truncate text-[12.5px] font-semibold text-slate-900">
+                                    {holding.name}
+                                  </span>
+                                  <div className="mt-1 flex items-center gap-2 text-[11px] leading-5">
+                                    <span className={joinClasses("font-semibold", scoreTone(profitRate))}>
+                                      {formatSignedPercent(profitRate)}
+                                    </span>
+                                    <span className="text-slate-300">/</span>
+                                    <span className={joinClasses("font-medium", scoreTone(profitLoss))}>
+                                      {formatSignedCurrency(profitLoss)}
+                                    </span>
+                                  </div>
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <section id="account-holdings" className="scroll-mt-36 space-y-4">
+                      <div className="section-header-row flex items-start justify-between gap-4">
+                        <div className="section-header-band">
+                          <p className="section-kicker">Account Holdings</p>
+                          <h4 className="mt-1.5 text-[1.02rem] font-semibold tracking-tight text-slate-950">
+                            {sectionHeading("account-holdings")}
+                          </h4>
+                        </div>
                         <span className="text-xs text-slate-400">
                           종목별 요약과 점수
                         </span>
@@ -3076,7 +3102,7 @@ export function DashboardPage() {
                                   </div>
                                 </div>
 
-                                <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+                                <div className="grid grid-cols-4 gap-2">
                                   <div className="rounded-2xl bg-slate-50 px-3 py-2">
                                     <p className="text-[11px] font-medium uppercase tracking-[0.14em] text-slate-400">
                                       기술 종합 점수
@@ -3170,7 +3196,7 @@ export function DashboardPage() {
                                     <summary className="cursor-pointer list-none text-sm font-medium text-slate-700">
                                       세부 근거 펼치기
                                     </summary>
-                                    <div className="mt-3 grid gap-3 md:grid-cols-2">
+                                    <div className="mt-3 grid grid-cols-2 gap-3">
                                       <div className="rounded-2xl bg-white px-4 py-3">
                                         <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
                                           기술 신호
@@ -3261,12 +3287,18 @@ export function DashboardPage() {
                       </div>
                     </section>
 
-                    <section className="space-y-6 border-t border-slate-200/80 pt-5">
+                    <section
+                      id="account-direction"
+                      className="scroll-mt-36 space-y-6 border-t border-slate-200/80 pt-5"
+                    >
                       <div>
-                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-                          투자 방향성
-                        </p>
-                        <div className="mt-3 space-y-3">
+                        <div className="section-header-band">
+                          <p className="section-kicker">Investment Direction</p>
+                          <h4 className="mt-1.5 text-[1.02rem] font-semibold tracking-tight text-slate-950">
+                            {sectionHeading("account-direction")}
+                          </h4>
+                        </div>
+                        <div className="mt-4 space-y-3">
                           {insightLines.map((line, index) => (
                             <p
                               key={line}
@@ -3566,12 +3598,15 @@ export function DashboardPage() {
           </div>
         </section>
 
-        <section className="glass-panel rounded-2xl px-5 py-5 md:px-6 md:py-6">
-          <div className="flex items-center justify-between gap-4">
-            <div>
+        <section
+          id="market-guide"
+          className="glass-panel scroll-mt-28 rounded-2xl px-6 py-6"
+        >
+          <div className="section-header-row flex items-center justify-between gap-4">
+            <div className="section-header-band">
               <p className="section-kicker">Market Guide</p>
               <h2 className="mt-1.5 text-[1.3rem] font-semibold tracking-tight text-slate-950">
-                2. 시황 가이드와 추천 종목
+                {sectionHeading("market-guide")}
               </h2>
             </div>
             <span className="rounded-full bg-slate-900/5 px-3 py-1 text-xs font-medium text-slate-600 ring-1 ring-inset ring-slate-200">
@@ -3579,8 +3614,8 @@ export function DashboardPage() {
             </span>
           </div>
 
-          <div className="mt-5 rounded-[1.35rem] border border-slate-200 bg-white/85 px-4 py-4 shadow-[0_14px_34px_rgba(15,23,42,0.05)] md:px-5">
-            <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+          <div className="mt-5 rounded-[1.35rem] border border-slate-200 bg-white/85 px-5 py-4 shadow-[0_14px_34px_rgba(15,23,42,0.05)]">
+            <div className="flex items-end justify-between gap-3">
               <div className="max-w-3xl">
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
                   브리핑 입력 스냅샷
@@ -3594,7 +3629,7 @@ export function DashboardPage() {
               </p>
             </div>
 
-            <div className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+            <div className="mt-4 grid grid-cols-4 gap-3">
               {researchOverview.metricItems.map((item, index) => (
                 <BriefingMetricCard
                   key={item.key}
@@ -3607,7 +3642,7 @@ export function DashboardPage() {
             </div>
           </div>
 
-          <div className="mt-5 grid gap-3 lg:grid-cols-3">
+          <div className="mt-5 grid grid-cols-3 gap-3">
             {marketInsightCards.map((item) => (
               <InsightDigestCard
                 key={item.key}
@@ -3666,7 +3701,7 @@ export function DashboardPage() {
                   ))}
                 </div>
 
-                <div className="mt-5 grid gap-3 sm:grid-cols-2 xl:grid-cols-3">
+                <div className="mt-5 grid grid-cols-3 gap-3">
                   {macroIndicators.map((indicator: MacroIndicator) => (
                     <div
                       key={indicator.key}
@@ -3776,12 +3811,15 @@ export function DashboardPage() {
             </CompactContentTabs>
           </div>
 
-          <div className="mt-8 border-t border-slate-200/80 pt-6">
-            <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+          <div id="market-voice" className="mt-8 scroll-mt-36 pt-4">
+            <div className="section-header-row flex items-end justify-between gap-3">
               <div className="max-w-3xl">
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-                  머니토링 이벤트 레이어
-                </p>
+                <div className="section-header-band">
+                  <p className="section-kicker">Market Voice</p>
+                  <h3 className="mt-1.5 text-[1.1rem] font-semibold tracking-tight text-slate-950">
+                    {sectionHeading("market-voice")}
+                  </h3>
+                </div>
                 <p className={joinClasses("mt-2", BODY_COPY_CLASS, "text-slate-600")}>
                   {marketVoice?.summary?.overview ??
                     "매 사이클마다 실시간 시황을 끌어와 내 계좌와 바로 연결해 보여줍니다."}
@@ -3820,7 +3858,7 @@ export function DashboardPage() {
                       들어오면 여기서 바로 보입니다.
                     </div>
                   ) : (
-                    <div className="grid gap-4 xl:grid-cols-2">
+                    <div className="grid grid-cols-2 gap-4">
                       {marketVoiceAccountSections.map(({ account, digest }) => (
                         <article
                           key={account.key}
@@ -4057,22 +4095,20 @@ export function DashboardPage() {
             </CompactContentTabs>
           </div>
 
-          <div className="section-block mt-8">
-            <div className="flex flex-wrap items-center justify-between gap-4">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-                  추천 종목
-                </p>
-                <h3 className="mt-2 text-xl font-semibold tracking-tight text-slate-950">
-                  코어 ETF · 섹터 ETF · 개별주
+          <div id="recommendations" className="mt-8 scroll-mt-36 pt-4">
+            <div className="section-header-row flex flex-wrap items-center justify-between gap-4">
+              <div className="section-header-band">
+                <p className="section-kicker">Recommendations</p>
+                <h3 className="mt-1.5 text-xl font-semibold tracking-tight text-slate-950">
+                  {sectionHeading("recommendations")}
                 </h3>
               </div>
               <p className={joinClasses(BODY_NOTE_MUTED_CLASS, "text-slate-500")}>
-                현재 레짐과 계좌 적합도, 기술 점수, 리포트 신호를 함께 반영
+                코어 ETF · 섹터 ETF · 개별주를 현재 레짐과 계좌 적합도, 기술 점수, 리포트 신호를 함께 반영해 정리했습니다.
               </p>
             </div>
 
-            <div className="mt-4 grid gap-3 lg:grid-cols-3">
+            <div className="mt-4 grid grid-cols-3 gap-3">
               {recommendationInsightCards.map((item) => (
                 <InsightDigestCard
                   key={item.key}
@@ -4277,69 +4313,8 @@ export function DashboardPage() {
           </div>
         </section>
 
-        <section className="glass-panel rounded-2xl px-5 py-5 md:px-6 md:py-6">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <div>
-              <p className="section-kicker">Artifacts</p>
-              <h2 className="mt-1.5 text-[1.3rem] font-semibold tracking-tight text-slate-950">
-                오늘 기준 참고된 연구 산출물
-              </h2>
-            </div>
-            <p className={joinClasses(BODY_NOTE_MUTED_CLASS, "text-slate-500")}>
-              최신 리포트, deep research, execution plan 기준
-            </p>
-          </div>
-
-          <div className="mt-6 grid gap-6">
-            <div>
-              <p className="text-sm font-semibold text-slate-900">촉매 일정</p>
-              <div className="mt-3 space-y-2">
-                {catalysts.slice(0, 4).map((item) => (
-                  <div key={item.id} className={joinClasses(BODY_NOTE_CLASS, "text-slate-700")}>
-                    <p className="font-medium">{item.timing}</p>
-                    <p>{item.event}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="section-block">
-              <p className="text-sm font-semibold text-slate-900">오늘 실행 요약</p>
-              <div className="mt-3 space-y-2">
-                {actionGroups.map((group) => (
-                  <div key={group.id} className={joinClasses(BODY_NOTE_CLASS, "text-slate-700")}>
-                    <p className="font-medium">{group.account}</p>
-                    {group.items.slice(0, 2).map((item) => (
-                      <p key={item}>{item}</p>
-                    ))}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="section-block">
-              <p className="text-sm font-semibold text-slate-900">포트폴리오 시사점</p>
-              <div className={joinClasses("mt-3 space-y-2", BODY_NOTE_CLASS, "text-slate-700")}>
-                {[
-                  ...portfolioInsights.strengths.slice(0, 1),
-                  ...portfolioInsights.vulnerabilities.slice(0, 1),
-                  ...portfolioInsights.upgradeAxes.slice(0, 1),
-                ].length > 0 ? (
-                  [
-                    ...portfolioInsights.strengths.slice(0, 1),
-                    ...portfolioInsights.vulnerabilities.slice(0, 1),
-                    ...portfolioInsights.upgradeAxes.slice(0, 1),
-                  ].map((item) => <p key={item}>{item}</p>)
-                ) : (
-                  <p className="text-slate-500">
-                    최신 briefing에서 포트폴리오 시사점 문단을 아직 구조적으로 추출하지 못했습니다.
-                  </p>
-                )}
-              </div>
-            </div>
-          </div>
-        </section>
       </section>
+      <FloatingSectionIndex items={sectionIndexItems} />
     </main>
   );
 

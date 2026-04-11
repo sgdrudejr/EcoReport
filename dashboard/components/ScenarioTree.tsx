@@ -82,9 +82,7 @@ export default function ScenarioTree({
                   <p className="text-[11px] uppercase tracking-[0.16em] text-zinc-500">
                     전개
                   </p>
-                  <p className="mt-2 text-sm leading-6 text-zinc-200">
-                    {branch.narrative}
-                  </p>
+                  <p className="mt-2 text-sm leading-6 text-zinc-200">{branch.narrative}</p>
                 </div>
               )}
 
@@ -93,9 +91,7 @@ export default function ScenarioTree({
                   <p className="text-[11px] uppercase tracking-[0.16em] text-zinc-500">
                     대응
                   </p>
-                  <p className="mt-2 text-sm leading-6 text-zinc-100">
-                    {branch.response}
-                  </p>
+                  <p className="mt-2 text-sm leading-6 text-zinc-100">{branch.response}</p>
                 </div>
               )}
 

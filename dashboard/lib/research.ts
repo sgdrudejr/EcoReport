@@ -24,12 +24,16 @@ export interface ResearchBriefingMeta {
   model?: string | null;
   used_chunk_count?: number | null;
   covered_report_count?: number | null;
+  coverage_summary_report_count?: number | null;
+  coverage_summary_entry_count?: number | null;
+  coverage_theme_count?: number | null;
   summary_chunk_count?: number | null;
   candidate_chunk_count?: number | null;
   briefing_candidate_count?: number | null;
   merged_text_length?: number | null;
   selected_chunk_count?: number | null;
   selected_report_count?: number | null;
+  highlight_report_count?: number | null;
   merged_text_char_length?: number | null;
   run_date?: string | null;
   effective_market_date?: string | null;
@@ -37,6 +41,7 @@ export interface ResearchBriefingMeta {
   stage1_report_count?: number | null;
   selected_extract_budget?: number | null;
   selected_extract_count?: number | null;
+  highlight_extract_count?: number | null;
   prompt_char_length?: number | null;
   deep_research_char_length?: number | null;
   prior_briefing_char_length?: number | null;
@@ -60,11 +65,13 @@ export interface ResearchBriefingStats {
   model: string | null;
   usedChunkCount: number | null;
   coveredReportCount: number | null;
+  coverageSummaryCount: number | null;
   mergedTextLength: number | null;
   summaryChunkCount: number | null;
   candidateChunkCount: number | null;
   sourceReportCount: number | null;
   selectedExtractCount: number | null;
+  highlightExtractCount: number | null;
   deepResearchCharLength: number | null;
   promptCharLength: number | null;
   workflow: string | null;
@@ -171,8 +178,9 @@ interface Stage1ExtractState {
 
 interface RichSelectionSummary {
   stage1ReportCount: number | null;
-  selectedExtractCount: number | null;
-  selectedReportCount: number | null;
+  coverageSummaryCount: number | null;
+  highlightExtractCount: number | null;
+  highlightReportCount: number | null;
 }
 
 const RESEARCH_TAG_RULES: Array<{
@@ -270,8 +278,21 @@ function deriveRichSelectionSummary(
   if (!stage1Path) {
     return {
       stage1ReportCount: fallbackStage1Count,
-      selectedExtractCount: meta.selected_extract_count ?? meta.selected_extract_budget ?? null,
-      selectedReportCount: meta.selected_extract_count ?? meta.selected_extract_budget ?? null,
+      coverageSummaryCount:
+        meta.coverage_summary_report_count ??
+        meta.coverage_summary_entry_count ??
+        fallbackStage1Count,
+      highlightExtractCount:
+        meta.highlight_extract_count ??
+        meta.selected_extract_count ??
+        meta.selected_extract_budget ??
+        null,
+      highlightReportCount:
+        meta.highlight_report_count ??
+        meta.selected_report_count ??
+        meta.selected_extract_count ??
+        meta.selected_extract_budget ??
+        null,
     };
   }
 
@@ -280,8 +301,22 @@ function deriveRichSelectionSummary(
   if (extracts.length === 0) {
     return {
       stage1ReportCount: stage1?.reportCount ?? fallbackStage1Count,
-      selectedExtractCount: meta.selected_extract_count ?? meta.selected_extract_budget ?? null,
-      selectedReportCount: meta.selected_extract_count ?? meta.selected_extract_budget ?? null,
+      coverageSummaryCount:
+        meta.coverage_summary_report_count ??
+        meta.coverage_summary_entry_count ??
+        stage1?.reportCount ??
+        fallbackStage1Count,
+      highlightExtractCount:
+        meta.highlight_extract_count ??
+        meta.selected_extract_count ??
+        meta.selected_extract_budget ??
+        null,
+      highlightReportCount:
+        meta.highlight_report_count ??
+        meta.selected_report_count ??
+        meta.selected_extract_count ??
+        meta.selected_extract_budget ??
+        null,
     };
   }
 
@@ -316,13 +351,23 @@ function deriveRichSelectionSummary(
     }
   }
 
-  const selectedCount =
-    meta.selected_extract_count ?? (selectedIds.size > 0 ? selectedIds.size : null);
+  const highlightCount =
+    meta.highlight_extract_count ??
+    meta.selected_extract_count ??
+    (selectedIds.size > 0 ? selectedIds.size : null);
 
   return {
     stage1ReportCount: stage1?.reportCount ?? extracts.length ?? fallbackStage1Count,
-    selectedExtractCount: selectedCount,
-    selectedReportCount: selectedCount,
+    coverageSummaryCount:
+      meta.coverage_summary_report_count ??
+      meta.coverage_summary_entry_count ??
+      stage1?.reportCount ??
+      extracts.length,
+    highlightExtractCount: highlightCount,
+    highlightReportCount:
+      meta.highlight_report_count ??
+      meta.selected_report_count ??
+      highlightCount,
   };
 }
 
@@ -386,13 +431,24 @@ export function getResearchBriefingStats(
 ): ResearchBriefingStats {
   const meta = briefing?.meta ?? null;
   const richSummary = briefing?.variant === "rich" ? deriveRichSelectionSummary(meta) : null;
-  const selectedExtractCount =
+  const highlightExtractCount =
+    meta?.highlight_extract_count ??
+    richSummary?.highlightExtractCount ??
     meta?.selected_extract_count ??
-    richSummary?.selectedExtractCount ??
+    meta?.selected_extract_budget ??
+    null;
+  const selectedExtractCount =
+    highlightExtractCount ??
+    meta?.selected_extract_count ??
     meta?.selected_extract_budget ??
     null;
   const sourceReportCount =
     meta?.stage1_report_count ?? richSummary?.stage1ReportCount ?? null;
+  const coverageSummaryCount =
+    meta?.coverage_summary_report_count ??
+    meta?.coverage_summary_entry_count ??
+    richSummary?.coverageSummaryCount ??
+    sourceReportCount;
 
   return {
     variant: briefing?.variant ?? "standard",
@@ -404,10 +460,12 @@ export function getResearchBriefingStats(
       meta?.summary_chunk_count ??
       null,
     coveredReportCount:
+      meta?.highlight_report_count ??
       meta?.selected_report_count ??
       meta?.covered_report_count ??
-      richSummary?.selectedReportCount ??
+      richSummary?.highlightReportCount ??
       null,
+    coverageSummaryCount,
     mergedTextLength:
       meta?.merged_text_char_length ??
       meta?.merged_text_length ??
@@ -421,6 +479,7 @@ export function getResearchBriefingStats(
       null,
     sourceReportCount,
     selectedExtractCount,
+    highlightExtractCount,
     deepResearchCharLength: meta?.deep_research_char_length ?? null,
     promptCharLength: meta?.prompt_char_length ?? null,
     workflow: meta?.workflow ?? null,
@@ -437,13 +496,13 @@ export function getResearchBriefingOverview(
       typeof stats.sourceReportCount === "number"
         ? `${stats.sourceReportCount.toLocaleString()}건`
         : "여러 건";
-    const selectedExtractLabel =
-      typeof stats.selectedExtractCount === "number"
-        ? `상위 ${stats.selectedExtractCount.toLocaleString()}개 추출`
-        : "핵심 추출";
+    const highlightLabel =
+      typeof stats.highlightExtractCount === "number"
+        ? `강조 근거 ${stats.highlightExtractCount.toLocaleString()}개`
+        : "강조 근거";
 
     return {
-      description: `${sourceReportLabel} 리포트에서 ${selectedExtractLabel}과 딥리서치를 다시 엮은 최종 브리핑입니다.`,
+      description: `${sourceReportLabel} 전체를 커버 요약으로 압축하고, ${highlightLabel}와 딥리서치를 덧댄 최종 브리핑입니다.`,
       metricItems: [
         {
           key: "source-reports",
@@ -453,25 +512,25 @@ export function getResearchBriefingOverview(
           detail: "Stage 1에서 구조화 추출한 전체 리포트 수",
         },
         {
-          key: "selected-extracts",
-          label: "선정 추출",
-          value: stats.selectedExtractCount,
-          unit: "개",
-          detail: "최종 브리핑 프롬프트에 실린 핵심 추출 수",
+          key: "coverage-summary",
+          label: "전체 커버 요약",
+          value: stats.coverageSummaryCount,
+          unit: "건",
+          detail: "원천 리포트 전체를 1~2문장 요약층으로 반영한 수",
         },
         {
           key: "deep-research",
-          label: "딥리서치",
-          value: stats.deepResearchCharLength,
-          unit: "자",
-          detail: "보강용 Deep Research 원문 길이",
+          label: "강조 근거",
+          value: stats.highlightExtractCount,
+          unit: "개",
+          detail: "예외·직접 연결·중요 촉매 중심으로 덧댄 핵심 extract 수",
         },
         {
-          key: "combined-input",
-          label: "결합 입력",
-          value: stats.promptCharLength ?? stats.mergedTextLength,
+          key: "deep-research-boost",
+          label: "딥리서치 보강",
+          value: stats.deepResearchCharLength,
           unit: "자",
-          detail: "최종 브리핑 생성에 사용한 전체 입력 길이",
+          detail: "반박 시나리오와 실행 디테일을 더한 Deep Research 보강 길이",
         },
       ],
       lengthLabel: "결합 입력 길이",

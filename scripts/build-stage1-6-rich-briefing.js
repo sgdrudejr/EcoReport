@@ -447,8 +447,132 @@ function pickTopExtracts(extracts, predicate, limit) {
     .slice(0, limit);
 }
 
+function claimDirection(item) {
+  const explicit = String(item?.primary_claim?.direction ?? "").toLowerCase();
+  if (["positive", "negative", "neutral", "mixed"].includes(explicit)) {
+    return explicit;
+  }
+
+  const sentiment = Number(item?.sentiment_score ?? 0);
+  if (sentiment >= 0.2) return "positive";
+  if (sentiment <= -0.2) return "negative";
+  return "neutral";
+}
+
+function tallyCount(map, key, seed = {}) {
+  if (!key) return;
+  const current = map.get(key) ?? { key, count: 0, ...seed };
+  current.count += 1;
+  map.set(key, current);
+}
+
+function summarizeCoverageReportLine(item, limit = 130) {
+  const summary =
+    item?.primary_claim?.summary ??
+    firstReadableExtractLine(item, limit) ??
+    singleLine(item?.title, limit);
+  const tags = uniqueNonEmpty([
+    item?.broker,
+    item?.report_type,
+    item?.sector && item.sector !== item.report_type ? item.sector : null,
+    ...(item?.themes ?? []).slice(0, 2),
+  ]);
+
+  return `- [${item?.id ?? "report"}] ${tags.join(" / ")} / ${singleLine(summary, limit)}`;
+}
+
+function buildStage1CoverageSummary(stage1) {
+  const extracts = stage1?.extracts ?? [];
+  const reportTypeMap = new Map();
+  const themeMap = new Map();
+  const accountMap = new Map();
+  const holdingMap = new Map();
+
+  for (const item of extracts) {
+    tallyCount(reportTypeMap, item?.report_type ?? item?.category ?? "unknown");
+
+    const direction = claimDirection(item);
+    for (const theme of uniqueNonEmpty(item?.themes ?? [])) {
+      const current = themeMap.get(theme) ?? {
+        key: theme,
+        count: 0,
+        positive: 0,
+        negative: 0,
+        neutral: 0,
+        mixed: 0,
+      };
+      current.count += 1;
+      current[direction] = (current[direction] ?? 0) + 1;
+      themeMap.set(theme, current);
+    }
+
+    for (const holding of item?.related_holdings_in_my_portfolio ?? []) {
+      tallyCount(accountMap, holding?.accountLabel ?? holding?.accountKey ?? null);
+      tallyCount(holdingMap, holding?.name ?? holding?.code ?? null);
+    }
+  }
+
+  const reportTypeLine = [...reportTypeMap.values()]
+    .sort((left, right) => right.count - left.count)
+    .map((entry) => `${entry.key} ${entry.count}건`)
+    .join(" / ");
+
+  const themeLines = [...themeMap.values()]
+    .sort((left, right) => right.count - left.count)
+    .slice(0, 8)
+    .map(
+      (entry) =>
+        `- ${entry.key}: ${entry.count}건 · 긍정 ${entry.positive} · 중립 ${entry.neutral} · 부정 ${entry.negative}`,
+    );
+
+  const accountLine = [...accountMap.values()]
+    .sort((left, right) => right.count - left.count)
+    .slice(0, 4)
+    .map((entry) => `${entry.key} ${entry.count}건`)
+    .join(" / ");
+
+  const holdingLine = [...holdingMap.values()]
+    .sort((left, right) => right.count - left.count)
+    .slice(0, 6)
+    .map((entry) => `${entry.key} ${entry.count}건`)
+    .join(" / ");
+
+  const reportLines = extracts.map((item) => summarizeCoverageReportLine(item));
+
+  return {
+    reportCount: stage1?.reportCount ?? extracts.length,
+    coverageSummaryCount: reportLines.length,
+    themeSummaryCount: themeLines.length,
+    reportTypeLine,
+    accountLine,
+    holdingLine,
+    themeLines,
+    reportLines,
+  };
+}
+
+function formatCoverageSummary(coverage) {
+  return [
+    "### 전체 리포트 커버 요약",
+    `- 전체 반영 리포트 수: ${coverage.reportCount}`,
+    coverage.reportTypeLine ? `- 리포트 분포: ${coverage.reportTypeLine}` : "",
+    coverage.accountLine ? `- 계좌 직접 연결 상위: ${coverage.accountLine}` : "",
+    coverage.holdingLine ? `- 포트폴리오 연결 상위: ${coverage.holdingLine}` : "",
+    "",
+    "### 반복 테마/컨센서스",
+    ...(coverage.themeLines.length > 0 ? coverage.themeLines : ["- 반복 테마 집계 없음"]),
+    "",
+    "### 리포트별 1줄 압축 요약",
+    ...(coverage.reportLines.length > 0 ? coverage.reportLines : ["- 리포트 요약 없음"]),
+    "",
+  ]
+    .filter(Boolean)
+    .join("\n");
+}
+
 function buildStage1Selection(stage1, maxExtracts) {
   const extracts = stage1?.extracts ?? [];
+  const coverage = buildStage1CoverageSummary(stage1);
   const macro = pickTopExtracts(
     extracts,
     (item) => item.report_type === "macro",
@@ -473,6 +597,7 @@ function buildStage1Selection(stage1, maxExtracts) {
   );
 
   return {
+    coverage,
     macro,
     portfolioLinked,
     catalystHeavy,
@@ -615,15 +740,16 @@ function summarizeTechnicalSnapshot(portfolio, technical) {
 }
 
 function buildStage1Digest(stage1, selection) {
-  const { macro, portfolioLinked, catalystHeavy } = selection;
+  const { coverage, macro, portfolioLinked, catalystHeavy } = selection;
 
   return [
     `- Stage 1 리포트 수: ${stage1?.reportCount ?? (stage1?.extracts ?? []).length}`,
     `- 실행일: ${stage1?.runDate ?? "N/A"} / 기준 거래일: ${stage1?.effectiveMarketDate ?? stage1?.date ?? "N/A"}`,
     "",
-    formatExtractList("매크로/레짐 근거", macro),
-    formatExtractList("내 포트폴리오 직접 연결 리포트", portfolioLinked),
-    "### 촉매/변수 클러스터",
+    formatCoverageSummary(coverage),
+    formatExtractList("강조 extract · 매크로/레짐 근거", macro),
+    formatExtractList("강조 extract · 내 포트폴리오 직접 연결 리포트", portfolioLinked),
+    "### 강조 extract · 촉매/변수 클러스터",
     formatCatalystGrid(catalystHeavy),
   ].join("\n");
 }
@@ -682,17 +808,20 @@ function buildPrompt({
     `기준 거래일은 ${args.effectiveMarketDate}, 실행일은 ${args.runDate} 입니다.`,
     "",
     "아래 다층 연구 재료를 충돌 없이 통합해, 대시보드가 바로 읽을 수 있는 최종 연구 브리핑 마크다운을 작성하세요.",
-    "1. Stage 1 구조화 리포트 추출물: 오늘 수집한 증권사 리포트의 핵심 사실 앵커",
-    "2. 기존 어드바이저 브리핑: 현재 시스템이 만든 액션 초안",
-    "3. 내 포트폴리오 상태: 계좌/현금/보유 종목",
-    "4. 보유 종목 기술 스냅샷: RSI, MACD, 점수, 시그널",
-    "5. Gemini Deep Research 1차 결과: 반박 시나리오, 대안 자산, 촉매, 과거 유사 국면 비교",
-    "6. 다회 refinement map: 2차/3차 재인덱싱으로 다시 확인해야 할 토픽과 빈틈",
-    "7. Gemini Deep Research 2차 결과: 1차 답변 이후 세부 보강과 정밀 체크포인트",
-    "8. Gemini Deep Research 3차 결과(있다면): 마지막 실행 디테일, 무효화 조건, 대체재 정리",
+    "1. Stage 1 전체 커버 요약: 오늘 수집한 전체 증권사 리포트를 1~2문장 단위와 반복 테마 집계로 압축한 기본층",
+    "2. 강조 extract: 예외적이거나 포트폴리오 직접 연결이 큰 핵심 근거만 별도 강조한 보강층",
+    "3. 기존 어드바이저 브리핑: 현재 시스템이 만든 액션 초안",
+    "4. 내 포트폴리오 상태: 계좌/현금/보유 종목",
+    "5. 보유 종목 기술 스냅샷: RSI, MACD, 점수, 시그널",
+    "6. Gemini Deep Research 1차 결과: 반박 시나리오, 대안 자산, 촉매, 과거 유사 국면 비교",
+    "7. 다회 refinement map: 2차/3차 재인덱싱으로 다시 확인해야 할 토픽과 빈틈",
+    "8. Gemini Deep Research 2차 결과: 1차 답변 이후 세부 보강과 정밀 체크포인트",
+    "9. Gemini Deep Research 3차 결과(있다면): 마지막 실행 디테일, 무효화 조건, 대체재 정리",
     "",
     "[편집 원칙]",
-    "- Stage 1 추출물을 사실 기반의 1차 근거로 사용하세요.",
+    "- 전체 커버 요약을 오늘 리포트 분포와 반복 신호를 대표하는 기본 사실층으로 사용하세요.",
+    "- 강조 extract는 전체를 대표하는 층이 아니라, 예외·직접 연결·강한 촉매를 보강하는 강조층으로 사용하세요.",
+    "- 전체 커버 요약과 강조 extract, Deep Research가 충돌하면 컨센서스와 예외를 분리해 명시하세요.",
     "- Deep Research는 시나리오의 깊이, 반박 시나리오, 대안 자산, 촉매 일정, 과거 유사 국면 해석을 보강하는 용도로 사용하세요.",
     "- refinement map은 '무엇이 아직 얕은지'를 알려주는 재인덱싱 레이어입니다. 라운드가 올라갈수록 새 일반론보다 무효화 조건과 실행 디테일 보강에 더 큰 비중을 두세요.",
     "- 기술 스냅샷은 종목별 추세 상태와 진입/보류 해석을 보강하는 데 사용하세요.",
@@ -774,7 +903,7 @@ function buildPrompt({
     "## 기존 어드바이저 브리핑 초안",
     priorBriefing || "- 기존 브리핑 없음",
     "",
-    "## Stage 1 구조화 리포트 추출물 요약",
+    "## Stage 1 전체 커버 요약 + 강조 extract",
     stage1Digest,
     "",
     "## Multi-Round Refinement Maps",
@@ -1145,11 +1274,16 @@ async function main() {
     workflow: "stage1 + primary deep research + multi-round refinement -> rich briefing",
     stage1_report_count: stage1.reportCount ?? (stage1.extracts ?? []).length,
     selected_extract_budget: args.maxExtracts,
+    coverage_summary_report_count: stage1Selection.coverage.reportCount,
+    coverage_summary_entry_count: stage1Selection.coverage.coverageSummaryCount,
+    coverage_theme_count: stage1Selection.coverage.themeSummaryCount,
+    highlight_extract_count: stage1Selection.selectedExtractCount,
+    highlight_report_count: stage1Selection.selectedReportCount,
     selected_extract_count: stage1Selection.selectedExtractCount,
     selected_chunk_count: stage1Selection.selectedExtractCount,
     used_chunk_count: stage1Selection.selectedExtractCount,
     selected_report_count: stage1Selection.selectedReportCount,
-    covered_report_count: stage1Selection.selectedReportCount,
+    covered_report_count: stage1Selection.coverage.reportCount,
     briefing_candidate_count: stage1.reportCount ?? (stage1.extracts ?? []).length,
     merged_text_char_length: prompt.length,
     source_paths: {

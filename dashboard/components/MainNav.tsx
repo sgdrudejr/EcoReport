@@ -3,23 +3,11 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import {
-  BrainCircuit,
-  LayoutGrid,
-  Newspaper,
-  PenSquare,
-  RefreshCw,
-  ScrollText,
-  WalletCards,
-} from "lucide-react";
+import { LayoutGrid, Newspaper } from "lucide-react";
 
 const links = [
-  { href: "/dashboard-test", label: "대시보드 Test", mobileLabel: "테스트", icon: LayoutGrid },
-  { href: "/market-news", label: "시황 뉴스", mobileLabel: "뉴스", icon: Newspaper },
-  { href: "/dashboard", label: "기존 대시보드", mobileLabel: "기존", icon: ScrollText },
-  { href: "/portfolio", label: "포트폴리오", mobileLabel: "자산", icon: WalletCards },
-  { href: "/portfolio/update", label: "업데이트", mobileLabel: "업데이트", icon: RefreshCw },
-  { href: "/manual-llm", label: "LLM 저장", mobileLabel: "AI 노트", icon: BrainCircuit },
+  { href: "/", label: "대시보드", icon: LayoutGrid },
+  { href: "/market-news", label: "시황 뉴스", icon: Newspaper },
 ];
 
 function joinClasses(...parts: Array<string | false | null | undefined>) {
@@ -27,135 +15,59 @@ function joinClasses(...parts: Array<string | false | null | undefined>) {
 }
 
 function isActivePath(pathname: string, href: string) {
-  if (href === "/dashboard-test") return pathname === "/" || pathname === "/dashboard-test";
-  if (href === "/portfolio") return pathname === "/portfolio";
+  if (href === "/") return pathname === "/" || pathname === "/dashboard-test";
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
 export default function MainNav() {
   const pathname = usePathname();
-  const [isCondensed, setIsCondensed] = useState(false);
+  const [holdingsPreviewEnabled, setHoldingsPreviewEnabled] = useState(false);
 
   useEffect(() => {
-    const updateNavState = () => {
-      const nextCondensed = window.scrollY > 28;
-      setIsCondensed((current) => (current === nextCondensed ? current : nextCondensed));
-      document.documentElement.style.setProperty(
-        "--desktop-nav-offset",
-        nextCondensed ? "4.15rem" : "5.25rem",
-      );
-      document.documentElement.style.setProperty(
-        "--account-tabs-gap",
-        "0.25rem",
-      );
-    };
-
-    updateNavState();
-    window.addEventListener("scroll", updateNavState, { passive: true });
-    window.addEventListener("resize", updateNavState);
+    if (holdingsPreviewEnabled) {
+      document.documentElement.dataset.holdingsPreview = "true";
+    } else {
+      delete document.documentElement.dataset.holdingsPreview;
+    }
 
     return () => {
-      window.removeEventListener("scroll", updateNavState);
-      window.removeEventListener("resize", updateNavState);
-      document.documentElement.style.setProperty("--desktop-nav-offset", "5.25rem");
-      document.documentElement.style.setProperty("--account-tabs-gap", "0.25rem");
+      delete document.documentElement.dataset.holdingsPreview;
     };
-  }, []);
+  }, [holdingsPreviewEnabled]);
 
   return (
-    <>
-      <header
-        className={joinClasses(
-          "sticky top-0 z-50 hidden border-b border-slate-200 bg-white backdrop-blur-2xl transition-all duration-300 md:block",
-          isCondensed ? "shadow-[0_8px_20px_rgba(15,23,42,0.07)]" : "",
-        )}
-      >
-        <div
-          className={joinClasses(
-            "mx-auto flex max-w-7xl items-center justify-between px-6 transition-all duration-300",
-            isCondensed ? "gap-4 py-2.5" : "gap-6 py-4",
-          )}
-        >
-          <Link href="/dashboard-test" className={joinClasses("flex items-center transition-all duration-300", isCondensed ? "gap-2.5" : "gap-3")}>
-            <div
+    <div className="pointer-events-none fixed right-5 top-5 z-50 flex flex-col items-end gap-2">
+      <nav className="pointer-events-auto flex flex-col items-stretch gap-1.5 rounded-[1.35rem] border border-slate-200/80 bg-white/88 p-1.5 shadow-[0_14px_30px_rgba(15,23,42,0.09)]">
+        {links.map((link) => {
+          const Icon = link.icon;
+          const isActive = isActivePath(pathname, link.href);
+          return (
+            <Link
+              key={link.href}
+              href={link.href}
               className={joinClasses(
-                "flex items-center justify-center bg-indigo-600 text-white transition-all duration-300",
-                isCondensed
-                  ? "size-8 rounded-xl shadow-[0_5px_14px_rgba(99,102,241,0.28)]"
-                  : "size-10 rounded-2xl shadow-[0_9px_20px_rgba(99,102,241,0.3)]",
+                "inline-flex items-center justify-between gap-2 rounded-full px-3.5 py-2 text-sm font-medium transition",
+                isActive
+                  ? "bg-indigo-600 text-white shadow-[0_8px_16px_rgba(99,102,241,0.22)]"
+                  : "text-slate-600 hover:bg-white hover:text-slate-950",
               )}
             >
-              <PenSquare size={isCondensed ? 15 : 18} />
-            </div>
-            <div>
-              <p
-                className={joinClasses(
-                  "font-semibold tracking-[0.08em] text-slate-950 transition-all duration-300",
-                  isCondensed ? "text-[13px]" : "text-sm",
-                )}
-              >
-                EcoReport
-              </p>
-              <p
-                className={joinClasses(
-                  "overflow-hidden text-slate-500 transition-all duration-300",
-                  isCondensed ? "max-h-0 text-[11px] opacity-0" : "max-h-5 text-xs opacity-100",
-                )}
-              >
-                White research dashboard
-              </p>
-            </div>
-          </Link>
+              <Icon size={15} />
+              <span>{link.label}</span>
+            </Link>
+          );
+        })}
+      </nav>
 
-          <nav className={joinClasses("flex items-center transition-all duration-300", isCondensed ? "gap-1.5" : "gap-2")}>
-            {links.map((link) => {
-              const isActive = isActivePath(pathname, link.href);
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={joinClasses(
-                    "rounded-full border font-medium transition-all duration-300",
-                    isCondensed ? "px-3.5 py-1.5 text-[13px]" : "px-4 py-2 text-sm",
-                    isActive
-                      ? "border-indigo-600 bg-indigo-600 text-white"
-                      : "border-transparent text-slate-500 hover:border-slate-200 hover:bg-slate-50 hover:text-slate-900",
-                  )}
-                >
-                  {link.label}
-                </Link>
-              );
-            })}
-          </nav>
-        </div>
-      </header>
-
-      <div className="pointer-events-none fixed inset-x-0 bottom-0 z-50 px-2.5 pb-[calc(env(safe-area-inset-bottom,0px)+0.6rem)] md:hidden">
-        <nav className="pointer-events-auto mx-auto max-w-xl rounded-[1.5rem] border border-slate-200/90 bg-white/96 p-1 shadow-[0_18px_40px_rgba(15,23,42,0.08)] backdrop-blur-2xl">
-          <div className="grid grid-cols-6 gap-1">
-            {links.map((link) => {
-              const Icon = link.icon;
-              const isActive = isActivePath(pathname, link.href);
-
-              return (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={joinClasses(
-                    "flex min-h-[3.75rem] flex-col items-center justify-center gap-1 rounded-[1.05rem] px-2 text-[10.5px] font-medium transition",
-                    isActive
-                      ? "bg-indigo-600 text-white shadow-[0_8px_16px_rgba(99,102,241,0.28)]"
-                      : "text-slate-500 hover:bg-slate-50 hover:text-slate-900",
-                  )}
-                >
-                  <Icon size={17} />
-                  <span>{link.mobileLabel}</span>
-                </Link>
-              );
-            })}
-          </div>
-        </nav>
-      </div>
-    </>
+      <label className="pointer-events-auto flex items-center gap-2 rounded-[1rem] border border-slate-200/80 bg-white/88 px-3 py-2 text-[11px] font-medium text-slate-600 shadow-[0_10px_24px_rgba(15,23,42,0.08)]">
+        <span>보유종목 탭 테스트</span>
+        <input
+          type="checkbox"
+          checked={holdingsPreviewEnabled}
+          onChange={(event) => setHoldingsPreviewEnabled(event.target.checked)}
+          className="size-3.5 rounded border-slate-300 accent-indigo-600"
+        />
+      </label>
+    </div>
   );
 }
