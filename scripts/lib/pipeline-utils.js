@@ -131,6 +131,7 @@ export function parseDateArgs(argv) {
     runId: process.env.ECOREPORT_RUN_ID?.trim() || null,
     output: null,
     markdown: null,
+    briefing: null,
     force: false,
   };
 
@@ -154,6 +155,9 @@ export function parseDateArgs(argv) {
       index += 1;
     } else if (token === "--markdown" && argv[index + 1]) {
       args.markdown = argv[index + 1];
+      index += 1;
+    } else if (token === "--briefing" && argv[index + 1]) {
+      args.briefing = argv[index + 1];
       index += 1;
     } else if (token === "--force") {
       args.force = true;

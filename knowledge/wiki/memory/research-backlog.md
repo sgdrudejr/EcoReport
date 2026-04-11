@@ -3,10 +3,10 @@ title: EcoReport Research Backlog
 type: memory
 updated: 2026-04-10
 source_date: 2026-04-10
-run_date: 2026-04-10
+run_date: 2026-04-11
 effective_market_date: 2026-04-10
-run_id: 2026-04-10-1905-retry
-generated_at: 2026-04-10T10:15:16.205Z
+run_id: 2026-04-11-071208
+generated_at: 2026-04-11T07:15:12.897Z
 ---
 
 # EcoReport Research Backlog

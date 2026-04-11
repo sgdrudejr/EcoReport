@@ -5,6 +5,8 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
 
+import { formatMarketVoiceForPrompt } from "./lib/marketvoice-utils.js";
+
 const MAX_REPORTS_PER_SECTOR = 8;
 const MAX_NEWS_ITEMS = 20;
 const MAX_TWEETS = 20;
@@ -220,14 +222,16 @@ async function main() {
   const rawReportsPath = path.join(cwd, "data", "reports", args.date, "index.json");
   const newsPath = path.join(cwd, "data", "news", `${args.date}.json`);
   const tweetsPath = path.join(cwd, "data", "tweets", `${args.date}.json`);
+  const marketVoicePath = path.join(cwd, "data", "analysis-state", args.date, "marketvoice-linked.json");
 
-  const [template, manualCompressedReports, compressedReports, rawReports, news, tweets] = await Promise.all([
+  const [template, manualCompressedReports, compressedReports, rawReports, news, tweets, marketVoice] = await Promise.all([
     readFile(templatePath, ""),
     readJson(manualCompressedPath, []),
     readJson(compressedPath, []),
     readJson(rawReportsPath, []),
     readJson(newsPath, []),
     readJson(tweetsPath, []),
+    readJson(marketVoicePath, null),
   ]);
 
   const prioritizedReports =
@@ -244,6 +248,10 @@ async function main() {
     REPORTS_BY_SECTOR: reportsSection,
     NEWS_SUMMARY: formatNews(news),
     TWEETS_SUMMARY: formatTweets(tweets),
+    MARKETVOICE_SUMMARY: formatMarketVoiceForPrompt(marketVoice, {
+      maxTopics: 5,
+      maxResearch: 3,
+    }),
   };
 
   for (const [key, value] of Object.entries(replacements)) {

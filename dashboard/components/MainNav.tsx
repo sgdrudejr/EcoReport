@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import {
   BrainCircuit,
   LayoutGrid,
+  Newspaper,
   PenSquare,
   RefreshCw,
   ScrollText,
@@ -13,7 +14,8 @@ import {
 } from "lucide-react";
 
 const links = [
-  { href: "/", label: "대시보드 Test", mobileLabel: "테스트", icon: LayoutGrid },
+  { href: "/dashboard-test", label: "대시보드 Test", mobileLabel: "테스트", icon: LayoutGrid },
+  { href: "/market-news", label: "시황 뉴스", mobileLabel: "뉴스", icon: Newspaper },
   { href: "/dashboard", label: "기존 대시보드", mobileLabel: "기존", icon: ScrollText },
   { href: "/portfolio", label: "포트폴리오", mobileLabel: "자산", icon: WalletCards },
   { href: "/portfolio/update", label: "업데이트", mobileLabel: "업데이트", icon: RefreshCw },
@@ -25,7 +27,7 @@ function joinClasses(...parts: Array<string | false | null | undefined>) {
 }
 
 function isActivePath(pathname: string, href: string) {
-  if (href === "/") return pathname === "/" || pathname === "/dashboard-test";
+  if (href === "/dashboard-test") return pathname === "/" || pathname === "/dashboard-test";
   if (href === "/portfolio") return pathname === "/portfolio";
   return pathname === href || pathname.startsWith(`${href}/`);
 }
@@ -64,8 +66,8 @@ export default function MainNav() {
     <>
       <header
         className={joinClasses(
-          "sticky top-0 z-50 hidden border-b border-slate-200/90 bg-white/96 backdrop-blur-2xl transition-all duration-300 md:block",
-          isCondensed ? "shadow-[0_10px_24px_rgba(15,23,42,0.06)]" : "",
+          "sticky top-0 z-50 hidden border-b border-slate-200 bg-white backdrop-blur-2xl transition-all duration-300 md:block",
+          isCondensed ? "shadow-[0_8px_20px_rgba(15,23,42,0.07)]" : "",
         )}
       >
         <div
@@ -74,13 +76,13 @@ export default function MainNav() {
             isCondensed ? "gap-4 py-2.5" : "gap-6 py-4",
           )}
         >
-          <Link href="/" className={joinClasses("flex items-center transition-all duration-300", isCondensed ? "gap-2.5" : "gap-3")}>
+          <Link href="/dashboard-test" className={joinClasses("flex items-center transition-all duration-300", isCondensed ? "gap-2.5" : "gap-3")}>
             <div
               className={joinClasses(
-                "flex items-center justify-center bg-slate-950 text-white transition-all duration-300",
+                "flex items-center justify-center bg-indigo-600 text-white transition-all duration-300",
                 isCondensed
-                  ? "size-8 rounded-xl shadow-[0_8px_18px_rgba(15,23,42,0.08)]"
-                  : "size-10 rounded-2xl shadow-[0_12px_24px_rgba(15,23,42,0.12)]",
+                  ? "size-8 rounded-xl shadow-[0_5px_14px_rgba(99,102,241,0.28)]"
+                  : "size-10 rounded-2xl shadow-[0_9px_20px_rgba(99,102,241,0.3)]",
               )}
             >
               <PenSquare size={isCondensed ? 15 : 18} />
@@ -116,7 +118,7 @@ export default function MainNav() {
                     "rounded-full border font-medium transition-all duration-300",
                     isCondensed ? "px-3.5 py-1.5 text-[13px]" : "px-4 py-2 text-sm",
                     isActive
-                      ? "border-slate-900 bg-slate-900 text-white"
+                      ? "border-indigo-600 bg-indigo-600 text-white"
                       : "border-transparent text-slate-500 hover:border-slate-200 hover:bg-slate-50 hover:text-slate-900",
                   )}
                 >
@@ -130,7 +132,7 @@ export default function MainNav() {
 
       <div className="pointer-events-none fixed inset-x-0 bottom-0 z-50 px-2.5 pb-[calc(env(safe-area-inset-bottom,0px)+0.6rem)] md:hidden">
         <nav className="pointer-events-auto mx-auto max-w-xl rounded-[1.5rem] border border-slate-200/90 bg-white/96 p-1 shadow-[0_18px_40px_rgba(15,23,42,0.08)] backdrop-blur-2xl">
-          <div className="grid grid-cols-5 gap-1">
+          <div className="grid grid-cols-6 gap-1">
             {links.map((link) => {
               const Icon = link.icon;
               const isActive = isActivePath(pathname, link.href);
@@ -142,7 +144,7 @@ export default function MainNav() {
                   className={joinClasses(
                     "flex min-h-[3.75rem] flex-col items-center justify-center gap-1 rounded-[1.05rem] px-2 text-[10.5px] font-medium transition",
                     isActive
-                      ? "bg-slate-950 text-white shadow-[0_10px_18px_rgba(15,23,42,0.12)]"
+                      ? "bg-indigo-600 text-white shadow-[0_8px_16px_rgba(99,102,241,0.28)]"
                       : "text-slate-500 hover:bg-slate-50 hover:text-slate-900",
                   )}
                 >

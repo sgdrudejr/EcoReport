@@ -1,3 +1,7 @@
 export const dynamic = "force-dynamic";
 
-export { default } from "../page";
+import { DashboardPage } from "../page";
+
+export default function DashboardTestPage() {
+  return <DashboardPage />;
+}

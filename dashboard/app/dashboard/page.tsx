@@ -2120,7 +2120,7 @@ export default function DashboardPage() {
               </span>
             </summary>
 
-            <div className="prose prose-invert prose-sm mt-4 max-w-none">
+            <div className="prose prose-invert prose-sm prose-p:whitespace-pre-line prose-li:whitespace-pre-line mt-4 max-w-none">
               <ReactMarkdown remarkPlugins={[remarkGfm]}>
                 {briefing.content}
               </ReactMarkdown>

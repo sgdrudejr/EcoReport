@@ -4,15 +4,14 @@
 import path from "node:path";
 
 import {
-  ROOT_DIR,
   buildPortfolioMaps,
   parseDateArgs,
-  readJson,
-  readText,
   truncate,
   writeText,
   won,
 } from "./lib/pipeline-utils.js";
+import { cachedReadJson, cachedReadText, loadAnalysisContext } from "./lib/analysis-context.js";
+import { formatMarketVoiceForPrompt } from "./lib/marketvoice-utils.js";
 import { allRefinementArtifactPaths } from "./lib/refinement-rounds.js";
 
 function summarizeAccounts(portfolio) {
@@ -105,37 +104,42 @@ function summarizeRefinementResponses(refinementResponses) {
 
 async function main() {
   const args = parseDateArgs(process.argv.slice(2));
-  const stateDir = path.join(ROOT_DIR, "data", "analysis-state", args.date);
-  const stage1Path = path.join(stateDir, "stage1-report-extracts-v2.json");
-  const portfolioPath = path.join(ROOT_DIR, "data", "portfolio", "latest.json");
-  const technicalPath = path.join(ROOT_DIR, "data", "technical", `${args.date}.json`);
-  const richBriefingPath = path.join(ROOT_DIR, "knowledge", "daily", `${args.date}-gemini-briefing-rich.md`);
+  const context = await loadAnalysisContext(args, {
+    stage1: true,
+    portfolio: true,
+    technical: true,
+    watchlist: true,
+    marketVoice: true,
+    richBriefing: true,
+    operatingRules: true,
+    decisionJournal: true,
+  });
+  const { paths, data } = context;
   const refinementArtifacts = allRefinementArtifactPaths({ date: args.date });
-  const operatingRulesPath = path.join(ROOT_DIR, "knowledge", "wiki", "memory", "operating-rules.md");
-  const decisionJournalPath = path.join(ROOT_DIR, "knowledge", "wiki", "memory", "decision-journal.md");
   const outputPath =
     args.output ??
-    path.join(ROOT_DIR, "knowledge", "daily", "manual-kit", args.date, "08-stage2-strategy-prompt.md");
+    path.join(paths.manualKitDir, "08-stage2-strategy-prompt.md");
 
-  const [stage1, portfolio, technical, briefing, refinementMapsRaw, refinementResponsesRaw, watchlist, operatingRules, decisionJournal] = await Promise.all([
-    readJson(stage1Path, { extracts: [] }),
-    readJson(portfolioPath, { accounts: [] }),
-    readJson(technicalPath, { market_context: {}, scores: {} }),
-    readText(richBriefingPath, ""),
+  const [refinementMapsRaw, refinementResponsesRaw] = await Promise.all([
     Promise.all(refinementArtifacts.map(async (artifact) => ({
       round: artifact.spec.round,
       label: artifact.spec.label,
-      map: await readJson(artifact.mapJson, null),
+      map: await cachedReadJson(context.cache, artifact.mapJson, null),
     }))),
     Promise.all(refinementArtifacts.map(async (artifact) => ({
       round: artifact.spec.round,
       label: artifact.spec.label,
-      text: await readText(artifact.response, ""),
+      text: await cachedReadText(context.cache, artifact.response, ""),
     }))),
-    readJson(path.join(ROOT_DIR, "config", "watchlist.json"), {}),
-    readText(operatingRulesPath, ""),
-    readText(decisionJournalPath, ""),
   ]);
+  const stage1 = data.stage1;
+  const portfolio = data.portfolio;
+  const technical = data.technical;
+  const briefing = data.richBriefing;
+  const watchlist = data.watchlist;
+  const marketVoice = data.marketVoice;
+  const operatingRules = data.operatingRules;
+  const decisionJournal = data.decisionJournal;
 
   const directExtracts = stage1.extracts
     .filter((item) => item.related_holdings_in_my_portfolio.length > 0 || item.portfolio_impacts_candidate.length > 0)
@@ -168,6 +172,12 @@ async function main() {
     "",
     "## 시장/섹터 브리핑",
     briefingSummary || "- rich briefing 없음",
+    "",
+    "## 머니토링 실시간 시황 레이어",
+    formatMarketVoiceForPrompt(marketVoice, {
+      maxTopics: 6,
+      maxResearch: 3,
+    }),
     "",
     "## 다회 refinement 재인덱싱 메모",
     followUpResearchSummary || "- follow-up research map 없음",
@@ -203,6 +213,7 @@ async function main() {
     "strategy_changes는 최대 4개, candidate_scores는 최대 8개까지만 반환하세요.",
     "buy_candidates / trim_candidates / hold_candidates는 각 계좌당 최대 3개까지만 반환하세요.",
     "refinement map에서 반복 확인이 필요한 토픽은 실제 전략 변화로 연결되는 경우만 반영하고, 근거가 얕으면 watch 또는 보류로 남기세요.",
+    "머니토링 시황은 빠른 촉매 신호로만 사용하세요. 리포트·딥리서치와 충돌하면 강화보다 watch 또는 검증 우선으로 낮추세요.",
     "계좌 역할과 맞지 않는 공격적 제안, 무효화 조건 없는 제안, 메타 표현(stage2 근거 등)은 쓰지 마세요.",
     "",
     JSON.stringify(

@@ -4,12 +4,11 @@
 import path from "node:path";
 
 import {
-  ROOT_DIR,
   buildRunMetadata,
   parseDateArgs,
-  readJson,
   writeJson,
 } from "./lib/pipeline-utils.js";
+import { loadAnalysisContext } from "./lib/analysis-context.js";
 
 const ACCOUNT_KEY_MAP = {
   ISA: "ISA",
@@ -17,6 +16,32 @@ const ACCOUNT_KEY_MAP = {
   TOSS: "TOSS",
   KIS_MAIN: "KIS_MAIN",
 };
+
+function parseMockArgs(argv) {
+  const args = parseDateArgs(argv);
+  args.mockMode = "test";
+
+  for (let index = 0; index < argv.length; index += 1) {
+    const token = argv[index];
+    if (token === "--mock-mode" && argv[index + 1]) {
+      args.mockMode = argv[index + 1];
+      index += 1;
+    }
+  }
+
+  return args;
+}
+
+function resolveMockMode(rawMode, outputPath) {
+  const normalized = String(rawMode ?? "test").trim().toLowerCase();
+  if (normalized === "fallback") {
+    return "fallback";
+  }
+  if (path.basename(outputPath) === "stage2-strategy-options.json") {
+    return "fallback";
+  }
+  return "test";
+}
 
 function regimeFromTechnical(technical) {
   const market = technical?.market_context ?? {};
@@ -153,22 +178,30 @@ function buildCandidateScores(portfolio, watchlist, technical) {
 }
 
 async function main() {
-  const args = parseDateArgs(process.argv.slice(2));
-  const stateDir = path.join(ROOT_DIR, "data", "analysis-state", args.date);
-  const [stage1, portfolio, technical, watchlist] = await Promise.all([
-    readJson(path.join(stateDir, "stage1-report-extracts-v2.json"), { extracts: [] }),
-    readJson(path.join(ROOT_DIR, "data", "portfolio", "latest.json"), { accounts: [] }),
-    readJson(path.join(ROOT_DIR, "data", "technical", `${args.date}.json`), { scores: {} }),
-    readJson(path.join(ROOT_DIR, "config", "watchlist.json"), {}),
-  ]);
+  const args = parseMockArgs(process.argv.slice(2));
+  const context = await loadAnalysisContext(args, {
+    stage1: true,
+    portfolio: true,
+    technical: true,
+    watchlist: true,
+  });
+  const { paths, data } = context;
+  const { stage1, portfolio, technical, watchlist } = data;
 
   const outputPath =
-    args.output ?? path.join(stateDir, "stage2-strategy-options.mock.json");
+    args.output ?? path.join(paths.analysisDir, "stage2-strategy-options.mock.json");
+  const mockMode = resolveMockMode(args.mockMode, outputPath);
   const runMeta = buildRunMetadata(args);
 
   const payload = {
     ...runMeta,
     source: "mock",
+    mockMode,
+    purpose:
+      mockMode === "fallback"
+        ? "gemini_unavailable_fallback"
+        : "deterministic_test_fixture",
+    safeForProduction: false,
     macro_view: regimeFromTechnical(technical),
     strategy_changes: aggregateThemes(stage1),
     account_actions: buildAccountActions(portfolio, technical, watchlist),

@@ -14,12 +14,12 @@ import {
   containsKeyword,
   normalizeText,
   parseDateArgs,
-  readJson,
   readText,
   truncate,
   writeJson,
   writeText,
 } from "./lib/pipeline-utils.js";
+import { cachedReadJson, loadAnalysisContext } from "./lib/analysis-context.js";
 
 const CONFIDENCE_MAP = {
   HIGH: 0.86,
@@ -308,13 +308,23 @@ function accountImpactFromExtract({
 
 async function main() {
   const args = parseDateArgs(process.argv.slice(2));
-  const stateDir = path.join(ROOT_DIR, "data", "analysis-state", args.date);
-  const [stage1, portfolio, reportsIndex, stage2] = await Promise.all([
-    readJson(path.join(stateDir, "stage1-report-extracts-v2.json"), { extracts: [] }),
-    readJson(path.join(ROOT_DIR, "data", "portfolio", "latest.json"), { accounts: [] }),
-    readJson(path.join(ROOT_DIR, "data", "reports", args.date, "index.json"), []),
-    readJson(path.join(stateDir, "stage2-strategy-options.json"), null),
-  ]);
+  const context = await loadAnalysisContext(args, {
+    stage1: true,
+    portfolio: true,
+    stage2: true,
+    marketVoice: true,
+  });
+  const { paths, cache, data } = context;
+  const stateDir = paths.analysisDir;
+  const stage1 = data.stage1;
+  const portfolio = data.portfolio;
+  const stage2 = data.stage2;
+  const marketVoice = data.marketVoice;
+  const reportsIndex = await cachedReadJson(
+    cache,
+    path.join(ROOT_DIR, "data", "reports", args.date, "index.json"),
+    [],
+  );
 
   const coverage = buildPortfolioMaps(portfolio, {});
   const indexById = new Map(reportsIndex.map((item) => [item.id, item]));
@@ -357,42 +367,44 @@ async function main() {
       }
     }
 
-    for (const rule of THEME_CATEGORY_RULES) {
-      const themeMatched =
-        (extract.themes ?? []).includes(rule.theme) ||
-        extract.sector === rule.theme ||
-        containsKeyword(analysisText, rule.theme);
-      if (!themeMatched) continue;
-      if (!accountHasCategory(coverage, rule.accountKey, rule.category)) continue;
-      const categoryImpact = categoryImpactFromExtract({
-        extract,
-        fullText: analysisText,
-        evidence,
-        events,
-        accountKey: rule.accountKey,
-        category: rule.category,
-        direction,
-      });
-      if (categoryImpact) {
-        addImpact(impactsByKey, categoryImpact);
+    if (extract.report_type !== "stock") {
+      for (const rule of THEME_CATEGORY_RULES) {
+        const themeMatched =
+          (extract.themes ?? []).includes(rule.theme) ||
+          extract.sector === rule.theme ||
+          containsKeyword(analysisText, rule.theme);
+        if (!themeMatched) continue;
+        if (!accountHasCategory(coverage, rule.accountKey, rule.category)) continue;
+        const categoryImpact = categoryImpactFromExtract({
+          extract,
+          fullText: analysisText,
+          evidence,
+          events,
+          accountKey: rule.accountKey,
+          category: rule.category,
+          direction,
+        });
+        if (categoryImpact) {
+          addImpact(impactsByKey, categoryImpact);
+        }
       }
-    }
 
-    const relatedAccounts = new Set(extract.related_accounts ?? []);
-    for (const accountKey of relatedAccounts) {
-      const existingForAccount = [...impactsByKey.values()].some(
-        (impact) => impact.target.accountKey === accountKey,
-      );
-      if (existingForAccount && extract.report_type !== "macro") continue;
-      const accountImpact = accountImpactFromExtract({
-        extract,
-        accountKey,
-        direction,
-        evidence,
-        events,
-      });
-      if (accountImpact) {
-        addImpact(impactsByKey, accountImpact);
+      const relatedAccounts = new Set(extract.related_accounts ?? []);
+      for (const accountKey of relatedAccounts) {
+        const existingForAccount = [...impactsByKey.values()].some(
+          (impact) => impact.target.accountKey === accountKey,
+        );
+        if (existingForAccount && extract.report_type !== "macro") continue;
+        const accountImpact = accountImpactFromExtract({
+          extract,
+          accountKey,
+          direction,
+          evidence,
+          events,
+        });
+        if (accountImpact) {
+          addImpact(impactsByKey, accountImpact);
+        }
       }
     }
 
@@ -412,6 +424,11 @@ async function main() {
     });
   }
 
+  const marketVoiceReports = Array.isArray(marketVoice?.impactReports)
+    ? marketVoice.impactReports
+    : [];
+  reports.push(...marketVoiceReports);
+
   const runMeta = buildRunMetadata(args);
   const payload = {
     schemaVersion: 1,
@@ -419,7 +436,8 @@ async function main() {
     provenance: {
       source: stage2 ? "hybrid" : "manual",
       stage1_input: "stage1-report-extracts-v2.json",
-      notes: "Stage 1 후보 영향을 직접성·신뢰도·시계 기준으로 좁힌 확정 영향 레이어",
+      marketvoice_input: marketVoiceReports.length > 0 ? "marketvoice-linked.json" : null,
+      notes: "Stage 1 후보 영향과 머니토링 실시간 이벤트를 직접성·신뢰도·시계 기준으로 좁힌 확정 영향 레이어",
     },
     stage2MacroView: stage2?.macro_view ?? null,
     reports,

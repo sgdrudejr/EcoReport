@@ -58,8 +58,18 @@ def load_quant_scores(date: str) -> "dict | None":
     score       = round(float(leading.get("score", data.get("portfolioScore", 50))), 1)
 
     # signals → recommendations 형식으로 변환
+    raw_holdings = data.get("holdings", [])
+    if isinstance(raw_holdings, dict):
+        holdings_iter = raw_holdings.values()
+    elif isinstance(raw_holdings, list):
+        holdings_iter = raw_holdings
+    else:
+        holdings_iter = []
+
     recs = {}
-    for h in data.get("holdings", []):
+    for h in holdings_iter:
+        if not isinstance(h, dict):
+            continue
         code   = h.get("code", "")
         signal = h.get("signal", h.get("action", ""))
         s      = h.get("actionScore", h.get("score", "N/A"))
@@ -71,6 +81,11 @@ def load_quant_scores(date: str) -> "dict | None":
         "regime": regime_name,
         "recommendations": recs,
     }
+
+
+def load_marketvoice(date: str) -> "dict | None":
+    path = ROOT / "data" / "analysis-state" / date / "marketvoice-linked.json"
+    return load_json(path)
 
 
 def find_manual_summary(date: str) -> "str | None":
@@ -86,6 +101,30 @@ def find_manual_summary(date: str) -> "str | None":
         if "prompt" not in c.name:
             return c.read_text(encoding="utf-8")
     return None
+
+
+def format_marketvoice_block(marketvoice: "dict | None") -> str:
+    if not marketvoice:
+        return "### 머니토링 실시간 시황 없음"
+
+    summary = (marketvoice.get("summary") or {}).get("overview") or "요약 없음"
+    lines = [f"### 머니토링 실시간 시황/이벤트 레이어\n- {summary}"]
+
+    for topic in (marketvoice.get("topics") or [])[:5]:
+        title = topic.get("title", "제목 없음")
+        linkage = topic.get("portfolioLinkage") or topic.get("summary") or "연결 설명 없음"
+        score = topic.get("relevanceScore", 0)
+        lines.append(f"- [{score}점] {title} / {linkage}")
+
+    candidates = (marketvoice.get("deepResearchCandidates") or [])[:3]
+    if candidates:
+        lines.append("- 딥리서치 후보")
+        for item in candidates:
+            lines.append(
+                f"  - {item.get('title', '주제 없음')} / 질문: {item.get('question', '추가 확인 필요')}"
+            )
+
+    return "\n".join(lines)
 
 
 # ── 섹션 포매터 ───────────────────────────────────────────────────────────────
@@ -111,7 +150,7 @@ def format_holdings_section(portfolio: dict) -> str:
     return "\n".join(lines)
 
 
-def build_prompt(date: str, portfolio: dict, insights: "dict | None", summary: "str | None") -> str:
+def build_prompt(date: str, portfolio: dict, insights: "dict | None", summary: "str | None", marketvoice: "dict | None") -> str:
     holdings_section = format_holdings_section(portfolio)
 
     if insights:
@@ -139,6 +178,8 @@ def build_prompt(date: str, portfolio: dict, insights: "dict | None", summary: "
     else:
         summary_block = "### 오늘의 브리핑 없음"
 
+    marketvoice_block = format_marketvoice_block(marketvoice)
+
     return f"""# EcoReport Impact Mapping 요청
 
 날짜: {date}
@@ -157,6 +198,10 @@ def build_prompt(date: str, portfolio: dict, insights: "dict | None", summary: "
 ---
 
 {summary_block}
+
+---
+
+{marketvoice_block}
 
 ---
 
@@ -201,11 +246,12 @@ def main():
     portfolio = load_portfolio()
     insights  = load_quant_scores(date)
     summary   = find_manual_summary(date)
+    marketvoice = load_marketvoice(date)
 
     if not portfolio:
         print("[warn] data/portfolio/latest.json 없음 — 포트폴리오 섹션 빈칸으로 생성", file=sys.stderr)
 
-    prompt = build_prompt(date, portfolio, insights, summary)
+    prompt = build_prompt(date, portfolio, insights, summary, marketvoice)
 
     out_dir  = ROOT / "knowledge" / "daily"
     out_dir.mkdir(parents=True, exist_ok=True)

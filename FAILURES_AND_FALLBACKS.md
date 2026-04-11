@@ -105,6 +105,12 @@
 설명:
 - Gemini/API가 없거나 실행하지 않을 때도 Stage 3/4를 검증 가능하게 유지
 
+운영 원칙:
+- 기본 경로에서 mock을 무조건 생성하지 않음
+- `--mock-stage2`는 테스트용
+- 실모델 실패 시에만 fallback mock을 canonical Stage 2 결과로 승격 가능
+- mock payload 안에 `mockMode`와 `purpose`를 남겨 UI/검증에서 숨기지 않음
+
 ### 2-2. 기술 데이터가 비거나 일부 종목만 있을 때
 
 폴백:

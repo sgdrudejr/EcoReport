@@ -5,6 +5,8 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 
+import { formatMarketVoiceForPrompt } from "./lib/marketvoice-utils.js";
+
 const MAX_DAILY_FILES = 7;
 const MAX_WEEKLY_FILES = 4;
 const MAX_MONTHLY_FILES = 3;
@@ -198,8 +200,9 @@ async function buildPrompt(date) {
   const yesterdayIso = yesterday.toISOString().slice(0, 10);
   const yesterdaySynthesisPath = path.join(cwd, 'knowledge', 'daily', `${yesterdayIso}-synthesis.md`);
   const themeCandidatesPath = path.join(cwd, 'data', 'theme-candidates', `${date}.json`);
+  const marketVoicePath = path.join(cwd, 'data', 'analysis-state', date, 'marketvoice-linked.json');
 
-  const [template, strategy, portfolio, technical, todaySynthesis, yesterdaySynthesis] =
+  const [template, strategy, portfolio, technical, todaySynthesis, yesterdaySynthesis, marketVoice] =
     await Promise.all([
       readFileIfExists(templatePath, ''),
       readJsonIfExists(strategyPath, null),
@@ -207,6 +210,7 @@ async function buildPrompt(date) {
       readJsonIfExists(technicalPath, null),
       readFileIfExists(todaySynthesisPath, ''),
       readFileIfExists(yesterdaySynthesisPath, ''),
+      readJsonIfExists(marketVoicePath, null),
     ]);
 
   const [dailyDigests7d, weeklyDigests4w, monthlyDigests3m, themeCandidates] = await Promise.all([
@@ -234,6 +238,10 @@ async function buildPrompt(date) {
     YESTERDAY_SYNTHESIS: yesterdaySynthesis
       ? truncateText(yesterdaySynthesis, 3000)
       : '- 어제 종합 시황이 없습니다.',
+    MARKETVOICE_LINKED: formatMarketVoiceForPrompt(marketVoice, {
+      maxTopics: 4,
+      maxResearch: 2,
+    }),
     THEME_ETF_CANDIDATES: summarizeThemeCandidates(themeCandidates),
   };
 

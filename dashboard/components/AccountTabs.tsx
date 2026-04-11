@@ -118,11 +118,11 @@ export default function AccountTabs({
         sticky
         stickyClassName="top-2 z-30 md:top-[calc(var(--desktop-nav-offset,5.25rem)+var(--account-tabs-gap,0.25rem))]"
         frameLabel={null}
-        frameClassName="rounded-[1.3rem] border-slate-200/90 bg-white/96 p-1.5 shadow-[0_16px_30px_rgba(15,23,42,0.08)]"
+        frameClassName="rounded-xl border border-slate-200 bg-slate-50/80 p-1.5 shadow-none"
         listClassName="pb-0"
         itemClassName="min-w-[11.5rem] border px-3.5 py-2.5"
-        selectedItemClassName="border-sky-200 bg-sky-50 text-slate-900 shadow-[0_12px_22px_rgba(59,130,246,0.12)]"
-        unselectedItemClassName="border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900"
+        selectedItemClassName="border-indigo-200 bg-white text-slate-900 shadow-[0_2px_8px_rgba(99,102,241,0.12)]"
+        unselectedItemClassName="border-transparent bg-transparent text-slate-500 hover:border-slate-200 hover:bg-white hover:text-slate-800"
         renderItem={(item, isSelected) => (
           <div className="min-w-0 space-y-1">
             <div className="min-w-0">

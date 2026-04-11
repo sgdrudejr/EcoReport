@@ -21,10 +21,10 @@
 
 - [한국항공우주](securities/047810-한국항공우주.md)
 - [현대로템](securities/064350-현대로템.md)
-- [KODEX 골드선물(H)](securities/132030-kodex-골드선물-h.md)
 - [TIGER 미국나스닥100](securities/133690-tiger-미국나스닥100.md)
 - [KODEX 구리선물(H)](securities/138910-kodex-구리선물-h.md)
 - [KODEX MSCI선진국](securities/251350-kodex-msci선진국.md)
+- [효성중공업](securities/298040-효성중공업.md)
 - [TIGER 미국S&P500](securities/360750-tiger-미국s-and-p500.md)
 - [KODEX KOFR금리액티브](securities/423160-kodex-kofr금리액티브.md)
 - [HANARO 원자력iSelect](securities/434730-hanaro-원자력iselect.md)
