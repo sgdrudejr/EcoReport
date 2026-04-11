@@ -6,6 +6,7 @@ import path from "node:path";
 import {
   HOLDING_TOPIC_HINTS,
   MACRO_KEYWORDS_BY_CODE,
+  STRICT_ALIASES_BY_CODE,
   THEMATIC_TRIGGERS_BY_CODE,
   ROOT_DIR,
   buildRunMetadata,
@@ -61,25 +62,92 @@ const NEGATIVE_KEYWORDS = [
 ];
 
 const CHANGE_KEYWORDS = ["상향", "하향", "유지", "신규", "재개", "가속", "둔화", "확대", "축소", "변경"];
+const CLAIM_KEYWORDS = ["전망", "예상", "긍정", "부정", "개선", "둔화", "회복", "부담", "유효", "모멘텀", "수혜", "압박"];
+const CONDITION_MARKERS = ["다만", "단,", "단 ", "단기적으로", "경우", "if", "unless"];
+const COUNTERPOINT_MARKERS = ["반면", "리스크", "우려", "부담", "다만", "그러나"];
+
+function classifyParagraph(paragraph) {
+  const normalized = normalizeText(paragraph);
+  const percentCount = (paragraph.match(/%/g) ?? []).length;
+  const numericChunkCount = (paragraph.match(/\b\d[\d,./-]*\b/g) ?? []).length;
+  const alphaTokenCount = (paragraph.match(/[A-Za-z]{2,}/g) ?? []).length;
+
+  if (/compliance notice|고지사항|면책|무단 복제|법적 책임|당사는/i.test(paragraph)) {
+    return { kind: "disclaimer", confidence: 0.98 };
+  }
+
+  if (
+    /table of contents|contents|목차|chart|figure|표\s*\d+|table\s*\d+/i.test(paragraph) ||
+    /close d-1|d-5 d-20|수급\(외국인\/기관|sector index|기관순매수|외국인순매수/i.test(paragraph)
+  ) {
+    return { kind: "table_caption", confidence: 0.95 };
+  }
+
+  if (
+    paragraph.length < 80 &&
+    /morning letter|daily|check point|체크포인트|요약|summary|outlook/i.test(paragraph)
+  ) {
+    return { kind: "heading", confidence: 0.82 };
+  }
+
+  if (
+    paragraph.length < 70 &&
+    /증권|리서치|analyst|date|발간|배포|update/i.test(paragraph)
+  ) {
+    return { kind: "metadata", confidence: 0.78 };
+  }
+
+  if (
+    percentCount >= 8 ||
+    numericChunkCount >= 18 ||
+    (alphaTokenCount >= 25 && (paragraph.match(/[가-힣]/g) ?? []).length < 30)
+  ) {
+    return { kind: "table_caption", confidence: 0.75 };
+  }
+
+  const claimHits = CLAIM_KEYWORDS.reduce(
+    (count, keyword) => count + (normalized.includes(normalizeText(keyword)) ? 1 : 0),
+    0,
+  );
+  if (claimHits >= 2 && paragraph.length >= 70) {
+    return { kind: "investment_claim", confidence: clamp(0.62 + claimHits * 0.08, 0, 0.95) };
+  }
+
+  if (claimHits >= 1 || paragraph.length >= 120) {
+    return { kind: "weak_claim", confidence: 0.48 };
+  }
+
+  return { kind: "metadata", confidence: 0.35 };
+}
 
 function holdingMatchesContext(holding, report, text, sector, themes) {
   const normalized = normalizeText(`${report.title}\n${text}`);
   const holdingName = normalizeText(holding.name);
   const hints = HOLDING_TOPIC_HINTS[holding.code] ?? [];
+  const strictAliases = STRICT_ALIASES_BY_CODE[holding.code] ?? [];
   const reportType = reportTypeFromMeta(report, normalized);
 
   if (
     containsKeyword(normalized, holding.code) ||
     containsKeyword(normalized, holdingName) ||
     containsKeyword(normalized, holdingName.replace(/\s+/g, "")) ||
-    hints.some((hint) => containsKeyword(normalized, hint))
+    strictAliases.some((alias) => containsKeyword(normalized, alias))
   ) {
     return true;
+  }
+
+  if (reportType === "stock") {
+    // 개별 종목 리포트는 테마 유사성만으로 포트 전체에 연결하지 않습니다.
+    return false;
   }
 
   if (reportType === "macro") {
     // securities.json의 keywords.macro 기반 (MACRO_KEYWORDS_BY_CODE)
     return (MACRO_KEYWORDS_BY_CODE[holding.code] ?? []).some((hint) => containsKeyword(normalized, hint));
+  }
+
+  if (hints.some((hint) => containsKeyword(normalized, hint))) {
+    return true;
   }
 
   // securities.json의 thematic_triggers 기반 (THEMATIC_TRIGGERS_BY_CODE)
@@ -94,8 +162,15 @@ function paragraphScore(paragraph, index, report, coverage) {
   let score = 0;
   const normalized = normalizeText(paragraph);
   const numbers = extractNumericPhrases(paragraph, 8);
+  const classification = classifyParagraph(paragraph);
 
   if (isBoilerplateParagraph(paragraph)) return -999;
+  if (classification.kind === "disclaimer") return -999;
+  if (classification.kind === "table_caption") return -120;
+  if (classification.kind === "heading") return -90;
+  if (classification.kind === "metadata") return -40;
+  if (classification.kind === "weak_claim") score -= 6;
+  if (classification.kind === "investment_claim") score += 12;
 
   score += headingScore(paragraph);
   score += Math.min(numbers.length, 5) * 2;
@@ -170,6 +245,77 @@ function inferDirection(sentiment) {
   return "mixed";
 }
 
+function inferHorizonFromText(text, reportType) {
+  const normalized = normalizeText(text);
+  if (normalized.includes("장기")) return "long";
+  if (normalized.includes("중기") || normalized.includes("중장기")) return "medium";
+  if (normalized.includes("단기")) return "short";
+  if (reportType === "macro") return "short";
+  if (reportType === "stock") return "medium";
+  return "medium";
+}
+
+function inferStrength(sentiment, classification) {
+  const magnitude = Math.abs(sentiment);
+  if (classification.kind === "investment_claim" && magnitude >= 0.45) return "strong";
+  if (classification.kind === "investment_claim" && magnitude >= 0.2) return "medium";
+  if (classification.kind === "weak_claim") return "weak";
+  return "medium";
+}
+
+function inferEntityFromContext(report, paragraph, sector, themes) {
+  if (report.ticker_name) return report.ticker_name;
+  if (report.ticker) return String(report.ticker);
+  if (sector && sector !== "기타") return sector;
+  if (themes.length > 0) return themes[0];
+  const match = String(report.title ?? paragraph).match(/[가-힣A-Za-z0-9&+ ]{2,}/);
+  return match?.[0]?.trim() ?? report.title;
+}
+
+function extractCondition(text) {
+  for (const marker of CONDITION_MARKERS) {
+    const index = text.indexOf(marker);
+    if (index >= 0) return truncate(text.slice(index), 140);
+  }
+  return null;
+}
+
+function extractCounterpoint(text, evidenceParagraphs = []) {
+  for (const marker of COUNTERPOINT_MARKERS) {
+    const hit = [text, ...evidenceParagraphs].find((paragraph) => paragraph.includes(marker));
+    if (hit) return truncate(hit, 140);
+  }
+  return null;
+}
+
+function buildClaimObject({ report, paragraph, paragraphIndex, classification, sector, themes, reportType, evidenceParagraphs }) {
+  const sentiment = inferSentiment(`${report.title}\n${paragraph}`);
+  const entity = inferEntityFromContext(report, paragraph, sector, themes);
+  const direction = inferDirection(sentiment);
+  const reason = truncate(paragraph.split(/(?:다만|그러나|반면)/)[0] ?? paragraph, 160);
+  const condition = extractCondition(paragraph);
+  const counterpoint = extractCounterpoint(paragraph, evidenceParagraphs);
+  const horizon = inferHorizonFromText(paragraph, reportType);
+  const strength = inferStrength(sentiment, classification);
+
+  return {
+    entity,
+    direction,
+    strength,
+    horizon,
+    reason,
+    condition,
+    counterpoint,
+    source_span: `paragraph_${paragraphIndex + 1}`,
+    classification: classification.kind,
+    classification_confidence: Number.parseFloat(classification.confidence.toFixed(2)),
+    summary: truncate(
+      `${entity}는 ${direction === "positive" ? "긍정" : direction === "negative" ? "부정" : direction === "mixed" ? "혼합" : "중립"} 시각이며 핵심 근거는 ${reason}${condition ? ` / 조건: ${condition}` : ""}`,
+      220,
+    ),
+  };
+}
+
 function defaultHorizon(reportType) {
   if (reportType === "macro") return "1m";
   if (reportType === "stock") return "3m";
@@ -182,8 +328,8 @@ function inferPortfolioImpacts(report, topParagraphs, coverage, sector, themes, 
   const impacts = [];
   const combined = normalizeText([report.title, ...topParagraphs].join("\n"));
   const direction = inferDirection(sentiment);
-  const horizon = defaultHorizon(reportTypeFromMeta(report, combined));
   const reportType = reportTypeFromMeta(report, combined);
+  const horizon = defaultHorizon(reportType);
   const strengthBase = clamp(0.28 + Math.abs(sentiment) * 0.35, 0.18, 0.78);
 
   for (const [code, holding] of coverage.holdingsByCode) {
@@ -220,7 +366,7 @@ function inferPortfolioImpacts(report, topParagraphs, coverage, sector, themes, 
     }
   }
 
-  if (impacts.length === 0 && themes.length > 0) {
+  if (impacts.length === 0 && reportType !== "stock" && themes.length > 0) {
     for (const theme of themes.slice(0, 2)) {
       impacts.push({
         target_type: "theme",
@@ -253,6 +399,12 @@ async function main() {
 
   const coverage = buildPortfolioMaps(portfolio, watchlist);
   const extracts = [];
+  const globalQuality = {
+    contaminationEvidenceCount: 0,
+    totalEvidenceCount: 0,
+    weakClaimCount: 0,
+    totalClaims: 0,
+  };
 
   for (const report of index) {
     const fullTextPath = report.full_text_path
@@ -262,25 +414,57 @@ async function main() {
         : null;
     const text = fullTextPath ? await readText(fullTextPath, report.extracted_text ?? "") : report.extracted_text ?? "";
     const paragraphs = splitParagraphs(text);
+    const sector = sectorFromText(report.title, text);
+    const themes = themesFromText(report.title, text);
+    const reportType = reportTypeFromMeta(report, text);
     const scoredParagraphs = paragraphs
       .map((paragraph, index) => ({
         paragraph,
+        index,
+        classification: classifyParagraph(paragraph),
         score: paragraphScore(paragraph, index, report, coverage),
       }))
       .sort((left, right) => right.score - left.score);
 
-    const evidenceParagraphs = scoredParagraphs.slice(0, 8).map((item) => item.paragraph);
-    const keyPoints = evidenceParagraphs.slice(0, 4).map((item) => truncate(item, 240));
+    const claimPool = scoredParagraphs.filter(
+      (item) => item.classification.kind === "investment_claim" || item.classification.kind === "weak_claim",
+    );
+    const evidencePool = (claimPool.length > 0 ? claimPool : scoredParagraphs.filter((item) => item.score > 0)).slice(0, 8);
+    const evidenceParagraphs = evidencePool.map((item) => item.paragraph);
+    const claimCandidates = evidencePool.slice(0, 4).map((item) =>
+      buildClaimObject({
+        report,
+        paragraph: item.paragraph,
+        paragraphIndex: item.index,
+        classification: item.classification,
+        sector,
+        themes,
+        reportType,
+        evidenceParagraphs,
+      }),
+    );
+    const primaryClaim =
+      claimCandidates.find((item) => item.classification === "investment_claim") ??
+      claimCandidates[0] ??
+      null;
+    const keyPoints = claimCandidates.map((item) => item.summary);
     const keyNumbers = extractNumericPhrases(evidenceParagraphs.join("\n"), 14).map((value) => ({
       label: "핵심 수치",
       value,
       why_it_matters: "리포트 핵심 논리나 변화 강도를 판단하는 데 사용",
     }));
     const sentiment = inferSentiment([report.title, ...evidenceParagraphs].join("\n"));
-    const sector = sectorFromText(report.title, text);
-    const themes = themesFromText(report.title, text);
     const relatedHoldings = [];
     const relatedAccounts = new Set();
+    const quality = {
+      contaminationEvidenceCount: evidencePool.filter((item) =>
+        ["heading", "table_caption", "metadata", "disclaimer"].includes(item.classification.kind),
+      ).length,
+      totalEvidenceCount: evidencePool.length,
+      weakClaimCount: claimCandidates.filter((item) => item.classification === "weak_claim").length,
+      totalClaims: claimCandidates.length,
+    };
+    const changeParagraphs = pickChangeParagraphs(paragraphs);
 
     for (const [code, holding] of coverage.holdingsByCode) {
       const matched = holdingMatchesContext(holding, report, text, sector, themes);
@@ -307,17 +491,19 @@ async function main() {
       source: report.source,
       date: report.date,
       category: report.category,
-      report_type: reportTypeFromMeta(report, text),
+      report_type: reportType,
       sector,
       themes,
       text_path: report.full_text_path ?? null,
       text_length: report.full_text_length ?? report.text_length ?? null,
       related_holdings_in_my_portfolio: relatedHoldings,
       related_accounts: [...relatedAccounts],
-      key_thesis: keyPoints[0] ?? truncate(report.title, 160),
+      key_thesis: primaryClaim?.summary ?? truncate(report.title, 160),
       key_points: keyPoints,
+      primary_claim: primaryClaim,
+      claim_candidates: claimCandidates,
       key_numbers: keyNumbers,
-      what_changed: pickChangeParagraphs(paragraphs),
+      what_changed: changeParagraphs,
       bull_case: evidenceParagraphs
         .filter((paragraph) => inferSentiment(paragraph) > 0.15)
         .slice(0, 2)
@@ -334,21 +520,28 @@ async function main() {
         .filter((paragraph) => /리스크|우려|둔화|부담|불확실성|압박|약세/i.test(paragraph))
         .slice(0, 3)
         .map((paragraph) => truncate(paragraph, 180)),
-      new_info: pickChangeParagraphs(paragraphs)[0] ?? null,
+      new_info: changeParagraphs[0] ?? null,
       thesis_novelty: inferNovelty([report.title, ...evidenceParagraphs].join("\n")),
       sentiment_score: Number.parseFloat(sentiment.toFixed(2)),
       portfolio_impacts_candidate: impacts,
       confidence:
-        (report.full_text_length ?? report.text_length ?? 0) >= 12000
+        primaryClaim?.classification === "investment_claim"
           ? "HIGH"
           : (report.full_text_length ?? report.text_length ?? 0) >= 5000
             ? "MEDIUM"
             : "LOW",
+      quality,
       evidence_notes: scoredParagraphs.slice(0, 8).map((item) => ({
         score: item.score,
+        classification: item.classification.kind,
         excerpt: truncate(item.paragraph, 260),
       })),
     });
+
+    globalQuality.contaminationEvidenceCount += quality.contaminationEvidenceCount;
+    globalQuality.totalEvidenceCount += quality.totalEvidenceCount;
+    globalQuality.weakClaimCount += quality.weakClaimCount;
+    globalQuality.totalClaims += quality.totalClaims;
   }
 
   const outputPath =
@@ -366,6 +559,8 @@ async function main() {
     `- 총 리포트 수: ${extracts.length}`,
     `- 포트폴리오 직접 관련 리포트: ${extracts.filter((item) => item.related_holdings_in_my_portfolio.length > 0).length}`,
     `- 계좌 영향 후보 포함 리포트: ${extracts.filter((item) => item.portfolio_impacts_candidate.length > 0).length}`,
+    `- contamination rate: ${globalQuality.totalEvidenceCount > 0 ? (globalQuality.contaminationEvidenceCount / globalQuality.totalEvidenceCount).toFixed(2) : "0.00"}`,
+    `- weak claim ratio: ${globalQuality.totalClaims > 0 ? (globalQuality.weakClaimCount / globalQuality.totalClaims).toFixed(2) : "0.00"}`,
     "",
     ...extracts.slice(0, 12).flatMap((item) => [
       `## ${item.id} · ${item.title}`,
@@ -380,6 +575,20 @@ async function main() {
   await writeJson(outputPath, {
     ...runMeta,
     reportCount: extracts.length,
+    quality: {
+      contaminationEvidenceCount: globalQuality.contaminationEvidenceCount,
+      totalEvidenceCount: globalQuality.totalEvidenceCount,
+      contaminationRate:
+        globalQuality.totalEvidenceCount > 0
+          ? Number.parseFloat((globalQuality.contaminationEvidenceCount / globalQuality.totalEvidenceCount).toFixed(4))
+          : 0,
+      weakClaimCount: globalQuality.weakClaimCount,
+      totalClaims: globalQuality.totalClaims,
+      weakClaimRatio:
+        globalQuality.totalClaims > 0
+          ? Number.parseFloat((globalQuality.weakClaimCount / globalQuality.totalClaims).toFixed(4))
+          : 0,
+    },
     extracts,
   });
   await writeText(markdownPath, summary);

@@ -180,6 +180,62 @@ run_nonfatal_step() {
   return 0
 }
 
+run_parallel_nonfatal_group() {
+  local group_dir
+  group_dir="$(mktemp -d)"
+  local -a pids=()
+  local -a names=()
+
+  while [[ $# -gt 0 ]]; do
+    local key="$1"
+    local label="$2"
+    local command="$3"
+    shift 3
+
+    local -a cmd_args=()
+    while [[ $# -gt 0 && "$1" != "--next" ]]; do
+      cmd_args+=("$1")
+      shift
+    done
+    if [[ $# -gt 0 && "$1" == "--next" ]]; then
+      shift
+    fi
+
+    names+=("$key")
+    (
+      log "$label"
+      local exit_code=0
+      if "$command" "${cmd_args[@]}" >>"$LOG_FILE" 2>&1; then
+        echo "0" >"$group_dir/$key"
+      else
+        exit_code=$?
+        log "⚠️ 단계 실패 (exit $exit_code), 다음 단계로 계속 진행합니다."
+        echo "$exit_code" >"$group_dir/$key"
+      fi
+    ) &
+    pids+=("$!")
+  done
+
+  for pid in "${pids[@]}"; do
+    wait "$pid" || true
+  done
+
+  for key in "${names[@]}"; do
+    local status_file="$group_dir/$key"
+    if [[ ! -f "$status_file" ]]; then
+      SOFT_FAILURE_COUNT=$((SOFT_FAILURE_COUNT + 1))
+      continue
+    fi
+    local exit_code
+    exit_code="$(cat "$status_file")"
+    if [[ "$exit_code" != "0" ]]; then
+      SOFT_FAILURE_COUNT=$((SOFT_FAILURE_COUNT + 1))
+    fi
+  done
+
+  rm -rf "$group_dir"
+}
+
 has_gemini_key() {
   local env_file="$ROOT_DIR/.env"
   if [[ -f "$env_file" ]] && grep -Eq '^GEMINI_API_KEY=.+$' "$env_file"; then
@@ -305,6 +361,12 @@ node scripts/ensure-daily-fallbacks.js \
   --mode market \
   --reason "post-market validation" >>"$LOG_FILE" 2>&1
 
+run_nonfatal_step "📣 머니토링 시황 이벤트 수집..." \
+  node scripts/collect-marketvoice-news.js \
+    --date "$DATE" \
+    --run-date "$RUN_DATE" \
+    --effective-market-date "$DATE"
+
 # FRED API 키가 있으면 거시경제 선행지표 수집 (레짐 감지 + Stage 3 선행지표 스코어에 활용)
 PYTHON_BIN_DAILY="$(python_bin)"
 if grep -Eq '^FRED_API_KEY=.+$' "$ROOT_DIR/.env" 2>/dev/null || [[ -n "${FRED_API_KEY:-}" ]]; then
@@ -334,9 +396,10 @@ node scripts/ensure-daily-fallbacks.js \
 if [[ "$SKIP_RAG" == "1" ]]; then
   log "🧱 RAG 코퍼스 단계 건너뜀 (--skip-rag)"
 else
-  run_nonfatal_step "🧱 리포트 RAG 코퍼스 생성..." node scripts/build-report-rag-corpus.js --date "$DATE"
-  run_nonfatal_step "🧱 포트폴리오 RAG 코퍼스 생성..." node scripts/build-portfolio-rag-corpus.js --date "$DATE"
-  run_nonfatal_step "🧱 병렬 RAG 코퍼스 생성..." node scripts/build-parallel-rag-corpus.js --date "$DATE"
+  run_parallel_nonfatal_group \
+    report_rag "🧱 리포트 RAG 코퍼스 생성..." node scripts/build-report-rag-corpus.js --date "$DATE" --next \
+    portfolio_rag "🧱 포트폴리오 RAG 코퍼스 생성..." node scripts/build-portfolio-rag-corpus.js --date "$DATE" --next \
+    parallel_rag "🧱 병렬 RAG 코퍼스 생성..." node scripts/build-parallel-rag-corpus.js --date "$DATE"
 fi
 
 if [[ "$RUN_GEMINI_BRIEFING" == "yes" ]] || { [[ "$RUN_GEMINI_BRIEFING" == "auto" ]] && has_gemini_key; }; then
@@ -364,8 +427,12 @@ fi
 PIPELINE_ARGS=(--date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE")
 if [[ "$STAGE2_MODE" == "gemini" ]]; then
   PIPELINE_ARGS+=(--gemini-stage2)
+elif [[ "$STAGE2_MODE" == "mock" ]]; then
+  PIPELINE_ARGS+=(--mock-stage2)
 elif [[ "$STAGE2_MODE" == "auto" ]] && has_gemini_key; then
   PIPELINE_ARGS+=(--gemini-stage2)
+elif [[ "$STAGE2_MODE" == "auto" ]]; then
+  PIPELINE_ARGS+=(--mock-stage2)
 fi
 
 if [[ "$SKIP_STRATEGY" == "1" ]]; then

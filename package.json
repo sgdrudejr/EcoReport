@@ -34,6 +34,7 @@
     "fetch:rss": "node scripts/fetch-rss-news.js",
     "fetch:twitter": "node scripts/fetch-twitter.js",
     "fetch:market": "node scripts/fetch-market-data.js",
+    "fetch:marketvoice": "node scripts/collect-marketvoice-news.js",
     "calc:technicals": "node scripts/calc-technicals.js",
     "compress:reports": "node scripts/compress-reports.js",
     "synthesize:daily": "node scripts/synthesize-daily.js",
@@ -41,7 +42,8 @@
     "backtest:collect": "node scripts/backtest-collect.js",
     "backtest:report": "node scripts/backtest-report.js",
     "verify": "node scripts/verify-daily-system.js",
-    "daily": "bash scripts/run-daily-system.sh"
+    "daily": "bash scripts/run-daily-system.sh",
+    "daily:quality": "bash scripts/run-quality-gated-cycle.sh"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.55.0",

@@ -10,12 +10,12 @@ import {
   buildRunMetadata,
   enrichPortfolioWithSecurityCodes,
   parseDateArgs,
-  readJson,
   resolveSecurityCodeFromCandidates,
   won,
   writeJson,
   writeText,
 } from "./lib/pipeline-utils.js";
+import { loadAnalysisContext } from "./lib/analysis-context.js";
 
 function normalizeStrategyAccountKey(account, strategy) {
   const candidates = [
@@ -110,6 +110,22 @@ function executionBuckets(account, quant, stage2Action, strategy) {
   };
 }
 
+function normalizeCandidateConfidence(value) {
+  if (typeof value === "number") return Math.max(0, Math.min(value, 1));
+  if (value === "HIGH") return 0.85;
+  if (value === "MEDIUM") return 0.6;
+  if (value === "LOW") return 0.35;
+  return 0.5;
+}
+
+function isBuyableStance(value) {
+  return ["buy", "accumulate", "add"].includes(String(value ?? "").toLowerCase());
+}
+
+function hasNegativeActionLanguage(text) {
+  return /비중을 조절|비중 조정|축소|trim|reduce|보류|추격 매수는 신중|추가 진입은 보류/i.test(String(text ?? ""));
+}
+
 function resolveStage2Candidates(account, stage2Data, bucket) {
   const allCandidates = (stage2Data?.candidate_scores ?? []).map((item) => ({
     ...item,
@@ -157,13 +173,45 @@ function resolveStage2Candidates(account, stage2Data, bucket) {
     })
     .sort((left, right) => right.__rank - left.__rank);
 
-  return sorted.slice(0, 3).map((item) => ({
-    code: item.resolvedCode ?? item.code,
-    name: item.name,
-    score: null,
-    reason: item.thesis ?? "Stage 2 후보 논리",
-    source: "stage2",
-  }));
+  const accepted = [];
+  const rejected = [];
+
+  for (const item of sorted.slice(0, 5)) {
+    const stance = String(item.stance ?? "hold").toLowerCase();
+    const candidate = {
+      code: item.resolvedCode ?? item.code,
+      name: item.name,
+      score: null,
+      reason: item.thesis ?? "Stage 2 후보 논리",
+      source: "stage2",
+      stance,
+      confidence: normalizeCandidateConfidence(item.confidence),
+      targetAccounts: item.target_accounts ?? [],
+    };
+
+    if (!isBuyableStance(stance)) {
+      rejected.push({
+        ...candidate,
+        rejectionReason: `Stage 2 stance가 ${stance}라 신규 매수 후보에서 제외`,
+      });
+      continue;
+    }
+
+    if (hasNegativeActionLanguage(candidate.reason)) {
+      rejected.push({
+        ...candidate,
+        rejectionReason: "후보 설명에 비중 축소/보류 신호가 있어 실행 후보에서 제외",
+      });
+      continue;
+    }
+
+    accepted.push(candidate);
+  }
+
+  return {
+    accepted: accepted.slice(0, 3),
+    rejected,
+  };
 }
 
 function distributeBudget(bucket, stage2Candidates = []) {
@@ -187,6 +235,103 @@ function distributeBudget(bucket, stage2Candidates = []) {
     ...item,
     suggestedAmount: Math.round(bucket.deployBudget * weights[index]),
   }));
+}
+
+function validateExecutionPlan({ account, bucket, stagedBuys, trims, holds, rejectedAlternatives }) {
+  const validatorFlags = [];
+  const validatedBuys = [];
+  const rejected = [...rejectedAlternatives];
+
+  for (const item of stagedBuys) {
+    const itemCategory =
+      CATEGORY_BY_CODE[item.code]?.[account.key] ??
+      CATEGORY_BY_CODE[item.code]?.default ??
+      null;
+
+    if (
+      bucket.topGap?.category &&
+      itemCategory &&
+      itemCategory !== bucket.topGap.category
+    ) {
+      validatorFlags.push(`gap_action_mismatch:${item.name}`);
+      rejected.push({
+        ...item,
+        rejectionReason: `부족 자산군(${bucket.topGap.category})과 실행 후보 카테고리(${itemCategory})가 달라 제외`,
+      });
+      continue;
+    }
+
+    if (hasNegativeActionLanguage(item.reason)) {
+      validatorFlags.push(`buy_reason_conflict:${item.name}`);
+      rejected.push({
+        ...item,
+        rejectionReason: "매수 후보 설명이 축소/보류 논리와 충돌",
+      });
+      continue;
+    }
+
+    if (!isBuyableStance(item.stance ?? "buy")) {
+      validatorFlags.push(`non_buy_stance:${item.name}`);
+      rejected.push({
+        ...item,
+        rejectionReason: `Stage 2 stance(${item.stance ?? "unknown"})와 매수 액션이 충돌`,
+      });
+      continue;
+    }
+
+    if (trims.some((trim) => trim.code && trim.code === item.code)) {
+      validatorFlags.push(`buy_trim_conflict:${item.name}`);
+      rejected.push({
+        ...item,
+        rejectionReason: "같은 종목이 trim 후보와 동시에 나타나 실행에서 제외",
+      });
+      continue;
+    }
+
+    validatedBuys.push(item);
+  }
+
+  if (validatedBuys.length === 0 && bucket.deployBudget > 0) {
+    validatorFlags.push("no_action_after_validation");
+  }
+
+  const confidence =
+    validatedBuys.length > 0
+      ? Number.parseFloat(
+          (
+            validatedBuys.reduce((sum, item) => sum + normalizeCandidateConfidence(item.confidence), 0) /
+            validatedBuys.length
+          ).toFixed(2),
+        )
+      : 0;
+
+  const topEvidence = [
+    ...validatedBuys.slice(0, 2).map((item) => ({
+      code: item.code ?? null,
+      name: item.name,
+      source: item.source ?? "stage2",
+      reason: item.reason ?? null,
+    })),
+    ...holds.slice(0, 1).map((item) => ({
+      code: item.code ?? null,
+      name: item.name,
+      source: item.source ?? "stage3",
+      reason: item.reason ?? null,
+    })),
+  ].slice(0, 3);
+
+  return {
+    stagedBuys: validatedBuys,
+    validatorFlags,
+    rejectedAlternatives: rejected.slice(0, 6),
+    noAction: validatedBuys.length === 0,
+    noActionReason:
+      validatedBuys.length === 0
+        ? "전략-실행 검증 후 통과한 매수 후보가 없어 no_action으로 유지"
+        : null,
+    confidence,
+    topEvidence,
+  };
 }
 
 function summarizeMacroTheme(stage2Data) {
@@ -372,16 +517,24 @@ function buildMacroCommentary({
 
 async function main() {
   const args = parseDateArgs(process.argv.slice(2));
-  const stateDir = path.join(ROOT_DIR, "data", "analysis-state", args.date);
-  const [portfolio, strategy, stage1, stage2, quant, impactMap] = await Promise.all([
-    readJson(path.join(ROOT_DIR, "data", "portfolio", "latest.json"), { accounts: [] }),
-    readJson(path.join(ROOT_DIR, "config", "strategy.json"), { accounts: {} }),
-    readJson(path.join(stateDir, "stage1-report-extracts-v2.json"), { extracts: [] }),
-    readJson(path.join(stateDir, "stage2-strategy-options.json"), null),
-    readJson(path.join(stateDir, "stage3-quant-scores.json"), { holdings: {}, accounts: {}, portfolio: {} }),
-    readJson(path.join(stateDir, "impact-map.json"), { reports: [] }),
-  ]);
-  const stage2Data = stage2 ?? (await readJson(path.join(stateDir, "stage2-strategy-options.mock.json"), { account_actions: [], strategy_changes: [] }));
+  const context = await loadAnalysisContext(args, {
+    portfolio: true,
+    strategy: true,
+    stage1: true,
+    stage2: true,
+    stage2Mock: true,
+    stage3: true,
+    impactMap: true,
+    stage2Resolved: true,
+  });
+  const { paths, data } = context;
+  const stateDir = paths.analysisDir;
+  const portfolio = data.portfolio;
+  const strategy = data.strategy;
+  const stage1 = data.stage1;
+  const quant = data.stage3;
+  const impactMap = data.impactMap;
+  const stage2Data = data.stage2Data;
   const normalizedPortfolio = enrichPortfolioWithSecurityCodes(portfolio);
 
   const accountPlans = (normalizedPortfolio.accounts ?? []).map((account) => {
@@ -389,13 +542,22 @@ async function main() {
       stage2Data.account_actions?.find((item) => item.account_key === account.key || item.account_key === normalizeStrategyAccountKey(account)) ??
       null;
     const bucket = executionBuckets(account, quant, stage2Action, strategy);
-    const stage2Candidates = resolveStage2Candidates(account, stage2Data, bucket);
+    const stage2Resolution = resolveStage2Candidates(account, stage2Data, bucket);
+    const stage2Candidates = stage2Resolution.accepted;
     bucket.stage2Candidates = stage2Candidates;
     const stage1Drivers = stage1.extracts
       .filter((item) => item.related_accounts?.includes(account.key))
       .slice(0, 4)
-      .map((item) => ({ id: item.id, title: item.title, thesis: item.key_thesis }));
+      .map((item) => ({ id: item.id, title: item.title, thesis: item.primary_claim?.summary ?? item.key_thesis }));
     const stagedBuys = distributeBudget(bucket, stage2Candidates);
+    const validation = validateExecutionPlan({
+      account,
+      bucket,
+      stagedBuys,
+      trims: bucket.trim.slice(0, 3),
+      holds: bucket.hold.slice(0, 3),
+      rejectedAlternatives: stage2Resolution.rejected,
+    });
     const macroCommentary = buildMacroCommentary({
       account,
       bucket,
@@ -404,6 +566,9 @@ async function main() {
       stage1Drivers,
       impactMap,
     });
+    if (validation.noAction) {
+      macroCommentary.actionLine = `${account.label}은 오늘은 no_action으로 유지합니다. ${validation.noActionReason}`;
+    }
     return {
       key: account.key,
       label: account.label,
@@ -414,12 +579,18 @@ async function main() {
       topGap: bucket.topGap,
       candidateFromGap: bucket.candidateFromGap,
       stage2Candidates,
-      stagedBuys,
+      stagedBuys: validation.stagedBuys,
       trims: bucket.trim.slice(0, 3),
       holds: bucket.hold.slice(0, 3),
       watches: bucket.watch.slice(0, 3),
       macroCommentary,
       stage1Drivers,
+      validatorFlags: validation.validatorFlags,
+      rejectedAlternatives: validation.rejectedAlternatives,
+      noAction: validation.noAction,
+      noActionReason: validation.noActionReason,
+      confidence: validation.confidence,
+      topEvidence: validation.topEvidence,
     };
   });
 
@@ -455,6 +626,8 @@ async function main() {
       `- Stage 2 bias: ${account.stage2Bias}`,
       `- 이번 단계 투입 가능 금액: ${won(account.deployBudget)}`,
       `- 남길 예수금: ${won(account.reserveCash)}`,
+      `- 검증 confidence: ${account.confidence ?? 0}`,
+      `- validator flags: ${account.validatorFlags?.join(", ") || "없음"}`,
       `- 가장 부족한 자산군: ${account.topGap ? `${account.topGap.category} / ${won(Math.max(account.topGap.gapAmount, 0))}` : "없음"}`,
       `- 우선 보강 후보: ${account.candidateFromGap ?? "없음"}`,
       `- 매크로 → 자산군 → 액션: ${account.macroCommentary?.actionLine ?? "요약 없음"}`,
@@ -462,7 +635,7 @@ async function main() {
       "### 1차 실행",
       ...(account.stagedBuys.length > 0
         ? account.stagedBuys.map((item) => `- ${item.name}${item.code ? `(${item.code})` : ""} ${won(item.suggestedAmount)} / 이유: ${item.reason}`)
-        : ["- 즉시 매수 후보 없음"]),
+        : [`- 즉시 매수 후보 없음${account.noActionReason ? ` / ${account.noActionReason}` : ""}`]),
       "",
       "### 비중 축소/재점검",
       ...(account.trims.length > 0
@@ -477,6 +650,11 @@ async function main() {
       ...(account.stage1Drivers.length > 0
         ? account.stage1Drivers.map((item) => `- ${item.id}: ${item.title} / ${item.thesis}`)
         : ["- 직접 관련 리포트 추출 없음"]),
+      "",
+      "### Rejected Alternatives",
+      ...(account.rejectedAlternatives?.length > 0
+        ? account.rejectedAlternatives.map((item) => `- ${item.name}${item.code ? `(${item.code})` : ""} / ${item.rejectionReason}`)
+        : ["- 거절된 대안 없음"]),
       "",
       "### 매크로 코멘터리",
       ...(account.macroCommentary?.drivers?.length > 0
@@ -501,7 +679,7 @@ async function main() {
     ...accountPlans.map((account) => {
       const firstBuy = account.stagedBuys[0];
       const topGap = account.topGap?.category ?? "없음";
-      return `- ${account.label}: ${topGap} 보강 우선 / ${account.totalScore}점 / 1차 ${firstBuy ? `${firstBuy.name} ${won(firstBuy.suggestedAmount)}` : "즉시 매수 없음"}`;
+      return `- ${account.label}: ${topGap} 보강 우선 / ${account.totalScore}점 / 1차 ${firstBuy ? `${firstBuy.name} ${won(firstBuy.suggestedAmount)}` : `no_action (${account.noActionReason ?? "검증 후 보류"})`}`;
     }),
     "",
     "## 계좌별 코멘트",
@@ -511,8 +689,12 @@ async function main() {
       ...(account.macroCommentary?.summary ? [`- 매크로 요약: ${account.macroCommentary.summary}`] : []),
       `- 부족한 자산군: ${account.topGap ? `${account.topGap.category} (${won(Math.max(account.topGap.gapAmount, 0))})` : "없음"}`,
       `- 남길 예수금: ${won(account.reserveCash)}`,
+      `- validator: ${account.validatorFlags?.join(", ") || "없음"}`,
       `- 우선 후보: ${account.stage2Candidates.length > 0 ? account.stage2Candidates.map((item) => item.name).join(", ") : account.candidateFromGap ?? "없음"}`,
       ...(account.macroCommentary?.actionLine ? [`- 액션 연결: ${account.macroCommentary.actionLine}`] : []),
+      ...(account.rejectedAlternatives?.length > 0
+        ? [`- 제외된 대안: ${account.rejectedAlternatives.map((item) => item.name).join(", ")}`]
+        : []),
       ...(account.trims.length > 0
         ? [`- 재점검 필요: ${account.trims.map((item) => `${item.name} ${item.score}점`).join(", ")}`]
         : [`- 재점검 필요: 즉시 축소 대상 없음`]),

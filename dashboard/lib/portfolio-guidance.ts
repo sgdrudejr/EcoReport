@@ -52,10 +52,33 @@ type TechnicalScoreEntry = {
   score?: number;
   signal?: string | null;
   signal_reason?: string | null;
+  rsi?: number | null;
+  technical_analysis?: {
+    execution_bias?: TechnicalBias | null;
+    indicators?: {
+      rsi?: TechnicalBias | null;
+      macd?: TechnicalBias | null;
+      bollinger?: TechnicalBias | null;
+      movingAverage?: TechnicalBias | null;
+    } | null;
+    rsi_divergence?: {
+      type?: "bullish" | "bearish" | "none";
+      strength?: string | null;
+      summary?: string | null;
+    } | null;
+  } | null;
 };
 
 type TechnicalSnapshot = {
   scores?: Record<string, TechnicalScoreEntry>;
+};
+
+type TechnicalBias = {
+  side?: "buy_side" | "neutral" | "sell_side";
+  label?: string | null;
+  summary?: string | null;
+  divergence?: "bullish" | "bearish" | "none";
+  strength?: string | null;
 };
 
 type RiskPenaltyBreakdown = {
@@ -208,6 +231,22 @@ type Stage4AccountPlan = {
     title?: string;
     thesis?: string;
   }>;
+  validatorFlags?: string[];
+  rejectedAlternatives?: Array<{
+    code?: string;
+    name?: string;
+    rejectionReason?: string;
+    confidence?: number | null;
+  }>;
+  noAction?: boolean;
+  noActionReason?: string | null;
+  confidence?: number | null;
+  topEvidence?: Array<{
+    code?: string | null;
+    name?: string;
+    source?: string | null;
+    reason?: string | null;
+  }>;
 };
 
 type Stage4Analysis = {
@@ -302,6 +341,20 @@ export type HoldingGuide = {
   actionScore: number | null;
   signal: string | null;
   technicalSignal: string | null;
+  technicalReason: string | null;
+  technicalExecutionBias: TechnicalBias | null;
+  technicalIndicatorBiases: {
+    rsi: TechnicalBias | null;
+    macd: TechnicalBias | null;
+    bollinger: TechnicalBias | null;
+    movingAverage: TechnicalBias | null;
+  };
+  rsiValue: number | null;
+  rsiDivergence: {
+    type: "bullish" | "bearish" | "none";
+    strength: string | null;
+    summary: string | null;
+  } | null;
   topDrivers: string[];
   warnings: string[];
 };
@@ -687,6 +740,7 @@ function buildHoldingGuides(
   account: PortfolioAccount,
   categories: CategoryGuide[],
   stage3: Stage3Analysis | null,
+  technicalMap: Record<string, TechnicalScoreEntry> | null,
 ) {
   const totalHoldingsValue = Math.max(getAccountHoldingsValue(account), 0);
   const accountStage3Holdings = Object.values(stage3?.holdings ?? {}).filter(
@@ -697,6 +751,10 @@ function buildHoldingGuides(
 
   const holdingGuides = account.holdings.map((holding) => {
     const inferredCode = inferHoldingCode(holding.name, holding.code);
+    const technicalEntry =
+      (inferredCode ? technicalMap?.[inferredCode] : null) ??
+      (holding.code ? technicalMap?.[holding.code] : null) ??
+      null;
     let stage3Holding = inferredCode
       ? stage3?.positions?.[`${account.key}:${inferredCode}`] ??
         stage3?.holdings?.[inferredCode] ??
@@ -786,6 +844,22 @@ function buildHoldingGuides(
       actionScore,
       signal: stage3Holding?.signal ?? null,
       technicalSignal: stage3Holding?.technicalSignal ?? null,
+      technicalReason: technicalEntry?.signal_reason ?? null,
+      technicalExecutionBias: technicalEntry?.technical_analysis?.execution_bias ?? null,
+      technicalIndicatorBiases: {
+        rsi: technicalEntry?.technical_analysis?.indicators?.rsi ?? null,
+        macd: technicalEntry?.technical_analysis?.indicators?.macd ?? null,
+        bollinger: technicalEntry?.technical_analysis?.indicators?.bollinger ?? null,
+        movingAverage: technicalEntry?.technical_analysis?.indicators?.movingAverage ?? null,
+      },
+      rsiValue: technicalEntry?.rsi ?? null,
+      rsiDivergence: technicalEntry?.technical_analysis?.rsi_divergence
+        ? {
+            type: technicalEntry.technical_analysis.rsi_divergence.type ?? "none",
+            strength: technicalEntry.technical_analysis.rsi_divergence.strength ?? null,
+            summary: technicalEntry.technical_analysis.rsi_divergence.summary ?? null,
+          }
+        : null,
       topDrivers: stage3Holding?.explain?.topDrivers ?? [],
       warnings:
         (stage3Holding?.explain?.warnings ?? []).filter(
@@ -1053,6 +1127,21 @@ function buildEvidenceNotes(stage4Account: Stage4AccountPlan | null) {
     notes.push(`${driver.title}: ${sentence.slice(0, 140)}${sentence.length > 140 ? "..." : ""}`);
   }
 
+  for (const evidence of stage4Account?.topEvidence ?? []) {
+    if (!evidence?.name || !evidence?.reason) continue;
+    const reason = String(evidence.reason).replace(/\s+/g, " ").trim();
+    notes.push(`${evidence.name}: ${reason.slice(0, 140)}${reason.length > 140 ? "..." : ""}`);
+  }
+
+  for (const rejected of stage4Account?.rejectedAlternatives ?? []) {
+    if (!rejected?.name || !rejected?.rejectionReason) continue;
+    notes.push(`${rejected.name} 제외: ${rejected.rejectionReason}`);
+  }
+
+  if ((stage4Account?.validatorFlags ?? []).length > 0) {
+    notes.push(`검증 플래그: ${(stage4Account?.validatorFlags ?? []).join(", ")}`);
+  }
+
   return notes.filter((value, index, array) => array.indexOf(value) === index).slice(0, 4);
 }
 
@@ -1063,6 +1152,10 @@ function buildActionPoints(stage4Account: Stage4AccountPlan | null) {
     points.push(
       String(stage4Account.macroCommentary.actionLine).replace(/\s+/g, " ").trim(),
     );
+  }
+
+  if (stage4Account?.noAction && stage4Account?.noActionReason) {
+    points.push(`오늘은 no_action: ${String(stage4Account.noActionReason).replace(/\s+/g, " ").trim()}`);
   }
 
   for (const stagedBuy of stage4Account?.stagedBuys ?? []) {
@@ -1087,6 +1180,11 @@ function buildActionPoints(stage4Account: Stage4AccountPlan | null) {
       ? ` · ${String(hold.reason).replace(/\s+/g, " ").trim().slice(0, 72)}`
       : "";
     points.push(`${hold.name}은 유지하되 추가 진입은 보류${reason}`);
+  }
+
+  for (const rejected of stage4Account?.rejectedAlternatives ?? []) {
+    if (!rejected?.name || !rejected?.rejectionReason) continue;
+    points.push(`${rejected.name} 제외 · ${String(rejected.rejectionReason).replace(/\s+/g, " ").trim().slice(0, 72)}`);
   }
 
   return points.slice(0, 4);
@@ -1267,7 +1365,7 @@ export function buildPortfolioGuide(snapshot: PortfolioSnapshot): PortfolioGuide
             : [];
       const executionTrims = buildExecutionItems(stage4Account?.trims, "trim");
       const executionHolds = buildExecutionItems(stage4Account?.holds, "hold");
-      const holdingGuides = buildHoldingGuides(account, categories, stage3);
+      const holdingGuides = buildHoldingGuides(account, categories, stage3, technicalMap);
 
       return {
         key: account.key,

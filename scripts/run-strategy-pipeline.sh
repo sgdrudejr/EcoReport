@@ -8,9 +8,11 @@ REQUESTED_DATE=""
 RUN_DATE="${RUN_DATE:-$(node "$ROOT_DIR/scripts/resolve-cycle-date.js" --field run_date)}"
 EFFECTIVE_MARKET_DATE=""
 RUN_ID="${ECOREPORT_RUN_ID:-}"
-USE_MOCK_STAGE2=1
+USE_MOCK_STAGE2=0
 USE_GEMINI_STAGE2=0
 ALLOW_STAGE2_MOCK_FALLBACK=1
+BUILD_STAGE1_5_PROMPT=1
+STAGE1_5_PID=""
 
 python_bin() {
   if [[ -x "$ROOT_DIR/.venv/bin/python" ]]; then
@@ -42,6 +44,10 @@ while [[ $# -gt 0 ]]; do
       USE_MOCK_STAGE2=0
       shift
       ;;
+    --mock-stage2)
+      USE_MOCK_STAGE2=1
+      shift
+      ;;
     --gemini-stage2)
       USE_GEMINI_STAGE2=1
       USE_MOCK_STAGE2=0
@@ -49,6 +55,10 @@ while [[ $# -gt 0 ]]; do
       ;;
     --strict-gemini-stage2)
       ALLOW_STAGE2_MOCK_FALLBACK=0
+      shift
+      ;;
+    --skip-stage1-5-prompt)
+      BUILD_STAGE1_5_PROMPT=0
       shift
       ;;
     *)
@@ -83,6 +93,12 @@ echo "run_id=$RUN_ID / run_date=$RUN_DATE / effective_market_date=$DATE"
 echo "== Stage 1: report extracts =="
 node scripts/build-stage1-report-extracts.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"
 
+if [[ "$BUILD_STAGE1_5_PROMPT" == "1" ]]; then
+  echo "== Stage 1.5: deep research prompt (background) =="
+  node scripts/build-stage1-5-gemini-deep-research-prompt.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE" &
+  STAGE1_5_PID=$!
+fi
+
 echo "== Stage 2: strategy prompt =="
 node scripts/build-stage2-strategy-prompt.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"
 
@@ -93,11 +109,14 @@ if [[ "$USE_GEMINI_STAGE2" == "1" ]]; then
       exit 1
     fi
     echo "!! Gemini Stage 2 실패 -> mock fallback으로 계속 진행"
-    node scripts/build-stage2-strategy-mock.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE" --output "data/analysis-state/$DATE/stage2-strategy-options.json"
+    node scripts/build-stage2-strategy-mock.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE" --mock-mode fallback --output "data/analysis-state/$DATE/stage2-strategy-options.json"
   fi
 elif [[ "$USE_MOCK_STAGE2" == "1" ]]; then
   echo "== Stage 2 mock: strategy options =="
-  node scripts/build-stage2-strategy-mock.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"
+  node scripts/build-stage2-strategy-mock.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE" --mock-mode test
+else
+  echo "== Stage 2: auto mock fallback =="
+  node scripts/build-stage2-strategy-mock.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE" --mock-mode fallback --output "data/analysis-state/$DATE/stage2-strategy-options.json"
 fi
 
 echo "== Stage 2.5: impact map =="
@@ -108,5 +127,13 @@ node scripts/build-stage3-quant-scores.js --date "$DATE" --run-date "$RUN_DATE" 
 
 echo "== Stage 4: execution plan =="
 node scripts/build-stage4-execution-plan.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"
+
+if [[ -n "$STAGE1_5_PID" ]]; then
+  if wait "$STAGE1_5_PID"; then
+    echo "== Stage 1.5: deep research prompt complete =="
+  else
+    echo "!! Stage 1.5 prompt 생성 실패 (non-blocking)"
+  fi
+fi
 
 echo "Done."

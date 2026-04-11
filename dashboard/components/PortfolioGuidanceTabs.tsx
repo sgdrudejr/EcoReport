@@ -63,6 +63,18 @@ function getSignalClass(signal: string | null | undefined) {
   return "border-white/8 bg-white/[0.03] text-zinc-400";
 }
 
+function getBiasClass(side: "buy_side" | "neutral" | "sell_side" | undefined) {
+  if (side === "buy_side") return "border-blue-500/35 bg-blue-500/12 text-blue-300";
+  if (side === "sell_side") return "border-sky-500/35 bg-sky-500/12 text-sky-300";
+  return "border-white/8 bg-white/[0.03] text-zinc-300";
+}
+
+function getBiasText(side: "buy_side" | "neutral" | "sell_side" | undefined) {
+  if (side === "buy_side") return "매수 쪽";
+  if (side === "sell_side") return "매도 쪽";
+  return "중립";
+}
+
 function clampPercent(value: number) {
   return Math.max(0, Math.min(100, value));
 }
@@ -584,6 +596,94 @@ function HoldingScoreCard({ account }: { account: AccountGuide }) {
                 <p className="mt-3 text-xs text-zinc-400">
                   핵심: {selectedHolding.topDrivers.slice(0, 2).join(" · ")}
                 </p>
+              )}
+              {(selectedHolding.technicalExecutionBias ||
+                selectedHolding.technicalReason ||
+                selectedHolding.technicalIndicatorBiases.rsi ||
+                selectedHolding.technicalIndicatorBiases.macd ||
+                selectedHolding.technicalIndicatorBiases.bollinger ||
+                selectedHolding.technicalIndicatorBiases.movingAverage) && (
+                <div className="mt-4 rounded-2xl border border-white/8 bg-black/10 px-3 py-3">
+                  <div className="flex items-center justify-between gap-3">
+                    <p className="text-xs font-medium text-zinc-300">기술 지표 해석</p>
+                    <span
+                      className={`rounded-full border px-2 py-1 text-[11px] ${getBiasClass(
+                        selectedHolding.technicalExecutionBias?.side,
+                      )}`}
+                    >
+                      종합 {selectedHolding.technicalExecutionBias?.label ?? "중립"}
+                    </span>
+                  </div>
+
+                  <div className="mt-3 grid gap-2 md:grid-cols-2">
+                    {[
+                      {
+                        key: "rsi",
+                        label: "RSI",
+                        bias: selectedHolding.technicalIndicatorBiases.rsi,
+                        extra:
+                          selectedHolding.rsiValue != null
+                            ? `RSI ${selectedHolding.rsiValue.toFixed(2)}`
+                            : null,
+                      },
+                      {
+                        key: "macd",
+                        label: "MACD",
+                        bias: selectedHolding.technicalIndicatorBiases.macd,
+                        extra: null,
+                      },
+                      {
+                        key: "bollinger",
+                        label: "볼린저",
+                        bias: selectedHolding.technicalIndicatorBiases.bollinger,
+                        extra: null,
+                      },
+                      {
+                        key: "moving-average",
+                        label: "이평선",
+                        bias: selectedHolding.technicalIndicatorBiases.movingAverage,
+                        extra: null,
+                      },
+                    ]
+                      .filter((item) => item.bias)
+                      .map((item) => (
+                        <div
+                          key={item.key}
+                          className="rounded-xl border border-white/8 bg-white/[0.025] px-3 py-3"
+                        >
+                          <div className="flex items-center justify-between gap-2">
+                            <p className="text-[11px] text-zinc-500">{item.label}</p>
+                            <span
+                              className={`rounded-full border px-2 py-1 text-[11px] ${getBiasClass(
+                                item.bias?.side,
+                              )}`}
+                            >
+                              {item.bias?.label ?? getBiasText(item.bias?.side)}
+                            </span>
+                          </div>
+                          {item.extra && (
+                            <p className="mt-2 text-[11px] text-zinc-500">{item.extra}</p>
+                          )}
+                          <p className="mt-2 text-xs leading-5 text-zinc-300">
+                            {item.bias?.summary ?? "-"}
+                          </p>
+                        </div>
+                      ))}
+                  </div>
+
+                  {selectedHolding.rsiDivergence &&
+                    selectedHolding.rsiDivergence.type !== "none" && (
+                      <p className="mt-3 text-xs text-blue-200">
+                        RSI 다이버전스: {selectedHolding.rsiDivergence.summary}
+                      </p>
+                    )}
+
+                  {selectedHolding.technicalReason && (
+                    <p className="mt-2 text-xs text-zinc-500">
+                      종합 해석: {selectedHolding.technicalReason}
+                    </p>
+                  )}
+                </div>
               )}
               {selectedHolding.warnings.length > 0 && (
                 <p className="mt-1 text-xs text-zinc-500">

@@ -1,0 +1,88 @@
+{
+  "default": {
+    "allowed_tags": [],
+    "forbidden_tags": [
+      "compliance notice",
+      "disclaimer",
+      "목차",
+      "table of contents"
+    ],
+    "second_order_tags": [],
+    "allowed_categories": [],
+    "relation_weights": {
+      "direct": 1,
+      "thematic": 0.72,
+      "second_order": 0.45,
+      "account": 0.2,
+      "blocked": 0
+    }
+  },
+  "assets": {
+    "132030": {
+      "allowed_tags": ["금", "gold", "실질금리", "real rate", "달러", "usd", "중앙은행", "지정학", "인플레이션"],
+      "forbidden_tags": ["인터넷", "커머스", "광고", "방산 실적"],
+      "second_order_tags": ["유가", "리스크 오프", "안전자산"],
+      "allowed_categories": ["금", "금/원자재", "매크로"]
+    },
+    "138910": {
+      "allowed_tags": ["구리", "copper", "산업금속", "재고", "중국 수요", "전력망", "송전망"],
+      "forbidden_tags": ["인터넷", "은행", "광고", "원전 정책"],
+      "second_order_tags": ["전력 인프라", "데이터센터 전력", "capex"],
+      "allowed_categories": ["전력기기", "금/원자재", "매크로"]
+    },
+    "423160": {
+      "allowed_tags": ["kofr", "금리", "변동성", "대기자금", "방어", "현금파킹"],
+      "forbidden_tags": ["개별 종목 실적", "수주", "탑픽", "target price"],
+      "second_order_tags": ["리스크 관리", "현금 비중"],
+      "allowed_categories": ["매크로", "금리/매크로"]
+    },
+    "360750": {
+      "allowed_tags": ["s&p500", "미국 대형주", "미국 증시", "risk on", "ai 인프라", "금리"],
+      "forbidden_tags": ["개별 원전 기자재", "방산 단일 종목"],
+      "second_order_tags": ["달러", "실적 시즌", "매크로"],
+      "allowed_categories": ["매크로", "AI/인프라", "금리/매크로"]
+    },
+    "133690": {
+      "allowed_tags": ["나스닥", "빅테크", "ai", "gpu", "데이터센터", "반도체"],
+      "forbidden_tags": ["방산 수출", "원전 수주", "구리 재고"],
+      "second_order_tags": ["금리", "성장주", "risk on"],
+      "allowed_categories": ["반도체", "AI/인프라", "매크로"]
+    },
+    "458760": {
+      "allowed_tags": ["배당", "커버드콜", "인컴", "변동성 완충", "고배당"],
+      "forbidden_tags": ["원자력 단일 이슈", "구리 재고"],
+      "second_order_tags": ["금리", "변동성", "방어"],
+      "allowed_categories": ["매크로", "금리/매크로"]
+    },
+    "487240": {
+      "allowed_tags": ["전력", "변압기", "송전망", "전력 인프라", "데이터센터 전력", "capex"],
+      "forbidden_tags": ["인터넷 광고", "은행 여신", "금 가격"],
+      "second_order_tags": ["구리", "원전", "ai 인프라"],
+      "allowed_categories": ["전력기기", "AI/인프라", "원자력"]
+    },
+    "449450": {
+      "allowed_tags": ["방산", "국방", "수출", "폴란드", "탄약", "미사일"],
+      "forbidden_tags": ["금 가격", "커머스", "은행 여신"],
+      "second_order_tags": ["지정학", "환율"],
+      "allowed_categories": ["방산", "매크로"]
+    },
+    "434730": {
+      "allowed_tags": ["원자력", "원전", "smr", "에너지 안보", "전력 믹스"],
+      "forbidden_tags": ["인터넷 광고", "은행 여신", "금 가격"],
+      "second_order_tags": ["전력 인프라", "천연가스", "에너지 전환"],
+      "allowed_categories": ["원자력", "전력기기", "매크로"]
+    },
+    "047810": {
+      "allowed_tags": ["한국항공우주", "kfx", "방산", "수출", "항공우주"],
+      "forbidden_tags": ["금 가격", "커머스", "은행 여신"],
+      "second_order_tags": ["지정학", "환율"],
+      "allowed_categories": ["방산"]
+    },
+    "064350": {
+      "allowed_tags": ["현대로템", "방산", "수주", "폴란드", "디펜스솔루션"],
+      "forbidden_tags": ["금 가격", "커머스", "은행 여신"],
+      "second_order_tags": ["지정학", "원자재 가격"],
+      "allowed_categories": ["방산"]
+    }
+  }
+}
