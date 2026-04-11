@@ -341,7 +341,17 @@ async function ensureReportsFallback(args) {
 
 async function ensureMarketFallback(args) {
   const marketPath = path.join(ROOT_DIR, "data", "market", `${args.date}.json`);
-  if (await fileExists(marketPath)) {
+  const currentMarket = await readJson(marketPath, null);
+  const hasUsableMarketPayload = Boolean(
+    currentMarket &&
+      (
+        Object.keys(currentMarket.indices ?? {}).length > 0 ||
+        Object.keys(currentMarket.macro ?? {}).length > 0 ||
+        Object.keys(currentMarket.watchlist ?? {}).length > 0 ||
+        currentMarket.fallback?.recoveredFromDate
+      ),
+  );
+  if (hasUsableMarketPayload) {
     return null;
   }
 
@@ -397,7 +407,16 @@ async function ensureMarketFallback(args) {
 
 async function ensureTechnicalFallback(args) {
   const technicalPath = path.join(ROOT_DIR, "data", "technical", `${args.date}.json`);
-  if (await fileExists(technicalPath)) {
+  const currentTechnical = await readJson(technicalPath, null);
+  const hasUsableTechnicalPayload = Boolean(
+    currentTechnical &&
+      (
+        Object.keys(currentTechnical.scores ?? {}).length > 0 ||
+        Object.keys(currentTechnical.market_context ?? {}).length > 0 ||
+        currentTechnical.fallback?.recoveredFromDate
+      ),
+  );
+  if (hasUsableTechnicalPayload) {
     return null;
   }
 

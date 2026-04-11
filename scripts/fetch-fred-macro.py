@@ -17,10 +17,10 @@ from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import requests
-from dotenv import load_dotenv
+from lib.env_loader import load_simple_dotenv
 
 ROOT = Path(__file__).resolve().parent.parent
-load_dotenv(ROOT / ".env")
+load_simple_dotenv(ROOT / ".env")
 
 FRED_BASE = "https://api.stlouisfed.org/fred/series/observations"
 

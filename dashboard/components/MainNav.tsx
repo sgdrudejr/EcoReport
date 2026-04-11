@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
+  Activity,
   BrainCircuit,
   LayoutGrid,
   PenSquare,
@@ -15,6 +16,7 @@ import {
 const links = [
   { href: "/", label: "대시보드 Test", mobileLabel: "테스트", icon: LayoutGrid },
   { href: "/dashboard", label: "기존 대시보드", mobileLabel: "기존", icon: ScrollText },
+  { href: "/feedback", label: "Feedback", mobileLabel: "피드백", icon: Activity },
   { href: "/portfolio", label: "포트폴리오", mobileLabel: "자산", icon: WalletCards },
   { href: "/portfolio/update", label: "업데이트", mobileLabel: "업데이트", icon: RefreshCw },
   { href: "/manual-llm", label: "LLM 저장", mobileLabel: "AI 노트", icon: BrainCircuit },
@@ -130,7 +132,7 @@ export default function MainNav() {
 
       <div className="pointer-events-none fixed inset-x-0 bottom-0 z-50 px-2.5 pb-[calc(env(safe-area-inset-bottom,0px)+0.6rem)] md:hidden">
         <nav className="pointer-events-auto mx-auto max-w-xl rounded-[1.5rem] border border-slate-200/90 bg-white/96 p-1 shadow-[0_18px_40px_rgba(15,23,42,0.08)] backdrop-blur-2xl">
-          <div className="grid grid-cols-5 gap-1">
+          <div className="grid grid-cols-6 gap-1">
             {links.map((link) => {
               const Icon = link.icon;
               const isActive = isActivePath(pathname, link.href);

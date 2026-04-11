@@ -40,6 +40,9 @@
     "build:context": "node scripts/build-context.js",
     "backtest:collect": "node scripts/backtest-collect.js",
     "backtest:report": "node scripts/backtest-report.js",
+    "feedback:snapshot": "node scripts/build-feedback-snapshot.js",
+    "feedback:analyze": "node scripts/build-feedback-analysis.js",
+    "feedback:report": "node scripts/build-feedback-report.js",
     "verify": "node scripts/verify-daily-system.js",
     "daily": "bash scripts/run-daily-system.sh"
   },

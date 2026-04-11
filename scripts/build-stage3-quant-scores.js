@@ -68,6 +68,12 @@ const DEFAULT_FACTOR_MODEL = {
     income: 0.15,
     macroFit: 0.2,
   },
+  autoAdjust: {
+    enabled: true,
+    source: "data/feedback/latest-feedback.json",
+    primaryHorizonDays: 10,
+    minSamples: 24,
+  },
 };
 
 const DEFAULT_COVARIANCE_MODEL = {
@@ -113,6 +119,14 @@ const DEFAULT_HOLDING_BLEND_MODEL = {
   maxAdjustment: 18,
   gateMode: "sameSignal",
   minFactorDistance: 8,
+};
+
+const DEFAULT_STOP_LOSS_CONFIG = {
+  enabled: true,
+  fromEntry_pct: -0.1,
+  fromRecentHigh_pct: -0.15,
+  recentHighWindow: 20,
+  forcedTrimScore: 35,
 };
 
 const STAGE2_SCORE_BY_BIAS = {
@@ -1005,7 +1019,14 @@ function computeRiskPenalty({
   };
 }
 
-function holdingExplanation(holding, technicalItem, reportImpact, action, finalAction = null) {
+function holdingExplanation(
+  holding,
+  technicalItem,
+  reportImpact,
+  action,
+  finalAction = null,
+  stopLoss = null,
+) {
   const topDrivers = [];
   const warnings = [];
   const effectiveAction = finalAction ?? action;
@@ -1031,6 +1052,11 @@ function holdingExplanation(holding, technicalItem, reportImpact, action, finalA
 
   if (effectiveAction?.signal === "REDUCE" || effectiveAction?.signal === "WATCH") {
     warnings.push(`${effectiveAction.signal} 구간이라 비중 확대보다 관찰/점검이 우선입니다.`);
+  }
+
+  if (stopLoss?.triggered) {
+    warnings.push("손절 규칙이 발동해 최종 신호를 강제 Trim 구간으로 낮췄습니다.");
+    topDrivers.push("손절 오버라이드 적용");
   }
 
   return { topDrivers, warnings };
@@ -1225,6 +1251,122 @@ function blendHoldingActionScore({
   };
 }
 
+function deriveHoldingEntryPrice(holding) {
+  if (typeof holding?.avgPrice === "number" && Number.isFinite(holding.avgPrice)) {
+    return holding.avgPrice;
+  }
+
+  if (
+    typeof holding?.purchaseValue === "number" &&
+    Number.isFinite(holding.purchaseValue) &&
+    typeof holding?.quantity === "number" &&
+    Number.isFinite(holding.quantity) &&
+    holding.quantity > 0
+  ) {
+    return holding.purchaseValue / holding.quantity;
+  }
+
+  return null;
+}
+
+function applyStopLossOverride({
+  holding,
+  technicalItem,
+  finalAction,
+  stopLossConfig,
+}) {
+  const config = {
+    ...DEFAULT_STOP_LOSS_CONFIG,
+    ...(stopLossConfig ?? {}),
+  };
+  const entryPrice = deriveHoldingEntryPrice(holding);
+  const currentPrice =
+    technicalItem?.close ??
+    (typeof holding?.currentPrice === "number" ? holding.currentPrice : null);
+  const recentHigh = technicalItem?.recent_high?.value ?? null;
+  const drawdownFromEntry =
+    entryPrice != null && currentPrice != null && entryPrice !== 0
+      ? currentPrice / entryPrice - 1
+      : null;
+  const drawdownFromRecentHigh =
+    recentHigh != null && currentPrice != null && recentHigh !== 0
+      ? currentPrice / recentHigh - 1
+      : null;
+  const triggers = [];
+
+  if (
+    config.enabled !== false &&
+    drawdownFromEntry != null &&
+    drawdownFromEntry <= (config.fromEntry_pct ?? DEFAULT_STOP_LOSS_CONFIG.fromEntry_pct)
+  ) {
+    triggers.push({
+      type: "entry_drawdown",
+      thresholdPct: config.fromEntry_pct ?? DEFAULT_STOP_LOSS_CONFIG.fromEntry_pct,
+      observedPct: toRoundedNumber(drawdownFromEntry, 4),
+    });
+  }
+
+  if (
+    config.enabled !== false &&
+    drawdownFromRecentHigh != null &&
+    drawdownFromRecentHigh <=
+      (config.fromRecentHigh_pct ?? DEFAULT_STOP_LOSS_CONFIG.fromRecentHigh_pct)
+  ) {
+    triggers.push({
+      type: "recent_high_drawdown",
+      thresholdPct:
+        config.fromRecentHigh_pct ?? DEFAULT_STOP_LOSS_CONFIG.fromRecentHigh_pct,
+      observedPct: toRoundedNumber(drawdownFromRecentHigh, 4),
+      recentHighWindow:
+        technicalItem?.recent_high?.window ??
+        config.recentHighWindow ??
+        DEFAULT_STOP_LOSS_CONFIG.recentHighWindow,
+    });
+  }
+
+  if (!triggers.length) {
+    return {
+      finalAction,
+      stopLoss: {
+        enabled: config.enabled !== false,
+        triggered: false,
+        entryPrice: toRoundedNumber(entryPrice, 4),
+        currentPrice: toRoundedNumber(currentPrice, 4),
+        recentHigh: toRoundedNumber(recentHigh, 4),
+        drawdownFromEntryPct: toRoundedNumber(drawdownFromEntry, 4),
+        drawdownFromRecentHighPct: toRoundedNumber(drawdownFromRecentHigh, 4),
+        triggers: [],
+      },
+    };
+  }
+
+  const forcedScore = Math.min(
+    finalAction.score,
+    config.forcedTrimScore ?? DEFAULT_STOP_LOSS_CONFIG.forcedTrimScore,
+  );
+  return {
+    finalAction: {
+      ...finalAction,
+      score: forcedScore,
+      signal: actionSignalFromScore(forcedScore),
+      stopLossApplied: true,
+      stopLossTriggers: triggers,
+    },
+    stopLoss: {
+      enabled: true,
+      triggered: true,
+      entryPrice: toRoundedNumber(entryPrice, 4),
+      currentPrice: toRoundedNumber(currentPrice, 4),
+      recentHigh: toRoundedNumber(recentHigh, 4),
+      drawdownFromEntryPct: toRoundedNumber(drawdownFromEntry, 4),
+      drawdownFromRecentHighPct: toRoundedNumber(drawdownFromRecentHigh, 4),
+      forcedScore,
+      forcedSignal: actionSignalFromScore(forcedScore),
+      triggers,
+    },
+  };
+}
+
 function computeFactorRawInputs({
   technicalItem,
   reportImpact,
@@ -1324,6 +1466,123 @@ function computeCrossSectionalFactorScores(positionRows, factorModel) {
         },
       ]),
     ),
+  };
+}
+
+function normalizeFactorWeights(weights) {
+  const safeWeights = Object.fromEntries(
+    Object.entries(weights ?? {}).map(([key, value]) => [
+      key,
+      typeof value === "number" && Number.isFinite(value) ? Math.max(value, 0) : 0,
+    ]),
+  );
+  const total = Object.values(safeWeights).reduce((sum, value) => sum + value, 0);
+  if (total <= 1e-9) return safeWeights;
+
+  return Object.fromEntries(
+    Object.entries(safeWeights).map(([key, value]) => [key, toRoundedNumber(value / total, 4)]),
+  );
+}
+
+async function resolveFeedbackAdjustedFactorModel(strategy) {
+  const configuredModel = {
+    ...DEFAULT_FACTOR_MODEL,
+    ...(strategy?.scoring?.factorModel ?? {}),
+    autoAdjust: {
+      ...DEFAULT_FACTOR_MODEL.autoAdjust,
+      ...(strategy?.scoring?.factorModel?.autoAdjust ?? {}),
+    },
+    weights: normalizeFactorWeights({
+      ...DEFAULT_FACTOR_MODEL.weights,
+      ...(strategy?.scoring?.factorModel?.weights ?? {}),
+    }),
+  };
+
+  if (configuredModel.autoAdjust?.enabled === false) {
+    return {
+      factorModel: configuredModel,
+      autoAdjustMeta: {
+        enabled: false,
+        applied: false,
+        reason: "disabled_in_config",
+        baseWeights: configuredModel.weights,
+        appliedWeights: configuredModel.weights,
+      },
+    };
+  }
+
+  const sourcePath = path.join(
+    ROOT_DIR,
+    configuredModel.autoAdjust?.source ?? DEFAULT_FACTOR_MODEL.autoAdjust.source,
+  );
+  const feedback = await readJson(sourcePath, null);
+  const suggestedWeights = feedback?.autoAdjustment?.suggestedWeights ?? null;
+  const minSamples = configuredModel.autoAdjust?.minSamples ?? 24;
+  const readyFactors = feedback?.autoAdjustment?.readyFactors ?? 0;
+
+  if (!suggestedWeights || readyFactors <= 0) {
+    return {
+      factorModel: configuredModel,
+      autoAdjustMeta: {
+        enabled: true,
+        applied: false,
+        reason: "no_feedback_suggestion",
+        baseWeights: configuredModel.weights,
+        appliedWeights: configuredModel.weights,
+        source: configuredModel.autoAdjust?.source ?? null,
+      },
+    };
+  }
+
+  const eligibleFactors = Object.values(
+    feedback?.factorPredictivePower ?? {},
+  ).filter(
+    (metric) =>
+      (metric?.[`ret_${configuredModel.autoAdjust?.primaryHorizonDays ?? 10}d`]?.sampleCount ??
+        0) >= minSamples,
+  ).length;
+
+  if (eligibleFactors <= 0) {
+    return {
+      factorModel: configuredModel,
+      autoAdjustMeta: {
+        enabled: true,
+        applied: false,
+        reason: "insufficient_samples",
+        baseWeights: configuredModel.weights,
+        appliedWeights: configuredModel.weights,
+        source: configuredModel.autoAdjust?.source ?? null,
+        minSamples,
+      },
+    };
+  }
+
+  const appliedWeights = normalizeFactorWeights({
+    ...configuredModel.weights,
+    ...suggestedWeights,
+  });
+
+  return {
+    factorModel: {
+      ...configuredModel,
+      weights: appliedWeights,
+    },
+    autoAdjustMeta: {
+      enabled: true,
+      applied: true,
+      reason: "feedback_latest",
+      source: configuredModel.autoAdjust?.source ?? null,
+      analysisDate: feedback?.analysisDate ?? null,
+      primaryHorizonDays:
+        feedback?.autoAdjustment?.primaryHorizonDays ??
+        configuredModel.autoAdjust?.primaryHorizonDays ??
+        null,
+      minSamples,
+      baseWeights: configuredModel.weights,
+      appliedWeights,
+      suggestedWeights: normalizeFactorWeights(suggestedWeights),
+      deltas: feedback?.autoAdjustment?.deltas ?? null,
+    },
   };
 }
 
@@ -1475,14 +1734,7 @@ async function main() {
   const technicalMap = technical.scores ?? {};
   const referenceDate = new Date(`${args.date}T00:00:00Z`);
   const profileName = chooseWeightProfile(strategy, regime);
-  const factorModel = {
-    ...DEFAULT_FACTOR_MODEL,
-    ...(strategy?.scoring?.factorModel ?? {}),
-    weights: {
-      ...DEFAULT_FACTOR_MODEL.weights,
-      ...(strategy?.scoring?.factorModel?.weights ?? {}),
-    },
-  };
+  const { factorModel, autoAdjustMeta } = await resolveFeedbackAdjustedFactorModel(strategy);
   const covarianceModel = {
     ...DEFAULT_COVARIANCE_MODEL,
     ...(strategy?.scoring?.covarianceModel ?? {}),
@@ -1502,6 +1754,10 @@ async function main() {
   const holdingBlendConfig = {
     ...DEFAULT_HOLDING_BLEND_MODEL,
     ...(strategy?.scoring?.holdingBlend ?? {}),
+  };
+  const stopLossConfig = {
+    ...DEFAULT_STOP_LOSS_CONFIG,
+    ...(strategy?.stopLoss ?? {}),
   };
   const riskCaps = {
     ...DEFAULT_RISK_CAPS,
@@ -1603,12 +1859,20 @@ async function main() {
   const bestHoldingWeightByCode = new Map();
 
   for (const row of positionRows) {
-    row.finalAction = blendHoldingActionScore({
+    const blendedAction = blendHoldingActionScore({
       rawActionScore: row.computed.actionScore,
       factorScore: row.factor?.score,
       factorCoverage: row.factor?.factorCoverage,
       holdingBlendConfig,
     });
+    const stopLossApplied = applyStopLossOverride({
+      holding: row.holding,
+      technicalItem: row.technicalItem,
+      finalAction: blendedAction,
+      stopLossConfig,
+    });
+    row.finalAction = stopLossApplied.finalAction;
+    row.stopLoss = stopLossApplied.stopLoss;
   }
 
   for (const row of positionRows) {
@@ -1643,6 +1907,8 @@ async function main() {
         rsi: row.technicalItem?.rsi ?? null,
         macd: row.technicalItem?.macd ?? null,
         bollinger: row.technicalItem?.bollinger ?? null,
+        atr: row.technicalItem?.atr ?? null,
+        recentHigh: row.technicalItem?.recent_high ?? null,
         volumeRatio: row.technicalItem?.volume_ratio ?? null,
       },
       report: {
@@ -1657,6 +1923,7 @@ async function main() {
       },
       factor: row.factor,
       actionBlend: row.finalAction,
+      stopLoss: row.stopLoss,
       scores: {
         factorScore: row.factor.score,
         techScore: row.technicalBaseScore,
@@ -1670,6 +1937,7 @@ async function main() {
         row.reportImpact,
         row.computed,
         row.finalAction,
+        row.stopLoss,
       ),
     };
     positionScores[row.positionKey] = payload;
@@ -1901,7 +2169,13 @@ async function main() {
     configUsed: {
       weightProfile: profileName,
       maxWeights: MAX_WEIGHT_PROFILES[profileName],
-      factorModel,
+      factorModel: {
+        ...factorModel,
+        baseWeights: autoAdjustMeta?.baseWeights ?? factorModel.weights,
+        appliedWeights: autoAdjustMeta?.appliedWeights ?? factorModel.weights,
+        autoAdjust: autoAdjustMeta,
+      },
+      stopLoss: stopLossConfig,
       holdingBlend: holdingBlendConfig,
       covarianceModel,
       taxAware: {

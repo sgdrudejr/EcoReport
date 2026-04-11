@@ -17,6 +17,215 @@ import {
   writeText,
 } from "./lib/pipeline-utils.js";
 
+const DEFAULT_POSITION_SIZING = {
+  method: "inverse_atr",
+  maxSinglePosition_pct: 0.3,
+  correlationThreshold: 0.85,
+  correlationHaircut: 0.5,
+  minAtrPct: 0.01,
+  fallbackMethod: "ranked",
+};
+
+const DEFAULT_ENTRY_CONDITIONS = {
+  aggressiveBuyMinScore: 68,
+  watchMinScore: 50,
+  oversoldRsi: 30,
+  overheatRsi: 50,
+  emergencyDefenseVix: 35,
+  emergencyDefenseDailyDropPct: -0.03,
+  fallbackUrgency: "next_tranche",
+};
+
+function clamp(value, min, max) {
+  return Math.min(Math.max(value, min), max);
+}
+
+function roundNumber(value, digits = 4) {
+  if (typeof value !== "number" || Number.isNaN(value) || !Number.isFinite(value)) {
+    return null;
+  }
+  return Number(value.toFixed(digits));
+}
+
+function safeCategory(accountKey, code) {
+  return (
+    CATEGORY_BY_CODE[code]?.[accountKey] ??
+    CATEGORY_BY_CODE[code]?.default ??
+    "기타"
+  );
+}
+
+function holdingEntryPrice(holding) {
+  if (typeof holding?.avgPrice === "number" && Number.isFinite(holding.avgPrice)) {
+    return holding.avgPrice;
+  }
+  if (
+    typeof holding?.purchaseValue === "number" &&
+    typeof holding?.quantity === "number" &&
+    holding.quantity > 0
+  ) {
+    return holding.purchaseValue / holding.quantity;
+  }
+  return null;
+}
+
+function mean(values) {
+  if (!values.length) return null;
+  return values.reduce((sum, value) => sum + value, 0) / values.length;
+}
+
+function sampleStd(values, center = mean(values) ?? 0) {
+  if (values.length <= 1) return 0;
+  const variance =
+    values.reduce((sum, value) => sum + (value - center) ** 2, 0) /
+    Math.max(values.length - 1, 1);
+  return Math.sqrt(Math.max(variance, 0));
+}
+
+function pairwiseCorrelation(leftSeries, rightSeries) {
+  const minLength = Math.min(leftSeries?.length ?? 0, rightSeries?.length ?? 0);
+  if (minLength < 10) return null;
+  const left = leftSeries.slice(-minLength);
+  const right = rightSeries.slice(-minLength);
+  const meanLeft = mean(left);
+  const meanRight = mean(right);
+  if (meanLeft == null || meanRight == null) return null;
+  const stdLeft = sampleStd(left, meanLeft);
+  const stdRight = sampleStd(right, meanRight);
+  if (stdLeft <= 1e-9 || stdRight <= 1e-9) return null;
+
+  let covariance = 0;
+  for (let index = 0; index < minLength; index += 1) {
+    covariance += (left[index] - meanLeft) * (right[index] - meanRight);
+  }
+  return covariance / ((minLength - 1) * stdLeft * stdRight);
+}
+
+function detectEmergencyDefense({ quant, market, entryConfig }) {
+  const vix =
+    market?.macro?.VIX?.close ??
+    quant?.regime?.market_context?.vix ??
+    null;
+  const marketDrops = Object.values(market?.indices ?? {})
+    .map((item) => item?.change_pct)
+    .filter((value) => typeof value === "number");
+  const worstIndexDrop = marketDrops.length ? Math.min(...marketDrops) : null;
+  const triggers = [];
+
+  if (
+    typeof vix === "number" &&
+    vix >=
+      (entryConfig.emergencyDefenseVix ??
+        DEFAULT_ENTRY_CONDITIONS.emergencyDefenseVix)
+  ) {
+    triggers.push(`VIX ${roundNumber(vix, 2)} >= ${entryConfig.emergencyDefenseVix}`);
+  }
+  if (
+    typeof worstIndexDrop === "number" &&
+    worstIndexDrop <=
+      (entryConfig.emergencyDefenseDailyDropPct ??
+        DEFAULT_ENTRY_CONDITIONS.emergencyDefenseDailyDropPct)
+  ) {
+    triggers.push(
+      `시장 낙폭 ${roundNumber(worstIndexDrop * 100, 2)}% <= ${roundNumber(
+        (entryConfig.emergencyDefenseDailyDropPct ?? -0.03) * 100,
+        2,
+      )}%`,
+    );
+  }
+
+  return {
+    enabled: triggers.length > 0,
+    vix: roundNumber(vix, 2),
+    worstIndexDropPct: roundNumber(
+      typeof worstIndexDrop === "number" ? worstIndexDrop * 100 : null,
+      2,
+    ),
+    triggers,
+    marketDataAvailable:
+      typeof vix === "number" || typeof worstIndexDrop === "number",
+  };
+}
+
+function classifyEntryCondition({ score, technicalItem, emergencyDefense, entryConfig }) {
+  if (emergencyDefense?.enabled) {
+    return {
+      entryCondition: "emergency_defense",
+      urgency: "on_hold",
+      conditionMet: false,
+      entryTriggers: emergencyDefense.triggers,
+      fallback: false,
+    };
+  }
+
+  const rsi = technicalItem?.rsi ?? null;
+  const bollingerPosition = technicalItem?.bollinger?.position ?? null;
+  const triggers = [];
+  const scoreAvailable = typeof score === "number" && Number.isFinite(score);
+  const strongScore =
+    scoreAvailable &&
+    score >=
+      (entryConfig.aggressiveBuyMinScore ??
+        DEFAULT_ENTRY_CONDITIONS.aggressiveBuyMinScore);
+  const watchScore =
+    scoreAvailable &&
+    score >= (entryConfig.watchMinScore ?? DEFAULT_ENTRY_CONDITIONS.watchMinScore);
+  const oversold =
+    typeof rsi === "number" &&
+    rsi < (entryConfig.oversoldRsi ?? DEFAULT_ENTRY_CONDITIONS.oversoldRsi) &&
+    bollingerPosition === "below_lower";
+  const overheated =
+    (typeof rsi === "number" &&
+      rsi > (entryConfig.overheatRsi ?? DEFAULT_ENTRY_CONDITIONS.overheatRsi)) ||
+    bollingerPosition === "above_upper";
+
+  if (typeof rsi === "number") {
+    triggers.push(`RSI ${roundNumber(rsi, 1)}`);
+  }
+  if (bollingerPosition) {
+    triggers.push(`볼린저 ${bollingerPosition}`);
+  }
+
+  if (strongScore && oversold) {
+    return {
+      entryCondition: "aggressive",
+      urgency: "immediate",
+      conditionMet: true,
+      entryTriggers: triggers,
+      fallback: false,
+    };
+  }
+
+  if (strongScore) {
+    return {
+      entryCondition: overheated ? "dca_keep" : "qualified",
+      urgency: "next_tranche",
+      conditionMet: !overheated,
+      entryTriggers: triggers,
+      fallback: false,
+    };
+  }
+
+  if (watchScore) {
+    return {
+      entryCondition: "watch",
+      urgency: "this_week",
+      conditionMet: false,
+      entryTriggers: triggers,
+      fallback: false,
+    };
+  }
+
+  return {
+    entryCondition: "technical_fallback",
+    urgency: entryConfig.fallbackUrgency ?? DEFAULT_ENTRY_CONDITIONS.fallbackUrgency,
+    conditionMet: false,
+    entryTriggers:
+      triggers.length > 0 ? triggers : ["기술 조건 또는 점수가 충분하지 않음"],
+    fallback: true,
+  };
+}
+
 function normalizeStrategyAccountKey(account, strategy) {
   const candidates = [
     account.key,
@@ -41,10 +250,7 @@ function buildCategoryGaps(account, strategy) {
   const totalAssets = Math.max(account.evaluationAmount ?? 0, holdingsValue + (account.cashAvailable ?? 0));
   const amounts = new Map();
   for (const holding of account.holdings ?? []) {
-    const category =
-      CATEGORY_BY_CODE[holding.code]?.[account.key] ??
-      CATEGORY_BY_CODE[holding.code]?.default ??
-      "기타";
+    const category = safeCategory(account.key, holding.code);
     amounts.set(category, (amounts.get(category) ?? 0) + (holding.marketValue ?? 0));
   }
   if (targetAllocation["현금파킹"] != null) {
@@ -63,7 +269,7 @@ function buildCategoryGaps(account, strategy) {
     .sort((left, right) => right.gapAmount - left.gapAmount);
 }
 
-function executionBuckets(account, quant, stage2Action, strategy) {
+function executionBuckets(account, quant, stage2Action, strategy, technicalMap) {
   const gaps = buildCategoryGaps(account, strategy);
   const nextTranchePct =
     strategy?.dca_plan?.schedule?.find((item) => item.status !== "done" && item.status !== "completed")?.pct ?? 0.25;
@@ -80,11 +286,19 @@ function executionBuckets(account, quant, stage2Action, strategy) {
       quant.positions?.[`${account.key}:${holding.code}`] ??
       quant.holdings?.[holding.code] ??
       null;
+    const technicalItem = technicalMap?.[holding.code] ?? null;
     const score = quantHolding?.actionScore ?? 50;
     const entry = {
       code: holding.code,
       name: holding.name,
       score,
+      accountKey: account.key,
+      currentPrice: holding.currentPrice ?? technicalItem?.close ?? null,
+      entryPrice: holdingEntryPrice(holding),
+      atrPct: technicalItem?.atr?.pct ?? null,
+      rsi: technicalItem?.rsi ?? null,
+      bollingerPosition: technicalItem?.bollinger?.position ?? null,
+      stopLoss: quantHolding?.stopLoss ?? null,
       reason: quantHolding?.reportImpacts?.[0]?.reason ?? quantHolding?.technicalSignal ?? "점수 기반 분류",
     };
     if (score >= 68) buy.push(entry);
@@ -107,6 +321,11 @@ function executionBuckets(account, quant, stage2Action, strategy) {
     hold,
     watch,
     candidateFromGap,
+    totalAssets: Math.max(
+      account.evaluationAmount ?? 0,
+      (account.holdings ?? []).reduce((sum, holding) => sum + (holding.marketValue ?? 0), 0) +
+        (account.cashAvailable ?? 0),
+    ),
   };
 }
 
@@ -166,7 +385,96 @@ function resolveStage2Candidates(account, stage2Data, bucket) {
   }));
 }
 
-function distributeBudget(bucket, stage2Candidates = []) {
+function maxCorrelationToPortfolio(code, account, technicalMap) {
+  const candidateReturns = technicalMap?.[code]?.daily_returns ?? [];
+  if (candidateReturns.length < 10) return null;
+
+  const correlations = (account.holdings ?? [])
+    .filter((holding) => holding.code && holding.code !== code)
+    .map((holding) =>
+      pairwiseCorrelation(candidateReturns, technicalMap?.[holding.code]?.daily_returns ?? []),
+    )
+    .filter((value) => typeof value === "number");
+
+  if (!correlations.length) return null;
+  return correlations.reduce(
+    (max, value) => (Math.abs(value) > Math.abs(max) ? value : max),
+    correlations[0],
+  );
+}
+
+function buildCandidateProfile(item, account, quant, technicalMap, entryConfig, emergencyDefense) {
+  const quantHolding =
+    quant.positions?.[`${account.key}:${item.code}`] ??
+    quant.holdings?.[item.code] ??
+    null;
+  const technicalItem = item.code ? technicalMap?.[item.code] ?? null : null;
+  const condition = classifyEntryCondition({
+    score: item.score ?? quantHolding?.actionScore ?? null,
+    technicalItem,
+    emergencyDefense,
+    entryConfig,
+  });
+
+  return {
+    ...item,
+    score: item.score ?? quantHolding?.actionScore ?? null,
+    technical: {
+      rsi: technicalItem?.rsi ?? null,
+      bollingerPosition: technicalItem?.bollinger?.position ?? null,
+      atrPct: technicalItem?.atr?.pct ?? null,
+      dayChangePct: technicalItem?.change_pct ?? null,
+      fallback: technicalItem?.fallback ?? null,
+    },
+    currentPrice: technicalItem?.close ?? null,
+    maxCorrelationToPortfolio: item.code
+      ? roundNumber(maxCorrelationToPortfolio(item.code, account, technicalMap), 4)
+      : null,
+    entryCondition: condition.entryCondition,
+    entryTriggers: condition.entryTriggers,
+    urgency: condition.urgency,
+    conditionMet: condition.conditionMet,
+    fallback: condition.fallback,
+  };
+}
+
+function computeSizingWeights(candidates, positionSizing) {
+  if (!candidates.length) return [];
+  if (
+    positionSizing.method === "inverse_atr" &&
+    candidates.every(
+      (item) =>
+        typeof item.technical?.atrPct === "number" &&
+        item.technical.atrPct > 0,
+    )
+  ) {
+    const atrFloor = positionSizing.minAtrPct ?? DEFAULT_POSITION_SIZING.minAtrPct;
+    const rawWeights = candidates.map((item) => 1 / Math.max(item.technical.atrPct, atrFloor));
+    const total = rawWeights.reduce((sum, value) => sum + value, 0) || 1;
+    return rawWeights.map((value) => value / total);
+  }
+
+  if (positionSizing.fallbackMethod === "equal") {
+    return candidates.map(() => 1 / candidates.length);
+  }
+
+  return candidates.length === 1
+    ? [1]
+    : candidates.length === 2
+      ? [0.6, 0.4]
+      : [0.5, 0.3, 0.2].slice(0, candidates.length);
+}
+
+function distributeBudget({
+  bucket,
+  account,
+  quant,
+  technicalMap,
+  stage2Candidates = [],
+  positionSizing,
+  entryConfig,
+  emergencyDefense,
+}) {
   const fallbackCandidates =
     bucket.candidateFromGap != null
       ? [
@@ -181,12 +489,55 @@ function distributeBudget(bucket, stage2Candidates = []) {
         ]
       : bucket.buy.slice(0, 3);
   const candidates = stage2Candidates.length > 0 ? stage2Candidates : fallbackCandidates;
-  if (bucket.deployBudget <= 0 || candidates.length === 0) return [];
-  const weights = candidates.length === 1 ? [1] : candidates.length === 2 ? [0.6, 0.4] : [0.5, 0.3, 0.2];
-  return candidates.map((item, index) => ({
-    ...item,
-    suggestedAmount: Math.round(bucket.deployBudget * weights[index]),
-  }));
+  if (bucket.deployBudget <= 0 || candidates.length === 0 || emergencyDefense?.enabled) return [];
+
+  const profiled = candidates.map((item) =>
+    buildCandidateProfile(item, account, quant, technicalMap, entryConfig, emergencyDefense),
+  );
+  const weights = computeSizingWeights(profiled, positionSizing);
+
+  return profiled.map((item, index) => {
+    const rawAmount = Math.round(bucket.deployBudget * (weights[index] ?? 0));
+    const correlation =
+      typeof item.maxCorrelationToPortfolio === "number"
+        ? Math.abs(item.maxCorrelationToPortfolio)
+        : null;
+    const correlationHaircutApplied =
+      correlation != null &&
+      correlation >=
+        (positionSizing.correlationThreshold ??
+          DEFAULT_POSITION_SIZING.correlationThreshold);
+    let suggestedAmount = correlationHaircutApplied
+      ? Math.round(
+          rawAmount *
+            (positionSizing.correlationHaircut ??
+              DEFAULT_POSITION_SIZING.correlationHaircut),
+        )
+      : rawAmount;
+
+    const currentMarketValue =
+      (account.holdings ?? []).find((holding) => holding.code === item.code)?.marketValue ?? 0;
+    const maxSinglePositionAmount = Math.round(
+      bucket.totalAssets *
+        (positionSizing.maxSinglePosition_pct ??
+          DEFAULT_POSITION_SIZING.maxSinglePosition_pct),
+    );
+    const remainingRoom = Math.max(maxSinglePositionAmount - currentMarketValue, 0);
+    suggestedAmount = Math.min(suggestedAmount, remainingRoom);
+
+    return {
+      ...item,
+      sizingMethod:
+        typeof item.technical?.atrPct === "number" &&
+        positionSizing.method === "inverse_atr"
+          ? "inverse_atr"
+          : positionSizing.fallbackMethod ?? DEFAULT_POSITION_SIZING.fallbackMethod,
+      baseSuggestedAmount: rawAmount,
+      suggestedAmount,
+      correlationHaircutApplied,
+      maxSinglePositionAmount,
+    };
+  }).filter((item) => item.suggestedAmount > 0);
 }
 
 function summarizeMacroTheme(stage2Data) {
@@ -343,7 +694,9 @@ function buildMacroCommentary({
   ].filter(Boolean);
 
   const actionLine =
-    bucket.deployBudget > 0 && (bucket.topGap || firstBuy)
+    bucket.emergencyDefense?.enabled
+      ? `${account.label}은 긴급 방어 모드라 신규 매수보다 현금 비중 유지와 기존 포지션 점검이 우선입니다.`
+      : bucket.deployBudget > 0 && (bucket.topGap || firstBuy)
       ? `${account.label}은 ${bucket.topGap?.category ?? "핵심 자산"}을 우선 보강하고, ${
           firstBuy?.name ?? bucket.candidateFromGap ?? "선별 후보"
         }를 중심으로 ${won(bucket.deployBudget)} 한도에서 분할 접근하는 편이 좋습니다.`
@@ -373,29 +726,55 @@ function buildMacroCommentary({
 async function main() {
   const args = parseDateArgs(process.argv.slice(2));
   const stateDir = path.join(ROOT_DIR, "data", "analysis-state", args.date);
-  const [portfolio, strategy, stage1, stage2, quant, impactMap] = await Promise.all([
+  const [portfolio, strategy, stage1, stage2, quant, impactMap, technical, market] = await Promise.all([
     readJson(path.join(ROOT_DIR, "data", "portfolio", "latest.json"), { accounts: [] }),
     readJson(path.join(ROOT_DIR, "config", "strategy.json"), { accounts: {} }),
     readJson(path.join(stateDir, "stage1-report-extracts-v2.json"), { extracts: [] }),
     readJson(path.join(stateDir, "stage2-strategy-options.json"), null),
     readJson(path.join(stateDir, "stage3-quant-scores.json"), { holdings: {}, accounts: {}, portfolio: {} }),
     readJson(path.join(stateDir, "impact-map.json"), { reports: [] }),
+    readJson(path.join(ROOT_DIR, "data", "technical", `${args.date}.json`), { scores: {}, market_context: {} }),
+    readJson(path.join(ROOT_DIR, "data", "market", `${args.date}.json`), { indices: {}, macro: {}, watchlist: {} }),
   ]);
   const stage2Data = stage2 ?? (await readJson(path.join(stateDir, "stage2-strategy-options.mock.json"), { account_actions: [], strategy_changes: [] }));
   const normalizedPortfolio = enrichPortfolioWithSecurityCodes(portfolio);
+  const technicalMap = technical.scores ?? {};
+  const positionSizing = {
+    ...DEFAULT_POSITION_SIZING,
+    ...(strategy?.positionSizing ?? {}),
+  };
+  const entryConfig = {
+    ...DEFAULT_ENTRY_CONDITIONS,
+    ...(strategy?.entryConditions ?? {}),
+  };
+  const emergencyDefense = detectEmergencyDefense({
+    quant,
+    market,
+    entryConfig,
+  });
 
   const accountPlans = (normalizedPortfolio.accounts ?? []).map((account) => {
     const stage2Action =
       stage2Data.account_actions?.find((item) => item.account_key === account.key || item.account_key === normalizeStrategyAccountKey(account)) ??
       null;
-    const bucket = executionBuckets(account, quant, stage2Action, strategy);
+    const bucket = executionBuckets(account, quant, stage2Action, strategy, technicalMap);
+    bucket.emergencyDefense = emergencyDefense;
     const stage2Candidates = resolveStage2Candidates(account, stage2Data, bucket);
     bucket.stage2Candidates = stage2Candidates;
     const stage1Drivers = stage1.extracts
       .filter((item) => item.related_accounts?.includes(account.key))
       .slice(0, 4)
       .map((item) => ({ id: item.id, title: item.title, thesis: item.key_thesis }));
-    const stagedBuys = distributeBudget(bucket, stage2Candidates);
+    const stagedBuys = distributeBudget({
+      bucket,
+      account,
+      quant,
+      technicalMap,
+      stage2Candidates,
+      positionSizing,
+      entryConfig,
+      emergencyDefense,
+    });
     const macroCommentary = buildMacroCommentary({
       account,
       bucket,
@@ -409,8 +788,9 @@ async function main() {
       label: account.label,
       totalScore: quant.accounts?.[account.key]?.totalScore ?? 50,
       stage2Bias: bucket.stage2Bias,
-      deployBudget: bucket.deployBudget,
-      reserveCash: bucket.reserveCash,
+      deployBudget: emergencyDefense.enabled ? 0 : bucket.deployBudget,
+      plannedDeployBudget: bucket.deployBudget,
+      reserveCash: emergencyDefense.enabled ? account.cashAvailable ?? 0 : bucket.reserveCash,
       topGap: bucket.topGap,
       candidateFromGap: bucket.candidateFromGap,
       stage2Candidates,
@@ -420,6 +800,12 @@ async function main() {
       watches: bucket.watch.slice(0, 3),
       macroCommentary,
       stage1Drivers,
+      emergencyDefense,
+      technicalFallback:
+        technical?.fallback?.recoveredFromDate == null &&
+        Object.keys(technicalMap).length === 0
+          ? technical?.fallback ?? { kind: "technical", reason: "no_technical_data" }
+          : technical?.fallback ?? null,
     };
   });
 
@@ -434,6 +820,11 @@ async function main() {
     ...runMeta,
     portfolioScore: quant.portfolio?.totalScore ?? 50,
     regime: quant.regime ?? null,
+    emergencyDefense,
+    positionSizing,
+    entryConditions: entryConfig,
+    technicalFallback: technical?.fallback ?? null,
+    marketFallback: market?.fallback ?? null,
     accountPlans,
   };
 
@@ -448,25 +839,27 @@ async function main() {
     `- run_id: ${runMeta.runId ?? "N/A"}`,
     `- 포트폴리오 총점: ${quant.portfolio?.totalScore ?? "N/A"}점`,
     `- 레짐: ${quant.regime?.name ?? "N/A"} (신뢰도 ${regimeConfidence})`,
+    `- 긴급 방어 모드: ${emergencyDefense.enabled ? `YES / ${emergencyDefense.triggers.join(", ")}` : "NO"}`,
     "",
     ...accountPlans.flatMap((account) => [
       `## ${account.label} (${account.key})`,
       `- 계좌 총점: ${account.totalScore}점`,
       `- Stage 2 bias: ${account.stage2Bias}`,
-      `- 이번 단계 투입 가능 금액: ${won(account.deployBudget)}`,
+      `- 이번 단계 투입 가능 금액: ${won(account.deployBudget)}${account.plannedDeployBudget !== account.deployBudget ? ` (원안 ${won(account.plannedDeployBudget)})` : ""}`,
       `- 남길 예수금: ${won(account.reserveCash)}`,
       `- 가장 부족한 자산군: ${account.topGap ? `${account.topGap.category} / ${won(Math.max(account.topGap.gapAmount, 0))}` : "없음"}`,
       `- 우선 보강 후보: ${account.candidateFromGap ?? "없음"}`,
       `- 매크로 → 자산군 → 액션: ${account.macroCommentary?.actionLine ?? "요약 없음"}`,
+      ...(account.technicalFallback ? [`- 기술 폴백: ${account.technicalFallback.reason ?? "no technical"}${account.technicalFallback.recoveredFromDate ? ` / ${account.technicalFallback.recoveredFromDate} 기준 복구` : ""}`] : []),
       "",
       "### 1차 실행",
       ...(account.stagedBuys.length > 0
-        ? account.stagedBuys.map((item) => `- ${item.name}${item.code ? `(${item.code})` : ""} ${won(item.suggestedAmount)} / 이유: ${item.reason}`)
+        ? account.stagedBuys.map((item) => `- ${item.name}${item.code ? `(${item.code})` : ""} ${won(item.suggestedAmount)} / ${item.entryCondition} / urgency=${item.urgency} / 이유: ${item.reason}`)
         : ["- 즉시 매수 후보 없음"]),
       "",
       "### 비중 축소/재점검",
       ...(account.trims.length > 0
-        ? account.trims.map((item) => `- ${item.name}(${item.code}) / ${item.score}점 / ${item.reason}`)
+        ? account.trims.map((item) => `- ${item.name}(${item.code}) / ${item.score}점 / ${item.stopLoss?.triggered ? "손절 발동 / " : ""}${item.reason}`)
         : ["- 즉시 축소 대상 없음"]),
       "",
       "### 유지/관찰",
@@ -495,6 +888,7 @@ async function main() {
     `- generated_at: ${runMeta.generatedAt}`,
     `- 포트폴리오 총점: ${quant.portfolio?.totalScore ?? "N/A"}점`,
     `- 현재 레짐: ${quant.regime?.name ?? "N/A"} / 신뢰도 ${regimeConfidence}`,
+    `- 긴급 방어: ${emergencyDefense.enabled ? emergencyDefense.triggers.join(", ") : "없음"}`,
     `- 핵심 코멘트: ${quant.portfolio?.note ?? "요약 없음"}`,
     "",
     "## 오늘의 우선 액션",

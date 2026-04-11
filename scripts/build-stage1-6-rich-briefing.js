@@ -4,8 +4,6 @@
 
 import path from "node:path";
 
-import dotenv from "dotenv";
-
 import {
   ROOT_DIR,
   buildRunMetadata,
@@ -17,6 +15,7 @@ import {
   writeJson,
   writeText,
 } from "./lib/pipeline-utils.js";
+import { loadProjectEnv } from "./lib/env-loader.js";
 import { allRefinementArtifactPaths } from "./lib/refinement-rounds.js";
 
 const DEFAULT_PRIORITY_MODELS = ["gemini-2.5-flash", "gemini-2.0-flash"];
@@ -134,7 +133,7 @@ function resolvePaths(args) {
 }
 
 function loadApiKey() {
-  dotenv.config({ path: path.join(ROOT_DIR, ".env") });
+  loadProjectEnv(ROOT_DIR);
   const apiKey = process.env.GEMINI_API_KEY?.trim();
   if (!apiKey) {
     throw new Error("GEMINI_API_KEY가 설정되지 않았습니다.");

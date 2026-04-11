@@ -9,6 +9,7 @@ import { config as loadEnv } from 'dotenv';
 import fetch from 'node-fetch';
 import {
   ADX,
+  ATR,
   BollingerBands,
   MACD,
   RSI,
@@ -134,7 +135,47 @@ function flattenWatchlist(watchlist) {
 
 async function loadMarketSnapshot(date) {
   const filePath = path.join(process.cwd(), 'data', 'market', `${date}.json`);
-  return readJson(filePath);
+  try {
+    return await readJson(filePath);
+  } catch {
+    return {
+      date,
+      indices: {},
+      macro: {},
+      watchlist: {},
+      fallback: {
+        kind: 'market',
+        reason: 'market snapshot missing',
+        recoveredFromDate: null,
+      },
+    };
+  }
+}
+
+async function loadPreviousTechnicalSnapshot(date) {
+  const technicalDir = path.join(process.cwd(), 'data', 'technical');
+
+  try {
+    const entries = await fs.readdir(technicalDir, { withFileTypes: true });
+    const previousFile = entries
+      .filter((entry) => entry.isFile() && /^\d{4}-\d{2}-\d{2}\.json$/.test(entry.name))
+      .map((entry) => entry.name)
+      .filter((name) => name.slice(0, 10) < date)
+      .sort()
+      .at(-1);
+
+    if (!previousFile) {
+      return null;
+    }
+
+    const snapshot = await readJson(path.join(technicalDir, previousFile));
+    return {
+      date: previousFile.slice(0, 10),
+      snapshot,
+    };
+  } catch {
+    return null;
+  }
 }
 
 async function fetchNaverSeries(urlBuilder) {
@@ -414,6 +455,14 @@ function buildSignalReason({ score, close, ma20, ma60, rsi, macd, bollingerPosit
   return reasons.slice(0, 3).join(', ');
 }
 
+function computeRecentHigh(highs, window = 20) {
+  const series = highs.slice(-window).filter((value) => value != null);
+  if (!series.length) {
+    return null;
+  }
+  return Math.max(...series);
+}
+
 function calculateIndicators(history, snapshot) {
   const closes = history.map((row) => row.close);
   const highs = history.map((row) => row.high);
@@ -443,6 +492,7 @@ function calculateIndicators(history, snapshot) {
     signalPeriod: 3,
   });
   const adxSeries = ADX.calculate({ high: highs, low: lows, close: closes, period: 14 });
+  const atrSeries = ATR.calculate({ high: highs, low: lows, close: closes, period: 14 });
 
   const ma5 = getLatestAndPrevious(ma5Series);
   const ma20 = getLatestAndPrevious(ma20Series);
@@ -453,14 +503,21 @@ function calculateIndicators(history, snapshot) {
   const bollinger = getLatestAndPrevious(bollingerSeries);
   const stochastic = getLatestAndPrevious(stochasticSeries);
   const adx = getLatestAndPrevious(adxSeries);
+  const atr = getLatestAndPrevious(atrSeries);
   const volumeMa20 = getLatestAndPrevious(volumeMa20Series);
 
   const latestClose = snapshot?.close ?? history.at(-1)?.close ?? null;
+  const atrPct =
+    latestClose != null && atr.latest != null && latestClose !== 0
+      ? atr.latest / latestClose
+      : null;
   const volumeRatio =
     snapshot?.volume != null && volumeMa20.latest != null && volumeMa20.latest !== 0
       ? snapshot.volume / volumeMa20.latest
       : null;
   const bollingerPosition = determineBollingerPosition(latestClose, bollinger.latest);
+  const recentHighWindow = 20;
+  const recentHigh = computeRecentHigh(highs, recentHighWindow);
 
   const score = calcScore({
     close: latestClose,
@@ -531,11 +588,25 @@ function calculateIndicators(history, snapshot) {
           mdi: roundNumber(adx.latest.mdi, 2),
         }
       : null,
+    atr: atr.latest != null
+      ? {
+          value: roundNumber(atr.latest, 4),
+          pct: roundNumber(atrPct, 6),
+        }
+      : null,
     ma: {
       ma5: roundNumber(ma5.latest, 4),
       ma20: roundNumber(ma20.latest, 4),
       ma60: roundNumber(ma60.latest, 4),
       ma120: roundNumber(ma120.latest, 4),
+    },
+    recent_high: {
+      window: recentHighWindow,
+      value: roundNumber(recentHigh, 4),
+      distance_pct:
+        recentHigh != null && latestClose != null && recentHigh !== 0
+          ? roundNumber((latestClose - recentHigh) / recentHigh, 6)
+          : null,
     },
     volume_ratio: roundNumber(volumeRatio, 3),
     close: roundNumber(latestClose, 4),
@@ -579,7 +650,10 @@ function determineMarketSignal(indexIndicators, vix) {
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
-  const market = await loadMarketSnapshot(args.date);
+  const [market, priorTechnical] = await Promise.all([
+    loadMarketSnapshot(args.date),
+    loadPreviousTechnicalSnapshot(args.date),
+  ]);
   const watchlist = await loadWatchlist();
   const items = flattenWatchlist(watchlist);
 
@@ -608,6 +682,16 @@ async function main() {
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
     console.warn(`⚠️ 시장 컨텍스트 계산 실패: ${message}`);
+    if (priorTechnical?.snapshot?.market_context) {
+      output.market_context = {
+        ...priorTechnical.snapshot.market_context,
+        fallback: {
+          source: 'previous_technical_snapshot',
+          recovered_from_date: priorTechnical.date,
+          reason: message,
+        },
+      };
+    }
   }
 
   for (const item of items) {
@@ -634,6 +718,22 @@ async function main() {
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
       console.warn(`⚠️ ${item.name} 기술적 분석 실패: ${message}`);
+      const fallbackIndicators = priorTechnical?.snapshot?.scores?.[item.code] ?? null;
+      if (fallbackIndicators) {
+        output.scores[item.code] = {
+          ...fallbackIndicators,
+          code: item.code,
+          name: fallbackIndicators.name ?? item.name,
+          account: fallbackIndicators.account ?? item.account ?? null,
+          bucket: fallbackIndicators.bucket ?? item.bucket,
+          type: fallbackIndicators.type ?? item.type,
+          fallback: {
+            source: 'previous_technical_snapshot',
+            recovered_from_date: priorTechnical.date,
+            reason: message,
+          },
+        };
+      }
     }
   }
 
