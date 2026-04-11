@@ -30,6 +30,11 @@ FactorScore(i) = clip( 50 + scale * sum_k( w(k) * z(i, k) ), 0, 100 )
 - `income`: 카테고리별 기대 인컴 수익률
 - `macroFit`: 현재 레짐 기준 목표 배분과의 적합도
 
+추가 반영:
+
+- `research` 팩터는 `data/feedback/analysis/*`의 `researchSourceAccuracy`가 있으면 source multiplier를 적용합니다.
+- 즉 같은 리포트 강도라도 과거 적중률이 높은 소스는 더 강하게, 낮은 소스는 더 약하게 반영합니다.
+
 참고:
 
 - Winsor threshold, scale, factor weight는 `config/strategy.json`의 `scoring.factorModel`에서 조정합니다.
@@ -85,6 +90,15 @@ wA = 1 - (wF + wT + wR + wG + wS + wL)
 
 즉 현재 구현은 Ledoit-Wolf의 exact closed-form은 아니지만, 같은 목적의 constant-correlation shrinkage를 사용합니다.
 
+### Cluster Warning
+
+점수 체계와 별도로, 최근 수익률 상관관계 기반 클러스터가 Stage 4 경고로 연결됩니다.
+
+- 생성 파일: `data/analysis-state/YYYY-MM-DD/holding-clusters.json`
+- 사용 위치: `build-stage4-execution-plan.js`, 대시보드 `ClusterMap`
+
+즉 점수는 높아도 동일 클러스터 과집중이면 실행 단계에서 제동이 걸릴 수 있습니다.
+
 ### Regime Stress
 
 - `HIGH_VOL` / `BEAR` 레짐에서 위험자산 비중 초과 시 감점
@@ -130,6 +144,11 @@ Stage 3 산출물은 아래를 포함합니다.
 - `portfolio.preTaxScore`
 - `portfolio.totalScore`
 
+피드백 연계 출력:
+
+- `researchSourceAccuracyLoaded`
+- source multiplier가 반영된 `report`/`research` 계열 점수
+
 파일 위치:
 
 - `data/analysis-state/YYYY-MM-DD/stage3-quant-scores.json`
@@ -159,3 +178,8 @@ Stage 3 산출물은 아래를 포함합니다.
 
 - 현재는 `holdings`를 코드 단위 fallback으로도 남겨둡니다.
 - 이후 대시보드와 추천 보드는 `positions`를 1차 소스로 쓰는 것이 더 정확합니다.
+
+4. Feedback auto-tune 운영 정교화
+
+- 현재는 `auto-tune-weights.js`가 안전장치와 dry-run을 제공
+- 이후에는 더 긴 기간/레짐별 표본 검증이 필요합니다.

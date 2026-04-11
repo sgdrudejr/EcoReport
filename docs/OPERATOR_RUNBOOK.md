@@ -1,263 +1,208 @@
 # EcoReport Operator Runbook
 
-## 목적
-
-다른 날짜, 다른 사람, 다른 에이전트가 EcoReport를 이어받아도 같은 순서로 실행할 수 있도록 운영 절차를 고정합니다.
-
-## 관련 문서
-
-운영 전에 아래 문서를 같이 보면 훨씬 빠릅니다.
-
-- 전체 문서 지도: `docs/DOCS_MAP.md`
-- 여러 툴 handoff 규칙: `docs/MULTI_TOOL_HANDOFF.md`
-- 실험/검증 절차: `docs/EXPERIMENT_PLAYBOOK.md`
-- 실패와 폴백: `FAILURES_AND_FALLBACKS.md`
-- 최근 변경 이력: `docs/UPDATE_LOG.md`
+이 문서는 EcoReport를 실제로 운영할 때 필요한 최소 절차를 정리합니다.
 
 ## 기본 원칙
 
-- `igzun-daily-report`는 참고용 레퍼런스이며 EcoReport 런타임 의존성이 아닙니다.
-- 수집 단계는 반드시 `전문 텍스트화`까지 포함합니다.
-- Stage 2만 LLM 의존도가 크고, Stage 1/3/4는 EcoReport 내부 코드로 재현 가능해야 합니다.
-- 기본 접속 경로는 공개 배포보다 **Mac Mini 로컬 + private access**를 우선합니다.
+- 기준 운영은 `로컬 Mac Mini + 파일 기반 산출물`입니다.
+- 전략 파이프라인의 중심은 `scripts/run-strategy-pipeline.sh`입니다.
+- 전체 자동화의 중심은 `scripts/run-daily-system.sh`입니다.
+- 문서는 코드와 같이 갱신합니다.
 
-## 하루 운영 순서
+## 가장 많이 쓰는 명령
 
-### 빠른 일일 운영 명령
-
-가장 권장하는 방식은 아래 한 줄입니다.
+### 일일 전체 러너
 
 ```bash
 cd /Users/seo/stock-pilot
 bash scripts/run-daily-system.sh --date YYYY-MM-DD
 ```
 
-Gemini Deep Research까지 포함한 무인 자동 실행은 아래 러너를 사용합니다.
+자주 쓰는 옵션:
 
-```bash
-cd /Users/seo/stock-pilot
-npm run automation:daily -- --date YYYY-MM-DD
-```
+- `--skip-collect`
+- `--skip-rag`
+- `--skip-wiki`
+- `--skip-verify`
+- `--skip-push`
+- `--gemini-stage2`
+- `--mock-stage2`
 
-이 명령은 아래를 순서대로 수행합니다.
-
-1. 리포트 수집 + 전문 텍스트화
-2. 시장 데이터 수집 + 기술지표 계산
-3. 리포트/포트폴리오/병렬 RAG 재생성
-4. Gemini 경제 브리핑 생성(키가 있을 때)
-5. Stage 1~4 실행
-6. `knowledge/wiki/` 지속형 투자 위키 갱신
-7. `data` 브랜치 동기화
-8. 일일 산출물 검증
-
-자동 실행 러너는 여기에 더해 아래를 수행합니다.
-
-9. Gemini Deep Research 웹 실행
-10. 1차 합성 기준 Stage 2~4 재계산 + 위키 메모리 갱신
-11. 2차 재인덱싱 / 2차 Deep Research / rich briefing 재합성
-12. 2차 합성 기준 Stage 2~4 재계산 + 위키 메모리 재갱신
-13. 3차 세부화 / 3차 Deep Research / 최종 rich briefing 재합성
-14. 최종 Stage 2~4 재계산 + 위키 메모리 최종 갱신
-15. 실패/경고 요약을 `automation-cycle` JSON/Markdown으로 저장
-
-전제 조건:
-
-- Mac 화면이 잠겨 있지 않아야 함
-- Safari가 Gemini 로그인 상태여야 함
-- 실패해도 `logs/*.log`, `system-health`, `automation-cycle`에 원인을 남김
-
-### 1. 포트폴리오 최신화
-
-- 대시보드 `/portfolio/update`에서 계좌 상태를 반영
-- 저장 파일:
-  - `data/portfolio/latest.json`
-
-### 2. 리포트 수집 + 전문 텍스트화
-
-```bash
-cd /Users/seo/stock-pilot
-bash scripts/collect-report-assets.sh --date YYYY-MM-DD
-```
-
-확인 파일:
-
-- `data/reports/YYYY-MM-DD/index.json`
-- `data/reports/YYYY-MM-DD/crawl-manifest.json`
-- `data/reports/YYYY-MM-DD/text-manifest.json`
-- `data/reports/YYYY-MM-DD/text/*.txt`
-
-### 3. 필요시 RAG 코퍼스 재생성
-
-```bash
-cd /Users/seo/stock-pilot
-node scripts/build-report-rag-corpus.js --date YYYY-MM-DD
-node scripts/build-portfolio-rag-corpus.js --date YYYY-MM-DD
-node scripts/build-parallel-rag-corpus.js --date YYYY-MM-DD
-```
-
-### 4. Stage 1~4 파이프라인 실행
+### 전략 파이프라인만 재실행
 
 ```bash
 cd /Users/seo/stock-pilot
 bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD
 ```
 
-Gemini Stage 2를 실제로 붙이고 싶으면:
+자주 쓰는 옵션:
+
+- `--gemini-stage2`
+- `--claude-stage2`
+- `--mock-stage2`
+- `--skip-stage1-5-prompt`
+- `--auto-tune-dry-run`
+- `--auto-tune`
+
+### 대시보드 실행
+
+```bash
+cd /Users/seo/stock-pilot/dashboard
+npm run dev -- --hostname 0.0.0.0
+```
+
+## 하루 운영 권장 순서
+
+### 1. 포트폴리오 최신화
+
+가능하면 먼저 최신 계좌 상태를 반영합니다.
 
 ```bash
 cd /Users/seo/stock-pilot
-bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD --gemini-stage2
+npm run portfolio:sync:kis -- --date YYYY-MM-DD
+```
+
+또는 대시보드에서 직접 반영:
+
+- `/portfolio/update`
+
+### 2. 일일 데이터 수집
+
+전체 러너를 쓰지 않는 경우:
+
+```bash
+cd /Users/seo/stock-pilot
+bash scripts/collect-report-assets.sh --date YYYY-MM-DD
+node scripts/fetch-market-data.js --date YYYY-MM-DD
+node scripts/calc-technicals.js --date YYYY-MM-DD
 ```
 
 확인 파일:
 
-- `data/analysis-state/YYYY-MM-DD/stage1-report-extracts-v2.json`
-- `knowledge/daily/manual-kit/YYYY-MM-DD/08-stage2-strategy-prompt.md`
-- `data/analysis-state/YYYY-MM-DD/stage2-strategy-options.mock.json`
-- `data/analysis-state/YYYY-MM-DD/stage2-strategy-options.json`
-- `data/analysis-state/YYYY-MM-DD/stage3-quant-scores.json`
-- `data/analysis-state/YYYY-MM-DD/stage4-execution-plan.json`
-- `reports/daily/YYYY-MM-DD-briefing.md`
+- `data/reports/YYYY-MM-DD/index.json`
+- `data/reports/YYYY-MM-DD/text-manifest.json`
+- `data/market/YYYY-MM-DD.json`
+- `data/technical/YYYY-MM-DD.json`
 
-### 4.5. Gemini Deep Research 수동 오버레이
-
-Gemini 웹 리서치를 끼워 넣고 싶을 때는 아래 순서로 실행합니다.
+### 3. 전략 파이프라인 실행
 
 ```bash
 cd /Users/seo/stock-pilot
-npm run stage1.5:prompt -- --date YYYY-MM-DD
-npm run stage1.5:gemini:run -- --date YYYY-MM-DD --poll-sec 30 --timeout-sec 1800
-npm run stage1.6:briefing -- --date YYYY-MM-DD --run-date YYYY-MM-DD --effective-market-date YYYY-MM-DD
-bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD --run-date YYYY-MM-DD --effective-market-date YYYY-MM-DD --gemini-stage2
-node scripts/build-llm-wiki.js --date YYYY-MM-DD
-npm run stage1.7:map -- --date YYYY-MM-DD
-npm run stage1.7:prompt -- --date YYYY-MM-DD
-# Gemini 웹에 12-stage1-7... 프롬프트 실행 후 13-stage1-7... 응답 저장
-npm run stage1.6:briefing -- --date YYYY-MM-DD --run-date YYYY-MM-DD --effective-market-date YYYY-MM-DD
-bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD --run-date YYYY-MM-DD --effective-market-date YYYY-MM-DD --gemini-stage2
-node scripts/build-llm-wiki.js --date YYYY-MM-DD
-npm run stage1.8:map -- --date YYYY-MM-DD
-npm run stage1.8:prompt -- --date YYYY-MM-DD
-# Gemini 웹에 15-stage1-8... 프롬프트 실행 후 16-stage1-8... 응답 저장
-npm run stage1.6:briefing -- --date YYYY-MM-DD --run-date YYYY-MM-DD --effective-market-date YYYY-MM-DD
-bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD --run-date YYYY-MM-DD --effective-market-date YYYY-MM-DD --gemini-stage2
+bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD
 ```
 
-확인 파일:
+이 파이프라인은 아래를 수행합니다.
 
-- `knowledge/daily/manual-kit/YYYY-MM-DD/07-stage1-5-gemini-deep-research-prompt.md`
-- `knowledge/daily/manual-kit/YYYY-MM-DD/09-stage1-5-gemini-deep-research-response.md`
-- `knowledge/daily/manual-kit/YYYY-MM-DD/11-stage1-7-followup-research-map.md`
-- `knowledge/daily/manual-kit/YYYY-MM-DD/12-stage1-7-gemini-follow-up-prompt.md`
-- `knowledge/daily/manual-kit/YYYY-MM-DD/13-stage1-7-gemini-follow-up-response.md`
-- `knowledge/daily/manual-kit/YYYY-MM-DD/14-stage1-8-final-refinement-map.md`
-- `knowledge/daily/manual-kit/YYYY-MM-DD/15-stage1-8-gemini-final-refinement-prompt.md`
-- `knowledge/daily/manual-kit/YYYY-MM-DD/16-stage1-8-gemini-final-refinement-response.md`
-- `knowledge/daily/YYYY-MM-DD-gemini-briefing-rich.md`
-- `data/analysis-state/YYYY-MM-DD/stage2-strategy-options.json`
-- `reports/daily/YYYY-MM-DD-briefing.md`
+1. Stage 1 추출
+2. Stage 1.5 deep research prompt 백그라운드 생성
+3. Stage 2 provider chain 실행
+4. Stage 2.5 impact map 생성
+5. Stage 3 점수화
+6. holding clusters 생성
+7. Stage 4 실행 계획 생성
+8. feedback snapshot 생성
+9. 선택적으로 feedback analysis + auto tune
 
-의도:
+### 4. 피드백 검증
 
-- Stage 1 fact anchor를 유지한 채 Gemini Deep Research의 반박 시나리오, 대안 자산, 촉매 일정을 대시보드 매크로 브리핑으로 승격
-- 그 결과를 다시 Stage 2~4와 위키 메모리에 흘려보낸 뒤, 남은 빈틈만 2차/3차 refinement로 더 좁게 다시 묻습니다.
-- 마지막 라운드는 새 general thesis 확대보다 `무효화 조건 / 대체재 / 계좌 번역 / 정확한 체크포인트`를 정리하는 데 목적이 있습니다.
+피드백 루프만 다시 보고 싶으면:
 
-### 4.6. LLM Wiki 갱신
+```bash
+cd /Users/seo/stock-pilot
+node scripts/build-feedback-snapshot.js --date YYYY-MM-DD
+node scripts/build-feedback-analysis.js --date YYYY-MM-DD
+node scripts/build-feedback-report.js --date YYYY-MM-DD
+node scripts/auto-tune-weights.js --date YYYY-MM-DD --dry-run
+```
+
+### 5. 위키 갱신
 
 ```bash
 cd /Users/seo/stock-pilot
 node scripts/build-llm-wiki.js --date YYYY-MM-DD
+node scripts/publish-llm-wiki-to-vault.js
 ```
 
-확인 파일:
-
-- `knowledge/wiki/index.md`
-- `knowledge/wiki/log.md`
-- `knowledge/wiki/daily/YYYY-MM-DD.md`
-- `knowledge/wiki/accounts/*.md`
-- `knowledge/wiki/securities/*.md`
-
-이 단계의 목적은 일일 결과를 장기적으로 재사용 가능한 투자 메모리로 바꾸는 것입니다.
-특히 계좌별 플레이북과 종목 thesis 페이지가 다음 날 판단 시간을 줄여줍니다.
-
-### 5. 실제 LLM 전략 연결
-
-현재는 Stage 2 prompt를 사람이 LLM에 넣는 방식이 기본입니다.
-
-1. `08-stage2-strategy-prompt.md`를 ChatGPT/Gemini/Claude에 넣음
-2. 동일 스키마의 실제 전략 JSON을 받음
-3. `stage2-strategy-options.json`으로 저장
-4. Stage 3/4만 다시 실행
-
-```bash
-cd /Users/seo/stock-pilot
-node scripts/build-stage3-quant-scores.js --date YYYY-MM-DD
-node scripts/build-stage4-execution-plan.js --date YYYY-MM-DD
-```
-
-### 6. 일일 산출물 검증
+### 6. 검증
 
 ```bash
 cd /Users/seo/stock-pilot
 node scripts/verify-daily-system.js --date YYYY-MM-DD
+cd dashboard
+npm run build
 ```
 
-생성 파일:
+## 성공 확인 체크포인트
+
+### 전략 산출물
+
+- `data/analysis-state/YYYY-MM-DD/stage1-report-extracts-v2.json`
+- `data/analysis-state/YYYY-MM-DD/stage2-run-log.json`
+- `data/analysis-state/YYYY-MM-DD/impact-map.json`
+- `data/analysis-state/YYYY-MM-DD/stage3-quant-scores.json`
+- `data/analysis-state/YYYY-MM-DD/holding-clusters.json`
+- `data/analysis-state/YYYY-MM-DD/stage4-execution-plan.json`
+- `reports/daily/YYYY-MM-DD-briefing.md`
+
+### 피드백 산출물
+
+- `data/feedback/snapshots/YYYY-MM-DD.json`
+- `data/feedback/analysis/YYYY-MM-DD-feedback.json`
+- `reports/feedback-summary.md`
+
+### 자동화/검증
 
 - `data/analysis-state/YYYY-MM-DD/system-health.json`
+- `data/analysis-state/YYYY-MM-DD/automation-cycle.json`
+
+## 대시보드 운영 포인트
+
+### 기본 접속
+
+- `http://localhost:3000`
+
+### 실험 UI
+
+상단 우측 `테스트 UI` 토글이 전체 실험 UI 노출 스위치입니다.
+
+토글로 켜지는 항목:
+
+- 배분 히트맵
+- 실행 신뢰도 뱃지
+- 피드백 대시보드
+- 상관관계 클러스터
+
+### 화면 검증 포인트
+
+- Stage 4 실행 리스트가 정상 노출되는가
+- 실험 UI 토글 on/off 시 실험 섹션이 함께 토글되는가
+- 피드백 대시보드가 최신 `data/feedback/analysis` 파일을 읽는가
+- 클러스터 0건일 때와 다건일 때 모두 깨지지 않는가
+
+## 운영 중 자주 보는 파일
+
+### 오늘 상태
+
+- `data/analysis-state/YYYY-MM-DD/*`
+- `reports/daily/YYYY-MM-DD-briefing.md`
 - `knowledge/daily/YYYY-MM-DD-system-health.md`
 
-이 검증 리포트는 “오늘 파이프라인이 실제로 다 끝났는지”를 보는 운영용 체크포인트입니다.
+### 장기 추적
 
-## 파일 우선순위
+- `data/feedback/analysis/*`
+- `data/feedback/weight-history.jsonl`
+- `knowledge/wiki/*`
 
-새 담당자가 가장 먼저 볼 파일:
+## 자주 쓰는 디버깅 루프
 
-1. `README.md`
-2. `docs/DOCS_MAP.md`
-3. `docs/MULTI_TOOL_HANDOFF.md`
-4. `docs/OPERATOR_RUNBOOK.md`
-5. `data/analysis-state/YYYY-MM-DD/automation-cycle.json`
-6. `data/analysis-state/YYYY-MM-DD/system-health.json`
-7. `data/portfolio/latest.json`
-8. `data/reports/YYYY-MM-DD/crawl-manifest.json`
-9. `reports/daily/YYYY-MM-DD-briefing.md`
+1. 해당 날짜 디렉터리 확인
+2. 실패 단계만 단독 재실행
+3. `logs/*.log`와 `system-health` 확인
+4. 코드 수정 후 `dashboard npm run build`와 관련 스크립트 재검증
+5. 흐름이 바뀌면 문서 갱신
 
-## 현재 약점
+## 현재 운영상 주의점
 
-### 1. Stage 1 관련성은 아직 후보 수준
-
-- `related_holdings_in_my_portfolio`
-- `portfolio_impacts_candidate`
-
-는 휴리스틱 기반입니다.
-다음 단계는 `impact-map.json` 레이어를 추가해 확정 영향도로 분리하는 것입니다.
-
-### 2. Stage 2는 아직 mock 기본
-
-실제 전략적 판단은 사람이 LLM에 직접 질문해서 받은 JSON으로 덮어써야 합니다.
-
-### 3. Stage 4는 실행 초안
-
-현재도 바로 읽을 수는 있지만, 실제 매수 금액/후보 우선순위는 Stage 2 실제 JSON이 들어올수록 좋아집니다.
-
-## 날짜를 바꿔서 실행할 때
-
-```bash
-cd /Users/seo/stock-pilot
-bash scripts/run-daily-system.sh --date 2026-04-10
-```
-
-## private access 운영
-
-Vercel이 실패하거나 불필요할 때는 아래 문서를 따릅니다.
-
-- [PRIVATE_ACCESS_RUNBOOK.md](/Users/seo/stock-pilot/docs/PRIVATE_ACCESS_RUNBOOK.md)
-
-핵심 원칙:
-
-- Mac Mini에서 대시보드를 띄운다
-- 파이프라인은 로컬에서 실행한다
-- 원격 접속은 tailnet 내부에서만 허용한다
-- `--skip-push`로 public sync 없이도 일일 운영 가능하다
+- `holding-clusters.json`은 `data/analysis-state` 내부 생성물이므로 커밋 대상이 아닐 수 있습니다.
+- `auto-tune`는 실제 `config/strategy.json`을 바꾸므로 먼저 `--dry-run`을 권장합니다.
+- `feedback analysis`는 충분한 표본이 없으면 일부 지표가 비어 있을 수 있습니다.

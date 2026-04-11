@@ -7,6 +7,35 @@
 - 다른 사람/다른 에이전트가 이어받을 때 회복 시간 단축
 - README가 너무 길어지지 않게 최근 변경 사항을 별도로 추적
 
+## 2026-04-12
+
+### 문서 체계 정리
+
+- `README.md`를 현재 운영 구조 기준으로 전면 갱신
+- `docs/DOCS_MAP.md`를 1차/2차/3차 문서 체계로 정리
+- 기본 진입 문서를 줄이고, 과거성 문서는 보조 참고 문서로 역할 재정리
+
+### 파이프라인 문서 현실화
+
+- `docs/STAGE_1_4_ARCHITECTURE.md`를 실제 코드 기준 구조로 갱신
+- `Stage 2.5 impact map`, `holding clusters`, `feedback loop`, `auto-tune`까지 아키텍처에 포함
+- Stage 2 기본 경로를 `Gemini -> Claude -> Mock fallback` 체인 기준으로 정리
+
+### 운영/실험 문서 갱신
+
+- `docs/OPERATOR_RUNBOOK.md`를 현재 실행 명령과 산출물 기준으로 축약/정리
+- `docs/EXPERIMENT_PLAYBOOK.md`에 피드백 루프, 실험 UI 토글, 클러스터 경고 검증 절차 추가
+
+### 대시보드 문서 추가 정리
+
+- `dashboard/README.md`를 기본 Next.js 템플릿에서 실제 운영 문서로 교체
+- 글로벌 `테스트 UI` 토글, 실험 UI 구성 요소, 파일 기반 데이터 원칙을 명시
+
+### 점수 체계 문서 보정
+
+- `docs/SCORE_SYSTEM_V2.md`에 리서치 소스 적중률 보정과 클러스터 경고 맥락을 추가
+- 피드백 기반 가중치 튜닝이 Stage 3/Stage 4와 어떻게 연결되는지 설명 강화
+
 ## 2026-04-06
 
 ### Gemini Deep Research 오버레이 고정

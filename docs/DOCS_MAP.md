@@ -1,162 +1,109 @@
 # EcoReport Docs Map
 
-## 목적
+이 문서는 “지금 어떤 문서를 먼저 보면 되는가”를 빠르게 정리한 진입 지도입니다.
 
-EcoReport 문서가 늘어나도, 새 담당자나 다른 코딩 프로그램이 바로 올바른 문서로 들어오게 만드는 진입 지도입니다.
+## 1차 문서
 
-이 문서는 아래 질문에 답합니다.
+항상 먼저 보는 문서입니다.
 
-- 지금 어떤 문서를 먼저 읽어야 하는가
-- 지금 하려는 작업에 맞는 지침서는 무엇인가
-- 어떤 파일이 실제 소스 오브 트루스인가
+| 문서 | 용도 |
+|---|---|
+| `README.md` | 프로젝트 개요, 최신 운영 모델, 핵심 명령 |
+| `docs/OPERATOR_RUNBOOK.md` | 실제 운영 절차 |
+| `docs/STAGE_1_4_ARCHITECTURE.md` | 파이프라인/산출물 구조 |
+| `docs/SCORE_SYSTEM_V2.md` | Stage 3 점수 체계와 피드백 반영 원리 |
 
-## 5분 시작 순서
+## 2차 문서
 
-새로 들어온 사람이나 에이전트는 보통 아래 순서로 읽으면 됩니다.
+상황에 따라 읽는 문서입니다.
+
+| 문서 | 언제 읽나 |
+|---|---|
+| `docs/EXPERIMENT_PLAYBOOK.md` | 실험, 회귀, 검증 체크리스트가 필요할 때 |
+| `docs/UPDATE_LOG.md` | 최근 구조 변경을 확인할 때 |
+| `dashboard/README.md` | 대시보드 구조와 실험 UI 토글을 볼 때 |
+| `docs/LLM_WIKI_SYSTEM.md` | wiki 메모리 레이어를 손볼 때 |
+| `FAILURES_AND_FALLBACKS.md` | 장애/폴백 케이스를 추적할 때 |
+
+## 3차 문서
+
+지속 운영에는 필요하지만 모든 세션에서 읽을 필요는 없는 문서입니다.
+
+| 문서 | 성격 |
+|---|---|
+| `docs/MULTI_TOOL_HANDOFF.md` | 여러 에이전트/도구 handoff 규칙 |
+| `docs/PRIVATE_ACCESS_RUNBOOK.md` | private access 운영 참고 |
+| `docs/VERCEL_DEPLOY_RUNBOOK.md` | 보조 배포 채널 참고 |
+| `docs/STAGE2_LLM_PROVIDER.md` | Stage 2 공급자 세부 |
+| `docs/rules/*` | 운영 철학과 품질 룰 |
+
+## 작업별 라우팅
+
+### 운영만 빨리 돌리고 싶다
 
 1. `README.md`
-2. `docs/MULTI_TOOL_HANDOFF.md`
-3. `docs/OPERATOR_RUNBOOK.md`
-4. 작업 성격에 따라 아래 문서 추가
+2. `docs/OPERATOR_RUNBOOK.md`
 
-## 작업별 문서 라우팅
+### 점수나 실행 로직을 바꾸고 싶다
 
-### 1. 프로젝트 전체 구조를 이해하고 싶다
+1. `docs/STAGE_1_4_ARCHITECTURE.md`
+2. `docs/SCORE_SYSTEM_V2.md`
+3. 관련 `scripts/`
 
-읽을 문서:
+### 대시보드 노출 구조를 바꾸고 싶다
 
-- `README.md`
-- `docs/STAGE_1_4_ARCHITECTURE.md`
+1. `dashboard/README.md`
+2. `dashboard/app/page.tsx`
+3. `dashboard/components/*`
 
-이 문서들이 답하는 것:
+### 피드백 루프를 건드리고 싶다
 
-- 파이프라인 전체 단계
-- 핵심 산출물
-- 대시보드와 백엔드의 연결 구조
+1. `docs/STAGE_1_4_ARCHITECTURE.md`
+2. `docs/SCORE_SYSTEM_V2.md`
+3. `scripts/build-feedback-*.js`
+4. `scripts/auto-tune-weights.js`
 
-### 2. 오늘 파이프라인을 실제로 돌리고 싶다
+### 실험 UI나 토글 정책을 바꾸고 싶다
 
-읽을 문서:
-
-- `docs/OPERATOR_RUNBOOK.md`
-- `docs/EXPERIMENT_PLAYBOOK.md`
-
-이 문서들이 답하는 것:
-
-- 어떤 명령을 쳐야 하는가
-- 성공/실패를 어디서 확인하는가
-- 어떤 파일이 생겨야 완료로 볼 수 있는가
-
-### 3. Gemini Deep Research를 끼워 넣고 싶다
-
-읽을 문서:
-
-- `docs/OPERATOR_RUNBOOK.md`
-- `docs/EXPERIMENT_PLAYBOOK.md`
-- `FAILURES_AND_FALLBACKS.md`
-
-이 문서들이 답하는 것:
-
-- Stage 1.5 / 1.6 실행 순서
-- Safari/Gemini 전제 조건
-- 실패 시 어디를 봐야 하는가
-
-### 4. 여러 코딩 프로그램이 번갈아 작업한다
-
-읽을 문서:
-
-- `docs/MULTI_TOOL_HANDOFF.md`
-- `docs/UPDATE_LOG.md`
-
-이 문서들이 답하는 것:
-
-- 세션 시작 전 무엇을 확인해야 하는가
-- 어디까지 작업됐는지 어떻게 이어받는가
-- 문서와 로그를 어떻게 남겨야 하는가
-
-### 5. 실패 원인을 디버깅하고 싶다
-
-읽을 문서:
-
-- `FAILURES_AND_FALLBACKS.md`
-- `docs/OPERATOR_RUNBOOK.md`
-- 해당 날짜의 `automation-cycle` / `system-health`
-
-먼저 볼 파일:
-
-- `data/analysis-state/YYYY-MM-DD/automation-cycle.json`
-- `knowledge/daily/YYYY-MM-DD-automation-cycle.md`
-- `data/analysis-state/YYYY-MM-DD/system-health.json`
-- `knowledge/daily/YYYY-MM-DD-system-health.md`
-- `logs/*.log`
-
-### 6. LLM Wiki가 어떻게 누적되는지 알고 싶다
-
-읽을 문서:
-
-- `docs/LLM_WIKI_SYSTEM.md`
-- `docs/OPERATOR_RUNBOOK.md`
-
-### 7. 점수와 추천 로직을 수정하고 싶다
-
-읽을 문서:
-
-- `docs/SCORE_SYSTEM_V2.md`
-- `docs/STAGE_1_4_ARCHITECTURE.md`
+1. `dashboard/README.md`
+2. `dashboard/components/ExperimentalUiProvider.tsx`
+3. `dashboard/components/ExperimentalVisibility.tsx`
+4. `dashboard/components/MainNav.tsx`
 
 ## 소스 오브 트루스
 
 ### 코드
 
-- `scripts/`: 파이프라인과 자동화 실행
-- `dashboard/`: 로컬 대시보드 UI
-- `prompts/`: LLM 프롬프트 템플릿
+- `scripts/`: 운영 파이프라인과 데이터 산출
+- `dashboard/`: 로컬 UI와 서버 렌더링 대시보드
+- `config/`: 전략/배분/동기화 설정
 
 ### 날짜별 산출물
 
-- `data/analysis-state/YYYY-MM-DD/`: Stage 1~4, 검증, 자동화 상태
-- `data/reports/YYYY-MM-DD/`: 리포트 원본, 메타데이터, 텍스트화 결과
-- `knowledge/daily/`: 일일 브리핑, 리서치 메모, 자동화 요약
-- `reports/daily/`: 최종 브리핑과 실행 계획
+- `data/analysis-state/YYYY-MM-DD/`
+- `data/feedback/`
+- `reports/daily/`
+- `knowledge/daily/`
 
 ### 누적 기억
 
-- `knowledge/wiki/`: 장기 누적 투자 위키
-- `docs/UPDATE_LOG.md`: 구조 변화와 운영 변화 이력
+- `knowledge/wiki/`
 
-## 세션 시작 전에 확인할 것
+## 세션 시작 체크리스트
 
-1. 현재 브랜치와 `git status`
-2. 오늘 작업 날짜 `YYYY-MM-DD`
-3. 최신 `automation-cycle` / `system-health`
-4. 이미 생성된 `knowledge/daily/`와 `reports/daily/` 산출물
-5. 내가 건드릴 문서와 스크립트의 역할
+1. `git status`
+2. 오늘 기준 날짜와 `data/analysis-state/YYYY-MM-DD`
+3. 최신 `reports/daily`와 `knowledge/daily`
+4. 문서 변경이 필요한지 여부
 
-## 세션 종료 전에 남길 것
+## 세션 종료 체크리스트
 
-1. 바뀐 코드/문서 커밋
-2. 흐름이 바뀌었으면 `README.md` 또는 해당 운영 문서 갱신
-3. 운영 변화가 있으면 `docs/UPDATE_LOG.md`에 기록
-4. 실패가 있으면 해당 날짜 `automation-cycle` 또는 `FAILURES_AND_FALLBACKS.md`에 맥락 남기기
+1. 바뀐 코드와 문서가 일치하는지 확인
+2. 운영 흐름이 바뀌었으면 `README` 또는 `RUNBOOK` 갱신
+3. 구조 변화가 있으면 `UPDATE_LOG` 기록
 
-## 추천 읽기 조합
+## 정리 원칙
 
-### 빠르게 기능만 고치고 싶을 때
-
-- `README.md`
-- `docs/MULTI_TOOL_HANDOFF.md`
-- 관련 코드 파일
-
-### 운영까지 책임져야 할 때
-
-- `README.md`
-- `docs/DOCS_MAP.md`
-- `docs/OPERATOR_RUNBOOK.md`
-- `docs/EXPERIMENT_PLAYBOOK.md`
-- `FAILURES_AND_FALLBACKS.md`
-
-### 다른 툴이 남긴 작업을 이어받을 때
-
-- `docs/MULTI_TOOL_HANDOFF.md`
-- `docs/UPDATE_LOG.md`
-- 해당 날짜 `automation-cycle` / `system-health`
+- 기본 진입 문서는 적게 유지합니다.
+- 역사성 문서는 보조 문서로 내립니다.
+- 코드와 어긋난 설명은 남기지 않습니다.
