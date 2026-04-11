@@ -10,6 +10,7 @@ import {
   truncate,
   writeText,
 } from "./lib/pipeline-utils.js";
+import { formatMarketVoiceForPrompt } from "./lib/marketvoice-utils.js";
 import {
   parseRefinementArgs,
   previousRefinementRound,
@@ -178,6 +179,7 @@ async function main() {
   const operatingRulesPath = path.join(ROOT_DIR, "knowledge", "wiki", "memory", "operating-rules.md");
   const researchBacklogPath = path.join(ROOT_DIR, "knowledge", "wiki", "memory", "research-backlog.md");
   const decisionJournalPath = path.join(ROOT_DIR, "knowledge", "wiki", "memory", "decision-journal.md");
+  const marketVoicePath = path.join(ROOT_DIR, "data", "analysis-state", args.date, "marketvoice-linked.json");
   const outputPath = args.output
     ? path.isAbsolute(args.output)
       ? args.output
@@ -193,6 +195,7 @@ async function main() {
     researchBacklog,
     decisionJournal,
     stage4,
+    marketVoice,
   ] = await Promise.all([
     readJson(paths.mapJson, null),
     readText(primaryDeepResearchPath, ""),
@@ -202,6 +205,7 @@ async function main() {
     readText(researchBacklogPath, ""),
     readText(decisionJournalPath, ""),
     readJson(stage4Path, null),
+    readJson(marketVoicePath, null),
   ]);
 
   if (!refinementMap) {
@@ -236,6 +240,12 @@ async function main() {
     "",
     "[현재 rich briefing 일부]",
     truncate(richBriefing, 4500) || "- rich briefing 없음",
+    "",
+    "[실시간 머니토링 이벤트 레이어]",
+    formatMarketVoiceForPrompt(marketVoice, {
+      maxTopics: 4,
+      maxResearch: 2,
+    }),
     "",
     "[현재 Stage 4 실행 계획 요약]",
     JSON.stringify(stage4Summary, null, 2),

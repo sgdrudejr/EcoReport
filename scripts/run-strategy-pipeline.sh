@@ -8,9 +8,12 @@ REQUESTED_DATE=""
 RUN_DATE="${RUN_DATE:-$(node "$ROOT_DIR/scripts/resolve-cycle-date.js" --field run_date)}"
 EFFECTIVE_MARKET_DATE=""
 RUN_ID="${ECOREPORT_RUN_ID:-}"
-USE_MOCK_STAGE2=1
+USE_MOCK_STAGE2=0
 USE_GEMINI_STAGE2=0
+USE_CLAUDE_STAGE2=0
 ALLOW_STAGE2_MOCK_FALLBACK=1
+BUILD_STAGE1_5_PROMPT=1
+STAGE1_5_PID=""
 
 python_bin() {
   if [[ -x "$ROOT_DIR/.venv/bin/python" ]]; then
@@ -79,13 +82,28 @@ while [[ $# -gt 0 ]]; do
       USE_MOCK_STAGE2=0
       shift
       ;;
+    --mock-stage2)
+      USE_MOCK_STAGE2=1
+      shift
+      ;;
     --gemini-stage2)
       USE_GEMINI_STAGE2=1
       USE_MOCK_STAGE2=0
+      USE_CLAUDE_STAGE2=0
+      shift
+      ;;
+    --claude-stage2)
+      USE_CLAUDE_STAGE2=1
+      USE_MOCK_STAGE2=0
+      USE_GEMINI_STAGE2=0
       shift
       ;;
     --strict-gemini-stage2)
       ALLOW_STAGE2_MOCK_FALLBACK=0
+      shift
+      ;;
+    --skip-stage1-5-prompt)
+      BUILD_STAGE1_5_PROMPT=0
       shift
       ;;
     *)
@@ -120,6 +138,12 @@ echo "run_id=$RUN_ID / run_date=$RUN_DATE / effective_market_date=$DATE"
 echo "== Stage 1: report extracts =="
 node scripts/build-stage1-report-extracts.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"
 
+if [[ "$BUILD_STAGE1_5_PROMPT" == "1" ]]; then
+  echo "== Stage 1.5: deep research prompt (background) =="
+  node scripts/build-stage1-5-gemini-deep-research-prompt.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE" &
+  STAGE1_5_PID=$!
+fi
+
 echo "== Stage 2: strategy prompt =="
 node scripts/build-stage2-strategy-prompt.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"
 
@@ -139,10 +163,53 @@ if [[ "$USE_GEMINI_STAGE2" == "1" ]]; then
     echo "!! Gemini Stage 2 실패 -> mock fallback으로 계속 진행"
     node scripts/build-stage2-strategy-mock.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE" --output "data/analysis-state/$DATE/stage2-strategy-options.json"
   fi
-elif [[ "$USE_MOCK_STAGE2" == "1" ]]; then
+}
+
+stage2_run_claude() {
+  local t0=$(date +%s)
+  if node scripts/build-stage2-strategy-claude.js "${STAGE2_COMMON_ARGS[@]}" 2>/tmp/stage2-claude-err.txt; then
+    stage2_log_attempt "claude" "success" "$(( $(date +%s) - t0 ))"
+    STAGE2_PROVIDER="claude"
+    STAGE2_FINAL_STATUS="success"
+    return 0
+  else
+    stage2_log_attempt "claude" "failed" "$(( $(date +%s) - t0 ))" "$(cat /tmp/stage2-claude-err.txt)"
+    return 1
+  fi
+}
+
+if [[ "$USE_MOCK_STAGE2" == "1" ]]; then
   echo "== Stage 2 mock: strategy options =="
-  node scripts/build-stage2-strategy-mock.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"
+  local_start=$(date +%s)
+  node scripts/build-stage2-strategy-mock.js "${STAGE2_COMMON_ARGS[@]}" --mock-mode test
+  stage2_log_attempt "mock" "success" "$(( $(date +%s) - local_start ))"
+  STAGE2_PROVIDER="mock"
+  STAGE2_FINAL_STATUS="explicit_mock"
+elif [[ "$USE_GEMINI_STAGE2" == "1" ]]; then
+  echo "== Stage 2 actual: Gemini strategy options =="
+  if ! stage2_run_gemini; then
+    [[ "$ALLOW_STAGE2_MOCK_FALLBACK" != "1" ]] && { stage2_write_log; exit 1; }
+    stage2_mock_fallback "Gemini Stage 2 실패"
+  fi
+elif [[ "$USE_CLAUDE_STAGE2" == "1" ]]; then
+  echo "== Stage 2 actual: Claude strategy options =="
+  if ! stage2_run_claude; then
+    [[ "$ALLOW_STAGE2_MOCK_FALLBACK" != "1" ]] && { stage2_write_log; exit 1; }
+    stage2_mock_fallback "Claude Stage 2 실패"
+  fi
+else
+  # 기본: Gemini -> Claude -> Mock 폴백 체인
+  echo "== Stage 2: Gemini (default) =="
+  if stage2_run_gemini; then
+    echo "== Stage 2: Gemini 성공 =="
+  elif stage2_run_claude; then
+    echo "== Stage 2: Claude fallback 성공 =="
+  else
+    stage2_mock_fallback "Gemini + Claude 모두 실패"
+  fi
 fi
+
+stage2_write_log
 
 echo "== Stage 2.5: impact map =="
 node scripts/build-impact-map.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"

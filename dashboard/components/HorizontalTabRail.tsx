@@ -46,7 +46,7 @@ export default function HorizontalTabRail<T>({
     >
       <div
         className={joinClasses(
-          "rounded-2xl border border-slate-200 bg-white/92 p-2 shadow-[0_10px_30px_rgba(15,23,42,0.08)] backdrop-blur",
+          "rounded-xl border border-slate-200 bg-slate-50/70 p-1.5 shadow-none",
           frameClassName,
         )}
       >

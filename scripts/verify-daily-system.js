@@ -60,7 +60,11 @@ function extractMarkdownMeta(text) {
   const pick = (patterns) => {
     for (const pattern of patterns) {
       const match = content.match(pattern);
-      if (match?.[1]) return match[1].trim();
+      if (match?.[1]) {
+        const value = match[1].trim();
+        if (!value || /^n\/a$/i.test(value)) return null;
+        return value;
+      }
     }
     return null;
   };
@@ -119,6 +123,7 @@ async function main() {
     impactMap: path.join(analysisDir, "impact-map.json"),
     stage3: path.join(analysisDir, "stage3-quant-scores.json"),
     stage4: path.join(analysisDir, "stage4-execution-plan.json"),
+    dailyQuality: path.join(analysisDir, "daily-quality.json"),
     briefing: path.join(ROOT_DIR, "reports", "daily", `${date}-briefing.md`),
     executionMd: path.join(ROOT_DIR, "reports", "daily", `${date}-stage4-execution-plan.md`),
     wikiDaily: path.join(ROOT_DIR, "knowledge", "wiki", "daily", `${date}.md`),
@@ -161,6 +166,7 @@ async function main() {
     wikiResearchBacklog: path.join(ROOT_DIR, "knowledge", "wiki", "memory", "research-backlog.md"),
     wikiDecisionJournal: path.join(ROOT_DIR, "knowledge", "wiki", "memory", "decision-journal.md"),
     fallbackSummary: path.join(analysisDir, "fallback-summary.json"),
+    fallbackChecklist: path.join(ROOT_DIR, "docs", "FAILURE_FALLBACK_CHECKLIST.md"),
   };
 
   const [
@@ -233,6 +239,38 @@ async function main() {
         .map((item) => `${plan.label ?? plan.key}:${bucket}:${item.name ?? item.code ?? "Unknown"}`),
     ),
   );
+  const stage1ContaminationRate =
+    stage1?.quality?.contaminationRate ??
+    (stage1?.extracts?.length
+      ? (stage1.extracts.reduce(
+          (sum, item) => sum + Number(item?.quality?.contaminationEvidenceCount ?? 0),
+          0,
+        ) /
+          Math.max(
+            stage1.extracts.reduce(
+              (sum, item) => sum + Number(item?.quality?.totalEvidenceCount ?? 0),
+              0,
+            ),
+            1,
+          ))
+      : 0);
+  const stage1WeakClaimRatio = stage1?.quality?.weakClaimRatio ?? 0;
+  const stage3UnrelatedEvidenceRatio = stage3?.quality?.unrelatedEvidenceRatio ?? 0;
+  const stage3BlockedEvidenceCount = stage3?.quality?.blockedEvidenceCount ?? 0;
+  const stage4ActionConflictCount = (stage4?.accountPlans ?? []).reduce(
+    (sum, plan) =>
+      sum + (plan?.validatorFlags ?? []).filter((flag) => String(flag).includes("conflict")).length,
+    0,
+  );
+  const stage4NoActionCount = (stage4?.accountPlans ?? []).filter((plan) => plan?.noAction).length;
+  const lowConfidenceActionRejectionCount = (stage4?.accountPlans ?? []).reduce(
+    (sum, plan) =>
+      sum +
+      (plan?.rejectedAlternatives ?? []).filter(
+        (item) => typeof item?.confidence === "number" && item.confidence < 0.5,
+      ).length,
+    0,
+  );
 
   const artifactMetas = [
     { key: "stage1", label: "Stage 1", path: relative(paths.stage1), meta: extractJsonMeta(stage1) },
@@ -262,6 +300,15 @@ async function main() {
   ];
   const existingArtifactMetas = artifactMetas.filter((item) => item.meta.runDate || item.meta.generatedAt || item.meta.runId);
   const distinctRunIds = [...new Set(existingArtifactMetas.map((item) => item.meta.runId).filter(Boolean))];
+  const coreArtifactKeys = new Set(["stage1", "stage2", "impact_map", "stage3", "stage4", "briefing"]);
+  const coreDistinctRunIds = [
+    ...new Set(
+      existingArtifactMetas
+        .filter((item) => coreArtifactKeys.has(item.key))
+        .map((item) => item.meta.runId)
+        .filter(Boolean),
+    ),
+  ];
   const missingRunIdLabels = existingArtifactMetas
     .filter((item) => !item.meta.runId)
     .map((item) => item.label);
@@ -277,9 +324,12 @@ async function main() {
 
   let freshnessStatus = "ok";
   let freshnessDetail = distinctRunIds.length > 0 ? `run-id ${distinctRunIds[0]} 일치` : "run-id 메타데이터 미검출";
-  if (distinctRunIds.length > 1) {
+  if (coreDistinctRunIds.length > 1) {
     freshnessStatus = "error";
-    freshnessDetail = `run-id 혼재: ${distinctRunIds.join(", ")}`;
+    freshnessDetail = `core run-id 혼재: ${coreDistinctRunIds.join(", ")}`;
+  } else if (distinctRunIds.length > 1) {
+    freshnessStatus = "warn";
+    freshnessDetail = `optional run-id 혼재: ${distinctRunIds.join(", ")}`;
   } else if (missingRunIdLabels.length > 0 || staleDownstreams.length > 0 || existingArtifactMetas.length === 0) {
     freshnessStatus = "warn";
     const details = [];
@@ -348,6 +398,18 @@ async function main() {
       path: relative(paths.stage1),
     },
     {
+      key: "stage1_quality",
+      label: "Stage 1 품질",
+      status:
+        stage1ContaminationRate > 0.35
+          ? "error"
+          : stage1ContaminationRate > 0.2 || stage1WeakClaimRatio > 0.55
+            ? "warn"
+            : "ok",
+      detail: `contamination ${stage1ContaminationRate.toFixed(2)} / weak_claim ${stage1WeakClaimRatio.toFixed(2)}`,
+      path: relative(paths.stage1),
+    },
+    {
       key: "stage2",
       label: "Stage 2 전략 탐색",
       status: statusFromCondition(stage2Mode !== "missing", "warn"),
@@ -374,6 +436,13 @@ async function main() {
       path: relative(paths.stage3),
     },
     {
+      key: "stage3_quality",
+      label: "Stage 3 관계 품질",
+      status: statusFromCondition(stage3UnrelatedEvidenceRatio <= 0.35, stage3UnrelatedEvidenceRatio > 0.5 ? "error" : "warn"),
+      detail: `unrelated ${stage3UnrelatedEvidenceRatio.toFixed(2)} / blocked ${stage3BlockedEvidenceCount}건`,
+      path: relative(paths.stage3),
+    },
+    {
       key: "stage4",
       label: "Stage 4 실행 계획",
       status: statusFromCondition(Boolean(stage4?.accountPlans?.length)),
@@ -381,6 +450,13 @@ async function main() {
         stage4?.accountPlans?.length
           ? `계좌 계획 ${stage4.accountPlans.length}개`
           : "stage4 누락",
+      path: relative(paths.stage4),
+    },
+    {
+      key: "stage4_quality",
+      label: "Stage 4 논리 품질",
+      status: statusFromCondition(stage4ActionConflictCount === 0, "error"),
+      detail: `conflict ${stage4ActionConflictCount}건 / no_action ${stage4NoActionCount}건 / low_conf_reject ${lowConfidenceActionRejectionCount}건`,
       path: relative(paths.stage4),
     },
     {
@@ -532,6 +608,13 @@ async function main() {
       path: relative(paths.fallbackSummary),
     },
     {
+      key: "fallback_checklist",
+      label: "Fallback Checklist",
+      status: statusFromCondition(await fileExists(paths.fallbackChecklist), "warn"),
+      detail: (await fileExists(paths.fallbackChecklist)) ? "실패 폴백 체크리스트 준비됨" : "폴백 체크리스트 없음",
+      path: relative(paths.fallbackChecklist),
+    },
+    {
       key: "wiki_memory",
       label: "LLM Wiki Memory",
       status: statusFromCondition(
@@ -572,6 +655,23 @@ async function main() {
     checks,
   };
 
+  const dailyQuality = {
+    ...summaryMeta,
+    stage1: {
+      contaminationRate: Number.parseFloat(stage1ContaminationRate.toFixed(4)),
+      weakClaimRatio: Number.parseFloat(stage1WeakClaimRatio.toFixed(4)),
+    },
+    stage3: {
+      unrelatedEvidenceRatio: Number.parseFloat(stage3UnrelatedEvidenceRatio.toFixed(4)),
+      blockedEvidenceCount: stage3BlockedEvidenceCount,
+    },
+    stage4: {
+      actionConflictCount: stage4ActionConflictCount,
+      noActionCount: stage4NoActionCount,
+      lowConfidenceActionRejectionCount,
+    },
+  };
+
   const outputJson = path.join(analysisDir, "system-health.json");
   const outputMarkdown = path.join(ROOT_DIR, "knowledge", "daily", `${date}-system-health.md`);
 
@@ -594,6 +694,7 @@ async function main() {
   ].join("\n");
 
   await writeJson(outputJson, summary);
+  await writeJson(paths.dailyQuality, dailyQuality);
   await writeText(outputMarkdown, `${markdown}\n`);
 
   console.log(outputJson);

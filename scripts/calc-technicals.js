@@ -272,6 +272,339 @@ function determineBollingerPosition(close, bands) {
   return 'lower_half';
 }
 
+function alignSeries(sourceLength, values) {
+  const padding = Math.max(sourceLength - values.length, 0);
+  return Array.from({ length: padding }, () => null).concat(values);
+}
+
+function findPivotIndexes(values, mode, left = 2, right = 2) {
+  const pivots = [];
+
+  for (let index = left; index < values.length - right; index += 1) {
+    const pivot = values[index];
+    if (pivot == null || Number.isNaN(pivot)) {
+      continue;
+    }
+
+    let isPivot = true;
+
+    for (let offset = 1; offset <= left; offset += 1) {
+      const candidate = values[index - offset];
+      if (candidate == null || Number.isNaN(candidate)) {
+        isPivot = false;
+        break;
+      }
+
+      if (mode === 'low' ? pivot > candidate : pivot < candidate) {
+        isPivot = false;
+        break;
+      }
+    }
+
+    if (!isPivot) {
+      continue;
+    }
+
+    for (let offset = 1; offset <= right; offset += 1) {
+      const candidate = values[index + offset];
+      if (candidate == null || Number.isNaN(candidate)) {
+        isPivot = false;
+        break;
+      }
+
+      if (mode === 'low' ? pivot > candidate : pivot < candidate) {
+        isPivot = false;
+        break;
+      }
+    }
+
+    if (isPivot) {
+      pivots.push(index);
+    }
+  }
+
+  return pivots;
+}
+
+function detectRsiDivergence(history, rsiSeries) {
+  if (!Array.isArray(history) || history.length < 25 || !Array.isArray(rsiSeries) || rsiSeries.length < 10) {
+    return {
+      type: 'none',
+      strength: 'low',
+      summary: 'RSI 다이버전스를 판별하기 위한 최근 데이터가 충분하지 않습니다.',
+    };
+  }
+
+  const lookback = Math.min(45, history.length);
+  const startIndex = history.length - lookback;
+  const lows = history.slice(startIndex).map((row) => row.low);
+  const highs = history.slice(startIndex).map((row) => row.high);
+  const alignedRsi = alignSeries(history.length, rsiSeries).slice(startIndex);
+  const lowPivots = findPivotIndexes(lows, 'low').filter((index) => alignedRsi[index] != null);
+  const highPivots = findPivotIndexes(highs, 'high').filter((index) => alignedRsi[index] != null);
+  const latestLowPair = lowPivots.length >= 2 ? lowPivots.slice(-2) : null;
+  const latestHighPair = highPivots.length >= 2 ? highPivots.slice(-2) : null;
+
+  const bullish =
+    latestLowPair &&
+    lows[latestLowPair[1]] < lows[latestLowPair[0]] * 0.997 &&
+    alignedRsi[latestLowPair[1]] > alignedRsi[latestLowPair[0]] + 3;
+
+  const bearish =
+    latestHighPair &&
+    highs[latestHighPair[1]] > highs[latestHighPair[0]] * 1.003 &&
+    alignedRsi[latestHighPair[1]] < alignedRsi[latestHighPair[0]] - 3;
+
+  if (bullish && latestLowPair) {
+    const [previousIndex, latestIndex] = latestLowPair;
+    return {
+      type: 'bullish',
+      strength: alignedRsi[latestIndex] >= 45 ? 'high' : 'medium',
+      summary: `최근 저점은 낮아졌지만 RSI 저점은 높아져 강세 다이버전스가 보입니다 (${history[startIndex + previousIndex].date} → ${history[startIndex + latestIndex].date}).`,
+      reference: {
+        previousDate: history[startIndex + previousIndex].date,
+        latestDate: history[startIndex + latestIndex].date,
+        previousPrice: roundNumber(lows[previousIndex], 4),
+        latestPrice: roundNumber(lows[latestIndex], 4),
+        previousRsi: roundNumber(alignedRsi[previousIndex], 2),
+        latestRsi: roundNumber(alignedRsi[latestIndex], 2),
+      },
+    };
+  }
+
+  if (bearish && latestHighPair) {
+    const [previousIndex, latestIndex] = latestHighPair;
+    return {
+      type: 'bearish',
+      strength: alignedRsi[latestIndex] <= 55 ? 'high' : 'medium',
+      summary: `최근 고점은 높아졌지만 RSI 고점은 낮아져 약세 다이버전스가 보입니다 (${history[startIndex + previousIndex].date} → ${history[startIndex + latestIndex].date}).`,
+      reference: {
+        previousDate: history[startIndex + previousIndex].date,
+        latestDate: history[startIndex + latestIndex].date,
+        previousPrice: roundNumber(highs[previousIndex], 4),
+        latestPrice: roundNumber(highs[latestIndex], 4),
+        previousRsi: roundNumber(alignedRsi[previousIndex], 2),
+        latestRsi: roundNumber(alignedRsi[latestIndex], 2),
+      },
+    };
+  }
+
+  return {
+    type: 'none',
+    strength: 'low',
+    summary: '최근 구간에서는 뚜렷한 RSI 다이버전스가 보이지 않습니다.',
+  };
+}
+
+function createBias(side, summary, extra = {}) {
+  return {
+    side,
+    label: side === 'buy_side' ? '매수 쪽' : side === 'sell_side' ? '매도 쪽' : '중립',
+    summary,
+    ...extra,
+  };
+}
+
+function analyzeRsi(rsi, divergence) {
+  if (rsi == null) {
+    return createBias('neutral', 'RSI 데이터가 부족합니다.', {
+      value: null,
+      divergence: divergence?.type ?? 'none',
+    });
+  }
+
+  if (divergence?.type === 'bullish') {
+    return createBias('buy_side', `RSI ${roundNumber(rsi, 2)}로 중립권이지만 강세 다이버전스가 확인됩니다.`, {
+      value: roundNumber(rsi, 2),
+      divergence: 'bullish',
+      strength: divergence.strength,
+    });
+  }
+
+  if (divergence?.type === 'bearish') {
+    return createBias('sell_side', `RSI ${roundNumber(rsi, 2)}와 함께 약세 다이버전스가 확인됩니다.`, {
+      value: roundNumber(rsi, 2),
+      divergence: 'bearish',
+      strength: divergence.strength,
+    });
+  }
+
+  if (rsi <= 35) {
+    return createBias('buy_side', `RSI ${roundNumber(rsi, 2)}로 과매도에 가까워 매수 쪽 신호가 강합니다.`, {
+      value: roundNumber(rsi, 2),
+      divergence: 'none',
+      strength: rsi <= 30 ? 'high' : 'medium',
+    });
+  }
+
+  if (rsi >= 65) {
+    return createBias('sell_side', `RSI ${roundNumber(rsi, 2)}로 과매수에 가까워 매도 쪽 경계가 필요합니다.`, {
+      value: roundNumber(rsi, 2),
+      divergence: 'none',
+      strength: rsi >= 70 ? 'high' : 'medium',
+    });
+  }
+
+  return createBias('neutral', `RSI ${roundNumber(rsi, 2)}로 중립 구간입니다.`, {
+    value: roundNumber(rsi, 2),
+    divergence: 'none',
+    strength: 'low',
+  });
+}
+
+function analyzeMacd(macd, macdPrev) {
+  if (!macd) {
+    return createBias('neutral', 'MACD 데이터가 부족합니다.');
+  }
+
+  const crossedUp =
+    macdPrev &&
+    macdPrev.MACD <= macdPrev.signal &&
+    macd.MACD > macd.signal;
+  const crossedDown =
+    macdPrev &&
+    macdPrev.MACD >= macdPrev.signal &&
+    macd.MACD < macd.signal;
+
+  if (crossedUp || (macd.MACD >= macd.signal && macd.histogram >= 0)) {
+    return createBias(
+      'buy_side',
+      crossedUp
+        ? 'MACD가 시그널선을 상향 돌파해 매수 쪽으로 기울었습니다.'
+        : 'MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다.',
+      {
+        value: roundNumber(macd.MACD, 4),
+        signal: roundNumber(macd.signal, 4),
+        histogram: roundNumber(macd.histogram, 4),
+        crossover: crossedUp ? 'bullish' : 'none',
+      },
+    );
+  }
+
+  if (crossedDown || (macd.MACD < macd.signal && macd.histogram < 0)) {
+    return createBias(
+      'sell_side',
+      crossedDown
+        ? 'MACD가 시그널선을 하향 이탈해 매도 쪽으로 기울었습니다.'
+        : 'MACD가 시그널선 아래에 있고 히스토그램도 마이너스라 매도 쪽 모멘텀이 우세합니다.',
+      {
+        value: roundNumber(macd.MACD, 4),
+        signal: roundNumber(macd.signal, 4),
+        histogram: roundNumber(macd.histogram, 4),
+        crossover: crossedDown ? 'bearish' : 'none',
+      },
+    );
+  }
+
+  return createBias('neutral', 'MACD가 방향을 고르는 중이라 아직 중립에 가깝습니다.', {
+    value: roundNumber(macd.MACD, 4),
+    signal: roundNumber(macd.signal, 4),
+    histogram: roundNumber(macd.histogram, 4),
+    crossover: 'none',
+  });
+}
+
+function analyzeBollinger(close, bollinger, position) {
+  if (close == null || !bollinger) {
+    return createBias('neutral', '볼린저밴드 데이터가 부족합니다.');
+  }
+
+  const range = bollinger.upper - bollinger.lower;
+  const distanceRatio = range > 0 ? (close - bollinger.lower) / range : null;
+
+  if (position === 'below_lower' || (distanceRatio != null && distanceRatio <= 0.18)) {
+    return createBias('buy_side', '가격이 볼린저 하단에 가까워 단기 반등 관점의 매수 쪽에 가깝습니다.', {
+      position,
+      distanceRatio: roundNumber(distanceRatio, 3),
+    });
+  }
+
+  if (position === 'above_upper' || (distanceRatio != null && distanceRatio >= 0.82)) {
+    return createBias('sell_side', '가격이 볼린저 상단에 가까워 단기 과열에 따른 매도 쪽 경계가 필요합니다.', {
+      position,
+      distanceRatio: roundNumber(distanceRatio, 3),
+    });
+  }
+
+  return createBias('neutral', '가격이 볼린저 중단 부근에 있어 중립에 가깝습니다.', {
+    position,
+    distanceRatio: roundNumber(distanceRatio, 3),
+  });
+}
+
+function analyzeMovingAverages(close, ma5, ma20, ma60, ma120) {
+  if (close == null || ma20 == null) {
+    return createBias('neutral', '이평선 데이터가 부족합니다.');
+  }
+
+  const trendUp =
+    ma5 != null &&
+    ma20 != null &&
+    ma60 != null &&
+    ma5 >= ma20 &&
+    ma20 >= ma60;
+  const trendDown =
+    ma5 != null &&
+    ma20 != null &&
+    ma60 != null &&
+    ma5 <= ma20 &&
+    ma20 <= ma60;
+
+  if (close >= ma20 && trendUp) {
+    return createBias('buy_side', '주가가 20일선 위에 있고 단기·중기 이평선 배열도 우상향이라 매수 쪽입니다.', {
+      above20: true,
+      trend: 'up',
+    });
+  }
+
+  if (close < ma20 && trendDown) {
+    return createBias('sell_side', '주가가 20일선 아래에 있고 이평선 배열도 역배열에 가까워 매도 쪽입니다.', {
+      above20: false,
+      trend: 'down',
+    });
+  }
+
+  const longTrendUp = ma60 != null && ma120 != null ? ma60 >= ma120 : null;
+  return createBias(
+    close >= ma20 || longTrendUp
+      ? 'neutral'
+      : 'sell_side',
+    close >= ma20
+      ? '주가는 20일선 위지만 이평선 배열이 완전히 정리되진 않아 중립입니다.'
+      : longTrendUp
+        ? '주가는 눌려 있지만 장기 추세가 완전히 꺾이진 않아 중립 구간입니다.'
+        : '주가와 중기 추세가 모두 약해 매도 쪽에 더 가깝습니다.',
+    {
+      above20: close >= ma20,
+      trend: longTrendUp ? 'mixed' : 'down',
+    },
+  );
+}
+
+function summarizeExecutionBias(indicators) {
+  const sideScore = (side) => {
+    if (side === 'buy_side') return 1;
+    if (side === 'sell_side') return -1;
+    return 0;
+  };
+
+  const weightedScore =
+    sideScore(indicators.rsi.side) * 1.2 +
+    sideScore(indicators.macd.side) * 1 +
+    sideScore(indicators.bollinger.side) * 0.8 +
+    sideScore(indicators.movingAverage.side) * 1;
+
+  if (weightedScore >= 1.5) {
+    return createBias('buy_side', '여러 기술 지표가 매수 쪽에 더 가깝습니다.');
+  }
+
+  if (weightedScore <= -1.5) {
+    return createBias('sell_side', '여러 기술 지표가 매도 쪽에 더 가깝습니다.');
+  }
+
+  return createBias('neutral', '기술 지표가 엇갈려 현재는 중립 또는 관망에 가깝습니다.');
+}
+
 function buildAlerts({ ma5Prev, ma20Prev, ma5, ma20, rsi, macdPrev, macd, bbPosition, volumeRatio }) {
   const alerts = [];
 
@@ -614,6 +947,11 @@ function calculateIndicators(history, snapshot) {
     change_pct: roundNumber(snapshot?.change_pct ?? history.at(-1)?.change_pct ?? null, 6),
     history_points: history.length,
     alerts,
+    technical_analysis: {
+      execution_bias: executionBias,
+      indicators: indicatorAnalysis,
+      rsi_divergence: rsiDivergence,
+    },
     // 최근 60일 일별 수익률 — CVaR/MaxDrawdown 계산에 활용
     daily_returns: closes.length >= 2
       ? closes.slice(-61).reduce((acc, price, idx, arr) => {

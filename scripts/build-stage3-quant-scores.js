@@ -6,17 +6,19 @@ import path from "node:path";
 
 import {
   CATEGORY_BY_CODE,
-  THEME_KEYWORDS_BY_CODE,
   ROOT_DIR,
+  THEME_KEYWORDS_BY_CODE,
   buildRunMetadata,
   clamp,
   enrichPortfolioWithSecurityCodes,
+  normalizeText,
   parseDateArgs,
   readJson,
   sigmoid,
   softmax,
   writeJson,
 } from "./lib/pipeline-utils.js";
+import { loadAnalysisContext } from "./lib/analysis-context.js";
 
 const REGIME_WEIGHTS = {
   BULL: {
@@ -141,6 +143,7 @@ const REPORT_TYPE_WEIGHTS = {
   stock: 1,
   industry: 0.78,
   theme: 0.88,
+  marketvoice: 0.62,
   strategy: 0.34,
   macro: 0.22,
 };
@@ -151,6 +154,22 @@ const IMPACT_HALF_LIFE_BY_HORIZON = {
   "3m": 90,
   "6m": 180,
 };
+
+const DEFAULT_ASSET_RELATION = {
+  allowed_tags: [],
+  forbidden_tags: ["compliance notice", "disclaimer", "목차", "table of contents"],
+  second_order_tags: [],
+  allowed_categories: [],
+  relation_weights: {
+    direct: 1,
+    thematic: 0.72,
+    second_order: 0.45,
+    account: 0.2,
+    blocked: 0,
+  },
+};
+
+let assetRelationConfig = { default: DEFAULT_ASSET_RELATION, assets: {} };
 
 const REGIME_CATEGORY_MULTIPLIERS = {
   BULL: { risk: 1.12, defensive: 0.92, cash: 0.78, other: 1 },
@@ -442,6 +461,79 @@ function themeMatchesHolding(code, category, value) {
   return keywords.some((keyword) => normalized.includes(keyword.toLowerCase()));
 }
 
+function assetRelationSpec(code) {
+  return {
+    ...DEFAULT_ASSET_RELATION,
+    ...(assetRelationConfig.default ?? {}),
+    ...(assetRelationConfig.assets?.[code] ?? {}),
+    relation_weights: {
+      ...DEFAULT_ASSET_RELATION.relation_weights,
+      ...(assetRelationConfig.default?.relation_weights ?? {}),
+      ...(assetRelationConfig.assets?.[code]?.relation_weights ?? {}),
+    },
+  };
+}
+
+function relationTagHit(haystack, tags = []) {
+  return tags.some((tag) => haystack.includes(normalizeText(tag)));
+}
+
+function classifyImpactRelation({ impact, targetCode, category }) {
+  const spec = assetRelationSpec(targetCode);
+  const haystack = normalizeText(
+    [
+      impact.title,
+      impact.reason,
+      impact.targetType,
+      impact.reportType,
+      category,
+      ...(impact.evidenceNumbers ?? []),
+    ]
+      .filter(Boolean)
+      .join(" "),
+  );
+
+  if (relationTagHit(haystack, spec.forbidden_tags)) {
+    return { relationType: "blocked", relationWeight: 0, evidenceScore: 0 };
+  }
+
+  if (impact.targetType === "holding") {
+    return { relationType: "direct", relationWeight: spec.relation_weights.direct ?? 1, evidenceScore: 1 };
+  }
+
+  const categoryHit =
+    spec.allowed_categories.includes(category) ||
+    relationTagHit(haystack, spec.allowed_categories);
+  const allowedHit = relationTagHit(haystack, spec.allowed_tags);
+  const secondOrderHit = relationTagHit(haystack, spec.second_order_tags);
+
+  if (categoryHit || allowedHit) {
+    return {
+      relationType: "thematic",
+      relationWeight: spec.relation_weights.thematic ?? 0.72,
+      evidenceScore: categoryHit ? 0.82 : 0.72,
+    };
+  }
+
+  if (secondOrderHit) {
+    return {
+      relationType: "second_order",
+      relationWeight: spec.relation_weights.second_order ?? 0.45,
+      evidenceScore: 0.48,
+    };
+  }
+
+  if (impact.targetType === "account" || impact.targetType === "portfolio") {
+    return {
+      relationType: "account",
+      relationWeight: spec.relation_weights.account ?? 0.2,
+      evidenceScore: 0.25,
+    };
+  }
+
+  return { relationType: "blocked", relationWeight: 0, evidenceScore: 0 };
+}
+
 function parseDateValue(dateText) {
   if (typeof dateText !== "string" || !dateText) return null;
   const parsed = new Date(`${dateText}T00:00:00Z`);
@@ -575,13 +667,30 @@ function aggregateHoldingReportImpacts({ impactMap, stage1Extracts, targetCode, 
     (item) => item.targetType !== "account" && item.targetType !== "portfolio",
   );
   const fallback = normalizeStage1Entries(stage1Extracts, targetCode, accountKey, category, false);
-  const rawImpacts = (confirmed.length > 0 ? confirmed : fallback)
-    .map((impact) => ({
+  const relationCounts = {
+    direct: 0,
+    thematic: 0,
+    second_order: 0,
+    blocked: 0,
+  };
+  const relationCandidates = (confirmed.length > 0 ? confirmed : fallback).map((impact) => {
+    const relation = classifyImpactRelation({ impact, targetCode, category });
+    relationCounts[relation.relationType] = (relationCounts[relation.relationType] ?? 0) + 1;
+    return {
       ...impact,
-      contribution: impactContribution(impact, referenceDate),
-    }))
+      relationType: relation.relationType,
+      relationWeight: relation.relationWeight,
+      evidenceScore: relation.evidenceScore,
+      contribution: impactContribution(impact, referenceDate) * relation.relationWeight,
+    };
+  });
+  const rawImpacts = relationCandidates
+    .filter((impact) => impact.relationWeight > 0)
     .filter((impact) => Math.abs(impact.contribution) >= 0.025)
-    .sort((left, right) => Math.abs(right.contribution) - Math.abs(left.contribution));
+    .sort((left, right) => {
+      if (right.evidenceScore !== left.evidenceScore) return right.evidenceScore - left.evidenceScore;
+      return Math.abs(right.contribution) - Math.abs(left.contribution);
+    });
 
   const impacts = rawImpacts.slice(0, confirmed.length > 0 ? 8 : 6);
   const averageContribution =
@@ -619,6 +728,16 @@ function aggregateHoldingReportImpacts({ impactMap, stage1Extracts, targetCode, 
       contribution: toRoundedNumber(contribution, 4),
     })),
     impactCount: rawImpacts.length,
+    relationSummary: {
+      directCount: relationCounts.direct,
+      thematicCount: relationCounts.thematic,
+      secondOrderCount: relationCounts.second_order,
+      blockedCount: relationCounts.blocked,
+      unrelatedEvidenceRatio:
+        relationCandidates.length > 0
+          ? toRoundedNumber((relationCounts.blocked ?? 0) / relationCandidates.length, 4)
+          : 0,
+    },
   };
 }
 
@@ -1711,23 +1830,31 @@ function computeTaxAwareAdjustment({
 
 async function main() {
   const args = parseDateArgs(process.argv.slice(2));
-  const stateDir = path.join(ROOT_DIR, "data", "analysis-state", args.date);
-  const [portfolio, strategy, technical, stage1, stage2, impactMap, fred] = await Promise.all([
-    readJson(path.join(ROOT_DIR, "data", "portfolio", "latest.json"), { accounts: [] }),
-    readJson(path.join(ROOT_DIR, "config", "strategy.json"), { accounts: {} }),
-    readJson(path.join(ROOT_DIR, "data", "technical", `${args.date}.json`), { scores: {}, market_context: {} }),
-    readJson(path.join(stateDir, "stage1-report-extracts-v2.json"), { extracts: [] }),
-    readJson(path.join(stateDir, "stage2-strategy-options.json"), null),
-    readJson(path.join(stateDir, "impact-map.json"), null),
-    readJson(path.join(ROOT_DIR, "data", "macro", `fred-${args.date}.json`), null),
-  ]);
-
-  const stage2Data =
-    stage2 ??
-    (await readJson(path.join(stateDir, "stage2-strategy-options.mock.json"), {
-      account_actions: [],
-      candidate_scores: [],
-    }));
+  assetRelationConfig =
+    (await readJson(path.join(ROOT_DIR, "config", "asset-relations.json"), null)) ?? {
+      default: DEFAULT_ASSET_RELATION,
+      assets: {},
+    };
+  const context = await loadAnalysisContext(args, {
+    portfolio: true,
+    strategy: true,
+    technical: true,
+    stage1: true,
+    stage2: true,
+    stage2Mock: true,
+    impactMap: true,
+    fred: true,
+    stage2Resolved: true,
+  });
+  const { paths, data } = context;
+  const stateDir = paths.analysisDir;
+  const portfolio = data.portfolio;
+  const strategy = data.strategy;
+  const technical = data.technical;
+  const stage1 = data.stage1;
+  const impactMap = data.impactMap;
+  const fred = data.fred;
+  const stage2Data = data.stage2Data;
   const normalizedPortfolio = enrichPortfolioWithSecurityCodes(portfolio);
   const regime = detectRegime(technical, fred);
   const leadingIndicator = computeLeadingIndicatorScore(fred);
@@ -1920,6 +2047,7 @@ async function main() {
         impactCount: row.reportImpact.impactCount,
         coverageWeight: row.reportImpact.coverageWeight,
         directAccountImpactScore: row.accountDirectImpact.score,
+        relationSummary: row.reportImpact.relationSummary,
       },
       factor: row.factor,
       actionBlend: row.finalAction,
@@ -2165,6 +2293,20 @@ async function main() {
         4,
       ),
       stage2Available: Boolean(stage2Data),
+    },
+    quality: {
+      unrelatedEvidenceRatio: toRoundedNumber(
+        mean(
+          Object.values(positionScores).map(
+            (position) => position?.report?.relationSummary?.unrelatedEvidenceRatio ?? 0,
+          ),
+        ),
+        4,
+      ),
+      blockedEvidenceCount: Object.values(positionScores).reduce(
+        (sum, position) => sum + (position?.report?.relationSummary?.blockedCount ?? 0),
+        0,
+      ),
     },
     configUsed: {
       weightProfile: profileName,

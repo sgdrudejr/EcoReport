@@ -21,7 +21,6 @@
 
 - [한국항공우주](securities/047810-한국항공우주.md)
 - [현대로템](securities/064350-현대로템.md)
-- [KODEX 골드선물(H)](securities/132030-kodex-골드선물-h.md)
 - [TIGER 미국나스닥100](securities/133690-tiger-미국나스닥100.md)
 - [KODEX 구리선물(H)](securities/138910-kodex-구리선물-h.md)
 - [KODEX MSCI선진국](securities/251350-kodex-msci선진국.md)

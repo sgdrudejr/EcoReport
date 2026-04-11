@@ -28,84 +28,48 @@ function joinClasses(...parts: Array<string | false | null | undefined>) {
 
 function isActivePath(pathname: string, href: string) {
   if (href === "/") return pathname === "/" || pathname === "/dashboard-test";
-  if (href === "/portfolio") return pathname === "/portfolio";
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
 export default function MainNav() {
   const pathname = usePathname();
-  const [isCondensed, setIsCondensed] = useState(false);
+  const [holdingsPreviewEnabled, setHoldingsPreviewEnabled] = useState(false);
 
   useEffect(() => {
-    const updateNavState = () => {
-      const nextCondensed = window.scrollY > 28;
-      setIsCondensed((current) => (current === nextCondensed ? current : nextCondensed));
-      document.documentElement.style.setProperty(
-        "--desktop-nav-offset",
-        nextCondensed ? "4.15rem" : "5.25rem",
-      );
-      document.documentElement.style.setProperty(
-        "--account-tabs-gap",
-        "0.25rem",
-      );
-    };
-
-    updateNavState();
-    window.addEventListener("scroll", updateNavState, { passive: true });
-    window.addEventListener("resize", updateNavState);
+    if (holdingsPreviewEnabled) {
+      document.documentElement.dataset.holdingsPreview = "true";
+    } else {
+      delete document.documentElement.dataset.holdingsPreview;
+    }
 
     return () => {
-      window.removeEventListener("scroll", updateNavState);
-      window.removeEventListener("resize", updateNavState);
-      document.documentElement.style.setProperty("--desktop-nav-offset", "5.25rem");
-      document.documentElement.style.setProperty("--account-tabs-gap", "0.25rem");
+      delete document.documentElement.dataset.holdingsPreview;
     };
-  }, []);
+  }, [holdingsPreviewEnabled]);
 
   return (
-    <>
-      <header
-        className={joinClasses(
-          "sticky top-0 z-50 hidden border-b border-slate-200/90 bg-white/96 backdrop-blur-2xl transition-all duration-300 md:block",
-          isCondensed ? "shadow-[0_10px_24px_rgba(15,23,42,0.06)]" : "",
-        )}
-      >
-        <div
-          className={joinClasses(
-            "mx-auto flex max-w-7xl items-center justify-between px-6 transition-all duration-300",
-            isCondensed ? "gap-4 py-2.5" : "gap-6 py-4",
-          )}
-        >
-          <Link href="/" className={joinClasses("flex items-center transition-all duration-300", isCondensed ? "gap-2.5" : "gap-3")}>
-            <div
+    <div className="pointer-events-none fixed right-5 top-5 z-50 flex flex-col items-end gap-2">
+      <nav className="pointer-events-auto flex flex-col items-stretch gap-1.5 rounded-[1.35rem] border border-slate-200/80 bg-white/88 p-1.5 shadow-[0_14px_30px_rgba(15,23,42,0.09)]">
+        {links.map((link) => {
+          const Icon = link.icon;
+          const isActive = isActivePath(pathname, link.href);
+          return (
+            <Link
+              key={link.href}
+              href={link.href}
               className={joinClasses(
-                "flex items-center justify-center bg-slate-950 text-white transition-all duration-300",
-                isCondensed
-                  ? "size-8 rounded-xl shadow-[0_8px_18px_rgba(15,23,42,0.08)]"
-                  : "size-10 rounded-2xl shadow-[0_12px_24px_rgba(15,23,42,0.12)]",
+                "inline-flex items-center justify-between gap-2 rounded-full px-3.5 py-2 text-sm font-medium transition",
+                isActive
+                  ? "bg-indigo-600 text-white shadow-[0_8px_16px_rgba(99,102,241,0.22)]"
+                  : "text-slate-600 hover:bg-white hover:text-slate-950",
               )}
             >
-              <PenSquare size={isCondensed ? 15 : 18} />
-            </div>
-            <div>
-              <p
-                className={joinClasses(
-                  "font-semibold tracking-[0.08em] text-slate-950 transition-all duration-300",
-                  isCondensed ? "text-[13px]" : "text-sm",
-                )}
-              >
-                EcoReport
-              </p>
-              <p
-                className={joinClasses(
-                  "overflow-hidden text-slate-500 transition-all duration-300",
-                  isCondensed ? "max-h-0 text-[11px] opacity-0" : "max-h-5 text-xs opacity-100",
-                )}
-              >
-                White research dashboard
-              </p>
-            </div>
-          </Link>
+              <Icon size={15} />
+              <span>{link.label}</span>
+            </Link>
+          );
+        })}
+      </nav>
 
           <nav className={joinClasses("flex items-center transition-all duration-300", isCondensed ? "gap-1.5" : "gap-2")}>
             {links.map((link) => {

@@ -5,7 +5,9 @@ import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 
-import { ROOT_DIR, parseDateArgs, readJson, truncate, writeText, won } from "./lib/pipeline-utils.js";
+import { ROOT_DIR, parseDateArgs, truncate, writeText, won } from "./lib/pipeline-utils.js";
+import { loadAnalysisContext } from "./lib/analysis-context.js";
+import { formatMarketVoiceForPrompt } from "./lib/marketvoice-utils.js";
 
 const DEFAULT_OUTPUT_NAME = "07-stage1-5-gemini-deep-research-prompt.md";
 const MAX_STAGE1_EXTRACTS = 12;
@@ -35,6 +37,7 @@ const PROMPT_TEMPLATE = `너는 최고의 글로벌 투자 트레이딩 전문�
   - 토스증권: 전술 알파, 설명력 강한 테마 위주, 약한 포지션은 빠른 점검
   - 한투 일반: 실전형 일반 계좌, 현금 기동성과 공격적 테마 대응 병행
 - 각 보유 종목 코멘트는 반드시 '핵심 내용'과 '주의할 점'을 각각 2~4문장으로 작성해 줘. 한 줄짜리 요약으로 끝내지 마.
+- 보유 종목 코멘트와 신규 후보/추천 실행 방향에서 한 항목 안에 문장이 2개 이상이면 문장마다 줄바꿈해 줘. 빈 줄로 새 단락을 만들지 말고 같은 항목 안에서만 줄을 나눠.
 - 계좌 전략별 투자 방향성은 반드시 계좌당 3~5문장으로 써 줘. '방어적으로 대응' 같은 일반론으로 끝내지 말고, 왜 그 계좌에서 그 자산군을 늘리거나 줄여야 하는지까지 적어 줘.
 - 각 계좌 메모에는 아래 4가지를 꼭 포함해 줘.
   1. 그 계좌가 전체 포트폴리오에서 맡는 역할
@@ -78,8 +81,8 @@ const PROMPT_TEMPLATE = `너는 최고의 글로벌 투자 트레이딩 전문�
 ## 보유 종목 상세 코멘트
 ### ISA
 - [종목명] ([티커])
-  - 핵심 내용:
-  - 주의할 점:
+  - 핵심 내용: 문장마다 줄바꿈
+  - 주의할 점: 문장마다 줄바꿈
   - 체크포인트:
   - 권장 대응: 추가매수 / 보유 / 축소 / 관망 중 하나
 ### 연금저축
@@ -94,10 +97,12 @@ const PROMPT_TEMPLATE = `너는 최고의 글로벌 투자 트레이딩 전문�
 - 섹터 ETF
 - 개별주
 - 각 항목마다 왜 지금 검토 가치가 있는지, 기존 보유보다 나은 점이 무엇인지
+- 한 항목 안에 문장이 2개 이상이면 문장마다 줄바꿈
 
 ## 추천 실행 방향
 - 매수 / 매도 / 보유·관망을 계좌별로 정리
 - 각 항목마다 "왜 지금"과 "무엇을 확인하면 판단을 바꿀지" 포함
+- 한 항목 안에 문장이 2개 이상이면 문장마다 줄바꿈
 - 필요할 때만 기술적 타이밍 언급
 
 ## 촉매 일정 / 체크포인트
@@ -109,6 +114,9 @@ const PROMPT_TEMPLATE = `너는 최고의 글로벌 투자 트레이딩 전문�
 
 [보유 종목 기술 스냅샷]
 {{TECHNICAL_DATA}}
+
+[실시간 시황/이벤트 레이어]
+{{MARKETVOICE_DATA}}
 
 [오늘의 리포트 핵심 요약]
 {{STAGE1_DATA}}
@@ -239,6 +247,7 @@ function formatPortfolioMarkdown(portfolio) {
 
 function scoreExtractPriority(extract) {
   let score = 0;
+  const directPortfolioLinks = extract?.related_holdings_in_my_portfolio?.length ?? 0;
   score += (extract?.related_holdings_in_my_portfolio?.length ?? 0) * 12;
   score += (extract?.portfolio_impacts_candidate?.length ?? 0) * 10;
   score += (extract?.related_accounts?.length ?? 0) * 5;
@@ -248,6 +257,7 @@ function scoreExtractPriority(extract) {
   if (extract?.report_type === "theme") score += 10;
   if (extract?.confidence === "HIGH") score += 6;
   if (extract?.confidence === "MEDIUM") score += 3;
+  if (extract?.report_type === "stock" && directPortfolioLinks === 0) score -= 10;
 
   return score + Math.round(Math.abs(extract?.sentiment_score ?? 0) * 10);
 }
@@ -403,9 +413,16 @@ function copyToClipboard(text) {
 
 async function main() {
   const args = parseDateArgs(process.argv.slice(2));
-  const stage1Path = path.join(ROOT_DIR, "data", "analysis-state", args.date, "stage1-report-extracts-v2.json");
-  const portfolioPath = path.join(ROOT_DIR, "data", "portfolio", "latest.json");
-  const technicalPath = path.join(ROOT_DIR, "data", "technical", `${args.date}.json`);
+  const context = await loadAnalysisContext(args, {
+    stage1: true,
+    portfolio: true,
+    technical: true,
+    marketVoice: true,
+  });
+  const { paths, data } = context;
+  const stage1Path = paths.stage1;
+  const portfolioPath = paths.portfolio;
+  const technicalPath = paths.technical;
   const outputPath = resolveOutputPath(args.output, args.date);
 
   if (!fs.existsSync(stage1Path)) {
@@ -420,11 +437,10 @@ async function main() {
     throw new Error(`포트폴리오 스냅샷을 찾을 수 없습니다: ${portfolioPath}`);
   }
 
-  const [stage1, portfolio, technical] = await Promise.all([
-    readJson(stage1Path, null),
-    readJson(portfolioPath, null),
-    fs.existsSync(technicalPath) ? readJson(technicalPath, null) : Promise.resolve(null),
-  ]);
+  const stage1 = data.stage1;
+  const portfolio = data.portfolio;
+  const technical = fs.existsSync(technicalPath) ? data.technical : null;
+  const marketVoice = data.marketVoice;
 
   if (!stage1) {
     throw new Error(`Stage 1 JSON 파싱에 실패했습니다: ${stage1Path}`);
@@ -436,9 +452,14 @@ async function main() {
   const portfolioMarkdown = formatPortfolioMarkdown(portfolio);
   const technicalMarkdown = formatTechnicalMarkdown(portfolio, technical);
   const stage1Markdown = formatStage1ExtractMarkdown(stage1);
+  const marketVoiceMarkdown = formatMarketVoiceForPrompt(marketVoice, {
+    maxTopics: 6,
+    maxResearch: 3,
+  });
   const prompt = PROMPT_TEMPLATE
     .replace("{{PORTFOLIO_DATA}}", portfolioMarkdown)
     .replace("{{TECHNICAL_DATA}}", technicalMarkdown)
+    .replace("{{MARKETVOICE_DATA}}", marketVoiceMarkdown)
     .replace("{{STAGE1_DATA}}", stage1Markdown);
 
   await writeText(outputPath, `${prompt}\n`);

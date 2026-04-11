@@ -159,6 +159,9 @@ else
 
   run_optional_step "📰 [3/7] RSS/트위터/시장 데이터 수집..." \
     bash -lc "node scripts/fetch-rss-news.js --date '$DATE' && node scripts/fetch-twitter.js --date '$DATE' && node scripts/fetch-market-data.js --date '$DATE'"
+
+  run_optional_step "📣 [3/7] 머니토링 시황 이벤트 수집..." \
+    node scripts/collect-marketvoice-news.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"
 fi
 
 run_step "📊 [4/7] 기술적 분석 계산..." \

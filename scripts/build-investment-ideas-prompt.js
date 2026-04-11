@@ -7,6 +7,8 @@ import process from "node:process";
 
 import Database from "better-sqlite3";
 
+import { formatMarketVoiceForPrompt } from "./lib/marketvoice-utils.js";
+
 const MAX_CANDIDATES = 18;
 const MAX_REPORT_CHUNKS_PER_CANDIDATE = 2;
 const MAX_PORTFOLIO_CHUNKS_PER_CANDIDATE = 1;
@@ -255,15 +257,17 @@ async function main() {
   const briefingPath = path.join(cwd, "knowledge", "daily", `${args.date}-gemini-briefing-rich.md`);
   const fallbackBriefingPath = path.join(cwd, "knowledge", "daily", `${args.date}-gemini-briefing.md`);
   const synthesisPath = path.join(cwd, "knowledge", "daily", `${args.date}-synthesis.md`);
+  const marketVoicePath = path.join(cwd, "data", "analysis-state", args.date, "marketvoice-linked.json");
   const dbPath = path.join(cwd, "knowledge", "rag", args.date, "parallel-rag.db");
 
-  const [portfolio, watchlist, technical, richBriefing, fallbackBriefing, synthesis] = await Promise.all([
+  const [portfolio, watchlist, technical, richBriefing, fallbackBriefing, synthesis, marketVoice] = await Promise.all([
     readJson(portfolioPath, null),
     readJson(watchlistPath, null),
     readJson(technicalPath, null),
     readText(briefingPath, ""),
     readText(fallbackBriefingPath, ""),
     readText(synthesisPath, ""),
+    readJson(marketVoicePath, null),
   ]);
 
   const macroBriefing = richBriefing || fallbackBriefing || synthesis || "- 브리핑 없음";
@@ -290,6 +294,9 @@ async function main() {
     "## 오늘 거시/섹터 브리핑",
     truncate(macroBriefing, 6000),
     "",
+    "## 머니토링 실시간 시황/이벤트 레이어",
+    formatMarketVoiceForPrompt(marketVoice, { maxTopics: 5, maxResearch: 2 }),
+    "",
     "## 현재 포트폴리오",
     summarizePortfolio(portfolio),
     "",
@@ -304,6 +311,11 @@ async function main() {
     "5. 추천하지 않는 후보 3개도 따로 적고, 왜 지금은 아닌지 설명하세요.",
     "",
     "## 출력 형식",
+    "## 줄갈이 규칙",
+    "- 보유 종목, 신규 후보, 추천 항목에서 한 항목 안에 문장이 2개 이상이면 문장마다 줄바꿈하세요.",
+    "- 같은 항목 안에서만 줄을 나누고, 빈 줄로 새 단락을 만들지는 마세요.",
+    "- 한 줄이 너무 짧으면 다음 문장까지 붙여 2줄 안팎으로 맞추세요.",
+    "",
     "## 오늘 추천 Top 5",
     "- 1위 / 종목명(코드) / 계좌 / 행동 / 이유 / 어떤 조건이면 무효인지",
     "- 2위 ...",

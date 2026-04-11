@@ -66,11 +66,11 @@
         "loan_amt": "0",
         "stln_slng_chgs": "0",
         "expd_dt": "",
-        "fltt_rt": "3.44827586",
-        "bfdy_cprs_icdc": "7000",
+        "fltt_rt": "0.00000000",
+        "bfdy_cprs_icdc": "0",
         "item_mgna_rt_name": "20%",
         "grta_rt_name": "45%",
-        "sbst_pric": "146160",
+        "sbst_pric": "151200",
         "stck_loan_unpr": "0.0000"
       },
       {
@@ -94,11 +94,11 @@
         "loan_amt": "0",
         "stln_slng_chgs": "0",
         "expd_dt": "",
-        "fltt_rt": "1.22905028",
-        "bfdy_cprs_icdc": "110",
+        "fltt_rt": "0.00000000",
+        "bfdy_cprs_icdc": "0",
         "item_mgna_rt_name": "100%",
         "grta_rt_name": "불가",
-        "sbst_pric": "6260",
+        "sbst_pric": "6340",
         "stck_loan_unpr": "0.0000"
       },
       {
@@ -122,11 +122,11 @@
         "loan_amt": "0",
         "stln_slng_chgs": "0",
         "expd_dt": "",
-        "fltt_rt": "0.83177972",
-        "bfdy_cprs_icdc": "580",
+        "fltt_rt": "0.00000000",
+        "bfdy_cprs_icdc": "0",
         "item_mgna_rt_name": "30%",
         "grta_rt_name": "45%",
-        "sbst_pric": "51600",
+        "sbst_pric": "52020",
         "stck_loan_unpr": "0.0000"
       },
       {
@@ -150,11 +150,11 @@
         "loan_amt": "0",
         "stln_slng_chgs": "0",
         "expd_dt": "",
-        "fltt_rt": "1.53846154",
-        "bfdy_cprs_icdc": "1200",
+        "fltt_rt": "0.00000000",
+        "bfdy_cprs_icdc": "0",
         "item_mgna_rt_name": "30%",
         "grta_rt_name": "45%",
-        "sbst_pric": "57720",
+        "sbst_pric": "58600",
         "stck_loan_unpr": "0.0000"
       }
     ],
@@ -429,8 +429,8 @@
         "stln_slng_chgs": "0",
         "expd_dt": "",
         "stck_loan_unpr": "0.0000",
-        "bfdy_cprs_icdc": "7000",
-        "fltt_rt": "3.44827586"
+        "bfdy_cprs_icdc": "0",
+        "fltt_rt": "0.00000000"
       },
       {
         "pdno": "138910",
@@ -454,8 +454,8 @@
         "stln_slng_chgs": "0",
         "expd_dt": "",
         "stck_loan_unpr": "0.0000",
-        "bfdy_cprs_icdc": "110",
-        "fltt_rt": "1.22905028"
+        "bfdy_cprs_icdc": "0",
+        "fltt_rt": "0.00000000"
       },
       {
         "pdno": "434730",
@@ -479,8 +479,8 @@
         "stln_slng_chgs": "0",
         "expd_dt": "",
         "stck_loan_unpr": "0.0000",
-        "bfdy_cprs_icdc": "580",
-        "fltt_rt": "0.83177972"
+        "bfdy_cprs_icdc": "0",
+        "fltt_rt": "0.00000000"
       },
       {
         "pdno": "449450",
@@ -504,8 +504,8 @@
         "stln_slng_chgs": "0",
         "expd_dt": "",
         "stck_loan_unpr": "0.0000",
-        "bfdy_cprs_icdc": "1200",
-        "fltt_rt": "1.53846154"
+        "bfdy_cprs_icdc": "0",
+        "fltt_rt": "0.00000000"
       }
     ],
     "summary": [

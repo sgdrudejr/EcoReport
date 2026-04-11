@@ -13,6 +13,19 @@ EcoReport를 다음 4단계 구조로 고정합니다.
 
 ## Architecture
 
+공용 입력은 파일 경로를 각 스크립트가 제각각 계산하지 않고 `scripts/lib/analysis-context.js`
+를 통해 로드합니다. 이 context는 아래 공통 자산을 한 번에 정렬합니다.
+
+- `portfolio/latest.json`
+- `strategy.json`
+- `technical/YYYY-MM-DD.json`
+- `stage1/2/3/impact-map`
+- `watchlist.json`
+- `fred-YYYY-MM-DD.json`
+
+이렇게 하면 현재는 프로세스 단위 캐시이지만, 이후 Node 기반 in-process orchestration으로
+옮길 때도 같은 context shape를 그대로 재사용할 수 있습니다.
+
 ```mermaid
 flowchart TD
     A["PDF/원문 텍스트\nindex.json + full_text_path"] --> B["Stage 1\nbuild-stage1-report-extracts.js"]
@@ -28,7 +41,10 @@ flowchart TD
     G["Gemini / daily briefing"] --> C
     C --> C1["stage2-strategy-prompt.md"]
 
-    B1 --> D["Stage 2 Mock\nbuild-stage2-strategy-mock.js"]
+    B1 --> DR["Stage 1.5 Deep Research Prompt\nbuild-stage1-5-gemini-deep-research-prompt.js"]
+    DR --> DR1["manual-kit/07-stage1-5-gemini-deep-research-prompt.md"]
+
+    B1 --> D["Stage 2 Mock / Fallback\nbuild-stage2-strategy-mock.js"]
     P --> D
     T --> D
     W --> D
@@ -79,6 +95,13 @@ flowchart TD
 
 실제 LLM을 붙이면 mock JSON 대신 동일 스키마의 실제 응답 JSON을 저장합니다.
 
+Mock 정책:
+
+- 기본 운영 경로에서는 Stage 2 mock을 무조건 만들지 않습니다.
+- `--mock-stage2`일 때만 테스트용 deterministic fixture를 생성합니다.
+- Gemini 실모델이 실패했고 fallback이 허용된 경우에만 canonical 경로에 fallback mock을 기록합니다.
+- mock 산출물에는 `mockMode: test|fallback` 과 `purpose`를 넣어 운영/테스트를 구분합니다.
+
 ### Stage 3
 
 - `data/analysis-state/YYYY-MM-DD/stage3-quant-scores.json`
@@ -125,6 +148,20 @@ flowchart TD
 최종 점수와 확률은 규칙/퀀트 엔진이 계산합니다.  
 이 단계는 재현성과 추적성을 담당합니다.
 
+또한 Stage 1.5 Deep Research 프롬프트 생성과 독립적으로 병렬 실행될 수 있습니다.
+
 ### Stage 4
 
 실제 실행 금액과 계좌별 행동 지침은 1~3단계 결과를 모두 사용합니다.
+
+## Retrieval Layer
+
+현재 리포트 검색 레이어는 이미 `text-manifest.json` 자체가 아니라
+`better-sqlite3` 기반 SQLite FTS 인덱스를 사용합니다.
+
+- 기본값: 로컬 SQLite FTS
+- 장점: zero-ops, 빠른 cold start, 로컬 맥 미니 운영에 적합
+- 향후 확장: Chroma 같은 로컬 벡터 스토어를 같은 retrieval adapter 뒤에 추가
+
+즉시 Pinecone/Milvus를 강제하지 않는 이유는 운영 복잡도 대비 현재 로컬 워크플로우 이득이
+제한적이기 때문입니다. 대신 retrieval 경계는 vector backend를 붙일 수 있게 유지합니다.

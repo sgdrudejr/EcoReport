@@ -5,6 +5,8 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import process from "node:process";
 
+import { formatMarketVoiceForPrompt } from "./lib/marketvoice-utils.js";
+
 const MAX_MANUAL_REPORTS = 8;
 const MAX_TECHNICALS = 12;
 
@@ -187,13 +189,15 @@ async function main() {
   const technicalPath = path.join(cwd, "data", "technical", `${args.date}.json`);
   const manualReportsPath = path.join(cwd, "data", "reports", args.date, "manual-compressed.json");
   const synthesisPath = path.join(cwd, "knowledge", "daily", `${args.date}-synthesis.md`);
+  const marketVoicePath = path.join(cwd, "data", "analysis-state", args.date, "marketvoice-linked.json");
 
-  const [strategy, portfolio, technical, manualReports, synthesis] = await Promise.all([
+  const [strategy, portfolio, technical, manualReports, synthesis, marketVoice] = await Promise.all([
     readJson(strategyPath, null),
     readJson(portfolioPath, null),
     readJson(technicalPath, null),
     readJson(manualReportsPath, []),
     readText(synthesisPath, ""),
+    readJson(marketVoicePath, null),
   ]);
 
   const prompt = [
@@ -224,6 +228,9 @@ async function main() {
     "## 오늘 시황 종합",
     synthesis || "- 아직 저장된 시황 종합이 없습니다.",
     "",
+    "## 머니토링 실시간 시황/이벤트 레이어",
+    formatMarketVoiceForPrompt(marketVoice, { maxTopics: 4, maxResearch: 2 }),
+    "",
     "## 해야 할 일",
     "1. 오늘 포트폴리오 총점을 0~100으로 매기세요.",
     "2. ISA / 연금저축 / 토스증권 / 한투 일반 각각 계좌별 점수를 매기세요.",
@@ -233,6 +240,12 @@ async function main() {
     "6. 실제 실행 금액이나 비중 조정 아이디어가 있으면 계좌별로 적으세요.",
     "",
     "## 출력 형식",
+    "## 줄갈이 규칙",
+    "- 같은 판단과 근거는 빈 줄로 끊지 말고 같은 항목 안에서 1~2줄로 이어가세요.",
+    "- 빈 줄은 섹션이 바뀔 때만 사용하세요.",
+    "- 같은 구조의 보충 설명은 새 bullet로 늘리지 말고 같은 항목 안에서 줄만 바꿔 붙여 쓰세요.",
+    "- 한 줄이 너무 짧으면 다음 문장까지 붙여 2줄 안팎으로 맞추세요.",
+    "",
     "## 오늘 핵심 변화",
     "- 3개 이내",
     "",

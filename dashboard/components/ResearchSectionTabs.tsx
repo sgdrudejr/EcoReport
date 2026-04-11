@@ -105,7 +105,7 @@ export default function ResearchSectionTabs({
           )}
         </div>
 
-        <div className="prose prose-invert prose-sm max-w-none prose-headings:text-zinc-100 prose-p:text-zinc-300 prose-li:text-zinc-300">
+        <div className="prose prose-invert prose-sm max-w-none prose-headings:text-zinc-100 prose-p:text-zinc-300 prose-li:text-zinc-300 prose-p:whitespace-pre-line prose-li:whitespace-pre-line">
           <ReactMarkdown remarkPlugins={[remarkGfm]}>
             {activeSection.body}
           </ReactMarkdown>

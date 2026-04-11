@@ -19,10 +19,13 @@
     "stage1.8:map": "node scripts/build-stage1-7-followup-research-map.js --round 3",
     "stage1.8:prompt": "node scripts/build-stage1-7-gemini-follow-up-prompt.js --round 3",
     "stage2:prompt": "node scripts/build-stage2-strategy-prompt.js",
+    "stage2:claude": "node scripts/build-stage2-strategy-claude.js",
     "stage2:gemini": ".venv/bin/python scripts/build-stage2-strategy-gemini.py --date $(date +%F)",
     "stage2:mock": "node scripts/build-stage2-strategy-mock.js",
     "stage3:quant": "node scripts/build-stage3-quant-scores.js",
     "stage4:plan": "node scripts/build-stage4-execution-plan.js",
+    "feedback:snapshot": "node scripts/build-feedback-snapshot.js",
+    "feedback:analyze": "node scripts/build-feedback-analysis.js",
     "automation:daily": "node scripts/run-daily-automation-cycle.js",
     "wiki:build": "node scripts/build-llm-wiki.js",
     "wiki:publish": "node scripts/publish-llm-wiki-to-vault.js",
@@ -34,6 +37,7 @@
     "fetch:rss": "node scripts/fetch-rss-news.js",
     "fetch:twitter": "node scripts/fetch-twitter.js",
     "fetch:market": "node scripts/fetch-market-data.js",
+    "fetch:marketvoice": "node scripts/collect-marketvoice-news.js",
     "calc:technicals": "node scripts/calc-technicals.js",
     "compress:reports": "node scripts/compress-reports.js",
     "synthesize:daily": "node scripts/synthesize-daily.js",
@@ -44,7 +48,8 @@
     "feedback:analyze": "node scripts/build-feedback-analysis.js",
     "feedback:report": "node scripts/build-feedback-report.js",
     "verify": "node scripts/verify-daily-system.js",
-    "daily": "bash scripts/run-daily-system.sh"
+    "daily": "bash scripts/run-daily-system.sh",
+    "daily:quality": "bash scripts/run-quality-gated-cycle.sh"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.55.0",

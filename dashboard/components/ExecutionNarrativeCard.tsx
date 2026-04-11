@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { X } from "lucide-react";
 
 type HighlightSpec = {
   token: string;
@@ -27,18 +26,18 @@ function escapeRegExp(value: string) {
 
 function highlightClassName(tone: HighlightSpec["tone"]) {
   if (tone === "negative") {
-    return "bg-rose-500/10 text-rose-700 ring-1 ring-inset ring-rose-500/20";
+    return "bg-rose-50/70 text-rose-700 decoration-rose-300/90";
   }
   if (tone === "neutral") {
-    return "bg-amber-400/15 text-amber-800 ring-1 ring-inset ring-amber-400/30";
+    return "bg-amber-50/80 text-amber-800 decoration-amber-300/90";
   }
   if (tone === "positive") {
-    return "bg-sky-500/10 text-sky-700 ring-1 ring-inset ring-sky-500/20";
+    return "bg-sky-50/80 text-sky-700 decoration-sky-300/90";
   }
   if (tone === "defensive") {
-    return "bg-emerald-500/10 text-emerald-700 ring-1 ring-inset ring-emerald-500/20";
+    return "bg-emerald-50/80 text-emerald-700 decoration-emerald-300/90";
   }
-  return "bg-slate-900/5 text-slate-700 ring-1 ring-inset ring-slate-200";
+  return "bg-slate-100/80 text-slate-700 decoration-slate-300";
 }
 
 function renderHighlightedText(
@@ -72,7 +71,7 @@ function renderHighlightedText(
       <span
         key={`${highlight.token}-${index}`}
         className={joinClasses(
-          "mx-px inline-block rounded-[0.45rem] px-1.5 py-px align-baseline text-[0.92em] font-medium leading-[1.2]",
+          "mx-[1px] inline rounded-[0.35rem] px-[0.18em] py-[0.02em] align-baseline text-[0.98em] font-medium underline decoration-2 underline-offset-[0.18em] [box-decoration-break:clone]",
           highlightClassName(highlight.tone),
         )}
       >
@@ -97,16 +96,11 @@ export default function ExecutionNarrativeCard({
   const canExpand =
     normalized.length > preview.length || normalized.includes("...") || normalized.includes("…");
 
-  const popupTone =
-    tone === "buy"
-      ? "border-emerald-200 bg-white text-slate-700"
-      : tone === "trim"
-        ? "border-rose-200 bg-white text-slate-700"
-        : "border-slate-200 bg-white text-slate-700";
-
   return (
     <div className="relative">
-      <p className="mt-1 leading-6">{renderHighlightedText(preview, highlights)}</p>
+      <p className="mt-1 text-[14px] leading-[1.66]">
+        {renderHighlightedText(open ? normalized : preview, highlights)}
+      </p>
       {canExpand ? (
         <button
           type="button"
@@ -115,32 +109,6 @@ export default function ExecutionNarrativeCard({
         >
           {open ? "접기" : "더보기"}
         </button>
-      ) : null}
-
-      {open ? (
-        <div
-          className={joinClasses(
-            "absolute inset-x-0 top-full z-20 mt-2 rounded-[1.15rem] border p-4 shadow-[0_18px_34px_rgba(15,23,42,0.12)]",
-            popupTone,
-          )}
-        >
-          <div className="flex items-start justify-between gap-4">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
-              상세 메모
-            </p>
-            <button
-              type="button"
-              aria-label="닫기"
-              onClick={() => setOpen(false)}
-              className="rounded-full border border-slate-200 bg-slate-50 p-1 text-slate-500 transition hover:bg-slate-100 hover:text-slate-800"
-            >
-              <X size={14} />
-            </button>
-          </div>
-          <p className="mt-3 text-sm leading-6 text-slate-700">
-            {renderHighlightedText(normalized, highlights)}
-          </p>
-        </div>
       ) : null}
     </div>
   );
