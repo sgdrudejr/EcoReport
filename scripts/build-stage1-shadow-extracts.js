@@ -19,6 +19,11 @@ import {
   truncate,
   writeJson,
 } from "./lib/pipeline-utils.js";
+import {
+  buildShadowPaths,
+  logShadowSummary,
+  writeMirroredShadowJson,
+} from "./lib/shadow-pipeline.js";
 
 const MAX_STAGE1_CHUNKS_PER_REPORT = 6;
 const MIN_STAGE1_CHUNKS_PER_REPORT = 1;
@@ -35,6 +40,8 @@ const KEEP_CONDITION_PATTERN =
   /유지될 경우|지속된다면|지속될 경우|완화될 경우|안정화될 경우|회복될 경우|확대될 경우|증가할 경우|개선될 경우|상회할 경우|달성\s*시|유지\s*시|확인될 경우|이어질 경우|재개될 경우|정상화될 경우/;
 const BREAK_CONDITION_PATTERN =
   /장기화될 경우|지연될 경우|악화될 경우|재점화될 경우|확대될 경우|하락할 경우|하회할 경우|둔화될 경우|부담이\s*커질\s*경우|리스크가\s*커질\s*경우|무산될 경우|깨질 경우|재상승할 경우|제한될 경우/;
+const META_SNIPPET_PATTERN =
+  /모닝코멘트|Morning Letter|Status\s*\.xlsx|투자전략정보팀|리서치본부|기업소개|사업개요|회사개요|주주구성|요약\s*재무제표|IR협의회/i;
 
 function normalizeIndexEntries(raw) {
   const entries = Array.isArray(raw)
@@ -123,6 +130,7 @@ function isNoisyUnit(text) {
   if (!value || value.length < 25) return true;
   if (isBoilerplateParagraph(value)) return true;
   if (NOISE_PATTERN.test(value)) return true;
+  if (META_SNIPPET_PATTERN.test(value)) return true;
 
   const numberTokenCount = (value.match(/\d+(?:[.,/%-]\d+)*/g) ?? []).length;
   const alphaCount = (value.match(/[가-힣A-Za-z]/g) ?? []).length;
@@ -151,6 +159,28 @@ function isNarrativeUnit(text) {
   if (targetTokenCount >= 2) return false;
 
   return true;
+}
+
+function isKeepCandidateText(text) {
+  const value = cleanUnitText(text);
+  if (!isNarrativeUnit(value)) return false;
+  if (BREAK_CONDITION_PATTERN.test(value)) return false;
+  if (COUNTERPOINT_PATTERN.test(value) && NEGATIVE_PATTERN.test(value)) return false;
+  if (KEEP_CONDITION_PATTERN.test(value)) return true;
+  return CONDITION_PATTERN.test(value) && POSITIVE_PATTERN.test(value);
+}
+
+function isBreakCandidateText(text) {
+  const value = cleanUnitText(text);
+  if (!isNarrativeUnit(value)) return false;
+  if (KEEP_CONDITION_PATTERN.test(value) && !BREAK_CONDITION_PATTERN.test(value) && !NEGATIVE_PATTERN.test(value)) {
+    return false;
+  }
+  if (BREAK_CONDITION_PATTERN.test(value)) return true;
+  return (
+    (COUNTERPOINT_PATTERN.test(value) || NEGATIVE_PATTERN.test(value)) &&
+    /경우|시|된다면|되면|장기화|지연|악화|하락|하회|재상승|무산|제한/.test(value)
+  );
 }
 
 function countPattern(text, pattern) {
@@ -326,6 +356,7 @@ function pickClaim(chunks, reportMeta) {
       scoreClaimUnit,
       (unit) =>
         isNarrativeUnit(unit.text) &&
+        !META_SNIPPET_PATTERN.test(unit.text) &&
         !hasDenseRatings(unit.text) &&
         !isSnapshotMetricNoise(unit.text) &&
         (TARGET_PATTERN.test(unit.text) || POSITIVE_PATTERN.test(unit.text) || NEGATIVE_PATTERN.test(unit.text) || unit.text.length >= 60),
@@ -333,7 +364,11 @@ function pickClaim(chunks, reportMeta) {
     pickBestUnit(
       chunks,
       scoreClaimUnit,
-      (unit) => isNarrativeUnit(unit.text) && !hasDenseRatings(unit.text) && !isSnapshotMetricNoise(unit.text),
+      (unit) =>
+        isNarrativeUnit(unit.text) &&
+        !META_SNIPPET_PATTERN.test(unit.text) &&
+        !hasDenseRatings(unit.text) &&
+        !isSnapshotMetricNoise(unit.text),
     );
 
   if (!best) {
@@ -354,28 +389,20 @@ function pickCondition(chunks, mode) {
   const filters = isBreak
     ? [
         (unit, chunk) =>
-          isNarrativeUnit(unit.text) &&
+          isBreakCandidateText(unit.text) &&
           (BREAK_CONDITION_PATTERN.test(unit.text) ||
             ((COUNTERPOINT_PATTERN.test(unit.text) || NEGATIVE_PATTERN.test(unit.text)) &&
               (CONDITION_PATTERN.test(unit.text) || /경우|시|된다면|되면|장기화|지연|재상승|악화/.test(unit.text))) ||
             (chunk?.chunk_flags?.has_counterpoint && /경우|시|된다면|되면|장기화|지연/.test(unit.text))),
-        (unit) =>
-          isNarrativeUnit(unit.text) &&
-          (BREAK_CONDITION_PATTERN.test(unit.text) || COUNTERPOINT_PATTERN.test(unit.text) || NEGATIVE_PATTERN.test(unit.text)),
+        (unit) => isBreakCandidateText(unit.text),
       ]
     : [
         (unit, chunk) =>
-          isNarrativeUnit(unit.text) &&
-          !COUNTERPOINT_PATTERN.test(unit.text) &&
-          !NEGATIVE_PATTERN.test(unit.text) &&
+          isKeepCandidateText(unit.text) &&
           (KEEP_CONDITION_PATTERN.test(unit.text) ||
             CONDITION_PATTERN.test(unit.text) ||
             (chunk?.chunk_flags?.has_condition && /경우|시|된다면|되면|유지|확대|증가|회복|개선/.test(unit.text))),
-        (unit) =>
-          isNarrativeUnit(unit.text) &&
-          !COUNTERPOINT_PATTERN.test(unit.text) &&
-          !NEGATIVE_PATTERN.test(unit.text) &&
-          (KEEP_CONDITION_PATTERN.test(unit.text) || CONDITION_PATTERN.test(unit.text)),
+        (unit) => isKeepCandidateText(unit.text),
       ];
 
   const ranked = filters.flatMap((filter) =>
@@ -487,10 +514,12 @@ function extractKeyNumbers(chunks, reportMeta) {
 
 async function main() {
   const args = parseDateArgs(process.argv.slice(2));
-  const chunksPath = path.join(ROOT_DIR, "data", "analysis-state", args.date, "chunk-index", "chunks.jsonl");
+  const shadowPaths = buildShadowPaths(ROOT_DIR, args.date);
+  const chunksPath = path.join(shadowPaths.chunkIndexDir, "chunks.jsonl");
   const indexPath = path.join(ROOT_DIR, "data", "reports", args.date, "index.json");
   const outputPath =
     args.output ?? path.join(ROOT_DIR, "data", "analysis-state", args.date, "stage1-shadow", "stage1-shadow-extracts.json");
+  const canonicalOutputPath = path.join(shadowPaths.stage1Dir, "stage1-shadow-extracts.json");
 
   const [chunkText, rawIndex] = await Promise.all([readText(chunksPath, ""), readJson(indexPath, [])]);
 
@@ -631,15 +660,18 @@ async function main() {
     extracts,
   };
 
-  await writeJson(outputPath, payload);
+  await writeMirroredShadowJson({
+    legacyPath: outputPath,
+    canonicalPath: canonicalOutputPath,
+    payload,
+  });
 
-  console.log(
-    `[stage1-shadow] reports=${payload.reportCount} selected_chunks=${payload.quality.selectedChunkCount} avg_selected=${payload.quality.avgSelectedChunksPerReport}`,
-  );
-  console.log(
-    `[stage1-shadow] reports_with_condition=${payload.quality.reportsWithCondition} reports_with_counterpoint=${payload.quality.reportsWithCounterpoint} reports_with_both=${payload.quality.reportsWithBoth}`,
-  );
-  console.log(`[stage1-shadow] output=${path.relative(ROOT_DIR, outputPath)}`);
+  logShadowSummary("stage1-shadow", [
+    `reports=${payload.reportCount} selected_chunks=${payload.quality.selectedChunkCount} avg_selected=${payload.quality.avgSelectedChunksPerReport}`,
+    `reports_with_condition=${payload.quality.reportsWithCondition} reports_with_counterpoint=${payload.quality.reportsWithCounterpoint} reports_with_both=${payload.quality.reportsWithBoth}`,
+    `output=${path.relative(ROOT_DIR, outputPath)}`,
+    `canonical=${path.relative(ROOT_DIR, canonicalOutputPath)}`,
+  ]);
 }
 
 main().catch((error) => {

@@ -2778,6 +2778,9 @@ export function DashboardPage({
       ({ account, accountGuide }) =>
         `${account.label}: ${accountGuide?.actionLine ?? "실행 메모 정리 중"}`,
     ),
+    ...((shadowPreview?.stage3?.priority_actions ?? []).slice(0, 2).map(
+      (item) => `${item.scope}: ${item.action}${item.why_now ? ` · ${item.why_now}` : ""}`,
+    )),
     ...executionListRows
       .slice(0, 3)
       .map((row) => `${row.accounts.join(", ")} · ${row.name}: ${row.reason}`),
@@ -2807,6 +2810,9 @@ export function DashboardPage({
     feedbackAnalysis?.weightSuggestions?.[0]?.suggestion
       ? `최근 조정 제안: ${feedbackAnalysis.weightSuggestions[0].suggestion}`
       : null,
+    ...((shadowPreview?.stage3?.watchpoints ?? []).slice(0, 2).map(
+      (item) => `shadow 체크포인트: ${item}`,
+    )),
   ]).slice(0, 5);
   const newsReportLines = uniqueStrings([
     marketVoice?.summary?.overview ?? null,
@@ -2840,9 +2846,8 @@ export function DashboardPage({
             { number: "3", id: "daily-reports", label: "실행·시장·피드백·시황뉴스" },
             { number: "4", id: "accounts-overview", label: "계좌 실행 방향" },
             { number: "5", id: "account-holdings", label: "보유 종목" },
-            { number: "6", id: "account-direction", label: "투자 방향성" },
-            { number: "7", id: "market-guide", label: "실행 가이드" },
-            { number: "8", id: "recommendations", label: "추천 종목" },
+            { number: "6", id: "market-guide", label: "브리핑 입력" },
+            { number: "7", id: "recommendations", label: "추천 종목" },
           ]
         : [
             { number: "1", id: "today-actions", label: "오늘의 실행 리스트" },
@@ -2850,12 +2855,11 @@ export function DashboardPage({
             { number: "3", id: "daily-reports", label: "실행·시장·피드백·시황뉴스" },
             { number: "4", id: "accounts-overview", label: "계좌 실행 방향" },
             { number: "5", id: "account-holdings", label: "보유 종목" },
-            { number: "6", id: "account-direction", label: "투자 방향성" },
-            { number: "7", id: "market-guide", label: "실행 가이드" },
-            { number: "8", id: "recommendations", label: "추천 종목" },
-            { number: "9", id: "feedback-allocation", label: "계좌 × 카테고리 배분" },
-            { number: "10", id: "feedback-dashboard", label: "피드백 대시보드" },
-            { number: "11", id: "cluster-map", label: "상관관계 클러스터" },
+            { number: "6", id: "market-guide", label: "브리핑 입력" },
+            { number: "7", id: "recommendations", label: "추천 종목" },
+            { number: "8", id: "feedback-allocation", label: "계좌 × 카테고리 배분" },
+            { number: "9", id: "feedback-dashboard", label: "피드백 대시보드" },
+            { number: "10", id: "cluster-map", label: "상관관계 클러스터" },
           ];
   const sectionHeading = (id: string) => {
     const item = sectionIndexItems.find((section) => section.id === id);
@@ -3982,41 +3986,27 @@ export function DashboardPage({
                       </div>
                     </section>
 
-                    <section
-                      id="account-direction"
-                      className="scroll-mt-36 space-y-6 pt-5"
-                    >
-                      <div>
-                        <div className="section-header-row">
-                          <div className="section-header-band">
-                            <p className="section-kicker">Investment Direction</p>
-                            <h4 className="mt-1.5 text-[1.02rem] font-semibold tracking-tight text-slate-950">
-                              {sectionHeading("account-direction")}
-                            </h4>
-                          </div>
-                        </div>
-                        <div className="mt-4 space-y-3">
-                          {insightLines.map((line, index) => (
-                            <p
-                              key={line}
-                              className={joinClasses(
-                                index === 0 ? BODY_COPY_LEAD_CLASS : BODY_COPY_CLASS,
-                                index === 0 ? "text-slate-900" : "text-slate-700",
-                              )}
-                            >
-                              {line}
-                            </p>
-                          ))}
-                        </div>
-                        <div className="mt-4">
+                    <section className="space-y-6 pt-5">
+                      <div className="rounded-[1.35rem] border border-slate-200 bg-slate-50/80 px-5 py-4">
+                        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+                          계좌 판단 메모
+                        </p>
+                        <p className={joinClasses("mt-2", BODY_COPY_CLASS, "text-slate-700")}>
+                          {renderHighlightedText(
+                            insightLines[0] ?? accountGuide?.actionLine ?? "계좌 판단 메모 정리 중입니다.",
+                            story.highlights,
+                            { multiline: true },
+                          )}
+                        </p>
+                        <div className="mt-3">
                           {renderMetaLine(keywords, { limit: 6, tone: "subtle" })}
                         </div>
                       </div>
 
-                      <div className="border-t border-slate-200/80 pt-5">
+                      <div>
                         <div className="flex items-center justify-between gap-4">
                           <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-                            추천 실행 방향
+                            계좌 실행 메모
                           </p>
                         </div>
 
@@ -4531,7 +4521,7 @@ export function DashboardPage({
               </h2>
             </div>
             <span className="rounded-full bg-slate-900/5 px-3 py-1 text-xs font-medium text-slate-600 ring-1 ring-inset ring-slate-200">
-              시황 · 이슈 · 계좌별 운용
+              브리핑 입력 · 시나리오 · 실행 근거
             </span>
           </div>
 
@@ -4546,7 +4536,7 @@ export function DashboardPage({
                 </p>
               </div>
               <p className="text-xs leading-5 text-slate-400">
-                시황가이드와 추천종목은 아래 브리핑 입력을 바탕으로 다시 해석했습니다.
+                오늘의 실행·시장 요약은 Cycle Reports에서 통합하고, 이 구간은 그 해석의 입력과 시나리오만 남겼습니다.
               </p>
             </div>
 

@@ -49,6 +49,20 @@ bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD
 
 이 러너는 Stage 1 -> 1.5 -> 1.6 -> 2 -> 2.5 -> 3 -> holding-clusters -> 4 -> feedback snapshot까지 집중 실행합니다.
 
+### 2-1. Shadow 파이프라인만 재실행
+
+```bash
+cd /Users/seo/stock-pilot
+npm run shadow:pipeline -- --date YYYY-MM-DD
+```
+
+이 러너는 아래 흐름만 따로 검증합니다.
+
+- Stage 0: `build-report-chunk-index.js`
+- Stage 1 shadow: `build-stage1-shadow-extracts.js`
+- Stage 2 shadow: `build-stage2-shadow-topic-buckets.js`
+- Stage 3 shadow: `build-stage3-shadow-final-insights.js`
+
 ### 3. 장중 경보/부분 재점수
 
 ```bash
@@ -227,6 +241,8 @@ flowchart TD
 4. `docs/STAGE_1_4_ARCHITECTURE.md`
 5. `docs/SCORE_SYSTEM_V2.md`
 6. `dashboard/README.md`
+7. `docs/SHADOW_PIPELINE_OVERVIEW.md`
+8. `docs/SHADOW_OUTPUT_SCHEMAS.md`
 
 ## 운영 원칙
 

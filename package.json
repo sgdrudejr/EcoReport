@@ -29,6 +29,7 @@
     "stage2:shadow": "node scripts/build-stage2-shadow-topic-buckets.js",
     "stage3:quant": "node scripts/build-stage3-quant-scores.js",
     "stage3:shadow": "node scripts/build-stage3-shadow-final-insights.js",
+    "shadow:pipeline": "bash scripts/shadow/run-shadow-pipeline.sh",
     "stage4:plan": "node scripts/build-stage4-execution-plan.js",
     "rebalancing:schedule": "node scripts/build-rebalancing-schedule.js",
     "feedback:snapshot": "node scripts/build-feedback-snapshot.js",

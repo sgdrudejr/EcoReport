@@ -14,10 +14,17 @@ import {
   writeJson,
   writeText,
 } from "./lib/pipeline-utils.js";
+import {
+  buildShadowPaths,
+  logShadowSummary,
+  writeMirroredShadowJson,
+  writeMirroredShadowText,
+} from "./lib/shadow-pipeline.js";
 
 const MAX_BUCKETS_PER_CARD = 1;
 const MAX_BUCKET_LINES = 8;
 const MIN_BUCKET_LINES = 3;
+const OTHER_BUCKET_ALLOWED_REPORT_TYPES = new Set(["macro", "industry", "theme"]);
 
 const POSITIVE_PATTERN =
   /긍정|개선|회복|상향|확대|증가|견조|안정화|완화|반등|유효|추천|최선호|매력|수혜|부각|유리|성장|호조/;
@@ -27,7 +34,7 @@ const CONDITION_PATTERN =
   /만약|경우|시\b|된다면|될 경우|지속된다면|지속될 경우|완화될 경우|안정화될 경우|유지될 경우|상승할 경우|하락할 경우|장기화될 경우|마무리될 경우|재개될 경우|확대될 경우|축소될 경우|종전\s*시|달성\s*시|상회\s*시|하회\s*시/;
 const COUNTERPOINT_PATTERN = /반면|그러나|다만|리스크|우려|부담|불확실성|압박|약세|하락|감소|둔화|장기화|지연|재점화|악화/;
 const NOISE_PATTERN =
-  /자료\s*:|Research Center|Bloomberg|QuantiWise|DART|Relative to|주가수익률|시가총액|괴리율|수익률|URL\s*:|www\.|@[A-Za-z0-9.-]+|그림\s*\d+|표\s*\d+|Chart|Figure|52\s*주\s*최고가|외국인\s*지분율|발행주식수|일평균\s*거래대금|상위\s*업종|하위\s*업종|Top\s*10|Top Picks|종목코드|종목\s*업종|1W\s*조정률|1M\s*누적|3M\s*누적|유니버스\s*200|기관투자자|고지사항|Compliance|투자등급|괴리율|Morning Letter|Bubble Index|ETF Flow|순매수|순매도|기관 매매|외국인 매매|ADR|GDR|Close\s+D-1|D-5|D-20|Event\s+국가\s+지표|u Korea|u Global|u Risk Factors|학술\s*목적|사전\s*통보|투자전략정보팀|리서치본부|모닝코멘트|기업개요|사업개요|회사개요|주주구성|요약\s*재무제표|Status\s*\.xlsx|IR협의회|콥데이|기업소개/i;
+  /자료\s*:|Research Center|Bloomberg|QuantiWise|DART|Relative to|주가수익률|시가총액|괴리율|수익률|URL\s*:|www\.|@[A-Za-z0-9.-]+|그림\s*\d+|표\s*\d+|Chart|Figure|52\s*주\s*최고가|외국인\s*지분율|발행주식수|일평균\s*거래대금|상위\s*업종|하위\s*업종|Top\s*10|Top Picks|종목코드|종목\s*업종|1W\s*조정률|1M\s*누적|3M\s*누적|유니버스\s*200|기관투자자|고지사항|Compliance|투자등급|괴리율|Morning Letter|Bubble Index|ETF Flow|순매수|순매도|기관 매매|외국인 매매|ADR|GDR|Close\s+D-1|D-5|D-20|Event\s+국가\s+지표|u Korea|u Global|u Risk Factors|학술\s*목적|사전\s*통보|투자전략정보팀|리서치본부|모닝코멘트|기업개요|사업개요|회사개요|주주구성|요약\s*재무제표|Status\s*\.xlsx|IR협의회|콥데이|기업소개|FinBERT|심리\s*비율|교차\s*결합|Bubble|Sentiment/i;
 const MARKET_RELEVANT_REPORT_TYPES = new Set(["macro", "industry", "strategy", "theme"]);
 
 const BUCKET_DEFINITIONS = [
@@ -194,6 +201,22 @@ const BUCKET_DEFINITIONS = [
     minScore: 4,
   },
   {
+    id: "internet_media",
+    label: "인터넷·미디어·엔터",
+    description: "플랫폼, 게임, 광고, 콘텐츠, 엔터테인먼트",
+    keywords: ["하이브", "엔터", "광고", "콘텐츠", "넷플릭스", "ott", "플랫폼", "웹툰", "뉴진스", "게임", "미디어"],
+    priority: 64,
+    minScore: 4,
+  },
+  {
+    id: "construction_infra",
+    label: "건설·플랜트·재건",
+    description: "중동 재건, 플랜트, 해외수주, 인프라 건설",
+    keywords: ["건설", "재건", "플랜트", "해외수주", "중동", "인프라", "현장", "토목", "주택", "정비사업"],
+    priority: 63,
+    minScore: 4,
+  },
+  {
     id: "other",
     label: "기타 시장축",
     description: "고정 버킷에 명확히 들어가지 않는 카드",
@@ -220,12 +243,17 @@ function isNoisyText(value) {
   const arrowCount = countMatches(text, /[▶■◆●▪]/g);
   const pipeCount = countMatches(text, /[|]/g);
   const metricLabelCount = countMatches(text, /\(십억원\)|\(억원\)|매출액\s*\(좌\)|영업이익\s*\(우\)|현재\s*주가/g);
+  const countryListHits = countMatches(
+    text,
+    /이집트|아랍에미리|사우디|이라크|카타르|알제리|리비아|바레인|모로코|요르단|오만|쿠웨이트|튀르키예|이란|예멘/g,
+  );
 
   if (percentCount >= 5 && text.length < 240) return true;
   if (digitCount >= alphaCount && digitCount >= 16) return true;
   if (arrowCount >= 3 && text.length < 280) return true;
   if (pipeCount >= 4) return true;
   if (metricLabelCount >= 2) return true;
+  if (countryListHits >= 8) return true;
   if (!/[다음음함됨임요]\.?$/.test(text) && digitCount >= 12 && text.length < 220) return true;
 
   return false;
@@ -480,6 +508,8 @@ function scoreBucket(bucket, extract, cardSummary, holdingMatches) {
   if (bucket.id === "telecom_network" && /통신|5g|6g|주파수|네트워크|capex|sa/.test(normalizedAnalysis)) score += 3;
   if (bucket.id === "healthcare_biotech" && /제약|바이오|의료기기|진단|임상|치료제/.test(normalizedAnalysis)) score += 3;
   if (bucket.id === "consumer_financials" && /은행|보험|증권|카드|유통|음식료|리테일|화장품/.test(normalizedAnalysis)) score += 3;
+  if (bucket.id === "internet_media" && /하이브|엔터|광고|콘텐츠|넷플릭스|ott|플랫폼|웹툰|뉴진스|게임|미디어/.test(normalizedAnalysis)) score += 3;
+  if (bucket.id === "construction_infra" && /건설|재건|플랜트|해외수주|중동|인프라|토목|정비사업/.test(normalizedAnalysis)) score += 3;
 
   if (isNoisyText(context.evidenceText) && isNoisyText(context.analysisText)) {
     score -= 4;
@@ -540,13 +570,27 @@ function normalizeCard(extract, holdings) {
     bucketIds.length === 1 &&
     bucketIds[0] === "other" &&
     holdingMatches.length === 0 &&
-    (!isBroadMarketReport || cardSummary.importanceScore < 5)
+    (!isBroadMarketReport || cardSummary.importanceScore < 6)
   ) {
     return null;
   }
 
-  if (cardSummary.importanceScore < 2 && bucketIds.length === 1 && bucketIds[0] === "other") {
-    return null;
+  if (bucketIds.length === 1 && bucketIds[0] === "other") {
+    const hasConditionEdge = Boolean(cardSummary.keepSnippet || cardSummary.breakSnippet);
+    const hasCounterNarrative =
+      COUNTERPOINT_PATTERN.test(rawCombined) || CONDITION_PATTERN.test(rawCombined);
+
+    if (!OTHER_BUCKET_ALLOWED_REPORT_TYPES.has(String(extract.report_type ?? "").trim())) {
+      return null;
+    }
+
+    if (cardSummary.importanceScore < 6 && !hasConditionEdge) {
+      return null;
+    }
+
+    if (!hasCounterNarrative && cardSummary.importanceScore < 7) {
+      return null;
+    }
   }
 
   return {
@@ -725,6 +769,7 @@ function buildMarkdown(payload) {
 
 async function main() {
   const args = parseDateArgs(process.argv.slice(2));
+  const shadowPaths = buildShadowPaths(ROOT_DIR, args.date);
   const shadowPath = path.join(
     ROOT_DIR,
     "data",
@@ -740,6 +785,8 @@ async function main() {
   const outputMarkdownPath =
     args.markdown ??
     path.join(ROOT_DIR, "data", "analysis-state", args.date, "stage2-shadow-topic-buckets.md");
+  const canonicalJsonPath = path.join(shadowPaths.stage2Dir, "stage2-shadow-topic-buckets.json");
+  const canonicalMarkdownPath = path.join(shadowPaths.stage2Dir, "stage2-shadow-topic-buckets.md");
 
   const [shadow, portfolio] = await Promise.all([
     readJson(shadowPath, null),
@@ -773,14 +820,23 @@ async function main() {
     buckets: activeBuckets,
   };
 
-  await writeJson(outputJsonPath, payload);
-  await writeText(outputMarkdownPath, `${buildMarkdown(payload)}\n`);
+  await writeMirroredShadowJson({
+    legacyPath: outputJsonPath,
+    canonicalPath: canonicalJsonPath,
+    payload,
+  });
+  await writeMirroredShadowText({
+    legacyPath: outputMarkdownPath,
+    canonicalPath: canonicalMarkdownPath,
+    payload: `${buildMarkdown(payload)}\n`,
+  });
 
-  console.log(
-    `[stage2-shadow] reports=${payload.reportCount} cards=${payload.cardCount} buckets=${payload.bucketCount}`,
-  );
-  console.log(`[stage2-shadow] top_buckets=${payload.topBuckets.join(", ")}`);
-  console.log(`[stage2-shadow] output=${path.relative(ROOT_DIR, outputJsonPath)}`);
+  logShadowSummary("stage2-shadow", [
+    `reports=${payload.reportCount} cards=${payload.cardCount} buckets=${payload.bucketCount}`,
+    `top_buckets=${payload.topBuckets.join(", ")}`,
+    `output=${path.relative(ROOT_DIR, outputJsonPath)}`,
+    `canonical=${path.relative(ROOT_DIR, canonicalJsonPath)}`,
+  ]);
 }
 
 main().catch((error) => {

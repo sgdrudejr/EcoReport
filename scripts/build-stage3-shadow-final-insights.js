@@ -13,6 +13,12 @@ import {
   writeJson,
   writeText,
 } from "./lib/pipeline-utils.js";
+import {
+  buildShadowPaths,
+  logShadowSummary,
+  writeMirroredShadowJson,
+  writeMirroredShadowText,
+} from "./lib/shadow-pipeline.js";
 
 const TOP_TOPIC_LIMIT = 8;
 const SECONDARY_TOPIC_LIMIT = 5;
@@ -35,6 +41,7 @@ const STRUCTURAL_BUCKET_IDS = new Set([
   "defense_aerospace",
   "telecom_network",
   "healthcare_biotech",
+  "construction_infra",
 ]);
 const CYCLICAL_BUCKET_IDS = new Set([
   "us_equities",
@@ -42,6 +49,7 @@ const CYCLICAL_BUCKET_IDS = new Set([
   "global_equities",
   "autos_industrials",
   "consumer_financials",
+  "internet_media",
 ]);
 
 const BUCKET_PRIORITY = {
@@ -64,6 +72,8 @@ const BUCKET_PRIORITY = {
   healthcare_biotech: 77,
   consumer_financials: 76,
   metals_commodities: 75,
+  internet_media: 74,
+  construction_infra: 73,
   other: 10,
 };
 
@@ -85,6 +95,8 @@ const BUCKET_ACTION_HINTS = {
   telecom_network: "통신·네트워크는 CAPEX 사이클이 핵심이라 투자 로드맵 확인 전까지는 테마 과열을 경계하는 편이 좋습니다.",
   healthcare_biotech: "헬스케어는 임상·허가·수출 같은 개별 이벤트 비중이 커서 버킷보다 종목별 확인이 우선입니다.",
   consumer_financials: "소비재·금융은 물가·소비심리·조달비용이 같이 움직여 체력 차이가 크게 벌어질 수 있습니다.",
+  internet_media: "인터넷·미디어·엔터는 이벤트와 실적 확인 전까지 멀티플 변동성이 큰 구간입니다.",
+  construction_infra: "건설·플랜트·재건은 뉴스보다 실제 발주와 수주 가시성이 붙을 때 설명력이 커집니다.",
   metals_commodities: "원자재는 레짐 전환 속도가 빨라 headline보다 추세 유지 조건을 먼저 확인해야 합니다.",
   direct_holdings: "직접 보유 종목은 테마보다 개별 근거를 다시 읽고, 유지 조건과 깨지는 조건을 별도로 체크하는 편이 좋습니다.",
   other: "고정 버킷에 안 들어간 카드가 많아 다음 사이클에서 세부 버킷을 더 나누는 게 좋습니다.",
@@ -108,6 +120,8 @@ const BUCKET_PRIORITY_ACTION_TEXT = {
   global_equities: { action_type: "relative_selection", action: "지역별 강약 구분 우선" },
   autos_industrials: { action_type: "selective_add", action: "실적 버티는 종목만 선별" },
   consumer_financials: { action_type: "selective_add", action: "체력 차이 나는 종목만 선별" },
+  internet_media: { action_type: "event_driven", action: "실적·이벤트 확인 후 선별" },
+  construction_infra: { action_type: "orderbook_check", action: "수주 확인 전 추격은 보류" },
   direct_holdings: { action_type: "hold_and_verify", action: "보유는 유지, 근거는 다시 확인" },
 };
 
@@ -201,6 +215,16 @@ const BUCKET_TOPIC_FRAMES = {
     thesis: "소비재·금융은 소비심리와 조달비용 변화에 따라 체력 차이가 빠르게 벌어질 수 있습니다.",
     keep: "소비 회복과 비용 안정",
     risk: "건전성 악화와 소비 둔화",
+  },
+  internet_media: {
+    thesis: "인터넷·미디어·엔터는 이벤트와 실적 확인 전까지 멀티플 변동성이 큰 구간입니다.",
+    keep: "콘텐츠 흥행과 실적 회복 확인",
+    risk: "광고 둔화와 밸류 재조정",
+  },
+  construction_infra: {
+    thesis: "건설·플랜트·재건은 뉴스보다 실제 발주와 수주 가시성이 붙을 때 설명력이 커집니다.",
+    keep: "재건 수요와 해외수주 가시성 확인",
+    risk: "발주 지연과 원가 부담 확대",
   },
   direct_holdings: {
     thesis: "직접 보유 종목은 테마보다 개별 근거의 유지 여부를 먼저 다시 읽어야 하는 구간입니다.",
@@ -703,12 +727,15 @@ async function main() {
     stage3: true,
   });
   const { paths, data } = context;
+  const shadowPaths = buildShadowPaths(paths.rootDir, args.date);
 
   const bucketsPath = path.join(paths.analysisDir, "stage2-shadow-topic-buckets.json");
   const outputJsonPath =
     args.output ?? path.join(paths.analysisDir, "stage3-shadow-final-insights.json");
   const outputMarkdownPath =
     args.markdown ?? path.join(paths.analysisDir, "stage3-shadow-final-insights.md");
+  const canonicalJsonPath = path.join(shadowPaths.stage3Dir, "stage3-shadow-final-insights.json");
+  const canonicalMarkdownPath = path.join(shadowPaths.stage3Dir, "stage3-shadow-final-insights.md");
 
   const bucketsPayload = await readJson(bucketsPath, null);
   if (!bucketsPayload?.buckets?.length) {
@@ -802,16 +829,23 @@ async function main() {
     dashboard_preview: dashboardPreview,
   };
 
-  await writeJson(outputJsonPath, payload);
-  await writeText(outputMarkdownPath, `${buildMarkdown(payload)}\n`);
+  await writeMirroredShadowJson({
+    legacyPath: outputJsonPath,
+    canonicalPath: canonicalJsonPath,
+    payload,
+  });
+  await writeMirroredShadowText({
+    legacyPath: outputMarkdownPath,
+    canonicalPath: canonicalMarkdownPath,
+    payload: `${buildMarkdown(payload)}\n`,
+  });
 
-  console.log(
-    `[stage3-shadow] top_topics=${payload.top_topics.length} secondary=${payload.secondary_topics.length} accounts=${payload.portfolio_implications.length}`,
-  );
-  console.log(
-    `[stage3-shadow] regime=${payload.market_regime.name} portfolio_score=${payload.portfolio_summary.totalScore ?? "n/a"}`,
-  );
-  console.log(`[stage3-shadow] output=${path.relative(paths.rootDir, outputJsonPath)}`);
+  logShadowSummary("stage3-shadow", [
+    `top_topics=${payload.top_topics.length} secondary=${payload.secondary_topics.length} accounts=${payload.portfolio_implications.length}`,
+    `regime=${payload.market_regime.name} portfolio_score=${payload.portfolio_summary.totalScore ?? "n/a"}`,
+    `output=${path.relative(paths.rootDir, outputJsonPath)}`,
+    `canonical=${path.relative(paths.rootDir, canonicalJsonPath)}`,
+  ]);
 }
 
 main().catch((error) => {
