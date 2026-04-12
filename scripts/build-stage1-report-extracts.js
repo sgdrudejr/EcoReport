@@ -11,6 +11,7 @@ import {
   ROOT_DIR,
   buildRunMetadata,
   buildPortfolioMaps,
+  withContract,
   clamp,
   containsKeyword,
   extractNumericPhrases,
@@ -572,25 +573,34 @@ async function main() {
     ]),
   ].join("\n");
 
-  await writeJson(outputPath, {
-    ...runMeta,
-    reportCount: extracts.length,
-    quality: {
-      contaminationEvidenceCount: globalQuality.contaminationEvidenceCount,
-      totalEvidenceCount: globalQuality.totalEvidenceCount,
-      contaminationRate:
-        globalQuality.totalEvidenceCount > 0
-          ? Number.parseFloat((globalQuality.contaminationEvidenceCount / globalQuality.totalEvidenceCount).toFixed(4))
-          : 0,
-      weakClaimCount: globalQuality.weakClaimCount,
-      totalClaims: globalQuality.totalClaims,
-      weakClaimRatio:
-        globalQuality.totalClaims > 0
-          ? Number.parseFloat((globalQuality.weakClaimCount / globalQuality.totalClaims).toFixed(4))
-          : 0,
-    },
-    extracts,
-  });
+  await writeJson(
+    outputPath,
+    withContract(
+      {
+        ...runMeta,
+        reportCount: extracts.length,
+        quality: {
+          contaminationEvidenceCount: globalQuality.contaminationEvidenceCount,
+          totalEvidenceCount: globalQuality.totalEvidenceCount,
+          contaminationRate:
+            globalQuality.totalEvidenceCount > 0
+              ? Number.parseFloat((globalQuality.contaminationEvidenceCount / globalQuality.totalEvidenceCount).toFixed(4))
+              : 0,
+          weakClaimCount: globalQuality.weakClaimCount,
+          totalClaims: globalQuality.totalClaims,
+          weakClaimRatio:
+            globalQuality.totalClaims > 0
+              ? Number.parseFloat((globalQuality.weakClaimCount / globalQuality.totalClaims).toFixed(4))
+              : 0,
+        },
+        extracts,
+      },
+      {
+        stage: "stage1",
+        generatedAt: runMeta.generatedAt,
+      },
+    ),
+  );
   await writeText(markdownPath, summary);
 
   console.log(outputPath);

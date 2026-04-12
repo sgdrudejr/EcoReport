@@ -37,6 +37,7 @@ function buildTechnicalSubset(portfolio, technical, watchlist) {
     ...portfolioMaps.holdingsByCode.keys(),
     ...(watchlist?.core_etf ?? []).map((item) => item.code),
     ...(watchlist?.satellite_etf ?? []).map((item) => item.code),
+    ...(watchlist?.individual_stocks ?? []).map((item) => item.code),
   ]);
 
   const scores = technical?.scores ?? {};
@@ -86,13 +87,39 @@ function summarizeRules(text) {
 }
 
 function summarizeDecisionMemory(text) {
-  const lines = String(text ?? "")
-    .split("\n")
-    .map((line) => line.trim())
-    .filter(Boolean)
-    .filter((line) => /^## \[\d{4}-\d{2}-\d{2}\]/.test(line) || /^- /.test(line));
+  const lines = String(text ?? "").split("\n");
+  const sections = [];
+  let current = null;
 
-  return lines.slice(0, 16).join("\n");
+  for (const rawLine of lines) {
+    const line = rawLine.trim();
+    if (!line) continue;
+
+    if (/^## \[\d{4}-\d{2}-\d{2}\]/.test(line)) {
+      if (current) {
+        sections.push(current);
+      }
+      current = {
+        heading: line,
+        entries: [],
+      };
+      continue;
+    }
+
+    if (current && /^- /.test(line)) {
+      current.entries.push(line);
+    }
+  }
+
+  if (current) {
+    sections.push(current);
+  }
+
+  return sections
+    .slice(0, 5)
+    .flatMap((section) => [section.heading, ...section.entries.slice(0, 4), ""])
+    .join("\n")
+    .trim();
 }
 
 function summarizeRefinementResponses(refinementResponses) {
@@ -100,6 +127,94 @@ function summarizeRefinementResponses(refinementResponses) {
     .filter((entry) => entry.text)
     .map((entry) => `## Round ${entry.round} · ${entry.label}\n${truncate(entry.text, 2400)}`)
     .join("\n\n");
+}
+
+function compact(value) {
+  return String(value ?? "")
+    .replace(/\r\n/g, "\n")
+    .replace(/[ \t]+\n/g, "\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
+}
+
+function summarizeRichBriefingSections(briefing, maxChars = 8000) {
+  const normalized = compact(briefing);
+  if (!normalized) return "";
+
+  const sections = normalized.split(/\n(?=## )/g);
+  const preferred = [
+    "## 오늘 한 줄 진단",
+    "## 3-6개월 핵심 시나리오 트리",
+    "## Macro View",
+    "## Strategy (이번 주 대응)",
+    "## Action (오늘 실행)",
+    "## 체크포인트",
+  ];
+
+  const selected = [];
+  for (const title of preferred) {
+    const section = sections.find((entry) => entry.startsWith(title));
+    if (section) {
+      selected.push(section.trim());
+    }
+  }
+
+  const fallback = selected.length > 0 ? selected.join("\n\n") : normalized;
+  return fallback.length > maxChars ? `${fallback.slice(0, maxChars - 5)}\n...` : fallback;
+}
+
+function formatKeyNumbers(item, limit = 3) {
+  return (item?.key_numbers ?? [])
+    .map((entry) => {
+      const value = truncate(String(entry?.value ?? "").replace(/\s+/g, " ").trim(), 40);
+      const why = truncate(String(entry?.why_it_matters ?? "").replace(/\s+/g, " ").trim(), 70);
+      if (!value) return null;
+      return why ? `${value} (${why})` : value;
+    })
+    .filter(Boolean)
+    .slice(0, limit)
+    .join(" / ");
+}
+
+function formatExtractEvidenceBlocks(extracts) {
+  if (extracts.length === 0) {
+    return "- 관련 extract 없음";
+  }
+
+  return extracts
+    .map((item) => {
+      const lines = [
+        `- [${item.id}] ${item.title} / ${item.broker} / ${item.report_type}`,
+        `  - thesis: ${truncate(item.key_thesis ?? item.primary_claim?.summary ?? "요약 없음", 220)}`,
+      ];
+
+      if ((item.key_numbers ?? []).length > 0) {
+        lines.push(`  - numbers: ${formatKeyNumbers(item)}`);
+      }
+      if (item?.primary_claim?.condition) {
+        lines.push(`  - condition: ${truncate(item.primary_claim.condition, 160)}`);
+      }
+      if (item?.primary_claim?.counterpoint) {
+        lines.push(`  - counterpoint: ${truncate(item.primary_claim.counterpoint, 160)}`);
+      }
+      if ((item.related_holdings_in_my_portfolio ?? []).length > 0) {
+        lines.push(
+          `  - portfolio_links: ${item.related_holdings_in_my_portfolio
+            .slice(0, 4)
+            .map((holding) => `${holding.name}(${holding.code ?? "N/A"})`)
+            .join(" / ")}`,
+        );
+      }
+      if ((item.catalysts ?? []).length > 0) {
+        lines.push(`  - catalysts: ${item.catalysts.slice(0, 2).map((entry) => truncate(entry, 90)).join(" / ")}`);
+      }
+      if ((item.risks ?? []).length > 0) {
+        lines.push(`  - risks: ${item.risks.slice(0, 2).map((entry) => truncate(entry, 90)).join(" / ")}`);
+      }
+
+      return lines.join("\n");
+    })
+    .join("\n");
 }
 
 async function main() {
@@ -146,7 +261,7 @@ async function main() {
     .slice(0, 12);
   const macroExtracts = stage1.extracts.filter((item) => item.report_type === "macro").slice(0, 5);
   const technicalSubset = buildTechnicalSubset(portfolio, technical, watchlist);
-  const briefingSummary = truncate(briefing, 5000);
+  const briefingSummary = summarizeRichBriefingSections(briefing, 8000);
   const refinementMaps = refinementMapsRaw.filter((entry) => entry.map);
   const refinementResponses = refinementResponsesRaw
     .map((entry) => ({ ...entry, text: String(entry.text ?? "").trim() }))
@@ -173,6 +288,11 @@ async function main() {
     "## 시장/섹터 브리핑",
     briefingSummary || "- rich briefing 없음",
     "",
+    "## 브리핑 압축 메모",
+    `- original_chars: ${String(briefing ?? "").length}`,
+    `- summarized_chars: ${briefingSummary.length}`,
+    `- truncation_applied: ${String(briefingSummary.length < String(briefing ?? "").length && String(briefing ?? "").length > 0)}`,
+    "",
     "## 머니토링 실시간 시황 레이어",
     formatMarketVoiceForPrompt(marketVoice, {
       maxTopics: 6,
@@ -192,10 +312,10 @@ async function main() {
     decisionMemorySummary || "- 누적 의사결정 메모리 없음",
     "",
     "## 직접 관련 리포트 연구 노트",
-    JSON.stringify(directExtracts, null, 2),
+    formatExtractEvidenceBlocks(directExtracts),
     "",
     "## 매크로/전략 리포트 연구 노트",
-    JSON.stringify(macroExtracts, null, 2),
+    formatExtractEvidenceBlocks(macroExtracts),
     "",
     "## 기술점수 스냅샷",
     JSON.stringify(
@@ -214,6 +334,7 @@ async function main() {
     "buy_candidates / trim_candidates / hold_candidates는 각 계좌당 최대 3개까지만 반환하세요.",
     "refinement map에서 반복 확인이 필요한 토픽은 실제 전략 변화로 연결되는 경우만 반영하고, 근거가 얕으면 watch 또는 보류로 남기세요.",
     "머니토링 시황은 빠른 촉매 신호로만 사용하세요. 리포트·딥리서치와 충돌하면 강화보다 watch 또는 검증 우선으로 낮추세요.",
+    "extract에 숫자, 조건, 반론이 있으면 strategy_changes / account_actions / portfolio_risks 중 최소 한 곳에는 그 흔적이 남아야 합니다.",
     "계좌 역할과 맞지 않는 공격적 제안, 무효화 조건 없는 제안, 메타 표현(stage2 근거 등)은 쓰지 마세요.",
     "",
     JSON.stringify(

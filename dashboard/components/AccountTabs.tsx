@@ -1,6 +1,6 @@
 "use client";
 
-import { Children, type ReactNode, useMemo, useState } from "react";
+import { Children, type ReactNode, useEffect, useMemo, useRef, useState } from "react";
 import HorizontalTabRail from "@/components/HorizontalTabRail";
 
 type AccountTabItem = {
@@ -99,6 +99,7 @@ export default function AccountTabs({
 }) {
   const childArray = useMemo(() => Children.toArray(children), [children]);
   const [selectedKey, setSelectedKey] = useState(tabs[0]?.key ?? "");
+  const stickyShellRef = useRef<HTMLDivElement | null>(null);
 
   const selectedIndex = Math.max(
     0,
@@ -106,57 +107,84 @@ export default function AccountTabs({
   );
   const activeChild = childArray[selectedIndex] ?? null;
 
+  useEffect(() => {
+    const element = stickyShellRef.current;
+    if (!element) return;
+
+    const updateHeight = () => {
+      document.documentElement.style.setProperty(
+        "--account-tabs-sticky-height",
+        `${element.getBoundingClientRect().height}px`,
+      );
+    };
+
+    updateHeight();
+
+    const observer = new ResizeObserver(() => {
+      updateHeight();
+    });
+
+    observer.observe(element);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   if (tabs.length === 0) return null;
 
   return (
     <div className="grid gap-4">
-      <HorizontalTabRail
-        items={tabs}
-        getKey={(item) => item.key}
-        selectedKey={tabs[selectedIndex]?.key ?? tabs[0].key}
-        onSelect={setSelectedKey}
-        sticky
-        stickyClassName="top-[calc(var(--desktop-nav-offset,5.25rem)+var(--account-tabs-gap,0.25rem))] z-30"
-        frameLabel={null}
-        frameClassName="rounded-xl border border-slate-200 bg-slate-50/80 p-1.5 shadow-none"
-        listClassName="pb-0"
-        itemClassName="min-w-[11.5rem] border px-3.5 py-2.5"
-        selectedItemClassName="border-indigo-200 bg-white text-slate-900 shadow-[0_2px_8px_rgba(99,102,241,0.12)]"
-        unselectedItemClassName="border-transparent bg-transparent text-slate-500 hover:border-slate-200 hover:bg-white hover:text-slate-800"
-        renderItem={(item, isSelected) => (
-          <div className="min-w-0 space-y-1">
-            <div className="min-w-0">
-              <span className="block truncate text-sm font-semibold leading-5">{item.label}</span>
+      <div
+        ref={stickyShellRef}
+        className="sticky top-[calc(var(--desktop-nav-offset,5.25rem)+var(--account-tabs-gap,0.25rem))] z-30"
+      >
+        <HorizontalTabRail
+          items={tabs}
+          getKey={(item) => item.key}
+          selectedKey={tabs[selectedIndex]?.key ?? tabs[0].key}
+          onSelect={setSelectedKey}
+          frameLabel={null}
+          frameClassName="rounded-xl border border-slate-200 bg-slate-50/80 p-1.5 shadow-none"
+          listClassName="pb-0"
+          itemClassName="min-w-[11.5rem] border px-3.5 py-2.5"
+          selectedItemClassName="border-blue-300 bg-white text-slate-900 shadow-[0_2px_8px_rgba(59,130,246,0.14)]"
+          unselectedItemClassName="border-slate-300 bg-slate-50 text-slate-600 hover:border-blue-200 hover:bg-blue-50/55 hover:text-slate-800"
+          renderItem={(item, isSelected) => (
+            <div className="min-w-0 space-y-1">
+              <div className="min-w-0">
+                <span className="block truncate text-sm font-semibold leading-5">{item.label}</span>
+              </div>
+              <div className="flex items-center gap-1.5 text-[10.5px] leading-4">
+                <span
+                  className={joinClasses(
+                    "shrink-0 rounded-full px-1.5 py-0.5 font-semibold tracking-[-0.01em]",
+                    profitRateClass(item.profitRateValue, isSelected),
+                  )}
+                >
+                  {item.profitRate}
+                </span>
+                <span
+                  className={joinClasses(
+                    "shrink-0 rounded-full px-1.5 py-0.5 font-semibold tracking-[-0.01em]",
+                    scoreClass(item.scoreValue, isSelected),
+                  )}
+                >
+                  {item.score}
+                </span>
+                <span
+                  className={joinClasses(
+                    "ml-auto shrink-0 rounded-full px-1.5 py-0.5 text-[10px] font-medium leading-4",
+                    isSelected ? selectedStatusClass(item.status) : statusClass(item.status),
+                  )}
+                >
+                  {item.status}
+                </span>
+              </div>
             </div>
-            <div className="flex items-center gap-1.5 text-[10.5px] leading-4">
-              <span
-                className={joinClasses(
-                  "shrink-0 rounded-full px-1.5 py-0.5 font-semibold tracking-[-0.01em]",
-                  profitRateClass(item.profitRateValue, isSelected),
-                )}
-              >
-                {item.profitRate}
-              </span>
-              <span
-                className={joinClasses(
-                  "shrink-0 rounded-full px-1.5 py-0.5 font-semibold tracking-[-0.01em]",
-                  scoreClass(item.scoreValue, isSelected),
-                )}
-              >
-                {item.score}
-              </span>
-              <span
-                className={joinClasses(
-                  "ml-auto shrink-0 rounded-full px-1.5 py-0.5 text-[10px] font-medium leading-4",
-                  isSelected ? selectedStatusClass(item.status) : statusClass(item.status),
-                )}
-              >
-                {item.status}
-              </span>
-            </div>
-          </div>
-        )}
-      />
+          )}
+        />
+      </div>
 
       <div key={tabs[selectedIndex]?.key ?? tabs[0].key}>{activeChild}</div>
     </div>

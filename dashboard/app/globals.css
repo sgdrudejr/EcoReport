@@ -8,7 +8,7 @@
 
 :root {
   color-scheme: light;
-  --dashboard-fixed-width: 1200px;
+  --dashboard-fixed-width: 1000px;
   --desktop-nav-offset: 1rem;
   --account-tabs-gap: 0.25rem;
 
@@ -159,11 +159,11 @@ body {
 }
 
 .holdings-preview-rail {
-  display: none;
+  display: block;
 }
 
-html[data-holdings-preview="true"] .holdings-preview-rail {
-  display: block;
+.holdings-preview-default {
+  display: none;
 }
 
 /* ─── Prose ─────────────────────────────── */

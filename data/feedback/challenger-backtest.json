@@ -1,0 +1,14 @@
+{
+  "generatedAt": "2026-04-12T05:39:17.689Z",
+  "lookbackSnapshots": 7,
+  "baselineHitRate": 0.3333333333333333,
+  "challengerHitRate": 0.25,
+  "improvement": -0.0833,
+  "promoted": false,
+  "challengerWeights": {
+    "momentum": 0.3824,
+    "research": 0.3137,
+    "income": 0.1078,
+    "macroFit": 0.1961
+  }
+}

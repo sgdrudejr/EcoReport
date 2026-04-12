@@ -17,9 +17,11 @@ import {
   readJson,
   sigmoid,
   softmax,
+  withContract,
   writeJson,
 } from "./lib/pipeline-utils.js";
 import { loadAnalysisContext } from "./lib/analysis-context.js";
+import { insertStage3 } from "./lib/timeseries-db.js";
 
 const REGIME_WEIGHTS = {
   BULL: {
@@ -1300,6 +1302,69 @@ function positionKey(accountKey, code) {
   return `${accountKey}:${code}`;
 }
 
+function averageScore(values) {
+  const numeric = values.filter((value) => typeof value === "number" && Number.isFinite(value));
+  if (numeric.length === 0) return null;
+  return Math.round(mean(numeric));
+}
+
+function executionSignalAgreement(computed) {
+  const directions = [computed?.direction, computed?.timing, computed?.reportScore]
+    .filter((value) => typeof value === "number" && Number.isFinite(value))
+    .map((value) => (Math.abs(value) < 0.05 ? 0 : Math.sign(value)))
+    .filter((value) => value !== 0);
+
+  if (directions.length <= 1) {
+    return 0.6;
+  }
+
+  const positives = directions.filter((value) => value > 0).length;
+  const negatives = directions.filter((value) => value < 0).length;
+  return toRoundedNumber(Math.max(positives, negatives) / directions.length, 4);
+}
+
+function executionCoverageScore({ technicalItem, factor, reportImpact }) {
+  return toRoundedNumber(
+    mean([
+      typeof technicalItem?.score === "number" ? 1 : 0,
+      factor?.factorCoverage ?? 0,
+      reportImpact?.coverageWeight ?? 0,
+    ]),
+    4,
+  );
+}
+
+function buildClusterPenaltyLookup(holdingClusters) {
+  const lookup = new Map();
+
+  for (const cluster of holdingClusters?.clusters ?? []) {
+    const holdings = cluster?.holdings ?? [];
+    if (holdings.length < 2) continue;
+
+    const penalty = toRoundedNumber(
+      clamp(
+        (holdings.length - 1) * 1.8 + clamp(valueOrFallback(cluster?.avgCorrelation, 0), 0, 1) * 4.5,
+        0,
+        12,
+      ),
+      2,
+    );
+
+    for (const holding of holdings) {
+      if (!holding?.code || !holding?.accountKey) continue;
+      lookup.set(positionKey(holding.accountKey, holding.code), {
+        penalty,
+        clusterId: cluster.id ?? null,
+        holdingCount: holdings.length,
+        avgCorrelation: cluster.avgCorrelation ?? null,
+        warning: cluster.warning ?? null,
+      });
+    }
+  }
+
+  return lookup;
+}
+
 function mean(values) {
   if (!values.length) return 0;
   return values.reduce((sum, value) => sum + value, 0) / values.length;
@@ -1702,6 +1767,10 @@ async function main() {
   const regime = detectRegime(technical, fred);
   const leadingIndicator = computeLeadingIndicatorScore(fred);
   const technicalMap = technical.scores ?? {};
+  const holdingClusters = await readJson(path.join(stateDir, "holding-clusters.json"), {
+    clusters: [],
+  });
+  const clusterPenaltyByPosition = buildClusterPenaltyLookup(holdingClusters);
   const referenceDate = new Date(`${args.date}T00:00:00Z`);
   const feedbackAnalysis = loadLatestFeedbackAnalysis(args.date);
   const sourceAccuracyMap = buildResearchSourceAccuracyMap(feedbackAnalysis);
@@ -2011,6 +2080,30 @@ async function main() {
     const totalScore = Math.round(clamp(taxAdjustment.afterTaxScore ?? preTaxScore, 0, 100));
     const holdingsScore = Math.round(weightedAverage(weightedAction) ?? 50);
     const rawHoldingsScore = Math.round(weightedAverage(weightedRawAction) ?? 50);
+    const executionConfidenceScore = averageScore(
+      accountPositions.map((row) =>
+        Math.round(
+          clamp(
+            (
+              executionCoverageScore(row) * 0.65 +
+              executionSignalAgreement(row.computed) * 0.35
+            ) * 100,
+            0,
+            100,
+          ),
+        ),
+      ),
+    );
+    const clusterPenalty = toRoundedNumber(
+      weightedAverage(
+        accountPositions.map((row) => ({
+          weight: row.scoreWeight,
+          value:
+            clusterPenaltyByPosition.get(positionKey(row.accountKey, row.code))?.penalty ?? 0,
+        })),
+      ) ?? 0,
+      2,
+    );
 
     accountScores[account.key] = {
       key: account.key,
@@ -2042,11 +2135,64 @@ async function main() {
       effectiveWeights: weights,
       riskPenalty,
       taxAdjustment,
+      scoreDecomposition: {
+        alphaScore: averageScore([factorScore, techScore, reportAvailable ? reportScore : null]),
+        alphaComponents: {
+          factorScore,
+          technicalScore: techScore,
+          reportScore: reportAvailable ? reportScore : null,
+        },
+        riskGate: toRoundedNumber(clamp(100 - riskPenalty.total, 0, 100), 2),
+        executionConfidence: executionConfidenceScore,
+        taxAdvantage: taxAdjustment?.addedScore ?? 0,
+        clusterPenalty,
+      },
       accountDirectImpact: {
         value: toRoundedNumber(context.accountDirectImpact.value),
         score: context.accountDirectImpact.score,
         impacts: context.accountDirectImpact.impacts,
       },
+    };
+  }
+
+  for (const row of positionRows) {
+    const payload = positionScores[row.positionKey];
+    const accountScore = accountScores[row.accountKey];
+    const coverageScore = executionCoverageScore(row);
+    const signalAgreement = executionSignalAgreement(row.computed);
+    const clusterInfo = clusterPenaltyByPosition.get(row.positionKey) ?? null;
+    payload.scoreDecomposition = {
+      alphaScore: averageScore([
+        row.factor?.score ?? null,
+        row.technicalBaseScore ?? null,
+        row.reportImpact.impactCount > 0 ? row.reportImpact.score : null,
+      ]),
+      alphaComponents: {
+        factorScore: row.factor?.score ?? null,
+        technicalScore: row.technicalBaseScore ?? null,
+        reportScore: row.reportImpact.impactCount > 0 ? row.reportImpact.score : null,
+      },
+      riskGate: toRoundedNumber(
+        clamp(100 - (accountScore?.riskPenalty?.total ?? 0), 0, 100),
+        2,
+      ),
+      executionConfidence: Math.round(
+        clamp((coverageScore * 0.65 + signalAgreement * 0.35) * 100, 0, 100),
+      ),
+      executionConfidenceDetail: {
+        coverageScore: Math.round(coverageScore * 100),
+        signalAgreement: Math.round(signalAgreement * 100),
+      },
+      taxAdvantage: accountScore?.taxAdjustment?.addedScore ?? 0,
+      clusterPenalty: clusterInfo?.penalty ?? 0,
+      clusterContext: clusterInfo
+        ? {
+            clusterId: clusterInfo.clusterId,
+            holdingCount: clusterInfo.holdingCount,
+            avgCorrelation: clusterInfo.avgCorrelation,
+            warning: clusterInfo.warning,
+          }
+        : null,
     };
   }
 
@@ -2092,99 +2238,142 @@ async function main() {
       }, 0),
       0,
       100,
+      ),
+  );
+  const portfolioExecutionConfidence = Math.round(
+    clamp(
+      (normalizedPortfolio.accounts ?? []).reduce((sum, account) => {
+        const assets = accountTotalAssets(account);
+        return sum + (accountScores[account.key]?.scoreDecomposition?.executionConfidence ?? 50) * (assets / totalAssets);
+      }, 0),
+      0,
+      100,
+    ),
+  );
+  const portfolioClusterPenalty = toRoundedNumber(
+    (normalizedPortfolio.accounts ?? []).reduce((sum, account) => {
+      const assets = accountTotalAssets(account);
+      return sum + (accountScores[account.key]?.scoreDecomposition?.clusterPenalty ?? 0) * (assets / totalAssets);
+    }, 0),
+    2,
+  );
+  const portfolioAlphaScore = Math.round(
+    clamp(
+      (normalizedPortfolio.accounts ?? []).reduce((sum, account) => {
+        const assets = accountTotalAssets(account);
+        return sum + (accountScores[account.key]?.scoreDecomposition?.alphaScore ?? 50) * (assets / totalAssets);
+      }, 0),
+      0,
+      100,
     ),
   );
 
   const outputPath = args.output ?? path.join(stateDir, "stage3-quant-scores.json");
   const runMeta = buildRunMetadata(args);
-  await writeJson(outputPath, {
-    ...runMeta,
-    reportInputs: {
-      reportCount: stage1ReportCount,
-      available: stage1ReportCount > 0,
-    },
-    regime: {
-      ...regime,
-      market_context: technical.market_context ?? {},
-    },
-    leadingIndicator,
-    coverage: {
-      factorCoverage: toRoundedNumber(
-        (normalizedPortfolio.accounts ?? []).reduce((sum, account) => {
-          const assets = accountTotalAssets(account);
-          return sum + (accountCoverage[account.key]?.factorCoverage ?? 0) * (assets / totalAssets);
-        }, 0),
-        4,
-      ),
-      techCoverage: toRoundedNumber(
-        (normalizedPortfolio.accounts ?? []).reduce((sum, account) => {
-          const assets = accountTotalAssets(account);
-          return sum + (accountCoverage[account.key]?.techCoverage ?? 0) * (assets / totalAssets);
-        }, 0),
-        4,
-      ),
-      impactCoverage: toRoundedNumber(
-        (normalizedPortfolio.accounts ?? []).reduce((sum, account) => {
-          const assets = accountTotalAssets(account);
-          return sum + (accountCoverage[account.key]?.impactCoverage ?? 0) * (assets / totalAssets);
-        }, 0),
-        4,
-      ),
-      stage2Available: Boolean(stage2Data),
-    },
-    quality: {
-      unrelatedEvidenceRatio: toRoundedNumber(
-        mean(
-          Object.values(positionScores).map(
-            (position) => position?.report?.relationSummary?.unrelatedEvidenceRatio ?? 0,
-          ),
+  const stage3Payload = withContract(
+    {
+      ...runMeta,
+      reportInputs: {
+        reportCount: stage1ReportCount,
+        available: stage1ReportCount > 0,
+      },
+      regime: {
+        ...regime,
+        market_context: technical.market_context ?? {},
+      },
+      leadingIndicator,
+      coverage: {
+        factorCoverage: toRoundedNumber(
+          (normalizedPortfolio.accounts ?? []).reduce((sum, account) => {
+            const assets = accountTotalAssets(account);
+            return sum + (accountCoverage[account.key]?.factorCoverage ?? 0) * (assets / totalAssets);
+          }, 0),
+          4,
         ),
-        4,
-      ),
-      blockedEvidenceCount: Object.values(positionScores).reduce(
-        (sum, position) => sum + (position?.report?.relationSummary?.blockedCount ?? 0),
-        0,
-      ),
-    },
-    configUsed: {
-      weightProfile: profileName,
-      maxWeights: MAX_WEIGHT_PROFILES[profileName],
-      factorModel,
-      holdingBlend: holdingBlendConfig,
-      covarianceModel,
-      taxAware: {
-        enabled: taxAwareConfig.enabled,
-        alpha: taxAwareConfig.alpha,
-        normalTaxRate: taxAwareConfig.normalTaxRate,
-        minRiskFloor: taxAwareConfig.minRiskFloor,
-        maxMultiplier: taxAwareConfig.maxMultiplier,
+        techCoverage: toRoundedNumber(
+          (normalizedPortfolio.accounts ?? []).reduce((sum, account) => {
+            const assets = accountTotalAssets(account);
+            return sum + (accountCoverage[account.key]?.techCoverage ?? 0) * (assets / totalAssets);
+          }, 0),
+          4,
+        ),
+        impactCoverage: toRoundedNumber(
+          (normalizedPortfolio.accounts ?? []).reduce((sum, account) => {
+            const assets = accountTotalAssets(account);
+            return sum + (accountCoverage[account.key]?.impactCoverage ?? 0) * (assets / totalAssets);
+          }, 0),
+          4,
+        ),
+        stage2Available: Boolean(stage2Data),
       },
-      riskPenaltyCaps: riskCaps,
-      researchSourceAccuracyLoaded: sourceAccuracyMap.size > 0,
-    },
-    factorStats,
-    holdings: holdingScores,
-    positions: positionScores,
-    accounts: accountScores,
-    portfolio: {
-      totalScore: portfolioScore,
-      baseScore: toRoundedNumber(portfolioBaseScore, 2),
-      preTaxScore: toRoundedNumber(portfolioPreTaxScore, 2),
-      riskPenalty: {
-        total: toRoundedNumber(portfolioRiskPenaltyTotal, 2),
+      quality: {
+        unrelatedEvidenceRatio: toRoundedNumber(
+          mean(
+            Object.values(positionScores).map(
+              (position) => position?.report?.relationSummary?.unrelatedEvidenceRatio ?? 0,
+            ),
+          ),
+          4,
+        ),
+        blockedEvidenceCount: Object.values(positionScores).reduce(
+          (sum, position) => sum + (position?.report?.relationSummary?.blockedCount ?? 0),
+          0,
+        ),
       },
-      taxAdjustment: {
-        addedScore: toRoundedNumber(portfolioTaxAdded, 2),
-        afterTaxScore: toRoundedNumber(portfolioPreTaxScore + portfolioTaxAdded, 2),
+      configUsed: {
+        weightProfile: profileName,
+        maxWeights: MAX_WEIGHT_PROFILES[profileName],
+        factorModel,
+        holdingBlend: holdingBlendConfig,
+        covarianceModel,
+        taxAware: {
+          enabled: taxAwareConfig.enabled,
+          alpha: taxAwareConfig.alpha,
+          normalTaxRate: taxAwareConfig.normalTaxRate,
+          minRiskFloor: taxAwareConfig.minRiskFloor,
+          maxMultiplier: taxAwareConfig.maxMultiplier,
+        },
+        riskPenaltyCaps: riskCaps,
+        researchSourceAccuracyLoaded: sourceAccuracyMap.size > 0,
       },
-      note:
-        portfolioScore >= 72
-          ? "포트폴리오 전반이 우호적이지만 과열 추격은 금지"
-          : portfolioScore >= 55
-            ? "선별적 추가와 방어를 병행해야 하는 구간"
-            : "배분 괴리와 리스크 패널티를 먼저 줄여야 하는 구간",
+      factorStats,
+      holdings: holdingScores,
+      positions: positionScores,
+      accounts: accountScores,
+      portfolio: {
+        totalScore: portfolioScore,
+        baseScore: toRoundedNumber(portfolioBaseScore, 2),
+        preTaxScore: toRoundedNumber(portfolioPreTaxScore, 2),
+        scoreDecomposition: {
+          alphaScore: portfolioAlphaScore,
+          riskGate: toRoundedNumber(clamp(100 - portfolioRiskPenaltyTotal, 0, 100), 2),
+          executionConfidence: portfolioExecutionConfidence,
+          taxAdvantage: toRoundedNumber(portfolioTaxAdded, 2),
+          clusterPenalty: portfolioClusterPenalty,
+        },
+        riskPenalty: {
+          total: toRoundedNumber(portfolioRiskPenaltyTotal, 2),
+        },
+        taxAdjustment: {
+          addedScore: toRoundedNumber(portfolioTaxAdded, 2),
+          afterTaxScore: toRoundedNumber(portfolioPreTaxScore + portfolioTaxAdded, 2),
+        },
+        note:
+          portfolioScore >= 72
+            ? "포트폴리오 전반이 우호적이지만 과열 추격은 금지"
+            : portfolioScore >= 55
+              ? "선별적 추가와 방어를 병행해야 하는 구간"
+              : "배분 괴리와 리스크 패널티를 먼저 줄여야 하는 구간",
+      },
     },
-  });
+    {
+      stage: "stage3",
+      generatedAt: runMeta.generatedAt,
+    },
+  );
+
+  await writeJson(outputPath, stage3Payload);
+  insertStage3(stage3Payload);
   console.log(outputPath);
 }
 

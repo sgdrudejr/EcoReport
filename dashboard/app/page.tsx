@@ -1,4 +1,5 @@
 import path from "path";
+import Link from "next/link";
 import type { ReactNode } from "react";
 import {
   BadgeCheck,
@@ -20,6 +21,7 @@ import ExecutionNarrativeCard from "@/components/ExecutionNarrativeCard";
 import FeedbackPanel, { type FeedbackAnalysis } from "@/components/FeedbackPanel";
 import FloatingSectionIndex from "@/components/FloatingSectionIndex";
 import HoldingTabs from "@/components/HoldingTabs";
+import RecommendationItemTabs from "@/components/RecommendationItemTabs";
 import RecommendationTabs from "@/components/RecommendationTabs";
 import {
   buildPortfolioGuide,
@@ -52,8 +54,22 @@ import {
 import { loadRecommendationBoard, type RecommendationIdea } from "@/lib/recommendations";
 import { listRepoDirectories, listRepoFiles, readRepoJsonFile } from "@/lib/repo-artifacts";
 import { formatDateContextLine } from "@/lib/trading-calendar";
+import EvidenceChain from "./components/EvidenceChain";
+import GhostPortfolio from "./components/GhostPortfolio";
+import BacktestSummary from "./components/BacktestSummary";
+import IntradayAlertBanner from "./components/IntradayAlertBanner";
+import IntradayAutoRefresh from "./components/IntradayAutoRefresh";
+import ScoreBreakdownPanel from "./components/ScoreBreakdownPanel";
+import {
+  loadLatestBacktestEngine,
+  loadGhostPortfolioEntries,
+  loadLatestIntradayState,
+  loadPreviousStage3Snapshot,
+} from "./lib/data-loader";
 
 export const dynamic = "force-dynamic";
+
+type DashboardMode = "full" | "decision" | "feedback";
 
 const NUMBER_FORMATTER = new Intl.NumberFormat("ko-KR");
 const MARKET_VALUE_FORMATTER = new Intl.NumberFormat("en-US", {
@@ -160,6 +176,13 @@ type Stage3Analysis = {
         topDrivers?: string[];
         warnings?: string[];
       } | null;
+      scoreDecomposition?: {
+        alphaScore?: number | null;
+        riskGate?: number | null;
+        executionConfidence?: number | null;
+        taxAdvantage?: number | null;
+        clusterPenalty?: number | null;
+      } | null;
     }
   >;
   positions?: Record<
@@ -180,6 +203,13 @@ type Stage3Analysis = {
       explain?: {
         topDrivers?: string[];
         warnings?: string[];
+      } | null;
+      scoreDecomposition?: {
+        alphaScore?: number | null;
+        riskGate?: number | null;
+        executionConfidence?: number | null;
+        taxAdvantage?: number | null;
+        clusterPenalty?: number | null;
       } | null;
     }
   >;
@@ -276,6 +306,54 @@ type HoldingClustersArtifact = {
   clusters?: HoldingCluster[];
   threshold?: number | null;
 };
+
+type IntradayDashboardState = {
+  updatedAt?: string | null;
+  alerts?: {
+    triggers?: Array<{
+      name?: string | null;
+      triggered?: boolean;
+      detail?: string | null;
+      actual?: number | string | null;
+    }>;
+  } | null;
+  overlay?: {
+    updates?: Array<{
+      code?: string | null;
+      name?: string | null;
+      baseActionScore?: number | null;
+      intradayActionScore?: number | null;
+      delta?: number | null;
+    }>;
+  } | null;
+};
+
+type BacktestDashboardState = {
+  summary?: {
+    dateRange?: {
+      start?: string | null;
+      end?: string | null;
+      sessions?: number | null;
+    } | null;
+    latestPortfolioValue?: number | null;
+    totalReturnPct?: number | null;
+    annualizedReturnPct?: number | null;
+    maxDrawdownPct?: number | null;
+    winRatePct?: number | null;
+    rebalanceCount?: number | null;
+    totalTransactionCostPct?: number | null;
+    totalTaxPaidPct?: number | null;
+  } | null;
+  rebalanceLog?: Array<{
+    date?: string | null;
+    selected?: Array<{
+      code?: string | null;
+      name?: string | null;
+      actionScore?: number | null;
+      weightPct?: number | null;
+    }>;
+  }> | null;
+} | null;
 
 type HighlightSpec = {
   token: string;
@@ -2484,7 +2562,11 @@ function statusChip(status: string | null | undefined) {
   return "bg-rose-500/10 text-rose-700 ring-1 ring-inset ring-rose-500/20";
 }
 
-export function DashboardPage() {
+export function DashboardPage({
+  mode = "full",
+}: {
+  mode?: DashboardMode;
+} = {}) {
   const portfolio = loadLatestPortfolio();
   if (!portfolio) {
     return (
@@ -2528,6 +2610,10 @@ export function DashboardPage() {
   const technical = loadLatestTechnicalSnapshot(portfolio.date);
   const latestFeedbackAnalysis = loadLatestFeedbackAnalysis(portfolio.date);
   const feedbackAnalysis = latestFeedbackAnalysis.data;
+  const previousStage3Snapshot = loadPreviousStage3Snapshot(portfolio.date);
+  const ghostPortfolioEntries = loadGhostPortfolioEntries();
+  const intradayState = loadLatestIntradayState() as IntradayDashboardState | null;
+  const backtestState = loadLatestBacktestEngine() as BacktestDashboardState;
 
   const latestBriefing =
     loadResearchBriefings().find((item) => item.variant === "rich") ??
@@ -2543,14 +2629,6 @@ export function DashboardPage() {
   const strategyGuide = extractResearchStrategyGuide(latestBriefingContent);
   const portfolioInsights = extractResearchPortfolioInsights(latestBriefingContent);
   const macroIndicators = loadLatestMacroIndicators(portfolio.date);
-  const marketVoiceAccountSections = portfolio.accounts
-    .map((account) => ({
-      account,
-      digest:
-        marketVoice?.accountDigests?.find((item) => item.accountKey === account.key) ?? null,
-    }))
-    .filter((item) => (item.digest?.topTopics ?? []).length > 0);
-  const marketVoiceResearchCandidates = marketVoice?.deepResearchCandidates ?? [];
   const heroNarrative = buildHeroNarrative({
     diagnosis,
     stage2,
@@ -2744,24 +2822,46 @@ export function DashboardPage() {
     key: account.key,
     label: account.label,
   }));
+  const scoreBreakdownPositions = Object.values(stage3?.positions ?? {}).filter(
+    (item) => item?.scoreDecomposition,
+  );
   const allocationHeatmap = buildAllocationHeatmapData(
     accountEntries.map(({ account, accountGuide }) => ({
       account,
       accountGuide,
     })),
   );
-  const sectionIndexItems = [
-    { number: "1", id: "today-actions", label: "오늘의 실행 리스트" },
-    { number: "2", id: "portfolio-diagnosis", label: "핵심 진단" },
-    { number: "3", id: "accounts-overview", label: "계좌 현황과 실행 방향성" },
-    { number: "4", id: "account-holdings", label: "보유 종목" },
-    { number: "5", id: "account-direction", label: "투자 방향성" },
-    { number: "6", id: "market-guide", label: "시황 가이드와 추천 종목" },
-    { number: "7", id: "market-voice", label: "머니토링 이벤트 레이어" },
-    { number: "8", id: "recommendations", label: "추천 종목" },
-    { number: "9", id: "feedback-dashboard", label: "피드백 대시보드" },
-    { number: "10", id: "cluster-map", label: "상관관계 클러스터" },
-  ];
+  const showDecisionSections = mode !== "feedback";
+  const showFeedbackSections = mode !== "decision";
+  const sectionIndexItems =
+    mode === "feedback"
+      ? [
+          { number: "1", id: "feedback-allocation", label: "계좌 × 카테고리 배분" },
+          { number: "2", id: "feedback-dashboard", label: "피드백 대시보드" },
+          { number: "3", id: "cluster-map", label: "상관관계 클러스터" },
+        ]
+      : mode === "decision"
+        ? [
+            { number: "1", id: "today-actions", label: "오늘의 실행 리스트" },
+            { number: "2", id: "portfolio-diagnosis", label: "핵심 진단" },
+            { number: "3", id: "accounts-overview", label: "계좌 실행 방향" },
+            { number: "4", id: "account-holdings", label: "보유 종목" },
+            { number: "5", id: "account-direction", label: "투자 방향성" },
+            { number: "6", id: "recommendations", label: "추천 종목" },
+            { number: "7", id: "market-guide", label: "실행 가이드" },
+          ]
+        : [
+            { number: "1", id: "today-actions", label: "오늘의 실행 리스트" },
+            { number: "2", id: "portfolio-diagnosis", label: "핵심 진단" },
+            { number: "3", id: "accounts-overview", label: "계좌 실행 방향" },
+            { number: "4", id: "account-holdings", label: "보유 종목" },
+            { number: "5", id: "account-direction", label: "투자 방향성" },
+            { number: "6", id: "recommendations", label: "추천 종목" },
+            { number: "7", id: "market-guide", label: "실행 가이드" },
+            { number: "8", id: "feedback-allocation", label: "계좌 × 카테고리 배분" },
+            { number: "9", id: "feedback-dashboard", label: "피드백 대시보드" },
+            { number: "10", id: "cluster-map", label: "상관관계 클러스터" },
+          ];
   const sectionHeading = (id: string) => {
     const item = sectionIndexItems.find((section) => section.id === id);
     return item ? `${item.number}. ${item.label}` : id;
@@ -2769,7 +2869,58 @@ export function DashboardPage() {
 
   const content = (
     <main className="pb-14">
+      <IntradayAutoRefresh
+        date={portfolio.date}
+        initialUpdatedAt={intradayState?.updatedAt ?? null}
+      />
       <section className="mx-auto flex w-full max-w-[calc(var(--dashboard-fixed-width)-8px)] flex-col gap-4 px-1 pb-8 pt-5">
+        {mode !== "full" ? (
+          <section className="glass-panel rounded-2xl px-6 py-5">
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <div>
+                <p className="section-kicker">Dashboard Test</p>
+                <h1 className="mt-1.5 text-[1.25rem] font-semibold tracking-tight text-slate-950">
+                  {mode === "decision" ? "Decision Dashboard" : "Feedback Dashboard"}
+                </h1>
+                <p className={joinClasses("mt-2", BODY_NOTE_MUTED_CLASS, "text-slate-500")}>
+                  {mode === "decision"
+                    ? "실행과 추천, 계좌 운용 판단 중심으로 분리한 테스트 화면입니다."
+                    : "성과 피드백과 진단성 지표만 따로 떼어낸 테스트 화면입니다."}
+                </p>
+              </div>
+              <div className="flex flex-wrap items-center gap-2">
+                {[
+                  { href: "/dashboard-test", label: "테스트 홈" },
+                  { href: "/dashboard-test/decision", label: "Decision" },
+                  { href: "/dashboard-test/feedback", label: "Feedback" },
+                ].map((item) => {
+                  const isCurrent =
+                    (mode === "decision" && item.href === "/dashboard-test/decision") ||
+                    (mode === "feedback" && item.href === "/dashboard-test/feedback");
+                  return (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={joinClasses(
+                        "rounded-full border px-3 py-1.5 text-sm font-medium transition",
+                        isCurrent
+                          ? "border-slate-900 bg-slate-900 text-white"
+                          : "border-slate-200 bg-white text-slate-600 hover:border-slate-300 hover:text-slate-950",
+                      )}
+                    >
+                      {item.label}
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+        ) : null}
+
+        {mode === "full" ? <IntradayAlertBanner intradayState={intradayState} /> : null}
+
+        {showDecisionSections ? (
+          <>
         <details
           id="today-actions"
           className="glass-panel scroll-mt-28 rounded-2xl px-6 py-6 [&_summary::-webkit-details-marker]:hidden"
@@ -2805,6 +2956,26 @@ export function DashboardPage() {
             )}
           </div>
         </details>
+
+        {mode === "full" ? (
+          <div className="grid gap-4 xl:grid-cols-[minmax(0,1.35fr)_minmax(320px,0.65fr)]">
+            <EvidenceChain
+              currentDate={portfolio.date}
+              previousDate={previousStage3Snapshot.date}
+              current={(stage3?.positions ?? {}) as Record<string, never>}
+              previous={
+                (previousStage3Snapshot.data?.positions ?? null) as Record<string, never> | null
+              }
+            />
+            <GhostPortfolio entries={ghostPortfolioEntries as never[]} />
+          </div>
+        ) : null}
+
+        {mode === "full" ? (
+          <ScoreBreakdownPanel positions={scoreBreakdownPositions as never[]} />
+        ) : null}
+
+        {mode === "full" ? <BacktestSummary artifact={backtestState} /> : null}
 
         <section
           id="portfolio-diagnosis"
@@ -2857,12 +3028,17 @@ export function DashboardPage() {
             </p>
           )}
 
-          <div className="mt-6 grid grid-cols-4 gap-0 border-t border-slate-200/80 pt-5">
+          <div className="mt-6 grid grid-cols-[0.98fr_0.96fr_0.96fr_1.1fr] gap-0 border-t border-slate-200/80 pt-5">
             {[
+              {
+                icon: LayoutGrid,
+                label: "총 투자금",
+                value: formatCurrency(totals.totalEvaluationAmount),
+              },
               {
                 icon: WalletCards,
                 label: "총 평가금액",
-                value: formatCurrency(totals.totalEvaluationAmount),
+                value: formatCurrency(totals.totalHoldingsValue),
               },
               {
                 icon: LineChart,
@@ -2873,11 +3049,6 @@ export function DashboardPage() {
                 icon: CircleDashed,
                 label: "총 보유 손익",
                 value: formatSignedCurrency(totals.totalHoldingsProfitLoss),
-              },
-              {
-                icon: LayoutGrid,
-                label: "가용 현금 / 보유 종목 수",
-                value: `${formatCurrency(totals.totalCashAvailable)} / ${NUMBER_FORMATTER.format(totals.totalHoldingCount)}개`,
               },
             ].map((item, index) => {
               const Icon = item.icon;
@@ -2891,21 +3062,21 @@ export function DashboardPage() {
                 <div
                   key={item.label}
                   className={joinClasses(
-                    "px-6 py-1",
+                    "px-4 py-1",
                     index > 0 && "border-l border-slate-200/80",
                   )}
                 >
-                  <div className="flex items-center gap-3">
-                    <div className="rounded-2xl bg-slate-900/5 p-2.5 text-slate-700">
+                  <div className="flex items-center gap-2.5">
+                    <div className="rounded-2xl bg-slate-900/5 p-2 text-slate-700">
                       <Icon size={17} />
                     </div>
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+                    <div className="min-w-0">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-400">
                         {item.label}
                       </p>
                       <p
                         className={joinClasses(
-                          "mt-2 text-lg font-semibold tracking-tight",
+                          "mt-1.5 text-lg font-semibold tracking-tight",
                           valueClassName,
                         )}
                       >
@@ -2935,15 +3106,6 @@ export function DashboardPage() {
             </span>
           </div>
 
-          <ExperimentalVisibility>
-            <div className="mt-4">
-              <AllocationHeatmap
-                rows={allocationHeatmap.rows}
-                categories={allocationHeatmap.categories}
-              />
-            </div>
-          </ExperimentalVisibility>
-
           <div className="mt-5">
             <AccountTabs
               tabs={accountEntries.map(({ account, accountGuide }) => ({
@@ -2960,16 +3122,6 @@ export function DashboardPage() {
                 ({ account, accountGuide, insightLines, keywords, scoreItems, actionHeadline, story }) => {
                   const accountSummaryItems = [
                     {
-                      label: "수익률",
-                      value: formatPercent(account.profitRate),
-                      toneClass: signedMetricTone(account.profitRate),
-                    },
-                    {
-                      label: "수익금",
-                      value: formatSignedCurrency(account.profitLoss),
-                      toneClass: signedMetricTone(account.profitLoss),
-                    },
-                    {
                       label: "투자 총액",
                       value: formatCurrency(account.evaluationAmount),
                       toneClass: "text-slate-950",
@@ -2978,6 +3130,16 @@ export function DashboardPage() {
                       label: "투자금",
                       value: formatCurrency(account.principal),
                       toneClass: "text-slate-950",
+                    },
+                    {
+                      label: "수익률",
+                      value: formatPercent(account.profitRate),
+                      toneClass: signedMetricTone(account.profitRate),
+                    },
+                    {
+                      label: "수익금",
+                      value: formatSignedCurrency(account.profitLoss),
+                      toneClass: signedMetricTone(account.profitLoss),
                     },
                     {
                       label: "현금",
@@ -3994,6 +4156,233 @@ export function DashboardPage() {
         </section>
 
         <section
+          id="recommendations"
+          className="glass-panel scroll-mt-28 rounded-2xl px-6 py-6"
+        >
+          <div className="section-header-row flex flex-wrap items-center justify-between gap-4">
+            <div className="section-header-band">
+              <p className="section-kicker">Recommendations</p>
+              <h2 className="mt-1.5 text-[1.3rem] font-semibold tracking-tight text-slate-950">
+                {sectionHeading("recommendations")}
+              </h2>
+            </div>
+            <p className={joinClasses(BODY_NOTE_MUTED_CLASS, "text-slate-500")}>
+              코어 ETF · 섹터 ETF · 개별주를 현재 레짐과 계좌 적합도, 기술 점수, 리포트 신호를 함께 반영해 정리했습니다.
+            </p>
+          </div>
+
+          <div className="mt-4 grid grid-cols-3 gap-3">
+            {recommendationInsightCards.map((item) => (
+              <InsightDigestCard
+                key={item.key}
+                kicker={item.kicker}
+                title={item.title}
+                detail={item.detail}
+                highlights={marketHighlights}
+                tone={item.tone}
+              />
+            ))}
+          </div>
+
+          {(recommendationBoard?.lanes ?? []).length > 0 ? (
+            <div className="mt-6">
+              <RecommendationTabs
+                tabs={(recommendationBoard?.lanes ?? []).map((lane) => ({
+                  key: lane.key,
+                  label: lane.title,
+                  count: lane.items.length,
+                  subtitle: recommendationLaneSubtitle(lane.key),
+                }))}
+              >
+                {(recommendationBoard?.lanes ?? []).map((lane) => {
+                  const laneHighlights = mergeHighlightSpecs(
+                    marketHighlights,
+                    buildInlineHighlightSpecs(
+                      [lane.description, ...lane.items.flatMap((item) => [item.rationale, ...item.reasons])],
+                      [lane.title, ...lane.items.flatMap((item) => [item.dominantTheme, ...item.themes])],
+                    ),
+                  );
+
+                  return (
+                    <div key={lane.key} className="mt-4">
+                      {lane.items.length === 0 ? (
+                        <div
+                          className={joinClasses(
+                            "rounded-[1.2rem] border border-dashed border-slate-200 bg-slate-50/80 px-4 py-5",
+                            BODY_NOTE_MUTED_CLASS,
+                            "text-slate-500",
+                          )}
+                        >
+                          현재 데이터 기준으로는 이 레인의 확신도 높은 후보가 아직 부족합니다. 다음 리포트와 기술 신호가 더 쌓이면 자동으로 채워집니다.
+                        </div>
+                      ) : (
+                        <RecommendationItemTabs
+                          tabs={lane.items.map((item: RecommendationIdea) => ({
+                            key: item.code,
+                            label: item.name,
+                            scoreLabel: `총점 ${formatScore(item.score)}`,
+                            targetLabel: item.targetAccounts[0] ?? buildRecommendationKind(item),
+                          }))}
+                        >
+                          {lane.items.map((item: RecommendationIdea) => {
+                            const signal = signalTone(item.signal);
+                            const detail = buildRecommendationNarrative(item);
+                            const recommendationHighlights = mergeHighlightSpecs(
+                              laneHighlights,
+                              buildRecommendationHighlightSpecs(item, [
+                                ...detail.insights,
+                                ...detail.cautions,
+                                detail.executionLine,
+                              ]),
+                            );
+                            const primaryTarget = item.executionTargets[0] ?? null;
+                            const chipTokens = uniqueStrings([
+                              ...item.themes,
+                              ...item.targetAccounts,
+                              item.dominantTheme,
+                            ]).slice(0, 5);
+
+                            return (
+                              <div key={item.code} className="px-1 py-1">
+                                <div className="flex flex-wrap items-start justify-between gap-3">
+                                  <div>
+                                    <div className="flex flex-wrap items-center gap-2">
+                                      <p className="font-semibold text-slate-900">{item.name}</p>
+                                      <span className="rounded-full bg-slate-900/5 px-2.5 py-1 text-[11px] font-medium text-slate-600 ring-1 ring-inset ring-slate-200">
+                                        {item.code}
+                                      </span>
+                                      {item.held ? (
+                                        <span className="rounded-full bg-emerald-500/10 px-2.5 py-1 text-[11px] font-medium text-emerald-700 ring-1 ring-inset ring-emerald-500/20">
+                                          현재 보유
+                                        </span>
+                                      ) : null}
+                                      <span
+                                        className={joinClasses(
+                                          "rounded-full px-2.5 py-1 text-[11px] font-medium",
+                                          signal.badge,
+                                        )}
+                                      >
+                                        {signal.label}
+                                      </span>
+                                    </div>
+                                    <div className="mt-3">
+                                      {renderMetaLine(chipTokens, { limit: 5, tone: "subtle" })}
+                                    </div>
+                                  </div>
+
+                                  <div className="flex flex-wrap items-center gap-2 text-sm">
+                                    <span className="rounded-full bg-slate-900/5 px-2.5 py-1 font-medium text-slate-700 ring-1 ring-inset ring-slate-200">
+                                      기술 {formatScore(item.technicalScore)}
+                                    </span>
+                                    <span className="rounded-full bg-slate-900/5 px-2.5 py-1 font-medium text-slate-700 ring-1 ring-inset ring-slate-200">
+                                      총점 {formatScore(item.score)}
+                                    </span>
+                                    <span className="rounded-full bg-slate-900/5 px-2.5 py-1 font-medium text-slate-700 ring-1 ring-inset ring-slate-200">
+                                      {item.targetAccounts[0] ?? "관찰 우선"}
+                                    </span>
+                                  </div>
+                                </div>
+
+                                <div className="mt-4 space-y-4">
+                                  <div>
+                                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+                                      핵심 내용
+                                    </p>
+                                    <div className="mt-2 space-y-3">
+                                      {detail.insights.map((sentence, index) => (
+                                        <p
+                                          key={sentence}
+                                          className={joinClasses(
+                                            index === 0 ? BODY_COPY_LEAD_CLASS : BODY_COPY_CLASS,
+                                            index === 0 ? "text-slate-950" : "text-slate-700",
+                                          )}
+                                        >
+                                          {renderHighlightedText(sentence, recommendationHighlights, {
+                                            multiline: true,
+                                          })}
+                                        </p>
+                                      ))}
+                                    </div>
+                                  </div>
+
+                                  <div className="rounded-2xl border border-slate-200/80 bg-slate-50/80 px-4 py-4">
+                                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+                                      유의할 점
+                                    </p>
+                                    <div className="mt-2 space-y-3">
+                                      {detail.cautions.map((sentence) => (
+                                        <p
+                                          key={sentence}
+                                          className={joinClasses(
+                                            BODY_COPY_CLASS,
+                                            "text-slate-700",
+                                          )}
+                                        >
+                                          {renderHighlightedText(sentence, recommendationHighlights, {
+                                            multiline: true,
+                                          })}
+                                        </p>
+                                      ))}
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <div className="mt-4 border-t border-slate-200/80 pt-4">
+                                  <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
+                                    실행 포인트
+                                  </p>
+                                  <p
+                                    className={joinClasses(
+                                      "mt-2",
+                                      BODY_COPY_CLASS,
+                                      "text-slate-700",
+                                    )}
+                                  >
+                                    {renderHighlightedText(detail.executionLine, recommendationHighlights, {
+                                      multiline: true,
+                                    })}
+                                  </p>
+                                  {primaryTarget ? (
+                                    <p
+                                      className={joinClasses(
+                                        "mt-2",
+                                        BODY_NOTE_MUTED_CLASS,
+                                        "text-slate-500",
+                                      )}
+                                    >
+                                      연결 금액 {formatCurrency(primaryTarget.suggestedAmount)} ·{" "}
+                                      {renderHighlightedText(
+                                        primaryTarget.reason ?? primaryTarget.source ?? "오늘 실행 후보로 연결된 종목입니다.",
+                                        recommendationHighlights,
+                                        { multiline: true },
+                                      )}
+                                    </p>
+                                  ) : null}
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </RecommendationItemTabs>
+                      )}
+                    </div>
+                  );
+                })}
+              </RecommendationTabs>
+            </div>
+          ) : (
+            <div
+              className={joinClasses(
+                "mt-6 rounded-[1.35rem] border border-dashed border-slate-200 bg-slate-50/80 px-4 py-6",
+                BODY_NOTE_MUTED_CLASS,
+                "text-slate-500",
+              )}
+            >
+              현재 추천 종목 데이터가 아직 준비되지 않았습니다. Stage 분석과 추천 보드가 다시 생성되면 이 영역이 채워집니다.
+            </div>
+          )}
+        </section>
+
+        <section
           id="market-guide"
           className="glass-panel scroll-mt-28 rounded-2xl px-6 py-6"
         >
@@ -4206,175 +4595,6 @@ export function DashboardPage() {
             </CompactContentTabs>
           </div>
 
-          <div id="market-voice" className="mt-8 scroll-mt-36 pt-4">
-            <div className="section-header-row flex items-end justify-between gap-3">
-              <div className="max-w-3xl">
-                <div className="section-header-band">
-                  <p className="section-kicker">Market Voice</p>
-                  <h3 className="mt-1.5 text-[1.1rem] font-semibold tracking-tight text-slate-950">
-                    {sectionHeading("market-voice")}
-                  </h3>
-                </div>
-                <p className={joinClasses("mt-2", BODY_COPY_CLASS, "text-slate-600")}>
-                  {marketVoice?.summary?.overview ??
-                    "매 사이클마다 실시간 시황을 끌어와 내 계좌와 바로 연결해 보여줍니다."}
-                </p>
-              </div>
-              <a
-                href="/market-news"
-                className="inline-flex items-center gap-2 text-sm font-medium text-slate-600 underline-offset-4 hover:text-slate-950 hover:underline"
-              >
-                시황 뉴스 전체 보기
-                <ExternalLink size={14} />
-              </a>
-            </div>
-
-            <div className="mt-6">
-              <CompactContentTabs
-                tabs={[
-                  {
-                    key: "account-linked",
-                    label: "내 계좌 관련 시황",
-                    subtitle: "보유·계좌 테마와 직접 연결된 이슈",
-                    badge: `${marketVoiceAccountSections.length}`,
-                  },
-                  {
-                    key: "research",
-                    label: "딥리서치 후보",
-                    subtitle: "바로 검증할 실시간 이벤트",
-                    badge: `${marketVoiceResearchCandidates.length}`,
-                  },
-                ]}
-              >
-                <section>
-                  {marketVoiceAccountSections.length === 0 ? (
-                    <div className="rounded-[1.4rem] border border-dashed border-slate-200 bg-slate-50/70 px-5 py-5 text-sm leading-7 text-slate-500">
-                      아직 계좌와 직접 연결된 머니토링 이슈가 없습니다. 다음 사이클에서 새 이벤트가
-                      들어오면 여기서 바로 보입니다.
-                    </div>
-                  ) : (
-                    <div className="grid grid-cols-2 gap-4">
-                      {marketVoiceAccountSections.map(({ account, digest }) => (
-                        <article
-                          key={account.key}
-                          className="rounded-[1.5rem] border border-slate-200/85 bg-white/95 px-5 py-5 shadow-[0_10px_28px_rgba(15,23,42,0.05)]"
-                        >
-                          <div className="flex items-start justify-between gap-3">
-                            <div>
-                              <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
-                                {account.label}
-                              </p>
-                              <p className={joinClasses("mt-1", BODY_NOTE_MUTED_CLASS, "text-slate-500")}>
-                                연결 이슈 {(digest?.topTopics ?? []).length}건
-                              </p>
-                            </div>
-                            <span className="rounded-full bg-slate-900/5 px-2.5 py-1 text-[11px] font-medium text-slate-600 ring-1 ring-inset ring-slate-200">
-                              {account.key}
-                            </span>
-                          </div>
-
-                          <div className="mt-4 space-y-4">
-                            {(digest?.topTopics ?? []).slice(0, 2).map((topic) => (
-                              <div
-                                key={`${account.key}-${topic.topicId}`}
-                                className="rounded-[1.15rem] border border-slate-200/80 bg-slate-50/65 px-4 py-4"
-                              >
-                                <div className="flex flex-wrap items-center gap-2">
-                                  <span
-                                    className={joinClasses(
-                                      "rounded-full px-2.5 py-1 text-[11px] font-medium",
-                                      marketVoiceDirectionClasses(topic.signalDirection),
-                                    )}
-                                  >
-                                    {marketVoiceDirectionLabel(topic.signalDirection)}
-                                  </span>
-                                  {(topic.matchedCategories ?? []).slice(0, 2).map((category) => (
-                                    <span
-                                      key={`${topic.topicId}-${category}`}
-                                      className="rounded-full bg-white px-2.5 py-1 text-[11px] font-medium text-slate-600 ring-1 ring-inset ring-slate-200"
-                                    >
-                                      {category}
-                                    </span>
-                                  ))}
-                                </div>
-
-                                <p className="mt-3 text-[1.02rem] font-semibold leading-7 tracking-tight text-slate-950">
-                                  {topic.title}
-                                </p>
-                                <p className={joinClasses("mt-2", BODY_COPY_CLASS, "text-slate-600")}>
-                                  {renderHighlightedText(topic.portfolioLinkage, marketHighlights)}
-                                </p>
-
-                                <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-400">
-                                  <span>소스 {formatMetricCount(topic.sourceCount, "건")}</span>
-                                  <span>{formatMarketVoiceDateTime(topic.updatedAt)}</span>
-                                  {topic.topicUrl ? (
-                                    <a
-                                      href={topic.topicUrl}
-                                      target="_blank"
-                                      rel="noreferrer"
-                                      className="inline-flex items-center gap-1 font-medium text-slate-500 underline-offset-4 hover:text-slate-900 hover:underline"
-                                    >
-                                      원문
-                                      <ExternalLink size={12} />
-                                    </a>
-                                  ) : null}
-                                </div>
-                              </div>
-                            ))}
-                          </div>
-                        </article>
-                      ))}
-                    </div>
-                  )}
-                </section>
-
-                <section>
-                  {marketVoiceResearchCandidates.length === 0 ? (
-                    <div className="rounded-[1.4rem] border border-dashed border-slate-200 bg-slate-50/70 px-5 py-5 text-sm leading-7 text-slate-500">
-                      아직 딥리서치 후보로 승격된 실시간 이슈가 없습니다.
-                    </div>
-                  ) : (
-                    <div className="divide-y divide-slate-200/80">
-                      {marketVoiceResearchCandidates.map((item, index) => (
-                        <article
-                          key={item.topicId ?? item.title ?? `marketvoice-research-${index}`}
-                          className={joinClasses("py-4", index === 0 && "pt-0")}
-                        >
-                          <div className="flex flex-wrap items-center gap-2">
-                            <span className="rounded-full bg-slate-900/5 px-2.5 py-1 text-[11px] font-medium text-slate-600 ring-1 ring-inset ring-slate-200">
-                              {formatMetricCount(item.relevanceScore, "점")}
-                            </span>
-                          </div>
-                          <p className="mt-3 text-[1.05rem] font-semibold leading-7 tracking-tight text-slate-950">
-                            {item.title}
-                          </p>
-                          <p className={joinClasses("mt-2", BODY_COPY_CLASS, "text-slate-600")}>
-                            {renderHighlightedText(item.reason, marketHighlights)}
-                          </p>
-                          <p className={joinClasses("mt-2", BODY_COPY_CLASS, "text-slate-700")}>
-                            확인 질문: {renderHighlightedText(item.question, marketHighlights)}
-                          </p>
-                          {item.topicUrl ? (
-                            <a
-                              href={item.topicUrl}
-                              target="_blank"
-                              rel="noreferrer"
-                              className="mt-3 inline-flex items-center gap-2 text-sm font-medium text-slate-600 underline-offset-4 hover:text-slate-950 hover:underline"
-                            >
-                              머니토링 원문 묶음 보기
-                              <ExternalLink size={14} />
-                            </a>
-                          ) : null}
-                        </article>
-                      ))}
-                    </div>
-                  )}
-                </section>
-              </CompactContentTabs>
-            </div>
-          </div>
-
           <div className="mt-8 border-t border-slate-200/80 pt-6">
             <CompactContentTabs
               tabs={[
@@ -4490,225 +4710,66 @@ export function DashboardPage() {
             </CompactContentTabs>
           </div>
 
-          <div id="recommendations" className="mt-8 scroll-mt-36 pt-4">
+        </section>
+          </>
+        ) : null}
+
+        {showFeedbackSections ? (
+          mode === "feedback" ? (
+          <section
+            id="feedback-allocation"
+            className="glass-panel scroll-mt-28 rounded-2xl px-6 py-6"
+          >
             <div className="section-header-row flex flex-wrap items-center justify-between gap-4">
               <div className="section-header-band">
-                <p className="section-kicker">Recommendations</p>
-                <h3 className="mt-1.5 text-xl font-semibold tracking-tight text-slate-950">
-                  {sectionHeading("recommendations")}
-                </h3>
+                <p className="section-kicker">Allocation Heatmap</p>
+                <h2 className="mt-1.5 text-[1.3rem] font-semibold tracking-tight text-slate-950">
+                  {sectionHeading("feedback-allocation")}
+                </h2>
               </div>
               <p className={joinClasses(BODY_NOTE_MUTED_CLASS, "text-slate-500")}>
-                코어 ETF · 섹터 ETF · 개별주를 현재 레짐과 계좌 적합도, 기술 점수, 리포트 신호를 함께 반영해 정리했습니다.
+                계좌별 자산군 배분이 어디서 비고 어디서 과한지 한눈에 보는 진단용 히트맵입니다.
               </p>
             </div>
 
-            <div className="mt-4 grid grid-cols-3 gap-3">
-              {recommendationInsightCards.map((item) => (
-                <InsightDigestCard
-                  key={item.key}
-                  kicker={item.kicker}
-                  title={item.title}
-                  detail={item.detail}
-                  highlights={marketHighlights}
-                  tone={item.tone}
-                />
-              ))}
+            <div className="section-block mt-5">
+              <AllocationHeatmap
+                rows={allocationHeatmap.rows}
+                categories={allocationHeatmap.categories}
+              />
             </div>
-
-            {(recommendationBoard?.lanes ?? []).length > 0 ? (
-              <div className="mt-6">
-                <RecommendationTabs
-                  tabs={(recommendationBoard?.lanes ?? []).map((lane) => ({
-                    key: lane.key,
-                    label: lane.title,
-                    count: lane.items.length,
-                    subtitle: recommendationLaneSubtitle(lane.key),
-                  }))}
-                >
-                  {(recommendationBoard?.lanes ?? []).map((lane) => {
-                    const laneHighlights = mergeHighlightSpecs(
-                      marketHighlights,
-                      buildInlineHighlightSpecs(
-                        [lane.description, ...lane.items.flatMap((item) => [item.rationale, ...item.reasons])],
-                        [lane.title, ...lane.items.flatMap((item) => [item.dominantTheme, ...item.themes])],
-                      ),
-                    );
-
-                    return (
-                      <div key={lane.key} className="mt-4">
-                        {lane.items.length === 0 ? (
-                          <div
-                            className={joinClasses(
-                              "rounded-[1.2rem] border border-dashed border-slate-200 bg-slate-50/80 px-4 py-5",
-                              BODY_NOTE_MUTED_CLASS,
-                              "text-slate-500",
-                            )}
-                          >
-                            현재 데이터 기준으로는 이 레인의 확신도 높은 후보가 아직 부족합니다. 다음 리포트와 기술 신호가 더 쌓이면 자동으로 채워집니다.
-                          </div>
-                        ) : (
-                          <div className="divide-y divide-slate-200/80">
-                            {lane.items.map((item: RecommendationIdea) => {
-                              const signal = signalTone(item.signal);
-                              const detail = buildRecommendationNarrative(item);
-                              const recommendationHighlights = mergeHighlightSpecs(
-                                laneHighlights,
-                                buildRecommendationHighlightSpecs(item, [
-                                  ...detail.insights,
-                                  ...detail.cautions,
-                                  detail.executionLine,
-                                ]),
-                              );
-                              const primaryTarget = item.executionTargets[0] ?? null;
-                              const chipTokens = uniqueStrings([
-                                ...item.themes,
-                                ...item.targetAccounts,
-                                item.dominantTheme,
-                              ]).slice(0, 5);
-
-                              return (
-                                <div key={item.code} className="py-5 first:pt-0 last:pb-0">
-                                  <div className="flex flex-wrap items-start justify-between gap-3">
-                                    <div>
-                                      <div className="flex flex-wrap items-center gap-2">
-                                        <p className="font-semibold text-slate-900">{item.name}</p>
-                                        <span className="rounded-full bg-slate-900/5 px-2.5 py-1 text-[11px] font-medium text-slate-600 ring-1 ring-inset ring-slate-200">
-                                          {item.code}
-                                        </span>
-                                        {item.held ? (
-                                          <span className="rounded-full bg-emerald-500/10 px-2.5 py-1 text-[11px] font-medium text-emerald-700 ring-1 ring-inset ring-emerald-500/20">
-                                            현재 보유
-                                          </span>
-                                        ) : null}
-                                        <span
-                                          className={joinClasses(
-                                            "rounded-full px-2.5 py-1 text-[11px] font-medium",
-                                            signal.badge,
-                                          )}
-                                        >
-                                          {signal.label}
-                                        </span>
-                                      </div>
-                                      <div className="mt-3">
-                                        {renderMetaLine(chipTokens, { limit: 5, tone: "subtle" })}
-                                      </div>
-                                    </div>
-
-                                    <div className="flex flex-wrap items-center gap-2 text-sm">
-                                      <span className="rounded-full bg-slate-900/5 px-2.5 py-1 font-medium text-slate-700 ring-1 ring-inset ring-slate-200">
-                                        기술 {formatScore(item.technicalScore)}
-                                      </span>
-                                      <span className="rounded-full bg-slate-900/5 px-2.5 py-1 font-medium text-slate-700 ring-1 ring-inset ring-slate-200">
-                                        총점 {formatScore(item.score)}
-                                      </span>
-                                      <span className="rounded-full bg-slate-900/5 px-2.5 py-1 font-medium text-slate-700 ring-1 ring-inset ring-slate-200">
-                                        {item.targetAccounts[0] ?? "관찰 우선"}
-                                      </span>
-                                    </div>
-                                  </div>
-
-                                  <div className="mt-4 space-y-4">
-                                    <div>
-                                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-                                        핵심 내용
-                                      </p>
-                                      <div className="mt-2 space-y-3">
-                                        {detail.insights.map((sentence, index) => (
-                                          <p
-                                            key={sentence}
-                                            className={joinClasses(
-                                              index === 0 ? BODY_COPY_LEAD_CLASS : BODY_COPY_CLASS,
-                                              index === 0 ? "text-slate-950" : "text-slate-700",
-                                            )}
-                                          >
-                                            {renderHighlightedText(sentence, recommendationHighlights, {
-                                              multiline: true,
-                                            })}
-                                          </p>
-                                        ))}
-                                      </div>
-                                    </div>
-
-                                    <div className="rounded-2xl border border-slate-200/80 bg-slate-50/80 px-4 py-4">
-                                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-                                        유의할 점
-                                      </p>
-                                      <div className="mt-2 space-y-3">
-                                        {detail.cautions.map((sentence) => (
-                                          <p
-                                            key={sentence}
-                                            className={joinClasses(
-                                              BODY_COPY_CLASS,
-                                              "text-slate-700",
-                                            )}
-                                          >
-                                            {renderHighlightedText(sentence, recommendationHighlights, {
-                                              multiline: true,
-                                            })}
-                                          </p>
-                                        ))}
-                                      </div>
-                                    </div>
-                                  </div>
-
-                                  <div className="mt-4 border-t border-slate-200/80 pt-4">
-                                    <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">
-                                      실행 포인트
-                                    </p>
-                                    <p
-                                      className={joinClasses(
-                                        "mt-2",
-                                        BODY_COPY_CLASS,
-                                        "text-slate-700",
-                                      )}
-                                    >
-                                      {renderHighlightedText(detail.executionLine, recommendationHighlights, {
-                                        multiline: true,
-                                      })}
-                                    </p>
-                                    {primaryTarget ? (
-                                      <p
-                                        className={joinClasses(
-                                          "mt-2",
-                                          BODY_NOTE_MUTED_CLASS,
-                                          "text-slate-500",
-                                        )}
-                                      >
-                                        연결 금액 {formatCurrency(primaryTarget.suggestedAmount)} ·{" "}
-                                        {renderHighlightedText(
-                                          primaryTarget.reason ?? primaryTarget.source ?? "오늘 실행 후보로 연결된 종목입니다.",
-                                          recommendationHighlights,
-                                          { multiline: true },
-                                        )}
-                                      </p>
-                                    ) : null}
-                                  </div>
-                                </div>
-                              );
-                            })}
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </RecommendationTabs>
-              </div>
-            ) : (
-              <div
-                className={joinClasses(
-                  "mt-6 rounded-[1.35rem] border border-dashed border-slate-200 bg-slate-50/80 px-4 py-6",
-                  BODY_NOTE_MUTED_CLASS,
-                  "text-slate-500",
-                )}
+          </section>
+          ) : (
+            <ExperimentalVisibility>
+              <section
+                id="feedback-allocation"
+                className="glass-panel scroll-mt-28 rounded-2xl px-6 py-6"
               >
-                현재 추천 종목 데이터가 아직 준비되지 않았습니다. Stage 분석과 추천 보드가 다시 생성되면 이 영역이 채워집니다.
-              </div>
-            )}
-          </div>
-        </section>
+                <div className="section-header-row flex flex-wrap items-center justify-between gap-4">
+                  <div className="section-header-band">
+                    <p className="section-kicker">Allocation Heatmap</p>
+                    <h2 className="mt-1.5 text-[1.3rem] font-semibold tracking-tight text-slate-950">
+                      {sectionHeading("feedback-allocation")}
+                    </h2>
+                  </div>
+                  <p className={joinClasses(BODY_NOTE_MUTED_CLASS, "text-slate-500")}>
+                    계좌별 자산군 배분의 과소/과대 노출을 빠르게 보는 진단용 레이어입니다.
+                  </p>
+                </div>
 
-        <ExperimentalVisibility>
+                <div className="section-block mt-5">
+                  <AllocationHeatmap
+                    rows={allocationHeatmap.rows}
+                    categories={allocationHeatmap.categories}
+                  />
+                </div>
+              </section>
+            </ExperimentalVisibility>
+          )
+        ) : null}
+
+        {showFeedbackSections ? (
+          mode === "feedback" ? (
           <section
             id="feedback-dashboard"
             className="glass-panel scroll-mt-28 rounded-2xl px-6 py-6"
@@ -4739,9 +4800,44 @@ export function DashboardPage() {
               />
             </div>
           </section>
-        </ExperimentalVisibility>
+          ) : (
+            <ExperimentalVisibility>
+              <section
+                id="feedback-dashboard"
+                className="glass-panel scroll-mt-28 rounded-2xl px-6 py-6"
+              >
+                <div className="section-header-row flex flex-wrap items-center justify-between gap-4">
+                  <div className="section-header-band">
+                    <p className="section-kicker">Feedback Loop</p>
+                    <h2 className="mt-1.5 text-[1.3rem] font-semibold tracking-tight text-slate-950">
+                      {sectionHeading("feedback-dashboard")}
+                    </h2>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="rounded-full bg-slate-900 px-3 py-1 text-xs font-medium text-white">
+                      표본 {feedbackAnalysis?.sampleSize ?? 0}건
+                    </span>
+                    {latestFeedbackAnalysis.fileName ? (
+                      <span className="rounded-full bg-slate-900/5 px-3 py-1 text-xs font-medium text-slate-600 ring-1 ring-inset ring-slate-200">
+                        {latestFeedbackAnalysis.fileName}
+                      </span>
+                    ) : null}
+                  </div>
+                </div>
 
-        <ExperimentalVisibility>
+                <div className="section-block mt-5">
+                  <FeedbackPanel
+                    analysis={feedbackAnalysis}
+                    fileName={latestFeedbackAnalysis.fileName}
+                  />
+                </div>
+              </section>
+            </ExperimentalVisibility>
+          )
+        ) : null}
+
+        {showFeedbackSections ? (
+          mode === "feedback" ? (
           <section id="cluster-map" className="glass-panel scroll-mt-28 rounded-2xl px-6 py-6">
             <div className="section-header-row flex flex-wrap items-center justify-between gap-4">
               <div className="section-header-band">
@@ -4766,7 +4862,35 @@ export function DashboardPage() {
               <ClusterMap clusters={holdingClusters?.clusters ?? []} />
             </div>
           </section>
-        </ExperimentalVisibility>
+          ) : (
+            <ExperimentalVisibility>
+              <section id="cluster-map" className="glass-panel scroll-mt-28 rounded-2xl px-6 py-6">
+                <div className="section-header-row flex flex-wrap items-center justify-between gap-4">
+                  <div className="section-header-band">
+                    <p className="section-kicker">Holding Overlap</p>
+                    <h2 className="mt-1.5 text-[1.3rem] font-semibold tracking-tight text-slate-950">
+                      {sectionHeading("cluster-map")}
+                    </h2>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="rounded-full bg-slate-900 px-3 py-1 text-xs font-medium text-white">
+                      클러스터 {(holdingClusters?.clusters ?? []).length}개
+                    </span>
+                    {holdingClusters?.threshold != null ? (
+                      <span className="rounded-full bg-slate-900/5 px-3 py-1 text-xs font-medium text-slate-600 ring-1 ring-inset ring-slate-200">
+                        임계치 {holdingClusters.threshold}
+                      </span>
+                    ) : null}
+                  </div>
+                </div>
+
+                <div className="section-block mt-5">
+                  <ClusterMap clusters={holdingClusters?.clusters ?? []} />
+                </div>
+              </section>
+            </ExperimentalVisibility>
+          )
+        ) : null}
 
       </section>
       <FloatingSectionIndex items={sectionIndexItems} />
@@ -4777,5 +4901,5 @@ export function DashboardPage() {
 }
 
 export default function DashboardHomePage() {
-  return <DashboardPage />;
+  return <DashboardPage mode="decision" />;
 }

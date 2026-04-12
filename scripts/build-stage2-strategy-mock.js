@@ -6,6 +6,7 @@ import path from "node:path";
 import {
   buildRunMetadata,
   parseDateArgs,
+  withContract,
   writeJson,
 } from "./lib/pipeline-utils.js";
 import { loadAnalysisContext } from "./lib/analysis-context.js";
@@ -212,7 +213,13 @@ async function main() {
     ],
   };
 
-  await writeJson(outputPath, payload);
+  await writeJson(
+    outputPath,
+    withContract(payload, {
+      stage: "stage2",
+      generatedAt: runMeta.generatedAt,
+    }),
+  );
   console.log(outputPath);
 }
 

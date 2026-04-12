@@ -1,0 +1,435 @@
+{
+  "generatedAt": "2026-04-12T11:08:11.121Z",
+  "engineVersion": "1.0",
+  "input": {
+    "start": "2026-04-03",
+    "end": "2026-04-10",
+    "capital": 10000000,
+    "minScore": 58,
+    "maxPositions": 5,
+    "rebalance": "daily",
+    "slippageBps": 10,
+    "feeBps": 5,
+    "taxRate": 0.154
+  },
+  "summary": {
+    "dateRange": {
+      "start": "2026-04-03",
+      "end": "2026-04-10",
+      "sessions": 8
+    },
+    "latestPortfolioValue": 10271675,
+    "totalReturnPct": 2.72,
+    "annualizedReturnPct": 162.47,
+    "maxDrawdownPct": -1.35,
+    "avgDailyReturnPct": 0.626,
+    "winRatePct": 28.57,
+    "rebalanceCount": 8,
+    "averageTurnoverPct": 82.55,
+    "totalTransactionCost": 100391,
+    "totalTransactionCostPct": 1,
+    "totalTaxPaid": 65021,
+    "totalTaxPaidPct": 0.65
+  },
+  "factorExposureHistory": [
+    {
+      "date": "2026-04-03",
+      "selectedCount": 0,
+      "exposure": {
+        "momentum": 0,
+        "research": 0,
+        "income": 0,
+        "macroFit": 0
+      }
+    },
+    {
+      "date": "2026-04-04",
+      "selectedCount": 0,
+      "exposure": {
+        "momentum": 0,
+        "research": 0,
+        "income": 0,
+        "macroFit": 0
+      }
+    },
+    {
+      "date": "2026-04-05",
+      "selectedCount": 0,
+      "exposure": {
+        "momentum": 0,
+        "research": 0,
+        "income": 0,
+        "macroFit": 0
+      }
+    },
+    {
+      "date": "2026-04-06",
+      "selectedCount": 2,
+      "exposure": {
+        "momentum": 0.3853,
+        "research": 0.4341,
+        "income": 0.004,
+        "macroFit": 0.8887
+      }
+    },
+    {
+      "date": "2026-04-07",
+      "selectedCount": 1,
+      "exposure": {
+        "momentum": 0.8412,
+        "research": 1.5246,
+        "income": 0.004,
+        "macroFit": -1.3412
+      }
+    },
+    {
+      "date": "2026-04-08",
+      "selectedCount": 5,
+      "exposure": {
+        "momentum": 0.8366,
+        "research": 0.9227,
+        "income": 0.0163,
+        "macroFit": 0.7054
+      }
+    },
+    {
+      "date": "2026-04-09",
+      "selectedCount": 5,
+      "exposure": {
+        "momentum": 1.0236,
+        "research": 0.9394,
+        "income": 0.004,
+        "macroFit": -0.418
+      }
+    },
+    {
+      "date": "2026-04-10",
+      "selectedCount": 5,
+      "exposure": {
+        "momentum": 1.1753,
+        "research": 0.6512,
+        "income": 0.004,
+        "macroFit": 0.1373
+      }
+    }
+  ],
+  "rebalanceLog": [
+    {
+      "date": "2026-04-03",
+      "selectedCount": 0,
+      "turnoverPct": 0,
+      "transactionCost": 0,
+      "taxPaid": 0,
+      "selected": []
+    },
+    {
+      "date": "2026-04-04",
+      "selectedCount": 0,
+      "turnoverPct": 0,
+      "transactionCost": 0,
+      "taxPaid": 0,
+      "selected": []
+    },
+    {
+      "date": "2026-04-05",
+      "selectedCount": 0,
+      "turnoverPct": 0,
+      "transactionCost": 0,
+      "taxPaid": 0,
+      "selected": []
+    },
+    {
+      "date": "2026-04-06",
+      "selectedCount": 2,
+      "turnoverPct": 100,
+      "transactionCost": 15000,
+      "taxPaid": 0,
+      "selected": [
+        {
+          "positionKey": "KIS_MAIN:434730",
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "accountKey": "KIS_MAIN",
+          "actionScore": 63,
+          "weightPct": 50
+        },
+        {
+          "positionKey": "TOSS:434730",
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "accountKey": "TOSS",
+          "actionScore": 63,
+          "weightPct": 50
+        }
+      ]
+    },
+    {
+      "date": "2026-04-07",
+      "selectedCount": 1,
+      "turnoverPct": 200,
+      "transactionCost": 29890,
+      "taxPaid": 0,
+      "selected": [
+        {
+          "positionKey": "KIS_MAIN:047810",
+          "code": "047810",
+          "name": "한국항공우주",
+          "accountKey": "KIS_MAIN",
+          "actionScore": 70,
+          "weightPct": 100
+        }
+      ]
+    },
+    {
+      "date": "2026-04-08",
+      "selectedCount": 5,
+      "turnoverPct": 200,
+      "transactionCost": 30921,
+      "taxPaid": 57522,
+      "selected": [
+        {
+          "positionKey": "TOSS:434730",
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "accountKey": "TOSS",
+          "actionScore": 68,
+          "weightPct": 25.58
+        },
+        {
+          "positionKey": "KIS_MAIN:434730",
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "accountKey": "KIS_MAIN",
+          "actionScore": 67,
+          "weightPct": 23.26
+        },
+        {
+          "positionKey": "ISA:458760",
+          "code": "458760",
+          "name": "TIGER 미국배당다우존스스타데일리커...",
+          "accountKey": "ISA",
+          "actionScore": 65,
+          "weightPct": 18.6
+        },
+        {
+          "positionKey": "KIS_MAIN:449450",
+          "code": "449450",
+          "name": "PLUS K방산",
+          "accountKey": "KIS_MAIN",
+          "actionScore": 64,
+          "weightPct": 16.28
+        },
+        {
+          "positionKey": "TOSS:449450",
+          "code": "449450",
+          "name": "PLUS V K생산",
+          "accountKey": "TOSS",
+          "actionScore": 64,
+          "weightPct": 16.28
+        }
+      ]
+    },
+    {
+      "date": "2026-04-09",
+      "selectedCount": 5,
+      "turnoverPct": 111.6,
+      "transactionCost": 17049,
+      "taxPaid": 0,
+      "selected": [
+        {
+          "positionKey": "KIS_MAIN:047810",
+          "code": "047810",
+          "name": "한국항공우주",
+          "accountKey": "KIS_MAIN",
+          "actionScore": 70,
+          "weightPct": 36.11
+        },
+        {
+          "positionKey": "KIS_MAIN:449450",
+          "code": "449450",
+          "name": "PLUS K방산",
+          "accountKey": "KIS_MAIN",
+          "actionScore": 64,
+          "weightPct": 19.44
+        },
+        {
+          "positionKey": "TOSS:449450",
+          "code": "449450",
+          "name": "PLUS V K생산",
+          "accountKey": "TOSS",
+          "actionScore": 64,
+          "weightPct": 19.44
+        },
+        {
+          "positionKey": "KIS_MAIN:064350",
+          "code": "064350",
+          "name": "현대로템",
+          "accountKey": "KIS_MAIN",
+          "actionScore": 62,
+          "weightPct": 13.89
+        },
+        {
+          "positionKey": "KIS_MAIN:434730",
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "accountKey": "KIS_MAIN",
+          "actionScore": 61,
+          "weightPct": 11.11
+        }
+      ]
+    },
+    {
+      "date": "2026-04-10",
+      "selectedCount": 5,
+      "turnoverPct": 48.81,
+      "transactionCost": 7531,
+      "taxPaid": 7499,
+      "selected": [
+        {
+          "positionKey": "KIS_MAIN:047810",
+          "code": "047810",
+          "name": "한국항공우주",
+          "accountKey": "KIS_MAIN",
+          "actionScore": 70,
+          "weightPct": 25.49
+        },
+        {
+          "positionKey": "KIS_MAIN:449450",
+          "code": "449450",
+          "name": "PLUS K방산",
+          "accountKey": "KIS_MAIN",
+          "actionScore": 67,
+          "weightPct": 19.61
+        },
+        {
+          "positionKey": "TOSS:449450",
+          "code": "449450",
+          "name": "PLUS V K생산",
+          "accountKey": "TOSS",
+          "actionScore": 67,
+          "weightPct": 19.61
+        },
+        {
+          "positionKey": "KIS_MAIN:434730",
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "accountKey": "KIS_MAIN",
+          "actionScore": 66,
+          "weightPct": 17.65
+        },
+        {
+          "positionKey": "TOSS:434730",
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "accountKey": "TOSS",
+          "actionScore": 66,
+          "weightPct": 17.65
+        }
+      ]
+    }
+  ],
+  "equityCurve": [
+    {
+      "date": "2026-04-03",
+      "portfolioValue": 10000000,
+      "dailyReturnPct": null,
+      "rebalance": true
+    },
+    {
+      "date": "2026-04-04",
+      "portfolioValue": 10000000,
+      "dailyReturnPct": 0,
+      "staleCodes": [],
+      "rebalance": false
+    },
+    {
+      "date": "2026-04-04",
+      "portfolioValue": 10000000,
+      "dailyReturnPct": null,
+      "rebalance": true
+    },
+    {
+      "date": "2026-04-05",
+      "portfolioValue": 10000000,
+      "dailyReturnPct": 0,
+      "staleCodes": [],
+      "rebalance": false
+    },
+    {
+      "date": "2026-04-05",
+      "portfolioValue": 10000000,
+      "dailyReturnPct": null,
+      "rebalance": true
+    },
+    {
+      "date": "2026-04-06",
+      "portfolioValue": 10000000,
+      "dailyReturnPct": 0,
+      "staleCodes": [],
+      "rebalance": false
+    },
+    {
+      "date": "2026-04-06",
+      "portfolioValue": 9985000,
+      "dailyReturnPct": null,
+      "rebalance": true
+    },
+    {
+      "date": "2026-04-07",
+      "portfolioValue": 9963277,
+      "dailyReturnPct": -0.218,
+      "staleCodes": [],
+      "rebalance": false
+    },
+    {
+      "date": "2026-04-07",
+      "portfolioValue": 9933387,
+      "dailyReturnPct": null,
+      "rebalance": true
+    },
+    {
+      "date": "2026-04-08",
+      "portfolioValue": 10306904,
+      "dailyReturnPct": 3.76,
+      "staleCodes": [],
+      "rebalance": false
+    },
+    {
+      "date": "2026-04-08",
+      "portfolioValue": 10218461,
+      "dailyReturnPct": null,
+      "rebalance": true
+    },
+    {
+      "date": "2026-04-09",
+      "portfolioValue": 10184828,
+      "dailyReturnPct": -0.329,
+      "staleCodes": [],
+      "rebalance": false
+    },
+    {
+      "date": "2026-04-09",
+      "portfolioValue": 10167779,
+      "dailyReturnPct": null,
+      "rebalance": true
+    },
+    {
+      "date": "2026-04-10",
+      "portfolioValue": 10286706,
+      "dailyReturnPct": 1.17,
+      "staleCodes": [],
+      "rebalance": false
+    },
+    {
+      "date": "2026-04-10",
+      "portfolioValue": 10271675,
+      "dailyReturnPct": null,
+      "rebalance": true
+    }
+  ],
+  "notes": [
+    "timeseries.db에 stage3 데이터가 없으면 analysis-state JSON을 자동 backfill합니다.",
+    "세금은 과세 계좌 매도 이익에 대한 근사치이며, 리밸런싱 시점마다 잔여 cost basis를 현재가로 재기준화합니다.",
+    "가격은 data/market/YYYY-MM-DD.json watchlist close를 사용한 close-to-close 근사입니다."
+  ]
+}

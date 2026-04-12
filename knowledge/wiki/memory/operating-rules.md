@@ -3,10 +3,10 @@ title: EcoReport Operating Rules
 type: memory
 updated: 2026-04-10
 source_date: 2026-04-10
-run_date: 2026-04-11
+run_date: 2026-04-12
 effective_market_date: 2026-04-10
-run_id: 2026-04-11-071208
-generated_at: 2026-04-11T07:15:12.897Z
+run_id: N/A
+generated_at: 2026-04-12T10:57:56.049Z
 ---
 
 # EcoReport Operating Rules

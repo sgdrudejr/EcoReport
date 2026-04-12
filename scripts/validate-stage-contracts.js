@@ -65,6 +65,13 @@ function isFiniteNumber(value) {
   return typeof value === "number" && Number.isFinite(value);
 }
 
+function getValueAtPath(payload, dottedPath) {
+  return String(dottedPath ?? "")
+    .split(".")
+    .filter(Boolean)
+    .reduce((current, key) => (current == null ? undefined : current[key]), payload);
+}
+
 function buildLedgerLookup(ledger) {
   const map = new Map();
   for (const entry of ledger?.entries ?? []) {
@@ -187,6 +194,7 @@ async function main() {
   const paths = {
     portfolio: path.join(ROOT_DIR, "data", "portfolio", "latest.json"),
     watchlist: path.join(ROOT_DIR, "config", "watchlist.json"),
+    contractSpec: path.join(ROOT_DIR, "config", "stage-contracts.json"),
     stage1: path.join(analysisDir, "stage1-report-extracts-v2.json"),
     impactMap: path.join(analysisDir, "impact-map.json"),
     stage2: path.join(analysisDir, "stage2-strategy-options.json"),
@@ -206,6 +214,7 @@ async function main() {
     stage3,
     stage4,
     ledger,
+    contractSpec,
   ] = await Promise.all([
     readJson(paths.portfolio, null),
     readJson(paths.watchlist, null),
@@ -216,6 +225,7 @@ async function main() {
     readJson(paths.stage3, null),
     readJson(paths.stage4, null),
     readJson(paths.ledger, { entries: [] }),
+    readJson(paths.contractSpec, null),
   ]);
 
   const ledgerLookup = buildLedgerLookup(ledger);
@@ -404,6 +414,129 @@ async function main() {
 
   const stage2 = stage2Actual ?? stage2Mock;
   const stage2Mode = stage2Actual ? "actual" : stage2Mock ? "mock" : "missing";
+
+  const contractRecords = [
+    {
+      key: "stage1",
+      label: "Stage 1 Contract",
+      payload: stage1,
+      filePath: paths.stage1,
+      missingStatus: "error",
+    },
+    {
+      key: "impact-map",
+      label: "Impact Map Contract",
+      payload: impactMap,
+      filePath: paths.impactMap,
+      missingStatus: "warn",
+    },
+    {
+      key: "stage2",
+      label: "Stage 2 Contract",
+      payload: stage2,
+      filePath: stage2Actual ? paths.stage2 : paths.stage2Mock,
+      missingStatus: "warn",
+    },
+    {
+      key: "stage3",
+      label: "Stage 3 Contract",
+      payload: stage3,
+      filePath: paths.stage3,
+      missingStatus: "error",
+    },
+    {
+      key: "stage4",
+      label: "Stage 4 Contract",
+      payload: stage4,
+      filePath: paths.stage4,
+      missingStatus: "error",
+    },
+  ];
+
+  checks.push(
+    createCheck(ledgerLookup, {
+      id: "contract_spec_present",
+      label: "Contract Spec Present",
+      status: statusFromCondition(Boolean(contractSpec?.stages), "error"),
+      detail: contractSpec?.stages
+        ? `config/stage-contracts.json loaded (${Object.keys(contractSpec.stages).length} stages)`
+        : "config/stage-contracts.json 을 읽지 못했습니다.",
+      filePath: paths.contractSpec,
+    }),
+  );
+
+  for (const record of contractRecords) {
+    const stageSpec = contractSpec?.stages?.[record.key];
+    const contract = record.payload?._contract ?? null;
+    const missingTopLevelKeys = (stageSpec?.requiredKeys ?? []).filter(
+      (key) => getValueAtPath(record.payload, key) === undefined,
+    );
+    const missingNestedKeys = (stageSpec?.requiredNestedKeys ?? []).filter(
+      (key) => getValueAtPath(record.payload, key) === undefined,
+    );
+    const contractMismatch =
+      contract != null &&
+      (contract.version !== (contractSpec?.version ?? "1.0") || contract.stage !== record.key);
+
+    checks.push(
+      createCheck(ledgerLookup, {
+        id: `${record.key}_contract_presence`,
+        label: `${record.label} Presence`,
+        status: !record.payload
+          ? record.missingStatus
+          : statusFromCondition(Boolean(contract), "error"),
+        detail: !record.payload
+          ? "산출물이 없어 contract 검증을 건너뜁니다."
+          : contract
+            ? "_contract 메타데이터가 존재합니다."
+            : "_contract 메타데이터가 없습니다.",
+        filePath: record.filePath,
+      }),
+    );
+
+    checks.push(
+      createCheck(ledgerLookup, {
+        id: `${record.key}_contract_shape`,
+        label: `${record.label} Shape`,
+        status: !record.payload || !contract || !stageSpec
+          ? "warn"
+          : statusFromCondition(!contractMismatch, "error"),
+        detail: !record.payload
+          ? "산출물이 없어 contract shape 검증을 건너뜁니다."
+          : !stageSpec
+            ? `stage-contracts.json 에 ${record.key} 정의가 없습니다.`
+            : !contract
+              ? "_contract 가 없어 shape 검증을 완료하지 못했습니다."
+              : !contractMismatch
+                ? `version=${contract.version}, stage=${contract.stage}`
+                : `expected version=${contractSpec?.version ?? "1.0"}, stage=${record.key} / actual version=${contract.version}, stage=${contract.stage}`,
+        filePath: record.filePath,
+      }),
+    );
+
+    checks.push(
+      createCheck(ledgerLookup, {
+        id: `${record.key}_required_keys_contract`,
+        label: `${record.label} Required Keys`,
+        status: !record.payload || !stageSpec
+          ? "warn"
+          : statusFromCondition(
+              missingTopLevelKeys.length === 0 && missingNestedKeys.length === 0,
+              "error",
+            ),
+        detail: !record.payload
+          ? "산출물이 없어 required key 검증을 건너뜁니다."
+          : !stageSpec
+            ? `stage-contracts.json 에 ${record.key} 정의가 없습니다.`
+            : missingTopLevelKeys.length === 0 && missingNestedKeys.length === 0
+              ? "required keys / nested keys 계약을 충족합니다."
+              : `missing top-level ${missingTopLevelKeys.length} / missing nested ${missingNestedKeys.length}`,
+        filePath: record.filePath,
+        examples: [...limitList(missingTopLevelKeys), ...limitList(missingNestedKeys)],
+      }),
+    );
+  }
+
   const holdingsBias = toArray(stage2?.holdings_bias);
   const invalidHoldingsBias = holdingsBias.filter(
     (item) =>

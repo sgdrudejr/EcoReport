@@ -2,9 +2,11 @@
   "name": "ecoreport",
   "version": "1.0.0",
   "private": true,
+  "workspaces": [
+    "dashboard"
+  ],
   "type": "module",
   "scripts": {
-    "vercel-build": "next build",
     "reports:collect": "bash scripts/collect-report-assets.sh",
     "reports:textify": "node scripts/dump-report-texts.js",
     "reports:rag": "node scripts/build-report-rag-corpus.js",
@@ -24,6 +26,7 @@
     "stage2:mock": "node scripts/build-stage2-strategy-mock.js",
     "stage3:quant": "node scripts/build-stage3-quant-scores.js",
     "stage4:plan": "node scripts/build-stage4-execution-plan.js",
+    "rebalancing:schedule": "node scripts/build-rebalancing-schedule.js",
     "feedback:snapshot": "node scripts/build-feedback-snapshot.js",
     "feedback:analyze": "node scripts/build-feedback-analysis.js",
     "automation:daily": "node scripts/run-daily-automation-cycle.js",
@@ -37,13 +40,17 @@
     "fetch:rss": "node scripts/fetch-rss-news.js",
     "fetch:twitter": "node scripts/fetch-twitter.js",
     "fetch:market": "node scripts/fetch-market-data.js",
+    "fetch:market:lite": "node scripts/fetch-market-data-lite.js",
     "fetch:marketvoice": "node scripts/collect-marketvoice-news.js",
+    "intraday:alerts": "node scripts/run-intraday-alert-pipeline.js",
     "calc:technicals": "node scripts/calc-technicals.js",
     "compress:reports": "node scripts/compress-reports.js",
     "synthesize:daily": "node scripts/synthesize-daily.js",
     "build:context": "node scripts/build-context.js",
     "backtest:collect": "node scripts/backtest-collect.js",
+    "backtest:engine": "node scripts/backtest-engine.js",
     "backtest:report": "node scripts/backtest-report.js",
+    "briefing:fidelity": "node scripts/validate-briefing-fidelity.js",
     "verify": "node scripts/verify-daily-system.js",
     "daily": "bash scripts/run-daily-system.sh",
     "daily:quality": "bash scripts/run-quality-gated-cycle.sh"

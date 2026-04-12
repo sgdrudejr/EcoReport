@@ -54,7 +54,7 @@ export default function HoldingTabs({
         sticky
         stickyClassName="top-[calc(var(--desktop-nav-offset,5.25rem)+var(--account-tabs-gap,0.25rem)+var(--account-tabs-sticky-height,88px)+4px)] z-20"
         frameLabel={null}
-        frameClassName="relative rounded-xl border border-slate-200 bg-slate-50/80 p-0 shadow-none before:absolute before:-top-2 before:inset-x-0 before:h-2 before:border-x before:border-slate-200 before:bg-slate-50/80 before:content-['']"
+        frameClassName="p-0 shadow-none"
         listClassName="pb-0"
         itemClassName="min-w-[12.5rem] rounded-[0.9rem] border px-3 py-2"
         selectedItemClassName="border-blue-300 bg-white text-slate-900 shadow-[0_2px_8px_rgba(59,130,246,0.12)]"

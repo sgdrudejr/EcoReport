@@ -1,15 +1,6 @@
 "use client";
 
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-  type ReactNode,
-} from "react";
-
-const STORAGE_KEY = "ecoreport:experimental-ui-visible";
+import { createContext, useContext, useMemo, type ReactNode } from "react";
 
 type ExperimentalUiContextValue = {
   enabled: boolean;
@@ -23,34 +14,12 @@ export function ExperimentalUiProvider({
 }: {
   children: ReactNode;
 }) {
-  const [enabled, setEnabledState] = useState(false);
-
-  useEffect(() => {
-    try {
-      const saved = window.localStorage.getItem(STORAGE_KEY);
-      if (saved === "true") {
-        setEnabledState(true);
-      }
-    } catch {
-      // ignore storage failures
-    }
-  }, []);
-
-  const setEnabled = (next: boolean) => {
-    setEnabledState(next);
-    try {
-      window.localStorage.setItem(STORAGE_KEY, String(next));
-    } catch {
-      // ignore storage failures
-    }
-  };
-
   const value = useMemo(
     () => ({
-      enabled,
-      setEnabled,
+      enabled: true,
+      setEnabled: () => {},
     }),
-    [enabled],
+    [],
   );
 
   return (

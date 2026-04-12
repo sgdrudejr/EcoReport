@@ -72,6 +72,7 @@ async function main() {
       reportScore: h.scores?.reportScore ?? null,
       reportImpactCount: h.report?.impactCount ?? (h.reportImpacts ?? []).length ?? 0,
       reportSources,
+      scoreDecomposition: h.scoreDecomposition ?? null,
       factors: h.factor?.zScores ?? h.factor?.raw ?? null,
       closePrice: tech.close ?? null,
       rsi: tech.rsi ?? null,
@@ -88,6 +89,7 @@ async function main() {
     holdsCount: (plan.holds ?? []).length,
     trimsCount: (plan.trims ?? []).length,
     watchesCount: (plan.watches ?? []).length,
+    scoreDecomposition: stage3.accounts?.[plan.key]?.scoreDecomposition ?? null,
   }));
 
   const snapshot = {

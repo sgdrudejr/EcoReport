@@ -222,6 +222,9 @@ fi
 
 stage2_write_log
 
+echo "== Technical refresh: Stage 2 candidates =="
+node scripts/calc-technicals.js --date "$DATE" --include-stage2-candidates --merge-existing || echo "!! Stage 2 candidate technical refresh 실패 (non-blocking)"
+
 echo "== Stage 2.5: impact map =="
 node scripts/build-impact-map.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"
 

@@ -12,11 +12,27 @@ import {
   parseDateArgs,
   readJson,
   resolveSecurityCodeFromCandidates,
+  withContract,
   won,
   writeJson,
   writeText,
 } from "./lib/pipeline-utils.js";
 import { loadAnalysisContext } from "./lib/analysis-context.js";
+import { insertStage4 } from "./lib/timeseries-db.js";
+import { buildCriticReview } from "./build-stage4-critic.js";
+
+function parseArgs(argv) {
+  const args = parseDateArgs(argv);
+  args.withCritic = false;
+
+  for (let index = 0; index < argv.length; index += 1) {
+    if (argv[index] === "--with-critic") {
+      args.withCritic = true;
+    }
+  }
+
+  return args;
+}
 
 function normalizeStrategyAccountKey(account, strategy) {
   const candidates = [
@@ -119,6 +135,16 @@ function normalizeCandidateConfidence(value) {
   return 0.5;
 }
 
+function candidateTechnicalRankBonus(technicalItem) {
+  const score = Number(technicalItem?.score);
+  if (!Number.isFinite(score)) return 0;
+  if (score >= 75) return 4;
+  if (score >= 65) return 3;
+  if (score >= 55) return 1;
+  if (score <= 35) return -2;
+  return 0;
+}
+
 function isBuyableStance(value) {
   return ["buy", "accumulate", "add"].includes(String(value ?? "").toLowerCase());
 }
@@ -127,7 +153,7 @@ function hasNegativeActionLanguage(text) {
   return /비중을 조절|비중 조정|축소|trim|reduce|보류|추격 매수는 신중|추가 진입은 보류/i.test(String(text ?? ""));
 }
 
-function resolveStage2Candidates(account, stage2Data, bucket) {
+function resolveStage2Candidates(account, stage2Data, bucket, technicalMap = {}) {
   const allCandidates = (stage2Data?.candidate_scores ?? []).map((item) => ({
     ...item,
     resolvedCode: resolveSecurityCodeFromCandidates(item.code, item.name),
@@ -159,6 +185,7 @@ function resolveStage2Candidates(account, stage2Data, bucket) {
   const sorted = matched
     .map((item) => {
       const itemCode = item.resolvedCode ?? item.code;
+      const technicalItem = itemCode ? technicalMap[itemCode] ?? null : null;
       const itemCategory =
         CATEGORY_BY_CODE[itemCode]?.[account.key] ??
         CATEGORY_BY_CODE[itemCode]?.default ??
@@ -167,9 +194,12 @@ function resolveStage2Candidates(account, stage2Data, bucket) {
       const gapBonus = bucket.candidateFromGap && item.name === bucket.candidateFromGap ? 3 : 0;
       const buyCodeBonus = buyCodes.has(itemCode) ? 2 : 0;
       const holdBonus = (account.holdings ?? []).some((holding) => holding.code === itemCode) ? 1 : 0;
+      const technicalBonus = candidateTechnicalRankBonus(technicalItem);
       return {
         ...item,
-        __rank: categoryBonus + gapBonus + buyCodeBonus + holdBonus,
+        technicalScore: technicalItem?.score ?? null,
+        technicalSignal: technicalItem?.signal ?? null,
+        __rank: categoryBonus + gapBonus + buyCodeBonus + holdBonus + technicalBonus,
       };
     })
     .sort((left, right) => right.__rank - left.__rank);
@@ -187,6 +217,8 @@ function resolveStage2Candidates(account, stage2Data, bucket) {
       source: "stage2",
       stance,
       confidence: normalizeCandidateConfidence(item.confidence),
+      technicalScore: item.technicalScore ?? null,
+      technicalSignal: item.technicalSignal ?? null,
       targetAccounts: item.target_accounts ?? [],
     };
 
@@ -649,7 +681,7 @@ function buildMacroCommentary({
 }
 
 async function main() {
-  const args = parseDateArgs(process.argv.slice(2));
+  const args = parseArgs(process.argv.slice(2));
   const context = await loadAnalysisContext(args, {
     portfolio: true,
     strategy: true,
@@ -681,7 +713,7 @@ async function main() {
       stage2Data.account_actions?.find((item) => item.account_key === account.key || item.account_key === normalizeStrategyAccountKey(account)) ??
       null;
     const bucket = executionBuckets(account, quant, stage2Action, strategy);
-    const stage2Resolution = resolveStage2Candidates(account, stage2Data, bucket);
+    const stage2Resolution = resolveStage2Candidates(account, stage2Data, bucket, technicalMap);
     const stage2Candidates = stage2Resolution.accepted;
     bucket.stage2Candidates = stage2Candidates;
     const stage1Drivers = stage1.extracts
@@ -767,12 +799,32 @@ async function main() {
     args.briefing ?? path.join(ROOT_DIR, "reports", "daily", `${args.date}-briefing.md`);
   const runMeta = buildRunMetadata(args);
 
-  const payload = {
+  let payload = {
     ...runMeta,
     portfolioScore: quant.portfolio?.totalScore ?? 50,
     regime: quant.regime ?? null,
     accountPlans,
   };
+
+  if (args.withCritic) {
+    const criticReview = await buildCriticReview({
+      date: args.date,
+      stage4: payload,
+      holdingClusters,
+    });
+    const reviewsByKey = new Map(
+      (criticReview.accountReviews ?? []).map((review) => [review.key, review]),
+    );
+    payload = {
+      ...payload,
+      criticReview,
+      accountPlans: payload.accountPlans.map((plan) => ({
+        ...plan,
+        criticReview: reviewsByKey.get(plan.key) ?? null,
+      })),
+    };
+    await writeJson(path.join(stateDir, "stage4-critic-review.json"), criticReview);
+  }
 
   const regimeConfidence =
     typeof quant.regime?.confidence === "number" ? quant.regime.confidence.toFixed(2) : "N/A";
@@ -875,9 +927,15 @@ async function main() {
     ]),
   ].join("\n");
 
-  await writeJson(outputJson, payload);
+  const finalPayload = withContract(payload, {
+    stage: "stage4",
+    generatedAt: runMeta.generatedAt,
+  });
+
+  await writeJson(outputJson, finalPayload);
   await writeText(outputMarkdown, `${markdown}\n`);
   await writeText(outputBriefing, `${briefing}\n`);
+  insertStage4(finalPayload);
   console.log(outputJson);
 }
 

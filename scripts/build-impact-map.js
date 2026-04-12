@@ -16,6 +16,7 @@ import {
   parseDateArgs,
   readText,
   truncate,
+  withContract,
   writeJson,
   writeText,
 } from "./lib/pipeline-utils.js";
@@ -467,7 +468,13 @@ async function main() {
 
   const jsonPath = args.output ?? path.join(stateDir, "impact-map.json");
   const mdPath = args.markdown ?? path.join(stateDir, "impact-map.md");
-  await writeJson(jsonPath, payload);
+  await writeJson(
+    jsonPath,
+    withContract(payload, {
+      stage: "impact-map",
+      generatedAt: runMeta.generatedAt,
+    }),
+  );
   await writeText(mdPath, `${markdown}\n`);
   console.log(jsonPath);
 }
