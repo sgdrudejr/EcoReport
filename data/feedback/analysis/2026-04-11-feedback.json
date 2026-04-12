@@ -1,221 +1,288 @@
 {
-  "analysisDate": "2026-04-11",
-  "generatedAt": "2026-04-11T16:25:48.068Z",
-  "snapshotCount": 7,
-  "positionCount": 80,
-  "horizons": [
-    5,
-    10,
-    20
-  ],
+  "generatedAt": "2026-04-11T16:09:14.087Z",
   "snapshotDates": [
     "2026-04-03",
     "2026-04-05",
     "2026-04-06",
     "2026-04-07",
-    "2026-04-08",
-    "2026-04-09",
-    "2026-04-10"
+    "2026-04-08"
   ],
-  "sampleSize": 0,
+  "sampleSize": 51,
   "scoreReturnCorrelation": {
-    "actionScore_vs_ret5d": null,
+    "actionScore_vs_ret5d": 0.2146,
     "actionScore_vs_ret10d": null,
     "actionScore_vs_ret20d": null
   },
   "signalHitRates": {
-    "buy_hit_5d": null,
-    "hold_hit_5d": null,
-    "trim_negative_5d": null
+    "buy_hit_5d": 0.5,
+    "hold_hit_5d": 0.7879,
+    "trim_negative_5d": 0
   },
   "factorCorrelations": {
     "momentum": {
-      "vs_ret5d": null,
+      "vs_ret5d": 0.2168,
       "vs_ret10d": null,
-      "count": 0
+      "count": 39
     },
     "research": {
-      "vs_ret5d": null,
+      "vs_ret5d": 0.1002,
       "vs_ret10d": null,
-      "count": 0
+      "count": 39
     },
     "income": {
-      "vs_ret5d": null,
+      "vs_ret5d": -0.3153,
       "vs_ret10d": null,
-      "count": 0
+      "count": 39
     },
     "macroFit": {
-      "vs_ret5d": null,
+      "vs_ret5d": 0.0342,
       "vs_ret10d": null,
-      "count": 0
+      "count": 39
     }
   },
-  "regimeAccuracy": {},
+  "regimeAccuracy": {
+    "SIDEWAYS": {
+      "count": 38,
+      "avgReturn5d": 1.97,
+      "scoreCorr5d": 0.2972,
+      "buyHitRate": 0
+    },
+    "BEAR": {
+      "count": 13,
+      "avgReturn5d": 3.29,
+      "scoreCorr5d": null,
+      "buyHitRate": 1
+    }
+  },
   "worstMispredictions": {
     "highScoreLosers": [],
-    "lowScoreWinners": []
+    "lowScoreWinners": [
+      {
+        "date": "2026-04-07",
+        "code": "251350",
+        "name": "KODEX 선진국ESG액티브",
+        "score": 34,
+        "bestReturn": 2.016,
+        "period": "3d"
+      }
+    ]
   },
   "weightSuggestions": [
     {
       "factor": "momentum",
-      "correlation_5d": null,
-      "suggestion": "유지"
+      "correlation_5d": 0.2168,
+      "suggestion": "비중↑ (양의 예측력)"
     },
     {
       "factor": "research",
-      "correlation_5d": null,
+      "correlation_5d": 0.1002,
       "suggestion": "유지"
     },
     {
       "factor": "income",
-      "correlation_5d": null,
-      "suggestion": "유지"
+      "correlation_5d": -0.3153,
+      "suggestion": "비중↓ (음의 예측력)"
     },
     {
       "factor": "macroFit",
-      "correlation_5d": null,
-      "suggestion": "유지"
+      "correlation_5d": 0.0342,
+      "suggestion": "비중↓ (예측력 거의 없음)"
     }
   ],
-  "sourceAccuracy": [],
-  "researchSourceAccuracy": [],
-  "scoreReturnCorrelationDetailed": {
-    "ret_5d": {
-      "correlation": null,
-      "sampleCount": 0
+  "sourceAccuracy": [
+    {
+      "source": "유진투자증권",
+      "sampleSize": 25,
+      "avgReturn5d": 2.8447,
+      "buyHitRate": 0.5,
+      "avgReportScore": 71.72,
+      "note": "68점 BUY 우선, 부족 시 58점 실행권 기준"
     },
-    "ret_10d": {
-      "correlation": null,
-      "sampleCount": 0
+    {
+      "source": "대신증권",
+      "sampleSize": 25,
+      "avgReturn5d": 2.7596,
+      "buyHitRate": 1,
+      "avgReportScore": 55.48,
+      "note": "68점 BUY 우선, 부족 시 58점 실행권 기준"
     },
-    "ret_20d": {
-      "correlation": null,
-      "sampleCount": 0
+    {
+      "source": "industry:유진투자증권",
+      "sampleSize": 22,
+      "avgReturn5d": 3.0013,
+      "buyHitRate": 0.5,
+      "avgReportScore": 69.3182,
+      "note": "68점 BUY 우선, 부족 시 58점 실행권 기준"
+    },
+    {
+      "source": "유안타증권",
+      "sampleSize": 17,
+      "avgReturn5d": 2.1535,
+      "buyHitRate": 1,
+      "avgReportScore": 54.7059,
+      "note": "68점 BUY 우선, 부족 시 58점 실행권 기준"
+    },
+    {
+      "source": "하나증권",
+      "sampleSize": 17,
+      "avgReturn5d": 1.3699,
+      "buyHitRate": 0.6,
+      "avgReportScore": 63.4706,
+      "note": "68점 BUY 우선, 부족 시 58점 실행권 기준"
+    },
+    {
+      "source": "industry:대신증권",
+      "sampleSize": 14,
+      "avgReturn5d": 1.5206,
+      "buyHitRate": 1,
+      "avgReportScore": 58.8571,
+      "note": "68점 BUY 우선, 부족 시 58점 실행권 기준"
+    },
+    {
+      "source": "SK증권",
+      "sampleSize": 12,
+      "avgReturn5d": 1.8742,
+      "buyHitRate": null,
+      "avgReportScore": 64.0833,
+      "note": "표본 부족"
+    },
+    {
+      "source": "industry:하나증권",
+      "sampleSize": 12,
+      "avgReturn5d": 1.779,
+      "buyHitRate": null,
+      "avgReportScore": 53.9167,
+      "note": "표본 부족"
+    },
+    {
+      "source": "strategy:대신증권",
+      "sampleSize": 11,
+      "avgReturn5d": 4.3366,
+      "buyHitRate": 1,
+      "avgReportScore": 51.1818,
+      "note": "68점 BUY 우선, 부족 시 58점 실행권 기준"
+    },
+    {
+      "source": "교보증권",
+      "sampleSize": 11,
+      "avgReturn5d": 1.4665,
+      "buyHitRate": 0.75,
+      "avgReportScore": 73.9091,
+      "note": "68점 BUY 우선, 부족 시 58점 실행권 기준"
+    },
+    {
+      "source": "industry:교보증권",
+      "sampleSize": 11,
+      "avgReturn5d": 1.4665,
+      "buyHitRate": 0.75,
+      "avgReportScore": 73.9091,
+      "note": "68점 BUY 우선, 부족 시 58점 실행권 기준"
+    },
+    {
+      "source": "industry:유안타증권",
+      "sampleSize": 10,
+      "avgReturn5d": 2.3151,
+      "buyHitRate": null,
+      "avgReportScore": 48.8,
+      "note": "표본 부족"
     }
-  },
-  "signalAccuracy": {
-    "ret_5d": {},
-    "ret_10d": {},
-    "ret_20d": {}
-  },
-  "factorPredictivePower": {
-    "momentum": {
-      "ret_5d": {
-        "correlation": null,
-        "sampleCount": 0
-      },
-      "ret_10d": {
-        "correlation": null,
-        "sampleCount": 0
-      },
-      "ret_20d": {
-        "correlation": null,
-        "sampleCount": 0
-      }
+  ],
+  "researchSourceAccuracy": [
+    {
+      "source": "유진투자증권",
+      "sampleSize": 25,
+      "avgReturn5d": 2.8447,
+      "buyHitRate": 0.5,
+      "avgReportScore": 71.72,
+      "note": "68점 BUY 우선, 부족 시 58점 실행권 기준"
     },
-    "research": {
-      "ret_5d": {
-        "correlation": null,
-        "sampleCount": 0
-      },
-      "ret_10d": {
-        "correlation": null,
-        "sampleCount": 0
-      },
-      "ret_20d": {
-        "correlation": null,
-        "sampleCount": 0
-      }
+    {
+      "source": "대신증권",
+      "sampleSize": 25,
+      "avgReturn5d": 2.7596,
+      "buyHitRate": 1,
+      "avgReportScore": 55.48,
+      "note": "68점 BUY 우선, 부족 시 58점 실행권 기준"
     },
-    "income": {
-      "ret_5d": {
-        "correlation": null,
-        "sampleCount": 0
-      },
-      "ret_10d": {
-        "correlation": null,
-        "sampleCount": 0
-      },
-      "ret_20d": {
-        "correlation": null,
-        "sampleCount": 0
-      }
+    {
+      "source": "industry:유진투자증권",
+      "sampleSize": 22,
+      "avgReturn5d": 3.0013,
+      "buyHitRate": 0.5,
+      "avgReportScore": 69.3182,
+      "note": "68점 BUY 우선, 부족 시 58점 실행권 기준"
     },
-    "macroFit": {
-      "ret_5d": {
-        "correlation": null,
-        "sampleCount": 0
-      },
-      "ret_10d": {
-        "correlation": null,
-        "sampleCount": 0
-      },
-      "ret_20d": {
-        "correlation": null,
-        "sampleCount": 0
-      }
+    {
+      "source": "유안타증권",
+      "sampleSize": 17,
+      "avgReturn5d": 2.1535,
+      "buyHitRate": 1,
+      "avgReportScore": 54.7059,
+      "note": "68점 BUY 우선, 부족 시 58점 실행권 기준"
+    },
+    {
+      "source": "하나증권",
+      "sampleSize": 17,
+      "avgReturn5d": 1.3699,
+      "buyHitRate": 0.6,
+      "avgReportScore": 63.4706,
+      "note": "68점 BUY 우선, 부족 시 58점 실행권 기준"
+    },
+    {
+      "source": "industry:대신증권",
+      "sampleSize": 14,
+      "avgReturn5d": 1.5206,
+      "buyHitRate": 1,
+      "avgReportScore": 58.8571,
+      "note": "68점 BUY 우선, 부족 시 58점 실행권 기준"
+    },
+    {
+      "source": "SK증권",
+      "sampleSize": 12,
+      "avgReturn5d": 1.8742,
+      "buyHitRate": null,
+      "avgReportScore": 64.0833,
+      "note": "표본 부족"
+    },
+    {
+      "source": "industry:하나증권",
+      "sampleSize": 12,
+      "avgReturn5d": 1.779,
+      "buyHitRate": null,
+      "avgReportScore": 53.9167,
+      "note": "표본 부족"
+    },
+    {
+      "source": "strategy:대신증권",
+      "sampleSize": 11,
+      "avgReturn5d": 4.3366,
+      "buyHitRate": 1,
+      "avgReportScore": 51.1818,
+      "note": "68점 BUY 우선, 부족 시 58점 실행권 기준"
+    },
+    {
+      "source": "교보증권",
+      "sampleSize": 11,
+      "avgReturn5d": 1.4665,
+      "buyHitRate": 0.75,
+      "avgReportScore": 73.9091,
+      "note": "68점 BUY 우선, 부족 시 58점 실행권 기준"
+    },
+    {
+      "source": "industry:교보증권",
+      "sampleSize": 11,
+      "avgReturn5d": 1.4665,
+      "buyHitRate": 0.75,
+      "avgReportScore": 73.9091,
+      "note": "68점 BUY 우선, 부족 시 58점 실행권 기준"
+    },
+    {
+      "source": "industry:유안타증권",
+      "sampleSize": 10,
+      "avgReturn5d": 2.3151,
+      "buyHitRate": null,
+      "avgReportScore": 48.8,
+      "note": "표본 부족"
     }
-  },
-  "regimeAccuracyByHorizon": {
-    "ret_5d": {},
-    "ret_10d": {},
-    "ret_20d": {}
-  },
-  "worstMispredictionsDetailed": [],
-  "alerts": [],
-  "autoAdjustment": {
-    "enabled": true,
-    "primaryHorizonDays": 10,
-    "minSamples": 24,
-    "baseWeights": {
-      "momentum": 0.35,
-      "research": 0.3,
-      "income": 0.15,
-      "macroFit": 0.2
-    },
-    "suggestedWeights": {
-      "momentum": 0.35,
-      "research": 0.3,
-      "income": 0.15,
-      "macroFit": 0.2
-    },
-    "deltas": {
-      "momentum": 0,
-      "research": 0,
-      "income": 0,
-      "macroFit": 0
-    },
-    "reasoning": [
-      {
-        "factor": "momentum",
-        "baseWeight": 0.35,
-        "multiplier": 1,
-        "correlation": null,
-        "sampleCount": 0
-      },
-      {
-        "factor": "research",
-        "baseWeight": 0.3,
-        "multiplier": 1,
-        "correlation": null,
-        "sampleCount": 0
-      },
-      {
-        "factor": "income",
-        "baseWeight": 0.15,
-        "multiplier": 1,
-        "correlation": null,
-        "sampleCount": 0
-      },
-      {
-        "factor": "macroFit",
-        "baseWeight": 0.2,
-        "multiplier": 1,
-        "correlation": null,
-        "sampleCount": 0
-      }
-    ],
-    "readyFactors": 0,
-    "source": "data/feedback/latest-feedback.json"
-  }
+  ]
 }

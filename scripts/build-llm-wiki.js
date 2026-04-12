@@ -689,6 +689,7 @@ async function buildOverviewPage({ runMeta, recentDates }) {
 async function buildDailyPage({ runMeta, portfolio, stage1, stage3, stage4, dailyPagesDir }) {
   const date = runMeta.date;
   const file = path.join(dailyPagesDir, `${date}.md`);
+  const intradayState = await readJson(path.join(ROOT_DIR, "data", "intraday", "latest.json"), null);
   const accountBlocks = (stage4?.accountPlans ?? []).map((plan) => {
     const buyLines = (plan.stagedBuys ?? []).slice(0, 4).map((item) => {
       const amount = typeof item.suggestedAmount === "number" ? ` / ${won(item.suggestedAmount)}` : "";
@@ -724,6 +725,10 @@ async function buildDailyPage({ runMeta, portfolio, stage1, stage3, stage4, dail
     )
     .sort((a, b) => (b.amount ?? 0) - (a.amount ?? 0))
     .slice(0, 5);
+  const firedIntradayAlerts = (intradayState?.alerts?.triggers ?? []).filter((item) => item.triggered);
+  const intradayOverlayLines = (intradayState?.overlay?.updates ?? []).slice(0, 5).map((item) =>
+    `- ${item.name}(${item.code}) / ${item.baseActionScore} -> ${item.intradayActionScore} / delta ${item.delta >= 0 ? "+" : ""}${item.delta}`,
+  );
 
   const content = [
     frontmatter(buildPageMeta(runMeta, `EcoReport Daily Wiki ${date}`, "daily")),
@@ -741,6 +746,20 @@ async function buildDailyPage({ runMeta, portfolio, stage1, stage3, stage4, dail
     ...(topIdeas.length > 0
       ? topIdeas.map((idea) => `- ${idea.accountLabel}: ${idea.name} / ${won(idea.amount)}`)
       : ["- 오늘은 강한 신규 집행 후보가 없습니다."]),
+    "",
+    "## Intraday Alerts",
+    "",
+    ...(firedIntradayAlerts.length > 0
+      ? firedIntradayAlerts.map(
+          (item) => `- ${item.name} / 실제값 ${item.actual ?? "N/A"}${item.detail ? ` / ${item.detail}` : ""}`,
+        )
+      : ["- 장중 긴급 경보 없음 또는 아직 수집되지 않았습니다."]),
+    "",
+    "## Intraday Score Overlay",
+    "",
+    ...(intradayOverlayLines.length > 0
+      ? intradayOverlayLines
+      : ["- 장중 단건 재점수 오버레이 없음"]),
     "",
     "## Account Plans",
     "",

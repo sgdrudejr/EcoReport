@@ -17,9 +17,11 @@ import {
   readJson,
   sigmoid,
   softmax,
+  withContract,
   writeJson,
 } from "./lib/pipeline-utils.js";
 import { loadAnalysisContext } from "./lib/analysis-context.js";
+import { insertStage3 } from "./lib/timeseries-db.js";
 
 const REGIME_WEIGHTS = {
   BULL: {
@@ -71,12 +73,6 @@ const DEFAULT_FACTOR_MODEL = {
     income: 0.15,
     macroFit: 0.2,
   },
-  autoAdjust: {
-    enabled: true,
-    source: "data/feedback/latest-feedback.json",
-    primaryHorizonDays: 10,
-    minSamples: 24,
-  },
 };
 
 const DEFAULT_COVARIANCE_MODEL = {
@@ -122,14 +118,6 @@ const DEFAULT_HOLDING_BLEND_MODEL = {
   maxAdjustment: 18,
   gateMode: "sameSignal",
   minFactorDistance: 8,
-};
-
-const DEFAULT_STOP_LOSS_CONFIG = {
-  enabled: true,
-  fromEntry_pct: -0.1,
-  fromRecentHigh_pct: -0.15,
-  recentHighWindow: 20,
-  forcedTrimScore: 35,
 };
 
 const STAGE2_SCORE_BY_BIAS = {
@@ -1240,14 +1228,7 @@ function computeRiskPenalty({
   };
 }
 
-function holdingExplanation(
-  holding,
-  technicalItem,
-  reportImpact,
-  action,
-  finalAction = null,
-  stopLoss = null,
-) {
+function holdingExplanation(holding, technicalItem, reportImpact, action, finalAction = null) {
   const topDrivers = [];
   const warnings = [];
   const effectiveAction = finalAction ?? action;
@@ -1273,11 +1254,6 @@ function holdingExplanation(
 
   if (effectiveAction?.signal === "REDUCE" || effectiveAction?.signal === "WATCH") {
     warnings.push(`${effectiveAction.signal} 구간이라 비중 확대보다 관찰/점검이 우선입니다.`);
-  }
-
-  if (stopLoss?.triggered) {
-    warnings.push("손절 규칙이 발동해 최종 신호를 강제 Trim 구간으로 낮췄습니다.");
-    topDrivers.push("손절 오버라이드 적용");
   }
 
   return { topDrivers, warnings };
@@ -1324,6 +1300,69 @@ function normalizeStage2CandidateMap(stage2Data) {
 
 function positionKey(accountKey, code) {
   return `${accountKey}:${code}`;
+}
+
+function averageScore(values) {
+  const numeric = values.filter((value) => typeof value === "number" && Number.isFinite(value));
+  if (numeric.length === 0) return null;
+  return Math.round(mean(numeric));
+}
+
+function executionSignalAgreement(computed) {
+  const directions = [computed?.direction, computed?.timing, computed?.reportScore]
+    .filter((value) => typeof value === "number" && Number.isFinite(value))
+    .map((value) => (Math.abs(value) < 0.05 ? 0 : Math.sign(value)))
+    .filter((value) => value !== 0);
+
+  if (directions.length <= 1) {
+    return 0.6;
+  }
+
+  const positives = directions.filter((value) => value > 0).length;
+  const negatives = directions.filter((value) => value < 0).length;
+  return toRoundedNumber(Math.max(positives, negatives) / directions.length, 4);
+}
+
+function executionCoverageScore({ technicalItem, factor, reportImpact }) {
+  return toRoundedNumber(
+    mean([
+      typeof technicalItem?.score === "number" ? 1 : 0,
+      factor?.factorCoverage ?? 0,
+      reportImpact?.coverageWeight ?? 0,
+    ]),
+    4,
+  );
+}
+
+function buildClusterPenaltyLookup(holdingClusters) {
+  const lookup = new Map();
+
+  for (const cluster of holdingClusters?.clusters ?? []) {
+    const holdings = cluster?.holdings ?? [];
+    if (holdings.length < 2) continue;
+
+    const penalty = toRoundedNumber(
+      clamp(
+        (holdings.length - 1) * 1.8 + clamp(valueOrFallback(cluster?.avgCorrelation, 0), 0, 1) * 4.5,
+        0,
+        12,
+      ),
+      2,
+    );
+
+    for (const holding of holdings) {
+      if (!holding?.code || !holding?.accountKey) continue;
+      lookup.set(positionKey(holding.accountKey, holding.code), {
+        penalty,
+        clusterId: cluster.id ?? null,
+        holdingCount: holdings.length,
+        avgCorrelation: cluster.avgCorrelation ?? null,
+        warning: cluster.warning ?? null,
+      });
+    }
+  }
+
+  return lookup;
 }
 
 function mean(values) {
@@ -1472,122 +1511,6 @@ function blendHoldingActionScore({
   };
 }
 
-function deriveHoldingEntryPrice(holding) {
-  if (typeof holding?.avgPrice === "number" && Number.isFinite(holding.avgPrice)) {
-    return holding.avgPrice;
-  }
-
-  if (
-    typeof holding?.purchaseValue === "number" &&
-    Number.isFinite(holding.purchaseValue) &&
-    typeof holding?.quantity === "number" &&
-    Number.isFinite(holding.quantity) &&
-    holding.quantity > 0
-  ) {
-    return holding.purchaseValue / holding.quantity;
-  }
-
-  return null;
-}
-
-function applyStopLossOverride({
-  holding,
-  technicalItem,
-  finalAction,
-  stopLossConfig,
-}) {
-  const config = {
-    ...DEFAULT_STOP_LOSS_CONFIG,
-    ...(stopLossConfig ?? {}),
-  };
-  const entryPrice = deriveHoldingEntryPrice(holding);
-  const currentPrice =
-    technicalItem?.close ??
-    (typeof holding?.currentPrice === "number" ? holding.currentPrice : null);
-  const recentHigh = technicalItem?.recent_high?.value ?? null;
-  const drawdownFromEntry =
-    entryPrice != null && currentPrice != null && entryPrice !== 0
-      ? currentPrice / entryPrice - 1
-      : null;
-  const drawdownFromRecentHigh =
-    recentHigh != null && currentPrice != null && recentHigh !== 0
-      ? currentPrice / recentHigh - 1
-      : null;
-  const triggers = [];
-
-  if (
-    config.enabled !== false &&
-    drawdownFromEntry != null &&
-    drawdownFromEntry <= (config.fromEntry_pct ?? DEFAULT_STOP_LOSS_CONFIG.fromEntry_pct)
-  ) {
-    triggers.push({
-      type: "entry_drawdown",
-      thresholdPct: config.fromEntry_pct ?? DEFAULT_STOP_LOSS_CONFIG.fromEntry_pct,
-      observedPct: toRoundedNumber(drawdownFromEntry, 4),
-    });
-  }
-
-  if (
-    config.enabled !== false &&
-    drawdownFromRecentHigh != null &&
-    drawdownFromRecentHigh <=
-      (config.fromRecentHigh_pct ?? DEFAULT_STOP_LOSS_CONFIG.fromRecentHigh_pct)
-  ) {
-    triggers.push({
-      type: "recent_high_drawdown",
-      thresholdPct:
-        config.fromRecentHigh_pct ?? DEFAULT_STOP_LOSS_CONFIG.fromRecentHigh_pct,
-      observedPct: toRoundedNumber(drawdownFromRecentHigh, 4),
-      recentHighWindow:
-        technicalItem?.recent_high?.window ??
-        config.recentHighWindow ??
-        DEFAULT_STOP_LOSS_CONFIG.recentHighWindow,
-    });
-  }
-
-  if (!triggers.length) {
-    return {
-      finalAction,
-      stopLoss: {
-        enabled: config.enabled !== false,
-        triggered: false,
-        entryPrice: toRoundedNumber(entryPrice, 4),
-        currentPrice: toRoundedNumber(currentPrice, 4),
-        recentHigh: toRoundedNumber(recentHigh, 4),
-        drawdownFromEntryPct: toRoundedNumber(drawdownFromEntry, 4),
-        drawdownFromRecentHighPct: toRoundedNumber(drawdownFromRecentHigh, 4),
-        triggers: [],
-      },
-    };
-  }
-
-  const forcedScore = Math.min(
-    finalAction.score,
-    config.forcedTrimScore ?? DEFAULT_STOP_LOSS_CONFIG.forcedTrimScore,
-  );
-  return {
-    finalAction: {
-      ...finalAction,
-      score: forcedScore,
-      signal: actionSignalFromScore(forcedScore),
-      stopLossApplied: true,
-      stopLossTriggers: triggers,
-    },
-    stopLoss: {
-      enabled: true,
-      triggered: true,
-      entryPrice: toRoundedNumber(entryPrice, 4),
-      currentPrice: toRoundedNumber(currentPrice, 4),
-      recentHigh: toRoundedNumber(recentHigh, 4),
-      drawdownFromEntryPct: toRoundedNumber(drawdownFromEntry, 4),
-      drawdownFromRecentHighPct: toRoundedNumber(drawdownFromRecentHigh, 4),
-      forcedScore,
-      forcedSignal: actionSignalFromScore(forcedScore),
-      triggers,
-    },
-  };
-}
-
 function computeFactorRawInputs({
   technicalItem,
   reportImpact,
@@ -1687,123 +1610,6 @@ function computeCrossSectionalFactorScores(positionRows, factorModel) {
         },
       ]),
     ),
-  };
-}
-
-function normalizeFactorWeights(weights) {
-  const safeWeights = Object.fromEntries(
-    Object.entries(weights ?? {}).map(([key, value]) => [
-      key,
-      typeof value === "number" && Number.isFinite(value) ? Math.max(value, 0) : 0,
-    ]),
-  );
-  const total = Object.values(safeWeights).reduce((sum, value) => sum + value, 0);
-  if (total <= 1e-9) return safeWeights;
-
-  return Object.fromEntries(
-    Object.entries(safeWeights).map(([key, value]) => [key, toRoundedNumber(value / total, 4)]),
-  );
-}
-
-async function resolveFeedbackAdjustedFactorModel(strategy) {
-  const configuredModel = {
-    ...DEFAULT_FACTOR_MODEL,
-    ...(strategy?.scoring?.factorModel ?? {}),
-    autoAdjust: {
-      ...DEFAULT_FACTOR_MODEL.autoAdjust,
-      ...(strategy?.scoring?.factorModel?.autoAdjust ?? {}),
-    },
-    weights: normalizeFactorWeights({
-      ...DEFAULT_FACTOR_MODEL.weights,
-      ...(strategy?.scoring?.factorModel?.weights ?? {}),
-    }),
-  };
-
-  if (configuredModel.autoAdjust?.enabled === false) {
-    return {
-      factorModel: configuredModel,
-      autoAdjustMeta: {
-        enabled: false,
-        applied: false,
-        reason: "disabled_in_config",
-        baseWeights: configuredModel.weights,
-        appliedWeights: configuredModel.weights,
-      },
-    };
-  }
-
-  const sourcePath = path.join(
-    ROOT_DIR,
-    configuredModel.autoAdjust?.source ?? DEFAULT_FACTOR_MODEL.autoAdjust.source,
-  );
-  const feedback = await readJson(sourcePath, null);
-  const suggestedWeights = feedback?.autoAdjustment?.suggestedWeights ?? null;
-  const minSamples = configuredModel.autoAdjust?.minSamples ?? 24;
-  const readyFactors = feedback?.autoAdjustment?.readyFactors ?? 0;
-
-  if (!suggestedWeights || readyFactors <= 0) {
-    return {
-      factorModel: configuredModel,
-      autoAdjustMeta: {
-        enabled: true,
-        applied: false,
-        reason: "no_feedback_suggestion",
-        baseWeights: configuredModel.weights,
-        appliedWeights: configuredModel.weights,
-        source: configuredModel.autoAdjust?.source ?? null,
-      },
-    };
-  }
-
-  const eligibleFactors = Object.values(
-    feedback?.factorPredictivePower ?? {},
-  ).filter(
-    (metric) =>
-      (metric?.[`ret_${configuredModel.autoAdjust?.primaryHorizonDays ?? 10}d`]?.sampleCount ??
-        0) >= minSamples,
-  ).length;
-
-  if (eligibleFactors <= 0) {
-    return {
-      factorModel: configuredModel,
-      autoAdjustMeta: {
-        enabled: true,
-        applied: false,
-        reason: "insufficient_samples",
-        baseWeights: configuredModel.weights,
-        appliedWeights: configuredModel.weights,
-        source: configuredModel.autoAdjust?.source ?? null,
-        minSamples,
-      },
-    };
-  }
-
-  const appliedWeights = normalizeFactorWeights({
-    ...configuredModel.weights,
-    ...suggestedWeights,
-  });
-
-  return {
-    factorModel: {
-      ...configuredModel,
-      weights: appliedWeights,
-    },
-    autoAdjustMeta: {
-      enabled: true,
-      applied: true,
-      reason: "feedback_latest",
-      source: configuredModel.autoAdjust?.source ?? null,
-      analysisDate: feedback?.analysisDate ?? null,
-      primaryHorizonDays:
-        feedback?.autoAdjustment?.primaryHorizonDays ??
-        configuredModel.autoAdjust?.primaryHorizonDays ??
-        null,
-      minSamples,
-      baseWeights: configuredModel.weights,
-      appliedWeights,
-      suggestedWeights: normalizeFactorWeights(suggestedWeights),
-      deltas: feedback?.autoAdjustment?.deltas ?? null,
-    },
   };
 }
 
@@ -1961,11 +1767,22 @@ async function main() {
   const regime = detectRegime(technical, fred);
   const leadingIndicator = computeLeadingIndicatorScore(fred);
   const technicalMap = technical.scores ?? {};
+  const holdingClusters = await readJson(path.join(stateDir, "holding-clusters.json"), {
+    clusters: [],
+  });
+  const clusterPenaltyByPosition = buildClusterPenaltyLookup(holdingClusters);
   const referenceDate = new Date(`${args.date}T00:00:00Z`);
   const feedbackAnalysis = loadLatestFeedbackAnalysis(args.date);
   const sourceAccuracyMap = buildResearchSourceAccuracyMap(feedbackAnalysis);
   const profileName = chooseWeightProfile(strategy, regime);
-  const { factorModel, autoAdjustMeta } = await resolveFeedbackAdjustedFactorModel(strategy);
+  const factorModel = {
+    ...DEFAULT_FACTOR_MODEL,
+    ...(strategy?.scoring?.factorModel ?? {}),
+    weights: {
+      ...DEFAULT_FACTOR_MODEL.weights,
+      ...(strategy?.scoring?.factorModel?.weights ?? {}),
+    },
+  };
   const covarianceModel = {
     ...DEFAULT_COVARIANCE_MODEL,
     ...(strategy?.scoring?.covarianceModel ?? {}),
@@ -1985,10 +1802,6 @@ async function main() {
   const holdingBlendConfig = {
     ...DEFAULT_HOLDING_BLEND_MODEL,
     ...(strategy?.scoring?.holdingBlend ?? {}),
-  };
-  const stopLossConfig = {
-    ...DEFAULT_STOP_LOSS_CONFIG,
-    ...(strategy?.stopLoss ?? {}),
   };
   const riskCaps = {
     ...DEFAULT_RISK_CAPS,
@@ -2092,20 +1905,12 @@ async function main() {
   const bestHoldingWeightByCode = new Map();
 
   for (const row of positionRows) {
-    const blendedAction = blendHoldingActionScore({
+    row.finalAction = blendHoldingActionScore({
       rawActionScore: row.computed.actionScore,
       factorScore: row.factor?.score,
       factorCoverage: row.factor?.factorCoverage,
       holdingBlendConfig,
     });
-    const stopLossApplied = applyStopLossOverride({
-      holding: row.holding,
-      technicalItem: row.technicalItem,
-      finalAction: blendedAction,
-      stopLossConfig,
-    });
-    row.finalAction = stopLossApplied.finalAction;
-    row.stopLoss = stopLossApplied.stopLoss;
   }
 
   for (const row of positionRows) {
@@ -2140,8 +1945,6 @@ async function main() {
         rsi: row.technicalItem?.rsi ?? null,
         macd: row.technicalItem?.macd ?? null,
         bollinger: row.technicalItem?.bollinger ?? null,
-        atr: row.technicalItem?.atr ?? null,
-        recentHigh: row.technicalItem?.recent_high ?? null,
         volumeRatio: row.technicalItem?.volume_ratio ?? null,
       },
       report: {
@@ -2157,7 +1960,6 @@ async function main() {
       },
       factor: row.factor,
       actionBlend: row.finalAction,
-      stopLoss: row.stopLoss,
       scores: {
         factorScore: row.factor.score,
         techScore: row.technicalBaseScore,
@@ -2171,7 +1973,6 @@ async function main() {
         row.reportImpact,
         row.computed,
         row.finalAction,
-        row.stopLoss,
       ),
     };
     positionScores[row.positionKey] = payload;
@@ -2279,6 +2080,30 @@ async function main() {
     const totalScore = Math.round(clamp(taxAdjustment.afterTaxScore ?? preTaxScore, 0, 100));
     const holdingsScore = Math.round(weightedAverage(weightedAction) ?? 50);
     const rawHoldingsScore = Math.round(weightedAverage(weightedRawAction) ?? 50);
+    const executionConfidenceScore = averageScore(
+      accountPositions.map((row) =>
+        Math.round(
+          clamp(
+            (
+              executionCoverageScore(row) * 0.65 +
+              executionSignalAgreement(row.computed) * 0.35
+            ) * 100,
+            0,
+            100,
+          ),
+        ),
+      ),
+    );
+    const clusterPenalty = toRoundedNumber(
+      weightedAverage(
+        accountPositions.map((row) => ({
+          weight: row.scoreWeight,
+          value:
+            clusterPenaltyByPosition.get(positionKey(row.accountKey, row.code))?.penalty ?? 0,
+        })),
+      ) ?? 0,
+      2,
+    );
 
     accountScores[account.key] = {
       key: account.key,
@@ -2310,11 +2135,64 @@ async function main() {
       effectiveWeights: weights,
       riskPenalty,
       taxAdjustment,
+      scoreDecomposition: {
+        alphaScore: averageScore([factorScore, techScore, reportAvailable ? reportScore : null]),
+        alphaComponents: {
+          factorScore,
+          technicalScore: techScore,
+          reportScore: reportAvailable ? reportScore : null,
+        },
+        riskGate: toRoundedNumber(clamp(100 - riskPenalty.total, 0, 100), 2),
+        executionConfidence: executionConfidenceScore,
+        taxAdvantage: taxAdjustment?.addedScore ?? 0,
+        clusterPenalty,
+      },
       accountDirectImpact: {
         value: toRoundedNumber(context.accountDirectImpact.value),
         score: context.accountDirectImpact.score,
         impacts: context.accountDirectImpact.impacts,
       },
+    };
+  }
+
+  for (const row of positionRows) {
+    const payload = positionScores[row.positionKey];
+    const accountScore = accountScores[row.accountKey];
+    const coverageScore = executionCoverageScore(row);
+    const signalAgreement = executionSignalAgreement(row.computed);
+    const clusterInfo = clusterPenaltyByPosition.get(row.positionKey) ?? null;
+    payload.scoreDecomposition = {
+      alphaScore: averageScore([
+        row.factor?.score ?? null,
+        row.technicalBaseScore ?? null,
+        row.reportImpact.impactCount > 0 ? row.reportImpact.score : null,
+      ]),
+      alphaComponents: {
+        factorScore: row.factor?.score ?? null,
+        technicalScore: row.technicalBaseScore ?? null,
+        reportScore: row.reportImpact.impactCount > 0 ? row.reportImpact.score : null,
+      },
+      riskGate: toRoundedNumber(
+        clamp(100 - (accountScore?.riskPenalty?.total ?? 0), 0, 100),
+        2,
+      ),
+      executionConfidence: Math.round(
+        clamp((coverageScore * 0.65 + signalAgreement * 0.35) * 100, 0, 100),
+      ),
+      executionConfidenceDetail: {
+        coverageScore: Math.round(coverageScore * 100),
+        signalAgreement: Math.round(signalAgreement * 100),
+      },
+      taxAdvantage: accountScore?.taxAdjustment?.addedScore ?? 0,
+      clusterPenalty: clusterInfo?.penalty ?? 0,
+      clusterContext: clusterInfo
+        ? {
+            clusterId: clusterInfo.clusterId,
+            holdingCount: clusterInfo.holdingCount,
+            avgCorrelation: clusterInfo.avgCorrelation,
+            warning: clusterInfo.warning,
+          }
+        : null,
     };
   }
 
@@ -2360,105 +2238,142 @@ async function main() {
       }, 0),
       0,
       100,
+      ),
+  );
+  const portfolioExecutionConfidence = Math.round(
+    clamp(
+      (normalizedPortfolio.accounts ?? []).reduce((sum, account) => {
+        const assets = accountTotalAssets(account);
+        return sum + (accountScores[account.key]?.scoreDecomposition?.executionConfidence ?? 50) * (assets / totalAssets);
+      }, 0),
+      0,
+      100,
+    ),
+  );
+  const portfolioClusterPenalty = toRoundedNumber(
+    (normalizedPortfolio.accounts ?? []).reduce((sum, account) => {
+      const assets = accountTotalAssets(account);
+      return sum + (accountScores[account.key]?.scoreDecomposition?.clusterPenalty ?? 0) * (assets / totalAssets);
+    }, 0),
+    2,
+  );
+  const portfolioAlphaScore = Math.round(
+    clamp(
+      (normalizedPortfolio.accounts ?? []).reduce((sum, account) => {
+        const assets = accountTotalAssets(account);
+        return sum + (accountScores[account.key]?.scoreDecomposition?.alphaScore ?? 50) * (assets / totalAssets);
+      }, 0),
+      0,
+      100,
     ),
   );
 
   const outputPath = args.output ?? path.join(stateDir, "stage3-quant-scores.json");
   const runMeta = buildRunMetadata(args);
-  await writeJson(outputPath, {
-    ...runMeta,
-    reportInputs: {
-      reportCount: stage1ReportCount,
-      available: stage1ReportCount > 0,
-    },
-    regime: {
-      ...regime,
-      market_context: technical.market_context ?? {},
-    },
-    leadingIndicator,
-    coverage: {
-      factorCoverage: toRoundedNumber(
-        (normalizedPortfolio.accounts ?? []).reduce((sum, account) => {
-          const assets = accountTotalAssets(account);
-          return sum + (accountCoverage[account.key]?.factorCoverage ?? 0) * (assets / totalAssets);
-        }, 0),
-        4,
-      ),
-      techCoverage: toRoundedNumber(
-        (normalizedPortfolio.accounts ?? []).reduce((sum, account) => {
-          const assets = accountTotalAssets(account);
-          return sum + (accountCoverage[account.key]?.techCoverage ?? 0) * (assets / totalAssets);
-        }, 0),
-        4,
-      ),
-      impactCoverage: toRoundedNumber(
-        (normalizedPortfolio.accounts ?? []).reduce((sum, account) => {
-          const assets = accountTotalAssets(account);
-          return sum + (accountCoverage[account.key]?.impactCoverage ?? 0) * (assets / totalAssets);
-        }, 0),
-        4,
-      ),
-      stage2Available: Boolean(stage2Data),
-    },
-    quality: {
-      unrelatedEvidenceRatio: toRoundedNumber(
-        mean(
-          Object.values(positionScores).map(
-            (position) => position?.report?.relationSummary?.unrelatedEvidenceRatio ?? 0,
-          ),
+  const stage3Payload = withContract(
+    {
+      ...runMeta,
+      reportInputs: {
+        reportCount: stage1ReportCount,
+        available: stage1ReportCount > 0,
+      },
+      regime: {
+        ...regime,
+        market_context: technical.market_context ?? {},
+      },
+      leadingIndicator,
+      coverage: {
+        factorCoverage: toRoundedNumber(
+          (normalizedPortfolio.accounts ?? []).reduce((sum, account) => {
+            const assets = accountTotalAssets(account);
+            return sum + (accountCoverage[account.key]?.factorCoverage ?? 0) * (assets / totalAssets);
+          }, 0),
+          4,
         ),
-        4,
-      ),
-      blockedEvidenceCount: Object.values(positionScores).reduce(
-        (sum, position) => sum + (position?.report?.relationSummary?.blockedCount ?? 0),
-        0,
-      ),
+        techCoverage: toRoundedNumber(
+          (normalizedPortfolio.accounts ?? []).reduce((sum, account) => {
+            const assets = accountTotalAssets(account);
+            return sum + (accountCoverage[account.key]?.techCoverage ?? 0) * (assets / totalAssets);
+          }, 0),
+          4,
+        ),
+        impactCoverage: toRoundedNumber(
+          (normalizedPortfolio.accounts ?? []).reduce((sum, account) => {
+            const assets = accountTotalAssets(account);
+            return sum + (accountCoverage[account.key]?.impactCoverage ?? 0) * (assets / totalAssets);
+          }, 0),
+          4,
+        ),
+        stage2Available: Boolean(stage2Data),
+      },
+      quality: {
+        unrelatedEvidenceRatio: toRoundedNumber(
+          mean(
+            Object.values(positionScores).map(
+              (position) => position?.report?.relationSummary?.unrelatedEvidenceRatio ?? 0,
+            ),
+          ),
+          4,
+        ),
+        blockedEvidenceCount: Object.values(positionScores).reduce(
+          (sum, position) => sum + (position?.report?.relationSummary?.blockedCount ?? 0),
+          0,
+        ),
+      },
+      configUsed: {
+        weightProfile: profileName,
+        maxWeights: MAX_WEIGHT_PROFILES[profileName],
+        factorModel,
+        holdingBlend: holdingBlendConfig,
+        covarianceModel,
+        taxAware: {
+          enabled: taxAwareConfig.enabled,
+          alpha: taxAwareConfig.alpha,
+          normalTaxRate: taxAwareConfig.normalTaxRate,
+          minRiskFloor: taxAwareConfig.minRiskFloor,
+          maxMultiplier: taxAwareConfig.maxMultiplier,
+        },
+        riskPenaltyCaps: riskCaps,
+        researchSourceAccuracyLoaded: sourceAccuracyMap.size > 0,
+      },
+      factorStats,
+      holdings: holdingScores,
+      positions: positionScores,
+      accounts: accountScores,
+      portfolio: {
+        totalScore: portfolioScore,
+        baseScore: toRoundedNumber(portfolioBaseScore, 2),
+        preTaxScore: toRoundedNumber(portfolioPreTaxScore, 2),
+        scoreDecomposition: {
+          alphaScore: portfolioAlphaScore,
+          riskGate: toRoundedNumber(clamp(100 - portfolioRiskPenaltyTotal, 0, 100), 2),
+          executionConfidence: portfolioExecutionConfidence,
+          taxAdvantage: toRoundedNumber(portfolioTaxAdded, 2),
+          clusterPenalty: portfolioClusterPenalty,
+        },
+        riskPenalty: {
+          total: toRoundedNumber(portfolioRiskPenaltyTotal, 2),
+        },
+        taxAdjustment: {
+          addedScore: toRoundedNumber(portfolioTaxAdded, 2),
+          afterTaxScore: toRoundedNumber(portfolioPreTaxScore + portfolioTaxAdded, 2),
+        },
+        note:
+          portfolioScore >= 72
+            ? "포트폴리오 전반이 우호적이지만 과열 추격은 금지"
+            : portfolioScore >= 55
+              ? "선별적 추가와 방어를 병행해야 하는 구간"
+              : "배분 괴리와 리스크 패널티를 먼저 줄여야 하는 구간",
+      },
     },
-    configUsed: {
-      weightProfile: profileName,
-      maxWeights: MAX_WEIGHT_PROFILES[profileName],
-      factorModel: {
-        ...factorModel,
-        baseWeights: autoAdjustMeta?.baseWeights ?? factorModel.weights,
-        appliedWeights: autoAdjustMeta?.appliedWeights ?? factorModel.weights,
-        autoAdjust: autoAdjustMeta,
-      },
-      stopLoss: stopLossConfig,
-      holdingBlend: holdingBlendConfig,
-      covarianceModel,
-      taxAware: {
-        enabled: taxAwareConfig.enabled,
-        alpha: taxAwareConfig.alpha,
-        normalTaxRate: taxAwareConfig.normalTaxRate,
-        minRiskFloor: taxAwareConfig.minRiskFloor,
-        maxMultiplier: taxAwareConfig.maxMultiplier,
-      },
-      riskPenaltyCaps: riskCaps,
-      researchSourceAccuracyLoaded: sourceAccuracyMap.size > 0,
+    {
+      stage: "stage3",
+      generatedAt: runMeta.generatedAt,
     },
-    factorStats,
-    holdings: holdingScores,
-    positions: positionScores,
-    accounts: accountScores,
-    portfolio: {
-      totalScore: portfolioScore,
-      baseScore: toRoundedNumber(portfolioBaseScore, 2),
-      preTaxScore: toRoundedNumber(portfolioPreTaxScore, 2),
-      riskPenalty: {
-        total: toRoundedNumber(portfolioRiskPenaltyTotal, 2),
-      },
-      taxAdjustment: {
-        addedScore: toRoundedNumber(portfolioTaxAdded, 2),
-        afterTaxScore: toRoundedNumber(portfolioPreTaxScore + portfolioTaxAdded, 2),
-      },
-      note:
-        portfolioScore >= 72
-          ? "포트폴리오 전반이 우호적이지만 과열 추격은 금지"
-          : portfolioScore >= 55
-            ? "선별적 추가와 방어를 병행해야 하는 구간"
-            : "배분 괴리와 리스크 패널티를 먼저 줄여야 하는 구간",
-    },
-  });
+  );
+
+  await writeJson(outputPath, stage3Payload);
+  insertStage3(stage3Payload);
   console.log(outputPath);
 }
 

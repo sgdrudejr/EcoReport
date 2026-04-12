@@ -12,219 +12,26 @@ import {
   parseDateArgs,
   readJson,
   resolveSecurityCodeFromCandidates,
+  withContract,
   won,
   writeJson,
   writeText,
 } from "./lib/pipeline-utils.js";
 import { loadAnalysisContext } from "./lib/analysis-context.js";
+import { insertStage4 } from "./lib/timeseries-db.js";
+import { buildCriticReview } from "./build-stage4-critic.js";
 
-const DEFAULT_POSITION_SIZING = {
-  method: "inverse_atr",
-  maxSinglePosition_pct: 0.3,
-  correlationThreshold: 0.85,
-  correlationHaircut: 0.5,
-  minAtrPct: 0.01,
-  fallbackMethod: "ranked",
-};
+function parseArgs(argv) {
+  const args = parseDateArgs(argv);
+  args.withCritic = false;
 
-const DEFAULT_ENTRY_CONDITIONS = {
-  aggressiveBuyMinScore: 68,
-  watchMinScore: 50,
-  oversoldRsi: 30,
-  overheatRsi: 50,
-  emergencyDefenseVix: 35,
-  emergencyDefenseDailyDropPct: -0.03,
-  fallbackUrgency: "next_tranche",
-};
-
-function clamp(value, min, max) {
-  return Math.min(Math.max(value, min), max);
-}
-
-function roundNumber(value, digits = 4) {
-  if (typeof value !== "number" || Number.isNaN(value) || !Number.isFinite(value)) {
-    return null;
-  }
-  return Number(value.toFixed(digits));
-}
-
-function safeCategory(accountKey, code) {
-  return (
-    CATEGORY_BY_CODE[code]?.[accountKey] ??
-    CATEGORY_BY_CODE[code]?.default ??
-    "기타"
-  );
-}
-
-function holdingEntryPrice(holding) {
-  if (typeof holding?.avgPrice === "number" && Number.isFinite(holding.avgPrice)) {
-    return holding.avgPrice;
-  }
-  if (
-    typeof holding?.purchaseValue === "number" &&
-    typeof holding?.quantity === "number" &&
-    holding.quantity > 0
-  ) {
-    return holding.purchaseValue / holding.quantity;
-  }
-  return null;
-}
-
-function mean(values) {
-  if (!values.length) return null;
-  return values.reduce((sum, value) => sum + value, 0) / values.length;
-}
-
-function sampleStd(values, center = mean(values) ?? 0) {
-  if (values.length <= 1) return 0;
-  const variance =
-    values.reduce((sum, value) => sum + (value - center) ** 2, 0) /
-    Math.max(values.length - 1, 1);
-  return Math.sqrt(Math.max(variance, 0));
-}
-
-function pairwiseCorrelation(leftSeries, rightSeries) {
-  const minLength = Math.min(leftSeries?.length ?? 0, rightSeries?.length ?? 0);
-  if (minLength < 10) return null;
-  const left = leftSeries.slice(-minLength);
-  const right = rightSeries.slice(-minLength);
-  const meanLeft = mean(left);
-  const meanRight = mean(right);
-  if (meanLeft == null || meanRight == null) return null;
-  const stdLeft = sampleStd(left, meanLeft);
-  const stdRight = sampleStd(right, meanRight);
-  if (stdLeft <= 1e-9 || stdRight <= 1e-9) return null;
-
-  let covariance = 0;
-  for (let index = 0; index < minLength; index += 1) {
-    covariance += (left[index] - meanLeft) * (right[index] - meanRight);
-  }
-  return covariance / ((minLength - 1) * stdLeft * stdRight);
-}
-
-function detectEmergencyDefense({ quant, market, entryConfig }) {
-  const vix =
-    market?.macro?.VIX?.close ??
-    quant?.regime?.market_context?.vix ??
-    null;
-  const marketDrops = Object.values(market?.indices ?? {})
-    .map((item) => item?.change_pct)
-    .filter((value) => typeof value === "number");
-  const worstIndexDrop = marketDrops.length ? Math.min(...marketDrops) : null;
-  const triggers = [];
-
-  if (
-    typeof vix === "number" &&
-    vix >=
-      (entryConfig.emergencyDefenseVix ??
-        DEFAULT_ENTRY_CONDITIONS.emergencyDefenseVix)
-  ) {
-    triggers.push(`VIX ${roundNumber(vix, 2)} >= ${entryConfig.emergencyDefenseVix}`);
-  }
-  if (
-    typeof worstIndexDrop === "number" &&
-    worstIndexDrop <=
-      (entryConfig.emergencyDefenseDailyDropPct ??
-        DEFAULT_ENTRY_CONDITIONS.emergencyDefenseDailyDropPct)
-  ) {
-    triggers.push(
-      `시장 낙폭 ${roundNumber(worstIndexDrop * 100, 2)}% <= ${roundNumber(
-        (entryConfig.emergencyDefenseDailyDropPct ?? -0.03) * 100,
-        2,
-      )}%`,
-    );
+  for (let index = 0; index < argv.length; index += 1) {
+    if (argv[index] === "--with-critic") {
+      args.withCritic = true;
+    }
   }
 
-  return {
-    enabled: triggers.length > 0,
-    vix: roundNumber(vix, 2),
-    worstIndexDropPct: roundNumber(
-      typeof worstIndexDrop === "number" ? worstIndexDrop * 100 : null,
-      2,
-    ),
-    triggers,
-    marketDataAvailable:
-      typeof vix === "number" || typeof worstIndexDrop === "number",
-  };
-}
-
-function classifyEntryCondition({ score, technicalItem, emergencyDefense, entryConfig }) {
-  if (emergencyDefense?.enabled) {
-    return {
-      entryCondition: "emergency_defense",
-      urgency: "on_hold",
-      conditionMet: false,
-      entryTriggers: emergencyDefense.triggers,
-      fallback: false,
-    };
-  }
-
-  const rsi = technicalItem?.rsi ?? null;
-  const bollingerPosition = technicalItem?.bollinger?.position ?? null;
-  const triggers = [];
-  const scoreAvailable = typeof score === "number" && Number.isFinite(score);
-  const strongScore =
-    scoreAvailable &&
-    score >=
-      (entryConfig.aggressiveBuyMinScore ??
-        DEFAULT_ENTRY_CONDITIONS.aggressiveBuyMinScore);
-  const watchScore =
-    scoreAvailable &&
-    score >= (entryConfig.watchMinScore ?? DEFAULT_ENTRY_CONDITIONS.watchMinScore);
-  const oversold =
-    typeof rsi === "number" &&
-    rsi < (entryConfig.oversoldRsi ?? DEFAULT_ENTRY_CONDITIONS.oversoldRsi) &&
-    bollingerPosition === "below_lower";
-  const overheated =
-    (typeof rsi === "number" &&
-      rsi > (entryConfig.overheatRsi ?? DEFAULT_ENTRY_CONDITIONS.overheatRsi)) ||
-    bollingerPosition === "above_upper";
-
-  if (typeof rsi === "number") {
-    triggers.push(`RSI ${roundNumber(rsi, 1)}`);
-  }
-  if (bollingerPosition) {
-    triggers.push(`볼린저 ${bollingerPosition}`);
-  }
-
-  if (strongScore && oversold) {
-    return {
-      entryCondition: "aggressive",
-      urgency: "immediate",
-      conditionMet: true,
-      entryTriggers: triggers,
-      fallback: false,
-    };
-  }
-
-  if (strongScore) {
-    return {
-      entryCondition: overheated ? "dca_keep" : "qualified",
-      urgency: "next_tranche",
-      conditionMet: !overheated,
-      entryTriggers: triggers,
-      fallback: false,
-    };
-  }
-
-  if (watchScore) {
-    return {
-      entryCondition: "watch",
-      urgency: "this_week",
-      conditionMet: false,
-      entryTriggers: triggers,
-      fallback: false,
-    };
-  }
-
-  return {
-    entryCondition: "technical_fallback",
-    urgency: entryConfig.fallbackUrgency ?? DEFAULT_ENTRY_CONDITIONS.fallbackUrgency,
-    conditionMet: false,
-    entryTriggers:
-      triggers.length > 0 ? triggers : ["기술 조건 또는 점수가 충분하지 않음"],
-    fallback: true,
-  };
+  return args;
 }
 
 function normalizeStrategyAccountKey(account, strategy) {
@@ -251,7 +58,10 @@ function buildCategoryGaps(account, strategy) {
   const totalAssets = Math.max(account.evaluationAmount ?? 0, holdingsValue + (account.cashAvailable ?? 0));
   const amounts = new Map();
   for (const holding of account.holdings ?? []) {
-    const category = safeCategory(account.key, holding.code);
+    const category =
+      CATEGORY_BY_CODE[holding.code]?.[account.key] ??
+      CATEGORY_BY_CODE[holding.code]?.default ??
+      "기타";
     amounts.set(category, (amounts.get(category) ?? 0) + (holding.marketValue ?? 0));
   }
   if (targetAllocation["현금파킹"] != null) {
@@ -270,7 +80,7 @@ function buildCategoryGaps(account, strategy) {
     .sort((left, right) => right.gapAmount - left.gapAmount);
 }
 
-function executionBuckets(account, quant, stage2Action, strategy, technicalMap) {
+function executionBuckets(account, quant, stage2Action, strategy) {
   const gaps = buildCategoryGaps(account, strategy);
   const nextTranchePct =
     strategy?.dca_plan?.schedule?.find((item) => item.status !== "done" && item.status !== "completed")?.pct ?? 0.25;
@@ -287,19 +97,11 @@ function executionBuckets(account, quant, stage2Action, strategy, technicalMap) 
       quant.positions?.[`${account.key}:${holding.code}`] ??
       quant.holdings?.[holding.code] ??
       null;
-    const technicalItem = technicalMap?.[holding.code] ?? null;
     const score = quantHolding?.actionScore ?? 50;
     const entry = {
       code: holding.code,
       name: holding.name,
       score,
-      accountKey: account.key,
-      currentPrice: holding.currentPrice ?? technicalItem?.close ?? null,
-      entryPrice: holdingEntryPrice(holding),
-      atrPct: technicalItem?.atr?.pct ?? null,
-      rsi: technicalItem?.rsi ?? null,
-      bollingerPosition: technicalItem?.bollinger?.position ?? null,
-      stopLoss: quantHolding?.stopLoss ?? null,
       reason: quantHolding?.reportImpacts?.[0]?.reason ?? quantHolding?.technicalSignal ?? "점수 기반 분류",
     };
     if (score >= 68) buy.push(entry);
@@ -322,11 +124,6 @@ function executionBuckets(account, quant, stage2Action, strategy, technicalMap) 
     hold,
     watch,
     candidateFromGap,
-    totalAssets: Math.max(
-      account.evaluationAmount ?? 0,
-      (account.holdings ?? []).reduce((sum, holding) => sum + (holding.marketValue ?? 0), 0) +
-        (account.cashAvailable ?? 0),
-    ),
   };
 }
 
@@ -338,6 +135,16 @@ function normalizeCandidateConfidence(value) {
   return 0.5;
 }
 
+function candidateTechnicalRankBonus(technicalItem) {
+  const score = Number(technicalItem?.score);
+  if (!Number.isFinite(score)) return 0;
+  if (score >= 75) return 4;
+  if (score >= 65) return 3;
+  if (score >= 55) return 1;
+  if (score <= 35) return -2;
+  return 0;
+}
+
 function isBuyableStance(value) {
   return ["buy", "accumulate", "add"].includes(String(value ?? "").toLowerCase());
 }
@@ -346,7 +153,7 @@ function hasNegativeActionLanguage(text) {
   return /비중을 조절|비중 조정|축소|trim|reduce|보류|추격 매수는 신중|추가 진입은 보류/i.test(String(text ?? ""));
 }
 
-function resolveStage2Candidates(account, stage2Data, bucket) {
+function resolveStage2Candidates(account, stage2Data, bucket, technicalMap = {}) {
   const allCandidates = (stage2Data?.candidate_scores ?? []).map((item) => ({
     ...item,
     resolvedCode: resolveSecurityCodeFromCandidates(item.code, item.name),
@@ -378,6 +185,7 @@ function resolveStage2Candidates(account, stage2Data, bucket) {
   const sorted = matched
     .map((item) => {
       const itemCode = item.resolvedCode ?? item.code;
+      const technicalItem = itemCode ? technicalMap[itemCode] ?? null : null;
       const itemCategory =
         CATEGORY_BY_CODE[itemCode]?.[account.key] ??
         CATEGORY_BY_CODE[itemCode]?.default ??
@@ -386,9 +194,12 @@ function resolveStage2Candidates(account, stage2Data, bucket) {
       const gapBonus = bucket.candidateFromGap && item.name === bucket.candidateFromGap ? 3 : 0;
       const buyCodeBonus = buyCodes.has(itemCode) ? 2 : 0;
       const holdBonus = (account.holdings ?? []).some((holding) => holding.code === itemCode) ? 1 : 0;
+      const technicalBonus = candidateTechnicalRankBonus(technicalItem);
       return {
         ...item,
-        __rank: categoryBonus + gapBonus + buyCodeBonus + holdBonus,
+        technicalScore: technicalItem?.score ?? null,
+        technicalSignal: technicalItem?.signal ?? null,
+        __rank: categoryBonus + gapBonus + buyCodeBonus + holdBonus + technicalBonus,
       };
     })
     .sort((left, right) => right.__rank - left.__rank);
@@ -406,6 +217,8 @@ function resolveStage2Candidates(account, stage2Data, bucket) {
       source: "stage2",
       stance,
       confidence: normalizeCandidateConfidence(item.confidence),
+      technicalScore: item.technicalScore ?? null,
+      technicalSignal: item.technicalSignal ?? null,
       targetAccounts: item.target_accounts ?? [],
     };
 
@@ -434,96 +247,7 @@ function resolveStage2Candidates(account, stage2Data, bucket) {
   };
 }
 
-function maxCorrelationToPortfolio(code, account, technicalMap) {
-  const candidateReturns = technicalMap?.[code]?.daily_returns ?? [];
-  if (candidateReturns.length < 10) return null;
-
-  const correlations = (account.holdings ?? [])
-    .filter((holding) => holding.code && holding.code !== code)
-    .map((holding) =>
-      pairwiseCorrelation(candidateReturns, technicalMap?.[holding.code]?.daily_returns ?? []),
-    )
-    .filter((value) => typeof value === "number");
-
-  if (!correlations.length) return null;
-  return correlations.reduce(
-    (max, value) => (Math.abs(value) > Math.abs(max) ? value : max),
-    correlations[0],
-  );
-}
-
-function buildCandidateProfile(item, account, quant, technicalMap, entryConfig, emergencyDefense) {
-  const quantHolding =
-    quant.positions?.[`${account.key}:${item.code}`] ??
-    quant.holdings?.[item.code] ??
-    null;
-  const technicalItem = item.code ? technicalMap?.[item.code] ?? null : null;
-  const condition = classifyEntryCondition({
-    score: item.score ?? quantHolding?.actionScore ?? null,
-    technicalItem,
-    emergencyDefense,
-    entryConfig,
-  });
-
-  return {
-    ...item,
-    score: item.score ?? quantHolding?.actionScore ?? null,
-    technical: {
-      rsi: technicalItem?.rsi ?? null,
-      bollingerPosition: technicalItem?.bollinger?.position ?? null,
-      atrPct: technicalItem?.atr?.pct ?? null,
-      dayChangePct: technicalItem?.change_pct ?? null,
-      fallback: technicalItem?.fallback ?? null,
-    },
-    currentPrice: technicalItem?.close ?? null,
-    maxCorrelationToPortfolio: item.code
-      ? roundNumber(maxCorrelationToPortfolio(item.code, account, technicalMap), 4)
-      : null,
-    entryCondition: condition.entryCondition,
-    entryTriggers: condition.entryTriggers,
-    urgency: condition.urgency,
-    conditionMet: condition.conditionMet,
-    fallback: condition.fallback,
-  };
-}
-
-function computeSizingWeights(candidates, positionSizing) {
-  if (!candidates.length) return [];
-  if (
-    positionSizing.method === "inverse_atr" &&
-    candidates.every(
-      (item) =>
-        typeof item.technical?.atrPct === "number" &&
-        item.technical.atrPct > 0,
-    )
-  ) {
-    const atrFloor = positionSizing.minAtrPct ?? DEFAULT_POSITION_SIZING.minAtrPct;
-    const rawWeights = candidates.map((item) => 1 / Math.max(item.technical.atrPct, atrFloor));
-    const total = rawWeights.reduce((sum, value) => sum + value, 0) || 1;
-    return rawWeights.map((value) => value / total);
-  }
-
-  if (positionSizing.fallbackMethod === "equal") {
-    return candidates.map(() => 1 / candidates.length);
-  }
-
-  return candidates.length === 1
-    ? [1]
-    : candidates.length === 2
-      ? [0.6, 0.4]
-      : [0.5, 0.3, 0.2].slice(0, candidates.length);
-}
-
-function distributeBudget({
-  bucket,
-  account,
-  quant,
-  technicalMap,
-  stage2Candidates = [],
-  positionSizing,
-  entryConfig,
-  emergencyDefense,
-}) {
+function distributeBudget(bucket, stage2Candidates = []) {
   const fallbackCandidates =
     bucket.candidateFromGap != null
       ? [
@@ -538,55 +262,12 @@ function distributeBudget({
         ]
       : bucket.buy.slice(0, 3);
   const candidates = stage2Candidates.length > 0 ? stage2Candidates : fallbackCandidates;
-  if (bucket.deployBudget <= 0 || candidates.length === 0 || emergencyDefense?.enabled) return [];
-
-  const profiled = candidates.map((item) =>
-    buildCandidateProfile(item, account, quant, technicalMap, entryConfig, emergencyDefense),
-  );
-  const weights = computeSizingWeights(profiled, positionSizing);
-
-  return profiled.map((item, index) => {
-    const rawAmount = Math.round(bucket.deployBudget * (weights[index] ?? 0));
-    const correlation =
-      typeof item.maxCorrelationToPortfolio === "number"
-        ? Math.abs(item.maxCorrelationToPortfolio)
-        : null;
-    const correlationHaircutApplied =
-      correlation != null &&
-      correlation >=
-        (positionSizing.correlationThreshold ??
-          DEFAULT_POSITION_SIZING.correlationThreshold);
-    let suggestedAmount = correlationHaircutApplied
-      ? Math.round(
-          rawAmount *
-            (positionSizing.correlationHaircut ??
-              DEFAULT_POSITION_SIZING.correlationHaircut),
-        )
-      : rawAmount;
-
-    const currentMarketValue =
-      (account.holdings ?? []).find((holding) => holding.code === item.code)?.marketValue ?? 0;
-    const maxSinglePositionAmount = Math.round(
-      bucket.totalAssets *
-        (positionSizing.maxSinglePosition_pct ??
-          DEFAULT_POSITION_SIZING.maxSinglePosition_pct),
-    );
-    const remainingRoom = Math.max(maxSinglePositionAmount - currentMarketValue, 0);
-    suggestedAmount = Math.min(suggestedAmount, remainingRoom);
-
-    return {
-      ...item,
-      sizingMethod:
-        typeof item.technical?.atrPct === "number" &&
-        positionSizing.method === "inverse_atr"
-          ? "inverse_atr"
-          : positionSizing.fallbackMethod ?? DEFAULT_POSITION_SIZING.fallbackMethod,
-      baseSuggestedAmount: rawAmount,
-      suggestedAmount,
-      correlationHaircutApplied,
-      maxSinglePositionAmount,
-    };
-  }).filter((item) => item.suggestedAmount > 0);
+  if (bucket.deployBudget <= 0 || candidates.length === 0) return [];
+  const weights = candidates.length === 1 ? [1] : candidates.length === 2 ? [0.6, 0.4] : [0.5, 0.3, 0.2];
+  return candidates.map((item, index) => ({
+    ...item,
+    suggestedAmount: Math.round(bucket.deployBudget * weights[index]),
+  }));
 }
 
 function validateExecutionPlan({ account, bucket, stagedBuys, trims, holds, rejectedAlternatives }) {
@@ -972,9 +653,7 @@ function buildMacroCommentary({
   ].filter(Boolean);
 
   const actionLine =
-    bucket.emergencyDefense?.enabled
-      ? `${account.label}은 긴급 방어 모드라 신규 매수보다 현금 비중 유지와 기존 포지션 점검이 우선입니다.`
-      : bucket.deployBudget > 0 && (bucket.topGap || firstBuy)
+    bucket.deployBudget > 0 && (bucket.topGap || firstBuy)
       ? `${account.label}은 ${bucket.topGap?.category ?? "핵심 자산"}을 우선 보강하고, ${
           firstBuy?.name ?? bucket.candidateFromGap ?? "선별 후보"
         }를 중심으로 ${won(bucket.deployBudget)} 한도에서 분할 접근하는 편이 좋습니다.`
@@ -1002,7 +681,7 @@ function buildMacroCommentary({
 }
 
 async function main() {
-  const args = parseDateArgs(process.argv.slice(2));
+  const args = parseArgs(process.argv.slice(2));
   const context = await loadAnalysisContext(args, {
     portfolio: true,
     strategy: true,
@@ -1022,63 +701,26 @@ async function main() {
   const quant = data.stage3;
   const impactMap = data.impactMap;
   const stage2Data = data.stage2Data;
-  const technical = data.technical ?? { scores: {}, market_context: {} };
-  const technicalMap = technical.scores ?? {};
-  const market = await readJson(path.join(ROOT_DIR, "data", "market", `${args.date}.json`), {
-    indices: {},
-    macro: {},
-    watchlist: {},
-  });
+  const technicalMap = data.technical?.scores ?? {};
   const normalizedPortfolio = enrichPortfolioWithSecurityCodes(portfolio);
   const holdingClusters = await readJson(path.join(stateDir, "holding-clusters.json"), {
     clusters: [],
   });
   const clusterWarningByCode = buildClusterWarningLookup(holdingClusters);
-  const positionSizing = {
-    ...DEFAULT_POSITION_SIZING,
-    ...(strategy?.positionSizing ?? {}),
-  };
-  const entryConfig = {
-    ...DEFAULT_ENTRY_CONDITIONS,
-    ...(strategy?.entryConditions ?? {}),
-  };
-  const emergencyDefense = detectEmergencyDefense({
-    quant,
-    market,
-    entryConfig,
-  });
 
   const accountPlans = (normalizedPortfolio.accounts ?? []).map((account) => {
     const stage2Action =
-      stage2Data.account_actions?.find(
-        (item) =>
-          item.account_key === account.key ||
-          item.account_key === normalizeStrategyAccountKey(account, strategy),
-      ) ??
+      stage2Data.account_actions?.find((item) => item.account_key === account.key || item.account_key === normalizeStrategyAccountKey(account)) ??
       null;
-    const bucket = executionBuckets(account, quant, stage2Action, strategy, technicalMap);
-    bucket.emergencyDefense = emergencyDefense;
-    const stage2Resolution = resolveStage2Candidates(account, stage2Data, bucket);
+    const bucket = executionBuckets(account, quant, stage2Action, strategy);
+    const stage2Resolution = resolveStage2Candidates(account, stage2Data, bucket, technicalMap);
     const stage2Candidates = stage2Resolution.accepted;
-    bucket.stage2Candidates = stage2Resolution;
+    bucket.stage2Candidates = stage2Candidates;
     const stage1Drivers = stage1.extracts
       .filter((item) => item.related_accounts?.includes(account.key))
       .slice(0, 4)
-      .map((item) => ({
-        id: item.id,
-        title: item.title,
-        thesis: item.primary_claim?.summary ?? item.key_thesis,
-      }));
-    const rawStagedBuys = distributeBudget({
-      bucket,
-      account,
-      quant,
-      technicalMap,
-      stage2Candidates,
-      positionSizing,
-      entryConfig,
-      emergencyDefense,
-    });
+      .map((item) => ({ id: item.id, title: item.title, thesis: item.primary_claim?.summary ?? item.key_thesis }));
+    const rawStagedBuys = distributeBudget(bucket, stage2Candidates);
     const validation = validateExecutionPlan({
       account,
       bucket,
@@ -1129,9 +771,8 @@ async function main() {
       label: account.label,
       totalScore: quant.accounts?.[account.key]?.totalScore ?? 50,
       stage2Bias: bucket.stage2Bias,
-      deployBudget: emergencyDefense.enabled ? 0 : bucket.deployBudget,
-      plannedDeployBudget: bucket.deployBudget,
-      reserveCash: emergencyDefense.enabled ? account.cashAvailable ?? 0 : bucket.reserveCash,
+      deployBudget: bucket.deployBudget,
+      reserveCash: bucket.reserveCash,
       topGap: bucket.topGap,
       candidateFromGap: bucket.candidateFromGap,
       stage2Candidates,
@@ -1141,12 +782,6 @@ async function main() {
       watches: bucket.watch.slice(0, 3),
       macroCommentary,
       stage1Drivers,
-      emergencyDefense,
-      technicalFallback:
-        technical?.fallback?.recoveredFromDate == null &&
-        Object.keys(technicalMap).length === 0
-          ? technical?.fallback ?? { kind: "technical", reason: "no_technical_data" }
-          : technical?.fallback ?? null,
       validatorFlags: validation.validatorFlags,
       clusterWarnings,
       rejectedAlternatives: validation.rejectedAlternatives,
@@ -1164,17 +799,32 @@ async function main() {
     args.briefing ?? path.join(ROOT_DIR, "reports", "daily", `${args.date}-briefing.md`);
   const runMeta = buildRunMetadata(args);
 
-  const payload = {
+  let payload = {
     ...runMeta,
     portfolioScore: quant.portfolio?.totalScore ?? 50,
     regime: quant.regime ?? null,
-    emergencyDefense,
-    positionSizing,
-    entryConditions: entryConfig,
-    technicalFallback: technical?.fallback ?? null,
-    marketFallback: market?.fallback ?? null,
     accountPlans,
   };
+
+  if (args.withCritic) {
+    const criticReview = await buildCriticReview({
+      date: args.date,
+      stage4: payload,
+      holdingClusters,
+    });
+    const reviewsByKey = new Map(
+      (criticReview.accountReviews ?? []).map((review) => [review.key, review]),
+    );
+    payload = {
+      ...payload,
+      criticReview,
+      accountPlans: payload.accountPlans.map((plan) => ({
+        ...plan,
+        criticReview: reviewsByKey.get(plan.key) ?? null,
+      })),
+    };
+    await writeJson(path.join(stateDir, "stage4-critic-review.json"), criticReview);
+  }
 
   const regimeConfidence =
     typeof quant.regime?.confidence === "number" ? quant.regime.confidence.toFixed(2) : "N/A";
@@ -1187,13 +837,12 @@ async function main() {
     `- run_id: ${runMeta.runId ?? "N/A"}`,
     `- 포트폴리오 총점: ${quant.portfolio?.totalScore ?? "N/A"}점`,
     `- 레짐: ${quant.regime?.name ?? "N/A"} (신뢰도 ${regimeConfidence})`,
-    `- 긴급 방어 모드: ${emergencyDefense.enabled ? `YES / ${emergencyDefense.triggers.join(", ")}` : "NO"}`,
     "",
     ...accountPlans.flatMap((account) => [
       `## ${account.label} (${account.key})`,
       `- 계좌 총점: ${account.totalScore}점`,
       `- Stage 2 bias: ${account.stage2Bias}`,
-      `- 이번 단계 투입 가능 금액: ${won(account.deployBudget)}${account.plannedDeployBudget !== account.deployBudget ? ` (원안 ${won(account.plannedDeployBudget)})` : ""}`,
+      `- 이번 단계 투입 가능 금액: ${won(account.deployBudget)}`,
       `- 남길 예수금: ${won(account.reserveCash)}`,
       `- 검증 confidence: ${account.confidence ?? 0}`,
       `- validator flags: ${account.validatorFlags?.join(", ") || "없음"}`,
@@ -1201,7 +850,6 @@ async function main() {
       `- 가장 부족한 자산군: ${account.topGap ? `${account.topGap.category} / ${won(Math.max(account.topGap.gapAmount, 0))}` : "없음"}`,
       `- 우선 보강 후보: ${account.candidateFromGap ?? "없음"}`,
       `- 매크로 → 자산군 → 액션: ${account.macroCommentary?.actionLine ?? "요약 없음"}`,
-      ...(account.technicalFallback ? [`- 기술 폴백: ${account.technicalFallback.reason ?? "no technical"}${account.technicalFallback.recoveredFromDate ? ` / ${account.technicalFallback.recoveredFromDate} 기준 복구` : ""}`] : []),
       "",
       "### 1차 실행",
       ...(account.stagedBuys.length > 0
@@ -1213,7 +861,7 @@ async function main() {
       "",
       "### 비중 축소/재점검",
       ...(account.trims.length > 0
-        ? account.trims.map((item) => `- ${item.name}(${item.code}) / ${item.score}점 / ${item.stopLoss?.triggered ? "손절 발동 / " : ""}${item.reason}`)
+        ? account.trims.map((item) => `- ${item.name}(${item.code}) / ${item.score}점 / ${item.reason}`)
         : ["- 즉시 축소 대상 없음"]),
       "",
       "### 유지/관찰",
@@ -1247,7 +895,6 @@ async function main() {
     `- generated_at: ${runMeta.generatedAt}`,
     `- 포트폴리오 총점: ${quant.portfolio?.totalScore ?? "N/A"}점`,
     `- 현재 레짐: ${quant.regime?.name ?? "N/A"} / 신뢰도 ${regimeConfidence}`,
-    `- 긴급 방어: ${emergencyDefense.enabled ? emergencyDefense.triggers.join(", ") : "없음"}`,
     `- 핵심 코멘트: ${quant.portfolio?.note ?? "요약 없음"}`,
     "",
     "## 오늘의 우선 액션",
@@ -1280,9 +927,15 @@ async function main() {
     ]),
   ].join("\n");
 
-  await writeJson(outputJson, payload);
+  const finalPayload = withContract(payload, {
+    stage: "stage4",
+    generatedAt: runMeta.generatedAt,
+  });
+
+  await writeJson(outputJson, finalPayload);
   await writeText(outputMarkdown, `${markdown}\n`);
   await writeText(outputBriefing, `${briefing}\n`);
+  insertStage4(finalPayload);
   console.log(outputJson);
 }
 

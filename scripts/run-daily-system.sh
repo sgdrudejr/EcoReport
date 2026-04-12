@@ -18,6 +18,7 @@ FORCE_COLLECT=0
 STAGE2_MODE="auto"
 RUN_GEMINI_BRIEFING="auto"
 SOFT_FAILURE_COUNT=0
+USE_DAG=0
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -69,8 +70,16 @@ while [[ $# -gt 0 ]]; do
       STAGE2_MODE="gemini"
       shift
       ;;
+    --claude-stage2)
+      STAGE2_MODE="claude"
+      shift
+      ;;
     --mock-stage2)
       STAGE2_MODE="mock"
+      shift
+      ;;
+    --use-dag)
+      USE_DAG=1
       shift
       ;;
     --no-gemini-briefing)
@@ -340,6 +349,11 @@ node scripts/ensure-daily-fallbacks.js \
 
 if ! run_retrying_step "🏦 KIS 포트폴리오 동기화..." 2 node scripts/sync-kis-portfolio.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"; then
   log "⚠️ KIS 포트폴리오 동기화 실패, 기존 latest.json 으로 계속 진행합니다."
+  run_nonfatal_step "📨 Telegram KIS 오류 알림..." \
+    node scripts/send-telegram-summary.js \
+      --date "$DATE" \
+      --event "kis-sync-error" \
+      --message "KIS 포트폴리오 동기화 실패 - 기존 latest.json fallback 사용"
   SOFT_FAILURE_COUNT=$((SOFT_FAILURE_COUNT + 1))
 fi
 
@@ -438,7 +452,16 @@ fi
 if [[ "$SKIP_STRATEGY" == "1" ]]; then
   log "🧭 전략 파이프라인 건너뜀 (--skip-strategy)"
 else
-  run_step "🧭 Stage 1~4 전략 파이프라인..." bash scripts/run-strategy-pipeline.sh "${PIPELINE_ARGS[@]}"
+  if [[ "$USE_DAG" == "1" ]]; then
+    run_step "🧭 Stage 1~4 DAG 파이프라인..." \
+      node scripts/run-pipeline-dag.js \
+        --date "$DATE" \
+        --run-date "$RUN_DATE" \
+        --effective-market-date "$DATE" \
+        --stage2-mode "$STAGE2_MODE"
+  else
+    run_step "🧭 Stage 1~4 전략 파이프라인..." bash scripts/run-strategy-pipeline.sh "${PIPELINE_ARGS[@]}"
+  fi
 fi
 
 if [[ "$SKIP_WIKI" == "1" ]]; then
@@ -459,6 +482,17 @@ if [[ "$SKIP_VERIFY" == "1" ]]; then
 else
   run_step "🩺 일일 산출물 검증..." node scripts/verify-daily-system.js --date "$DATE"
 fi
+
+run_nonfatal_step "📨 Telegram 파이프라인 요약 알림..." \
+  node scripts/send-telegram-summary.js --date "$DATE"
+
+run_nonfatal_step "👻 Ghost Portfolio 스냅샷..." \
+  node scripts/build-ghost-portfolio.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"
+
+(
+  node "$ROOT_DIR/scripts/auto-tune-challenger.js" --date "$DATE" >>"$LOG_FILE" 2>&1 && \
+  node "$ROOT_DIR/scripts/backtest-challenger.js" --date "$DATE" >>"$LOG_FILE" 2>&1
+) &
 
 if [[ "$SOFT_FAILURE_COUNT" -gt 0 ]]; then
   log "⚠️ 소프트 실패 ${SOFT_FAILURE_COUNT}건이 있었지만 파이프라인은 계속 완료했습니다."

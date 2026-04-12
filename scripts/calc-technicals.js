@@ -9,13 +9,16 @@ import { config as loadEnv } from 'dotenv';
 import fetch from 'node-fetch';
 import {
   ADX,
-  ATR,
   BollingerBands,
   MACD,
   RSI,
   SMA,
   Stochastic,
 } from 'technicalindicators';
+import {
+  SECURITIES_BY_CODE,
+  resolveSecurityCodeFromCandidates,
+} from './lib/pipeline-utils.js';
 
 loadEnv();
 
@@ -25,13 +28,21 @@ const REQUEST_DELAY_MS = 150;
 const FETCH_TIMEOUT_MS = 15_000;
 
 function parseArgs(argv) {
-  const args = { date: todayIso() };
+  const args = {
+    date: todayIso(),
+    includeStage2Candidates: false,
+    mergeExisting: false,
+  };
 
   for (let index = 0; index < argv.length; index += 1) {
     const token = argv[index];
     if (token === '--date' && argv[index + 1]) {
       args.date = normalizeDate(argv[index + 1]);
       index += 1;
+    } else if (token === '--include-stage2-candidates') {
+      args.includeStage2Candidates = true;
+    } else if (token === '--merge-existing') {
+      args.mergeExisting = true;
     }
   }
 
@@ -125,6 +136,14 @@ async function loadWatchlist() {
   return readJson(path.join(process.cwd(), 'config', 'watchlist.json'));
 }
 
+async function readJsonIfExists(filePath, fallback = null) {
+  try {
+    return await readJson(filePath);
+  } catch {
+    return fallback;
+  }
+}
+
 function flattenWatchlist(watchlist) {
   return [
     ...(watchlist.core_etf ?? []).map((item) => ({ ...item, bucket: 'core_etf', type: 'etf' })),
@@ -133,49 +152,120 @@ function flattenWatchlist(watchlist) {
   ];
 }
 
-async function loadMarketSnapshot(date) {
-  const filePath = path.join(process.cwd(), 'data', 'market', `${date}.json`);
-  try {
-    return await readJson(filePath);
-  } catch {
-    return {
-      date,
-      indices: {},
-      macro: {},
-      watchlist: {},
-      fallback: {
-        kind: 'market',
-        reason: 'market snapshot missing',
-        recoveredFromDate: null,
-      },
-    };
-  }
+function isTrackableSecurityCode(code) {
+  return /^\d{6}$/.test(String(code ?? '').trim());
 }
 
-async function loadPreviousTechnicalSnapshot(date) {
-  const technicalDir = path.join(process.cwd(), 'data', 'technical');
+function mergeTrackedItems(baseItems, extraItems) {
+  const merged = new Map();
 
-  try {
-    const entries = await fs.readdir(technicalDir, { withFileTypes: true });
-    const previousFile = entries
-      .filter((entry) => entry.isFile() && /^\d{4}-\d{2}-\d{2}\.json$/.test(entry.name))
-      .map((entry) => entry.name)
-      .filter((name) => name.slice(0, 10) < date)
-      .sort()
-      .at(-1);
+  for (const item of baseItems) {
+    if (!item?.code) continue;
+    merged.set(item.code, {
+      ...item,
+      target_accounts: item.account ? [item.account] : [],
+      tracking_sources: ['watchlist'],
+    });
+  }
 
-    if (!previousFile) {
-      return null;
+  for (const item of extraItems) {
+    if (!item?.code) continue;
+    const previous = merged.get(item.code);
+    if (!previous) {
+      merged.set(item.code, {
+        ...item,
+        target_accounts: [...new Set(item.target_accounts ?? [])],
+        tracking_sources: [...new Set(item.tracking_sources ?? ['stage2_candidate'])],
+      });
+      continue;
     }
 
-    const snapshot = await readJson(path.join(technicalDir, previousFile));
-    return {
-      date: previousFile.slice(0, 10),
-      snapshot,
-    };
-  } catch {
-    return null;
+    merged.set(item.code, {
+      ...previous,
+      name: previous.name ?? item.name,
+      account: previous.account ?? item.account ?? null,
+      bucket: previous.bucket ?? item.bucket,
+      type: previous.type ?? item.type ?? null,
+      target_accounts: [...new Set([...(previous.target_accounts ?? []), ...(item.target_accounts ?? [])])],
+      tracking_sources: [...new Set([...(previous.tracking_sources ?? []), ...(item.tracking_sources ?? [])])],
+    });
   }
+
+  return [...merged.values()];
+}
+
+async function loadStage2CandidateItems(date) {
+  const analysisDir = path.join(process.cwd(), 'data', 'analysis-state', date);
+  const stage2ActualPath = path.join(analysisDir, 'stage2-strategy-options.json');
+  const stage2MockPath = path.join(analysisDir, 'stage2-strategy-options.mock.json');
+  const stage2Data =
+    (await readJsonIfExists(stage2ActualPath, null)) ??
+    (await readJsonIfExists(stage2MockPath, null));
+
+  if (!stage2Data) {
+    return [];
+  }
+
+  const candidates = new Map();
+  const upsert = ({ code, name, account = null, bucket = 'stage2_candidate', type = null, trackingSource, targetAccounts = [] }) => {
+    if (!isTrackableSecurityCode(code)) return;
+
+    const previous = candidates.get(code);
+    const nextName = name ?? previous?.name ?? SECURITIES_BY_CODE[code]?.name ?? code;
+    const nextTargetAccounts = [...new Set([...(previous?.target_accounts ?? []), ...targetAccounts].filter(Boolean))];
+    const nextTrackingSources = [...new Set([...(previous?.tracking_sources ?? []), trackingSource].filter(Boolean))];
+
+    candidates.set(code, {
+      code,
+      name: nextName,
+      account: previous?.account ?? account ?? null,
+      bucket: previous?.bucket ?? bucket,
+      type: previous?.type ?? type,
+      target_accounts: nextTargetAccounts,
+      tracking_sources: nextTrackingSources,
+    });
+  };
+
+  for (const item of stage2Data?.candidate_scores ?? []) {
+    const code = resolveSecurityCodeFromCandidates(item?.code, item?.name);
+    upsert({
+      code,
+      name: item?.name ?? SECURITIES_BY_CODE[code]?.name ?? null,
+      account: Array.isArray(item?.target_accounts) ? item.target_accounts[0] ?? null : null,
+      bucket: 'stage2_candidate',
+      trackingSource: 'stage2_candidate',
+      targetAccounts: item?.target_accounts ?? [],
+    });
+  }
+
+  const actionSpecs = [
+    ['buy_candidates', 'stage2_buy_candidate'],
+    ['hold_candidates', 'stage2_hold_candidate'],
+    ['trim_candidates', 'stage2_trim_candidate'],
+  ];
+
+  for (const action of stage2Data?.account_actions ?? []) {
+    for (const [field, trackingSource] of actionSpecs) {
+      for (const rawCode of action?.[field] ?? []) {
+        const code = resolveSecurityCodeFromCandidates(rawCode);
+        upsert({
+          code,
+          name: SECURITIES_BY_CODE[code]?.name ?? (String(rawCode ?? '').trim() || null),
+          account: action?.account_key ?? null,
+          bucket: 'stage2_candidate',
+          trackingSource,
+          targetAccounts: action?.account_key ? [action.account_key] : [],
+        });
+      }
+    }
+  }
+
+  return [...candidates.values()];
+}
+
+async function loadMarketSnapshot(date) {
+  const filePath = path.join(process.cwd(), 'data', 'market', `${date}.json`);
+  return readJson(filePath);
 }
 
 async function fetchNaverSeries(urlBuilder) {
@@ -788,14 +878,6 @@ function buildSignalReason({ score, close, ma20, ma60, rsi, macd, bollingerPosit
   return reasons.slice(0, 3).join(', ');
 }
 
-function computeRecentHigh(highs, window = 20) {
-  const series = highs.slice(-window).filter((value) => value != null);
-  if (!series.length) {
-    return null;
-  }
-  return Math.max(...series);
-}
-
 function calculateIndicators(history, snapshot) {
   const closes = history.map((row) => row.close);
   const highs = history.map((row) => row.high);
@@ -825,7 +907,6 @@ function calculateIndicators(history, snapshot) {
     signalPeriod: 3,
   });
   const adxSeries = ADX.calculate({ high: highs, low: lows, close: closes, period: 14 });
-  const atrSeries = ATR.calculate({ high: highs, low: lows, close: closes, period: 14 });
 
   const ma5 = getLatestAndPrevious(ma5Series);
   const ma20 = getLatestAndPrevious(ma20Series);
@@ -836,21 +917,28 @@ function calculateIndicators(history, snapshot) {
   const bollinger = getLatestAndPrevious(bollingerSeries);
   const stochastic = getLatestAndPrevious(stochasticSeries);
   const adx = getLatestAndPrevious(adxSeries);
-  const atr = getLatestAndPrevious(atrSeries);
   const volumeMa20 = getLatestAndPrevious(volumeMa20Series);
 
   const latestClose = snapshot?.close ?? history.at(-1)?.close ?? null;
-  const atrPct =
-    latestClose != null && atr.latest != null && latestClose !== 0
-      ? atr.latest / latestClose
-      : null;
   const volumeRatio =
     snapshot?.volume != null && volumeMa20.latest != null && volumeMa20.latest !== 0
       ? snapshot.volume / volumeMa20.latest
       : null;
   const bollingerPosition = determineBollingerPosition(latestClose, bollinger.latest);
-  const recentHighWindow = 20;
-  const recentHigh = computeRecentHigh(highs, recentHighWindow);
+  const rsiDivergence = detectRsiDivergence(history, rsiSeries);
+  const indicatorAnalysis = {
+    rsi: analyzeRsi(rsi.latest, rsiDivergence),
+    macd: analyzeMacd(macd.latest, macd.previous),
+    bollinger: analyzeBollinger(latestClose, bollinger.latest, bollingerPosition),
+    movingAverage: analyzeMovingAverages(
+      latestClose,
+      ma5.latest,
+      ma20.latest,
+      ma60.latest,
+      ma120.latest,
+    ),
+  };
+  const executionBias = summarizeExecutionBias(indicatorAnalysis);
 
   const score = calcScore({
     close: latestClose,
@@ -921,25 +1009,11 @@ function calculateIndicators(history, snapshot) {
           mdi: roundNumber(adx.latest.mdi, 2),
         }
       : null,
-    atr: atr.latest != null
-      ? {
-          value: roundNumber(atr.latest, 4),
-          pct: roundNumber(atrPct, 6),
-        }
-      : null,
     ma: {
       ma5: roundNumber(ma5.latest, 4),
       ma20: roundNumber(ma20.latest, 4),
       ma60: roundNumber(ma60.latest, 4),
       ma120: roundNumber(ma120.latest, 4),
-    },
-    recent_high: {
-      window: recentHighWindow,
-      value: roundNumber(recentHigh, 4),
-      distance_pct:
-        recentHigh != null && latestClose != null && recentHigh !== 0
-          ? roundNumber((latestClose - recentHigh) / recentHigh, 6)
-          : null,
     },
     volume_ratio: roundNumber(volumeRatio, 3),
     close: roundNumber(latestClose, 4),
@@ -988,51 +1062,63 @@ function determineMarketSignal(indexIndicators, vix) {
 
 async function main() {
   const args = parseArgs(process.argv.slice(2));
-  const [market, priorTechnical] = await Promise.all([
-    loadMarketSnapshot(args.date),
-    loadPreviousTechnicalSnapshot(args.date),
-  ]);
+  const market = await loadMarketSnapshot(args.date);
   const watchlist = await loadWatchlist();
-  const items = flattenWatchlist(watchlist);
+  const outputPath = path.join(process.cwd(), 'data', 'technical', `${args.date}.json`);
+  const existingOutput = args.mergeExisting ? await readJsonIfExists(outputPath, null) : null;
+  const stage2Items = args.includeStage2Candidates ? await loadStage2CandidateItems(args.date) : [];
+  const items = mergeTrackedItems(flattenWatchlist(watchlist), stage2Items);
 
-  const output = {
-    date: args.date,
-    generated_at: new Date().toISOString(),
-    market_context: {},
-    scores: {},
-  };
-
-  try {
-    const kospiHistory = await initIndexHistoricalData('KOSPI');
-    const kospiIndicators = calculateIndicators(kospiHistory, market.indices?.KOSPI ?? null);
-    const vix = market.macro?.VIX?.close ?? null;
-    output.market_context = {
-      index: 'KOSPI',
-      signal: determineMarketSignal(kospiIndicators, vix),
-      vix: roundNumber(vix, 4),
-      score: kospiIndicators.score,
-      close: kospiIndicators.close,
-      ma: kospiIndicators.ma,
-      rsi: kospiIndicators.rsi,
-      alerts: kospiIndicators.alerts,
-    };
-    console.log('- 시장 컨텍스트 계산 완료');
-  } catch (error) {
-    const message = error instanceof Error ? error.message : String(error);
-    console.warn(`⚠️ 시장 컨텍스트 계산 실패: ${message}`);
-    if (priorTechnical?.snapshot?.market_context) {
-      output.market_context = {
-        ...priorTechnical.snapshot.market_context,
-        fallback: {
-          source: 'previous_technical_snapshot',
-          recovered_from_date: priorTechnical.date,
-          reason: message,
-        },
+  const output = existingOutput
+    ? {
+        ...existingOutput,
+        date: args.date,
+        generated_at: new Date().toISOString(),
+        market_context: existingOutput.market_context ?? {},
+        scores: { ...(existingOutput.scores ?? {}) },
+      }
+    : {
+        date: args.date,
+        generated_at: new Date().toISOString(),
+        market_context: {},
+        scores: {},
       };
+
+  if (Object.keys(output.market_context ?? {}).length === 0) {
+    try {
+      const kospiHistory = await initIndexHistoricalData('KOSPI');
+      const kospiIndicators = calculateIndicators(kospiHistory, market.indices?.KOSPI ?? null);
+      const vix = market.macro?.VIX?.close ?? null;
+      output.market_context = {
+        index: 'KOSPI',
+        signal: determineMarketSignal(kospiIndicators, vix),
+        vix: roundNumber(vix, 4),
+        score: kospiIndicators.score,
+        close: kospiIndicators.close,
+        ma: kospiIndicators.ma,
+        rsi: kospiIndicators.rsi,
+        alerts: kospiIndicators.alerts,
+      };
+      console.log('- 시장 컨텍스트 계산 완료');
+    } catch (error) {
+      const message = error instanceof Error ? error.message : String(error);
+      console.warn(`⚠️ 시장 컨텍스트 계산 실패: ${message}`);
     }
   }
 
-  for (const item of items) {
+  const existingCodes = new Set(Object.keys(output.scores ?? {}));
+  const pendingItems = args.mergeExisting
+    ? items.filter((item) => !existingCodes.has(item.code))
+    : items;
+
+  if (args.includeStage2Candidates) {
+    console.log(`- Stage 2 후보 보강 대상 ${stage2Items.length}개 로드`);
+  }
+  if (args.mergeExisting) {
+    console.log(`- 기존 기술 스냅샷 ${existingCodes.size}개 유지, 추가 계산 ${pendingItems.length}개`);
+  }
+
+  for (const item of pendingItems) {
     try {
       const history = await initHistoricalData(item);
       if (history.length < 120) {
@@ -1046,6 +1132,8 @@ async function main() {
         code: item.code,
         name: snapshot?.name ?? item.name,
         account: item.account ?? null,
+        target_accounts: item.target_accounts ?? [],
+        tracking_sources: item.tracking_sources ?? ['watchlist'],
         bucket: item.bucket,
         type: item.type,
         ...indicators,
@@ -1056,26 +1144,9 @@ async function main() {
     } catch (error) {
       const message = error instanceof Error ? error.message : String(error);
       console.warn(`⚠️ ${item.name} 기술적 분석 실패: ${message}`);
-      const fallbackIndicators = priorTechnical?.snapshot?.scores?.[item.code] ?? null;
-      if (fallbackIndicators) {
-        output.scores[item.code] = {
-          ...fallbackIndicators,
-          code: item.code,
-          name: fallbackIndicators.name ?? item.name,
-          account: fallbackIndicators.account ?? item.account ?? null,
-          bucket: fallbackIndicators.bucket ?? item.bucket,
-          type: fallbackIndicators.type ?? item.type,
-          fallback: {
-            source: 'previous_technical_snapshot',
-            recovered_from_date: priorTechnical.date,
-            reason: message,
-          },
-        };
-      }
     }
   }
 
-  const outputPath = path.join(process.cwd(), 'data', 'technical', `${args.date}.json`);
   await fs.mkdir(path.dirname(outputPath), { recursive: true });
   await fs.writeFile(outputPath, JSON.stringify(output, null, 2), 'utf8');
 

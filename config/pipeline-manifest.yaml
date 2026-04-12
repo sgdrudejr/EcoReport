@@ -1,0 +1,179 @@
+{
+  "version": "1.0",
+  "steps": [
+    {
+      "id": "stage1_extracts",
+      "label": "Stage 1 Extracts",
+      "command": "node scripts/build-stage1-report-extracts.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
+      "inputs": [
+        "data/reports/{{date}}/index.json",
+        "data/portfolio/latest.json"
+      ],
+      "outputs": [
+        "data/analysis-state/{{date}}/stage1-report-extracts-v2.json"
+      ],
+      "depends_on": [],
+      "cache_key": "stage1:{{date}}",
+      "timeout": 600000
+    },
+    {
+      "id": "stage1_5_prompt",
+      "label": "Stage 1.5 Deep Research Prompt",
+      "command": "node scripts/build-stage1-5-gemini-deep-research-prompt.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
+      "inputs": [
+        "data/analysis-state/{{date}}/stage1-report-extracts-v2.json"
+      ],
+      "outputs": [
+        "knowledge/daily/{{date}}-gemini-deep-research-prompt.md"
+      ],
+      "depends_on": [
+        "stage1_extracts"
+      ],
+      "cache_key": "stage1.5:{{date}}",
+      "timeout": 300000,
+      "allow_failure": true
+    },
+    {
+      "id": "stage2_prompt",
+      "label": "Stage 2 Strategy Prompt",
+      "command": "node scripts/build-stage2-strategy-prompt.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
+      "inputs": [
+        "data/analysis-state/{{date}}/stage1-report-extracts-v2.json",
+        "data/portfolio/latest.json",
+        "data/technical/{{date}}.json"
+      ],
+      "outputs": [
+        "knowledge/daily/manual-kit/{{date}}/08-stage2-strategy-prompt.md"
+      ],
+      "depends_on": [
+        "stage1_extracts"
+      ],
+      "cache_key": "stage2-prompt:{{date}}",
+      "timeout": 300000
+    },
+    {
+      "id": "stage2_strategy",
+      "label": "Stage 2 Strategy",
+      "command": "bash scripts/run-stage2-step.sh --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}} --mode {{stage2Mode}}",
+      "inputs": [
+        "knowledge/daily/manual-kit/{{date}}/08-stage2-strategy-prompt.md"
+      ],
+      "outputs": [
+        "data/analysis-state/{{date}}/stage2-strategy-options.json",
+        "data/analysis-state/{{date}}/stage2-run-log.json"
+      ],
+      "depends_on": [
+        "stage2_prompt"
+      ],
+      "cache_key": "stage2:{{date}}:{{stage2Mode}}",
+      "timeout": 900000
+    },
+    {
+      "id": "technical_refresh_stage2",
+      "label": "Stage 2 Candidate Technical Refresh",
+      "command": "node scripts/calc-technicals.js --date {{date}} --include-stage2-candidates --merge-existing",
+      "inputs": [
+        "data/analysis-state/{{date}}/stage2-strategy-options.json",
+        "data/technical/{{date}}.json"
+      ],
+      "outputs": [
+        "data/technical/{{date}}.json"
+      ],
+      "depends_on": [
+        "stage2_strategy"
+      ],
+      "cache_key": "technical-refresh:{{date}}",
+      "timeout": 300000,
+      "allow_failure": true
+    },
+    {
+      "id": "impact_map",
+      "label": "Impact Map",
+      "command": "node scripts/build-impact-map.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
+      "inputs": [
+        "data/analysis-state/{{date}}/stage1-report-extracts-v2.json",
+        "data/analysis-state/{{date}}/stage2-strategy-options.json"
+      ],
+      "outputs": [
+        "data/analysis-state/{{date}}/impact-map.json"
+      ],
+      "depends_on": [
+        "stage1_extracts",
+        "stage2_strategy"
+      ],
+      "cache_key": "impact-map:{{date}}",
+      "timeout": 300000
+    },
+    {
+      "id": "stage3_quant",
+      "label": "Stage 3 Quant",
+      "command": "node scripts/build-stage3-quant-scores.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
+      "inputs": [
+        "data/analysis-state/{{date}}/impact-map.json",
+        "data/technical/{{date}}.json",
+        "data/portfolio/latest.json"
+      ],
+      "outputs": [
+        "data/analysis-state/{{date}}/stage3-quant-scores.json"
+      ],
+      "depends_on": [
+        "impact_map"
+      ],
+      "cache_key": "stage3:{{date}}",
+      "timeout": 300000
+    },
+    {
+      "id": "holding_clusters",
+      "label": "Holding Clusters",
+      "command": "node scripts/build-holding-clusters.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
+      "inputs": [
+        "data/analysis-state/{{date}}/stage3-quant-scores.json"
+      ],
+      "outputs": [
+        "data/analysis-state/{{date}}/holding-clusters.json"
+      ],
+      "depends_on": [
+        "stage3_quant"
+      ],
+      "cache_key": "holding-clusters:{{date}}",
+      "timeout": 300000,
+      "allow_failure": true
+    },
+    {
+      "id": "stage4_execution_plan",
+      "label": "Stage 4 Execution Plan",
+      "command": "node scripts/build-stage4-execution-plan.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
+      "inputs": [
+        "data/analysis-state/{{date}}/stage3-quant-scores.json",
+        "data/analysis-state/{{date}}/holding-clusters.json"
+      ],
+      "outputs": [
+        "data/analysis-state/{{date}}/stage4-execution-plan.json"
+      ],
+      "depends_on": [
+        "stage3_quant",
+        "holding_clusters"
+      ],
+      "cache_key": "stage4:{{date}}",
+      "timeout": 300000
+    },
+    {
+      "id": "feedback_snapshot",
+      "label": "Feedback Snapshot",
+      "command": "node scripts/build-feedback-snapshot.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
+      "inputs": [
+        "data/analysis-state/{{date}}/stage3-quant-scores.json",
+        "data/analysis-state/{{date}}/stage4-execution-plan.json"
+      ],
+      "outputs": [
+        "data/feedback/snapshots/{{date}}.json"
+      ],
+      "depends_on": [
+        "stage4_execution_plan"
+      ],
+      "cache_key": "feedback-snapshot:{{date}}",
+      "timeout": 300000,
+      "allow_failure": true
+    }
+  ]
+}

@@ -1,222 +1,116 @@
 #!/usr/bin/env node
-// F1: Stage 3/4 산출물을 매일 스냅샷으로 고정해 이후 성과 비교의 기준점으로 사용합니다.
+/**
+ * Performance Feedback Loop — Step 1: 일일 스냅샷 저장
+ *
+ * Stage 3 + Stage 4 + technical 데이터에서 핵심 시그널을 추출해
+ * data/feedback/snapshots/{DATE}.json 에 기록한다.
+ *
+ * 이후 build-feedback-analysis.js가 N일 후 실제 수익률과 비교한다.
+ *
+ * 사용:
+ *   node scripts/build-feedback-snapshot.js --date 2026-04-10
+ */
 
 import path from "node:path";
+import fs from "node:fs/promises";
 
 import {
   ROOT_DIR,
   buildRunMetadata,
-  enrichPortfolioWithSecurityCodes,
   parseDateArgs,
   readJson,
   writeJson,
 } from "./lib/pipeline-utils.js";
 
-function buildPortfolioPositionMap(portfolio) {
-  const positions = new Map();
-
-  for (const account of portfolio?.accounts ?? []) {
-    for (const holding of account.holdings ?? []) {
-      if (!holding.code) continue;
-      positions.set(`${account.key}:${holding.code}`, {
-        accountKey: account.key,
-        accountLabel: account.label,
-        code: holding.code,
-        name: holding.name,
-        currentPrice:
-          typeof holding.currentPrice === "number" ? holding.currentPrice : null,
-        avgPrice: typeof holding.avgPrice === "number" ? holding.avgPrice : null,
-        quantity: typeof holding.quantity === "number" ? holding.quantity : null,
-        marketValue:
-          typeof holding.marketValue === "number" ? holding.marketValue : null,
-        purchaseValue:
-          typeof holding.purchaseValue === "number" ? holding.purchaseValue : null,
-        profitLoss:
-          typeof holding.profitLoss === "number" ? holding.profitLoss : null,
-        profitRate:
-          typeof holding.profitRate === "number" ? holding.profitRate : null,
-      });
-    }
-  }
-
-  return positions;
-}
-
-function normalizeStage4Plan(plan) {
-  return {
-    key: plan?.key ?? null,
-    label: plan?.label ?? null,
-    totalScore: plan?.totalScore ?? null,
-    stage2Bias: plan?.stage2Bias ?? null,
-    deployBudget: plan?.deployBudget ?? null,
-    reserveCash: plan?.reserveCash ?? null,
-    topGap: plan?.topGap ?? null,
-    candidateFromGap: plan?.candidateFromGap ?? null,
-    stagedBuys: (plan?.stagedBuys ?? []).map((item) => ({
-      code: item?.code ?? null,
-      name: item?.name ?? null,
-      suggestedAmount: item?.suggestedAmount ?? null,
-      reason: item?.reason ?? null,
-      source: item?.source ?? null,
-    })),
-    trims: (plan?.trims ?? []).map((item) => ({
-      code: item?.code ?? null,
-      name: item?.name ?? null,
-      score: item?.score ?? null,
-      reason: item?.reason ?? null,
-    })),
-    holds: (plan?.holds ?? []).map((item) => ({
-      code: item?.code ?? null,
-      name: item?.name ?? null,
-      score: item?.score ?? null,
-      reason: item?.reason ?? null,
-    })),
-    watches: (plan?.watches ?? []).map((item) => ({
-      code: item?.code ?? null,
-      name: item?.name ?? null,
-      score: item?.score ?? null,
-      reason: item?.reason ?? null,
-    })),
-  };
-}
-
-function extractReportSources(stage3Position) {
-  return [
-    ...new Set(
-      (stage3Position?.reportImpacts ?? []).flatMap((impact) => [
-        impact?.broker ?? null,
-        impact?.reportType
-          ? `${impact.reportType}:${impact.broker ?? "unknown"}`
-          : null,
-      ]),
-    ),
-  ].filter(Boolean);
-}
-
-function normalizePosition(positionKey, stage3Position, portfolioPosition) {
-  return {
-    positionKey,
-    code: stage3Position?.code ?? portfolioPosition?.code ?? null,
-    name: stage3Position?.name ?? portfolioPosition?.name ?? null,
-    accountKey: stage3Position?.accountKey ?? portfolioPosition?.accountKey ?? null,
-    accountLabel:
-      stage3Position?.accountLabel ?? portfolioPosition?.accountLabel ?? null,
-    category: stage3Position?.category ?? null,
-    signal: stage3Position?.signal ?? null,
-    conviction: stage3Position?.conviction ?? null,
-    actionScore:
-      stage3Position?.actionScore ?? stage3Position?.scores?.actionScore ?? null,
-    rawActionScore:
-      stage3Position?.rawActionScore ??
-      stage3Position?.scores?.rawActionScore ??
-      null,
-    technicalBaseScore:
-      stage3Position?.technicalBaseScore ??
-      stage3Position?.scores?.techScore ??
-      null,
-    reportScore:
-      stage3Position?.report?.impactScore ??
-      stage3Position?.scores?.reportScore ??
-      null,
-    factorScore:
-      stage3Position?.factor?.score ??
-      stage3Position?.scores?.factorScore ??
-      null,
-    entryPrice:
-      portfolioPosition?.currentPrice ??
-      stage3Position?.technical?.close ??
-      portfolioPosition?.avgPrice ??
-      null,
-    currentPrice: portfolioPosition?.currentPrice ?? null,
-    avgPrice: portfolioPosition?.avgPrice ?? null,
-    quantity: portfolioPosition?.quantity ?? null,
-    marketValue:
-      portfolioPosition?.marketValue ?? stage3Position?.marketValue ?? null,
-    purchaseValue: portfolioPosition?.purchaseValue ?? null,
-    profitLoss: portfolioPosition?.profitLoss ?? null,
-    profitRate: portfolioPosition?.profitRate ?? null,
-    factors: {
-      raw: stage3Position?.factor?.raw ?? {},
-      zScores: stage3Position?.factor?.zScores ?? {},
-      weightedZ: stage3Position?.factor?.weightedZ ?? null,
-      coverage: stage3Position?.factor?.factorCoverage ?? null,
-      availability: stage3Position?.factor?.availability ?? {},
-    },
-    report: {
-      available: stage3Position?.report?.available ?? null,
-      impactScore: stage3Position?.report?.impactScore ?? null,
-      impactValue: stage3Position?.report?.impactValue ?? null,
-      impactCount: stage3Position?.report?.impactCount ?? null,
-      unavailableReason: stage3Position?.report?.unavailableReason ?? null,
-    },
-    reportScore:
-      stage3Position?.report?.impactScore ??
-      stage3Position?.scores?.reportScore ??
-      null,
-    reportImpactCount:
-      stage3Position?.report?.impactCount ??
-      (stage3Position?.reportImpacts ?? []).length ??
-      null,
-    reportSources: extractReportSources(stage3Position),
-    probabilities: stage3Position?.probabilities ?? {},
-    explain: {
-      topDrivers: stage3Position?.explain?.topDrivers ?? [],
-      warnings: stage3Position?.explain?.warnings ?? [],
-    },
-  };
-}
-
 async function main() {
   const args = parseDateArgs(process.argv.slice(2));
-  const stateDir = path.join(ROOT_DIR, "data", "analysis-state", args.date);
-  const outputPath =
-    args.output ??
-    path.join(ROOT_DIR, "data", "feedback", "snapshots", `${args.date}.json`);
+  const date = args.date;
 
-  const [portfolio, stage3, stage4] = await Promise.all([
-    readJson(path.join(ROOT_DIR, "data", "portfolio", "latest.json"), {
-      accounts: [],
-    }),
-    readJson(path.join(stateDir, "stage3-quant-scores.json"), null),
-    readJson(path.join(stateDir, "stage4-execution-plan.json"), null),
+  const analysisDir = path.join(ROOT_DIR, "data", "analysis-state", date);
+  const stage3Path = path.join(analysisDir, "stage3-quant-scores.json");
+  const stage4Path = path.join(analysisDir, "stage4-execution-plan.json");
+  const techPath = path.join(ROOT_DIR, "data", "technical", `${date}.json`);
+
+  const [stage3, stage4, technical] = await Promise.all([
+    readJson(stage3Path),
+    readJson(stage4Path),
+    readJson(techPath),
   ]);
 
   if (!stage3 || !stage4) {
-    throw new Error("stage3 또는 stage4 산출물이 없어 feedback snapshot을 만들 수 없습니다.");
+    console.error(`[feedback-snapshot] stage3 또는 stage4 데이터 없음: ${date}`);
+    process.exit(1);
   }
 
-  const normalizedPortfolio = enrichPortfolioWithSecurityCodes(portfolio);
-  const portfolioPositions = buildPortfolioPositionMap(normalizedPortfolio);
-  const stage3Positions = stage3.positions ?? {};
+  const techScores = technical?.scores ?? {};
+  const positionsMap =
+    Object.keys(stage3?.positions ?? {}).length > 0
+      ? stage3.positions
+      : stage3.holdings ?? {};
+  const uniqueStrings = (items) => [...new Set((items ?? []).filter(Boolean))];
 
-  const positions = Object.entries(stage3Positions).map(([positionKey, item]) =>
-    normalizePosition(positionKey, item, portfolioPositions.get(positionKey) ?? null),
-  );
+  // 포지션별 스냅샷 추출
+  const positions = Object.values(positionsMap).map((h) => {
+    const tech = techScores[h.code] ?? {};
+    const reportSources = uniqueStrings(
+      (h.reportImpacts ?? []).flatMap((impact) => [
+        impact?.broker ?? null,
+        impact?.reportType ? `${impact.reportType}:${impact.broker ?? "unknown"}` : null,
+      ]),
+    );
+    return {
+      code: h.code,
+      name: h.name,
+      accountKey: h.accountKey,
+      category: h.category,
+      marketValue: h.marketValue,
+      actionScore: h.actionScore,
+      signal: h.signal,
+      conviction: h.conviction,
+      factorScore: h.scores?.factorScore ?? null,
+      techScore: h.scores?.techScore ?? null,
+      reportScore: h.scores?.reportScore ?? null,
+      reportImpactCount: h.report?.impactCount ?? (h.reportImpacts ?? []).length ?? 0,
+      reportSources,
+      scoreDecomposition: h.scoreDecomposition ?? null,
+      factors: h.factor?.zScores ?? h.factor?.raw ?? null,
+      closePrice: tech.close ?? null,
+      rsi: tech.rsi ?? null,
+    };
+  });
 
-  const payload = {
-    ...buildRunMetadata(args, {
-      date: stage4.date ?? stage3.date ?? args.date,
-      runDate: stage4.runDate ?? stage3.runDate ?? args.runDate,
-      effectiveMarketDate:
-        stage4.effectiveMarketDate ??
-        stage3.effectiveMarketDate ??
-        args.effectiveMarketDate,
-    }),
-    portfolioDate: normalizedPortfolio?.date ?? null,
-    portfolioUpdatedAt: normalizedPortfolio?.updatedAt ?? null,
-    regime: stage4.regime ?? stage3.regime ?? null,
-    portfolioScore: stage4.portfolioScore ?? stage3.portfolio?.totalScore ?? null,
-    coverage: stage3.coverage ?? null,
-    configUsed: stage3.configUsed ?? null,
+  // Stage 4 요약
+  const accountSummaries = (stage4.accountPlans ?? []).map((plan) => ({
+    key: plan.key,
+    totalScore: plan.totalScore,
+    stage2Bias: plan.stage2Bias,
+    deployBudget: plan.deployBudget,
+    buysCount: (plan.stagedBuys ?? []).length,
+    holdsCount: (plan.holds ?? []).length,
+    trimsCount: (plan.trims ?? []).length,
+    watchesCount: (plan.watches ?? []).length,
+    scoreDecomposition: stage3.accounts?.[plan.key]?.scoreDecomposition ?? null,
+  }));
+
+  const snapshot = {
+    ...buildRunMetadata(args),
+    regime: stage3.regime?.name ?? null,
+    regimeConfidence: stage3.regime?.confidence ?? null,
+    portfolioScore: stage4.portfolioScore ?? null,
+    marketClose: technical?.market_context?.close ?? null,
     positions,
-    accountPlans: (stage4.accountPlans ?? []).map(normalizeStage4Plan),
+    accountSummaries,
+    stage2Source: stage3.stage2Source ?? null,
   };
 
-  await writeJson(outputPath, payload);
-  console.log(outputPath);
+  const outDir = path.join(ROOT_DIR, "data", "feedback", "snapshots");
+  await fs.mkdir(outDir, { recursive: true });
+  const outPath = path.join(outDir, `${date}.json`);
+  await writeJson(outPath, snapshot);
+  console.log(outPath);
 }
 
-main().catch((error) => {
-  console.error(`feedback snapshot 생성 실패: ${error.message}`);
+main().catch((err) => {
+  console.error(`[feedback-snapshot] 실패: ${err.message}`);
   process.exit(1);
 });

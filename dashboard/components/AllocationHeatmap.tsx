@@ -53,16 +53,6 @@ function cellTone(gapPct: number) {
   };
 }
 
-function strongestGapLabel(cells: AllocationHeatmapCell[]) {
-  const top = [...cells].sort(
-    (left, right) => Math.abs(right.gapPct) - Math.abs(left.gapPct),
-  )[0];
-
-  if (!top) return "표시할 배분 데이터 없음";
-  if (Math.abs(top.gapPct) < 0.02) return "대체로 목표 배분 근처";
-  return `${top.category} ${formatGap(top.gapPct)} 차이`;
-}
-
 export default function AllocationHeatmap({
   rows,
   categories,
@@ -99,35 +89,30 @@ export default function AllocationHeatmap({
       </div>
 
       {rows.length > 0 && categories.length > 0 ? (
-        <div className="mt-4 space-y-4">
-          <div className="overflow-x-auto rounded-[1.2rem] border border-slate-200 bg-white">
+        <div className="mt-4">
+          <div className="rounded-[1.2rem] border border-slate-200 bg-white">
             <table className="min-w-full border-collapse">
               <thead className="bg-slate-50 text-left text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-400">
                 <tr>
-                  <th className="px-4 py-3">계좌</th>
-                  {categories.map((category) => (
-                    <th key={category} className="px-3 py-3 text-center">
-                      {category}
+                  <th className="px-4 py-3">카테고리</th>
+                  {rows.map((row) => (
+                    <th key={row.accountKey} className="px-3 py-3 text-center">
+                      {row.accountLabel}
                     </th>
                   ))}
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-200">
-                {rows.map((row) => (
-                  <tr key={row.accountKey} className="align-top">
+                {categories.map((category) => (
+                  <tr key={category} className="align-top">
                     <td className="px-4 py-4">
-                      <div>
-                        <p className="font-semibold text-slate-900">{row.accountLabel}</p>
-                        <p className="mt-1 text-xs text-slate-500">
-                          {strongestGapLabel(row.cells)}
-                        </p>
-                      </div>
+                      <p className="font-semibold text-slate-900">{category}</p>
                     </td>
-                    {categories.map((category) => {
+                    {rows.map((row) => {
                       const cell = row.cells.find((item) => item.category === category);
                       if (!cell) {
                         return (
-                          <td key={`${row.accountKey}-${category}`} className="px-3 py-4">
+                          <td key={`${category}-${row.accountKey}`} className="px-3 py-4">
                             <div className="rounded-[1rem] border border-dashed border-slate-200 bg-slate-50/80 px-3 py-3 text-center text-xs text-slate-400">
                               -
                             </div>
@@ -137,10 +122,10 @@ export default function AllocationHeatmap({
 
                       const tone = cellTone(cell.gapPct);
                       return (
-                        <td key={`${row.accountKey}-${category}`} className="px-3 py-4">
+                        <td key={`${category}-${row.accountKey}`} className="px-3 py-4">
                           <div
                             className={joinClasses(
-                              "min-w-[120px] rounded-[1rem] border px-3 py-3",
+                              "min-w-[96px] rounded-[1rem] border px-3 py-3",
                               tone.className,
                             )}
                           >
@@ -162,42 +147,6 @@ export default function AllocationHeatmap({
                 ))}
               </tbody>
             </table>
-          </div>
-
-          <div className="grid gap-3 md:grid-cols-3">
-            {rows.map((row) => {
-              const top = [...row.cells].sort(
-                (left, right) => Math.abs(right.gapPct) - Math.abs(left.gapPct),
-              )[0];
-              const tone = top ? cellTone(top.gapPct) : null;
-
-              return (
-                <div
-                  key={`${row.accountKey}-summary`}
-                  className="rounded-[1rem] border border-slate-200 bg-white px-4 py-4"
-                >
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
-                    {row.accountLabel}
-                  </p>
-                  <p className="mt-2 text-sm font-semibold text-slate-950">
-                    {top ? top.category : "데이터 없음"}
-                  </p>
-                  <p className="mt-1 text-sm text-slate-600">
-                    {top ? `가장 큰 차이 ${formatGap(top.gapPct)}` : "목표 배분 정보 없음"}
-                  </p>
-                  {tone ? (
-                    <span
-                      className={joinClasses(
-                        "mt-3 inline-flex rounded-full px-2.5 py-1 text-[11px] font-medium",
-                        tone.className,
-                      )}
-                    >
-                      {tone.label}
-                    </span>
-                  ) : null}
-                </div>
-              );
-            })}
           </div>
         </div>
       ) : (

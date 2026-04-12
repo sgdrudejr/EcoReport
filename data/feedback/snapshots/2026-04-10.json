@@ -3,221 +3,72 @@
   "runDate": "2026-04-12",
   "effectiveMarketDate": "2026-04-10",
   "runId": null,
-  "generatedAt": "2026-04-11T16:25:35.282Z",
-  "portfolioDate": "2026-04-10",
-  "portfolioUpdatedAt": "2026-04-11T07:12:27.281Z",
-  "regime": {
-    "name": "BULL",
-    "confidence": 0.68,
-    "voteSum": 2,
-    "signals": [
-      "VIX 19.49<20",
-      "T10Y2Y 0.5 (플랫)",
-      "CPI YoY 3.286% 보통",
-      "가격>MA20>MA60"
-    ],
-    "market_context": {
-      "index": "KOSPI",
-      "signal": "BULLISH",
-      "vix": null,
-      "score": 96,
-      "close": 5858.87,
-      "ma": {
-        "ma5": 5690.866,
-        "ma20": 5551.7565,
-        "ma60": 5411.3985,
-        "ma120": 4746.0371
-      },
-      "rsi": 57.43,
-      "alerts": []
-    }
-  },
-  "portfolioScore": 50,
-  "coverage": {
-    "factorCoverage": 0.9774,
-    "techCoverage": 0.9096,
-    "impactCoverage": 0.6327,
-    "stage2Available": true
-  },
-  "configUsed": {
-    "weightProfile": "balanced",
-    "maxWeights": {
-      "allocation": 0.4,
-      "factor": 0.1,
-      "tech": 0.25,
-      "report": 0.1,
-      "regime": 0.05,
-      "stage2": 0.05,
-      "leading": 0.05
-    },
-    "factorModel": {
-      "winsorZ": 3.5,
-      "scoreScale": 14,
-      "weights": {
-        "momentum": 0.35,
-        "research": 0.3,
-        "income": 0.15,
-        "macroFit": 0.2
-      }
-    },
-    "holdingBlend": {
-      "enabled": true,
-      "actionWeight": 0.92,
-      "factorWeight": 0.08,
-      "minFactorCoverage": 0.35,
-      "maxAdjustment": 18,
-      "gateMode": "sameSignal",
-      "minFactorDistance": 8
-    },
-    "covarianceModel": {
-      "enabled": true,
-      "shrinkage": 0.35,
-      "lambda": 0.55,
-      "minHistory": 20,
-      "annualization": 252,
-      "ridge": 0.000001
-    },
-    "taxAware": {
-      "enabled": true,
-      "alpha": 1.6,
-      "normalTaxRate": 0.154,
-      "minRiskFloor": 0.08,
-      "maxMultiplier": 1.15
-    },
-    "riskPenaltyCaps": {
-      "concentration": 10,
-      "covariance": 8,
-      "tailRisk": 15,
-      "dataQuality": 10,
-      "regimeStress": 10,
-      "total": 30
-    },
-    "researchSourceAccuracyLoaded": true
-  },
+  "generatedAt": "2026-04-12T05:37:37.264Z",
+  "regime": "BULL",
+  "regimeConfidence": 0.68,
+  "portfolioScore": 63,
+  "marketClose": 5858.87,
   "positions": [
     {
-      "positionKey": "ISA:360750",
       "code": "360750",
       "name": "TIGER 미국S&P500",
       "accountKey": "ISA",
-      "accountLabel": "ISA",
       "category": "미국인덱스",
+      "marketValue": 491400,
+      "actionScore": 51,
       "signal": "WATCH",
       "conviction": "MEDIUM",
-      "actionScore": 52,
-      "rawActionScore": 52,
-      "technicalBaseScore": 77,
+      "factorScore": 44,
+      "techScore": 77,
       "reportScore": 39,
-      "factorScore": 46,
-      "entryPrice": 24570,
-      "currentPrice": 24570,
-      "avgPrice": null,
-      "quantity": 20,
-      "marketValue": 491400,
-      "purchaseValue": null,
-      "profitLoss": null,
-      "profitRate": null,
-      "factors": {
-        "raw": {
-          "momentum": 0.668,
-          "research": 0.0274,
-          "income": 0.013,
-          "macroFit": 1.909
-        },
-        "zScores": {
-          "momentum": 0.2,
-          "research": -1.8979,
-          "income": 0.0438,
-          "macroFit": 1.1587
-        },
-        "weightedZ": -0.2611,
-        "coverage": 1,
-        "availability": {
-          "momentum": 1,
-          "research": 1,
-          "income": 1,
-          "macroFit": 1
-        }
-      },
-      "report": {
-        "available": true,
-        "impactScore": 39,
-        "impactValue": -0.359,
-        "impactCount": 2,
-        "unavailableReason": null
-      },
       "reportImpactCount": 2,
       "reportSources": [
         "매시 트레이딩 - 매크로, 시황으로 드리블",
         "marketvoice:매시 트레이딩 - 매크로, 시황으로 드리블"
       ],
-      "probabilities": {
-        "p_buy": 0.2541,
-        "p_hold": 0.3306,
-        "p_sell": 0.4152
+      "scoreDecomposition": {
+        "alphaScore": 53,
+        "alphaComponents": {
+          "factorScore": 44,
+          "technicalScore": 77,
+          "reportScore": 39
+        },
+        "riskGate": 95,
+        "executionConfidence": 79,
+        "executionConfidenceDetail": {
+          "coverageScore": 85,
+          "signalAgreement": 67
+        },
+        "taxAdvantage": 1.9,
+        "clusterPenalty": 9.39,
+        "clusterContext": {
+          "clusterId": 1,
+          "holdingCount": 4,
+          "avgCorrelation": 0.8858,
+          "warning": "⚠ 같은 클러스터에 4종목 이상 집중"
+        }
       },
-      "explain": {
-        "topDrivers": [
-          "기술 기본점수 77점",
-          "리포트 영향 39점 (2건 연결)",
-          "RSI 62.1"
-        ],
-        "warnings": [
-          "WATCH 구간이라 비중 확대보다 관찰/점검이 우선입니다."
-        ]
-      }
+      "factors": {
+        "momentum": -0.1956,
+        "research": -1.8979,
+        "income": 0.0438,
+        "macroFit": 1.1587
+      },
+      "closePrice": 25105,
+      "rsi": 62.09
     },
     {
-      "positionKey": "ISA:458760",
       "code": "458760",
       "name": "TIGER 미국배당다우존스스타데일리커...",
       "accountKey": "ISA",
-      "accountLabel": "ISA",
       "category": "배당/커버드콜",
+      "marketValue": 509250,
+      "actionScore": 65,
       "signal": "HOLD",
       "conviction": "LOW",
-      "actionScore": 65,
-      "rawActionScore": 65,
-      "technicalBaseScore": 47,
+      "factorScore": 50,
+      "techScore": 47,
       "reportScore": 64,
-      "factorScore": 55,
-      "entryPrice": 10185,
-      "currentPrice": 10185,
-      "avgPrice": 10210,
-      "quantity": 50,
-      "marketValue": 509250,
-      "purchaseValue": 510500,
-      "profitLoss": null,
-      "profitRate": null,
-      "factors": {
-        "raw": {
-          "momentum": 0.1296,
-          "research": 0.3393,
-          "income": 0.07,
-          "macroFit": 1.858
-        },
-        "zScores": {
-          "momentum": -0.5199,
-          "research": -0.4988,
-          "income": 2.9959,
-          "macroFit": 1.1254
-        },
-        "weightedZ": 0.3428,
-        "coverage": 1,
-        "availability": {
-          "momentum": 1,
-          "research": 1,
-          "income": 1,
-          "macroFit": 1
-        }
-      },
-      "report": {
-        "available": true,
-        "impactScore": 64,
-        "impactValue": 0.485,
-        "impactCount": 14,
-        "unavailableReason": null
-      },
       "reportImpactCount": 14,
       "reportSources": [
         "한화투자증권",
@@ -231,71 +82,44 @@
         "대신증권",
         "strategy:대신증권"
       ],
-      "probabilities": {
-        "p_buy": 0.6891,
-        "p_hold": 0.2397,
-        "p_sell": 0.0712
+      "scoreDecomposition": {
+        "alphaScore": 54,
+        "alphaComponents": {
+          "factorScore": 50,
+          "technicalScore": 47,
+          "reportScore": 64
+        },
+        "riskGate": 95,
+        "executionConfidence": 90,
+        "executionConfidenceDetail": {
+          "coverageScore": 85,
+          "signalAgreement": 100
+        },
+        "taxAdvantage": 1.9,
+        "clusterPenalty": 0,
+        "clusterContext": null
       },
-      "explain": {
-        "topDrivers": [
-          "기술 기본점수 47점",
-          "리포트 영향 64점 (14건 연결)",
-          "RSI 47.9"
-        ],
-        "warnings": []
-      }
+      "factors": {
+        "momentum": -1.4857,
+        "research": -0.4988,
+        "income": 2.9959,
+        "macroFit": 1.1254
+      },
+      "closePrice": 11170,
+      "rsi": 47.87
     },
     {
-      "positionKey": "PENSION:423160",
       "code": "423160",
       "name": "KODEX KOFR금리액티브(합성)",
       "accountKey": "PENSION",
-      "accountLabel": "연금저축",
       "category": "현금파킹",
+      "marketValue": 221370,
+      "actionScore": 60,
       "signal": "HOLD",
       "conviction": "LOW",
-      "actionScore": 60,
-      "rawActionScore": 60,
-      "technicalBaseScore": 52,
+      "factorScore": 34,
+      "techScore": 52,
       "reportScore": 64,
-      "factorScore": 39,
-      "entryPrice": 110685,
-      "currentPrice": 110685,
-      "avgPrice": 110680,
-      "quantity": 2,
-      "marketValue": 221370,
-      "purchaseValue": 221360,
-      "profitLoss": null,
-      "profitRate": null,
-      "factors": {
-        "raw": {
-          "momentum": -0.0397,
-          "research": 0.2103,
-          "income": 0.032,
-          "macroFit": -2.5
-        },
-        "zScores": {
-          "momentum": -0.7464,
-          "research": -1.0775,
-          "income": 1.0279,
-          "macroFit": -1.7194
-        },
-        "weightedZ": -0.7742,
-        "coverage": 1,
-        "availability": {
-          "momentum": 1,
-          "research": 1,
-          "income": 1,
-          "macroFit": 1
-        }
-      },
-      "report": {
-        "available": true,
-        "impactScore": 64,
-        "impactValue": 0.485,
-        "impactCount": 17,
-        "unavailableReason": null
-      },
       "reportImpactCount": 17,
       "reportSources": [
         "한화투자증권",
@@ -309,71 +133,44 @@
         "대신증권",
         "strategy:대신증권"
       ],
-      "probabilities": {
-        "p_buy": 0.57,
-        "p_hold": 0.3029,
-        "p_sell": 0.1271
+      "scoreDecomposition": {
+        "alphaScore": 50,
+        "alphaComponents": {
+          "factorScore": 34,
+          "technicalScore": 52,
+          "reportScore": 64
+        },
+        "riskGate": 99,
+        "executionConfidence": 90,
+        "executionConfidenceDetail": {
+          "coverageScore": 85,
+          "signalAgreement": 100
+        },
+        "taxAdvantage": 0,
+        "clusterPenalty": 0,
+        "clusterContext": null
       },
-      "explain": {
-        "topDrivers": [
-          "기술 기본점수 17점",
-          "리포트 영향 64점 (17건 연결)",
-          "RSI 52.1"
-        ],
-        "warnings": []
-      }
+      "factors": {
+        "momentum": -1.8915,
+        "research": -1.0775,
+        "income": 1.0279,
+        "macroFit": -1.7194
+      },
+      "closePrice": 110735,
+      "rsi": 52.09
     },
     {
-      "positionKey": "PENSION:133690",
       "code": "133690",
       "name": "TIGER 미국나스닥100",
       "accountKey": "PENSION",
-      "accountLabel": "연금저축",
       "category": "나스닥100",
+      "marketValue": 480480,
+      "actionScore": 60,
       "signal": "HOLD",
       "conviction": "MEDIUM",
-      "actionScore": 60,
-      "rawActionScore": 60,
-      "technicalBaseScore": 70,
+      "factorScore": 49,
+      "techScore": 70,
       "reportScore": 63,
-      "factorScore": 51,
-      "entryPrice": 160160,
-      "currentPrice": 160160,
-      "avgPrice": 160520,
-      "quantity": 3,
-      "marketValue": 480480,
-      "purchaseValue": 481560,
-      "profitLoss": null,
-      "profitRate": null,
-      "factors": {
-        "raw": {
-          "momentum": 0.7011,
-          "research": 0.3975,
-          "income": 0.006,
-          "macroFit": 0.7725
-        },
-        "zScores": {
-          "momentum": 0.2443,
-          "research": -0.2378,
-          "income": -0.3187,
-          "macroFit": 0.4168
-        },
-        "weightedZ": 0.0497,
-        "coverage": 1,
-        "availability": {
-          "momentum": 1,
-          "research": 1,
-          "income": 1,
-          "macroFit": 1
-        }
-      },
-      "report": {
-        "available": true,
-        "impactScore": 63,
-        "impactValue": 0.452,
-        "impactCount": 20,
-        "unavailableReason": null
-      },
       "reportImpactCount": 20,
       "reportSources": [
         "하나증권",
@@ -385,71 +182,49 @@
         "IBK투자증권",
         "industry:IBK투자증권"
       ],
-      "probabilities": {
-        "p_buy": 0.5715,
-        "p_hold": 0.29,
-        "p_sell": 0.1386
+      "scoreDecomposition": {
+        "alphaScore": 61,
+        "alphaComponents": {
+          "factorScore": 49,
+          "technicalScore": 70,
+          "reportScore": 63
+        },
+        "riskGate": 99,
+        "executionConfidence": 79,
+        "executionConfidenceDetail": {
+          "coverageScore": 85,
+          "signalAgreement": 67
+        },
+        "taxAdvantage": 0,
+        "clusterPenalty": 9.39,
+        "clusterContext": {
+          "clusterId": 1,
+          "holdingCount": 4,
+          "avgCorrelation": 0.8858,
+          "warning": "⚠ 같은 클러스터에 4종목 이상 집중"
+        }
       },
-      "explain": {
-        "topDrivers": [
-          "기술 기본점수 70점",
-          "리포트 영향 63점 (20건 연결)",
-          "RSI 61.9"
-        ],
-        "warnings": []
-      }
+      "factors": {
+        "momentum": -0.1162,
+        "research": -0.2378,
+        "income": -0.3187,
+        "macroFit": 0.4168
+      },
+      "closePrice": 164750,
+      "rsi": 61.93
     },
     {
-      "positionKey": "PENSION:360750",
       "code": "360750",
       "name": "TIGER 미국S&P500",
       "accountKey": "PENSION",
-      "accountLabel": "연금저축",
       "category": "S&P500",
+      "marketValue": 491400,
+      "actionScore": 58,
       "signal": "HOLD",
       "conviction": "MEDIUM",
-      "actionScore": 58,
-      "rawActionScore": 58,
-      "technicalBaseScore": 77,
+      "factorScore": 55,
+      "techScore": 77,
       "reportScore": 63,
-      "factorScore": 57,
-      "entryPrice": 24570,
-      "currentPrice": 24570,
-      "avgPrice": 24625,
-      "quantity": 20,
-      "marketValue": 491400,
-      "purchaseValue": 492500,
-      "profitLoss": null,
-      "profitRate": null,
-      "factors": {
-        "raw": {
-          "momentum": 0.668,
-          "research": 0.5955,
-          "income": 0.013,
-          "macroFit": 2.0553
-        },
-        "zScores": {
-          "momentum": 0.2,
-          "research": 0.6504,
-          "income": 0.0438,
-          "macroFit": 1.2542
-        },
-        "weightedZ": 0.5225,
-        "coverage": 1,
-        "availability": {
-          "momentum": 1,
-          "research": 1,
-          "income": 1,
-          "macroFit": 1
-        }
-      },
-      "report": {
-        "available": true,
-        "impactScore": 63,
-        "impactValue": 0.452,
-        "impactCount": 20,
-        "unavailableReason": null
-      },
       "reportImpactCount": 20,
       "reportSources": [
         "하나증권",
@@ -461,71 +236,49 @@
         "IBK투자증권",
         "industry:IBK투자증권"
       ],
-      "probabilities": {
-        "p_buy": 0.5301,
-        "p_hold": 0.3024,
-        "p_sell": 0.1676
+      "scoreDecomposition": {
+        "alphaScore": 65,
+        "alphaComponents": {
+          "factorScore": 55,
+          "technicalScore": 77,
+          "reportScore": 63
+        },
+        "riskGate": 99,
+        "executionConfidence": 79,
+        "executionConfidenceDetail": {
+          "coverageScore": 85,
+          "signalAgreement": 67
+        },
+        "taxAdvantage": 0,
+        "clusterPenalty": 9.39,
+        "clusterContext": {
+          "clusterId": 1,
+          "holdingCount": 4,
+          "avgCorrelation": 0.8858,
+          "warning": "⚠ 같은 클러스터에 4종목 이상 집중"
+        }
       },
-      "explain": {
-        "topDrivers": [
-          "기술 기본점수 77점",
-          "리포트 영향 63점 (20건 연결)",
-          "RSI 62.1"
-        ],
-        "warnings": []
-      }
+      "factors": {
+        "momentum": -0.1956,
+        "research": 0.6504,
+        "income": 0.0438,
+        "macroFit": 1.2542
+      },
+      "closePrice": 25105,
+      "rsi": 62.09
     },
     {
-      "positionKey": "TOSS:434730",
       "code": "434730",
       "name": "HANARO 원자력iSelect",
       "accountKey": "TOSS",
-      "accountLabel": "토스증권",
       "category": "원자력",
+      "marketValue": 443190,
+      "actionScore": 66,
       "signal": "HOLD",
       "conviction": "MEDIUM",
-      "actionScore": 66,
-      "rawActionScore": 66,
-      "technicalBaseScore": 96,
-      "reportScore": 63,
       "factorScore": 56,
-      "entryPrice": 64170,
-      "currentPrice": 64170,
-      "avgPrice": 64095,
-      "quantity": 7,
-      "marketValue": 443190,
-      "purchaseValue": 448670,
-      "profitLoss": 520,
-      "profitRate": 0.11,
-      "factors": {
-        "raw": {
-          "momentum": 1.1236,
-          "research": 0.5847,
-          "income": 0.004,
-          "macroFit": 0.1849
-        },
-        "zScores": {
-          "momentum": 0.8094,
-          "research": 0.6017,
-          "income": -0.4223,
-          "macroFit": 0.0332
-        },
-        "weightedZ": 0.4071,
-        "coverage": 1,
-        "availability": {
-          "momentum": 1,
-          "research": 1,
-          "income": 1,
-          "macroFit": 1
-        }
-      },
-      "report": {
-        "available": true,
-        "impactScore": 63,
-        "impactValue": 0.437,
-        "impactCount": 6,
-        "unavailableReason": null
-      },
+      "techScore": 96,
+      "reportScore": 63,
       "reportImpactCount": 6,
       "reportSources": [
         "증권사 애널 크롤러🇰🇷",
@@ -533,142 +286,97 @@
         "매시 트레이딩 - 매크로, 시황으로 드리블",
         "marketvoice:매시 트레이딩 - 매크로, 시황으로 드리블"
       ],
-      "probabilities": {
-        "p_buy": 0.6978,
-        "p_hold": 0.227,
-        "p_sell": 0.0752
+      "scoreDecomposition": {
+        "alphaScore": 72,
+        "alphaComponents": {
+          "factorScore": 56,
+          "technicalScore": 96,
+          "reportScore": 63
+        },
+        "riskGate": 88,
+        "executionConfidence": 79,
+        "executionConfidenceDetail": {
+          "coverageScore": 85,
+          "signalAgreement": 67
+        },
+        "taxAdvantage": 0,
+        "clusterPenalty": 6.3,
+        "clusterContext": {
+          "clusterId": 2,
+          "holdingCount": 2,
+          "avgCorrelation": 1,
+          "warning": "2개 계좌에 걸쳐 실질 동일 포지션"
+        }
       },
-      "explain": {
-        "topDrivers": [
-          "기술 기본점수 96점",
-          "리포트 영향 63점 (6건 연결)",
-          "RSI 56.4"
-        ],
-        "warnings": []
-      }
+      "factors": {
+        "momentum": 0.8965,
+        "research": 0.6017,
+        "income": -0.4223,
+        "macroFit": 0.0332
+      },
+      "closePrice": 70310,
+      "rsi": 56.44
     },
     {
-      "positionKey": "TOSS:251350",
       "code": "251350",
       "name": "KODEX 선진국ESG액티브",
       "accountKey": "TOSS",
-      "accountLabel": "토스증권",
       "category": "기타",
-      "signal": "WATCH",
-      "conviction": "LOW",
-      "actionScore": 46,
-      "rawActionScore": 46,
-      "technicalBaseScore": null,
-      "reportScore": 58,
-      "factorScore": 31,
-      "entryPrice": 31000,
-      "currentPrice": 31000,
-      "avgPrice": 31098,
-      "quantity": 15,
       "marketValue": 465000,
-      "purchaseValue": 466475,
-      "profitLoss": -1475,
-      "profitRate": -0.31,
-      "factors": {
-        "raw": {
-          "momentum": -0.9,
-          "research": 0.1831,
-          "income": 0,
-          "macroFit": -1.6226
-        },
-        "zScores": {
-          "momentum": -1.8969,
-          "research": -1.1994,
-          "income": -0.6295,
-          "macroFit": -1.1466
-        },
-        "weightedZ": -1.3475,
-        "coverage": 0.75,
-        "availability": {
-          "momentum": 0,
-          "research": 1,
-          "income": 1,
-          "macroFit": 1
-        }
-      },
-      "report": {
-        "available": true,
-        "impactScore": 58,
-        "impactValue": 0.262,
-        "impactCount": 1,
-        "unavailableReason": null
-      },
+      "actionScore": 61,
+      "signal": "HOLD",
+      "conviction": "LOW",
+      "factorScore": 41,
+      "techScore": 82,
+      "reportScore": 58,
       "reportImpactCount": 1,
       "reportSources": [
         "한화투자증권",
         "strategy:한화투자증권"
       ],
-      "probabilities": {
-        "p_buy": 0.2471,
-        "p_hold": 0.3413,
-        "p_sell": 0.4116
+      "scoreDecomposition": {
+        "alphaScore": 60,
+        "alphaComponents": {
+          "factorScore": 41,
+          "technicalScore": 82,
+          "reportScore": 58
+        },
+        "riskGate": 88,
+        "executionConfidence": 88,
+        "executionConfidenceDetail": {
+          "coverageScore": 100,
+          "signalAgreement": 67
+        },
+        "taxAdvantage": 0,
+        "clusterPenalty": 9.39,
+        "clusterContext": {
+          "clusterId": 1,
+          "holdingCount": 4,
+          "avgCorrelation": 0.8858,
+          "warning": "⚠ 같은 클러스터에 4종목 이상 집중"
+        }
       },
-      "explain": {
-        "topDrivers": [
-          "리포트 영향 58점 (1건 연결)"
-        ],
-        "warnings": [
-          "기술 스냅샷이 없어 리포트/배분 쪽 해석 비중이 커졌습니다.",
-          "WATCH 구간이라 비중 확대보다 관찰/점검이 우선입니다."
-        ]
-      }
+      "factors": {
+        "momentum": 0.1374,
+        "research": -1.1994,
+        "income": -0.6295,
+        "macroFit": -1.1466
+      },
+      "closePrice": 37700,
+      "rsi": 58.44
     },
     {
-      "positionKey": "TOSS:449450",
       "code": "449450",
       "name": "PLUS V K생산",
       "accountKey": "TOSS",
-      "accountLabel": "토스증권",
       "category": "방산",
+      "marketValue": 383475,
+      "actionScore": 67,
       "signal": "HOLD",
       "conviction": "MEDIUM",
-      "actionScore": 67,
-      "rawActionScore": 67,
-      "technicalBaseScore": 96,
+      "factorScore": 55,
+      "techScore": 96,
       "reportScore": 63,
-      "factorScore": 54,
-      "entryPrice": 76695,
-      "currentPrice": 76695,
-      "avgPrice": 77160,
-      "quantity": 5,
-      "marketValue": 383475,
-      "purchaseValue": 385800,
-      "profitLoss": -2325,
-      "profitRate": -0.6,
-      "factors": {
-        "raw": {
-          "momentum": 1.2085,
-          "research": 0.4275,
-          "income": 0.004,
-          "macroFit": 0.8261
-        },
-        "zScores": {
-          "momentum": 0.9229,
-          "research": -0.1033,
-          "income": -0.4223,
-          "macroFit": 0.4518
-        },
-        "weightedZ": 0.3191,
-        "coverage": 1,
-        "availability": {
-          "momentum": 1,
-          "research": 1,
-          "income": 1,
-          "macroFit": 1
-        }
-      },
-      "report": {
-        "available": true,
-        "impactScore": 63,
-        "impactValue": 0.426,
-        "impactCount": 8,
-        "unavailableReason": null
-      },
       "reportImpactCount": 8,
       "reportSources": [
         "증권사 애널 크롤러🇰🇷",
@@ -676,71 +384,49 @@
         "매시 트레이딩 - 매크로, 시황으로 드리블",
         "marketvoice:매시 트레이딩 - 매크로, 시황으로 드리블"
       ],
-      "probabilities": {
-        "p_buy": 0.7075,
-        "p_hold": 0.2212,
-        "p_sell": 0.0713
+      "scoreDecomposition": {
+        "alphaScore": 71,
+        "alphaComponents": {
+          "factorScore": 55,
+          "technicalScore": 96,
+          "reportScore": 63
+        },
+        "riskGate": 88,
+        "executionConfidence": 79,
+        "executionConfidenceDetail": {
+          "coverageScore": 85,
+          "signalAgreement": 67
+        },
+        "taxAdvantage": 0,
+        "clusterPenalty": 9.44,
+        "clusterContext": {
+          "clusterId": 3,
+          "holdingCount": 4,
+          "avgCorrelation": 0.8988,
+          "warning": "⚠ 같은 클러스터에 4종목 이상 집중"
+        }
       },
-      "explain": {
-        "topDrivers": [
-          "기술 기본점수 96점",
-          "리포트 영향 63점 (8건 연결)",
-          "RSI 60.3"
-        ],
-        "warnings": []
-      }
+      "factors": {
+        "momentum": 1.1,
+        "research": -0.1033,
+        "income": -0.4223,
+        "macroFit": 0.4518
+      },
+      "closePrice": 79200,
+      "rsi": 60.29
     },
     {
-      "positionKey": "KIS_MAIN:047810",
       "code": "047810",
       "name": "한국항공우주",
       "accountKey": "KIS_MAIN",
-      "accountLabel": "한투 일반",
       "category": "방산",
+      "marketValue": 999500,
+      "actionScore": 70,
       "signal": "HOLD",
       "conviction": "MEDIUM",
-      "actionScore": 70,
-      "rawActionScore": 70,
-      "technicalBaseScore": 96,
-      "reportScore": 73,
       "factorScore": 57,
-      "entryPrice": 199900,
-      "currentPrice": 199900,
-      "avgPrice": 200500,
-      "quantity": 5,
-      "marketValue": 999500,
-      "purchaseValue": 1002500,
-      "profitLoss": -3000,
-      "profitRate": -0.29,
-      "factors": {
-        "raw": {
-          "momentum": 1.196,
-          "research": 0.7067,
-          "income": 0.004,
-          "macroFit": -0.866
-        },
-        "zScores": {
-          "momentum": 0.9061,
-          "research": 1.149,
-          "income": -0.4223,
-          "macroFit": -0.6527
-        },
-        "weightedZ": 0.4679,
-        "coverage": 1,
-        "availability": {
-          "momentum": 1,
-          "research": 1,
-          "income": 1,
-          "macroFit": 1
-        }
-      },
-      "report": {
-        "available": true,
-        "impactScore": 73,
-        "impactValue": 0.825,
-        "impactCount": 10,
-        "unavailableReason": null
-      },
+      "techScore": 96,
+      "reportScore": 73,
       "reportImpactCount": 10,
       "reportSources": [
         "하나증권",
@@ -752,71 +438,49 @@
         "매시 트레이딩 - 매크로, 시황으로 드리블",
         "marketvoice:매시 트레이딩 - 매크로, 시황으로 드리블"
       ],
-      "probabilities": {
-        "p_buy": 0.801,
-        "p_hold": 0.1645,
-        "p_sell": 0.0345
+      "scoreDecomposition": {
+        "alphaScore": 75,
+        "alphaComponents": {
+          "factorScore": 57,
+          "technicalScore": 96,
+          "reportScore": 73
+        },
+        "riskGate": 87,
+        "executionConfidence": 88,
+        "executionConfidenceDetail": {
+          "coverageScore": 100,
+          "signalAgreement": 67
+        },
+        "taxAdvantage": 0,
+        "clusterPenalty": 9.44,
+        "clusterContext": {
+          "clusterId": 3,
+          "holdingCount": 4,
+          "avgCorrelation": 0.8988,
+          "warning": "⚠ 같은 클러스터에 4종목 이상 집중"
+        }
       },
-      "explain": {
-        "topDrivers": [
-          "기술 기본점수 96점",
-          "리포트 영향 73점 (10건 연결)",
-          "RSI 60.0"
-        ],
-        "warnings": []
-      }
+      "factors": {
+        "momentum": 1.0699,
+        "research": 1.149,
+        "income": -0.4223,
+        "macroFit": -0.6527
+      },
+      "closePrice": 199900,
+      "rsi": 60.01
     },
     {
-      "positionKey": "KIS_MAIN:064350",
       "code": "064350",
       "name": "현대로템",
       "accountKey": "KIS_MAIN",
-      "accountLabel": "한투 일반",
       "category": "방산",
+      "marketValue": 210000,
+      "actionScore": 65,
       "signal": "HOLD",
       "conviction": "MEDIUM",
-      "actionScore": 65,
-      "rawActionScore": 65,
-      "technicalBaseScore": 86,
+      "factorScore": 52,
+      "techScore": 86,
       "reportScore": 77,
-      "factorScore": 55,
-      "entryPrice": 210000,
-      "currentPrice": 210000,
-      "avgPrice": 208000,
-      "quantity": 1,
-      "marketValue": 210000,
-      "purchaseValue": 208000,
-      "profitLoss": 2000,
-      "profitRate": 0.96,
-      "factors": {
-        "raw": {
-          "momentum": 0.5523,
-          "research": 0.8244,
-          "income": 0.004,
-          "macroFit": -0.866
-        },
-        "zScores": {
-          "momentum": 0.0453,
-          "research": 1.6769,
-          "income": -0.4223,
-          "macroFit": -0.6527
-        },
-        "weightedZ": 0.325,
-        "coverage": 1,
-        "availability": {
-          "momentum": 1,
-          "research": 1,
-          "income": 1,
-          "macroFit": 1
-        }
-      },
-      "report": {
-        "available": true,
-        "impactScore": 77,
-        "impactValue": 0.993,
-        "impactCount": 12,
-        "unavailableReason": null
-      },
       "reportImpactCount": 12,
       "reportSources": [
         "하나증권",
@@ -830,71 +494,49 @@
         "증권사 애널 크롤러🇰🇷",
         "marketvoice:증권사 애널 크롤러🇰🇷"
       ],
-      "probabilities": {
-        "p_buy": 0.7278,
-        "p_hold": 0.2149,
-        "p_sell": 0.0572
+      "scoreDecomposition": {
+        "alphaScore": 72,
+        "alphaComponents": {
+          "factorScore": 52,
+          "technicalScore": 86,
+          "reportScore": 77
+        },
+        "riskGate": 87,
+        "executionConfidence": 88,
+        "executionConfidenceDetail": {
+          "coverageScore": 100,
+          "signalAgreement": 67
+        },
+        "taxAdvantage": 0,
+        "clusterPenalty": 9.44,
+        "clusterContext": {
+          "clusterId": 3,
+          "holdingCount": 4,
+          "avgCorrelation": 0.8988,
+          "warning": "⚠ 같은 클러스터에 4종목 이상 집중"
+        }
       },
-      "explain": {
-        "topDrivers": [
-          "기술 기본점수 86점",
-          "리포트 영향 77점 (12건 연결)",
-          "RSI 55.3"
-        ],
-        "warnings": []
-      }
+      "factors": {
+        "momentum": -0.4728,
+        "research": 1.6769,
+        "income": -0.4223,
+        "macroFit": -0.6527
+      },
+      "closePrice": 210000,
+      "rsi": 55.31
     },
     {
-      "positionKey": "KIS_MAIN:138910",
       "code": "138910",
       "name": "KODEX 구리선물(H)",
       "accountKey": "KIS_MAIN",
-      "accountLabel": "한투 일반",
       "category": "기타",
-      "signal": "WATCH",
-      "conviction": "LOW",
-      "actionScore": 50,
-      "rawActionScore": 50,
-      "technicalBaseScore": null,
-      "reportScore": 72,
-      "factorScore": 39,
-      "entryPrice": 9060,
-      "currentPrice": 9060,
-      "avgPrice": 8765,
-      "quantity": 58,
       "marketValue": 525480,
-      "purchaseValue": 508370,
-      "profitLoss": 17110,
-      "profitRate": 3.36,
-      "factors": {
-        "raw": {
-          "momentum": -0.9,
-          "research": 0.5482,
-          "income": 0,
-          "macroFit": -1.0317
-        },
-        "zScores": {
-          "momentum": -1.8969,
-          "research": 0.4383,
-          "income": -0.6295,
-          "macroFit": -0.7609
-        },
-        "weightedZ": -0.779,
-        "coverage": 0.75,
-        "availability": {
-          "momentum": 0,
-          "research": 1,
-          "income": 1,
-          "macroFit": 1
-        }
-      },
-      "report": {
-        "available": true,
-        "impactScore": 72,
-        "impactValue": 0.783,
-        "impactCount": 20,
-        "unavailableReason": null
-      },
+      "actionScore": 61,
+      "signal": "HOLD",
+      "conviction": "MEDIUM",
+      "factorScore": 44,
+      "techScore": 82,
+      "reportScore": 72,
       "reportImpactCount": 20,
       "reportSources": [
         "하나증권",
@@ -904,72 +546,44 @@
         "키움증권",
         "industry:키움증권"
       ],
-      "probabilities": {
-        "p_buy": 0.4182,
-        "p_hold": 0.3394,
-        "p_sell": 0.2424
+      "scoreDecomposition": {
+        "alphaScore": 66,
+        "alphaComponents": {
+          "factorScore": 44,
+          "technicalScore": 82,
+          "reportScore": 72
+        },
+        "riskGate": 87,
+        "executionConfidence": 88,
+        "executionConfidenceDetail": {
+          "coverageScore": 100,
+          "signalAgreement": 67
+        },
+        "taxAdvantage": 0,
+        "clusterPenalty": 0,
+        "clusterContext": null
       },
-      "explain": {
-        "topDrivers": [
-          "리포트 영향 72점 (20건 연결)"
-        ],
-        "warnings": [
-          "기술 스냅샷이 없어 리포트/배분 쪽 해석 비중이 커졌습니다.",
-          "WATCH 구간이라 비중 확대보다 관찰/점검이 우선입니다."
-        ]
-      }
+      "factors": {
+        "momentum": -0.843,
+        "research": 0.4383,
+        "income": -0.6295,
+        "macroFit": -0.7609
+      },
+      "closePrice": 9060,
+      "rsi": 56.51
     },
     {
-      "positionKey": "KIS_MAIN:434730",
       "code": "434730",
       "name": "HANARO 원자력iSelect",
       "accountKey": "KIS_MAIN",
-      "accountLabel": "한투 일반",
       "category": "원자력",
+      "marketValue": 140620,
+      "actionScore": 65,
       "signal": "HOLD",
       "conviction": "MEDIUM",
-      "actionScore": 65,
-      "rawActionScore": 66,
-      "technicalBaseScore": 96,
-      "reportScore": 63,
       "factorScore": 59,
-      "entryPrice": 70310,
-      "currentPrice": 70310,
-      "avgPrice": 64630,
-      "quantity": 2,
-      "marketValue": 140620,
-      "purchaseValue": 129260,
-      "profitLoss": 11360,
-      "profitRate": 8.78,
-      "factors": {
-        "raw": {
-          "momentum": 1.1236,
-          "research": 0.5847,
-          "income": 0.004,
-          "macroFit": 1.8882
-        },
-        "zScores": {
-          "momentum": 0.8094,
-          "research": 0.6017,
-          "income": -0.4223,
-          "macroFit": 1.145
-        },
-        "weightedZ": 0.6295,
-        "coverage": 1,
-        "availability": {
-          "momentum": 1,
-          "research": 1,
-          "income": 1,
-          "macroFit": 1
-        }
-      },
-      "report": {
-        "available": true,
-        "impactScore": 63,
-        "impactValue": 0.437,
-        "impactCount": 6,
-        "unavailableReason": null
-      },
+      "techScore": 96,
+      "reportScore": 63,
       "reportImpactCount": 6,
       "reportSources": [
         "증권사 애널 크롤러🇰🇷",
@@ -977,71 +591,49 @@
         "매시 트레이딩 - 매크로, 시황으로 드리블",
         "marketvoice:매시 트레이딩 - 매크로, 시황으로 드리블"
       ],
-      "probabilities": {
-        "p_buy": 0.6978,
-        "p_hold": 0.227,
-        "p_sell": 0.0752
+      "scoreDecomposition": {
+        "alphaScore": 73,
+        "alphaComponents": {
+          "factorScore": 59,
+          "technicalScore": 96,
+          "reportScore": 63
+        },
+        "riskGate": 87,
+        "executionConfidence": 79,
+        "executionConfidenceDetail": {
+          "coverageScore": 85,
+          "signalAgreement": 67
+        },
+        "taxAdvantage": 0,
+        "clusterPenalty": 6.3,
+        "clusterContext": {
+          "clusterId": 2,
+          "holdingCount": 2,
+          "avgCorrelation": 1,
+          "warning": "2개 계좌에 걸쳐 실질 동일 포지션"
+        }
       },
-      "explain": {
-        "topDrivers": [
-          "기술 기본점수 96점",
-          "리포트 영향 63점 (6건 연결)",
-          "RSI 56.4"
-        ],
-        "warnings": []
-      }
+      "factors": {
+        "momentum": 0.8965,
+        "research": 0.6017,
+        "income": -0.4223,
+        "macroFit": 1.145
+      },
+      "closePrice": 70310,
+      "rsi": 56.44
     },
     {
-      "positionKey": "KIS_MAIN:449450",
       "code": "449450",
       "name": "PLUS K방산",
       "accountKey": "KIS_MAIN",
-      "accountLabel": "한투 일반",
       "category": "방산",
+      "marketValue": 554400,
+      "actionScore": 67,
       "signal": "HOLD",
       "conviction": "MEDIUM",
-      "actionScore": 67,
-      "rawActionScore": 67,
-      "technicalBaseScore": 96,
+      "factorScore": 52,
+      "techScore": 96,
       "reportScore": 63,
-      "factorScore": 51,
-      "entryPrice": 79200,
-      "currentPrice": 79200,
-      "avgPrice": 77758.5714,
-      "quantity": 7,
-      "marketValue": 554400,
-      "purchaseValue": 544310,
-      "profitLoss": 10090,
-      "profitRate": 1.85,
-      "factors": {
-        "raw": {
-          "momentum": 1.2085,
-          "research": 0.4275,
-          "income": 0.004,
-          "macroFit": -0.866
-        },
-        "zScores": {
-          "momentum": 0.9229,
-          "research": -0.1033,
-          "income": -0.4223,
-          "macroFit": -0.6527
-        },
-        "weightedZ": 0.0981,
-        "coverage": 1,
-        "availability": {
-          "momentum": 1,
-          "research": 1,
-          "income": 1,
-          "macroFit": 1
-        }
-      },
-      "report": {
-        "available": true,
-        "impactScore": 63,
-        "impactValue": 0.426,
-        "impactCount": 8,
-        "unavailableReason": null
-      },
       "reportImpactCount": 8,
       "reportSources": [
         "증권사 애널 크롤러🇰🇷",
@@ -1049,199 +641,127 @@
         "매시 트레이딩 - 매크로, 시황으로 드리블",
         "marketvoice:매시 트레이딩 - 매크로, 시황으로 드리블"
       ],
-      "probabilities": {
-        "p_buy": 0.7075,
-        "p_hold": 0.2212,
-        "p_sell": 0.0713
+      "scoreDecomposition": {
+        "alphaScore": 70,
+        "alphaComponents": {
+          "factorScore": 52,
+          "technicalScore": 96,
+          "reportScore": 63
+        },
+        "riskGate": 87,
+        "executionConfidence": 79,
+        "executionConfidenceDetail": {
+          "coverageScore": 85,
+          "signalAgreement": 67
+        },
+        "taxAdvantage": 0,
+        "clusterPenalty": 9.44,
+        "clusterContext": {
+          "clusterId": 3,
+          "holdingCount": 4,
+          "avgCorrelation": 0.8988,
+          "warning": "⚠ 같은 클러스터에 4종목 이상 집중"
+        }
       },
-      "explain": {
-        "topDrivers": [
-          "기술 기본점수 96점",
-          "리포트 영향 63점 (8건 연결)",
-          "RSI 60.3"
-        ],
-        "warnings": []
-      }
+      "factors": {
+        "momentum": 1.1,
+        "research": -0.1033,
+        "income": -0.4223,
+        "macroFit": -0.6527
+      },
+      "closePrice": 79200,
+      "rsi": 60.29
     }
   ],
-  "accountPlans": [
+  "accountSummaries": [
     {
       "key": "ISA",
-      "label": "ISA",
-      "totalScore": 50,
-      "stage2Bias": "hold",
+      "totalScore": 63,
+      "stage2Bias": "selective_add",
       "deployBudget": 3665433,
-      "reserveCash": 2612057,
-      "topGap": {
-        "category": "금",
-        "targetPct": 0.25,
-        "currentPct": 0,
-        "gapAmount": 2096060
-      },
-      "candidateFromGap": "KODEX 골드선물(H)",
-      "stagedBuys": [
-        {
-          "code": null,
-          "name": "KODEX 골드선물(H)",
-          "suggestedAmount": 2515272,
-          "reason": "금 목표 배분을 메우기 위한 보강",
-          "source": "gap"
-        }
-      ],
-      "trims": [],
-      "holds": [
-        {
-          "code": "360750",
-          "name": "TIGER 미국S&P500",
-          "score": 50,
-          "reason": "점수 기반 분류"
+      "buysCount": 0,
+      "holdsCount": 2,
+      "trimsCount": 0,
+      "watchesCount": 0,
+      "scoreDecomposition": {
+        "alphaScore": 54,
+        "alphaComponents": {
+          "factorScore": 47,
+          "technicalScore": 63,
+          "reportScore": 51
         },
-        {
-          "code": "458760",
-          "name": "TIGER 미국배당다우존스스타데일리커...",
-          "score": 50,
-          "reason": "점수 기반 분류"
-        }
-      ],
-      "watches": []
+        "riskGate": 95,
+        "executionConfidence": 85,
+        "taxAdvantage": 1.9,
+        "clusterPenalty": 5.08
+      }
     },
     {
       "key": "PENSION",
-      "label": "연금저축",
-      "totalScore": 50,
-      "stage2Bias": "hold",
+      "totalScore": 73,
+      "stage2Bias": "selective_add",
       "deployBudget": 756843,
-      "reserveCash": 758257,
-      "topGap": {
-        "category": "S&P500",
-        "targetPct": 0.4,
-        "currentPct": 0.1814388834530249,
-        "gapAmount": 591940
-      },
-      "candidateFromGap": "TIGER 미국S&P500",
-      "stagedBuys": [
-        {
-          "code": null,
-          "name": "TIGER 미국S&P500",
-          "suggestedAmount": 756843,
-          "reason": "S&P500 목표 배분을 메우기 위한 보강",
-          "source": "gap"
-        }
-      ],
-      "trims": [],
-      "holds": [
-        {
-          "code": "423160",
-          "name": "KODEX KOFR금리액티브(합성)",
-          "score": 50,
-          "reason": "점수 기반 분류"
+      "buysCount": 1,
+      "holdsCount": 3,
+      "trimsCount": 0,
+      "watchesCount": 0,
+      "scoreDecomposition": {
+        "alphaScore": 62,
+        "alphaComponents": {
+          "factorScore": 51,
+          "technicalScore": 73,
+          "reportScore": 61
         },
-        {
-          "code": "133690",
-          "name": "TIGER 미국나스닥100",
-          "score": 50,
-          "reason": "점수 기반 분류"
-        },
-        {
-          "code": "360750",
-          "name": "TIGER 미국S&P500",
-          "score": 50,
-          "reason": "점수 기반 분류"
-        }
-      ],
-      "watches": []
+        "riskGate": 99,
+        "executionConfidence": 83,
+        "taxAdvantage": 0,
+        "clusterPenalty": 8.94
+      }
     },
     {
       "key": "TOSS",
-      "label": "토스증권",
-      "totalScore": 50,
-      "stage2Bias": "hold",
+      "totalScore": 62,
+      "stage2Bias": "selective_add",
       "deployBudget": 574653,
-      "reserveCash": 426292,
-      "topGap": {
-        "category": "전력기기",
-        "targetPct": 0.3,
-        "currentPct": 0,
-        "gapAmount": 687783
-      },
-      "candidateFromGap": "효성중공업",
-      "stagedBuys": [
-        {
-          "code": null,
-          "name": "효성중공업",
-          "suggestedAmount": 574653,
-          "reason": "전력기기 목표 배분을 메우기 위한 보강",
-          "source": "gap"
-        }
-      ],
-      "trims": [],
-      "holds": [
-        {
-          "code": "434730",
-          "name": "HANARO 원자력iSelect",
-          "score": 50,
-          "reason": "점수 기반 분류"
+      "buysCount": 0,
+      "holdsCount": 3,
+      "trimsCount": 0,
+      "watchesCount": 0,
+      "scoreDecomposition": {
+        "alphaScore": 68,
+        "alphaComponents": {
+          "factorScore": 52,
+          "technicalScore": 93,
+          "reportScore": 60
         },
-        {
-          "code": "251350",
-          "name": "KODEX 선진국ESG액티브",
-          "score": 50,
-          "reason": "점수 기반 분류"
-        },
-        {
-          "code": "449450",
-          "name": "PLUS V K생산",
-          "score": 50,
-          "reason": "점수 기반 분류"
-        }
-      ],
-      "watches": []
+        "riskGate": 88,
+        "executionConfidence": 82,
+        "taxAdvantage": 0,
+        "clusterPenalty": 8.14
+      }
     },
     {
       "key": "KIS_MAIN",
-      "label": "한투 일반",
-      "totalScore": 50,
-      "stage2Bias": "hold",
+      "totalScore": 59,
+      "stage2Bias": "selective_add",
       "deployBudget": 1047842,
-      "reserveCash": 596932,
-      "topGap": {
-        "category": "원자력",
-        "targetPct": 0.25,
-        "currentPct": 0.03450988938282221,
-        "gapAmount": 878074
-      },
-      "candidateFromGap": "HANARO 원자력iSelect",
-      "stagedBuys": [
-        {
-          "code": null,
-          "name": "HANARO 원자력iSelect",
-          "suggestedAmount": 1047842,
-          "reason": "원자력 목표 배분을 메우기 위한 보강",
-          "source": "gap"
-        }
-      ],
-      "trims": [],
-      "holds": [
-        {
-          "code": "047810",
-          "name": "한국항공우주",
-          "score": 50,
-          "reason": "점수 기반 분류"
+      "buysCount": 1,
+      "holdsCount": 3,
+      "trimsCount": 0,
+      "watchesCount": 0,
+      "scoreDecomposition": {
+        "alphaScore": 72,
+        "alphaComponents": {
+          "factorScore": 54,
+          "technicalScore": 93,
+          "reportScore": 68
         },
-        {
-          "code": "064350",
-          "name": "현대로템",
-          "score": 50,
-          "reason": "점수 기반 분류"
-        },
-        {
-          "code": "138910",
-          "name": "KODEX 구리선물(H)",
-          "score": 50,
-          "reason": "점수 기반 분류"
-        }
-      ],
-      "watches": []
+        "riskGate": 87,
+        "executionConfidence": 84,
+        "taxAdvantage": 0,
+        "clusterPenalty": 7.99
+      }
     }
-  ]
+  ],
+  "stage2Source": null
 }

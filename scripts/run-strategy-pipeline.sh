@@ -259,6 +259,9 @@ fi
 
 stage2_write_log
 
+echo "== Technical refresh: Stage 2 candidates =="
+node scripts/calc-technicals.js --date "$DATE" --include-stage2-candidates --merge-existing || echo "!! Stage 2 candidate technical refresh 실패 (non-blocking)"
+
 echo "== Stage 2.5: impact map =="
 node scripts/build-impact-map.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"
 
@@ -281,6 +284,18 @@ echo "== Feedback: report =="
 node scripts/build-feedback-report.js --date "$DATE"
 
 if [[ "$AUTO_TUNE_WEIGHTS" == "1" ]]; then
+  echo "== Auto-tune factor weights =="
+  AUTO_TUNE_ARGS=(--date "$DATE")
+  if [[ "$AUTO_TUNE_DRY_RUN" == "1" ]]; then
+    AUTO_TUNE_ARGS+=(--dry-run)
+  fi
+  node scripts/auto-tune-weights.js "${AUTO_TUNE_ARGS[@]}"
+fi
+
+if [[ "$AUTO_TUNE_WEIGHTS" == "1" ]]; then
+  echo "== Feedback analysis =="
+  node scripts/build-feedback-analysis.js || echo "!! Feedback analysis 실패 (non-blocking)"
+
   echo "== Auto-tune factor weights =="
   AUTO_TUNE_ARGS=(--date "$DATE")
   if [[ "$AUTO_TUNE_DRY_RUN" == "1" ]]; then

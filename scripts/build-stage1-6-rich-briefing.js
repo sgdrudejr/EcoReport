@@ -480,6 +480,28 @@ function summarizeCoverageReportLine(item, limit = 130) {
   return `- [${item?.id ?? "report"}] ${tags.join(" / ")} / ${singleLine(summary, limit)}`;
 }
 
+function formatKeyNumbers(item, limit = 3) {
+  const values = (item?.key_numbers ?? [])
+    .map((entry) => {
+      const value = singleLine(entry?.value ?? "", 40);
+      const why = singleLine(entry?.why_it_matters ?? "", 70);
+      if (!value) return "";
+      return why ? `${value} (${why})` : value;
+    })
+    .filter(Boolean)
+    .slice(0, limit);
+
+  return values.length > 0 ? values.join(" / ") : "";
+}
+
+function formatClaimGuardrails(item) {
+  const parts = uniqueNonEmpty([
+    item?.primary_claim?.condition ? `조건: ${singleLine(item.primary_claim.condition, 110)}` : "",
+    item?.primary_claim?.counterpoint ? `반론: ${singleLine(item.primary_claim.counterpoint, 110)}` : "",
+  ]);
+  return parts.join(" / ");
+}
+
 function buildStage1CoverageSummary(stage1) {
   const extracts = stage1?.extracts ?? [];
   const reportTypeMap = new Map();
@@ -627,6 +649,8 @@ function formatExtractList(label, extracts) {
     lines.push(
       `- [${item.id}] ${item.title} / ${item.broker} / ${item.report_type}`,
       `  - 핵심: ${singleLine(item.key_thesis || item.key_points?.[0] || item.new_info?.[0], 200) || "요약 없음"}`,
+      ...(formatKeyNumbers(item) ? [`  - 핵심 숫자: ${formatKeyNumbers(item)}`] : []),
+      ...(formatClaimGuardrails(item) ? [`  - 조건/반론: ${formatClaimGuardrails(item)}`] : []),
       ...(impact.length > 0 ? [`  - 포트폴리오 연결: ${impact.join(" / ")}`] : []),
       ...(relatedHoldings ? [`  - 관련 보유: ${relatedHoldings}`] : []),
       ...(catalysts.length > 0 ? [`  - 촉매: ${catalysts.join(" / ")}`] : []),
@@ -820,11 +844,13 @@ function buildPrompt({
     "[편집 원칙]",
     "- 전체 커버 요약을 오늘 리포트 분포와 반복 신호를 대표하는 기본 사실층으로 사용하세요.",
     "- 강조 extract는 전체를 대표하는 층이 아니라, 예외·직접 연결·강한 촉매를 보강하는 강조층으로 사용하세요.",
+    "- 숫자, 조건, 반론이 딸린 extract는 최종 브리핑에서 적어도 한 번은 살아 있어야 합니다. 숫자를 버리고 방향성만 남기지 마세요.",
     "- 전체 커버 요약과 강조 extract, Deep Research가 충돌하면 컨센서스와 예외를 분리해 명시하세요.",
     "- Deep Research는 시나리오의 깊이, 반박 시나리오, 대안 자산, 촉매 일정, 과거 유사 국면 해석을 보강하는 용도로 사용하세요.",
     "- refinement map은 '무엇이 아직 얕은지'를 알려주는 재인덱싱 레이어입니다. 라운드가 올라갈수록 새 일반론보다 무효화 조건과 실행 디테일 보강에 더 큰 비중을 두세요.",
     "- 기술 스냅샷은 종목별 추세 상태와 진입/보류 해석을 보강하는 데 사용하세요.",
     "- 근거가 약한 숫자/정확 날짜/ETF 종목명은 새로 지어내지 마세요. 모호하면 '4월 말', '2분기 중', '몇 주 내'처럼 보수적으로 표현하세요.",
+    "- 반대로 Stage 1 extract에 이미 있는 숫자와 조건, 무효화 포인트는 뭉개지 말고 간결하게 유지하세요.",
     "- 한국 투자자가 바로 실행할 수 있는 언어로 정리하세요. 필요하면 해외 자산 아이디어를 한국 상장 ETF/국내 계좌 실행 관점으로 번역하세요.",
     "- 문장은 짧게 쓰고, 섹션마다 실제 대응이 달라지도록 구체적으로 쓰세요.",
     "- 보유 종목 코멘트는 반드시 계좌 성격을 반영하세요. ISA는 절세형 방어·인컴, 연금은 장기 복리, 토스는 전술 알파, 한투 일반은 실전형 테마 계좌입니다.",

@@ -1,0 +1,90 @@
+{
+  "date": "2026-04-10",
+  "runDate": "2026-04-12",
+  "effectiveMarketDate": "2026-04-10",
+  "runId": null,
+  "generatedAt": "2026-04-12T13:54:45.129Z",
+  "sourceFiles": {
+    "market": "/Users/seo/stock-pilot/data/intraday/2026-04-10/market-lite.json",
+    "portfolio": "/Users/seo/stock-pilot/data/portfolio/latest.json",
+    "technical": "/Users/seo/stock-pilot/data/technical/2026-04-10.json"
+  },
+  "summary": {
+    "triggerCount": 8,
+    "firedCount": 0
+  },
+  "triggers": [
+    {
+      "name": "VIX 급등",
+      "condition": "vix > 35",
+      "action": "emergency_eval",
+      "triggered": false,
+      "actual": 19.49,
+      "comparator": ">35",
+      "detail": null
+    },
+    {
+      "name": "VIX 급변",
+      "condition": "vix_change_pct > 0.1",
+      "action": "emergency_eval",
+      "triggered": false,
+      "actual": null,
+      "comparator": ">0.1",
+      "detail": null
+    },
+    {
+      "name": "보유종목 급락",
+      "condition": "any_holding_daily_change < -0.05",
+      "action": "emergency_eval",
+      "triggered": false,
+      "actual": -0.005671,
+      "comparator": "<-0.05",
+      "detail": "TOSS KODEX 선진국ESG액티브(251350) -0.57%"
+    },
+    {
+      "name": "WTI 급등",
+      "condition": "wti > 120",
+      "action": "emergency_eval",
+      "triggered": false,
+      "actual": 96.57,
+      "comparator": ">120",
+      "detail": null
+    },
+    {
+      "name": "WTI 급락",
+      "condition": "wti < 70",
+      "action": "emergency_eval",
+      "triggered": false,
+      "actual": 96.57,
+      "comparator": "<70",
+      "detail": null
+    },
+    {
+      "name": "환율 급등",
+      "condition": "usdkrw > 1550",
+      "action": "emergency_eval",
+      "triggered": false,
+      "actual": 1480.86,
+      "comparator": ">1550",
+      "detail": null
+    },
+    {
+      "name": "환율 급변",
+      "condition": "usdkrw_change_pct > 0.01",
+      "action": "emergency_eval",
+      "triggered": false,
+      "actual": null,
+      "comparator": ">0.01",
+      "detail": null
+    },
+    {
+      "name": "이란 종전",
+      "condition": "keyword_detected('ceasefire','iran')",
+      "action": "full_rebalance",
+      "triggered": false,
+      "actual": "corpus",
+      "comparator": "ceasefire+iran",
+      "detail": null
+    }
+  ]
+}

@@ -1,10 +1,12 @@
 {
   "triggers": [
     { "name": "VIX 급등", "condition": "vix > 35", "action": "emergency_eval" },
-    { "name": "보유종목 급락", "condition": "any_holding_daily_change < -0.08", "action": "emergency_eval" },
+    { "name": "VIX 급변", "condition": "vix_change_pct > 0.1", "action": "emergency_eval" },
+    { "name": "보유종목 급락", "condition": "any_holding_daily_change < -0.05", "action": "emergency_eval" },
     { "name": "WTI 급등", "condition": "wti > 120", "action": "emergency_eval" },
     { "name": "WTI 급락", "condition": "wti < 70", "action": "emergency_eval" },
     { "name": "환율 급등", "condition": "usdkrw > 1550", "action": "emergency_eval" },
+    { "name": "환율 급변", "condition": "usdkrw_change_pct > 0.01", "action": "emergency_eval" },
     { "name": "이란 종전", "condition": "keyword_detected('ceasefire','iran')", "action": "full_rebalance" }
   ]
 }

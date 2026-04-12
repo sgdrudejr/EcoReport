@@ -1,0 +1,90 @@
+{
+  "version": "1.0",
+  "stages": {
+    "stage1": {
+      "label": "Stage 1 Extracts",
+      "requiredKeys": [
+        "date",
+        "runDate",
+        "effectiveMarketDate",
+        "generatedAt",
+        "reportCount",
+        "quality",
+        "extracts",
+        "_contract"
+      ],
+      "requiredNestedKeys": [
+        "quality.contaminationRate",
+        "quality.weakClaimRatio"
+      ]
+    },
+    "impact-map": {
+      "label": "Impact Map",
+      "requiredKeys": [
+        "date",
+        "runDate",
+        "effectiveMarketDate",
+        "generatedAt",
+        "provenance",
+        "reports",
+        "_contract"
+      ],
+      "requiredNestedKeys": [
+        "provenance.source"
+      ]
+    },
+    "stage2": {
+      "label": "Stage 2 Strategy",
+      "requiredKeys": [
+        "date",
+        "runDate",
+        "effectiveMarketDate",
+        "generatedAt",
+        "macro_view",
+        "account_actions",
+        "candidate_scores",
+        "portfolio_risks",
+        "_contract"
+      ],
+      "requiredNestedKeys": [
+        "macro_view.regime"
+      ]
+    },
+    "stage3": {
+      "label": "Stage 3 Quant",
+      "requiredKeys": [
+        "date",
+        "runDate",
+        "effectiveMarketDate",
+        "generatedAt",
+        "regime",
+        "coverage",
+        "holdings",
+        "positions",
+        "accounts",
+        "portfolio",
+        "_contract"
+      ],
+      "requiredNestedKeys": [
+        "portfolio.totalScore",
+        "regime.name"
+      ]
+    },
+    "stage4": {
+      "label": "Stage 4 Execution Plan",
+      "requiredKeys": [
+        "date",
+        "runDate",
+        "effectiveMarketDate",
+        "generatedAt",
+        "portfolioScore",
+        "regime",
+        "accountPlans",
+        "_contract"
+      ],
+      "requiredNestedKeys": [
+        "regime.name"
+      ]
+    }
+  }
+}

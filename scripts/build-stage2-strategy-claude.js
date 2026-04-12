@@ -14,6 +14,7 @@ import {
   buildRunMetadata,
   parseDateArgs,
   ROOT_DIR,
+  withContract,
   writeJson,
   writeText,
 } from "./lib/pipeline-utils.js";
@@ -113,7 +114,13 @@ async function main() {
   };
 
   await fs.mkdir(path.dirname(outputPath), { recursive: true });
-  await writeJson(outputPath, finalPayload);
+  await writeJson(
+    outputPath,
+    withContract(finalPayload, {
+      stage: "stage2",
+      generatedAt: runMeta.generatedAt,
+    }),
+  );
   await writeText(rawOutputPath, rawText);
 
   console.log(`[stage2-claude] 완료: ${outputPath}`);

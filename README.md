@@ -1,23 +1,26 @@
 # EcoReport
 
-EcoReport는 리포트 수집, 시장 데이터, 계좌 상태, 실행 계획을 하나의 로컬 워크벤치로 묶는 반자동 포트폴리오 인텔리전스 시스템입니다.
+EcoReport는 증권사 리포트, 시장 데이터, 계좌 상태, 실행 계획, 피드백 루프를 하나의 로컬 워크벤치로 묶는 포트폴리오 인텔리전스 시스템입니다.
 
-핵심 목표는 단순 요약이 아니라 아래 연결을 고정하는 것입니다.
+핵심 목표는 “요약”이 아니라 아래 연결을 재현 가능하게 유지하는 것입니다.
 
-- 리포트와 시장 데이터를 구조화한다.
-- 계좌별 점수와 리스크를 재현 가능한 코드로 계산한다.
-- 실제 실행 후보와 보류 사유까지 계좌 단위로 번역한다.
-- 피드백 데이터를 다시 점수 체계와 대시보드에 반영한다.
+- 리포트를 구조화된 fact anchor로 바꾼다.
+- LLM 전략 탐색 결과를 계좌별 실행안으로 번역한다.
+- Stage 3 점수와 Stage 4 실행안을 코드로 다시 계산한다.
+- 피드백, 챌린저, 고스트 포트폴리오를 통해 후행 검증을 남긴다.
+- 대시보드와 위키가 같은 산출물을 읽도록 유지한다.
 
 ## 현재 운영 모델
 
-- 기본 운영: `Mac Mini + 로컬 실행 + private access`
-- 기본 파이프라인: `run-daily-system.sh`
-- 전략 파이프라인 핵심: `run-strategy-pipeline.sh`
+- 실행 환경: `Mac Mini + 로컬 실행 + private access`
+- 루트 워크스페이스: `/Users/seo/stock-pilot`
+- 프론트엔드 워크스페이스: `dashboard/` (`package.json` workspaces 사용)
+- 일일 마스터 러너: `scripts/run-daily-system.sh`
+- 전략 파이프라인: `scripts/run-strategy-pipeline.sh`
+- DAG 러너: `scripts/run-pipeline-dag.js`
+- 장중 경보 파이프라인: `scripts/run-intraday-alert-pipeline.js`
 - 대시보드 소스 오브 트루스: `dashboard/`
 - 장기 기억 레이어: `knowledge/wiki/`
-
-Stage 2는 LLM 연동이 포함되지만, Stage 1/2.5/3/4와 피드백 루프는 코드 기반 산출물을 남기도록 유지합니다.
 
 ## 빠른 시작
 
@@ -28,17 +31,14 @@ cd /Users/seo/stock-pilot
 bash scripts/run-daily-system.sh --date YYYY-MM-DD
 ```
 
-이 러너는 아래를 순서대로 실행합니다.
+주요 옵션:
 
-1. 포트폴리오 동기화 옵션 적용
-2. 리포트 수집 + 전문 텍스트화
-3. 시장 데이터 + 기술 지표 계산
-4. RAG 코퍼스 갱신
-5. Gemini 브리핑 옵션 실행
-6. Stage 1~4 전략 파이프라인
-7. Wiki 갱신
-8. 시스템 검증
-9. 선택적으로 GitHub/data 브랜치 동기화
+- `--use-dag`: `config/pipeline-manifest.yaml` 기반 DAG 실행
+- `--gemini-stage2`: Stage 2를 Gemini 우선으로 실행
+- `--claude-stage2`: Stage 2를 Claude 우선으로 실행
+- `--mock-stage2`: Stage 2를 mock으로 고정
+- `--skip-collect`, `--skip-rag`, `--skip-strategy`, `--skip-wiki`, `--skip-verify`
+- `--no-gemini-briefing`, `--gemini-briefing`
 
 ### 2. 전략 파이프라인만 재실행
 
@@ -47,148 +47,190 @@ cd /Users/seo/stock-pilot
 bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD
 ```
 
-주요 옵션:
+이 러너는 Stage 1 -> 1.5 -> 1.6 -> 2 -> 2.5 -> 3 -> holding-clusters -> 4 -> feedback snapshot까지 집중 실행합니다.
 
-- `--gemini-stage2`: Gemini Stage 2 우선
-- `--claude-stage2`: Claude Stage 2 우선
-- `--mock-stage2`: 테스트용 mock 고정
-- `--auto-tune-dry-run`: 피드백 기반 가중치 튜닝 시뮬레이션
-- `--auto-tune`: `config/strategy.json` 실제 갱신
+### 3. 장중 경보/부분 재점수
 
-### 3. 대시보드
+```bash
+cd /Users/seo/stock-pilot
+node scripts/run-intraday-alert-pipeline.js --date YYYY-MM-DD --dry-run
+```
+
+현재 장중 파이프라인은 아래를 수행합니다.
+
+- `fetch-market-data-lite.js`로 경량 시세 스냅샷 수집
+- `evaluate-alert-triggers.js`로 VIX/환율/보유종목 급변 경보 평가
+- 트리거 발생 시 `recompute-stage3-intraday.js`로 intraday overlay 생성
+- `data/intraday/latest.json` 갱신
+- Telegram 긴급 알림 전송
+
+### 4. 대시보드
 
 ```bash
 cd /Users/seo/stock-pilot/dashboard
+npm install
 npm run dev -- --hostname 0.0.0.0
 ```
 
-기본 접속:
+검증:
 
-- 로컬: [http://localhost:3000](http://localhost:3000)
-- 동일 네트워크: `http://<Mac-Mini-LAN-IP>:3000`
+```bash
+cd /Users/seo/stock-pilot/dashboard
+npm run build
+```
 
-새 실험 UI는 상단 우측 `테스트 UI` 글로벌 토글로 전체 노출/미노출합니다.
+### 5. 리포트 요약 충실도 검증
+
+```bash
+cd /Users/seo/stock-pilot
+node scripts/validate-briefing-fidelity.js --date YYYY-MM-DD
+```
+
+이 검증은 `rich briefing`과 `Stage 2 prompt`가 중요한 extract의 제목, 숫자 anchor, 조건/반론 anchor를 얼마나 보존했는지 확인합니다.
 
 ## 현재 파이프라인 구조
 
 ```mermaid
 flowchart TD
-    A["Report Sources"] --> B["collect-report-assets.sh"]
-    B --> B1["data/reports/YYYY-MM-DD/*"]
+    A["Report Sources"] --> C["collect-report-assets.sh"]
+    C --> R["data/reports/YYYY-MM-DD/*"]
 
-    P["Portfolio Snapshot"] --> S1
-    T["Technical Snapshot"] --> S2
-    M["Market Snapshot"] --> S4
-    W["Strategy / Watchlist"] --> S3
+    P["Portfolio latest.json"] --> S2
+    P --> S3
+    P --> S4
+    T["technical YYYY-MM-DD.json"] --> S2
+    T --> S3
+    T --> S4
+    M["market YYYY-MM-DD.json"] --> S3
+    M --> S4
+    MV["marketvoice-linked.json"] --> S2
+    W["strategy/watchlist config"] --> S3
 
-    B1 --> S1["Stage 1<br/>build-stage1-report-extracts.js"]
+    R --> S1["Stage 1<br/>build-stage1-report-extracts.js"]
     S1 --> S15["Stage 1.5<br/>deep research prompt"]
-    S1 --> S2["Stage 2<br/>provider chain or mock"]
-    S1 --> I["Stage 2.5<br/>build-impact-map.js"]
+    S15 --> DR["manual deep research response"]
+    DR --> S16["Stage 1.6<br/>rich briefing"]
+    S1 --> S2["Stage 2<br/>strategy prompt + Gemini/Claude/mock"]
+    S1 --> S25["Stage 2.5<br/>build-impact-map.js"]
+    S16 --> S2
 
     S2 --> S3["Stage 3<br/>build-stage3-quant-scores.js"]
-    I --> S3
-    T --> S3
-    P --> S3
+    S25 --> S3
+    S3 --> HC["build-holding-clusters.js"]
+    HC --> S4["Stage 4<br/>build-stage4-execution-plan.js"]
+    S4 --> CR["optional critic<br/>build-stage4-critic.js"]
 
-    S3 --> C["holding-clusters.json"]
-    S3 --> S4["Stage 4<br/>build-stage4-execution-plan.js"]
-    C --> S4
-    P --> S4
-    T --> S4
-    M --> S4
+    S3 --> TS["timeseries.db"]
+    S4 --> TS
+    S4 --> FB["feedback snapshot / analysis"]
+    FB --> CH["challenger / ghost / weight tuning"]
+    FB --> UI["dashboard + wiki"]
 
-    S4 --> F1["feedback snapshot"]
-    F1 --> F2["feedback analysis"]
-    F2 --> F3["source weighting / confidence badge / auto-tune"]
-
-    S4 --> D["dashboard"]
-    F2 --> D
-    C --> D
+    IA["intraday alert pipeline"] --> IU["data/intraday/latest.json"]
+    IU --> UI
 ```
 
 요약:
 
-- `Stage 1`: 리포트 구조화
-- `Stage 2`: 전략 후보 생성
-- `Stage 2.5`: 리포트 영향 확정
-- `Stage 3`: 점수화, source weighting 반영
-- `Stage 4`: 실행안, guardrail, cluster 경고 생성
-- `Feedback`: 적중률/상관관계/소스 정확도 분석, 가중치 튜닝 입력
+- `Stage 1`: 리포트 구조화 + 포트폴리오 연결
+- `Stage 1.5 / 1.6`: Deep Research와 rich briefing 보강
+- `Stage 2`: 전략 옵션 탐색
+- `Stage 2.5`: 리포트 영향 확정 레이어
+- `Stage 3`: 점수화, 분해 점수, SQLite 적재
+- `Stage 4`: 실행안, critic 병합, Telegram 요약 입력
+- `Feedback / Challenger / Ghost`: 사후 검증과 가중치 실험
+- `Intraday`: 경량 경보와 intraday score overlay
 
-## 최신 대시보드 상태
+## 저장소 구조
 
-현재 대시보드는 기본 운영 UI와 실험 UI를 함께 가집니다.
+상세 구조는 [docs/REPO_STRUCTURE.md](docs/REPO_STRUCTURE.md)에 정리되어 있습니다.
 
-기본 UI:
+핵심 디렉터리만 먼저 보면:
 
-- 시장 개요
-- 계좌 현황과 실행 방향성
-- 투자 방향성
-- 모니터링 이벤트 레이어
-- 추천 종목
-- 리포트/브리핑
+- `scripts/`: 운영 파이프라인과 데이터 산출 로직
+- `scripts/lib/`: 공용 유틸, 분석 컨텍스트, SQLite 래퍼
+- `config/`: 전략, 계약, DAG, Telegram, alerts 설정
+- `data/analysis-state/YYYY-MM-DD/`: 일자별 Stage 산출물
+- `data/feedback/`: 스냅샷, 분석, challenger, ghost 추적
+- `data/intraday/`: 장중 스냅샷과 경보 상태
+- `data/timeseries.db`: Stage 3/4 이중화 저장소
+- `dashboard/app/`: Next.js 16 app router 엔트리와 실험 페이지
+- `dashboard/components/`: 범용 시각화/탭/패널 컴포넌트
+- `knowledge/daily/`: 브리핑, prompt, 검증 메모
+- `knowledge/wiki/`: 누적 기억, 운영 규칙, 증권별 메모
 
-실험 UI 토글(`테스트 UI`)로 켜지는 항목:
+## 대시보드 현재 구조
 
-- 배분 히트맵
-- 실행계획 신뢰도 뱃지
-- 피드백 대시보드
-- 상관관계 클러스터
+메인 엔트리:
+
+- `dashboard/app/page.tsx`: 메인 대시보드 조립
+- `dashboard/app/lib/data-loader.ts`: intraday / ghost / backtest 보조 로더
+- `dashboard/app/api/intraday/route.ts`: 장중 polling endpoint
+- `dashboard/app/simulator/page.tsx`: What-if simulator
+
+최근 추가된 app 전용 컴포넌트:
+
+- `dashboard/app/components/IntradayAutoRefresh.tsx`
+- `dashboard/app/components/IntradayAlertBanner.tsx`
+- `dashboard/app/components/EvidenceChain.tsx`
+- `dashboard/app/components/ScoreBreakdownPanel.tsx`
+- `dashboard/app/components/GhostPortfolio.tsx`
+- `dashboard/app/components/BacktestSummary.tsx`
+
+기존 공용 대시보드 컴포넌트:
+
+- `dashboard/components/MainNav.tsx`
+- `dashboard/components/FeedbackPanel.tsx`
+- `dashboard/components/AllocationHeatmap.tsx`
+- `dashboard/components/ClusterMap.tsx`
+- `dashboard/components/AccountTabs.tsx`
+- `dashboard/components/HoldingTabs.tsx`
+- `dashboard/components/RecommendationTabs.tsx`
 
 ## 핵심 산출물
 
-### 전략 산출물
+### 전략 / 운영 산출물
 
 - `data/analysis-state/YYYY-MM-DD/stage1-report-extracts-v2.json`
-- `data/analysis-state/YYYY-MM-DD/stage2-strategy-options.json`
-- `data/analysis-state/YYYY-MM-DD/stage2-strategy-options.mock.json`
 - `data/analysis-state/YYYY-MM-DD/impact-map.json`
+- `data/analysis-state/YYYY-MM-DD/stage2-strategy-options.json`
 - `data/analysis-state/YYYY-MM-DD/stage3-quant-scores.json`
-- `data/analysis-state/YYYY-MM-DD/stage4-execution-plan.json`
 - `data/analysis-state/YYYY-MM-DD/holding-clusters.json`
+- `data/analysis-state/YYYY-MM-DD/stage4-execution-plan.json`
+- `data/analysis-state/YYYY-MM-DD/rebalancing-schedule.json`
+- `data/analysis-state/YYYY-MM-DD/pipeline-run.json`
+- `data/analysis-state/YYYY-MM-DD/stage-contract-validation.json`
+- `data/analysis-state/YYYY-MM-DD/briefing-fidelity-validation.json`
 
-### 피드백 산출물
+### 장중 / 운영 알림
+
+- `data/intraday/latest.json`
+- `data/intraday/YYYY-MM-DD/market-lite.json`
+- `data/intraday/YYYY-MM-DD/emergency-alerts.json`
+- `data/analysis-state/YYYY-MM-DD/stage3-intraday-updates.json`
+
+### 피드백 / 검증 / 백테스트
 
 - `data/feedback/snapshots/YYYY-MM-DD.json`
 - `data/feedback/analysis/YYYY-MM-DD-feedback.json`
-- `data/feedback/latest-feedback.json`
-- `data/feedback/weight-history.jsonl`
-
-### 운영/검증 산출물
-
-- `data/analysis-state/YYYY-MM-DD/system-health.json`
-- `data/analysis-state/YYYY-MM-DD/automation-cycle.json`
-- `reports/daily/YYYY-MM-DD-briefing.md`
-- `reports/daily/YYYY-MM-DD-stage4-execution-plan.md`
+- `data/feedback/challenger-weights.json`
+- `data/feedback/challenger-backtest.json`
+- `data/feedback/ghost-portfolio.jsonl`
+- `data/backtest/engine-latest.json`
+- `data/timeseries.db`
 
 ## 문서 진입 순서
 
-처음 보면 이 순서가 가장 빠릅니다.
-
 1. `README.md`
-2. `docs/DOCS_MAP.md`
+2. `docs/REPO_STRUCTURE.md`
 3. `docs/OPERATOR_RUNBOOK.md`
 4. `docs/STAGE_1_4_ARCHITECTURE.md`
 5. `docs/SCORE_SYSTEM_V2.md`
-
-운영/실험/히스토리:
-
-- 운영: [docs/OPERATOR_RUNBOOK.md](docs/OPERATOR_RUNBOOK.md)
-- 실험/검증: [docs/EXPERIMENT_PLAYBOOK.md](docs/EXPERIMENT_PLAYBOOK.md)
-- 변경 이력: [docs/UPDATE_LOG.md](docs/UPDATE_LOG.md)
-- 대시보드 문서: [dashboard/README.md](dashboard/README.md)
+6. `dashboard/README.md`
 
 ## 운영 원칙
 
 - 공개 배포보다 로컬 운영을 우선합니다.
-- `main`에는 실제 운영 기준 문서와 스크립트를 유지합니다.
-- 날짜 기준 산출물은 `data/analysis-state/YYYY-MM-DD`와 `data/feedback/*`에서 추적합니다.
-- 구조가 바뀌면 코드와 함께 문서도 바로 갱신합니다.
-
-## 지금 기준의 관리 포인트
-
-- 문서는 `README`와 `DOCS_MAP`을 진입점으로 삼습니다.
-- 운영 절차는 `OPERATOR_RUNBOOK`을 기준으로 맞춥니다.
-- 점수/실행/피드백 구조는 `STAGE_1_4_ARCHITECTURE`와 `SCORE_SYSTEM_V2`를 기준으로 봅니다.
-- 기본이 아닌 실험/역사성 문서는 2차 참고 자료로 취급합니다.
+- 날짜 기준 산출물은 `data/analysis-state/YYYY-MM-DD`, `data/intraday`, `data/feedback`에서 추적합니다.
+- 대시보드와 위키는 가능한 한 동일 파일 산출물을 읽습니다.
+- 구조가 바뀌면 코드와 함께 README와 구조 문서도 같이 갱신합니다.

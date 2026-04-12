@@ -1,387 +1,87 @@
 #!/usr/bin/env node
-// F1: 저장된 스냅샷을 실제 수익률과 연결해 score/팩터 예측력을 분석합니다.
+/**
+ * Performance Feedback Loop — Step 2: 스냅샷 분석
+ *
+ * 과거 스냅샷을 읽고, Python 가격 조회 모듈(backtest-analyze.py)과 동일한
+ * Naver/Stooq API를 통해 실제 수익률을 비교한 뒤 분석 리포트를 생성한다.
+ *
+ * 실제 수익률 조회는 Python subprocess로 위임한다.
+ *
+ * 사용:
+ *   node scripts/build-feedback-analysis.js
+ *   node scripts/build-feedback-analysis.js --min-days 5
+ */
 
 import fs from "node:fs/promises";
 import path from "node:path";
+import { execFileSync } from "node:child_process";
+import { ROOT_DIR, writeJson, writeText } from "./lib/pipeline-utils.js";
 
-import {
-  ROOT_DIR,
-  parseDateArgs,
-  readJson,
-  writeJson,
-} from "./lib/pipeline-utils.js";
+const SNAPSHOTS_DIR = path.join(ROOT_DIR, "data", "feedback", "snapshots");
+const ANALYSIS_DIR = path.join(ROOT_DIR, "data", "feedback", "analysis");
+const REPORT_PATH = path.join(ROOT_DIR, "reports", "feedback-summary.md");
 
-const DEFAULT_HORIZONS = [5, 10, 20];
-const DEFAULT_AUTO_ADJUST = {
-  enabled: true,
-  source: "data/feedback/latest-feedback.json",
-  primaryHorizonDays: 10,
-  minSamples: 24,
-  minWeightMultiplier: 0.6,
-  maxWeightMultiplier: 1.4,
-  sensitivity: 1.1,
-};
-const BUY_SIGNALS = new Set(["BUY", "SELECTIVE_ADD", "AGGRESSIVE_ADD"]);
-const TRIM_SIGNALS = new Set(["REDUCE", "TRIM"]);
-
-function toNumber(value, digits = 4) {
-  if (typeof value !== "number" || Number.isNaN(value) || !Number.isFinite(value)) {
-    return null;
-  }
-  return Number(value.toFixed(digits));
-}
-
-function mean(values) {
-  if (!values.length) return null;
-  return values.reduce((sum, value) => sum + value, 0) / values.length;
-}
-
-function variance(values, center = mean(values) ?? 0) {
-  if (values.length <= 1) return 0;
-  return (
-    values.reduce((sum, value) => sum + (value - center) ** 2, 0) /
-    (values.length - 1)
-  );
-}
-
-function pearsonCorrelation(points) {
-  if (points.length < 2) return null;
-  const xs = points.map((point) => point.x);
-  const ys = points.map((point) => point.y);
-  const meanX = mean(xs);
-  const meanY = mean(ys);
-  if (meanX == null || meanY == null) return null;
-  const stdX = Math.sqrt(variance(xs, meanX));
-  const stdY = Math.sqrt(variance(ys, meanY));
-  if (stdX <= 1e-9 || stdY <= 1e-9) return null;
-
-  let covariance = 0;
-  for (let index = 0; index < points.length; index += 1) {
-    covariance += (points[index].x - meanX) * (points[index].y - meanY);
-  }
-
-  return covariance / ((points.length - 1) * stdX * stdY);
-}
-
-async function fetchJson(url, options = {}) {
-  const response = await fetch(url, options);
-  if (!response.ok) {
-    throw new Error(`${response.status} ${response.statusText}`);
-  }
-  return response.json();
-}
-
-async function fetchText(url, options = {}) {
-  const response = await fetch(url, options);
-  if (!response.ok) {
-    throw new Error(`${response.status} ${response.statusText}`);
-  }
-  return response.text();
-}
-
-async function fetchNaverPrices(code, count = 90) {
-  try {
-    const items = await fetchJson(`https://m.stock.naver.com/api/stock/${code}/price?page=1&pageSize=${count}`, {
-      headers: {
-        "User-Agent":
-          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36",
-        Referer: "https://finance.naver.com",
-      },
-    });
-
-    if (!Array.isArray(items)) return {};
-    const prices = {};
-    for (const item of items) {
-      let date = item?.localTradedAt ?? item?.localDate ?? item?.date ?? null;
-      const close = item?.closePrice ?? item?.close ?? item?.endPrice ?? null;
-      if (!date || close == null) continue;
-      date = String(date);
-      if (/^\d{8}$/.test(date)) {
-        date = `${date.slice(0, 4)}-${date.slice(4, 6)}-${date.slice(6, 8)}`;
-      }
-      const numeric = Number(String(close).replaceAll(",", ""));
-      if (Number.isFinite(numeric)) {
-        prices[date] = numeric;
-      }
+function parseArgs(argv) {
+  let minDays = 5;
+  for (let i = 0; i < argv.length; i++) {
+    if (argv[i] === "--min-days" && argv[i + 1]) {
+      minDays = parseInt(argv[++i], 10);
     }
-    return prices;
-  } catch {
-    return {};
   }
+  return { minDays };
 }
 
-async function fetchStooqPrices(symbol) {
+function pythonBin() {
+  const venvPython = path.join(ROOT_DIR, ".venv", "bin", "python");
   try {
-    const csv = await fetchText(`https://stooq.com/q/d/l/?s=${symbol.toLowerCase()}&i=d`);
-    const lines = csv.trim().split("\n");
-    if (lines.length < 2) return {};
-    const prices = {};
-    for (const line of lines.slice(1)) {
-      const [date, , , , close] = line.split(",");
-      const numeric = Number(close);
-      if (date && Number.isFinite(numeric)) {
-        prices[date.trim()] = numeric;
-      }
-    }
-    return prices;
+    fs.access(venvPython);
+    return venvPython;
   } catch {
-    return {};
+    return "python3";
   }
 }
 
-const priceCache = new Map();
-
-async function getPrices(code) {
-  if (priceCache.has(code)) {
-    return priceCache.get(code);
-  }
-
-  let prices = {};
-  if (!code || String(code).startsWith("ACCOUNT:")) {
-    prices = {};
-  } else if (/^\d{6}$/.test(String(code))) {
-    prices = await fetchNaverPrices(String(code));
-    if (!Object.keys(prices).length) {
-      prices = await fetchStooqPrices(`${code}.KS`);
-    }
-  } else if (String(code).endsWith(".KS") || String(code).endsWith(".KQ")) {
-    prices = await fetchStooqPrices(String(code));
-  } else {
-    prices = await fetchStooqPrices(String(code));
-  }
-
-  priceCache.set(code, prices);
-  return prices;
-}
-
-function getForwardReturn(prices, signalDate, days) {
-  const dates = Object.keys(prices).sort();
-  const entryDate = dates.find((date) => date >= signalDate);
-  if (!entryDate) return null;
-  const entryIndex = dates.indexOf(entryDate);
-  const exitIndex = entryIndex + days;
-  if (exitIndex >= dates.length) return null;
-  const entryPrice = prices[entryDate];
-  const exitPrice = prices[dates[exitIndex]];
-  if (!Number.isFinite(entryPrice) || !Number.isFinite(exitPrice) || entryPrice === 0) {
-    return null;
-  }
-  return ((exitPrice - entryPrice) / entryPrice) * 100;
-}
-
-async function listSnapshotFiles() {
-  const dir = path.join(ROOT_DIR, "data", "feedback", "snapshots");
+/**
+ * Python subprocess로 종목별 수익률 조회
+ * 입력: [{code, date}] → 출력: [{code, date, ret_5d, ret_10d, ret_20d}]
+ */
+function fetchReturns(positions) {
+  const input = JSON.stringify(positions);
   try {
-    const entries = await fs.readdir(dir, { withFileTypes: true });
-    return entries
-      .filter((entry) => entry.isFile() && /^\d{4}-\d{2}-\d{2}\.json$/.test(entry.name))
-      .map((entry) => path.join(dir, entry.name))
-      .sort();
-  } catch {
+    const result = execFileSync(
+      path.join(ROOT_DIR, ".venv", "bin", "python"),
+      [path.join(ROOT_DIR, "scripts", "fetch-forward-returns.py")],
+      { input, encoding: "utf8", timeout: 120_000, maxBuffer: 10 * 1024 * 1024 },
+    );
+    return JSON.parse(result);
+  } catch (err) {
+    console.error(`[feedback-analysis] 수익률 조회 실패: ${err.message}`);
     return [];
   }
 }
 
-function signalDirection(signal) {
-  if (BUY_SIGNALS.has(signal)) return 1;
-  if (TRIM_SIGNALS.has(signal)) return -1;
-  return 0;
-}
-
-function normalizeWeights(weights) {
-  const safeWeights = Object.fromEntries(
-    Object.entries(weights ?? {}).map(([key, value]) => [
-      key,
-      typeof value === "number" && Number.isFinite(value) ? Math.max(value, 0) : 0,
-    ]),
-  );
-  const total = Object.values(safeWeights).reduce((sum, value) => sum + value, 0);
-  if (total <= 1e-9) return safeWeights;
-  return Object.fromEntries(
-    Object.entries(safeWeights).map(([key, value]) => [key, Number((value / total).toFixed(4))]),
-  );
-}
-
-function buildWeightSuggestions(baseWeights, factorMetrics, config) {
-  const normalizedBase = normalizeWeights(baseWeights);
-  const adjustedRaw = {};
-  const reasoning = [];
-
-  for (const [factorName, baseWeight] of Object.entries(normalizedBase)) {
-    const metric = factorMetrics?.[factorName] ?? null;
-    const correlation =
-      typeof metric?.correlation === "number" ? metric.correlation : null;
-    const sampleCount = metric?.sampleCount ?? 0;
-    let multiplier = 1;
-
-    if (correlation != null && sampleCount >= (config.minSamples ?? 0)) {
-      multiplier = Math.min(
-        config.maxWeightMultiplier ?? 1.4,
-        Math.max(
-          config.minWeightMultiplier ?? 0.6,
-          1 + correlation * (config.sensitivity ?? 1.1),
-        ),
-      );
-    }
-
-    adjustedRaw[factorName] = baseWeight * multiplier;
-    reasoning.push({
-      factor: factorName,
-      baseWeight: toNumber(baseWeight),
-      multiplier: toNumber(multiplier),
-      correlation: toNumber(correlation),
-      sampleCount,
-    });
+function pearsonCorrelation(xs, ys) {
+  const n = xs.length;
+  if (n < 3) return null;
+  const mx = xs.reduce((s, x) => s + x, 0) / n;
+  const my = ys.reduce((s, y) => s + y, 0) / n;
+  let num = 0, dx2 = 0, dy2 = 0;
+  for (let i = 0; i < n; i++) {
+    const dx = xs[i] - mx;
+    const dy = ys[i] - my;
+    num += dx * dy;
+    dx2 += dx * dx;
+    dy2 += dy * dy;
   }
-
-  const normalizedSuggested = normalizeWeights(adjustedRaw);
-  const deltas = Object.fromEntries(
-    Object.keys(normalizedBase).map((factorName) => [
-      factorName,
-      toNumber(
-        (normalizedSuggested[factorName] ?? 0) - (normalizedBase[factorName] ?? 0),
-      ),
-    ]),
-  );
-
-  return {
-    baseWeights: normalizedBase,
-    suggestedWeights: normalizedSuggested,
-    deltas,
-    reasoning,
-  };
+  const denom = Math.sqrt(dx2 * dy2);
+  return denom === 0 ? null : Math.round((num / denom) * 10000) / 10000;
 }
 
-function summarizeSignalStats(evaluations, horizons) {
-  const output = {};
-
-  for (const horizon of horizons) {
-    const horizonKey = `ret_${horizon}d`;
-    const stats = {};
-    for (const signal of new Set(evaluations.map((item) => item.signal).filter(Boolean))) {
-      const items = evaluations.filter((item) => item.signal === signal && typeof item[horizonKey] === "number");
-      const returns = items.map((item) => item[horizonKey]);
-      if (!returns.length) continue;
-
-      let hitRate = null;
-      if (BUY_SIGNALS.has(signal)) {
-        hitRate = returns.filter((value) => value > 0).length / returns.length;
-      } else if (TRIM_SIGNALS.has(signal)) {
-        hitRate = returns.filter((value) => value < 0).length / returns.length;
-      }
-
-      stats[signal] = {
-        count: returns.length,
-        avgReturnPct: toNumber(mean(returns)),
-        hitRate: toNumber(hitRate),
-        bestPct: toNumber(Math.max(...returns)),
-        worstPct: toNumber(Math.min(...returns)),
-      };
-    }
-    output[horizonKey] = stats;
-  }
-
-  return output;
-}
-
-function summarizeRegimeStats(evaluations, horizons) {
-  const output = {};
-  for (const horizon of horizons) {
-    const horizonKey = `ret_${horizon}d`;
-    const regimes = {};
-    for (const regimeName of new Set(
-      evaluations.map((item) => item.regimeName).filter(Boolean),
-    )) {
-      const items = evaluations.filter(
-        (item) => item.regimeName === regimeName && typeof item[horizonKey] === "number",
-      );
-      const returns = items.map((item) => item[horizonKey]);
-      if (!returns.length) continue;
-      regimes[regimeName] = {
-        sampleCount: returns.length,
-        avgReturnPct: toNumber(mean(returns)),
-        scoreCorrelation: toNumber(
-          pearsonCorrelation(
-            items.map((item) => ({ x: item.actionScore, y: item[horizonKey] })),
-          ),
-        ),
-        buyHitRate: toNumber(
-          (() => {
-            const buyItems = items.filter((item) => BUY_SIGNALS.has(item.signal));
-            if (!buyItems.length) return null;
-            return (
-              buyItems.filter((item) => item[horizonKey] > 0).length / buyItems.length
-            );
-          })(),
-        ),
-      };
-    }
-    output[horizonKey] = regimes;
-  }
-  return output;
-}
-
-function buildMispredictions(evaluations, primaryHorizonDays) {
-  const horizonKey = `ret_${primaryHorizonDays}d`;
-  return evaluations
-    .filter((item) => typeof item[horizonKey] === "number")
-    .map((item) => {
-      const expectedDirection = signalDirection(item.signal);
-      const actualDirection = Math.sign(item[horizonKey]);
-      const mismatch =
-        expectedDirection === 0
-          ? Math.abs(item[horizonKey])
-          : expectedDirection !== actualDirection && actualDirection !== 0
-            ? Math.abs(item[horizonKey]) * (1 + Math.abs((item.actionScore ?? 50) - 50) / 50)
-            : 0;
-
-      return {
-        date: item.date,
-        code: item.code,
-        name: item.name,
-        accountKey: item.accountKey,
-        signal: item.signal,
-        actionScore: item.actionScore,
-        regimeName: item.regimeName,
-        returnPct: toNumber(item[horizonKey]),
-        mismatchScore: mismatch,
-        factors: item.factors,
-        warnings: item.warnings,
-      };
-    })
-    .filter((item) => item.mismatchScore > 0)
-    .sort((left, right) => right.mismatchScore - left.mismatchScore)
-    .slice(0, 12)
-    .map(({ mismatchScore, ...item }) => item);
-}
-
-function buildAlerts(factorMetrics, primaryHorizonDays) {
-  const horizonKey = `ret_${primaryHorizonDays}d`;
-  return Object.entries(factorMetrics)
-    .map(([factor, metric]) => {
-      const horizonMetric = metric?.[horizonKey];
-      if (!horizonMetric || horizonMetric.sampleCount < 8) return null;
-      const correlation = horizonMetric.correlation;
-      if (typeof correlation !== "number") return null;
-      if (correlation <= -0.15) {
-        return {
-          level: "warning",
-          factor,
-          message: `${factor} 팩터가 최근 ${primaryHorizonDays}일 기준 역방향 상관을 보였습니다.`,
-          correlation: toNumber(correlation),
-        };
-      }
-      if (correlation >= 0.2) {
-        return {
-          level: "positive",
-          factor,
-          message: `${factor} 팩터가 최근 ${primaryHorizonDays}일 기준 상대적으로 잘 맞았습니다.`,
-          correlation: toNumber(correlation),
-        };
-      }
-      return null;
-    })
-    .filter(Boolean);
+function hitRate(items, scoreFn, returnFn, threshold) {
+  const filtered = items.filter((i) => scoreFn(i) >= threshold && returnFn(i) != null);
+  if (filtered.length === 0) return null;
+  const hits = filtered.filter((i) => returnFn(i) > 0).length;
+  return Math.round((hits / filtered.length) * 10000) / 10000;
 }
 
 function average(values) {
@@ -418,244 +118,181 @@ function sourceBuyHitRate(items) {
 }
 
 async function main() {
-  const args = parseDateArgs(process.argv.slice(2));
-  const horizons = DEFAULT_HORIZONS;
-  const analysisDate = args.date;
-  const outputPath =
-    args.output ??
-    path.join(ROOT_DIR, "data", "feedback", "analysis", `${analysisDate}-feedback.json`);
-  const latestOutputPath = path.join(ROOT_DIR, "data", "feedback", "latest-feedback.json");
+  const args = parseArgs(process.argv.slice(2));
+  await fs.mkdir(ANALYSIS_DIR, { recursive: true });
 
-  const strategy = await readJson(path.join(ROOT_DIR, "config", "strategy.json"), {});
-  const baseWeights = {
-    momentum: 0.35,
-    research: 0.3,
-    income: 0.15,
-    macroFit: 0.2,
-    ...(strategy?.scoring?.factorModel?.weights ?? {}),
-  };
-  const autoAdjust = {
-    ...DEFAULT_AUTO_ADJUST,
-    ...(strategy?.scoring?.factorModel?.autoAdjust ?? {}),
-  };
+  // 스냅샷 로드
+  let files;
+  try {
+    files = (await fs.readdir(SNAPSHOTS_DIR)).filter((f) => f.endsWith(".json")).sort();
+  } catch {
+    console.error("[feedback-analysis] 스냅샷 없음. 먼저 build-feedback-snapshot.js를 실행하세요.");
+    process.exit(1);
+  }
 
-  const snapshotFiles = await listSnapshotFiles();
-  const snapshots = (
-    await Promise.all(snapshotFiles.map((filePath) => readJson(filePath, null)))
-  ).filter(Boolean);
+  if (files.length === 0) {
+    console.error("[feedback-analysis] 스냅샷 파일이 없습니다.");
+    process.exit(1);
+  }
 
-  const maturedSnapshots = snapshots.filter(
-    (snapshot) => String(snapshot?.date ?? "") <= analysisDate,
-  );
-  const uniqueCodes = new Set();
-  for (const snapshot of maturedSnapshots) {
-    for (const position of snapshot.positions ?? []) {
-      if (position?.code) {
-        uniqueCodes.add(position.code);
+  // 경과일 계산 — 오늘로부터 minDays 이상 지난 스냅샷만 분석
+  const today = new Date();
+  const eligibleFiles = files.filter((f) => {
+    const dateStr = f.replace(".json", "");
+    const snapshotDate = new Date(dateStr);
+    const daysDiff = Math.floor((today - snapshotDate) / (1000 * 60 * 60 * 24));
+    return daysDiff >= args.minDays;
+  });
+
+  console.log(`[feedback-analysis] 전체 스냅샷: ${files.length}, 분석 대상 (>= ${args.minDays}일): ${eligibleFiles.length}`);
+
+  if (eligibleFiles.length === 0) {
+    console.log("[feedback-analysis] 아직 분석 가능한 스냅샷이 없습니다 (최소 경과일 미충족).");
+    process.exit(0);
+  }
+
+  // 모든 대상 스냅샷의 포지션 수집
+  const allSnapshots = [];
+  for (const file of eligibleFiles) {
+    const snapshot = JSON.parse(await fs.readFile(path.join(SNAPSHOTS_DIR, file), "utf8"));
+    allSnapshots.push(snapshot);
+  }
+
+  // 수익률 조회 요청 구성
+  const returnRequests = [];
+  const seen = new Set();
+  for (const snap of allSnapshots) {
+    for (const pos of snap.positions ?? []) {
+      const key = `${pos.code}:${snap.date}`;
+      if (!seen.has(key)) {
+        seen.add(key);
+        returnRequests.push({ code: pos.code, date: snap.date });
       }
     }
   }
 
-  for (const code of uniqueCodes) {
-    await getPrices(code);
-  }
+  console.log(`[feedback-analysis] ${returnRequests.length}개 종목-날짜 수익률 조회 중...`);
+  const returnsRaw = fetchReturns(returnRequests);
+  const returnsMap = new Map(returnsRaw.map((r) => [`${r.code}:${r.date}`, r]));
 
-  const evaluations = [];
-  for (const snapshot of maturedSnapshots) {
-    for (const position of snapshot.positions ?? []) {
-      const prices = priceCache.get(position.code) ?? {};
-      const record = {
-        date: snapshot.date,
-        code: position.code,
-        name: position.name,
-        accountKey: position.accountKey,
-        signal: position.signal,
-        actionScore: position.actionScore,
-        regimeName: snapshot.regime?.name ?? "UNKNOWN",
-        reportSources: position.reportSources ?? [],
-        reportScore:
-          position.reportScore ??
-          position.report?.impactScore ??
-          null,
-        factors: {
-          raw: position.factors?.raw ?? {},
-          zScores: position.factors?.zScores ?? {},
-        },
-        warnings: position.explain?.warnings ?? [],
-      };
-
-      for (const horizon of horizons) {
-        record[`ret_${horizon}d`] = toNumber(
-          getForwardReturn(prices, snapshot.date, horizon),
-        );
-      }
-      evaluations.push(record);
+  // 포지션별 통합 데이터 구축
+  const enriched = [];
+  for (const snap of allSnapshots) {
+    for (const pos of snap.positions ?? []) {
+      const ret = returnsMap.get(`${pos.code}:${snap.date}`);
+      enriched.push({
+        date: snap.date,
+        regime: snap.regime,
+        ...pos,
+        ret_1d: ret?.ret_1d ?? null,
+        ret_3d: ret?.ret_3d ?? null,
+        ret_5d: ret?.ret_5d ?? null,
+        ret_10d: ret?.ret_10d ?? null,
+        ret_20d: ret?.ret_20d ?? null,
+      });
     }
   }
 
-  const scoreReturnCorrelation = Object.fromEntries(
-    horizons.map((horizon) => {
-      const horizonKey = `ret_${horizon}d`;
-      const points = evaluations
-        .filter(
-          (item) =>
-            typeof item.actionScore === "number" && typeof item[horizonKey] === "number",
-        )
-        .map((item) => ({ x: item.actionScore, y: item[horizonKey] }));
-      return [
-        horizonKey,
-        {
-          correlation: toNumber(pearsonCorrelation(points)),
-          sampleCount: points.length,
-        },
-      ];
-    }),
-  );
+  // ret_5d 우선, 없으면 ret_3d/ret_1d 순으로 bestReturn 채움
+  for (const e of enriched) {
+    e.bestReturn = e.ret_5d ?? e.ret_3d ?? e.ret_1d ?? null;
+    e.bestReturnPeriod = e.ret_5d != null ? "5d" : e.ret_3d != null ? "3d" : e.ret_1d != null ? "1d" : null;
+  }
+  const withReturns = enriched.filter((e) => e.bestReturn != null);
+  console.log(`[feedback-analysis] 수익률 확보: ${withReturns.length} / ${enriched.length}`);
 
-  const factorMetrics = {};
-  for (const factorName of Object.keys(baseWeights)) {
-    factorMetrics[factorName] = Object.fromEntries(
-      horizons.map((horizon) => {
-        const horizonKey = `ret_${horizon}d`;
-        const points = evaluations
-          .filter(
-            (item) =>
-              typeof item.factors?.zScores?.[factorName] === "number" &&
-              typeof item[horizonKey] === "number",
-          )
-          .map((item) => ({
-            x: item.factors.zScores[factorName],
-            y: item[horizonKey],
-          }));
-        return [
-          horizonKey,
-          {
-            correlation: toNumber(pearsonCorrelation(points)),
-            sampleCount: points.length,
-          },
-        ];
-      }),
-    );
+  if (withReturns.length < 3) {
+    console.log("[feedback-analysis] 수익률 데이터 부족, 분석 스킵.");
+    process.exit(0);
   }
 
-  const primaryHorizonDays = autoAdjust.primaryHorizonDays ?? 10;
-  const primaryHorizonKey = `ret_${primaryHorizonDays}d`;
-  const factorPrimaryMetrics = Object.fromEntries(
-    Object.entries(factorMetrics).map(([factorName, metric]) => [
-      factorName,
-      {
-        correlation: metric?.[primaryHorizonKey]?.correlation ?? null,
-        sampleCount: metric?.[primaryHorizonKey]?.sampleCount ?? 0,
-      },
-    ]),
-  );
-  const weightSuggestions = buildWeightSuggestions(
-    baseWeights,
-    factorPrimaryMetrics,
-    autoAdjust,
-  );
-  const signalAccuracy = summarizeSignalStats(evaluations, horizons);
-  const regimeAccuracyByHorizon = summarizeRegimeStats(evaluations, horizons);
-  const enrichedEvaluations = evaluations
-    .map((item) => ({
-      ...item,
-      regime: item.regimeName,
-      bestReturn: item.ret_5d ?? item[primaryHorizonKey] ?? item.ret_20d ?? null,
-      bestReturnPeriod:
-        typeof item.ret_5d === "number"
-          ? "5d"
-          : typeof item[primaryHorizonKey] === "number"
-            ? `${primaryHorizonDays}d`
-            : typeof item.ret_20d === "number"
-              ? "20d"
-              : null,
-    }))
-    .filter((item) => item.bestReturn != null);
-  const scoreReturnCorrelationSimple = {
-    actionScore_vs_ret5d: scoreReturnCorrelation?.ret_5d?.correlation ?? null,
-    actionScore_vs_ret10d: scoreReturnCorrelation?.ret_10d?.correlation ?? null,
-    actionScore_vs_ret20d: scoreReturnCorrelation?.ret_20d?.correlation ?? null,
+  // === 분석 ===
+
+  // 1. 점수-수익률 상관관계
+  const scoreReturnCorr = {
+    "actionScore_vs_ret5d": pearsonCorrelation(
+      withReturns.map((e) => e.actionScore),
+      withReturns.map((e) => e.bestReturn),
+    ),
+    "actionScore_vs_ret10d": pearsonCorrelation(
+      withReturns.filter((e) => e.ret_10d != null).map((e) => e.actionScore),
+      withReturns.filter((e) => e.ret_10d != null).map((e) => e.ret_10d),
+    ),
+    "actionScore_vs_ret20d": pearsonCorrelation(
+      withReturns.filter((e) => e.ret_20d != null).map((e) => e.actionScore),
+      withReturns.filter((e) => e.ret_20d != null).map((e) => e.ret_20d),
+    ),
   };
-  const factorCorrelations = Object.fromEntries(
-    Object.entries(factorMetrics).map(([factorName, metric]) => [
-      factorName,
-      {
-        vs_ret5d: metric?.ret_5d?.correlation ?? null,
-        vs_ret10d: metric?.ret_10d?.correlation ?? null,
-        count:
-          metric?.[primaryHorizonKey]?.sampleCount ??
-          metric?.ret_5d?.sampleCount ??
-          0,
-      },
-    ]),
-  );
-  const regimeAccuracy = Object.fromEntries(
-    Object.entries(regimeAccuracyByHorizon?.ret_5d ?? {}).map(([regimeName, stat]) => [
-      regimeName,
-      {
-        count: stat?.sampleCount ?? 0,
-        avgReturn5d: stat?.avgReturnPct ?? null,
-        scoreCorr5d: stat?.scoreCorrelation ?? null,
-        buyHitRate: stat?.buyHitRate ?? null,
-      },
-    ]),
-  );
-  const pickSignalHitRate = (candidates) => {
-    for (const signal of candidates) {
-      const hitRate = signalAccuracy?.ret_5d?.[signal]?.hitRate;
-      if (typeof hitRate === "number") {
-        return hitRate;
-      }
-    }
-    return null;
-  };
+
+  // 2. 시그널 적중률
   const signalHitRates = {
-    buy_hit_5d: pickSignalHitRate([...BUY_SIGNALS]),
-    hold_hit_5d: pickSignalHitRate(["HOLD", "WATCH"]),
-    trim_negative_5d: pickSignalHitRate([...TRIM_SIGNALS]),
+    buy_hit_5d: hitRate(withReturns, (e) => e.actionScore, (e) => e.bestReturn, 68),
+    hold_hit_5d: hitRate(withReturns, (e) => e.actionScore, (e) => e.bestReturn, 50),
+    trim_negative_5d: (() => {
+      const trims = withReturns.filter((e) => e.actionScore <= 38 && e.bestReturn != null);
+      if (trims.length === 0) return null;
+      return Math.round(trims.filter((e) => e.bestReturn < 0).length / trims.length * 10000) / 10000;
+    })(),
   };
+
+  // 3. 팩터별 상관관계 (예측력)
+  const factorCorrelations = {};
+  for (const factor of ["momentum", "research", "income", "macroFit"]) {
+    const valid = withReturns.filter((e) => e.factors?.[factor] != null);
+    factorCorrelations[factor] = {
+      vs_ret5d: pearsonCorrelation(valid.map((e) => e.factors[factor]), valid.map((e) => e.bestReturn)),
+      vs_ret10d: pearsonCorrelation(
+        valid.filter((e) => e.ret_10d != null).map((e) => e.factors[factor]),
+        valid.filter((e) => e.ret_10d != null).map((e) => e.ret_10d),
+      ),
+      count: valid.length,
+    };
+  }
+
+  // 4. 레짐별 정확도
+  const regimeAccuracy = {};
+  const regimes = [...new Set(withReturns.map((e) => e.regime))];
+  for (const regime of regimes) {
+    const subset = withReturns.filter((e) => e.regime === regime);
+    regimeAccuracy[regime] = {
+      count: subset.length,
+      avgReturn5d: subset.length > 0
+        ? Math.round(subset.reduce((s, e) => s + e.bestReturn, 0) / subset.length * 100) / 100
+        : null,
+      scoreCorr5d: pearsonCorrelation(
+        subset.map((e) => e.actionScore),
+        subset.map((e) => e.ret_5d),
+      ),
+      buyHitRate: hitRate(subset, (e) => e.actionScore, (e) => e.bestReturn, 68),
+    };
+  }
+
+  // 5. 최악 오판 (고점수+음수수익, 저점수+양수수익)
   const worstMispredictions = {
-    highScoreLosers: enrichedEvaluations
-      .filter((item) => item.actionScore >= 68 && item.bestReturn < -2)
-      .sort((left, right) => left.bestReturn - right.bestReturn)
+    highScoreLosers: withReturns
+      .filter((e) => e.actionScore >= 68 && e.bestReturn < -2)
+      .sort((a, b) => a.bestReturn - b.bestReturn)
       .slice(0, 5)
-      .map((item) => ({
-        date: item.date,
-        code: item.code,
-        name: item.name,
-        score: item.actionScore,
-        bestReturn: item.bestReturn,
-        period: item.bestReturnPeriod,
-      })),
-    lowScoreWinners: enrichedEvaluations
-      .filter((item) => item.actionScore <= 38 && item.bestReturn > 2)
-      .sort((left, right) => right.bestReturn - left.bestReturn)
+      .map((e) => ({ date: e.date, code: e.code, name: e.name, score: e.actionScore, bestReturn: e.bestReturn, period: e.bestReturnPeriod })),
+    lowScoreWinners: withReturns
+      .filter((e) => e.actionScore <= 38 && e.bestReturn > 2)
+      .sort((a, b) => b.bestReturn - a.bestReturn)
       .slice(0, 5)
-      .map((item) => ({
-        date: item.date,
-        code: item.code,
-        name: item.name,
-        score: item.actionScore,
-        bestReturn: item.bestReturn,
-        period: item.bestReturnPeriod,
-      })),
+      .map((e) => ({ date: e.date, code: e.code, name: e.name, score: e.actionScore, bestReturn: e.bestReturn, period: e.bestReturnPeriod })),
   };
-  const uiWeightSuggestions = Object.entries(factorCorrelations).map(
-    ([factor, metric]) => {
-      const correlation = metric?.vs_ret5d ?? null;
-      let suggestion = "유지";
-      if (correlation != null && correlation > 0.15) {
-        suggestion = "비중↑ (양의 예측력)";
-      } else if (correlation != null && correlation < -0.1) {
-        suggestion = "비중↓ (음의 예측력)";
-      } else if (correlation != null && Math.abs(correlation) < 0.05) {
-        suggestion = "비중↓ (예측력 거의 없음)";
-      }
-      return { factor, correlation_5d: correlation, suggestion };
-    },
-  );
+
+  // 6. 가중치 조정 제안
+  const weightSuggestions = Object.entries(factorCorrelations).map(([factor, corr]) => {
+    const c = corr.vs_ret5d;
+    let suggestion = "유지";
+    if (c != null && c > 0.15) suggestion = "비중↑ (양의 예측력)";
+    else if (c != null && c < -0.10) suggestion = "비중↓ (음의 예측력)";
+    else if (c != null && Math.abs(c) < 0.05) suggestion = "비중↓ (예측력 거의 없음)";
+    return { factor, correlation_5d: c, suggestion };
+  });
+
   const sourceBuckets = new Map();
-  for (const item of enrichedEvaluations) {
+  for (const item of withReturns) {
     for (const source of item.reportSources ?? []) {
       if (!sourceBuckets.has(source)) {
         sourceBuckets.set(source, []);
@@ -663,76 +300,113 @@ async function main() {
       sourceBuckets.get(source).push(item);
     }
   }
+
   const sourceAccuracy = [...sourceBuckets.entries()]
     .map(([source, items]) => {
       const buyHitRate = sourceBuyHitRate(items);
       return {
         source,
         sampleSize: items.length,
-        avgReturn5d: average(
-          items.map((item) => item.ret_5d).filter((value) => value != null),
-        ),
+        avgReturn5d: average(items.map((item) => item.bestReturn).filter((value) => value != null)),
         buyHitRate,
         avgReportScore: average(
           items.map((item) => item.reportScore).filter((value) => value != null),
         ),
-        note:
-          buyHitRate == null
-            ? "표본 부족"
-            : "68점 BUY 우선, 부족 시 58점 실행권 기준",
+        note: buyHitRate == null ? "표본 부족" : "68점 BUY 우선, 부족 시 58점 실행권 기준",
       };
     })
     .filter((item) => item.sampleSize >= 2)
-    .sort(
-      (left, right) =>
-        right.sampleSize - left.sampleSize ||
-        (right.avgReturn5d ?? -999) - (left.avgReturn5d ?? -999),
-    )
+    .sort((left, right) => right.sampleSize - left.sampleSize || (right.avgReturn5d ?? -999) - (left.avgReturn5d ?? -999))
     .slice(0, 12);
 
-  const payload = {
-    analysisDate,
+  const analysis = {
     generatedAt: new Date().toISOString(),
-    snapshotCount: maturedSnapshots.length,
-    positionCount: evaluations.length,
-    horizons,
-    snapshotDates: maturedSnapshots.map((snapshot) => snapshot?.date).filter(Boolean),
-    sampleSize: enrichedEvaluations.length,
-    scoreReturnCorrelation: scoreReturnCorrelationSimple,
+    snapshotDates: eligibleFiles.map((f) => f.replace(".json", "")),
+    sampleSize: withReturns.length,
+    scoreReturnCorrelation: scoreReturnCorr,
     signalHitRates,
     factorCorrelations,
     regimeAccuracy,
     worstMispredictions,
-    weightSuggestions: uiWeightSuggestions,
+    weightSuggestions,
     sourceAccuracy,
     researchSourceAccuracy: sourceAccuracy,
-    scoreReturnCorrelationDetailed: scoreReturnCorrelation,
-    signalAccuracy,
-    factorPredictivePower: factorMetrics,
-    regimeAccuracyByHorizon,
-    worstMispredictionsDetailed: buildMispredictions(evaluations, primaryHorizonDays),
-    alerts: buildAlerts(factorMetrics, primaryHorizonDays),
-    autoAdjustment: {
-      enabled: autoAdjust.enabled !== false,
-      primaryHorizonDays,
-      minSamples: autoAdjust.minSamples ?? 24,
-      baseWeights: weightSuggestions.baseWeights,
-      suggestedWeights: weightSuggestions.suggestedWeights,
-      deltas: weightSuggestions.deltas,
-      reasoning: weightSuggestions.reasoning,
-      readyFactors: weightSuggestions.reasoning.filter(
-        (item) => item.sampleCount >= (autoAdjust.minSamples ?? 24),
-      ).length,
-      source: autoAdjust.source,
-    },
   };
 
-  await writeJson(outputPath, payload);
-  await writeJson(latestOutputPath, payload);
-  console.log(outputPath);
+  const analysisPath = path.join(ANALYSIS_DIR, `${new Date().toISOString().slice(0, 10)}-feedback.json`);
+  await writeJson(analysisPath, analysis);
+  console.log(analysisPath);
+
+  // Markdown 리포트 생성
+  const md = [
+    "# Performance Feedback Summary",
+    "",
+    `> 생성: ${analysis.generatedAt} | 샘플: ${analysis.sampleSize}개 포지션-날짜`,
+    `> 스냅샷: ${analysis.snapshotDates.join(", ")}`,
+    "",
+    "## 1. 점수-수익률 상관관계",
+    "",
+    `| 비교 | Pearson r |`,
+    `|------|----------|`,
+    `| actionScore vs ret_5d | ${scoreReturnCorr.actionScore_vs_ret5d ?? "N/A"} |`,
+    `| actionScore vs ret_10d | ${scoreReturnCorr.actionScore_vs_ret10d ?? "N/A"} |`,
+    `| actionScore vs ret_20d | ${scoreReturnCorr.actionScore_vs_ret20d ?? "N/A"} |`,
+    "",
+    "## 2. 시그널 적중률",
+    "",
+    `| 지표 | 값 |`,
+    `|------|-----|`,
+    `| BUY(≥68) 양수수익 비율 (5d) | ${signalHitRates.buy_hit_5d ?? "N/A"} |`,
+    `| HOLD(≥50) 양수수익 비율 (5d) | ${signalHitRates.hold_hit_5d ?? "N/A"} |`,
+    `| TRIM(≤38) 음수수익 비율 (5d) | ${signalHitRates.trim_negative_5d ?? "N/A"} |`,
+    "",
+    "## 3. 팩터별 예측력",
+    "",
+    `| 팩터 | corr(5d) | corr(10d) | 샘플 | 제안 |`,
+    `|------|----------|-----------|------|------|`,
+    ...weightSuggestions.map((w) =>
+      `| ${w.factor} | ${w.correlation_5d ?? "N/A"} | ${factorCorrelations[w.factor]?.vs_ret10d ?? "N/A"} | ${factorCorrelations[w.factor]?.count ?? 0} | ${w.suggestion} |`,
+    ),
+    "",
+    "## 4. 레짐별 정확도",
+    "",
+    `| 레짐 | 샘플 | 평균수익(5d) | 점수상관 | BUY적중률 |`,
+    `|------|------|-------------|---------|----------|`,
+    ...Object.entries(regimeAccuracy).map(([regime, v]) =>
+      `| ${regime} | ${v.count} | ${v.avgReturn5d ?? "N/A"}% | ${v.scoreCorr5d ?? "N/A"} | ${v.buyHitRate ?? "N/A"} |`,
+    ),
+    "",
+    "## 5. 최악 오판",
+    "",
+    "### 고점수 → 손실",
+    ...worstMispredictions.highScoreLosers.map((e) =>
+      `- ${e.date} ${e.name}(${e.code}): score=${e.score}, ret(${e.period})=${e.bestReturn}%`,
+    ),
+    ...(worstMispredictions.highScoreLosers.length === 0 ? ["- 해당 없음"] : []),
+    "",
+    "### 저점수 → 수익",
+    ...worstMispredictions.lowScoreWinners.map((e) =>
+      `- ${e.date} ${e.name}(${e.code}): score=${e.score}, ret(${e.period})=${e.bestReturn}%`,
+    ),
+    ...(worstMispredictions.lowScoreWinners.length === 0 ? ["- 해당 없음"] : []),
+    "",
+    "## 6. 리서치 소스 정확도",
+    "",
+    `| 소스 | 샘플 | 평균수익(5d) | BUY적중률 | 평균 리포트점수 |`,
+    `|------|------|-------------|----------|-----------------|`,
+    ...sourceAccuracy.map((item) =>
+      `| ${item.source} | ${item.sampleSize} | ${item.avgReturn5d ?? "N/A"}% | ${item.buyHitRate ?? "N/A"} | ${item.avgReportScore ?? "N/A"} |`,
+    ),
+    ...(sourceAccuracy.length === 0 ? ["| 데이터 부족 | 0 | N/A | N/A | N/A |"] : []),
+    "",
+  ].join("\n");
+
+  await fs.mkdir(path.dirname(REPORT_PATH), { recursive: true });
+  await writeText(REPORT_PATH, md);
+  console.log(REPORT_PATH);
 }
 
-main().catch((error) => {
-  console.error(`feedback analysis 생성 실패: ${error.message}`);
+main().catch((err) => {
+  console.error(`[feedback-analysis] 실패: ${err.message}`);
   process.exit(1);
 });

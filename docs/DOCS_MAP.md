@@ -8,9 +8,10 @@
 
 | 문서 | 용도 |
 |---|---|
-| `README.md` | 프로젝트 개요, 최신 운영 모델, 핵심 명령 |
+| `README.md` | 프로젝트 개요, 최신 실행 명령, 현재 구조 요약 |
+| `docs/REPO_STRUCTURE.md` | 실제 로컬 파일 구조와 디렉터리 역할 |
 | `docs/OPERATOR_RUNBOOK.md` | 실제 운영 절차 |
-| `docs/STAGE_1_4_ARCHITECTURE.md` | 파이프라인/산출물 구조 |
+| `docs/STAGE_1_4_ARCHITECTURE.md` | Stage / feedback / intraday / storage 구조 |
 | `docs/SCORE_SYSTEM_V2.md` | Stage 3 점수 체계와 피드백 반영 원리 |
 
 ## 2차 문서
@@ -19,9 +20,9 @@
 
 | 문서 | 언제 읽나 |
 |---|---|
+| `dashboard/README.md` | 대시보드 라우트, app/components 구조를 볼 때 |
 | `docs/EXPERIMENT_PLAYBOOK.md` | 실험, 회귀, 검증 체크리스트가 필요할 때 |
 | `docs/UPDATE_LOG.md` | 최근 구조 변경을 확인할 때 |
-| `dashboard/README.md` | 대시보드 구조와 실험 UI 토글을 볼 때 |
 | `docs/LLM_WIKI_SYSTEM.md` | wiki 메모리 레이어를 손볼 때 |
 | `FAILURES_AND_FALLBACKS.md` | 장애/폴백 케이스를 추적할 때 |
 
@@ -44,31 +45,47 @@
 1. `README.md`
 2. `docs/OPERATOR_RUNBOOK.md`
 
+### 저장소 구조를 정확히 보고 싶다
+
+1. `docs/REPO_STRUCTURE.md`
+2. `README.md`
+
 ### 점수나 실행 로직을 바꾸고 싶다
 
 1. `docs/STAGE_1_4_ARCHITECTURE.md`
 2. `docs/SCORE_SYSTEM_V2.md`
 3. 관련 `scripts/`
 
+### Intraday / 알림 / Telegram을 손보고 싶다
+
+1. `docs/STAGE_1_4_ARCHITECTURE.md`
+2. `scripts/run-intraday-alert-pipeline.js`
+3. `scripts/evaluate-alert-triggers.js`
+4. `scripts/send-telegram-summary.js`
+
 ### 대시보드 노출 구조를 바꾸고 싶다
 
 1. `dashboard/README.md`
 2. `dashboard/app/page.tsx`
-3. `dashboard/components/*`
+3. `dashboard/app/components/*`
+4. `dashboard/components/*`
 
-### 피드백 루프를 건드리고 싶다
+### 피드백 루프 / challenger / ghost를 건드리고 싶다
 
 1. `docs/STAGE_1_4_ARCHITECTURE.md`
 2. `docs/SCORE_SYSTEM_V2.md`
 3. `scripts/build-feedback-*.js`
-4. `scripts/auto-tune-weights.js`
+4. `scripts/auto-tune-challenger.js`
+5. `scripts/backtest-challenger.js`
+6. `scripts/build-ghost-portfolio.js`
 
-### 실험 UI나 토글 정책을 바꾸고 싶다
+### 위키 / 메모리 / 브리핑 충실도를 손보고 싶다
 
-1. `dashboard/README.md`
-2. `dashboard/components/ExperimentalUiProvider.tsx`
-3. `dashboard/components/ExperimentalVisibility.tsx`
-4. `dashboard/components/MainNav.tsx`
+1. `docs/LLM_WIKI_SYSTEM.md`
+2. `scripts/build-llm-wiki.js`
+3. `scripts/build-stage1-6-rich-briefing.js`
+4. `scripts/build-stage2-strategy-prompt.js`
+5. `scripts/validate-briefing-fidelity.js`
 
 ## 소스 오브 트루스
 
@@ -76,11 +93,12 @@
 
 - `scripts/`: 운영 파이프라인과 데이터 산출
 - `dashboard/`: 로컬 UI와 서버 렌더링 대시보드
-- `config/`: 전략/배분/동기화 설정
+- `config/`: 전략/배분/계약/DAG/알림 설정
 
 ### 날짜별 산출물
 
 - `data/analysis-state/YYYY-MM-DD/`
+- `data/intraday/`
 - `data/feedback/`
 - `reports/daily/`
 - `knowledge/daily/`
@@ -88,22 +106,24 @@
 ### 누적 기억
 
 - `knowledge/wiki/`
+- `data/timeseries.db`
 
 ## 세션 시작 체크리스트
 
 1. `git status`
-2. 오늘 기준 날짜와 `data/analysis-state/YYYY-MM-DD`
-3. 최신 `reports/daily`와 `knowledge/daily`
-4. 문서 변경이 필요한지 여부
+2. 오늘 기준 `data/analysis-state/YYYY-MM-DD`
+3. 최신 `data/intraday/latest.json` 필요 여부
+4. 최신 `reports/daily`와 `knowledge/daily`
+5. 문서 변경이 필요한지 여부
 
 ## 세션 종료 체크리스트
 
 1. 바뀐 코드와 문서가 일치하는지 확인
 2. 운영 흐름이 바뀌었으면 `README` 또는 `RUNBOOK` 갱신
-3. 구조 변화가 있으면 `UPDATE_LOG` 기록
+3. 구조 변화가 있으면 `REPO_STRUCTURE` 또는 `ARCHITECTURE` 갱신
 
 ## 정리 원칙
 
-- 기본 진입 문서는 적게 유지합니다.
-- 역사성 문서는 보조 문서로 내립니다.
+- 진입 문서는 적게 유지합니다.
+- 구조 설명은 코드 기준으로 유지합니다.
 - 코드와 어긋난 설명은 남기지 않습니다.

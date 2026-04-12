@@ -3,12 +3,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Activity, LayoutGrid, Newspaper } from "lucide-react";
-import { useExperimentalUi } from "@/components/ExperimentalUiProvider";
 
 const links = [
-  { href: "/", label: "대시보드", icon: LayoutGrid },
+  { href: "/", label: "실행 리포트", icon: LayoutGrid },
+  { href: "/feedback-report", label: "피드백 리포트", icon: Activity },
   { href: "/market-news", label: "시황 뉴스", icon: Newspaper },
-  { href: "/feedback", label: "Feedback", icon: Activity },
 ];
 
 function joinClasses(...parts: Array<string | false | null | undefined>) {
@@ -16,13 +15,12 @@ function joinClasses(...parts: Array<string | false | null | undefined>) {
 }
 
 function isActivePath(pathname: string, href: string) {
-  if (href === "/") return pathname === "/" || pathname === "/dashboard-test";
+  if (href === "/") return pathname === "/";
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
 export default function MainNav() {
   const pathname = usePathname();
-  const { enabled, setEnabled } = useExperimentalUi();
 
   return (
     <div className="pointer-events-none fixed right-5 top-5 z-50 flex flex-col items-end">
@@ -47,15 +45,6 @@ export default function MainNav() {
           );
         })}
       </nav>
-      <label className="pointer-events-auto mt-2 flex items-center gap-2 rounded-full border border-slate-200/80 bg-white/92 px-3 py-2 text-sm font-medium text-slate-700 shadow-[0_14px_30px_rgba(15,23,42,0.09)]">
-        <span>테스트 UI</span>
-        <input
-          type="checkbox"
-          checked={enabled}
-          onChange={(event) => setEnabled(event.target.checked)}
-          className="h-4 w-4 rounded border-slate-300 text-slate-900 focus:ring-slate-400"
-        />
-      </label>
     </div>
   );
 }

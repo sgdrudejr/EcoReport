@@ -301,7 +301,7 @@ export default function FeedbackPanel({
 
       {analysis ? (
         <div className="space-y-5">
-          <div className="grid gap-4 xl:grid-cols-[1.45fr_1fr]">
+          <div className="grid grid-cols-[1.45fr_1fr] gap-4">
             <div className="rounded-[1.35rem] border border-slate-200 bg-slate-50/70 p-4">
               <div className="flex items-start justify-between gap-3">
                 <div>
@@ -316,7 +316,7 @@ export default function FeedbackPanel({
                   생성 {analysis.generatedAt ? analysis.generatedAt.slice(0, 16).replace("T", " ") : "미상"}
                 </p>
               </div>
-              <div className="mt-4 grid gap-3 md:grid-cols-3">
+              <div className="mt-4 grid grid-cols-3 gap-3">
                 <CorrelationGauge
                   label="5일"
                   value={analysis.scoreReturnCorrelation?.actionScore_vs_ret5d}
@@ -375,7 +375,7 @@ export default function FeedbackPanel({
             </div>
           </div>
 
-          <div className="grid gap-4 xl:grid-cols-[1.2fr_0.8fr]">
+          <div className="grid grid-cols-[1.2fr_0.8fr] gap-4">
             <div className="rounded-[1.35rem] border border-slate-200 bg-white p-4">
               <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
                 Factor Predictiveness
@@ -461,7 +461,7 @@ export default function FeedbackPanel({
             </div>
           </div>
 
-          <div className="grid gap-4 xl:grid-cols-2">
+          <div className="grid grid-cols-2 gap-4">
             <div className="rounded-[1.35rem] border border-slate-200 bg-white p-4">
               <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-slate-400">
                 Regime Accuracy
