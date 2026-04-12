@@ -214,6 +214,18 @@ stage2_write_log
 echo "== Stage 2.5: impact map =="
 node scripts/build-impact-map.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"
 
+echo "== Stage 0 shadow: chunk index =="
+node scripts/build-report-chunk-index.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"
+
+echo "== Stage 1 shadow: evidence extracts =="
+node scripts/build-stage1-shadow-extracts.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"
+
+echo "== Stage 2 shadow: topic buckets =="
+node scripts/build-stage2-shadow-topic-buckets.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"
+
+echo "== Stage 3 shadow: final insights =="
+node scripts/build-stage3-shadow-final-insights.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"
+
 echo "== Stage 3: quant scores =="
 node scripts/build-stage3-quant-scores.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"
 

@@ -10,6 +10,7 @@ import {
   buildRunMetadata,
   enrichPortfolioWithSecurityCodes,
   parseDateArgs,
+  readJson,
   resolveSecurityCodeFromCandidates,
   won,
   writeJson,
@@ -35,6 +36,16 @@ const DEFAULT_ENTRY_CONDITIONS = {
   emergencyDefenseDailyDropPct: -0.03,
   fallbackUrgency: "next_tranche",
 };
+
+const SHADOW_MACRO_BUCKETS = new Set([
+  "geopolitics_regime",
+  "rates_policy",
+  "credit_liquidity",
+  "fx_dollar",
+  "oil_energy",
+  "inflation_trade_policy",
+  "metals_commodities",
+]);
 
 function clamp(value, min, max) {
   return Math.min(Math.max(value, min), max);
@@ -770,6 +781,87 @@ function simplifyDriverText(value) {
   return `${cleaned.slice(0, 177).trim()}...`;
 }
 
+function normalizeShadowText(value) {
+  return String(value ?? "").replace(/\s+/g, " ").trim();
+}
+
+function buildAccountShadowContext({ account, shadowInsights }) {
+  if (!shadowInsights?.top_topics?.length) {
+    return {
+      topics: [],
+      priorityAction: null,
+      summary: null,
+      drivers: [],
+    };
+  }
+
+  const holdingCodes = new Set(
+    (account.holdings ?? [])
+      .map((holding) => String(holding?.code ?? "").trim())
+      .filter(Boolean),
+  );
+  const holdingNames = new Set(
+    (account.holdings ?? [])
+      .map((holding) => normalizeShadowText(holding?.name))
+      .filter(Boolean),
+  );
+
+  const directTopics = shadowInsights.top_topics.filter((topic) =>
+    (topic.related_holdings ?? []).some((holding) => {
+      if (holding?.accounts?.some((item) => item?.accountKey === account.key)) return true;
+      if (holding?.code && holdingCodes.has(String(holding.code))) return true;
+      if (holding?.name && holdingNames.has(normalizeShadowText(holding.name))) return true;
+      return false;
+    }),
+  );
+
+  const macroTopics = shadowInsights.top_topics.filter((topic) =>
+    SHADOW_MACRO_BUCKETS.has(topic.bucket_id),
+  );
+  const selectedTopics = [];
+  const seen = new Set();
+
+  for (const topic of [...directTopics, ...macroTopics, ...shadowInsights.top_topics]) {
+    if (!topic?.bucket_id || seen.has(topic.bucket_id)) continue;
+    seen.add(topic.bucket_id);
+    selectedTopics.push({
+      bucketId: topic.bucket_id,
+      bucketLabel: topic.bucket_label,
+      thesis: topic.thesis ?? null,
+      keepWatch: topic.keep_watch ?? null,
+      riskWatch: topic.risk_watch ?? null,
+      decisionNote: topic.decision_note ?? null,
+      evidenceNote: topic.evidence_note ?? null,
+    });
+    if (selectedTopics.length >= 3) break;
+  }
+
+  const topicIds = new Set(selectedTopics.map((topic) => topic.bucketId));
+  const priorityAction =
+    (shadowInsights.priority_actions ?? []).find((item) => topicIds.has(item.evidence_bucket)) ??
+    null;
+
+  const summary = selectedTopics
+    .slice(0, 2)
+    .map((topic) => `${topic.bucketLabel}: ${topic.decisionNote ?? topic.thesis ?? "핵심 축 점검"}`)
+    .join(" / ");
+  const drivers = selectedTopics
+    .map((topic) => {
+      const thesis = topic.thesis ?? `${topic.bucketLabel} 해석`;
+      const condition = topic.keepWatch ? `좋아지려면 ${topic.keepWatch}` : null;
+      const risk = topic.riskWatch ? `경계는 ${topic.riskWatch}` : null;
+      return [thesis, condition, risk].filter(Boolean).join(" · ");
+    })
+    .slice(0, 3);
+
+  return {
+    topics: selectedTopics,
+    priorityAction,
+    summary: summary || null,
+    drivers,
+  };
+}
+
 function buildMacroCommentary({
   account,
   bucket,
@@ -777,6 +869,7 @@ function buildMacroCommentary({
   stage2Data,
   stage1Drivers,
   impactMap,
+  shadowContext,
 }) {
   const macroHeadline = summarizeMacroTheme(stage2Data);
   const gapCategory = bucket.topGap?.category ?? null;
@@ -835,6 +928,7 @@ function buildMacroCommentary({
   const summaryParts = [
     macroHeadline,
     assetFocus ? `${account.label}은 ${assetFocus} 비중 조정이 핵심입니다.` : null,
+    shadowContext?.summary ? `shadow 기준으로는 ${shadowContext.summary} 쪽이 같이 읽힙니다.` : null,
     `${persona}로 작동하는 계좌입니다.`,
   ].filter(Boolean);
 
@@ -852,6 +946,7 @@ function buildMacroCommentary({
     drivers: [
       ...(macroHeadline ? [macroHeadline] : []),
       ...(rationale ? [rationale] : []),
+      ...(shadowContext?.drivers ?? []),
       ...mappedDrivers,
       ...researchDrivers,
     ].slice(0, 4),
@@ -863,7 +958,9 @@ function buildMacroCommentary({
       .filter(Boolean)
       .filter((value, index, array) => array.indexOf(value) === index)
       .slice(0, 4),
-    actionLine,
+    actionLine: shadowContext?.priorityAction?.action
+      ? `${actionLine} 현재 시장축 메모는 '${shadowContext.priorityAction.action}' 입니다.`
+      : actionLine,
     reserveNote,
   };
 }
@@ -871,7 +968,7 @@ function buildMacroCommentary({
 async function main() {
   const args = parseDateArgs(process.argv.slice(2));
   const stateDir = path.join(ROOT_DIR, "data", "analysis-state", args.date);
-  const [portfolio, strategy, stage1, stage2, quant, impactMap, technical, market] = await Promise.all([
+  const [portfolio, strategy, stage1, stage2, quant, impactMap, technical, market, shadowInsights] = await Promise.all([
     readJson(path.join(ROOT_DIR, "data", "portfolio", "latest.json"), { accounts: [] }),
     readJson(path.join(ROOT_DIR, "config", "strategy.json"), { accounts: {} }),
     readJson(path.join(stateDir, "stage1-report-extracts-v2.json"), { extracts: [] }),
@@ -880,6 +977,7 @@ async function main() {
     readJson(path.join(stateDir, "impact-map.json"), { reports: [] }),
     readJson(path.join(ROOT_DIR, "data", "technical", `${args.date}.json`), { scores: {}, market_context: {} }),
     readJson(path.join(ROOT_DIR, "data", "market", `${args.date}.json`), { indices: {}, macro: {}, watchlist: {} }),
+    readJson(path.join(stateDir, "stage3-shadow-final-insights.json"), null),
   ]);
   const stage2Data = stage2 ?? (await readJson(path.join(stateDir, "stage2-strategy-options.mock.json"), { account_actions: [], strategy_changes: [] }));
   const normalizedPortfolio = enrichPortfolioWithSecurityCodes(portfolio);
@@ -904,8 +1002,16 @@ async function main() {
       null;
     const bucket = executionBuckets(account, quant, stage2Action, strategy, technicalMap);
     bucket.emergencyDefense = emergencyDefense;
-    const stage2Candidates = resolveStage2Candidates(account, stage2Data, bucket);
+    const { accepted: stage2Candidates, rejected: rejectedAlternatives } = resolveStage2Candidates(
+      account,
+      stage2Data,
+      bucket,
+    );
     bucket.stage2Candidates = stage2Candidates;
+    const shadowContext = buildAccountShadowContext({
+      account,
+      shadowInsights,
+    });
     const stage1Drivers = stage1.extracts
       .filter((item) => item.related_accounts?.includes(account.key))
       .slice(0, 4)
@@ -927,6 +1033,15 @@ async function main() {
       stage2Data,
       stage1Drivers,
       impactMap,
+      shadowContext,
+    });
+    const validation = validateExecutionPlan({
+      account,
+      bucket,
+      stagedBuys,
+      trims: bucket.trim.slice(0, 3),
+      holds: bucket.hold.slice(0, 3),
+      rejectedAlternatives,
     });
     if (validation.noAction) {
       macroCommentary.actionLine = `${account.label}은 오늘은 no_action으로 유지합니다. ${validation.noActionReason}`;
@@ -946,8 +1061,15 @@ async function main() {
       trims: bucket.trim.slice(0, 3),
       holds: bucket.hold.slice(0, 3),
       watches: bucket.watch.slice(0, 3),
+      confidence: validation.confidence,
+      validatorFlags: validation.validatorFlags,
+      rejectedAlternatives: validation.rejectedAlternatives,
+      noAction: validation.noAction,
+      noActionReason: validation.noActionReason,
+      topEvidence: validation.topEvidence,
       macroCommentary,
       stage1Drivers,
+      shadowContext,
       emergencyDefense,
       technicalFallback:
         technical?.fallback?.recoveredFromDate == null &&
@@ -973,6 +1095,19 @@ async function main() {
     entryConditions: entryConfig,
     technicalFallback: technical?.fallback ?? null,
     marketFallback: market?.fallback ?? null,
+    shadowPreview: shadowInsights
+      ? {
+          headline: shadowInsights.dashboard_preview?.headline ?? null,
+          subhead: shadowInsights.dashboard_preview?.subhead ?? null,
+          watchpoints: (shadowInsights.watchpoints ?? []).slice(0, 6),
+          topTopics: (shadowInsights.top_topics ?? []).slice(0, 6).map((topic) => ({
+            bucketId: topic.bucket_id,
+            bucketLabel: topic.bucket_label,
+            decisionNote: topic.decision_note ?? null,
+            thesis: topic.thesis ?? null,
+          })),
+        }
+      : null,
     accountPlans,
   };
 
@@ -1000,6 +1135,9 @@ async function main() {
       `- 가장 부족한 자산군: ${account.topGap ? `${account.topGap.category} / ${won(Math.max(account.topGap.gapAmount, 0))}` : "없음"}`,
       `- 우선 보강 후보: ${account.candidateFromGap ?? "없음"}`,
       `- 매크로 → 자산군 → 액션: ${account.macroCommentary?.actionLine ?? "요약 없음"}`,
+      ...(account.shadowContext?.priorityAction?.action
+        ? [`- shadow 실행 메모: ${account.shadowContext.priorityAction.action} / ${account.shadowContext.priorityAction.why_now ?? ""}`]
+        : []),
       ...(account.technicalFallback ? [`- 기술 폴백: ${account.technicalFallback.reason ?? "no technical"}${account.technicalFallback.recoveredFromDate ? ` / ${account.technicalFallback.recoveredFromDate} 기준 복구` : ""}`] : []),
       "",
       "### 1차 실행",
@@ -1030,6 +1168,14 @@ async function main() {
       ...(account.macroCommentary?.drivers?.length > 0
         ? account.macroCommentary.drivers.map((item) => `- ${item}`)
         : ["- 직접 연결된 거시 코멘트 없음"]),
+      "",
+      "### Shadow Topics",
+      ...(account.shadowContext?.topics?.length > 0
+        ? account.shadowContext.topics.map(
+            (topic) =>
+              `- ${topic.bucketLabel}: ${topic.decisionNote ?? topic.thesis ?? "핵심 축 점검"}${topic.keepWatch ? ` / 좋아지려면 ${topic.keepWatch}` : ""}${topic.riskWatch ? ` / 경계 ${topic.riskWatch}` : ""}`,
+          )
+        : ["- 직접 연결된 shadow 토픽 없음"]),
       "",
     ]),
   ].join("\n");
@@ -1063,6 +1209,9 @@ async function main() {
       `- validator: ${account.validatorFlags?.join(", ") || "없음"}`,
       `- 우선 후보: ${account.stage2Candidates.length > 0 ? account.stage2Candidates.map((item) => item.name).join(", ") : account.candidateFromGap ?? "없음"}`,
       ...(account.macroCommentary?.actionLine ? [`- 액션 연결: ${account.macroCommentary.actionLine}`] : []),
+      ...(account.shadowContext?.priorityAction?.action
+        ? [`- shadow 메모: ${account.shadowContext.priorityAction.action}`]
+        : []),
       ...(account.rejectedAlternatives?.length > 0
         ? [`- 제외된 대안: ${account.rejectedAlternatives.map((item) => item.name).join(", ")}`]
         : []),
@@ -1071,6 +1220,18 @@ async function main() {
         : [`- 재점검 필요: 즉시 축소 대상 없음`]),
       "",
     ]),
+    ...(payload.shadowPreview
+      ? [
+          "",
+          "## Shadow Market Report",
+          ...(payload.shadowPreview.topTopics ?? []).map(
+            (topic) => `- ${topic.bucketLabel}: ${topic.decisionNote ?? topic.thesis ?? "핵심 축 점검"}`,
+          ),
+          ...(payload.shadowPreview.watchpoints?.length
+            ? ["", "## Shadow Watchpoints", ...payload.shadowPreview.watchpoints.map((item) => `- ${item}`)]
+            : []),
+        ]
+      : []),
   ].join("\n");
 
   await writeJson(outputJson, payload);
