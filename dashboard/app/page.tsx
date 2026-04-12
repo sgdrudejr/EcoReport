@@ -53,6 +53,7 @@ import {
 } from "@/lib/research";
 import { loadRecommendationBoard, type RecommendationIdea } from "@/lib/recommendations";
 import { listRepoDirectories, listRepoFiles, readRepoJsonFile } from "@/lib/repo-artifacts";
+import { loadShadowPreview } from "@/lib/shadow-preview";
 import { formatDateContextLine } from "@/lib/trading-calendar";
 import EvidenceChain from "./components/EvidenceChain";
 import GhostPortfolio from "./components/GhostPortfolio";
@@ -75,14 +76,6 @@ const NUMBER_FORMATTER = new Intl.NumberFormat("ko-KR");
 const MARKET_VALUE_FORMATTER = new Intl.NumberFormat("en-US", {
   minimumFractionDigits: 2,
   maximumFractionDigits: 2,
-});
-const MARKETVOICE_DATETIME_FORMATTER = new Intl.DateTimeFormat("ko-KR", {
-  month: "short",
-  day: "numeric",
-  hour: "2-digit",
-  minute: "2-digit",
-  hour12: false,
-  timeZone: "Asia/Seoul",
 });
 const BODY_COPY_CLASS =
   "text-[15px] leading-[1.78] [word-break:keep-all] [text-wrap:pretty]";
@@ -792,33 +785,6 @@ function renderHighlightedText(
 function formatMetricCount(value: number | null | undefined, unit: string) {
   if (typeof value !== "number" || Number.isNaN(value)) return "미집계";
   return `${NUMBER_FORMATTER.format(Math.round(value))}${unit}`;
-}
-
-function formatMarketVoiceDateTime(value: string | null | undefined) {
-  if (!value) return "업데이트 미상";
-  const parsed = new Date(value);
-  if (Number.isNaN(parsed.getTime())) return value;
-  return MARKETVOICE_DATETIME_FORMATTER.format(parsed);
-}
-
-function marketVoiceDirectionLabel(direction: string | null | undefined) {
-  if (direction === "positive") return "호재";
-  if (direction === "negative") return "경계";
-  if (direction === "mixed") return "혼합";
-  return "중립";
-}
-
-function marketVoiceDirectionClasses(direction: string | null | undefined) {
-  if (direction === "positive") {
-    return "bg-emerald-500/10 text-emerald-700 ring-1 ring-inset ring-emerald-500/20";
-  }
-  if (direction === "negative") {
-    return "bg-rose-500/10 text-rose-700 ring-1 ring-inset ring-rose-500/20";
-  }
-  if (direction === "mixed") {
-    return "bg-amber-500/10 text-amber-700 ring-1 ring-inset ring-amber-500/20";
-  }
-  return "bg-slate-900/5 text-slate-600 ring-1 ring-inset ring-slate-200";
 }
 
 function briefingMetricToneClasses(
@@ -2114,22 +2080,6 @@ function findRecommendationIdeaByCodeOrName(
   );
 }
 
-function executionKindLabel(kind: ExecutionGuideItem["kind"]) {
-  if (kind === "buy") return "매수";
-  if (kind === "trim") return "매도";
-  return "보유";
-}
-
-function executionKindClassName(kind: ExecutionGuideItem["kind"]) {
-  if (kind === "buy") {
-    return "bg-emerald-500/10 text-emerald-700 ring-1 ring-inset ring-emerald-500/20";
-  }
-  if (kind === "trim") {
-    return "bg-rose-500/10 text-rose-700 ring-1 ring-inset ring-rose-500/20";
-  }
-  return "bg-slate-900/5 text-slate-600 ring-1 ring-inset ring-slate-200";
-}
-
 function formatHitRateBadgePercent(value: number) {
   return `${Math.round(value * 100)}%`;
 }
@@ -2610,6 +2560,7 @@ export function DashboardPage({
   const technical = loadLatestTechnicalSnapshot(portfolio.date);
   const latestFeedbackAnalysis = loadLatestFeedbackAnalysis(portfolio.date);
   const feedbackAnalysis = latestFeedbackAnalysis.data;
+  const shadowPreview = loadShadowPreview(portfolio.date);
   const previousStage3Snapshot = loadPreviousStage3Snapshot(portfolio.date);
   const ghostPortfolioEntries = loadGhostPortfolioEntries();
   const intradayState = loadLatestIntradayState() as IntradayDashboardState | null;
@@ -2822,6 +2773,48 @@ export function DashboardPage({
     key: account.key,
     label: account.label,
   }));
+  const executionReportLines = uniqueStrings([
+    ...accountEntries.map(
+      ({ account, accountGuide }) =>
+        `${account.label}: ${accountGuide?.actionLine ?? "실행 메모 정리 중"}`,
+    ),
+    ...executionListRows
+      .slice(0, 3)
+      .map((row) => `${row.accounts.join(", ")} · ${row.name}: ${row.reason}`),
+  ]).slice(0, 6);
+  const marketReportLines = uniqueStrings([
+    shadowPreview?.stage3?.dashboard_preview?.headline ?? null,
+    shadowPreview?.stage3?.dashboard_preview?.subhead ?? null,
+    ...(shadowPreview?.stage3?.executive_summary ?? []),
+    ...((shadowPreview?.stage3?.top_topics ?? []).slice(0, 3).map(
+      (topic) =>
+        `${topic.bucket_label}: ${topic.decision_note ?? topic.thesis ?? topic.summary_lines?.[0] ?? "핵심 축 점검"}`,
+    )),
+    ...(shadowPreview?.stage3?.watchpoints ?? []),
+  ]).slice(0, 6);
+  const feedbackReportLines = uniqueStrings([
+    feedbackAnalysis
+      ? `피드백 리포트 ${latestFeedbackAnalysis.fileName ?? "latest"} 기준으로 표본 ${
+          feedbackAnalysis.sampleSize ?? feedbackAnalysis.snapshotDates?.length ?? 0
+        }건을 복기했습니다.`
+      : null,
+    typeof feedbackAnalysis?.signalHitRates?.buy_hit_5d === "number"
+      ? `BUY 적중률은 ${(feedbackAnalysis.signalHitRates.buy_hit_5d * 100).toFixed(0)}%입니다.`
+      : null,
+    typeof feedbackAnalysis?.signalHitRates?.trim_negative_5d === "number"
+      ? `TRIM 적중률은 ${(feedbackAnalysis.signalHitRates.trim_negative_5d * 100).toFixed(0)}%입니다.`
+      : null,
+    feedbackAnalysis?.weightSuggestions?.[0]?.suggestion
+      ? `최근 조정 제안: ${feedbackAnalysis.weightSuggestions[0].suggestion}`
+      : null,
+  ]).slice(0, 5);
+  const newsReportLines = uniqueStrings([
+    marketVoice?.summary?.overview ?? null,
+    ...((marketVoice?.topics ?? []).slice(0, 3).map(
+      (item) =>
+        `${item.title ?? "시황 뉴스"}${item.portfolioLinkage ? ` · ${item.portfolioLinkage}` : ""}`,
+    )),
+  ]).slice(0, 5);
   const scoreBreakdownPositions = Object.values(stage3?.positions ?? {}).filter(
     (item) => item?.scoreDecomposition,
   );
@@ -2844,23 +2837,25 @@ export function DashboardPage({
         ? [
             { number: "1", id: "today-actions", label: "오늘의 실행 리스트" },
             { number: "2", id: "portfolio-diagnosis", label: "핵심 진단" },
-            { number: "3", id: "accounts-overview", label: "계좌 실행 방향" },
-            { number: "4", id: "account-holdings", label: "보유 종목" },
-            { number: "5", id: "account-direction", label: "투자 방향성" },
-            { number: "6", id: "recommendations", label: "추천 종목" },
+            { number: "3", id: "daily-reports", label: "실행·시장·피드백·시황뉴스" },
+            { number: "4", id: "accounts-overview", label: "계좌 실행 방향" },
+            { number: "5", id: "account-holdings", label: "보유 종목" },
+            { number: "6", id: "account-direction", label: "투자 방향성" },
             { number: "7", id: "market-guide", label: "실행 가이드" },
+            { number: "8", id: "recommendations", label: "추천 종목" },
           ]
         : [
             { number: "1", id: "today-actions", label: "오늘의 실행 리스트" },
             { number: "2", id: "portfolio-diagnosis", label: "핵심 진단" },
-            { number: "3", id: "accounts-overview", label: "계좌 실행 방향" },
-            { number: "4", id: "account-holdings", label: "보유 종목" },
-            { number: "5", id: "account-direction", label: "투자 방향성" },
-            { number: "6", id: "recommendations", label: "추천 종목" },
+            { number: "3", id: "daily-reports", label: "실행·시장·피드백·시황뉴스" },
+            { number: "4", id: "accounts-overview", label: "계좌 실행 방향" },
+            { number: "5", id: "account-holdings", label: "보유 종목" },
+            { number: "6", id: "account-direction", label: "투자 방향성" },
             { number: "7", id: "market-guide", label: "실행 가이드" },
-            { number: "8", id: "feedback-allocation", label: "계좌 × 카테고리 배분" },
-            { number: "9", id: "feedback-dashboard", label: "피드백 대시보드" },
-            { number: "10", id: "cluster-map", label: "상관관계 클러스터" },
+            { number: "8", id: "recommendations", label: "추천 종목" },
+            { number: "9", id: "feedback-allocation", label: "계좌 × 카테고리 배분" },
+            { number: "10", id: "feedback-dashboard", label: "피드백 대시보드" },
+            { number: "11", id: "cluster-map", label: "상관관계 클러스터" },
           ];
   const sectionHeading = (id: string) => {
     const item = sectionIndexItems.find((section) => section.id === id);
@@ -3087,6 +3082,148 @@ export function DashboardPage({
                 </div>
               );
             })}
+          </div>
+        </section>
+
+        <section
+          id="daily-reports"
+          className="glass-panel scroll-mt-28 rounded-2xl px-6 py-6"
+        >
+          <div className="section-header-row flex items-center justify-between gap-4">
+            <div className="section-header-band">
+              <p className="section-kicker">Cycle Reports</p>
+              <h2 className="mt-1.5 text-[1.3rem] font-semibold tracking-tight text-slate-950">
+                {sectionHeading("daily-reports")}
+              </h2>
+            </div>
+            <span className="rounded-full bg-slate-900/5 px-3 py-1 text-xs font-medium text-slate-600 ring-1 ring-inset ring-slate-200">
+              수집 → 정제 → 요약 → 실행 → 피드백
+            </span>
+          </div>
+
+          <div className="mt-5">
+            <CompactContentTabs
+              tabs={[
+                {
+                  key: "execution",
+                  label: "실행 리포트",
+                  subtitle: "계좌별 실행과 shadow 메모",
+                  badge: `${executionReportLines.length}`,
+                },
+                {
+                  key: "market",
+                  label: "시장 리포트",
+                  subtitle: "shadow 버킷과 레짐 해석",
+                  badge: `${marketReportLines.length}`,
+                },
+                {
+                  key: "feedback",
+                  label: "피드백 리포트",
+                  subtitle: "성과 복기와 자동조정",
+                  badge: `${feedbackReportLines.length}`,
+                },
+                {
+                  key: "news",
+                  label: "시황뉴스",
+                  subtitle: "marketvoice 연결",
+                  badge: `${newsReportLines.length}`,
+                },
+              ]}
+            >
+              <section>
+                <div className="space-y-3">
+                  {executionReportLines.map((line, index) => (
+                    <p
+                      key={line}
+                      className={joinClasses(
+                        index === 0 ? BODY_COPY_LEAD_CLASS : BODY_COPY_CLASS,
+                        index === 0 ? "text-slate-950" : "text-slate-700",
+                      )}
+                    >
+                      {renderHighlightedText(line, marketHighlights)}
+                    </p>
+                  ))}
+                </div>
+              </section>
+
+              <section>
+                <div className="space-y-3">
+                  {marketReportLines.map((line, index) => (
+                    <p
+                      key={line}
+                      className={joinClasses(
+                        index === 0 ? BODY_COPY_LEAD_CLASS : BODY_COPY_CLASS,
+                        index === 0 ? "text-slate-950" : "text-slate-700",
+                      )}
+                    >
+                      {renderHighlightedText(line, marketHighlights)}
+                    </p>
+                  ))}
+                </div>
+              </section>
+
+              <section>
+                <div className="space-y-3">
+                  {feedbackReportLines.length > 0 ? (
+                    feedbackReportLines.map((line, index) => (
+                      <p
+                        key={line}
+                        className={joinClasses(
+                          index === 0 ? BODY_COPY_LEAD_CLASS : BODY_COPY_CLASS,
+                          index === 0 ? "text-slate-950" : "text-slate-700",
+                        )}
+                      >
+                        {line}
+                      </p>
+                    ))
+                  ) : (
+                    <p className={joinClasses(BODY_COPY_CLASS, "text-slate-500")}>
+                      아직 feedback 산출물이 없어 성과 복기 문장이 비어 있습니다.
+                    </p>
+                  )}
+                  <div className="pt-2">
+                    <a
+                      href="/feedback"
+                      className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
+                    >
+                      피드백 리포트 보기
+                      <ExternalLink size={14} />
+                    </a>
+                  </div>
+                </div>
+              </section>
+
+              <section>
+                <div className="space-y-3">
+                  {newsReportLines.length > 0 ? (
+                    newsReportLines.map((line, index) => (
+                      <p
+                        key={line}
+                        className={joinClasses(
+                          index === 0 ? BODY_COPY_LEAD_CLASS : BODY_COPY_CLASS,
+                          index === 0 ? "text-slate-950" : "text-slate-700",
+                        )}
+                      >
+                        {renderHighlightedText(line, marketHighlights)}
+                      </p>
+                    ))
+                  ) : (
+                    <p className={joinClasses(BODY_COPY_CLASS, "text-slate-500")}>
+                      연결된 시황 뉴스 요약이 아직 없습니다.
+                    </p>
+                  )}
+                  <div className="pt-2">
+                    <a
+                      href="/market-news"
+                      className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 transition hover:border-slate-300 hover:bg-slate-50"
+                    >
+                      시황뉴스 보기
+                      <ExternalLink size={14} />
+                    </a>
+                  </div>
+                </div>
+              </section>
+            </CompactContentTabs>
           </div>
         </section>
 
