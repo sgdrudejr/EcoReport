@@ -3,7 +3,7 @@
   "runDate": "2026-04-12",
   "effectiveMarketDate": "2026-04-10",
   "runId": null,
-  "generatedAt": "2026-04-12T11:00:14.336Z",
+  "generatedAt": "2026-04-12T13:54:45.129Z",
   "sourceFiles": {
     "market": "/Users/seo/stock-pilot/data/intraday/2026-04-10/market-lite.json",
     "portfolio": "/Users/seo/stock-pilot/data/portfolio/latest.json",

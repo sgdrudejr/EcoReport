@@ -62,7 +62,32 @@
     "wti_high": 120,
     "wti_low": 70,
     "stock_daily_drop": -0.08,
-    "cash_floor_pct": 0.1
+    "cash_floor_pct": 0.1,
+    "market_daily_drop_emergency": -0.03
+  },
+  "stopLoss": {
+    "enabled": true,
+    "fromEntry_pct": -0.1,
+    "fromRecentHigh_pct": -0.15,
+    "recentHighWindow": 20,
+    "forcedTrimScore": 35
+  },
+  "positionSizing": {
+    "method": "inverse_atr",
+    "maxSinglePosition_pct": 0.3,
+    "correlationThreshold": 0.85,
+    "correlationHaircut": 0.5,
+    "minAtrPct": 0.01,
+    "fallbackMethod": "ranked"
+  },
+  "entryConditions": {
+    "aggressiveBuyMinScore": 68,
+    "watchMinScore": 50,
+    "oversoldRsi": 30,
+    "overheatRsi": 50,
+    "emergencyDefenseVix": 35,
+    "emergencyDefenseDailyDropPct": -0.03,
+    "fallbackUrgency": "next_tranche"
   },
   "scoring": {
     "weightProfile": "balanced",
@@ -74,6 +99,15 @@
         "research": 0.3,
         "income": 0.15,
         "macroFit": 0.2
+      },
+      "autoAdjust": {
+        "enabled": true,
+        "source": "data/feedback/latest-feedback.json",
+        "primaryHorizonDays": 10,
+        "minSamples": 24,
+        "minWeightMultiplier": 0.6,
+        "maxWeightMultiplier": 1.4,
+        "sensitivity": 1.1
       }
     },
     "holdingBlend": {

@@ -1,0 +1,150 @@
+{
+  "analysisDate": "2026-04-11",
+  "generatedAt": "2026-04-11T12:06:00.603Z",
+  "snapshotCount": 1,
+  "positionCount": 13,
+  "horizons": [
+    5,
+    10,
+    20
+  ],
+  "scoreReturnCorrelation": {
+    "ret_5d": {
+      "correlation": null,
+      "sampleCount": 0
+    },
+    "ret_10d": {
+      "correlation": null,
+      "sampleCount": 0
+    },
+    "ret_20d": {
+      "correlation": null,
+      "sampleCount": 0
+    }
+  },
+  "signalAccuracy": {
+    "ret_5d": {},
+    "ret_10d": {},
+    "ret_20d": {}
+  },
+  "factorPredictivePower": {
+    "momentum": {
+      "ret_5d": {
+        "correlation": null,
+        "sampleCount": 0
+      },
+      "ret_10d": {
+        "correlation": null,
+        "sampleCount": 0
+      },
+      "ret_20d": {
+        "correlation": null,
+        "sampleCount": 0
+      }
+    },
+    "research": {
+      "ret_5d": {
+        "correlation": null,
+        "sampleCount": 0
+      },
+      "ret_10d": {
+        "correlation": null,
+        "sampleCount": 0
+      },
+      "ret_20d": {
+        "correlation": null,
+        "sampleCount": 0
+      }
+    },
+    "income": {
+      "ret_5d": {
+        "correlation": null,
+        "sampleCount": 0
+      },
+      "ret_10d": {
+        "correlation": null,
+        "sampleCount": 0
+      },
+      "ret_20d": {
+        "correlation": null,
+        "sampleCount": 0
+      }
+    },
+    "macroFit": {
+      "ret_5d": {
+        "correlation": null,
+        "sampleCount": 0
+      },
+      "ret_10d": {
+        "correlation": null,
+        "sampleCount": 0
+      },
+      "ret_20d": {
+        "correlation": null,
+        "sampleCount": 0
+      }
+    }
+  },
+  "regimeAccuracy": {
+    "ret_5d": {},
+    "ret_10d": {},
+    "ret_20d": {}
+  },
+  "worstMispredictions": [],
+  "alerts": [],
+  "autoAdjustment": {
+    "enabled": true,
+    "primaryHorizonDays": 10,
+    "minSamples": 24,
+    "baseWeights": {
+      "momentum": 0.35,
+      "research": 0.3,
+      "income": 0.15,
+      "macroFit": 0.2
+    },
+    "suggestedWeights": {
+      "momentum": 0.35,
+      "research": 0.3,
+      "income": 0.15,
+      "macroFit": 0.2
+    },
+    "deltas": {
+      "momentum": 0,
+      "research": 0,
+      "income": 0,
+      "macroFit": 0
+    },
+    "reasoning": [
+      {
+        "factor": "momentum",
+        "baseWeight": 0.35,
+        "multiplier": 1,
+        "correlation": null,
+        "sampleCount": 0
+      },
+      {
+        "factor": "research",
+        "baseWeight": 0.3,
+        "multiplier": 1,
+        "correlation": null,
+        "sampleCount": 0
+      },
+      {
+        "factor": "income",
+        "baseWeight": 0.15,
+        "multiplier": 1,
+        "correlation": null,
+        "sampleCount": 0
+      },
+      {
+        "factor": "macroFit",
+        "baseWeight": 0.2,
+        "multiplier": 1,
+        "correlation": null,
+        "sampleCount": 0
+      }
+    ],
+    "readyFactors": 0,
+    "source": "data/feedback/latest-feedback.json"
+  }
+}

@@ -1,7 +1,7 @@
 # Briefing Fidelity Validation (2026-04-10)
 
 - overallStatus: **warn**
-- generatedAt: 2026-04-12T13:08:23.176Z
+- generatedAt: 2026-04-12T13:54:38.416Z
 - stage1Extracts: 69
 - importantExtractsChecked: 12
 - briefingChars: 6450

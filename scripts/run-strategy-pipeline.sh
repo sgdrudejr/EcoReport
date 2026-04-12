@@ -25,6 +25,43 @@ python_bin() {
   fi
 }
 
+stage2_gemini_preflight() {
+  local py
+  py="$(python_bin)"
+  "$py" - <<'PY'
+import importlib.util
+import os
+import sys
+from pathlib import Path
+
+root = Path(os.environ.get("ROOT_DIR", ".")).resolve()
+env_path = root / ".env"
+api_key = (os.environ.get("GEMINI_API_KEY") or "").strip()
+
+if not api_key and env_path.exists():
+    for raw_line in env_path.read_text(encoding="utf-8").splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        normalized = line[7:].strip() if line.startswith("export ") else line
+        key, value = normalized.split("=", 1)
+        if key.strip() == "GEMINI_API_KEY":
+            value = value.strip().strip('"').strip("'")
+            api_key = value
+            break
+
+if not api_key:
+    print("GEMINI_API_KEY missing")
+    sys.exit(1)
+
+if importlib.util.find_spec("google.genai") is None:
+    print("google.genai missing")
+    sys.exit(1)
+
+print("ready")
+PY
+}
+
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --date)
@@ -237,8 +274,23 @@ node scripts/build-holding-clusters.js --date "$DATE" --run-date "$RUN_DATE" --e
 echo "== Stage 4: execution plan =="
 node scripts/build-stage4-execution-plan.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"
 
-echo "== Feedback snapshot =="
-node scripts/build-feedback-snapshot.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE" || echo "!! Feedback snapshot 실패 (non-blocking)"
+echo "== Feedback: snapshot =="
+node scripts/build-feedback-snapshot.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"
+
+echo "== Feedback: analysis =="
+node scripts/build-feedback-analysis.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"
+
+echo "== Feedback: report =="
+node scripts/build-feedback-report.js --date "$DATE"
+
+if [[ "$AUTO_TUNE_WEIGHTS" == "1" ]]; then
+  echo "== Auto-tune factor weights =="
+  AUTO_TUNE_ARGS=(--date "$DATE")
+  if [[ "$AUTO_TUNE_DRY_RUN" == "1" ]]; then
+    AUTO_TUNE_ARGS+=(--dry-run)
+  fi
+  node scripts/auto-tune-weights.js "${AUTO_TUNE_ARGS[@]}"
+fi
 
 if [[ "$AUTO_TUNE_WEIGHTS" == "1" ]]; then
   echo "== Feedback analysis =="

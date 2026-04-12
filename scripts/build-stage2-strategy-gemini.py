@@ -12,13 +12,13 @@ import argparse
 import json
 import os
 import re
+import sys
 import time
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from dotenv import load_dotenv
-from google import genai
+from lib.env_loader import load_simple_dotenv
 
 
 ROOT = Path(os.getenv("ECOREPORT_ROOT") or Path(__file__).resolve().parent.parent)
@@ -66,14 +66,19 @@ def parse_args() -> argparse.Namespace:
 def load_api_key() -> str:
     env_path = ROOT / ".env"
     if env_path.exists():
-        load_dotenv(env_path)
+        load_simple_dotenv(env_path)
     api_key = (os.getenv("GEMINI_API_KEY") or "").strip()
     if not api_key:
         raise RuntimeError("GEMINI_API_KEY가 설정되어 있지 않습니다.")
     return api_key
 
 
-def create_client(api_key: str) -> genai.Client:
+def create_client(api_key: str):
+    try:
+        from google import genai
+    except ImportError as exc:
+        raise RuntimeError("google-genai 패키지가 없어 Stage 2 Gemini를 실행할 수 없습니다.") from exc
+
     return genai.Client(api_key=api_key)
 
 
@@ -313,4 +318,8 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except Exception as exc:  # noqa: BLE001
+        print(f"stage2 Gemini 생성 실패: {exc}", file=sys.stderr)
+        sys.exit(1)

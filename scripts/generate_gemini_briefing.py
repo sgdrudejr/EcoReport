@@ -18,12 +18,12 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import sys
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, Iterable, List, Tuple
 
-from dotenv import load_dotenv
-from google import genai
+from lib.env_loader import load_simple_dotenv
 
 
 SUMMARY_KEYWORDS = [
@@ -133,7 +133,7 @@ def ensure_env_file(env_path: Path) -> None:
 def load_api_key(project_root: Path) -> str:
     env_path = project_root / ".env"
     ensure_env_file(env_path)
-    load_dotenv(dotenv_path=env_path)
+    load_simple_dotenv(env_path)
 
     api_key = os.getenv("GEMINI_API_KEY", "").strip()
     if not api_key:
@@ -141,7 +141,12 @@ def load_api_key(project_root: Path) -> str:
     return api_key
 
 
-def create_client(api_key: str) -> genai.Client:
+def create_client(api_key: str):
+    try:
+        from google import genai
+    except ImportError as exc:
+        raise RuntimeError("google-genai 패키지가 없어 Gemini 브리핑 생성을 실행할 수 없습니다.") from exc
+
     return genai.Client(api_key=api_key)
 
 

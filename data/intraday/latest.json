@@ -1,9 +1,9 @@
 {
   "date": "2026-04-10",
-  "updatedAt": "2026-04-12T11:00:14.342Z",
+  "updatedAt": "2026-04-12T13:54:45.135Z",
   "market": {
     "date": "2026-04-10",
-    "collectedAt": "2026-04-12T11:00:07.700Z",
+    "collectedAt": "2026-04-12T13:54:38.467Z",
     "source": "intraday-lite",
     "macros": {
       "VIX": {
@@ -286,7 +286,7 @@
     "runDate": "2026-04-12",
     "effectiveMarketDate": "2026-04-10",
     "runId": null,
-    "generatedAt": "2026-04-12T11:00:14.336Z",
+    "generatedAt": "2026-04-12T13:54:45.129Z",
     "sourceFiles": {
       "market": "/Users/seo/stock-pilot/data/intraday/2026-04-10/market-lite.json",
       "portfolio": "/Users/seo/stock-pilot/data/portfolio/latest.json",

@@ -112,6 +112,8 @@ function buildSameDayStatus(steps, artifacts) {
 
 function buildFailureHint(stepId) {
   switch (stepId) {
+    case "automation_readiness":
+      return "Safari 자동화, Gemini Python, Obsidian vault 쓰기 권한, GitHub 네트워크 상태를 readiness 리포트에서 먼저 확인하세요.";
     case "baseline_daily_system":
       return "수집, 시장 데이터, Stage 2 Python 의존성, 또는 기본 파이프라인 로그를 먼저 확인하세요.";
     case "stage1_extracts":
@@ -312,6 +314,28 @@ function reuseArtifactStep({
   };
 }
 
+function preflightWarnStep({
+  id,
+  label,
+  reason,
+  note,
+}) {
+  const timestamp = new Date().toISOString();
+  return {
+    id,
+    label,
+    status: "warn",
+    soft: true,
+    commandLine: `preflight-skip ${label}`,
+    startedAt: timestamp,
+    endedAt: timestamp,
+    durationMs: 0,
+    exitCode: 1,
+    errorMessage: reason,
+    outputTail: note ?? "",
+  };
+}
+
 function buildArtifactMap(date, logFile) {
   const refinementArtifacts = allRefinementArtifactPaths({ date });
   const round2 = refinementArtifacts.find((item) => item.spec.round === 2);
@@ -319,6 +343,7 @@ function buildArtifactMap(date, logFile) {
 
   return {
     logFile,
+    automationReadiness: path.join(ROOT_DIR, "data", "analysis-state", date, "automation-readiness.json"),
     stage1: path.join(ROOT_DIR, "data", "analysis-state", date, "stage1-report-extracts-v2.json"),
     followUpMap: round2?.mapJson,
     followUpMapMarkdown: round2?.mapMarkdown,
@@ -626,6 +651,40 @@ async function main() {
 
   const steps = [];
 
+  const readinessStep = await runCommand({
+    id: "automation_readiness",
+    label: "Automation Environment Readiness",
+    command: "node",
+    args: [
+      "scripts/check-automation-readiness.js",
+      "--date",
+      date,
+      "--run-date",
+      runDate,
+      "--effective-market-date",
+      date,
+      "--run-id",
+      runId,
+    ],
+    logger,
+    soft: true,
+  });
+  const readinessReport = await readJson(artifacts.automationReadiness, null);
+  const readinessWarnings = readinessReport?.checks?.filter((item) => item.status !== "ok") ?? [];
+  const readinessSummary = readinessWarnings.map((item) => `${item.label}: ${item.detail}`).join(" | ");
+  if (readinessStep.status === "ok" && readinessWarnings.length > 0) {
+    readinessStep.status = "warn";
+    readinessStep.errorMessage = `자동화 환경 경고 ${readinessWarnings.length}건`;
+    readinessStep.outputTail = readinessSummary || readinessStep.outputTail;
+  }
+  steps.push({
+    ...readinessStep,
+    debugHint:
+      readinessStep.status === "ok" || readinessStep.status === "skipped"
+        ? null
+        : buildFailureHint(readinessStep.id),
+  });
+
   const baseline = await runCommand({
     id: "baseline_daily_system",
     label: "Baseline Daily System",
@@ -674,6 +733,13 @@ async function main() {
           artifactPath: artifacts.deepResearchResponse,
           note: `same-day Deep Research 응답 재사용: ${artifacts.deepResearchResponse}`,
         })
+      : readinessReport?.blockers?.safariAutomationAvailable === false
+        ? preflightWarnStep({
+            id: "deep_research_web",
+            label: "Gemini Deep Research Web",
+            reason: "Gemini Deep Research Web 사전 차단 (Safari 자동화 unavailable)",
+            note: readinessReport.checks.find((item) => item.key === "safari_automation")?.detail,
+          })
       : await runCommand({
           id: "deep_research_web",
           label: "Gemini Deep Research Web",
@@ -814,6 +880,13 @@ async function main() {
           artifactPath: artifacts.deepResearchFollowUpResponse,
           note: `same-day Deep Research follow-up 응답 재사용: ${artifacts.deepResearchFollowUpResponse}`,
         })
+      : readinessReport?.blockers?.safariAutomationAvailable === false
+        ? preflightWarnStep({
+            id: "deep_research_follow_up_web",
+            label: "Gemini Deep Research Follow-up Web",
+            reason: "Gemini Deep Research Follow-up Web 사전 차단 (Safari 자동화 unavailable)",
+            note: readinessReport.checks.find((item) => item.key === "safari_automation")?.detail,
+          })
       : await runCommand({
           id: "deep_research_follow_up_web",
           label: "Gemini Deep Research Follow-up Web",
@@ -962,6 +1035,13 @@ async function main() {
           artifactPath: artifacts.round3Response,
           note: `same-day Deep Research round3 응답 재사용: ${artifacts.round3Response}`,
         })
+      : readinessReport?.blockers?.safariAutomationAvailable === false
+        ? preflightWarnStep({
+            id: "deep_research_round3_web",
+            label: "Gemini Deep Research Round 3 Web",
+            reason: "Gemini Deep Research Round 3 Web 사전 차단 (Safari 자동화 unavailable)",
+            note: readinessReport.checks.find((item) => item.key === "safari_automation")?.detail,
+          })
       : await runCommand({
           id: "deep_research_round3_web",
           label: "Gemini Deep Research Round 3 Web",
@@ -1057,15 +1137,23 @@ async function main() {
   });
   steps.push({ ...wikiRebuildFinal, debugHint: wikiRebuildFinal.status === "ok" ? null : wikiRebuildFinal.status === "skipped" ? null : buildFailureHint(wikiRebuildFinal.id) });
 
-  const wikiPublish = await runCommand({
-    id: "wiki_publish",
-    label: "LLM Wiki Publish",
-    command: "node",
-    args: ["scripts/publish-llm-wiki-to-vault.js"],
-    logger,
-    soft: true,
-    skip: wikiRebuildFinal.status !== "ok",
-  });
+  const wikiPublish =
+    readinessReport?.blockers?.obsidianPublishReady === false
+      ? preflightWarnStep({
+          id: "wiki_publish",
+          label: "LLM Wiki Publish",
+          reason: "LLM Wiki Publish 사전 차단 (vault write unavailable)",
+          note: readinessReport.checks.find((item) => item.key === "obsidian_publish")?.detail,
+        })
+      : await runCommand({
+          id: "wiki_publish",
+          label: "LLM Wiki Publish",
+          command: "node",
+          args: ["scripts/publish-llm-wiki-to-vault.js"],
+          logger,
+          soft: true,
+          skip: wikiRebuildFinal.status !== "ok",
+        });
   steps.push({ ...wikiPublish, debugHint: wikiPublish.status === "ok" ? null : wikiPublish.status === "skipped" ? null : buildFailureHint(wikiPublish.id) });
 
   const verify = await runCommand({
@@ -1131,15 +1219,23 @@ async function main() {
   });
 
   if (!cli.skipPush) {
-    const push = await runCommand({
-      id: "push_data_branch",
-      label: "Push Data Branch",
-      command: "bash",
-      args: ["scripts/push-to-github.sh", date],
-      logger,
-      soft: true,
-      skip: false,
-    });
+    const push =
+      readinessReport?.blockers?.githubPushReady === false
+        ? preflightWarnStep({
+            id: "push_data_branch",
+            label: "Push Data Branch",
+            reason: "Push Data Branch 사전 차단 (GitHub network unavailable)",
+            note: readinessReport.checks.find((item) => item.key === "github_network")?.detail,
+          })
+        : await runCommand({
+            id: "push_data_branch",
+            label: "Push Data Branch",
+            command: "bash",
+            args: ["scripts/push-to-github.sh", date],
+            logger,
+            soft: true,
+            skip: false,
+          });
     steps.push({ ...push, debugHint: push.status === "ok" ? null : buildFailureHint(push.id) });
     summary.generatedAt = new Date().toISOString();
     summary.overallStatus =

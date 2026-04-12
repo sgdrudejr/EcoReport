@@ -120,7 +120,43 @@ function sleep(ms) {
 }
 
 function runOsascript(script) {
-  return execFileSync("osascript", ["-e", script], { encoding: "utf8" }).trim();
+  const result = spawnSync("osascript", ["-e", script], { encoding: "utf8" });
+  const stderr = String(result.stderr ?? "").trim();
+  const stdout = String(result.stdout ?? "").trim();
+
+  if (result.error) {
+    throw result.error;
+  }
+  if (result.status !== 0) {
+    throw new Error(stderr || stdout || `osascript failed (exit ${result.status})`);
+  }
+  return stdout.trim();
+}
+
+function classifySafariAutomationError(message) {
+  const normalized = String(message ?? "");
+  if (/connection invalid/i.test(normalized)) {
+    return "Safari AppleScript 연결이 유효하지 않습니다. GUI 세션 또는 Safari 접근 가능 여부를 확인하세요.";
+  }
+  if (/not authorized|not permitted/i.test(normalized)) {
+    return "Safari 자동화 권한이 없어 Gemini Web 단계를 실행할 수 없습니다.";
+  }
+  if (/application isn.?t running/i.test(normalized)) {
+    return "Safari가 실행 중이 아니며 자동으로 열 수도 없습니다.";
+  }
+  return `Safari 자동화 실패: ${normalized.split("\n").at(-1) || normalized}`;
+}
+
+function assertSafariAutomationAvailable() {
+  try {
+    runOsascript(`
+tell application "Safari"
+  return name
+end tell
+`);
+  } catch (error) {
+    throw new Error(classifySafariAutomationError(error instanceof Error ? error.message : String(error)));
+  }
 }
 
 function findGeminiDocumentAppleScript(targetDocNumber = null, targetUrl = null) {
@@ -208,15 +244,13 @@ function openGeminiPage() {
   const appleScript = `
 tell application "Safari"
   activate
-  if (count of windows) = 0 then
-    make new document with properties {URL:${JSON.stringify(GEMINI_URL)}}
-  else
-    tell front window
-      set current tab to (make new tab with properties {URL:${JSON.stringify(GEMINI_URL)}})
-    end tell
-  end if
+  open location ${JSON.stringify(GEMINI_URL)}
   delay 1
-  return URL of front document
+  try
+    return URL of front document
+  on error
+    return ${JSON.stringify(GEMINI_URL)}
+  end try
 end tell
 `;
   return runOsascript(appleScript).trim() || GEMINI_URL;
@@ -778,6 +812,21 @@ async function main() {
   const prompt = fs.readFileSync(promptPath, "utf8");
   const promptPreview = buildPromptPreview(prompt);
   purgeInvalidOutput(outputPath, promptPreview);
+
+  try {
+    assertSafariAutomationAvailable();
+  } catch (error) {
+    await writeDebugSnapshot(debugPath, {
+      savedAt: new Date().toISOString(),
+      status: "safari_unavailable",
+      date: args.date,
+      promptPath,
+      outputPath,
+      promptPreview,
+      error: error instanceof Error ? error.message : String(error),
+    });
+    throw error;
+  }
 
   const targetDocNumber = "front";
   const targetUrl = args.reuseFrontDocument ? getFrontDocumentUrl() : openGeminiPage();
