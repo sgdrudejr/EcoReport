@@ -110,14 +110,14 @@ flowchart TD
 가장 권장하는 일일 실행 방법은 아래 한 줄입니다.
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/EcoReport
 bash scripts/run-daily-system.sh --date YYYY-MM-DD
 ```
 
 Gemini Deep Research 오버레이까지 포함한 완결형 자동 실행은 아래 명령을 사용합니다.
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/EcoReport
 npm run automation:daily -- --date YYYY-MM-DD
 ```
 
@@ -145,9 +145,36 @@ npm run automation:daily -- --date YYYY-MM-DD
 수동으로만 먼저 갱신하고 싶을 때는 아래 명령을 사용합니다.
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/EcoReport
 npm run portfolio:sync:kis -- --date YYYY-MM-DD
 ```
+
+Shadow 파이프라인만 따로 확인하고 싶을 때는 아래 명령을 사용합니다.
+
+```bash
+cd /Users/seo/Documents/Playground/EcoReport
+npm run shadow:pipeline -- --date YYYY-MM-DD
+```
+
+이 러너는 아래 4단계를 묶습니다.
+
+1. `build-report-chunk-index.js`
+2. `build-stage1-shadow-extracts.js`
+3. `build-stage2-shadow-topic-buckets.js`
+4. `build-stage3-shadow-final-insights.js`
+
+출력은 기존 legacy 경로와 canonical mirror 경로에 같이 남습니다.
+
+- legacy 예시:
+  - `data/analysis-state/YYYY-MM-DD/chunk-index/*`
+  - `data/analysis-state/YYYY-MM-DD/stage1-shadow/*`
+  - `data/analysis-state/YYYY-MM-DD/stage2-shadow-topic-buckets.json`
+  - `data/analysis-state/YYYY-MM-DD/stage3-shadow-final-insights.json`
+- canonical mirror 예시:
+  - `data/analysis-state/YYYY-MM-DD/shadow/stage0/*`
+  - `data/analysis-state/YYYY-MM-DD/shadow/stage1/*`
+  - `data/analysis-state/YYYY-MM-DD/shadow/stage2/*`
+  - `data/analysis-state/YYYY-MM-DD/shadow/stage3/*`
 
 계좌 매핑은 `config/portfolio-sync.json`에서 관리합니다.
 
@@ -168,7 +195,7 @@ EcoReport는 이제 일일 산출물을 `persistent wiki`로 다시 컴파일합
 핵심 명령:
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/EcoReport
 node scripts/build-llm-wiki.js --date YYYY-MM-DD
 node scripts/publish-llm-wiki-to-vault.js
 ```
@@ -211,7 +238,7 @@ Vercel preview 실패가 있어도 일일 운영은 막히지 않도록 설계�
 개발/검증 중에는 아래를 기준으로 봅니다.
 
 ```bash
-cd /Users/seo/stock-pilot/dashboard
+cd /Users/seo/Documents/Playground/EcoReport/dashboard
 npm run dev -- --hostname 0.0.0.0
 ```
 
@@ -239,7 +266,7 @@ npm run dev -- --hostname 0.0.0.0
 로컬 대시보드에서 OCR과 GitHub 동기화를 자동으로 쓰려면 아래 파일을 채웁니다.
 
 ```bash
-cd /Users/seo/stock-pilot/dashboard
+cd /Users/seo/Documents/Playground/EcoReport/dashboard
 cp .env.local.example .env.local
 ```
 

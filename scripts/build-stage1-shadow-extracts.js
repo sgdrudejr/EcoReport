@@ -19,6 +19,11 @@ import {
   truncate,
   writeJson,
 } from "./lib/pipeline-utils.js";
+import {
+  buildShadowPaths,
+  logShadowSummary,
+  writeMirroredShadowJson,
+} from "./lib/shadow-pipeline.js";
 
 const MAX_STAGE1_CHUNKS_PER_REPORT = 6;
 const MIN_STAGE1_CHUNKS_PER_REPORT = 1;
@@ -30,7 +35,13 @@ const POSITIVE_PATTERN = /긍정|개선|회복|상향|확대|증가|견조|안�
 const NEGATIVE_PATTERN = /부정|악화|하향|둔화|부담|우려|리스크|압박|불확실성|하락|감소|약세|훼손|무효화|제한적|장기화|지연/;
 const TARGET_PATTERN = /목표주가|TP\s*[:：]|목표\s*가격|투자의견|BUY|Buy|매수|중립|매도/;
 const NOISE_PATTERN =
-  /자료\s*:|Research Center|Bloomberg|QuantiWise|DART|Relative to|주가수익률|시가총액|괴리율|수익률|URL\s*:|www\.|@[A-Za-z0-9.-]+|그림\s*\d+|표\s*\d+|Chart|Figure|52\s*주\s*최고가|외국인\s*지분율|발행주식수|일평균\s*거래대금|상위\s*업종|하위\s*업종|Top\s*10|종목코드|종목\s*업종|1W\s*조정률|1M\s*누적|3M\s*누적|6M\s*12M|유니버스\s*200/i;
+  /자료\s*:|Research Center|Bloomberg|QuantiWise|DART|Relative to|주가수익률|시가총액|괴리율|수익률|URL\s*:|www\.|@[A-Za-z0-9.-]+|그림\s*\d+|표\s*\d+|Chart|Figure|52\s*주\s*최고가|외국인\s*지분율|발행주식수|일평균\s*거래대금|상위\s*업종|하위\s*업종|Top\s*10|종목코드|종목\s*업종|1W\s*조정률|1M\s*누적|3M\s*누적|6M\s*12M|유니버스\s*200|Status\s*\.xlsx|Analyst\s*Certification|Compliance|Appendix|Appendices|투자등급\s*관련사항|\[\s*종목\s*투자등급\s*\]|목표주가\s*괴리율|목표가격\s*괴리율|투자의견\s*및\s*목표주가\s*변동|기업개요|사업개요|회사개요|주주구성|요약\s*재무제표|IR\s*자료/i;
+const KEEP_CONDITION_PATTERN =
+  /유지될 경우|지속된다면|지속될 경우|완화될 경우|안정화될 경우|회복될 경우|확대될 경우|증가할 경우|개선될 경우|상회할 경우|달성\s*시|유지\s*시|확인될 경우|이어질 경우|재개될 경우|정상화될 경우/;
+const BREAK_CONDITION_PATTERN =
+  /장기화될 경우|지연될 경우|악화될 경우|재점화될 경우|확대될 경우|하락할 경우|하회할 경우|둔화될 경우|부담이\s*커질\s*경우|리스크가\s*커질\s*경우|무산될 경우|깨질 경우|재상승할 경우|제한될 경우/;
+const META_SNIPPET_PATTERN =
+  /모닝코멘트|Morning Letter|Status\s*\.xlsx|투자전략정보팀|리서치본부|기업소개|사업개요|회사개요|주주구성|요약\s*재무제표|IR협의회/i;
 
 function normalizeIndexEntries(raw) {
   const entries = Array.isArray(raw)
@@ -119,6 +130,7 @@ function isNoisyUnit(text) {
   if (!value || value.length < 25) return true;
   if (isBoilerplateParagraph(value)) return true;
   if (NOISE_PATTERN.test(value)) return true;
+  if (META_SNIPPET_PATTERN.test(value)) return true;
 
   const numberTokenCount = (value.match(/\d+(?:[.,/%-]\d+)*/g) ?? []).length;
   const alphaCount = (value.match(/[가-힣A-Za-z]/g) ?? []).length;
@@ -149,6 +161,28 @@ function isNarrativeUnit(text) {
   return true;
 }
 
+function isKeepCandidateText(text) {
+  const value = cleanUnitText(text);
+  if (!isNarrativeUnit(value)) return false;
+  if (BREAK_CONDITION_PATTERN.test(value)) return false;
+  if (COUNTERPOINT_PATTERN.test(value) && NEGATIVE_PATTERN.test(value)) return false;
+  if (KEEP_CONDITION_PATTERN.test(value)) return true;
+  return CONDITION_PATTERN.test(value) && POSITIVE_PATTERN.test(value);
+}
+
+function isBreakCandidateText(text) {
+  const value = cleanUnitText(text);
+  if (!isNarrativeUnit(value)) return false;
+  if (KEEP_CONDITION_PATTERN.test(value) && !BREAK_CONDITION_PATTERN.test(value) && !NEGATIVE_PATTERN.test(value)) {
+    return false;
+  }
+  if (BREAK_CONDITION_PATTERN.test(value)) return true;
+  return (
+    (COUNTERPOINT_PATTERN.test(value) || NEGATIVE_PATTERN.test(value)) &&
+    /경우|시|된다면|되면|장기화|지연|악화|하락|하회|재상승|무산|제한/.test(value)
+  );
+}
+
 function countPattern(text, pattern) {
   return (cleanUnitText(text).match(pattern) ?? []).length;
 }
@@ -158,6 +192,13 @@ function hasDenseRatings(text) {
     countPattern(text, /목표주가|TP|투자의견|BUY|Buy|매수|중립|매도/g) >= 2 ||
     countPattern(text, /\d[\d,]*(?:\.\d+)?\s*원/g) >= 2
   );
+}
+
+function isNearDuplicateText(left, right) {
+  const a = cleanUnitText(left);
+  const b = cleanUnitText(right);
+  if (!a || !b) return false;
+  return a === b || a.includes(b) || b.includes(a);
 }
 
 function isSnapshotMetricNoise(text) {
@@ -274,19 +315,38 @@ function scoreRiskChunk(chunk) {
 }
 
 function pickBestUnit(chunks, scorer, filter = () => true) {
-  let best = null;
+  const ranked = [];
 
   for (const chunk of chunks) {
     for (const unit of buildChunkUnits(chunk)) {
       if (!filter(unit, chunk)) continue;
-      const score = scorer(unit, chunk);
-      if (!best || score > best.score) {
-        best = { score, chunk, unit };
-      }
+      ranked.push({
+        score: scorer(unit, chunk),
+        chunk,
+        unit,
+      });
     }
   }
 
-  return best;
+  ranked.sort((left, right) => right.score - left.score);
+  return ranked[0] ?? null;
+}
+
+function rankUnits(chunks, scorer, filter = () => true) {
+  const ranked = [];
+
+  for (const chunk of chunks) {
+    for (const unit of buildChunkUnits(chunk)) {
+      if (!filter(unit, chunk)) continue;
+      ranked.push({
+        score: scorer(unit, chunk),
+        chunk,
+        unit,
+      });
+    }
+  }
+
+  return ranked.sort((left, right) => right.score - left.score);
 }
 
 function pickClaim(chunks, reportMeta) {
@@ -296,6 +356,7 @@ function pickClaim(chunks, reportMeta) {
       scoreClaimUnit,
       (unit) =>
         isNarrativeUnit(unit.text) &&
+        !META_SNIPPET_PATTERN.test(unit.text) &&
         !hasDenseRatings(unit.text) &&
         !isSnapshotMetricNoise(unit.text) &&
         (TARGET_PATTERN.test(unit.text) || POSITIVE_PATTERN.test(unit.text) || NEGATIVE_PATTERN.test(unit.text) || unit.text.length >= 60),
@@ -303,7 +364,11 @@ function pickClaim(chunks, reportMeta) {
     pickBestUnit(
       chunks,
       scoreClaimUnit,
-      (unit) => isNarrativeUnit(unit.text) && !hasDenseRatings(unit.text) && !isSnapshotMetricNoise(unit.text),
+      (unit) =>
+        isNarrativeUnit(unit.text) &&
+        !META_SNIPPET_PATTERN.test(unit.text) &&
+        !hasDenseRatings(unit.text) &&
+        !isSnapshotMetricNoise(unit.text),
     );
 
   if (!best) {
@@ -321,23 +386,32 @@ function pickClaim(chunks, reportMeta) {
 
 function pickCondition(chunks, mode) {
   const isBreak = mode === "break";
-  const best =
-    pickBestUnit(
-      chunks,
-      (unit, chunk) => scoreConditionUnit(unit, chunk, mode),
-      (unit, chunk) =>
-        isNarrativeUnit(unit.text) &&
-        (CONDITION_PATTERN.test(unit.text) ||
-          (isBreak ? COUNTERPOINT_PATTERN.test(unit.text) || NEGATIVE_PATTERN.test(unit.text) : false) ||
-          (isBreak ? chunk?.chunk_flags?.has_counterpoint && /경우|시|된다면|되면|장기화|지연/.test(unit.text) : chunk?.chunk_flags?.has_condition && /경우|시|된다면|되면/.test(unit.text))),
-    ) ??
-    pickBestUnit(
-      chunks,
-      (unit, chunk) => scoreConditionUnit(unit, chunk, mode),
-      (unit) =>
-        isNarrativeUnit(unit.text) &&
-        (isBreak ? COUNTERPOINT_PATTERN.test(unit.text) || NEGATIVE_PATTERN.test(unit.text) : CONDITION_PATTERN.test(unit.text)),
-    );
+  const filters = isBreak
+    ? [
+        (unit, chunk) =>
+          isBreakCandidateText(unit.text) &&
+          (BREAK_CONDITION_PATTERN.test(unit.text) ||
+            ((COUNTERPOINT_PATTERN.test(unit.text) || NEGATIVE_PATTERN.test(unit.text)) &&
+              (CONDITION_PATTERN.test(unit.text) || /경우|시|된다면|되면|장기화|지연|재상승|악화/.test(unit.text))) ||
+            (chunk?.chunk_flags?.has_counterpoint && /경우|시|된다면|되면|장기화|지연/.test(unit.text))),
+        (unit) => isBreakCandidateText(unit.text),
+      ]
+    : [
+        (unit, chunk) =>
+          isKeepCandidateText(unit.text) &&
+          (KEEP_CONDITION_PATTERN.test(unit.text) ||
+            CONDITION_PATTERN.test(unit.text) ||
+            (chunk?.chunk_flags?.has_condition && /경우|시|된다면|되면|유지|확대|증가|회복|개선/.test(unit.text))),
+        (unit) => isKeepCandidateText(unit.text),
+      ];
+
+  const ranked = filters.flatMap((filter) =>
+    rankUnits(chunks, (unit, chunk) => scoreConditionUnit(unit, chunk, mode), filter),
+  );
+
+  const best = ranked.find((item, index) =>
+    ranked.findIndex((candidate) => isNearDuplicateText(candidate.unit.text, item.unit.text)) === index,
+  ) ?? null;
 
   if (!best) {
     return {
@@ -390,7 +464,7 @@ function pickBullChunk(chunks) {
   };
 }
 
-function pickRiskChunk(chunks) {
+function pickRiskChunk(chunks, keepConditionText = null) {
   const best = pickBestUnit(
     chunks,
     (unit, chunk) => scoreConditionUnit(unit, chunk, "break") + 4,
@@ -402,6 +476,9 @@ function pickRiskChunk(chunks) {
   );
 
   if (!best) return { text: null, chunkId: null };
+  if (keepConditionText && isNearDuplicateText(best.unit.text, keepConditionText)) {
+    return { text: null, chunkId: null };
+  }
   return {
     text: truncate(best.unit.text, 320),
     chunkId: best.chunk.chunk_id,
@@ -437,10 +514,12 @@ function extractKeyNumbers(chunks, reportMeta) {
 
 async function main() {
   const args = parseDateArgs(process.argv.slice(2));
-  const chunksPath = path.join(ROOT_DIR, "data", "analysis-state", args.date, "chunk-index", "chunks.jsonl");
+  const shadowPaths = buildShadowPaths(ROOT_DIR, args.date);
+  const chunksPath = path.join(shadowPaths.chunkIndexDir, "chunks.jsonl");
   const indexPath = path.join(ROOT_DIR, "data", "reports", args.date, "index.json");
   const outputPath =
     args.output ?? path.join(ROOT_DIR, "data", "analysis-state", args.date, "stage1-shadow", "stage1-shadow-extracts.json");
+  const canonicalOutputPath = path.join(shadowPaths.stage1Dir, "stage1-shadow-extracts.json");
 
   const [chunkText, rawIndex] = await Promise.all([readText(chunksPath, ""), readJson(indexPath, [])]);
 
@@ -507,7 +586,11 @@ async function main() {
     const keepCondition = pickCondition(selectedChunks, "keep");
     const breakCondition = pickCondition(selectedChunks, "break");
     const bullChunk = pickBullChunk(selectedChunks);
-    const riskChunk = pickRiskChunk(selectedChunks);
+    const riskChunk = pickRiskChunk(selectedChunks, keepCondition.text);
+    const normalizedBreakCondition =
+      keepCondition.text && breakCondition.text && isNearDuplicateText(keepCondition.text, breakCondition.text)
+        ? { text: null, chunkId: null }
+        : breakCondition;
     const keyNumbers = extractKeyNumbers(selectedChunks, reportMeta);
 
     extracts.push({
@@ -540,8 +623,8 @@ async function main() {
       key_numbers: keyNumbers,
       keep_condition: keepCondition.text,
       keep_condition_chunk_id: keepCondition.chunkId,
-      break_condition: breakCondition.text,
-      break_condition_chunk_id: breakCondition.chunkId,
+      break_condition: normalizedBreakCondition.text,
+      break_condition_chunk_id: normalizedBreakCondition.chunkId,
       bull_chunk: bullChunk.text,
       bull_chunk_id: bullChunk.chunkId,
       risk_chunk: riskChunk.text,
@@ -577,15 +660,18 @@ async function main() {
     extracts,
   };
 
-  await writeJson(outputPath, payload);
+  await writeMirroredShadowJson({
+    legacyPath: outputPath,
+    canonicalPath: canonicalOutputPath,
+    payload,
+  });
 
-  console.log(
-    `[stage1-shadow] reports=${payload.reportCount} selected_chunks=${payload.quality.selectedChunkCount} avg_selected=${payload.quality.avgSelectedChunksPerReport}`,
-  );
-  console.log(
-    `[stage1-shadow] reports_with_condition=${payload.quality.reportsWithCondition} reports_with_counterpoint=${payload.quality.reportsWithCounterpoint} reports_with_both=${payload.quality.reportsWithBoth}`,
-  );
-  console.log(`[stage1-shadow] output=${path.relative(ROOT_DIR, outputPath)}`);
+  logShadowSummary("stage1-shadow", [
+    `reports=${payload.reportCount} selected_chunks=${payload.quality.selectedChunkCount} avg_selected=${payload.quality.avgSelectedChunksPerReport}`,
+    `reports_with_condition=${payload.quality.reportsWithCondition} reports_with_counterpoint=${payload.quality.reportsWithCounterpoint} reports_with_both=${payload.quality.reportsWithBoth}`,
+    `output=${path.relative(ROOT_DIR, outputPath)}`,
+    `canonical=${path.relative(ROOT_DIR, canonicalOutputPath)}`,
+  ]);
 }
 
 main().catch((error) => {

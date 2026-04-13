@@ -12,6 +12,12 @@ import {
   writeJson,
   writeText,
 } from "./lib/pipeline-utils.js";
+import {
+  buildShadowPaths,
+  logShadowSummary,
+  writeMirroredShadowJson,
+  writeMirroredShadowText,
+} from "./lib/shadow-pipeline.js";
 
 const TARGET_MIN_CHARS = 600;
 const TARGET_MAX_CHARS = 1200;
@@ -850,11 +856,18 @@ async function main() {
   }
 
   const chunkLines = chunks.map((chunk) => JSON.stringify(toOutputChunk(chunk))).join("\n");
-  const outputDir = path.join(ROOT_DIR, "data", "analysis-state", date, "chunk-index");
+  const shadowPaths = buildShadowPaths(ROOT_DIR, date);
+  const outputDir = shadowPaths.chunkIndexDir;
   const chunksPath = path.join(outputDir, "chunks.jsonl");
   const statsPath = path.join(outputDir, "stats.json");
+  const canonicalChunkPath = path.join(shadowPaths.shadowDir, "stage0", "chunks.jsonl");
+  const canonicalStatsPath = path.join(shadowPaths.shadowDir, "stage0", "stats.json");
 
-  await writeText(chunksPath, chunkLines ? `${chunkLines}\n` : "");
+  await writeMirroredShadowText({
+    legacyPath: chunksPath,
+    canonicalPath: canonicalChunkPath,
+    payload: chunkLines ? `${chunkLines}\n` : "",
+  });
 
   const disclaimerRemovedCount = chunks.filter((chunk) => chunk.chunk_flags.is_disclaimer).length;
   const stage1EligibleChunkCount = chunks.filter(
@@ -881,15 +894,18 @@ async function main() {
     warnings,
   };
 
-  await writeJson(statsPath, stats);
+  await writeMirroredShadowJson({
+    legacyPath: statsPath,
+    canonicalPath: canonicalStatsPath,
+    payload: stats,
+  });
 
-  console.log(
-    `[chunk-index] reports=${stats.report_count} chunks=${stats.chunk_count} eligible=${stats.stage1_eligible_chunk_count} disclaimers_removed=${stats.disclaimer_removed_count}`,
-  );
-  console.log(
-    `[chunk-index] avg_chunk_chars=${Math.round(stats.avg_chunk_chars)} avg_top_chunks_per_report=${stats.avg_top_chunks_per_report}`,
-  );
-  console.log(`[chunk-index] output=${path.relative(ROOT_DIR, outputDir)}/`);
+  logShadowSummary("chunk-index", [
+    `reports=${stats.report_count} chunks=${stats.chunk_count} eligible=${stats.stage1_eligible_chunk_count} disclaimers_removed=${stats.disclaimer_removed_count}`,
+    `avg_chunk_chars=${Math.round(stats.avg_chunk_chars)} avg_top_chunks_per_report=${stats.avg_top_chunks_per_report}`,
+    `output=${path.relative(ROOT_DIR, outputDir)}/`,
+    `canonical=${path.relative(ROOT_DIR, path.dirname(canonicalStatsPath))}/`,
+  ]);
 }
 
 main().catch((error) => {

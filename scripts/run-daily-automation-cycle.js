@@ -78,28 +78,39 @@ function checklistMark(status) {
   return " ";
 }
 
+const PRIMARY_STRATEGY_STEP_IDS = [
+  "strategy_refresh_round3_final",
+  "strategy_refresh_final",
+  "strategy_refresh",
+];
+
+function hasSuccessfulStrategyRefresh(steps) {
+  return PRIMARY_STRATEGY_STEP_IDS.some((stepId) =>
+    steps.some((item) => item.id === stepId && item.status === "ok"),
+  );
+}
+
 function buildSameDayStatus(steps, artifacts) {
   const blockingStepIds = [
     "baseline_daily_system",
     "stage1_extracts",
-    "strategy_refresh_round3_final",
     "verify_outputs",
   ];
   const missingBlockingStep = blockingStepIds.some((stepId) => {
     const step = steps.find((item) => item.id === stepId);
     return !step || step.status !== "ok";
   });
-  if (missingBlockingStep) {
+  if (missingBlockingStep || !hasSuccessfulStrategyRefresh(steps)) {
     return "incomplete";
   }
 
   const requiredArtifactKeys = [
     "stage1",
-    "deepResearchPrompt",
+    "chunkIndexStats",
+    "stage1Shadow",
+    "stage2Shadow",
+    "stage3Shadow",
     "finalResearchBriefing",
-    "round3Map",
-    "round3Prompt",
-    "round3Response",
     "stage2",
     "stage4",
     "dailyBriefing",
@@ -108,6 +119,28 @@ function buildSameDayStatus(steps, artifacts) {
   ];
   const missingArtifact = requiredArtifactKeys.some((key) => !artifacts?.[key]?.exists);
   return missingArtifact ? "incomplete" : "complete";
+}
+
+function computeOverallStatus(steps) {
+  if (steps.some((step) => step.id === "baseline_daily_system" && step.status === "error")) {
+    return "error";
+  }
+
+  if (steps.some((step) => step.status === "error")) {
+    return "error";
+  }
+
+  const verifyStep = steps.find((step) => step.id === "verify_outputs");
+  if (verifyStep && verifyStep.status !== "ok") {
+    return "warn";
+  }
+
+  const stage1Step = steps.find((step) => step.id === "stage1_extracts");
+  if (stage1Step && stage1Step.status !== "ok") {
+    return "warn";
+  }
+
+  return hasSuccessfulStrategyRefresh(steps) ? "ok" : "warn";
 }
 
 function buildFailureHint(stepId) {
@@ -204,6 +237,7 @@ async function runCommand({
   cwd = ROOT_DIR,
   soft = false,
   skip = false,
+  timeoutMs = 0,
 }) {
   if (skip) {
     return {
@@ -240,11 +274,28 @@ async function runCommand({
   };
 
   return await new Promise((resolve) => {
+    let timedOut = false;
     const child = spawn(command, args, {
       cwd,
       env: process.env,
       stdio: ["ignore", "pipe", "pipe"],
     });
+
+    const timer =
+      timeoutMs > 0
+        ? setTimeout(() => {
+            timedOut = true;
+            logger.write(`⏰ ${label} 타임아웃 (${Math.round(timeoutMs / 1000)}s) — SIGTERM 전송`);
+            child.kill("SIGTERM");
+            setTimeout(() => {
+              try {
+                child.kill("SIGKILL");
+              } catch {
+                // no-op
+              }
+            }, 5000);
+          }, timeoutMs)
+        : null;
 
     child.stdout.on("data", (chunk) => {
       appendTail(chunk);
@@ -257,6 +308,7 @@ async function runCommand({
     });
 
     child.on("error", (error) => {
+      if (timer) clearTimeout(timer);
       const endedAt = new Date();
       resolve({
         id,
@@ -268,28 +320,55 @@ async function runCommand({
         endedAt: endedAt.toISOString(),
         durationMs: endedAt.getTime() - startedAt.getTime(),
         exitCode: null,
-        errorMessage: error.message,
+        errorMessage: timedOut ? `${label} 타임아웃 (${Math.round(timeoutMs / 1000)}s)` : error.message,
         outputTail: summarizeTail(tailLines),
       });
     });
 
     child.on("close", (code) => {
+      if (timer) clearTimeout(timer);
       const endedAt = new Date();
+      const errorMessage = timedOut
+        ? `${label} 타임아웃 (${Math.round(timeoutMs / 1000)}s)`
+        : code === 0
+          ? null
+          : `${label} 실패 (exit ${code})`;
       resolve({
         id,
         label,
-        status: code === 0 ? "ok" : soft ? "warn" : "error",
+        status: code === 0 && !timedOut ? "ok" : soft ? "warn" : "error",
         soft,
         commandLine: `${command} ${args.map(shellQuote).join(" ")}`.trim(),
         startedAt: startedAt.toISOString(),
         endedAt: endedAt.toISOString(),
         durationMs: endedAt.getTime() - startedAt.getTime(),
         exitCode: code,
-        errorMessage: code === 0 ? null : `${label} 실패 (exit ${code})`,
+        errorMessage,
         outputTail: summarizeTail(tailLines),
       });
     });
   });
+}
+
+async function runCommandWithRetry({ retries = 1, backoffMs = 5000, ...options }) {
+  let result = null;
+
+  for (let attempt = 1; attempt <= retries + 1; attempt += 1) {
+    result = await runCommand(options);
+    if (result.status === "ok" || result.status === "skipped") {
+      return result;
+    }
+
+    if (attempt <= retries) {
+      const delay = backoffMs * Math.pow(2, attempt - 1);
+      options.logger.write(
+        `⏳ ${options.label} 재시도 ${attempt}/${retries} (${Math.round(delay / 1000)}s 후)`,
+      );
+      await new Promise((resolve) => setTimeout(resolve, delay));
+    }
+  }
+
+  return result;
 }
 
 function reuseArtifactStep({
@@ -344,7 +423,18 @@ function buildArtifactMap(date, logFile) {
   return {
     logFile,
     automationReadiness: path.join(ROOT_DIR, "data", "analysis-state", date, "automation-readiness.json"),
+    chunkIndexStats: path.join(ROOT_DIR, "data", "analysis-state", date, "chunk-index", "stats.json"),
     stage1: path.join(ROOT_DIR, "data", "analysis-state", date, "stage1-report-extracts-v2.json"),
+    stage1Shadow: path.join(
+      ROOT_DIR,
+      "data",
+      "analysis-state",
+      date,
+      "stage1-shadow",
+      "stage1-shadow-extracts.json",
+    ),
+    stage2Shadow: path.join(ROOT_DIR, "data", "analysis-state", date, "stage2-shadow-topic-buckets.json"),
+    stage3Shadow: path.join(ROOT_DIR, "data", "analysis-state", date, "stage3-shadow-final-insights.json"),
     followUpMap: round2?.mapJson,
     followUpMapMarkdown: round2?.mapMarkdown,
     deepResearchPrompt: path.join(
@@ -628,6 +718,60 @@ async function main() {
   logger.write(`📁 로그: ${logFile}`);
   logger.write("==================================================");
 
+  const nodeModulesOk = await fileExists(path.join(ROOT_DIR, "node_modules", ".package-lock.json"));
+  if (!nodeModulesOk) {
+    logger.write("⚠️ node_modules 없음 — npm install 실행");
+    await runCommand({
+      id: "preflight_npm_install",
+      label: "Preflight npm install",
+      command: "npm",
+      args: ["install", "--prefer-offline"],
+      logger,
+      soft: false,
+      timeoutMs: 120_000,
+    });
+  }
+
+  const venvOk = await fileExists(path.join(ROOT_DIR, ".venv", "bin", "python"));
+  if (!venvOk) {
+    logger.write("⚠️ .venv 없음 — 자동 생성");
+    await runCommand({
+      id: "preflight_venv",
+      label: "Preflight venv create",
+      command: "bash",
+      args: [
+        "-c",
+        `python3 -m venv "${path.join(ROOT_DIR, ".venv")}" && "${path.join(ROOT_DIR, ".venv", "bin", "pip")}" install -q -r requirements.txt 2>/dev/null || true`,
+      ],
+      logger,
+      soft: true,
+      timeoutMs: 60_000,
+    });
+  }
+
+  for (const dir of [`data/analysis-state/${date}`, `data/reports/${date}`, "data/market", "logs"]) {
+    fs.mkdirSync(path.join(ROOT_DIR, dir), { recursive: true });
+  }
+
+  const checkpointPath = path.join(ROOT_DIR, "data", "analysis-state", date, "automation-checkpoint.json");
+  const checkpoint = await readJson(checkpointPath, { completedSteps: [] });
+  const completedSteps = new Set(checkpoint?.completedSteps ?? []);
+  if (completedSteps.size > 0) {
+    logger.write(`♻️ 체크포인트 감지 — ${completedSteps.size}개 스텝 완료 상태에서 재개`);
+  }
+
+  function isCheckpointed(stepId) {
+    return completedSteps.has(stepId);
+  }
+
+  async function saveCheckpoint(stepId) {
+    completedSteps.add(stepId);
+    await writeJson(checkpointPath, {
+      completedSteps: [...completedSteps],
+      lastUpdated: new Date().toISOString(),
+    });
+  }
+
   const baselineArgs = [
     "scripts/run-daily-system.sh",
     "--date",
@@ -668,6 +812,8 @@ async function main() {
     ],
     logger,
     soft: true,
+    timeoutMs: 60_000,
+    skip: isCheckpointed("automation_readiness"),
   });
   const readinessReport = await readJson(artifacts.automationReadiness, null);
   const readinessWarnings = readinessReport?.checks?.filter((item) => item.status !== "ok") ?? [];
@@ -677,6 +823,9 @@ async function main() {
     readinessStep.errorMessage = `자동화 환경 경고 ${readinessWarnings.length}건`;
     readinessStep.outputTail = readinessSummary || readinessStep.outputTail;
   }
+  if (readinessStep.status === "ok") {
+    await saveCheckpoint("automation_readiness");
+  }
   steps.push({
     ...readinessStep,
     debugHint:
@@ -685,35 +834,61 @@ async function main() {
         : buildFailureHint(readinessStep.id),
   });
 
-  const baseline = await runCommand({
-    id: "baseline_daily_system",
-    label: "Baseline Daily System",
-    command: "bash",
-    args: baselineArgs,
-    logger,
-    soft: false,
-  });
+  const baseline = isCheckpointed("baseline_daily_system")
+    ? reuseArtifactStep({
+        id: "baseline_daily_system",
+        label: "Baseline Daily System",
+        artifactPath: "checkpoint",
+        note: "체크포인트에서 재개 — 이전 실행에서 완료됨",
+      })
+    : await runCommandWithRetry({
+        id: "baseline_daily_system",
+        label: "Baseline Daily System",
+        command: "bash",
+        args: baselineArgs,
+        logger,
+        soft: false,
+        timeoutMs: 600_000,
+        retries: 1,
+        backoffMs: 10_000,
+      });
+  if (baseline.status === "ok") {
+    await saveCheckpoint("baseline_daily_system");
+  }
   steps.push({ ...baseline, debugHint: baseline.status === "ok" ? null : buildFailureHint(baseline.id) });
 
-  const stage1Extracts = await runCommand({
-    id: "stage1_extracts",
-    label: "Stage 1 Extracts",
-    command: "node",
-    args: [
-      "scripts/build-stage1-report-extracts.js",
-      "--date",
-      date,
-      "--run-date",
-      runDate,
-      "--effective-market-date",
-      date,
-      "--run-id",
-      runId,
-    ],
-    logger,
-    soft: false,
-    skip: baseline.status !== "ok",
-  });
+  const stage1Extracts = isCheckpointed("stage1_extracts")
+    ? reuseArtifactStep({
+        id: "stage1_extracts",
+        label: "Stage 1 Extracts",
+        artifactPath: artifacts.stage1,
+        note: "체크포인트에서 재개",
+      })
+    : await runCommandWithRetry({
+        id: "stage1_extracts",
+        label: "Stage 1 Extracts",
+        command: "node",
+        args: [
+          "scripts/build-stage1-report-extracts.js",
+          "--date",
+          date,
+          "--run-date",
+          runDate,
+          "--effective-market-date",
+          date,
+          "--run-id",
+          runId,
+        ],
+        logger,
+        soft: false,
+        skip: baseline.status !== "ok",
+        timeoutMs: 300_000,
+        retries: 1,
+        backoffMs: 5_000,
+      });
+  if (stage1Extracts.status === "ok") {
+    await saveCheckpoint("stage1_extracts");
+  }
   steps.push({
     ...stage1Extracts,
     debugHint:
@@ -762,7 +937,7 @@ async function main() {
         });
   steps.push({ ...deepResearch, debugHint: deepResearch.status === "ok" ? null : deepResearch.status === "skipped" ? null : buildFailureHint(deepResearch.id) });
 
-  const richBriefing = await runCommand({
+  const richBriefing = await runCommandWithRetry({
     id: "rich_briefing_overlay",
     label: "Stage 1.6 Rich Briefing Overlay",
     command: "npm",
@@ -782,10 +957,13 @@ async function main() {
     logger,
     soft: true,
     skip: stage1Extracts.status !== "ok",
+    timeoutMs: 180_000,
+    retries: 2,
+    backoffMs: 5_000,
   });
   steps.push({ ...richBriefing, debugHint: richBriefing.status === "ok" ? null : richBriefing.status === "skipped" ? null : buildFailureHint(richBriefing.id) });
 
-  const strategyRefresh = await runCommand({
+  const strategyRefresh = await runCommandWithRetry({
     id: "strategy_refresh",
     label: "Strategy Refresh After Deep Research",
     command: "bash",
@@ -804,10 +982,13 @@ async function main() {
     logger,
     soft: true,
     skip: stage1Extracts.status !== "ok",
+    timeoutMs: 300_000,
+    retries: 1,
+    backoffMs: 10_000,
   });
   steps.push({ ...strategyRefresh, debugHint: strategyRefresh.status === "ok" ? null : strategyRefresh.status === "skipped" ? null : buildFailureHint(strategyRefresh.id) });
 
-  const wikiRebuildInitial = await runCommand({
+  const wikiRebuildInitial = await runCommandWithRetry({
     id: "wiki_rebuild_initial",
     label: "LLM Wiki Rebuild After First Synthesis",
     command: "node",
@@ -825,6 +1006,9 @@ async function main() {
     logger,
     soft: true,
     skip: strategyRefresh.status !== "ok",
+    timeoutMs: 120_000,
+    retries: 1,
+    backoffMs: 5_000,
   });
   steps.push({ ...wikiRebuildInitial, debugHint: wikiRebuildInitial.status === "ok" ? null : wikiRebuildInitial.status === "skipped" ? null : buildFailureHint(wikiRebuildInitial.id) });
 
@@ -911,7 +1095,7 @@ async function main() {
         });
   steps.push({ ...deepResearchFollowUp, debugHint: deepResearchFollowUp.status === "ok" ? null : deepResearchFollowUp.status === "skipped" ? null : buildFailureHint(deepResearchFollowUp.id) });
 
-  const richBriefingFinal = await runCommand({
+  const richBriefingFinal = await runCommandWithRetry({
     id: "rich_briefing_final",
     label: "Stage 1.6 Rich Briefing Final",
     command: "npm",
@@ -931,10 +1115,13 @@ async function main() {
     logger,
     soft: true,
     skip: followUpReindex.status !== "ok",
+    timeoutMs: 180_000,
+    retries: 2,
+    backoffMs: 5_000,
   });
   steps.push({ ...richBriefingFinal, debugHint: richBriefingFinal.status === "ok" ? null : richBriefingFinal.status === "skipped" ? null : buildFailureHint(richBriefingFinal.id) });
 
-  const strategyRefreshFinal = await runCommand({
+  const strategyRefreshFinal = await runCommandWithRetry({
     id: "strategy_refresh_final",
     label: "Strategy Refresh After Follow-up Research",
     command: "bash",
@@ -953,10 +1140,13 @@ async function main() {
     logger,
     soft: true,
     skip: followUpReindex.status !== "ok",
+    timeoutMs: 300_000,
+    retries: 1,
+    backoffMs: 10_000,
   });
   steps.push({ ...strategyRefreshFinal, debugHint: strategyRefreshFinal.status === "ok" ? null : strategyRefreshFinal.status === "skipped" ? null : buildFailureHint(strategyRefreshFinal.id) });
 
-  const wikiRebuildMid = await runCommand({
+  const wikiRebuildMid = await runCommandWithRetry({
     id: "wiki_rebuild_mid",
     label: "LLM Wiki Rebuild After Round 2",
     command: "node",
@@ -974,6 +1164,9 @@ async function main() {
     logger,
     soft: true,
     skip: strategyRefreshFinal.status !== "ok",
+    timeoutMs: 120_000,
+    retries: 1,
+    backoffMs: 5_000,
   });
   steps.push({ ...wikiRebuildMid, debugHint: wikiRebuildMid.status === "ok" ? null : wikiRebuildMid.status === "skipped" ? null : buildFailureHint(wikiRebuildMid.id) });
 
@@ -1181,13 +1374,7 @@ async function main() {
   const artifactStatus = await buildArtifactStatus(artifacts);
   const changeSummary = await buildPreviousDayChangeSummary(date);
 
-  const overallStatus = steps.some((step) => step.id === "baseline_daily_system" && step.status === "error")
-    ? "error"
-    : steps.some((step) => step.status === "error")
-      ? "error"
-      : steps.some((step) => step.status === "warn")
-        ? "warn"
-        : "ok";
+  const overallStatus = computeOverallStatus(steps);
 
   const summary = {
     date,
@@ -1238,10 +1425,7 @@ async function main() {
           });
     steps.push({ ...push, debugHint: push.status === "ok" ? null : buildFailureHint(push.id) });
     summary.generatedAt = new Date().toISOString();
-    summary.overallStatus =
-      summary.overallStatus === "error" || push.status === "ok"
-        ? summary.overallStatus
-        : "warn";
+    summary.overallStatus = computeOverallStatus(steps);
     summary.steps = steps;
     summary.artifacts = await buildArtifactStatus(artifacts);
     summary.sameDayStatus = buildSameDayStatus(summary.steps, summary.artifacts);
