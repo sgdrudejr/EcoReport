@@ -2,8 +2,8 @@
   "date": "2026-04-13",
   "runDate": "2026-04-13",
   "effectiveMarketDate": "2026-04-13",
-  "runId": "2026-04-13-hardening-full",
-  "generatedAt": "2026-04-13T01:13:53.420Z",
+  "runId": "2026-04-13-no-claude-full",
+  "generatedAt": "2026-04-13T01:25:37.703Z",
   "reportInputs": {
     "reportCount": 100,
     "available": true
@@ -50,12 +50,12 @@
   "coverage": {
     "factorCoverage": 0.9774,
     "techCoverage": 0.9096,
-    "impactCoverage": 0.5889,
+    "impactCoverage": 0.4895,
     "stage2Available": true
   },
   "quality": {
-    "unrelatedEvidenceRatio": 0.0585,
-    "blockedEvidenceCount": 7
+    "unrelatedEvidenceRatio": 0.4355,
+    "blockedEvidenceCount": 18
   },
   "configUsed": {
     "weightProfile": "balanced",
@@ -162,8 +162,8 @@
         "count": 13
       },
       "research": {
-        "mean": 0.345,
-        "std": 0.3215,
+        "mean": 0.2698,
+        "std": 0.3567,
         "count": 13
       },
       "income": {
@@ -360,12 +360,12 @@
         "unavailableReason": null,
         "impactScore": 51,
         "impactValue": 0.03,
-        "impactCount": 35,
+        "impactCount": 34,
         "coverageWeight": 0.55,
         "directAccountImpactScore": 50,
         "relationSummary": {
           "directCount": 0,
-          "thematicCount": 37,
+          "thematicCount": 36,
           "secondOrderCount": 0,
           "blockedCount": 0,
           "unrelatedEvidenceRatio": 0
@@ -380,12 +380,12 @@
         },
         "zScores": {
           "momentum": 0.2443,
-          "research": -0.1392,
+          "research": 0.0855,
           "income": -0.3187,
           "macroFit": 0.4168
         },
-        "weightedZ": 0.0793,
-        "score": 51,
+        "weightedZ": 0.1467,
+        "score": 52,
         "factorCoverage": 1,
         "availability": {
           "momentum": 1,
@@ -399,7 +399,7 @@
         "signal": "WATCH",
         "blended": true,
         "rawActionScore": 57,
-        "factorScore": 51,
+        "factorScore": 52,
         "actionWeight": 0.92,
         "factorWeight": 0.08,
         "factorCoverage": 1,
@@ -420,7 +420,7 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 51,
+        "factorScore": 52,
         "techScore": 70,
         "reportScore": 51,
         "actionScore": 57,
@@ -429,7 +429,7 @@
       "explain": {
         "topDrivers": [
           "기술 기본점수 70점",
-          "리포트 영향 51점 (35건 연결)",
+          "리포트 영향 51점 (34건 연결)",
           "RSI 61.9"
         ],
         "warnings": [
@@ -785,12 +785,12 @@
         },
         "zScores": {
           "momentum": -1.8969,
-          "research": -1.0567,
+          "research": -0.7414,
           "income": -0.6295,
           "macroFit": -0.7609
         },
-        "weightedZ": -1.2275,
-        "score": 33,
+        "weightedZ": -1.1329,
+        "score": 34,
         "factorCoverage": 0.75,
         "availability": {
           "momentum": 0,
@@ -804,7 +804,7 @@
         "signal": "WATCH",
         "blended": false,
         "rawActionScore": 43,
-        "factorScore": 33,
+        "factorScore": 34,
         "actionWeight": 1,
         "factorWeight": 0,
         "factorCoverage": 0.75,
@@ -825,7 +825,7 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 33,
+        "factorScore": 34,
         "techScore": null,
         "reportScore": 49,
         "actionScore": 43,
@@ -913,12 +913,12 @@
         },
         "zScores": {
           "momentum": -1.8969,
-          "research": -0.9705,
+          "research": -0.6637,
           "income": -0.6295,
           "macroFit": -1.1466
         },
-        "weightedZ": -1.2788,
-        "score": 32,
+        "weightedZ": -1.1868,
+        "score": 33,
         "factorCoverage": 0.75,
         "availability": {
           "momentum": 0,
@@ -932,7 +932,7 @@
         "signal": "WATCH",
         "blended": false,
         "rawActionScore": 43,
-        "factorScore": 32,
+        "factorScore": 33,
         "actionWeight": 1,
         "factorWeight": 0,
         "factorCoverage": 0.75,
@@ -953,7 +953,7 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 32,
+        "factorScore": 33,
         "techScore": null,
         "reportScore": null,
         "actionScore": 43,
@@ -1148,12 +1148,12 @@
         "unavailableReason": null,
         "impactScore": 51,
         "impactValue": 0.03,
-        "impactCount": 35,
+        "impactCount": 34,
         "coverageWeight": 0.55,
         "directAccountImpactScore": 50,
         "relationSummary": {
           "directCount": 0,
-          "thematicCount": 37,
+          "thematicCount": 36,
           "secondOrderCount": 0,
           "blockedCount": 0,
           "unrelatedEvidenceRatio": 0
@@ -1168,12 +1168,12 @@
         },
         "zScores": {
           "momentum": 0.2,
-          "research": -0.1392,
+          "research": 0.0855,
           "income": 0.0438,
           "macroFit": 1.2542
         },
-        "weightedZ": 0.2856,
-        "score": 54,
+        "weightedZ": 0.3531,
+        "score": 55,
         "factorCoverage": 1,
         "availability": {
           "momentum": 1,
@@ -1187,7 +1187,7 @@
         "signal": "WATCH",
         "blended": true,
         "rawActionScore": 55,
-        "factorScore": 54,
+        "factorScore": 55,
         "actionWeight": 0.92,
         "factorWeight": 0.08,
         "factorCoverage": 1,
@@ -1208,7 +1208,7 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 54,
+        "factorScore": 55,
         "techScore": 77,
         "reportScore": 51,
         "actionScore": 55,
@@ -1217,7 +1217,7 @@
       "explain": {
         "topDrivers": [
           "기술 기본점수 77점",
-          "리포트 영향 51점 (35건 연결)",
+          "리포트 영향 51점 (34건 연결)",
           "RSI 62.1"
         ],
         "warnings": [
@@ -1410,12 +1410,12 @@
         "unavailableReason": null,
         "impactScore": 45,
         "impactValue": -0.184,
-        "impactCount": 30,
+        "impactCount": 29,
         "coverageWeight": 0.55,
         "directAccountImpactScore": 50,
         "relationSummary": {
           "directCount": 0,
-          "thematicCount": 33,
+          "thematicCount": 32,
           "secondOrderCount": 0,
           "blockedCount": 0,
           "unrelatedEvidenceRatio": 0
@@ -1430,12 +1430,12 @@
         },
         "zScores": {
           "momentum": -0.7464,
-          "research": -1.7246,
+          "research": -1.3434,
           "income": 1.0279,
           "macroFit": -1.7194
         },
-        "weightedZ": -0.9683,
-        "score": 36,
+        "weightedZ": -0.854,
+        "score": 38,
         "factorCoverage": 1,
         "availability": {
           "momentum": 1,
@@ -1449,7 +1449,7 @@
         "signal": "WATCH",
         "blended": false,
         "rawActionScore": 54,
-        "factorScore": 36,
+        "factorScore": 38,
         "actionWeight": 1,
         "factorWeight": 0,
         "factorCoverage": 1,
@@ -1470,7 +1470,7 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 36,
+        "factorScore": 38,
         "techScore": 52,
         "reportScore": 45,
         "actionScore": 54,
@@ -1479,7 +1479,7 @@
       "explain": {
         "topDrivers": [
           "기술 기본점수 17점",
-          "리포트 영향 45점 (30건 연결)",
+          "리포트 영향 45점 (29건 연결)",
           "RSI 52.1"
         ],
         "warnings": [
@@ -1498,14 +1498,14 @@
       "incomeYield": 0.004,
       "technicalSignal": "STRONG_BUY",
       "technicalBaseScore": 96,
-      "actionScore": 66,
-      "direction": 1.054,
-      "timing": -0.718,
-      "reportScore": 0.437,
+      "actionScore": 63,
+      "direction": 0.958,
+      "timing": -0.823,
+      "reportScore": 0,
       "probabilities": {
-        "p_buy": 0.6978,
-        "p_hold": 0.227,
-        "p_sell": 0.0752
+        "p_buy": 0.5656,
+        "p_hold": 0.2868,
+        "p_sell": 0.1476
       },
       "conviction": "MEDIUM",
       "signal": "HOLD",
@@ -1519,104 +1519,9 @@
         "stochTiming": -2.5,
         "volumeZ": -0.486
       },
-      "rawActionScore": 66,
+      "rawActionScore": 63,
       "rawSignal": "HOLD",
-      "reportImpacts": [
-        {
-          "reportId": "marketvoice_1294355",
-          "title": "이란 항만 봉쇄 발표에 브렌트유 11% 급등",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:22+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.68,
-          "confidence": 0.54,
-          "horizon": "1w",
-          "decayHalfLifeDays": 7,
-          "reason": "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 2건",
-            "가상화폐 -0.81%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0984
-        },
-        {
-          "reportId": "marketvoice_1294355",
-          "title": "이란 항만 봉쇄 발표에 브렌트유 11% 급등",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:22+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.68,
-          "confidence": 0.54,
-          "horizon": "1w",
-          "decayHalfLifeDays": 7,
-          "reason": "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 2건",
-            "가상화폐 -0.81%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0984
-        },
-        {
-          "reportId": "marketvoice_1295043",
-          "title": "볼턴, 이란 원유 제재 완화에 강력 반대",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:15+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.68,
-          "confidence": 0.54,
-          "horizon": "1w",
-          "decayHalfLifeDays": 7,
-          "reason": "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화에 대해 강하게 비판하며, 제재 재부과와 해상 봉쇄를 추진해 이란 정권교체를 유도해야 한다고 주장했습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 1건",
-            "유조선 -1.02%",
-            "국제유가 +0.11%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0984
-        },
-        {
-          "reportId": "marketvoice_1295043",
-          "title": "볼턴, 이란 원유 제재 완화에 강력 반대",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:15+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.68,
-          "confidence": 0.54,
-          "horizon": "1w",
-          "decayHalfLifeDays": 7,
-          "reason": "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화에 대해 강하게 비판하며, 제재 재부과와 해상 봉쇄를 추진해 이란 정권교체를 유도해야 한다고 주장했습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 1건",
-            "유조선 -1.02%",
-            "국제유가 +0.11%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0984
-        }
-      ],
+      "reportImpacts": [],
       "technical": {
         "signal": "STRONG_BUY",
         "score": 96,
@@ -1646,36 +1551,36 @@
       },
       "report": {
         "sourceLayer": "impact-map",
-        "available": true,
-        "unavailableReason": null,
-        "impactScore": 63,
-        "impactValue": 0.437,
-        "impactCount": 4,
-        "coverageWeight": 0.55,
+        "available": false,
+        "unavailableReason": "no_linked_report",
+        "impactScore": null,
+        "impactValue": 0,
+        "impactCount": 0,
+        "coverageWeight": 0,
         "directAccountImpactScore": 52,
         "relationSummary": {
           "directCount": 0,
-          "thematicCount": 4,
+          "thematicCount": 0,
           "secondOrderCount": 0,
-          "blockedCount": 0,
-          "unrelatedEvidenceRatio": 0
+          "blockedCount": 2,
+          "unrelatedEvidenceRatio": 1
         }
       },
       "factor": {
         "raw": {
           "momentum": 1.1236,
-          "research": 0.5847,
+          "research": 0.279,
           "income": 0.004,
           "macroFit": 0.1849
         },
         "zScores": {
           "momentum": 0.8094,
-          "research": 0.7453,
+          "research": 0.0259,
           "income": -0.4223,
           "macroFit": 0.0332
         },
-        "weightedZ": 0.4502,
-        "score": 56,
+        "weightedZ": 0.2343,
+        "score": 53,
         "factorCoverage": 1,
         "availability": {
           "momentum": 1,
@@ -1685,11 +1590,11 @@
         }
       },
       "actionBlend": {
-        "score": 66,
+        "score": 63,
         "signal": "HOLD",
         "blended": false,
-        "rawActionScore": 66,
-        "factorScore": 56,
+        "rawActionScore": 63,
+        "factorScore": 53,
         "actionWeight": 1,
         "factorWeight": 0,
         "factorCoverage": 1,
@@ -1710,16 +1615,15 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 56,
+        "factorScore": 53,
         "techScore": 96,
-        "reportScore": 63,
-        "actionScore": 66,
-        "rawActionScore": 66
+        "reportScore": null,
+        "actionScore": 63,
+        "rawActionScore": 63
       },
       "explain": {
         "topDrivers": [
           "기술 기본점수 96점",
-          "리포트 영향 63점 (4건 연결)",
           "RSI 56.4"
         ],
         "warnings": []
@@ -1736,14 +1640,14 @@
       "incomeYield": 0.004,
       "technicalSignal": "STRONG_BUY",
       "technicalBaseScore": 96,
-      "actionScore": 67,
-      "direction": 1.106,
-      "timing": -0.732,
-      "reportScore": 0.423,
+      "actionScore": 64,
+      "direction": 1.013,
+      "timing": -0.833,
+      "reportScore": 0,
       "probabilities": {
-        "p_buy": 0.7066,
-        "p_hold": 0.2217,
-        "p_sell": 0.0717
+        "p_buy": 0.581,
+        "p_hold": 0.2801,
+        "p_sell": 0.1388
       },
       "conviction": "MEDIUM",
       "signal": "HOLD",
@@ -1757,129 +1661,9 @@
         "stochTiming": -2.5,
         "volumeZ": 0.04299999999999993
       },
-      "rawActionScore": 67,
+      "rawActionScore": 64,
       "rawSignal": "HOLD",
-      "reportImpacts": [
-        {
-          "reportId": "marketvoice_1294355",
-          "title": "이란 항만 봉쇄 발표에 브렌트유 11% 급등",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:22+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.68,
-          "confidence": 0.54,
-          "horizon": "1w",
-          "decayHalfLifeDays": 7,
-          "reason": "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 2건",
-            "가상화폐 -0.81%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0984
-        },
-        {
-          "reportId": "marketvoice_1294355",
-          "title": "이란 항만 봉쇄 발표에 브렌트유 11% 급등",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:22+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.68,
-          "confidence": 0.54,
-          "horizon": "1w",
-          "decayHalfLifeDays": 7,
-          "reason": "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 2건",
-            "가상화폐 -0.81%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0984
-        },
-        {
-          "reportId": "marketvoice_1295043",
-          "title": "볼턴, 이란 원유 제재 완화에 강력 반대",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:15+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.68,
-          "confidence": 0.54,
-          "horizon": "1w",
-          "decayHalfLifeDays": 7,
-          "reason": "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화에 대해 강하게 비판하며, 제재 재부과와 해상 봉쇄를 추진해 이란 정권교체를 유도해야 한다고 주장했습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 1건",
-            "유조선 -1.02%",
-            "국제유가 +0.11%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0984
-        },
-        {
-          "reportId": "marketvoice_1295043",
-          "title": "볼턴, 이란 원유 제재 완화에 강력 반대",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:15+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.68,
-          "confidence": 0.54,
-          "horizon": "1w",
-          "decayHalfLifeDays": 7,
-          "reason": "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화에 대해 강하게 비판하며, 제재 재부과와 해상 봉쇄를 추진해 이란 정권교체를 유도해야 한다고 주장했습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 1건",
-            "유조선 -1.02%",
-            "국제유가 +0.11%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0984
-        },
-        {
-          "reportId": "marketvoice_1291105",
-          "title": "Archer, 2028 LA올림픽 eVTOL 시범 운항 발표",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:15+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.493,
-          "confidence": 0.54,
-          "horizon": "1m",
-          "decayHalfLifeDays": 14,
-          "reason": "Archer Aviation이 2026년 4월 전기 수직이착륙기(eVTOL)를 활용한 도심 단거리 이동 서비스를 발표했습니다. 2028년 로스앤젤레스 올림픽에서 시범 운항을 계획하며, 저렴한 요금과 효율적 운항 전략을 제시했습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 18건",
-            "아처 에비에이션 +1.50%",
-            "우주항공 -1.71%",
-            "우버 테크놀로지스 -1.85%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0891
-        }
-      ],
+      "reportImpacts": [],
       "technical": {
         "signal": "STRONG_BUY",
         "score": 96,
@@ -1909,36 +1693,36 @@
       },
       "report": {
         "sourceLayer": "impact-map",
-        "available": true,
-        "unavailableReason": null,
-        "impactScore": 62,
-        "impactValue": 0.423,
-        "impactCount": 6,
-        "coverageWeight": 0.55,
+        "available": false,
+        "unavailableReason": "no_linked_report",
+        "impactScore": null,
+        "impactValue": 0,
+        "impactCount": 0,
+        "coverageWeight": 0,
         "directAccountImpactScore": 48,
         "relationSummary": {
           "directCount": 0,
-          "thematicCount": 6,
+          "thematicCount": 0,
           "secondOrderCount": 0,
-          "blockedCount": 0,
-          "unrelatedEvidenceRatio": 0
+          "blockedCount": 2,
+          "unrelatedEvidenceRatio": 1
         }
       },
       "factor": {
         "raw": {
           "momentum": 1.2085,
-          "research": 0.5751,
+          "research": 0.279,
           "income": 0.004,
           "macroFit": -0.866
         },
         "zScores": {
           "momentum": 0.9229,
-          "research": 0.7156,
+          "research": 0.0259,
           "income": -0.4223,
           "macroFit": -0.6527
         },
-        "weightedZ": 0.3438,
-        "score": 55,
+        "weightedZ": 0.1369,
+        "score": 52,
         "factorCoverage": 1,
         "availability": {
           "momentum": 1,
@@ -1948,11 +1732,11 @@
         }
       },
       "actionBlend": {
-        "score": 67,
+        "score": 64,
         "signal": "HOLD",
         "blended": false,
-        "rawActionScore": 67,
-        "factorScore": 55,
+        "rawActionScore": 64,
+        "factorScore": 52,
         "actionWeight": 1,
         "factorWeight": 0,
         "factorCoverage": 1,
@@ -1973,16 +1757,15 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 55,
+        "factorScore": 52,
         "techScore": 96,
-        "reportScore": 62,
-        "actionScore": 67,
-        "rawActionScore": 67
+        "reportScore": null,
+        "actionScore": 64,
+        "rawActionScore": 64
       },
       "explain": {
         "topDrivers": [
           "기술 기본점수 96점",
-          "리포트 영향 62점 (6건 연결)",
           "RSI 60.3"
         ],
         "warnings": []
@@ -2193,12 +1976,12 @@
         },
         "zScores": {
           "momentum": -0.5199,
-          "research": -1.3701,
+          "research": -1.0239,
           "income": 2.9959,
           "macroFit": 1.1254
         },
-        "weightedZ": 0.0815,
-        "score": 51,
+        "weightedZ": 0.1853,
+        "score": 53,
         "factorCoverage": 1,
         "availability": {
           "momentum": 1,
@@ -2212,7 +1995,7 @@
         "signal": "HOLD",
         "blended": false,
         "rawActionScore": 60,
-        "factorScore": 51,
+        "factorScore": 53,
         "actionWeight": 1,
         "factorWeight": 0,
         "factorCoverage": 1,
@@ -2233,7 +2016,7 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 51,
+        "factorScore": 53,
         "techScore": 47,
         "reportScore": 45,
         "actionScore": 60,
@@ -2259,17 +2042,17 @@
       "incomeYield": 0.004,
       "technicalSignal": "STRONG_BUY",
       "technicalBaseScore": 96,
-      "actionScore": 69,
-      "direction": 1.163,
-      "timing": -0.594,
-      "reportScore": 0.732,
+      "actionScore": 73,
+      "direction": 1.275,
+      "timing": -0.472,
+      "reportScore": 1.239,
       "probabilities": {
-        "p_buy": 0.7826,
-        "p_hold": 0.1766,
-        "p_sell": 0.0407
+        "p_buy": 0.8669,
+        "p_hold": 0.1169,
+        "p_sell": 0.0162
       },
       "conviction": "MEDIUM",
-      "signal": "HOLD",
+      "signal": "BUY",
       "features": {
         "maTrend": 2.5,
         "macdZ": 0.4407707831952138,
@@ -2280,8 +2063,8 @@
         "stochTiming": -2.5,
         "volumeZ": 0.45500000000000007
       },
-      "rawActionScore": 70,
-      "rawSignal": "HOLD",
+      "rawActionScore": 73,
+      "rawSignal": "BUY",
       "reportImpacts": [
         {
           "reportId": "report_041",
@@ -2353,52 +2136,6 @@
           "relationWeight": 1,
           "evidenceScore": 1,
           "contribution": -0.1448
-        },
-        {
-          "reportId": "marketvoice_1294355",
-          "title": "이란 항만 봉쇄 발표에 브렌트유 11% 급등",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:22+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.68,
-          "confidence": 0.54,
-          "horizon": "1w",
-          "decayHalfLifeDays": 7,
-          "reason": "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 2건",
-            "가상화폐 -0.81%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0984
-        },
-        {
-          "reportId": "marketvoice_1294355",
-          "title": "이란 항만 봉쇄 발표에 브렌트유 11% 급등",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:22+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.68,
-          "confidence": 0.54,
-          "horizon": "1w",
-          "decayHalfLifeDays": 7,
-          "reason": "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 2건",
-            "가상화폐 -0.81%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0984
         }
       ],
       "technical": {
@@ -2432,34 +2169,34 @@
         "sourceLayer": "impact-map",
         "available": true,
         "unavailableReason": null,
-        "impactScore": 71,
-        "impactValue": 0.732,
-        "impactCount": 9,
+        "impactScore": 82,
+        "impactValue": 1.239,
+        "impactCount": 3,
         "coverageWeight": 1,
         "directAccountImpactScore": 48,
         "relationSummary": {
           "directCount": 3,
-          "thematicCount": 6,
+          "thematicCount": 0,
           "secondOrderCount": 0,
-          "blockedCount": 0,
-          "unrelatedEvidenceRatio": 0
+          "blockedCount": 2,
+          "unrelatedEvidenceRatio": 0.4
         }
       },
       "factor": {
         "raw": {
           "momentum": 1.196,
-          "research": 0.7917,
+          "research": 1.1463,
           "income": 0.004,
           "macroFit": -0.866
         },
         "zScores": {
           "momentum": 0.9061,
-          "research": 1.3891,
+          "research": 2.457,
           "income": -0.4223,
           "macroFit": -0.6527
         },
-        "weightedZ": 0.54,
-        "score": 58,
+        "weightedZ": 0.8604,
+        "score": 62,
         "factorCoverage": 1,
         "availability": {
           "momentum": 1,
@@ -2469,18 +2206,18 @@
         }
       },
       "actionBlend": {
-        "score": 69,
-        "signal": "HOLD",
-        "blended": true,
-        "rawActionScore": 70,
-        "factorScore": 58,
-        "actionWeight": 0.92,
-        "factorWeight": 0.08,
+        "score": 73,
+        "signal": "BUY",
+        "blended": false,
+        "rawActionScore": 73,
+        "factorScore": 62,
+        "actionWeight": 1,
+        "factorWeight": 0,
         "factorCoverage": 1,
-        "delta": -1,
+        "delta": 0,
         "gateMode": "sameSignal",
-        "factorApplied": true,
-        "rawSignal": "HOLD",
+        "factorApplied": false,
+        "rawSignal": "BUY",
         "factorSignal": "HOLD"
       },
       "stopLoss": {
@@ -2494,16 +2231,16 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 58,
+        "factorScore": 62,
         "techScore": 96,
-        "reportScore": 71,
-        "actionScore": 69,
-        "rawActionScore": 70
+        "reportScore": 82,
+        "actionScore": 73,
+        "rawActionScore": 73
       },
       "explain": {
         "topDrivers": [
           "기술 기본점수 96점",
-          "리포트 영향 71점 (9건 연결)",
+          "리포트 영향 82점 (3건 연결)",
           "RSI 60.0"
         ],
         "warnings": []
@@ -2520,16 +2257,16 @@
       "incomeYield": 0.004,
       "technicalSignal": "STRONG_BUY",
       "technicalBaseScore": 86,
-      "actionScore": 61,
-      "direction": 0.553,
-      "timing": -0.549,
-      "reportScore": 0.548,
+      "actionScore": 62,
+      "direction": 0.587,
+      "timing": -0.512,
+      "reportScore": 0.702,
       "probabilities": {
-        "p_buy": 0.6032,
-        "p_hold": 0.28,
-        "p_sell": 0.1168
+        "p_buy": 0.6499,
+        "p_hold": 0.258,
+        "p_sell": 0.0921
       },
-      "conviction": "LOW",
+      "conviction": "MEDIUM",
       "signal": "HOLD",
       "features": {
         "maTrend": 0.34680141238105655,
@@ -2541,7 +2278,7 @@
         "stochTiming": -2.5,
         "volumeZ": 0.3520000000000001
       },
-      "rawActionScore": 61,
+      "rawActionScore": 62,
       "rawSignal": "HOLD",
       "reportImpacts": [
         {
@@ -2566,100 +2303,6 @@
           "relationWeight": 1,
           "evidenceScore": 1,
           "contribution": 0.2926
-        },
-        {
-          "reportId": "marketvoice_1294355",
-          "title": "이란 항만 봉쇄 발표에 브렌트유 11% 급등",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:22+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.68,
-          "confidence": 0.54,
-          "horizon": "1w",
-          "decayHalfLifeDays": 7,
-          "reason": "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 2건",
-            "가상화폐 -0.81%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0984
-        },
-        {
-          "reportId": "marketvoice_1294355",
-          "title": "이란 항만 봉쇄 발표에 브렌트유 11% 급등",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:22+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.68,
-          "confidence": 0.54,
-          "horizon": "1w",
-          "decayHalfLifeDays": 7,
-          "reason": "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 2건",
-            "가상화폐 -0.81%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0984
-        },
-        {
-          "reportId": "marketvoice_1295043",
-          "title": "볼턴, 이란 원유 제재 완화에 강력 반대",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:15+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.68,
-          "confidence": 0.54,
-          "horizon": "1w",
-          "decayHalfLifeDays": 7,
-          "reason": "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화에 대해 강하게 비판하며, 제재 재부과와 해상 봉쇄를 추진해 이란 정권교체를 유도해야 한다고 주장했습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 1건",
-            "유조선 -1.02%",
-            "국제유가 +0.11%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0984
-        },
-        {
-          "reportId": "marketvoice_1295043",
-          "title": "볼턴, 이란 원유 제재 완화에 강력 반대",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:15+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.68,
-          "confidence": 0.54,
-          "horizon": "1w",
-          "decayHalfLifeDays": 7,
-          "reason": "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화에 대해 강하게 비판하며, 제재 재부과와 해상 봉쇄를 추진해 이란 정권교체를 유도해야 한다고 주장했습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 1건",
-            "유조선 -1.02%",
-            "국제유가 +0.11%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0984
         }
       ],
       "technical": {
@@ -2693,34 +2336,34 @@
         "sourceLayer": "impact-map",
         "available": true,
         "unavailableReason": null,
-        "impactScore": 66,
-        "impactValue": 0.548,
-        "impactCount": 7,
+        "impactScore": 70,
+        "impactValue": 0.702,
+        "impactCount": 1,
         "coverageWeight": 1,
         "directAccountImpactScore": 48,
         "relationSummary": {
           "directCount": 1,
-          "thematicCount": 6,
+          "thematicCount": 0,
           "secondOrderCount": 0,
-          "blockedCount": 0,
-          "unrelatedEvidenceRatio": 0
+          "blockedCount": 2,
+          "unrelatedEvidenceRatio": 0.6667
         }
       },
       "factor": {
         "raw": {
           "momentum": 0.5523,
-          "research": 0.6627,
+          "research": 0.7706,
           "income": 0.004,
           "macroFit": -0.866
         },
         "zScores": {
           "momentum": 0.0453,
-          "research": 0.988,
+          "research": 1.4038,
           "income": -0.4223,
           "macroFit": -0.6527
         },
-        "weightedZ": 0.1184,
-        "score": 52,
+        "weightedZ": 0.2431,
+        "score": 53,
         "factorCoverage": 1,
         "availability": {
           "momentum": 1,
@@ -2730,11 +2373,11 @@
         }
       },
       "actionBlend": {
-        "score": 61,
+        "score": 62,
         "signal": "HOLD",
         "blended": false,
-        "rawActionScore": 61,
-        "factorScore": 52,
+        "rawActionScore": 62,
+        "factorScore": 53,
         "actionWeight": 1,
         "factorWeight": 0,
         "factorCoverage": 1,
@@ -2755,16 +2398,16 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 52,
+        "factorScore": 53,
         "techScore": 86,
-        "reportScore": 66,
-        "actionScore": 61,
-        "rawActionScore": 61
+        "reportScore": 70,
+        "actionScore": 62,
+        "rawActionScore": 62
       },
       "explain": {
         "topDrivers": [
           "기술 기본점수 86점",
-          "리포트 영향 66점 (7건 연결)",
+          "리포트 영향 70점 (1건 연결)",
           "RSI 55.3"
         ],
         "warnings": []
@@ -2783,14 +2426,14 @@
       "incomeYield": 0.013,
       "technicalSignal": "BUY",
       "technicalBaseScore": 77,
-      "actionScore": 56,
-      "direction": 0.53,
-      "timing": -1.084,
-      "reportScore": 0.141,
+      "actionScore": 53,
+      "direction": 0.455,
+      "timing": -1.165,
+      "reportScore": -0.198,
       "probabilities": {
-        "p_buy": 0.4209,
-        "p_hold": 0.3294,
-        "p_sell": 0.2498
+        "p_buy": 0.3046,
+        "p_hold": 0.3364,
+        "p_sell": 0.359
       },
       "conviction": "MEDIUM",
       "signal": "WATCH",
@@ -2804,31 +2447,33 @@
         "stochTiming": -2.5,
         "volumeZ": 0.030000000000000027
       },
-      "rawActionScore": 56,
+      "rawActionScore": 53,
       "rawSignal": "WATCH",
       "reportImpacts": [
         {
-          "reportId": "marketvoice_1294953",
-          "title": "인도, 경유·항공유 수출관세 두 배 인상해 내수 우선",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:14+00:00",
+          "reportId": "marketvoice_1295118",
+          "title": "2026년 자산시장, 원유·금 상승에 비트코인 하락",
+          "broker": "증권사 애널 크롤러🇰🇷",
+          "publishedDate": "2026-04-13T01:15:23+00:00",
           "reportType": "marketvoice",
           "targetType": "category",
-          "direction": "positive",
-          "strength": 0.52,
-          "confidence": 0.54,
+          "direction": "negative",
+          "strength": 0.68,
+          "confidence": 0.58,
           "horizon": "1m",
           "decayHalfLifeDays": 14,
-          "reason": "인도 정부가 경유와 항공유 수출관세를 리터당 약 0.23달러에서 두 배 이상 올렸습니다. 이는 국내 연료 재고를 늘리고 내수 공급을 우선하기 위한 조치로, 정유사의 수출 유인을 줄이는 효과가 있습니다.",
+          "reason": "Bank of America가 2026년 자산 시장 동향을 분석했어요. 원유와 금 가격은 크게 올랐지만, 비트코인은 17.4% 떨어졌습니다. 현금 유입은 707억 달러로 최대치였고, 투자자 심리는 30년 만에 가장 비관적입니다.",
           "evidenceNumbers": [
             "인용 0건",
-            "원문 2건",
-            "AI -1.12%"
+            "원문 1건",
+            "반도체 -0.23%",
+            "AI -1.30%",
+            "서비스 -0.44%"
           ],
           "relationType": "second_order",
           "relationWeight": 0.45,
           "evidenceScore": 0.48,
-          "contribution": 0.0588
+          "contribution": -0.0825
         }
       ],
       "technical": {
@@ -2862,8 +2507,8 @@
         "sourceLayer": "impact-map",
         "available": true,
         "unavailableReason": null,
-        "impactScore": 54,
-        "impactValue": 0.141,
+        "impactScore": 44,
+        "impactValue": -0.198,
         "impactCount": 1,
         "coverageWeight": 0.55,
         "directAccountImpactScore": 55,
@@ -2871,25 +2516,25 @@
           "directCount": 0,
           "thematicCount": 0,
           "secondOrderCount": 1,
-          "blockedCount": 2,
-          "unrelatedEvidenceRatio": 0.6667
+          "blockedCount": 1,
+          "unrelatedEvidenceRatio": 0.5
         }
       },
       "factor": {
         "raw": {
           "momentum": 0.668,
-          "research": 0.3777,
+          "research": 0.1404,
           "income": 0.013,
           "macroFit": 1.909
         },
         "zScores": {
           "momentum": 0.2,
-          "research": 0.1016,
+          "research": -0.3628,
           "income": 0.0438,
           "macroFit": 1.1587
         },
-        "weightedZ": 0.3388,
-        "score": 55,
+        "weightedZ": 0.1995,
+        "score": 53,
         "factorCoverage": 1,
         "availability": {
           "momentum": 1,
@@ -2899,11 +2544,11 @@
         }
       },
       "actionBlend": {
-        "score": 56,
+        "score": 53,
         "signal": "WATCH",
         "blended": true,
-        "rawActionScore": 56,
-        "factorScore": 55,
+        "rawActionScore": 53,
+        "factorScore": 53,
         "actionWeight": 0.92,
         "factorWeight": 0.08,
         "factorCoverage": 1,
@@ -2924,16 +2569,16 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 55,
+        "factorScore": 53,
         "techScore": 77,
-        "reportScore": 54,
-        "actionScore": 56,
-        "rawActionScore": 56
+        "reportScore": 44,
+        "actionScore": 53,
+        "rawActionScore": 53
       },
       "explain": {
         "topDrivers": [
           "기술 기본점수 77점",
-          "리포트 영향 54점 (1건 연결)",
+          "리포트 영향 44점 (1건 연결)",
           "RSI 62.1"
         ],
         "warnings": [
@@ -3146,12 +2791,12 @@
         },
         "zScores": {
           "momentum": -0.5199,
-          "research": -1.3701,
+          "research": -1.0239,
           "income": 2.9959,
           "macroFit": 1.1254
         },
-        "weightedZ": 0.0815,
-        "score": 51,
+        "weightedZ": 0.1853,
+        "score": 53,
         "factorCoverage": 1,
         "availability": {
           "momentum": 1,
@@ -3165,7 +2810,7 @@
         "signal": "HOLD",
         "blended": false,
         "rawActionScore": 60,
-        "factorScore": 51,
+        "factorScore": 53,
         "actionWeight": 1,
         "factorWeight": 0,
         "factorCoverage": 1,
@@ -3186,7 +2831,7 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 51,
+        "factorScore": 53,
         "techScore": 47,
         "reportScore": 45,
         "actionScore": 60,
@@ -3386,12 +3031,12 @@
         "unavailableReason": null,
         "impactScore": 45,
         "impactValue": -0.184,
-        "impactCount": 30,
+        "impactCount": 29,
         "coverageWeight": 0.55,
         "directAccountImpactScore": 50,
         "relationSummary": {
           "directCount": 0,
-          "thematicCount": 33,
+          "thematicCount": 32,
           "secondOrderCount": 0,
           "blockedCount": 0,
           "unrelatedEvidenceRatio": 0
@@ -3406,12 +3051,12 @@
         },
         "zScores": {
           "momentum": -0.7464,
-          "research": -1.7246,
+          "research": -1.3434,
           "income": 1.0279,
           "macroFit": -1.7194
         },
-        "weightedZ": -0.9683,
-        "score": 36,
+        "weightedZ": -0.854,
+        "score": 38,
         "factorCoverage": 1,
         "availability": {
           "momentum": 1,
@@ -3425,7 +3070,7 @@
         "signal": "WATCH",
         "blended": false,
         "rawActionScore": 54,
-        "factorScore": 36,
+        "factorScore": 38,
         "actionWeight": 1,
         "factorWeight": 0,
         "factorCoverage": 1,
@@ -3446,7 +3091,7 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 36,
+        "factorScore": 38,
         "techScore": 52,
         "reportScore": 45,
         "actionScore": 54,
@@ -3455,7 +3100,7 @@
       "explain": {
         "topDrivers": [
           "기술 기본점수 17점",
-          "리포트 영향 45점 (30건 연결)",
+          "리포트 영향 45점 (29건 연결)",
           "RSI 52.1"
         ],
         "warnings": [
@@ -3644,12 +3289,12 @@
         "unavailableReason": null,
         "impactScore": 51,
         "impactValue": 0.03,
-        "impactCount": 35,
+        "impactCount": 34,
         "coverageWeight": 0.55,
         "directAccountImpactScore": 50,
         "relationSummary": {
           "directCount": 0,
-          "thematicCount": 37,
+          "thematicCount": 36,
           "secondOrderCount": 0,
           "blockedCount": 0,
           "unrelatedEvidenceRatio": 0
@@ -3664,12 +3309,12 @@
         },
         "zScores": {
           "momentum": 0.2443,
-          "research": -0.1392,
+          "research": 0.0855,
           "income": -0.3187,
           "macroFit": 0.4168
         },
-        "weightedZ": 0.0793,
-        "score": 51,
+        "weightedZ": 0.1467,
+        "score": 52,
         "factorCoverage": 1,
         "availability": {
           "momentum": 1,
@@ -3683,7 +3328,7 @@
         "signal": "WATCH",
         "blended": true,
         "rawActionScore": 57,
-        "factorScore": 51,
+        "factorScore": 52,
         "actionWeight": 0.92,
         "factorWeight": 0.08,
         "factorCoverage": 1,
@@ -3704,7 +3349,7 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 51,
+        "factorScore": 52,
         "techScore": 70,
         "reportScore": 51,
         "actionScore": 57,
@@ -3713,7 +3358,7 @@
       "explain": {
         "topDrivers": [
           "기술 기본점수 70점",
-          "리포트 영향 51점 (35건 연결)",
+          "리포트 영향 51점 (34건 연결)",
           "RSI 61.9"
         ],
         "warnings": [
@@ -3902,12 +3547,12 @@
         "unavailableReason": null,
         "impactScore": 51,
         "impactValue": 0.03,
-        "impactCount": 35,
+        "impactCount": 34,
         "coverageWeight": 0.55,
         "directAccountImpactScore": 50,
         "relationSummary": {
           "directCount": 0,
-          "thematicCount": 37,
+          "thematicCount": 36,
           "secondOrderCount": 0,
           "blockedCount": 0,
           "unrelatedEvidenceRatio": 0
@@ -3922,12 +3567,12 @@
         },
         "zScores": {
           "momentum": 0.2,
-          "research": -0.1392,
+          "research": 0.0855,
           "income": 0.0438,
           "macroFit": 1.2542
         },
-        "weightedZ": 0.2856,
-        "score": 54,
+        "weightedZ": 0.3531,
+        "score": 55,
         "factorCoverage": 1,
         "availability": {
           "momentum": 1,
@@ -3941,7 +3586,7 @@
         "signal": "WATCH",
         "blended": true,
         "rawActionScore": 55,
-        "factorScore": 54,
+        "factorScore": 55,
         "actionWeight": 0.92,
         "factorWeight": 0.08,
         "factorCoverage": 1,
@@ -3962,7 +3607,7 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 54,
+        "factorScore": 55,
         "techScore": 77,
         "reportScore": 51,
         "actionScore": 55,
@@ -3971,7 +3616,7 @@
       "explain": {
         "topDrivers": [
           "기술 기본점수 77점",
-          "리포트 영향 51점 (35건 연결)",
+          "리포트 영향 51점 (34건 연결)",
           "RSI 62.1"
         ],
         "warnings": [
@@ -3990,14 +3635,14 @@
       "incomeYield": 0.004,
       "technicalSignal": "STRONG_BUY",
       "technicalBaseScore": 96,
-      "actionScore": 66,
-      "direction": 1.054,
-      "timing": -0.718,
-      "reportScore": 0.437,
+      "actionScore": 63,
+      "direction": 0.958,
+      "timing": -0.823,
+      "reportScore": 0,
       "probabilities": {
-        "p_buy": 0.6978,
-        "p_hold": 0.227,
-        "p_sell": 0.0752
+        "p_buy": 0.5656,
+        "p_hold": 0.2868,
+        "p_sell": 0.1476
       },
       "conviction": "MEDIUM",
       "signal": "HOLD",
@@ -4011,104 +3656,9 @@
         "stochTiming": -2.5,
         "volumeZ": -0.486
       },
-      "rawActionScore": 66,
+      "rawActionScore": 63,
       "rawSignal": "HOLD",
-      "reportImpacts": [
-        {
-          "reportId": "marketvoice_1294355",
-          "title": "이란 항만 봉쇄 발표에 브렌트유 11% 급등",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:22+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.68,
-          "confidence": 0.54,
-          "horizon": "1w",
-          "decayHalfLifeDays": 7,
-          "reason": "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 2건",
-            "가상화폐 -0.81%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0984
-        },
-        {
-          "reportId": "marketvoice_1294355",
-          "title": "이란 항만 봉쇄 발표에 브렌트유 11% 급등",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:22+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.68,
-          "confidence": 0.54,
-          "horizon": "1w",
-          "decayHalfLifeDays": 7,
-          "reason": "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 2건",
-            "가상화폐 -0.81%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0984
-        },
-        {
-          "reportId": "marketvoice_1295043",
-          "title": "볼턴, 이란 원유 제재 완화에 강력 반대",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:15+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.68,
-          "confidence": 0.54,
-          "horizon": "1w",
-          "decayHalfLifeDays": 7,
-          "reason": "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화에 대해 강하게 비판하며, 제재 재부과와 해상 봉쇄를 추진해 이란 정권교체를 유도해야 한다고 주장했습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 1건",
-            "유조선 -1.02%",
-            "국제유가 +0.11%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0984
-        },
-        {
-          "reportId": "marketvoice_1295043",
-          "title": "볼턴, 이란 원유 제재 완화에 강력 반대",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:15+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.68,
-          "confidence": 0.54,
-          "horizon": "1w",
-          "decayHalfLifeDays": 7,
-          "reason": "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화에 대해 강하게 비판하며, 제재 재부과와 해상 봉쇄를 추진해 이란 정권교체를 유도해야 한다고 주장했습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 1건",
-            "유조선 -1.02%",
-            "국제유가 +0.11%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0984
-        }
-      ],
+      "reportImpacts": [],
       "technical": {
         "signal": "STRONG_BUY",
         "score": 96,
@@ -4138,36 +3688,36 @@
       },
       "report": {
         "sourceLayer": "impact-map",
-        "available": true,
-        "unavailableReason": null,
-        "impactScore": 63,
-        "impactValue": 0.437,
-        "impactCount": 4,
-        "coverageWeight": 0.55,
+        "available": false,
+        "unavailableReason": "no_linked_report",
+        "impactScore": null,
+        "impactValue": 0,
+        "impactCount": 0,
+        "coverageWeight": 0,
         "directAccountImpactScore": 52,
         "relationSummary": {
           "directCount": 0,
-          "thematicCount": 4,
+          "thematicCount": 0,
           "secondOrderCount": 0,
-          "blockedCount": 0,
-          "unrelatedEvidenceRatio": 0
+          "blockedCount": 2,
+          "unrelatedEvidenceRatio": 1
         }
       },
       "factor": {
         "raw": {
           "momentum": 1.1236,
-          "research": 0.5847,
+          "research": 0.279,
           "income": 0.004,
           "macroFit": 0.1849
         },
         "zScores": {
           "momentum": 0.8094,
-          "research": 0.7453,
+          "research": 0.0259,
           "income": -0.4223,
           "macroFit": 0.0332
         },
-        "weightedZ": 0.4502,
-        "score": 56,
+        "weightedZ": 0.2343,
+        "score": 53,
         "factorCoverage": 1,
         "availability": {
           "momentum": 1,
@@ -4177,11 +3727,11 @@
         }
       },
       "actionBlend": {
-        "score": 66,
+        "score": 63,
         "signal": "HOLD",
         "blended": false,
-        "rawActionScore": 66,
-        "factorScore": 56,
+        "rawActionScore": 63,
+        "factorScore": 53,
         "actionWeight": 1,
         "factorWeight": 0,
         "factorCoverage": 1,
@@ -4202,16 +3752,15 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 56,
+        "factorScore": 53,
         "techScore": 96,
-        "reportScore": 63,
-        "actionScore": 66,
-        "rawActionScore": 66
+        "reportScore": null,
+        "actionScore": 63,
+        "rawActionScore": 63
       },
       "explain": {
         "topDrivers": [
           "기술 기본점수 96점",
-          "리포트 영향 63점 (4건 연결)",
           "RSI 56.4"
         ],
         "warnings": []
@@ -4289,12 +3838,12 @@
         },
         "zScores": {
           "momentum": -1.8969,
-          "research": -0.9705,
+          "research": -0.6637,
           "income": -0.6295,
           "macroFit": -1.1466
         },
-        "weightedZ": -1.2788,
-        "score": 32,
+        "weightedZ": -1.1868,
+        "score": 33,
         "factorCoverage": 0.75,
         "availability": {
           "momentum": 0,
@@ -4308,7 +3857,7 @@
         "signal": "WATCH",
         "blended": false,
         "rawActionScore": 43,
-        "factorScore": 32,
+        "factorScore": 33,
         "actionWeight": 1,
         "factorWeight": 0,
         "factorCoverage": 0.75,
@@ -4329,7 +3878,7 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 32,
+        "factorScore": 33,
         "techScore": null,
         "reportScore": null,
         "actionScore": 43,
@@ -4354,14 +3903,14 @@
       "incomeYield": 0.004,
       "technicalSignal": "STRONG_BUY",
       "technicalBaseScore": 96,
-      "actionScore": 66,
-      "direction": 1.106,
-      "timing": -0.732,
-      "reportScore": 0.423,
+      "actionScore": 64,
+      "direction": 1.013,
+      "timing": -0.833,
+      "reportScore": 0,
       "probabilities": {
-        "p_buy": 0.7066,
-        "p_hold": 0.2217,
-        "p_sell": 0.0717
+        "p_buy": 0.581,
+        "p_hold": 0.2801,
+        "p_sell": 0.1388
       },
       "conviction": "MEDIUM",
       "signal": "HOLD",
@@ -4375,129 +3924,9 @@
         "stochTiming": -2.5,
         "volumeZ": 0.04299999999999993
       },
-      "rawActionScore": 67,
+      "rawActionScore": 64,
       "rawSignal": "HOLD",
-      "reportImpacts": [
-        {
-          "reportId": "marketvoice_1294355",
-          "title": "이란 항만 봉쇄 발표에 브렌트유 11% 급등",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:22+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.68,
-          "confidence": 0.54,
-          "horizon": "1w",
-          "decayHalfLifeDays": 7,
-          "reason": "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 2건",
-            "가상화폐 -0.81%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0984
-        },
-        {
-          "reportId": "marketvoice_1294355",
-          "title": "이란 항만 봉쇄 발표에 브렌트유 11% 급등",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:22+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.68,
-          "confidence": 0.54,
-          "horizon": "1w",
-          "decayHalfLifeDays": 7,
-          "reason": "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 2건",
-            "가상화폐 -0.81%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0984
-        },
-        {
-          "reportId": "marketvoice_1295043",
-          "title": "볼턴, 이란 원유 제재 완화에 강력 반대",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:15+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.68,
-          "confidence": 0.54,
-          "horizon": "1w",
-          "decayHalfLifeDays": 7,
-          "reason": "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화에 대해 강하게 비판하며, 제재 재부과와 해상 봉쇄를 추진해 이란 정권교체를 유도해야 한다고 주장했습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 1건",
-            "유조선 -1.02%",
-            "국제유가 +0.11%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0984
-        },
-        {
-          "reportId": "marketvoice_1295043",
-          "title": "볼턴, 이란 원유 제재 완화에 강력 반대",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:15+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.68,
-          "confidence": 0.54,
-          "horizon": "1w",
-          "decayHalfLifeDays": 7,
-          "reason": "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화에 대해 강하게 비판하며, 제재 재부과와 해상 봉쇄를 추진해 이란 정권교체를 유도해야 한다고 주장했습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 1건",
-            "유조선 -1.02%",
-            "국제유가 +0.11%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0984
-        },
-        {
-          "reportId": "marketvoice_1291105",
-          "title": "Archer, 2028 LA올림픽 eVTOL 시범 운항 발표",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:15+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.493,
-          "confidence": 0.54,
-          "horizon": "1m",
-          "decayHalfLifeDays": 14,
-          "reason": "Archer Aviation이 2026년 4월 전기 수직이착륙기(eVTOL)를 활용한 도심 단거리 이동 서비스를 발표했습니다. 2028년 로스앤젤레스 올림픽에서 시범 운항을 계획하며, 저렴한 요금과 효율적 운항 전략을 제시했습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 18건",
-            "아처 에비에이션 +1.50%",
-            "우주항공 -1.71%",
-            "우버 테크놀로지스 -1.85%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0891
-        }
-      ],
+      "reportImpacts": [],
       "technical": {
         "signal": "STRONG_BUY",
         "score": 96,
@@ -4527,36 +3956,36 @@
       },
       "report": {
         "sourceLayer": "impact-map",
-        "available": true,
-        "unavailableReason": null,
-        "impactScore": 62,
-        "impactValue": 0.423,
-        "impactCount": 6,
-        "coverageWeight": 0.55,
+        "available": false,
+        "unavailableReason": "no_linked_report",
+        "impactScore": null,
+        "impactValue": 0,
+        "impactCount": 0,
+        "coverageWeight": 0,
         "directAccountImpactScore": 52,
         "relationSummary": {
           "directCount": 0,
-          "thematicCount": 6,
+          "thematicCount": 0,
           "secondOrderCount": 0,
-          "blockedCount": 0,
-          "unrelatedEvidenceRatio": 0
+          "blockedCount": 2,
+          "unrelatedEvidenceRatio": 1
         }
       },
       "factor": {
         "raw": {
           "momentum": 1.2085,
-          "research": 0.5751,
+          "research": 0.279,
           "income": 0.004,
           "macroFit": 0.8261
         },
         "zScores": {
           "momentum": 0.9229,
-          "research": 0.7156,
+          "research": 0.0259,
           "income": -0.4223,
           "macroFit": 0.4518
         },
-        "weightedZ": 0.5647,
-        "score": 58,
+        "weightedZ": 0.3578,
+        "score": 55,
         "factorCoverage": 1,
         "availability": {
           "momentum": 1,
@@ -4566,19 +3995,19 @@
         }
       },
       "actionBlend": {
-        "score": 66,
+        "score": 64,
         "signal": "HOLD",
-        "blended": true,
-        "rawActionScore": 67,
-        "factorScore": 58,
-        "actionWeight": 0.92,
-        "factorWeight": 0.08,
+        "blended": false,
+        "rawActionScore": 64,
+        "factorScore": 55,
+        "actionWeight": 1,
+        "factorWeight": 0,
         "factorCoverage": 1,
-        "delta": -1,
+        "delta": 0,
         "gateMode": "sameSignal",
-        "factorApplied": true,
+        "factorApplied": false,
         "rawSignal": "HOLD",
-        "factorSignal": "HOLD"
+        "factorSignal": "WATCH"
       },
       "stopLoss": {
         "enabled": true,
@@ -4591,16 +4020,15 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 58,
+        "factorScore": 55,
         "techScore": 96,
-        "reportScore": 62,
-        "actionScore": 66,
-        "rawActionScore": 67
+        "reportScore": null,
+        "actionScore": 64,
+        "rawActionScore": 64
       },
       "explain": {
         "topDrivers": [
           "기술 기본점수 96점",
-          "리포트 영향 62점 (6건 연결)",
           "RSI 60.3"
         ],
         "warnings": []
@@ -4617,17 +4045,17 @@
       "incomeYield": 0.004,
       "technicalSignal": "STRONG_BUY",
       "technicalBaseScore": 96,
-      "actionScore": 69,
-      "direction": 1.163,
-      "timing": -0.594,
-      "reportScore": 0.732,
+      "actionScore": 73,
+      "direction": 1.275,
+      "timing": -0.472,
+      "reportScore": 1.239,
       "probabilities": {
-        "p_buy": 0.7826,
-        "p_hold": 0.1766,
-        "p_sell": 0.0407
+        "p_buy": 0.8669,
+        "p_hold": 0.1169,
+        "p_sell": 0.0162
       },
       "conviction": "MEDIUM",
-      "signal": "HOLD",
+      "signal": "BUY",
       "features": {
         "maTrend": 2.5,
         "macdZ": 0.4407707831952138,
@@ -4638,8 +4066,8 @@
         "stochTiming": -2.5,
         "volumeZ": 0.45500000000000007
       },
-      "rawActionScore": 70,
-      "rawSignal": "HOLD",
+      "rawActionScore": 73,
+      "rawSignal": "BUY",
       "reportImpacts": [
         {
           "reportId": "report_041",
@@ -4711,52 +4139,6 @@
           "relationWeight": 1,
           "evidenceScore": 1,
           "contribution": -0.1448
-        },
-        {
-          "reportId": "marketvoice_1294355",
-          "title": "이란 항만 봉쇄 발표에 브렌트유 11% 급등",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:22+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.68,
-          "confidence": 0.54,
-          "horizon": "1w",
-          "decayHalfLifeDays": 7,
-          "reason": "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 2건",
-            "가상화폐 -0.81%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0984
-        },
-        {
-          "reportId": "marketvoice_1294355",
-          "title": "이란 항만 봉쇄 발표에 브렌트유 11% 급등",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:22+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.68,
-          "confidence": 0.54,
-          "horizon": "1w",
-          "decayHalfLifeDays": 7,
-          "reason": "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 2건",
-            "가상화폐 -0.81%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0984
         }
       ],
       "technical": {
@@ -4790,34 +4172,34 @@
         "sourceLayer": "impact-map",
         "available": true,
         "unavailableReason": null,
-        "impactScore": 71,
-        "impactValue": 0.732,
-        "impactCount": 9,
+        "impactScore": 82,
+        "impactValue": 1.239,
+        "impactCount": 3,
         "coverageWeight": 1,
         "directAccountImpactScore": 48,
         "relationSummary": {
           "directCount": 3,
-          "thematicCount": 6,
+          "thematicCount": 0,
           "secondOrderCount": 0,
-          "blockedCount": 0,
-          "unrelatedEvidenceRatio": 0
+          "blockedCount": 2,
+          "unrelatedEvidenceRatio": 0.4
         }
       },
       "factor": {
         "raw": {
           "momentum": 1.196,
-          "research": 0.7917,
+          "research": 1.1463,
           "income": 0.004,
           "macroFit": -0.866
         },
         "zScores": {
           "momentum": 0.9061,
-          "research": 1.3891,
+          "research": 2.457,
           "income": -0.4223,
           "macroFit": -0.6527
         },
-        "weightedZ": 0.54,
-        "score": 58,
+        "weightedZ": 0.8604,
+        "score": 62,
         "factorCoverage": 1,
         "availability": {
           "momentum": 1,
@@ -4827,18 +4209,18 @@
         }
       },
       "actionBlend": {
-        "score": 69,
-        "signal": "HOLD",
-        "blended": true,
-        "rawActionScore": 70,
-        "factorScore": 58,
-        "actionWeight": 0.92,
-        "factorWeight": 0.08,
+        "score": 73,
+        "signal": "BUY",
+        "blended": false,
+        "rawActionScore": 73,
+        "factorScore": 62,
+        "actionWeight": 1,
+        "factorWeight": 0,
         "factorCoverage": 1,
-        "delta": -1,
+        "delta": 0,
         "gateMode": "sameSignal",
-        "factorApplied": true,
-        "rawSignal": "HOLD",
+        "factorApplied": false,
+        "rawSignal": "BUY",
         "factorSignal": "HOLD"
       },
       "stopLoss": {
@@ -4852,16 +4234,16 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 58,
+        "factorScore": 62,
         "techScore": 96,
-        "reportScore": 71,
-        "actionScore": 69,
-        "rawActionScore": 70
+        "reportScore": 82,
+        "actionScore": 73,
+        "rawActionScore": 73
       },
       "explain": {
         "topDrivers": [
           "기술 기본점수 96점",
-          "리포트 영향 71점 (9건 연결)",
+          "리포트 영향 82점 (3건 연결)",
           "RSI 60.0"
         ],
         "warnings": []
@@ -4878,16 +4260,16 @@
       "incomeYield": 0.004,
       "technicalSignal": "STRONG_BUY",
       "technicalBaseScore": 86,
-      "actionScore": 61,
-      "direction": 0.553,
-      "timing": -0.549,
-      "reportScore": 0.548,
+      "actionScore": 62,
+      "direction": 0.587,
+      "timing": -0.512,
+      "reportScore": 0.702,
       "probabilities": {
-        "p_buy": 0.6032,
-        "p_hold": 0.28,
-        "p_sell": 0.1168
+        "p_buy": 0.6499,
+        "p_hold": 0.258,
+        "p_sell": 0.0921
       },
-      "conviction": "LOW",
+      "conviction": "MEDIUM",
       "signal": "HOLD",
       "features": {
         "maTrend": 0.34680141238105655,
@@ -4899,7 +4281,7 @@
         "stochTiming": -2.5,
         "volumeZ": 0.3520000000000001
       },
-      "rawActionScore": 61,
+      "rawActionScore": 62,
       "rawSignal": "HOLD",
       "reportImpacts": [
         {
@@ -4924,100 +4306,6 @@
           "relationWeight": 1,
           "evidenceScore": 1,
           "contribution": 0.2926
-        },
-        {
-          "reportId": "marketvoice_1294355",
-          "title": "이란 항만 봉쇄 발표에 브렌트유 11% 급등",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:22+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.68,
-          "confidence": 0.54,
-          "horizon": "1w",
-          "decayHalfLifeDays": 7,
-          "reason": "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 2건",
-            "가상화폐 -0.81%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0984
-        },
-        {
-          "reportId": "marketvoice_1294355",
-          "title": "이란 항만 봉쇄 발표에 브렌트유 11% 급등",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:22+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.68,
-          "confidence": 0.54,
-          "horizon": "1w",
-          "decayHalfLifeDays": 7,
-          "reason": "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 2건",
-            "가상화폐 -0.81%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0984
-        },
-        {
-          "reportId": "marketvoice_1295043",
-          "title": "볼턴, 이란 원유 제재 완화에 강력 반대",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:15+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.68,
-          "confidence": 0.54,
-          "horizon": "1w",
-          "decayHalfLifeDays": 7,
-          "reason": "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화에 대해 강하게 비판하며, 제재 재부과와 해상 봉쇄를 추진해 이란 정권교체를 유도해야 한다고 주장했습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 1건",
-            "유조선 -1.02%",
-            "국제유가 +0.11%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0984
-        },
-        {
-          "reportId": "marketvoice_1295043",
-          "title": "볼턴, 이란 원유 제재 완화에 강력 반대",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:15+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.68,
-          "confidence": 0.54,
-          "horizon": "1w",
-          "decayHalfLifeDays": 7,
-          "reason": "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화에 대해 강하게 비판하며, 제재 재부과와 해상 봉쇄를 추진해 이란 정권교체를 유도해야 한다고 주장했습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 1건",
-            "유조선 -1.02%",
-            "국제유가 +0.11%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0984
         }
       ],
       "technical": {
@@ -5051,34 +4339,34 @@
         "sourceLayer": "impact-map",
         "available": true,
         "unavailableReason": null,
-        "impactScore": 66,
-        "impactValue": 0.548,
-        "impactCount": 7,
+        "impactScore": 70,
+        "impactValue": 0.702,
+        "impactCount": 1,
         "coverageWeight": 1,
         "directAccountImpactScore": 48,
         "relationSummary": {
           "directCount": 1,
-          "thematicCount": 6,
+          "thematicCount": 0,
           "secondOrderCount": 0,
-          "blockedCount": 0,
-          "unrelatedEvidenceRatio": 0
+          "blockedCount": 2,
+          "unrelatedEvidenceRatio": 0.6667
         }
       },
       "factor": {
         "raw": {
           "momentum": 0.5523,
-          "research": 0.6627,
+          "research": 0.7706,
           "income": 0.004,
           "macroFit": -0.866
         },
         "zScores": {
           "momentum": 0.0453,
-          "research": 0.988,
+          "research": 1.4038,
           "income": -0.4223,
           "macroFit": -0.6527
         },
-        "weightedZ": 0.1184,
-        "score": 52,
+        "weightedZ": 0.2431,
+        "score": 53,
         "factorCoverage": 1,
         "availability": {
           "momentum": 1,
@@ -5088,11 +4376,11 @@
         }
       },
       "actionBlend": {
-        "score": 61,
+        "score": 62,
         "signal": "HOLD",
         "blended": false,
-        "rawActionScore": 61,
-        "factorScore": 52,
+        "rawActionScore": 62,
+        "factorScore": 53,
         "actionWeight": 1,
         "factorWeight": 0,
         "factorCoverage": 1,
@@ -5113,16 +4401,16 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 52,
+        "factorScore": 53,
         "techScore": 86,
-        "reportScore": 66,
-        "actionScore": 61,
-        "rawActionScore": 61
+        "reportScore": 70,
+        "actionScore": 62,
+        "rawActionScore": 62
       },
       "explain": {
         "topDrivers": [
           "기술 기본점수 86점",
-          "리포트 영향 66점 (7건 연결)",
+          "리포트 영향 70점 (1건 연결)",
           "RSI 55.3"
         ],
         "warnings": []
@@ -5476,12 +4764,12 @@
         },
         "zScores": {
           "momentum": -1.8969,
-          "research": -1.0567,
+          "research": -0.7414,
           "income": -0.6295,
           "macroFit": -0.7609
         },
-        "weightedZ": -1.2275,
-        "score": 33,
+        "weightedZ": -1.1329,
+        "score": 34,
         "factorCoverage": 0.75,
         "availability": {
           "momentum": 0,
@@ -5495,7 +4783,7 @@
         "signal": "WATCH",
         "blended": false,
         "rawActionScore": 43,
-        "factorScore": 33,
+        "factorScore": 34,
         "actionWeight": 1,
         "factorWeight": 0,
         "factorCoverage": 0.75,
@@ -5516,7 +4804,7 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 33,
+        "factorScore": 34,
         "techScore": null,
         "reportScore": 49,
         "actionScore": 43,
@@ -5543,14 +4831,14 @@
       "incomeYield": 0.004,
       "technicalSignal": "STRONG_BUY",
       "technicalBaseScore": 96,
-      "actionScore": 65,
-      "direction": 1.054,
-      "timing": -0.718,
-      "reportScore": 0.437,
+      "actionScore": 63,
+      "direction": 0.958,
+      "timing": -0.823,
+      "reportScore": 0,
       "probabilities": {
-        "p_buy": 0.6978,
-        "p_hold": 0.227,
-        "p_sell": 0.0752
+        "p_buy": 0.5656,
+        "p_hold": 0.2868,
+        "p_sell": 0.1476
       },
       "conviction": "MEDIUM",
       "signal": "HOLD",
@@ -5564,104 +4852,9 @@
         "stochTiming": -2.5,
         "volumeZ": -0.486
       },
-      "rawActionScore": 66,
+      "rawActionScore": 63,
       "rawSignal": "HOLD",
-      "reportImpacts": [
-        {
-          "reportId": "marketvoice_1294355",
-          "title": "이란 항만 봉쇄 발표에 브렌트유 11% 급등",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:22+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.68,
-          "confidence": 0.54,
-          "horizon": "1w",
-          "decayHalfLifeDays": 7,
-          "reason": "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 2건",
-            "가상화폐 -0.81%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0984
-        },
-        {
-          "reportId": "marketvoice_1294355",
-          "title": "이란 항만 봉쇄 발표에 브렌트유 11% 급등",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:22+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.68,
-          "confidence": 0.54,
-          "horizon": "1w",
-          "decayHalfLifeDays": 7,
-          "reason": "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 2건",
-            "가상화폐 -0.81%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0984
-        },
-        {
-          "reportId": "marketvoice_1295043",
-          "title": "볼턴, 이란 원유 제재 완화에 강력 반대",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:15+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.68,
-          "confidence": 0.54,
-          "horizon": "1w",
-          "decayHalfLifeDays": 7,
-          "reason": "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화에 대해 강하게 비판하며, 제재 재부과와 해상 봉쇄를 추진해 이란 정권교체를 유도해야 한다고 주장했습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 1건",
-            "유조선 -1.02%",
-            "국제유가 +0.11%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0984
-        },
-        {
-          "reportId": "marketvoice_1295043",
-          "title": "볼턴, 이란 원유 제재 완화에 강력 반대",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:15+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.68,
-          "confidence": 0.54,
-          "horizon": "1w",
-          "decayHalfLifeDays": 7,
-          "reason": "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화에 대해 강하게 비판하며, 제재 재부과와 해상 봉쇄를 추진해 이란 정권교체를 유도해야 한다고 주장했습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 1건",
-            "유조선 -1.02%",
-            "국제유가 +0.11%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0984
-        }
-      ],
+      "reportImpacts": [],
       "technical": {
         "signal": "STRONG_BUY",
         "score": 96,
@@ -5691,36 +4884,36 @@
       },
       "report": {
         "sourceLayer": "impact-map",
-        "available": true,
-        "unavailableReason": null,
-        "impactScore": 63,
-        "impactValue": 0.437,
-        "impactCount": 4,
-        "coverageWeight": 0.55,
+        "available": false,
+        "unavailableReason": "no_linked_report",
+        "impactScore": null,
+        "impactValue": 0,
+        "impactCount": 0,
+        "coverageWeight": 0,
         "directAccountImpactScore": 48,
         "relationSummary": {
           "directCount": 0,
-          "thematicCount": 4,
+          "thematicCount": 0,
           "secondOrderCount": 0,
-          "blockedCount": 0,
-          "unrelatedEvidenceRatio": 0
+          "blockedCount": 2,
+          "unrelatedEvidenceRatio": 1
         }
       },
       "factor": {
         "raw": {
           "momentum": 1.1236,
-          "research": 0.5847,
+          "research": 0.279,
           "income": 0.004,
           "macroFit": 1.8882
         },
         "zScores": {
           "momentum": 0.8094,
-          "research": 0.7453,
+          "research": 0.0259,
           "income": -0.4223,
           "macroFit": 1.145
         },
-        "weightedZ": 0.6725,
-        "score": 59,
+        "weightedZ": 0.4567,
+        "score": 56,
         "factorCoverage": 1,
         "availability": {
           "momentum": 1,
@@ -5730,19 +4923,19 @@
         }
       },
       "actionBlend": {
-        "score": 65,
+        "score": 63,
         "signal": "HOLD",
-        "blended": true,
-        "rawActionScore": 66,
-        "factorScore": 59,
-        "actionWeight": 0.92,
-        "factorWeight": 0.08,
+        "blended": false,
+        "rawActionScore": 63,
+        "factorScore": 56,
+        "actionWeight": 1,
+        "factorWeight": 0,
         "factorCoverage": 1,
-        "delta": -1,
+        "delta": 0,
         "gateMode": "sameSignal",
-        "factorApplied": true,
+        "factorApplied": false,
         "rawSignal": "HOLD",
-        "factorSignal": "HOLD"
+        "factorSignal": "WATCH"
       },
       "stopLoss": {
         "enabled": true,
@@ -5755,16 +4948,15 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 59,
+        "factorScore": 56,
         "techScore": 96,
-        "reportScore": 63,
-        "actionScore": 65,
-        "rawActionScore": 66
+        "reportScore": null,
+        "actionScore": 63,
+        "rawActionScore": 63
       },
       "explain": {
         "topDrivers": [
           "기술 기본점수 96점",
-          "리포트 영향 63점 (4건 연결)",
           "RSI 56.4"
         ],
         "warnings": []
@@ -5781,14 +4973,14 @@
       "incomeYield": 0.004,
       "technicalSignal": "STRONG_BUY",
       "technicalBaseScore": 96,
-      "actionScore": 67,
-      "direction": 1.106,
-      "timing": -0.732,
-      "reportScore": 0.423,
+      "actionScore": 64,
+      "direction": 1.013,
+      "timing": -0.833,
+      "reportScore": 0,
       "probabilities": {
-        "p_buy": 0.7066,
-        "p_hold": 0.2217,
-        "p_sell": 0.0717
+        "p_buy": 0.581,
+        "p_hold": 0.2801,
+        "p_sell": 0.1388
       },
       "conviction": "MEDIUM",
       "signal": "HOLD",
@@ -5802,129 +4994,9 @@
         "stochTiming": -2.5,
         "volumeZ": 0.04299999999999993
       },
-      "rawActionScore": 67,
+      "rawActionScore": 64,
       "rawSignal": "HOLD",
-      "reportImpacts": [
-        {
-          "reportId": "marketvoice_1294355",
-          "title": "이란 항만 봉쇄 발표에 브렌트유 11% 급등",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:22+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.68,
-          "confidence": 0.54,
-          "horizon": "1w",
-          "decayHalfLifeDays": 7,
-          "reason": "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 2건",
-            "가상화폐 -0.81%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0984
-        },
-        {
-          "reportId": "marketvoice_1294355",
-          "title": "이란 항만 봉쇄 발표에 브렌트유 11% 급등",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:22+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.68,
-          "confidence": 0.54,
-          "horizon": "1w",
-          "decayHalfLifeDays": 7,
-          "reason": "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 2건",
-            "가상화폐 -0.81%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0984
-        },
-        {
-          "reportId": "marketvoice_1295043",
-          "title": "볼턴, 이란 원유 제재 완화에 강력 반대",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:15+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.68,
-          "confidence": 0.54,
-          "horizon": "1w",
-          "decayHalfLifeDays": 7,
-          "reason": "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화에 대해 강하게 비판하며, 제재 재부과와 해상 봉쇄를 추진해 이란 정권교체를 유도해야 한다고 주장했습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 1건",
-            "유조선 -1.02%",
-            "국제유가 +0.11%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0984
-        },
-        {
-          "reportId": "marketvoice_1295043",
-          "title": "볼턴, 이란 원유 제재 완화에 강력 반대",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:15+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.68,
-          "confidence": 0.54,
-          "horizon": "1w",
-          "decayHalfLifeDays": 7,
-          "reason": "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화에 대해 강하게 비판하며, 제재 재부과와 해상 봉쇄를 추진해 이란 정권교체를 유도해야 한다고 주장했습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 1건",
-            "유조선 -1.02%",
-            "국제유가 +0.11%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0984
-        },
-        {
-          "reportId": "marketvoice_1291105",
-          "title": "Archer, 2028 LA올림픽 eVTOL 시범 운항 발표",
-          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
-          "publishedDate": "2026-04-13T01:03:15+00:00",
-          "reportType": "marketvoice",
-          "targetType": "category",
-          "direction": "positive",
-          "strength": 0.493,
-          "confidence": 0.54,
-          "horizon": "1m",
-          "decayHalfLifeDays": 14,
-          "reason": "Archer Aviation이 2026년 4월 전기 수직이착륙기(eVTOL)를 활용한 도심 단거리 이동 서비스를 발표했습니다. 2028년 로스앤젤레스 올림픽에서 시범 운항을 계획하며, 저렴한 요금과 효율적 운항 전략을 제시했습니다.",
-          "evidenceNumbers": [
-            "인용 0건",
-            "원문 18건",
-            "아처 에비에이션 +1.50%",
-            "우주항공 -1.71%",
-            "우버 테크놀로지스 -1.85%"
-          ],
-          "relationType": "thematic",
-          "relationWeight": 0.72,
-          "evidenceScore": 0.82,
-          "contribution": 0.0891
-        }
-      ],
+      "reportImpacts": [],
       "technical": {
         "signal": "STRONG_BUY",
         "score": 96,
@@ -5954,36 +5026,36 @@
       },
       "report": {
         "sourceLayer": "impact-map",
-        "available": true,
-        "unavailableReason": null,
-        "impactScore": 62,
-        "impactValue": 0.423,
-        "impactCount": 6,
-        "coverageWeight": 0.55,
+        "available": false,
+        "unavailableReason": "no_linked_report",
+        "impactScore": null,
+        "impactValue": 0,
+        "impactCount": 0,
+        "coverageWeight": 0,
         "directAccountImpactScore": 48,
         "relationSummary": {
           "directCount": 0,
-          "thematicCount": 6,
+          "thematicCount": 0,
           "secondOrderCount": 0,
-          "blockedCount": 0,
-          "unrelatedEvidenceRatio": 0
+          "blockedCount": 2,
+          "unrelatedEvidenceRatio": 1
         }
       },
       "factor": {
         "raw": {
           "momentum": 1.2085,
-          "research": 0.5751,
+          "research": 0.279,
           "income": 0.004,
           "macroFit": -0.866
         },
         "zScores": {
           "momentum": 0.9229,
-          "research": 0.7156,
+          "research": 0.0259,
           "income": -0.4223,
           "macroFit": -0.6527
         },
-        "weightedZ": 0.3438,
-        "score": 55,
+        "weightedZ": 0.1369,
+        "score": 52,
         "factorCoverage": 1,
         "availability": {
           "momentum": 1,
@@ -5993,11 +5065,11 @@
         }
       },
       "actionBlend": {
-        "score": 67,
+        "score": 64,
         "signal": "HOLD",
         "blended": false,
-        "rawActionScore": 67,
-        "factorScore": 55,
+        "rawActionScore": 64,
+        "factorScore": 52,
         "actionWeight": 1,
         "factorWeight": 0,
         "factorCoverage": 1,
@@ -6018,16 +5090,15 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 55,
+        "factorScore": 52,
         "techScore": 96,
-        "reportScore": 62,
-        "actionScore": 67,
-        "rawActionScore": 67
+        "reportScore": null,
+        "actionScore": 64,
+        "rawActionScore": 64
       },
       "explain": {
         "topDrivers": [
           "기술 기본점수 96점",
-          "리포트 영향 62점 (6건 연결)",
           "RSI 60.3"
         ],
         "warnings": []
@@ -6039,14 +5110,14 @@
       "key": "ISA",
       "label": "ISA",
       "allocationScore": 76,
-      "holdingsScore": 58,
+      "holdingsScore": 56,
       "factorScore": 53,
       "reportCoverageScore": 55,
       "reportStatus": "available",
       "reportUnavailableReason": null,
       "stage2Bias": "selective_add",
-      "preTaxScore": 62.02,
-      "baseScore": 67.02,
+      "preTaxScore": 61.75,
+      "baseScore": 66.75,
       "totalScore": 64,
       "note": "선별적 보강은 가능하지만 약한 자산군과 패널티 요인을 함께 줄여야 합니다.",
       "coverage": {
@@ -6060,14 +5131,14 @@
         "allocationScore": 76,
         "factorScore": 53,
         "techScore": 63,
-        "reportScore": 51,
+        "reportScore": 46,
         "regimeFit": 70,
         "stage2Score": 58,
         "leadingScore": 57,
-        "actionBlend": 58,
-        "rawActionBlend": 58
+        "actionBlend": 56,
+        "rawActionBlend": 56
       },
-      "rawHoldingsScore": 58,
+      "rawHoldingsScore": 56,
       "effectiveWeights": {
         "allocation": 0.461,
         "factor": 0.1,
@@ -6124,8 +5195,8 @@
       },
       "taxAdjustment": {
         "enabled": true,
-        "preTaxScore": 62.02,
-        "afterTaxScore": 63.93,
+        "preTaxScore": 61.75,
+        "afterTaxScore": 63.65,
         "multiplier": 1.0309,
         "expectedYield": 0.042,
         "normalTaxRate": 0.154,
@@ -6184,14 +5255,14 @@
       "label": "연금저축",
       "allocationScore": 84,
       "holdingsScore": 56,
-      "factorScore": 52,
+      "factorScore": 53,
       "reportCoverageScore": 55,
       "reportStatus": "available",
       "reportUnavailableReason": null,
       "stage2Bias": "selective_add",
-      "preTaxScore": 72.45,
-      "baseScore": 73.45,
-      "totalScore": 72,
+      "preTaxScore": 72.55,
+      "baseScore": 73.55,
+      "totalScore": 73,
       "note": "배분·기술·리포트가 비교적 균형적이며 리스크 패널티도 낮습니다.",
       "coverage": {
         "factorCoverage": 1,
@@ -6202,7 +5273,7 @@
       },
       "baseScores": {
         "allocationScore": 84,
-        "factorScore": 52,
+        "factorScore": 53,
         "techScore": 73,
         "reportScore": 51,
         "regimeFit": 80,
@@ -6267,8 +5338,8 @@
       },
       "taxAdjustment": {
         "enabled": true,
-        "preTaxScore": 72.45,
-        "afterTaxScore": 72.45,
+        "preTaxScore": 72.55,
+        "afterTaxScore": 72.55,
         "multiplier": 1,
         "expectedYield": 0.0137,
         "normalTaxRate": 0.154,
@@ -6288,40 +5359,40 @@
       "key": "TOSS",
       "label": "토스증권",
       "allocationScore": 74,
-      "holdingsScore": 61,
-      "factorScore": 51,
-      "reportCoverageScore": 37,
-      "reportStatus": "available",
-      "reportUnavailableReason": null,
+      "holdingsScore": 59,
+      "factorScore": 49,
+      "reportCoverageScore": null,
+      "reportStatus": "unavailable",
+      "reportUnavailableReason": "no_mapped_impacts",
       "stage2Bias": "selective_add",
-      "preTaxScore": 61.19,
-      "baseScore": 73.19,
-      "totalScore": 61,
+      "preTaxScore": 61.6,
+      "baseScore": 73.6,
+      "totalScore": 62,
       "note": "기본 점수보다 리스크 패널티가 점수를 크게 누르고 있어 구조 조정이 우선입니다.",
       "coverage": {
         "factorCoverage": 0.9167,
         "techCoverage": 0.6667,
-        "impactCoverage": 0.3667,
+        "impactCoverage": 0,
         "stage2Available": true,
         "fredAvailable": true
       },
       "baseScores": {
         "allocationScore": 74,
-        "factorScore": 51,
+        "factorScore": 49,
         "techScore": 96,
-        "reportScore": 58,
+        "reportScore": null,
         "regimeFit": 70,
         "stage2Score": 58,
         "leadingScore": 57,
-        "actionBlend": 61,
-        "rawActionBlend": 61
+        "actionBlend": 59,
+        "rawActionBlend": 59
       },
-      "rawHoldingsScore": 61,
+      "rawHoldingsScore": 59,
       "effectiveWeights": {
-        "allocation": 0.571,
+        "allocation": 0.6077,
         "factor": 0.0917,
         "tech": 0.1667,
-        "report": 0.0367,
+        "report": 0,
         "regime": 0.034,
         "stage2": 0.05,
         "leading": 0.05
@@ -6374,8 +5445,8 @@
       },
       "taxAdjustment": {
         "enabled": true,
-        "preTaxScore": 61.19,
-        "afterTaxScore": 61.19,
+        "preTaxScore": 61.6,
+        "afterTaxScore": 61.6,
         "multiplier": 1,
         "expectedYield": 0.0026,
         "normalTaxRate": 0.154,
@@ -6417,40 +5488,40 @@
       "key": "KIS_MAIN",
       "label": "한투 일반",
       "allocationScore": 69,
-      "holdingsScore": 64,
-      "factorScore": 53,
-      "reportCoverageScore": 82,
+      "holdingsScore": 65,
+      "factorScore": 55,
+      "reportCoverageScore": 60,
       "reportStatus": "available",
       "reportUnavailableReason": null,
       "stage2Bias": "selective_add",
-      "preTaxScore": 58.92,
-      "baseScore": 70.92,
+      "preTaxScore": 59.39,
+      "baseScore": 71.39,
       "totalScore": 59,
       "note": "기본 점수보다 리스크 패널티가 점수를 크게 누르고 있어 구조 조정이 우선입니다.",
       "coverage": {
         "factorCoverage": 0.95,
         "techCoverage": 0.8,
-        "impactCoverage": 0.82,
+        "impactCoverage": 0.6,
         "stage2Available": true,
         "fredAvailable": true
       },
       "baseScores": {
         "allocationScore": 69,
-        "factorScore": 53,
+        "factorScore": 55,
         "techScore": 95,
-        "reportScore": 62,
+        "reportScore": 64,
         "regimeFit": 68,
         "stage2Score": 58,
         "leadingScore": 57,
-        "actionBlend": 64,
+        "actionBlend": 65,
         "rawActionBlend": 65
       },
       "rawHoldingsScore": 65,
       "effectiveWeights": {
-        "allocation": 0.489,
+        "allocation": 0.511,
         "factor": 0.095,
         "tech": 0.2,
-        "report": 0.082,
+        "report": 0.06,
         "regime": 0.034,
         "stage2": 0.05,
         "leading": 0.05
@@ -6503,8 +5574,8 @@
       },
       "taxAdjustment": {
         "enabled": true,
-        "preTaxScore": 58.92,
-        "afterTaxScore": 58.92,
+        "preTaxScore": 59.39,
+        "afterTaxScore": 59.39,
         "multiplier": 1,
         "expectedYield": 0.0031,
         "normalTaxRate": 0.154,
@@ -6603,14 +5674,14 @@
   },
   "portfolio": {
     "totalScore": 64,
-    "baseScore": 69.74,
-    "preTaxScore": 62.81,
+    "baseScore": 69.78,
+    "preTaxScore": 62.85,
     "riskPenalty": {
       "total": 6.93
     },
     "taxAdjustment": {
       "addedScore": 0.92,
-      "afterTaxScore": 63.72
+      "afterTaxScore": 63.77
     },
     "note": "선별적 추가와 방어를 병행해야 하는 구간"
   }

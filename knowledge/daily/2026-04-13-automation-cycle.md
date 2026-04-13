@@ -4,12 +4,12 @@
 - runDate: 2026-04-13
 - effectiveMarketDate: 2026-04-13
 - previousTradingDate: 2026-04-10
-- runId: 2026-04-13-hardening-full
+- runId: 2026-04-13-no-claude-full
 - resolutionReason: requested
-- generatedAt: 2026-04-13T01:13:58.303Z
-- logFile: /Users/seo/Documents/Playground/EcoReport/logs/2026-04-13-010922-automation-cycle.log
+- generatedAt: 2026-04-13T01:25:42.730Z
+- logFile: /Users/seo/Documents/Playground/EcoReport/logs/2026-04-13-011951-automation-cycle.log
 - systemHealth: warn
-- changeSummary: 전일(2026-04-10) 대비, KOSPI -0.78%, 포트폴리오 점수 63→64, 레짐 BULL 유지, 리포트 100→100건, 신규 포커스 KODEX 골드선물(H)·KODEX AI전력핵심설비
+- changeSummary: 전일(2026-04-10) 대비, KOSPI -0.90%, 포트폴리오 점수 63→64, 레짐 BULL 유지, 리포트 100→100건, 신규 포커스 KODEX 골드선물(H)·KODEX AI전력핵심설비
 ## Completion Checklist
 - [x] Automation Environment Readiness
 - [x] Baseline Daily System
@@ -34,33 +34,33 @@
 - [x] Verify Outputs
 ## Step Results
 - [OK] Automation Environment Readiness (0s)
-  - command: node scripts/check-automation-readiness.js --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-hardening-full
+  - command: node scripts/check-automation-readiness.js --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-no-claude-full
   - tail: /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-13/automation-readiness.json
 - [OK] Baseline Daily System (1m 44s)
-  - command: bash scripts/run-daily-system.sh --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-hardening-full --gemini-stage2 --skip-push --skip-verify --skip-strategy --skip-wiki --no-gemini-briefing
+  - command: bash scripts/run-daily-system.sh --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-no-claude-full --gemini-stage2 --skip-push --skip-verify --skip-strategy --skip-wiki --no-gemini-briefing
   - tail: 🧭 전략 파이프라인 건너뜀 (--skip-strategy) | 📚 LLM Wiki 단계 건너뜀 (--skip-wiki) | 📤 GitHub 동기화 건너뜀 (--skip-push) | 🩺 시스템 검증 건너뜀 (--skip-verify) | ⚠️ 소프트 실패 1건이 있었지만 파이프라인은 계속 완료했습니다. | ================================================== | ✅ EcoReport Daily System 종료 (run: 2026-04-13 / effective: 2026-04-13) | ==================================================
 - [OK] Stage 1 Extracts (1s)
-  - command: node scripts/build-stage1-report-extracts.js --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-hardening-full
+  - command: node scripts/build-stage1-report-extracts.js --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-no-claude-full
   - tail: /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-13/stage1-report-extracts-v2.json
 - [WARN] Gemini Deep Research Web (2s)
   - command: npm run stage1.5:gemini:run -- --date 2026-04-13 --poll-sec 30 --timeout-sec 1800
   - reason: Gemini Deep Research Web 실패 (exit 1)
   - tail: > ecoreport@1.0.0 stage1.5:gemini:run | > node scripts/run-gemini-deep-research-web.js --date 2026-04-13 --poll-sec 30 --timeout-sec 1800 | run-gemini-deep-research-web 실패: 29:37: execution error: node에 오류 발생: 응용 프로그램이 실행 중이 아닙니다. (-600)
   - debug: Safari가 잠겨 있지 않은지, Gemini 로그인 상태인지, Deep Research 도구가 노출되는지 확인하세요.
-- [OK] Stage 1.6 Rich Briefing Overlay (40s)
-  - command: npm run stage1.6:briefing -- --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-hardening-full
-  - tail: > ecoreport@1.0.0 stage1.6:briefing | > node scripts/build-stage1-6-rich-briefing.js --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-hardening-full | /Users/seo/Documents/Playground/EcoReport/knowledge/daily/2026-04-13-gemini-briefing-rich.md
-- [OK] Strategy Refresh After Deep Research (12s)
-  - command: bash scripts/run-strategy-pipeline.sh --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-hardening-full --gemini-stage2
+- [OK] Stage 1.6 Rich Briefing Overlay (42s)
+  - command: npm run stage1.6:briefing -- --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-no-claude-full
+  - tail: > ecoreport@1.0.0 stage1.6:briefing | > node scripts/build-stage1-6-rich-briefing.js --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-no-claude-full | /Users/seo/Documents/Playground/EcoReport/knowledge/daily/2026-04-13-gemini-briefing-rich.md
+- [OK] Strategy Refresh After Deep Research (37s)
+  - command: bash scripts/run-strategy-pipeline.sh --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-no-claude-full --gemini-stage2
   - tail: /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-13/stage4-execution-plan.json | == Feedback: snapshot == | /Users/seo/Documents/Playground/EcoReport/data/feedback/snapshots/2026-04-13.json | == Feedback: analysis == | /Users/seo/Documents/Playground/EcoReport/data/feedback/analysis/2026-04-13-feedback.json | == Feedback: report == | /Users/seo/Documents/Playground/EcoReport/reports/feedback-summary.md | Done.
 - [OK] LLM Wiki Rebuild After First Synthesis (0s)
-  - command: node scripts/build-llm-wiki.js --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-hardening-full
+  - command: node scripts/build-llm-wiki.js --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-no-claude-full
   - tail: /Users/seo/Documents/Playground/EcoReport/knowledge/wiki
 - [OK] Stage 1.7 Follow-up Research Map (2s)
-  - command: node scripts/build-stage1-7-followup-research-map.js --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-hardening-full
+  - command: node scripts/build-stage1-7-followup-research-map.js --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-no-claude-full
   - tail: /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-13/stage1-followup-research-map.json | /Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-13/11-stage1-7-followup-research-map.md
 - [OK] Stage 1.7 Gemini Follow-up Prompt (0s)
-  - command: node scripts/build-stage1-7-gemini-follow-up-prompt.js --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-hardening-full
+  - command: node scripts/build-stage1-7-gemini-follow-up-prompt.js --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-no-claude-full
   - tail: /Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-13/12-stage1-7-gemini-follow-up-prompt.md
 - [WARN] Gemini Deep Research Follow-up Web (2s)
   - command: node scripts/run-gemini-deep-research-web.js --date 2026-04-13 --prompt /Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-13/12-stage1-7-gemini-follow-up-prompt.md --output /Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-13/13-stage1-7-gemini-follow-up-response.md --poll-sec 30 --timeout-sec 1800
@@ -68,46 +68,46 @@
   - tail: run-gemini-deep-research-web 실패: 29:37: execution error: node에 오류 발생: 응용 프로그램이 실행 중이 아닙니다. (-600)
   - debug: Safari/Gemini 로그인 상태와 follow-up prompt 파일 경로를 확인하세요.
 - [OK] Stage 1.6 Rich Briefing Final (42s)
-  - command: npm run stage1.6:briefing -- --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-hardening-full
-  - tail: > ecoreport@1.0.0 stage1.6:briefing | > node scripts/build-stage1-6-rich-briefing.js --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-hardening-full | /Users/seo/Documents/Playground/EcoReport/knowledge/daily/2026-04-13-gemini-briefing-rich.md
-- [OK] Strategy Refresh After Follow-up Research (12s)
-  - command: bash scripts/run-strategy-pipeline.sh --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-hardening-full --gemini-stage2
+  - command: npm run stage1.6:briefing -- --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-no-claude-full
+  - tail: > ecoreport@1.0.0 stage1.6:briefing | > node scripts/build-stage1-6-rich-briefing.js --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-no-claude-full | /Users/seo/Documents/Playground/EcoReport/knowledge/daily/2026-04-13-gemini-briefing-rich.md
+- [OK] Strategy Refresh After Follow-up Research (37s)
+  - command: bash scripts/run-strategy-pipeline.sh --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-no-claude-full --gemini-stage2
   - tail: /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-13/stage4-execution-plan.json | == Feedback: snapshot == | /Users/seo/Documents/Playground/EcoReport/data/feedback/snapshots/2026-04-13.json | == Feedback: analysis == | /Users/seo/Documents/Playground/EcoReport/data/feedback/analysis/2026-04-13-feedback.json | == Feedback: report == | /Users/seo/Documents/Playground/EcoReport/reports/feedback-summary.md | Done.
 - [OK] LLM Wiki Rebuild After Round 2 (0s)
-  - command: node scripts/build-llm-wiki.js --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-hardening-full
+  - command: node scripts/build-llm-wiki.js --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-no-claude-full
   - tail: /Users/seo/Documents/Playground/EcoReport/knowledge/wiki
 - [OK] Stage 1.8 Final Refinement Map (1s)
-  - command: node scripts/build-stage1-7-followup-research-map.js --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-hardening-full --round 3
+  - command: node scripts/build-stage1-7-followup-research-map.js --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-no-claude-full --round 3
   - tail: /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-13/stage1-final-refinement-map.json | /Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-13/14-stage1-8-final-refinement-map.md
 - [OK] Stage 1.8 Gemini Final Refinement Prompt (0s)
-  - command: node scripts/build-stage1-7-gemini-follow-up-prompt.js --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-hardening-full --round 3
+  - command: node scripts/build-stage1-7-gemini-follow-up-prompt.js --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-no-claude-full --round 3
   - tail: /Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-13/15-stage1-8-gemini-final-refinement-prompt.md
 - [WARN] Gemini Deep Research Round 3 Web (2s)
   - command: node scripts/run-gemini-deep-research-web.js --date 2026-04-13 --prompt /Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-13/15-stage1-8-gemini-final-refinement-prompt.md --output /Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-13/16-stage1-8-gemini-final-refinement-response.md --poll-sec 30 --timeout-sec 1800
   - reason: Gemini Deep Research Round 3 Web 실패 (exit 1)
   - tail: run-gemini-deep-research-web 실패: 29:37: execution error: node에 오류 발생: 응용 프로그램이 실행 중이 아닙니다. (-600)
   - debug: Safari/Gemini 로그인 상태와 3차 refinement prompt 경로를 확인하세요.
-- [OK] Stage 1.6 Rich Briefing Final After Round 3 (42s)
-  - command: npm run stage1.6:briefing -- --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-hardening-full
-  - tail: > ecoreport@1.0.0 stage1.6:briefing | > node scripts/build-stage1-6-rich-briefing.js --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-hardening-full | /Users/seo/Documents/Playground/EcoReport/knowledge/daily/2026-04-13-gemini-briefing-rich.md
-- [OK] Strategy Refresh After Round 3 (12s)
-  - command: bash scripts/run-strategy-pipeline.sh --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-hardening-full --gemini-stage2
+- [OK] Stage 1.6 Rich Briefing Final After Round 3 (40s)
+  - command: npm run stage1.6:briefing -- --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-no-claude-full
+  - tail: > ecoreport@1.0.0 stage1.6:briefing | > node scripts/build-stage1-6-rich-briefing.js --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-no-claude-full | /Users/seo/Documents/Playground/EcoReport/knowledge/daily/2026-04-13-gemini-briefing-rich.md
+- [OK] Strategy Refresh After Round 3 (37s)
+  - command: bash scripts/run-strategy-pipeline.sh --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-no-claude-full --gemini-stage2
   - tail: /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-13/stage4-execution-plan.json | == Feedback: snapshot == | /Users/seo/Documents/Playground/EcoReport/data/feedback/snapshots/2026-04-13.json | == Feedback: analysis == | /Users/seo/Documents/Playground/EcoReport/data/feedback/analysis/2026-04-13-feedback.json | == Feedback: report == | /Users/seo/Documents/Playground/EcoReport/reports/feedback-summary.md | Done.
 - [OK] LLM Wiki Rebuild Final (0s)
-  - command: node scripts/build-llm-wiki.js --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-hardening-full
+  - command: node scripts/build-llm-wiki.js --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-no-claude-full
   - tail: /Users/seo/Documents/Playground/EcoReport/knowledge/wiki
 - [OK] LLM Wiki Publish (0s)
   - command: node scripts/publish-llm-wiki-to-vault.js
   - tail: /Users/seo/my-wiki/wiki/ecoreport
 - [OK] Verify Outputs (0s)
-  - command: node scripts/verify-daily-system.js --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-hardening-full
+  - command: node scripts/verify-daily-system.js --date 2026-04-13 --run-date 2026-04-13 --effective-market-date 2026-04-13 --run-id 2026-04-13-no-claude-full
   - tail: /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-13/system-health.json
 ## Failed Or Warned Steps
 - Gemini Deep Research Web: Gemini Deep Research Web 실패 (exit 1)
 - Gemini Deep Research Follow-up Web: Gemini Deep Research Follow-up Web 실패 (exit 1)
 - Gemini Deep Research Round 3 Web: Gemini Deep Research Round 3 Web 실패 (exit 1)
 ## Artifacts
-- [OK] /Users/seo/Documents/Playground/EcoReport/logs/2026-04-13-010922-automation-cycle.log
+- [OK] /Users/seo/Documents/Playground/EcoReport/logs/2026-04-13-011951-automation-cycle.log
 - [OK] /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-13/automation-readiness.json
 - [OK] /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-13/stage1-report-extracts-v2.json
 - [OK] /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-13/stage1-followup-research-map.json

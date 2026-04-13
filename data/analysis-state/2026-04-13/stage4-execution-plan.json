@@ -2,8 +2,8 @@
   "date": "2026-04-13",
   "runDate": "2026-04-13",
   "effectiveMarketDate": "2026-04-13",
-  "runId": "2026-04-13-hardening-full",
-  "generatedAt": "2026-04-13T01:13:53.501Z",
+  "runId": "2026-04-13-no-claude-full",
+  "generatedAt": "2026-04-13T01:25:37.782Z",
   "portfolioScore": 64,
   "regime": {
     "name": "BULL",
@@ -39,7 +39,7 @@
   "emergencyDefense": {
     "enabled": false,
     "vix": null,
-    "worstIndexDropPct": -0.76,
+    "worstIndexDropPct": -0.9,
     "triggers": [],
     "marketDataAvailable": true
   },
@@ -161,7 +161,7 @@
         {
           "code": "360750",
           "name": "TIGER 미국S&P500",
-          "score": 56,
+          "score": 53,
           "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 약세, MACD 모멘텀이 우호적",
           "source": "stage2",
           "stance": "buy",
@@ -215,7 +215,7 @@
           "code": "360750",
           "name": "TIGER 미국S&P500",
           "source": "stage3",
-          "reason": "인도 정부가 경유와 항공유 수출관세를 리터당 약 0.23달러에서 두 배 이상 올렸습니다. 이는 국내 연료 재고를 늘리고 내수 공급을 우선하기 위한 조치로, 정유사의 수출 유인을 줄이는 효과가 있습니다."
+          "reason": "Bank of America가 2026년 자산 시장 동향을 분석했어요. 원유와 금 가격은 크게 올랐지만, 비트코인은 17.4% 떨어졌습니다. 현금 유입은 707억 달러로 최대치였고, 투자자 심리는 30년 만에 가장 비관적입니다."
         }
       ],
       "trims": [],
@@ -223,7 +223,7 @@
         {
           "code": "360750",
           "name": "TIGER 미국S&P500",
-          "score": 56,
+          "score": 53,
           "accountKey": "ISA",
           "currentPrice": 24570,
           "entryPrice": null,
@@ -240,7 +240,7 @@
             "drawdownFromRecentHighPct": -0.0016,
             "triggers": []
           },
-          "reason": "인도 정부가 경유와 항공유 수출관세를 리터당 약 0.23달러에서 두 배 이상 올렸습니다. 이는 국내 연료 재고를 늘리고 내수 공급을 우선하기 위한 조치로, 정유사의 수출 유인을 줄이는 효과가 있습니다."
+          "reason": "Bank of America가 2026년 자산 시장 동향을 분석했어요. 원유와 금 가격은 크게 올랐지만, 비트코인은 17.4% 떨어졌습니다. 현금 유입은 707억 달러로 최대치였고, 투자자 심리는 30년 만에 가장 비관적입니다."
         },
         {
           "code": "458760",
@@ -307,7 +307,7 @@
       "emergencyDefense": {
         "enabled": false,
         "vix": null,
-        "worstIndexDropPct": -0.76,
+        "worstIndexDropPct": -0.9,
         "triggers": [],
         "marketDataAvailable": true
       },
@@ -316,7 +316,7 @@
     {
       "key": "PENSION",
       "label": "연금저축",
-      "totalScore": 72,
+      "totalScore": 73,
       "stage2Bias": "selective_add",
       "deployBudget": 756843,
       "plannedDeployBudget": 756843,
@@ -579,7 +579,7 @@
       "emergencyDefense": {
         "enabled": false,
         "vix": null,
-        "worstIndexDropPct": -0.76,
+        "worstIndexDropPct": -0.9,
         "triggers": [],
         "marketDataAvailable": true
       },
@@ -588,7 +588,7 @@
     {
       "key": "TOSS",
       "label": "토스증권",
-      "totalScore": 61,
+      "totalScore": 62,
       "stage2Bias": "selective_add",
       "deployBudget": 574653,
       "plannedDeployBudget": 574653,
@@ -780,7 +780,7 @@
           "code": "434730",
           "name": "HANARO 원자력iSelect",
           "source": "stage3",
-          "reason": "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다."
+          "reason": "STRONG_BUY"
         }
       ],
       "trims": [],
@@ -788,7 +788,7 @@
         {
           "code": "434730",
           "name": "HANARO 원자력iSelect",
-          "score": 66,
+          "score": 63,
           "accountKey": "TOSS",
           "currentPrice": 64170,
           "entryPrice": 64095,
@@ -805,12 +805,12 @@
             "drawdownFromRecentHighPct": -0.0412,
             "triggers": []
           },
-          "reason": "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다."
+          "reason": "STRONG_BUY"
         },
         {
           "code": "449450",
           "name": "PLUS V K생산",
-          "score": 66,
+          "score": 64,
           "accountKey": "TOSS",
           "currentPrice": 76695,
           "entryPrice": 77160,
@@ -827,7 +827,7 @@
             "drawdownFromRecentHighPct": -0.0047,
             "triggers": []
           },
-          "reason": "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다."
+          "reason": "STRONG_BUY"
         }
       ],
       "watches": [
@@ -895,7 +895,7 @@
       "emergencyDefense": {
         "enabled": false,
         "vix": null,
-        "worstIndexDropPct": -0.76,
+        "worstIndexDropPct": -0.9,
         "triggers": [],
         "marketDataAvailable": true
       },
@@ -958,7 +958,7 @@
         {
           "code": "434730",
           "name": "HANARO 원자력iSelect",
-          "score": 65,
+          "score": 63,
           "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
           "source": "stage2",
           "stance": "buy",
@@ -1011,7 +1011,7 @@
         {
           "code": "449450",
           "name": "PLUS V K생산",
-          "score": 67,
+          "score": 64,
           "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
           "source": "stage2",
           "stance": "buy",
@@ -1050,7 +1050,7 @@
         {
           "code": "047810",
           "name": "한국항공우주",
-          "score": 69,
+          "score": 73,
           "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
           "source": "stage2",
           "stance": "buy",
@@ -1113,7 +1113,7 @@
         {
           "code": "064350",
           "name": "현대로템",
-          "score": 61,
+          "score": 62,
           "accountKey": "KIS_MAIN",
           "currentPrice": 210000,
           "entryPrice": 208000,
@@ -1135,7 +1135,7 @@
         {
           "code": "434730",
           "name": "HANARO 원자력iSelect",
-          "score": 65,
+          "score": 63,
           "accountKey": "KIS_MAIN",
           "currentPrice": 70310,
           "entryPrice": 64630,
@@ -1152,12 +1152,12 @@
             "drawdownFromRecentHighPct": -0.0412,
             "triggers": []
           },
-          "reason": "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다."
+          "reason": "STRONG_BUY"
         },
         {
           "code": "449450",
           "name": "PLUS K방산",
-          "score": 67,
+          "score": 64,
           "accountKey": "KIS_MAIN",
           "currentPrice": 79200,
           "entryPrice": 77758.5714,
@@ -1174,7 +1174,7 @@
             "drawdownFromRecentHighPct": -0.0047,
             "triggers": []
           },
-          "reason": "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다."
+          "reason": "STRONG_BUY"
         }
       ],
       "watches": [
@@ -1242,7 +1242,7 @@
       "emergencyDefense": {
         "enabled": false,
         "vix": null,
-        "worstIndexDropPct": -0.76,
+        "worstIndexDropPct": -0.9,
         "triggers": [],
         "marketDataAvailable": true
       },

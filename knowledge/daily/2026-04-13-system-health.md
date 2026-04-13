@@ -1,8 +1,8 @@
 # EcoReport Daily Health (2026-04-13)
 
 - overallStatus: **warn**
-- generatedAt: 2026-04-13T01:13:58.284Z
-- runId: 2026-04-13-hardening-full
+- generatedAt: 2026-04-13T01:25:42.709Z
+- runId: 2026-04-13-no-claude-full
 - runDate: 2026-04-13
 - effectiveMarketDate: 2026-04-13
 - reports: 100건 / textified 100건 / OCR 3건
@@ -18,9 +18,9 @@
 - [OK] Stage 1 연구 노트: 추출 100건 (data/analysis-state/2026-04-13/stage1-report-extracts-v2.json)
 - [WARN] Stage 1 품질: contamination 0.00 / weak_claim 0.61 (data/analysis-state/2026-04-13/stage1-report-extracts-v2.json)
 - [OK] Stage 2 전략 탐색: mock 결과 사용 (data/analysis-state/2026-04-13/stage2-strategy-options.json)
-- [OK] Impact Map: 리포트 104건 (data/analysis-state/2026-04-13/impact-map.json)
+- [OK] Impact Map: 리포트 102건 (data/analysis-state/2026-04-13/impact-map.json)
 - [OK] Stage 3 퀀트 점수: 포트폴리오 64점 (data/analysis-state/2026-04-13/stage3-quant-scores.json)
-- [OK] Stage 3 관계 품질: unrelated 0.06 / blocked 7건 (data/analysis-state/2026-04-13/stage3-quant-scores.json)
+- [WARN] Stage 3 관계 품질: unrelated 0.44 / blocked 18건 (data/analysis-state/2026-04-13/stage3-quant-scores.json)
 - [OK] Stage 4 실행 계획: 계좌 계획 4개 (data/analysis-state/2026-04-13/stage4-execution-plan.json)
 - [OK] Stage 4 논리 품질: conflict 0건 / no_action 0건 / low_conf_reject 3건 (data/analysis-state/2026-04-13/stage4-execution-plan.json)
 - [OK] 일일 브리핑: briefing.md 생성됨 (reports/daily/2026-04-13-briefing.md)
@@ -35,7 +35,7 @@
 - [OK] Round 3 Refinement Map: 3차 refinement map 생성됨 (data/analysis-state/2026-04-13/stage1-final-refinement-map.json)
 - [OK] Round 3 Deep Research 프롬프트: 3차 Deep Research 프롬프트 생성됨 (knowledge/daily/manual-kit/2026-04-13/15-stage1-8-gemini-final-refinement-prompt.md)
 - [WARN] Round 3 Deep Research 결과: 3차 Deep Research 결과 없음 (knowledge/daily/manual-kit/2026-04-13/16-stage1-8-gemini-final-refinement-response.md)
-- [OK] Freshness / Run ID: run-id 2026-04-13-hardening-full 일치 (data/analysis-state/2026-04-13/stage4-execution-plan.json)
+- [OK] Freshness / Run ID: run-id 2026-04-13-no-claude-full 일치 (data/analysis-state/2026-04-13/stage4-execution-plan.json)
 - [OK] 종목 코드 정규화: 포트폴리오/실행계획 종목 코드 해석 완료 (data/portfolio/latest.json)
 - [OK] Fallback Recovery: 추가 복구 fallback 없음 (data/analysis-state/2026-04-13/fallback-summary.json)
 - [OK] Fallback Checklist: 실패 폴백 체크리스트 준비됨 (docs/FAILURE_FALLBACK_CHECKLIST.md)
