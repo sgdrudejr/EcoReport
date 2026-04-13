@@ -2,8 +2,8 @@
   "date": "2026-04-13",
   "runDate": "2026-04-13",
   "effectiveMarketDate": "2026-04-13",
-  "runId": "2026-04-13-no-claude-full",
-  "generatedAt": "2026-04-13T01:25:37.782Z",
+  "runId": "2026-04-13-kis-gemini-full",
+  "generatedAt": "2026-04-13T01:45:17.210Z",
   "portfolioScore": 64,
   "regime": {
     "name": "BULL",
@@ -39,7 +39,7 @@
   "emergencyDefense": {
     "enabled": false,
     "vix": null,
-    "worstIndexDropPct": -0.9,
+    "worstIndexDropPct": -0.84,
     "triggers": [],
     "marketDataAvailable": true
   },
@@ -83,7 +83,7 @@
           "code": "132030",
           "name": "KODEX 골드선물(H)",
           "score": null,
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 약세, MACD 모멘텀이 우호적",
+          "reason": "주가가 20일선 위에서 유지 중이며, 중기 추세는 약세이나 MACD 모멘텀이 우호적입니다. 중동 지정학적 불확실성 및 인플레이션 헤지 수요 증가로 금 가격 상승이 예상됩니다.",
           "source": "stage2",
           "stance": "buy",
           "confidence": 0.85,
@@ -95,12 +95,13 @@
           "code": "360750",
           "name": "TIGER 미국S&P500",
           "score": null,
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 약세, MACD 모멘텀이 우호적",
+          "reason": "주가가 20일선 위에서 유지 중이며, 중기 추세는 약세이나 MACD 모멘텀이 우호적입니다. 미국 시장의 전반적인 강세와 성장 테마의 견조한 흐름이 예상됩니다.",
           "source": "stage2",
           "stance": "buy",
           "confidence": 0.85,
           "targetAccounts": [
-            "ISA"
+            "ISA",
+            "PENSION"
           ]
         }
       ],
@@ -109,7 +110,7 @@
           "code": "132030",
           "name": "KODEX 골드선물(H)",
           "score": null,
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 약세, MACD 모멘텀이 우호적",
+          "reason": "주가가 20일선 위에서 유지 중이며, 중기 추세는 약세이나 MACD 모멘텀이 우호적입니다. 중동 지정학적 불확실성 및 인플레이션 헤지 수요 증가로 금 가격 상승이 예상됩니다.",
           "source": "stage2",
           "stance": "buy",
           "confidence": 0.85,
@@ -146,28 +147,16 @@
       ],
       "rejectedAlternatives": [
         {
-          "code": "458760",
-          "name": "TIGER 미국배당다우존스스타데일리커...",
-          "score": null,
-          "reason": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화",
-          "source": "stage2",
-          "stance": "hold",
-          "confidence": 0.35,
-          "targetAccounts": [
-            "ISA"
-          ],
-          "rejectionReason": "Stage 2 stance가 hold라 신규 매수 후보에서 제외"
-        },
-        {
           "code": "360750",
           "name": "TIGER 미국S&P500",
           "score": 53,
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 약세, MACD 모멘텀이 우호적",
+          "reason": "주가가 20일선 위에서 유지 중이며, 중기 추세는 약세이나 MACD 모멘텀이 우호적입니다. 미국 시장의 전반적인 강세와 성장 테마의 견조한 흐름이 예상됩니다.",
           "source": "stage2",
           "stance": "buy",
           "confidence": 0.85,
           "targetAccounts": [
-            "ISA"
+            "ISA",
+            "PENSION"
           ],
           "technical": {
             "rsi": 62.09,
@@ -209,13 +198,13 @@
           "code": "132030",
           "name": "KODEX 골드선물(H)",
           "source": "stage2",
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 약세, MACD 모멘텀이 우호적"
+          "reason": "주가가 20일선 위에서 유지 중이며, 중기 추세는 약세이나 MACD 모멘텀이 우호적입니다. 중동 지정학적 불확실성 및 인플레이션 헤지 수요 증가로 금 가격 상승이 예상됩니다."
         },
         {
           "code": "360750",
           "name": "TIGER 미국S&P500",
           "source": "stage3",
-          "reason": "Bank of America가 2026년 자산 시장 동향을 분석했어요. 원유와 금 가격은 크게 올랐지만, 비트코인은 17.4% 떨어졌습니다. 현금 유입은 707억 달러로 최대치였고, 투자자 심리는 30년 만에 가장 비관적입니다."
+          "reason": "2026년 1월 26일 금 가격이 온스당 5,000달러를 처음 넘었고, JP모건은 연말까지 6,300달러까지 오를 수 있다고 전망했습니다. 중동 지정학적 위험과 인플레이션 대응이 금 시장에 영향을 주고 있습니다."
         }
       ],
       "trims": [],
@@ -240,7 +229,7 @@
             "drawdownFromRecentHighPct": -0.0016,
             "triggers": []
           },
-          "reason": "Bank of America가 2026년 자산 시장 동향을 분석했어요. 원유와 금 가격은 크게 올랐지만, 비트코인은 17.4% 떨어졌습니다. 현금 유입은 707억 달러로 최대치였고, 투자자 심리는 30년 만에 가장 비관적입니다."
+          "reason": "2026년 1월 26일 금 가격이 온스당 5,000달러를 처음 넘었고, JP모건은 연말까지 6,300달러까지 오를 수 있다고 전망했습니다. 중동 지정학적 위험과 인플레이션 대응이 금 시장에 영향을 주고 있습니다."
         },
         {
           "code": "458760",
@@ -267,10 +256,10 @@
       ],
       "watches": [],
       "macroCommentary": {
-        "summary": "추세 우상향 장세 ISA은 방어자산과 원자재 헤지 비중 조정이 핵심입니다. 절세 계좌 특성상 국내 ETF 중심의 방어·인컴·테마 배치를 유연하게 조정하는 역할로 작동하는 계좌입니다.",
+        "summary": "중동 지정학 리스크와 유가 상승이 시장 변동성을 키우고 있습니다. ISA은 방어자산과 원자재 헤지 비중 조정이 핵심입니다. 절세 계좌 특성상 국내 ETF 중심의 방어·인컴·테마 배치를 유연하게 조정하는 역할로 작동하는 계좌입니다.",
         "drivers": [
-          "추세 우상향 장세",
-          "기술점수 상위 보유/후보가 존재해 선별 보강이 가능한 상태",
+          "중동 지정학 리스크와 유가 상승이 시장 변동성을 키우고 있습니다.",
+          "금 보강을 통한 포트폴리오 안정화 및 헤지 역할 강화.",
           "04/10 Weekly Macro, 유가·인플레이션 경계 속 연준 스탠스 점검 국면는 배당/커버드콜에 부정 신호를 줍니다 (유가).",
           "신한 Econ Check-up; 극적 휴전 타결에도 남겨진 충격는 배당/커버드콜에 부정 신호를 줍니다 (유가)."
         ],
@@ -280,7 +269,7 @@
           "배당/커버드콜"
         ],
         "actionLine": "ISA은 금을 우선 보강하고, KODEX 골드선물(H)를 중심으로 3,665,433원 한도에서 분할 접근하는 편이 좋습니다.",
-        "reserveNote": "다음 tranche 전까지 예수금 일부를 유지하며 분할 접근"
+        "reserveNote": "추가 분할 매수 전 현금 여력과 유가 흐름 확인."
       },
       "stage1Drivers": [
         {
@@ -307,7 +296,7 @@
       "emergencyDefense": {
         "enabled": false,
         "vix": null,
-        "worstIndexDropPct": -0.9,
+        "worstIndexDropPct": -0.84,
         "triggers": [],
         "marketDataAvailable": true
       },
@@ -316,7 +305,7 @@
     {
       "key": "PENSION",
       "label": "연금저축",
-      "totalScore": 73,
+      "totalScore": 72,
       "stage2Bias": "selective_add",
       "deployBudget": 756843,
       "plannedDeployBudget": 756843,
@@ -333,23 +322,12 @@
           "code": "360750",
           "name": "TIGER 미국S&P500",
           "score": null,
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 약세, MACD 모멘텀이 우호적",
+          "reason": "주가가 20일선 위에서 유지 중이며, 중기 추세는 약세이나 MACD 모멘텀이 우호적입니다. 미국 시장의 전반적인 강세와 성장 테마의 견조한 흐름이 예상됩니다.",
           "source": "stage2",
           "stance": "buy",
           "confidence": 0.85,
           "targetAccounts": [
-            "ISA"
-          ]
-        },
-        {
-          "code": "133690",
-          "name": "TIGER 미국나스닥100",
-          "score": null,
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 약세, MACD 모멘텀이 우호적",
-          "source": "stage2",
-          "stance": "buy",
-          "confidence": 0.85,
-          "targetAccounts": [
+            "ISA",
             "PENSION"
           ]
         }
@@ -359,12 +337,13 @@
           "code": "360750",
           "name": "TIGER 미국S&P500",
           "score": 55,
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 약세, MACD 모멘텀이 우호적",
+          "reason": "주가가 20일선 위에서 유지 중이며, 중기 추세는 약세이나 MACD 모멘텀이 우호적입니다. 미국 시장의 전반적인 강세와 성장 테마의 견조한 흐름이 예상됩니다.",
           "source": "stage2",
           "stance": "buy",
           "confidence": 0.85,
           "targetAccounts": [
-            "ISA"
+            "ISA",
+            "PENSION"
           ],
           "technical": {
             "rsi": 62.09,
@@ -388,78 +367,37 @@
           "conditionMet": false,
           "fallback": false,
           "sizingMethod": "inverse_atr",
-          "baseSuggestedAmount": 418801,
-          "suggestedAmount": 209401,
+          "baseSuggestedAmount": 756843,
+          "suggestedAmount": 321105,
           "correlationHaircutApplied": true,
           "maxSinglePositionAmount": 812505
         }
       ],
       "rejectedAlternatives": [
         {
-          "code": "423160",
-          "name": "KODEX KOFR금리액티브(합성)",
-          "score": null,
-          "reason": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 둔화",
-          "source": "stage2",
-          "stance": "trim",
-          "confidence": 0.85,
-          "targetAccounts": [
-            "PENSION"
-          ],
-          "rejectionReason": "Stage 2 stance가 trim라 신규 매수 후보에서 제외"
-        },
-        {
           "code": "133690",
           "name": "TIGER 미국나스닥100",
-          "score": 57,
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 약세, MACD 모멘텀이 우호적",
+          "score": null,
+          "reason": "주가가 20일선 위에서 유지 중이며, 중기 추세는 약세이나 MACD 모멘텀이 우호적입니다. 미국 기술주 중심의 성장성이 기대됩니다.",
           "source": "stage2",
-          "stance": "buy",
-          "confidence": 0.85,
+          "stance": "hold",
+          "confidence": 0.6,
           "targetAccounts": [
             "PENSION"
           ],
-          "technical": {
-            "rsi": 61.93,
-            "bollingerPosition": "upper_half",
-            "atrPct": 0.012389,
-            "dayChangePct": 0.0084,
-            "fallback": {
-              "source": "previous_technical_snapshot",
-              "recovered_from_date": "2026-04-10",
-              "reason": "executionBias is not defined"
-            }
-          },
-          "currentPrice": 164750,
-          "maxCorrelationToPortfolio": 0.9051,
-          "entryCondition": "watch",
-          "entryTriggers": [
-            "RSI 61.9",
-            "볼린저 upper_half"
-          ],
-          "urgency": "this_week",
-          "conditionMet": false,
-          "fallback": false,
-          "sizingMethod": "inverse_atr",
-          "baseSuggestedAmount": 338042,
-          "suggestedAmount": 169021,
-          "correlationHaircutApplied": true,
-          "maxSinglePositionAmount": 812505,
-          "rejectionReason": "부족 자산군(S&P500)과 실행 후보 카테고리(나스닥100)가 달라 제외"
+          "rejectionReason": "Stage 2 stance가 hold라 신규 매수 후보에서 제외"
         }
       ],
       "noAction": false,
       "noActionReason": null,
-      "validatorFlags": [
-        "gap_action_mismatch:TIGER 미국나스닥100"
-      ],
+      "validatorFlags": [],
       "validationConfidence": 0.85,
       "validationEvidence": [
         {
           "code": "360750",
           "name": "TIGER 미국S&P500",
           "source": "stage2",
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 약세, MACD 모멘텀이 우호적"
+          "reason": "주가가 20일선 위에서 유지 중이며, 중기 추세는 약세이나 MACD 모멘텀이 우호적입니다. 미국 시장의 전반적인 강세와 성장 테마의 견조한 흐름이 예상됩니다."
         },
         {
           "code": "423160",
@@ -495,7 +433,7 @@
         {
           "code": "133690",
           "name": "TIGER 미국나스닥100",
-          "score": 57,
+          "score": 56,
           "accountKey": "PENSION",
           "currentPrice": 160160,
           "entryPrice": 160520,
@@ -539,10 +477,10 @@
       ],
       "watches": [],
       "macroCommentary": {
-        "summary": "추세 우상향 장세 연금저축은 미국 코어 인덱스 비중 조정이 핵심입니다. 장기 복리 관점에서 미국 코어 자산과 방어 자산을 안정적으로 쌓는 역할로 작동하는 계좌입니다.",
+        "summary": "중동 지정학 리스크와 유가 상승이 시장 변동성을 키우고 있습니다. 연금저축은 미국 코어 인덱스 비중 조정이 핵심입니다. 장기 복리 관점에서 미국 코어 자산과 방어 자산을 안정적으로 쌓는 역할로 작동하는 계좌입니다.",
         "drivers": [
-          "추세 우상향 장세",
-          "기술점수 상위 보유/후보가 존재해 선별 보강이 가능한 상태",
+          "중동 지정학 리스크와 유가 상승이 시장 변동성을 키우고 있습니다.",
+          "미국 코어 인덱스 비중 조정을 통한 장기 복리 관점의 자산 축적.",
           "04/10 Weekly Macro, 유가·인플레이션 경계 속 연준 스탠스 점검 국면는 현금파킹에 부정 신호를 줍니다 (유가).",
           "04/10 Weekly Macro, 유가·인플레이션 경계 속 연준 스탠스 점검 국면는 PENSION에 부정 신호를 줍니다 (유가)."
         ],
@@ -552,7 +490,7 @@
           "금"
         ],
         "actionLine": "연금저축은 S&P500을 우선 보강하고, TIGER 미국S&P500를 중심으로 756,843원 한도에서 분할 접근하는 편이 좋습니다.",
-        "reserveNote": "다음 tranche 전까지 예수금 일부를 유지하며 분할 접근"
+        "reserveNote": "급등 추격보다 눌림 분할 여부 확인."
       },
       "stage1Drivers": [
         {
@@ -579,7 +517,7 @@
       "emergencyDefense": {
         "enabled": false,
         "vix": null,
-        "worstIndexDropPct": -0.9,
+        "worstIndexDropPct": -0.84,
         "triggers": [],
         "marketDataAvailable": true
       },
@@ -588,7 +526,7 @@
     {
       "key": "TOSS",
       "label": "토스증권",
-      "totalScore": 62,
+      "totalScore": 61,
       "stage2Bias": "selective_add",
       "deployBudget": 574653,
       "plannedDeployBudget": 574653,
@@ -602,85 +540,55 @@
       "candidateFromGap": "효성중공업",
       "stage2Candidates": [
         {
-          "code": "298040",
-          "name": "효성중공업",
-          "score": null,
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
-          "source": "stage2",
-          "stance": "buy",
-          "confidence": 0.85,
-          "targetAccounts": []
-        },
-        {
           "code": "487240",
           "name": "KODEX AI전력핵심설비",
           "score": null,
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+          "reason": "주가가 20일선 위에서 유지 중이며, 중기 추세는 우상향, MACD 모멘텀이 우호적입니다. AI 인프라 투자 확대 및 전력망 현대화 수요 증가로 관련 설비 기업들의 실적 개선이 기대됩니다.",
           "source": "stage2",
           "stance": "buy",
           "confidence": 0.85,
           "targetAccounts": [
-            "토스"
+            "TOSS"
           ]
         },
         {
-          "code": "267260",
-          "name": "HD현대일렉트릭",
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
           "score": null,
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 약세, MACD 모멘텀이 우호적",
+          "reason": "주가가 20일선 위에서 유지 중이며, 중기 추세는 우상향, MACD 모멘텀이 우호적입니다. 원자력 산업은 장기적인 성장 전망이 밝으며, 정부 정책 지원 및 글로벌 에너지 전환 추세에 따라 수혜가 예상됩니다.",
           "source": "stage2",
           "stance": "buy",
           "confidence": 0.85,
-          "targetAccounts": []
+          "targetAccounts": [
+            "TOSS",
+            "KIS_MAIN"
+          ]
+        },
+        {
+          "code": "449450",
+          "name": "PLUS K방산",
+          "score": null,
+          "reason": "주가가 20일선 위에서 유지 중이며, 중기 추세는 우상향, MACD 모멘텀이 우호적입니다. 지정학적 리스크 확대에 따른 방산 부문 수혜가 예상됩니다.",
+          "source": "stage2",
+          "stance": "buy",
+          "confidence": 0.85,
+          "targetAccounts": [
+            "TOSS",
+            "KIS_MAIN"
+          ]
         }
       ],
       "stagedBuys": [
         {
-          "code": "298040",
-          "name": "효성중공업",
-          "score": null,
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
-          "source": "stage2",
-          "stance": "buy",
-          "confidence": 0.85,
-          "targetAccounts": [],
-          "technical": {
-            "rsi": 59.89,
-            "bollingerPosition": "upper_half",
-            "atrPct": 0.06405,
-            "dayChangePct": 0.0201,
-            "fallback": {
-              "source": "previous_technical_snapshot",
-              "recovered_from_date": "2026-04-10",
-              "reason": "executionBias is not defined"
-            }
-          },
-          "currentPrice": 2940000,
-          "maxCorrelationToPortfolio": 0.8666,
-          "entryCondition": "technical_fallback",
-          "entryTriggers": [
-            "RSI 59.9",
-            "볼린저 upper_half"
-          ],
-          "urgency": "next_tranche",
-          "conditionMet": false,
-          "fallback": true,
-          "sizingMethod": "inverse_atr",
-          "baseSuggestedAmount": 168003,
-          "suggestedAmount": 84002,
-          "correlationHaircutApplied": true,
-          "maxSinglePositionAmount": 687783
-        },
-        {
           "code": "487240",
           "name": "KODEX AI전력핵심설비",
           "score": null,
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+          "reason": "주가가 20일선 위에서 유지 중이며, 중기 추세는 우상향, MACD 모멘텀이 우호적입니다. AI 인프라 투자 확대 및 전력망 현대화 수요 증가로 관련 설비 기업들의 실적 개선이 기대됩니다.",
           "source": "stage2",
           "stance": "buy",
           "confidence": 0.85,
           "targetAccounts": [
-            "토스"
+            "TOSS"
           ],
           "technical": {
             "rsi": 57.51,
@@ -704,83 +612,113 @@
           "conditionMet": false,
           "fallback": true,
           "sizingMethod": "inverse_atr",
-          "baseSuggestedAmount": 205634,
-          "suggestedAmount": 102817,
-          "correlationHaircutApplied": true,
-          "maxSinglePositionAmount": 687783
-        },
-        {
-          "code": "267260",
-          "name": "HD현대일렉트릭",
-          "score": null,
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 약세, MACD 모멘텀이 우호적",
-          "source": "stage2",
-          "stance": "buy",
-          "confidence": 0.85,
-          "targetAccounts": [],
-          "technical": {
-            "rsi": 58.08,
-            "bollingerPosition": "upper_half",
-            "atrPct": 0.053531,
-            "dayChangePct": 0.0194,
-            "fallback": {
-              "source": "previous_technical_snapshot",
-              "recovered_from_date": "2026-04-10",
-              "reason": "executionBias is not defined"
-            }
-          },
-          "currentPrice": 999000,
-          "maxCorrelationToPortfolio": 0.9093,
-          "entryCondition": "technical_fallback",
-          "entryTriggers": [
-            "RSI 58.1",
-            "볼린저 upper_half"
-          ],
-          "urgency": "next_tranche",
-          "conditionMet": false,
-          "fallback": true,
-          "sizingMethod": "inverse_atr",
-          "baseSuggestedAmount": 201016,
-          "suggestedAmount": 100508,
+          "baseSuggestedAmount": 183272,
+          "suggestedAmount": 91636,
           "correlationHaircutApplied": true,
           "maxSinglePositionAmount": 687783
         }
       ],
       "rejectedAlternatives": [
         {
-          "code": "010120",
-          "name": "LS일렉트릭",
-          "score": null,
-          "reason": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화",
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "score": 67,
+          "reason": "주가가 20일선 위에서 유지 중이며, 중기 추세는 우상향, MACD 모멘텀이 우호적입니다. 원자력 산업은 장기적인 성장 전망이 밝으며, 정부 정책 지원 및 글로벌 에너지 전환 추세에 따라 수혜가 예상됩니다.",
           "source": "stage2",
-          "stance": "watch",
-          "confidence": 0.35,
-          "targetAccounts": [],
-          "rejectionReason": "Stage 2 stance가 watch라 신규 매수 후보에서 제외"
+          "stance": "buy",
+          "confidence": 0.85,
+          "targetAccounts": [
+            "TOSS",
+            "KIS_MAIN"
+          ],
+          "technical": {
+            "rsi": 56.44,
+            "bollingerPosition": "upper_half",
+            "atrPct": 0.051048,
+            "dayChangePct": 0.0083,
+            "fallback": {
+              "source": "previous_technical_snapshot",
+              "recovered_from_date": "2026-04-10",
+              "reason": "executionBias is not defined"
+            }
+          },
+          "currentPrice": 70310,
+          "maxCorrelationToPortfolio": 0.5643,
+          "entryCondition": "watch",
+          "entryTriggers": [
+            "RSI 56.4",
+            "볼린저 upper_half"
+          ],
+          "urgency": "this_week",
+          "conditionMet": false,
+          "fallback": false,
+          "sizingMethod": "inverse_atr",
+          "baseSuggestedAmount": 187871,
+          "suggestedAmount": 187871,
+          "correlationHaircutApplied": false,
+          "maxSinglePositionAmount": 687783,
+          "rejectionReason": "부족 자산군(전력기기)과 실행 후보 카테고리(원자력)가 달라 제외"
+        },
+        {
+          "code": "449450",
+          "name": "PLUS K방산",
+          "score": 66,
+          "reason": "주가가 20일선 위에서 유지 중이며, 중기 추세는 우상향, MACD 모멘텀이 우호적입니다. 지정학적 리스크 확대에 따른 방산 부문 수혜가 예상됩니다.",
+          "source": "stage2",
+          "stance": "buy",
+          "confidence": 0.85,
+          "targetAccounts": [
+            "TOSS",
+            "KIS_MAIN"
+          ],
+          "technical": {
+            "rsi": 60.29,
+            "bollingerPosition": "upper_half",
+            "atrPct": 0.047125,
+            "dayChangePct": 0.0154,
+            "fallback": {
+              "source": "previous_technical_snapshot",
+              "recovered_from_date": "2026-04-10",
+              "reason": "executionBias is not defined"
+            }
+          },
+          "currentPrice": 79200,
+          "maxCorrelationToPortfolio": 0.5643,
+          "entryCondition": "watch",
+          "entryTriggers": [
+            "RSI 60.3",
+            "볼린저 upper_half"
+          ],
+          "urgency": "this_week",
+          "conditionMet": false,
+          "fallback": false,
+          "sizingMethod": "inverse_atr",
+          "baseSuggestedAmount": 203510,
+          "suggestedAmount": 203510,
+          "correlationHaircutApplied": false,
+          "maxSinglePositionAmount": 687783,
+          "rejectionReason": "부족 자산군(전력기기)과 실행 후보 카테고리(방산)가 달라 제외"
         }
       ],
       "noAction": false,
       "noActionReason": null,
-      "validatorFlags": [],
+      "validatorFlags": [
+        "gap_action_mismatch:HANARO 원자력iSelect",
+        "gap_action_mismatch:PLUS K방산"
+      ],
       "validationConfidence": 0.85,
       "validationEvidence": [
-        {
-          "code": "298040",
-          "name": "효성중공업",
-          "source": "stage2",
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적"
-        },
         {
           "code": "487240",
           "name": "KODEX AI전력핵심설비",
           "source": "stage2",
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적"
+          "reason": "주가가 20일선 위에서 유지 중이며, 중기 추세는 우상향, MACD 모멘텀이 우호적입니다. AI 인프라 투자 확대 및 전력망 현대화 수요 증가로 관련 설비 기업들의 실적 개선이 기대됩니다."
         },
         {
           "code": "434730",
           "name": "HANARO 원자력iSelect",
           "source": "stage3",
-          "reason": "STRONG_BUY"
+          "reason": "씨틱증권은 2026년 4월 12일 미국과 이란 핵 협상을 분석하며, 이란이 우라늄 농축을 포기하면 트럼프 대통령에게 정치적 성과가 될 수 있다고 평가했습니다. 중동 분쟁은 미국 중간선거에 부정적 영향을 미쳤고, 양국 모두 전면전 가능성은 낮다고 봤습니다."
         }
       ],
       "trims": [],
@@ -788,7 +726,7 @@
         {
           "code": "434730",
           "name": "HANARO 원자력iSelect",
-          "score": 63,
+          "score": 67,
           "accountKey": "TOSS",
           "currentPrice": 64170,
           "entryPrice": 64095,
@@ -805,12 +743,12 @@
             "drawdownFromRecentHighPct": -0.0412,
             "triggers": []
           },
-          "reason": "STRONG_BUY"
+          "reason": "씨틱증권은 2026년 4월 12일 미국과 이란 핵 협상을 분석하며, 이란이 우라늄 농축을 포기하면 트럼프 대통령에게 정치적 성과가 될 수 있다고 평가했습니다. 중동 분쟁은 미국 중간선거에 부정적 영향을 미쳤고, 양국 모두 전면전 가능성은 낮다고 봤습니다."
         },
         {
           "code": "449450",
           "name": "PLUS V K생산",
-          "score": 64,
+          "score": 66,
           "accountKey": "TOSS",
           "currentPrice": 76695,
           "entryPrice": 77160,
@@ -827,7 +765,7 @@
             "drawdownFromRecentHighPct": -0.0047,
             "triggers": []
           },
-          "reason": "STRONG_BUY"
+          "reason": "씨틱증권은 2026년 4월 12일 미국과 이란 핵 협상을 분석하며, 이란이 우라늄 농축을 포기하면 트럼프 대통령에게 정치적 성과가 될 수 있다고 평가했습니다. 중동 분쟁은 미국 중간선거에 부정적 영향을 미쳤고, 양국 모두 전면전 가능성은 낮다고 봤습니다."
         }
       ],
       "watches": [
@@ -855,10 +793,10 @@
         }
       ],
       "macroCommentary": {
-        "summary": "추세 우상향 장세 토스증권은 AI·전력 인프라 비중 조정이 핵심입니다. 전술 테마와 성장 섹터를 민첩하게 반영하는 역할로 작동하는 계좌입니다.",
+        "summary": "중동 지정학 리스크와 유가 상승이 시장 변동성을 키우고 있습니다. 토스증권은 AI·전력 인프라 비중 조정이 핵심입니다. 전술 테마와 성장 섹터를 민첩하게 반영하는 역할로 작동하는 계좌입니다.",
         "drivers": [
-          "추세 우상향 장세",
-          "기술점수 상위 보유/후보가 존재해 선별 보강이 가능한 상태",
+          "중동 지정학 리스크와 유가 상승이 시장 변동성을 키우고 있습니다.",
+          "AI 인프라 및 전력기기 테마 노출 확대를 통한 성장 동력 확보.",
           "주간:知 - 기존 주도주로 컴백홈 (4월 2주)는 TOSS에 긍정 신호를 줍니다 (유가).",
           "Yuanta Morning Snapshot (26.04.10)는 TOSS에 부정 신호를 줍니다 (유가)."
         ],
@@ -867,8 +805,8 @@
           "전력기기",
           "방산"
         ],
-        "actionLine": "토스증권은 전력기기을 우선 보강하고, 효성중공업를 중심으로 574,653원 한도에서 분할 접근하는 편이 좋습니다.",
-        "reserveNote": "다음 tranche 전까지 예수금 일부를 유지하며 분할 접근"
+        "actionLine": "토스증권은 전력기기을 우선 보강하고, KODEX AI전력핵심설비를 중심으로 574,653원 한도에서 분할 접근하는 편이 좋습니다.",
+        "reserveNote": "테마 노출 중복 여부 재확인."
       },
       "stage1Drivers": [
         {
@@ -895,7 +833,7 @@
       "emergencyDefense": {
         "enabled": false,
         "vix": null,
-        "worstIndexDropPct": -0.9,
+        "worstIndexDropPct": -0.84,
         "triggers": [],
         "marketDataAvailable": true
       },
@@ -906,14 +844,14 @@
       "label": "한투 일반",
       "totalScore": 59,
       "stage2Bias": "selective_add",
-      "deployBudget": 1047842,
-      "plannedDeployBudget": 1047842,
-      "reserveCash": 596932,
+      "deployBudget": 1038697,
+      "plannedDeployBudget": 1038697,
+      "reserveCash": 606077,
       "topGap": {
         "category": "원자력",
         "targetPct": 0.25,
-        "currentPct": 0.03450988938282221,
-        "gapAmount": 878074
+        "currentPct": 0.03501565303697643,
+        "gapAmount": 868149
       },
       "candidateFromGap": "HANARO 원자력iSelect",
       "stage2Candidates": [
@@ -921,31 +859,32 @@
           "code": "434730",
           "name": "HANARO 원자력iSelect",
           "score": null,
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+          "reason": "주가가 20일선 위에서 유지 중이며, 중기 추세는 우상향, MACD 모멘텀이 우호적입니다. 원자력 산업은 장기적인 성장 전망이 밝으며, 정부 정책 지원 및 글로벌 에너지 전환 추세에 따라 수혜가 예상됩니다.",
           "source": "stage2",
           "stance": "buy",
           "confidence": 0.85,
           "targetAccounts": [
-            "TOSS"
-          ]
-        },
-        {
-          "code": "449450",
-          "name": "PLUS V K생산",
-          "score": null,
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
-          "source": "stage2",
-          "stance": "buy",
-          "confidence": 0.85,
-          "targetAccounts": [
-            "TOSS"
+            "TOSS",
+            "KIS_MAIN"
           ]
         },
         {
           "code": "047810",
           "name": "한국항공우주",
           "score": null,
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+          "reason": "주가가 20일선 위에서 유지 중이며, 중기 추세는 우상향, MACD 모멘텀이 우호적입니다. 방산 산업은 지정학적 긴장 고조로 인한 수주 증가 기대감이 있습니다.",
+          "source": "stage2",
+          "stance": "buy",
+          "confidence": 0.85,
+          "targetAccounts": [
+            "KIS_MAIN"
+          ]
+        },
+        {
+          "code": "064350",
+          "name": "현대로템",
+          "score": null,
+          "reason": "주가가 20일선 위에서 유지 중이며, 중기 추세는 약세이나 MACD 모멘텀이 우호적입니다. 철도 및 방산 부문의 수주 증가와 플랜트 사업의 회복이 기대됩니다.",
           "source": "stage2",
           "stance": "buy",
           "confidence": 0.85,
@@ -958,13 +897,14 @@
         {
           "code": "434730",
           "name": "HANARO 원자력iSelect",
-          "score": 63,
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+          "score": 66,
+          "reason": "주가가 20일선 위에서 유지 중이며, 중기 추세는 우상향, MACD 모멘텀이 우호적입니다. 원자력 산업은 장기적인 성장 전망이 밝으며, 정부 정책 지원 및 글로벌 에너지 전환 추세에 따라 수혜가 예상됩니다.",
           "source": "stage2",
           "stance": "buy",
           "confidence": 0.85,
           "targetAccounts": [
-            "TOSS"
+            "TOSS",
+            "KIS_MAIN"
           ],
           "technical": {
             "rsi": 56.44,
@@ -988,70 +928,18 @@
           "conditionMet": false,
           "fallback": false,
           "sizingMethod": "inverse_atr",
-          "baseSuggestedAmount": 351319,
-          "suggestedAmount": 351319,
+          "baseSuggestedAmount": 375608,
+          "suggestedAmount": 375608,
           "correlationHaircutApplied": false,
-          "maxSinglePositionAmount": 1222432
+          "maxSinglePositionAmount": 1211458
         }
       ],
       "rejectedAlternatives": [
         {
-          "code": "138910",
-          "name": "KODEX 구리선물(H)",
-          "score": null,
-          "reason": "기술점수와 현재 배분 상태를 기준으로 분류",
-          "source": "stage2",
-          "stance": "hold",
-          "confidence": 0.35,
-          "targetAccounts": [
-            "KIS_MAIN"
-          ],
-          "rejectionReason": "Stage 2 stance가 hold라 신규 매수 후보에서 제외"
-        },
-        {
-          "code": "449450",
-          "name": "PLUS V K생산",
-          "score": 64,
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
-          "source": "stage2",
-          "stance": "buy",
-          "confidence": 0.85,
-          "targetAccounts": [
-            "TOSS"
-          ],
-          "technical": {
-            "rsi": 60.29,
-            "bollingerPosition": "upper_half",
-            "atrPct": 0.047125,
-            "dayChangePct": 0.0154,
-            "fallback": {
-              "source": "previous_technical_snapshot",
-              "recovered_from_date": "2026-04-10",
-              "reason": "executionBias is not defined"
-            }
-          },
-          "currentPrice": 79200,
-          "maxCorrelationToPortfolio": 0.8999,
-          "entryCondition": "watch",
-          "entryTriggers": [
-            "RSI 60.3",
-            "볼린저 upper_half"
-          ],
-          "urgency": "this_week",
-          "conditionMet": false,
-          "fallback": false,
-          "sizingMethod": "inverse_atr",
-          "baseSuggestedAmount": 380565,
-          "suggestedAmount": 190283,
-          "correlationHaircutApplied": true,
-          "maxSinglePositionAmount": 1222432,
-          "rejectionReason": "부족 자산군(원자력)과 실행 후보 카테고리(방산)가 달라 제외"
-        },
-        {
           "code": "047810",
           "name": "한국항공우주",
-          "score": 73,
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+          "score": 69,
+          "reason": "주가가 20일선 위에서 유지 중이며, 중기 추세는 우상향, MACD 모멘텀이 우호적입니다. 방산 산업은 지정학적 긴장 고조로 인한 수주 증가 기대감이 있습니다.",
           "source": "stage2",
           "stance": "buy",
           "confidence": 0.85,
@@ -1080,18 +968,57 @@
           "conditionMet": false,
           "fallback": false,
           "sizingMethod": "inverse_atr",
-          "baseSuggestedAmount": 315958,
-          "suggestedAmount": 222932,
+          "baseSuggestedAmount": 337803,
+          "suggestedAmount": 244458,
           "correlationHaircutApplied": false,
-          "maxSinglePositionAmount": 1222432,
+          "maxSinglePositionAmount": 1211458,
+          "rejectionReason": "부족 자산군(원자력)과 실행 후보 카테고리(방산)가 달라 제외"
+        },
+        {
+          "code": "064350",
+          "name": "현대로템",
+          "score": 61,
+          "reason": "주가가 20일선 위에서 유지 중이며, 중기 추세는 약세이나 MACD 모멘텀이 우호적입니다. 철도 및 방산 부문의 수주 증가와 플랜트 사업의 회복이 기대됩니다.",
+          "source": "stage2",
+          "stance": "buy",
+          "confidence": 0.85,
+          "targetAccounts": [
+            "KIS_MAIN"
+          ],
+          "technical": {
+            "rsi": 55.31,
+            "bollingerPosition": "upper_half",
+            "atrPct": 0.058945,
+            "dayChangePct": 0.0345,
+            "fallback": {
+              "source": "previous_technical_snapshot",
+              "recovered_from_date": "2026-04-10",
+              "reason": "executionBias is not defined"
+            }
+          },
+          "currentPrice": 210000,
+          "maxCorrelationToPortfolio": 0.8999,
+          "entryCondition": "watch",
+          "entryTriggers": [
+            "RSI 55.3",
+            "볼린저 upper_half"
+          ],
+          "urgency": "this_week",
+          "conditionMet": false,
+          "fallback": false,
+          "sizingMethod": "inverse_atr",
+          "baseSuggestedAmount": 325287,
+          "suggestedAmount": 162644,
+          "correlationHaircutApplied": true,
+          "maxSinglePositionAmount": 1211458,
           "rejectionReason": "부족 자산군(원자력)과 실행 후보 카테고리(방산)가 달라 제외"
         }
       ],
       "noAction": false,
       "noActionReason": null,
       "validatorFlags": [
-        "gap_action_mismatch:PLUS V K생산",
-        "gap_action_mismatch:한국항공우주"
+        "gap_action_mismatch:한국항공우주",
+        "gap_action_mismatch:현대로템"
       ],
       "validationConfidence": 0.85,
       "validationEvidence": [
@@ -1099,7 +1026,7 @@
           "code": "434730",
           "name": "HANARO 원자력iSelect",
           "source": "stage2",
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적"
+          "reason": "주가가 20일선 위에서 유지 중이며, 중기 추세는 우상향, MACD 모멘텀이 우호적입니다. 원자력 산업은 장기적인 성장 전망이 밝으며, 정부 정책 지원 및 글로벌 에너지 전환 추세에 따라 수혜가 예상됩니다."
         },
         {
           "code": "064350",
@@ -1113,9 +1040,9 @@
         {
           "code": "064350",
           "name": "현대로템",
-          "score": 62,
+          "score": 61,
           "accountKey": "KIS_MAIN",
-          "currentPrice": 210000,
+          "currentPrice": 206500,
           "entryPrice": 208000,
           "atrPct": 0.058945,
           "rsi": 55.31,
@@ -1135,9 +1062,9 @@
         {
           "code": "434730",
           "name": "HANARO 원자력iSelect",
-          "score": 63,
+          "score": 66,
           "accountKey": "KIS_MAIN",
-          "currentPrice": 70310,
+          "currentPrice": 70700,
           "entryPrice": 64630,
           "atrPct": 0.051048,
           "rsi": 56.44,
@@ -1152,14 +1079,14 @@
             "drawdownFromRecentHighPct": -0.0412,
             "triggers": []
           },
-          "reason": "STRONG_BUY"
+          "reason": "씨틱증권은 2026년 4월 12일 미국과 이란 핵 협상을 분석하며, 이란이 우라늄 농축을 포기하면 트럼프 대통령에게 정치적 성과가 될 수 있다고 평가했습니다. 중동 분쟁은 미국 중간선거에 부정적 영향을 미쳤고, 양국 모두 전면전 가능성은 낮다고 봤습니다."
         },
         {
           "code": "449450",
           "name": "PLUS K방산",
-          "score": 64,
+          "score": 67,
           "accountKey": "KIS_MAIN",
-          "currentPrice": 79200,
+          "currentPrice": 78840,
           "entryPrice": 77758.5714,
           "atrPct": 0.047125,
           "rsi": 60.29,
@@ -1174,7 +1101,7 @@
             "drawdownFromRecentHighPct": -0.0047,
             "triggers": []
           },
-          "reason": "STRONG_BUY"
+          "reason": "씨틱증권은 2026년 4월 12일 미국과 이란 핵 협상을 분석하며, 이란이 우라늄 농축을 포기하면 트럼프 대통령에게 정치적 성과가 될 수 있다고 평가했습니다. 중동 분쟁은 미국 중간선거에 부정적 영향을 미쳤고, 양국 모두 전면전 가능성은 낮다고 봤습니다."
         }
       ],
       "watches": [
@@ -1183,7 +1110,7 @@
           "name": "KODEX 구리선물(H)",
           "score": 43,
           "accountKey": "KIS_MAIN",
-          "currentPrice": 9060,
+          "currentPrice": 9080,
           "entryPrice": 8765,
           "atrPct": null,
           "rsi": null,
@@ -1192,9 +1119,9 @@
             "enabled": true,
             "triggered": false,
             "entryPrice": 8765,
-            "currentPrice": 9060,
+            "currentPrice": 9080,
             "recentHigh": null,
-            "drawdownFromEntryPct": 0.0337,
+            "drawdownFromEntryPct": 0.0359,
             "drawdownFromRecentHighPct": null,
             "triggers": []
           },
@@ -1202,10 +1129,10 @@
         }
       ],
       "macroCommentary": {
-        "summary": "추세 우상향 장세 한투 일반은 에너지 안보/원전 비중 조정이 핵심입니다. 전술 테마와 현금 운용을 함께 조절하며 국내 ETF 알파를 쌓는 역할로 작동하는 계좌입니다.",
+        "summary": "중동 지정학 리스크와 유가 상승이 시장 변동성을 키우고 있습니다. 한투 일반은 에너지 안보/원전 비중 조정이 핵심입니다. 전술 테마와 현금 운용을 함께 조절하며 국내 ETF 알파를 쌓는 역할로 작동하는 계좌입니다.",
         "drivers": [
-          "추세 우상향 장세",
-          "기술점수 상위 보유/후보가 존재해 선별 보강이 가능한 상태",
+          "중동 지정학 리스크와 유가 상승이 시장 변동성을 키우고 있습니다.",
+          "원자력 및 방산 테마 비중 점검 및 강화.",
           "인터넷/게임는 KIS_MAIN에 부정 신호를 줍니다.",
           "5G SA를 준비하는 자세 견지해야는 KIS_MAIN에 긍정 신호를 줍니다 (AI 인프라)."
         ],
@@ -1214,8 +1141,8 @@
           "원자력",
           "미국인덱스"
         ],
-        "actionLine": "한투 일반은 원자력을 우선 보강하고, HANARO 원자력iSelect를 중심으로 1,047,842원 한도에서 분할 접근하는 편이 좋습니다.",
-        "reserveNote": "다음 tranche 전까지 예수금 일부를 유지하며 분할 접근"
+        "actionLine": "한투 일반은 원자력을 우선 보강하고, HANARO 원자력iSelect를 중심으로 1,038,697원 한도에서 분할 접근하는 편이 좋습니다.",
+        "reserveNote": "원자재 헤지 비중 조정 고려."
       },
       "stage1Drivers": [
         {
@@ -1242,7 +1169,7 @@
       "emergencyDefense": {
         "enabled": false,
         "vix": null,
-        "worstIndexDropPct": -0.9,
+        "worstIndexDropPct": -0.84,
         "triggers": [],
         "marketDataAvailable": true
       },

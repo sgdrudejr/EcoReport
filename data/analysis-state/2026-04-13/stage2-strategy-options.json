@@ -1,101 +1,45 @@
 {
   "date": "2026-04-13",
-  "runDate": "2026-04-13",
-  "effectiveMarketDate": "2026-04-13",
-  "runId": "2026-04-13-no-claude-full",
-  "generatedAt": "2026-04-13T01:25:37.410Z",
-  "source": "mock",
-  "mockMode": "fallback",
-  "purpose": "gemini_unavailable_fallback",
-  "safeForProduction": false,
   "macro_view": {
-    "regime": "BULL",
+    "regime": "HIGH_VOL",
     "confidence": "MEDIUM",
-    "summary": "추세 우상향 장세"
+    "summary": "중동 지정학 리스크와 유가 상승이 시장 변동성을 키우는 구간입니다. 선별적 추가와 방어를 병행해야 합니다."
   },
   "strategy_changes": [
     {
-      "theme": "AI 인프라",
-      "direction": "reinforce",
-      "why_now": "74개 리포트에서 AI 인프라 관련 논리가 확인됨",
-      "source_reports": [
-        "report_001",
-        "report_003",
-        "report_004",
-        "report_005",
-        "report_008"
-      ]
-    },
-    {
       "theme": "금/원자재",
-      "direction": "reduce",
-      "why_now": "97개 리포트에서 금/원자재 관련 논리가 확인됨",
+      "direction": "reinforce",
+      "why_now": "중동 지정학 리스크와 유가 상승으로 인한 안전자산 선호 심리 강화.",
       "source_reports": [
         "report_001",
         "report_002",
-        "report_003",
-        "report_004",
         "report_005"
       ]
     },
     {
-      "theme": "금리/매크로",
-      "direction": "reduce",
-      "why_now": "56개 리포트에서 금리/매크로 관련 논리가 확인됨",
+      "theme": "미국 코어 인덱스",
+      "direction": "reinforce",
+      "why_now": "미국 시장의 전반적인 강세와 AI 인프라, 전력기기 등 성장 테마의 견조한 흐름 예상.",
       "source_reports": [
-        "report_001",
-        "report_002",
         "report_003",
-        "report_004",
-        "report_005"
+        "report_004"
       ]
     },
     {
-      "theme": "HBM/메모리",
+      "theme": "AI 인프라/전력기기",
       "direction": "reinforce",
-      "why_now": "9개 리포트에서 HBM/메모리 관련 논리가 확인됨",
+      "why_now": "AI 인프라 투자 확대 및 전력망 현대화 수요 증가로 관련 설비 기업들의 실적 개선 기대.",
       "source_reports": [
         "report_003",
-        "report_023",
-        "report_030",
-        "report_033",
-        "report_034"
-      ]
-    },
-    {
-      "theme": "전력 인프라",
-      "direction": "reinforce",
-      "why_now": "23개 리포트에서 전력 인프라 관련 논리가 확인됨",
-      "source_reports": [
-        "report_003",
-        "report_010",
-        "report_014",
-        "report_016",
-        "report_017"
-      ]
-    },
-    {
-      "theme": "방산",
-      "direction": "reinforce",
-      "why_now": "21개 리포트에서 방산 관련 논리가 확인됨",
-      "source_reports": [
-        "report_003",
-        "report_004",
-        "report_013",
-        "report_017",
-        "report_018"
+        "report_010"
       ]
     },
     {
       "theme": "원자력",
       "direction": "reinforce",
-      "why_now": "13개 리포트에서 원자력 관련 논리가 확인됨",
+      "why_now": "원자력 산업은 장기적인 성장 전망이 밝으며, 정부 정책 지원 및 글로벌 에너지 전환 추세에 따라 수혜 예상.",
       "source_reports": [
-        "report_010",
-        "report_014",
-        "report_017",
-        "report_020",
-        "report_022"
+        "report_010"
       ]
     }
   ],
@@ -103,61 +47,63 @@
     {
       "account_key": "ISA",
       "bias": "selective_add",
-      "rationale": "기술점수 상위 보유/후보가 존재해 선별 보강이 가능한 상태",
+      "rationale": "금 보강을 통한 포트폴리오 안정화 및 헤지 역할 강화.",
       "buy_candidates": [
-        "360750",
         "132030"
       ],
       "trim_candidates": [],
       "hold_candidates": [
+        "360750",
         "458760"
       ],
-      "reserve_cash_note": "다음 tranche 전까지 예수금 일부를 유지하며 분할 접근"
+      "reserve_cash_note": "추가 분할 매수 전 현금 여력과 유가 흐름 확인."
     },
     {
       "account_key": "PENSION",
       "bias": "selective_add",
-      "rationale": "기술점수 상위 보유/후보가 존재해 선별 보강이 가능한 상태",
+      "rationale": "미국 코어 인덱스 비중 조정을 통한 장기 복리 관점의 자산 축적.",
       "buy_candidates": [
-        "133690",
         "360750"
       ],
       "trim_candidates": [
         "423160"
       ],
-      "hold_candidates": [],
-      "reserve_cash_note": "다음 tranche 전까지 예수금 일부를 유지하며 분할 접근"
+      "hold_candidates": [
+        "133690"
+      ],
+      "reserve_cash_note": "급등 추격보다 눌림 분할 여부 확인."
     },
     {
       "account_key": "TOSS",
       "bias": "selective_add",
-      "rationale": "기술점수 상위 보유/후보가 존재해 선별 보강이 가능한 상태",
+      "rationale": "AI 인프라 및 전력기기 테마 노출 확대를 통한 성장 동력 확보.",
       "buy_candidates": [
-        "434730",
-        "449450",
         "487240"
       ],
       "trim_candidates": [],
       "hold_candidates": [
-        "251350"
+        "434730",
+        "251350",
+        "449450"
       ],
-      "reserve_cash_note": "다음 tranche 전까지 예수금 일부를 유지하며 분할 접근"
+      "reserve_cash_note": "테마 노출 중복 여부 재확인."
     },
     {
       "account_key": "KIS_MAIN",
       "bias": "selective_add",
-      "rationale": "기술점수 상위 보유/후보가 존재해 선별 보강이 가능한 상태",
+      "rationale": "원자력 및 방산 테마 비중 점검 및 강화.",
       "buy_candidates": [
-        "047810",
-        "064350",
-        "434730",
-        "449450"
+        "434730"
       ],
-      "trim_candidates": [],
-      "hold_candidates": [
+      "trim_candidates": [
         "138910"
       ],
-      "reserve_cash_note": "다음 tranche 전까지 예수금 일부를 유지하며 분할 접근"
+      "hold_candidates": [
+        "047810",
+        "064350",
+        "449450"
+      ],
+      "reserve_cash_note": "원자재 헤지 비중 조정 고려."
     }
   ],
   "candidate_scores": [
@@ -166,124 +112,15 @@
       "name": "TIGER 미국S&P500",
       "stance": "buy",
       "target_accounts": [
-        "ISA"
-      ],
-      "horizon": "3m",
-      "confidence": "HIGH",
-      "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 약세, MACD 모멘텀이 우호적",
-      "risks": [
-        "볼린저밴드 상단 이탈"
-      ]
-    },
-    {
-      "code": "458760",
-      "name": "TIGER 미국배당다우존스스타데일리커...",
-      "stance": "hold",
-      "target_accounts": [
-        "ISA"
-      ],
-      "horizon": "1m",
-      "confidence": "LOW",
-      "thesis": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화",
-      "risks": []
-    },
-    {
-      "code": "423160",
-      "name": "KODEX KOFR금리액티브(합성)",
-      "stance": "trim",
-      "target_accounts": [
+        "ISA",
         "PENSION"
       ],
       "horizon": "1m",
       "confidence": "HIGH",
-      "thesis": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 둔화",
-      "risks": []
-    },
-    {
-      "code": "133690",
-      "name": "TIGER 미국나스닥100",
-      "stance": "buy",
-      "target_accounts": [
-        "PENSION"
-      ],
-      "horizon": "3m",
-      "confidence": "HIGH",
-      "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 약세, MACD 모멘텀이 우호적",
-      "risks": []
-    },
-    {
-      "code": "434730",
-      "name": "HANARO 원자력iSelect",
-      "stance": "buy",
-      "target_accounts": [
-        "TOSS"
-      ],
-      "horizon": "3m",
-      "confidence": "HIGH",
-      "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+      "thesis": "주가가 20일선 위에서 유지 중이며, 중기 추세는 약세이나 MACD 모멘텀이 우호적입니다. 미국 시장의 전반적인 강세와 성장 테마의 견조한 흐름이 예상됩니다.",
       "risks": [
-        "골든크로스(5일/20일) 발생"
+        "지정학적 리스크 재확대 시 변동성 확대 가능성."
       ]
-    },
-    {
-      "code": "251350",
-      "name": "KODEX 선진국ESG액티브",
-      "stance": "hold",
-      "target_accounts": [
-        "TOSS"
-      ],
-      "horizon": "1m",
-      "confidence": "LOW",
-      "thesis": "기술점수와 현재 배분 상태를 기준으로 분류",
-      "risks": []
-    },
-    {
-      "code": "449450",
-      "name": "PLUS V K생산",
-      "stance": "buy",
-      "target_accounts": [
-        "TOSS"
-      ],
-      "horizon": "3m",
-      "confidence": "HIGH",
-      "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
-      "risks": []
-    },
-    {
-      "code": "047810",
-      "name": "한국항공우주",
-      "stance": "buy",
-      "target_accounts": [
-        "KIS_MAIN"
-      ],
-      "horizon": "3m",
-      "confidence": "HIGH",
-      "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
-      "risks": []
-    },
-    {
-      "code": "064350",
-      "name": "현대로템",
-      "stance": "buy",
-      "target_accounts": [
-        "KIS_MAIN"
-      ],
-      "horizon": "3m",
-      "confidence": "HIGH",
-      "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 약세, MACD 모멘텀이 우호적",
-      "risks": []
-    },
-    {
-      "code": "138910",
-      "name": "KODEX 구리선물(H)",
-      "stance": "hold",
-      "target_accounts": [
-        "KIS_MAIN"
-      ],
-      "horizon": "1m",
-      "confidence": "LOW",
-      "thesis": "기술점수와 현재 배분 상태를 기준으로 분류",
-      "risks": []
     },
     {
       "code": "132030",
@@ -292,79 +129,108 @@
       "target_accounts": [
         "ISA"
       ],
-      "horizon": "3m",
+      "horizon": "1m",
       "confidence": "HIGH",
-      "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 약세, MACD 모멘텀이 우호적",
-      "risks": []
+      "thesis": "주가가 20일선 위에서 유지 중이며, 중기 추세는 약세이나 MACD 모멘텀이 우호적입니다. 중동 지정학적 불확실성 및 인플레이션 헤지 수요 증가로 금 가격 상승이 예상됩니다.",
+      "risks": [
+        "중동 휴전 협상 지속 여부 및 지정학 리스크 완화 시 금 가격 하락 가능성."
+      ]
     },
     {
       "code": "487240",
       "name": "KODEX AI전력핵심설비",
       "stance": "buy",
       "target_accounts": [
-        "토스"
+        "TOSS"
       ],
       "horizon": "3m",
       "confidence": "HIGH",
-      "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+      "thesis": "주가가 20일선 위에서 유지 중이며, 중기 추세는 우상향, MACD 모멘텀이 우호적입니다. AI 인프라 투자 확대 및 전력망 현대화 수요 증가로 관련 설비 기업들의 실적 개선이 기대됩니다.",
       "risks": [
-        "골든크로스(5일/20일) 발생",
-        "MACD 시그널 상향 돌파"
+        "AI 인프라 투자 관련 정책 변화 또는 기술 발전 속도 둔화 가능성."
       ]
     },
     {
-      "code": "005930",
-      "name": "삼성전자",
+      "code": "434730",
+      "name": "HANARO 원자력iSelect",
       "stance": "buy",
-      "target_accounts": [],
-      "horizon": "3m",
+      "target_accounts": [
+        "TOSS",
+        "KIS_MAIN"
+      ],
+      "horizon": "6m",
       "confidence": "HIGH",
-      "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
-      "risks": []
+      "thesis": "주가가 20일선 위에서 유지 중이며, 중기 추세는 우상향, MACD 모멘텀이 우호적입니다. 원자력 산업은 장기적인 성장 전망이 밝으며, 정부 정책 지원 및 글로벌 에너지 전환 추세에 따라 수혜가 예상됩니다.",
+      "risks": [
+        "원자력 발전 관련 규제 강화 또는 안전 문제 발생 가능성."
+      ]
     },
     {
-      "code": "000660",
-      "name": "SK하이닉스",
+      "code": "047810",
+      "name": "한국항공우주",
       "stance": "buy",
-      "target_accounts": [],
-      "horizon": "3m",
+      "target_accounts": [
+        "KIS_MAIN"
+      ],
+      "horizon": "6m",
       "confidence": "HIGH",
-      "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
-      "risks": []
+      "thesis": "주가가 20일선 위에서 유지 중이며, 중기 추세는 우상향, MACD 모멘텀이 우호적입니다. 방산 산업은 지정학적 긴장 고조로 인한 수주 증가 기대감이 있습니다.",
+      "risks": [
+        "국제 정세 완화 시 방산 관련 투자 심리 위축 가능성."
+      ]
     },
     {
-      "code": "267260",
-      "name": "HD현대일렉트릭",
+      "code": "064350",
+      "name": "현대로템",
       "stance": "buy",
-      "target_accounts": [],
-      "horizon": "3m",
+      "target_accounts": [
+        "KIS_MAIN"
+      ],
+      "horizon": "6m",
       "confidence": "HIGH",
-      "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 약세, MACD 모멘텀이 우호적",
-      "risks": []
+      "thesis": "주가가 20일선 위에서 유지 중이며, 중기 추세는 약세이나 MACD 모멘텀이 우호적입니다. 철도 및 방산 부문의 수주 증가와 플랜트 사업의 회복이 기대됩니다.",
+      "risks": [
+        "글로벌 경기 둔화 시 플랜트 사업 수주 부진 가능성."
+      ]
     },
     {
-      "code": "010120",
-      "name": "LS일렉트릭",
-      "stance": "watch",
-      "target_accounts": [],
-      "horizon": "1m",
-      "confidence": "LOW",
-      "thesis": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화",
-      "risks": []
+      "code": "449450",
+      "name": "PLUS K방산",
+      "stance": "buy",
+      "target_accounts": [
+        "TOSS",
+        "KIS_MAIN"
+      ],
+      "horizon": "6m",
+      "confidence": "HIGH",
+      "thesis": "주가가 20일선 위에서 유지 중이며, 중기 추세는 우상향, MACD 모멘텀이 우호적입니다. 지정학적 리스크 확대에 따른 방산 부문 수혜가 예상됩니다.",
+      "risks": [
+        "국제 정세 완화 시 방산 관련 투자 심리 위축 가능성."
+      ]
     },
     {
-      "code": "298040",
-      "name": "효성중공업",
-      "stance": "buy",
-      "target_accounts": [],
+      "code": "133690",
+      "name": "TIGER 미국나스닥100",
+      "stance": "hold",
+      "target_accounts": [
+        "PENSION"
+      ],
       "horizon": "3m",
-      "confidence": "HIGH",
-      "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
-      "risks": []
+      "confidence": "MEDIUM",
+      "thesis": "주가가 20일선 위에서 유지 중이며, 중기 추세는 약세이나 MACD 모멘텀이 우호적입니다. 미국 기술주 중심의 성장성이 기대됩니다.",
+      "risks": [
+        "금리 인상 가능성 및 기술주 밸류에이션 부담."
+      ]
     }
   ],
   "portfolio_risks": [
-    "리포트 기반 영향도는 휴리스틱 추출이므로 과신 금지",
-    "기술점수는 일간 스냅샷 기반이라 추세 반전 초입은 놓칠 수 있음"
-  ]
+    "중동 지정학 리스크의 추가 확대 및 장기화 가능성.",
+    "글로벌 인플레이션 압력 지속 및 금리 인상 우려 재부각 가능성."
+  ],
+  "runDate": "2026-04-13",
+  "effectiveMarketDate": "2026-04-13",
+  "runId": "2026-04-13-kis-gemini-full",
+  "generatedAt": "2026-04-13T01:45:16.249450Z",
+  "source": "gemini",
+  "model": "gemini-2.5-flash-lite"
 }

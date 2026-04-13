@@ -2,8 +2,8 @@
   "date": "2026-04-13",
   "runDate": "2026-04-13",
   "effectiveMarketDate": "2026-04-13",
-  "runId": "2026-04-13-no-claude-full",
-  "generatedAt": "2026-04-13T01:25:37.703Z",
+  "runId": "2026-04-13-kis-gemini-full",
+  "generatedAt": "2026-04-13T01:45:17.127Z",
   "reportInputs": {
     "reportCount": 100,
     "available": true
@@ -48,14 +48,14 @@
     "cgMomentum": null
   },
   "coverage": {
-    "factorCoverage": 0.9774,
-    "techCoverage": 0.9096,
-    "impactCoverage": 0.4895,
+    "factorCoverage": 0.9665,
+    "techCoverage": 0.9098,
+    "impactCoverage": 0.5885,
     "stage2Available": true
   },
   "quality": {
-    "unrelatedEvidenceRatio": 0.4355,
-    "blockedEvidenceCount": 18
+    "unrelatedEvidenceRatio": 0.2178,
+    "blockedEvidenceCount": 22
   },
   "configUsed": {
     "weightProfile": "balanced",
@@ -162,8 +162,8 @@
         "count": 13
       },
       "research": {
-        "mean": 0.2698,
-        "std": 0.3567,
+        "mean": 0.318,
+        "std": 0.3347,
         "count": 13
       },
       "income": {
@@ -172,8 +172,8 @@
         "count": 13
       },
       "macroFit": {
-        "mean": 0.134,
-        "std": 1.532,
+        "mean": 0.1432,
+        "std": 1.5251,
         "count": 13
       }
     }
@@ -190,7 +190,7 @@
       "incomeYield": 0.006,
       "technicalSignal": "BUY",
       "technicalBaseScore": 70,
-      "actionScore": 57,
+      "actionScore": 56,
       "direction": 0.528,
       "timing": -0.875,
       "reportScore": 0.03,
@@ -360,12 +360,12 @@
         "unavailableReason": null,
         "impactScore": 51,
         "impactValue": 0.03,
-        "impactCount": 34,
+        "impactCount": 38,
         "coverageWeight": 0.55,
         "directAccountImpactScore": 50,
         "relationSummary": {
           "directCount": 0,
-          "thematicCount": 36,
+          "thematicCount": 40,
           "secondOrderCount": 0,
           "blockedCount": 0,
           "unrelatedEvidenceRatio": 0
@@ -374,18 +374,18 @@
       "factor": {
         "raw": {
           "momentum": 0.7011,
-          "research": 0.3003,
+          "research": 0.1023,
           "income": 0.006,
           "macroFit": 0.7725
         },
         "zScores": {
           "momentum": 0.2443,
-          "research": 0.0855,
+          "research": -0.6446,
           "income": -0.3187,
-          "macroFit": 0.4168
+          "macroFit": 0.4127
         },
-        "weightedZ": 0.1467,
-        "score": 52,
+        "weightedZ": -0.0732,
+        "score": 49,
         "factorCoverage": 1,
         "availability": {
           "momentum": 1,
@@ -395,15 +395,15 @@
         }
       },
       "actionBlend": {
-        "score": 57,
+        "score": 56,
         "signal": "WATCH",
         "blended": true,
         "rawActionScore": 57,
-        "factorScore": 52,
+        "factorScore": 49,
         "actionWeight": 0.92,
         "factorWeight": 0.08,
         "factorCoverage": 1,
-        "delta": 0,
+        "delta": -1,
         "gateMode": "sameSignal",
         "factorApplied": true,
         "rawSignal": "WATCH",
@@ -420,16 +420,16 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 52,
+        "factorScore": 49,
         "techScore": 70,
         "reportScore": 51,
-        "actionScore": 57,
+        "actionScore": 56,
         "rawActionScore": 57
       },
       "explain": {
         "topDrivers": [
           "기술 기본점수 70점",
-          "리포트 영향 51점 (34건 연결)",
+          "리포트 영향 51점 (38건 연결)",
           "RSI 61.9"
         ],
         "warnings": [
@@ -444,7 +444,7 @@
       "accountKey": "KIS_MAIN",
       "accountLabel": "한투 일반",
       "category": "기타",
-      "marketValue": 525480,
+      "marketValue": 526640,
       "incomeYield": 0,
       "technicalSignal": "N/A",
       "technicalBaseScore": null,
@@ -779,18 +779,18 @@
       "factor": {
         "raw": {
           "momentum": -0.9,
-          "research": 0.0053,
+          "research": -0.0277,
           "income": 0,
-          "macroFit": -1.0317
+          "macroFit": -1.0433
         },
         "zScores": {
           "momentum": -1.8969,
-          "research": -0.7414,
+          "research": -1.0331,
           "income": -0.6295,
-          "macroFit": -0.7609
+          "macroFit": -0.778
         },
-        "weightedZ": -1.1329,
-        "score": 34,
+        "weightedZ": -1.2238,
+        "score": 33,
         "factorCoverage": 0.75,
         "availability": {
           "momentum": 0,
@@ -804,7 +804,7 @@
         "signal": "WATCH",
         "blended": false,
         "rawActionScore": 43,
-        "factorScore": 34,
+        "factorScore": 33,
         "actionWeight": 1,
         "factorWeight": 0,
         "factorCoverage": 0.75,
@@ -818,14 +818,14 @@
         "enabled": true,
         "triggered": false,
         "entryPrice": 8765,
-        "currentPrice": 9060,
+        "currentPrice": 9080,
         "recentHigh": null,
-        "drawdownFromEntryPct": 0.0337,
+        "drawdownFromEntryPct": 0.0359,
         "drawdownFromRecentHighPct": null,
         "triggers": []
       },
       "scores": {
-        "factorScore": 34,
+        "factorScore": 33,
         "techScore": null,
         "reportScore": 49,
         "actionScore": 43,
@@ -907,22 +907,22 @@
       "factor": {
         "raw": {
           "momentum": -0.9,
-          "research": 0.033,
+          "research": 0,
           "income": 0,
           "macroFit": -1.6226
         },
         "zScores": {
           "momentum": -1.8969,
-          "research": -0.6637,
+          "research": -0.9502,
           "income": -0.6295,
-          "macroFit": -1.1466
+          "macroFit": -1.1578
         },
-        "weightedZ": -1.1868,
-        "score": 33,
-        "factorCoverage": 0.75,
+        "weightedZ": -1.275,
+        "score": 32,
+        "factorCoverage": 0.5,
         "availability": {
           "momentum": 0,
-          "research": 1,
+          "research": 0,
           "income": 1,
           "macroFit": 1
         }
@@ -932,10 +932,10 @@
         "signal": "WATCH",
         "blended": false,
         "rawActionScore": 43,
-        "factorScore": 33,
+        "factorScore": 32,
         "actionWeight": 1,
         "factorWeight": 0,
-        "factorCoverage": 0.75,
+        "factorCoverage": 0.5,
         "delta": 0,
         "gateMode": "sameSignal",
         "factorApplied": false,
@@ -953,7 +953,7 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 33,
+        "factorScore": 32,
         "techScore": null,
         "reportScore": null,
         "actionScore": 43,
@@ -1148,12 +1148,12 @@
         "unavailableReason": null,
         "impactScore": 51,
         "impactValue": 0.03,
-        "impactCount": 34,
+        "impactCount": 38,
         "coverageWeight": 0.55,
         "directAccountImpactScore": 50,
         "relationSummary": {
           "directCount": 0,
-          "thematicCount": 36,
+          "thematicCount": 40,
           "secondOrderCount": 0,
           "blockedCount": 0,
           "unrelatedEvidenceRatio": 0
@@ -1168,12 +1168,12 @@
         },
         "zScores": {
           "momentum": 0.2,
-          "research": 0.0855,
+          "research": -0.053,
           "income": 0.0438,
-          "macroFit": 1.2542
+          "macroFit": 1.2538
         },
-        "weightedZ": 0.3531,
-        "score": 55,
+        "weightedZ": 0.3114,
+        "score": 54,
         "factorCoverage": 1,
         "availability": {
           "momentum": 1,
@@ -1187,7 +1187,7 @@
         "signal": "WATCH",
         "blended": true,
         "rawActionScore": 55,
-        "factorScore": 55,
+        "factorScore": 54,
         "actionWeight": 0.92,
         "factorWeight": 0.08,
         "factorCoverage": 1,
@@ -1208,7 +1208,7 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 55,
+        "factorScore": 54,
         "techScore": 77,
         "reportScore": 51,
         "actionScore": 55,
@@ -1217,7 +1217,7 @@
       "explain": {
         "topDrivers": [
           "기술 기본점수 77점",
-          "리포트 영향 51점 (34건 연결)",
+          "리포트 영향 51점 (38건 연결)",
           "RSI 62.1"
         ],
         "warnings": [
@@ -1410,12 +1410,12 @@
         "unavailableReason": null,
         "impactScore": 45,
         "impactValue": -0.184,
-        "impactCount": 29,
+        "impactCount": 30,
         "coverageWeight": 0.55,
         "directAccountImpactScore": 50,
         "relationSummary": {
           "directCount": 0,
-          "thematicCount": 32,
+          "thematicCount": 33,
           "secondOrderCount": 0,
           "blockedCount": 0,
           "unrelatedEvidenceRatio": 0
@@ -1424,17 +1424,17 @@
       "factor": {
         "raw": {
           "momentum": -0.0397,
-          "research": -0.2095,
+          "research": -0.1285,
           "income": 0.032,
           "macroFit": -2.5
         },
         "zScores": {
           "momentum": -0.7464,
-          "research": -1.3434,
+          "research": -1.3341,
           "income": 1.0279,
-          "macroFit": -1.7194
+          "macroFit": -1.7331
         },
-        "weightedZ": -0.854,
+        "weightedZ": -0.8539,
         "score": 38,
         "factorCoverage": 1,
         "availability": {
@@ -1479,7 +1479,7 @@
       "explain": {
         "topDrivers": [
           "기술 기본점수 17점",
-          "리포트 영향 45점 (29건 연결)",
+          "리포트 영향 45점 (30건 연결)",
           "RSI 52.1"
         ],
         "warnings": [
@@ -1498,14 +1498,14 @@
       "incomeYield": 0.004,
       "technicalSignal": "STRONG_BUY",
       "technicalBaseScore": 96,
-      "actionScore": 63,
-      "direction": 0.958,
-      "timing": -0.823,
-      "reportScore": 0,
+      "actionScore": 67,
+      "direction": 1.061,
+      "timing": -0.71,
+      "reportScore": 0.468,
       "probabilities": {
-        "p_buy": 0.5656,
-        "p_hold": 0.2868,
-        "p_sell": 0.1476
+        "p_buy": 0.706,
+        "p_hold": 0.2225,
+        "p_sell": 0.0715
       },
       "conviction": "MEDIUM",
       "signal": "HOLD",
@@ -1519,9 +1519,60 @@
         "stochTiming": -2.5,
         "volumeZ": -0.486
       },
-      "rawActionScore": 63,
+      "rawActionScore": 67,
       "rawSignal": "HOLD",
-      "reportImpacts": [],
+      "reportImpacts": [
+        {
+          "reportId": "marketvoice_1293068",
+          "title": "트럼프, 이란 핵 협상서 정치적 성과 기대",
+          "broker": "디지털데일리",
+          "publishedDate": "2026-04-13T01:33:17+00:00",
+          "reportType": "marketvoice",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "reason": "씨틱증권은 2026년 4월 12일 미국과 이란 핵 협상을 분석하며, 이란이 우라늄 농축을 포기하면 트럼프 대통령에게 정치적 성과가 될 수 있다고 평가했습니다. 중동 분쟁은 미국 중간선거에 부정적 영향을 미쳤고, 양국 모두 전면전 가능성은 낮다고 봤습니다.",
+          "evidenceNumbers": [
+            "인용 0건",
+            "원문 14건",
+            "반도체 -0.35%",
+            "국제유가 -0.12%",
+            "무기 -0.27%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.1229
+        },
+        {
+          "reportId": "marketvoice_1293068",
+          "title": "트럼프, 이란 핵 협상서 정치적 성과 기대",
+          "broker": "디지털데일리",
+          "publishedDate": "2026-04-13T01:33:17+00:00",
+          "reportType": "marketvoice",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "reason": "씨틱증권은 2026년 4월 12일 미국과 이란 핵 협상을 분석하며, 이란이 우라늄 농축을 포기하면 트럼프 대통령에게 정치적 성과가 될 수 있다고 평가했습니다. 중동 분쟁은 미국 중간선거에 부정적 영향을 미쳤고, 양국 모두 전면전 가능성은 낮다고 봤습니다.",
+          "evidenceNumbers": [
+            "인용 0건",
+            "원문 14건",
+            "반도체 -0.35%",
+            "국제유가 -0.12%",
+            "무기 -0.27%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.1229
+        }
+      ],
       "technical": {
         "signal": "STRONG_BUY",
         "score": 96,
@@ -1551,36 +1602,36 @@
       },
       "report": {
         "sourceLayer": "impact-map",
-        "available": false,
-        "unavailableReason": "no_linked_report",
-        "impactScore": null,
-        "impactValue": 0,
-        "impactCount": 0,
-        "coverageWeight": 0,
+        "available": true,
+        "unavailableReason": null,
+        "impactScore": 64,
+        "impactValue": 0.468,
+        "impactCount": 2,
+        "coverageWeight": 0.55,
         "directAccountImpactScore": 52,
         "relationSummary": {
           "directCount": 0,
-          "thematicCount": 0,
+          "thematicCount": 2,
           "secondOrderCount": 0,
           "blockedCount": 2,
-          "unrelatedEvidenceRatio": 1
+          "unrelatedEvidenceRatio": 0.5
         }
       },
       "factor": {
         "raw": {
           "momentum": 1.1236,
-          "research": 0.279,
+          "research": 0.6064,
           "income": 0.004,
           "macroFit": 0.1849
         },
         "zScores": {
           "momentum": 0.8094,
-          "research": 0.0259,
+          "research": 0.8615,
           "income": -0.4223,
-          "macroFit": 0.0332
+          "macroFit": 0.0274
         },
-        "weightedZ": 0.2343,
-        "score": 53,
+        "weightedZ": 0.4839,
+        "score": 57,
         "factorCoverage": 1,
         "availability": {
           "momentum": 1,
@@ -1590,11 +1641,11 @@
         }
       },
       "actionBlend": {
-        "score": 63,
+        "score": 67,
         "signal": "HOLD",
         "blended": false,
-        "rawActionScore": 63,
-        "factorScore": 53,
+        "rawActionScore": 67,
+        "factorScore": 57,
         "actionWeight": 1,
         "factorWeight": 0,
         "factorCoverage": 1,
@@ -1615,15 +1666,16 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 53,
+        "factorScore": 57,
         "techScore": 96,
-        "reportScore": null,
-        "actionScore": 63,
-        "rawActionScore": 63
+        "reportScore": 64,
+        "actionScore": 67,
+        "rawActionScore": 67
       },
       "explain": {
         "topDrivers": [
           "기술 기본점수 96점",
+          "리포트 영향 64점 (2건 연결)",
           "RSI 56.4"
         ],
         "warnings": []
@@ -1636,18 +1688,18 @@
       "accountKey": "KIS_MAIN",
       "accountLabel": "한투 일반",
       "category": "방산",
-      "marketValue": 554400,
+      "marketValue": 551880,
       "incomeYield": 0.004,
       "technicalSignal": "STRONG_BUY",
       "technicalBaseScore": 96,
-      "actionScore": 64,
-      "direction": 1.013,
-      "timing": -0.833,
-      "reportScore": 0,
+      "actionScore": 67,
+      "direction": 1.108,
+      "timing": -0.73,
+      "reportScore": 0.431,
       "probabilities": {
-        "p_buy": 0.581,
-        "p_hold": 0.2801,
-        "p_sell": 0.1388
+        "p_buy": 0.7088,
+        "p_hold": 0.2205,
+        "p_sell": 0.0707
       },
       "conviction": "MEDIUM",
       "signal": "HOLD",
@@ -1661,9 +1713,129 @@
         "stochTiming": -2.5,
         "volumeZ": 0.04299999999999993
       },
-      "rawActionScore": 64,
+      "rawActionScore": 67,
       "rawSignal": "HOLD",
-      "reportImpacts": [],
+      "reportImpacts": [
+        {
+          "reportId": "marketvoice_1293068",
+          "title": "트럼프, 이란 핵 협상서 정치적 성과 기대",
+          "broker": "디지털데일리",
+          "publishedDate": "2026-04-13T01:33:17+00:00",
+          "reportType": "marketvoice",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "reason": "씨틱증권은 2026년 4월 12일 미국과 이란 핵 협상을 분석하며, 이란이 우라늄 농축을 포기하면 트럼프 대통령에게 정치적 성과가 될 수 있다고 평가했습니다. 중동 분쟁은 미국 중간선거에 부정적 영향을 미쳤고, 양국 모두 전면전 가능성은 낮다고 봤습니다.",
+          "evidenceNumbers": [
+            "인용 0건",
+            "원문 14건",
+            "반도체 -0.35%",
+            "국제유가 -0.12%",
+            "무기 -0.27%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.1229
+        },
+        {
+          "reportId": "marketvoice_1293068",
+          "title": "트럼프, 이란 핵 협상서 정치적 성과 기대",
+          "broker": "디지털데일리",
+          "publishedDate": "2026-04-13T01:33:17+00:00",
+          "reportType": "marketvoice",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "reason": "씨틱증권은 2026년 4월 12일 미국과 이란 핵 협상을 분석하며, 이란이 우라늄 농축을 포기하면 트럼프 대통령에게 정치적 성과가 될 수 있다고 평가했습니다. 중동 분쟁은 미국 중간선거에 부정적 영향을 미쳤고, 양국 모두 전면전 가능성은 낮다고 봤습니다.",
+          "evidenceNumbers": [
+            "인용 0건",
+            "원문 14건",
+            "반도체 -0.35%",
+            "국제유가 -0.12%",
+            "무기 -0.27%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.1229
+        },
+        {
+          "reportId": "marketvoice_1295211",
+          "title": "한국카본, 미국 생산시설 구축에 2,000만 달러 투자",
+          "broker": "이데일리",
+          "publishedDate": "2026-04-13T01:30:00+00:00",
+          "reportType": "marketvoice",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.474,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "reason": "한국카본이 미국 내 생산시설 확보를 위해 2,000만 달러를 투자한다고 발표했습니다. 이번 투자는 북미 복합소재 생산능력 확대와 글로벌 공급망 경쟁력 강화를 목표로 합니다. 우주항공, 방산 진출과 미국 조선업 재건 정책 대응에도 활용될 예정입니다.",
+          "evidenceNumbers": [
+            "인용 0건",
+            "원문 1건",
+            "한국카본 +11.06%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.0857
+        },
+        {
+          "reportId": "marketvoice_1295211",
+          "title": "한국카본, 미국 생산시설 구축에 2,000만 달러 투자",
+          "broker": "이데일리",
+          "publishedDate": "2026-04-13T01:30:00+00:00",
+          "reportType": "marketvoice",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.474,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "reason": "한국카본이 미국 내 생산시설 확보를 위해 2,000만 달러를 투자한다고 발표했습니다. 이번 투자는 북미 복합소재 생산능력 확대와 글로벌 공급망 경쟁력 강화를 목표로 합니다. 우주항공, 방산 진출과 미국 조선업 재건 정책 대응에도 활용될 예정입니다.",
+          "evidenceNumbers": [
+            "인용 0건",
+            "원문 1건",
+            "한국카본 +11.06%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.0857
+        },
+        {
+          "reportId": "marketvoice_1295213",
+          "title": "한화에어로스페이스, 풍산 방산 부문 인수 추진과 방위사업청 심사",
+          "broker": "블로터",
+          "publishedDate": "2026-04-13T01:30:00+00:00",
+          "reportType": "marketvoice",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.458,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "reason": "한화에어로스페이스가 풍산 방산 부문 인수를 추진 중이며, 방위사업청 허가가 관건입니다. 방위사업청은 독점보다는 공급망 다변화와 전력 유지에 초점을 맞추고 심사하고 있습니다.",
+          "evidenceNumbers": [
+            "인용 0건",
+            "원문 1건",
+            "한화 -3.42%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.0828
+        }
+      ],
       "technical": {
         "signal": "STRONG_BUY",
         "score": 96,
@@ -1693,36 +1865,36 @@
       },
       "report": {
         "sourceLayer": "impact-map",
-        "available": false,
-        "unavailableReason": "no_linked_report",
-        "impactScore": null,
-        "impactValue": 0,
-        "impactCount": 0,
-        "coverageWeight": 0,
+        "available": true,
+        "unavailableReason": null,
+        "impactScore": 63,
+        "impactValue": 0.431,
+        "impactCount": 6,
+        "coverageWeight": 0.55,
         "directAccountImpactScore": 48,
         "relationSummary": {
           "directCount": 0,
-          "thematicCount": 0,
+          "thematicCount": 6,
           "secondOrderCount": 0,
           "blockedCount": 2,
-          "unrelatedEvidenceRatio": 1
+          "unrelatedEvidenceRatio": 0.25
         }
       },
       "factor": {
         "raw": {
           "momentum": 1.2085,
-          "research": 0.279,
+          "research": 0.5809,
           "income": 0.004,
-          "macroFit": -0.866
+          "macroFit": -0.821
         },
         "zScores": {
           "momentum": 0.9229,
-          "research": 0.0259,
+          "research": 0.7855,
           "income": -0.4223,
-          "macroFit": -0.6527
+          "macroFit": -0.6322
         },
-        "weightedZ": 0.1369,
-        "score": 52,
+        "weightedZ": 0.3689,
+        "score": 55,
         "factorCoverage": 1,
         "availability": {
           "momentum": 1,
@@ -1732,11 +1904,11 @@
         }
       },
       "actionBlend": {
-        "score": 64,
+        "score": 67,
         "signal": "HOLD",
         "blended": false,
-        "rawActionScore": 64,
-        "factorScore": 52,
+        "rawActionScore": 67,
+        "factorScore": 55,
         "actionWeight": 1,
         "factorWeight": 0,
         "factorCoverage": 1,
@@ -1757,15 +1929,16 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 52,
+        "factorScore": 55,
         "techScore": 96,
-        "reportScore": null,
-        "actionScore": 64,
-        "rawActionScore": 64
+        "reportScore": 63,
+        "actionScore": 67,
+        "rawActionScore": 67
       },
       "explain": {
         "topDrivers": [
           "기술 기본점수 96점",
+          "리포트 영향 63점 (6건 연결)",
           "RSI 60.3"
         ],
         "warnings": []
@@ -1970,18 +2143,18 @@
       "factor": {
         "raw": {
           "momentum": 0.1296,
-          "research": -0.0955,
+          "research": -0.1285,
           "income": 0.07,
           "macroFit": 1.858
         },
         "zScores": {
           "momentum": -0.5199,
-          "research": -1.0239,
+          "research": -1.3341,
           "income": 2.9959,
-          "macroFit": 1.1254
+          "macroFit": 1.1244
         },
-        "weightedZ": 0.1853,
-        "score": 53,
+        "weightedZ": 0.0921,
+        "score": 51,
         "factorCoverage": 1,
         "availability": {
           "momentum": 1,
@@ -1995,7 +2168,7 @@
         "signal": "HOLD",
         "blended": false,
         "rawActionScore": 60,
-        "factorScore": 53,
+        "factorScore": 51,
         "actionWeight": 1,
         "factorWeight": 0,
         "factorCoverage": 1,
@@ -2016,7 +2189,7 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 53,
+        "factorScore": 51,
         "techScore": 47,
         "reportScore": 45,
         "actionScore": 60,
@@ -2038,21 +2211,21 @@
       "accountKey": "KIS_MAIN",
       "accountLabel": "한투 일반",
       "category": "방산",
-      "marketValue": 999500,
+      "marketValue": 967000,
       "incomeYield": 0.004,
       "technicalSignal": "STRONG_BUY",
       "technicalBaseScore": 96,
-      "actionScore": 73,
-      "direction": 1.275,
-      "timing": -0.472,
-      "reportScore": 1.239,
+      "actionScore": 69,
+      "direction": 1.166,
+      "timing": -0.591,
+      "reportScore": 0.742,
       "probabilities": {
-        "p_buy": 0.8669,
-        "p_hold": 0.1169,
-        "p_sell": 0.0162
+        "p_buy": 0.7846,
+        "p_hold": 0.1753,
+        "p_sell": 0.04
       },
       "conviction": "MEDIUM",
-      "signal": "BUY",
+      "signal": "HOLD",
       "features": {
         "maTrend": 2.5,
         "macdZ": 0.4407707831952138,
@@ -2063,8 +2236,8 @@
         "stochTiming": -2.5,
         "volumeZ": 0.45500000000000007
       },
-      "rawActionScore": 73,
-      "rawSignal": "BUY",
+      "rawActionScore": 70,
+      "rawSignal": "HOLD",
       "reportImpacts": [
         {
           "reportId": "report_041",
@@ -2136,6 +2309,56 @@
           "relationWeight": 1,
           "evidenceScore": 1,
           "contribution": -0.1448
+        },
+        {
+          "reportId": "marketvoice_1293068",
+          "title": "트럼프, 이란 핵 협상서 정치적 성과 기대",
+          "broker": "디지털데일리",
+          "publishedDate": "2026-04-13T01:33:17+00:00",
+          "reportType": "marketvoice",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "reason": "씨틱증권은 2026년 4월 12일 미국과 이란 핵 협상을 분석하며, 이란이 우라늄 농축을 포기하면 트럼프 대통령에게 정치적 성과가 될 수 있다고 평가했습니다. 중동 분쟁은 미국 중간선거에 부정적 영향을 미쳤고, 양국 모두 전면전 가능성은 낮다고 봤습니다.",
+          "evidenceNumbers": [
+            "인용 0건",
+            "원문 14건",
+            "반도체 -0.35%",
+            "국제유가 -0.12%",
+            "무기 -0.27%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.1229
+        },
+        {
+          "reportId": "marketvoice_1293068",
+          "title": "트럼프, 이란 핵 협상서 정치적 성과 기대",
+          "broker": "디지털데일리",
+          "publishedDate": "2026-04-13T01:33:17+00:00",
+          "reportType": "marketvoice",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "reason": "씨틱증권은 2026년 4월 12일 미국과 이란 핵 협상을 분석하며, 이란이 우라늄 농축을 포기하면 트럼프 대통령에게 정치적 성과가 될 수 있다고 평가했습니다. 중동 분쟁은 미국 중간선거에 부정적 영향을 미쳤고, 양국 모두 전면전 가능성은 낮다고 봤습니다.",
+          "evidenceNumbers": [
+            "인용 0건",
+            "원문 14건",
+            "반도체 -0.35%",
+            "국제유가 -0.12%",
+            "무기 -0.27%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.1229
         }
       ],
       "technical": {
@@ -2169,34 +2392,34 @@
         "sourceLayer": "impact-map",
         "available": true,
         "unavailableReason": null,
-        "impactScore": 82,
-        "impactValue": 1.239,
-        "impactCount": 3,
+        "impactScore": 71,
+        "impactValue": 0.742,
+        "impactCount": 9,
         "coverageWeight": 1,
         "directAccountImpactScore": 48,
         "relationSummary": {
           "directCount": 3,
-          "thematicCount": 0,
+          "thematicCount": 6,
           "secondOrderCount": 0,
           "blockedCount": 2,
-          "unrelatedEvidenceRatio": 0.4
+          "unrelatedEvidenceRatio": 0.1818
         }
       },
       "factor": {
         "raw": {
           "momentum": 1.196,
-          "research": 1.1463,
+          "research": 0.7985,
           "income": 0.004,
-          "macroFit": -0.866
+          "macroFit": -0.821
         },
         "zScores": {
           "momentum": 0.9061,
-          "research": 2.457,
+          "research": 1.4356,
           "income": -0.4223,
-          "macroFit": -0.6527
+          "macroFit": -0.6322
         },
-        "weightedZ": 0.8604,
-        "score": 62,
+        "weightedZ": 0.558,
+        "score": 58,
         "factorCoverage": 1,
         "availability": {
           "momentum": 1,
@@ -2206,18 +2429,18 @@
         }
       },
       "actionBlend": {
-        "score": 73,
-        "signal": "BUY",
-        "blended": false,
-        "rawActionScore": 73,
-        "factorScore": 62,
-        "actionWeight": 1,
-        "factorWeight": 0,
+        "score": 69,
+        "signal": "HOLD",
+        "blended": true,
+        "rawActionScore": 70,
+        "factorScore": 58,
+        "actionWeight": 0.92,
+        "factorWeight": 0.08,
         "factorCoverage": 1,
-        "delta": 0,
+        "delta": -1,
         "gateMode": "sameSignal",
-        "factorApplied": false,
-        "rawSignal": "BUY",
+        "factorApplied": true,
+        "rawSignal": "HOLD",
         "factorSignal": "HOLD"
       },
       "stopLoss": {
@@ -2231,16 +2454,16 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 62,
+        "factorScore": 58,
         "techScore": 96,
-        "reportScore": 82,
-        "actionScore": 73,
-        "rawActionScore": 73
+        "reportScore": 71,
+        "actionScore": 69,
+        "rawActionScore": 70
       },
       "explain": {
         "topDrivers": [
           "기술 기본점수 96점",
-          "리포트 영향 82점 (3건 연결)",
+          "리포트 영향 71점 (9건 연결)",
           "RSI 60.0"
         ],
         "warnings": []
@@ -2253,20 +2476,20 @@
       "accountKey": "KIS_MAIN",
       "accountLabel": "한투 일반",
       "category": "방산",
-      "marketValue": 210000,
+      "marketValue": 206500,
       "incomeYield": 0.004,
       "technicalSignal": "STRONG_BUY",
       "technicalBaseScore": 86,
-      "actionScore": 62,
-      "direction": 0.587,
-      "timing": -0.512,
-      "reportScore": 0.702,
+      "actionScore": 61,
+      "direction": 0.555,
+      "timing": -0.547,
+      "reportScore": 0.555,
       "probabilities": {
-        "p_buy": 0.6499,
-        "p_hold": 0.258,
-        "p_sell": 0.0921
+        "p_buy": 0.6054,
+        "p_hold": 0.279,
+        "p_sell": 0.1156
       },
-      "conviction": "MEDIUM",
+      "conviction": "LOW",
       "signal": "HOLD",
       "features": {
         "maTrend": 0.34680141238105655,
@@ -2278,7 +2501,7 @@
         "stochTiming": -2.5,
         "volumeZ": 0.3520000000000001
       },
-      "rawActionScore": 62,
+      "rawActionScore": 61,
       "rawSignal": "HOLD",
       "reportImpacts": [
         {
@@ -2303,6 +2526,102 @@
           "relationWeight": 1,
           "evidenceScore": 1,
           "contribution": 0.2926
+        },
+        {
+          "reportId": "marketvoice_1293068",
+          "title": "트럼프, 이란 핵 협상서 정치적 성과 기대",
+          "broker": "디지털데일리",
+          "publishedDate": "2026-04-13T01:33:17+00:00",
+          "reportType": "marketvoice",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "reason": "씨틱증권은 2026년 4월 12일 미국과 이란 핵 협상을 분석하며, 이란이 우라늄 농축을 포기하면 트럼프 대통령에게 정치적 성과가 될 수 있다고 평가했습니다. 중동 분쟁은 미국 중간선거에 부정적 영향을 미쳤고, 양국 모두 전면전 가능성은 낮다고 봤습니다.",
+          "evidenceNumbers": [
+            "인용 0건",
+            "원문 14건",
+            "반도체 -0.35%",
+            "국제유가 -0.12%",
+            "무기 -0.27%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.1229
+        },
+        {
+          "reportId": "marketvoice_1293068",
+          "title": "트럼프, 이란 핵 협상서 정치적 성과 기대",
+          "broker": "디지털데일리",
+          "publishedDate": "2026-04-13T01:33:17+00:00",
+          "reportType": "marketvoice",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "reason": "씨틱증권은 2026년 4월 12일 미국과 이란 핵 협상을 분석하며, 이란이 우라늄 농축을 포기하면 트럼프 대통령에게 정치적 성과가 될 수 있다고 평가했습니다. 중동 분쟁은 미국 중간선거에 부정적 영향을 미쳤고, 양국 모두 전면전 가능성은 낮다고 봤습니다.",
+          "evidenceNumbers": [
+            "인용 0건",
+            "원문 14건",
+            "반도체 -0.35%",
+            "국제유가 -0.12%",
+            "무기 -0.27%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.1229
+        },
+        {
+          "reportId": "marketvoice_1295211",
+          "title": "한국카본, 미국 생산시설 구축에 2,000만 달러 투자",
+          "broker": "이데일리",
+          "publishedDate": "2026-04-13T01:30:00+00:00",
+          "reportType": "marketvoice",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.474,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "reason": "한국카본이 미국 내 생산시설 확보를 위해 2,000만 달러를 투자한다고 발표했습니다. 이번 투자는 북미 복합소재 생산능력 확대와 글로벌 공급망 경쟁력 강화를 목표로 합니다. 우주항공, 방산 진출과 미국 조선업 재건 정책 대응에도 활용될 예정입니다.",
+          "evidenceNumbers": [
+            "인용 0건",
+            "원문 1건",
+            "한국카본 +11.06%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.0857
+        },
+        {
+          "reportId": "marketvoice_1295211",
+          "title": "한국카본, 미국 생산시설 구축에 2,000만 달러 투자",
+          "broker": "이데일리",
+          "publishedDate": "2026-04-13T01:30:00+00:00",
+          "reportType": "marketvoice",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.474,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "reason": "한국카본이 미국 내 생산시설 확보를 위해 2,000만 달러를 투자한다고 발표했습니다. 이번 투자는 북미 복합소재 생산능력 확대와 글로벌 공급망 경쟁력 강화를 목표로 합니다. 우주항공, 방산 진출과 미국 조선업 재건 정책 대응에도 활용될 예정입니다.",
+          "evidenceNumbers": [
+            "인용 0건",
+            "원문 1건",
+            "한국카본 +11.06%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.0857
         }
       ],
       "technical": {
@@ -2336,34 +2655,34 @@
         "sourceLayer": "impact-map",
         "available": true,
         "unavailableReason": null,
-        "impactScore": 70,
-        "impactValue": 0.702,
-        "impactCount": 1,
+        "impactScore": 66,
+        "impactValue": 0.555,
+        "impactCount": 7,
         "coverageWeight": 1,
         "directAccountImpactScore": 48,
         "relationSummary": {
           "directCount": 1,
-          "thematicCount": 0,
+          "thematicCount": 6,
           "secondOrderCount": 0,
           "blockedCount": 2,
-          "unrelatedEvidenceRatio": 0.6667
+          "unrelatedEvidenceRatio": 0.2222
         }
       },
       "factor": {
         "raw": {
           "momentum": 0.5523,
-          "research": 0.7706,
+          "research": 0.6677,
           "income": 0.004,
-          "macroFit": -0.866
+          "macroFit": -0.821
         },
         "zScores": {
           "momentum": 0.0453,
-          "research": 1.4038,
+          "research": 1.0448,
           "income": -0.4223,
-          "macroFit": -0.6527
+          "macroFit": -0.6322
         },
-        "weightedZ": 0.2431,
-        "score": 53,
+        "weightedZ": 0.1395,
+        "score": 52,
         "factorCoverage": 1,
         "availability": {
           "momentum": 1,
@@ -2373,11 +2692,11 @@
         }
       },
       "actionBlend": {
-        "score": 62,
+        "score": 61,
         "signal": "HOLD",
         "blended": false,
-        "rawActionScore": 62,
-        "factorScore": 53,
+        "rawActionScore": 61,
+        "factorScore": 52,
         "actionWeight": 1,
         "factorWeight": 0,
         "factorCoverage": 1,
@@ -2398,16 +2717,16 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 53,
+        "factorScore": 52,
         "techScore": 86,
-        "reportScore": 70,
-        "actionScore": 62,
-        "rawActionScore": 62
+        "reportScore": 66,
+        "actionScore": 61,
+        "rawActionScore": 61
       },
       "explain": {
         "topDrivers": [
           "기술 기본점수 86점",
-          "리포트 영향 70점 (1건 연결)",
+          "리포트 영향 66점 (7건 연결)",
           "RSI 55.3"
         ],
         "warnings": []
@@ -2427,13 +2746,13 @@
       "technicalSignal": "BUY",
       "technicalBaseScore": 77,
       "actionScore": 53,
-      "direction": 0.455,
-      "timing": -1.165,
-      "reportScore": -0.198,
+      "direction": 0.467,
+      "timing": -1.153,
+      "reportScore": -0.148,
       "probabilities": {
-        "p_buy": 0.3046,
-        "p_hold": 0.3364,
-        "p_sell": 0.359
+        "p_buy": 0.3212,
+        "p_hold": 0.337,
+        "p_sell": 0.3418
       },
       "conviction": "MEDIUM",
       "signal": "WATCH",
@@ -2451,29 +2770,26 @@
       "rawSignal": "WATCH",
       "reportImpacts": [
         {
-          "reportId": "marketvoice_1295118",
-          "title": "2026년 자산시장, 원유·금 상승에 비트코인 하락",
-          "broker": "증권사 애널 크롤러🇰🇷",
-          "publishedDate": "2026-04-13T01:15:23+00:00",
+          "reportId": "marketvoice_1295223",
+          "title": "금값 5천달러 돌파, JP모건 6천3백달러 전망",
+          "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
+          "publishedDate": "2026-04-13T01:32:58+00:00",
           "reportType": "marketvoice",
           "targetType": "category",
           "direction": "negative",
           "strength": 0.68,
-          "confidence": 0.58,
-          "horizon": "1m",
-          "decayHalfLifeDays": 14,
-          "reason": "Bank of America가 2026년 자산 시장 동향을 분석했어요. 원유와 금 가격은 크게 올랐지만, 비트코인은 17.4% 떨어졌습니다. 현금 유입은 707억 달러로 최대치였고, 투자자 심리는 30년 만에 가장 비관적입니다.",
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "reason": "2026년 1월 26일 금 가격이 온스당 5,000달러를 처음 넘었고, JP모건은 연말까지 6,300달러까지 오를 수 있다고 전망했습니다. 중동 지정학적 위험과 인플레이션 대응이 금 시장에 영향을 주고 있습니다.",
           "evidenceNumbers": [
             "인용 0건",
-            "원문 1건",
-            "반도체 -0.23%",
-            "AI -1.30%",
-            "서비스 -0.44%"
+            "원문 1건"
           ],
           "relationType": "second_order",
           "relationWeight": 0.45,
           "evidenceScore": 0.48,
-          "contribution": -0.0825
+          "contribution": -0.0615
         }
       ],
       "technical": {
@@ -2507,8 +2823,8 @@
         "sourceLayer": "impact-map",
         "available": true,
         "unavailableReason": null,
-        "impactScore": 44,
-        "impactValue": -0.198,
+        "impactScore": 46,
+        "impactValue": -0.148,
         "impactCount": 1,
         "coverageWeight": 0.55,
         "directAccountImpactScore": 55,
@@ -2516,24 +2832,24 @@
           "directCount": 0,
           "thematicCount": 0,
           "secondOrderCount": 1,
-          "blockedCount": 1,
-          "unrelatedEvidenceRatio": 0.5
+          "blockedCount": 5,
+          "unrelatedEvidenceRatio": 0.8333
         }
       },
       "factor": {
         "raw": {
           "momentum": 0.668,
-          "research": 0.1404,
+          "research": 0.1757,
           "income": 0.013,
           "macroFit": 1.909
         },
         "zScores": {
           "momentum": 0.2,
-          "research": -0.3628,
+          "research": -0.4252,
           "income": 0.0438,
-          "macroFit": 1.1587
+          "macroFit": 1.1579
         },
-        "weightedZ": 0.1995,
+        "weightedZ": 0.1806,
         "score": 53,
         "factorCoverage": 1,
         "availability": {
@@ -2571,14 +2887,14 @@
       "scores": {
         "factorScore": 53,
         "techScore": 77,
-        "reportScore": 44,
+        "reportScore": 46,
         "actionScore": 53,
         "rawActionScore": 53
       },
       "explain": {
         "topDrivers": [
           "기술 기본점수 77점",
-          "리포트 영향 44점 (1건 연결)",
+          "리포트 영향 46점 (1건 연결)",
           "RSI 62.1"
         ],
         "warnings": [
@@ -2785,18 +3101,18 @@
       "factor": {
         "raw": {
           "momentum": 0.1296,
-          "research": -0.0955,
+          "research": -0.1285,
           "income": 0.07,
           "macroFit": 1.858
         },
         "zScores": {
           "momentum": -0.5199,
-          "research": -1.0239,
+          "research": -1.3341,
           "income": 2.9959,
-          "macroFit": 1.1254
+          "macroFit": 1.1244
         },
-        "weightedZ": 0.1853,
-        "score": 53,
+        "weightedZ": 0.0921,
+        "score": 51,
         "factorCoverage": 1,
         "availability": {
           "momentum": 1,
@@ -2810,7 +3126,7 @@
         "signal": "HOLD",
         "blended": false,
         "rawActionScore": 60,
-        "factorScore": 53,
+        "factorScore": 51,
         "actionWeight": 1,
         "factorWeight": 0,
         "factorCoverage": 1,
@@ -2831,7 +3147,7 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 53,
+        "factorScore": 51,
         "techScore": 47,
         "reportScore": 45,
         "actionScore": 60,
@@ -3031,12 +3347,12 @@
         "unavailableReason": null,
         "impactScore": 45,
         "impactValue": -0.184,
-        "impactCount": 29,
+        "impactCount": 30,
         "coverageWeight": 0.55,
         "directAccountImpactScore": 50,
         "relationSummary": {
           "directCount": 0,
-          "thematicCount": 32,
+          "thematicCount": 33,
           "secondOrderCount": 0,
           "blockedCount": 0,
           "unrelatedEvidenceRatio": 0
@@ -3045,17 +3361,17 @@
       "factor": {
         "raw": {
           "momentum": -0.0397,
-          "research": -0.2095,
+          "research": -0.1285,
           "income": 0.032,
           "macroFit": -2.5
         },
         "zScores": {
           "momentum": -0.7464,
-          "research": -1.3434,
+          "research": -1.3341,
           "income": 1.0279,
-          "macroFit": -1.7194
+          "macroFit": -1.7331
         },
-        "weightedZ": -0.854,
+        "weightedZ": -0.8539,
         "score": 38,
         "factorCoverage": 1,
         "availability": {
@@ -3100,7 +3416,7 @@
       "explain": {
         "topDrivers": [
           "기술 기본점수 17점",
-          "리포트 영향 45점 (29건 연결)",
+          "리포트 영향 45점 (30건 연결)",
           "RSI 52.1"
         ],
         "warnings": [
@@ -3119,7 +3435,7 @@
       "incomeYield": 0.006,
       "technicalSignal": "BUY",
       "technicalBaseScore": 70,
-      "actionScore": 57,
+      "actionScore": 56,
       "direction": 0.528,
       "timing": -0.875,
       "reportScore": 0.03,
@@ -3289,12 +3605,12 @@
         "unavailableReason": null,
         "impactScore": 51,
         "impactValue": 0.03,
-        "impactCount": 34,
+        "impactCount": 38,
         "coverageWeight": 0.55,
         "directAccountImpactScore": 50,
         "relationSummary": {
           "directCount": 0,
-          "thematicCount": 36,
+          "thematicCount": 40,
           "secondOrderCount": 0,
           "blockedCount": 0,
           "unrelatedEvidenceRatio": 0
@@ -3303,18 +3619,18 @@
       "factor": {
         "raw": {
           "momentum": 0.7011,
-          "research": 0.3003,
+          "research": 0.1023,
           "income": 0.006,
           "macroFit": 0.7725
         },
         "zScores": {
           "momentum": 0.2443,
-          "research": 0.0855,
+          "research": -0.6446,
           "income": -0.3187,
-          "macroFit": 0.4168
+          "macroFit": 0.4127
         },
-        "weightedZ": 0.1467,
-        "score": 52,
+        "weightedZ": -0.0732,
+        "score": 49,
         "factorCoverage": 1,
         "availability": {
           "momentum": 1,
@@ -3324,15 +3640,15 @@
         }
       },
       "actionBlend": {
-        "score": 57,
+        "score": 56,
         "signal": "WATCH",
         "blended": true,
         "rawActionScore": 57,
-        "factorScore": 52,
+        "factorScore": 49,
         "actionWeight": 0.92,
         "factorWeight": 0.08,
         "factorCoverage": 1,
-        "delta": 0,
+        "delta": -1,
         "gateMode": "sameSignal",
         "factorApplied": true,
         "rawSignal": "WATCH",
@@ -3349,16 +3665,16 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 52,
+        "factorScore": 49,
         "techScore": 70,
         "reportScore": 51,
-        "actionScore": 57,
+        "actionScore": 56,
         "rawActionScore": 57
       },
       "explain": {
         "topDrivers": [
           "기술 기본점수 70점",
-          "리포트 영향 51점 (34건 연결)",
+          "리포트 영향 51점 (38건 연결)",
           "RSI 61.9"
         ],
         "warnings": [
@@ -3547,12 +3863,12 @@
         "unavailableReason": null,
         "impactScore": 51,
         "impactValue": 0.03,
-        "impactCount": 34,
+        "impactCount": 38,
         "coverageWeight": 0.55,
         "directAccountImpactScore": 50,
         "relationSummary": {
           "directCount": 0,
-          "thematicCount": 36,
+          "thematicCount": 40,
           "secondOrderCount": 0,
           "blockedCount": 0,
           "unrelatedEvidenceRatio": 0
@@ -3567,12 +3883,12 @@
         },
         "zScores": {
           "momentum": 0.2,
-          "research": 0.0855,
+          "research": -0.053,
           "income": 0.0438,
-          "macroFit": 1.2542
+          "macroFit": 1.2538
         },
-        "weightedZ": 0.3531,
-        "score": 55,
+        "weightedZ": 0.3114,
+        "score": 54,
         "factorCoverage": 1,
         "availability": {
           "momentum": 1,
@@ -3586,7 +3902,7 @@
         "signal": "WATCH",
         "blended": true,
         "rawActionScore": 55,
-        "factorScore": 55,
+        "factorScore": 54,
         "actionWeight": 0.92,
         "factorWeight": 0.08,
         "factorCoverage": 1,
@@ -3607,7 +3923,7 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 55,
+        "factorScore": 54,
         "techScore": 77,
         "reportScore": 51,
         "actionScore": 55,
@@ -3616,7 +3932,7 @@
       "explain": {
         "topDrivers": [
           "기술 기본점수 77점",
-          "리포트 영향 51점 (34건 연결)",
+          "리포트 영향 51점 (38건 연결)",
           "RSI 62.1"
         ],
         "warnings": [
@@ -3635,14 +3951,14 @@
       "incomeYield": 0.004,
       "technicalSignal": "STRONG_BUY",
       "technicalBaseScore": 96,
-      "actionScore": 63,
-      "direction": 0.958,
-      "timing": -0.823,
-      "reportScore": 0,
+      "actionScore": 67,
+      "direction": 1.061,
+      "timing": -0.71,
+      "reportScore": 0.468,
       "probabilities": {
-        "p_buy": 0.5656,
-        "p_hold": 0.2868,
-        "p_sell": 0.1476
+        "p_buy": 0.706,
+        "p_hold": 0.2225,
+        "p_sell": 0.0715
       },
       "conviction": "MEDIUM",
       "signal": "HOLD",
@@ -3656,9 +3972,60 @@
         "stochTiming": -2.5,
         "volumeZ": -0.486
       },
-      "rawActionScore": 63,
+      "rawActionScore": 67,
       "rawSignal": "HOLD",
-      "reportImpacts": [],
+      "reportImpacts": [
+        {
+          "reportId": "marketvoice_1293068",
+          "title": "트럼프, 이란 핵 협상서 정치적 성과 기대",
+          "broker": "디지털데일리",
+          "publishedDate": "2026-04-13T01:33:17+00:00",
+          "reportType": "marketvoice",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "reason": "씨틱증권은 2026년 4월 12일 미국과 이란 핵 협상을 분석하며, 이란이 우라늄 농축을 포기하면 트럼프 대통령에게 정치적 성과가 될 수 있다고 평가했습니다. 중동 분쟁은 미국 중간선거에 부정적 영향을 미쳤고, 양국 모두 전면전 가능성은 낮다고 봤습니다.",
+          "evidenceNumbers": [
+            "인용 0건",
+            "원문 14건",
+            "반도체 -0.35%",
+            "국제유가 -0.12%",
+            "무기 -0.27%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.1229
+        },
+        {
+          "reportId": "marketvoice_1293068",
+          "title": "트럼프, 이란 핵 협상서 정치적 성과 기대",
+          "broker": "디지털데일리",
+          "publishedDate": "2026-04-13T01:33:17+00:00",
+          "reportType": "marketvoice",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "reason": "씨틱증권은 2026년 4월 12일 미국과 이란 핵 협상을 분석하며, 이란이 우라늄 농축을 포기하면 트럼프 대통령에게 정치적 성과가 될 수 있다고 평가했습니다. 중동 분쟁은 미국 중간선거에 부정적 영향을 미쳤고, 양국 모두 전면전 가능성은 낮다고 봤습니다.",
+          "evidenceNumbers": [
+            "인용 0건",
+            "원문 14건",
+            "반도체 -0.35%",
+            "국제유가 -0.12%",
+            "무기 -0.27%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.1229
+        }
+      ],
       "technical": {
         "signal": "STRONG_BUY",
         "score": 96,
@@ -3688,36 +4055,36 @@
       },
       "report": {
         "sourceLayer": "impact-map",
-        "available": false,
-        "unavailableReason": "no_linked_report",
-        "impactScore": null,
-        "impactValue": 0,
-        "impactCount": 0,
-        "coverageWeight": 0,
+        "available": true,
+        "unavailableReason": null,
+        "impactScore": 64,
+        "impactValue": 0.468,
+        "impactCount": 2,
+        "coverageWeight": 0.55,
         "directAccountImpactScore": 52,
         "relationSummary": {
           "directCount": 0,
-          "thematicCount": 0,
+          "thematicCount": 2,
           "secondOrderCount": 0,
           "blockedCount": 2,
-          "unrelatedEvidenceRatio": 1
+          "unrelatedEvidenceRatio": 0.5
         }
       },
       "factor": {
         "raw": {
           "momentum": 1.1236,
-          "research": 0.279,
+          "research": 0.6064,
           "income": 0.004,
           "macroFit": 0.1849
         },
         "zScores": {
           "momentum": 0.8094,
-          "research": 0.0259,
+          "research": 0.8615,
           "income": -0.4223,
-          "macroFit": 0.0332
+          "macroFit": 0.0274
         },
-        "weightedZ": 0.2343,
-        "score": 53,
+        "weightedZ": 0.4839,
+        "score": 57,
         "factorCoverage": 1,
         "availability": {
           "momentum": 1,
@@ -3727,11 +4094,11 @@
         }
       },
       "actionBlend": {
-        "score": 63,
+        "score": 67,
         "signal": "HOLD",
         "blended": false,
-        "rawActionScore": 63,
-        "factorScore": 53,
+        "rawActionScore": 67,
+        "factorScore": 57,
         "actionWeight": 1,
         "factorWeight": 0,
         "factorCoverage": 1,
@@ -3752,15 +4119,16 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 53,
+        "factorScore": 57,
         "techScore": 96,
-        "reportScore": null,
-        "actionScore": 63,
-        "rawActionScore": 63
+        "reportScore": 64,
+        "actionScore": 67,
+        "rawActionScore": 67
       },
       "explain": {
         "topDrivers": [
           "기술 기본점수 96점",
+          "리포트 영향 64점 (2건 연결)",
           "RSI 56.4"
         ],
         "warnings": []
@@ -3832,22 +4200,22 @@
       "factor": {
         "raw": {
           "momentum": -0.9,
-          "research": 0.033,
+          "research": 0,
           "income": 0,
           "macroFit": -1.6226
         },
         "zScores": {
           "momentum": -1.8969,
-          "research": -0.6637,
+          "research": -0.9502,
           "income": -0.6295,
-          "macroFit": -1.1466
+          "macroFit": -1.1578
         },
-        "weightedZ": -1.1868,
-        "score": 33,
-        "factorCoverage": 0.75,
+        "weightedZ": -1.275,
+        "score": 32,
+        "factorCoverage": 0.5,
         "availability": {
           "momentum": 0,
-          "research": 1,
+          "research": 0,
           "income": 1,
           "macroFit": 1
         }
@@ -3857,10 +4225,10 @@
         "signal": "WATCH",
         "blended": false,
         "rawActionScore": 43,
-        "factorScore": 33,
+        "factorScore": 32,
         "actionWeight": 1,
         "factorWeight": 0,
-        "factorCoverage": 0.75,
+        "factorCoverage": 0.5,
         "delta": 0,
         "gateMode": "sameSignal",
         "factorApplied": false,
@@ -3878,7 +4246,7 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 33,
+        "factorScore": 32,
         "techScore": null,
         "reportScore": null,
         "actionScore": 43,
@@ -3903,14 +4271,14 @@
       "incomeYield": 0.004,
       "technicalSignal": "STRONG_BUY",
       "technicalBaseScore": 96,
-      "actionScore": 64,
-      "direction": 1.013,
-      "timing": -0.833,
-      "reportScore": 0,
+      "actionScore": 66,
+      "direction": 1.108,
+      "timing": -0.73,
+      "reportScore": 0.431,
       "probabilities": {
-        "p_buy": 0.581,
-        "p_hold": 0.2801,
-        "p_sell": 0.1388
+        "p_buy": 0.7088,
+        "p_hold": 0.2205,
+        "p_sell": 0.0707
       },
       "conviction": "MEDIUM",
       "signal": "HOLD",
@@ -3924,9 +4292,129 @@
         "stochTiming": -2.5,
         "volumeZ": 0.04299999999999993
       },
-      "rawActionScore": 64,
+      "rawActionScore": 67,
       "rawSignal": "HOLD",
-      "reportImpacts": [],
+      "reportImpacts": [
+        {
+          "reportId": "marketvoice_1293068",
+          "title": "트럼프, 이란 핵 협상서 정치적 성과 기대",
+          "broker": "디지털데일리",
+          "publishedDate": "2026-04-13T01:33:17+00:00",
+          "reportType": "marketvoice",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "reason": "씨틱증권은 2026년 4월 12일 미국과 이란 핵 협상을 분석하며, 이란이 우라늄 농축을 포기하면 트럼프 대통령에게 정치적 성과가 될 수 있다고 평가했습니다. 중동 분쟁은 미국 중간선거에 부정적 영향을 미쳤고, 양국 모두 전면전 가능성은 낮다고 봤습니다.",
+          "evidenceNumbers": [
+            "인용 0건",
+            "원문 14건",
+            "반도체 -0.35%",
+            "국제유가 -0.12%",
+            "무기 -0.27%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.1229
+        },
+        {
+          "reportId": "marketvoice_1293068",
+          "title": "트럼프, 이란 핵 협상서 정치적 성과 기대",
+          "broker": "디지털데일리",
+          "publishedDate": "2026-04-13T01:33:17+00:00",
+          "reportType": "marketvoice",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "reason": "씨틱증권은 2026년 4월 12일 미국과 이란 핵 협상을 분석하며, 이란이 우라늄 농축을 포기하면 트럼프 대통령에게 정치적 성과가 될 수 있다고 평가했습니다. 중동 분쟁은 미국 중간선거에 부정적 영향을 미쳤고, 양국 모두 전면전 가능성은 낮다고 봤습니다.",
+          "evidenceNumbers": [
+            "인용 0건",
+            "원문 14건",
+            "반도체 -0.35%",
+            "국제유가 -0.12%",
+            "무기 -0.27%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.1229
+        },
+        {
+          "reportId": "marketvoice_1295211",
+          "title": "한국카본, 미국 생산시설 구축에 2,000만 달러 투자",
+          "broker": "이데일리",
+          "publishedDate": "2026-04-13T01:30:00+00:00",
+          "reportType": "marketvoice",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.474,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "reason": "한국카본이 미국 내 생산시설 확보를 위해 2,000만 달러를 투자한다고 발표했습니다. 이번 투자는 북미 복합소재 생산능력 확대와 글로벌 공급망 경쟁력 강화를 목표로 합니다. 우주항공, 방산 진출과 미국 조선업 재건 정책 대응에도 활용될 예정입니다.",
+          "evidenceNumbers": [
+            "인용 0건",
+            "원문 1건",
+            "한국카본 +11.06%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.0857
+        },
+        {
+          "reportId": "marketvoice_1295211",
+          "title": "한국카본, 미국 생산시설 구축에 2,000만 달러 투자",
+          "broker": "이데일리",
+          "publishedDate": "2026-04-13T01:30:00+00:00",
+          "reportType": "marketvoice",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.474,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "reason": "한국카본이 미국 내 생산시설 확보를 위해 2,000만 달러를 투자한다고 발표했습니다. 이번 투자는 북미 복합소재 생산능력 확대와 글로벌 공급망 경쟁력 강화를 목표로 합니다. 우주항공, 방산 진출과 미국 조선업 재건 정책 대응에도 활용될 예정입니다.",
+          "evidenceNumbers": [
+            "인용 0건",
+            "원문 1건",
+            "한국카본 +11.06%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.0857
+        },
+        {
+          "reportId": "marketvoice_1295213",
+          "title": "한화에어로스페이스, 풍산 방산 부문 인수 추진과 방위사업청 심사",
+          "broker": "블로터",
+          "publishedDate": "2026-04-13T01:30:00+00:00",
+          "reportType": "marketvoice",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.458,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "reason": "한화에어로스페이스가 풍산 방산 부문 인수를 추진 중이며, 방위사업청 허가가 관건입니다. 방위사업청은 독점보다는 공급망 다변화와 전력 유지에 초점을 맞추고 심사하고 있습니다.",
+          "evidenceNumbers": [
+            "인용 0건",
+            "원문 1건",
+            "한화 -3.42%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.0828
+        }
+      ],
       "technical": {
         "signal": "STRONG_BUY",
         "score": 96,
@@ -3956,36 +4444,36 @@
       },
       "report": {
         "sourceLayer": "impact-map",
-        "available": false,
-        "unavailableReason": "no_linked_report",
-        "impactScore": null,
-        "impactValue": 0,
-        "impactCount": 0,
-        "coverageWeight": 0,
+        "available": true,
+        "unavailableReason": null,
+        "impactScore": 63,
+        "impactValue": 0.431,
+        "impactCount": 6,
+        "coverageWeight": 0.55,
         "directAccountImpactScore": 52,
         "relationSummary": {
           "directCount": 0,
-          "thematicCount": 0,
+          "thematicCount": 6,
           "secondOrderCount": 0,
           "blockedCount": 2,
-          "unrelatedEvidenceRatio": 1
+          "unrelatedEvidenceRatio": 0.25
         }
       },
       "factor": {
         "raw": {
           "momentum": 1.2085,
-          "research": 0.279,
+          "research": 0.5809,
           "income": 0.004,
           "macroFit": 0.8261
         },
         "zScores": {
           "momentum": 0.9229,
-          "research": 0.0259,
+          "research": 0.7855,
           "income": -0.4223,
-          "macroFit": 0.4518
+          "macroFit": 0.4478
         },
-        "weightedZ": 0.3578,
-        "score": 55,
+        "weightedZ": 0.5849,
+        "score": 58,
         "factorCoverage": 1,
         "availability": {
           "momentum": 1,
@@ -3995,19 +4483,19 @@
         }
       },
       "actionBlend": {
-        "score": 64,
+        "score": 66,
         "signal": "HOLD",
-        "blended": false,
-        "rawActionScore": 64,
-        "factorScore": 55,
-        "actionWeight": 1,
-        "factorWeight": 0,
+        "blended": true,
+        "rawActionScore": 67,
+        "factorScore": 58,
+        "actionWeight": 0.92,
+        "factorWeight": 0.08,
         "factorCoverage": 1,
-        "delta": 0,
+        "delta": -1,
         "gateMode": "sameSignal",
-        "factorApplied": false,
+        "factorApplied": true,
         "rawSignal": "HOLD",
-        "factorSignal": "WATCH"
+        "factorSignal": "HOLD"
       },
       "stopLoss": {
         "enabled": true,
@@ -4020,15 +4508,16 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 55,
+        "factorScore": 58,
         "techScore": 96,
-        "reportScore": null,
-        "actionScore": 64,
-        "rawActionScore": 64
+        "reportScore": 63,
+        "actionScore": 66,
+        "rawActionScore": 67
       },
       "explain": {
         "topDrivers": [
           "기술 기본점수 96점",
+          "리포트 영향 63점 (6건 연결)",
           "RSI 60.3"
         ],
         "warnings": []
@@ -4041,21 +4530,21 @@
       "accountKey": "KIS_MAIN",
       "accountLabel": "한투 일반",
       "category": "방산",
-      "marketValue": 999500,
+      "marketValue": 967000,
       "incomeYield": 0.004,
       "technicalSignal": "STRONG_BUY",
       "technicalBaseScore": 96,
-      "actionScore": 73,
-      "direction": 1.275,
-      "timing": -0.472,
-      "reportScore": 1.239,
+      "actionScore": 69,
+      "direction": 1.166,
+      "timing": -0.591,
+      "reportScore": 0.742,
       "probabilities": {
-        "p_buy": 0.8669,
-        "p_hold": 0.1169,
-        "p_sell": 0.0162
+        "p_buy": 0.7846,
+        "p_hold": 0.1753,
+        "p_sell": 0.04
       },
       "conviction": "MEDIUM",
-      "signal": "BUY",
+      "signal": "HOLD",
       "features": {
         "maTrend": 2.5,
         "macdZ": 0.4407707831952138,
@@ -4066,8 +4555,8 @@
         "stochTiming": -2.5,
         "volumeZ": 0.45500000000000007
       },
-      "rawActionScore": 73,
-      "rawSignal": "BUY",
+      "rawActionScore": 70,
+      "rawSignal": "HOLD",
       "reportImpacts": [
         {
           "reportId": "report_041",
@@ -4139,6 +4628,56 @@
           "relationWeight": 1,
           "evidenceScore": 1,
           "contribution": -0.1448
+        },
+        {
+          "reportId": "marketvoice_1293068",
+          "title": "트럼프, 이란 핵 협상서 정치적 성과 기대",
+          "broker": "디지털데일리",
+          "publishedDate": "2026-04-13T01:33:17+00:00",
+          "reportType": "marketvoice",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "reason": "씨틱증권은 2026년 4월 12일 미국과 이란 핵 협상을 분석하며, 이란이 우라늄 농축을 포기하면 트럼프 대통령에게 정치적 성과가 될 수 있다고 평가했습니다. 중동 분쟁은 미국 중간선거에 부정적 영향을 미쳤고, 양국 모두 전면전 가능성은 낮다고 봤습니다.",
+          "evidenceNumbers": [
+            "인용 0건",
+            "원문 14건",
+            "반도체 -0.35%",
+            "국제유가 -0.12%",
+            "무기 -0.27%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.1229
+        },
+        {
+          "reportId": "marketvoice_1293068",
+          "title": "트럼프, 이란 핵 협상서 정치적 성과 기대",
+          "broker": "디지털데일리",
+          "publishedDate": "2026-04-13T01:33:17+00:00",
+          "reportType": "marketvoice",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "reason": "씨틱증권은 2026년 4월 12일 미국과 이란 핵 협상을 분석하며, 이란이 우라늄 농축을 포기하면 트럼프 대통령에게 정치적 성과가 될 수 있다고 평가했습니다. 중동 분쟁은 미국 중간선거에 부정적 영향을 미쳤고, 양국 모두 전면전 가능성은 낮다고 봤습니다.",
+          "evidenceNumbers": [
+            "인용 0건",
+            "원문 14건",
+            "반도체 -0.35%",
+            "국제유가 -0.12%",
+            "무기 -0.27%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.1229
         }
       ],
       "technical": {
@@ -4172,34 +4711,34 @@
         "sourceLayer": "impact-map",
         "available": true,
         "unavailableReason": null,
-        "impactScore": 82,
-        "impactValue": 1.239,
-        "impactCount": 3,
+        "impactScore": 71,
+        "impactValue": 0.742,
+        "impactCount": 9,
         "coverageWeight": 1,
         "directAccountImpactScore": 48,
         "relationSummary": {
           "directCount": 3,
-          "thematicCount": 0,
+          "thematicCount": 6,
           "secondOrderCount": 0,
           "blockedCount": 2,
-          "unrelatedEvidenceRatio": 0.4
+          "unrelatedEvidenceRatio": 0.1818
         }
       },
       "factor": {
         "raw": {
           "momentum": 1.196,
-          "research": 1.1463,
+          "research": 0.7985,
           "income": 0.004,
-          "macroFit": -0.866
+          "macroFit": -0.821
         },
         "zScores": {
           "momentum": 0.9061,
-          "research": 2.457,
+          "research": 1.4356,
           "income": -0.4223,
-          "macroFit": -0.6527
+          "macroFit": -0.6322
         },
-        "weightedZ": 0.8604,
-        "score": 62,
+        "weightedZ": 0.558,
+        "score": 58,
         "factorCoverage": 1,
         "availability": {
           "momentum": 1,
@@ -4209,18 +4748,18 @@
         }
       },
       "actionBlend": {
-        "score": 73,
-        "signal": "BUY",
-        "blended": false,
-        "rawActionScore": 73,
-        "factorScore": 62,
-        "actionWeight": 1,
-        "factorWeight": 0,
+        "score": 69,
+        "signal": "HOLD",
+        "blended": true,
+        "rawActionScore": 70,
+        "factorScore": 58,
+        "actionWeight": 0.92,
+        "factorWeight": 0.08,
         "factorCoverage": 1,
-        "delta": 0,
+        "delta": -1,
         "gateMode": "sameSignal",
-        "factorApplied": false,
-        "rawSignal": "BUY",
+        "factorApplied": true,
+        "rawSignal": "HOLD",
         "factorSignal": "HOLD"
       },
       "stopLoss": {
@@ -4234,16 +4773,16 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 62,
+        "factorScore": 58,
         "techScore": 96,
-        "reportScore": 82,
-        "actionScore": 73,
-        "rawActionScore": 73
+        "reportScore": 71,
+        "actionScore": 69,
+        "rawActionScore": 70
       },
       "explain": {
         "topDrivers": [
           "기술 기본점수 96점",
-          "리포트 영향 82점 (3건 연결)",
+          "리포트 영향 71점 (9건 연결)",
           "RSI 60.0"
         ],
         "warnings": []
@@ -4256,20 +4795,20 @@
       "accountKey": "KIS_MAIN",
       "accountLabel": "한투 일반",
       "category": "방산",
-      "marketValue": 210000,
+      "marketValue": 206500,
       "incomeYield": 0.004,
       "technicalSignal": "STRONG_BUY",
       "technicalBaseScore": 86,
-      "actionScore": 62,
-      "direction": 0.587,
-      "timing": -0.512,
-      "reportScore": 0.702,
+      "actionScore": 61,
+      "direction": 0.555,
+      "timing": -0.547,
+      "reportScore": 0.555,
       "probabilities": {
-        "p_buy": 0.6499,
-        "p_hold": 0.258,
-        "p_sell": 0.0921
+        "p_buy": 0.6054,
+        "p_hold": 0.279,
+        "p_sell": 0.1156
       },
-      "conviction": "MEDIUM",
+      "conviction": "LOW",
       "signal": "HOLD",
       "features": {
         "maTrend": 0.34680141238105655,
@@ -4281,7 +4820,7 @@
         "stochTiming": -2.5,
         "volumeZ": 0.3520000000000001
       },
-      "rawActionScore": 62,
+      "rawActionScore": 61,
       "rawSignal": "HOLD",
       "reportImpacts": [
         {
@@ -4306,6 +4845,102 @@
           "relationWeight": 1,
           "evidenceScore": 1,
           "contribution": 0.2926
+        },
+        {
+          "reportId": "marketvoice_1293068",
+          "title": "트럼프, 이란 핵 협상서 정치적 성과 기대",
+          "broker": "디지털데일리",
+          "publishedDate": "2026-04-13T01:33:17+00:00",
+          "reportType": "marketvoice",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "reason": "씨틱증권은 2026년 4월 12일 미국과 이란 핵 협상을 분석하며, 이란이 우라늄 농축을 포기하면 트럼프 대통령에게 정치적 성과가 될 수 있다고 평가했습니다. 중동 분쟁은 미국 중간선거에 부정적 영향을 미쳤고, 양국 모두 전면전 가능성은 낮다고 봤습니다.",
+          "evidenceNumbers": [
+            "인용 0건",
+            "원문 14건",
+            "반도체 -0.35%",
+            "국제유가 -0.12%",
+            "무기 -0.27%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.1229
+        },
+        {
+          "reportId": "marketvoice_1293068",
+          "title": "트럼프, 이란 핵 협상서 정치적 성과 기대",
+          "broker": "디지털데일리",
+          "publishedDate": "2026-04-13T01:33:17+00:00",
+          "reportType": "marketvoice",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "reason": "씨틱증권은 2026년 4월 12일 미국과 이란 핵 협상을 분석하며, 이란이 우라늄 농축을 포기하면 트럼프 대통령에게 정치적 성과가 될 수 있다고 평가했습니다. 중동 분쟁은 미국 중간선거에 부정적 영향을 미쳤고, 양국 모두 전면전 가능성은 낮다고 봤습니다.",
+          "evidenceNumbers": [
+            "인용 0건",
+            "원문 14건",
+            "반도체 -0.35%",
+            "국제유가 -0.12%",
+            "무기 -0.27%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.1229
+        },
+        {
+          "reportId": "marketvoice_1295211",
+          "title": "한국카본, 미국 생산시설 구축에 2,000만 달러 투자",
+          "broker": "이데일리",
+          "publishedDate": "2026-04-13T01:30:00+00:00",
+          "reportType": "marketvoice",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.474,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "reason": "한국카본이 미국 내 생산시설 확보를 위해 2,000만 달러를 투자한다고 발표했습니다. 이번 투자는 북미 복합소재 생산능력 확대와 글로벌 공급망 경쟁력 강화를 목표로 합니다. 우주항공, 방산 진출과 미국 조선업 재건 정책 대응에도 활용될 예정입니다.",
+          "evidenceNumbers": [
+            "인용 0건",
+            "원문 1건",
+            "한국카본 +11.06%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.0857
+        },
+        {
+          "reportId": "marketvoice_1295211",
+          "title": "한국카본, 미국 생산시설 구축에 2,000만 달러 투자",
+          "broker": "이데일리",
+          "publishedDate": "2026-04-13T01:30:00+00:00",
+          "reportType": "marketvoice",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.474,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "reason": "한국카본이 미국 내 생산시설 확보를 위해 2,000만 달러를 투자한다고 발표했습니다. 이번 투자는 북미 복합소재 생산능력 확대와 글로벌 공급망 경쟁력 강화를 목표로 합니다. 우주항공, 방산 진출과 미국 조선업 재건 정책 대응에도 활용될 예정입니다.",
+          "evidenceNumbers": [
+            "인용 0건",
+            "원문 1건",
+            "한국카본 +11.06%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.0857
         }
       ],
       "technical": {
@@ -4339,34 +4974,34 @@
         "sourceLayer": "impact-map",
         "available": true,
         "unavailableReason": null,
-        "impactScore": 70,
-        "impactValue": 0.702,
-        "impactCount": 1,
+        "impactScore": 66,
+        "impactValue": 0.555,
+        "impactCount": 7,
         "coverageWeight": 1,
         "directAccountImpactScore": 48,
         "relationSummary": {
           "directCount": 1,
-          "thematicCount": 0,
+          "thematicCount": 6,
           "secondOrderCount": 0,
           "blockedCount": 2,
-          "unrelatedEvidenceRatio": 0.6667
+          "unrelatedEvidenceRatio": 0.2222
         }
       },
       "factor": {
         "raw": {
           "momentum": 0.5523,
-          "research": 0.7706,
+          "research": 0.6677,
           "income": 0.004,
-          "macroFit": -0.866
+          "macroFit": -0.821
         },
         "zScores": {
           "momentum": 0.0453,
-          "research": 1.4038,
+          "research": 1.0448,
           "income": -0.4223,
-          "macroFit": -0.6527
+          "macroFit": -0.6322
         },
-        "weightedZ": 0.2431,
-        "score": 53,
+        "weightedZ": 0.1395,
+        "score": 52,
         "factorCoverage": 1,
         "availability": {
           "momentum": 1,
@@ -4376,11 +5011,11 @@
         }
       },
       "actionBlend": {
-        "score": 62,
+        "score": 61,
         "signal": "HOLD",
         "blended": false,
-        "rawActionScore": 62,
-        "factorScore": 53,
+        "rawActionScore": 61,
+        "factorScore": 52,
         "actionWeight": 1,
         "factorWeight": 0,
         "factorCoverage": 1,
@@ -4401,16 +5036,16 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 53,
+        "factorScore": 52,
         "techScore": 86,
-        "reportScore": 70,
-        "actionScore": 62,
-        "rawActionScore": 62
+        "reportScore": 66,
+        "actionScore": 61,
+        "rawActionScore": 61
       },
       "explain": {
         "topDrivers": [
           "기술 기본점수 86점",
-          "리포트 영향 70점 (1건 연결)",
+          "리포트 영향 66점 (7건 연결)",
           "RSI 55.3"
         ],
         "warnings": []
@@ -4423,7 +5058,7 @@
       "accountKey": "KIS_MAIN",
       "accountLabel": "한투 일반",
       "category": "기타",
-      "marketValue": 525480,
+      "marketValue": 526640,
       "incomeYield": 0,
       "technicalSignal": "N/A",
       "technicalBaseScore": null,
@@ -4758,18 +5393,18 @@
       "factor": {
         "raw": {
           "momentum": -0.9,
-          "research": 0.0053,
+          "research": -0.0277,
           "income": 0,
-          "macroFit": -1.0317
+          "macroFit": -1.0433
         },
         "zScores": {
           "momentum": -1.8969,
-          "research": -0.7414,
+          "research": -1.0331,
           "income": -0.6295,
-          "macroFit": -0.7609
+          "macroFit": -0.778
         },
-        "weightedZ": -1.1329,
-        "score": 34,
+        "weightedZ": -1.2238,
+        "score": 33,
         "factorCoverage": 0.75,
         "availability": {
           "momentum": 0,
@@ -4783,7 +5418,7 @@
         "signal": "WATCH",
         "blended": false,
         "rawActionScore": 43,
-        "factorScore": 34,
+        "factorScore": 33,
         "actionWeight": 1,
         "factorWeight": 0,
         "factorCoverage": 0.75,
@@ -4797,14 +5432,14 @@
         "enabled": true,
         "triggered": false,
         "entryPrice": 8765,
-        "currentPrice": 9060,
+        "currentPrice": 9080,
         "recentHigh": null,
-        "drawdownFromEntryPct": 0.0337,
+        "drawdownFromEntryPct": 0.0359,
         "drawdownFromRecentHighPct": null,
         "triggers": []
       },
       "scores": {
-        "factorScore": 34,
+        "factorScore": 33,
         "techScore": null,
         "reportScore": 49,
         "actionScore": 43,
@@ -4827,18 +5462,18 @@
       "accountKey": "KIS_MAIN",
       "accountLabel": "한투 일반",
       "category": "원자력",
-      "marketValue": 140620,
+      "marketValue": 141400,
       "incomeYield": 0.004,
       "technicalSignal": "STRONG_BUY",
       "technicalBaseScore": 96,
-      "actionScore": 63,
-      "direction": 0.958,
-      "timing": -0.823,
-      "reportScore": 0,
+      "actionScore": 66,
+      "direction": 1.061,
+      "timing": -0.71,
+      "reportScore": 0.468,
       "probabilities": {
-        "p_buy": 0.5656,
-        "p_hold": 0.2868,
-        "p_sell": 0.1476
+        "p_buy": 0.706,
+        "p_hold": 0.2225,
+        "p_sell": 0.0715
       },
       "conviction": "MEDIUM",
       "signal": "HOLD",
@@ -4852,9 +5487,60 @@
         "stochTiming": -2.5,
         "volumeZ": -0.486
       },
-      "rawActionScore": 63,
+      "rawActionScore": 67,
       "rawSignal": "HOLD",
-      "reportImpacts": [],
+      "reportImpacts": [
+        {
+          "reportId": "marketvoice_1293068",
+          "title": "트럼프, 이란 핵 협상서 정치적 성과 기대",
+          "broker": "디지털데일리",
+          "publishedDate": "2026-04-13T01:33:17+00:00",
+          "reportType": "marketvoice",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "reason": "씨틱증권은 2026년 4월 12일 미국과 이란 핵 협상을 분석하며, 이란이 우라늄 농축을 포기하면 트럼프 대통령에게 정치적 성과가 될 수 있다고 평가했습니다. 중동 분쟁은 미국 중간선거에 부정적 영향을 미쳤고, 양국 모두 전면전 가능성은 낮다고 봤습니다.",
+          "evidenceNumbers": [
+            "인용 0건",
+            "원문 14건",
+            "반도체 -0.35%",
+            "국제유가 -0.12%",
+            "무기 -0.27%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.1229
+        },
+        {
+          "reportId": "marketvoice_1293068",
+          "title": "트럼프, 이란 핵 협상서 정치적 성과 기대",
+          "broker": "디지털데일리",
+          "publishedDate": "2026-04-13T01:33:17+00:00",
+          "reportType": "marketvoice",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "reason": "씨틱증권은 2026년 4월 12일 미국과 이란 핵 협상을 분석하며, 이란이 우라늄 농축을 포기하면 트럼프 대통령에게 정치적 성과가 될 수 있다고 평가했습니다. 중동 분쟁은 미국 중간선거에 부정적 영향을 미쳤고, 양국 모두 전면전 가능성은 낮다고 봤습니다.",
+          "evidenceNumbers": [
+            "인용 0건",
+            "원문 14건",
+            "반도체 -0.35%",
+            "국제유가 -0.12%",
+            "무기 -0.27%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.1229
+        }
+      ],
       "technical": {
         "signal": "STRONG_BUY",
         "score": 96,
@@ -4884,36 +5570,36 @@
       },
       "report": {
         "sourceLayer": "impact-map",
-        "available": false,
-        "unavailableReason": "no_linked_report",
-        "impactScore": null,
-        "impactValue": 0,
-        "impactCount": 0,
-        "coverageWeight": 0,
+        "available": true,
+        "unavailableReason": null,
+        "impactScore": 64,
+        "impactValue": 0.468,
+        "impactCount": 2,
+        "coverageWeight": 0.55,
         "directAccountImpactScore": 48,
         "relationSummary": {
           "directCount": 0,
-          "thematicCount": 0,
+          "thematicCount": 2,
           "secondOrderCount": 0,
           "blockedCount": 2,
-          "unrelatedEvidenceRatio": 1
+          "unrelatedEvidenceRatio": 0.5
         }
       },
       "factor": {
         "raw": {
           "momentum": 1.1236,
-          "research": 0.279,
+          "research": 0.6064,
           "income": 0.004,
-          "macroFit": 1.8882
+          "macroFit": 1.8841
         },
         "zScores": {
           "momentum": 0.8094,
-          "research": 0.0259,
+          "research": 0.8615,
           "income": -0.4223,
-          "macroFit": 1.145
+          "macroFit": 1.1415
         },
-        "weightedZ": 0.4567,
-        "score": 56,
+        "weightedZ": 0.7067,
+        "score": 60,
         "factorCoverage": 1,
         "availability": {
           "momentum": 1,
@@ -4923,19 +5609,19 @@
         }
       },
       "actionBlend": {
-        "score": 63,
+        "score": 66,
         "signal": "HOLD",
-        "blended": false,
-        "rawActionScore": 63,
-        "factorScore": 56,
-        "actionWeight": 1,
-        "factorWeight": 0,
+        "blended": true,
+        "rawActionScore": 67,
+        "factorScore": 60,
+        "actionWeight": 0.92,
+        "factorWeight": 0.08,
         "factorCoverage": 1,
-        "delta": 0,
+        "delta": -1,
         "gateMode": "sameSignal",
-        "factorApplied": false,
+        "factorApplied": true,
         "rawSignal": "HOLD",
-        "factorSignal": "WATCH"
+        "factorSignal": "HOLD"
       },
       "stopLoss": {
         "enabled": true,
@@ -4948,15 +5634,16 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 56,
+        "factorScore": 60,
         "techScore": 96,
-        "reportScore": null,
-        "actionScore": 63,
-        "rawActionScore": 63
+        "reportScore": 64,
+        "actionScore": 66,
+        "rawActionScore": 67
       },
       "explain": {
         "topDrivers": [
           "기술 기본점수 96점",
+          "리포트 영향 64점 (2건 연결)",
           "RSI 56.4"
         ],
         "warnings": []
@@ -4969,18 +5656,18 @@
       "accountKey": "KIS_MAIN",
       "accountLabel": "한투 일반",
       "category": "방산",
-      "marketValue": 554400,
+      "marketValue": 551880,
       "incomeYield": 0.004,
       "technicalSignal": "STRONG_BUY",
       "technicalBaseScore": 96,
-      "actionScore": 64,
-      "direction": 1.013,
-      "timing": -0.833,
-      "reportScore": 0,
+      "actionScore": 67,
+      "direction": 1.108,
+      "timing": -0.73,
+      "reportScore": 0.431,
       "probabilities": {
-        "p_buy": 0.581,
-        "p_hold": 0.2801,
-        "p_sell": 0.1388
+        "p_buy": 0.7088,
+        "p_hold": 0.2205,
+        "p_sell": 0.0707
       },
       "conviction": "MEDIUM",
       "signal": "HOLD",
@@ -4994,9 +5681,129 @@
         "stochTiming": -2.5,
         "volumeZ": 0.04299999999999993
       },
-      "rawActionScore": 64,
+      "rawActionScore": 67,
       "rawSignal": "HOLD",
-      "reportImpacts": [],
+      "reportImpacts": [
+        {
+          "reportId": "marketvoice_1293068",
+          "title": "트럼프, 이란 핵 협상서 정치적 성과 기대",
+          "broker": "디지털데일리",
+          "publishedDate": "2026-04-13T01:33:17+00:00",
+          "reportType": "marketvoice",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "reason": "씨틱증권은 2026년 4월 12일 미국과 이란 핵 협상을 분석하며, 이란이 우라늄 농축을 포기하면 트럼프 대통령에게 정치적 성과가 될 수 있다고 평가했습니다. 중동 분쟁은 미국 중간선거에 부정적 영향을 미쳤고, 양국 모두 전면전 가능성은 낮다고 봤습니다.",
+          "evidenceNumbers": [
+            "인용 0건",
+            "원문 14건",
+            "반도체 -0.35%",
+            "국제유가 -0.12%",
+            "무기 -0.27%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.1229
+        },
+        {
+          "reportId": "marketvoice_1293068",
+          "title": "트럼프, 이란 핵 협상서 정치적 성과 기대",
+          "broker": "디지털데일리",
+          "publishedDate": "2026-04-13T01:33:17+00:00",
+          "reportType": "marketvoice",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "reason": "씨틱증권은 2026년 4월 12일 미국과 이란 핵 협상을 분석하며, 이란이 우라늄 농축을 포기하면 트럼프 대통령에게 정치적 성과가 될 수 있다고 평가했습니다. 중동 분쟁은 미국 중간선거에 부정적 영향을 미쳤고, 양국 모두 전면전 가능성은 낮다고 봤습니다.",
+          "evidenceNumbers": [
+            "인용 0건",
+            "원문 14건",
+            "반도체 -0.35%",
+            "국제유가 -0.12%",
+            "무기 -0.27%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.1229
+        },
+        {
+          "reportId": "marketvoice_1295211",
+          "title": "한국카본, 미국 생산시설 구축에 2,000만 달러 투자",
+          "broker": "이데일리",
+          "publishedDate": "2026-04-13T01:30:00+00:00",
+          "reportType": "marketvoice",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.474,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "reason": "한국카본이 미국 내 생산시설 확보를 위해 2,000만 달러를 투자한다고 발표했습니다. 이번 투자는 북미 복합소재 생산능력 확대와 글로벌 공급망 경쟁력 강화를 목표로 합니다. 우주항공, 방산 진출과 미국 조선업 재건 정책 대응에도 활용될 예정입니다.",
+          "evidenceNumbers": [
+            "인용 0건",
+            "원문 1건",
+            "한국카본 +11.06%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.0857
+        },
+        {
+          "reportId": "marketvoice_1295211",
+          "title": "한국카본, 미국 생산시설 구축에 2,000만 달러 투자",
+          "broker": "이데일리",
+          "publishedDate": "2026-04-13T01:30:00+00:00",
+          "reportType": "marketvoice",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.474,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "reason": "한국카본이 미국 내 생산시설 확보를 위해 2,000만 달러를 투자한다고 발표했습니다. 이번 투자는 북미 복합소재 생산능력 확대와 글로벌 공급망 경쟁력 강화를 목표로 합니다. 우주항공, 방산 진출과 미국 조선업 재건 정책 대응에도 활용될 예정입니다.",
+          "evidenceNumbers": [
+            "인용 0건",
+            "원문 1건",
+            "한국카본 +11.06%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.0857
+        },
+        {
+          "reportId": "marketvoice_1295213",
+          "title": "한화에어로스페이스, 풍산 방산 부문 인수 추진과 방위사업청 심사",
+          "broker": "블로터",
+          "publishedDate": "2026-04-13T01:30:00+00:00",
+          "reportType": "marketvoice",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.458,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "reason": "한화에어로스페이스가 풍산 방산 부문 인수를 추진 중이며, 방위사업청 허가가 관건입니다. 방위사업청은 독점보다는 공급망 다변화와 전력 유지에 초점을 맞추고 심사하고 있습니다.",
+          "evidenceNumbers": [
+            "인용 0건",
+            "원문 1건",
+            "한화 -3.42%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.0828
+        }
+      ],
       "technical": {
         "signal": "STRONG_BUY",
         "score": 96,
@@ -5026,36 +5833,36 @@
       },
       "report": {
         "sourceLayer": "impact-map",
-        "available": false,
-        "unavailableReason": "no_linked_report",
-        "impactScore": null,
-        "impactValue": 0,
-        "impactCount": 0,
-        "coverageWeight": 0,
+        "available": true,
+        "unavailableReason": null,
+        "impactScore": 63,
+        "impactValue": 0.431,
+        "impactCount": 6,
+        "coverageWeight": 0.55,
         "directAccountImpactScore": 48,
         "relationSummary": {
           "directCount": 0,
-          "thematicCount": 0,
+          "thematicCount": 6,
           "secondOrderCount": 0,
           "blockedCount": 2,
-          "unrelatedEvidenceRatio": 1
+          "unrelatedEvidenceRatio": 0.25
         }
       },
       "factor": {
         "raw": {
           "momentum": 1.2085,
-          "research": 0.279,
+          "research": 0.5809,
           "income": 0.004,
-          "macroFit": -0.866
+          "macroFit": -0.821
         },
         "zScores": {
           "momentum": 0.9229,
-          "research": 0.0259,
+          "research": 0.7855,
           "income": -0.4223,
-          "macroFit": -0.6527
+          "macroFit": -0.6322
         },
-        "weightedZ": 0.1369,
-        "score": 52,
+        "weightedZ": 0.3689,
+        "score": 55,
         "factorCoverage": 1,
         "availability": {
           "momentum": 1,
@@ -5065,11 +5872,11 @@
         }
       },
       "actionBlend": {
-        "score": 64,
+        "score": 67,
         "signal": "HOLD",
         "blended": false,
-        "rawActionScore": 64,
-        "factorScore": 52,
+        "rawActionScore": 67,
+        "factorScore": 55,
         "actionWeight": 1,
         "factorWeight": 0,
         "factorCoverage": 1,
@@ -5090,15 +5897,16 @@
         "triggers": []
       },
       "scores": {
-        "factorScore": 52,
+        "factorScore": 55,
         "techScore": 96,
-        "reportScore": null,
-        "actionScore": 64,
-        "rawActionScore": 64
+        "reportScore": 63,
+        "actionScore": 67,
+        "rawActionScore": 67
       },
       "explain": {
         "topDrivers": [
           "기술 기본점수 96점",
+          "리포트 영향 63점 (6건 연결)",
           "RSI 60.3"
         ],
         "warnings": []
@@ -5111,13 +5919,13 @@
       "label": "ISA",
       "allocationScore": 76,
       "holdingsScore": 56,
-      "factorScore": 53,
+      "factorScore": 52,
       "reportCoverageScore": 55,
       "reportStatus": "available",
       "reportUnavailableReason": null,
       "stage2Bias": "selective_add",
-      "preTaxScore": 61.75,
-      "baseScore": 66.75,
+      "preTaxScore": 61.7,
+      "baseScore": 66.7,
       "totalScore": 64,
       "note": "선별적 보강은 가능하지만 약한 자산군과 패널티 요인을 함께 줄여야 합니다.",
       "coverage": {
@@ -5129,9 +5937,9 @@
       },
       "baseScores": {
         "allocationScore": 76,
-        "factorScore": 53,
+        "factorScore": 52,
         "techScore": 63,
-        "reportScore": 46,
+        "reportScore": 47,
         "regimeFit": 70,
         "stage2Score": 58,
         "leadingScore": 57,
@@ -5195,8 +6003,8 @@
       },
       "taxAdjustment": {
         "enabled": true,
-        "preTaxScore": 61.75,
-        "afterTaxScore": 63.65,
+        "preTaxScore": 61.7,
+        "afterTaxScore": 63.6,
         "multiplier": 1.0309,
         "expectedYield": 0.042,
         "normalTaxRate": 0.154,
@@ -5204,7 +6012,7 @@
         "taxSpread": 0.055,
         "riskProxy": 0.1198,
         "lift": 0.0309,
-        "addedScore": 1.91
+        "addedScore": 1.9
       },
       "accountDirectImpact": {
         "value": 0.196,
@@ -5254,15 +6062,15 @@
       "key": "PENSION",
       "label": "연금저축",
       "allocationScore": 84,
-      "holdingsScore": 56,
-      "factorScore": 53,
+      "holdingsScore": 55,
+      "factorScore": 51,
       "reportCoverageScore": 55,
       "reportStatus": "available",
       "reportUnavailableReason": null,
       "stage2Bias": "selective_add",
-      "preTaxScore": 72.55,
-      "baseScore": 73.55,
-      "totalScore": 73,
+      "preTaxScore": 72.35,
+      "baseScore": 73.35,
+      "totalScore": 72,
       "note": "배분·기술·리포트가 비교적 균형적이며 리스크 패널티도 낮습니다.",
       "coverage": {
         "factorCoverage": 1,
@@ -5273,13 +6081,13 @@
       },
       "baseScores": {
         "allocationScore": 84,
-        "factorScore": 53,
+        "factorScore": 51,
         "techScore": 73,
         "reportScore": 51,
         "regimeFit": 80,
         "stage2Score": 58,
         "leadingScore": 57,
-        "actionBlend": 56,
+        "actionBlend": 55,
         "rawActionBlend": 56
       },
       "rawHoldingsScore": 56,
@@ -5338,8 +6146,8 @@
       },
       "taxAdjustment": {
         "enabled": true,
-        "preTaxScore": 72.55,
-        "afterTaxScore": 72.55,
+        "preTaxScore": 72.35,
+        "afterTaxScore": 72.35,
         "multiplier": 1,
         "expectedYield": 0.0137,
         "normalTaxRate": 0.154,
@@ -5359,40 +6167,40 @@
       "key": "TOSS",
       "label": "토스증권",
       "allocationScore": 74,
-      "holdingsScore": 59,
-      "factorScore": 49,
-      "reportCoverageScore": null,
-      "reportStatus": "unavailable",
-      "reportUnavailableReason": "no_mapped_impacts",
+      "holdingsScore": 61,
+      "factorScore": 51,
+      "reportCoverageScore": 37,
+      "reportStatus": "available",
+      "reportUnavailableReason": null,
       "stage2Bias": "selective_add",
-      "preTaxScore": 61.6,
-      "baseScore": 73.6,
-      "totalScore": 62,
+      "preTaxScore": 61.41,
+      "baseScore": 73.41,
+      "totalScore": 61,
       "note": "기본 점수보다 리스크 패널티가 점수를 크게 누르고 있어 구조 조정이 우선입니다.",
       "coverage": {
-        "factorCoverage": 0.9167,
+        "factorCoverage": 0.8333,
         "techCoverage": 0.6667,
-        "impactCoverage": 0,
+        "impactCoverage": 0.3667,
         "stage2Available": true,
         "fredAvailable": true
       },
       "baseScores": {
         "allocationScore": 74,
-        "factorScore": 49,
+        "factorScore": 51,
         "techScore": 96,
-        "reportScore": null,
+        "reportScore": 59,
         "regimeFit": 70,
         "stage2Score": 58,
         "leadingScore": 57,
-        "actionBlend": 59,
-        "rawActionBlend": 59
+        "actionBlend": 61,
+        "rawActionBlend": 61
       },
-      "rawHoldingsScore": 59,
+      "rawHoldingsScore": 61,
       "effectiveWeights": {
-        "allocation": 0.6077,
-        "factor": 0.0917,
+        "allocation": 0.5793,
+        "factor": 0.0833,
         "tech": 0.1667,
-        "report": 0,
+        "report": 0.0367,
         "regime": 0.034,
         "stage2": 0.05,
         "leading": 0.05
@@ -5445,8 +6253,8 @@
       },
       "taxAdjustment": {
         "enabled": true,
-        "preTaxScore": 61.6,
-        "afterTaxScore": 61.6,
+        "preTaxScore": 61.41,
+        "afterTaxScore": 61.41,
         "multiplier": 1,
         "expectedYield": 0.0026,
         "normalTaxRate": 0.154,
@@ -5488,65 +6296,65 @@
       "key": "KIS_MAIN",
       "label": "한투 일반",
       "allocationScore": 69,
-      "holdingsScore": 65,
-      "factorScore": 55,
-      "reportCoverageScore": 60,
+      "holdingsScore": 64,
+      "factorScore": 53,
+      "reportCoverageScore": 82,
       "reportStatus": "available",
       "reportUnavailableReason": null,
       "stage2Bias": "selective_add",
-      "preTaxScore": 59.39,
-      "baseScore": 71.39,
+      "preTaxScore": 59,
+      "baseScore": 71,
       "totalScore": 59,
       "note": "기본 점수보다 리스크 패널티가 점수를 크게 누르고 있어 구조 조정이 우선입니다.",
       "coverage": {
         "factorCoverage": 0.95,
         "techCoverage": 0.8,
-        "impactCoverage": 0.6,
+        "impactCoverage": 0.82,
         "stage2Available": true,
         "fredAvailable": true
       },
       "baseScores": {
         "allocationScore": 69,
-        "factorScore": 55,
+        "factorScore": 53,
         "techScore": 95,
-        "reportScore": 64,
+        "reportScore": 63,
         "regimeFit": 68,
         "stage2Score": 58,
         "leadingScore": 57,
-        "actionBlend": 65,
+        "actionBlend": 64,
         "rawActionBlend": 65
       },
       "rawHoldingsScore": 65,
       "effectiveWeights": {
-        "allocation": 0.511,
+        "allocation": 0.489,
         "factor": 0.095,
         "tech": 0.2,
-        "report": 0.06,
+        "report": 0.082,
         "regime": 0.034,
         "stage2": 0.05,
         "leading": 0.05
       },
       "riskPenalty": {
         "total": 12,
-        "portfolioVolatility": 0.5543,
+        "portfolioVolatility": 0.551,
         "breakdown": {
           "dataQuality": {
-            "total": 4.05,
+            "total": 4.07,
             "incompletePenalty": 0,
-            "unmappedExposurePct": 12.9,
-            "unmappedPenalty": 4.05,
+            "unmappedExposurePct": 13.04,
+            "unmappedPenalty": 4.07,
             "missingTechnicalPenalty": 0
           },
           "concentration": {
             "total": 0,
-            "hhi": 0.2788,
+            "hhi": 0.2758,
             "hhiPenalty": 0,
-            "maxPositionPct": 41.13,
+            "maxPositionPct": 40.4,
             "maxPositionPenalty": 0
           },
           "covariance": {
-            "total": 3.05,
-            "annualizedVolatility": 55.43,
+            "total": 3.03,
+            "annualizedVolatility": 55.1,
             "sampleCount": 60,
             "holdingsWithData": 4,
             "shrinkage": 0.35,
@@ -5555,33 +6363,33 @@
           "tailRisk": {
             "total": 5,
             "method": "portfolio_weighted_returns",
-            "maxDrawdownPct": 14.56,
-            "cvar95Pct": -8.4013,
+            "maxDrawdownPct": 14.47,
+            "cvar95Pct": -8.3525,
             "holdingsWithData": 4
           },
           "regimeStress": {
             "total": 0,
-            "currentRiskPct": 46.74,
+            "currentRiskPct": 46.23,
             "desiredRiskPct": 81.16,
             "excessRiskPct": 0
           }
         },
         "notes": [
-          "'기타' 비중 12.9%가 남아 분류 품질 패널티가 붙었습니다.",
-          "축소 공분산 기준 연율 변동성 55.43%로 상관 리스크 패널티가 반영됐습니다.",
-          "최대낙폭 14.56% / CVaR(95%) -8.4013% 수준으로 꼬리 리스크 패널티가 적용됐습니다."
+          "'기타' 비중 13%가 남아 분류 품질 패널티가 붙었습니다.",
+          "축소 공분산 기준 연율 변동성 55.1%로 상관 리스크 패널티가 반영됐습니다.",
+          "최대낙폭 14.47% / CVaR(95%) -8.3525% 수준으로 꼬리 리스크 패널티가 적용됐습니다."
         ]
       },
       "taxAdjustment": {
         "enabled": true,
-        "preTaxScore": 59.39,
-        "afterTaxScore": 59.39,
+        "preTaxScore": 59,
+        "afterTaxScore": 59,
         "multiplier": 1,
         "expectedYield": 0.0031,
         "normalTaxRate": 0.154,
         "accountTaxRate": 0.154,
         "taxSpread": 0,
-        "riskProxy": 0.5543,
+        "riskProxy": 0.551,
         "lift": 0,
         "addedScore": 0
       },
@@ -5674,14 +6482,14 @@
   },
   "portfolio": {
     "totalScore": 64,
-    "baseScore": 69.78,
-    "preTaxScore": 62.85,
+    "baseScore": 69.62,
+    "preTaxScore": 62.69,
     "riskPenalty": {
-      "total": 6.93
+      "total": 6.92
     },
     "taxAdjustment": {
-      "addedScore": 0.92,
-      "afterTaxScore": 63.77
+      "addedScore": 0.91,
+      "afterTaxScore": 63.61
     },
     "note": "선별적 추가와 방어를 병행해야 하는 구간"
   }

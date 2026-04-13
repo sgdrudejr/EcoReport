@@ -2,8 +2,8 @@
   "date": "2026-04-13",
   "runDate": "2026-04-13",
   "effectiveMarketDate": "2026-04-13",
-  "runId": "2026-04-13-no-claude-full",
-  "generatedAt": "2026-04-13T01:25:42.709Z",
+  "runId": "2026-04-13-kis-gemini-full",
+  "generatedAt": "2026-04-13T01:45:22.035Z",
   "overallStatus": "warn",
   "counts": {
     "accounts": 4,
@@ -20,10 +20,10 @@
       "label": "Stage 1",
       "path": "data/analysis-state/2026-04-13/stage1-report-extracts-v2.json",
       "meta": {
-        "runId": "2026-04-13-no-claude-full",
+        "runId": "2026-04-13-kis-gemini-full",
         "runDate": "2026-04-13",
         "effectiveMarketDate": "2026-04-13",
-        "generatedAt": "2026-04-13T01:25:06.874Z"
+        "generatedAt": "2026-04-13T01:45:03.576Z"
       }
     },
     {
@@ -31,10 +31,10 @@
       "label": "Stage 2",
       "path": "data/analysis-state/2026-04-13/stage2-strategy-options.json",
       "meta": {
-        "runId": "2026-04-13-no-claude-full",
+        "runId": "2026-04-13-kis-gemini-full",
         "runDate": "2026-04-13",
         "effectiveMarketDate": "2026-04-13",
-        "generatedAt": "2026-04-13T01:25:37.410Z"
+        "generatedAt": "2026-04-13T01:45:16.249450Z"
       }
     },
     {
@@ -42,10 +42,10 @@
       "label": "Impact Map",
       "path": "data/analysis-state/2026-04-13/impact-map.json",
       "meta": {
-        "runId": "2026-04-13-no-claude-full",
+        "runId": "2026-04-13-kis-gemini-full",
         "runDate": "2026-04-13",
         "effectiveMarketDate": "2026-04-13",
-        "generatedAt": "2026-04-13T01:25:37.621Z"
+        "generatedAt": "2026-04-13T01:45:17.043Z"
       }
     },
     {
@@ -53,10 +53,10 @@
       "label": "Stage 3",
       "path": "data/analysis-state/2026-04-13/stage3-quant-scores.json",
       "meta": {
-        "runId": "2026-04-13-no-claude-full",
+        "runId": "2026-04-13-kis-gemini-full",
         "runDate": "2026-04-13",
         "effectiveMarketDate": "2026-04-13",
-        "generatedAt": "2026-04-13T01:25:37.703Z"
+        "generatedAt": "2026-04-13T01:45:17.127Z"
       }
     },
     {
@@ -64,10 +64,10 @@
       "label": "Stage 4",
       "path": "data/analysis-state/2026-04-13/stage4-execution-plan.json",
       "meta": {
-        "runId": "2026-04-13-no-claude-full",
+        "runId": "2026-04-13-kis-gemini-full",
         "runDate": "2026-04-13",
         "effectiveMarketDate": "2026-04-13",
-        "generatedAt": "2026-04-13T01:25:37.782Z"
+        "generatedAt": "2026-04-13T01:45:17.210Z"
       }
     },
     {
@@ -75,10 +75,10 @@
       "label": "Refinement Round 2",
       "path": "data/analysis-state/2026-04-13/stage1-followup-research-map.json",
       "meta": {
-        "runId": "2026-04-13-no-claude-full",
+        "runId": "2026-04-13-kis-gemini-full",
         "runDate": "2026-04-13",
         "effectiveMarketDate": "2026-04-13",
-        "generatedAt": "2026-04-13T01:22:58.175Z"
+        "generatedAt": "2026-04-13T01:40:32.418Z"
       }
     },
     {
@@ -86,10 +86,10 @@
       "label": "Refinement Round 3",
       "path": "data/analysis-state/2026-04-13/stage1-final-refinement-map.json",
       "meta": {
-        "runId": "2026-04-13-no-claude-full",
+        "runId": "2026-04-13-kis-gemini-full",
         "runDate": "2026-04-13",
         "effectiveMarketDate": "2026-04-13",
-        "generatedAt": "2026-04-13T01:24:21.979Z"
+        "generatedAt": "2026-04-13T01:41:40.066Z"
       }
     },
     {
@@ -97,10 +97,10 @@
       "label": "Briefing",
       "path": "reports/daily/2026-04-13-briefing.md",
       "meta": {
-        "runId": "2026-04-13-no-claude-full",
+        "runId": "2026-04-13-kis-gemini-full",
         "runDate": "2026-04-13",
         "effectiveMarketDate": "2026-04-13",
-        "generatedAt": "2026-04-13T01:25:37.782Z"
+        "generatedAt": "2026-04-13T01:45:17.210Z"
       }
     },
     {
@@ -108,10 +108,10 @@
       "label": "LLM Wiki Daily",
       "path": "knowledge/wiki/daily/2026-04-13.md",
       "meta": {
-        "runId": "2026-04-13-no-claude-full",
+        "runId": "2026-04-13-kis-gemini-full",
         "runDate": "2026-04-13",
         "effectiveMarketDate": "2026-04-13",
-        "generatedAt": "2026-04-13T01:25:42.493Z"
+        "generatedAt": "2026-04-13T01:45:21.804Z"
       }
     }
   ],
@@ -176,14 +176,14 @@
       "key": "stage2",
       "label": "Stage 2 전략 탐색",
       "status": "ok",
-      "detail": "mock 결과 사용",
+      "detail": "Gemini 실제 결과 (gemini-2.5-flash-lite)",
       "path": "data/analysis-state/2026-04-13/stage2-strategy-options.json"
     },
     {
       "key": "impact_map",
       "label": "Impact Map",
       "status": "ok",
-      "detail": "리포트 102건",
+      "detail": "리포트 108건",
       "path": "data/analysis-state/2026-04-13/impact-map.json"
     },
     {
@@ -196,8 +196,8 @@
     {
       "key": "stage3_quality",
       "label": "Stage 3 관계 품질",
-      "status": "warn",
-      "detail": "unrelated 0.44 / blocked 18건",
+      "status": "ok",
+      "detail": "unrelated 0.22 / blocked 22건",
       "path": "data/analysis-state/2026-04-13/stage3-quant-scores.json"
     },
     {
@@ -211,7 +211,7 @@
       "key": "stage4_quality",
       "label": "Stage 4 논리 품질",
       "status": "ok",
-      "detail": "conflict 0건 / no_action 0건 / low_conf_reject 3건",
+      "detail": "conflict 0건 / no_action 0건 / low_conf_reject 0건",
       "path": "data/analysis-state/2026-04-13/stage4-execution-plan.json"
     },
     {
@@ -232,7 +232,7 @@
       "key": "gemini_briefing",
       "label": "경제 리포트 브리핑",
       "status": "ok",
-      "detail": "rich Gemini 브리핑 생성됨",
+      "detail": "rich briefing fallback 생성됨",
       "path": "knowledge/daily/2026-04-13-gemini-briefing-rich.md"
     },
     {
@@ -245,8 +245,8 @@
     {
       "key": "deep_research_response",
       "label": "Deep Research 결과",
-      "status": "warn",
-      "detail": "Deep Research 결과 없음",
+      "status": "ok",
+      "detail": "Gemini Deep Research 결과 저장됨",
       "path": "knowledge/daily/manual-kit/2026-04-13/09-stage1-5-gemini-deep-research-response.md"
     },
     {
@@ -273,8 +273,8 @@
     {
       "key": "followup_deep_research_response",
       "label": "Follow-up Deep Research 결과",
-      "status": "warn",
-      "detail": "2차 Deep Research 결과 없음",
+      "status": "ok",
+      "detail": "2차 Deep Research 결과 저장됨",
       "path": "knowledge/daily/manual-kit/2026-04-13/13-stage1-7-gemini-follow-up-response.md"
     },
     {
@@ -294,15 +294,15 @@
     {
       "key": "round3_deep_research_response",
       "label": "Round 3 Deep Research 결과",
-      "status": "warn",
-      "detail": "3차 Deep Research 결과 없음",
+      "status": "ok",
+      "detail": "3차 Deep Research 결과 저장됨",
       "path": "knowledge/daily/manual-kit/2026-04-13/16-stage1-8-gemini-final-refinement-response.md"
     },
     {
       "key": "freshness_run_id",
       "label": "Freshness / Run ID",
       "status": "ok",
-      "detail": "run-id 2026-04-13-no-claude-full 일치",
+      "detail": "run-id 2026-04-13-kis-gemini-full 일치",
       "path": "data/analysis-state/2026-04-13/stage4-execution-plan.json"
     },
     {

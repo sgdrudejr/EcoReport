@@ -2,8 +2,8 @@
   "date": "2026-04-13",
   "runDate": "2026-04-13",
   "effectiveMarketDate": "2026-04-13",
-  "runId": "2026-04-13-no-claude-full",
-  "generatedAt": "2026-04-13T01:25:06.874Z",
+  "runId": "2026-04-13-kis-gemini-full",
+  "generatedAt": "2026-04-13T01:45:03.576Z",
   "reportCount": 100,
   "quality": {
     "contaminationEvidenceCount": 0,

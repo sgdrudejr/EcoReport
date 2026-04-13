@@ -1,6 +1,6 @@
 {
-  "date": "2026-04-10",
-  "updatedAt": "2026-04-11T07:12:27.281Z",
+  "date": "2026-04-13",
+  "updatedAt": "2026-04-13T01:38:21.854Z",
   "source": {
     "method": "broker_api_sync",
     "reviewer": "seo",
@@ -159,12 +159,12 @@
       "key": "KIS_MAIN",
       "label": "한투 일반",
       "accountNumber": "44367266-01",
-      "evaluationAmount": 2546594,
+      "evaluationAmount": 2510014,
       "cashAvailable": 1644774,
-      "settlementCash": 1644774,
+      "settlementCash": 116594,
       "principal": 2392440,
-      "profitLoss": 37560,
-      "profitRate": 1.57,
+      "profitLoss": 980,
+      "profitRate": 0.04,
       "screenshots": [],
       "incomplete": false,
       "holdings": [
@@ -173,11 +173,11 @@
           "name": "한국항공우주",
           "quantity": 5,
           "avgPrice": 200500,
-          "currentPrice": 199900,
-          "marketValue": 999500,
+          "currentPrice": 193400,
+          "marketValue": 967000,
           "purchaseValue": 1002500,
-          "profitLoss": -3000,
-          "profitRate": -0.29,
+          "profitLoss": -35500,
+          "profitRate": -3.54,
           "note": null
         },
         {
@@ -185,11 +185,11 @@
           "name": "현대로템",
           "quantity": 1,
           "avgPrice": 208000,
-          "currentPrice": 210000,
-          "marketValue": 210000,
+          "currentPrice": 206500,
+          "marketValue": 206500,
           "purchaseValue": 208000,
-          "profitLoss": 2000,
-          "profitRate": 0.96,
+          "profitLoss": -1500,
+          "profitRate": -0.72,
           "note": null
         },
         {
@@ -197,11 +197,11 @@
           "name": "KODEX 구리선물(H)",
           "quantity": 58,
           "avgPrice": 8765,
-          "currentPrice": 9060,
-          "marketValue": 525480,
+          "currentPrice": 9080,
+          "marketValue": 526640,
           "purchaseValue": 508370,
-          "profitLoss": 17110,
-          "profitRate": 3.36,
+          "profitLoss": 18270,
+          "profitRate": 3.59,
           "note": null
         },
         {
@@ -209,11 +209,11 @@
           "name": "HANARO 원자력iSelect",
           "quantity": 2,
           "avgPrice": 64630,
-          "currentPrice": 70310,
-          "marketValue": 140620,
+          "currentPrice": 70700,
+          "marketValue": 141400,
           "purchaseValue": 129260,
-          "profitLoss": 11360,
-          "profitRate": 8.78,
+          "profitLoss": 12140,
+          "profitRate": 9.39,
           "note": null
         },
         {
@@ -221,11 +221,11 @@
           "name": "PLUS K방산",
           "quantity": 7,
           "avgPrice": 77758.5714,
-          "currentPrice": 79200,
-          "marketValue": 554400,
+          "currentPrice": 78840,
+          "marketValue": 551880,
           "purchaseValue": 544310,
-          "profitLoss": 10090,
-          "profitRate": 1.85,
+          "profitLoss": 7570,
+          "profitRate": 1.39,
           "note": null
         }
       ]

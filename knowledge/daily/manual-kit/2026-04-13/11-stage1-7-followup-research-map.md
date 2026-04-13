@@ -9,7 +9,7 @@
 - evidence_rich_topics: 7
 - low_evidence_topics: 3
 - rich_briefing_available: yes
-- deep_research_available: no
+- deep_research_available: yes
 - stage2_available: yes
 - prior_round_available: no
 

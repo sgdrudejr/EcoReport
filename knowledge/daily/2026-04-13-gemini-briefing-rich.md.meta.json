@@ -1,17 +1,17 @@
 {
-  "generated_at": "2026-04-13T01:24:25.888Z",
-  "generatedAt": "2026-04-13T01:24:25.888Z",
-  "run_id": "2026-04-13-no-claude-full",
-  "runId": "2026-04-13-no-claude-full",
+  "generated_at": "2026-04-13T01:41:41.817Z",
+  "generatedAt": "2026-04-13T01:41:41.817Z",
+  "run_id": "2026-04-13-kis-gemini-full",
+  "runId": "2026-04-13-kis-gemini-full",
   "run_date": "2026-04-13",
   "runDate": "2026-04-13",
   "effective_market_date": "2026-04-13",
   "effectiveMarketDate": "2026-04-13",
   "date": "2026-04-13",
-  "model": "gemini-2.5-flash",
+  "model": "local-fallback",
   "requested_model": "gemini-2.5-flash",
-  "source": "gemini",
-  "deep_research_available": false,
+  "source": "fallback",
+  "deep_research_available": true,
   "workflow": "stage1 + primary deep research + multi-round refinement -> rich briefing",
   "stage1_report_count": 100,
   "selected_extract_budget": 18,
@@ -26,7 +26,7 @@
   "selected_report_count": 9,
   "covered_report_count": 100,
   "briefing_candidate_count": 100,
-  "merged_text_char_length": 45615,
+  "merged_text_char_length": 56845,
   "source_paths": {
     "stage1": "/Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-13/stage1-report-extracts-v2.json",
     "portfolio": "/Users/seo/Documents/Playground/EcoReport/data/portfolio/latest.json",
@@ -43,7 +43,7 @@
     ],
     "archive_output": "/Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-13/10-stage1-6-final-research-briefing.md"
   },
-  "prompt_char_length": 45615,
-  "deep_research_char_length": 3731,
-  "prior_briefing_char_length": 2095
+  "prompt_char_length": 56845,
+  "deep_research_char_length": 14766,
+  "prior_briefing_char_length": 2204
 }
