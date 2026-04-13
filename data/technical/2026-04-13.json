@@ -1,0 +1,2718 @@
+{
+  "date": "2026-04-13",
+  "generated_at": "2026-04-13T01:10:58.599Z",
+  "market_context": {
+    "index": "KOSPI",
+    "signal": "BULLISH",
+    "vix": null,
+    "score": 96,
+    "close": 5858.87,
+    "ma": {
+      "ma5": 5690.866,
+      "ma20": 5551.7565,
+      "ma60": 5411.3985,
+      "ma120": 4746.0371
+    },
+    "rsi": 57.43,
+    "alerts": [],
+    "fallback": {
+      "source": "previous_technical_snapshot",
+      "recovered_from_date": "2026-04-10",
+      "reason": "executionBias is not defined"
+    }
+  },
+  "scores": {
+    "132030": {
+      "code": "132030",
+      "name": "KODEX 골드선물(H)",
+      "account": "ISA",
+      "bucket": "core_etf",
+      "type": "etf",
+      "score": 82,
+      "signal": "STRONG_BUY",
+      "signal_reason": "주가가 20일선 위에서 유지 중, 중기 추세는 약세, MACD 모멘텀이 우호적",
+      "rsi": 49.66,
+      "macd": {
+        "value": -355.9919,
+        "signal": -536.7978,
+        "histogram": 180.8059
+      },
+      "bollinger": {
+        "upper": 28873.325,
+        "middle": 26548.75,
+        "lower": 24224.175,
+        "position": "upper_half"
+      },
+      "stochastic": {
+        "k": 81.94,
+        "d": 85.68
+      },
+      "adx": {
+        "value": 23.8,
+        "pdi": 27.5,
+        "mdi": 34.45
+      },
+      "atr": {
+        "value": 759.1913,
+        "pct": 0.028092
+      },
+      "ma": {
+        "ma5": 26842,
+        "ma20": 26548.75,
+        "ma60": 27996.1667,
+        "ma120": 26269.4167
+      },
+      "recent_high": {
+        "window": 20,
+        "value": 28730,
+        "distance_pct": -0.059346
+      },
+      "volume_ratio": 0.842,
+      "close": 27025,
+      "previous_close": 26815,
+      "change_pct": 0.0078,
+      "history_points": 180,
+      "alerts": [],
+      "technical_analysis": {
+        "execution_bias": {
+          "side": "neutral",
+          "label": "중립",
+          "summary": "기술 지표가 엇갈려 현재는 중립 또는 관망에 가깝습니다."
+        },
+        "indicators": {
+          "rsi": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "RSI 49.66로 중립 구간입니다.",
+            "value": 49.66,
+            "divergence": "none",
+            "strength": "low"
+          },
+          "macd": {
+            "side": "buy_side",
+            "label": "매수 쪽",
+            "summary": "MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다.",
+            "value": -355.9919,
+            "signal": -536.7978,
+            "histogram": 180.8059,
+            "crossover": "none"
+          },
+          "bollinger": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "가격이 볼린저 중단 부근에 있어 중립에 가깝습니다.",
+            "position": "upper_half",
+            "distanceRatio": 0.602
+          },
+          "movingAverage": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "주가는 20일선 위지만 이평선 배열이 완전히 정리되진 않아 중립입니다.",
+            "above20": true,
+            "trend": "mixed"
+          },
+          "stochastic": {
+            "side": "sell_side",
+            "label": "매도 쪽",
+            "summary": "스토캐스틱이 과매수권이라 단기 조정 관점의 매도 쪽입니다.",
+            "k": 81.94,
+            "d": 85.68
+          },
+          "adx": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "ADX 기준 추세 강도는 제한적이거나 방향성이 혼재합니다.",
+            "adx": 23.8,
+            "pdi": 27.5,
+            "mdi": 34.45
+          }
+        },
+        "rsi_divergence": {
+          "type": "none",
+          "strength": "low",
+          "summary": "최근 구간에서는 뚜렷한 RSI 다이버전스가 보이지 않습니다."
+        }
+      },
+      "daily_returns": [
+        0.003408,
+        0.009247,
+        -0.006171,
+        -0.000753,
+        0.014686,
+        0.009278,
+        0.035484,
+        -0.011896,
+        0.026235,
+        0.025214,
+        0,
+        0.032963,
+        0.062335,
+        -0.076109,
+        -0.129212,
+        0.078739,
+        0.038917,
+        -0.027102,
+        -0.014904,
+        0.035303,
+        0.001914,
+        0.005036,
+        -0.000518,
+        -0.02057,
+        0.009178,
+        0.004897,
+        0.026627,
+        0.003051,
+        0.003718,
+        0,
+        -0.000168,
+        0.022735,
+        -0.033591,
+        0.00017,
+        -0.004259,
+        0.001198,
+        0.010766,
+        0.005579,
+        -0.011096,
+        -0.012411,
+        -0.014116,
+        -0.002968,
+        0.000525,
+        -0.040084,
+        -0.025894,
+        -0.093972,
+        0.033058,
+        0.0366,
+        -0.025468,
+        0.005345,
+        0.014573,
+        0.006599,
+        0.031816,
+        -0.024668,
+        0.018778,
+        -0.003762,
+        -0.003587,
+        0.041872,
+        -0.024732,
+        0.007831
+      ],
+      "fallback": {
+        "source": "previous_technical_snapshot",
+        "recovered_from_date": "2026-04-10",
+        "reason": "executionBias is not defined"
+      }
+    },
+    "133690": {
+      "code": "133690",
+      "name": "TIGER 미국나스닥100",
+      "account": "연금저축",
+      "bucket": "core_etf",
+      "type": "etf",
+      "score": 70,
+      "signal": "BUY",
+      "signal_reason": "주가가 20일선 위에서 유지 중, 중기 추세는 약세, MACD 모멘텀이 우호적",
+      "rsi": 61.93,
+      "macd": {
+        "value": 314.7781,
+        "signal": -308.4016,
+        "histogram": 623.1797
+      },
+      "bollinger": {
+        "upper": 165280.0352,
+        "middle": 160801,
+        "lower": 156321.9648,
+        "position": "upper_half"
+      },
+      "stochastic": {
+        "k": 97.2,
+        "d": 96.54
+      },
+      "adx": {
+        "value": 13.44,
+        "pdi": 35.49,
+        "mdi": 25.77
+      },
+      "atr": {
+        "value": 2041.0118,
+        "pct": 0.012389
+      },
+      "ma": {
+        "ma5": 162471,
+        "ma20": 160801,
+        "ma60": 162075.5,
+        "ma120": 162804.4583
+      },
+      "recent_high": {
+        "window": 20,
+        "value": 165070,
+        "distance_pct": -0.001939
+      },
+      "volume_ratio": 0.954,
+      "close": 164750,
+      "previous_close": 163385,
+      "change_pct": 0.0084,
+      "history_points": 180,
+      "alerts": [],
+      "technical_analysis": {
+        "execution_bias": {
+          "side": "neutral",
+          "label": "중립",
+          "summary": "기술 지표가 엇갈려 현재는 중립 또는 관망에 가깝습니다."
+        },
+        "indicators": {
+          "rsi": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "RSI 61.93로 중립 구간입니다.",
+            "value": 61.93,
+            "divergence": "none",
+            "strength": "low"
+          },
+          "macd": {
+            "side": "buy_side",
+            "label": "매수 쪽",
+            "summary": "MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다.",
+            "value": 314.7781,
+            "signal": -308.4016,
+            "histogram": 623.1797,
+            "crossover": "none"
+          },
+          "bollinger": {
+            "side": "sell_side",
+            "label": "매도 쪽",
+            "summary": "가격이 볼린저 상단에 가까워 단기 과열에 따른 매도 쪽 경계가 필요합니다.",
+            "position": "upper_half",
+            "distanceRatio": 0.941
+          },
+          "movingAverage": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "주가는 20일선 위지만 이평선 배열이 완전히 정리되진 않아 중립입니다.",
+            "above20": true,
+            "trend": "down"
+          },
+          "stochastic": {
+            "side": "sell_side",
+            "label": "매도 쪽",
+            "summary": "스토캐스틱이 과매수권이라 단기 조정 관점의 매도 쪽입니다.",
+            "k": 97.2,
+            "d": 96.54
+          },
+          "adx": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "ADX 기준 추세 강도는 제한적이거나 방향성이 혼재합니다.",
+            "adx": 13.44,
+            "pdi": 35.49,
+            "mdi": 25.77
+          }
+        },
+        "rsi_divergence": {
+          "type": "none",
+          "strength": "low",
+          "summary": "최근 구간에서는 뚜렷한 RSI 다이버전스가 보이지 않습니다."
+        }
+      },
+      "daily_returns": [
+        0.011752,
+        0.000238,
+        -0.010722,
+        0.006875,
+        -0.013775,
+        -0.001965,
+        -0.008543,
+        0.010052,
+        0.006262,
+        -0.016804,
+        0.012016,
+        -0.00278,
+        -0.000727,
+        -0.008065,
+        -0.003851,
+        0.01663,
+        -0.016751,
+        -0.004696,
+        -0.016654,
+        0.017155,
+        0.005303,
+        -0.007116,
+        -0.004078,
+        -0.021681,
+        0.012587,
+        -0.001252,
+        -0.008339,
+        0.00098,
+        -0.000379,
+        0.008562,
+        -0.003509,
+        0.01028,
+        -0.002894,
+        0.013856,
+        0.009727,
+        -0.020424,
+        0.010581,
+        0.000585,
+        0.000369,
+        -0.000831,
+        0.002063,
+        -0.002274,
+        0.010471,
+        -0.011581,
+        -0.001912,
+        -0.015107,
+        0.002604,
+        0.003723,
+        0.002462,
+        -0.012717,
+        -0.019085,
+        0.007866,
+        0.015387,
+        -0.001537,
+        0.006504,
+        0.00281,
+        -0.000591,
+        0.016073,
+        0.001778,
+        0.008355
+      ],
+      "fallback": {
+        "source": "previous_technical_snapshot",
+        "recovered_from_date": "2026-04-10",
+        "reason": "executionBias is not defined"
+      }
+    },
+    "267260": {
+      "code": "267260",
+      "name": "HD현대일렉트릭",
+      "account": null,
+      "bucket": "individual_stocks",
+      "type": "stock",
+      "score": 82,
+      "signal": "STRONG_BUY",
+      "signal_reason": "주가가 20일선 위에서 유지 중, 중기 추세는 약세, MACD 모멘텀이 우호적",
+      "rsi": 58.08,
+      "macd": {
+        "value": 2419.6274,
+        "signal": -7593.6263,
+        "histogram": 10013.2537
+      },
+      "bollinger": {
+        "upper": 1017625.3298,
+        "middle": 927600,
+        "lower": 837574.6702,
+        "position": "upper_half"
+      },
+      "stochastic": {
+        "k": 88.95,
+        "d": 86.47
+      },
+      "adx": {
+        "value": 13.59,
+        "pdi": 32.22,
+        "mdi": 19.94
+      },
+      "atr": {
+        "value": 53477.8685,
+        "pct": 0.053531
+      },
+      "ma": {
+        "ma5": 948800,
+        "ma20": 927600,
+        "ma60": 934550,
+        "ma120": 873175
+      },
+      "recent_high": {
+        "window": 20,
+        "value": 1020000,
+        "distance_pct": -0.020588
+      },
+      "volume_ratio": 1.415,
+      "close": 999000,
+      "previous_close": 980000,
+      "change_pct": 0.0194,
+      "history_points": 180,
+      "alerts": [],
+      "technical_analysis": {
+        "execution_bias": {
+          "side": "neutral",
+          "label": "중립",
+          "summary": "기술 지표가 엇갈려 현재는 중립 또는 관망에 가깝습니다."
+        },
+        "indicators": {
+          "rsi": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "RSI 58.08로 중립 구간입니다.",
+            "value": 58.08,
+            "divergence": "none",
+            "strength": "low"
+          },
+          "macd": {
+            "side": "buy_side",
+            "label": "매수 쪽",
+            "summary": "MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다.",
+            "value": 2419.6274,
+            "signal": -7593.6263,
+            "histogram": 10013.2537,
+            "crossover": "none"
+          },
+          "bollinger": {
+            "side": "sell_side",
+            "label": "매도 쪽",
+            "summary": "가격이 볼린저 상단에 가까워 단기 과열에 따른 매도 쪽 경계가 필요합니다.",
+            "position": "upper_half",
+            "distanceRatio": 0.897
+          },
+          "movingAverage": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "주가는 20일선 위지만 이평선 배열이 완전히 정리되진 않아 중립입니다.",
+            "above20": true,
+            "trend": "mixed"
+          },
+          "stochastic": {
+            "side": "sell_side",
+            "label": "매도 쪽",
+            "summary": "스토캐스틱이 과매수권이라 단기 조정 관점의 매도 쪽입니다.",
+            "k": 88.95,
+            "d": 86.47
+          },
+          "adx": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "ADX 기준 추세 강도는 제한적이거나 방향성이 혼재합니다.",
+            "adx": 13.59,
+            "pdi": 32.22,
+            "mdi": 19.94
+          }
+        },
+        "rsi_divergence": {
+          "type": "none",
+          "strength": "low",
+          "summary": "최근 구간에서는 뚜렷한 RSI 다이버전스가 보이지 않습니다."
+        }
+      },
+      "daily_returns": [
+        0.011416,
+        0.040632,
+        -0.032538,
+        0.015695,
+        0.013245,
+        -0.003268,
+        -0.022951,
+        -0.006711,
+        -0.004505,
+        -0.013575,
+        0.033257,
+        0.00111,
+        -0.005543,
+        -0.008919,
+        -0.059618,
+        0.063397,
+        0.03937,
+        -0.055195,
+        -0.037801,
+        0.110714,
+        0.006431,
+        0.059638,
+        -0.029146,
+        -0.017598,
+        0.018967,
+        0.045502,
+        0.055391,
+        0.002812,
+        -0.004673,
+        0.043192,
+        -0.054905,
+        -0.06,
+        -0.117528,
+        0.129736,
+        -0.01626,
+        -0.063017,
+        0.037486,
+        -0.002125,
+        0.005325,
+        -0.01589,
+        -0.025834,
+        0.028729,
+        0.046187,
+        -0.016427,
+        0.001044,
+        -0.047967,
+        0.013143,
+        0.072432,
+        -0.027218,
+        -0.051813,
+        -0.046995,
+        -0.045872,
+        0.084135,
+        -0.022173,
+        0.001134,
+        0.012458,
+        -0.003356,
+        0.099888,
+        0,
+        0.019388
+      ],
+      "fallback": {
+        "source": "previous_technical_snapshot",
+        "recovered_from_date": "2026-04-10",
+        "reason": "executionBias is not defined"
+      }
+    },
+    "298040": {
+      "code": "298040",
+      "name": "효성중공업",
+      "account": null,
+      "bucket": "individual_stocks",
+      "type": "stock",
+      "score": 100,
+      "signal": "STRONG_BUY",
+      "signal_reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+      "rsi": 59.89,
+      "macd": {
+        "value": 71985.0257,
+        "signal": 48262.1692,
+        "histogram": 23722.8565
+      },
+      "bollinger": {
+        "upper": 2998461.5592,
+        "middle": 2686150,
+        "lower": 2373838.4408,
+        "position": "upper_half"
+      },
+      "stochastic": {
+        "k": 80,
+        "d": 76.64
+      },
+      "adx": {
+        "value": 12.38,
+        "pdi": 30.35,
+        "mdi": 17.88
+      },
+      "atr": {
+        "value": 188307.7201,
+        "pct": 0.06405
+      },
+      "ma": {
+        "ma5": 2799000,
+        "ma20": 2686150,
+        "ma60": 2527433.3333,
+        "ma120": 2238975
+      },
+      "recent_high": {
+        "window": 20,
+        "value": 3075000,
+        "distance_pct": -0.043902
+      },
+      "volume_ratio": 1.7,
+      "close": 2940000,
+      "previous_close": 2882000,
+      "change_pct": 0.0201,
+      "history_points": 180,
+      "alerts": [],
+      "technical_analysis": {
+        "execution_bias": {
+          "side": "neutral",
+          "label": "중립",
+          "summary": "기술 지표가 엇갈려 현재는 중립 또는 관망에 가깝습니다."
+        },
+        "indicators": {
+          "rsi": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "RSI 59.89로 중립 구간입니다.",
+            "value": 59.89,
+            "divergence": "none",
+            "strength": "low"
+          },
+          "macd": {
+            "side": "buy_side",
+            "label": "매수 쪽",
+            "summary": "MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다.",
+            "value": 71985.0257,
+            "signal": 48262.1692,
+            "histogram": 23722.8565,
+            "crossover": "none"
+          },
+          "bollinger": {
+            "side": "sell_side",
+            "label": "매도 쪽",
+            "summary": "가격이 볼린저 상단에 가까워 단기 과열에 따른 매도 쪽 경계가 필요합니다.",
+            "position": "upper_half",
+            "distanceRatio": 0.906
+          },
+          "movingAverage": {
+            "side": "buy_side",
+            "label": "매수 쪽",
+            "summary": "주가가 20일선 위에 있고 단기·중기 이평선 배열도 우상향이라 매수 쪽입니다.",
+            "above20": true,
+            "trend": "up"
+          },
+          "stochastic": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "스토캐스틱은 중립 구간입니다.",
+            "k": 80,
+            "d": 76.64
+          },
+          "adx": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "ADX 기준 추세 강도는 제한적이거나 방향성이 혼재합니다.",
+            "adx": 12.38,
+            "pdi": 30.35,
+            "mdi": 17.88
+          }
+        },
+        "rsi_divergence": {
+          "type": "none",
+          "strength": "low",
+          "summary": "최근 구간에서는 뚜렷한 RSI 다이버전스가 보이지 않습니다."
+        }
+      },
+      "daily_returns": [
+        0.009439,
+        0.045768,
+        0.055529,
+        0.040125,
+        0.011573,
+        -0.00678,
+        -0.010666,
+        0.012937,
+        -0.000851,
+        -0.001278,
+        0.018345,
+        0.054881,
+        0.01112,
+        0.022388,
+        -0.123703,
+        0.037703,
+        0.007182,
+        -0.020973,
+        -0.052699,
+        0.083673,
+        -0.020451,
+        0.023008,
+        0.001666,
+        -0.008732,
+        0.028943,
+        0.07338,
+        0.042157,
+        0.005102,
+        0.001813,
+        0.04886,
+        -0.02588,
+        -0.076869,
+        -0.118573,
+        0.081411,
+        -0.002415,
+        -0.035916,
+        0.067392,
+        -0.006667,
+        0.011054,
+        0.012495,
+        -0.02931,
+        0.011522,
+        0.072663,
+        -0.013914,
+        0.015596,
+        -0.053382,
+        0.04326,
+        0.106997,
+        -0.043478,
+        -0.064336,
+        -0.064649,
+        -0.018777,
+        0.080212,
+        -0.050886,
+        0.01668,
+        0.028516,
+        -0.008735,
+        0.122605,
+        -0.016382,
+        0.020125
+      ],
+      "fallback": {
+        "source": "previous_technical_snapshot",
+        "recovered_from_date": "2026-04-10",
+        "reason": "executionBias is not defined"
+      }
+    },
+    "360750": {
+      "code": "360750",
+      "name": "TIGER 미국S&P500",
+      "account": "연금저축",
+      "bucket": "core_etf",
+      "type": "etf",
+      "score": 77,
+      "signal": "BUY",
+      "signal_reason": "주가가 20일선 위에서 유지 중, 중기 추세는 약세, MACD 모멘텀이 우호적",
+      "rsi": 62.09,
+      "macd": {
+        "value": 36.7723,
+        "signal": -40.4207,
+        "histogram": 77.193
+      },
+      "bollinger": {
+        "upper": 25069.3555,
+        "middle": 24595.5,
+        "lower": 24121.6445,
+        "position": "above_upper"
+      },
+      "stochastic": {
+        "k": 97.2,
+        "d": 96.15
+      },
+      "adx": {
+        "value": 11.16,
+        "pdi": 35.23,
+        "mdi": 24.44
+      },
+      "atr": {
+        "value": 248.3887,
+        "pct": 0.009894
+      },
+      "ma": {
+        "ma5": 24815,
+        "ma20": 24595.5,
+        "ma60": 24798.4167,
+        "ma120": 24708.0833
+      },
+      "recent_high": {
+        "window": 20,
+        "value": 25145,
+        "distance_pct": -0.001591
+      },
+      "volume_ratio": 1.03,
+      "close": 25105,
+      "previous_close": 24930,
+      "change_pct": 0.007,
+      "history_points": 180,
+      "alerts": [
+        "볼린저밴드 상단 이탈"
+      ],
+      "technical_analysis": {
+        "execution_bias": {
+          "side": "neutral",
+          "label": "중립",
+          "summary": "기술 지표가 엇갈려 현재는 중립 또는 관망에 가깝습니다."
+        },
+        "indicators": {
+          "rsi": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "RSI 62.09로 중립 구간입니다.",
+            "value": 62.09,
+            "divergence": "none",
+            "strength": "low"
+          },
+          "macd": {
+            "side": "buy_side",
+            "label": "매수 쪽",
+            "summary": "MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다.",
+            "value": 36.7723,
+            "signal": -40.4207,
+            "histogram": 77.193,
+            "crossover": "none"
+          },
+          "bollinger": {
+            "side": "sell_side",
+            "label": "매도 쪽",
+            "summary": "가격이 볼린저 상단에 가까워 단기 과열에 따른 매도 쪽 경계가 필요합니다.",
+            "position": "above_upper",
+            "distanceRatio": 1.038
+          },
+          "movingAverage": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "주가는 20일선 위지만 이평선 배열이 완전히 정리되진 않아 중립입니다.",
+            "above20": true,
+            "trend": "mixed"
+          },
+          "stochastic": {
+            "side": "sell_side",
+            "label": "매도 쪽",
+            "summary": "스토캐스틱이 과매수권이라 단기 조정 관점의 매도 쪽입니다.",
+            "k": 97.2,
+            "d": 96.15
+          },
+          "adx": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "ADX 기준 추세 강도는 제한적이거나 방향성이 혼재합니다.",
+            "adx": 11.16,
+            "pdi": 35.23,
+            "mdi": 24.44
+          }
+        },
+        "rsi_divergence": {
+          "type": "none",
+          "strength": "low",
+          "summary": "최근 구간에서는 뚜렷한 RSI 다이버전스가 보이지 않습니다."
+        }
+      },
+      "daily_returns": [
+        0.009891,
+        -0.000979,
+        -0.005686,
+        0.005916,
+        -0.008038,
+        -0.004545,
+        -0.009728,
+        0.007819,
+        0.004376,
+        -0.019608,
+        0.010909,
+        -0.009992,
+        -0.002422,
+        -0.001416,
+        0.007092,
+        0.009256,
+        -0.006978,
+        0.005822,
+        -0.011976,
+        0.014545,
+        0.002589,
+        -0.006356,
+        -0.004597,
+        -0.018675,
+        0.011664,
+        -0.000809,
+        -0.007692,
+        0.000204,
+        -0.003263,
+        0.003683,
+        0.001631,
+        0.009159,
+        0.001008,
+        0.004836,
+        0.004211,
+        -0.016573,
+        0.005076,
+        -0.000808,
+        -0.001415,
+        0.002632,
+        0.00101,
+        -0.002824,
+        0.006069,
+        -0.008446,
+        -0.00142,
+        -0.010764,
+        0.000205,
+        0.007184,
+        0.001834,
+        -0.006509,
+        -0.01679,
+        0.013953,
+        0.008215,
+        -0.002852,
+        0.003882,
+        0.001425,
+        0.000203,
+        0.008736,
+        0.00423,
+        0.00702
+      ],
+      "fallback": {
+        "source": "previous_technical_snapshot",
+        "recovered_from_date": "2026-04-10",
+        "reason": "executionBias is not defined"
+      }
+    },
+    "423160": {
+      "code": "423160",
+      "name": "KODEX KOFR금리액티브(합성)",
+      "account": "전계좌",
+      "bucket": "core_etf",
+      "type": "etf",
+      "score": 17,
+      "signal": "SELL",
+      "signal_reason": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 둔화",
+      "rsi": 52.09,
+      "macd": {
+        "value": -9.5614,
+        "signal": -8.7633,
+        "histogram": -0.7981
+      },
+      "bollinger": {
+        "upper": 110864.5496,
+        "middle": 110736.75,
+        "lower": 110608.9504,
+        "position": "lower_half"
+      },
+      "stochastic": {
+        "k": 46.51,
+        "d": 38.76
+      },
+      "adx": {
+        "value": 16.45,
+        "pdi": 50.43,
+        "mdi": 45.16
+      },
+      "atr": {
+        "value": 22.6394,
+        "pct": 0.000204
+      },
+      "ma": {
+        "ma5": 110709,
+        "ma20": 110736.75,
+        "ma60": 110742,
+        "ma120": 110743.9167
+      },
+      "recent_high": {
+        "window": 20,
+        "value": 110850,
+        "distance_pct": -0.001037
+      },
+      "volume_ratio": 1.17,
+      "close": 110735,
+      "previous_close": 110715,
+      "change_pct": 0.0002,
+      "history_points": 180,
+      "alerts": [],
+      "technical_analysis": {
+        "execution_bias": {
+          "side": "sell_side",
+          "label": "매도 쪽",
+          "summary": "여러 기술 지표가 매도 쪽에 더 가깝습니다."
+        },
+        "indicators": {
+          "rsi": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "RSI 52.09로 중립 구간입니다.",
+            "value": 52.09,
+            "divergence": "none",
+            "strength": "low"
+          },
+          "macd": {
+            "side": "sell_side",
+            "label": "매도 쪽",
+            "summary": "MACD가 시그널선 아래에 있고 히스토그램도 마이너스라 매도 쪽 모멘텀이 우세합니다.",
+            "value": -9.5614,
+            "signal": -8.7633,
+            "histogram": -0.7981,
+            "crossover": "none"
+          },
+          "bollinger": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "가격이 볼린저 중단 부근에 있어 중립에 가깝습니다.",
+            "position": "lower_half",
+            "distanceRatio": 0.493
+          },
+          "movingAverage": {
+            "side": "sell_side",
+            "label": "매도 쪽",
+            "summary": "주가가 20일선 아래에 있고 이평선 배열도 역배열에 가까워 매도 쪽입니다.",
+            "above20": false,
+            "trend": "down"
+          },
+          "stochastic": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "스토캐스틱은 중립 구간입니다.",
+            "k": 46.51,
+            "d": 38.76
+          },
+          "adx": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "ADX 기준 추세 강도는 제한적이거나 방향성이 혼재합니다.",
+            "adx": 16.45,
+            "pdi": 50.43,
+            "mdi": 45.16
+          }
+        },
+        "rsi_divergence": {
+          "type": "none",
+          "strength": "low",
+          "summary": "최근 구간에서는 뚜렷한 RSI 다이버전스가 보이지 않습니다."
+        }
+      },
+      "daily_returns": [
+        0,
+        0.000135,
+        0.00009,
+        0.000226,
+        0.000045,
+        0.000045,
+        0.00009,
+        0.00009,
+        0.000226,
+        0.000045,
+        0.00009,
+        0.000045,
+        -0.00221,
+        0.000226,
+        0.00009,
+        0.000045,
+        0.00009,
+        0.000045,
+        0.000226,
+        0.00009,
+        0,
+        0.00009,
+        0.000135,
+        0.000451,
+        0.00009,
+        0.00018,
+        0.000045,
+        0.000045,
+        0.00009,
+        -0.002165,
+        0.000271,
+        0.000045,
+        0.00009,
+        0.00009,
+        0.000226,
+        0.000045,
+        0.00009,
+        0.000045,
+        0.00009,
+        0.000226,
+        0.000045,
+        0.00009,
+        0.000045,
+        0.00009,
+        0.000226,
+        0,
+        0.000135,
+        0.000045,
+        0.00009,
+        0.000226,
+        -0.001894,
+        0,
+        0.000045,
+        0.000136,
+        0.000226,
+        0.000045,
+        0.00009,
+        0.000045,
+        0.00009,
+        0.000181
+      ],
+      "fallback": {
+        "source": "previous_technical_snapshot",
+        "recovered_from_date": "2026-04-10",
+        "reason": "executionBias is not defined"
+      }
+    },
+    "434730": {
+      "code": "434730",
+      "name": "HANARO 원자력iSelect",
+      "account": "토스",
+      "bucket": "satellite_etf",
+      "type": "etf",
+      "score": 96,
+      "signal": "STRONG_BUY",
+      "signal_reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+      "rsi": 56.44,
+      "macd": {
+        "value": 697.2499,
+        "signal": 433.0024,
+        "histogram": 264.2474
+      },
+      "bollinger": {
+        "upper": 73684.0879,
+        "middle": 67450.25,
+        "lower": 61216.4121,
+        "position": "upper_half"
+      },
+      "stochastic": {
+        "k": 90.19,
+        "d": 84.95
+      },
+      "adx": {
+        "value": 16.23,
+        "pdi": 24.37,
+        "mdi": 22.44
+      },
+      "atr": {
+        "value": 3589.1504,
+        "pct": 0.051048
+      },
+      "ma": {
+        "ma5": 67926,
+        "ma20": 67450.25,
+        "ma60": 64305.6667,
+        "ma120": 56532.75
+      },
+      "recent_high": {
+        "window": 20,
+        "value": 73330,
+        "distance_pct": -0.041184
+      },
+      "volume_ratio": 0.514,
+      "close": 70310,
+      "previous_close": 69730,
+      "change_pct": 0.0083,
+      "history_points": 180,
+      "alerts": [
+        "골든크로스(5일/20일) 발생"
+      ],
+      "technical_analysis": {
+        "execution_bias": {
+          "side": "buy_side",
+          "label": "매수 쪽",
+          "summary": "여러 기술 지표가 매수 쪽에 더 가깝습니다."
+        },
+        "indicators": {
+          "rsi": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "RSI 56.44로 중립 구간입니다.",
+            "value": 56.44,
+            "divergence": "none",
+            "strength": "low"
+          },
+          "macd": {
+            "side": "buy_side",
+            "label": "매수 쪽",
+            "summary": "MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다.",
+            "value": 697.2499,
+            "signal": 433.0024,
+            "histogram": 264.2474,
+            "crossover": "none"
+          },
+          "bollinger": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "가격이 볼린저 중단 부근에 있어 중립에 가깝습니다.",
+            "position": "upper_half",
+            "distanceRatio": 0.729
+          },
+          "movingAverage": {
+            "side": "buy_side",
+            "label": "매수 쪽",
+            "summary": "주가가 20일선 위에 있고 단기·중기 이평선 배열도 우상향이라 매수 쪽입니다.",
+            "above20": true,
+            "trend": "up"
+          },
+          "stochastic": {
+            "side": "sell_side",
+            "label": "매도 쪽",
+            "summary": "스토캐스틱이 과매수권이라 단기 조정 관점의 매도 쪽입니다.",
+            "k": 90.19,
+            "d": 84.95
+          },
+          "adx": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "ADX 기준 추세 강도는 제한적이거나 방향성이 혼재합니다.",
+            "adx": 16.23,
+            "pdi": 24.37,
+            "mdi": 22.44
+          }
+        },
+        "rsi_divergence": {
+          "type": "none",
+          "strength": "low",
+          "summary": "최근 구간에서는 뚜렷한 RSI 다이버전스가 보이지 않습니다."
+        }
+      },
+      "daily_returns": [
+        0.014703,
+        0.031731,
+        -0.001333,
+        0.0332,
+        0.021623,
+        0.031706,
+        -0.015774,
+        -0.008636,
+        -0.004691,
+        -0.011362,
+        0.021452,
+        0.003917,
+        0.012618,
+        -0.021315,
+        -0.057799,
+        0.065967,
+        0.046622,
+        -0.03562,
+        -0.027847,
+        0.069783,
+        -0.009455,
+        0.026711,
+        -0.003516,
+        -0.007448,
+        0.03357,
+        0.039511,
+        0.023747,
+        0.006032,
+        0.022842,
+        0.024147,
+        -0.015605,
+        -0.088883,
+        -0.144659,
+        0.127909,
+        0.028745,
+        -0.045395,
+        0.057177,
+        0.000607,
+        0.010841,
+        0.022499,
+        -0.015916,
+        0.007751,
+        0.056135,
+        -0.003782,
+        0.018347,
+        -0.068199,
+        0.003334,
+        0.041051,
+        -0.024043,
+        -0.037134,
+        -0.038792,
+        -0.03973,
+        0.092396,
+        -0.054641,
+        0.016152,
+        0.006233,
+        -0.006117,
+        0.103935,
+        -0.015739,
+        0.008318
+      ],
+      "fallback": {
+        "source": "previous_technical_snapshot",
+        "recovered_from_date": "2026-04-10",
+        "reason": "executionBias is not defined"
+      }
+    },
+    "449450": {
+      "code": "449450",
+      "name": "PLUS K방산",
+      "account": "토스",
+      "bucket": "satellite_etf",
+      "type": "etf",
+      "score": 96,
+      "signal": "STRONG_BUY",
+      "signal_reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+      "rsi": 60.29,
+      "macd": {
+        "value": 1682.4305,
+        "signal": 1036.3225,
+        "histogram": 646.108
+      },
+      "bollinger": {
+        "upper": 80789.4765,
+        "middle": 73411,
+        "lower": 66032.5235,
+        "position": "upper_half"
+      },
+      "stochastic": {
+        "k": 97.45,
+        "d": 95.58
+      },
+      "adx": {
+        "value": 17.7,
+        "pdi": 27.76,
+        "mdi": 17.23
+      },
+      "atr": {
+        "value": 3732.2816,
+        "pct": 0.047125
+      },
+      "ma": {
+        "ma5": 77382,
+        "ma20": 73411,
+        "ma60": 71000.5,
+        "ma120": 62129.9583
+      },
+      "recent_high": {
+        "window": 20,
+        "value": 79575,
+        "distance_pct": -0.004713
+      },
+      "volume_ratio": 1.043,
+      "close": 79200,
+      "previous_close": 78000,
+      "change_pct": 0.0154,
+      "history_points": 180,
+      "alerts": [],
+      "technical_analysis": {
+        "execution_bias": {
+          "side": "neutral",
+          "label": "중립",
+          "summary": "기술 지표가 엇갈려 현재는 중립 또는 관망에 가깝습니다."
+        },
+        "indicators": {
+          "rsi": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "RSI 60.29로 중립 구간입니다.",
+            "value": 60.29,
+            "divergence": "none",
+            "strength": "low"
+          },
+          "macd": {
+            "side": "buy_side",
+            "label": "매수 쪽",
+            "summary": "MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다.",
+            "value": 1682.4305,
+            "signal": 1036.3225,
+            "histogram": 646.108,
+            "crossover": "none"
+          },
+          "bollinger": {
+            "side": "sell_side",
+            "label": "매도 쪽",
+            "summary": "가격이 볼린저 상단에 가까워 단기 과열에 따른 매도 쪽 경계가 필요합니다.",
+            "position": "upper_half",
+            "distanceRatio": 0.892
+          },
+          "movingAverage": {
+            "side": "buy_side",
+            "label": "매수 쪽",
+            "summary": "주가가 20일선 위에 있고 단기·중기 이평선 배열도 우상향이라 매수 쪽입니다.",
+            "above20": true,
+            "trend": "up"
+          },
+          "stochastic": {
+            "side": "sell_side",
+            "label": "매도 쪽",
+            "summary": "스토캐스틱이 과매수권이라 단기 조정 관점의 매도 쪽입니다.",
+            "k": 97.45,
+            "d": 95.58
+          },
+          "adx": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "ADX 기준 추세 강도는 제한적이거나 방향성이 혼재합니다.",
+            "adx": 17.7,
+            "pdi": 27.76,
+            "mdi": 17.23
+          }
+        },
+        "rsi_divergence": {
+          "type": "none",
+          "strength": "low",
+          "summary": "최근 구간에서는 뚜렷한 RSI 다이버전스가 보이지 않습니다."
+        }
+      },
+      "daily_returns": [
+        0.047072,
+        -0.024737,
+        0.031172,
+        -0.025952,
+        0.020348,
+        -0.003228,
+        -0.012594,
+        -0.020335,
+        -0.00305,
+        0.010597,
+        -0.0144,
+        0.028246,
+        0.009545,
+        -0.011115,
+        -0.049266,
+        0.067097,
+        0.024173,
+        -0.069612,
+        -0.033975,
+        0.024072,
+        -0.02114,
+        -0.0046,
+        0.011749,
+        0.001935,
+        0.030753,
+        0.057496,
+        -0.008152,
+        0.007433,
+        -0.005533,
+        -0.010344,
+        0.020255,
+        0.135368,
+        -0.173242,
+        0.150083,
+        0.049149,
+        -0.029942,
+        -0.01807,
+        -0.008055,
+        0.015251,
+        -0.010925,
+        -0.003156,
+        -0.005408,
+        -0.011936,
+        -0.010738,
+        -0.03114,
+        -0.06113,
+        0.027894,
+        0.063706,
+        -0.008731,
+        -0.015965,
+        -0.044476,
+        -0.047717,
+        0.125961,
+        0.006825,
+        0.039862,
+        -0.012452,
+        0.01624,
+        0.00039,
+        0.012987,
+        0.015385
+      ],
+      "fallback": {
+        "source": "previous_technical_snapshot",
+        "recovered_from_date": "2026-04-10",
+        "reason": "executionBias is not defined"
+      }
+    },
+    "458760": {
+      "code": "458760",
+      "name": "TIGER 미국배당다우존스타겟커버드콜2호",
+      "account": "ISA",
+      "bucket": "core_etf",
+      "type": "etf",
+      "score": 47,
+      "signal": "HOLD",
+      "signal_reason": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화",
+      "rsi": 47.87,
+      "macd": {
+        "value": 31.4515,
+        "signal": 65.9223,
+        "histogram": -34.4707
+      },
+      "bollinger": {
+        "upper": 11422.499,
+        "middle": 11272.75,
+        "lower": 11123.001,
+        "position": "lower_half"
+      },
+      "stochastic": {
+        "k": 12.2,
+        "d": 11.9
+      },
+      "adx": {
+        "value": 16.13,
+        "pdi": 27.65,
+        "mdi": 27.12
+      },
+      "atr": {
+        "value": 107.7908,
+        "pct": 0.00965
+      },
+      "ma": {
+        "ma5": 11207,
+        "ma20": 11272.75,
+        "ma60": 10984.4167,
+        "ma120": 10404.0833
+      },
+      "recent_high": {
+        "window": 20,
+        "value": 11530,
+        "distance_pct": -0.031223
+      },
+      "volume_ratio": 0.844,
+      "close": 11170,
+      "previous_close": 11180,
+      "change_pct": -0.0009,
+      "history_points": 180,
+      "alerts": [],
+      "technical_analysis": {
+        "execution_bias": {
+          "side": "neutral",
+          "label": "중립",
+          "summary": "기술 지표가 엇갈려 현재는 중립 또는 관망에 가깝습니다."
+        },
+        "indicators": {
+          "rsi": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "RSI 47.87로 중립 구간입니다.",
+            "value": 47.87,
+            "divergence": "none",
+            "strength": "low"
+          },
+          "macd": {
+            "side": "sell_side",
+            "label": "매도 쪽",
+            "summary": "MACD가 시그널선 아래에 있고 히스토그램도 마이너스라 매도 쪽 모멘텀이 우세합니다.",
+            "value": 31.4515,
+            "signal": 65.9223,
+            "histogram": -34.4707,
+            "crossover": "none"
+          },
+          "bollinger": {
+            "side": "buy_side",
+            "label": "매수 쪽",
+            "summary": "가격이 볼린저 하단에 가까워 단기 반등 관점의 매수 쪽에 가깝습니다.",
+            "position": "lower_half",
+            "distanceRatio": 0.157
+          },
+          "movingAverage": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "주가는 눌려 있지만 장기 추세가 완전히 꺾이진 않아 중립 구간입니다.",
+            "above20": false,
+            "trend": "mixed"
+          },
+          "stochastic": {
+            "side": "buy_side",
+            "label": "매수 쪽",
+            "summary": "스토캐스틱이 과매도권이라 단기 반등 관점의 매수 쪽입니다.",
+            "k": 12.2,
+            "d": 11.9
+          },
+          "adx": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "ADX 기준 추세 강도는 제한적이거나 방향성이 혼재합니다.",
+            "adx": 16.13,
+            "pdi": 27.65,
+            "mdi": 27.12
+          }
+        },
+        "rsi_divergence": {
+          "type": "none",
+          "strength": "low",
+          "summary": "최근 구간에서는 뚜렷한 RSI 다이버전스가 보이지 않습니다."
+        }
+      },
+      "daily_returns": [
+        0.000976,
+        0.007314,
+        0.014521,
+        0.002385,
+        -0.008091,
+        -0.001919,
+        -0.002885,
+        0.016876,
+        -0.000948,
+        -0.014713,
+        -0.000482,
+        -0.009639,
+        -0.013625,
+        0.006413,
+        0.028431,
+        0.006196,
+        0.01658,
+        0.031221,
+        0.005423,
+        0.012135,
+        -0.007105,
+        -0.004472,
+        0.006289,
+        -0.008929,
+        0.012613,
+        -0.002224,
+        -0.009362,
+        0.00405,
+        -0.002689,
+        -0.020225,
+        0.005505,
+        0.025547,
+        0.001779,
+        -0.00222,
+        -0.00089,
+        -0.000445,
+        -0.004011,
+        -0.006711,
+        0.004505,
+        0.009865,
+        0.005329,
+        -0.006625,
+        0.003557,
+        -0.003545,
+        0.002668,
+        -0.004878,
+        -0.004902,
+        0.010748,
+        0.003101,
+        0.007951,
+        -0.00745,
+        0.012362,
+        -0.012647,
+        -0.005742,
+        0.002665,
+        -0.002658,
+        0.000444,
+        -0.007993,
+        0.000895,
+        -0.000894
+      ],
+      "fallback": {
+        "source": "previous_technical_snapshot",
+        "recovered_from_date": "2026-04-10",
+        "reason": "executionBias is not defined"
+      }
+    },
+    "487240": {
+      "code": "487240",
+      "name": "KODEX AI전력핵심설비",
+      "account": "토스",
+      "bucket": "satellite_etf",
+      "type": "etf",
+      "score": 100,
+      "signal": "STRONG_BUY",
+      "signal_reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+      "rsi": 57.51,
+      "macd": {
+        "value": 474.6268,
+        "signal": 373.6529,
+        "histogram": 100.9739
+      },
+      "bollinger": {
+        "upper": 35072.5948,
+        "middle": 32258,
+        "lower": 29443.4052,
+        "position": "upper_half"
+      },
+      "stochastic": {
+        "k": 82.91,
+        "d": 75.98
+      },
+      "adx": {
+        "value": 10.98,
+        "pdi": 25.31,
+        "mdi": 21.98
+      },
+      "atr": {
+        "value": 1776.0571,
+        "pct": 0.052329
+      },
+      "ma": {
+        "ma5": 32651,
+        "ma20": 32258,
+        "ma60": 30269.25,
+        "ma120": 26958.0833
+      },
+      "recent_high": {
+        "window": 20,
+        "value": 34885,
+        "distance_pct": -0.027089
+      },
+      "volume_ratio": 0.69,
+      "close": 33940,
+      "previous_close": 33155,
+      "change_pct": 0.0237,
+      "history_points": 180,
+      "alerts": [
+        "골든크로스(5일/20일) 발생",
+        "MACD 시그널 상향 돌파"
+      ],
+      "technical_analysis": {
+        "execution_bias": {
+          "side": "buy_side",
+          "label": "매수 쪽",
+          "summary": "여러 기술 지표가 매수 쪽에 더 가깝습니다."
+        },
+        "indicators": {
+          "rsi": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "RSI 57.51로 중립 구간입니다.",
+            "value": 57.51,
+            "divergence": "none",
+            "strength": "low"
+          },
+          "macd": {
+            "side": "buy_side",
+            "label": "매수 쪽",
+            "summary": "MACD가 시그널선을 상향 돌파해 매수 쪽으로 기울었습니다.",
+            "value": 474.6268,
+            "signal": 373.6529,
+            "histogram": 100.9739,
+            "crossover": "bullish"
+          },
+          "bollinger": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "가격이 볼린저 중단 부근에 있어 중립에 가깝습니다.",
+            "position": "upper_half",
+            "distanceRatio": 0.799
+          },
+          "movingAverage": {
+            "side": "buy_side",
+            "label": "매수 쪽",
+            "summary": "주가가 20일선 위에 있고 단기·중기 이평선 배열도 우상향이라 매수 쪽입니다.",
+            "above20": true,
+            "trend": "up"
+          },
+          "stochastic": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "스토캐스틱은 중립 구간입니다.",
+            "k": 82.91,
+            "d": 75.98
+          },
+          "adx": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "ADX 기준 추세 강도는 제한적이거나 방향성이 혼재합니다.",
+            "adx": 10.98,
+            "pdi": 25.31,
+            "mdi": 21.98
+          }
+        },
+        "rsi_divergence": {
+          "type": "none",
+          "strength": "low",
+          "summary": "최근 구간에서는 뚜렷한 RSI 다이버전스가 보이지 않습니다."
+        }
+      },
+      "daily_returns": [
+        0.003957,
+        0.040599,
+        0.000947,
+        0.010974,
+        0.006925,
+        0.004089,
+        -0.019993,
+        0.004722,
+        0.003572,
+        -0.005807,
+        0.021104,
+        0.028234,
+        0.01005,
+        0.00924,
+        -0.092958,
+        0.08948,
+        0.048815,
+        -0.035502,
+        -0.041564,
+        0.076259,
+        -0.012805,
+        0.03165,
+        0.009556,
+        -0.009133,
+        0.015921,
+        0.032662,
+        0.060064,
+        0.016426,
+        0.010823,
+        0.042094,
+        -0.019845,
+        -0.08185,
+        -0.139506,
+        0.116685,
+        0.003906,
+        -0.048638,
+        0.047546,
+        0.002928,
+        0.016869,
+        -0.000479,
+        -0.013246,
+        0.015203,
+        0.068345,
+        0.007605,
+        0.020127,
+        -0.069056,
+        0.013402,
+        0.054283,
+        -0.025233,
+        -0.043843,
+        -0.041784,
+        -0.039686,
+        0.087415,
+        -0.043009,
+        0.013237,
+        0.015645,
+        -0.012228,
+        0.079582,
+        -0.012509,
+        0.023677
+      ],
+      "fallback": {
+        "source": "previous_technical_snapshot",
+        "recovered_from_date": "2026-04-10",
+        "reason": "executionBias is not defined"
+      }
+    },
+    "005930": {
+      "code": "005930",
+      "name": "삼성전자",
+      "account": null,
+      "bucket": "individual_stocks",
+      "type": "stock",
+      "score": 96,
+      "signal": "STRONG_BUY",
+      "signal_reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+      "rsi": 58.49,
+      "macd": {
+        "value": 4895.9339,
+        "signal": 2914.4801,
+        "histogram": 1981.4538
+      },
+      "bollinger": {
+        "upper": 213672.6299,
+        "middle": 191180,
+        "lower": 168687.3701,
+        "position": "upper_half"
+      },
+      "stochastic": {
+        "k": 82.11,
+        "d": 83.86
+      },
+      "adx": {
+        "value": 16.15,
+        "pdi": 34.97,
+        "mdi": 21.74
+      },
+      "atr": {
+        "value": 11064.7432,
+        "pct": 0.053712
+      },
+      "ma": {
+        "ma5": 202020,
+        "ma20": 191180,
+        "ma60": 178060,
+        "ma120": 142855
+      },
+      "recent_high": {
+        "window": 20,
+        "value": 214500,
+        "distance_pct": -0.039627
+      },
+      "volume_ratio": 1.16,
+      "close": 206000,
+      "previous_close": 204000,
+      "change_pct": 0.0098,
+      "history_points": 180,
+      "alerts": [],
+      "technical_analysis": {
+        "execution_bias": {
+          "side": "neutral",
+          "label": "중립",
+          "summary": "기술 지표가 엇갈려 현재는 중립 또는 관망에 가깝습니다."
+        },
+        "indicators": {
+          "rsi": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "RSI 58.49로 중립 구간입니다.",
+            "value": 58.49,
+            "divergence": "none",
+            "strength": "low"
+          },
+          "macd": {
+            "side": "buy_side",
+            "label": "매수 쪽",
+            "summary": "MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다.",
+            "value": 4895.9339,
+            "signal": 2914.4801,
+            "histogram": 1981.4538,
+            "crossover": "none"
+          },
+          "bollinger": {
+            "side": "sell_side",
+            "label": "매도 쪽",
+            "summary": "가격이 볼린저 상단에 가까워 단기 과열에 따른 매도 쪽 경계가 필요합니다.",
+            "position": "upper_half",
+            "distanceRatio": 0.829
+          },
+          "movingAverage": {
+            "side": "buy_side",
+            "label": "매수 쪽",
+            "summary": "주가가 20일선 위에 있고 단기·중기 이평선 배열도 우상향이라 매수 쪽입니다.",
+            "above20": true,
+            "trend": "up"
+          },
+          "stochastic": {
+            "side": "sell_side",
+            "label": "매도 쪽",
+            "summary": "스토캐스틱이 과매수권이라 단기 조정 관점의 매도 쪽입니다.",
+            "k": 82.11,
+            "d": 83.86
+          },
+          "adx": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "ADX 기준 추세 강도는 제한적이거나 방향성이 혼재합니다.",
+            "adx": 16.15,
+            "pdi": 34.97,
+            "mdi": 21.74
+          }
+        },
+        "rsi_divergence": {
+          "type": "none",
+          "strength": "low",
+          "summary": "최근 구간에서는 뚜렷한 RSI 다이버전스가 보이지 않습니다."
+        }
+      },
+      "daily_returns": [
+        -0.008646,
+        0.019622,
+        0.025659,
+        0.034746,
+        0.002686,
+        -0.027461,
+        0.029614,
+        0.018729,
+        -0.001313,
+        0,
+        0.048652,
+        0.018182,
+        -0.010468,
+        -0.001245,
+        -0.062928,
+        0.113697,
+        0.009552,
+        -0.057954,
+        -0.004394,
+        0.04918,
+        -0.003606,
+        0.012063,
+        0.064362,
+        0.014558,
+        0.048565,
+        0.000526,
+        0.015255,
+        0.036269,
+        0.0175,
+        0.071253,
+        -0.006881,
+        -0.098845,
+        -0.117376,
+        0.11266,
+        -0.017745,
+        -0.078108,
+        0.082997,
+        0.011176,
+        -0.011053,
+        -0.023417,
+        0.028338,
+        0.027557,
+        0.075297,
+        -0.038369,
+        -0.005486,
+        -0.065697,
+        0.01825,
+        -0.00369,
+        -0.04709,
+        -0.002221,
+        -0.01892,
+        -0.051617,
+        0.133971,
+        -0.059072,
+        0.043722,
+        0.037057,
+        0.017607,
+        0.071247,
+        -0.030879,
+        0.009804
+      ],
+      "fallback": {
+        "source": "previous_technical_snapshot",
+        "recovered_from_date": "2026-04-10",
+        "reason": "executionBias is not defined"
+      }
+    },
+    "000660": {
+      "code": "000660",
+      "name": "SK하이닉스",
+      "account": null,
+      "bucket": "individual_stocks",
+      "type": "stock",
+      "score": 96,
+      "signal": "STRONG_BUY",
+      "signal_reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+      "rsi": 57.66,
+      "macd": {
+        "value": 13698.6292,
+        "signal": 3572.6254,
+        "histogram": 10126.0038
+      },
+      "bollinger": {
+        "upper": 1083316.617,
+        "middle": 946400,
+        "lower": 809483.383,
+        "position": "upper_half"
+      },
+      "stochastic": {
+        "k": 88.4,
+        "d": 85.33
+      },
+      "adx": {
+        "value": 15.34,
+        "pdi": 35.29,
+        "mdi": 23.41
+      },
+      "atr": {
+        "value": 64325.903,
+        "pct": 0.062635
+      },
+      "ma": {
+        "ma5": 972000,
+        "ma20": 946400,
+        "ma60": 895616.6667,
+        "ma120": 736129.1667
+      },
+      "recent_high": {
+        "window": 20,
+        "value": 1060000,
+        "distance_pct": -0.031132
+      },
+      "volume_ratio": 1.16,
+      "close": 1027000,
+      "previous_close": 998000,
+      "change_pct": 0.0291,
+      "history_points": 180,
+      "alerts": [],
+      "technical_analysis": {
+        "execution_bias": {
+          "side": "buy_side",
+          "label": "매수 쪽",
+          "summary": "여러 기술 지표가 매수 쪽에 더 가깝습니다."
+        },
+        "indicators": {
+          "rsi": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "RSI 57.66로 중립 구간입니다.",
+            "value": 57.66,
+            "divergence": "none",
+            "strength": "low"
+          },
+          "macd": {
+            "side": "buy_side",
+            "label": "매수 쪽",
+            "summary": "MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다.",
+            "value": 13698.6292,
+            "signal": 3572.6254,
+            "histogram": 10126.0038,
+            "crossover": "none"
+          },
+          "bollinger": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "가격이 볼린저 중단 부근에 있어 중립에 가깝습니다.",
+            "position": "upper_half",
+            "distanceRatio": 0.794
+          },
+          "movingAverage": {
+            "side": "buy_side",
+            "label": "매수 쪽",
+            "summary": "주가가 20일선 위에 있고 단기·중기 이평선 배열도 우상향이라 매수 쪽입니다.",
+            "above20": true,
+            "trend": "up"
+          },
+          "stochastic": {
+            "side": "sell_side",
+            "label": "매도 쪽",
+            "summary": "스토캐스틱이 과매수권이라 단기 조정 관점의 매도 쪽입니다.",
+            "k": 88.4,
+            "d": 85.33
+          },
+          "adx": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "ADX 기준 추세 강도는 제한적이거나 방향성이 혼재합니다.",
+            "adx": 15.34,
+            "pdi": 35.29,
+            "mdi": 23.41
+          }
+        },
+        "rsi_divergence": {
+          "type": "none",
+          "strength": "low",
+          "summary": "최근 구간에서는 뚜렷한 RSI 다이버전스가 보이지 않습니다."
+        }
+      },
+      "daily_returns": [
+        -0.014686,
+        0.00542,
+        0.009434,
+        0.009346,
+        0.010582,
+        -0.027487,
+        -0.004038,
+        0.02027,
+        0.015894,
+        -0.040417,
+        0.086957,
+        0.05125,
+        0.023781,
+        0.055749,
+        -0.086909,
+        0.092771,
+        -0.007718,
+        -0.064444,
+        -0.003563,
+        0.057211,
+        -0.012401,
+        -0.018265,
+        0.032558,
+        -0.009009,
+        0.015909,
+        0.061521,
+        0.002107,
+        0.056782,
+        0.012935,
+        0.079568,
+        -0.034577,
+        -0.114986,
+        -0.095847,
+        0.108363,
+        -0.018066,
+        -0.095238,
+        0.12201,
+        0.018124,
+        -0.026178,
+        -0.021505,
+        0.07033,
+        -0.004107,
+        0.08866,
+        -0.04072,
+        -0.005923,
+        -0.073486,
+        0.056806,
+        0.009128,
+        -0.062312,
+        -0.01179,
+        -0.053145,
+        -0.075601,
+        0.106568,
+        -0.070549,
+        0.055422,
+        0.011416,
+        0.03386,
+        0.127729,
+        -0.033882,
+        0.029058
+      ],
+      "fallback": {
+        "source": "previous_technical_snapshot",
+        "recovered_from_date": "2026-04-10",
+        "reason": "executionBias is not defined"
+      }
+    },
+    "010120": {
+      "code": "010120",
+      "name": "LS ELECTRIC",
+      "account": null,
+      "bucket": "individual_stocks",
+      "type": "stock",
+      "score": 44,
+      "signal": "HOLD",
+      "signal_reason": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화",
+      "rsi": 53.31,
+      "macd": {
+        "value": 17251.2576,
+        "signal": 24400.7944,
+        "histogram": -7149.5368
+      },
+      "bollinger": {
+        "upper": 880972.1503,
+        "middle": 798400,
+        "lower": 715827.8497,
+        "position": "lower_half"
+      },
+      "stochastic": {
+        "k": 89.55,
+        "d": 88.66
+      },
+      "adx": {
+        "value": 25.42,
+        "pdi": 5.47,
+        "mdi": 28.32
+      },
+      "atr": {
+        "value": 203988.2157,
+        "pct": 0.258868
+      },
+      "ma": {
+        "ma5": 790200,
+        "ma20": 798400,
+        "ma60": 686591.6667,
+        "ma120": 569629.1667
+      },
+      "recent_high": {
+        "window": 20,
+        "value": 907000,
+        "distance_pct": -0.131202
+      },
+      "volume_ratio": 0,
+      "close": 788000,
+      "previous_close": 788000,
+      "change_pct": 0,
+      "history_points": 180,
+      "alerts": [],
+      "technical_analysis": {
+        "execution_bias": {
+          "side": "neutral",
+          "label": "중립",
+          "summary": "기술 지표가 엇갈려 현재는 중립 또는 관망에 가깝습니다."
+        },
+        "indicators": {
+          "rsi": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "RSI 53.31로 중립 구간입니다.",
+            "value": 53.31,
+            "divergence": "none",
+            "strength": "low"
+          },
+          "macd": {
+            "side": "sell_side",
+            "label": "매도 쪽",
+            "summary": "MACD가 시그널선 아래에 있고 히스토그램도 마이너스라 매도 쪽 모멘텀이 우세합니다.",
+            "value": 17251.2576,
+            "signal": 24400.7944,
+            "histogram": -7149.5368,
+            "crossover": "none"
+          },
+          "bollinger": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "가격이 볼린저 중단 부근에 있어 중립에 가깝습니다.",
+            "position": "lower_half",
+            "distanceRatio": 0.437
+          },
+          "movingAverage": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "주가는 눌려 있지만 장기 추세가 완전히 꺾이진 않아 중립 구간입니다.",
+            "above20": false,
+            "trend": "mixed"
+          },
+          "stochastic": {
+            "side": "sell_side",
+            "label": "매도 쪽",
+            "summary": "스토캐스틱이 과매수권이라 단기 조정 관점의 매도 쪽입니다.",
+            "k": 89.55,
+            "d": 88.66
+          },
+          "adx": {
+            "side": "buy_side",
+            "label": "매수 쪽",
+            "summary": "ADX가 높고 중기 추세도 우상향이라 추세 매수 쪽입니다.",
+            "adx": 25.42,
+            "pdi": 5.47,
+            "mdi": 28.32
+          }
+        },
+        "rsi_divergence": {
+          "type": "none",
+          "strength": "low",
+          "summary": "최근 구간에서는 뚜렷한 RSI 다이버전스가 보이지 않습니다."
+        }
+      },
+      "daily_returns": [
+        0.001008,
+        0.085599,
+        -0.024119,
+        0.013308,
+        0,
+        -0.015009,
+        -0.03619,
+        0.021739,
+        -0.015474,
+        -0.015717,
+        0.071856,
+        0.065177,
+        -0.026224,
+        0.016158,
+        -0.070671,
+        0.163498,
+        0.044118,
+        -0.031299,
+        -0.038772,
+        0.085714,
+        -0.013932,
+        0.047096,
+        0.005997,
+        -0.014903,
+        0.022693,
+        0.022189,
+        0.044863,
+        0.033241,
+        0.009383,
+        0.066401,
+        -0.019925,
+        -0.092757,
+        -0.123249,
+        0.119808,
+        0.00428,
+        -0.03267,
+        0.063142,
+        -0.002762,
+        0.024931,
+        0.009459,
+        -0.018742,
+        0.039563,
+        0.093176,
+        0.048019,
+        0.014891,
+        -0.071106,
+        -0.012151,
+        0.03813,
+        -0.011848,
+        -0.039568,
+        -0.032459,
+        -0.073548,
+        0.10585,
+        -0.044081,
+        0.013175,
+        0.039012,
+        -0.013767,
+        0,
+        0,
+        0
+      ],
+      "fallback": {
+        "source": "previous_technical_snapshot",
+        "recovered_from_date": "2026-04-10",
+        "reason": "executionBias is not defined"
+      }
+    },
+    "064350": {
+      "code": "064350",
+      "name": "현대로템",
+      "account": null,
+      "bucket": "individual_stocks",
+      "type": "stock",
+      "score": 86,
+      "signal": "STRONG_BUY",
+      "signal_reason": "주가가 20일선 위에서 유지 중, 중기 추세는 약세, MACD 모멘텀이 우호적",
+      "rsi": 55.31,
+      "macd": {
+        "value": 941.2181,
+        "signal": -2438.9002,
+        "histogram": 3380.1183
+      },
+      "bollinger": {
+        "upper": 218590.1237,
+        "middle": 192415,
+        "lower": 166239.8763,
+        "position": "upper_half"
+      },
+      "stochastic": {
+        "k": 83.77,
+        "d": 77.41
+      },
+      "adx": {
+        "value": 16.58,
+        "pdi": 26.1,
+        "mdi": 22.26
+      },
+      "atr": {
+        "value": 12378.3472,
+        "pct": 0.058945
+      },
+      "ma": {
+        "ma5": 208300,
+        "ma20": 192415,
+        "ma60": 208130,
+        "ma120": 203210
+      },
+      "recent_high": {
+        "window": 20,
+        "value": 218000,
+        "distance_pct": -0.036697
+      },
+      "volume_ratio": 1.352,
+      "close": 210000,
+      "previous_close": 203000,
+      "change_pct": 0.0345,
+      "history_points": 180,
+      "alerts": [],
+      "technical_analysis": {
+        "execution_bias": {
+          "side": "neutral",
+          "label": "중립",
+          "summary": "기술 지표가 엇갈려 현재는 중립 또는 관망에 가깝습니다."
+        },
+        "indicators": {
+          "rsi": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "RSI 55.31로 중립 구간입니다.",
+            "value": 55.31,
+            "divergence": "none",
+            "strength": "low"
+          },
+          "macd": {
+            "side": "buy_side",
+            "label": "매수 쪽",
+            "summary": "MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다.",
+            "value": 941.2181,
+            "signal": -2438.9002,
+            "histogram": 3380.1183,
+            "crossover": "none"
+          },
+          "bollinger": {
+            "side": "sell_side",
+            "label": "매도 쪽",
+            "summary": "가격이 볼린저 상단에 가까워 단기 과열에 따른 매도 쪽 경계가 필요합니다.",
+            "position": "upper_half",
+            "distanceRatio": 0.836
+          },
+          "movingAverage": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "주가는 20일선 위지만 이평선 배열이 완전히 정리되진 않아 중립입니다.",
+            "above20": true,
+            "trend": "mixed"
+          },
+          "stochastic": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "스토캐스틱은 중립 구간입니다.",
+            "k": 83.77,
+            "d": 77.41
+          },
+          "adx": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "ADX 기준 추세 강도는 제한적이거나 방향성이 혼재합니다.",
+            "adx": 16.58,
+            "pdi": 26.1,
+            "mdi": 22.26
+          }
+        },
+        "rsi_divergence": {
+          "type": "none",
+          "strength": "low",
+          "summary": "최근 구간에서는 뚜렷한 RSI 다이버전스가 보이지 않습니다."
+        }
+      },
+      "daily_returns": [
+        0.06422,
+        -0.038793,
+        -0.015695,
+        -0.020501,
+        0,
+        0.016279,
+        -0.01373,
+        -0.041763,
+        0.004843,
+        0.026506,
+        -0.007042,
+        0.054374,
+        0.015695,
+        0.01766,
+        -0.069414,
+        0.034965,
+        0.029279,
+        -0.094092,
+        -0.021739,
+        0.049383,
+        -0.058824,
+        0.0125,
+        0.017284,
+        -0.021845,
+        0.042184,
+        0.047619,
+        0.006818,
+        0,
+        0.004515,
+        -0.011236,
+        0.047727,
+        0.08026,
+        -0.188755,
+        0.116337,
+        0.033259,
+        -0.077253,
+        -0.034884,
+        -0.021687,
+        0.014778,
+        -0.036408,
+        -0.0267,
+        -0.001553,
+        0.000518,
+        -0.034715,
+        -0.03328,
+        -0.062188,
+        0.053286,
+        0.071951,
+        -0.004719,
+        -0.029505,
+        -0.022801,
+        -0.058333,
+        0.113864,
+        0.067267,
+        0.042184,
+        0.004762,
+        0,
+        -0.021327,
+        -0.016949,
+        0.034483
+      ],
+      "fallback": {
+        "source": "previous_technical_snapshot",
+        "recovered_from_date": "2026-04-10",
+        "reason": "executionBias is not defined"
+      }
+    },
+    "047810": {
+      "code": "047810",
+      "name": "한국항공우주",
+      "account": null,
+      "bucket": "individual_stocks",
+      "type": "stock",
+      "score": 96,
+      "signal": "STRONG_BUY",
+      "signal_reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+      "rsi": 60.01,
+      "macd": {
+        "value": 4424.5712,
+        "signal": 3070.9751,
+        "histogram": 1353.5961
+      },
+      "bollinger": {
+        "upper": 204861.2616,
+        "middle": 186125,
+        "lower": 167388.7384,
+        "position": "upper_half"
+      },
+      "stochastic": {
+        "k": 86.44,
+        "d": 86.42
+      },
+      "adx": {
+        "value": 20.93,
+        "pdi": 33.01,
+        "mdi": 16.49
+      },
+      "atr": {
+        "value": 11346.6183,
+        "pct": 0.056761
+      },
+      "ma": {
+        "ma5": 191920,
+        "ma20": 186125,
+        "ma60": 175578.3333,
+        "ma120": 142782.5
+      },
+      "recent_high": {
+        "window": 20,
+        "value": 206500,
+        "distance_pct": -0.031961
+      },
+      "volume_ratio": 1.455,
+      "close": 199900,
+      "previous_close": 199900,
+      "change_pct": 0,
+      "history_points": 180,
+      "alerts": [],
+      "technical_analysis": {
+        "execution_bias": {
+          "side": "neutral",
+          "label": "중립",
+          "summary": "기술 지표가 엇갈려 현재는 중립 또는 관망에 가깝습니다."
+        },
+        "indicators": {
+          "rsi": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "RSI 60.01로 중립 구간입니다.",
+            "value": 60.01,
+            "divergence": "none",
+            "strength": "low"
+          },
+          "macd": {
+            "side": "buy_side",
+            "label": "매수 쪽",
+            "summary": "MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다.",
+            "value": 4424.5712,
+            "signal": 3070.9751,
+            "histogram": 1353.5961,
+            "crossover": "none"
+          },
+          "bollinger": {
+            "side": "sell_side",
+            "label": "매도 쪽",
+            "summary": "가격이 볼린저 상단에 가까워 단기 과열에 따른 매도 쪽 경계가 필요합니다.",
+            "position": "upper_half",
+            "distanceRatio": 0.868
+          },
+          "movingAverage": {
+            "side": "buy_side",
+            "label": "매수 쪽",
+            "summary": "주가가 20일선 위에 있고 단기·중기 이평선 배열도 우상향이라 매수 쪽입니다.",
+            "above20": true,
+            "trend": "up"
+          },
+          "stochastic": {
+            "side": "sell_side",
+            "label": "매도 쪽",
+            "summary": "스토캐스틱이 과매수권이라 단기 조정 관점의 매도 쪽입니다.",
+            "k": 86.44,
+            "d": 86.42
+          },
+          "adx": {
+            "side": "neutral",
+            "label": "중립",
+            "summary": "ADX 기준 추세 강도는 제한적이거나 방향성이 혼재합니다.",
+            "adx": 20.93,
+            "pdi": 33.01,
+            "mdi": 16.49
+          }
+        },
+        "rsi_divergence": {
+          "type": "none",
+          "strength": "low",
+          "summary": "최근 구간에서는 뚜렷한 RSI 다이버전스가 보이지 않습니다."
+        }
+      },
+      "daily_returns": [
+        0.022092,
+        -0.018436,
+        0.079016,
+        -0.064226,
+        0.061578,
+        0.001208,
+        -0.009053,
+        0.009135,
+        -0.016898,
+        0.027624,
+        -0.020311,
+        0.017073,
+        0.01259,
+        -0.003552,
+        -0.049317,
+        0.023125,
+        0.045816,
+        -0.053738,
+        -0.02284,
+        0.027164,
+        -0.007995,
+        0.00682,
+        0.019089,
+        0.067674,
+        -0.007357,
+        0.014253,
+        -0.012929,
+        0.045558,
+        -0.005991,
+        0.007671,
+        0.041327,
+        0.031854,
+        -0.197874,
+        0.129338,
+        0.024022,
+        -0.050191,
+        0,
+        0.007467,
+        0.025086,
+        0.016129,
+        0.046524,
+        0.056485,
+        -0.038119,
+        -0.020072,
+        -0.024685,
+        -0.085083,
+        0.037669,
+        0.049348,
+        0.016216,
+        -0.007979,
+        -0.065952,
+        -0.054535,
+        0.140862,
+        -0.019691,
+        -0.008686,
+        0.002738,
+        0.017477,
+        0.022008,
+        0.049895,
+        0
+      ],
+      "fallback": {
+        "source": "previous_technical_snapshot",
+        "recovered_from_date": "2026-04-10",
+        "reason": "executionBias is not defined"
+      }
+    }
+  }
+}

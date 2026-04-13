@@ -1,0 +1,198 @@
+{
+  "date": "2026-04-13",
+  "macro_view": {
+    "regime": "HIGH_VOL",
+    "confidence": "HIGH",
+    "summary": "중동발 지정학적 불확실성 지속 및 유가 변동성으로 시장 전반의 높은 변동성이 예상됩니다. 물가 상승 압력과 금리 정책에 대한 경계감이 유지됩니다."
+  },
+  "strategy_changes": [
+    {
+      "theme": "시장 변동성 관리",
+      "direction": "reinforce",
+      "why_now": "중동 지정학적 불확실성 및 유가 변동성으로 시장 전반의 변동성 확대가 우려됩니다.",
+      "source_reports": [
+        "report_002",
+        "report_005"
+      ]
+    },
+    {
+      "theme": "현금 비중 확보",
+      "direction": "reinforce",
+      "why_now": "불확실성 확대 시 방어 비중 및 유동성 확보를 위한 현금 운용의 중요성이 증대됩니다.",
+      "source_reports": [
+        "report_001"
+      ]
+    },
+    {
+      "theme": "방어적 자산 검토",
+      "direction": "watch",
+      "why_now": "매크로 부정 시각 및 지정학적 위험 지속에 따라 방어적 자산의 역할 재고가 필요합니다.",
+      "source_reports": [
+        "report_001",
+        "report_007"
+      ]
+    },
+    {
+      "theme": "분할 매수/매도 접근",
+      "direction": "reinforce",
+      "why_now": "신규 대응 시 변동성 확대에 대비하여 분할 접근을 우선하는 전략이 필요합니다.",
+      "source_reports": []
+    }
+  ],
+  "account_actions": [
+    {
+      "account_key": "ISA",
+      "bias": "defensive",
+      "rationale": "시장 변동성 확대에 대비하여 핵심 노출 자산의 비중을 확인하고 현금 여력을 확보하며 신중하게 접근합니다.",
+      "buy_candidates": [],
+      "trim_candidates": [],
+      "hold_candidates": [
+        "360750",
+        "458760"
+      ],
+      "reserve_cash_note": "시장 불확실성 확대 시 유동성 확보를 위해 현금 여력을 유지합니다."
+    },
+    {
+      "account_key": "PENSION",
+      "bias": "defensive",
+      "rationale": "금리 인상 압력 및 매크로 부정 시각에 대응하여 금리형 자산 비중을 점검하고, 시장 변동성에 대비한 현금 확보를 우선합니다.",
+      "buy_candidates": [],
+      "trim_candidates": [
+        "423160"
+      ],
+      "hold_candidates": [
+        "133690",
+        "360750"
+      ],
+      "reserve_cash_note": "금리 변동성 및 시장 불확실성에 대비하여 현금 비중을 유지하며 기회를 모색합니다."
+    },
+    {
+      "account_key": "TOSS",
+      "bias": "hold",
+      "rationale": "원자력 섹터의 장기적 잠재력은 유효하나, 매크로 불확실성 속에서 현금 여력을 확인하며 신중하게 접근합니다.",
+      "buy_candidates": [],
+      "trim_candidates": [],
+      "hold_candidates": [
+        "434730",
+        "251350",
+        "449450"
+      ],
+      "reserve_cash_note": "시장 상황 변화에 유연하게 대응할 수 있도록 현금 비중을 관리합니다."
+    },
+    {
+      "account_key": "KIS_MAIN",
+      "bias": "selective_add",
+      "rationale": "방산 섹터는 지정학적 위험에 대한 헤지 역할을 할 수 있으나, 전반적인 매크로 불확실성 속에서 현금 여력을 확인하며 분할 접근합니다.",
+      "buy_candidates": [
+        "047810"
+      ],
+      "trim_candidates": [
+        "138910"
+      ],
+      "hold_candidates": [
+        "064350",
+        "434730",
+        "449450"
+      ],
+      "reserve_cash_note": "방산 섹터의 기회를 포착하되, 시장 변동성에 대비한 현금 확보를 유지합니다."
+    }
+  ],
+  "candidate_scores": [
+    {
+      "code": "360750",
+      "name": "TIGER 미국S&P500",
+      "stance": "hold",
+      "target_accounts": [
+        "ISA",
+        "PENSION"
+      ],
+      "horizon": "3m",
+      "confidence": "MEDIUM",
+      "thesis": "ISA와 연금저축의 핵심 노출 자산으로, 시장 변동성 속에서도 장기적 관점에서 보유합니다.",
+      "risks": [
+        "중동 지정학적 위험 지속",
+        "유가 상승에 따른 인플레이션 압력"
+      ]
+    },
+    {
+      "code": "423160",
+      "name": "KODEX KOFR금리액티브(합성)",
+      "stance": "trim",
+      "target_accounts": [
+        "PENSION"
+      ],
+      "horizon": "1m",
+      "confidence": "HIGH",
+      "thesis": "금리 인상 압력 및 매크로 부정 시각에 따라 비중 축소를 검토합니다.",
+      "risks": [
+        "예상보다 빠른 금리 인하 기대감 재개 시 기회비용 발생"
+      ]
+    },
+    {
+      "code": "434730",
+      "name": "HANARO 원자력iSelect",
+      "stance": "hold",
+      "target_accounts": [
+        "TOSS",
+        "KIS_MAIN"
+      ],
+      "horizon": "3m",
+      "confidence": "MEDIUM",
+      "thesis": "원자력 섹터의 장기적 성장 잠재력은 유효하나, 매크로 불확실성 속 신중한 접근이 필요합니다.",
+      "risks": [
+        "매크로 불확실성 장기화",
+        "정책 변화에 따른 영향"
+      ]
+    },
+    {
+      "code": "047810",
+      "name": "한국항공우주",
+      "stance": "buy",
+      "target_accounts": [
+        "KIS_MAIN"
+      ],
+      "horizon": "3m",
+      "confidence": "HIGH",
+      "thesis": "중동 지정학적 불확실성 지속으로 방산 섹터의 수혜가 기대됩니다.",
+      "risks": [
+        "지정학적 긴장 완화 시 모멘텀 약화",
+        "유가 상승에 따른 항공운송업 부담"
+      ]
+    },
+    {
+      "code": "138910",
+      "name": "KODEX 구리선물(H)",
+      "stance": "trim",
+      "target_accounts": [
+        "KIS_MAIN"
+      ],
+      "horizon": "1m",
+      "confidence": "MEDIUM",
+      "thesis": "매크로 부정 시각 및 유가 안정화 지연 가능성으로 원자재 선물 비중 축소를 검토합니다.",
+      "risks": [
+        "원자재 가격 급등 시 손실 발생"
+      ]
+    },
+    {
+      "code": "133690",
+      "name": "TIGER 미국나스닥100",
+      "stance": "hold",
+      "target_accounts": [
+        "PENSION"
+      ],
+      "horizon": "3m",
+      "confidence": "MEDIUM",
+      "thesis": "미국 기술주 중심의 장기 성장 잠재력은 유효하나, 단기 매크로 변동성을 고려하여 보유합니다.",
+      "risks": [
+        "고금리 장기화 우려",
+        "지정학적 위험에 따른 시장 변동성"
+      ]
+    }
+  ],
+  "portfolio_risks": [
+    "중동발 지정학적 불확실성 지속 및 유가 변동성 확대 가능성",
+    "인플레이션 압력 지속에 따른 중앙은행의 긴축 스탠스 유지 또는 강화",
+    "고금리 및 고유가 환경 장기화로 인한 글로벌 경기 둔화 우려",
+    "단기적으로 시장을 견인할 강력한 긍정적 촉매 부재"
+  ]
+}

@@ -1,0 +1,2872 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-04-13",
+  "runDate": "2026-04-13",
+  "effectiveMarketDate": "2026-04-13",
+  "runId": "2026-04-13-hardening-full",
+  "generatedAt": "2026-04-13T01:10:56.003Z",
+  "provenance": {
+    "source": "moneytoring-graphql",
+    "endpoint": "https://api.moneytoring.ai/graphql",
+    "topicLimit": 12,
+    "detailLimit": 8
+  },
+  "summary": {
+    "overview": "머니토링 12건 중 포트폴리오 직결 0건, 계좌 테마 연결 4건, 관심종목 연결 1건, 딥리서치 후보 2건을 추렸습니다.",
+    "directHoldingTopics": 0,
+    "thematicAccountTopics": 4,
+    "watchlistTopics": 1,
+    "highPriorityTopics": 2
+  },
+  "topics": [
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5NDM1NQ==",
+      "numericId": "1294355",
+      "title": "이란 항만 봉쇄 발표에 브렌트유 11% 급등",
+      "summary": "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1294355",
+      "displayUpdatedAt": "2026-04-13T01:03:22+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 2,
+      "mainSource": {
+        "type": "TELEGRAM",
+        "name": "텔레그램",
+        "author": "매시 트레이딩 - 매크로, 시황으로 드리블"
+      },
+      "uniqueSourceTypeList": [
+        "TELEGRAM"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZToyNTYz",
+          "name": "가상화폐",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -0.810462236404419
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZTozNzk3",
+          "name": "매시 트레이딩 - 매크로, 시황으로 드리블",
+          "code": "텔레그램-2120583396",
+          "type": "INFLUENCER",
+          "country": "EMPTY",
+          "fluctuationRate": null
+        }
+      ],
+      "sourceInfo": [
+        {
+          "type": "TELEGRAM",
+          "count": 2
+        }
+      ],
+      "subTopics": [
+        {
+          "id": "U3ViVG9waWNUeXBlOjEzNjUzNzY=",
+          "title": "미국 봉쇄 예고에 아시아 증시 변동성 확대",
+          "summary": "미국 정부가 이란 관련 항만에 대한 해상 봉쇄 방침을 발표하면서, 아시아 시장에서 Brent 유가가 장중 11% 이상 급등했습니다. 이에 따라 Nikkei 주가지수 선물은 2% 이상 하락이 예상되고, 미국 S&P 500과 암호화폐도 직전 주 반등 이후 이번 세션에서 미국 선물이 1% 이상 하락하며 위험회피 심리가 확대되고 있습니다. 미국이 이란과의 평화협상 결렬 후 호르무즈 해협 및 이란 항만 봉쇄를 예고하면서 일본 증시는 2024년 8월 이후 최대 주간 상승폭을 기록한 직후 변동성이 다시 커지는 양상을 보이고 있습니다.",
+          "updatedAt": "2026-04-13T10:03:22+09:00",
+          "sourceOrigins": [
+            {
+              "title": "미국 이란 해상봉쇄 예고에 유가 상승과 아시아 증시 변동성 확대",
+              "author": "매시 트레이딩 - 매크로, 시황으로 드리블",
+              "type": "TELEGRAM",
+              "url": "https://t.me/massitrading/102034"
+            },
+            {
+              "title": "미국 해상 봉쇄에 브렌트 급등, 아시아 주가 선물 조정",
+              "author": "매시 트레이딩 - 매크로, 시황으로 드리블",
+              "type": "TELEGRAM",
+              "url": "https://t.me/massitrading/101993"
+            }
+          ]
+        }
+      ],
+      "signalDirection": "mixed",
+      "signalLabels": [
+        "중동/유가"
+      ],
+      "relevanceScore": 100,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [
+          {
+            "accountKey": "ISA",
+            "accountLabel": "ISA",
+            "category": "미국인덱스",
+            "matchReasons": [
+              "중동/유가",
+              "s&p500",
+              "s&p 500",
+              "sp500"
+            ],
+            "impactDirection": "negative"
+          },
+          {
+            "accountKey": "PENSION",
+            "accountLabel": "연금저축",
+            "category": "현금파킹",
+            "matchReasons": [
+              "중동/유가"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "PENSION",
+            "accountLabel": "연금저축",
+            "category": "나스닥100",
+            "matchReasons": [
+              "중동/유가"
+            ],
+            "impactDirection": "negative"
+          },
+          {
+            "accountKey": "PENSION",
+            "accountLabel": "연금저축",
+            "category": "S&P500",
+            "matchReasons": [
+              "중동/유가",
+              "s&p500",
+              "s&p 500",
+              "sp500"
+            ],
+            "impactDirection": "negative"
+          },
+          {
+            "accountKey": "TOSS",
+            "accountLabel": "토스증권",
+            "category": "원자력",
+            "matchReasons": [
+              "중동/유가"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "TOSS",
+            "accountLabel": "토스증권",
+            "category": "방산",
+            "matchReasons": [
+              "중동/유가"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "KIS_MAIN",
+            "accountLabel": "한투 일반",
+            "category": "방산",
+            "matchReasons": [
+              "중동/유가"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "KIS_MAIN",
+            "accountLabel": "한투 일반",
+            "category": "원자력",
+            "matchReasons": [
+              "중동/유가"
+            ],
+            "impactDirection": "positive"
+          }
+        ],
+        "watchlist": [
+          {
+            "code": "360750",
+            "name": "TIGER 미국S&P500",
+            "accountHint": "연금저축",
+            "accountKey": "PENSION",
+            "category": "S&P500",
+            "matchReasons": [
+              "s&p500",
+              "s&p 500",
+              "sp500"
+            ]
+          }
+        ]
+      },
+      "portfolioLinkage": "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다.",
+      "deepResearchQuestion": "중동/유가 이슈가 단기 헤드라인인지, 실제 공급 차질과 가격 전이로 이어지는지 확인하세요.",
+      "impactEntries": [
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "ISA",
+            "name": "미국인덱스"
+          },
+          "direction": "negative",
+          "strength": 0.68,
+          "confidence": 0.66,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
+              "미국 정부가 이란 관련 항만에 대한 해상 봉쇄 방침을 발표하면서, 아시아 시장에서 Brent 유가가 장중 11% 이상 급등했습니다. 이에 따라 Nikkei 주가지수 선물은 2% 이상 하락이 예상되고, 미국 S&P 500과 암호화폐도 직전 주 반등 이후 이번 세션에서 미국 선물이 1% 이상 하락하며 위험회피 심리가 확대되고 있습니다. 미국이 이란과의 평화협상 결렬 후 호르무즈 해협 및 이란 항만 봉쇄를 예고하면서 일본 증시는 2024년 8월 이후 최대 주간 상승폭을 기록한 직후 변동성이 다시 커지는 양상을 보이고 있습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "가상화폐 -0.81%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "현금파킹"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
+              "미국 정부가 이란 관련 항만에 대한 해상 봉쇄 방침을 발표하면서, 아시아 시장에서 Brent 유가가 장중 11% 이상 급등했습니다. 이에 따라 Nikkei 주가지수 선물은 2% 이상 하락이 예상되고, 미국 S&P 500과 암호화폐도 직전 주 반등 이후 이번 세션에서 미국 선물이 1% 이상 하락하며 위험회피 심리가 확대되고 있습니다. 미국이 이란과의 평화협상 결렬 후 호르무즈 해협 및 이란 항만 봉쇄를 예고하면서 일본 증시는 2024년 8월 이후 최대 주간 상승폭을 기록한 직후 변동성이 다시 커지는 양상을 보이고 있습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "가상화폐 -0.81%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "나스닥100"
+          },
+          "direction": "negative",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
+              "미국 정부가 이란 관련 항만에 대한 해상 봉쇄 방침을 발표하면서, 아시아 시장에서 Brent 유가가 장중 11% 이상 급등했습니다. 이에 따라 Nikkei 주가지수 선물은 2% 이상 하락이 예상되고, 미국 S&P 500과 암호화폐도 직전 주 반등 이후 이번 세션에서 미국 선물이 1% 이상 하락하며 위험회피 심리가 확대되고 있습니다. 미국이 이란과의 평화협상 결렬 후 호르무즈 해협 및 이란 항만 봉쇄를 예고하면서 일본 증시는 2024년 8월 이후 최대 주간 상승폭을 기록한 직후 변동성이 다시 커지는 양상을 보이고 있습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "가상화폐 -0.81%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "S&P500"
+          },
+          "direction": "negative",
+          "strength": 0.68,
+          "confidence": 0.66,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
+              "미국 정부가 이란 관련 항만에 대한 해상 봉쇄 방침을 발표하면서, 아시아 시장에서 Brent 유가가 장중 11% 이상 급등했습니다. 이에 따라 Nikkei 주가지수 선물은 2% 이상 하락이 예상되고, 미국 S&P 500과 암호화폐도 직전 주 반등 이후 이번 세션에서 미국 선물이 1% 이상 하락하며 위험회피 심리가 확대되고 있습니다. 미국이 이란과의 평화협상 결렬 후 호르무즈 해협 및 이란 항만 봉쇄를 예고하면서 일본 증시는 2024년 8월 이후 최대 주간 상승폭을 기록한 직후 변동성이 다시 커지는 양상을 보이고 있습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "가상화폐 -0.81%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "TOSS",
+            "name": "원자력"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
+              "미국 정부가 이란 관련 항만에 대한 해상 봉쇄 방침을 발표하면서, 아시아 시장에서 Brent 유가가 장중 11% 이상 급등했습니다. 이에 따라 Nikkei 주가지수 선물은 2% 이상 하락이 예상되고, 미국 S&P 500과 암호화폐도 직전 주 반등 이후 이번 세션에서 미국 선물이 1% 이상 하락하며 위험회피 심리가 확대되고 있습니다. 미국이 이란과의 평화협상 결렬 후 호르무즈 해협 및 이란 항만 봉쇄를 예고하면서 일본 증시는 2024년 8월 이후 최대 주간 상승폭을 기록한 직후 변동성이 다시 커지는 양상을 보이고 있습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "가상화폐 -0.81%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "TOSS",
+            "name": "방산"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
+              "미국 정부가 이란 관련 항만에 대한 해상 봉쇄 방침을 발표하면서, 아시아 시장에서 Brent 유가가 장중 11% 이상 급등했습니다. 이에 따라 Nikkei 주가지수 선물은 2% 이상 하락이 예상되고, 미국 S&P 500과 암호화폐도 직전 주 반등 이후 이번 세션에서 미국 선물이 1% 이상 하락하며 위험회피 심리가 확대되고 있습니다. 미국이 이란과의 평화협상 결렬 후 호르무즈 해협 및 이란 항만 봉쇄를 예고하면서 일본 증시는 2024년 8월 이후 최대 주간 상승폭을 기록한 직후 변동성이 다시 커지는 양상을 보이고 있습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "가상화폐 -0.81%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "KIS_MAIN",
+            "name": "방산"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
+              "미국 정부가 이란 관련 항만에 대한 해상 봉쇄 방침을 발표하면서, 아시아 시장에서 Brent 유가가 장중 11% 이상 급등했습니다. 이에 따라 Nikkei 주가지수 선물은 2% 이상 하락이 예상되고, 미국 S&P 500과 암호화폐도 직전 주 반등 이후 이번 세션에서 미국 선물이 1% 이상 하락하며 위험회피 심리가 확대되고 있습니다. 미국이 이란과의 평화협상 결렬 후 호르무즈 해협 및 이란 항만 봉쇄를 예고하면서 일본 증시는 2024년 8월 이후 최대 주간 상승폭을 기록한 직후 변동성이 다시 커지는 양상을 보이고 있습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "가상화폐 -0.81%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "KIS_MAIN",
+            "name": "원자력"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
+              "미국 정부가 이란 관련 항만에 대한 해상 봉쇄 방침을 발표하면서, 아시아 시장에서 Brent 유가가 장중 11% 이상 급등했습니다. 이에 따라 Nikkei 주가지수 선물은 2% 이상 하락이 예상되고, 미국 S&P 500과 암호화폐도 직전 주 반등 이후 이번 세션에서 미국 선물이 1% 이상 하락하며 위험회피 심리가 확대되고 있습니다. 미국이 이란과의 평화협상 결렬 후 호르무즈 해협 및 이란 항만 봉쇄를 예고하면서 일본 증시는 2024년 8월 이후 최대 주간 상승폭을 기록한 직후 변동성이 다시 커지는 양상을 보이고 있습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "가상화폐 -0.81%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        }
+      ]
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5NTA0Mw==",
+      "numericId": "1295043",
+      "title": "볼턴, 이란 원유 제재 완화에 강력 반대",
+      "summary": "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화에 대해 강하게 비판하며, 제재 재부과와 해상 봉쇄를 추진해 이란 정권교체를 유도해야 한다고 주장했습니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1295043",
+      "displayUpdatedAt": "2026-04-13T01:03:15+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 1,
+      "mainSource": {
+        "type": "TELEGRAM",
+        "name": "텔레그램",
+        "author": "매시 트레이딩 - 매크로, 시황으로 드리블"
+      },
+      "uniqueSourceTypeList": [
+        "TELEGRAM"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZToyMDA2MQ==",
+          "name": "유조선",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -1.022714376449585
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyNjU1",
+          "name": "국제유가",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 0.10725259780883789
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZTozNzk3",
+          "name": "매시 트레이딩 - 매크로, 시황으로 드리블",
+          "code": "텔레그램-2120583396",
+          "type": "INFLUENCER",
+          "country": "EMPTY",
+          "fluctuationRate": null
+        }
+      ],
+      "sourceInfo": [
+        {
+          "type": "TELEGRAM",
+          "count": 1
+        }
+      ],
+      "subTopics": [
+        {
+          "id": "U3ViVG9waWNUeXBlOjEzNjYwODQ=",
+          "title": "John Bolton, 이란 제재 완화 비판 및 강화 촉구",
+          "summary": "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화 조치에 대해 강하게 비판하며, 이란에 대한 제재를 다시 부과하고 해상 봉쇄를 추진해야 한다고 주장했습니다. 그는 이란 내부의 체제 균열을 심화시켜 정권교체를 유도해야 한다는 입장도 밝혔습니다. 이 발언은 중동 지역의 장기적 안정에 대한 우려와 미국 정책에 대한 비판을 중심으로 이루어졌습니다.",
+          "updatedAt": "2026-04-13T10:03:15+09:00",
+          "sourceOrigins": [
+            {
+              "title": "볼턴, 이란 제재 강화와 정권교체 필요성 강조",
+              "author": "매시 트레이딩 - 매크로, 시황으로 드리블",
+              "type": "TELEGRAM",
+              "url": "https://t.me/massitrading/102030"
+            }
+          ]
+        }
+      ],
+      "signalDirection": "mixed",
+      "signalLabels": [
+        "중동/유가"
+      ],
+      "relevanceScore": 100,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [
+          {
+            "accountKey": "ISA",
+            "accountLabel": "ISA",
+            "category": "미국인덱스",
+            "matchReasons": [
+              "중동/유가"
+            ],
+            "impactDirection": "negative"
+          },
+          {
+            "accountKey": "PENSION",
+            "accountLabel": "연금저축",
+            "category": "현금파킹",
+            "matchReasons": [
+              "중동/유가"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "PENSION",
+            "accountLabel": "연금저축",
+            "category": "나스닥100",
+            "matchReasons": [
+              "중동/유가"
+            ],
+            "impactDirection": "negative"
+          },
+          {
+            "accountKey": "PENSION",
+            "accountLabel": "연금저축",
+            "category": "S&P500",
+            "matchReasons": [
+              "중동/유가"
+            ],
+            "impactDirection": "negative"
+          },
+          {
+            "accountKey": "TOSS",
+            "accountLabel": "토스증권",
+            "category": "원자력",
+            "matchReasons": [
+              "중동/유가"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "TOSS",
+            "accountLabel": "토스증권",
+            "category": "방산",
+            "matchReasons": [
+              "중동/유가"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "KIS_MAIN",
+            "accountLabel": "한투 일반",
+            "category": "방산",
+            "matchReasons": [
+              "중동/유가"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "KIS_MAIN",
+            "accountLabel": "한투 일반",
+            "category": "원자력",
+            "matchReasons": [
+              "중동/유가"
+            ],
+            "impactDirection": "positive"
+          }
+        ],
+        "watchlist": []
+      },
+      "portfolioLinkage": "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다.",
+      "deepResearchQuestion": "중동/유가 이슈가 단기 헤드라인인지, 실제 공급 차질과 가격 전이로 이어지는지 확인하세요.",
+      "impactEntries": [
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "ISA",
+            "name": "미국인덱스"
+          },
+          "direction": "negative",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화에 대해 강하게 비판하며, 제재 재부과와 해상 봉쇄를 추진해 이란 정권교체를 유도해야 한다고 주장했습니다.",
+              "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화 조치에 대해 강하게 비판하며, 이란에 대한 제재를 다시 부과하고 해상 봉쇄를 추진해야 한다고 주장했습니다. 그는 이란 내부의 체제 균열을 심화시켜 정권교체를 유도해야 한다는 입장도 밝혔습니다. 이 발언은 중동 지역의 장기적 안정에 대한 우려와 미국 정책에 대한 비판을 중심으로 이루어졌습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "유조선 -1.02%",
+              "국제유가 +0.11%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "현금파킹"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화에 대해 강하게 비판하며, 제재 재부과와 해상 봉쇄를 추진해 이란 정권교체를 유도해야 한다고 주장했습니다.",
+              "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화 조치에 대해 강하게 비판하며, 이란에 대한 제재를 다시 부과하고 해상 봉쇄를 추진해야 한다고 주장했습니다. 그는 이란 내부의 체제 균열을 심화시켜 정권교체를 유도해야 한다는 입장도 밝혔습니다. 이 발언은 중동 지역의 장기적 안정에 대한 우려와 미국 정책에 대한 비판을 중심으로 이루어졌습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "유조선 -1.02%",
+              "국제유가 +0.11%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "나스닥100"
+          },
+          "direction": "negative",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화에 대해 강하게 비판하며, 제재 재부과와 해상 봉쇄를 추진해 이란 정권교체를 유도해야 한다고 주장했습니다.",
+              "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화 조치에 대해 강하게 비판하며, 이란에 대한 제재를 다시 부과하고 해상 봉쇄를 추진해야 한다고 주장했습니다. 그는 이란 내부의 체제 균열을 심화시켜 정권교체를 유도해야 한다는 입장도 밝혔습니다. 이 발언은 중동 지역의 장기적 안정에 대한 우려와 미국 정책에 대한 비판을 중심으로 이루어졌습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "유조선 -1.02%",
+              "국제유가 +0.11%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "S&P500"
+          },
+          "direction": "negative",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화에 대해 강하게 비판하며, 제재 재부과와 해상 봉쇄를 추진해 이란 정권교체를 유도해야 한다고 주장했습니다.",
+              "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화 조치에 대해 강하게 비판하며, 이란에 대한 제재를 다시 부과하고 해상 봉쇄를 추진해야 한다고 주장했습니다. 그는 이란 내부의 체제 균열을 심화시켜 정권교체를 유도해야 한다는 입장도 밝혔습니다. 이 발언은 중동 지역의 장기적 안정에 대한 우려와 미국 정책에 대한 비판을 중심으로 이루어졌습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "유조선 -1.02%",
+              "국제유가 +0.11%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "TOSS",
+            "name": "원자력"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화에 대해 강하게 비판하며, 제재 재부과와 해상 봉쇄를 추진해 이란 정권교체를 유도해야 한다고 주장했습니다.",
+              "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화 조치에 대해 강하게 비판하며, 이란에 대한 제재를 다시 부과하고 해상 봉쇄를 추진해야 한다고 주장했습니다. 그는 이란 내부의 체제 균열을 심화시켜 정권교체를 유도해야 한다는 입장도 밝혔습니다. 이 발언은 중동 지역의 장기적 안정에 대한 우려와 미국 정책에 대한 비판을 중심으로 이루어졌습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "유조선 -1.02%",
+              "국제유가 +0.11%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "TOSS",
+            "name": "방산"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화에 대해 강하게 비판하며, 제재 재부과와 해상 봉쇄를 추진해 이란 정권교체를 유도해야 한다고 주장했습니다.",
+              "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화 조치에 대해 강하게 비판하며, 이란에 대한 제재를 다시 부과하고 해상 봉쇄를 추진해야 한다고 주장했습니다. 그는 이란 내부의 체제 균열을 심화시켜 정권교체를 유도해야 한다는 입장도 밝혔습니다. 이 발언은 중동 지역의 장기적 안정에 대한 우려와 미국 정책에 대한 비판을 중심으로 이루어졌습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "유조선 -1.02%",
+              "국제유가 +0.11%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "KIS_MAIN",
+            "name": "방산"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화에 대해 강하게 비판하며, 제재 재부과와 해상 봉쇄를 추진해 이란 정권교체를 유도해야 한다고 주장했습니다.",
+              "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화 조치에 대해 강하게 비판하며, 이란에 대한 제재를 다시 부과하고 해상 봉쇄를 추진해야 한다고 주장했습니다. 그는 이란 내부의 체제 균열을 심화시켜 정권교체를 유도해야 한다는 입장도 밝혔습니다. 이 발언은 중동 지역의 장기적 안정에 대한 우려와 미국 정책에 대한 비판을 중심으로 이루어졌습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "유조선 -1.02%",
+              "국제유가 +0.11%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "KIS_MAIN",
+            "name": "원자력"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화에 대해 강하게 비판하며, 제재 재부과와 해상 봉쇄를 추진해 이란 정권교체를 유도해야 한다고 주장했습니다.",
+              "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화 조치에 대해 강하게 비판하며, 이란에 대한 제재를 다시 부과하고 해상 봉쇄를 추진해야 한다고 주장했습니다. 그는 이란 내부의 체제 균열을 심화시켜 정권교체를 유도해야 한다는 입장도 밝혔습니다. 이 발언은 중동 지역의 장기적 안정에 대한 우려와 미국 정책에 대한 비판을 중심으로 이루어졌습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "유조선 -1.02%",
+              "국제유가 +0.11%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        }
+      ]
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5NDk1Mw==",
+      "numericId": "1294953",
+      "title": "인도, 경유·항공유 수출관세 두 배 인상해 내수 우선",
+      "summary": "인도 정부가 경유와 항공유 수출관세를 리터당 약 0.23달러에서 두 배 이상 올렸습니다. 이는 국내 연료 재고를 늘리고 내수 공급을 우선하기 위한 조치로, 정유사의 수출 유인을 줄이는 효과가 있습니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1294953",
+      "displayUpdatedAt": "2026-04-13T01:03:14+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 2,
+      "mainSource": {
+        "type": "TELEGRAM",
+        "name": "텔레그램",
+        "author": "매시 트레이딩 - 매크로, 시황으로 드리블"
+      },
+      "uniqueSourceTypeList": [
+        "TELEGRAM"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZToyNDY1",
+          "name": "AI",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -1.1202096939086914
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZTozNzk3",
+          "name": "매시 트레이딩 - 매크로, 시황으로 드리블",
+          "code": "텔레그램-2120583396",
+          "type": "INFLUENCER",
+          "country": "EMPTY",
+          "fluctuationRate": null
+        }
+      ],
+      "sourceInfo": [],
+      "subTopics": [],
+      "signalDirection": "neutral",
+      "signalLabels": [
+        "AI 인프라/전력"
+      ],
+      "relevanceScore": 52,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [
+          {
+            "accountKey": "ISA",
+            "accountLabel": "ISA",
+            "category": "미국인덱스",
+            "matchReasons": [
+              "AI 인프라/전력"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "PENSION",
+            "accountLabel": "연금저축",
+            "category": "나스닥100",
+            "matchReasons": [
+              "AI 인프라/전력",
+              "ai"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "PENSION",
+            "accountLabel": "연금저축",
+            "category": "S&P500",
+            "matchReasons": [
+              "AI 인프라/전력"
+            ],
+            "impactDirection": "positive"
+          }
+        ],
+        "watchlist": []
+      },
+      "portfolioLinkage": "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 나스닥100, 연금저축의 S&P500 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+      "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요.",
+      "impactEntries": [
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "ISA",
+            "name": "미국인덱스"
+          },
+          "direction": "positive",
+          "strength": 0.52,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "인도 정부가 경유와 항공유 수출관세를 리터당 약 0.23달러에서 두 배 이상 올렸습니다. 이는 국내 연료 재고를 늘리고 내수 공급을 우선하기 위한 조치로, 정유사의 수출 유인을 줄이는 효과가 있습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 나스닥100, 연금저축의 S&P500 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "AI -1.12%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "나스닥100"
+          },
+          "direction": "positive",
+          "strength": 0.52,
+          "confidence": 0.58,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "인도 정부가 경유와 항공유 수출관세를 리터당 약 0.23달러에서 두 배 이상 올렸습니다. 이는 국내 연료 재고를 늘리고 내수 공급을 우선하기 위한 조치로, 정유사의 수출 유인을 줄이는 효과가 있습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 나스닥100, 연금저축의 S&P500 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "AI -1.12%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "S&P500"
+          },
+          "direction": "positive",
+          "strength": 0.52,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "인도 정부가 경유와 항공유 수출관세를 리터당 약 0.23달러에서 두 배 이상 올렸습니다. 이는 국내 연료 재고를 늘리고 내수 공급을 우선하기 위한 조치로, 정유사의 수출 유인을 줄이는 효과가 있습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 나스닥100, 연금저축의 S&P500 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "AI -1.12%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        }
+      ]
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5MTEwNQ==",
+      "numericId": "1291105",
+      "title": "Archer, 2028 LA올림픽 eVTOL 시범 운항 발표",
+      "summary": "Archer Aviation이 2026년 4월 전기 수직이착륙기(eVTOL)를 활용한 도심 단거리 이동 서비스를 발표했습니다. 2028년 로스앤젤레스 올림픽에서 시범 운항을 계획하며, 저렴한 요금과 효율적 운항 전략을 제시했습니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1291105",
+      "displayUpdatedAt": "2026-04-13T01:03:15+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 18,
+      "mainSource": {
+        "type": "TELEGRAM",
+        "name": "텔레그램",
+        "author": "매시 트레이딩 - 매크로, 시황으로 드리블"
+      },
+      "uniqueSourceTypeList": [
+        "TELEGRAM"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZToxMDE2MA==",
+          "name": "아처 에비에이션",
+          "code": "ACHR",
+          "type": "COMPANY",
+          "country": "US",
+          "fluctuationRate": 1.5037593984962419
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZTo0NjUxOTI=",
+          "name": "우주항공",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -1.7138004302978516
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToxNTQ1MQ==",
+          "name": "우버 테크놀로지스",
+          "code": "UBER",
+          "type": "COMPANY",
+          "country": "US",
+          "fluctuationRate": -1.852109734020329
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyODk5",
+          "name": "방산",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -0.8352994918823242
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyOTA5",
+          "name": "배터리",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -0.7096350193023682
+        }
+      ],
+      "sourceInfo": [],
+      "subTopics": [],
+      "signalDirection": "neutral",
+      "signalLabels": [
+        "방산/국방"
+      ],
+      "relevanceScore": 45,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [
+          {
+            "accountKey": "TOSS",
+            "accountLabel": "토스증권",
+            "category": "방산",
+            "matchReasons": [
+              "방산/국방"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "KIS_MAIN",
+            "accountLabel": "한투 일반",
+            "category": "방산",
+            "matchReasons": [
+              "방산/국방"
+            ],
+            "impactDirection": "positive"
+          }
+        ],
+        "watchlist": []
+      },
+      "portfolioLinkage": "계좌 테마 기준으로는 토스증권의 방산, 한투 일반의 방산 판단과 맞물립니다. 핵심 시그널은 방산/국방입니다.",
+      "deepResearchQuestion": "방산 수요 확대가 실제 수주 공시와 마진 개선으로 연결되는지 확인하세요.",
+      "impactEntries": [
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "TOSS",
+            "name": "방산"
+          },
+          "direction": "positive",
+          "strength": 0.493,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "방산/국방"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "Archer Aviation이 2026년 4월 전기 수직이착륙기(eVTOL)를 활용한 도심 단거리 이동 서비스를 발표했습니다. 2028년 로스앤젤레스 올림픽에서 시범 운항을 계획하며, 저렴한 요금과 효율적 운항 전략을 제시했습니다.",
+              "계좌 테마 기준으로는 토스증권의 방산, 한투 일반의 방산 판단과 맞물립니다. 핵심 시그널은 방산/국방입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 18건",
+              "아처 에비에이션 +1.50%",
+              "우주항공 -1.71%",
+              "우버 테크놀로지스 -1.85%"
+            ]
+          },
+          "riskTags": [
+            "defense"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "KIS_MAIN",
+            "name": "방산"
+          },
+          "direction": "positive",
+          "strength": 0.493,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "방산/국방"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "Archer Aviation이 2026년 4월 전기 수직이착륙기(eVTOL)를 활용한 도심 단거리 이동 서비스를 발표했습니다. 2028년 로스앤젤레스 올림픽에서 시범 운항을 계획하며, 저렴한 요금과 효율적 운항 전략을 제시했습니다.",
+              "계좌 테마 기준으로는 토스증권의 방산, 한투 일반의 방산 판단과 맞물립니다. 핵심 시그널은 방산/국방입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 18건",
+              "아처 에비에이션 +1.50%",
+              "우주항공 -1.71%",
+              "우버 테크놀로지스 -1.85%"
+            ]
+          },
+          "riskTags": [
+            "defense"
+          ]
+        }
+      ]
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5MjI2NQ==",
+      "numericId": "1292265",
+      "title": "중국, 2026년 대만과 교류 확대 10대 조치 발표",
+      "summary": "중국 정부가 2026년 4월 대만과 경제·문화·교통 교류 확대를 위한 10대 조치를 발표했습니다. 직항 노선 확대와 수산물 수입 재개, 교량 건설 검토 등이 포함됐으며, 국민당 당수의 베이징 방문도 10년 만에 이뤄졌습니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1292265",
+      "displayUpdatedAt": "2026-04-13T01:03:16+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 9,
+      "mainSource": {
+        "type": "TELEGRAM",
+        "name": "텔레그램",
+        "author": "증권사 애널 크롤러🇰🇷"
+      },
+      "uniqueSourceTypeList": [
+        "COMPANY_NEWS",
+        "TELEGRAM"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZToxODczMQ==",
+          "name": "수산물",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -0.2291858196258545
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZTo0OTU2Mjk=",
+          "name": "건설",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -1.5990614891052246
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyNzcw",
+          "name": "드라마",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 0.27620792388916016
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZTo0OTU2MzE=",
+          "name": "식품음료",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 0.5448460578918457
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZTozMTQ5",
+          "name": "애니메이션",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -1.1157512664794922
+        }
+      ],
+      "sourceInfo": [
+        {
+          "type": "COMPANY_NEWS",
+          "count": 1
+        },
+        {
+          "type": "TELEGRAM",
+          "count": 8
+        }
+      ],
+      "subTopics": [
+        {
+          "id": "U3ViVG9waWNUeXBlOjEzNjMxNzA=",
+          "title": "중국, 대만 농수산물 판매 촉진 및 여행 재개 발표",
+          "summary": "중국 정부가 2026년 4월 대만과의 경제·문화·교통 교류 확대를 위한 10대 조치를 발표했습니다. 시진핑 주석과 대만 국민당 지도자 간 회담 이후 직항 노선 확대와 수산물 수입 재개가 공식화됐으며, 양안 간 구조적 소통 채널 구축과 마쭈, 진먼까지 교량 건설 계획 검토가 확인됐습니다. 이번에는 대만 농산물과 수산물의 중국 내 판매 촉진과 대만행 일부 출국 여행 재개가 구체적으로 포함됐고, 국민당 당수의 베이징 방문이 약 10년 만에 이루어진 점이 새롭게 밝혀졌습니다. 대만은 리스크 분산 전략을 시행하고 있습니다.",
+          "updatedAt": "2026-04-13T10:03:16+09:00",
+          "sourceOrigins": [
+            {
+              "title": "중국 대만 유화 조치와 트럼프의 대이란 무기 관세 경고",
+              "author": "매시 트레이딩 - 매크로, 시황으로 드리블",
+              "type": "TELEGRAM",
+              "url": "https://t.me/massitrading/102032"
+            },
+            {
+              "title": "중국, 국민당 지도자와 시진핑 회담 후 대만과 직항 및 식품 수입 재개",
+              "author": "livemint.com",
+              "type": "COMPANY_NEWS",
+              "url": "http://www.livemint.com/news/world/china-to-resume-direct-flights-and-food-imports-from-taiwan-after-kmt-leader-meets-xi-jinping-11775973058202.html"
+            },
+            {
+              "title": "중국, 대만 교류 협력 위해 10조치 내놓아",
+              "author": "증권사 애널 크롤러🇰🇷",
+              "type": "TELEGRAM",
+              "url": "https://t.me/AnalystCrawler/568124"
+            }
+          ]
+        }
+      ],
+      "signalDirection": "mixed",
+      "signalLabels": [],
+      "relevanceScore": 14,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [],
+        "watchlist": []
+      },
+      "portfolioLinkage": "",
+      "deepResearchQuestion": "중국, 2026년 대만과 교류 확대 10대 조치 발표가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+      "impactEntries": []
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5NDY3MQ==",
+      "numericId": "1294671",
+      "title": "신영증권, 에이피알 목표주가 51만원으로 상향",
+      "summary": "신영증권이 에이피알의 미국 오프라인 매장 확대와 유럽 매출 성장에 힘입어 2026년 1분기 매출과 영업이익이 크게 늘 것으로 보고, 목표 주가를 51만원으로 상향하며 매수 의견을 유지했습니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1294671",
+      "displayUpdatedAt": "2026-04-13T01:03:59+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 2,
+      "mainSource": {
+        "type": "COMPANY_NEWS",
+        "name": "뉴스",
+        "author": "조선비즈"
+      },
+      "uniqueSourceTypeList": [
+        "COMPANY_NEWS",
+        "TELEGRAM"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZToyMDM0",
+          "name": "에이피알",
+          "code": "278470",
+          "type": "COMPANY",
+          "country": "KR",
+          "fluctuationRate": 1.7811704834605597
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToxODI3OA==",
+          "name": "증권사 애널 채널 크롤러",
+          "code": "텔레그램-2107410272",
+          "type": "INFLUENCER",
+          "country": "EMPTY",
+          "fluctuationRate": null
+        }
+      ],
+      "sourceInfo": [
+        {
+          "type": "COMPANY_NEWS",
+          "count": 1
+        },
+        {
+          "type": "TELEGRAM",
+          "count": 1
+        }
+      ],
+      "subTopics": [
+        {
+          "id": "U3ViVG9waWNUeXBlOjEzNjU3MDM=",
+          "title": "신영증권, 에이피알 목표주가 51만원 제시",
+          "summary": "신영증권이 에이피알의 미국 오프라인 시장 확대와 유럽 매출 성장세를 반영해 투자 의견 '매수'를 유지하고 목표 주가를 51만원으로 올렸습니다. 2026년 1분기 에이피알의 매출은 5828억원, 영업이익은 1451억원으로 2025년 동기 대비 각각 119%, 166% 증가할 것으로 전망했습니다. 미국 오프라인 매장 확대가 실질적인 매출 증가로 이어질 것으로 내다봤으며, 유럽에서는 브랜드 인지도 상승과 판매 실적 개선이 기대된다고 밝혔습니다.",
+          "updatedAt": "2026-04-13T10:03:59+09:00",
+          "sourceOrigins": [
+            {
+              "title": "에이피알, 미국·유럽 시장 성장 기대",
+              "author": "증권사 애널 크롤러🇰🇷",
+              "type": "TELEGRAM",
+              "url": "https://t.me/AnalystCrawler/568968"
+            },
+            {
+              "title": "신영證 “에이피알, 미국 오프라인 확장·유럽 매출 성장 기대…목표가 51만원”",
+              "author": "조선비즈",
+              "type": "COMPANY_NEWS",
+              "url": "https://biz.chosun.com/stock/stock_general/2026/04/13/4EW2OO4ACJAHHGATXKQQCW5JKU/?utm_source=naver&utm_medium=original&utm_campaign=biz"
+            }
+          ]
+        }
+      ],
+      "signalDirection": "positive",
+      "signalLabels": [],
+      "relevanceScore": 9,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [],
+        "watchlist": []
+      },
+      "portfolioLinkage": "",
+      "deepResearchQuestion": "신영증권, 에이피알 목표주가 51만원으로 상향가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+      "impactEntries": []
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5MzIyMw==",
+      "numericId": "1293223",
+      "title": "테슬라서 30개월간 매출 10배 성장 비결 공개",
+      "summary": "DVX Ventures의 CEO John McNeil이 2026년 4월 Tesla에서 30개월간 매출을 10배 성장시킨 경험과 혁신 프레임워크 'The Algorithm'을 소개했습니다. 그는 실패 분석을 통해 새로운 혁신 방식을 만들었고, 기본 영업 프로세스가 매출 성장에 큰 역할을 했다고 밝혔습니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1293223",
+      "displayUpdatedAt": "2026-04-13T01:03:22+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 7,
+      "mainSource": {
+        "type": "TELEGRAM",
+        "name": "텔레그램",
+        "author": "매시 트레이딩 - 매크로, 시황으로 드리블"
+      },
+      "uniqueSourceTypeList": [
+        "TELEGRAM"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZToxMzMyMA==",
+          "name": "테슬라",
+          "code": "TSLA",
+          "type": "COMPANY",
+          "country": "US",
+          "fluctuationRate": 0.9634859093802396
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZTozMDUz",
+          "name": "소프트웨어",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -0.8094906806945801
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToxNTM5MQ==",
+          "name": "토요타 모터스(ADR)",
+          "code": "TM",
+          "type": "COMPANY",
+          "country": "US",
+          "fluctuationRate": -0.23680969972530078
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZTo5NjMz",
+          "name": "룰루레몬 애슬레티카",
+          "code": "LULU",
+          "type": "COMPANY",
+          "country": "US",
+          "fluctuationRate": -1.5914960062458576
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyNjc1",
+          "name": "금융",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -0.6355702877044678
+        }
+      ],
+      "sourceInfo": [
+        {
+          "type": "TELEGRAM",
+          "count": 7
+        }
+      ],
+      "subTopics": [
+        {
+          "id": "U3ViVG9waWNUeXBlOjEzNjQxNjQ=",
+          "title": "John McNeil, 테슬라 혁신 전략과 성장 사례 공개",
+          "summary": "DVX Ventures의 설립자이자 CEO인 John McNeil이 2026년 4월 Tesla에서 30개월간 매출을 약 10배로 성장시킨 경험과 혁신 프레임워크 'The Algorithm'의 주요 내용을 발표했습니다. 그는 MIT 교수의 저서에서 배운 프로세스 사고를 Tesla에 적용했으나, 실패의 사후분석을 통해 새로운 혁신 프레임워크를 정립했다고 밝혔습니다. Tesla 초기 상업화 과정에서 리드 관리와 콜백 등 기본 영업 프로세스가 분기 판매 목표 달성에 중요한 역할을 했으며, 8개월 주기로 회사 규모를 두 배로 확장해 매출이 20억달러에서 215억달러로 증가했다고 설명했습니다.",
+          "updatedAt": "2026-04-13T10:03:22+09:00",
+          "sourceOrigins": [
+            {
+              "title": "Tesla 혁신 실행과 두 배 성장 비결 공개",
+              "author": "매시 트레이딩 - 매크로, 시황으로 드리블",
+              "type": "TELEGRAM",
+              "url": "https://t.me/massitrading/102033"
+            },
+            {
+              "title": "자동차 소프트웨어 전환과 AI가 고용·시장에 미치는 영향",
+              "author": "매시 트레이딩 - 매크로, 시황으로 드리블",
+              "type": "TELEGRAM",
+              "url": "https://t.me/massitrading/101850"
+            },
+            {
+              "title": "테슬라, 단순화로 원클릭 판매·조직 슬림화 추진",
+              "author": "매시 트레이딩 - 매크로, 시황으로 드리블",
+              "type": "TELEGRAM",
+              "url": "https://t.me/massitrading/101846"
+            }
+          ]
+        }
+      ],
+      "signalDirection": "neutral",
+      "signalLabels": [],
+      "relevanceScore": 9,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [],
+        "watchlist": []
+      },
+      "portfolioLinkage": "",
+      "deepResearchQuestion": "테슬라서 30개월간 매출 10배 성장 비결 공개가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+      "impactEntries": []
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5NDUxNw==",
+      "numericId": "1294517",
+      "title": "유한양행 고셔병 신약 FDA 희귀의약품 지정",
+      "summary": "유한양행의 고셔병 치료 신약 후보 YH35995가 미국 FDA로부터 희귀의약품 지정을 받았습니다. 이로써 세액 공제와 심사 수수료 면제, 최대 7년 시장 독점권 등 혜택을 누리게 됐습니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1294517",
+      "displayUpdatedAt": "2026-04-13T01:05:00+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 5,
+      "mainSource": {
+        "type": "COMPANY_NEWS",
+        "name": "뉴스",
+        "author": "헤럴드경제"
+      },
+      "uniqueSourceTypeList": [
+        "COMPANY_NEWS",
+        "TELEGRAM"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZTo2",
+          "name": "유한양행",
+          "code": "000100",
+          "type": "COMPANY",
+          "country": "KR",
+          "fluctuationRate": -1.3993541442411195
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZTozMzIw",
+          "name": "의약품",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -1.6065657138824463
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToxODI3OA==",
+          "name": "증권사 애널 채널 크롤러",
+          "code": "텔레그램-2107410272",
+          "type": "INFLUENCER",
+          "country": "EMPTY",
+          "fluctuationRate": null
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToxNzk5Nw==",
+          "name": "주식 급등일보🚀급등테마·대장주 탐색기 (텔레그램)",
+          "code": "텔레그램-1208429502",
+          "type": "INFLUENCER",
+          "country": "EMPTY",
+          "fluctuationRate": null
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToxODA1Nw==",
+          "name": "여의도스토리 Ver2.0",
+          "code": "텔레그램-1086116949",
+          "type": "INFLUENCER",
+          "country": "EMPTY",
+          "fluctuationRate": null
+        }
+      ],
+      "sourceInfo": [
+        {
+          "type": "COMPANY_NEWS",
+          "count": 1
+        },
+        {
+          "type": "TELEGRAM",
+          "count": 4
+        }
+      ],
+      "subTopics": [
+        {
+          "id": "U3ViVG9waWNUeXBlOjEzNjU1NDI=",
+          "title": "유한양행 고셔병 치료제, FDA 희귀의약품 지정",
+          "summary": "유한양행은 2026년 4월 13일 고셔병 제3형 치료 신약 후보물질 YH35995가 미국 FDA로부터 희귀의약품 지정을 받았다고 발표했습니다. 이로 인해 YH35995는 세액 공제, 심사 수수료 면제, 최대 7년 시장 독점권 등 다양한 혜택을 확보하게 됐습니다. 이 후보물질은 뇌혈관장벽 투과 특성을 바탕으로 신경학적 증상 치료에 임상적 유익성을 제공할 가능성이 주목받고 있습니다.",
+          "updatedAt": "2026-04-13T10:05:00+09:00",
+          "sourceOrigins": [
+            {
+              "title": "유한양행 고셔병 신약 FDA 희귀의약품 지정",
+              "author": "증권사 애널 크롤러🇰🇷",
+              "type": "TELEGRAM",
+              "url": "https://t.me/AnalystCrawler/568969"
+            },
+            {
+              "title": "유한양행, 고셔병 치료 신약 FDA 희귀지정",
+              "author": "여의도스토리 Ver2.0",
+              "type": "TELEGRAM",
+              "url": "https://t.me/YeouidoStory2/111018"
+            },
+            {
+              "title": "유한양행 고셔병 치료제 FDA 희귀의약품 지정",
+              "author": "주식 급등일보🚀급등테마·대장주 탐색기 (텔레그램)",
+              "type": "TELEGRAM",
+              "url": "https://t.me/c/1208429502/115384"
+            }
+          ]
+        }
+      ],
+      "signalDirection": "neutral",
+      "signalLabels": [],
+      "relevanceScore": 8,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [],
+        "watchlist": []
+      },
+      "portfolioLinkage": "",
+      "deepResearchQuestion": "유한양행 고셔병 신약 FDA 희귀의약품 지정가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+      "impactEntries": []
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5NTA0MA==",
+      "numericId": "1295040",
+      "title": "미국, 키트루다 피하주사 전환 가속",
+      "summary": "미국 주요 지불기관들이 키트루다의 정맥주사 청구를 거부하며 피하주사 제형 전환을 촉진하고 있습니다. 2026년 미국과 유럽에서 이 전환이 순조롭게 진행될 것으로 예상됩니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1295040",
+      "displayUpdatedAt": "2026-04-13T01:03:36+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 3,
+      "mainSource": {
+        "type": "TELEGRAM",
+        "name": "텔레그램",
+        "author": "증권사 애널 크롤러🇰🇷"
+      },
+      "uniqueSourceTypeList": [
+        "TELEGRAM"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZToxNzUy",
+          "name": "알테오젠",
+          "code": "196170",
+          "type": "COMPANY",
+          "country": "KR",
+          "fluctuationRate": -2.904564315352697
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToxNTQ1Mg==",
+          "name": "UBS 그룹",
+          "code": "UBS",
+          "type": "COMPANY",
+          "country": "US",
+          "fluctuationRate": 0.24160425223484278
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToxODI3OA==",
+          "name": "증권사 애널 채널 크롤러",
+          "code": "텔레그램-2107410272",
+          "type": "INFLUENCER",
+          "country": "EMPTY",
+          "fluctuationRate": null
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZTo0OTEwMA==",
+          "name": "서초동 투자머신",
+          "code": "텔레그램-1879453363",
+          "type": "INFLUENCER",
+          "country": "EMPTY",
+          "fluctuationRate": null
+        }
+      ],
+      "sourceInfo": [
+        {
+          "type": "TELEGRAM",
+          "count": 3
+        }
+      ],
+      "subTopics": [
+        {
+          "id": "U3ViVG9waWNUeXBlOjEzNjYwODE=",
+          "title": "미국 키트루다 피하주사 전환 촉진과 시장 전망",
+          "summary": "미국에서 주요 지불기관들이 정맥주사 방식의 키트루다 청구를 거부하며 피하주사 제형으로의 전환을 촉진하고 있습니다. J-code 발효 전부터 이러한 변화가 시작됐으며, 유럽 승인 이후 상업화도 순차적으로 진행될 예정입니다. 최근 미국과 유럽에서 피하주사 제형 전환이 순조롭게 예상된다는 점이 추가로 확인됐습니다.",
+          "updatedAt": "2026-04-13T10:03:36+09:00",
+          "sourceOrigins": [
+            {
+              "title": "키트루다 SC 전환과 알테오젠 수혜 전망",
+              "author": "서초동 투자머신",
+              "type": "TELEGRAM",
+              "url": "https://t.me/twomachine/7412"
+            },
+            {
+              "title": "키트루다 SC 전환 본격화, 알테오젠 수혜 기대",
+              "author": "증권사 애널 크롤러🇰🇷",
+              "type": "TELEGRAM",
+              "url": "https://t.me/AnalystCrawler/568966"
+            },
+            {
+              "title": "키트루다 SC 전환 본격화, 알테오젠 수혜 기대",
+              "author": "증권사 애널 크롤러🇰🇷",
+              "type": "TELEGRAM",
+              "url": "https://t.me/AnalystCrawler/568964"
+            }
+          ]
+        }
+      ],
+      "signalDirection": "neutral",
+      "signalLabels": [],
+      "relevanceScore": 6,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [],
+        "watchlist": []
+      },
+      "portfolioLinkage": "",
+      "deepResearchQuestion": "미국, 키트루다 피하주사 전환 가속가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+      "impactEntries": []
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5NDg3MQ==",
+      "numericId": "1294871",
+      "title": "아시아경제 김필수 국장 자사주 1만1천여주 보유",
+      "summary": "아시아경제 김필수 편집국장이 2026년 4월 8일 기준 보통주 11,746주를 보유하게 됐습니다. 자사주 상여금으로 11,090주가 늘었으며, 주요주주에는 포함되지 않습니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1294871",
+      "displayUpdatedAt": "2026-04-13T01:04:02+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 2,
+      "mainSource": {
+        "type": "DISCLOSURE",
+        "name": "공시",
+        "author": "공시"
+      },
+      "uniqueSourceTypeList": [
+        "DISCLOSURE"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZToxNTY3",
+          "name": "아시아경제",
+          "code": "127710",
+          "type": "COMPANY",
+          "country": "KR",
+          "fluctuationRate": -0.3703703703703704
+        }
+      ],
+      "sourceInfo": [
+        {
+          "type": "DISCLOSURE",
+          "count": 2
+        }
+      ],
+      "subTopics": [
+        {
+          "id": "U3ViVG9waWNUeXBlOjEzNjU5MTA=",
+          "title": "아시아경제 임원 김필수 주식 보유 현황 보고",
+          "summary": "아시아경제는 2026년 4월 8일 기준으로 임원 김필수 편집국장의 보통주 소유 현황을 담은 보고서를 제출했습니다. 김필수는 자사주 상여금 지급으로 보통주 11,090주가 늘어나 총 11,746주(0.03%)를 보유하게 됐습니다. 해당 보고서에는 보통주 외에 다른 증권은 없으며, 김필수는 주요주주에는 해당하지 않는 것으로 확인됐습니다.",
+          "updatedAt": "2026-04-13T10:04:02+09:00",
+          "sourceOrigins": [
+            {
+              "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+              "author": "공시",
+              "type": "DISCLOSURE",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260413000234"
+            },
+            {
+              "title": "임원ㆍ주요주주특정증권등소유상황보고서",
+              "author": "공시",
+              "type": "DISCLOSURE",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260413000105"
+            }
+          ]
+        }
+      ],
+      "signalDirection": "neutral",
+      "signalLabels": [],
+      "relevanceScore": 5,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [],
+        "watchlist": []
+      },
+      "portfolioLinkage": "",
+      "deepResearchQuestion": "아시아경제 김필수 국장 자사주 1만1천여주 보유가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+      "impactEntries": []
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5NDk2Ng==",
+      "numericId": "1294966",
+      "title": "한국카본, 미국 자회사 지분 100% 확보",
+      "summary": "한국카본이 미국 자회사 HANKUK COMPOSITE US, INC.의 신주 200만주를 295억 9,600만원에 취득해 지분 100%를 확보하고 완전 자회사로 편입할 예정입니다. 납입은 2026년 4월 13일입니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1294966",
+      "displayUpdatedAt": "2026-04-13T01:03:06+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 2,
+      "mainSource": {
+        "type": "DISCLOSURE",
+        "name": "공시",
+        "author": "공시"
+      },
+      "uniqueSourceTypeList": [
+        "DISCLOSURE"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZTo1MjE=",
+          "name": "한국카본",
+          "code": "017960",
+          "type": "COMPANY",
+          "country": "KR",
+          "fluctuationRate": 5.370569280343716
+        }
+      ],
+      "sourceInfo": [],
+      "subTopics": [],
+      "signalDirection": "neutral",
+      "signalLabels": [],
+      "relevanceScore": 5,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [],
+        "watchlist": []
+      },
+      "portfolioLinkage": "",
+      "deepResearchQuestion": "한국카본, 미국 자회사 지분 100% 확보가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+      "impactEntries": []
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5NTAzOQ==",
+      "numericId": "1295039",
+      "title": "페루 대통령선거 투표 마감일 연장 결정",
+      "summary": "페루 선거관리기구가 대통령선거 투표 마감 시한을 2026년 4월 13일 월요일까지 연장했습니다. 투표용지 도착 지연 등 운영 문제 때문이며, 보수 성향의 Keiko Fujimori 후보가 결선투표에 진출한 상황입니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1295039",
+      "displayUpdatedAt": "2026-04-13T01:03:15+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 1,
+      "mainSource": {
+        "type": "TELEGRAM",
+        "name": "텔레그램",
+        "author": "매시 트레이딩 - 매크로, 시황으로 드리블"
+      },
+      "uniqueSourceTypeList": [
+        "TELEGRAM"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZTozNzk3",
+          "name": "매시 트레이딩 - 매크로, 시황으로 드리블",
+          "code": "텔레그램-2120583396",
+          "type": "INFLUENCER",
+          "country": "EMPTY",
+          "fluctuationRate": null
+        }
+      ],
+      "sourceInfo": [],
+      "subTopics": [],
+      "signalDirection": "neutral",
+      "signalLabels": [],
+      "relevanceScore": 3,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [],
+        "watchlist": []
+      },
+      "portfolioLinkage": "",
+      "deepResearchQuestion": "페루 대통령선거 투표 마감일 연장 결정가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+      "impactEntries": []
+    }
+  ],
+  "accountDigests": [
+    {
+      "accountKey": "ISA",
+      "accountLabel": "ISA",
+      "topTopics": [
+        {
+          "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5NDM1NQ==",
+          "title": "이란 항만 봉쇄 발표에 브렌트유 11% 급등",
+          "topicUrl": "https://www.moneytoring.ai/mv/1294355",
+          "relevanceScore": 100,
+          "signalDirection": "mixed",
+          "portfolioLinkage": "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다.",
+          "matchedNames": [],
+          "matchedCategories": [
+            "미국인덱스"
+          ],
+          "sourceCount": 2,
+          "updatedAt": "2026-04-13T01:03:22+00:00"
+        },
+        {
+          "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5NTA0Mw==",
+          "title": "볼턴, 이란 원유 제재 완화에 강력 반대",
+          "topicUrl": "https://www.moneytoring.ai/mv/1295043",
+          "relevanceScore": 100,
+          "signalDirection": "mixed",
+          "portfolioLinkage": "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다.",
+          "matchedNames": [],
+          "matchedCategories": [
+            "미국인덱스"
+          ],
+          "sourceCount": 1,
+          "updatedAt": "2026-04-13T01:03:15+00:00"
+        },
+        {
+          "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5NDk1Mw==",
+          "title": "인도, 경유·항공유 수출관세 두 배 인상해 내수 우선",
+          "topicUrl": "https://www.moneytoring.ai/mv/1294953",
+          "relevanceScore": 52,
+          "signalDirection": "neutral",
+          "portfolioLinkage": "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 나스닥100, 연금저축의 S&P500 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "matchedNames": [],
+          "matchedCategories": [
+            "미국인덱스"
+          ],
+          "sourceCount": 2,
+          "updatedAt": "2026-04-13T01:03:14+00:00"
+        }
+      ]
+    },
+    {
+      "accountKey": "PENSION",
+      "accountLabel": "연금저축",
+      "topTopics": [
+        {
+          "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5NDM1NQ==",
+          "title": "이란 항만 봉쇄 발표에 브렌트유 11% 급등",
+          "topicUrl": "https://www.moneytoring.ai/mv/1294355",
+          "relevanceScore": 100,
+          "signalDirection": "mixed",
+          "portfolioLinkage": "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다.",
+          "matchedNames": [],
+          "matchedCategories": [
+            "현금파킹",
+            "나스닥100",
+            "S&P500"
+          ],
+          "sourceCount": 2,
+          "updatedAt": "2026-04-13T01:03:22+00:00"
+        },
+        {
+          "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5NTA0Mw==",
+          "title": "볼턴, 이란 원유 제재 완화에 강력 반대",
+          "topicUrl": "https://www.moneytoring.ai/mv/1295043",
+          "relevanceScore": 100,
+          "signalDirection": "mixed",
+          "portfolioLinkage": "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다.",
+          "matchedNames": [],
+          "matchedCategories": [
+            "현금파킹",
+            "나스닥100",
+            "S&P500"
+          ],
+          "sourceCount": 1,
+          "updatedAt": "2026-04-13T01:03:15+00:00"
+        },
+        {
+          "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5NDk1Mw==",
+          "title": "인도, 경유·항공유 수출관세 두 배 인상해 내수 우선",
+          "topicUrl": "https://www.moneytoring.ai/mv/1294953",
+          "relevanceScore": 52,
+          "signalDirection": "neutral",
+          "portfolioLinkage": "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 나스닥100, 연금저축의 S&P500 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "matchedNames": [],
+          "matchedCategories": [
+            "나스닥100",
+            "S&P500"
+          ],
+          "sourceCount": 2,
+          "updatedAt": "2026-04-13T01:03:14+00:00"
+        }
+      ]
+    },
+    {
+      "accountKey": "TOSS",
+      "accountLabel": "토스증권",
+      "topTopics": [
+        {
+          "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5NDM1NQ==",
+          "title": "이란 항만 봉쇄 발표에 브렌트유 11% 급등",
+          "topicUrl": "https://www.moneytoring.ai/mv/1294355",
+          "relevanceScore": 100,
+          "signalDirection": "mixed",
+          "portfolioLinkage": "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다.",
+          "matchedNames": [],
+          "matchedCategories": [
+            "원자력",
+            "방산"
+          ],
+          "sourceCount": 2,
+          "updatedAt": "2026-04-13T01:03:22+00:00"
+        },
+        {
+          "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5NTA0Mw==",
+          "title": "볼턴, 이란 원유 제재 완화에 강력 반대",
+          "topicUrl": "https://www.moneytoring.ai/mv/1295043",
+          "relevanceScore": 100,
+          "signalDirection": "mixed",
+          "portfolioLinkage": "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다.",
+          "matchedNames": [],
+          "matchedCategories": [
+            "원자력",
+            "방산"
+          ],
+          "sourceCount": 1,
+          "updatedAt": "2026-04-13T01:03:15+00:00"
+        },
+        {
+          "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5MTEwNQ==",
+          "title": "Archer, 2028 LA올림픽 eVTOL 시범 운항 발표",
+          "topicUrl": "https://www.moneytoring.ai/mv/1291105",
+          "relevanceScore": 45,
+          "signalDirection": "neutral",
+          "portfolioLinkage": "계좌 테마 기준으로는 토스증권의 방산, 한투 일반의 방산 판단과 맞물립니다. 핵심 시그널은 방산/국방입니다.",
+          "matchedNames": [],
+          "matchedCategories": [
+            "방산"
+          ],
+          "sourceCount": 18,
+          "updatedAt": "2026-04-13T01:03:15+00:00"
+        }
+      ]
+    },
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "topTopics": [
+        {
+          "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5NDM1NQ==",
+          "title": "이란 항만 봉쇄 발표에 브렌트유 11% 급등",
+          "topicUrl": "https://www.moneytoring.ai/mv/1294355",
+          "relevanceScore": 100,
+          "signalDirection": "mixed",
+          "portfolioLinkage": "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다.",
+          "matchedNames": [],
+          "matchedCategories": [
+            "방산",
+            "원자력"
+          ],
+          "sourceCount": 2,
+          "updatedAt": "2026-04-13T01:03:22+00:00"
+        },
+        {
+          "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5NTA0Mw==",
+          "title": "볼턴, 이란 원유 제재 완화에 강력 반대",
+          "topicUrl": "https://www.moneytoring.ai/mv/1295043",
+          "relevanceScore": 100,
+          "signalDirection": "mixed",
+          "portfolioLinkage": "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다.",
+          "matchedNames": [],
+          "matchedCategories": [
+            "방산",
+            "원자력"
+          ],
+          "sourceCount": 1,
+          "updatedAt": "2026-04-13T01:03:15+00:00"
+        },
+        {
+          "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5MTEwNQ==",
+          "title": "Archer, 2028 LA올림픽 eVTOL 시범 운항 발표",
+          "topicUrl": "https://www.moneytoring.ai/mv/1291105",
+          "relevanceScore": 45,
+          "signalDirection": "neutral",
+          "portfolioLinkage": "계좌 테마 기준으로는 토스증권의 방산, 한투 일반의 방산 판단과 맞물립니다. 핵심 시그널은 방산/국방입니다.",
+          "matchedNames": [],
+          "matchedCategories": [
+            "방산"
+          ],
+          "sourceCount": 18,
+          "updatedAt": "2026-04-13T01:03:15+00:00"
+        }
+      ]
+    }
+  ],
+  "deepResearchCandidates": [
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5NDM1NQ==",
+      "title": "이란 항만 봉쇄 발표에 브렌트유 11% 급등",
+      "topicUrl": "https://www.moneytoring.ai/mv/1294355",
+      "relevanceScore": 100,
+      "reason": "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다.",
+      "question": "중동/유가 이슈가 단기 헤드라인인지, 실제 공급 차질과 가격 전이로 이어지는지 확인하세요."
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5NTA0Mw==",
+      "title": "볼턴, 이란 원유 제재 완화에 강력 반대",
+      "topicUrl": "https://www.moneytoring.ai/mv/1295043",
+      "relevanceScore": 100,
+      "reason": "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다.",
+      "question": "중동/유가 이슈가 단기 헤드라인인지, 실제 공급 차질과 가격 전이로 이어지는지 확인하세요."
+    }
+  ],
+  "impactReports": [
+    {
+      "reportId": "marketvoice_1294355",
+      "title": "이란 항만 봉쇄 발표에 브렌트유 11% 급등",
+      "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
+      "source": "moneytoring",
+      "publishedDate": "2026-04-13T01:03:22+00:00",
+      "reportMeta": {
+        "report_type": "marketvoice",
+        "sector": "중동/유가",
+        "themes": [
+          "중동/유가"
+        ],
+        "key_numbers": [
+          "원문 2건",
+          "인용 0건"
+        ]
+      },
+      "impacts": [
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "ISA",
+            "name": "미국인덱스"
+          },
+          "direction": "negative",
+          "strength": 0.68,
+          "confidence": 0.66,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
+              "미국 정부가 이란 관련 항만에 대한 해상 봉쇄 방침을 발표하면서, 아시아 시장에서 Brent 유가가 장중 11% 이상 급등했습니다. 이에 따라 Nikkei 주가지수 선물은 2% 이상 하락이 예상되고, 미국 S&P 500과 암호화폐도 직전 주 반등 이후 이번 세션에서 미국 선물이 1% 이상 하락하며 위험회피 심리가 확대되고 있습니다. 미국이 이란과의 평화협상 결렬 후 호르무즈 해협 및 이란 항만 봉쇄를 예고하면서 일본 증시는 2024년 8월 이후 최대 주간 상승폭을 기록한 직후 변동성이 다시 커지는 양상을 보이고 있습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "가상화폐 -0.81%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "현금파킹"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
+              "미국 정부가 이란 관련 항만에 대한 해상 봉쇄 방침을 발표하면서, 아시아 시장에서 Brent 유가가 장중 11% 이상 급등했습니다. 이에 따라 Nikkei 주가지수 선물은 2% 이상 하락이 예상되고, 미국 S&P 500과 암호화폐도 직전 주 반등 이후 이번 세션에서 미국 선물이 1% 이상 하락하며 위험회피 심리가 확대되고 있습니다. 미국이 이란과의 평화협상 결렬 후 호르무즈 해협 및 이란 항만 봉쇄를 예고하면서 일본 증시는 2024년 8월 이후 최대 주간 상승폭을 기록한 직후 변동성이 다시 커지는 양상을 보이고 있습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "가상화폐 -0.81%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "나스닥100"
+          },
+          "direction": "negative",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
+              "미국 정부가 이란 관련 항만에 대한 해상 봉쇄 방침을 발표하면서, 아시아 시장에서 Brent 유가가 장중 11% 이상 급등했습니다. 이에 따라 Nikkei 주가지수 선물은 2% 이상 하락이 예상되고, 미국 S&P 500과 암호화폐도 직전 주 반등 이후 이번 세션에서 미국 선물이 1% 이상 하락하며 위험회피 심리가 확대되고 있습니다. 미국이 이란과의 평화협상 결렬 후 호르무즈 해협 및 이란 항만 봉쇄를 예고하면서 일본 증시는 2024년 8월 이후 최대 주간 상승폭을 기록한 직후 변동성이 다시 커지는 양상을 보이고 있습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "가상화폐 -0.81%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "S&P500"
+          },
+          "direction": "negative",
+          "strength": 0.68,
+          "confidence": 0.66,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
+              "미국 정부가 이란 관련 항만에 대한 해상 봉쇄 방침을 발표하면서, 아시아 시장에서 Brent 유가가 장중 11% 이상 급등했습니다. 이에 따라 Nikkei 주가지수 선물은 2% 이상 하락이 예상되고, 미국 S&P 500과 암호화폐도 직전 주 반등 이후 이번 세션에서 미국 선물이 1% 이상 하락하며 위험회피 심리가 확대되고 있습니다. 미국이 이란과의 평화협상 결렬 후 호르무즈 해협 및 이란 항만 봉쇄를 예고하면서 일본 증시는 2024년 8월 이후 최대 주간 상승폭을 기록한 직후 변동성이 다시 커지는 양상을 보이고 있습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "가상화폐 -0.81%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "TOSS",
+            "name": "원자력"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
+              "미국 정부가 이란 관련 항만에 대한 해상 봉쇄 방침을 발표하면서, 아시아 시장에서 Brent 유가가 장중 11% 이상 급등했습니다. 이에 따라 Nikkei 주가지수 선물은 2% 이상 하락이 예상되고, 미국 S&P 500과 암호화폐도 직전 주 반등 이후 이번 세션에서 미국 선물이 1% 이상 하락하며 위험회피 심리가 확대되고 있습니다. 미국이 이란과의 평화협상 결렬 후 호르무즈 해협 및 이란 항만 봉쇄를 예고하면서 일본 증시는 2024년 8월 이후 최대 주간 상승폭을 기록한 직후 변동성이 다시 커지는 양상을 보이고 있습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "가상화폐 -0.81%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "TOSS",
+            "name": "방산"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
+              "미국 정부가 이란 관련 항만에 대한 해상 봉쇄 방침을 발표하면서, 아시아 시장에서 Brent 유가가 장중 11% 이상 급등했습니다. 이에 따라 Nikkei 주가지수 선물은 2% 이상 하락이 예상되고, 미국 S&P 500과 암호화폐도 직전 주 반등 이후 이번 세션에서 미국 선물이 1% 이상 하락하며 위험회피 심리가 확대되고 있습니다. 미국이 이란과의 평화협상 결렬 후 호르무즈 해협 및 이란 항만 봉쇄를 예고하면서 일본 증시는 2024년 8월 이후 최대 주간 상승폭을 기록한 직후 변동성이 다시 커지는 양상을 보이고 있습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "가상화폐 -0.81%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "KIS_MAIN",
+            "name": "방산"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
+              "미국 정부가 이란 관련 항만에 대한 해상 봉쇄 방침을 발표하면서, 아시아 시장에서 Brent 유가가 장중 11% 이상 급등했습니다. 이에 따라 Nikkei 주가지수 선물은 2% 이상 하락이 예상되고, 미국 S&P 500과 암호화폐도 직전 주 반등 이후 이번 세션에서 미국 선물이 1% 이상 하락하며 위험회피 심리가 확대되고 있습니다. 미국이 이란과의 평화협상 결렬 후 호르무즈 해협 및 이란 항만 봉쇄를 예고하면서 일본 증시는 2024년 8월 이후 최대 주간 상승폭을 기록한 직후 변동성이 다시 커지는 양상을 보이고 있습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "가상화폐 -0.81%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "KIS_MAIN",
+            "name": "원자력"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "미국 정부가 이란 항만 해상 봉쇄를 발표하자 2026년 4월 아시아 시장에서 Brent 유가가 11% 이상 급등했습니다. 이에 Nikkei 주가지수 선물과 미국 S&P 500, 암호화폐가 하락하며 위험회피 심리가 커졌습니다.",
+              "미국 정부가 이란 관련 항만에 대한 해상 봉쇄 방침을 발표하면서, 아시아 시장에서 Brent 유가가 장중 11% 이상 급등했습니다. 이에 따라 Nikkei 주가지수 선물은 2% 이상 하락이 예상되고, 미국 S&P 500과 암호화폐도 직전 주 반등 이후 이번 세션에서 미국 선물이 1% 이상 하락하며 위험회피 심리가 확대되고 있습니다. 미국이 이란과의 평화협상 결렬 후 호르무즈 해협 및 이란 항만 봉쇄를 예고하면서 일본 증시는 2024년 8월 이후 최대 주간 상승폭을 기록한 직후 변동성이 다시 커지는 양상을 보이고 있습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "가상화폐 -0.81%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        }
+      ]
+    },
+    {
+      "reportId": "marketvoice_1295043",
+      "title": "볼턴, 이란 원유 제재 완화에 강력 반대",
+      "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
+      "source": "moneytoring",
+      "publishedDate": "2026-04-13T01:03:15+00:00",
+      "reportMeta": {
+        "report_type": "marketvoice",
+        "sector": "중동/유가",
+        "themes": [
+          "중동/유가"
+        ],
+        "key_numbers": [
+          "원문 1건",
+          "인용 0건"
+        ]
+      },
+      "impacts": [
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "ISA",
+            "name": "미국인덱스"
+          },
+          "direction": "negative",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화에 대해 강하게 비판하며, 제재 재부과와 해상 봉쇄를 추진해 이란 정권교체를 유도해야 한다고 주장했습니다.",
+              "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화 조치에 대해 강하게 비판하며, 이란에 대한 제재를 다시 부과하고 해상 봉쇄를 추진해야 한다고 주장했습니다. 그는 이란 내부의 체제 균열을 심화시켜 정권교체를 유도해야 한다는 입장도 밝혔습니다. 이 발언은 중동 지역의 장기적 안정에 대한 우려와 미국 정책에 대한 비판을 중심으로 이루어졌습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "유조선 -1.02%",
+              "국제유가 +0.11%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "현금파킹"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화에 대해 강하게 비판하며, 제재 재부과와 해상 봉쇄를 추진해 이란 정권교체를 유도해야 한다고 주장했습니다.",
+              "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화 조치에 대해 강하게 비판하며, 이란에 대한 제재를 다시 부과하고 해상 봉쇄를 추진해야 한다고 주장했습니다. 그는 이란 내부의 체제 균열을 심화시켜 정권교체를 유도해야 한다는 입장도 밝혔습니다. 이 발언은 중동 지역의 장기적 안정에 대한 우려와 미국 정책에 대한 비판을 중심으로 이루어졌습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "유조선 -1.02%",
+              "국제유가 +0.11%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "나스닥100"
+          },
+          "direction": "negative",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화에 대해 강하게 비판하며, 제재 재부과와 해상 봉쇄를 추진해 이란 정권교체를 유도해야 한다고 주장했습니다.",
+              "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화 조치에 대해 강하게 비판하며, 이란에 대한 제재를 다시 부과하고 해상 봉쇄를 추진해야 한다고 주장했습니다. 그는 이란 내부의 체제 균열을 심화시켜 정권교체를 유도해야 한다는 입장도 밝혔습니다. 이 발언은 중동 지역의 장기적 안정에 대한 우려와 미국 정책에 대한 비판을 중심으로 이루어졌습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "유조선 -1.02%",
+              "국제유가 +0.11%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "S&P500"
+          },
+          "direction": "negative",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화에 대해 강하게 비판하며, 제재 재부과와 해상 봉쇄를 추진해 이란 정권교체를 유도해야 한다고 주장했습니다.",
+              "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화 조치에 대해 강하게 비판하며, 이란에 대한 제재를 다시 부과하고 해상 봉쇄를 추진해야 한다고 주장했습니다. 그는 이란 내부의 체제 균열을 심화시켜 정권교체를 유도해야 한다는 입장도 밝혔습니다. 이 발언은 중동 지역의 장기적 안정에 대한 우려와 미국 정책에 대한 비판을 중심으로 이루어졌습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "유조선 -1.02%",
+              "국제유가 +0.11%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "TOSS",
+            "name": "원자력"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화에 대해 강하게 비판하며, 제재 재부과와 해상 봉쇄를 추진해 이란 정권교체를 유도해야 한다고 주장했습니다.",
+              "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화 조치에 대해 강하게 비판하며, 이란에 대한 제재를 다시 부과하고 해상 봉쇄를 추진해야 한다고 주장했습니다. 그는 이란 내부의 체제 균열을 심화시켜 정권교체를 유도해야 한다는 입장도 밝혔습니다. 이 발언은 중동 지역의 장기적 안정에 대한 우려와 미국 정책에 대한 비판을 중심으로 이루어졌습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "유조선 -1.02%",
+              "국제유가 +0.11%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "TOSS",
+            "name": "방산"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화에 대해 강하게 비판하며, 제재 재부과와 해상 봉쇄를 추진해 이란 정권교체를 유도해야 한다고 주장했습니다.",
+              "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화 조치에 대해 강하게 비판하며, 이란에 대한 제재를 다시 부과하고 해상 봉쇄를 추진해야 한다고 주장했습니다. 그는 이란 내부의 체제 균열을 심화시켜 정권교체를 유도해야 한다는 입장도 밝혔습니다. 이 발언은 중동 지역의 장기적 안정에 대한 우려와 미국 정책에 대한 비판을 중심으로 이루어졌습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "유조선 -1.02%",
+              "국제유가 +0.11%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "KIS_MAIN",
+            "name": "방산"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화에 대해 강하게 비판하며, 제재 재부과와 해상 봉쇄를 추진해 이란 정권교체를 유도해야 한다고 주장했습니다.",
+              "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화 조치에 대해 강하게 비판하며, 이란에 대한 제재를 다시 부과하고 해상 봉쇄를 추진해야 한다고 주장했습니다. 그는 이란 내부의 체제 균열을 심화시켜 정권교체를 유도해야 한다는 입장도 밝혔습니다. 이 발언은 중동 지역의 장기적 안정에 대한 우려와 미국 정책에 대한 비판을 중심으로 이루어졌습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "유조선 -1.02%",
+              "국제유가 +0.11%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "KIS_MAIN",
+            "name": "원자력"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화에 대해 강하게 비판하며, 제재 재부과와 해상 봉쇄를 추진해 이란 정권교체를 유도해야 한다고 주장했습니다.",
+              "전 미국 국가안보보좌관 John Bolton이 2026년 미국의 이란 원유 운송 제재 완화 조치에 대해 강하게 비판하며, 이란에 대한 제재를 다시 부과하고 해상 봉쇄를 추진해야 한다고 주장했습니다. 그는 이란 내부의 체제 균열을 심화시켜 정권교체를 유도해야 한다는 입장도 밝혔습니다. 이 발언은 중동 지역의 장기적 안정에 대한 우려와 미국 정책에 대한 비판을 중심으로 이루어졌습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "유조선 -1.02%",
+              "국제유가 +0.11%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        }
+      ]
+    },
+    {
+      "reportId": "marketvoice_1294953",
+      "title": "인도, 경유·항공유 수출관세 두 배 인상해 내수 우선",
+      "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
+      "source": "moneytoring",
+      "publishedDate": "2026-04-13T01:03:14+00:00",
+      "reportMeta": {
+        "report_type": "marketvoice",
+        "sector": "AI 인프라/전력",
+        "themes": [
+          "AI 인프라/전력"
+        ],
+        "key_numbers": [
+          "원문 2건",
+          "인용 0건"
+        ]
+      },
+      "impacts": [
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "ISA",
+            "name": "미국인덱스"
+          },
+          "direction": "positive",
+          "strength": 0.52,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "인도 정부가 경유와 항공유 수출관세를 리터당 약 0.23달러에서 두 배 이상 올렸습니다. 이는 국내 연료 재고를 늘리고 내수 공급을 우선하기 위한 조치로, 정유사의 수출 유인을 줄이는 효과가 있습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 나스닥100, 연금저축의 S&P500 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "AI -1.12%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "나스닥100"
+          },
+          "direction": "positive",
+          "strength": 0.52,
+          "confidence": 0.58,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "인도 정부가 경유와 항공유 수출관세를 리터당 약 0.23달러에서 두 배 이상 올렸습니다. 이는 국내 연료 재고를 늘리고 내수 공급을 우선하기 위한 조치로, 정유사의 수출 유인을 줄이는 효과가 있습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 나스닥100, 연금저축의 S&P500 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "AI -1.12%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "S&P500"
+          },
+          "direction": "positive",
+          "strength": 0.52,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "인도 정부가 경유와 항공유 수출관세를 리터당 약 0.23달러에서 두 배 이상 올렸습니다. 이는 국내 연료 재고를 늘리고 내수 공급을 우선하기 위한 조치로, 정유사의 수출 유인을 줄이는 효과가 있습니다.",
+              "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 나스닥100, 연금저축의 S&P500 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "AI -1.12%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        }
+      ]
+    },
+    {
+      "reportId": "marketvoice_1291105",
+      "title": "Archer, 2028 LA올림픽 eVTOL 시범 운항 발표",
+      "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
+      "source": "moneytoring",
+      "publishedDate": "2026-04-13T01:03:15+00:00",
+      "reportMeta": {
+        "report_type": "marketvoice",
+        "sector": "방산/국방",
+        "themes": [
+          "방산/국방"
+        ],
+        "key_numbers": [
+          "원문 18건",
+          "인용 0건"
+        ]
+      },
+      "impacts": [
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "TOSS",
+            "name": "방산"
+          },
+          "direction": "positive",
+          "strength": 0.493,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "방산/국방"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "Archer Aviation이 2026년 4월 전기 수직이착륙기(eVTOL)를 활용한 도심 단거리 이동 서비스를 발표했습니다. 2028년 로스앤젤레스 올림픽에서 시범 운항을 계획하며, 저렴한 요금과 효율적 운항 전략을 제시했습니다.",
+              "계좌 테마 기준으로는 토스증권의 방산, 한투 일반의 방산 판단과 맞물립니다. 핵심 시그널은 방산/국방입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 18건",
+              "아처 에비에이션 +1.50%",
+              "우주항공 -1.71%",
+              "우버 테크놀로지스 -1.85%"
+            ]
+          },
+          "riskTags": [
+            "defense"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "KIS_MAIN",
+            "name": "방산"
+          },
+          "direction": "positive",
+          "strength": 0.493,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "방산/국방"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "Archer Aviation이 2026년 4월 전기 수직이착륙기(eVTOL)를 활용한 도심 단거리 이동 서비스를 발표했습니다. 2028년 로스앤젤레스 올림픽에서 시범 운항을 계획하며, 저렴한 요금과 효율적 운항 전략을 제시했습니다.",
+              "계좌 테마 기준으로는 토스증권의 방산, 한투 일반의 방산 판단과 맞물립니다. 핵심 시그널은 방산/국방입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 18건",
+              "아처 에비에이션 +1.50%",
+              "우주항공 -1.71%",
+              "우버 테크놀로지스 -1.85%"
+            ]
+          },
+          "riskTags": [
+            "defense"
+          ]
+        }
+      ]
+    }
+  ]
+}
