@@ -1,0 +1,52 @@
+{
+  "generated_at": "2026-04-14T03:27:00.431Z",
+  "generatedAt": "2026-04-14T03:27:00.431Z",
+  "run_id": "2026-04-14-015849",
+  "runId": "2026-04-14-015849",
+  "run_date": "2026-04-14",
+  "runDate": "2026-04-14",
+  "effective_market_date": "2026-04-14",
+  "effectiveMarketDate": "2026-04-14",
+  "date": "2026-04-14",
+  "model": "manual-kit-archive",
+  "requested_model": "gemini-2.5-flash",
+  "source": "archive_promoted",
+  "deep_research_available": true,
+  "workflow": "stage1 + primary deep research + multi-round refinement -> rich briefing",
+  "stage1_report_count": 95,
+  "selected_extract_budget": 18,
+  "coverage_summary_report_count": 95,
+  "coverage_summary_entry_count": 95,
+  "coverage_theme_count": 7,
+  "highlight_extract_count": 9,
+  "highlight_report_count": 9,
+  "selected_extract_count": 9,
+  "selected_chunk_count": 9,
+  "used_chunk_count": 9,
+  "selected_report_count": 9,
+  "covered_report_count": 95,
+  "briefing_candidate_count": 95,
+  "merged_text_char_length": 53844,
+  "source_paths": {
+    "stage1": "/Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-14/stage1-report-extracts-v2.json",
+    "portfolio": "/Users/seo/Documents/Playground/EcoReport/data/portfolio/latest.json",
+    "technical": "/Users/seo/Documents/Playground/EcoReport/data/technical/2026-04-14.json",
+    "prior_briefing": "/Users/seo/Documents/Playground/EcoReport/reports/daily/2026-04-14-briefing.md",
+    "deep_research": "/Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-14/09-stage1-5-gemini-deep-research-response.md",
+    "refinement_maps": [
+      "/Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-14/stage1-followup-research-map.json",
+      "/Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-14/stage1-final-refinement-map.json"
+    ],
+    "refinement_responses": [
+      "/Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-14/13-stage1-7-gemini-follow-up-response.md",
+      "/Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-14/16-stage1-8-gemini-final-refinement-response.md"
+    ],
+    "archive_output": "/Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-14/10-stage1-6-final-research-briefing.md"
+  },
+  "prompt_char_length": 53844,
+  "deep_research_char_length": 12970,
+  "prior_briefing_char_length": 2051,
+  "archive_of": "/Users/seo/Documents/Playground/EcoReport/knowledge/daily/2026-04-14-gemini-briefing-rich.md",
+  "promoted_from_archive": "/Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-14/10-stage1-6-final-research-briefing.md",
+  "promoted_at": "2026-04-14T03:27:01.137Z"
+}

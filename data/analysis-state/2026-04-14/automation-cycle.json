@@ -1,0 +1,446 @@
+{
+  "date": "2026-04-14",
+  "runDate": "2026-04-14",
+  "effectiveMarketDate": "2026-04-14",
+  "runId": "2026-04-14-015849",
+  "resolutionReason": "requested",
+  "generatedAt": "2026-04-14T03:27:11.622Z",
+  "overallStatus": "ok",
+  "sameDayStatus": "complete",
+  "logFile": "/Users/seo/Documents/Playground/EcoReport/logs/2026-04-14-015849-automation-cycle.log",
+  "systemHealthOverall": "warn",
+  "previousTradingDate": "2026-04-13",
+  "changeSummary": "전일(2026-04-13) 대비, KOSPI +3.32%, 포트폴리오 점수 64→61, 레짐 BULL→SIDEWAYS, 리포트 100→95건, 신규 포커스 HD현대일렉트릭·효성중공업, 제외 HANARO 원자력iSelect",
+  "steps": [
+    {
+      "id": "automation_readiness",
+      "label": "Automation Environment Readiness",
+      "status": "ok",
+      "soft": true,
+      "commandLine": "node scripts/check-automation-readiness.js --date 2026-04-14 --run-date 2026-04-14 --effective-market-date 2026-04-14 --run-id 2026-04-14-015849",
+      "startedAt": "2026-04-14T01:58:49.883Z",
+      "endedAt": "2026-04-14T01:58:50.113Z",
+      "durationMs": 230,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-14/automation-readiness.json",
+      "debugHint": null
+    },
+    {
+      "id": "stockeasy_capture",
+      "label": "StockEasy Market Capture",
+      "status": "ok",
+      "soft": true,
+      "commandLine": "npm run external:stockeasy:capture -- --date 2026-04-14",
+      "startedAt": "2026-04-14T01:58:50.114Z",
+      "endedAt": "2026-04-14T01:59:07.430Z",
+      "durationMs": 17316,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "Saved StockEasy snapshot to /Users/seo/Documents/Playground/EcoReport/data/external/stockeasy/2026-04-14/snapshot.json\n{\n  \"sourceTradingDate\": \"2026-04-13\",\n  \"themeCount\": 4,\n  \"sectorCount\": 15,\n  \"leaderCount\": 10,\n  \"strategyCount\": 3\n}",
+      "debugHint": null
+    },
+    {
+      "id": "baseline_daily_system",
+      "label": "Baseline Daily System",
+      "status": "ok",
+      "soft": false,
+      "commandLine": "bash scripts/run-daily-system.sh --date 2026-04-14 --run-date 2026-04-14 --effective-market-date 2026-04-14 --run-id 2026-04-14-015849 --gemini-stage2 --skip-push --skip-verify --skip-strategy --skip-wiki --no-gemini-briefing",
+      "startedAt": "2026-04-14T01:59:07.430Z",
+      "endedAt": "2026-04-14T02:00:55.671Z",
+      "durationMs": 108241,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "🧭 전략 파이프라인 건너뜀 (--skip-strategy)\n📚 LLM Wiki 단계 건너뜀 (--skip-wiki)\n📤 GitHub 동기화 건너뜀 (--skip-push)\n🩺 시스템 검증 건너뜀 (--skip-verify)\n⚠️ 소프트 실패 1건이 있었지만 파이프라인은 계속 완료했습니다.\n==================================================\n✅ EcoReport Daily System 종료 (run: 2026-04-14 / effective: 2026-04-14)\n==================================================",
+      "debugHint": null
+    },
+    {
+      "id": "stage1_extracts",
+      "label": "Stage 1 Extracts",
+      "status": "ok",
+      "soft": false,
+      "commandLine": "node scripts/build-stage1-report-extracts.js --date 2026-04-14 --run-date 2026-04-14 --effective-market-date 2026-04-14 --run-id 2026-04-14-015849",
+      "startedAt": "2026-04-14T02:00:55.671Z",
+      "endedAt": "2026-04-14T02:00:57.463Z",
+      "durationMs": 1792,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-14/stage1-report-extracts-v2.json",
+      "debugHint": null
+    },
+    {
+      "id": "deep_research_web",
+      "label": "Gemini Deep Research Web",
+      "status": "ok",
+      "soft": true,
+      "commandLine": "npm run stage1.5:gemini:run -- --date 2026-04-14 --poll-sec 30 --timeout-sec 1800",
+      "startedAt": "2026-04-14T02:00:57.464Z",
+      "endedAt": "2026-04-14T02:31:22.861Z",
+      "durationMs": 1825397,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "{\"title\":\"포트폴리오 전략 수립 및 심층 리서치 - Google Gemini\",\"messageCount\":3,\"promptSubmitted\":true,\"researchStarted\":true,\"promptInjected\":true,\"pageRefreshCount\":0,\"hasDeepResearchSelected\":true,\"hasResearchStartButton\":false,\"hasStopButton\":true,\"hasPlanGenerating\":false,\"hasReportGenerating\":true,\"hasTransientError\":false,\"composerContainsPrompt\":false,\"bodyBlockCount\":80,\"mainTextBlockCount\":3}\n{\"title\":\"포트폴리오 전략 수립 및 심층 리서치 - Google Gemini\",\"messageCount\":3,\"promptSubmitted\":true,\"researchStarted\":true,\"promptInjected\":true,\"pageRefreshCount\":0,\"hasDeepResearchSelected\":true,\"hasResearchStartButton\":false,\"hasStopButton\":true,\"hasPlanGenerating\":false,\"hasReportGenerating\":true,\"hasTransientError\":false,\"composerContainsPrompt\":false,\"bodyBlockCount\":80,\"mainTextBlockCount\":3}\n{\"title\":\"포트폴리오 전략 수립 및 심층 리서치 - Google Gemini\",\"messageCount\":3,\"promptSubmitted\":true,\"researchStarted\":true,\"promptInjected\":true,\"pageRefreshCount\":0,\"hasDeepResearchSelected\":true,\"hasResearchStartButton\":false,\"hasStopButton\":true,\"hasPlanGenerating\":false,\"hasReportGenerating\":true,\"hasTransientError\":false,\"composerContainsPrompt\":false,\"bodyBlockCount\":80,\"mainTextBlockCount\":3}\n{\"title\":\"포트폴리오 전략 수립 및 심층 리서치 - Google Gemini\",\"messageCount\":3,\"promptSubmitted\":true,\"researchStarted\":true,\"promptInjected\":true,\"pageRefreshCount\":0,\"hasDeepResearchSelected\":true,\"hasResearchStartButton\":false,\"hasStopButton\":true,\"hasPlanGenerating\":false,\"hasReportGenerating\":true,\"hasTransientError\":false,\"composerContainsPrompt\":false,\"bodyBlockCount\":80,\"mainTextBlockCount\":3}\n{\"title\":\"포트폴리오 전략 수립 및 심층 리서치 - Google Gemini\",\"messageCount\":3,\"promptSubmitted\":true,\"researchStarted\":true,\"promptInjected\":true,\"pageRefreshCount\":0,\"hasDeepResearchSelected\":true,\"hasResearchStartButton\":false,\"hasStopButton\":true,\"hasPlanGenerating\":false,\"hasReportGenerating\":true,\"hasTransientError\":false,\"composerContainsPrompt\":false,\"bodyBlockCount\":80,\"mainTextBlockCount\":3}\nclosed: closed-tab\nrecovered_timeout_response: /Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-14/09-stage1-5-gemini-deep-research-response.md\ncopied_chars: 2810",
+      "debugHint": null
+    },
+    {
+      "id": "rich_briefing_overlay",
+      "label": "Stage 1.6 Rich Briefing Overlay",
+      "status": "ok",
+      "soft": true,
+      "commandLine": "npm run stage1.6:briefing -- --date 2026-04-14 --run-date 2026-04-14 --effective-market-date 2026-04-14 --run-id 2026-04-14-015849",
+      "startedAt": "2026-04-14T02:31:22.861Z",
+      "endedAt": "2026-04-14T02:35:02.874Z",
+      "durationMs": 220013,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "stage1.6 Gemini 외부 오류 감지: 16초 후 재시도 (3/5)\nstage1.6 Gemini 외부 오류 감지: 60초 후 재시도 (4/5)\nstage1.6 Gemini fallback 활성화: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit.\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\nPlease retry in 57.187222609s.\n/Users/seo/Documents/Playground/EcoReport/knowledge/daily/2026-04-14-gemini-briefing-rich.md | briefing source=archive_promoted",
+      "debugHint": null
+    },
+    {
+      "id": "strategy_refresh",
+      "label": "Strategy Refresh After Deep Research",
+      "status": "ok",
+      "soft": true,
+      "commandLine": "bash scripts/run-strategy-pipeline.sh --date 2026-04-14 --run-date 2026-04-14 --effective-market-date 2026-04-14 --run-id 2026-04-14-015849 --gemini-stage2",
+      "startedAt": "2026-04-14T02:35:02.876Z",
+      "endedAt": "2026-04-14T02:35:25.079Z",
+      "durationMs": 22203,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-14/stage4-execution-plan.json\n== Feedback: snapshot ==\n/Users/seo/Documents/Playground/EcoReport/data/feedback/snapshots/2026-04-14.json\n== Feedback: analysis ==\n/Users/seo/Documents/Playground/EcoReport/data/feedback/analysis/2026-04-14-feedback.json\n== Feedback: report ==\n/Users/seo/Documents/Playground/EcoReport/reports/feedback-summary.md\nDone.",
+      "debugHint": null
+    },
+    {
+      "id": "wiki_rebuild_initial",
+      "label": "LLM Wiki Rebuild After First Synthesis",
+      "status": "ok",
+      "soft": true,
+      "commandLine": "node scripts/build-llm-wiki.js --date 2026-04-14 --run-date 2026-04-14 --effective-market-date 2026-04-14 --run-id 2026-04-14-015849",
+      "startedAt": "2026-04-14T02:35:25.079Z",
+      "endedAt": "2026-04-14T02:35:25.196Z",
+      "durationMs": 117,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/Documents/Playground/EcoReport/knowledge/wiki",
+      "debugHint": null
+    },
+    {
+      "id": "followup_reindex",
+      "label": "Stage 1.7 Follow-up Research Map",
+      "status": "ok",
+      "soft": true,
+      "commandLine": "node scripts/build-stage1-7-followup-research-map.js --date 2026-04-14 --run-date 2026-04-14 --effective-market-date 2026-04-14 --run-id 2026-04-14-015849",
+      "startedAt": "2026-04-14T02:35:25.196Z",
+      "endedAt": "2026-04-14T02:35:27.320Z",
+      "durationMs": 2124,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-14/stage1-followup-research-map.json\n/Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-14/11-stage1-7-followup-research-map.md",
+      "debugHint": null
+    },
+    {
+      "id": "followup_prompt",
+      "label": "Stage 1.7 Gemini Follow-up Prompt",
+      "status": "ok",
+      "soft": true,
+      "commandLine": "node scripts/build-stage1-7-gemini-follow-up-prompt.js --date 2026-04-14 --run-date 2026-04-14 --effective-market-date 2026-04-14 --run-id 2026-04-14-015849",
+      "startedAt": "2026-04-14T02:35:27.320Z",
+      "endedAt": "2026-04-14T02:35:27.387Z",
+      "durationMs": 67,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-14/12-stage1-7-gemini-follow-up-prompt.md",
+      "debugHint": null
+    },
+    {
+      "id": "deep_research_follow_up_web",
+      "label": "Gemini Deep Research Follow-up Web",
+      "status": "ok",
+      "soft": true,
+      "commandLine": "node scripts/run-gemini-deep-research-web.js --date 2026-04-14 --prompt /Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-14/12-stage1-7-gemini-follow-up-prompt.md --output /Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-14/13-stage1-7-gemini-follow-up-response.md --poll-sec 30 --timeout-sec 1800",
+      "startedAt": "2026-04-14T02:35:27.388Z",
+      "endedAt": "2026-04-14T02:58:18.744Z",
+      "durationMs": 1371356,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "{\"title\":\"스탁이지 - AI 기반 주식 분석 플랫폼\",\"messageCount\":0,\"promptSubmitted\":true,\"researchStarted\":true,\"promptInjected\":true,\"pageRefreshCount\":0,\"hasDeepResearchSelected\":false,\"hasResearchStartButton\":false,\"hasStopButton\":false,\"hasPlanGenerating\":false,\"hasReportGenerating\":false,\"hasTransientError\":false,\"composerContainsPrompt\":false,\"bodyBlockCount\":16,\"mainTextBlockCount\":2}\n{\"title\":\"스탁이지 - AI 기반 주식 분석 플랫폼\",\"messageCount\":0,\"promptSubmitted\":true,\"researchStarted\":true,\"promptInjected\":true,\"pageRefreshCount\":0,\"hasDeepResearchSelected\":false,\"hasResearchStartButton\":false,\"hasStopButton\":false,\"hasPlanGenerating\":false,\"hasReportGenerating\":false,\"hasTransientError\":false,\"composerContainsPrompt\":false,\"bodyBlockCount\":16,\"mainTextBlockCount\":2}\n{\"title\":\"스탁이지 - AI 기반 주식 분석 플랫폼\",\"messageCount\":0,\"promptSubmitted\":true,\"researchStarted\":true,\"promptInjected\":true,\"pageRefreshCount\":0,\"hasDeepResearchSelected\":false,\"hasResearchStartButton\":false,\"hasStopButton\":false,\"hasPlanGenerating\":false,\"hasReportGenerating\":false,\"hasTransientError\":false,\"composerContainsPrompt\":false,\"bodyBlockCount\":16,\"mainTextBlockCount\":2}\n{\"title\":\"스탁이지 - AI 기반 주식 분석 플랫폼\",\"messageCount\":0,\"promptSubmitted\":true,\"researchStarted\":true,\"promptInjected\":true,\"pageRefreshCount\":0,\"hasDeepResearchSelected\":false,\"hasResearchStartButton\":false,\"hasStopButton\":false,\"hasPlanGenerating\":false,\"hasReportGenerating\":false,\"hasTransientError\":false,\"composerContainsPrompt\":false,\"bodyBlockCount\":16,\"mainTextBlockCount\":2}\n{\"title\":\"스탁이지 - AI 기반 주식 분석 플랫폼\",\"messageCount\":0,\"promptSubmitted\":true,\"researchStarted\":true,\"promptInjected\":true,\"pageRefreshCount\":0,\"hasDeepResearchSelected\":false,\"hasResearchStartButton\":false,\"hasStopButton\":false,\"hasPlanGenerating\":false,\"hasReportGenerating\":false,\"hasTransientError\":false,\"composerContainsPrompt\":false,\"bodyBlockCount\":16,\"mainTextBlockCount\":2}\nclosed: closed-tab\nsaved: /Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-14/13-stage1-7-gemini-follow-up-response.md\ncopied_chars: 2200",
+      "debugHint": null
+    },
+    {
+      "id": "rich_briefing_final",
+      "label": "Stage 1.6 Rich Briefing Final",
+      "status": "ok",
+      "soft": true,
+      "commandLine": "npm run stage1.6:briefing -- --date 2026-04-14 --run-date 2026-04-14 --effective-market-date 2026-04-14 --run-id 2026-04-14-015849",
+      "startedAt": "2026-04-14T02:58:18.744Z",
+      "endedAt": "2026-04-14T02:58:19.652Z",
+      "durationMs": 908,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "> ecoreport@1.0.0 stage1.6:briefing\n> node scripts/build-stage1-6-rich-briefing.js --date 2026-04-14 --run-date 2026-04-14 --effective-market-date 2026-04-14 --run-id 2026-04-14-015849\nstage1.6 Gemini fallback 활성화: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit.\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\nPlease retry in 40.620524882s.\n/Users/seo/Documents/Playground/EcoReport/knowledge/daily/2026-04-14-gemini-briefing-rich.md | briefing source=archive_promoted",
+      "debugHint": null
+    },
+    {
+      "id": "strategy_refresh_final",
+      "label": "Strategy Refresh After Follow-up Research",
+      "status": "ok",
+      "soft": true,
+      "commandLine": "bash scripts/run-strategy-pipeline.sh --date 2026-04-14 --run-date 2026-04-14 --effective-market-date 2026-04-14 --run-id 2026-04-14-015849 --gemini-stage2",
+      "startedAt": "2026-04-14T02:58:19.653Z",
+      "endedAt": "2026-04-14T02:58:29.946Z",
+      "durationMs": 10293,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-14/stage4-execution-plan.json\n== Feedback: snapshot ==\n/Users/seo/Documents/Playground/EcoReport/data/feedback/snapshots/2026-04-14.json\n== Feedback: analysis ==\n/Users/seo/Documents/Playground/EcoReport/data/feedback/analysis/2026-04-14-feedback.json\n== Feedback: report ==\n/Users/seo/Documents/Playground/EcoReport/reports/feedback-summary.md\nDone.",
+      "debugHint": null
+    },
+    {
+      "id": "wiki_rebuild_mid",
+      "label": "LLM Wiki Rebuild After Round 2",
+      "status": "ok",
+      "soft": true,
+      "commandLine": "node scripts/build-llm-wiki.js --date 2026-04-14 --run-date 2026-04-14 --effective-market-date 2026-04-14 --run-id 2026-04-14-015849",
+      "startedAt": "2026-04-14T02:58:29.946Z",
+      "endedAt": "2026-04-14T02:58:30.067Z",
+      "durationMs": 121,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/Documents/Playground/EcoReport/knowledge/wiki",
+      "debugHint": null
+    },
+    {
+      "id": "round3_reindex",
+      "label": "Stage 1.8 Final Refinement Map",
+      "status": "ok",
+      "soft": true,
+      "commandLine": "node scripts/build-stage1-7-followup-research-map.js --date 2026-04-14 --run-date 2026-04-14 --effective-market-date 2026-04-14 --run-id 2026-04-14-015849 --round 3",
+      "startedAt": "2026-04-14T02:58:30.068Z",
+      "endedAt": "2026-04-14T02:58:31.920Z",
+      "durationMs": 1852,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-14/stage1-final-refinement-map.json\n/Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-14/14-stage1-8-final-refinement-map.md",
+      "debugHint": null
+    },
+    {
+      "id": "round3_prompt",
+      "label": "Stage 1.8 Gemini Final Refinement Prompt",
+      "status": "ok",
+      "soft": true,
+      "commandLine": "node scripts/build-stage1-7-gemini-follow-up-prompt.js --date 2026-04-14 --run-date 2026-04-14 --effective-market-date 2026-04-14 --run-id 2026-04-14-015849 --round 3",
+      "startedAt": "2026-04-14T02:58:31.920Z",
+      "endedAt": "2026-04-14T02:58:31.986Z",
+      "durationMs": 66,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-14/15-stage1-8-gemini-final-refinement-prompt.md",
+      "debugHint": null
+    },
+    {
+      "id": "deep_research_round3_web",
+      "label": "Gemini Deep Research Round 3 Web",
+      "status": "ok",
+      "soft": true,
+      "commandLine": "node scripts/run-gemini-deep-research-web.js --date 2026-04-14 --prompt /Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-14/15-stage1-8-gemini-final-refinement-prompt.md --output /Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-14/16-stage1-8-gemini-final-refinement-response.md --poll-sec 30 --timeout-sec 1800",
+      "startedAt": "2026-04-14T02:58:31.986Z",
+      "endedAt": "2026-04-14T03:27:00.221Z",
+      "durationMs": 1708235,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "{\"title\":\"EcoReport 3차 세부화 최종 점검 - Google Gemini\",\"messageCount\":3,\"promptSubmitted\":true,\"researchStarted\":true,\"promptInjected\":true,\"pageRefreshCount\":0,\"hasDeepResearchSelected\":true,\"hasResearchStartButton\":false,\"hasStopButton\":true,\"hasPlanGenerating\":false,\"hasReportGenerating\":true,\"hasTransientError\":false,\"composerContainsPrompt\":false,\"bodyBlockCount\":80,\"mainTextBlockCount\":3}\n{\"title\":\"EcoReport 3차 세부화 최종 점검 - Google Gemini\",\"messageCount\":3,\"promptSubmitted\":true,\"researchStarted\":true,\"promptInjected\":true,\"pageRefreshCount\":0,\"hasDeepResearchSelected\":true,\"hasResearchStartButton\":false,\"hasStopButton\":true,\"hasPlanGenerating\":false,\"hasReportGenerating\":true,\"hasTransientError\":false,\"composerContainsPrompt\":false,\"bodyBlockCount\":80,\"mainTextBlockCount\":3}\n{\"title\":\"EcoReport 3차 세부화 최종 점검 - Google Gemini\",\"messageCount\":3,\"promptSubmitted\":true,\"researchStarted\":true,\"promptInjected\":true,\"pageRefreshCount\":0,\"hasDeepResearchSelected\":true,\"hasResearchStartButton\":false,\"hasStopButton\":true,\"hasPlanGenerating\":false,\"hasReportGenerating\":true,\"hasTransientError\":false,\"composerContainsPrompt\":false,\"bodyBlockCount\":80,\"mainTextBlockCount\":3}\n{\"title\":\"EcoReport 3차 세부화 최종 점검 - Google Gemini\",\"messageCount\":3,\"promptSubmitted\":true,\"researchStarted\":true,\"promptInjected\":true,\"pageRefreshCount\":0,\"hasDeepResearchSelected\":true,\"hasResearchStartButton\":false,\"hasStopButton\":true,\"hasPlanGenerating\":false,\"hasReportGenerating\":true,\"hasTransientError\":false,\"composerContainsPrompt\":false,\"bodyBlockCount\":80,\"mainTextBlockCount\":3}\n{\"title\":\"EcoReport 3차 세부화 최종 점검 - Google Gemini\",\"messageCount\":3,\"promptSubmitted\":true,\"researchStarted\":true,\"promptInjected\":true,\"pageRefreshCount\":0,\"hasDeepResearchSelected\":true,\"hasResearchStartButton\":false,\"hasStopButton\":true,\"hasPlanGenerating\":false,\"hasReportGenerating\":true,\"hasTransientError\":false,\"composerContainsPrompt\":false,\"bodyBlockCount\":80,\"mainTextBlockCount\":3}\nclosed: closed-tab\nsaved: /Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-14/16-stage1-8-gemini-final-refinement-response.md\ncopied_chars: 2200",
+      "debugHint": null
+    },
+    {
+      "id": "rich_briefing_round3_final",
+      "label": "Stage 1.6 Rich Briefing Final After Round 3",
+      "status": "ok",
+      "soft": true,
+      "commandLine": "npm run stage1.6:briefing -- --date 2026-04-14 --run-date 2026-04-14 --effective-market-date 2026-04-14 --run-id 2026-04-14-015849",
+      "startedAt": "2026-04-14T03:27:00.221Z",
+      "endedAt": "2026-04-14T03:27:01.136Z",
+      "durationMs": 915,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "> ecoreport@1.0.0 stage1.6:briefing\n> node scripts/build-stage1-6-rich-briefing.js --date 2026-04-14 --run-date 2026-04-14 --effective-market-date 2026-04-14 --run-id 2026-04-14-015849\nstage1.6 Gemini fallback 활성화: You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit.\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 20, model: gemini-2.5-flash\nPlease retry in 59.146752264s.\n/Users/seo/Documents/Playground/EcoReport/knowledge/daily/2026-04-14-gemini-briefing-rich.md | briefing source=archive_promoted",
+      "debugHint": null
+    },
+    {
+      "id": "strategy_refresh_round3_final",
+      "label": "Strategy Refresh After Round 3",
+      "status": "ok",
+      "soft": true,
+      "commandLine": "bash scripts/run-strategy-pipeline.sh --date 2026-04-14 --run-date 2026-04-14 --effective-market-date 2026-04-14 --run-id 2026-04-14-015849 --gemini-stage2",
+      "startedAt": "2026-04-14T03:27:01.137Z",
+      "endedAt": "2026-04-14T03:27:11.244Z",
+      "durationMs": 10107,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-14/stage4-execution-plan.json\n== Feedback: snapshot ==\n/Users/seo/Documents/Playground/EcoReport/data/feedback/snapshots/2026-04-14.json\n== Feedback: analysis ==\n/Users/seo/Documents/Playground/EcoReport/data/feedback/analysis/2026-04-14-feedback.json\n== Feedback: report ==\n/Users/seo/Documents/Playground/EcoReport/reports/feedback-summary.md\nDone.",
+      "debugHint": null
+    },
+    {
+      "id": "wiki_rebuild_final",
+      "label": "LLM Wiki Rebuild Final",
+      "status": "ok",
+      "soft": true,
+      "commandLine": "node scripts/build-llm-wiki.js --date 2026-04-14 --run-date 2026-04-14 --effective-market-date 2026-04-14 --run-id 2026-04-14-015849",
+      "startedAt": "2026-04-14T03:27:11.244Z",
+      "endedAt": "2026-04-14T03:27:11.357Z",
+      "durationMs": 113,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/Documents/Playground/EcoReport/knowledge/wiki",
+      "debugHint": null
+    },
+    {
+      "id": "wiki_publish",
+      "label": "LLM Wiki Publish",
+      "status": "ok",
+      "soft": true,
+      "commandLine": "node scripts/publish-llm-wiki-to-vault.js",
+      "startedAt": "2026-04-14T03:27:11.357Z",
+      "endedAt": "2026-04-14T03:27:11.531Z",
+      "durationMs": 174,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/my-wiki/wiki/ecoreport",
+      "debugHint": null
+    },
+    {
+      "id": "verify_outputs",
+      "label": "Verify Outputs",
+      "status": "ok",
+      "soft": true,
+      "commandLine": "node scripts/verify-daily-system.js --date 2026-04-14 --run-date 2026-04-14 --effective-market-date 2026-04-14 --run-id 2026-04-14-015849",
+      "startedAt": "2026-04-14T03:27:11.531Z",
+      "endedAt": "2026-04-14T03:27:11.609Z",
+      "durationMs": 78,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-14/system-health.json",
+      "debugHint": null
+    }
+  ],
+  "artifacts": {
+    "logFile": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/logs/2026-04-14-015849-automation-cycle.log",
+      "exists": true
+    },
+    "automationReadiness": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-14/automation-readiness.json",
+      "exists": true
+    },
+    "stockeasySnapshot": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/data/external/stockeasy/2026-04-14/snapshot.json",
+      "exists": true
+    },
+    "chunkIndexStats": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-14/chunk-index/stats.json",
+      "exists": true
+    },
+    "stage1": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-14/stage1-report-extracts-v2.json",
+      "exists": true
+    },
+    "stage1Shadow": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-14/stage1-shadow/stage1-shadow-extracts.json",
+      "exists": true
+    },
+    "stage2Shadow": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-14/stage2-shadow-topic-buckets.json",
+      "exists": true
+    },
+    "stage3Shadow": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-14/stage3-shadow-final-insights.json",
+      "exists": true
+    },
+    "followUpMap": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-14/stage1-followup-research-map.json",
+      "exists": true
+    },
+    "followUpMapMarkdown": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-14/11-stage1-7-followup-research-map.md",
+      "exists": true
+    },
+    "deepResearchPrompt": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-14/07-stage1-5-gemini-deep-research-prompt.md",
+      "exists": true
+    },
+    "deepResearchResponse": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-14/09-stage1-5-gemini-deep-research-response.md",
+      "exists": true
+    },
+    "deepResearchFollowUpPrompt": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-14/12-stage1-7-gemini-follow-up-prompt.md",
+      "exists": true
+    },
+    "deepResearchFollowUpResponse": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-14/13-stage1-7-gemini-follow-up-response.md",
+      "exists": true
+    },
+    "round3Map": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-14/stage1-final-refinement-map.json",
+      "exists": true
+    },
+    "round3MapMarkdown": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-14/14-stage1-8-final-refinement-map.md",
+      "exists": true
+    },
+    "round3Prompt": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-14/15-stage1-8-gemini-final-refinement-prompt.md",
+      "exists": true
+    },
+    "round3Response": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-14/16-stage1-8-gemini-final-refinement-response.md",
+      "exists": true
+    },
+    "finalResearchBriefing": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/knowledge/daily/2026-04-14-gemini-briefing-rich.md",
+      "exists": true
+    },
+    "finalResearchBriefingArchive": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/knowledge/daily/manual-kit/2026-04-14/10-stage1-6-final-research-briefing.md",
+      "exists": true
+    },
+    "stage2": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-14/stage2-strategy-options.json",
+      "exists": true
+    },
+    "stage4": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-14/stage4-execution-plan.json",
+      "exists": true
+    },
+    "dailyBriefing": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/reports/daily/2026-04-14-briefing.md",
+      "exists": true
+    },
+    "wikiDaily": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/knowledge/wiki/daily/2026-04-14.md",
+      "exists": true
+    },
+    "wikiOperatingRules": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/knowledge/wiki/memory/operating-rules.md",
+      "exists": true
+    },
+    "wikiResearchBacklog": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/knowledge/wiki/memory/research-backlog.md",
+      "exists": true
+    },
+    "wikiDecisionJournal": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/knowledge/wiki/memory/decision-journal.md",
+      "exists": true
+    },
+    "systemHealth": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-14/system-health.json",
+      "exists": true
+    },
+    "automationJson": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-14/automation-cycle.json",
+      "exists": true
+    },
+    "automationMarkdown": {
+      "path": "/Users/seo/Documents/Playground/EcoReport/knowledge/daily/2026-04-14-automation-cycle.md",
+      "exists": true
+    }
+  }
+}

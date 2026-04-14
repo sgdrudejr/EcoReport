@@ -1,0 +1,238 @@
+{
+  "date": "2026-04-14",
+  "macro_view": {
+    "regime": "BEAR",
+    "confidence": "MEDIUM",
+    "summary": "중동 지정학적 리스크와 금리 인상 우려로 매크로 환경은 부정적이나, AI 및 반도체 랠리가 경제를 지탱하며 일부 긍정적 요인도 존재합니다."
+  },
+  "strategy_changes": [
+    {
+      "theme": "AI 인프라",
+      "direction": "reinforce",
+      "why_now": "AI 투자와 반도체 랠리가 글로벌 경제를 지탱하는 핵심 동력으로 작용하고 있습니다.",
+      "source_reports": [
+        "report_002",
+        "report_004",
+        "report_005",
+        "report_006",
+        "report_011"
+      ]
+    },
+    {
+      "theme": "금/원자재",
+      "direction": "watch",
+      "why_now": "중동 지정학적 리스크로 인한 유가 상승 우려가 있으나, 협상 타결 기대감도 공존하여 변동성이 예상됩니다.",
+      "source_reports": [
+        "report_001",
+        "report_002",
+        "report_003",
+        "report_005",
+        "report_007",
+        "report_008",
+        "report_009",
+        "report_010",
+        "report_011",
+        "report_013"
+      ]
+    },
+    {
+      "theme": "방산",
+      "direction": "reinforce",
+      "why_now": "글로벌 GDP 대비 방위비 비중 증가와 수출국 다변화, 현지화 전략이 방위산업체들의 멀티플 리레이팅을 견인할 것으로 전망됩니다.",
+      "source_reports": [
+        "report_001",
+        "report_009"
+      ]
+    },
+    {
+      "theme": "원자력",
+      "direction": "reinforce",
+      "why_now": "미국 차세대 원자로 규제 완화 및 중동 재건, 친환경 에너지 전환 트렌드와 맞물려 중장기적 수혜가 기대됩니다.",
+      "source_reports": [
+        "report_003",
+        "report_008"
+      ]
+    }
+  ],
+  "account_actions": [
+    {
+      "account_key": "ISA",
+      "bias": "selective_add",
+      "rationale": "TIGER 미국S&P500의 기술적 지표가 긍정적이며, AI 인프라 테마 강화 기조에 따라 비중을 늘립니다. TIGER 미국배당다우존스스타데일리커버드콜은 현재 보유 유지합니다.",
+      "buy_candidates": [
+        "360750"
+      ],
+      "trim_candidates": [
+        "458760"
+      ],
+      "hold_candidates": [],
+      "reserve_cash_note": "전체 계좌의 현금 비중을 20% 수준으로 유지하며 시장 변동성에 대비합니다."
+    },
+    {
+      "account_key": "PENSION",
+      "bias": "selective_add",
+      "rationale": "TIGER 미국S&P500과 TIGER 미국나스닥100의 기술적 지표가 긍정적이며, AI 인프라 테마 강화 기조에 따라 비중을 늘립니다. KODEX KOFR금리액티브는 금리 인상 우려 및 매크로 부정 시각에 따라 비중을 축소합니다.",
+      "buy_candidates": [
+        "360750",
+        "133690"
+      ],
+      "trim_candidates": [
+        "423160"
+      ],
+      "hold_candidates": [],
+      "reserve_cash_note": "전체 계좌의 현금 비중을 20% 수준으로 유지하며 시장 변동성에 대비합니다."
+    },
+    {
+      "account_key": "TOSS",
+      "bias": "selective_add",
+      "rationale": "HANARO 원자력iSelect의 기술적 지표가 강하며, 원전 테마의 중장기적 수혜 기대감에 따라 비중을 늘립니다. KODEX 선진국ESG액티브와 PLUS V K생산은 현재 보유 유지합니다.",
+      "buy_candidates": [
+        "434730"
+      ],
+      "trim_candidates": [],
+      "hold_candidates": [
+        "251350",
+        "449450"
+      ],
+      "reserve_cash_note": "전체 계좌의 현금 비중을 20% 수준으로 유지하며 시장 변동성에 대비합니다."
+    },
+    {
+      "account_key": "KIS_MAIN",
+      "bias": "selective_add",
+      "rationale": "한국항공우주와 PLUS K방산의 기술적 지표가 강하며, 방산 테마의 긍정적 전망에 따라 비중을 늘립니다. KODEX 구리선물은 원자재 가격 변동성 및 매크로 부정 시각에 따라 비중을 축소합니다. HANARO 원자력iSelect은 보유 유지합니다.",
+      "buy_candidates": [
+        "047810",
+        "449450"
+      ],
+      "trim_candidates": [
+        "138910"
+      ],
+      "hold_candidates": [
+        "434730"
+      ],
+      "reserve_cash_note": "전체 계좌의 현금 비중을 20% 수준으로 유지하며 시장 변동성에 대비합니다."
+    }
+  ],
+  "candidate_scores": [
+    {
+      "code": "360750",
+      "name": "TIGER 미국S&P500",
+      "stance": "buy",
+      "target_accounts": [
+        "ISA",
+        "PENSION"
+      ],
+      "horizon": "3m",
+      "confidence": "HIGH",
+      "thesis": "주가 20일선 위 유지, 중기 추세 약세이나 MACD 모멘텀 우호적. AI 인프라 및 반도체 랠리 수혜 기대.",
+      "risks": [
+        "중동 지정학적 리스크로 인한 유가 상승 및 금리 인상 우려"
+      ]
+    },
+    {
+      "code": "133690",
+      "name": "TIGER 미국나스닥100",
+      "stance": "buy",
+      "target_accounts": [
+        "PENSION"
+      ],
+      "horizon": "3m",
+      "confidence": "HIGH",
+      "thesis": "주가 20일선 위 유지, 중기 추세 약세이나 MACD 모멘텀 우호적. AI 인프라 및 반도체 랠리 수혜 기대.",
+      "risks": [
+        "중동 지정학적 리스크로 인한 유가 상승 및 금리 인상 우려"
+      ]
+    },
+    {
+      "code": "434730",
+      "name": "HANARO 원자력iSelect",
+      "stance": "buy",
+      "target_accounts": [
+        "TOSS",
+        "KIS_MAIN"
+      ],
+      "horizon": "6m",
+      "confidence": "HIGH",
+      "thesis": "주가 20일선 위 유지, 중기 추세 우상향, MACD 모멘텀 우호적. 미국 차세대 원자로 규제 완화 및 중장기적 원전 수혜 기대.",
+      "risks": [
+        "건설 공사비 상승 및 부동산 개발 사업성 악화 가능성"
+      ]
+    },
+    {
+      "code": "449450",
+      "name": "PLUS K방산",
+      "stance": "buy",
+      "target_accounts": [
+        "TOSS",
+        "KIS_MAIN"
+      ],
+      "horizon": "6m",
+      "confidence": "HIGH",
+      "thesis": "주가 20일선 위 유지, 중기 추세 우상향, MACD 모멘텀 우호적. 수출국 다변화 및 현지화 전략에 따른 방산 멀티플 리레이팅 기대.",
+      "risks": [
+        "핵심 부품 국산화율 저조 및 경쟁 심화 가능성"
+      ]
+    },
+    {
+      "code": "047810",
+      "name": "한국항공우주",
+      "stance": "buy",
+      "target_accounts": [
+        "KIS_MAIN"
+      ],
+      "horizon": "6m",
+      "confidence": "HIGH",
+      "thesis": "주가 20일선 위 유지, 중기 추세 우상향, MACD 모멘텀 우호적. 방산 수출 확대 및 K-방산 밸류체인 성장 기대.",
+      "risks": [
+        "핵심 부품 국산화율 저조 및 경쟁 심화 가능성"
+      ]
+    },
+    {
+      "code": "064350",
+      "name": "현대로템",
+      "stance": "buy",
+      "target_accounts": [
+        "KIS_MAIN"
+      ],
+      "horizon": "6m",
+      "confidence": "HIGH",
+      "thesis": "주가 20일선 위 유지, 중기 추세 약세이나 MACD 모멘텀 우호적. 폴란드 방산 수주 및 철도 사업 성장 기대.",
+      "risks": [
+        "지정학적 리스크로 인한 원자재 가격 상승 및 공사비 부담 증가"
+      ]
+    },
+    {
+      "code": "138910",
+      "name": "KODEX 구리선물(H)",
+      "stance": "trim",
+      "target_accounts": [
+        "KIS_MAIN"
+      ],
+      "horizon": "3m",
+      "confidence": "MEDIUM",
+      "thesis": "중동 지정학적 리스크로 인한 유가 상승 우려 및 매크로 부정 시각에 따라 비중 축소.",
+      "risks": [
+        "미국-이란 협상 타결 시 유가 하락 가능성"
+      ]
+    },
+    {
+      "code": "423160",
+      "name": "KODEX KOFR금리액티브(합성)",
+      "stance": "trim",
+      "target_accounts": [
+        "PENSION"
+      ],
+      "horizon": "3m",
+      "confidence": "LOW",
+      "thesis": "금리 인상 우려 및 매크로 부정 시각에 따라 비중 축소.",
+      "risks": [
+        "금리 인하 시그널 발생 시 투자 매력도 감소"
+      ]
+    }
+  ],
+  "portfolio_risks": [
+    "중동 지정학적 리스크로 인한 유가 급등 및 글로벌 공급망 불안정성 증대",
+    "미국 연준의 금리 인상 가능성 및 이에 따른 긴축 장기화 우려",
+    "AI 및 반도체 섹터 쏠림 현상 심화 및 밸류에이션 부담"
+  ]
+}

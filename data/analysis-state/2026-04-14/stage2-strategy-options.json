@@ -1,0 +1,371 @@
+{
+  "date": "2026-04-14",
+  "runDate": "2026-04-14",
+  "effectiveMarketDate": "2026-04-14",
+  "runId": "2026-04-14-015849",
+  "generatedAt": "2026-04-14T03:27:05.194Z",
+  "source": "mock",
+  "mockMode": "fallback",
+  "purpose": "gemini_unavailable_fallback",
+  "safeForProduction": false,
+  "macro_view": {
+    "regime": "BULL",
+    "confidence": "MEDIUM",
+    "summary": "추세 우상향 장세"
+  },
+  "strategy_changes": [
+    {
+      "theme": "HBM/메모리",
+      "direction": "reinforce",
+      "why_now": "13개 리포트에서 HBM/메모리 관련 논리가 확인됨",
+      "source_reports": [
+        "report_001",
+        "report_015",
+        "report_018",
+        "report_019",
+        "report_068"
+      ]
+    },
+    {
+      "theme": "AI 인프라",
+      "direction": "reinforce",
+      "why_now": "72개 리포트에서 AI 인프라 관련 논리가 확인됨",
+      "source_reports": [
+        "report_001",
+        "report_002",
+        "report_003",
+        "report_004",
+        "report_005"
+      ]
+    },
+    {
+      "theme": "전력 인프라",
+      "direction": "reinforce",
+      "why_now": "30개 리포트에서 전력 인프라 관련 논리가 확인됨",
+      "source_reports": [
+        "report_001",
+        "report_003",
+        "report_005",
+        "report_009",
+        "report_011"
+      ]
+    },
+    {
+      "theme": "방산",
+      "direction": "reinforce",
+      "why_now": "28개 리포트에서 방산 관련 논리가 확인됨",
+      "source_reports": [
+        "report_001",
+        "report_009",
+        "report_011",
+        "report_015",
+        "report_017"
+      ]
+    },
+    {
+      "theme": "금/원자재",
+      "direction": "reinforce",
+      "why_now": "90개 리포트에서 금/원자재 관련 논리가 확인됨",
+      "source_reports": [
+        "report_001",
+        "report_002",
+        "report_003",
+        "report_004",
+        "report_005"
+      ]
+    },
+    {
+      "theme": "금리/매크로",
+      "direction": "reinforce",
+      "why_now": "40개 리포트에서 금리/매크로 관련 논리가 확인됨",
+      "source_reports": [
+        "report_001",
+        "report_002",
+        "report_005",
+        "report_006",
+        "report_008"
+      ]
+    },
+    {
+      "theme": "원자력",
+      "direction": "reinforce",
+      "why_now": "7개 리포트에서 원자력 관련 논리가 확인됨",
+      "source_reports": [
+        "report_003",
+        "report_008",
+        "report_058",
+        "report_067",
+        "report_079"
+      ]
+    }
+  ],
+  "account_actions": [
+    {
+      "account_key": "ISA",
+      "bias": "selective_add",
+      "rationale": "기술점수 상위 보유/후보가 존재해 선별 보강이 가능한 상태",
+      "buy_candidates": [
+        "360750",
+        "132030"
+      ],
+      "trim_candidates": [],
+      "hold_candidates": [
+        "458760"
+      ],
+      "reserve_cash_note": "다음 tranche 전까지 예수금 일부를 유지하며 분할 접근"
+    },
+    {
+      "account_key": "PENSION",
+      "bias": "hold",
+      "rationale": "배분 유지와 선택적 관찰이 적절한 상태",
+      "buy_candidates": [
+        "360750"
+      ],
+      "trim_candidates": [],
+      "hold_candidates": [
+        "423160",
+        "133690"
+      ],
+      "reserve_cash_note": "다음 tranche 전까지 예수금 일부를 유지하며 분할 접근"
+    },
+    {
+      "account_key": "TOSS",
+      "bias": "selective_add",
+      "rationale": "기술점수 상위 보유/후보가 존재해 선별 보강이 가능한 상태",
+      "buy_candidates": [
+        "434730",
+        "449450",
+        "487240"
+      ],
+      "trim_candidates": [],
+      "hold_candidates": [
+        "251350"
+      ],
+      "reserve_cash_note": "다음 tranche 전까지 예수금 일부를 유지하며 분할 접근"
+    },
+    {
+      "account_key": "KIS_MAIN",
+      "bias": "selective_add",
+      "rationale": "기술점수 상위 보유/후보가 존재해 선별 보강이 가능한 상태",
+      "buy_candidates": [
+        "047810",
+        "064350",
+        "434730",
+        "449450"
+      ],
+      "trim_candidates": [],
+      "hold_candidates": [
+        "138910"
+      ],
+      "reserve_cash_note": "다음 tranche 전까지 예수금 일부를 유지하며 분할 접근"
+    }
+  ],
+  "candidate_scores": [
+    {
+      "code": "360750",
+      "name": "TIGER 미국S&P500",
+      "stance": "buy",
+      "target_accounts": [
+        "ISA"
+      ],
+      "horizon": "3m",
+      "confidence": "HIGH",
+      "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 약세, MACD 모멘텀이 우호적",
+      "risks": [
+        "볼린저밴드 상단 이탈"
+      ]
+    },
+    {
+      "code": "458760",
+      "name": "TIGER 미국배당다우존스스타데일리커...",
+      "stance": "watch",
+      "target_accounts": [
+        "ISA"
+      ],
+      "horizon": "1m",
+      "confidence": "LOW",
+      "thesis": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화",
+      "risks": []
+    },
+    {
+      "code": "423160",
+      "name": "KODEX KOFR금리액티브(합성)",
+      "stance": "hold",
+      "target_accounts": [
+        "PENSION"
+      ],
+      "horizon": "1m",
+      "confidence": "MEDIUM",
+      "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 약세, MACD 모멘텀이 우호적",
+      "risks": []
+    },
+    {
+      "code": "133690",
+      "name": "TIGER 미국나스닥100",
+      "stance": "hold",
+      "target_accounts": [
+        "PENSION"
+      ],
+      "horizon": "1m",
+      "confidence": "MEDIUM",
+      "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 약세, MACD 모멘텀이 우호적",
+      "risks": [
+        "볼린저밴드 상단 이탈"
+      ]
+    },
+    {
+      "code": "434730",
+      "name": "HANARO 원자력iSelect",
+      "stance": "buy",
+      "target_accounts": [
+        "TOSS"
+      ],
+      "horizon": "3m",
+      "confidence": "HIGH",
+      "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+      "risks": []
+    },
+    {
+      "code": "251350",
+      "name": "KODEX 선진국ESG액티브",
+      "stance": "hold",
+      "target_accounts": [
+        "TOSS"
+      ],
+      "horizon": "1m",
+      "confidence": "LOW",
+      "thesis": "기술점수와 현재 배분 상태를 기준으로 분류",
+      "risks": []
+    },
+    {
+      "code": "449450",
+      "name": "PLUS V K생산",
+      "stance": "buy",
+      "target_accounts": [
+        "TOSS"
+      ],
+      "horizon": "3m",
+      "confidence": "HIGH",
+      "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+      "risks": []
+    },
+    {
+      "code": "047810",
+      "name": "한국항공우주",
+      "stance": "buy",
+      "target_accounts": [
+        "KIS_MAIN"
+      ],
+      "horizon": "3m",
+      "confidence": "HIGH",
+      "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+      "risks": []
+    },
+    {
+      "code": "064350",
+      "name": "현대로템",
+      "stance": "buy",
+      "target_accounts": [
+        "KIS_MAIN"
+      ],
+      "horizon": "3m",
+      "confidence": "HIGH",
+      "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 약세, MACD 모멘텀이 우호적",
+      "risks": []
+    },
+    {
+      "code": "138910",
+      "name": "KODEX 구리선물(H)",
+      "stance": "hold",
+      "target_accounts": [
+        "KIS_MAIN"
+      ],
+      "horizon": "1m",
+      "confidence": "LOW",
+      "thesis": "기술점수와 현재 배분 상태를 기준으로 분류",
+      "risks": []
+    },
+    {
+      "code": "132030",
+      "name": "KODEX 골드선물(H)",
+      "stance": "buy",
+      "target_accounts": [
+        "ISA"
+      ],
+      "horizon": "3m",
+      "confidence": "HIGH",
+      "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 약세, MACD 모멘텀이 우호적",
+      "risks": []
+    },
+    {
+      "code": "487240",
+      "name": "KODEX AI전력핵심설비",
+      "stance": "buy",
+      "target_accounts": [
+        "토스"
+      ],
+      "horizon": "3m",
+      "confidence": "HIGH",
+      "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+      "risks": []
+    },
+    {
+      "code": "005930",
+      "name": "삼성전자",
+      "stance": "buy",
+      "target_accounts": [],
+      "horizon": "3m",
+      "confidence": "HIGH",
+      "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+      "risks": []
+    },
+    {
+      "code": "000660",
+      "name": "SK하이닉스",
+      "stance": "buy",
+      "target_accounts": [],
+      "horizon": "3m",
+      "confidence": "HIGH",
+      "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+      "risks": []
+    },
+    {
+      "code": "267260",
+      "name": "HD현대일렉트릭",
+      "stance": "buy",
+      "target_accounts": [],
+      "horizon": "3m",
+      "confidence": "HIGH",
+      "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 약세, MACD 모멘텀이 우호적",
+      "risks": []
+    },
+    {
+      "code": "010120",
+      "name": "LS일렉트릭",
+      "stance": "hold",
+      "target_accounts": [],
+      "horizon": "1m",
+      "confidence": "LOW",
+      "thesis": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화",
+      "risks": [
+        "RSI 과매도 구간 진입",
+        "볼린저밴드 하단 이탈",
+        "거래량 급증(20일 평균 대비 2배 이상)"
+      ]
+    },
+    {
+      "code": "298040",
+      "name": "효성중공업",
+      "stance": "buy",
+      "target_accounts": [],
+      "horizon": "3m",
+      "confidence": "HIGH",
+      "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+      "risks": []
+    }
+  ],
+  "portfolio_risks": [
+    "리포트 기반 영향도는 휴리스틱 추출이므로 과신 금지",
+    "기술점수는 일간 스냅샷 기반이라 추세 반전 초입은 놓칠 수 있음"
+  ]
+}
