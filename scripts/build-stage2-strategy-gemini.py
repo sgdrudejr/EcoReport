@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Stage 2 전략 탐색을 Gemini 무료 Flash 모델로 실행해 JSON 결과를 저장한다.
+Stage 2 전략 탐색을 Qwen API로 실행해 JSON 결과를 저장한다.
 
 예시:
-  python3 scripts/build-stage2-strategy-gemini.py --date 2026-04-03
+  python3 scripts/build-stage2-strategy-qwen.py --date 2026-04-03
 """
 
 from __future__ import annotations
@@ -23,15 +23,15 @@ from lib.env_loader import load_simple_dotenv
 
 ROOT = Path(os.getenv("ECOREPORT_ROOT") or Path(__file__).resolve().parent.parent)
 DEFAULT_PRIORITY_MODELS = [
-    "gemini-2.5-flash",
-    "gemini-2.0-flash",
-    "gemini-1.5-flash",
+    "qwen-max",
+    "qwen-plus",
+    "qwen-turbo",
 ]
 DEFAULT_MAX_RETRIES = 5
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Gemini로 Stage 2 전략 JSON 생성")
+    parser = argparse.ArgumentParser(description="Qwen으로 Stage 2 전략 JSON 생성")
     parser.add_argument("--date", required=True, help="대상 날짜 (YYYY-MM-DD)")
     parser.add_argument("--run-date", default=None, help="실행일 (YYYY-MM-DD)")
     parser.add_argument("--effective-market-date", default=None, help="기준 거래일 (YYYY-MM-DD)")
@@ -46,7 +46,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--model",
         default=None,
-        help="강제 사용할 Gemini 모델명. 기본은 사용 가능한 무료 Flash 중 우선순위 선택",
+        help="강제 사용할 Qwen 모델명. 기본은 사용 가능한 모델 중 우선순위 선택",
     )
     parser.add_argument(
         "--temperature",
@@ -67,34 +67,32 @@ def load_api_key() -> str:
     env_path = ROOT / ".env"
     if env_path.exists():
         load_simple_dotenv(env_path)
-    api_key = (os.getenv("GEMINI_API_KEY") or "").strip()
+    api_key = (os.getenv("DASHSCOPE_API_KEY") or os.getenv("QWEN_API_KEY") or "").strip()
     if not api_key:
-        raise RuntimeError("GEMINI_API_KEY가 설정되어 있지 않습니다.")
+        raise RuntimeError("DASHSCOPE_API_KEY 또는 QWEN_API_KEY가 설정되어 있지 않습니다.")
     return api_key
 
 
 def create_client(api_key: str):
     try:
-        from google import genai
+        from openai import OpenAI
     except ImportError as exc:
-        raise RuntimeError("google-genai 패키지가 없어 Stage 2 Gemini를 실행할 수 없습니다.") from exc
+        raise RuntimeError("openai 패키지가 없어 Stage 2 Qwen을 실행할 수 없습니다.") from exc
 
-    return genai.Client(api_key=api_key)
-
-
-def get_available_models(client: genai.Client) -> list[str]:
-    available = set()
-    for model in client.models.list():
-        name = model.name.replace("models/", "")
-        actions = set(getattr(model, "supported_actions", []) or [])
-        methods = set(getattr(model, "supported_generation_methods", []) or [])
-        if "generateContent" in actions or "generateContent" in methods:
-            available.add(name)
-
-    return sorted(available)
+    # DashScope 호환 OpenAI 클라이언트
+    return OpenAI(
+        api_key=api_key,
+        base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
+    )
 
 
-def choose_models(client: genai.Client, preferred: str | None) -> list[str]:
+def get_available_models(client: OpenAI) -> list[str]:
+    # DashScope는 models.list()가 제한적일 수 있으므로, 기본 모델 리스트 사용
+    # 실제 API 호출로 확인 가능하나, 여기서는 기본 모델 리스트 사용
+    return DEFAULT_PRIORITY_MODELS
+
+
+def choose_models(client: OpenAI, preferred: str | None) -> list[str]:
     if preferred:
         return [preferred]
 
@@ -105,12 +103,8 @@ def choose_models(client: genai.Client, preferred: str | None) -> list[str]:
         if candidate in available:
             candidates.append(candidate)
 
-    for name in sorted(available):
-        if "flash" in name and name not in candidates:
-            candidates.append(name)
-
     if not candidates:
-        raise RuntimeError("사용 가능한 Gemini Flash 모델을 찾지 못했습니다.")
+        raise RuntimeError("사용 가능한 Qwen 모델을 찾지 못했습니다.")
 
     return candidates
 
@@ -131,7 +125,7 @@ def extract_json_block(text: str) -> Any:
             return json.loads(snippet)
         except json.JSONDecodeError:
             continue
-    raise RuntimeError("Gemini 응답에서 유효한 JSON을 찾지 못했습니다.")
+    raise RuntimeError("Qwen 응답에서 유효한 JSON을 찾지 못했습니다.")
 
 
 def read_prompt(path: Path) -> str:
@@ -177,7 +171,7 @@ def parse_retry_delay_seconds(message: str) -> int | None:
 def is_retryable_transient_error(message: str) -> bool:
     lowered = message.lower()
     return (
-        "resourceexhausted" in lowered
+        "rate limit" in lowered
         or "quota exceeded" in lowered
         or "please retry in" in lowered
         or "429" in lowered
@@ -202,7 +196,7 @@ def is_hard_quota_error(message: str) -> bool:
 
 
 def generate_json_response(
-    client: genai.Client,
+    client: OpenAI,
     model_name: str,
     prompt: str,
     temperature: float,
@@ -217,18 +211,24 @@ def generate_json_response(
     last_raw = ""
 
     for suffix in retry_suffixes:
-        response = client.models.generate_content(
-            model=model_name,
-            contents=prompt + suffix,
-            config={
-                "temperature": temperature,
-                "max_output_tokens": 8192,
-                "response_mime_type": "application/json",
-            },
-        )
-        raw_text = (getattr(response, "text", None) or "").strip()
+        try:
+            response = client.chat.completions.create(
+                model=model_name,
+                messages=[
+                    {"role": "system", "content": "You are a financial analyst assistant. Respond only with valid JSON."},
+                    {"role": "user", "content": prompt + suffix}
+                ],
+                temperature=temperature,
+                max_tokens=8192,
+                response_format={"type": "json_object"},
+            )
+            raw_text = (response.choices[0].message.content or "").strip()
+        except Exception as e:
+            last_error = e
+            continue
+
         if not raw_text:
-            last_error = RuntimeError("Gemini 응답이 비어 있습니다.")
+            last_error = RuntimeError("Qwen 응답이 비어 있습니다.")
             continue
 
         last_raw = raw_text
@@ -239,12 +239,12 @@ def generate_json_response(
             last_error = exc
 
     if last_error is None:
-        last_error = RuntimeError("Gemini 응답에서 유효한 JSON을 찾지 못했습니다.")
+        last_error = RuntimeError("Qwen 응답에서 유효한 JSON을 찾지 못했습니다.")
     raise RuntimeError(f"{last_error} | raw_length={len(last_raw)}")
 
 
 def generate_json_response_with_retry(
-    client: genai.Client,
+    client: OpenAI,
     model_names: list[str],
     prompt: str,
     temperature: float,
@@ -274,7 +274,7 @@ def generate_json_response_with_retry(
         if attempt < max_retries:
             wait_for = sleep_seconds or min(180, 45 * attempt)
             print(
-                f"[stage2-gemini] 일시적 외부 오류로 {wait_for}s 대기 후 재시도 "
+                f"[stage2-qwen] 일시적 외부 오류로 {wait_for}s 대기 후 재시도 "
                 f"({attempt}/{max_retries})",
                 flush=True,
             )
@@ -282,7 +282,7 @@ def generate_json_response_with_retry(
             sleep_seconds = 0
 
     if last_error is None:
-        raise RuntimeError("Gemini Stage 2 호출에 실패했습니다.")
+        raise RuntimeError("Qwen Stage 2 호출에 실패했습니다.")
     raise last_error
 
 
@@ -323,7 +323,7 @@ def main() -> None:
         payload.get("generatedAt")
         or datetime.now(timezone.utc).isoformat().replace("+00:00", "Z")
     )
-    payload["source"] = "gemini"
+    payload["source"] = "qwen"
     payload["model"] = model_name
 
     write_json(output_path, payload)
@@ -334,5 +334,5 @@ if __name__ == "__main__":
     try:
         main()
     except Exception as exc:  # noqa: BLE001
-        print(f"stage2 Gemini 생성 실패: {exc}", file=sys.stderr)
+        print(f"stage2 Qwen 생성 실패: {exc}", file=sys.stderr)
         sys.exit(1)
