@@ -25,7 +25,66 @@ EcoReport는 Mac Mini에서 돌아가는 반자동 포트폴리오 인텔리전�
 - Stage 2만 LLM 의존도가 높고, Stage 1/3/4는 재현 가능한 코드로 유지합니다.
 - 지금은 수동 LLM 운영이 기본이며, 구조가 안정되면 그때 API를 붙입니다.
 
-## 아키텍처
+## LLM 브리핑 + 딥리서치 파이프라인 (2026-04 현재)
+
+증권사 리포트 청크 → Qwen 브리핑 → Gemini 딥리서치 → 인사이트 도출의 4단계 자동 파이프라인입니다.
+
+```mermaid
+flowchart TD
+    A["chunks.jsonl<br/>data/reports/{date}/rag/"] --> B["① 브리핑 생성<br/>generate_briefing.py<br/>qwen3.5-flash"]
+    P["merged-portfolio.md<br/>data/portfolio/rag/"] --> C
+
+    B --> BR["{date}-briefing.md"]
+    BR --> C["② Gemini 딥리서치<br/>Chrome → gemini.google.com<br/>Google Search 실시간 검색"]
+    P --> C
+    C --> DR["{date}-deepresearch.md"]
+
+    DR --> E["③ 인사이트 도출<br/>qwen3.5-flash<br/>계좌별 운영방안 + 추천종목"]
+    P --> E
+    E --> INS["{date}-insights.md"]
+```
+
+### 역할 분담
+| 단계 | 담당 | 이유 |
+|------|------|------|
+| 브리핑 (대용량 청크 → 요약) | **qwen3.5-flash** | 저렴, 컨텍스트 길어도 안정적 |
+| 딥리서치 (실시간 검색 포함) | **Gemini 웹 Deep Research** | Google 검색 품질 최고, 무료 |
+| 인사이트 도출 (요약 → 액션) | **qwen3.5-flash** | 저렴, Gemini 결과 재처리 |
+
+### 실행 명령
+
+```bash
+cd /Users/seo/Documents/Playground/EcoReport
+DATE=$(date +%F)
+
+# ① 브리핑 생성 (qwen3.5-flash)
+.venv/bin/python3 scripts/generate_briefing.py \
+  --input data/reports/$DATE/rag/chunks.jsonl \
+  --output knowledge/daily/$DATE-briefing.md \
+  --model qwen3.5-flash \
+  --max-chunks 80 --min-chunks 60 \
+  --run-date $DATE --effective-market-date $DATE
+
+# ② Gemini 웹 딥리서치 (Chrome 자동화 또는 수동)
+#    브리핑 + 포트폴리오를 Gemini Deep Research에 입력
+
+# ③ 인사이트 도출 (qwen3.5-flash, 딥리서치 결과 입력 후)
+```
+
+### Gemini 딥리서치 전용 브리핑 (레거시 / 수동)
+
+`generate_gemini_briefing_deepresearch.py`는 `google-genai` SDK를 직접 사용하는 구버전입니다.
+Gemini API 한도가 있을 때 또는 웹 딥리서치 프롬프트 소재로 활용합니다.
+
+```bash
+.venv/bin/python3 scripts/generate_gemini_briefing_deepresearch.py \
+  --input data/reports/$DATE/rag/chunks.jsonl \
+  --output knowledge/daily/$DATE-gemini-briefing.md
+```
+
+---
+
+## 아키텍처 (전체)
 
 ```mermaid
 flowchart TD
@@ -724,7 +783,15 @@ Python 가상환경에는 `google-genai`가 설치되어 있어야 하며, 현�
 
 ## 최근 상태 요약
 
-2026-04-05 기준으로 아래가 반영된 상태입니다.
+2026-04-16 기준으로 아래가 반영된 상태입니다.
+
+- **LLM 브리핑 파이프라인 전환**: Gemini API 단독 → Qwen3.5-flash(브리핑) + Gemini 웹 딥리서치(검색) 분리
+- **`generate_briefing.py` 신규**: qwen3.5-flash 기반, OpenAI 호환 SDK, dashscope-intl 엔드포인트
+- **`generate_gemini_briefing_deepresearch.py`**: 기존 `generate_gemini_briefing.py`를 딥리서치 전용으로 보존
+- **Qwen 딥리서치 지원**: DuckDuckGo tool_calls 루프 방식으로 실시간 검색 연동
+- **포트폴리오 인사이트 자동화**: 브리핑 + 계좌 → 계좌별 리밸런싱 액션 + 신규 추천종목 도출
+
+2026-04-05 기준으로 아래도 반영된 상태입니다.
 
 - 점수체계 v2: `BaseScore - RiskPenalty`
 - 현금파킹 자산은 일반 위험자산처럼 단순 RSI 점수로 처리하지 않도록 보정
