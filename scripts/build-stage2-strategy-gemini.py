@@ -190,6 +190,17 @@ def is_retryable_transient_error(message: str) -> bool:
     )
 
 
+def is_hard_quota_error(message: str) -> bool:
+    lowered = message.lower()
+    return (
+        "billing details" in lowered
+        or "free_tier" in lowered
+        or "free tier" in lowered
+        or "quota exceeded for metric" in lowered
+        or re.search(r"limit:\s*0", lowered) is not None
+    )
+
+
 def generate_json_response(
     client: genai.Client,
     model_name: str,
@@ -254,6 +265,8 @@ def generate_json_response_with_retry(
                 if delay:
                     sleep_seconds = max(sleep_seconds, delay)
 
+                if is_hard_quota_error(message):
+                    raise
                 if is_retryable_transient_error(message):
                     continue
                 raise
