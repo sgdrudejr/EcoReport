@@ -69,7 +69,16 @@ DATE=$(date +%F)
 #    브리핑 + 포트폴리오를 Gemini Deep Research에 입력
 
 # ③ 인사이트 도출 (qwen3.5-flash, 딥리서치 결과 입력 후)
+.venv/bin/python3 scripts/generate_insights.py \
+  --deepresearch knowledge/daily/$DATE-deepresearch.md \
+  --portfolio data/portfolio/rag/latest/merged-portfolio.md \
+  --briefing knowledge/daily/$DATE-briefing.md \
+  --output knowledge/daily/$DATE-insights.md \
+  --date $DATE --model qwen3.5-flash
 ```
+
+> `--briefing` 옵션을 지정하면 `portfolio_filter.py`가 자동으로 호출되어 브리핑 키워드와 관련 있는 보유종목만 컨텍스트에 포함합니다 (Relevant Chunking).
+> 생성 직후 검증 루프(Self-Correction)가 실행되어 리스크 가이드라인 위반 여부를 체크합니다.
 
 ### Gemini 딥리서치 전용 브리핑 (레거시 / 수동)
 
