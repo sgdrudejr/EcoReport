@@ -18,6 +18,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from openai import OpenAI
+
 from lib.env_loader import load_simple_dotenv
 
 
