@@ -24,6 +24,66 @@ EcoReport는 증권사 리포트, 시장 데이터, 계좌 상태, 실행 계획
 
 ## 빠른 시작
 
+
+## LLM 브리핑 + 딥리서치 파이프라인 (2026-04 현재)
+
+증권사 리포트 청크 → Qwen 브리핑 → Gemini 딥리서치 → 인사이트 도출의 4단계 자동 파이프라인입니다.
+
+```mermaid
+flowchart TD
+    A["chunks.jsonl<br/>data/reports/{date}/rag/"] --> B["① 브리핑 생성<br/>generate_briefing.py<br/>qwen3.5-flash"]
+    P["merged-portfolio.md<br/>data/portfolio/rag/"] --> C
+
+    B --> BR["{date}-briefing.md"]
+    BR --> C["② Gemini 딥리서치<br/>Chrome → gemini.google.com<br/>Google Search 실시간 검색"]
+    P --> C
+    C --> DR["{date}-deepresearch.md"]
+
+    DR --> E["③ 인사이트 도출<br/>qwen3.5-flash<br/>계좌별 운영방안 + 추천종목"]
+    P --> E
+    E --> INS["{date}-insights.md"]
+```
+
+### 역할 분담
+| 단계 | 담당 | 이유 |
+|------|------|------|
+| 브리핑 (대용량 청크 → 요약) | **qwen3.5-flash** | 저렴, 컨텍스트 길어도 안정적 |
+| 딥리서치 (실시간 검색 포함) | **Gemini 웹 Deep Research** | Google 검색 품질 최고, 무료 |
+| 인사이트 도출 (요약 → 액션) | **qwen3.5-flash** | 저렴, Gemini 결과 재처리 |
+
+### 실행 명령
+
+```bash
+cd /Users/seo/Documents/Playground/EcoReport
+DATE=$(date +%F)
+
+# ① 브리핑 생성 (qwen3.5-flash)
+.venv/bin/python3 scripts/generate_briefing.py \
+  --input data/reports/$DATE/rag/chunks.jsonl \
+  --output knowledge/daily/$DATE-briefing.md \
+  --model qwen3.5-flash \
+  --max-chunks 80 --min-chunks 60 \
+  --run-date $DATE --effective-market-date $DATE
+
+# ② Gemini 웹 딥리서치 (Chrome 자동화 또는 수동)
+#    브리핑 + 포트폴리오를 Gemini Deep Research에 입력
+
+# ③ 인사이트 도출 (qwen3.5-flash, 딥리서치 결과 입력 후)
+```
+
+### Gemini 딥리서치 전용 브리핑 (레거시 / 수동)
+
+`generate_gemini_briefing_deepresearch.py`는 `google-genai` SDK를 직접 사용하는 구버전입니다.
+
+```bash
+.venv/bin/python3 scripts/generate_gemini_briefing_deepresearch.py \
+  --input data/reports/$DATE/rag/chunks.jsonl \
+  --output knowledge/daily/$DATE-gemini-briefing.md
+```
+
+
+## 빠른 시작
+
 ### 1. 일일 전체 러너
 
 ```bash
