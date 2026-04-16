@@ -384,6 +384,42 @@ function buildAlerts(factorMetrics, primaryHorizonDays) {
     .filter(Boolean);
 }
 
+function averageHitRate(stats, signals) {
+  let weightedSum = 0;
+  let totalCount = 0;
+
+  for (const signal of signals) {
+    const item = stats?.[signal];
+    const count = Number(item?.count ?? 0);
+    const hitRate = item?.hitRate;
+    if (count > 0 && typeof hitRate === "number" && Number.isFinite(hitRate)) {
+      weightedSum += hitRate * count;
+      totalCount += count;
+    }
+  }
+
+  if (totalCount <= 0) return null;
+  return toNumber(weightedSum / totalCount);
+}
+
+function buildLegacyWeightSuggestions(weightSummary, factorPrimaryMetrics) {
+  return Object.entries(weightSummary?.deltas ?? {}).map(([factor, delta]) => {
+    const metric = factorPrimaryMetrics?.[factor] ?? null;
+    let suggestion = "최근 피드백 기준으로 가중치 유지";
+    if (typeof delta === "number" && delta >= 0.03) {
+      suggestion = "최근 피드백 기준으로 가중치 확대";
+    } else if (typeof delta === "number" && delta <= -0.03) {
+      suggestion = "최근 피드백 기준으로 가중치 축소";
+    }
+
+    return {
+      factor,
+      correlation_5d: toNumber(metric?.correlation),
+      suggestion,
+    };
+  });
+}
+
 async function main() {
   const args = parseDateArgs(process.argv.slice(2));
   const horizons = DEFAULT_HORIZONS;
@@ -516,19 +552,54 @@ async function main() {
     factorPrimaryMetrics,
     autoAdjust,
   );
+  const signalAccuracy = summarizeSignalStats(evaluations, horizons);
+  const factorPredictivePower = factorMetrics;
+  const regimeAccuracy = summarizeRegimeStats(evaluations, horizons);
+  const worstMispredictions = buildMispredictions(evaluations, primaryHorizonDays);
+  const alerts = buildAlerts(factorMetrics, primaryHorizonDays);
+  const scoreReturnCorrelationWithLegacyKeys = {
+    ...scoreReturnCorrelation,
+    actionScore_vs_ret5d: scoreReturnCorrelation.ret_5d?.correlation ?? null,
+    actionScore_vs_ret10d: scoreReturnCorrelation.ret_10d?.correlation ?? null,
+    actionScore_vs_ret20d: scoreReturnCorrelation.ret_20d?.correlation ?? null,
+  };
+  const signalHitRates = {
+    buy_hit_5d: averageHitRate(signalAccuracy.ret_5d, ["BUY", "SELECTIVE_ADD", "AGGRESSIVE_ADD"]),
+    hold_hit_5d: averageHitRate(signalAccuracy.ret_5d, ["HOLD", "WATCH"]),
+    trim_negative_5d: averageHitRate(signalAccuracy.ret_5d, ["TRIM", "REDUCE"]),
+  };
+  const factorCorrelations = Object.fromEntries(
+    Object.entries(factorPredictivePower).map(([factor, metric]) => [
+      factor,
+      {
+        vs_ret5d: metric?.ret_5d?.correlation ?? null,
+        vs_ret10d: metric?.ret_10d?.correlation ?? null,
+        count: metric?.ret_5d?.sampleCount ?? null,
+      },
+    ]),
+  );
+  const legacyWeightSuggestions = buildLegacyWeightSuggestions(
+    weightSuggestions,
+    factorPrimaryMetrics,
+  );
 
   const payload = {
     analysisDate,
     generatedAt: new Date().toISOString(),
+    snapshotDates: maturedSnapshots.map((snapshot) => snapshot.date),
     snapshotCount: maturedSnapshots.length,
     positionCount: evaluations.length,
+    sampleSize: evaluations.length,
     horizons,
-    scoreReturnCorrelation,
-    signalAccuracy: summarizeSignalStats(evaluations, horizons),
-    factorPredictivePower: factorMetrics,
-    regimeAccuracy: summarizeRegimeStats(evaluations, horizons),
-    worstMispredictions: buildMispredictions(evaluations, primaryHorizonDays),
-    alerts: buildAlerts(factorMetrics, primaryHorizonDays),
+    scoreReturnCorrelation: scoreReturnCorrelationWithLegacyKeys,
+    signalAccuracy,
+    signalHitRates,
+    factorPredictivePower,
+    factorCorrelations,
+    regimeAccuracy,
+    worstMispredictions,
+    alerts,
+    weightSuggestions: legacyWeightSuggestions,
     autoAdjustment: {
       enabled: autoAdjust.enabled !== false,
       primaryHorizonDays,

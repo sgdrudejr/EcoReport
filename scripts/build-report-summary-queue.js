@@ -208,7 +208,7 @@ function scoreReport(report, coverage) {
     score += 10;
     relatedAccounts.add("ISA");
     relatedAccounts.add("연금저축");
-    relatedAccounts.add("토스증권");
+    relatedAccounts.add("한투 일반");
     reasons.push("매크로 리포트라 전체 포트폴리오 자산배분 판단에 영향");
   } else if (report.category === "산업분석") {
     score += 8;

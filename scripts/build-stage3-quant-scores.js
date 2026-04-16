@@ -108,7 +108,6 @@ const DEFAULT_TAX_AWARE_MODEL = {
   accountTaxRates: {
     ISA: 0.099,
     PENSION: 0.154,
-    TOSS: 0.154,
     KIS_MAIN: 0.154,
   },
 };
@@ -146,6 +145,20 @@ const REPORT_TYPE_WEIGHTS = {
   marketvoice: 0.62,
   strategy: 0.34,
   macro: 0.22,
+};
+
+const REGIME_TYPE_WEIGHTS = {
+  BULL: { holding: 1.0, category: 0.75, theme: 0.8, account: 0.35, portfolio: 0.2 },
+  SIDEWAYS: { holding: 1.0, category: 0.75, theme: 0.65, account: 0.35, portfolio: 0.2 },
+  BEAR: { holding: 1.0, category: 0.8, theme: 0.75, account: 0.45, portfolio: 0.3 },
+  HIGH_VOL: { holding: 0.95, category: 0.85, theme: 0.8, account: 0.55, portfolio: 0.4 },
+};
+
+const REGIME_REPORT_TYPE_WEIGHTS = {
+  BULL: { stock: 1.0, industry: 0.65, theme: 0.6, marketvoice: 0.55, strategy: 0.45, macro: 0.22 },
+  SIDEWAYS: { stock: 1.0, industry: 0.78, theme: 0.88, marketvoice: 0.62, strategy: 0.34, macro: 0.22 },
+  BEAR: { stock: 0.9, industry: 0.74, theme: 0.78, marketvoice: 0.68, strategy: 0.5, macro: 0.45 },
+  HIGH_VOL: { stock: 0.85, industry: 0.78, theme: 0.82, marketvoice: 0.74, strategy: 0.6, macro: 0.65 },
 };
 
 const IMPACT_HALF_LIFE_BY_HORIZON = {
@@ -558,7 +571,7 @@ function directionSign(direction) {
   return 0;
 }
 
-function impactContribution(impact, referenceDate) {
+function impactContribution(impact, referenceDate, regimeName = "SIDEWAYS") {
   const sign = directionSign(impact.direction);
   const strength = clamp(valueOrFallback(impact.strength, 0.3), 0, 1);
   const confidence = normalizeConfidence(impact.confidence);
@@ -568,14 +581,12 @@ function impactContribution(impact, referenceDate) {
     "3m": 1.15,
     "6m": 1.25,
   }[impact.horizon] ?? 1;
-  const typeWeight = {
-    holding: 1,
-    category: 0.75,
-    theme: 0.65,
-    account: 0.35,
-    portfolio: 0.2,
-  }[impact.targetType] ?? 0.4;
-  const reportTypeWeight = REPORT_TYPE_WEIGHTS[impact.reportType] ?? 0.45;
+  const typeWeight =
+    (REGIME_TYPE_WEIGHTS[regimeName] ?? REGIME_TYPE_WEIGHTS.SIDEWAYS)[impact.targetType] ?? 0.4;
+  const reportTypeWeight =
+    (REGIME_REPORT_TYPE_WEIGHTS[regimeName] ?? REGIME_REPORT_TYPE_WEIGHTS.SIDEWAYS)[impact.reportType] ??
+    REPORT_TYPE_WEIGHTS[impact.reportType] ??
+    0.45;
   const halfLifeDays = impact.decayHalfLifeDays ?? IMPACT_HALF_LIFE_BY_HORIZON[impact.horizon] ?? 30;
   const decay = decayWeight(referenceDate, impact.publishedDate, halfLifeDays);
   return sign * strength * confidence * horizonWeight * typeWeight * reportTypeWeight * decay;
@@ -662,7 +673,15 @@ function normalizeStage1Entries(stage1Extracts, targetCode, accountKey, category
   return entries;
 }
 
-function aggregateHoldingReportImpacts({ impactMap, stage1Extracts, targetCode, accountKey, category, referenceDate }) {
+function aggregateHoldingReportImpacts({
+  impactMap,
+  stage1Extracts,
+  targetCode,
+  accountKey,
+  category,
+  referenceDate,
+  regimeName,
+}) {
   const confirmed = normalizeImpactMapEntries(impactMap, targetCode, accountKey, category).filter(
     (item) => item.targetType !== "account" && item.targetType !== "portfolio",
   );
@@ -681,7 +700,7 @@ function aggregateHoldingReportImpacts({ impactMap, stage1Extracts, targetCode, 
       relationType: relation.relationType,
       relationWeight: relation.relationWeight,
       evidenceScore: relation.evidenceScore,
-      contribution: impactContribution(impact, referenceDate) * relation.relationWeight,
+      contribution: impactContribution(impact, referenceDate, regimeName) * relation.relationWeight,
     };
   });
   const rawImpacts = relationCandidates
@@ -741,7 +760,13 @@ function aggregateHoldingReportImpacts({ impactMap, stage1Extracts, targetCode, 
   };
 }
 
-function aggregateAccountDirectImpacts({ impactMap, stage1Extracts, accountKey, referenceDate }) {
+function aggregateAccountDirectImpacts({
+  impactMap,
+  stage1Extracts,
+  accountKey,
+  referenceDate,
+  regimeName,
+}) {
   const confirmed = normalizeImpactMapEntries(impactMap, null, accountKey, null).filter(
     (item) => item.targetType === "account" || item.targetType === "portfolio",
   );
@@ -751,7 +776,7 @@ function aggregateAccountDirectImpacts({ impactMap, stage1Extracts, accountKey, 
   const rawImpacts = (confirmed.length > 0 ? confirmed : fallback)
     .map((impact) => ({
       ...impact,
-      contribution: impactContribution(impact, referenceDate),
+      contribution: impactContribution(impact, referenceDate, regimeName),
     }))
     .filter((impact) => Math.abs(impact.contribution) >= 0.03)
     .sort((left, right) => Math.abs(right.contribution) - Math.abs(left.contribution));
@@ -831,7 +856,6 @@ function normalizeStrategyAccountKey(account, strategy) {
     account.key,
     account.label,
     account.key === "PENSION" ? "연금저축" : null,
-    account.key === "TOSS" ? "토스증권" : null,
     account.key === "ISA" ? "ISA" : null,
   ].filter(Boolean);
 
@@ -1917,6 +1941,7 @@ async function main() {
       stage1Extracts: stage1.extracts,
       accountKey: account.key,
       referenceDate,
+      regimeName: regime.name,
     });
     accountContext[account.key] = {
       account,
@@ -1939,6 +1964,7 @@ async function main() {
         accountKey: account.key,
         category,
         referenceDate,
+        regimeName: regime.name,
       });
       const computed = computeActionScore(technicalItem, reportImpact, regime.name);
       const rawTechBaseScore = technicalItem?.score ?? null;

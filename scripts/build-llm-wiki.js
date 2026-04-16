@@ -24,7 +24,6 @@ const WIKI_ROOT = path.join(ROOT_DIR, "knowledge", "wiki");
 const ACCOUNT_LABEL_BY_KEY = {
   ISA: "ISA",
   PENSION: "연금저축",
-  TOSS: "토스증권",
   KIS_MAIN: "한투 일반",
 };
 
@@ -143,7 +142,7 @@ function normalizeAccountKey(value) {
   const upper = text.toUpperCase();
   if (upper === "ISA") return "ISA";
   if (upper === "PENSION" || text === "연금저축") return "PENSION";
-  if (upper === "TOSS" || text === "토스증권") return "TOSS";
+  if (upper === "TOSS" || text === "토스증권") return "KIS_MAIN";
   if (upper === "KIS_MAIN" || upper === "KIS" || text === "한투 일반" || text === "한투증권" || text === "한국투자증권") return "KIS_MAIN";
   return text;
 }

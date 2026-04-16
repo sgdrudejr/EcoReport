@@ -8,6 +8,7 @@ import path from "node:path";
 import { ROOT_DIR, parseDateArgs, truncate, writeText, won } from "./lib/pipeline-utils.js";
 import { loadAnalysisContext } from "./lib/analysis-context.js";
 import { formatMarketVoiceForPrompt } from "./lib/marketvoice-utils.js";
+import { formatStockeasyForPrompt } from "./lib/stockeasy-utils.js";
 
 const DEFAULT_OUTPUT_NAME = "07-stage1-5-gemini-deep-research-prompt.md";
 const MAX_STAGE1_EXTRACTS = 12;
@@ -27,15 +28,14 @@ const PROMPT_TEMPLATE = `너는 최고의 글로벌 투자 트레이딩 전문�
 2. **대안 자산 탐색**: 한국 상장 ETF 외에 글로벌 관점에서 포트폴리오 안정성이나 알파 수익을 높일 수 있는 최고의 대안 자산이나 테마가 있는지?
 3. **카탈리스트(Catalyst) 일정**: 향후 3~6개월 내에 내 종목이나 관련 섹터의 주가를 크게 움직일 주요 이벤트(실적 발표, 정책 발표 등)와 예상 시기.
 4. **📊 과거 데이터 기반 백테스트(Backtest) 검증**: 제안된 전략과 네가 찾은 대안 전략을 비교해 줘. 과거 유사한 매크로 환경에서 두 전략을 적용했을 때의 가상 수익률과 최대 낙폭(MDD)을 검색을 통해 정량적으로 추산하고 비교해 줘.
-5. **계좌별/보유 종목 심층 코멘트**: 각 계좌의 성격(ISA, 연금저축, 전술 계좌, 일반 계좌)을 반영해서, 보유 종목마다 지금 계속 보유/추가매수/축소를 고민해야 하는 이유를 구체적으로 설명해 줘.
+5. **계좌별/보유 종목 심층 코멘트**: 각 계좌의 성격(ISA, 연금저축, 한투 일반)을 반영해서, 보유 종목마다 지금 계속 보유/추가매수/축소를 고민해야 하는 이유를 구체적으로 설명해 줘.
 6. **실행 트리거와 보류 조건**: 각 보유 종목 및 신규 후보에 대해 무엇을 확인하면 매수·보유·축소 판단으로 넘어갈지, 반대로 어떤 조건이면 보류하거나 논리를 무효화해야 하는지 분명히 적어 줘.
 
 [응답 작성 규칙]
 - 계좌 특성을 반드시 반영해 줘.
   - ISA: 절세 계좌, 국내 ETF 중심, 방어·인컴·헤지의 균형
   - 연금저축: 장기 복리, 코어 자산 우선, 과도한 회전 지양
-  - 토스증권: 전술 알파, 설명력 강한 테마 위주, 약한 포지션은 빠른 점검
-  - 한투 일반: 실전형 일반 계좌, 현금 기동성과 공격적 테마 대응 병행
+  - 한투 일반: 실전형 일반 계좌, 현금 기동성과 공격적 테마 대응을 함께 맡는 전술 계좌
 - 각 보유 종목 코멘트는 반드시 '핵심 내용'과 '주의할 점'을 각각 2~4문장으로 작성해 줘. 한 줄짜리 요약으로 끝내지 마.
 - 보유 종목 코멘트와 신규 후보/추천 실행 방향에서 한 항목 안에 문장이 2개 이상이면 문장마다 줄바꿈해 줘. 빈 줄로 새 단락을 만들지 말고 같은 항목 안에서만 줄을 나눠.
 - 계좌 전략별 투자 방향성은 반드시 계좌당 3~5문장으로 써 줘. '방어적으로 대응' 같은 일반론으로 끝내지 말고, 왜 그 계좌에서 그 자산군을 늘리거나 줄여야 하는지까지 적어 줘.
@@ -69,10 +69,6 @@ const PROMPT_TEMPLATE = `너는 최고의 글로벌 투자 트레이딩 전문�
 - 계좌 성격 요약
 - 이번 구간 운용 원칙
 - 늘릴 자산 / 줄일 자산 / 보류 자산
-### 토스증권
-- 계좌 성격 요약
-- 이번 구간 운용 원칙
-- 늘릴 자산 / 줄일 자산 / 보류 자산
 ### 한투 일반
 - 계좌 성격 요약
 - 이번 구간 운용 원칙
@@ -86,8 +82,6 @@ const PROMPT_TEMPLATE = `너는 최고의 글로벌 투자 트레이딩 전문�
   - 체크포인트:
   - 권장 대응: 추가매수 / 보유 / 축소 / 관망 중 하나
 ### 연금저축
-- 같은 형식 반복
-### 토스증권
 - 같은 형식 반복
 ### 한투 일반
 - 같은 형식 반복
@@ -117,6 +111,9 @@ const PROMPT_TEMPLATE = `너는 최고의 글로벌 투자 트레이딩 전문�
 
 [실시간 시황/이벤트 레이어]
 {{MARKETVOICE_DATA}}
+
+[외부 강세/전략실 레이어 (StockEasy)]
+{{STOCKEASY_DATA}}
 
 [오늘의 리포트 핵심 요약]
 {{STAGE1_DATA}}
@@ -418,6 +415,7 @@ async function main() {
     portfolio: true,
     technical: true,
     marketVoice: true,
+    watchlist: true,
   });
   const { paths, data } = context;
   const stage1Path = paths.stage1;
@@ -441,6 +439,7 @@ async function main() {
   const portfolio = data.portfolio;
   const technical = fs.existsSync(technicalPath) ? data.technical : null;
   const marketVoice = data.marketVoice;
+  const watchlist = data.watchlist;
 
   if (!stage1) {
     throw new Error(`Stage 1 JSON 파싱에 실패했습니다: ${stage1Path}`);
@@ -456,10 +455,16 @@ async function main() {
     maxTopics: 6,
     maxResearch: 3,
   });
+  const stockeasyMarkdown = await formatStockeasyForPrompt({
+    date: args.date,
+    portfolio,
+    watchlist,
+  });
   const prompt = PROMPT_TEMPLATE
     .replace("{{PORTFOLIO_DATA}}", portfolioMarkdown)
     .replace("{{TECHNICAL_DATA}}", technicalMarkdown)
     .replace("{{MARKETVOICE_DATA}}", marketVoiceMarkdown)
+    .replace("{{STOCKEASY_DATA}}", stockeasyMarkdown)
     .replace("{{STAGE1_DATA}}", stage1Markdown);
 
   await writeText(outputPath, `${prompt}\n`);

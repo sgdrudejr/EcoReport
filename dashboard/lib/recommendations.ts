@@ -205,7 +205,7 @@ const CODE_METADATA: Record<string, CandidateMeta> = {
     lane: "core",
     kind: "ETF",
     themes: ["금리/매크로", "현금파킹"],
-    preferredAccounts: ["ISA", "PENSION", "TOSS"],
+    preferredAccounts: ["ISA", "PENSION", "KIS_MAIN"],
   },
   "2921050": {
     code: "2921050",
@@ -221,7 +221,7 @@ const CODE_METADATA: Record<string, CandidateMeta> = {
     lane: "sector",
     kind: "ETF",
     themes: ["AI 인프라", "전력 인프라"],
-    preferredAccounts: ["TOSS"],
+    preferredAccounts: ["KIS_MAIN"],
   },
   "449450": {
     code: "449450",
@@ -229,7 +229,7 @@ const CODE_METADATA: Record<string, CandidateMeta> = {
     lane: "sector",
     kind: "ETF",
     themes: ["방산"],
-    preferredAccounts: ["TOSS", "ISA"],
+    preferredAccounts: ["KIS_MAIN", "ISA"],
   },
   "434730": {
     code: "434730",
@@ -237,7 +237,7 @@ const CODE_METADATA: Record<string, CandidateMeta> = {
     lane: "sector",
     kind: "ETF",
     themes: ["원자력"],
-    preferredAccounts: ["TOSS"],
+    preferredAccounts: ["KIS_MAIN"],
   },
   "005930": {
     code: "005930",
@@ -466,7 +466,7 @@ function loadWatchlistUniverse() {
 
 function normalizeAccountLabel(account: string) {
   if (account === "PENSION") return "연금저축";
-  if (account === "TOSS") return "토스증권";
+  if (account === "TOSS") return "한투 일반";
   if (account === "KIS_MAIN") return "한투 일반";
   return account;
 }

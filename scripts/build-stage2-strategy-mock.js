@@ -13,7 +13,6 @@ import { loadAnalysisContext } from "./lib/analysis-context.js";
 const ACCOUNT_KEY_MAP = {
   ISA: "ISA",
   PENSION: "PENSION",
-  TOSS: "TOSS",
   KIS_MAIN: "KIS_MAIN",
 };
 
@@ -132,7 +131,7 @@ function normalizeAccountHint(itemAccount, account) {
     itemAccount === account.label ||
     itemAccount === account.key ||
     (itemAccount === "연금저축" && account.key === "PENSION") ||
-    (itemAccount === "토스" && account.key === "TOSS") ||
+    ((itemAccount === "토스" || itemAccount === "토스증권") && account.key === "KIS_MAIN") ||
     ((itemAccount === "한투" || itemAccount === "한투 일반" || itemAccount === "한국투자증권") && account.key === "KIS_MAIN")
   );
 }

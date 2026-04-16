@@ -11,6 +11,8 @@ DEFAULT_BASE_URL = "http://192.168.0.218:8080/v1"
 DEFAULT_MODEL = "Qwen_Qwen3.5-35B-A3B-IQ2_M.gguf"
 GEMINI_BASE_URL = "https://generativelanguage.googleapis.com/v1beta/openai/"
 GEMINI_DEFAULT_MODEL = "gemini-2.5-flash"
+QWEN_BASE_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1"
+QWEN_DEFAULT_MODEL = "qwen-max"
 
 
 def _repo_root() -> Path:
@@ -181,6 +183,22 @@ def load_config(config_path: str | None = None) -> PipelineConfig:
         )
         api_key = (
             os.getenv("GEMINI_API_KEY")
+            or os.getenv("LLM_API_KEY")
+            or file_config.get("api_key", "")
+        )
+    elif provider == "qwen":
+        base_url = (
+            os.getenv("LLM_BASE_URL")
+            or os.getenv("REPORT_ORCHESTRATOR_BASE_URL")
+            or file_config.get("qwen_base_url", QWEN_BASE_URL)
+        )
+        model = (
+            os.getenv("LLM_MODEL")
+            or os.getenv("REPORT_ORCHESTRATOR_MODEL")
+            or file_config.get("qwen_model", QWEN_DEFAULT_MODEL)
+        )
+        api_key = (
+            os.getenv("QWEN_API_KEY")
             or os.getenv("LLM_API_KEY")
             or file_config.get("api_key", "")
         )

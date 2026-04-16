@@ -7,10 +7,23 @@ import dns from "node:dns/promises";
 import { constants as fsConstants } from "node:fs";
 import { spawnSync } from "node:child_process";
 
-import { ROOT_DIR, buildRunMetadata, parseDateArgs, writeJson } from "./lib/pipeline-utils.js";
+import { ROOT_DIR, buildRunMetadata, parseDateArgs, readJson, writeJson } from "./lib/pipeline-utils.js";
 import { loadProjectEnv } from "./lib/env-loader.js";
+import { isTradingDay, previousDate } from "./lib/trading-calendar.js";
 
 const DEFAULT_VAULT_DIR = "/Users/seo/my-wiki";
+const REPORT_COLLECTION_TARGETS = [
+  {
+    key: "naver_research_network",
+    label: "Naver Research Network",
+    url: "https://finance.naver.com/research/company_list.naver?page=1",
+  },
+  {
+    key: "shinhan_research_network",
+    label: "Shinhan Research Network",
+    url: "https://www.shinhansec.com/siw/etc/browse/search05/data.do",
+  },
+];
 
 function parseArgs(argv) {
   const base = parseDateArgs(argv);
@@ -63,6 +76,23 @@ function runProcess(command, args, options = {}) {
   };
 }
 
+async function runProcessWithRetries(command, args, options = {}, attempts = 2, delayMs = 1500) {
+  let lastResult = null;
+
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    lastResult = runProcess(command, args, options);
+    if (lastResult.ok) {
+      return lastResult;
+    }
+
+    if (attempt < attempts) {
+      await new Promise((resolve) => setTimeout(resolve, delayMs));
+    }
+  }
+
+  return lastResult;
+}
+
 function nearestExistingParent(targetPath) {
   let cursor = path.resolve(targetPath);
   while (!fsSync.existsSync(cursor)) {
@@ -93,36 +123,86 @@ function buildCheck(key, label, status, detail, extras = {}) {
   };
 }
 
-async function checkGithubNetwork() {
+async function readReportArtifacts(dateText) {
+  const reportDir = path.join(ROOT_DIR, "data", "reports", dateText);
+  const [indexEntries, textManifest] = await Promise.all([
+    readJson(path.join(reportDir, "index.json"), []),
+    readJson(path.join(reportDir, "text-manifest.json"), null),
+  ]);
+
+  return {
+    indexEntries,
+    textManifest,
+  };
+}
+
+function hasUsableReportArtifacts(indexEntries, textManifest) {
+  return Array.isArray(indexEntries) && indexEntries.length > 0 && Number(textManifest?.success_count ?? 0) > 0;
+}
+
+async function findLatestFallbackReportDate(dateText, lookbackDays = 14) {
+  let cursor = previousDate(dateText);
+
+  for (let index = 0; index < lookbackDays; index += 1) {
+    if (!isTradingDay(cursor)) {
+      cursor = previousDate(cursor);
+      continue;
+    }
+
+    const { indexEntries, textManifest } = await readReportArtifacts(cursor);
+    if (hasUsableReportArtifacts(indexEntries, textManifest)) {
+      return {
+        sourceDate: cursor,
+        reportCount: indexEntries.length,
+        textSuccessCount: Number(textManifest?.success_count ?? 0),
+      };
+    }
+
+    cursor = previousDate(cursor);
+  }
+
+  return null;
+}
+
+async function checkNetworkTarget({ key, label, url }) {
   try {
-    const lookup = await dns.lookup("github.com");
+    const host = new URL(url).hostname;
+    const lookup = await dns.lookup(host);
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 5000);
     try {
-      const response = await fetch("https://github.com", {
+      const response = await fetch(url, {
         method: "HEAD",
         redirect: "manual",
         signal: controller.signal,
       });
       return buildCheck(
-        "github_network",
-        "GitHub Network",
+        key,
+        label,
         response.status < 500 ? "ok" : "warn",
         response.status < 500
-          ? `github.com reachable (${lookup.address}, http ${response.status})`
-          : `github.com responded with http ${response.status}`,
+          ? `${host} reachable (${lookup.address}, http ${response.status})`
+          : `${host} responded with http ${response.status}`,
       );
     } finally {
       clearTimeout(timer);
     }
   } catch (error) {
     return buildCheck(
-      "github_network",
-      "GitHub Network",
+      key,
+      label,
       "warn",
-      `github.com 연결 불가: ${error instanceof Error ? error.message : String(error)}`,
+      `${new URL(url).hostname} 연결 불가: ${error instanceof Error ? error.message : String(error)}`,
     );
   }
+}
+
+async function checkGithubNetwork() {
+  return checkNetworkTarget({
+    key: "github_network",
+    label: "GitHub Network",
+    url: "https://github.com",
+  });
 }
 
 function classifySafariAutomation(result) {
@@ -155,6 +235,25 @@ function classifySafariAutomation(result) {
   );
 }
 
+function classifyStockeasySmoke(result) {
+  if (result.ok) {
+    return buildCheck(
+      "stockeasy_capture_smoke",
+      "StockEasy Capture Smoke",
+      "ok",
+      "StockEasy capture smoke test 통과",
+    );
+  }
+
+  const message = result.error || "알 수 없는 StockEasy smoke test 오류";
+  return buildCheck(
+    "stockeasy_capture_smoke",
+    "StockEasy Capture Smoke",
+    "warn",
+    `StockEasy smoke test 실패: ${message.split("\n").at(-1)}`,
+  );
+}
+
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const outputPath = resolveOutputPath(args);
@@ -162,6 +261,14 @@ async function main() {
 
   const safariCheck = classifySafariAutomation(
     runProcess("osascript", ["-e", 'tell application "Safari" to return name']),
+  );
+  const stockeasySmokeCheck = classifyStockeasySmoke(
+    await runProcessWithRetries("node", [
+      "scripts/capture-stockeasy-snapshot.js",
+      "--date",
+      args.date,
+      "--smoke-test",
+    ]),
   );
 
   const apiKeyPresent = Boolean(process.env.GEMINI_API_KEY?.trim());
@@ -213,9 +320,43 @@ async function main() {
     );
   }
 
+  const reportNetworkChecks = await Promise.all(
+    REPORT_COLLECTION_TARGETS.map((target) => checkNetworkTarget(target)),
+  );
+  const fallbackReport = await findLatestFallbackReportDate(args.date);
+  const reportFallbackCheck = fallbackReport
+    ? buildCheck(
+        "report_fallback_assets",
+        "Report Fallback Assets",
+        "ok",
+        `${fallbackReport.sourceDate} 리포트 fallback 사용 가능 (${fallbackReport.reportCount}건 / 전문 ${fallbackReport.textSuccessCount}건)`,
+        {
+          sourceDate: fallbackReport.sourceDate,
+          reportCount: fallbackReport.reportCount,
+          textSuccessCount: fallbackReport.textSuccessCount,
+        },
+      )
+    : buildCheck(
+        "report_fallback_assets",
+        "Report Fallback Assets",
+        "warn",
+        "사용 가능한 이전 거래일 리포트 fallback을 찾지 못했습니다.",
+      );
   const githubCheck = await checkGithubNetwork();
 
-  const checks = [geminiApiCheck, safariCheck, pythonStage2Check, vaultCheck, githubCheck];
+  const checks = [
+    geminiApiCheck,
+    safariCheck,
+    stockeasySmokeCheck,
+    pythonStage2Check,
+    ...reportNetworkChecks,
+    reportFallbackCheck,
+    vaultCheck,
+    githubCheck,
+  ];
+  const reportNetworkReady = reportNetworkChecks.some((item) => item.status === "ok");
+  const reportFallbackReady = reportFallbackCheck.status === "ok";
+  const reportCollectionReady = reportNetworkReady || reportFallbackReady;
   const overallStatus = checks.some((item) => item.status !== "ok") ? "warn" : "ok";
   const runMeta = buildRunMetadata(args);
   const payload = {
@@ -224,7 +365,11 @@ async function main() {
     overallStatus,
     blockers: {
       safariAutomationAvailable: safariCheck.status === "ok",
+      stockeasyCaptureReady: stockeasySmokeCheck.status === "ok",
       stage2GeminiReady: pythonStage2Check.status === "ok",
+      reportNetworkReady,
+      reportFallbackReady,
+      reportCollectionReady,
       obsidianPublishReady: vaultCheck.status === "ok",
       githubPushReady: githubCheck.status === "ok",
     },

@@ -59,7 +59,7 @@ export default function HorizontalTabRail<T>({
         <div
           role="tablist"
           className={joinClasses(
-            "-mx-1 overflow-x-auto pb-1 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden touch-pan-x [overscroll-behavior-x:contain] [scroll-snap-type:x_proximity]",
+            "tab-rail-scroller -mx-1 overflow-x-auto pb-1 touch-pan-x",
             listClassName,
           )}
           style={{

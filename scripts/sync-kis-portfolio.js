@@ -12,6 +12,7 @@ import {
   readJson,
   writeJson,
 } from "./lib/pipeline-utils.js";
+import { loadLocalPaths, resolveLocalPath } from "./lib/local-paths.js";
 
 const DEFAULT_SYNC_CONFIG = {
   sources: [
@@ -22,6 +23,7 @@ const DEFAULT_SYNC_CONFIG = {
       label: "한투 일반",
       env: "real",
       account: "",
+      authProfile: "",
       includeInLatest: true,
       skipRealized: false,
     },
@@ -52,6 +54,13 @@ function toText(value) {
   return text || null;
 }
 
+function normalizeAccountNumber(value) {
+  const text = toText(value);
+  if (!text) return "";
+  const digitsOnly = text.replace(/\D/g, "");
+  return digitsOnly;
+}
+
 function round2(value) {
   return Number.isFinite(value) ? Math.round(value * 100) / 100 : null;
 }
@@ -61,7 +70,16 @@ function firstRecord(records) {
 }
 
 function resolveOpenTradingApiPaths() {
-  const root = path.join(ROOT_DIR, "open-trading-api");
+  const localPaths = loadLocalPaths();
+  const root =
+    resolveLocalPath(
+      localPaths.openTradingApiRoot,
+      process.env.OPEN_TRADING_API_ROOT,
+      process.env.KIS_OPEN_TRADING_API_ROOT,
+      path.join(ROOT_DIR, "open-trading-api"),
+      path.join(path.dirname(ROOT_DIR), "open-trading-api"),
+      path.join(process.env.HOME ?? "", "stock-pilot", "open-trading-api"),
+    ) ?? path.join(ROOT_DIR, "open-trading-api");
   const python = path.join(root, ".venv", "bin", "python");
   const script = path.join(
     root,
@@ -81,6 +99,80 @@ function resolveOpenTradingApiPaths() {
   }
 
   return { root, python, script };
+}
+
+function resolveKisConfigRoot() {
+  const localPaths = loadLocalPaths();
+  return (
+    resolveLocalPath(
+      localPaths.kisConfigRoot,
+      process.env.KIS_CONFIG_ROOT,
+      path.join(process.env.HOME ?? "", "KIS", "config"),
+      path.join(os.homedir(), "KIS", "config"),
+    ) ?? path.join(os.homedir(), "KIS", "config")
+  );
+}
+
+function sanitizeSegment(value) {
+  return String(value ?? "")
+    .trim()
+    .replace(/[^A-Za-z0-9._-]+/g, "-")
+    .replace(/^-+|-+$/g, "") || "default";
+}
+
+function resolveAuthConfigPath(source, kisConfigRoot) {
+  const explicitPath = toText(source.authConfigPath);
+  const authProfile = toText(source.authProfile);
+
+  const candidates = [];
+  if (explicitPath) {
+    candidates.push(resolveLocalPath(explicitPath));
+    candidates.push(path.resolve(kisConfigRoot, explicitPath));
+    candidates.push(path.resolve(ROOT_DIR, explicitPath));
+  }
+  if (authProfile) {
+    candidates.push(path.join(kisConfigRoot, `kis_devlp-${authProfile}.yaml`));
+  }
+  if (!explicitPath && !authProfile) {
+    candidates.push(path.join(kisConfigRoot, "kis_devlp.yaml"));
+  }
+
+  for (const candidate of candidates) {
+    if (candidate && fs.existsSync(candidate)) {
+      return candidate;
+    }
+  }
+
+  throw new Error(
+    `KIS 인증 파일을 찾을 수 없습니다 (${source.portfolioKey}). ${authProfile ? `kis_devlp-${authProfile}.yaml` : "kis_devlp.yaml"} 파일과 KIS config 경로를 확인하세요.`,
+  );
+}
+
+function prepareSourceAuthRuntime(source, context) {
+  const authConfigPath = resolveAuthConfigPath(source, context.kisConfigRoot);
+  const authTag = sanitizeSegment(source.authProfile || source.portfolioKey || source.label);
+  const runtimeHome = path.join(os.tmpdir(), "ecoreport-kis-runtime", authTag);
+  const configRoot = path.join(runtimeHome, "KIS", "config");
+  const linkedConfigPath = path.join(configRoot, "kis_devlp.yaml");
+  const tokenPath = path.join(configRoot, `KIS${compactDate(context.date)}`);
+
+  fs.mkdirSync(configRoot, { recursive: true });
+
+  if (fs.existsSync(linkedConfigPath)) {
+    fs.rmSync(linkedConfigPath, { force: true });
+  }
+  fs.symlinkSync(authConfigPath, linkedConfigPath);
+  fs.writeFileSync(tokenPath, "", { flag: "a" });
+  fs.accessSync(configRoot, fs.constants.W_OK);
+  fs.accessSync(tokenPath, fs.constants.W_OK);
+
+  return {
+    authConfigPath,
+    authTag,
+    runtimeHome,
+    configRoot,
+    tokenPath,
+  };
 }
 
 function buildCommandArgs({ scriptPath, source, rawPath, date }) {
@@ -224,17 +316,6 @@ function buildDefaultSnapshot(date) {
   };
 }
 
-function ensureKisAuthWritable(date) {
-  const homeDir = process.env.HOME || os.homedir();
-  const configRoot = path.join(homeDir, "KIS", "config");
-  const tokenPath = path.join(configRoot, `KIS${compactDate(date)}`);
-  fs.mkdirSync(configRoot, { recursive: true });
-  fs.writeFileSync(tokenPath, "", { flag: "a" });
-  fs.accessSync(configRoot, fs.constants.W_OK);
-  fs.accessSync(tokenPath, fs.constants.W_OK);
-  return { configRoot, tokenPath };
-}
-
 async function runSourceSync(source, context) {
   const rawPath = path.join(
     ROOT_DIR,
@@ -250,10 +331,15 @@ async function runSourceSync(source, context) {
     rawPath,
     date: context.date,
   });
+  const authRuntime = prepareSourceAuthRuntime(source, context);
 
   const result = spawnSync(context.openApi.python, args, {
     cwd: context.openApi.root,
     encoding: "utf8",
+    env: {
+      ...process.env,
+      HOME: authRuntime.runtimeHome,
+    },
   });
 
   if (result.status !== 0) {
@@ -275,6 +361,7 @@ async function runSourceSync(source, context) {
     source,
     rawPath,
     raw,
+    authRuntime,
     account: buildPortfolioAccount(raw, source),
   };
 }
@@ -293,7 +380,7 @@ async function main() {
   }
 
   const openApi = resolveOpenTradingApiPaths();
-  ensureKisAuthWritable(args.date);
+  const kisConfigRoot = resolveKisConfigRoot();
   const synced = [];
 
   for (const source of sources) {
@@ -308,21 +395,38 @@ async function main() {
       portfolioKey,
       label,
       env: source.env ?? "real",
-      account: toText(source.account) ?? "",
+      account: normalizeAccountNumber(source.account),
+      authProfile: toText(source.authProfile) ?? "",
+      authConfigPath: toText(source.authConfigPath) ?? "",
       includeInLatest: source.includeInLatest !== false,
       skipRealized: source.skipRealized === true,
     };
 
+    if (normalizedSource.account && !/^\d{10}$/.test(normalizedSource.account)) {
+      throw new Error(
+        `portfolio-sync.json의 ${portfolioKey} account는 10자리 숫자여야 합니다. 현재 값: ${source.account}`,
+      );
+    }
+
     const result = await runSourceSync(normalizedSource, {
       date: args.date,
       openApi,
+      kisConfigRoot,
     });
     synced.push(result);
   }
 
   const latestPath = path.join(ROOT_DIR, "data", "portfolio", "latest.json");
   const existing = (await readJson(latestPath, buildDefaultSnapshot(args.date))) ?? buildDefaultSnapshot(args.date);
-  let accounts = Array.isArray(existing.accounts) ? [...existing.accounts] : [];
+  const activeLatestKeys = new Set(
+    sources
+      .filter((source) => source.includeInLatest !== false)
+      .map((source) => toText(source.portfolioKey))
+      .filter(Boolean),
+  );
+  let accounts = (Array.isArray(existing.accounts) ? [...existing.accounts] : []).filter(
+    (account) => activeLatestKeys.has(toText(account?.key)),
+  );
 
   for (const item of synced) {
     if (!item.source.includeInLatest) continue;
@@ -357,6 +461,8 @@ async function main() {
     accounts: synced.map((item) => ({
       portfolioKey: item.source.portfolioKey,
       label: item.source.label,
+      authProfile: item.source.authProfile || null,
+      authConfigFile: item.authRuntime ? path.basename(item.authRuntime.authConfigPath) : null,
       rawPath: path.relative(ROOT_DIR, item.rawPath),
       accountNumber: item.account.accountNumber ?? null,
       holdings: item.account.holdings.length,

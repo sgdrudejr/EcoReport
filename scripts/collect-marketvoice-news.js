@@ -307,7 +307,7 @@ function resolveAccountKey(accountHint) {
   if (!normalized || normalized === "전계좌") return null;
   if (normalized === "ISA") return "ISA";
   if (normalized === "연금저축") return "PENSION";
-  if (normalized === "토스" || normalized === "토스증권") return "TOSS";
+  if (normalized === "토스" || normalized === "토스증권") return "KIS_MAIN";
   if (normalized === "한투 일반" || normalized === "한국투자" || normalized === "KIS_MAIN") return "KIS_MAIN";
   return normalized;
 }

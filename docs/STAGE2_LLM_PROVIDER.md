@@ -7,21 +7,19 @@ Stage 2 전략 탐색의 기본(디폴트) provider는 **Gemini**입니다.
 ### 폴백 체인 (우선순위)
 
 ```
-Gemini (gemini-2.5-flash) → Claude (claude-sonnet-4-20250514) → Mock (휴리스틱)
+Gemini (gemini-2.5-flash) → Mock (휴리스틱)
 ```
 
 | Provider | 스크립트 | 언어 | API Key |
 |----------|----------|------|---------|
 | Gemini | `build-stage2-strategy-gemini.py` | Python | `GEMINI_API_KEY` (.env) |
-| Claude | `build-stage2-strategy-claude.js` | Node.js | `ANTHROPIC_API_KEY` (.env) |
 | Mock | `build-stage2-strategy-mock.js` | Node.js | 불필요 |
 
 ### 명시적 provider 지정
 
 ```bash
-bash scripts/run-strategy-pipeline.sh --date 2026-04-10                  # 기본: Gemini → Claude → Mock
+bash scripts/run-strategy-pipeline.sh --date 2026-04-10                  # 기본: Gemini → Mock
 bash scripts/run-strategy-pipeline.sh --date 2026-04-10 --gemini-stage2  # Gemini only (+ mock fallback)
-bash scripts/run-strategy-pipeline.sh --date 2026-04-10 --claude-stage2  # Claude only (+ mock fallback)
 bash scripts/run-strategy-pipeline.sh --date 2026-04-10 --mock-stage2    # Mock only (테스트용)
 bash scripts/run-strategy-pipeline.sh --date 2026-04-10 --gemini-stage2 --strict-gemini-stage2  # Gemini only, 실패 시 파이프라인 중단
 ```
@@ -45,7 +43,7 @@ bash scripts/run-strategy-pipeline.sh --date 2026-04-10 --gemini-stage2 --strict
 | `date` | string | 기준 거래일 (YYYY-MM-DD) |
 | `runId` | string | 파이프라인 실행 ID (`{run_date}-{HHMMSS}`) |
 | `timestamp` | string | 로그 기록 시각 (UTC, ISO 8601) |
-| `finalProvider` | string | 최종 사용된 provider. `"gemini"` \| `"claude"` \| `"mock"` |
+| `finalProvider` | string | 최종 사용된 provider. `"gemini"` \| `"mock"` |
 | `finalStatus` | string | `"success"` = 1순위 provider 성공, `"fallback"` = 폴백 발동, `"explicit_mock"` = --mock-stage2 플래그 사용 |
 | `totalElapsedSec` | number | Stage 2 전체 소요 시간 (초). 모든 시도 합산 |
 | `attempts` | array | 시도 기록 배열 (시간 순) |
@@ -87,7 +85,6 @@ bash scripts/run-strategy-pipeline.sh --date 2026-04-10 --gemini-stage2 --strict
   "totalElapsedSec": 2,
   "attempts": [
     { "provider": "gemini", "status": "failed", "elapsed_sec": 1, "error": "API key not valid..." },
-    { "provider": "claude", "status": "failed", "elapsed_sec": 0, "error": "ANTHROPIC_API_KEY가 설정되어 있지 않습니다." },
     { "provider": "mock", "status": "success", "elapsed_sec": 0, "error": null }
   ]
 }

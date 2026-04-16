@@ -9,6 +9,36 @@
 
 ## 2026-04-06
 
+## 2026-04-15
+
+### 자동화 preflight 차단 로직 보정
+
+- `scripts/check-automation-readiness.js`가 이제 리포트 수집 네트워크뿐 아니라 이전 거래일 `data/reports` fallback 자산도 함께 확인
+- 직전 거래일 usable report bundle이 있으면 `reportCollectionReady=true` 로 간주해 `run-daily-automation-cycle.js`가 baseline을 입구에서 막지 않도록 보정
+- baseline 차단 문구도 "네트워크 + fallback 모두 unavailable일 때만 중단"으로 정리
+
+### 2026-04-15 재실행 복구
+
+- 4월 15일 런을 다시 돌려 `stage1-report-extracts-v2`, `stage2-strategy-options`, `impact-map`, `stage3-quant-scores`, `stage4-execution-plan`, `knowledge/wiki/daily/2026-04-15.md`를 재생성
+- dashboard `npm run build`까지 통과해 최신 4월 15일 산출물이 대시보드 경로에서 다시 읽히는 상태를 확인
+- 남은 병목은 Gemini Deep Research Web 장시간 대기이며, 이후에는 이 단계에 대한 skip/reuse/fallback 정책을 추가하는 것이 우선 과제로 남음
+
+### Data Architecture V2 설계 초안 추가
+
+- `docs/DATA_ARCHITECTURE_V2.md` 추가
+- source-specific raw data를 `normalized observations -> evidence graph -> decision features`로 올리는 구조 초안 문서화
+- 아래 스키마 초안 추가
+  - `docs/schemas/normalized-observations.schema.json`
+  - `docs/schemas/evidence-graph.schema.json`
+  - `docs/schemas/decision-features.schema.json`
+- 목표를 "새 소스를 더 붙이는 것"에서 "모든 소스를 같은 엔터티/근거 모델 위에 올리는 것"으로 명확화
+
+### KIS 3계좌 체계로 계좌 모델 정리
+
+- `ISA / PENSION / KIS_MAIN` 기준으로 최신 포트폴리오 스냅샷이 유지되도록 sync pruning 추가
+- 전략/워치리스트/보조 추천 매핑에서 `TOSS` 전술 역할을 `KIS_MAIN`으로 흡수
+- 프롬프트/브리핑/위키 생성 경로도 3계좌 기준으로 정리
+
 ### Gemini Deep Research 오버레이 고정
 
 - Stage 1 추출물과 포트폴리오를 묶는 `Stage 1.5` 프롬프트 생성 스크립트 추가

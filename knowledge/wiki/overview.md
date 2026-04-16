@@ -1,12 +1,12 @@
 ---
 title: EcoReport LLM Wiki Overview
 type: overview
-updated: 2026-04-10
-source_date: 2026-04-10
-run_date: 2026-04-11
-effective_market_date: 2026-04-10
-run_id: 2026-04-11-033709
-generated_at: 2026-04-11T03:37:21.382Z
+updated: 2026-04-15
+source_date: 2026-04-15
+run_date: 2026-04-15
+effective_market_date: 2026-04-15
+run_id: 2026-04-15-manual-rerun
+generated_at: 2026-04-15T00:55:29.355Z
 ---
 
 # EcoReport LLM Wiki
@@ -40,6 +40,9 @@ generated_at: 2026-04-11T03:37:21.382Z
 
 ## Recent Daily Pages
 
+- [2026-04-15](daily/2026-04-15.md)
+- [2026-04-14](daily/2026-04-14.md)
+- [2026-04-13](daily/2026-04-13.md)
 - [2026-04-10](daily/2026-04-10.md)
 - [2026-04-09](daily/2026-04-09.md)
 - [2026-04-08](daily/2026-04-08.md)

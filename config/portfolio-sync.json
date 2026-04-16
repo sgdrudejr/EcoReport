@@ -6,7 +6,30 @@
       "portfolioKey": "KIS_MAIN",
       "label": "한투 일반",
       "env": "real",
-      "account": "",
+      "account": "44367266-01",
+      "authProfile": "",
+      "includeInLatest": true,
+      "skipRealized": false
+    },
+    {
+      "type": "kis",
+      "enabled": true,
+      "portfolioKey": "ISA",
+      "label": "한투 ISA",
+      "env": "real",
+      "account": "44370689-01",
+      "authProfile": "isa",
+      "includeInLatest": true,
+      "skipRealized": false
+    },
+    {
+      "type": "kis",
+      "enabled": true,
+      "portfolioKey": "PENSION",
+      "label": "한투 연금저축",
+      "env": "real",
+      "account": "44378641-22",
+      "authProfile": "pension",
       "includeInLatest": true,
       "skipRealized": false
     }

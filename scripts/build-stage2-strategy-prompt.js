@@ -13,6 +13,7 @@ import {
 import { cachedReadJson, cachedReadText, loadAnalysisContext } from "./lib/analysis-context.js";
 import { formatMarketVoiceForPrompt } from "./lib/marketvoice-utils.js";
 import { allRefinementArtifactPaths } from "./lib/refinement-rounds.js";
+import { formatStockeasyForPrompt } from "./lib/stockeasy-utils.js";
 
 function summarizeAccounts(portfolio) {
   return (portfolio?.accounts ?? [])
@@ -98,8 +99,159 @@ function summarizeDecisionMemory(text) {
 function summarizeRefinementResponses(refinementResponses) {
   return refinementResponses
     .filter((entry) => entry.text)
-    .map((entry) => `## Round ${entry.round} · ${entry.label}\n${truncate(entry.text, 2400)}`)
+    .map((entry) => `## Round ${entry.round} · ${entry.label}\n${truncate(entry.text, 1800)}`)
     .join("\n\n");
+}
+
+function extractRichnessScore(item) {
+  let score = 0;
+  const primary = item?.primary_claim ?? {};
+
+  if (primary.condition) score += 3;
+  if (primary.counterpoint) score += 3;
+  score += Math.min((item?.claim_candidates ?? []).length, 4) * 1.25;
+  score += Math.min((item?.catalysts ?? []).length, 3) * 1.75;
+  score += Math.min((item?.risks ?? []).length, 3) * 1.75;
+  score += Math.min((item?.key_numbers ?? []).length, 5) * 0.5;
+  score += Math.min((item?.portfolio_impacts_candidate ?? []).length, 4) * 1.4;
+  score += Math.min((item?.related_holdings_in_my_portfolio ?? []).length, 4) * 1.2;
+  if (item?.thesis_novelty === "HIGH") score += 3;
+  if (item?.thesis_novelty === "MED") score += 1.5;
+  score += Math.abs(item?.sentiment_score ?? 0) * 3.5;
+
+  if (item?.quality?.weakClaimCount && item?.quality?.totalClaims) {
+    const weakRatio = item.quality.weakClaimCount / Math.max(item.quality.totalClaims, 1);
+    score -= weakRatio * 2;
+  }
+
+  return score;
+}
+
+function extractDiversityKeys(item) {
+  return [
+    item?.sector,
+    ...(item?.themes ?? []),
+    item?.report_type,
+  ]
+    .filter(Boolean)
+    .map((entry) => String(entry));
+}
+
+function selectRichExtracts(extracts, limit) {
+  const ranked = [...extracts].sort((left, right) => extractRichnessScore(right) - extractRichnessScore(left));
+  const selected = [];
+  const diversityCounter = new Map();
+
+  for (const item of ranked) {
+    if (selected.length >= limit) break;
+    const keys = extractDiversityKeys(item);
+    const repeatedCount = keys.reduce(
+      (sum, key) => sum + (diversityCounter.get(key) ?? 0),
+      0,
+    );
+    const allow =
+      selected.length < Math.min(4, limit) ||
+      repeatedCount <= Math.max(1, Math.floor(selected.length / 3));
+
+    if (!allow) continue;
+
+    selected.push(item);
+    keys.forEach((key) => {
+      diversityCounter.set(key, (diversityCounter.get(key) ?? 0) + 1);
+    });
+  }
+
+  if (selected.length < limit) {
+    for (const item of ranked) {
+      if (selected.length >= limit) break;
+      if (selected.includes(item)) continue;
+      selected.push(item);
+    }
+  }
+
+  return selected;
+}
+
+function formatExtractKeyNumbers(item, maxCount = 4) {
+  return (item?.key_numbers ?? [])
+    .slice(0, maxCount)
+    .map((entry) => `${entry.label ?? "number"}:${truncate(entry.value ?? "", 36)}`)
+    .join(" / ");
+}
+
+function formatPortfolioLinks(item, maxCount = 4) {
+  return (item?.related_holdings_in_my_portfolio ?? [])
+    .slice(0, maxCount)
+    .map((holding) => `${holding.name}(${holding.accountKey ?? "N/A"})`)
+    .join(" / ");
+}
+
+function formatPortfolioImpacts(item, maxCount = 4) {
+  return (item?.portfolio_impacts_candidate ?? [])
+    .slice(0, maxCount)
+    .map(
+      (impact) =>
+        `${impact.target_name ?? impact.account_key ?? "unknown"}:${impact.direction ?? "neutral"}@${impact.strength ?? "-"}`,
+    )
+    .join(" / ");
+}
+
+function formatExtractEvidenceBlocks(extracts) {
+  if (!extracts.length) {
+    return "- 관련 extract 없음";
+  }
+
+  return extracts
+    .map((item) => {
+      const lines = [
+        `- [${item.id}] ${truncate(item.title, 88)} / ${item.broker ?? "-"} / ${item.report_type ?? "-"} / score ${extractRichnessScore(item).toFixed(1)}`,
+        `  - thesis: ${truncate(item.key_thesis ?? item.primary_claim?.summary ?? "요약 없음", 240)}`,
+      ];
+
+      const qualityBits = [
+        item?.primary_claim?.classification_confidence != null
+          ? `claim_conf ${Number(item.primary_claim.classification_confidence).toFixed(2)}`
+          : null,
+        item?.sentiment_score != null
+          ? `sentiment ${item.sentiment_score >= 0 ? "+" : ""}${Number(item.sentiment_score).toFixed(2)}`
+          : null,
+        item?.thesis_novelty && item.thesis_novelty !== "LOW"
+          ? `novelty ${item.thesis_novelty}`
+          : null,
+      ].filter(Boolean);
+      if (qualityBits.length) {
+        lines.push(`  - quality: ${qualityBits.join(" / ")}`);
+      }
+
+      const numbers = formatExtractKeyNumbers(item, 4);
+      if (numbers) lines.push(`  - numbers: ${numbers}`);
+
+      if (item?.primary_claim?.condition) {
+        lines.push(`  - conditions: ${truncate(item.primary_claim.condition, 260)}`);
+      }
+      if (item?.primary_claim?.counterpoint) {
+        lines.push(`  - counterpoints: ${truncate(item.primary_claim.counterpoint, 260)}`);
+      }
+      if ((item?.catalysts ?? []).length > 0) {
+        lines.push(
+          `  - catalysts: ${item.catalysts.slice(0, 3).map((entry) => truncate(entry, 100)).join(" / ")}`,
+        );
+      }
+      if ((item?.risks ?? []).length > 0) {
+        lines.push(
+          `  - risks: ${item.risks.slice(0, 3).map((entry) => truncate(entry, 100)).join(" / ")}`,
+        );
+      }
+
+      const links = formatPortfolioLinks(item, 4);
+      if (links) lines.push(`  - portfolio_links: ${links}`);
+
+      const impacts = formatPortfolioImpacts(item, 4);
+      if (impacts) lines.push(`  - impact_candidates: ${impacts}`);
+
+      return lines.join("\n");
+    })
+    .join("\n");
 }
 
 async function main() {
@@ -141,12 +293,20 @@ async function main() {
   const operatingRules = data.operatingRules;
   const decisionJournal = data.decisionJournal;
 
-  const directExtracts = stage1.extracts
-    .filter((item) => item.related_holdings_in_my_portfolio.length > 0 || item.portfolio_impacts_candidate.length > 0)
-    .slice(0, 12);
-  const macroExtracts = stage1.extracts.filter((item) => item.report_type === "macro").slice(0, 5);
+  const directExtracts = selectRichExtracts(
+    stage1.extracts.filter(
+      (item) =>
+        item.related_holdings_in_my_portfolio.length > 0 ||
+        item.portfolio_impacts_candidate.length > 0,
+    ),
+    14,
+  );
+  const macroExtracts = selectRichExtracts(
+    stage1.extracts.filter((item) => item.report_type === "macro"),
+    4,
+  );
   const technicalSubset = buildTechnicalSubset(portfolio, technical, watchlist);
-  const briefingSummary = truncate(briefing, 5000);
+  const briefingSummary = truncate(briefing, 3600);
   const refinementMaps = refinementMapsRaw.filter((entry) => entry.map);
   const refinementResponses = refinementResponsesRaw
     .map((entry) => ({ ...entry, text: String(entry.text ?? "").trim() }))
@@ -157,6 +317,11 @@ async function main() {
   const decisionMemorySummary = summarizeDecisionMemory(decisionJournal);
   const accountKeys = listAccountKeys(portfolio);
   const accountKeyHint = accountKeys.length > 0 ? accountKeys.join("|") : "ACCOUNT_KEY";
+  const stockeasySummary = await formatStockeasyForPrompt({
+    date: args.date,
+    portfolio,
+    watchlist,
+  });
 
   const prompt = [
     "# EcoReport Stage 2 Strategy Exploration",
@@ -179,6 +344,9 @@ async function main() {
       maxResearch: 3,
     }),
     "",
+    "## StockEasy 외부 강세 / 전략실 레이어",
+    stockeasySummary,
+    "",
     "## 다회 refinement 재인덱싱 메모",
     followUpResearchSummary || "- follow-up research map 없음",
     "",
@@ -192,10 +360,10 @@ async function main() {
     decisionMemorySummary || "- 누적 의사결정 메모리 없음",
     "",
     "## 직접 관련 리포트 연구 노트",
-    JSON.stringify(directExtracts, null, 2),
+    formatExtractEvidenceBlocks(directExtracts),
     "",
     "## 매크로/전략 리포트 연구 노트",
-    JSON.stringify(macroExtracts, null, 2),
+    formatExtractEvidenceBlocks(macroExtracts),
     "",
     "## 기술점수 스냅샷",
     JSON.stringify(
@@ -207,6 +375,13 @@ async function main() {
       2,
     ),
     "",
+    "## 인사이트 합성 지침",
+    "단순 요약보다 분석적 합성을 우선하세요.",
+    "- 같은 테마에 대해 리포트 간 시간 전망이나 방향이 어긋나면 그 충돌을 먼저 식별하세요.",
+    "- condition이 있는 주장은 실현 가능성을 HIGH/MEDIUM/LOW로 가늠하고, LOW는 바로 실행보다 risk/watch로 남기세요.",
+    "- 직접 언급이 없더라도 보유 종목과 연결되는 2차 효과가 있다면 제시하되, confidence는 보수적으로 유지하세요.",
+    "- 각 전략 변화와 후보에는 판단을 뒤집을 수 있는 반전 조건을 한 줄 포함하세요.",
+    "",
     "## 출력 요구사항",
     "반드시 유효한 JSON으로만 답하세요.",
     "문장은 짧게, 각 문자열은 1~2문장 이내로 유지하세요.",
@@ -214,6 +389,7 @@ async function main() {
     "buy_candidates / trim_candidates / hold_candidates는 각 계좌당 최대 3개까지만 반환하세요.",
     "refinement map에서 반복 확인이 필요한 토픽은 실제 전략 변화로 연결되는 경우만 반영하고, 근거가 얕으면 watch 또는 보류로 남기세요.",
     "머니토링 시황은 빠른 촉매 신호로만 사용하세요. 리포트·딥리서치와 충돌하면 강화보다 watch 또는 검증 우선으로 낮추세요.",
+    "StockEasy는 외부 모멘텀과 전략실 기류를 확인하는 보조 레이어입니다. 내부 논리와 겹치면 설명과 우선순위를 강화하고, 충돌하면 즉시 추격 매수로 번역하지 마세요.",
     "계좌 역할과 맞지 않는 공격적 제안, 무효화 조건 없는 제안, 메타 표현(stage2 근거 등)은 쓰지 마세요.",
     "",
     JSON.stringify(
@@ -228,8 +404,10 @@ async function main() {
           {
             theme: "예: AI 인프라",
             direction: "reinforce|reduce|watch",
-            why_now: "왜 지금 중요한지",
+            why_now: "왜 지금 중요한지 | 반전 조건: ...",
             source_reports: ["report_012"],
+            conflicting_reports: ["report_005"],
+            condition_probability: "HIGH|MEDIUM|LOW",
           },
         ],
         account_actions: [
@@ -253,6 +431,8 @@ async function main() {
             confidence: "HIGH|MEDIUM|LOW",
             thesis: "핵심 투자 논리",
             risks: ["위험요인"],
+            impact_chain: "direct|thematic_2nd_order",
+            invalidation_trigger: "이 판단을 뒤집는 조건",
           },
         ],
         portfolio_risks: ["핵심 위험 1", "핵심 위험 2"],

@@ -9,8 +9,7 @@ import Database from 'better-sqlite3';
 
 const ACCOUNT_KEY_TO_STRATEGY_KEY = {
   ISA: 'ISA',
-  PENSION: '연금저축',
-  TOSS: '토스증권',
+  PENSION: 'PENSION',
   KIS_MAIN: 'KIS_MAIN',
 };
 

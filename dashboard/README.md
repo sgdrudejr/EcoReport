@@ -1,36 +1,99 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# EcoReport Dashboard
 
-## Getting Started
+이 디렉터리는 EcoReport의 로컬 Next.js 16 대시보드 워크스페이스입니다.
 
-First, run the development server:
+## 역할
+
+- 날짜별 산출물을 서버에서 직접 읽어 UI로 렌더링
+- 일일 Stage 1~4 결과, 피드백, intraday 상태, ghost/backtest 요약을 한 화면에 통합
+- 메인 운영 화면과 보조 실험 화면을 같은 앱 안에서 유지
+
+## 실행
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd /Users/seo/stock-pilot/dashboard
+npm install
+npm run dev -- --hostname 0.0.0.0
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+검증:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 현재 app 구조
 
-## Learn More
+### 핵심 라우트
 
-To learn more about Next.js, take a look at the following resources:
+- `app/page.tsx`: 메인 대시보드
+- `app/dashboard-test/page.tsx`: 테스트 홈
+- `app/dashboard-test/decision/page.tsx`: decision 분리 화면
+- `app/dashboard-test/feedback/page.tsx`: feedback 분리 화면
+- `app/feedback-report/page.tsx`: 피드백 리포트 뷰
+- `app/market-news/page.tsx`: marketvoice / 뉴스 계층 뷰
+- `app/reports/page.tsx`
+- `app/reports/[slug]/page.tsx`
+- `app/simulator/page.tsx`: what-if simulator
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### app 전용 컴포넌트
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `app/components/IntradayAutoRefresh.tsx`: `/api/intraday` polling 후 refresh
+- `app/components/IntradayAlertBanner.tsx`: 장중 경보와 overlay 배너
+- `app/components/EvidenceChain.tsx`: 전일 대비 변화 요인 Top 3
+- `app/components/ScoreBreakdownPanel.tsx`: score decomposition 시각화
+- `app/components/GhostPortfolio.tsx`: 미실행 추천 추적
+- `app/components/BacktestSummary.tsx`: timeseries 기반 백테스트 요약
 
-## Deploy on Vercel
+### 공용 컴포넌트
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `components/MainNav.tsx`
+- `components/AccountTabs.tsx`
+- `components/HoldingTabs.tsx`
+- `components/RecommendationTabs.tsx`
+- `components/RecommendationItemTabs.tsx`
+- `components/AllocationHeatmap.tsx`
+- `components/ClusterMap.tsx`
+- `components/FeedbackPanel.tsx`
+- `components/ExperimentalUiProvider.tsx`
+- `components/ExperimentalVisibility.tsx`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 보조 로더 / API
+
+- `app/lib/data-loader.ts`: intraday / ghost / previous stage3 / backtest 로딩
+- `app/api/intraday/route.ts`: 장중 상태 polling endpoint
+- `app/api/trigger/route.ts`: 실험용 trigger endpoint
+
+## 데이터 원칙
+
+- 대시보드는 가능한 한 서버에서 파일을 직접 읽습니다.
+- 메인 데이터는 `data/analysis-state`, `data/intraday`, `data/feedback`, `data/backtest`에서 가져옵니다.
+- 장중 상태만 얇은 API route를 통해 polling합니다.
+
+## 주요 입력
+
+- `data/portfolio/latest.json`
+- `data/analysis-state/YYYY-MM-DD/stage3-quant-scores.json`
+- `data/analysis-state/YYYY-MM-DD/stage4-execution-plan.json`
+- `data/analysis-state/YYYY-MM-DD/holding-clusters.json`
+- `data/intraday/latest.json`
+- `data/feedback/analysis/*.json`
+- `data/feedback/ghost-portfolio.jsonl`
+- `data/backtest/engine-latest.json`
+
+## 현재 메인 페이지에 붙어 있는 보강 레이어
+
+- Intraday auto refresh
+- Intraday alert banner
+- Evidence chain
+- Score decomposition panel
+- Ghost portfolio panel
+- Backtest summary card
+
+## 개발 시 체크포인트
+
+- `npm run build`가 통과하는가
+- 최신 `data/intraday/latest.json`이 없어도 메인 화면이 깨지지 않는가
+- 피드백 파일이 없어도 `FeedbackPanel`이 안전하게 빈 상태를 보여주는가
+- `simulator`와 `dashboard-test/*` 라우트가 메인 페이지 변경과 분리되어 유지되는가
+- app 전용 컴포넌트와 공용 컴포넌트 경계가 흐려지지 않는가

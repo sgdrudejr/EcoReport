@@ -112,7 +112,7 @@
         "default": "현금파킹",
         "ISA": "현금파킹",
         "PENSION": "현금파킹",
-        "TOSS": "현금파킹"
+        "KIS_MAIN": "현금파킹"
       },
       "keywords": {
         "topic_hints": ["kofr", "금리", "단기채", "현금", "채권", "유동성"],
@@ -141,7 +141,7 @@
       "region": "KR",
       "categories": {
         "default": "전력기기",
-        "TOSS": "전력기기"
+        "KIS_MAIN": "전력기기"
       },
       "keywords": {
         "topic_hints": ["전력", "변압기", "송배전", "ai 인프라", "데이터센터 전력"],
@@ -163,7 +163,7 @@
       "region": "KR",
       "categories": {
         "default": "방산",
-        "TOSS": "방산"
+        "KIS_MAIN": "방산"
       },
       "keywords": {
         "topic_hints": ["방산", "국방", "미사일", "방위산업", "nato"],
@@ -185,7 +185,7 @@
       "region": "KR",
       "categories": {
         "default": "원자력",
-        "TOSS": "원자력"
+        "KIS_MAIN": "원자력"
       },
       "keywords": {
         "topic_hints": ["원자력", "원전", "smr", "원자로"],
@@ -438,16 +438,16 @@
   "theme_category_rules": [
     { "theme": "HBM/메모리",  "category": "S&P500",        "accountKey": "PENSION" },
     { "theme": "HBM/메모리",  "category": "나스닥100",       "accountKey": "PENSION" },
-    { "theme": "AI 인프라",   "category": "전력기기",        "accountKey": "TOSS"    },
+    { "theme": "AI 인프라",   "category": "전력기기",        "accountKey": "KIS_MAIN" },
     { "theme": "AI 인프라",   "category": "S&P500",         "accountKey": "PENSION" },
     { "theme": "AI 인프라",   "category": "나스닥100",       "accountKey": "PENSION" },
-    { "theme": "전력 인프라", "category": "전력기기",        "accountKey": "TOSS"    },
-    { "theme": "방산",        "category": "방산",            "accountKey": "TOSS"    },
-    { "theme": "원자력",      "category": "원자력",          "accountKey": "TOSS"    },
+    { "theme": "전력 인프라", "category": "전력기기",        "accountKey": "KIS_MAIN" },
+    { "theme": "방산",        "category": "방산",            "accountKey": "KIS_MAIN" },
+    { "theme": "원자력",      "category": "원자력",          "accountKey": "KIS_MAIN" },
     { "theme": "금/원자재",   "category": "금",              "accountKey": "PENSION" },
     { "theme": "금리/매크로", "category": "현금파킹",        "accountKey": "ISA"     },
     { "theme": "금리/매크로", "category": "현금파킹",        "accountKey": "PENSION" },
-    { "theme": "금리/매크로", "category": "현금파킹",        "accountKey": "TOSS"    },
+    { "theme": "금리/매크로", "category": "현금파킹",        "accountKey": "KIS_MAIN" },
     { "theme": "금리/매크로", "category": "배당/커버드콜",   "accountKey": "ISA"     }
   ]
 }

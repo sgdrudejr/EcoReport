@@ -1,170 +1,50 @@
 {
-  "date": "2026-04-10",
-  "updatedAt": "2026-04-11T07:12:27.281Z",
+  "date": "2026-04-15",
+  "updatedAt": "2026-04-15T00:41:25.665Z",
   "source": {
     "method": "broker_api_sync",
     "reviewer": "seo",
-    "note": "KIS sync: KIS_MAIN"
+    "note": "KIS sync: KIS_MAIN, ISA, PENSION"
   },
   "accounts": [
     {
       "key": "ISA",
-      "label": "ISA",
-      "accountNumber": "270-80-195368",
-      "evaluationAmount": 8384240,
-      "cashAvailable": 6277490,
-      "settlementCash": 6277490,
-      "principal": 6304001,
-      "profitLoss": 2080239,
-      "profitRate": 33,
-      "screenshots": [
-        "Screenshot_20260404_235200.jpg"
-      ],
+      "label": "한투 ISA",
+      "accountNumber": "44370689-01",
+      "evaluationAmount": 8453043,
+      "cashAvailable": 8453043,
+      "settlementCash": 8453043,
+      "principal": 0,
+      "profitLoss": 0,
+      "profitRate": null,
+      "screenshots": [],
       "incomplete": false,
-      "holdings": [
-        {
-          "name": "TIGER 미국S&P500",
-          "quantity": 20,
-          "avgPrice": null,
-          "currentPrice": 24570,
-          "marketValue": 491400,
-          "purchaseValue": null,
-          "profitLoss": null,
-          "profitRate": null,
-          "note": "Daily profit/loss and rate are shown, not total.",
-          "code": "360750"
-        },
-        {
-          "name": "TIGER 미국배당다우존스스타데일리커...",
-          "quantity": 50,
-          "avgPrice": 10210,
-          "currentPrice": 10185,
-          "marketValue": 509250,
-          "purchaseValue": 510500,
-          "profitLoss": null,
-          "profitRate": null,
-          "note": "Name is truncated. Daily profit/loss and rate are shown, not total.",
-          "code": "458760"
-        }
-      ]
+      "holdings": []
     },
     {
       "key": "PENSION",
-      "label": "연금저축",
-      "accountNumber": "270-81-572490",
-      "evaluationAmount": 1512270,
-      "cashAvailable": 1515100,
-      "settlementCash": 4047251,
-      "principal": 1027340,
-      "profitLoss": -2830,
-      "profitRate": -0.19,
-      "screenshots": [
-        "Screenshot_20260404_235333.jpg"
-      ],
+      "label": "한투 연금저축",
+      "accountNumber": "44378641-22",
+      "evaluationAmount": 0,
+      "cashAvailable": 0,
+      "settlementCash": 0,
+      "principal": 0,
+      "profitLoss": 0,
+      "profitRate": null,
+      "screenshots": [],
       "incomplete": false,
-      "holdings": [
-        {
-          "name": "KODEX KOFR금리액티브(합성)",
-          "quantity": 2,
-          "avgPrice": 110680,
-          "currentPrice": 110685,
-          "marketValue": 221370,
-          "purchaseValue": 221360,
-          "profitLoss": null,
-          "profitRate": null,
-          "note": "Daily profit/loss and rate are shown, not total.",
-          "code": "423160"
-        },
-        {
-          "name": "TIGER 미국나스닥100",
-          "quantity": 3,
-          "avgPrice": 160520,
-          "currentPrice": 160160,
-          "marketValue": 480480,
-          "purchaseValue": 481560,
-          "profitLoss": null,
-          "profitRate": null,
-          "note": "Daily profit/loss and rate are shown, not total.",
-          "code": "133690"
-        },
-        {
-          "name": "TIGER 미국S&P500",
-          "quantity": 20,
-          "avgPrice": 24625,
-          "currentPrice": 24570,
-          "marketValue": 491400,
-          "purchaseValue": 492500,
-          "profitLoss": null,
-          "profitRate": null,
-          "note": "Daily profit/loss and rate are shown, not total.",
-          "code": "360750"
-        }
-      ]
-    },
-    {
-      "key": "TOSS",
-      "label": "토스증권",
-      "accountNumber": null,
-      "evaluationAmount": 1297665,
-      "cashAvailable": 1000945,
-      "settlementCash": 1000945,
-      "principal": 1300945,
-      "profitLoss": -3280,
-      "profitRate": -0.25,
-      "screenshots": [
-        "스크린샷 2026-04-04 오후 11.53.18.png",
-        "스크린샷 2026-04-04 오후 11.53.18.png"
-      ],
-      "incomplete": false,
-      "holdings": [
-        {
-          "name": "HANARO 원자력iSelect",
-          "quantity": 7,
-          "avgPrice": 64095,
-          "currentPrice": 64170,
-          "marketValue": 443190,
-          "purchaseValue": 448670,
-          "profitLoss": 520,
-          "profitRate": 0.11,
-          "note": null,
-          "code": "434730"
-        },
-        {
-          "name": "KODEX 선진국ESG액티브",
-          "quantity": 15,
-          "avgPrice": 31098,
-          "currentPrice": 31000,
-          "marketValue": 465000,
-          "purchaseValue": 466475,
-          "profitLoss": -1475,
-          "profitRate": -0.31,
-          "note": null,
-          "code": "251350"
-        },
-        {
-          "name": "PLUS V K생산",
-          "quantity": 5,
-          "avgPrice": 77160,
-          "currentPrice": 76695,
-          "marketValue": 383475,
-          "purchaseValue": 385800,
-          "profitLoss": -2325,
-          "profitRate": -0.6,
-          "note": null,
-          "code": "449450"
-        }
-      ]
+      "holdings": []
     },
     {
       "key": "KIS_MAIN",
       "label": "한투 일반",
       "accountNumber": "44367266-01",
-      "evaluationAmount": 2546594,
-      "cashAvailable": 1644774,
-      "settlementCash": 1644774,
+      "evaluationAmount": 2538724,
+      "cashAvailable": 116594,
+      "settlementCash": 116594,
       "principal": 2392440,
-      "profitLoss": 37560,
-      "profitRate": 1.57,
+      "profitLoss": 29690,
+      "profitRate": 1.24,
       "screenshots": [],
       "incomplete": false,
       "holdings": [
@@ -173,11 +53,11 @@
           "name": "한국항공우주",
           "quantity": 5,
           "avgPrice": 200500,
-          "currentPrice": 199900,
-          "marketValue": 999500,
+          "currentPrice": 190800,
+          "marketValue": 954000,
           "purchaseValue": 1002500,
-          "profitLoss": -3000,
-          "profitRate": -0.29,
+          "profitLoss": -48500,
+          "profitRate": -4.83,
           "note": null
         },
         {
@@ -185,11 +65,11 @@
           "name": "현대로템",
           "quantity": 1,
           "avgPrice": 208000,
-          "currentPrice": 210000,
-          "marketValue": 210000,
+          "currentPrice": 215000,
+          "marketValue": 215000,
           "purchaseValue": 208000,
-          "profitLoss": 2000,
-          "profitRate": 0.96,
+          "profitLoss": 7000,
+          "profitRate": 3.36,
           "note": null
         },
         {
@@ -197,11 +77,11 @@
           "name": "KODEX 구리선물(H)",
           "quantity": 58,
           "avgPrice": 8765,
-          "currentPrice": 9060,
-          "marketValue": 525480,
+          "currentPrice": 9505,
+          "marketValue": 551290,
           "purchaseValue": 508370,
-          "profitLoss": 17110,
-          "profitRate": 3.36,
+          "profitLoss": 42920,
+          "profitRate": 8.44,
           "note": null
         },
         {
@@ -209,11 +89,11 @@
           "name": "HANARO 원자력iSelect",
           "quantity": 2,
           "avgPrice": 64630,
-          "currentPrice": 70310,
-          "marketValue": 140620,
+          "currentPrice": 74735,
+          "marketValue": 149470,
           "purchaseValue": 129260,
-          "profitLoss": 11360,
-          "profitRate": 8.78,
+          "profitLoss": 20210,
+          "profitRate": 15.63,
           "note": null
         },
         {
@@ -221,11 +101,11 @@
           "name": "PLUS K방산",
           "quantity": 7,
           "avgPrice": 77758.5714,
-          "currentPrice": 79200,
-          "marketValue": 554400,
+          "currentPrice": 78910,
+          "marketValue": 552370,
           "purchaseValue": 544310,
-          "profitLoss": 10090,
-          "profitRate": 1.85,
+          "profitLoss": 8060,
+          "profitRate": 1.48,
           "note": null
         }
       ]

@@ -55,3 +55,4 @@ knowledge/daily/report-prompts/
 knowledge/rag/
 reports/
 reports/daily/*.md
+.aider*

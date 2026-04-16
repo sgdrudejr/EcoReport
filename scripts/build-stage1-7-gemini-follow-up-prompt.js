@@ -11,6 +11,7 @@ import {
   writeText,
 } from "./lib/pipeline-utils.js";
 import { formatMarketVoiceForPrompt } from "./lib/marketvoice-utils.js";
+import { formatStockeasyForPrompt } from "./lib/stockeasy-utils.js";
 import {
   parseRefinementArgs,
   previousRefinementRound,
@@ -111,7 +112,7 @@ function roundInstructions(spec) {
         "- 대체재 / 헤지 관계",
         "",
         "## Account Translation",
-        "- ISA / PENSION / TOSS / KIS_MAIN 각각",
+        "- ISA / PENSION / KIS_MAIN 각각",
         "- 이 토픽이 그 계좌에서 어떤 역할인지",
         "- 늘릴 자산 / 줄일 자산 / 대체할 자산",
         "",
@@ -146,7 +147,7 @@ function roundInstructions(spec) {
       "- 무엇을 보면 판단을 바꿔야 하는가",
       "",
       "## Account-Level Refinement",
-      "- ISA / PENSION / TOSS / KIS_MAIN 각각",
+      "- ISA / PENSION / KIS_MAIN 각각",
       "- 현재 토픽이 그 계좌에서 왜 중요한지",
       "- 늘릴 자산 / 줄일 자산 / 보류 자산",
       "",
@@ -180,6 +181,8 @@ async function main() {
   const researchBacklogPath = path.join(ROOT_DIR, "knowledge", "wiki", "memory", "research-backlog.md");
   const decisionJournalPath = path.join(ROOT_DIR, "knowledge", "wiki", "memory", "decision-journal.md");
   const marketVoicePath = path.join(ROOT_DIR, "data", "analysis-state", args.date, "marketvoice-linked.json");
+  const portfolioPath = path.join(ROOT_DIR, "data", "portfolio", "latest.json");
+  const watchlistPath = path.join(ROOT_DIR, "config", "watchlist.json");
   const outputPath = args.output
     ? path.isAbsolute(args.output)
       ? args.output
@@ -196,6 +199,8 @@ async function main() {
     decisionJournal,
     stage4,
     marketVoice,
+    portfolio,
+    watchlist,
   ] = await Promise.all([
     readJson(paths.mapJson, null),
     readText(primaryDeepResearchPath, ""),
@@ -206,6 +211,8 @@ async function main() {
     readText(decisionJournalPath, ""),
     readJson(stage4Path, null),
     readJson(marketVoicePath, null),
+    readJson(portfolioPath, { accounts: [] }),
+    readJson(watchlistPath, {}),
   ]);
 
   if (!refinementMap) {
@@ -216,6 +223,11 @@ async function main() {
   const noGoRules = summarizeRules(operatingRules, refinementMap);
   const stage4Summary = summarizeStage4(stage4);
   const instructions = roundInstructions(spec);
+  const stockeasySummary = await formatStockeasyForPrompt({
+    date: args.date,
+    portfolio,
+    watchlist,
+  });
 
   const prompt = [
     `너는 EcoReport의 ${spec.label} Deep Research 파트너다.`,
@@ -247,6 +259,9 @@ async function main() {
       maxResearch: 2,
     }),
     "",
+    "[StockEasy 외부 강세 / 전략실 레이어]",
+    stockeasySummary,
+    "",
     "[현재 Stage 4 실행 계획 요약]",
     JSON.stringify(stage4Summary, null, 2),
     "",
@@ -261,6 +276,7 @@ async function main() {
     "",
     "[출력 규칙]",
     ...instructions.outputRules,
+    "- StockEasy 신호는 외부 risk-on/risk-off 확인과 한국 상장 ETF 번역 힌트로 적극 활용하되, 내부 리포트·딥리서치와 충돌하면 검증 우선으로 다룰 것",
     "",
     ...instructions.format,
     "",

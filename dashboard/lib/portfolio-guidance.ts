@@ -208,6 +208,13 @@ type Stage4AccountPlan = {
     suggestedAmount?: number;
     reason?: string;
     source?: string;
+    volatilityBucket?: string | null;
+    entryCondition?: string | null;
+    stopLossPct?: number | null;
+    stopLossNote?: string | null;
+    positionSizePctOfDeployBudget?: number | null;
+    positionSizePctOfAccount?: number | null;
+    positionSizeLabel?: string | null;
   }>;
   trims?: Array<{
     code?: string;
@@ -323,6 +330,13 @@ export type ExecutionGuideItem = {
   reason: string | null;
   source: string | null;
   score: number | null;
+  volatilityBucket?: string | null;
+  entryCondition?: string | null;
+  stopLossPct?: number | null;
+  stopLossNote?: string | null;
+  positionSizePctOfDeployBudget?: number | null;
+  positionSizePctOfAccount?: number | null;
+  positionSizeLabel?: string | null;
   kind: "buy" | "trim" | "hold";
 };
 
@@ -1164,6 +1178,17 @@ function buildActionPoints(stage4Account: Stage4AccountPlan | null) {
       ? ` · ${String(stagedBuy.reason).replace(/\s+/g, " ").trim().slice(0, 72)}`
       : "";
     points.push(`${stagedBuy.name} ${stagedBuy.suggestedAmount.toLocaleString()}원 분할매수 검토${reason}`);
+    if (stagedBuy.positionSizeLabel || stagedBuy.positionSizePctOfDeployBudget != null) {
+      points.push(
+        `${stagedBuy.name} 사이징: ${stagedBuy.positionSizeLabel ?? "기본"}${stagedBuy.positionSizePctOfDeployBudget != null ? ` / 집행 예산의 ${stagedBuy.positionSizePctOfDeployBudget}%` : ""}`,
+      );
+    }
+    if (stagedBuy.entryCondition) {
+      points.push(`${stagedBuy.name} 진입 조건: ${String(stagedBuy.entryCondition).replace(/\s+/g, " ").trim()}`);
+    }
+    if (stagedBuy.stopLossNote) {
+      points.push(`${stagedBuy.name} 무효화/손절: ${String(stagedBuy.stopLossNote).replace(/\s+/g, " ").trim()}`);
+    }
   }
 
   for (const trim of stage4Account?.trims ?? []) {
@@ -1199,6 +1224,13 @@ function buildExecutionItems(
         reason?: string;
         source?: string;
         score?: number | null;
+        volatilityBucket?: string | null;
+        entryCondition?: string | null;
+        stopLossPct?: number | null;
+        stopLossNote?: string | null;
+        positionSizePctOfDeployBudget?: number | null;
+        positionSizePctOfAccount?: number | null;
+        positionSizeLabel?: string | null;
       }>
     | undefined,
   kind: ExecutionGuideItem["kind"],
@@ -1213,6 +1245,19 @@ function buildExecutionItems(
       reason: entry.reason ?? null,
       source: entry.source ?? null,
       score: typeof entry.score === "number" ? entry.score : null,
+      volatilityBucket: entry.volatilityBucket ?? null,
+      entryCondition: entry.entryCondition ?? null,
+      stopLossPct: typeof entry.stopLossPct === "number" ? entry.stopLossPct : null,
+      stopLossNote: entry.stopLossNote ?? null,
+      positionSizePctOfDeployBudget:
+        typeof entry.positionSizePctOfDeployBudget === "number"
+          ? entry.positionSizePctOfDeployBudget
+          : null,
+      positionSizePctOfAccount:
+        typeof entry.positionSizePctOfAccount === "number"
+          ? entry.positionSizePctOfAccount
+          : null,
+      positionSizeLabel: entry.positionSizeLabel ?? null,
       kind,
     }) satisfies ExecutionGuideItem);
 }

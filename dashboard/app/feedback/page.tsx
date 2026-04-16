@@ -37,7 +37,7 @@ export default function FeedbackPage() {
 
   if (!analysis) {
     return (
-      <main className="mx-auto w-full max-w-6xl px-4 pb-28 pt-[calc(var(--desktop-nav-offset)+1.25rem)] md:px-6 md:pb-16">
+      <main className="feedback-page-shell-empty mx-auto w-full max-w-6xl px-4 pb-28 md:px-6 md:pb-16">
         <section className="glass-panel rounded-[2rem] px-6 py-8">
           <p className="section-kicker">Feedback</p>
           <h1 className="mt-3 text-3xl font-semibold text-slate-950">성과 피드백이 아직 없습니다.</h1>
@@ -66,7 +66,7 @@ export default function FeedbackPage() {
   const deltas = analysis.autoAdjustment?.deltas ?? {};
 
   return (
-    <main className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 pb-28 pt-[calc(var(--desktop-nav-offset)+1rem)] md:px-6 md:pb-16">
+    <main className="feedback-page-shell mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 pb-28 md:px-6 md:pb-16">
       <section className="glass-panel overflow-hidden rounded-[2rem]">
         <div className="grid gap-6 px-6 py-7 md:grid-cols-[1.3fr_0.7fr] md:px-8">
           <div>

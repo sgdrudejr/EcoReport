@@ -1,6 +1,6 @@
 "use client";
 
-import { Children, type ReactNode, useMemo, useState } from "react";
+import { Children, type ReactNode, useEffect, useMemo, useRef, useState } from "react";
 
 import HorizontalTabRail from "@/components/HorizontalTabRail";
 
@@ -15,22 +15,6 @@ function joinClasses(...parts: Array<string | false | null | undefined>) {
   return parts.filter(Boolean).join(" ");
 }
 
-function tabTone(key: string, isSelected: boolean) {
-  if (key === "core") {
-    return isSelected
-      ? "border-slate-950 text-slate-950"
-      : "border-transparent text-slate-500 hover:text-slate-900";
-  }
-  if (key === "sector") {
-    return isSelected
-      ? "border-sky-700 text-sky-800"
-      : "border-transparent text-slate-500 hover:text-sky-900";
-  }
-  return isSelected
-    ? "border-emerald-700 text-emerald-800"
-    : "border-transparent text-slate-500 hover:text-emerald-900";
-}
-
 export default function RecommendationTabs({
   tabs,
   children,
@@ -40,6 +24,7 @@ export default function RecommendationTabs({
 }) {
   const childArray = useMemo(() => Children.toArray(children), [children]);
   const [selectedKey, setSelectedKey] = useState(tabs[0]?.key ?? "");
+  const stickyShellRef = useRef<HTMLDivElement | null>(null);
 
   const selectedIndex = Math.max(
     0,
@@ -47,52 +32,76 @@ export default function RecommendationTabs({
   );
   const activeChild = childArray[selectedIndex] ?? null;
 
+  useEffect(() => {
+    const element = stickyShellRef.current;
+    if (!element) return;
+
+    const updateHeight = () => {
+      document.documentElement.style.setProperty(
+        "--recommendation-lane-height",
+        `${element.getBoundingClientRect().height}px`,
+      );
+    };
+
+    updateHeight();
+
+    const observer = new ResizeObserver(() => {
+      updateHeight();
+    });
+
+    observer.observe(element);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
   if (tabs.length === 0) return null;
 
   return (
-    <div className="grid gap-4">
-      <HorizontalTabRail
-        items={tabs}
-        getKey={(item) => item.key}
-        selectedKey={tabs[selectedIndex]?.key ?? tabs[0].key}
-        onSelect={setSelectedKey}
-        frameLabel={null}
-        frameClassName="border-b border-slate-200/80 bg-transparent p-0 shadow-none"
-        listClassName="pb-0"
-        itemClassName="min-w-[10rem] border-0 bg-transparent p-0 shadow-none"
-        selectedItemClassName="border-0 bg-transparent shadow-none"
-        unselectedItemClassName="border-0 bg-transparent shadow-none"
-        renderItem={(item, isSelected) => (
-          <div
-            className={joinClasses(
-              "min-w-0 space-y-1 border-b-2 px-1 pb-3 pt-1",
-              tabTone(item.key, isSelected),
-            )}
-          >
-            <div className="flex items-center justify-between gap-2">
-              <span className="truncate text-sm font-semibold leading-5">{item.label}</span>
-              <span
+    <div className="grid gap-0">
+      <div
+        ref={stickyShellRef}
+        className="sticky sticky-nav-primary z-20"
+      >
+        <HorizontalTabRail
+          items={tabs}
+          getKey={(item) => item.key}
+          selectedKey={tabs[selectedIndex]?.key ?? tabs[0].key}
+          onSelect={setSelectedKey}
+          frameLabel={null}
+          frameClassName="rounded-xl border border-slate-200 bg-slate-50/80 p-1.5 shadow-none"
+          listClassName="pb-0"
+          itemClassName="min-w-[11rem] border px-3 py-2.5"
+          selectedItemClassName="border-blue-300 bg-white text-slate-900 shadow-[0_2px_8px_rgba(59,130,246,0.14)]"
+          unselectedItemClassName="border-slate-300 bg-slate-50 text-slate-600 hover:border-blue-200 hover:bg-blue-50/55 hover:text-slate-800"
+          renderItem={(item, isSelected) => (
+            <div className="min-w-0 space-y-1">
+              <div className="flex items-center justify-between gap-2">
+                <span className="truncate text-sm font-semibold leading-5">{item.label}</span>
+                <span
+                  className={joinClasses(
+                    "shrink-0 rounded-full px-2 py-0.5 text-[10.5px] font-semibold leading-4 ring-1 ring-inset",
+                    isSelected
+                      ? "bg-white text-slate-700 ring-blue-200"
+                      : "bg-slate-100 text-slate-600 ring-slate-200",
+                  )}
+                >
+                  {item.count}
+                </span>
+              </div>
+              <p
                 className={joinClasses(
-                  "shrink-0 rounded-full px-2 py-0.5 text-[10.5px] font-semibold leading-4",
-                  isSelected
-                    ? "bg-slate-900/5 text-slate-700 ring-1 ring-inset ring-slate-200"
-                    : "bg-slate-900/5 text-slate-600 ring-1 ring-inset ring-slate-200",
+                  "truncate text-[11px] leading-4",
+                  isSelected ? "text-slate-600" : "text-slate-400",
                 )}
               >
-                {item.count}개
-              </span>
+                {item.subtitle}
+              </p>
             </div>
-            <p
-              className={joinClasses(
-                "truncate text-[11px] leading-4",
-                isSelected ? "text-slate-600" : "text-slate-400",
-              )}
-            >
-              {item.subtitle}
-            </p>
-          </div>
-        )}
-      />
+          )}
+        />
+      </div>
 
       <div key={tabs[selectedIndex]?.key ?? tabs[0].key}>{activeChild}</div>
     </div>

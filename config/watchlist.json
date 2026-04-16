@@ -1,15 +1,15 @@
 {
   "core_etf": [
-    { "code": "360750", "name": "TIGER 미국S&P500", "account": "연금저축" },
-    { "code": "133690", "name": "TIGER 미국나스닥100", "account": "연금저축" },
+    { "code": "360750", "name": "TIGER 미국S&P500", "account": "PENSION" },
+    { "code": "133690", "name": "TIGER 미국나스닥100", "account": "PENSION" },
     { "code": "458760", "name": "TIGER 미국배당+7%프리미엄다우존스", "account": "ISA" },
     { "code": "132030", "name": "KODEX 골드선물(H)", "account": "ISA" },
     { "code": "423160", "name": "KODEX KOFR금리액티브", "account": "전계좌" }
   ],
   "satellite_etf": [
-    { "code": "487240", "name": "KODEX AI전력핵심설비", "account": "토스" },
-    { "code": "449450", "name": "PLUS K방산", "account": "토스" },
-    { "code": "434730", "name": "HANARO 원자력iSelect", "account": "토스" }
+    { "code": "487240", "name": "KODEX AI전력핵심설비", "account": "KIS_MAIN" },
+    { "code": "449450", "name": "PLUS K방산", "account": "KIS_MAIN" },
+    { "code": "434730", "name": "HANARO 원자력iSelect", "account": "KIS_MAIN" }
   ],
   "individual_stocks": [
     { "code": "005930", "name": "삼성전자" },

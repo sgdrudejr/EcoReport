@@ -2,8 +2,9 @@
   "input_root": "data/reports",
   "output_root": "reports",
   "detail_level": "standard",
-  "provider": "local",
+  "provider": "qwen",
   "gemini_model": "gemini-2.5-flash",
+  "qwen_model": "qwen-max",
   "windows_host": "192.168.0.218",
   "windows_mac": "A0:AD:9F:CD:47:D2",
   "wol_wait_seconds": 60,
@@ -27,7 +28,7 @@
   "chunk_max_tokens": 900,
   "report_merge_max_tokens": 1500,
   "final_merge_max_tokens": 1800,
-  "category_merge_max_tokens": 2400,
+  "category_merge_max_tokens": 4000,
   "company_batch_size": 10,
   "analysis_max_tokens": 3200
 }

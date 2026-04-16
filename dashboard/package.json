@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "prebuild": "node ./scripts/sync-runtime-data.mjs",
+    "dev": "node ./scripts/run-next.mjs dev --webpack",
+    "build": "node ./scripts/run-next.mjs build",
+    "start": "node ./scripts/run-next.mjs start",
     "lint": "eslint"
   },
   "dependencies": {

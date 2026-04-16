@@ -88,6 +88,12 @@ function isRetryableQuotaError(message) {
   );
 }
 
+function isHardQuotaError(message) {
+  return /(billing details|free[_ -]?tier|limit:\s*0|quota exceeded for metric)/i.test(
+    String(message ?? ""),
+  );
+}
+
 function isUnsupportedModelError(message) {
   return /(is not found|not supported for generateContent)/i.test(String(message ?? ""));
 }
@@ -184,6 +190,10 @@ const LOW_SIGNAL_FALLBACK_PATTERNS = [
   /^report_\d+\s*\|/i,
   /관련 계좌:/,
   /관련 보유 종목:/,
+  /포트폴리오 영향 후보/,
+  /핵심 논지:/,
+  /기간\s+\d+m/i,
+  /강도\s+[0-9.]+/i,
   /(?:^| )메타:/,
   /^(run_date|effective_market_date|run_id|generated_at)\s*:/i,
   /^EcoReport 어드바이저 브리핑/i,
@@ -202,10 +212,12 @@ function looksLikeDenseMarketTable(line) {
     )?.length ?? 0;
   const latinHits = normalized.match(/[A-Za-z]{2,}/g)?.length ?? 0;
   const koreanHits = normalized.match(/[가-힣]/g)?.length ?? 0;
+  const slashHits = normalized.match(/\s\/\s/g)?.length ?? 0;
 
   return (
     (numberHits >= 6 && koreanHits < 40) ||
     (latinHits >= 14 && koreanHits < 35) ||
+    slashHits >= 4 ||
     /^u\s+[A-Z]/.test(normalized)
   );
 }
@@ -242,13 +254,82 @@ function collectMeaningfulTextSnippets(text, limit = 6, lineLimit = 180) {
   ).slice(0, limit);
 }
 
+function splitReadableSentences(text, limit = 220) {
+  return uniqueNonEmpty(
+    compact(text)
+      .split(/(?<=[.!?。]|다\.)\s+/)
+      .map((line) => normalizeFallbackLine(line, limit))
+      .filter((line) => line.length >= 24),
+  );
+}
+
+function keywordHitScore(text, keywords) {
+  const normalizedText = String(text ?? "").toLowerCase();
+  return keywords.reduce((score, keyword) => {
+    const normalizedKeyword = String(keyword ?? "")
+      .trim()
+      .toLowerCase();
+    if (!normalizedKeyword) return score;
+    if (!normalizedText.includes(normalizedKeyword)) return score;
+    return score + (normalizedKeyword.length >= 5 ? 3 : 1);
+  }, 0);
+}
+
+function collectResearchEvidenceSnippets(text, keywords, limit = 3, lineLimit = 220) {
+  const sentences = splitReadableSentences(text, lineLimit);
+  return sentences
+    .map((sentence, index) => ({
+      sentence,
+      index,
+      score: keywordHitScore(sentence, keywords),
+    }))
+    .filter((entry) => entry.score > 0)
+    .sort((left, right) => right.score - left.score || left.index - right.index)
+    .slice(0, limit)
+    .map((entry) => entry.sentence);
+}
+
+function buildCombinedResearchText(primaryDeepResearch, refinementResponses) {
+  return [
+    compact(primaryDeepResearch),
+    ...refinementResponses
+      .filter((entry) => entry?.text)
+      .map((entry) => `Round ${entry.round} ${entry.label}\n${entry.text}`),
+  ]
+    .filter(Boolean)
+    .join("\n\n");
+}
+
+function accountRoleSummary(accountKey) {
+  switch (accountKey) {
+    case "ISA":
+      return "절세형 방어·인컴 계좌";
+    case "PENSION":
+      return "장기 복리 중심 연금 계좌";
+    case "KIS_MAIN":
+      return "실전형 테마 노출을 조절하는 일반 계좌";
+    default:
+      return "계좌 역할";
+  }
+}
+
+function buildHoldingKeywords(account, holding) {
+  return uniqueNonEmpty([
+    holding?.name,
+    holding?.code,
+    holding?.name ? holding.name.replace(/\.\.\.+$/, "") : "",
+    account?.label,
+    account?.key,
+  ]);
+}
+
 function normalizeAccountKey(value) {
   const normalized = String(value ?? "")
     .replace(/\s+/g, "")
     .toUpperCase();
   if (normalized === "ISA") return "ISA";
   if (normalized.includes("연금") || normalized === "PENSION") return "PENSION";
-  if (normalized.includes("토스") || normalized === "TOSS") return "TOSS";
+  if (normalized.includes("토스") || normalized === "TOSS") return "KIS_MAIN";
   if (normalized.includes("한투") || normalized.includes("KIS")) return "KIS_MAIN";
   return normalized || null;
 }
@@ -827,7 +908,7 @@ function buildPrompt({
     "- 근거가 약한 숫자/정확 날짜/ETF 종목명은 새로 지어내지 마세요. 모호하면 '4월 말', '2분기 중', '몇 주 내'처럼 보수적으로 표현하세요.",
     "- 한국 투자자가 바로 실행할 수 있는 언어로 정리하세요. 필요하면 해외 자산 아이디어를 한국 상장 ETF/국내 계좌 실행 관점으로 번역하세요.",
     "- 문장은 짧게 쓰고, 섹션마다 실제 대응이 달라지도록 구체적으로 쓰세요.",
-    "- 보유 종목 코멘트는 반드시 계좌 성격을 반영하세요. ISA는 절세형 방어·인컴, 연금은 장기 복리, 토스는 전술 알파, 한투 일반은 실전형 테마 계좌입니다.",
+    "- 보유 종목 코멘트는 반드시 계좌 성격을 반영하세요. ISA는 절세형 방어·인컴, 연금은 장기 복리, 한투 일반은 실전형 테마/전술 계좌입니다.",
     "- 보유 종목별 `핵심 내용`과 `유의할 점`은 각각 최소 2문장 이상 작성하세요. 한 줄 요약으로 끝내지 마세요.",
     "- 보유 종목, 추천 실행, 계좌 메모처럼 한 항목 안에 문장이 2개 이상 들어가면 문장마다 줄바꿈하세요. 같은 항목 안에서만 줄을 나누고 빈 줄은 넣지 마세요.",
     "- 계좌별 투자 방향성은 반드시 '무엇을 왜 늘리고 줄이는지'가 드러나게 3~5문장으로 쓰세요. 제네럴한 문장만 반복하지 마세요.",
@@ -862,12 +943,11 @@ function buildPrompt({
     "",
     "## Strategy (이번 주 대응)",
     "- 현금 비중, 계좌별 목표, 이번 주 우선순위",
-    "- ISA / PENSION / TOSS / KIS_MAIN 각각 왜 그렇게 운용하는지 1문단씩",
+    "- ISA / PENSION / KIS_MAIN 각각 왜 그렇게 운용하는지 1문단씩",
     "",
     "## Action (오늘 실행)",
     "- ISA: 오늘 실행 1~2개와 실제 이유",
     "- PENSION: 오늘 실행 1~2개와 실제 이유",
-    "- TOSS: 오늘 실행 1~2개와 실제 이유",
     "- KIS_MAIN: 오늘 실행 1~2개와 실제 이유",
     "",
     "## 계좌별 보유 종목 심층 코멘트",
@@ -878,8 +958,6 @@ function buildPrompt({
     "  - 체크포인트: 1~3개",
     "  - 대응: 추가매수 / 보유 / 축소 / 관망 중 하나",
     "### PENSION",
-    "- 같은 형식 반복",
-    "### TOSS",
     "- 같은 형식 반복",
     "### KIS_MAIN",
     "- 같은 형식 반복",
@@ -913,7 +991,7 @@ function buildPrompt({
   ].join("\n");
 }
 
-function buildFallbackHoldingCommentary(portfolio) {
+function buildFallbackHoldingCommentary(portfolio, researchText = "") {
   const lines = ["## 계좌별 보유 종목 심층 코멘트"];
   const accounts = portfolio?.accounts ?? [];
 
@@ -933,13 +1011,26 @@ function buildFallbackHoldingCommentary(portfolio) {
     }
 
     for (const holding of holdings) {
+      const keywords = buildHoldingKeywords(account, holding);
+      const matchedCoreSnippets = collectResearchEvidenceSnippets(researchText, keywords, 2, 210);
+      const matchedRiskSnippets = collectResearchEvidenceSnippets(
+        researchText,
+        [...keywords, "무효화", "리스크", "변동성", "유가", "금리", "실적", "대기", "확인"],
+        2,
+        210,
+      ).filter((snippet) => !matchedCoreSnippets.includes(snippet));
       const profitRate =
         typeof holding?.profitRate === "number" ? `${holding.profitRate.toFixed(2)}%` : null;
-      const coreComment = `${account.label} 안에서 ${holding.name}은 현재 보유 중인 핵심 노출입니다. ${
-        profitRate ? `현재 수익률은 ${profitRate} 수준이며,` : ""
-      } 계좌 성격과 상위 리포트 흐름을 함께 놓고 보유 논리를 점검해야 합니다.`;
-      const cautionComment =
-        "이번 fallback 브리핑은 저장된 Deep Research 구조화 결과가 충분하지 않아 세부 인과는 보수적으로 해석해야 합니다. 추가 비중 확대는 다음 리포트 업데이트와 기술 신호를 확인한 뒤 판단하는 편이 안전합니다.";
+      const coreComment = uniqueNonEmpty([
+        matchedCoreSnippets[0],
+        `${account.label}에서는 ${holding.name}을 ${accountRoleSummary(account.key)} 관점에서 봐야 합니다.${profitRate ? ` 현재 수익률은 ${profitRate} 수준입니다.` : ""}`,
+        matchedCoreSnippets[1],
+      ]).join(" ");
+      const cautionComment = uniqueNonEmpty([
+        matchedRiskSnippets[0],
+        matchedRiskSnippets[1],
+        `${holding.name}의 추가 비중 확대는 다음 리포트 업데이트와 기술 신호를 함께 확인한 뒤 판단하는 편이 안전합니다.`,
+      ]).join(" ");
       lines.push(`- ${holding.name}${holding.code ? ` (${holding.code})` : ""}`);
       lines.push(`  - 핵심 내용: ${sentenceLines(coreComment, "    ")}`);
       lines.push(`  - 유의할 점: ${sentenceLines(cautionComment, "    ")}`);
@@ -955,8 +1046,16 @@ function buildFallbackHoldingCommentary(portfolio) {
   return lines.join("\n");
 }
 
-function buildFallbackBriefing({ args, portfolio, priorBriefing, deepResearch, selection }) {
+function buildFallbackBriefing({
+  args,
+  portfolio,
+  priorBriefing,
+  deepResearch,
+  refinementResponses = [],
+  selection,
+}) {
   const priorSignals = extractPriorBriefingSignals(priorBriefing);
+  const combinedResearchText = buildCombinedResearchText(deepResearch, refinementResponses);
   const macroLines = uniqueNonEmpty(
     selection.macro
       .map((item) => firstReadableExtractLine(item, 190))
@@ -972,16 +1071,16 @@ function buildFallbackBriefing({ args, portfolio, priorBriefing, deepResearch, s
     .map((item) => normalizeFallbackLine(item, 170))
     .filter(Boolean)
     .slice(0, 6);
-  const researchLines = collectMeaningfulTextSnippets(deepResearch, 6, 190);
+  const researchLines = collectMeaningfulTextSnippets(combinedResearchText, 8, 190);
   const advisorLines = collectMeaningfulTextSnippets(priorBriefing, 6, 190);
   const accountByKey = new Map((portfolio?.accounts ?? []).map((account) => [account.key, account]));
   const actionLineFor = (key, fallbackLabel) => {
     const priorAction = priorSignals.actionMap.get(key);
+    const account = accountByKey.get(key);
     if (priorAction) {
       return `- ${key}: ${priorAction}`;
     }
 
-    const account = accountByKey.get(key);
     const label = account?.label ?? fallbackLabel;
     const firstHolding = account?.holdings?.[0];
     if (!account) {
@@ -1018,14 +1117,17 @@ function buildFallbackBriefing({ args, portfolio, priorBriefing, deepResearch, s
     ? deriveFallbackImplicationLines(priorSignals, portfolioLines)
     : ["포트폴리오 연결 근거는 Stage 1 상위 추출과 Deep Research 메모를 기준으로 재확인합니다."];
   const checkpointLines = deriveFallbackTimelineLines(priorSignals);
-  const macroViewLines = deriveFallbackMacroViewLines(priorSignals, macroLines);
-  const fallbackReason = deepResearch.trim()
-    ? "Deep Research 결과 또는 Gemini 합성이 불안정해"
+  const macroViewLines = deriveFallbackMacroViewLines(
+    priorSignals,
+    uniqueNonEmpty([...macroLines, ...researchLines, ...catalystLines]).slice(0, 4),
+  );
+  const fallbackReason = combinedResearchText.trim()
+    ? "Gemini API 합성은 불안정했지만 저장된 Deep Research 응답과 같은 날짜 Stage 1/포트폴리오 데이터를 다시 엮어"
     : "Deep Research 결과가 아직 저장되지 않아";
-  const holdingCommentary = buildFallbackHoldingCommentary(portfolio);
+  const holdingCommentary = buildFallbackHoldingCommentary(portfolio, combinedResearchText);
 
   return [
-    `> ${fallbackReason} 같은 날짜 Stage 1/브리핑/포트폴리오 데이터를 바탕으로 로컬 fallback 브리핑을 생성했습니다.`,
+    `> ${fallbackReason} 로컬 fallback 브리핑을 생성했습니다.`,
     "",
     "## 오늘 한 줄 진단",
     `- ${mainScenario}`,
@@ -1055,7 +1157,6 @@ function buildFallbackBriefing({ args, portfolio, priorBriefing, deepResearch, s
     "## Action (오늘 실행)",
     actionLineFor("ISA", "ISA"),
     actionLineFor("PENSION", "연금저축"),
-    actionLineFor("TOSS", "토스"),
     actionLineFor("KIS_MAIN", "한국투자 일반"),
     "",
     holdingCommentary,
@@ -1140,6 +1241,9 @@ async function callGeminiWithRetry({ apiKey, modelCandidates, prompt, maxRetries
         const message = error instanceof Error ? error.message : String(error);
         if (isUnsupportedModelError(message)) {
           continue;
+        }
+        if (isHardQuotaError(message)) {
+          throw error;
         }
         if (!isRetryableQuotaError(message)) {
           throw error;
@@ -1305,6 +1409,10 @@ async function main() {
 
   if (paths.archive !== paths.output) {
     await writeText(paths.archive, `${text.trim()}\n`);
+    await writeJson(`${paths.archive}.meta.json`, {
+      ...meta,
+      archive_of: paths.output,
+    });
   }
 
   console.log(paths.output);

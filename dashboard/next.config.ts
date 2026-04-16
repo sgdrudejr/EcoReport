@@ -1,19 +1,11 @@
-import fs from "fs";
 import path from "path";
 import type { NextConfig } from "next";
+import { resolveRepoRoot } from "./lib/repo-root";
 
 const cwd = path.resolve(process.cwd());
-
-function hasSharedArtifacts(candidate: string) {
-  return (
-    fs.existsSync(path.join(candidate, "config")) &&
-    fs.existsSync(path.join(candidate, "data"))
-  );
-}
-
-const repoRoot =
-  [cwd, path.resolve(cwd, ".."), path.resolve(cwd, "../..")].find(hasSharedArtifacts) ??
-  path.resolve(cwd, "..");
+const repoRoot = resolveRepoRoot();
+const tracingRoot =
+  repoRoot === cwd || repoRoot.startsWith(`${cwd}${path.sep}`) ? cwd : repoRoot;
 
 function repoGlob(...parts: string[]) {
   return path.relative(cwd, path.join(repoRoot, ...parts)).split(path.sep).join("/");
@@ -22,11 +14,18 @@ function repoGlob(...parts: string[]) {
 const repoRuntimeIncludes = [
   repoGlob("config", "**/*"),
   repoGlob("data", "analysis-state", "**/*"),
+  repoGlob("data", "backtest", "**/*"),
+  repoGlob("data", "external", "**/*"),
+  repoGlob("data", "feedback", "**/*"),
+  repoGlob("data", "intraday", "**/*"),
   repoGlob("data", "market", "**/*"),
   repoGlob("data", "portfolio", "**/*"),
+  repoGlob("data", "reference", "**/*"),
   repoGlob("data", "reports", "**", "manual-compressed.json"),
   repoGlob("data", "technical", "**/*"),
   repoGlob("knowledge", "daily", "**/*"),
+  repoGlob("knowledge", "wiki", "**/*"),
+  repoGlob("reports", "feedback-summary.md"),
   repoGlob("reports", "daily", "**/*"),
 ];
 
@@ -43,12 +42,12 @@ const nextConfig: NextConfig = {
   ],
   // The dashboard reads generated artifacts from the repo root, not only from
   // the dashboard directory, so production traces need to include them.
-  outputFileTracingRoot: repoRoot,
+  outputFileTracingRoot: tracingRoot,
   outputFileTracingIncludes: {
     "/**": repoRuntimeIncludes,
   },
   turbopack: {
-    root: repoRoot,
+    root: cwd,
   },
 };
 

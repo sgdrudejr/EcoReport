@@ -1,32 +1,14 @@
 import fsSync from "node:fs";
 import fs from "node:fs/promises";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 
+import { resolveEcoReportRoot } from "./root-resolver.js";
 import { todayInSeoul } from "./trading-calendar.js";
 
-function resolveRootDir() {
-  const moduleDir = path.dirname(fileURLToPath(import.meta.url));
-  const candidates = [
-    process.env.ECOREPORT_ROOT,
-    process.cwd(),
-    path.resolve(process.cwd(), ".."),
-    path.resolve(moduleDir, "..", ".."),
-  ].filter(Boolean);
-
-  for (const candidate of candidates) {
-    if (
-      fsSync.existsSync(path.join(candidate, "config", "strategy.json")) &&
-      fsSync.existsSync(path.join(candidate, "scripts"))
-    ) {
-      return candidate;
-    }
-  }
-
-  return path.resolve(moduleDir, "..", "..");
-}
-
-export const ROOT_DIR = resolveRootDir();
+export const ROOT_DIR = resolveEcoReportRoot({
+  cwd: process.cwd(),
+  moduleUrl: import.meta.url,
+});
 
 // ─────────────────────────────────────────────────────────────────────────────
 // Security Master: config/securities.json 을 Single Source of Truth로 사용.

@@ -16,9 +16,14 @@
 # next.js
 /.next/
 /out/
+/.next-dev.log
 
 # production
 /build
+/dashboard/
+/data/
+/runtime-data/
+/.vercel-build/
 
 # misc
 .DS_Store

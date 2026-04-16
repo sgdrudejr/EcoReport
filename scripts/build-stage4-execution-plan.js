@@ -10,6 +10,7 @@ import {
   buildRunMetadata,
   enrichPortfolioWithSecurityCodes,
   parseDateArgs,
+  readJson,
   resolveSecurityCodeFromCandidates,
   won,
   writeJson,
@@ -231,7 +232,6 @@ function normalizeStrategyAccountKey(account, strategy) {
     account.key,
     account.label,
     account.key === "PENSION" ? "연금저축" : null,
-    account.key === "TOSS" ? "토스증권" : null,
     account.key === "ISA" ? "ISA" : null,
   ].filter(Boolean);
 
@@ -719,9 +719,6 @@ function accountPersona(accountKey) {
   if (accountKey === "PENSION") {
     return "장기 복리 관점에서 미국 코어 자산과 방어 자산을 안정적으로 쌓는 역할";
   }
-  if (accountKey === "TOSS") {
-    return "전술 테마와 성장 섹터를 민첩하게 반영하는 역할";
-  }
   if (accountKey === "KIS_MAIN") {
     return "전술 테마와 현금 운용을 함께 조절하며 국내 ETF 알파를 쌓는 역할";
   }
@@ -904,7 +901,8 @@ async function main() {
       null;
     const bucket = executionBuckets(account, quant, stage2Action, strategy, technicalMap);
     bucket.emergencyDefense = emergencyDefense;
-    const stage2Candidates = resolveStage2Candidates(account, stage2Data, bucket);
+    const stage2CandidateSet = resolveStage2Candidates(account, stage2Data, bucket);
+    const stage2Candidates = stage2CandidateSet.accepted ?? [];
     bucket.stage2Candidates = stage2Candidates;
     const stage1Drivers = stage1.extracts
       .filter((item) => item.related_accounts?.includes(account.key))
@@ -919,6 +917,14 @@ async function main() {
       positionSizing,
       entryConfig,
       emergencyDefense,
+    });
+    const validation = validateExecutionPlan({
+      account,
+      bucket,
+      stagedBuys,
+      trims: bucket.trim.slice(0, 3),
+      holds: bucket.hold.slice(0, 3),
+      rejectedAlternatives: stage2CandidateSet.rejected ?? [],
     });
     const macroCommentary = buildMacroCommentary({
       account,
@@ -943,6 +949,12 @@ async function main() {
       candidateFromGap: bucket.candidateFromGap,
       stage2Candidates,
       stagedBuys: validation.stagedBuys,
+      rejectedAlternatives: validation.rejectedAlternatives,
+      noAction: validation.noAction,
+      noActionReason: validation.noActionReason,
+      validatorFlags: validation.validatorFlags,
+      validationConfidence: validation.confidence,
+      validationEvidence: validation.topEvidence,
       trims: bucket.trim.slice(0, 3),
       holds: bucket.hold.slice(0, 3),
       watches: bucket.watch.slice(0, 3),

@@ -851,6 +851,20 @@ function calculateIndicators(history, snapshot) {
   const bollingerPosition = determineBollingerPosition(latestClose, bollinger.latest);
   const recentHighWindow = 20;
   const recentHigh = computeRecentHigh(highs, recentHighWindow);
+  const rsiDivergence = detectRsiDivergence(history, rsiSeries);
+  const indicatorAnalysis = {
+    rsi: analyzeRsi(rsi.latest, rsiDivergence),
+    macd: analyzeMacd(macd.latest, macd.previous),
+    bollinger: analyzeBollinger(latestClose, bollinger.latest, bollingerPosition),
+    movingAverage: analyzeMovingAverages(
+      latestClose,
+      ma5.latest,
+      ma20.latest,
+      ma60.latest,
+      ma120.latest,
+    ),
+  };
+  const executionBias = summarizeExecutionBias(indicatorAnalysis);
 
   const score = calcScore({
     close: latestClose,

@@ -398,8 +398,8 @@ if [[ "$SKIP_RAG" == "1" ]]; then
 else
   run_parallel_nonfatal_group \
     report_rag "🧱 리포트 RAG 코퍼스 생성..." node scripts/build-report-rag-corpus.js --date "$DATE" --next \
-    portfolio_rag "🧱 포트폴리오 RAG 코퍼스 생성..." node scripts/build-portfolio-rag-corpus.js --date "$DATE" --next \
-    parallel_rag "🧱 병렬 RAG 코퍼스 생성..." node scripts/build-parallel-rag-corpus.js --date "$DATE"
+    portfolio_rag "🧱 포트폴리오 RAG 코퍼스 생성..." node scripts/build-portfolio-rag-corpus.js --date "$DATE"
+  run_nonfatal_step "🧱 병렬 RAG 코퍼스 생성..." node scripts/build-parallel-rag-corpus.js --date "$DATE"
 fi
 
 if [[ "$RUN_GEMINI_BRIEFING" == "yes" ]] || { [[ "$RUN_GEMINI_BRIEFING" == "auto" ]] && has_gemini_key; }; then

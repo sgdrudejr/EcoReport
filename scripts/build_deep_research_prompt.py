@@ -160,7 +160,6 @@ def main():
 ### 5. 계좌별 권장 액션
 - ISA:
 - PENSION:
-- TOSS:
 - KIS_MAIN:
 
 ---

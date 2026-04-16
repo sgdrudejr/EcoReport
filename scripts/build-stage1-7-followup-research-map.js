@@ -329,7 +329,7 @@ function buildMacroTopics(stage1, stage4) {
         keywords: keywordProfile.all,
         primaryKeywords: keywordProfile.primary,
         secondaryKeywords: keywordProfile.secondary,
-        accountKeys: ["ISA", "PENSION", "TOSS", "KIS_MAIN"],
+        accountKeys: ["ISA", "PENSION", "KIS_MAIN"],
         targetCodes: [],
         sourceSignals: ["레짐 핵심 변수", "방어 자산/헤지 판단"],
       };

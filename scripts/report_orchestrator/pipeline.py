@@ -593,6 +593,124 @@ def compact_report_summaries_for_final(report_summaries: list[dict[str, Any]], d
     return compacted
 
 
+def infer_summary_category(summary: dict[str, Any]) -> str:
+    title = str(summary.get("report_title") or "").strip()
+    publisher = str(summary.get("publisher") or "").strip()
+    title_lower = title.lower()
+    publisher_lower = publisher.lower()
+    company_mentions = summary.get("company_mentions")
+    company_count = len(company_mentions) if isinstance(company_mentions, list) else 0
+
+    def contains_any(*tokens: str) -> bool:
+        haystack = f"{title_lower} {publisher_lower}"
+        return any(token.lower() in haystack for token in tokens)
+
+    if contains_any("bond", "ficc", "credit", "크레딧", "채권", "공사채", "여전채", "국채", "금리", "스프레드"):
+        return "채권분석"
+
+    if contains_any("morning brief", "morning letter", "morning snapshot", "daily", "장마감", "모닝코멘트", "미 증시", "국내주식 마감 시황", "달러,", "시황"):
+        return "시황정보"
+
+    if contains_any("전략", "strategy", "watchlist", "qna", "normalizing", "fund flow", "포커", "거래대금"):
+        return "투자전략"
+
+    if contains_any("imf", "geopolitics", "지정학", "미국-이란", "노동시장", "성장률", "경제", "macro", "환율", "물가", "gdp"):
+        return "경제분석"
+
+    if contains_any("weekly", "원전", "반도체", "mlcc", "nand", "전기전자", "디지털자산", "에너지", "우주", "산업", "업종"):
+        return "산업분석"
+
+    if contains_any("preview", "pre_", "pre:", "탐방노트", "후기", "간담회", "ir", "1q", "2q", "3q", "4q"):
+        return "종목분석"
+
+    if company_count <= 2 and company_count > 0:
+        return "종목분석"
+    if company_count >= 4:
+        return "산업분석"
+    if summary.get("time_horizon") == "short_term":
+        return "시황정보"
+    return "기타"
+
+
+def category_slug(category: str) -> str:
+    mapping = {
+        "경제분석": "macro",
+        "투자전략": "strategy",
+        "시황정보": "market",
+        "채권분석": "fixed_income",
+        "산업분석": "industry",
+        "종목분석": "company",
+        "기타": "other",
+    }
+    return mapping.get(category, sanitize_file_stem(category) or "category")
+
+
+def _common_strings(items: list[str], limit: int) -> list[str]:
+    counter: dict[str, int] = {}
+    for item in items:
+        text = str(item or "").strip()
+        if not text:
+            continue
+        counter[text] = counter.get(text, 0) + 1
+    ranked = sorted(counter.items(), key=lambda pair: (-pair[1], len(pair[0])))
+    return [text for text, _count in ranked[:limit]]
+
+
+def _contains_theme(text: str, keywords: list[str]) -> bool:
+    lowered = text.lower()
+    return any(keyword.lower() in lowered for keyword in keywords)
+
+
+def compact_report_summaries_for_category(report_summaries: list[dict[str, Any]], detail_level: str) -> list[dict[str, Any]]:
+    is_deep = detail_level == "deep"
+    compacted: list[dict[str, Any]] = []
+    for item in report_summaries:
+        resolved_title = item.get("report_title") or item.get("category") or "요약"
+        resolved_summary = item.get("core_summary") or item.get("market_summary") or ""
+        compact_item: dict[str, Any] = {
+            "report_title": clip_text(resolved_title, 120),
+            "publisher": clip_text(item.get("publisher"), 40),
+            "publish_date": item.get("publish_date", ""),
+            "category": str(item.get("category") or infer_summary_category(item)).strip() or "기타",
+            "overall_sentiment": item.get("overall_sentiment", "neutral"),
+            "time_horizon": item.get("time_horizon", "mid_term"),
+            "core_summary": clip_text(resolved_summary, 500 if is_deep else 260),
+            "macro_view": clipped_string_list(item.get("macro_view"), max_items=5 if is_deep else 3, max_chars=160),
+            "sector_view": clipped_string_list(item.get("sector_view"), max_items=5 if is_deep else 3, max_chars=160),
+            "key_signals": clipped_string_list(item.get("key_signals"), max_items=5 if is_deep else 3, max_chars=160),
+            "risks": clipped_string_list(item.get("risks"), max_items=4 if is_deep else 2, max_chars=150),
+            "actionable_points": clipped_string_list(item.get("actionable_points"), max_items=4 if is_deep else 2, max_chars=150),
+        }
+        company_mentions = item.get("company_mentions")
+        if isinstance(company_mentions, list):
+            compact_item["company_mentions"] = [
+                {
+                    "name": clip_text(company.get("name"), 50),
+                    "ticker": company.get("ticker", ""),
+                    "rating": company.get("rating", "unknown"),
+                    "target_price": company.get("target_price"),
+                    "key_points": clipped_string_list(company.get("key_points"), max_items=3 if is_deep else 1, max_chars=130),
+                    "catalysts": clipped_string_list(company.get("catalysts"), max_items=2, max_chars=100),
+                    "risks": clipped_string_list(company.get("risks"), max_items=2, max_chars=100),
+                }
+                for company in company_mentions[:5 if is_deep else 2]
+                if isinstance(company, dict) and company.get("name")
+            ]
+        if is_deep:
+            compact_item.update(
+                {
+                    "variant_view": clip_text(item.get("variant_view"), 250),
+                    "consensus_gap": clip_text(item.get("consensus_gap"), 250),
+                    "scenario_map": item.get("scenario_map") if isinstance(item.get("scenario_map"), dict) else {},
+                    "event_timeline": clipped_string_list(item.get("event_timeline"), max_items=3, max_chars=120),
+                    "portfolio_relevance": clipped_string_list(item.get("portfolio_relevance"), max_items=3, max_chars=120),
+                    "fx_view": clip_text(item.get("fx_view"), 160),
+                }
+            )
+        compacted.append(compact_item)
+    return compacted
+
+
 @dataclass(slots=True)
 class ReportSource:
     report_date: str
@@ -1287,51 +1405,101 @@ class ReportOrchestrator:
         from collections import defaultdict
         groups: dict[str, list[dict[str, Any]]] = defaultdict(list)
         for summary in report_summaries:
-            cat = str(summary.get("category") or "기타").strip()
+            cat = str(summary.get("category") or "").strip()
+            if not cat or cat == "기타":
+                cat = infer_summary_category(summary)
             groups[cat].append(summary)
         return dict(groups)
+
+    def _split_category_batches(self, summaries: list[dict[str, Any]]) -> list[list[dict[str, Any]]]:
+        compacted = compact_report_summaries_for_category(summaries, self.config.detail_level)
+        max_chars = 16000 if self.config.detail_level == "deep" else 12000
+        batches: list[list[dict[str, Any]]] = []
+        current_original: list[dict[str, Any]] = []
+        current_chars = 0
+
+        for original, compacted_item in zip(summaries, compacted):
+            item_chars = len(json.dumps(compacted_item, ensure_ascii=False))
+            if current_original and current_chars + item_chars > max_chars:
+                batches.append(current_original)
+                current_original = []
+                current_chars = 0
+            current_original.append(original)
+            current_chars += item_chars
+
+        if current_original:
+            batches.append(current_original)
+        return batches
 
     def merge_category_view(self, category: str, summaries: list[dict[str, Any]]) -> dict[str, Any]:
         """카테고리 내 리포트 요약들을 하나의 카테고리 뷰로 병합한다.
         종목분석은 company_batch_size 단위로 서브배치 후 재병합한다."""
         batch_size = self.config.company_batch_size
+        batches = self._split_category_batches(summaries)
         if category == "종목분석" and len(summaries) > batch_size:
             sub_views = []
             for i in range(0, len(summaries), batch_size):
                 batch = summaries[i:i + batch_size]
                 sub_views.append(self._call_category_merge_llm(category, batch))
             return self._call_category_merge_llm(f"{category}(통합)", sub_views)
+        if len(batches) > 1:
+            sub_views = []
+            for index, batch in enumerate(batches, start=1):
+                self.log(f"     ↳ {category} 서브배치 {index}/{len(batches)} ({len(batch)}건)")
+                sub_views.append(self._call_category_merge_llm(category, batch))
+            return self._call_category_merge_llm(f"{category}(통합)", sub_views)
         return self._call_category_merge_llm(category, summaries)
 
     def _call_category_merge_llm(self, category: str, summaries: list[dict[str, Any]]) -> dict[str, Any]:
         limits = get_detail_limits(self.config.detail_level)
+        is_deep = self.config.detail_level == "deep"
+        prompt_summaries = compact_report_summaries_for_category(summaries, self.config.detail_level)
+        system_content = (
+            f"너는 '{category}' 카테고리 리포트 {len(summaries)}건을 분석해 하나의 통합 카테고리 뷰를 생성하는 시장 분석가다. "
+            "반드시 JSON 객체만 출력하라. 마크다운 코드블록 없이 순수 JSON만.\n\n"
+            "분석 지침:\n"
+            "1. 컨센서스: 복수 리포트에서 공통으로 언급되는 뷰를 consensus_view로 정리하라\n"
+            "2. 소수의견: 1~2개 리포트만 언급하는 독특한 시각을 minority_view로 분리하라\n"
+            "3. 모순 탐지: 같은 섹터/종목에 대해 상반된 전망이 있으면 contradictions에 명시하라\n"
+            "4. 투자 가설: 여러 리포트의 시그널을 종합해 actionable한 투자 가설을 investment_hypothesis로 도출하라\n"
+            "5. 크로스 시그널: 이 카테고리가 다른 섹터/자산에 미치는 연쇄 영향을 cross_signals에 서술하라\n"
+            f"6. sector_view와 key_signals는 최대 {limits['final_list_max']}개, 각 항목은 구체적 수치/날짜 포함\n"
+            "7. 단순 나열 금지 — 리포트 간 비교, 충돌, 공통점을 드러내는 서술을 우선시하라"
+        )
+        required_schema: dict[str, Any] = {
+            "category": category,
+            "market_summary": "",
+            "overall_sentiment": "neutral",
+            "consensus_view": [],
+            "minority_view": [],
+            "contradictions": [],
+            "investment_hypothesis": "",
+            "cross_signals": [],
+            "macro_view": [],
+            "sector_view": [],
+            "key_signals": [],
+            "risks": [],
+            "company_mentions": [],
+            "actionable_points": [],
+        }
+        if is_deep:
+            required_schema.update({
+                "scenario_bull": "",
+                "scenario_bear": "",
+                "time_sensitive_events": [],
+                "portfolio_impact": [],
+            })
         messages = [
-            {
-                "role": "system",
-                "content": (
-                    f"너는 '{category}' 카테고리 리포트 요약들을 하나의 카테고리 뷰로 병합하는 분석기다. "
-                    "반드시 JSON 객체만 출력하라. "
-                    f"sector_view와 key_signals는 최대 {limits['final_list_max']}개만 남겨라."
-                ),
-            },
+            {"role": "system", "content": system_content},
             {
                 "role": "user",
                 "content": json.dumps(
                     {
                         "task": "merge_category_view",
                         "category": category,
-                        "required_schema": {
-                            "category": category,
-                            "market_summary": "",
-                            "overall_sentiment": "neutral",
-                            "macro_view": [],
-                            "sector_view": [],
-                            "key_signals": [],
-                            "risks": [],
-                            "company_mentions": [],
-                            "actionable_points": [],
-                        },
-                        "report_summaries": summaries,
+                        "report_count": len(summaries),
+                        "required_schema": required_schema,
+                        "report_summaries": prompt_summaries,
                         "detail_level": self.config.detail_level,
                     },
                     ensure_ascii=False,
@@ -1349,36 +1517,431 @@ class ReportOrchestrator:
         view.setdefault("category", category)
         return view
 
+    def _merge_category_view_local(self, category: str, summaries: list[dict[str, Any]]) -> dict[str, Any]:
+        limits = get_detail_limits(self.config.detail_level)
+        compacted = compact_report_summaries_for_category(summaries, self.config.detail_level)
+
+        bullish = sum(1 for item in compacted if item.get("overall_sentiment") == "bullish")
+        bearish = sum(1 for item in compacted if item.get("overall_sentiment") == "bearish")
+        if bullish > bearish:
+            overall_sentiment = "bullish"
+        elif bearish > bullish:
+            overall_sentiment = "bearish"
+        else:
+            overall_sentiment = "neutral"
+
+        macro_pool: list[str] = []
+        sector_pool: list[str] = []
+        signal_pool: list[str] = []
+        risk_pool: list[str] = []
+        action_pool: list[str] = []
+        summary_pool: list[str] = []
+        company_pool: dict[str, dict[str, Any]] = {}
+
+        for item in compacted:
+            macro_pool.extend(item.get("macro_view", []))
+            sector_pool.extend(item.get("sector_view", []))
+            signal_pool.extend(item.get("key_signals", []))
+            risk_pool.extend(item.get("risks", []))
+            action_pool.extend(item.get("actionable_points", []))
+            if item.get("core_summary"):
+                summary_pool.append(str(item["core_summary"]))
+            for company in item.get("company_mentions", []):
+                if not isinstance(company, dict):
+                    continue
+                name = str(company.get("name", "")).strip()
+                if not name:
+                    continue
+                if name not in company_pool:
+                    company_pool[name] = {
+                        "name": name,
+                        "rating": company.get("rating", "unknown"),
+                        "key_points": [],
+                        "_count": 0,
+                    }
+                company_pool[name]["_count"] += 1
+                company_pool[name]["key_points"] = clean_string_list(
+                    company_pool[name]["key_points"] + clean_string_list(company.get("key_points"), max_items=2),
+                    max_items=2,
+                )
+
+        ranked_companies = sorted(company_pool.values(), key=lambda item: (-item["_count"], item["name"]))
+        company_mentions = [
+            {
+                "name": item["name"],
+                "rating": item.get("rating", "unknown"),
+                "key_points": item.get("key_points", []),
+            }
+            for item in ranked_companies[: limits["report_company_max"]]
+        ]
+
+        summary_lines = _common_strings(summary_pool, 3)
+        market_summary = " ".join(summary_lines) if summary_lines else f"{category} 카테고리 요약 {len(summaries)}건을 병합한 결과입니다."
+
+        return {
+            "category": category,
+            "market_summary": clip_text(market_summary, 420),
+            "overall_sentiment": overall_sentiment,
+            "macro_view": _common_strings(macro_pool, limits["final_list_max"]),
+            "sector_view": _common_strings(sector_pool, limits["final_list_max"]),
+            "key_signals": _common_strings(signal_pool, limits["final_list_max"]),
+            "risks": _common_strings(risk_pool, limits["final_list_max"]),
+            "company_mentions": company_mentions,
+            "actionable_points": _common_strings(action_pool, limits["final_list_max"]),
+        }
+
+    def _load_index_metadata(self, report_summaries: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
+        """index.json에서 report_id별 opinion/target_price 등 구조화 메타데이터를 로드한다."""
+        id_to_meta: dict[str, dict[str, Any]] = {}
+        # 날짜 추출 (summaries의 publish_date 또는 report_id 기반)
+        dates: set[str] = set()
+        for s in report_summaries:
+            d = s.get("publish_date") or s.get("report_date") or ""
+            if d:
+                dates.add(d[:10])
+            rid = s.get("report_id") or s.get("id") or ""
+            if rid:
+                id_to_meta[rid] = {}
+
+        for date_str in dates:
+            index_path = self.config.input_root / date_str / "index.json"
+            if not index_path.exists():
+                continue
+            rows = read_json(index_path, [])
+            if not isinstance(rows, list):
+                continue
+            for row in rows:
+                rid = str(row.get("id") or "")
+                if rid:
+                    id_to_meta[rid] = {
+                        "broker_opinion": row.get("opinion"),
+                        "broker_target_price": row.get("target_price"),
+                        "broker": row.get("broker") or row.get("publisher") or "",
+                        "ticker": row.get("ticker"),
+                        "ticker_name": row.get("ticker_name"),
+                    }
+        return id_to_meta
+
+    def _enrich_summary_with_index(
+        self, summary: dict[str, Any], meta: dict[str, Any]
+    ) -> dict[str, Any]:
+        """summary dict에 index.json 구조화 데이터를 주입한다."""
+        if not meta:
+            return summary
+        enriched = dict(summary)
+        report = enriched.get("report", enriched)
+        # broker opinion / target price를 최상위 및 report 레벨에 모두 주입
+        for field in ("broker_opinion", "broker_target_price", "ticker", "ticker_name"):
+            val = meta.get(field)
+            if val is not None:
+                enriched[field] = val
+                if isinstance(report, dict):
+                    report[field] = val
+        return enriched
+
+    def _build_cross_context(self, category_views: dict[str, dict[str, Any]]) -> dict[str, str]:
+        """각 카테고리에게 넘겨줄 타 카테고리 brief 컨텍스트를 생성한다."""
+        cross: dict[str, str] = {}
+        for cat, view in category_views.items():
+            sentiment = view.get("overall_sentiment", "neutral")
+            summary = clip_text(view.get("market_summary", ""), 120)
+            key_signals = view.get("key_signals", [])
+            signal_str = " / ".join(str(s)[:60] for s in key_signals[:2]) if key_signals else ""
+            cross[cat] = f"[{sentiment}] {summary}" + (f" | 핵심: {signal_str}" if signal_str else "")
+        return cross
+
+    def _call_cross_context_enrichment(
+        self,
+        category: str,
+        first_pass_view: dict[str, Any],
+        cross_context: dict[str, str],
+    ) -> dict[str, Any]:
+        """2nd pass ④⑤: 크로스 컨텍스트 주입 + 놓친 모순/소수의견 비판 요청."""
+        other_cats = {k: v for k, v in cross_context.items() if k != category}
+        messages = [
+            {
+                "role": "system",
+                "content": (
+                    f"너는 '{category}' 카테고리 분석을 심화하는 시장 분석가다. "
+                    "1차 분석 결과와 타 카테고리 컨텍스트를 바탕으로 분석을 보완하라. "
+                    "반드시 JSON 객체만 출력하라. 마크다운 코드블록 없이 순수 JSON.\n\n"
+                    "보완 지침:\n"
+                    "1. [크로스 시그널] 타 카테고리 동향이 이 카테고리에 미치는 연쇄 영향을 구체적으로 서술\n"
+                    "2. [누락된 모순] 1차 분석에서 빠진 상반된 시각이나 리스크를 추가\n"
+                    "3. [소수의견] 1~2개 리포트만 언급했지만 주목할 만한 비컨센서스 시각\n"
+                    "4. [투자 가설 강화] 크로스 카테고리 정보를 반영해 investment_hypothesis를 더 구체적으로 재작성\n"
+                    "기존 필드 값을 유지하되 enriched_ 접두사 필드로 보완 내용을 추가하라"
+                ),
+            },
+            {
+                "role": "user",
+                "content": json.dumps(
+                    {
+                        "task": "cross_context_enrichment",
+                        "category": category,
+                        "first_pass_analysis": first_pass_view,
+                        "other_category_context": other_cats,
+                        "required_additions": {
+                            "enriched_cross_signals": [],
+                            "enriched_contradictions": [],
+                            "enriched_minority_view": [],
+                            "enriched_investment_hypothesis": "",
+                            "enriched_risks": [],
+                        },
+                    },
+                    ensure_ascii=False,
+                ),
+            },
+        ]
+        result = self.client.complete_json(
+            messages=messages,
+            temperature=self.config.merge_temperature,
+            max_tokens=self.config.category_merge_max_tokens,
+            retry_attempts=self.config.merge_retry_attempts,
+        )
+        enriched = result.payload
+        # 기존 1st pass view에 enriched_ 필드를 병합
+        merged = dict(first_pass_view)
+        for k, v in enriched.items():
+            if k.startswith("enriched_") and v:
+                merged[k] = v
+        return merged
+
     def merge_by_category(self, report_summaries: list[dict[str, Any]]) -> dict[str, dict[str, Any]]:
-        """카테고리별로 병합하고 결과를 파일로 저장한다."""
-        groups = self._group_by_category(report_summaries)
+        """카테고리별로 병합하고 결과를 파일로 저장한다.
+
+        세 가지 개선사항 포함:
+        ③ index.json opinion/target_price 주입
+        ④ 카테고리 간 크로스 컨텍스트 2nd pass
+        ⑤ 누락 모순/소수의견 비판 2nd pass
+        """
+        # ③ index.json 메타데이터 로드 후 summary에 주입
+        id_to_meta = self._load_index_metadata(report_summaries)
+        enriched_summaries = [
+            self._enrich_summary_with_index(s, id_to_meta.get(s.get("report_id") or s.get("id") or "", {}))
+            for s in report_summaries
+        ]
+
+        groups = self._group_by_category(enriched_summaries)
         by_category_dir = self.config.merged_dir / "by_category"
         ensure_dir(by_category_dir)
         category_views: dict[str, dict[str, Any]] = {}
 
+        # ── 1st pass: 카테고리별 병합 ──
+        self.log("  📊 1st pass: 카테고리별 병합...")
         for category, summaries in sorted(groups.items()):
+            safe_name = category_slug(category)
+            out_path = by_category_dir / f"{safe_name}.json"
+            if not self.force and out_path.exists():
+                cached = read_json(out_path, {})
+                cached_view = cached.get("category_view")
+                if isinstance(cached_view, dict) and not cached.get("meta", {}).get("cross_enriched"):
+                    # cross enrichment 안 된 캐시는 재사용하되 2nd pass 대상으로 표시
+                    category_views[category] = cached_view
+                    self.log(f"  🗂  {category}: 기존 결과 재사용 (cross enrichment 예정)")
+                    continue
+                elif isinstance(cached_view, dict):
+                    category_views[category] = cached_view
+                    self.log(f"  🗂  {category}: 기존 결과 재사용 → {relative_to_repo(out_path, self.config.repo_root)}")
+                    continue
+
             self.log(f"  🗂  {category}: {len(summaries)}개 리포트 병합 중...")
             try:
                 view = self.merge_category_view(category, summaries)
-                safe_name = sanitize_file_stem(category) or "기타"
-                out_path = by_category_dir / f"{safe_name}.json"
+                category_views[category] = view
+                self.log(f"     ✅ {category} 1st pass 완료")
+            except Exception as error:  # noqa: BLE001
+                self.log(f"     ⚠️ {category} 병합 실패, 로컬 폴백 사용: {error}")
+                category_views[category] = self._merge_category_view_local(category, summaries)
+
+        # ── 2nd pass: ④ 크로스 컨텍스트 + ⑤ 비판 보완 ──
+        self.log("  🔗 2nd pass: 크로스 컨텍스트 enrichment...")
+        cross_context = self._build_cross_context(category_views)
+        enriched_views: dict[str, dict[str, Any]] = {}
+
+        for category in sorted(category_views.keys()):
+            safe_name = category_slug(category)
+            out_path = by_category_dir / f"{safe_name}.json"
+            # 이미 cross_enriched된 캐시는 스킵
+            if not self.force and out_path.exists():
+                cached = read_json(out_path, {})
+                if cached.get("meta", {}).get("cross_enriched"):
+                    enriched_views[category] = cached.get("category_view", category_views[category])
+                    self.log(f"  🔗 {category}: cross enrichment 캐시 재사용")
+                    continue
+
+            self.log(f"  🔗 {category}: cross enrichment 중...")
+            try:
+                enriched_view = self._call_cross_context_enrichment(
+                    category, category_views[category], cross_context
+                )
+                enriched_views[category] = enriched_view
                 write_json(out_path, {
                     "meta": {
                         "pipeline_version": PIPELINE_VERSION,
                         "generated_at": now_iso(),
                         "category": category,
-                        "report_count": len(summaries),
+                        "report_count": len(groups.get(category, [])),
                         "model": self.config.model,
                         "detail_level": self.config.detail_level,
+                        "cross_enriched": True,
                     },
-                    "category_view": view,
+                    "category_view": enriched_view,
                 })
-                category_views[category] = view
-                self.log(f"     ✅ {category} 완료 → {relative_to_repo(out_path, self.config.repo_root)}")
+                self.log(f"     ✅ {category} cross enrichment 완료 → {relative_to_repo(out_path, self.config.repo_root)}")
             except Exception as error:  # noqa: BLE001
-                self.log(f"     ❌ {category} 실패: {error}")
-        self.stats["category_merges_created"] = len(category_views)
-        return category_views
+                self.log(f"     ⚠️ {category} cross enrichment 실패 (1st pass 결과 사용): {error}")
+                enriched_views[category] = category_views[category]
+                write_json(out_path, {
+                    "meta": {
+                        "pipeline_version": PIPELINE_VERSION,
+                        "generated_at": now_iso(),
+                        "category": category,
+                        "report_count": len(groups.get(category, [])),
+                        "model": self.config.model,
+                        "detail_level": self.config.detail_level,
+                        "cross_enriched": False,
+                    },
+                    "category_view": category_views[category],
+                })
+
+        self.stats["category_merges_created"] = len(enriched_views)
+        return enriched_views
+
+    def _extract_structured_analysis_local(self, category_views: dict[str, dict[str, Any]]) -> dict[str, Any]:
+        category_count = max(len(category_views), 1)
+        theme_specs = [
+            {
+                "theme": "AI 인프라/반도체 수요 지속",
+                "keywords": ["ai", "반도체", "hbm", "nand", "mlcc", "데이터센터", "gpu"],
+            },
+            {
+                "theme": "지정학-에너지 안보가 방산·원전 서사를 강화",
+                "keywords": ["지정학", "중동", "유가", "방산", "원전", "에너지", "호르무즈"],
+            },
+            {
+                "theme": "유동성/금리 안정이 위험자산 선호를 지지",
+                "keywords": ["금리", "국채", "유동성", "vix", "위험자산", "외국인", "상승"],
+            },
+            {
+                "theme": "실적장세와 밸류업이 종목 차별화를 확대",
+                "keywords": ["실적", "밸류업", "preview", "거래대금", "증권", "roe"],
+            },
+        ]
+
+        category_texts: dict[str, str] = {}
+        for category, view in category_views.items():
+            pool = [
+                str(view.get("market_summary", "")),
+                *[str(item) for item in view.get("macro_view", [])],
+                *[str(item) for item in view.get("sector_view", [])],
+                *[str(item) for item in view.get("key_signals", [])],
+                *[str(item) for item in view.get("risks", [])],
+            ]
+            category_texts[category] = " ".join(pool)
+
+        consensus = []
+        for spec in theme_specs:
+            matched_categories = [
+                category for category, text in category_texts.items() if _contains_theme(text, spec["keywords"])
+            ]
+            if not matched_categories:
+                continue
+            evidence = ", ".join(matched_categories)
+            consensus.append(
+                {
+                    "theme": spec["theme"],
+                    "agreement_rate": round(len(set(matched_categories)) / category_count, 2),
+                    "evidence": f"{evidence} 카테고리에서 반복적으로 확인됨",
+                }
+            )
+        consensus = consensus[:5]
+
+        minority_views = []
+        for category, view in category_views.items():
+            if category in {"기타", "투자전략"} or len(view.get("actionable_points", [])) >= 4:
+                rationale = view.get("market_summary", "")
+                minority_views.append(
+                    {
+                        "theme": f"{category}에서 포착된 비주류 시나리오",
+                        "agreement_rate": round(1 / category_count, 2),
+                        "rationale": clip_text(rationale, 180),
+                        "why_worth_noting": clip_text(
+                            "다른 카테고리보다 실행 아이디어가 구체적이거나 이벤트 드리븐 성격이 강함",
+                            140,
+                        ),
+                    }
+                )
+        minority_views = minority_views[:4]
+
+        contradictions = []
+        macro_view = category_views.get("경제분석", {})
+        market_view = category_views.get("시황정보", {})
+        fixed_income_view = category_views.get("채권분석", {})
+        if macro_view and market_view:
+            contradictions.append(
+                {
+                    "topic": "지정학 리스크와 위험자산 랠리의 공존",
+                    "bullish": {
+                        "publisher": "시황정보",
+                        "reason": clip_text(market_view.get("market_summary", ""), 110),
+                    },
+                    "bearish": {
+                        "publisher": "경제분석",
+                        "reason": clip_text(macro_view.get("market_summary", ""), 110),
+                    },
+                }
+            )
+        if fixed_income_view and market_view:
+            contradictions.append(
+                {
+                    "topic": "채권 크레딧 경계와 주식 위험선호 회복의 충돌",
+                    "bullish": {
+                        "publisher": "시황정보",
+                        "reason": clip_text(market_view.get("market_summary", ""), 110),
+                    },
+                    "bearish": {
+                        "publisher": "채권분석",
+                        "reason": clip_text(fixed_income_view.get("market_summary", ""), 110),
+                    },
+                }
+            )
+        contradictions = contradictions[:5]
+
+        company_candidates: list[str] = []
+        for category in ("산업분석", "종목분석", "시황정보"):
+            view = category_views.get(category, {})
+            for company in view.get("company_mentions", [])[:4]:
+                if isinstance(company, dict) and company.get("name"):
+                    company_candidates.append(str(company["name"]))
+
+        cross_category_signals = [
+            {
+                "signal": "지정학 불안과 에너지 안보 서사의 동시 부각",
+                "macro_implication": "방산·원전·전력설비가 중기 알파 소스로 재평가될 가능성",
+                "sector_beneficiary": ["방산", "원전", "전력설비"],
+                "company_plays": _common_strings(company_candidates, 3),
+            },
+            {
+                "signal": "AI 인프라 수요와 반도체/부품 공급망 확장",
+                "macro_implication": "반도체 장비·소재·전력기기까지 수혜 사슬이 이어질 가능성",
+                "sector_beneficiary": ["반도체", "전자부품", "전력기기"],
+                "company_plays": _common_strings(company_candidates[1:], 3),
+            },
+            {
+                "signal": "금리 안정과 거래대금 회복",
+                "macro_implication": "증권·성장주·대형 기술주에 우호적인 유동성 환경",
+                "sector_beneficiary": ["증권", "성장주", "대형 기술주"],
+                "company_plays": _common_strings(company_candidates[2:], 3),
+            },
+        ]
+
+        return {
+            "consensus": consensus,
+            "minority_views": minority_views,
+            "contradictions": contradictions,
+            "cross_category_signals": cross_category_signals,
+        }
 
     def extract_structured_analysis(self, category_views: dict[str, dict[str, Any]]) -> dict[str, Any]:
         """카테고리 뷰들로부터 컨센서스/소수의견/모순/크로스신호를 구조화 추출한다."""
@@ -1428,19 +1991,25 @@ class ReportOrchestrator:
                 ),
             },
         ]
-        result = self.client.complete_json(
-            messages=messages,
-            temperature=self.config.merge_temperature,
-            max_tokens=self.config.analysis_max_tokens,
-            retry_attempts=self.config.merge_retry_attempts,
-        )
-        self.stats["retry_count"] += max(0, result.attempts - 1)
-        analysis = result.payload
+        try:
+            result = self.client.complete_json(
+                messages=messages,
+                temperature=self.config.merge_temperature,
+                max_tokens=self.config.analysis_max_tokens,
+                retry_attempts=self.config.merge_retry_attempts,
+            )
+            self.stats["retry_count"] += max(0, result.attempts - 1)
+            analysis = result.payload
+            model_name = self.config.model
+        except Exception as error:  # noqa: BLE001
+            self.log(f"     ⚠️ 구조화 분석 Gemini 실패, 로컬 폴백 사용: {error}")
+            analysis = self._extract_structured_analysis_local(category_views)
+            model_name = "local-fallback"
         write_json(out_path, {
             "meta": {
                 "pipeline_version": PIPELINE_VERSION,
                 "generated_at": now_iso(),
-                "model": self.config.model,
+                "model": model_name,
                 "detail_level": self.config.detail_level,
             },
             "analysis": analysis,

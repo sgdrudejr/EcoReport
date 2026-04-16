@@ -104,6 +104,22 @@ EcoReport 문서가 늘어나도, 새 담당자나 다른 코딩 프로그램이
 - `docs/SCORE_SYSTEM_V2.md`
 - `docs/STAGE_1_4_ARCHITECTURE.md`
 
+### 8. 데이터 구조와 파이프라인 자체를 고도화하고 싶다
+
+읽을 문서:
+
+- `docs/DATA_ARCHITECTURE_V2.md`
+- `docs/STAGE_1_4_ARCHITECTURE.md`
+- `docs/schemas/normalized-observations.schema.json`
+- `docs/schemas/evidence-graph.schema.json`
+- `docs/schemas/decision-features.schema.json`
+
+이 문서들이 답하는 것:
+
+- raw source를 어떤 공통 모델로 올릴지
+- evidence graph를 어떻게 정의할지
+- Stage 2를 evidence와 policy로 어떻게 분리할지
+
 ## 소스 오브 트루스
 
 ### 코드

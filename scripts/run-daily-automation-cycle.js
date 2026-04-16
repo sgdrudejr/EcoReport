@@ -25,6 +25,7 @@ function parseArgs(argv) {
     timeoutSec: 1800,
     skipPush: false,
     forceCollect: false,
+    freshStart: false,
     reuseFrontDocument: false,
   };
 
@@ -49,6 +50,8 @@ function parseArgs(argv) {
       args.skipPush = true;
     } else if (token === "--force-collect") {
       args.forceCollect = true;
+    } else if (token === "--fresh-start") {
+      args.freshStart = true;
     } else if (token === "--reuse-front-document") {
       args.reuseFrontDocument = true;
     }
@@ -94,6 +97,7 @@ function buildSameDayStatus(steps, artifacts) {
   const blockingStepIds = [
     "baseline_daily_system",
     "stage1_extracts",
+    "rich_briefing_round3_final",
     "verify_outputs",
   ];
   const missingBlockingStep = blockingStepIds.some((stepId) => {
@@ -140,17 +144,23 @@ function computeOverallStatus(steps) {
     return "warn";
   }
 
+  if (steps.some((step) => step.id.startsWith("rich_briefing") && step.status === "warn")) {
+    return "warn";
+  }
+
   return hasSuccessfulStrategyRefresh(steps) ? "ok" : "warn";
 }
 
 function buildFailureHint(stepId) {
   switch (stepId) {
     case "automation_readiness":
-      return "Safari 자동화, Gemini Python, Obsidian vault 쓰기 권한, GitHub 네트워크 상태를 readiness 리포트에서 먼저 확인하세요.";
+      return "Safari 자동화, 리포트 수집 네트워크(Naver/Shinhan), Gemini Python, Obsidian vault 쓰기 권한, GitHub 네트워크 상태를 readiness 리포트에서 먼저 확인하세요.";
     case "baseline_daily_system":
       return "수집, 시장 데이터, Stage 2 Python 의존성, 또는 기본 파이프라인 로그를 먼저 확인하세요.";
     case "stage1_extracts":
       return "리포트 인덱스, 전문 텍스트, 포트폴리오 스냅샷이 모두 생성됐는지와 Stage 1 추출 로그를 확인하세요.";
+    case "stockeasy_capture":
+      return "Safari 로그인 상태, StockEasy 세션 유지 여부, 그리고 시장분석/테마보드 화면이 실제로 열리는지 확인하세요.";
     case "deep_research_web":
       return "Safari가 잠겨 있지 않은지, Gemini 로그인 상태인지, Deep Research 도구가 노출되는지 확인하세요.";
     case "rich_briefing_overlay":
@@ -199,6 +209,69 @@ async function fileExists(filePath) {
   } catch {
     return false;
   }
+}
+
+async function readJsonIfExists(filePath) {
+  if (!filePath || !(await fileExists(filePath))) {
+    return null;
+  }
+  return readJson(filePath, null);
+}
+
+function parseRetryDelayMsFromText(message) {
+  const retryInMatch = String(message ?? "").match(/Please retry in\s+([0-9.]+)s/i);
+  if (retryInMatch) {
+    const seconds = Number.parseFloat(retryInMatch[1]);
+    if (Number.isFinite(seconds) && seconds > 0) {
+      return Math.ceil(seconds * 1000) + 1000;
+    }
+  }
+
+  const secondsMatch = String(message ?? "").match(/retry_delay\s*\{\s*seconds:\s*(\d+)/i);
+  if (secondsMatch) {
+    const seconds = Number.parseInt(secondsMatch[1], 10);
+    if (Number.isFinite(seconds) && seconds > 0) {
+      return seconds * 1000 + 1000;
+    }
+  }
+
+  return null;
+}
+
+async function readBriefingMeta(briefingPath) {
+  return readJsonIfExists(`${briefingPath}.meta.json`);
+}
+
+async function promoteArchivedBriefing({ artifacts, logger }) {
+  const archivePath = artifacts.finalResearchBriefingArchive;
+  const outputPath = artifacts.finalResearchBriefing;
+  if (!archivePath || !outputPath) return false;
+  if (!(await fileExists(archivePath))) return false;
+
+  const archiveContent = await fs.promises.readFile(archivePath, "utf8").catch(() => "");
+  if (!archiveContent.trim()) return false;
+
+  await fs.promises.writeFile(outputPath, `${archiveContent.trim()}\n`, "utf8");
+
+  const archiveMeta = await readJsonIfExists(`${archivePath}.meta.json`);
+  const currentMeta = await readJsonIfExists(`${outputPath}.meta.json`);
+  const normalizedModel =
+    archiveMeta?.source === "fallback" || archiveMeta?.model === "local-fallback"
+      ? "manual-kit-archive"
+      : (archiveMeta?.model ?? currentMeta?.model ?? "manual-kit-archive");
+  await writeJson(`${outputPath}.meta.json`, {
+    ...(currentMeta ?? {}),
+    ...(archiveMeta ?? {}),
+    // Archive promotion means the published briefing should no longer be
+    // treated as a terminal fallback artifact by downstream consumers.
+    source: "archive_promoted",
+    model: normalizedModel,
+    promoted_from_archive: archivePath,
+    promoted_at: createGeneratedAt(),
+  });
+
+  logger.write(`♻️ archived rich briefing 승격: ${archivePath}`);
+  return true;
 }
 
 function createLogger(logFile) {
@@ -371,6 +444,79 @@ async function runCommandWithRetry({ retries = 1, backoffMs = 5000, ...options }
   return result;
 }
 
+async function runRichBriefingStep({
+  fallbackRetries = 4,
+  fallbackBackoffMs = 30_000,
+  artifacts,
+  logger,
+  ...options
+}) {
+  let result = null;
+
+  for (let attempt = 1; attempt <= fallbackRetries + 1; attempt += 1) {
+    result = await runCommand({ ...options, logger });
+
+    if (result.status !== "ok" && result.status !== "skipped") {
+      if (attempt <= fallbackRetries) {
+        const delay =
+          parseRetryDelayMsFromText(result.outputTail || result.errorMessage) ??
+          fallbackBackoffMs * Math.pow(2, attempt - 1);
+        logger.write(
+          `⏳ ${options.label} 실행 실패 — ${Math.ceil(delay / 1000)}초 후 재시도 (${attempt}/${fallbackRetries})`,
+        );
+        await new Promise((resolve) => setTimeout(resolve, delay));
+        continue;
+      }
+      return result;
+    }
+
+    if (result.status === "skipped") {
+      return result;
+    }
+
+    const meta = await readBriefingMeta(artifacts.finalResearchBriefing);
+    if (meta?.source && meta.source !== "fallback") {
+      return {
+        ...result,
+        outputTail: [result.outputTail, `briefing source=${meta.source} / model=${meta.model ?? "-"}`]
+          .filter(Boolean)
+          .join(" | "),
+      };
+    }
+
+    if (await promoteArchivedBriefing({ artifacts, logger })) {
+      return {
+        ...result,
+        outputTail: [result.outputTail, `briefing source=archive_promoted`]
+          .filter(Boolean)
+          .join(" | "),
+      };
+    }
+
+    if (attempt <= fallbackRetries) {
+      const delay =
+        parseRetryDelayMsFromText(result.outputTail || result.errorMessage) ??
+        fallbackBackoffMs * Math.pow(2, attempt - 1);
+      logger.write(
+        `⏳ ${options.label} fallback 감지 — ${Math.ceil(delay / 1000)}초 후 재시도 (${attempt}/${fallbackRetries})`,
+      );
+      await new Promise((resolve) => setTimeout(resolve, delay));
+      continue;
+    }
+
+    return {
+      ...result,
+      status: "warn",
+      errorMessage: "rich briefing이 fallback으로만 생성되었습니다.",
+      outputTail: [result.outputTail, "briefing source=fallback (manual review needed)"]
+        .filter(Boolean)
+        .join(" | "),
+    };
+  }
+
+  return result;
+}
+
 function reuseArtifactStep({
   id,
   label,
@@ -423,6 +569,7 @@ function buildArtifactMap(date, logFile) {
   return {
     logFile,
     automationReadiness: path.join(ROOT_DIR, "data", "analysis-state", date, "automation-readiness.json"),
+    stockeasySnapshot: path.join(ROOT_DIR, "data", "external", "stockeasy", date, "snapshot.json"),
     chunkIndexStats: path.join(ROOT_DIR, "data", "analysis-state", date, "chunk-index", "stats.json"),
     stage1: path.join(ROOT_DIR, "data", "analysis-state", date, "stage1-report-extracts-v2.json"),
     stage1Shadow: path.join(
@@ -464,6 +611,14 @@ function buildArtifactMap(date, logFile) {
       "knowledge",
       "daily",
       `${date}-gemini-briefing-rich.md`,
+    ),
+    finalResearchBriefingArchive: path.join(
+      ROOT_DIR,
+      "knowledge",
+      "daily",
+      "manual-kit",
+      date,
+      "10-stage1-6-final-research-briefing.md",
     ),
     stage2: path.join(ROOT_DIR, "data", "analysis-state", date, "stage2-strategy-options.json"),
     stage4: path.join(ROOT_DIR, "data", "analysis-state", date, "stage4-execution-plan.json"),
@@ -754,7 +909,13 @@ async function main() {
   }
 
   const checkpointPath = path.join(ROOT_DIR, "data", "analysis-state", date, "automation-checkpoint.json");
-  const checkpoint = await readJson(checkpointPath, { completedSteps: [] });
+  if (cli.freshStart) {
+    await fs.promises.rm(checkpointPath, { force: true });
+    logger.write("🧹 fresh-start 요청 감지 — 기존 체크포인트를 무시하고 처음부터 실행");
+  }
+  const checkpoint = cli.freshStart
+    ? { completedSteps: [] }
+    : await readJson(checkpointPath, { completedSteps: [] });
   const completedSteps = new Set(checkpoint?.completedSteps ?? []);
   if (completedSteps.size > 0) {
     logger.write(`♻️ 체크포인트 감지 — ${completedSteps.size}개 스텝 완료 상태에서 재개`);
@@ -834,7 +995,50 @@ async function main() {
         : buildFailureHint(readinessStep.id),
   });
 
-  const baseline = isCheckpointed("baseline_daily_system")
+  const stockeasyCapture =
+    readinessReport?.blockers?.stockeasyCaptureReady === false
+      ? preflightWarnStep({
+          id: "stockeasy_capture",
+          label: "StockEasy Market Capture",
+          reason: "StockEasy capture 사전 차단 (StockEasy smoke test failed)",
+          note: readinessReport.checks.find((item) => item.key === "stockeasy_capture_smoke")?.detail,
+        })
+      : await runCommand({
+          id: "stockeasy_capture",
+          label: "StockEasy Market Capture",
+          command: "npm",
+          args: ["run", "external:stockeasy:capture", "--", "--date", date],
+          logger,
+          soft: true,
+          timeoutMs: 90_000,
+        });
+  steps.push({
+    ...stockeasyCapture,
+    debugHint:
+      stockeasyCapture.status === "ok" || stockeasyCapture.status === "skipped"
+        ? null
+        : buildFailureHint(stockeasyCapture.id),
+  });
+
+  const baseline = readinessReport?.blockers?.reportCollectionReady === false
+    ? {
+        ...preflightWarnStep({
+          id: "baseline_daily_system",
+          label: "Baseline Daily System",
+          reason: "리포트 수집 네트워크와 이전 거래일 fallback이 모두 unavailable 상태라 baseline 실행을 중단합니다.",
+          note: readinessReport.checks
+            .filter((item) =>
+              item.key === "naver_research_network" ||
+              item.key === "shinhan_research_network" ||
+              item.key === "report_fallback_assets",
+            )
+            .map((item) => `${item.label}: ${item.detail}`)
+            .join(" | "),
+        }),
+        status: "error",
+        soft: false,
+      }
+    : isCheckpointed("baseline_daily_system")
     ? reuseArtifactStep({
         id: "baseline_daily_system",
         label: "Baseline Daily System",
@@ -897,7 +1101,7 @@ async function main() {
         : buildFailureHint(stage1Extracts.id),
   });
 
-  const existingDeepResearch = await fileExists(artifacts.deepResearchResponse);
+  const existingDeepResearch = !cli.freshStart && await fileExists(artifacts.deepResearchResponse);
   const deepResearch =
     baseline.status === "ok" &&
     stage1Extracts.status === "ok" &&
@@ -937,7 +1141,7 @@ async function main() {
         });
   steps.push({ ...deepResearch, debugHint: deepResearch.status === "ok" ? null : deepResearch.status === "skipped" ? null : buildFailureHint(deepResearch.id) });
 
-  const richBriefing = await runCommandWithRetry({
+  const richBriefing = await runRichBriefingStep({
     id: "rich_briefing_overlay",
     label: "Stage 1.6 Rich Briefing Overlay",
     command: "npm",
@@ -955,11 +1159,12 @@ async function main() {
       runId,
     ],
     logger,
+    artifacts,
     soft: true,
     skip: stage1Extracts.status !== "ok",
-    timeoutMs: 180_000,
-    retries: 2,
-    backoffMs: 5_000,
+    timeoutMs: 600_000,
+    fallbackRetries: 4,
+    fallbackBackoffMs: 30_000,
   });
   steps.push({ ...richBriefing, debugHint: richBriefing.status === "ok" ? null : richBriefing.status === "skipped" ? null : buildFailureHint(richBriefing.id) });
 
@@ -1095,7 +1300,7 @@ async function main() {
         });
   steps.push({ ...deepResearchFollowUp, debugHint: deepResearchFollowUp.status === "ok" ? null : deepResearchFollowUp.status === "skipped" ? null : buildFailureHint(deepResearchFollowUp.id) });
 
-  const richBriefingFinal = await runCommandWithRetry({
+  const richBriefingFinal = await runRichBriefingStep({
     id: "rich_briefing_final",
     label: "Stage 1.6 Rich Briefing Final",
     command: "npm",
@@ -1113,11 +1318,12 @@ async function main() {
       runId,
     ],
     logger,
+    artifacts,
     soft: true,
     skip: followUpReindex.status !== "ok",
-    timeoutMs: 180_000,
-    retries: 2,
-    backoffMs: 5_000,
+    timeoutMs: 600_000,
+    fallbackRetries: 4,
+    fallbackBackoffMs: 30_000,
   });
   steps.push({ ...richBriefingFinal, debugHint: richBriefingFinal.status === "ok" ? null : richBriefingFinal.status === "skipped" ? null : buildFailureHint(richBriefingFinal.id) });
 
@@ -1259,7 +1465,7 @@ async function main() {
         });
   steps.push({ ...deepResearchRound3, debugHint: deepResearchRound3.status === "ok" ? null : deepResearchRound3.status === "skipped" ? null : buildFailureHint(deepResearchRound3.id) });
 
-  const richBriefingRound3Final = await runCommand({
+  const richBriefingRound3Final = await runRichBriefingStep({
     id: "rich_briefing_round3_final",
     label: "Stage 1.6 Rich Briefing Final After Round 3",
     command: "npm",
@@ -1277,8 +1483,12 @@ async function main() {
       runId,
     ],
     logger,
+    artifacts,
     soft: true,
     skip: round3Reindex.status !== "ok",
+    timeoutMs: 600_000,
+    fallbackRetries: 4,
+    fallbackBackoffMs: 30_000,
   });
   steps.push({ ...richBriefingRound3Final, debugHint: richBriefingRound3Final.status === "ok" ? null : richBriefingRound3Final.status === "skipped" ? null : buildFailureHint(richBriefingRound3Final.id) });
 

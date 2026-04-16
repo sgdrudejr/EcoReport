@@ -21,6 +21,7 @@ interface ResearchBriefingSourcePaths {
 }
 
 export interface ResearchBriefingMeta {
+  source?: string | null;
   model?: string | null;
   used_chunk_count?: number | null;
   covered_report_count?: number | null;

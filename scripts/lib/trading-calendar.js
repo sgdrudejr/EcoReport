@@ -1,31 +1,14 @@
 import fsSync from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
+
+import { resolveEcoReportRoot } from "./root-resolver.js";
 
 const DEFAULT_TIME_ZONE = "Asia/Seoul";
 
-function resolveRootDir() {
-  const moduleDir = path.dirname(fileURLToPath(import.meta.url));
-  const candidates = [
-    process.env.ECOREPORT_ROOT,
-    process.cwd(),
-    path.resolve(process.cwd(), ".."),
-    path.resolve(moduleDir, "..", ".."),
-  ].filter(Boolean);
-
-  for (const candidate of candidates) {
-    if (
-      fsSync.existsSync(path.join(candidate, "config", "market-calendar.json")) &&
-      fsSync.existsSync(path.join(candidate, "scripts"))
-    ) {
-      return candidate;
-    }
-  }
-
-  return path.resolve(moduleDir, "..", "..");
-}
-
-const ROOT_DIR = resolveRootDir();
+const ROOT_DIR = resolveEcoReportRoot({
+  cwd: process.cwd(),
+  moduleUrl: import.meta.url,
+});
 const CALENDAR_PATH = path.join(ROOT_DIR, "config", "market-calendar.json");
 
 function readCalendar() {

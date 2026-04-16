@@ -671,6 +671,7 @@ function extractFinalResponse(state, planMessage, promptPreview) {
   if (!latest) return null;
   if (state.hasStopButton) return null;
   if (state.hasResearchStartButton) return null;
+  if (!hasCompletionMessage(state) && !state.hasCopyButton) return null;
   if (latest.length < 200 && !hasCompletionMessage(state) && !state.hasCopyButton) return null;
 
   return latest;
@@ -1033,38 +1034,6 @@ async function main() {
     }
 
     await sleep(args.pollSec * 1000);
-  }
-
-  const recoveredResponse = extractBestEffortResponse(lastState, planMessage, promptPreview);
-  if (recoveredResponse && !looksLikeInvalidSavedOutput(recoveredResponse, promptPreview)) {
-    await writeText(outputPath, `${recoveredResponse}\n`);
-    await writeDebugSnapshot(debugPath, {
-      savedAt: new Date().toISOString(),
-      status: "timeout_recovered",
-      date: args.date,
-      promptPath,
-      outputPath,
-      promptPreview,
-      promptSubmitted,
-      researchStarted,
-      promptInjected,
-      pageRefreshCount,
-      planMessage,
-      recoveredResponsePreview: recoveredResponse.slice(0, 1200),
-      lastState,
-    });
-    copyToClipboard(recoveredResponse);
-    if (!args.reuseFrontDocument) {
-      try {
-        const closeResult = closeFrontGeminiPage(targetUrl);
-        console.log(`closed: ${closeResult}`);
-      } catch (error) {
-        console.warn(`close-warning: ${error.message}`);
-      }
-    }
-    console.warn(`recovered_timeout_response: ${outputPath}`);
-    console.log(`copied_chars: ${recoveredResponse.length}`);
-    return;
   }
 
   await writeDebugSnapshot(debugPath, {

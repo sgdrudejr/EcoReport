@@ -272,20 +272,95 @@ function inferEntityFromContext(report, paragraph, sector, themes) {
   return match?.[0]?.trim() ?? report.title;
 }
 
-function extractCondition(text) {
-  for (const marker of CONDITION_MARKERS) {
-    const index = text.indexOf(marker);
-    if (index >= 0) return truncate(text.slice(index), 140);
+function collectMarkedSnippets(text, markers, maxLength = 220) {
+  const source = String(text ?? "");
+  const snippets = [];
+
+  for (const marker of markers) {
+    let startPos = 0;
+    while (startPos < source.length) {
+      const index = source.indexOf(marker, startPos);
+      if (index < 0) break;
+
+      const window = source.slice(index, index + maxLength);
+      const delimiters = [...window.matchAll(/[.!?。\n]/g)];
+      const boundary = delimiters.find((entry) => (entry.index ?? 0) >= 20);
+      const snippet = window
+        .slice(0, boundary ? (boundary.index ?? 0) + 1 : window.length)
+        .replace(/\s+/g, " ")
+        .trim();
+
+      if (snippet.length >= 12) {
+        const normalizedSnippet = normalizeText(snippet);
+        const overlaps = snippets.some((existing) => {
+          const normalizedExisting = normalizeText(existing);
+          return (
+            normalizedExisting.includes(normalizedSnippet) ||
+            normalizedSnippet.includes(normalizedExisting)
+          );
+        });
+
+        if (!overlaps) {
+          snippets.push(snippet);
+        }
+      }
+
+      startPos = index + Math.max(marker.length, snippet.length, 1);
+    }
   }
-  return null;
+
+  return snippets.slice(0, 3);
+}
+
+function extractCondition(text) {
+  const snippets = collectMarkedSnippets(text, CONDITION_MARKERS, 220);
+  return snippets.length > 0 ? snippets.join(" | ") : null;
 }
 
 function extractCounterpoint(text, evidenceParagraphs = []) {
-  for (const marker of COUNTERPOINT_MARKERS) {
-    const hit = [text, ...evidenceParagraphs].find((paragraph) => paragraph.includes(marker));
-    if (hit) return truncate(hit, 140);
+  const collected = [];
+
+  for (const source of [text, ...evidenceParagraphs]) {
+    for (const snippet of collectMarkedSnippets(source, COUNTERPOINT_MARKERS, 220)) {
+      const normalizedSnippet = normalizeText(snippet);
+      const overlaps = collected.some((existing) => {
+        const normalizedExisting = normalizeText(existing);
+        return (
+          normalizedExisting.includes(normalizedSnippet) ||
+          normalizedSnippet.includes(normalizedExisting)
+        );
+      });
+      if (!overlaps) {
+        collected.push(snippet);
+      }
+    }
   }
-  return null;
+
+  return collected.length > 0 ? collected.slice(0, 3).join(" | ") : null;
+}
+
+function categorizeNumericPhrase(phrase, keyThesis, catalysts) {
+  const normalized = normalizeText(phrase);
+  const thesisNormalized = normalizeText(keyThesis);
+  const catalystNormalized = (catalysts ?? []).map((entry) => normalizeText(entry));
+
+  if (thesisNormalized && thesisNormalized.includes(normalized.slice(0, 8))) {
+    return "thesis_anchor";
+  }
+
+  if (catalystNormalized.some((entry) => entry.includes(normalized.slice(0, 8)))) {
+    return "catalyst_number";
+  }
+
+  if (CHANGE_KEYWORDS.some((keyword) => normalized.includes(normalizeText(keyword)))) {
+    return "change_signal";
+  }
+
+  if (/목표|target|밸류|per|pbr|eps/i.test(phrase)) {
+    return "valuation";
+  }
+
+  return "supporting";
 }
 
 function buildClaimObject({ report, paragraph, paragraphIndex, classification, sector, themes, reportType, evidenceParagraphs }) {
@@ -351,7 +426,7 @@ function inferPortfolioImpacts(report, topParagraphs, coverage, sector, themes, 
   }
 
   if (impacts.length === 0 && report.category === "경제분석") {
-    for (const account of ["ISA", "PENSION", "TOSS"]) {
+    for (const account of ["ISA", "PENSION", "KIS_MAIN"]) {
       impacts.push({
         target_type: "account",
         target_code: null,
@@ -372,7 +447,7 @@ function inferPortfolioImpacts(report, topParagraphs, coverage, sector, themes, 
         target_type: "theme",
         target_code: null,
         target_name: theme,
-        account_key: sector === "원자력" || sector === "전력기기" || sector === "방산" ? "TOSS" : null,
+        account_key: sector === "원자력" || sector === "전력기기" || sector === "방산" ? "KIS_MAIN" : null,
         direction,
         horizon,
         strength: Number.parseFloat((strengthBase - 0.05).toFixed(2)),
@@ -448,11 +523,38 @@ async function main() {
       claimCandidates[0] ??
       null;
     const keyPoints = claimCandidates.map((item) => item.summary);
-    const keyNumbers = extractNumericPhrases(evidenceParagraphs.join("\n"), 14).map((value) => ({
-      label: "핵심 수치",
-      value,
-      why_it_matters: "리포트 핵심 논리나 변화 강도를 판단하는 데 사용",
-    }));
+    const changeParagraphs = pickChangeParagraphs(paragraphs);
+    const keyThesis = primaryClaim?.summary ?? truncate(report.title, 160);
+    const catalysts = evidenceParagraphs
+      .filter((paragraph) => /실적|수주|가이던스|정책|금리|가격|출하|CAPEX|IPO/i.test(paragraph))
+      .slice(0, 3)
+      .map((paragraph) => truncate(paragraph, 180));
+    const keyNumbers = extractNumericPhrases(evidenceParagraphs.join("\n"), 14)
+      .map((value) => {
+        const label = categorizeNumericPhrase(value, keyThesis, catalysts);
+        return {
+          label,
+          value,
+          why_it_matters:
+            {
+              thesis_anchor: "핵심 투자 논리를 직접 뒷받침하는 수치",
+              catalyst_number: "변화 촉매의 구체적 근거",
+              change_signal: "추세 변화나 전환을 시사하는 수치",
+              valuation: "밸류에이션/목표가 해석에 필요한 수치",
+              supporting: "보조 참고 수치",
+            }[label] ?? "보조 참고 수치",
+        };
+      })
+      .sort((left, right) => {
+        const priority = {
+          thesis_anchor: 0,
+          catalyst_number: 1,
+          change_signal: 2,
+          valuation: 3,
+          supporting: 4,
+        };
+        return (priority[left.label] ?? 5) - (priority[right.label] ?? 5);
+      });
     const sentiment = inferSentiment([report.title, ...evidenceParagraphs].join("\n"));
     const relatedHoldings = [];
     const relatedAccounts = new Set();
@@ -464,7 +566,6 @@ async function main() {
       weakClaimCount: claimCandidates.filter((item) => item.classification === "weak_claim").length,
       totalClaims: claimCandidates.length,
     };
-    const changeParagraphs = pickChangeParagraphs(paragraphs);
 
     for (const [code, holding] of coverage.holdingsByCode) {
       const matched = holdingMatchesContext(holding, report, text, sector, themes);
@@ -498,7 +599,7 @@ async function main() {
       text_length: report.full_text_length ?? report.text_length ?? null,
       related_holdings_in_my_portfolio: relatedHoldings,
       related_accounts: [...relatedAccounts],
-      key_thesis: primaryClaim?.summary ?? truncate(report.title, 160),
+      key_thesis: keyThesis,
       key_points: keyPoints,
       primary_claim: primaryClaim,
       claim_candidates: claimCandidates,
@@ -512,10 +613,7 @@ async function main() {
         .filter((paragraph) => inferSentiment(paragraph) < -0.15)
         .slice(0, 2)
         .map((paragraph) => truncate(paragraph, 220)),
-      catalysts: evidenceParagraphs
-        .filter((paragraph) => /실적|수주|가이던스|정책|금리|가격|출하|CAPEX|IPO/i.test(paragraph))
-        .slice(0, 3)
-        .map((paragraph) => truncate(paragraph, 180)),
+      catalysts,
       risks: evidenceParagraphs
         .filter((paragraph) => /리스크|우려|둔화|부담|불확실성|압박|약세/i.test(paragraph))
         .slice(0, 3)
