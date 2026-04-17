@@ -267,7 +267,16 @@ function scoreRecord(input) {
         pushFlag(flags, "div_by_zero:close_252d");
         return null;
       }
-      return clamp(((input.adx_14 - 20) * 0.25) + ((input.close / input.close_252d - 1) * 25), 0, 10);
+      // [개선 v1.2] 방향 인식: ADX 강도 × 방향 부호
+      // 이전: clamp(adx강도 + 연간모멘텀, 0, 10) → 하락 추세에서도 ADX 높으면 고점
+      // 개선: price vs MA60으로 방향 판별 후 ADX 강도에 방향 부호 적용
+      //        상승 추세(close > ma_60): ADX 강도 보상
+      //        하락 추세(close < ma_60): ADX 강도에 패널티 (강한 하락이면 낮은 점수)
+      const annualMom = (input.close / input.close_252d - 1) * 25;
+      const adxStrength = (input.adx_14 - 20) * 0.25;
+      const isBullish = input.ma_60 != null ? input.close > input.ma_60 : annualMom >= 0;
+      const directedAdx = isBullish ? adxStrength : -adxStrength;
+      return clamp(5 + directedAdx + annualMom, 0, 10);
     },
   });
 
@@ -283,7 +292,15 @@ function scoreRecord(input) {
         pushFlag(flags, "div_by_zero:ha_open");
         return null;
       }
-      return clamp(((input.ha_close - input.ha_open) / input.ha_open) * 100 * 2, 0, 10);
+      // [개선 v1.1] 양방향 채점: 음봉도 차별화
+      // haBody: 양수=강세, 음수=약세. ±2.5% 이상에서 포화.
+      // 결과 범위 0~10: 중립(ha_close≈ha_open)=5, 강한 양봉=10, 강한 음봉=0
+      const haBody = (input.ha_close - input.ha_open) / input.ha_open;
+      // 가격이 ha_close 방향으로 확인될 때 보정 (+10%)
+      const priceConfirm = input.close != null && input.ha_open > 0
+        ? (input.close >= input.ha_close ? 1.1 : 0.9)
+        : 1.0;
+      return clamp(5 + haBody * 200 * priceConfirm, 0, 10);
     },
   });
 
@@ -345,21 +362,33 @@ function scoreRecord(input) {
       ? roundNumber((factors.Score_POC ?? 0) + (factors.Score_VWAP ?? 0), 3)
       : null;
 
+  // [개선 v1.1] Score_Div: RSI 다이버전스 → RSI 모멘텀으로 대체
+  // 원인: price_drop_ratio / rsi_rise_value가 실데이터에서 거의 null → 항상 0
+  // 대체: RSI 과매도 회복 구간 감지 (진입 타이밍에 직접 기여)
+  // 기존 gates.bullish_divergence_detected는 하위 호환을 위해 유지
   gates.bullish_divergence_detected =
     Boolean(input.price_drop_ratio != null && input.price_drop_ratio < 0 && input.rsi_rise_value != null && input.rsi_rise_value > 0);
   factors.Score_Div = factorScore({
     name: "Score_Div",
     required: [
-      { key: "price_drop_ratio", value: input.price_drop_ratio, flag: "no_divergence_anchors" },
-      { key: "rsi_rise_value", value: input.rsi_rise_value, flag: "no_divergence_anchors" },
+      { key: "rsi_14", value: input.rsi_14 },
     ],
     flags,
     compute: () => {
-      if (!gates.bullish_divergence_detected) return 0;
-      return clamp((Math.abs(input.price_drop_ratio) * 50) + (input.rsi_rise_value * 0.5), 0, 10);
+      const rsi = input.rsi_14;
+      // RSI 과매도(30 이하) = 반등 기대 최고점 / 과매수(70 초과) = 진입 위험
+      if (rsi <= 30) return 10;
+      if (rsi <= 40) return 7.5;
+      if (rsi <= 55) return 4;   // 중립 구간
+      if (rsi <= 70) return 2;   // 과매수 주의
+      return 0;                   // 극도 과매수 — 진입 회피
     },
   });
 
+  // [개선 v1.1] Score_GC: 이진 게이트 → 연속 MA 모멘텀 점수
+  // 원인: MA20 < MA60이면 무조건 0 → 매수 임박 종목 탐지 불가, IC 음수
+  // 대체: MA20/MA60 간격을 연속 점수화 (골든크로스 직전 구간 최고점)
+  // 범위 유지: 0~5
   gates.golden_cross_active =
     Boolean(input.ma_20 != null && input.ma_60 != null && input.ma_20 > input.ma_60);
   factors.Score_GC = factorScore({
@@ -370,12 +399,23 @@ function scoreRecord(input) {
     ],
     flags,
     compute: () => {
-      if (!gates.golden_cross_active) return 0;
       if (input.ma_60 === 0) {
         pushFlag(flags, "div_by_zero:ma_60");
         return null;
       }
-      return Math.max(0, 5 - (((input.ma_20 - input.ma_60) / input.ma_60) * 100 * 2));
+      const gap = (input.ma_20 - input.ma_60) / input.ma_60; // + = MA20 above
+      // gap > +8%: 이미 과매수 구간 (차익실현 위험)  → 2
+      // gap +2~8%: 건강한 상승추세                   → 4
+      // gap 0~+2%: 방금 골든크로스 (최적 진입)        → 5
+      // gap -2~0%: 크로스 임박 (얼리 포지션)          → 4
+      // gap -5~-2%: 하락 중 회복 조짐               → 2
+      // gap < -5%: 뚜렷한 하락 추세                 → 0~1
+      if (gap > 0.08) return 2;
+      if (gap > 0.02) return 4;
+      if (gap >= 0)   return 5;
+      if (gap >= -0.02) return 4;
+      if (gap >= -0.05) return 2;
+      return clamp(1 + (gap + 0.05) * 20, 0, 1); // -5% 이하: 0~1 점진 감소
     },
   });
 
@@ -517,6 +557,122 @@ function summarizeTop(results, limit = 10) {
     }));
 }
 
+// ── 레짐별 팩터 가중치 조정 테이블 ──────────────────────────────────
+// 각 값은 해당 레짐에서 해당 팩터의 상대 비중 배율 (1.0 = 기본값)
+const REGIME_FACTOR_MULTIPLIERS = {
+  // 성장 국면: 모멘텀 팩터 우선
+  Growth: {
+    Score_RS: 1.3, Score_Ichimoku: 1.2, Score_ADX_Mom: 1.1, Score_HA: 1.1,
+    Score_Keltner_Vol: 1.2, Score_GC: 1.2, Score_Stoch: 0.9, Score_Disp: 0.9,
+    Score_Div: 0.8, Score_POC: 1.0, Score_VWAP: 1.0, Score_Resistance_Break: 1.0,
+  },
+  // 리스크 오프: RS·이치모쿠 방어적 신호 우선, 모멘텀 팩터 축소
+  "Risk-Off_DollarStrength": {
+    Score_RS: 1.5, Score_Ichimoku: 1.3, Score_Div: 1.4,   // RSI 과매도 반등 더 중요
+    Score_ADX_Mom: 0.5, Score_HA: 0.7, Score_GC: 0.6,     // 추세 추종 축소
+    Score_Keltner_Vol: 0.8, Score_Stoch: 1.2, Score_Disp: 1.2,
+    Score_POC: 0.9, Score_VWAP: 0.9, Score_Resistance_Break: 0.8,
+  },
+  // 스태그플레이션·침체: 방어 극대화
+  "Stagflation-Recession": {
+    Score_RS: 1.6, Score_Div: 1.5, Score_Stoch: 1.3, Score_Disp: 1.3,
+    Score_ADX_Mom: 0.4, Score_HA: 0.6, Score_GC: 0.5, Score_Keltner_Vol: 0.7,
+    Score_Ichimoku: 1.1, Score_POC: 0.8, Score_VWAP: 0.8, Score_Resistance_Break: 0.7,
+  },
+  // 인플레이션: 실물자산 모멘텀 유지
+  Inflationary: {
+    Score_RS: 1.4, Score_Ichimoku: 1.1, Score_ADX_Mom: 0.9, Score_HA: 1.0,
+    Score_Keltner_Vol: 1.1, Score_GC: 1.0, Score_Div: 1.0, Score_Stoch: 1.0,
+    Score_POC: 1.1, Score_VWAP: 1.0, Score_Resistance_Break: 1.0, Score_Disp: 1.0,
+  },
+};
+
+/** 레짐 이름에서 팩터 배율 맵 반환 */
+function getRegimeMultipliers(regimeName) {
+  if (!regimeName) return null;
+  // 부분 매칭 (e.g. "Risk-Off" 포함하면 해당 레짐 적용)
+  for (const [key, mults] of Object.entries(REGIME_FACTOR_MULTIPLIERS)) {
+    if (regimeName.includes(key) || key.includes(regimeName)) return mults;
+  }
+  return null;
+}
+
+/**
+ * 교차단면 퍼센타일 정규화.
+ * 우주(holdings + candidates) 전체에서 각 팩터의 순위를 계산 후
+ * 0~100 스케일로 재매핑한다. final_score도 재계산.
+ *
+ * 장점: 종목 수와 무관하게 점수 분포가 항상 0~100에 걸침 → σ 개선.
+ */
+function applyPercentileNormalization(allRecords, regimeName) {
+  if (allRecords.length === 0) return allRecords;
+
+  const mults = getRegimeMultipliers(regimeName);
+
+  // 팩터별 모든 비-null 값 수집
+  const factorValues = {};
+  for (const key of SCORE_KEYS) {
+    factorValues[key] = allRecords
+      .map((r, idx) => ({ val: r.factors[key], idx }))
+      .filter((e) => e.val != null)
+      .sort((a, b) => a.val - b.val);
+  }
+
+  // 각 레코드에 퍼센타일 점수 적용
+  return allRecords.map((rec) => {
+    const pFactors = { ...rec.factors };
+    let rawTotal = 0;
+
+    for (const key of SCORE_KEYS) {
+      const sorted = factorValues[key];
+      if (sorted.length === 0 || pFactors[key] == null) continue;
+
+      // 해당 값의 순위 (동점 처리: 평균 순위)
+      const rank = sorted.findIndex((e) => e.val === pFactors[key]);
+      const sameTies = sorted.filter((e) => e.val === pFactors[key]).length;
+      const avgRank = rank + (sameTies - 1) / 2;
+      const percentile = sorted.length > 1
+        ? (avgRank / (sorted.length - 1)) * 100
+        : 50;
+
+      // 레짐 배율 적용 (중앙 50 기준 확대/축소)
+      const mult = mults?.[key] ?? 1.0;
+      const adjusted = mult !== 1.0
+        ? clamp(50 + (percentile - 50) * mult, 0, 100)
+        : percentile;
+
+      pFactors[key] = roundNumber(adjusted, 2);
+
+      // 기존 stage 비중 유지를 위해 0-10 스케일로 변환 후 합산
+      // (원본 범위가 팩터마다 다르므로 퍼센타일 기준 최대값으로 정규화)
+      const origMax = getFactorOriginalMax(key);
+      rawTotal += (adjusted / 100) * origMax;
+    }
+
+    const finalScore = roundNumber(
+      Math.round(clamp(rec.filter_score * rawTotal, 0, 100) * 10) / 10,
+      1,
+    );
+
+    return {
+      ...rec,
+      factors: pFactors,
+      final_score: finalScore,
+    };
+  });
+}
+
+/** 팩터별 원래 스케일 최대값 (stage 합산 기준 복원용) */
+function getFactorOriginalMax(key) {
+  const maxMap = {
+    Score_RS: 10, Score_Ichimoku: 10, Score_ADX_Mom: 10, Score_HA: 10,
+    Score_Keltner_Vol: 15, Score_POC: 7.5, Score_VWAP: 7.5,
+    Score_Resistance_Break: 15, Score_Div: 10, Score_GC: 5,
+    Score_Stoch: 10, Score_Disp: 5,
+  };
+  return maxMap[key] ?? 10;
+}
+
 export function buildStockPilotQuantPack({
   asOfDate,
   normalizedPortfolio,
@@ -524,6 +680,7 @@ export function buildStockPilotQuantPack({
   fred,
   stage2Data,
   coverageMeta: externalCoverageMeta = null,
+  regimeName = null,
 }) {
   const technicalMap = technical?.scores ?? {};
   const macro = {
@@ -608,28 +765,52 @@ export function buildStockPilotQuantPack({
     });
   }
 
+  // ── 퍼센타일 정규화 + 레짐 가중치 적용 ────────────────────────────
+  // 전체 유니버스(보유 + 후보)를 합쳐 교차단면 순위 기반 점수 재계산
+  const allRaw = [...holdings, ...candidates];
+  const allNormalized = applyPercentileNormalization(allRaw, regimeName);
+
+  // 정규화 결과를 보유/후보로 분리하고 policy_state 재분류
+  const normalizedHoldings = allNormalized
+    .slice(0, holdings.length)
+    .map((rec) => ({
+      ...rec,
+      policy_state: classifyHoldingPolicy(rec, coverageMeta),
+    }));
+
+  const normalizedCandidates = allNormalized
+    .slice(holdings.length)
+    .map((rec, idx) => {
+      const originalItem = (stage2Data?.candidate_scores ?? [])[idx] ?? {};
+      return {
+        ...rec,
+        policy_state: classifyCandidatePolicy(rec, originalItem, coverageMeta),
+      };
+    });
+
   return {
-    schema_version: "1.0",
+    schema_version: "1.1",
     as_of_date: asOfDate,
     methodology: {
-      scoring_model: "stockpilot_deterministic_v1_parallel",
-      note: "기존 교차단면 Stage 3 점수와 별도로, StockPilot 공식 수식을 holdings/candidates로 분리 계산합니다.",
+      scoring_model: "stockpilot_deterministic_v1.2_percentile",
+      note: "v1.2: ADX_Mom 방향 인식, HA 양방향, Div→RSI모멘텀, 퍼센타일 정규화, 레짐별 가중치 적용.",
       missing_data_policy: "결측 팩터는 null 반환, stage 합산은 0점 처리",
+      regime_applied: regimeName ?? "unknown",
       policy_layers: {
         holdings: ["ADD", "HOLD", "TRIM", "EXIT"],
         candidates: ["BUY", "WATCH", "REJECT"],
       },
     },
     macro,
-    holdings,
-    candidates,
+    holdings: normalizedHoldings,
+    candidates: normalizedCandidates,
     summary: {
-      n_holdings: holdings.length,
-      n_candidates: candidates.length,
-      n_passed_filter_holdings: holdings.filter((item) => item.filter_score === 1).length,
-      n_passed_filter_candidates: candidates.filter((item) => item.filter_score === 1).length,
-      top_holdings: summarizeTop(holdings),
-      top_candidates: summarizeTop(candidates),
+      n_holdings: normalizedHoldings.length,
+      n_candidates: normalizedCandidates.length,
+      n_passed_filter_holdings: normalizedHoldings.filter((item) => item.filter_score === 1).length,
+      n_passed_filter_candidates: normalizedCandidates.filter((item) => item.filter_score === 1).length,
+      top_holdings: summarizeTop(normalizedHoldings),
+      top_candidates: summarizeTop(normalizedCandidates),
     },
   };
 }

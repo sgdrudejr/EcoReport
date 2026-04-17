@@ -2309,6 +2309,7 @@ async function main() {
     fred,
     stage2Data,
     coverageMeta: portfolioCoverageSummary,
+    regimeName: regime?.name ?? null,
   });
 
   const outputPath = args.output ?? path.join(stateDir, "stage3-quant-scores.json");

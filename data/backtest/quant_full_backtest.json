@@ -1,0 +1,3737 @@
+{
+  "dates": [
+    "2026-04-06",
+    "2026-04-07",
+    "2026-04-08",
+    "2026-04-09",
+    "2026-04-10",
+    "2026-04-11",
+    "2026-04-13",
+    "2026-04-14",
+    "2026-04-15",
+    "2026-04-17"
+  ],
+  "scores": {
+    "047810": {
+      "2026-04-06": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 96.15,
+          "Disparity": 40.77
+        },
+        "final_score": 58.0,
+        "filter_score": 1
+      },
+      "2026-04-07": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 96.15,
+          "Disparity": 40.77
+        },
+        "final_score": 58.0,
+        "filter_score": 1
+      },
+      "2026-04-08": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 96.15,
+          "Disparity": 40.77
+        },
+        "final_score": 58.0,
+        "filter_score": 1
+      },
+      "2026-04-09": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 96.15,
+          "Disparity": 40.77
+        },
+        "final_score": 58.0,
+        "filter_score": 1
+      },
+      "2026-04-10": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 40.77,
+          "Divergence": 28.46,
+          "GoldenCross": 56.92,
+          "Stochastic": 45.38,
+          "Disparity": 26.92
+        },
+        "final_score": 52.7,
+        "filter_score": 1
+      },
+      "2026-04-11": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 96.15,
+          "Disparity": 40.77
+        },
+        "final_score": 58.0,
+        "filter_score": 1
+      },
+      "2026-04-13": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 40.77,
+          "Divergence": 28.46,
+          "GoldenCross": 56.92,
+          "Stochastic": 45.38,
+          "Disparity": 26.92
+        },
+        "final_score": 52.7,
+        "filter_score": 1
+      },
+      "2026-04-14": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 33.85,
+          "GoldenCross": 56.92,
+          "Stochastic": 96.15,
+          "Disparity": 40.77
+        },
+        "final_score": 58.1,
+        "filter_score": 1
+      },
+      "2026-04-15": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 28.46,
+          "Divergence": 93.08,
+          "GoldenCross": 52.31,
+          "Stochastic": 91.54,
+          "Disparity": 40.77
+        },
+        "final_score": 62.4,
+        "filter_score": 1
+      },
+      "2026-04-17": {
+        "factors": {
+          "RS": 73.08,
+          "Ichimoku": 35.0,
+          "ADX_Mom": 55.77,
+          "HA": 20.38,
+          "Keltner_Vol": 25.38,
+          "POC": 70.77,
+          "VWAP": 32.69,
+          "Resistance": 31.54,
+          "Divergence": 98.46,
+          "GoldenCross": 50.0,
+          "Stochastic": 82.31,
+          "Disparity": 45.38
+        },
+        "final_score": 57.6,
+        "filter_score": 1
+      }
+    },
+    "064350": {
+      "2026-04-06": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 33.85,
+          "GoldenCross": 20.0,
+          "Stochastic": 40.77,
+          "Disparity": 86.92
+        },
+        "final_score": 53.0,
+        "filter_score": 1
+      },
+      "2026-04-07": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 33.85,
+          "GoldenCross": 20.0,
+          "Stochastic": 40.77,
+          "Disparity": 86.92
+        },
+        "final_score": 53.0,
+        "filter_score": 1
+      },
+      "2026-04-08": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 33.85,
+          "GoldenCross": 20.0,
+          "Stochastic": 40.77,
+          "Disparity": 86.92
+        },
+        "final_score": 53.0,
+        "filter_score": 1
+      },
+      "2026-04-09": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 33.85,
+          "GoldenCross": 20.0,
+          "Stochastic": 40.77,
+          "Disparity": 86.92
+        },
+        "final_score": 53.0,
+        "filter_score": 1
+      },
+      "2026-04-10": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 40.77,
+          "Divergence": 28.46,
+          "GoldenCross": 20.0,
+          "Stochastic": 45.38,
+          "Disparity": 86.92
+        },
+        "final_score": 53.8,
+        "filter_score": 1
+      },
+      "2026-04-11": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 33.85,
+          "GoldenCross": 20.0,
+          "Stochastic": 40.77,
+          "Disparity": 86.92
+        },
+        "final_score": 53.0,
+        "filter_score": 1
+      },
+      "2026-04-13": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 40.77,
+          "Divergence": 28.46,
+          "GoldenCross": 20.0,
+          "Stochastic": 45.38,
+          "Disparity": 86.92
+        },
+        "final_score": 53.8,
+        "filter_score": 1
+      },
+      "2026-04-14": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 33.85,
+          "GoldenCross": 20.0,
+          "Stochastic": 40.77,
+          "Disparity": 86.92
+        },
+        "final_score": 53.0,
+        "filter_score": 1
+      },
+      "2026-04-15": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 28.46,
+          "Divergence": 33.85,
+          "GoldenCross": 24.62,
+          "Stochastic": 40.77,
+          "Disparity": 86.92
+        },
+        "final_score": 52.3,
+        "filter_score": 1
+      },
+      "2026-04-17": {
+        "factors": {
+          "RS": 0,
+          "Ichimoku": 5.0,
+          "ADX_Mom": 55.77,
+          "HA": 58.08,
+          "Keltner_Vol": 25.38,
+          "POC": 15.38,
+          "VWAP": 74.23,
+          "Resistance": 31.54,
+          "Divergence": 39.23,
+          "GoldenCross": 26.92,
+          "Stochastic": 26.92,
+          "Disparity": 91.54
+        },
+        "final_score": 39.7,
+        "filter_score": 1
+      }
+    },
+    "434730": {
+      "2026-04-06": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 74.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 40.77,
+          "Disparity": 40.77
+        },
+        "final_score": 58.4,
+        "filter_score": 1
+      },
+      "2026-04-07": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 74.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 40.77,
+          "Disparity": 40.77
+        },
+        "final_score": 58.4,
+        "filter_score": 1
+      },
+      "2026-04-08": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 74.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 40.77,
+          "Disparity": 40.77
+        },
+        "final_score": 58.4,
+        "filter_score": 1
+      },
+      "2026-04-09": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 74.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 40.77,
+          "Disparity": 40.77
+        },
+        "final_score": 58.4,
+        "filter_score": 1
+      },
+      "2026-04-10": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 40.77,
+          "Divergence": 28.46,
+          "GoldenCross": 56.92,
+          "Stochastic": 45.38,
+          "Disparity": 26.92
+        },
+        "final_score": 52.7,
+        "filter_score": 1
+      },
+      "2026-04-11": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 74.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 40.77,
+          "Disparity": 40.77
+        },
+        "final_score": 58.4,
+        "filter_score": 1
+      },
+      "2026-04-13": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 40.77,
+          "Divergence": 28.46,
+          "GoldenCross": 56.92,
+          "Stochastic": 45.38,
+          "Disparity": 26.92
+        },
+        "final_score": 52.7,
+        "filter_score": 1
+      },
+      "2026-04-14": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 74.62,
+          "Divergence": 33.85,
+          "GoldenCross": 56.92,
+          "Stochastic": 40.77,
+          "Disparity": 40.77
+        },
+        "final_score": 58.5,
+        "filter_score": 1
+      },
+      "2026-04-15": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 68.46,
+          "Divergence": 33.85,
+          "GoldenCross": 52.31,
+          "Stochastic": 40.77,
+          "Disparity": 40.77
+        },
+        "final_score": 57.4,
+        "filter_score": 1
+      },
+      "2026-04-17": {
+        "factors": {
+          "RS": 100,
+          "Ichimoku": 85.0,
+          "ADX_Mom": 55.77,
+          "HA": 68.85,
+          "Keltner_Vol": 53.08,
+          "POC": 70.77,
+          "VWAP": 74.23,
+          "Resistance": 71.54,
+          "Divergence": 39.23,
+          "GoldenCross": 50.0,
+          "Stochastic": 26.92,
+          "Disparity": 0
+        },
+        "final_score": 69.6,
+        "filter_score": 1
+      }
+    },
+    "449450": {
+      "2026-04-06": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 74.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 40.77,
+          "Disparity": 40.77
+        },
+        "final_score": 58.4,
+        "filter_score": 1
+      },
+      "2026-04-07": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 74.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 40.77,
+          "Disparity": 40.77
+        },
+        "final_score": 58.4,
+        "filter_score": 1
+      },
+      "2026-04-08": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 74.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 40.77,
+          "Disparity": 40.77
+        },
+        "final_score": 58.4,
+        "filter_score": 1
+      },
+      "2026-04-09": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 74.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 40.77,
+          "Disparity": 40.77
+        },
+        "final_score": 58.4,
+        "filter_score": 1
+      },
+      "2026-04-10": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 80.77,
+          "Divergence": 28.46,
+          "GoldenCross": 56.92,
+          "Stochastic": 45.38,
+          "Disparity": 26.92
+        },
+        "final_score": 58.7,
+        "filter_score": 1
+      },
+      "2026-04-11": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 74.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 40.77,
+          "Disparity": 40.77
+        },
+        "final_score": 58.4,
+        "filter_score": 1
+      },
+      "2026-04-13": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 80.77,
+          "Divergence": 28.46,
+          "GoldenCross": 56.92,
+          "Stochastic": 45.38,
+          "Disparity": 26.92
+        },
+        "final_score": 58.7,
+        "filter_score": 1
+      },
+      "2026-04-14": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 74.62,
+          "Divergence": 33.85,
+          "GoldenCross": 56.92,
+          "Stochastic": 40.77,
+          "Disparity": 40.77
+        },
+        "final_score": 58.5,
+        "filter_score": 1
+      },
+      "2026-04-15": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 68.46,
+          "Divergence": 33.85,
+          "GoldenCross": 52.31,
+          "Stochastic": 40.77,
+          "Disparity": 40.77
+        },
+        "final_score": 57.4,
+        "filter_score": 1
+      },
+      "2026-04-17": {
+        "factors": {
+          "RS": 32.69,
+          "Ichimoku": 45.0,
+          "ADX_Mom": 55.77,
+          "HA": 31.15,
+          "Keltner_Vol": 25.38,
+          "POC": 15.38,
+          "VWAP": 32.69,
+          "Resistance": 31.54,
+          "Divergence": 39.23,
+          "GoldenCross": 50.0,
+          "Stochastic": 26.92,
+          "Disparity": 45.38
+        },
+        "final_score": 40.0,
+        "filter_score": 1
+      }
+    },
+    "360750": {
+      "2026-04-06": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 74.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 40.77,
+          "Disparity": 86.92
+        },
+        "final_score": 60.7,
+        "filter_score": 1
+      },
+      "2026-04-07": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 74.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 40.77,
+          "Disparity": 86.92
+        },
+        "final_score": 60.7,
+        "filter_score": 1
+      },
+      "2026-04-08": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 74.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 40.77,
+          "Disparity": 86.92
+        },
+        "final_score": 60.7,
+        "filter_score": 1
+      },
+      "2026-04-09": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 74.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 40.77,
+          "Disparity": 86.92
+        },
+        "final_score": 60.7,
+        "filter_score": 1
+      },
+      "2026-04-10": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 80.77,
+          "Divergence": 28.46,
+          "GoldenCross": 56.92,
+          "Stochastic": 45.38,
+          "Disparity": 86.92
+        },
+        "final_score": 61.7,
+        "filter_score": 1
+      },
+      "2026-04-11": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 74.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 40.77,
+          "Disparity": 86.92
+        },
+        "final_score": 60.7,
+        "filter_score": 1
+      },
+      "2026-04-13": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 80.77,
+          "Divergence": 28.46,
+          "GoldenCross": 56.92,
+          "Stochastic": 45.38,
+          "Disparity": 86.92
+        },
+        "final_score": 61.7,
+        "filter_score": 1
+      },
+      "2026-04-14": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 74.62,
+          "Divergence": 33.85,
+          "GoldenCross": 56.92,
+          "Stochastic": 40.77,
+          "Disparity": 86.92
+        },
+        "final_score": 60.8,
+        "filter_score": 1
+      },
+      "2026-04-15": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 68.46,
+          "Divergence": 33.85,
+          "GoldenCross": 52.31,
+          "Stochastic": 40.77,
+          "Disparity": 86.92
+        },
+        "final_score": 59.7,
+        "filter_score": 1
+      },
+      "2026-04-17": {
+        "factors": {
+          "RS": 32.69,
+          "Ichimoku": 55.0,
+          "ADX_Mom": 55.77,
+          "HA": 63.46,
+          "Keltner_Vol": 77.69,
+          "POC": 70.77,
+          "VWAP": 32.69,
+          "Resistance": 71.54,
+          "Divergence": 0,
+          "GoldenCross": 50.0,
+          "Stochastic": 26.92,
+          "Disparity": 91.54
+        },
+        "final_score": 60.6,
+        "filter_score": 1
+      }
+    },
+    "133690": {
+      "2026-04-06": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 74.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 40.77,
+          "Disparity": 86.92
+        },
+        "final_score": 60.7,
+        "filter_score": 1
+      },
+      "2026-04-07": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 74.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 40.77,
+          "Disparity": 86.92
+        },
+        "final_score": 60.7,
+        "filter_score": 1
+      },
+      "2026-04-08": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 74.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 40.77,
+          "Disparity": 86.92
+        },
+        "final_score": 60.7,
+        "filter_score": 1
+      },
+      "2026-04-09": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 74.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 40.77,
+          "Disparity": 86.92
+        },
+        "final_score": 60.7,
+        "filter_score": 1
+      },
+      "2026-04-10": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 80.77,
+          "Divergence": 28.46,
+          "GoldenCross": 56.92,
+          "Stochastic": 45.38,
+          "Disparity": 86.92
+        },
+        "final_score": 61.7,
+        "filter_score": 1
+      },
+      "2026-04-11": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 74.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 40.77,
+          "Disparity": 86.92
+        },
+        "final_score": 60.7,
+        "filter_score": 1
+      },
+      "2026-04-13": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 80.77,
+          "Divergence": 28.46,
+          "GoldenCross": 56.92,
+          "Stochastic": 45.38,
+          "Disparity": 86.92
+        },
+        "final_score": 61.7,
+        "filter_score": 1
+      },
+      "2026-04-14": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 74.62,
+          "Divergence": 33.85,
+          "GoldenCross": 56.92,
+          "Stochastic": 40.77,
+          "Disparity": 86.92
+        },
+        "final_score": 60.8,
+        "filter_score": 1
+      },
+      "2026-04-15": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 68.46,
+          "Divergence": 0,
+          "GoldenCross": 52.31,
+          "Stochastic": 40.77,
+          "Disparity": 86.92
+        },
+        "final_score": 56.3,
+        "filter_score": 1
+      },
+      "2026-04-17": {
+        "factors": {
+          "RS": 32.69,
+          "Ichimoku": 65.0,
+          "ADX_Mom": 55.77,
+          "HA": 79.62,
+          "Keltner_Vol": 77.69,
+          "POC": 70.77,
+          "VWAP": 74.23,
+          "Resistance": 71.54,
+          "Divergence": 0,
+          "GoldenCross": 75.38,
+          "Stochastic": 26.92,
+          "Disparity": 45.38
+        },
+        "final_score": 65.3,
+        "filter_score": 1
+      }
+    },
+    "458760": {
+      "2026-04-06": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 100,
+          "GoldenCross": 54.62,
+          "Stochastic": 0,
+          "Disparity": 86.92
+        },
+        "final_score": 57.3,
+        "filter_score": 1
+      },
+      "2026-04-07": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 100,
+          "GoldenCross": 54.62,
+          "Stochastic": 0,
+          "Disparity": 86.92
+        },
+        "final_score": 57.3,
+        "filter_score": 1
+      },
+      "2026-04-08": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 100,
+          "GoldenCross": 54.62,
+          "Stochastic": 0,
+          "Disparity": 86.92
+        },
+        "final_score": 57.3,
+        "filter_score": 1
+      },
+      "2026-04-09": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 100,
+          "GoldenCross": 54.62,
+          "Stochastic": 0,
+          "Disparity": 86.92
+        },
+        "final_score": 57.3,
+        "filter_score": 1
+      },
+      "2026-04-10": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 40.77,
+          "Divergence": 100,
+          "GoldenCross": 56.92,
+          "Stochastic": 0,
+          "Disparity": 86.92
+        },
+        "final_score": 58.3,
+        "filter_score": 1
+      },
+      "2026-04-11": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 100,
+          "GoldenCross": 54.62,
+          "Stochastic": 0,
+          "Disparity": 86.92
+        },
+        "final_score": 57.3,
+        "filter_score": 1
+      },
+      "2026-04-13": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 40.77,
+          "Divergence": 100,
+          "GoldenCross": 56.92,
+          "Stochastic": 0,
+          "Disparity": 86.92
+        },
+        "final_score": 58.3,
+        "filter_score": 1
+      },
+      "2026-04-14": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 100,
+          "GoldenCross": 56.92,
+          "Stochastic": 0,
+          "Disparity": 86.92
+        },
+        "final_score": 57.4,
+        "filter_score": 1
+      },
+      "2026-04-15": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 28.46,
+          "Divergence": 100,
+          "GoldenCross": 52.31,
+          "Stochastic": 0,
+          "Disparity": 86.92
+        },
+        "final_score": 56.2,
+        "filter_score": 1
+      },
+      "2026-04-17": {
+        "factors": {
+          "RS": 32.69,
+          "Ichimoku": 25.0,
+          "ADX_Mom": 32.69,
+          "HA": 41.92,
+          "Keltner_Vol": 53.08,
+          "POC": 15.38,
+          "VWAP": 11.92,
+          "Resistance": 31.54,
+          "Divergence": 98.46,
+          "GoldenCross": 75.38,
+          "Stochastic": 100,
+          "Disparity": 91.54
+        },
+        "final_score": 56.2,
+        "filter_score": 1
+      }
+    },
+    "132030": {
+      "2026-04-06": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 100,
+          "GoldenCross": 24.62,
+          "Stochastic": 40.77,
+          "Disparity": 86.92
+        },
+        "final_score": 59.8,
+        "filter_score": 1
+      },
+      "2026-04-07": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 100,
+          "GoldenCross": 24.62,
+          "Stochastic": 40.77,
+          "Disparity": 86.92
+        },
+        "final_score": 59.8,
+        "filter_score": 1
+      },
+      "2026-04-08": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 100,
+          "GoldenCross": 24.62,
+          "Stochastic": 40.77,
+          "Disparity": 86.92
+        },
+        "final_score": 59.8,
+        "filter_score": 1
+      },
+      "2026-04-09": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 100,
+          "GoldenCross": 24.62,
+          "Stochastic": 40.77,
+          "Disparity": 86.92
+        },
+        "final_score": 59.8,
+        "filter_score": 1
+      },
+      "2026-04-10": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 40.77,
+          "Divergence": 100,
+          "GoldenCross": 24.62,
+          "Stochastic": 45.38,
+          "Disparity": 86.92
+        },
+        "final_score": 61.2,
+        "filter_score": 1
+      },
+      "2026-04-11": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 100,
+          "GoldenCross": 24.62,
+          "Stochastic": 40.77,
+          "Disparity": 86.92
+        },
+        "final_score": 59.8,
+        "filter_score": 1
+      },
+      "2026-04-13": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 40.77,
+          "Divergence": 100,
+          "GoldenCross": 24.62,
+          "Stochastic": 45.38,
+          "Disparity": 86.92
+        },
+        "final_score": 61.2,
+        "filter_score": 1
+      },
+      "2026-04-14": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 100,
+          "GoldenCross": 24.62,
+          "Stochastic": 40.77,
+          "Disparity": 86.92
+        },
+        "final_score": 59.8,
+        "filter_score": 1
+      },
+      "2026-04-15": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 68.46,
+          "Divergence": 93.08,
+          "GoldenCross": 20.0,
+          "Stochastic": 40.77,
+          "Disparity": 86.92
+        },
+        "final_score": 64.0,
+        "filter_score": 1
+      },
+      "2026-04-17": {
+        "factors": {
+          "RS": 32.69,
+          "Ichimoku": 0,
+          "ADX_Mom": 55.77,
+          "HA": 36.54,
+          "Keltner_Vol": 25.38,
+          "POC": 36.15,
+          "VWAP": 32.69,
+          "Resistance": 71.54,
+          "Divergence": 98.46,
+          "GoldenCross": 20.0,
+          "Stochastic": 82.31,
+          "Disparity": 91.54
+        },
+        "final_score": 55.9,
+        "filter_score": 1
+      }
+    },
+    "487240": {
+      "2026-04-06": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 40.77,
+          "Disparity": 0
+        },
+        "final_score": 50.4,
+        "filter_score": 1
+      },
+      "2026-04-07": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 40.77,
+          "Disparity": 0
+        },
+        "final_score": 50.4,
+        "filter_score": 1
+      },
+      "2026-04-08": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 40.77,
+          "Disparity": 0
+        },
+        "final_score": 50.4,
+        "filter_score": 1
+      },
+      "2026-04-09": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 40.77,
+          "Disparity": 0
+        },
+        "final_score": 50.4,
+        "filter_score": 1
+      },
+      "2026-04-10": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 40.77,
+          "Divergence": 28.46,
+          "GoldenCross": 56.92,
+          "Stochastic": 45.38,
+          "Disparity": 26.92
+        },
+        "final_score": 52.7,
+        "filter_score": 1
+      },
+      "2026-04-11": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 40.77,
+          "Disparity": 0
+        },
+        "final_score": 50.4,
+        "filter_score": 1
+      },
+      "2026-04-13": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 40.77,
+          "Divergence": 28.46,
+          "GoldenCross": 56.92,
+          "Stochastic": 45.38,
+          "Disparity": 26.92
+        },
+        "final_score": 52.7,
+        "filter_score": 1
+      },
+      "2026-04-14": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 33.85,
+          "GoldenCross": 56.92,
+          "Stochastic": 40.77,
+          "Disparity": 0
+        },
+        "final_score": 50.5,
+        "filter_score": 1
+      },
+      "2026-04-15": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 68.46,
+          "Divergence": 33.85,
+          "GoldenCross": 52.31,
+          "Stochastic": 40.77,
+          "Disparity": 0
+        },
+        "final_score": 55.3,
+        "filter_score": 1
+      },
+      "2026-04-17": {
+        "factors": {
+          "RS": 100,
+          "Ichimoku": 100,
+          "ADX_Mom": 55.77,
+          "HA": 74.23,
+          "Keltner_Vol": 77.69,
+          "POC": 70.77,
+          "VWAP": 74.23,
+          "Resistance": 71.54,
+          "Divergence": 39.23,
+          "GoldenCross": 50.0,
+          "Stochastic": 26.92,
+          "Disparity": 0
+        },
+        "final_score": 75.4,
+        "filter_score": 1
+      }
+    },
+    "000660": {
+      "2026-04-06": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 40.77,
+          "Disparity": 0
+        },
+        "final_score": 50.4,
+        "filter_score": 1
+      },
+      "2026-04-07": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 40.77,
+          "Disparity": 0
+        },
+        "final_score": 50.4,
+        "filter_score": 1
+      },
+      "2026-04-08": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 40.77,
+          "Disparity": 0
+        },
+        "final_score": 50.4,
+        "filter_score": 1
+      },
+      "2026-04-09": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 40.77,
+          "Disparity": 0
+        },
+        "final_score": 50.4,
+        "filter_score": 1
+      },
+      "2026-04-10": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 40.77,
+          "Divergence": 28.46,
+          "GoldenCross": 56.92,
+          "Stochastic": 45.38,
+          "Disparity": 26.92
+        },
+        "final_score": 52.7,
+        "filter_score": 1
+      },
+      "2026-04-11": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 40.77,
+          "Disparity": 0
+        },
+        "final_score": 50.4,
+        "filter_score": 1
+      },
+      "2026-04-13": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 40.77,
+          "Divergence": 28.46,
+          "GoldenCross": 56.92,
+          "Stochastic": 45.38,
+          "Disparity": 26.92
+        },
+        "final_score": 52.7,
+        "filter_score": 1
+      },
+      "2026-04-14": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 74.62,
+          "Divergence": 33.85,
+          "GoldenCross": 56.92,
+          "Stochastic": 40.77,
+          "Disparity": 0
+        },
+        "final_score": 56.5,
+        "filter_score": 1
+      },
+      "2026-04-15": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 68.46,
+          "Divergence": 33.85,
+          "GoldenCross": 52.31,
+          "Stochastic": 40.77,
+          "Disparity": 0
+        },
+        "final_score": 55.3,
+        "filter_score": 1
+      },
+      "2026-04-17": {
+        "factors": {
+          "RS": 100,
+          "Ichimoku": 100,
+          "ADX_Mom": 55.77,
+          "HA": 52.69,
+          "Keltner_Vol": 53.08,
+          "POC": 70.77,
+          "VWAP": 74.23,
+          "Resistance": 31.54,
+          "Divergence": 39.23,
+          "GoldenCross": 50.0,
+          "Stochastic": 26.92,
+          "Disparity": 0
+        },
+        "final_score": 63.5,
+        "filter_score": 1
+      }
+    },
+    "267260": {
+      "2026-04-06": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 74.62,
+          "Divergence": 33.85,
+          "GoldenCross": 80.0,
+          "Stochastic": 40.77,
+          "Disparity": 40.77
+        },
+        "final_score": 59.7,
+        "filter_score": 1
+      },
+      "2026-04-07": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 74.62,
+          "Divergence": 33.85,
+          "GoldenCross": 80.0,
+          "Stochastic": 40.77,
+          "Disparity": 40.77
+        },
+        "final_score": 59.7,
+        "filter_score": 1
+      },
+      "2026-04-08": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 74.62,
+          "Divergence": 33.85,
+          "GoldenCross": 80.0,
+          "Stochastic": 40.77,
+          "Disparity": 40.77
+        },
+        "final_score": 59.7,
+        "filter_score": 1
+      },
+      "2026-04-09": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 74.62,
+          "Divergence": 33.85,
+          "GoldenCross": 80.0,
+          "Stochastic": 40.77,
+          "Disparity": 40.77
+        },
+        "final_score": 59.7,
+        "filter_score": 1
+      },
+      "2026-04-10": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 40.77,
+          "Divergence": 28.46,
+          "GoldenCross": 56.92,
+          "Stochastic": 45.38,
+          "Disparity": 26.92
+        },
+        "final_score": 52.7,
+        "filter_score": 1
+      },
+      "2026-04-11": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 74.62,
+          "Divergence": 33.85,
+          "GoldenCross": 80.0,
+          "Stochastic": 40.77,
+          "Disparity": 40.77
+        },
+        "final_score": 59.7,
+        "filter_score": 1
+      },
+      "2026-04-13": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 40.77,
+          "Divergence": 28.46,
+          "GoldenCross": 56.92,
+          "Stochastic": 45.38,
+          "Disparity": 26.92
+        },
+        "final_score": 52.7,
+        "filter_score": 1
+      },
+      "2026-04-14": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 33.85,
+          "GoldenCross": 56.92,
+          "Stochastic": 40.77,
+          "Disparity": 40.77
+        },
+        "final_score": 52.5,
+        "filter_score": 1
+      },
+      "2026-04-15": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 28.46,
+          "Divergence": 33.85,
+          "GoldenCross": 80.0,
+          "Stochastic": 40.77,
+          "Disparity": 40.77
+        },
+        "final_score": 52.8,
+        "filter_score": 1
+      },
+      "2026-04-17": {
+        "factors": {
+          "RS": 73.08,
+          "Ichimoku": 75.0,
+          "ADX_Mom": 55.77,
+          "HA": 85.0,
+          "Keltner_Vol": 77.69,
+          "POC": 70.77,
+          "VWAP": 74.23,
+          "Resistance": 71.54,
+          "Divergence": 39.23,
+          "GoldenCross": 75.38,
+          "Stochastic": 26.92,
+          "Disparity": 45.38
+        },
+        "final_score": 74.8,
+        "filter_score": 1
+      }
+    },
+    "298040": {
+      "2026-04-06": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 40.77,
+          "Disparity": 0
+        },
+        "final_score": 50.4,
+        "filter_score": 1
+      },
+      "2026-04-07": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 40.77,
+          "Disparity": 0
+        },
+        "final_score": 50.4,
+        "filter_score": 1
+      },
+      "2026-04-08": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 40.77,
+          "Disparity": 0
+        },
+        "final_score": 50.4,
+        "filter_score": 1
+      },
+      "2026-04-09": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 40.77,
+          "Disparity": 0
+        },
+        "final_score": 50.4,
+        "filter_score": 1
+      },
+      "2026-04-10": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 40.77,
+          "Divergence": 28.46,
+          "GoldenCross": 56.92,
+          "Stochastic": 100,
+          "Disparity": 0
+        },
+        "final_score": 56.8,
+        "filter_score": 1
+      },
+      "2026-04-11": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 40.77,
+          "Disparity": 0
+        },
+        "final_score": 50.4,
+        "filter_score": 1
+      },
+      "2026-04-13": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 40.77,
+          "Divergence": 28.46,
+          "GoldenCross": 56.92,
+          "Stochastic": 100,
+          "Disparity": 0
+        },
+        "final_score": 56.8,
+        "filter_score": 1
+      },
+      "2026-04-14": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 34.62,
+          "Divergence": 33.85,
+          "GoldenCross": 56.92,
+          "Stochastic": 40.77,
+          "Disparity": 0
+        },
+        "final_score": 50.5,
+        "filter_score": 1
+      },
+      "2026-04-15": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 28.46,
+          "Divergence": 33.85,
+          "GoldenCross": 52.31,
+          "Stochastic": 40.77,
+          "Disparity": 0
+        },
+        "final_score": 49.3,
+        "filter_score": 1
+      },
+      "2026-04-17": {
+        "factors": {
+          "RS": 100,
+          "Ichimoku": 95.0,
+          "ADX_Mom": 55.77,
+          "HA": 25.77,
+          "Keltner_Vol": 25.38,
+          "POC": 70.77,
+          "VWAP": 74.23,
+          "Resistance": 31.54,
+          "Divergence": 39.23,
+          "GoldenCross": 50.0,
+          "Stochastic": 100,
+          "Disparity": 45.38
+        },
+        "final_score": 65.8,
+        "filter_score": 1
+      }
+    },
+    "010120": {
+      "2026-04-06": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 10.0,
+          "Divergence": 100,
+          "GoldenCross": 29.23,
+          "Stochastic": 96.15,
+          "Disparity": 17.69
+        },
+        "final_score": 58.5,
+        "filter_score": 1
+      },
+      "2026-04-07": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 10.0,
+          "Divergence": 100,
+          "GoldenCross": 29.23,
+          "Stochastic": 96.15,
+          "Disparity": 17.69
+        },
+        "final_score": 58.5,
+        "filter_score": 1
+      },
+      "2026-04-08": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 10.0,
+          "Divergence": 100,
+          "GoldenCross": 29.23,
+          "Stochastic": 96.15,
+          "Disparity": 17.69
+        },
+        "final_score": 58.5,
+        "filter_score": 1
+      },
+      "2026-04-09": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 10.0,
+          "Divergence": 100,
+          "GoldenCross": 29.23,
+          "Stochastic": 96.15,
+          "Disparity": 17.69
+        },
+        "final_score": 58.5,
+        "filter_score": 1
+      },
+      "2026-04-10": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 10.0,
+          "Divergence": 100,
+          "GoldenCross": 29.23,
+          "Stochastic": 45.38,
+          "Disparity": 26.92
+        },
+        "final_score": 53.8,
+        "filter_score": 1
+      },
+      "2026-04-11": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 10.0,
+          "Divergence": 100,
+          "GoldenCross": 29.23,
+          "Stochastic": 96.15,
+          "Disparity": 17.69
+        },
+        "final_score": 58.5,
+        "filter_score": 1
+      },
+      "2026-04-13": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 10.0,
+          "Divergence": 100,
+          "GoldenCross": 29.23,
+          "Stochastic": 45.38,
+          "Disparity": 26.92
+        },
+        "final_score": 53.8,
+        "filter_score": 1
+      },
+      "2026-04-14": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 10.0,
+          "Divergence": 100,
+          "GoldenCross": 29.23,
+          "Stochastic": 96.15,
+          "Disparity": 17.69
+        },
+        "final_score": 58.5,
+        "filter_score": 1
+      },
+      "2026-04-15": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 10.0,
+          "Divergence": 100,
+          "GoldenCross": 52.31,
+          "Stochastic": 100,
+          "Disparity": 17.69
+        },
+        "final_score": 60.0,
+        "filter_score": 1
+      },
+      "2026-04-17": {
+        "factors": {
+          "RS": 0,
+          "Ichimoku": 0,
+          "ADX_Mom": 28.85,
+          "HA": 15.0,
+          "Keltner_Vol": 25.38,
+          "POC": 15.38,
+          "VWAP": 5.0,
+          "Resistance": 10.0,
+          "Divergence": 100,
+          "GoldenCross": 26.92,
+          "Stochastic": 82.31,
+          "Disparity": 17.69
+        },
+        "final_score": 31.7,
+        "filter_score": 1
+      }
+    },
+    "423160": {
+      "2026-04-06": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 74.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 100,
+          "Disparity": 86.92
+        },
+        "final_score": 66.7,
+        "filter_score": 1
+      },
+      "2026-04-07": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 74.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 100,
+          "Disparity": 86.92
+        },
+        "final_score": 66.7,
+        "filter_score": 1
+      },
+      "2026-04-08": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 74.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 100,
+          "Disparity": 86.92
+        },
+        "final_score": 66.7,
+        "filter_score": 1
+      },
+      "2026-04-09": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 74.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 100,
+          "Disparity": 86.92
+        },
+        "final_score": 66.7,
+        "filter_score": 1
+      },
+      "2026-04-10": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 80.77,
+          "Divergence": 100,
+          "GoldenCross": 56.92,
+          "Stochastic": 100,
+          "Disparity": 86.92
+        },
+        "final_score": 74.3,
+        "filter_score": 1
+      },
+      "2026-04-11": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 74.62,
+          "Divergence": 33.85,
+          "GoldenCross": 54.62,
+          "Stochastic": 100,
+          "Disparity": 86.92
+        },
+        "final_score": 66.7,
+        "filter_score": 1
+      },
+      "2026-04-13": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 80.77,
+          "Divergence": 100,
+          "GoldenCross": 56.92,
+          "Stochastic": 100,
+          "Disparity": 86.92
+        },
+        "final_score": 74.3,
+        "filter_score": 1
+      },
+      "2026-04-14": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 74.62,
+          "Divergence": 33.85,
+          "GoldenCross": 56.92,
+          "Stochastic": 100,
+          "Disparity": 86.92
+        },
+        "final_score": 66.8,
+        "filter_score": 1
+      },
+      "2026-04-15": {
+        "factors": {
+          "RS": 50.0,
+          "Ichimoku": 50.0,
+          "ADX_Mom": 50.0,
+          "HA": 50.0,
+          "Keltner_Vol": 50.0,
+          "POC": 50.0,
+          "VWAP": 50.0,
+          "Resistance": 68.46,
+          "Divergence": 33.85,
+          "GoldenCross": 52.31,
+          "Stochastic": 100,
+          "Disparity": 86.92
+        },
+        "final_score": 65.6,
+        "filter_score": 1
+      },
+      "2026-04-17": {
+        "factors": {
+          "RS": 0,
+          "Ichimoku": 15.0,
+          "ADX_Mom": 25.0,
+          "HA": 47.31,
+          "Keltner_Vol": 77.69,
+          "POC": 36.15,
+          "VWAP": 32.69,
+          "Resistance": 71.54,
+          "Divergence": 39.23,
+          "GoldenCross": 50.0,
+          "Stochastic": 26.92,
+          "Disparity": 91.54
+        },
+        "final_score": 50.0,
+        "filter_score": 1
+      }
+    }
+  },
+  "score_buckets": {
+    "MID (55-64)": {
+      "fwd_1d": {
+        "mean": 8.621,
+        "median": 0.0,
+        "std": 52.316,
+        "n": 76,
+        "win_rate": 35.5
+      },
+      "fwd_2d": {
+        "mean": 4.991,
+        "median": 0.0,
+        "std": 39.97,
+        "n": 66,
+        "win_rate": 25.8
+      },
+      "fwd_3d": {
+        "mean": 11.424,
+        "median": 0.0,
+        "std": 60.274,
+        "n": 57,
+        "win_rate": 35.1
+      },
+      "fwd_5d": {
+        "mean": 7.77,
+        "median": 0.0,
+        "std": 50.105,
+        "n": 42,
+        "win_rate": 38.1
+      },
+      "period_return": {
+        "mean": 0.903,
+        "median": 0.485,
+        "std": 2.257,
+        "n": 76,
+        "win_rate": 64.5
+      }
+    },
+    "LOW (45-54)": {
+      "fwd_1d": {
+        "mean": -3.378,
+        "median": 0.0,
+        "std": 17.183,
+        "n": 41,
+        "win_rate": 36.6
+      },
+      "fwd_2d": {
+        "mean": -1.282,
+        "median": 0.0,
+        "std": 13.053,
+        "n": 38,
+        "win_rate": 26.3
+      },
+      "fwd_3d": {
+        "mean": -3.565,
+        "median": 0.0,
+        "std": 19.162,
+        "n": 34,
+        "win_rate": 38.2
+      },
+      "fwd_5d": {
+        "mean": -2.037,
+        "median": 0.0,
+        "std": 16.963,
+        "n": 23,
+        "win_rate": 43.5
+      },
+      "period_return": {
+        "mean": 1.877,
+        "median": 2.267,
+        "std": 2.53,
+        "n": 41,
+        "win_rate": 78.0
+      }
+    },
+    "HIGH (≥65)": {
+      "fwd_1d": {
+        "mean": 0.004,
+        "median": 0.0,
+        "std": 0.018,
+        "n": 9,
+        "win_rate": 33.3
+      },
+      "fwd_2d": {
+        "mean": 0.005,
+        "median": 0.0,
+        "std": 0.016,
+        "n": 8,
+        "win_rate": 25.0
+      },
+      "fwd_3d": {
+        "mean": 0.005,
+        "median": 0.0,
+        "std": 0.025,
+        "n": 7,
+        "win_rate": 28.6
+      },
+      "fwd_5d": {
+        "mean": 0.007,
+        "median": 0.0,
+        "std": 0.027,
+        "n": 5,
+        "win_rate": 20.0
+      },
+      "period_return": {
+        "mean": 0.036,
+        "median": 0.036,
+        "std": 0.0,
+        "n": 9,
+        "win_rate": 100.0
+      }
+    }
+  },
+  "factor_ic": {
+    "RS": {
+      "ic": 0.1325,
+      "n": 126
+    },
+    "Ichimoku": {
+      "ic": 0.1325,
+      "n": 126
+    },
+    "ADX_Mom": {
+      "ic": 0.1325,
+      "n": 126
+    },
+    "HA": {
+      "ic": 0.1325,
+      "n": 126
+    },
+    "Keltner_Vol": {
+      "ic": 0.1325,
+      "n": 126
+    },
+    "POC": {
+      "ic": 0.1325,
+      "n": 126
+    },
+    "VWAP": {
+      "ic": 0.1325,
+      "n": 126
+    },
+    "Resistance": {
+      "ic": 0.0576,
+      "n": 126
+    },
+    "Divergence": {
+      "ic": -0.1789,
+      "n": 126
+    },
+    "GoldenCross": {
+      "ic": 0.1829,
+      "n": 126
+    },
+    "Stochastic": {
+      "ic": 0.2825,
+      "n": 126
+    },
+    "Disparity": {
+      "ic": 0.0154,
+      "n": 126
+    }
+  },
+  "fwd_returns": {
+    "132030": {
+      "2026-04-06": {
+        "fwd_1d": 0.0,
+        "fwd_2d": 0.0,
+        "fwd_3d": 0.0,
+        "fwd_5d": 0.0,
+        "period_return": 0.3508771929824561
+      },
+      "2026-04-07": {
+        "fwd_1d": 0.0,
+        "fwd_2d": 0.0,
+        "fwd_3d": -0.18467220683287164,
+        "fwd_5d": -0.18467220683287164,
+        "period_return": 0.3508771929824561
+      },
+      "2026-04-08": {
+        "fwd_1d": 0.0,
+        "fwd_2d": -0.18467220683287164,
+        "fwd_3d": 0.0,
+        "fwd_5d": -0.07386888273314865,
+        "period_return": 0.3508771929824561
+      },
+      "2026-04-09": {
+        "fwd_1d": -0.18467220683287164,
+        "fwd_2d": 0.0,
+        "fwd_3d": -0.18467220683287164,
+        "fwd_5d": 1.3296398891966759,
+        "period_return": 0.3508771929824561
+      },
+      "2026-04-10": {
+        "fwd_1d": 0.18501387604070307,
+        "fwd_2d": 0.0,
+        "fwd_3d": 0.11100832562442184,
+        "fwd_5d": 0.5365402405180388,
+        "period_return": 0.3508771929824561
+      },
+      "2026-04-11": {
+        "fwd_1d": -0.18467220683287164,
+        "fwd_2d": -0.07386888273314865,
+        "fwd_3d": 1.3296398891966759,
+        "fwd_5d": null,
+        "period_return": 0.3508771929824561
+      },
+      "2026-04-13": {
+        "fwd_1d": 0.11100832562442184,
+        "fwd_2d": 1.5171137835337651,
+        "fwd_3d": 0.5365402405180388,
+        "fwd_5d": null,
+        "period_return": 0.3508771929824561
+      },
+      "2026-04-14": {
+        "fwd_1d": 1.4045462945851046,
+        "fwd_2d": 0.42506006283496583,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": 0.3508771929824561
+      },
+      "2026-04-15": {
+        "fwd_1d": -0.9659194459631857,
+        "fwd_2d": null,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": 0.3508771929824561
+      },
+      "2026-04-17": {
+        "fwd_1d": null,
+        "fwd_2d": null,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": 0.3508771929824561
+      }
+    },
+    "133690": {
+      "2026-04-06": {
+        "fwd_1d": 0.0,
+        "fwd_2d": 0.0,
+        "fwd_3d": 0.0,
+        "fwd_5d": 0.0,
+        "period_return": 3.6194756554307115
+      },
+      "2026-04-07": {
+        "fwd_1d": 0.0,
+        "fwd_2d": 0.0,
+        "fwd_3d": -1.2734082397003745,
+        "fwd_5d": -1.2734082397003745,
+        "period_return": 3.6194756554307115
+      },
+      "2026-04-08": {
+        "fwd_1d": 0.0,
+        "fwd_2d": -1.2734082397003745,
+        "fwd_3d": 0.0,
+        "fwd_5d": 0.19775280898876405,
+        "period_return": 3.6194756554307115
+      },
+      "2026-04-09": {
+        "fwd_1d": -1.2734082397003745,
+        "fwd_2d": 0.0,
+        "fwd_3d": -1.2734082397003745,
+        "fwd_5d": 1.1895131086142323,
+        "period_return": 3.6194756554307115
+      },
+      "2026-04-10": {
+        "fwd_1d": 1.289833080424886,
+        "fwd_2d": 0.0,
+        "fwd_3d": 1.4901365705614569,
+        "fwd_5d": 4.955993930197269,
+        "period_return": 3.6194756554307115
+      },
+      "2026-04-11": {
+        "fwd_1d": -1.2734082397003745,
+        "fwd_2d": 0.19775280898876405,
+        "fwd_3d": 1.1895131086142323,
+        "fwd_5d": null,
+        "period_return": 3.6194756554307115
+      },
+      "2026-04-13": {
+        "fwd_1d": 1.4901365705614569,
+        "fwd_2d": 2.494688922610015,
+        "fwd_3d": 4.955993930197269,
+        "fwd_5d": null,
+        "period_return": 3.6194756554307115
+      },
+      "2026-04-14": {
+        "fwd_1d": 0.9898029365150564,
+        "fwd_2d": 3.414969648036841,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": 3.6194756554307115
+      },
+      "2026-04-15": {
+        "fwd_1d": 2.401397607485491,
+        "fwd_2d": null,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": 3.6194756554307115
+      },
+      "2026-04-17": {
+        "fwd_1d": null,
+        "fwd_2d": null,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": 3.6194756554307115
+      }
+    },
+    "267260": {
+      "2026-04-06": {
+        "fwd_1d": 0.0,
+        "fwd_2d": 0.0,
+        "fwd_3d": 0.0,
+        "fwd_5d": 0.0,
+        "period_return": 2.4505183788878417
+      },
+      "2026-04-07": {
+        "fwd_1d": 0.0,
+        "fwd_2d": 0.0,
+        "fwd_3d": -5.843543826578699,
+        "fwd_5d": -5.843543826578699,
+        "period_return": 2.4505183788878417
+      },
+      "2026-04-08": {
+        "fwd_1d": 0.0,
+        "fwd_2d": -5.843543826578699,
+        "fwd_3d": 0.0,
+        "fwd_5d": -1.6965127238454287,
+        "period_return": 2.4505183788878417
+      },
+      "2026-04-09": {
+        "fwd_1d": -5.843543826578699,
+        "fwd_2d": 0.0,
+        "fwd_3d": -5.843543826578699,
+        "fwd_5d": -0.5655042412818096,
+        "period_return": 2.4505183788878417
+      },
+      "2026-04-10": {
+        "fwd_1d": 6.206206206206207,
+        "fwd_2d": 0.0,
+        "fwd_3d": 4.404404404404405,
+        "fwd_5d": 8.80880880880881,
+        "period_return": 2.4505183788878417
+      },
+      "2026-04-11": {
+        "fwd_1d": -5.843543826578699,
+        "fwd_2d": -1.6965127238454287,
+        "fwd_3d": -0.5655042412818096,
+        "fwd_5d": null,
+        "period_return": 2.4505183788878417
+      },
+      "2026-04-13": {
+        "fwd_1d": 4.404404404404405,
+        "fwd_2d": 5.605605605605605,
+        "fwd_3d": 8.80880880880881,
+        "fwd_5d": null,
+        "period_return": 2.4505183788878417
+      },
+      "2026-04-14": {
+        "fwd_1d": 1.1505273250239694,
+        "fwd_2d": 4.218600191754554,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": 2.4505183788878417
+      },
+      "2026-04-15": {
+        "fwd_1d": 3.033175355450237,
+        "fwd_2d": null,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": 2.4505183788878417
+      },
+      "2026-04-17": {
+        "fwd_1d": null,
+        "fwd_2d": null,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": 2.4505183788878417
+      }
+    },
+    "298040": {
+      "2026-04-06": {
+        "fwd_1d": 0.0,
+        "fwd_2d": 0.0,
+        "fwd_3d": 0.0,
+        "fwd_5d": 0.0,
+        "period_return": -2.0381328073635765
+      },
+      "2026-04-07": {
+        "fwd_1d": 0.0,
+        "fwd_2d": 0.0,
+        "fwd_3d": -3.353057199211045,
+        "fwd_5d": -3.353057199211045,
+        "period_return": -2.0381328073635765
+      },
+      "2026-04-08": {
+        "fwd_1d": 0.0,
+        "fwd_2d": -3.353057199211045,
+        "fwd_3d": 0.0,
+        "fwd_5d": -0.14792899408284024,
+        "period_return": -2.0381328073635765
+      },
+      "2026-04-09": {
+        "fwd_1d": -3.353057199211045,
+        "fwd_2d": 0.0,
+        "fwd_3d": -3.353057199211045,
+        "fwd_5d": -0.5588428665351742,
+        "period_return": -2.0381328073635765
+      },
+      "2026-04-10": {
+        "fwd_1d": 3.4693877551020407,
+        "fwd_2d": 0.0,
+        "fwd_3d": 3.316326530612245,
+        "fwd_5d": 1.3605442176870748,
+        "period_return": -2.0381328073635765
+      },
+      "2026-04-11": {
+        "fwd_1d": -3.353057199211045,
+        "fwd_2d": -0.14792899408284024,
+        "fwd_3d": -0.5588428665351742,
+        "fwd_5d": null,
+        "period_return": -2.0381328073635765
+      },
+      "2026-04-13": {
+        "fwd_1d": 3.316326530612245,
+        "fwd_2d": 2.891156462585034,
+        "fwd_3d": 1.3605442176870748,
+        "fwd_5d": null,
+        "period_return": -2.0381328073635765
+      },
+      "2026-04-14": {
+        "fwd_1d": -0.411522633744856,
+        "fwd_2d": -1.8930041152263373,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": -2.0381328073635765
+      },
+      "2026-04-15": {
+        "fwd_1d": -1.487603305785124,
+        "fwd_2d": null,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": -2.0381328073635765
+      },
+      "2026-04-17": {
+        "fwd_1d": null,
+        "fwd_2d": null,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": -2.0381328073635765
+      }
+    },
+    "360750": {
+      "2026-04-06": {
+        "fwd_1d": 0.0,
+        "fwd_2d": 0.0,
+        "fwd_3d": 0.0,
+        "fwd_5d": 0.0,
+        "period_return": 2.4082116067903674
+      },
+      "2026-04-07": {
+        "fwd_1d": 0.0,
+        "fwd_2d": 0.0,
+        "fwd_3d": -0.8882747729964469,
+        "fwd_5d": -0.8882747729964469,
+        "period_return": 2.4082116067903674
+      },
+      "2026-04-08": {
+        "fwd_1d": 0.0,
+        "fwd_2d": -0.8882747729964469,
+        "fwd_3d": 0.0,
+        "fwd_5d": 0.23687327279905251,
+        "period_return": 2.4082116067903674
+      },
+      "2026-04-09": {
+        "fwd_1d": -0.8882747729964469,
+        "fwd_2d": 0.0,
+        "fwd_3d": -0.8882747729964469,
+        "fwd_5d": 0.7303592577970786,
+        "period_return": 2.4082116067903674
+      },
+      "2026-04-10": {
+        "fwd_1d": 0.8962358095996813,
+        "fwd_2d": 0.0,
+        "fwd_3d": 1.1352320254929298,
+        "fwd_5d": 3.32603067118104,
+        "period_return": 2.4082116067903674
+      },
+      "2026-04-11": {
+        "fwd_1d": -0.8882747729964469,
+        "fwd_2d": 0.23687327279905251,
+        "fwd_3d": 0.7303592577970786,
+        "fwd_5d": null,
+        "period_return": 2.4082116067903674
+      },
+      "2026-04-13": {
+        "fwd_1d": 1.1352320254929298,
+        "fwd_2d": 1.6331408086038637,
+        "fwd_3d": 3.32603067118104,
+        "fwd_5d": null,
+        "period_return": 2.4082116067903674
+      },
+      "2026-04-14": {
+        "fwd_1d": 0.49231981094919264,
+        "fwd_2d": 2.1662071681764474,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": 2.4082116067903674
+      },
+      "2026-04-15": {
+        "fwd_1d": 1.665686850872036,
+        "fwd_2d": null,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": 2.4082116067903674
+      },
+      "2026-04-17": {
+        "fwd_1d": null,
+        "fwd_2d": null,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": 2.4082116067903674
+      }
+    },
+    "423160": {
+      "2026-04-06": {
+        "fwd_1d": 0.0,
+        "fwd_2d": 0.0,
+        "fwd_3d": 0.0,
+        "fwd_5d": 0.0,
+        "period_return": 0.036115750981896975
+      },
+      "2026-04-07": {
+        "fwd_1d": 0.0,
+        "fwd_2d": 0.0,
+        "fwd_3d": -0.018057875490948488,
+        "fwd_5d": -0.018057875490948488,
+        "period_return": 0.036115750981896975
+      },
+      "2026-04-08": {
+        "fwd_1d": 0.0,
+        "fwd_2d": -0.018057875490948488,
+        "fwd_3d": 0.0,
+        "fwd_5d": 0.0,
+        "period_return": 0.036115750981896975
+      },
+      "2026-04-09": {
+        "fwd_1d": -0.018057875490948488,
+        "fwd_2d": 0.0,
+        "fwd_3d": -0.018057875490948488,
+        "fwd_5d": 0.0,
+        "period_return": 0.036115750981896975
+      },
+      "2026-04-10": {
+        "fwd_1d": 0.01806113694857091,
+        "fwd_2d": 0.0,
+        "fwd_3d": 0.01806113694857091,
+        "fwd_5d": 0.05418341084571273,
+        "period_return": 0.036115750981896975
+      },
+      "2026-04-11": {
+        "fwd_1d": -0.018057875490948488,
+        "fwd_2d": 0.0,
+        "fwd_3d": 0.0,
+        "fwd_5d": null,
+        "period_return": 0.036115750981896975
+      },
+      "2026-04-13": {
+        "fwd_1d": 0.01806113694857091,
+        "fwd_2d": 0.01806113694857091,
+        "fwd_3d": 0.05418341084571273,
+        "fwd_5d": null,
+        "period_return": 0.036115750981896975
+      },
+      "2026-04-14": {
+        "fwd_1d": 0.0,
+        "fwd_2d": 0.036115750981896975,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": 0.036115750981896975
+      },
+      "2026-04-15": {
+        "fwd_1d": 0.036115750981896975,
+        "fwd_2d": null,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": 0.036115750981896975
+      },
+      "2026-04-17": {
+        "fwd_1d": null,
+        "fwd_2d": null,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": 0.036115750981896975
+      }
+    },
+    "434730": {
+      "2026-04-06": {
+        "fwd_1d": 0.0,
+        "fwd_2d": 0.0,
+        "fwd_3d": 0.0,
+        "fwd_5d": 0.0,
+        "period_return": 4.0984733874295145
+      },
+      "2026-04-07": {
+        "fwd_1d": 0.0,
+        "fwd_2d": 0.0,
+        "fwd_3d": -3.300783936184844,
+        "fwd_5d": -3.300783936184844,
+        "period_return": 4.0984733874295145
+      },
+      "2026-04-08": {
+        "fwd_1d": 0.0,
+        "fwd_2d": -3.300783936184844,
+        "fwd_3d": 0.0,
+        "fwd_5d": -0.4813643240269564,
+        "period_return": 4.0984733874295145
+      },
+      "2026-04-09": {
+        "fwd_1d": -3.300783936184844,
+        "fwd_2d": 0.0,
+        "fwd_3d": -3.300783936184844,
+        "fwd_5d": 2.867556044560583,
+        "period_return": 4.0984733874295145
+      },
+      "2026-04-10": {
+        "fwd_1d": 3.4134547006115774,
+        "fwd_2d": 0.0,
+        "fwd_3d": 2.915659223439056,
+        "fwd_5d": 7.651827620537619,
+        "period_return": 4.0984733874295145
+      },
+      "2026-04-11": {
+        "fwd_1d": -3.300783936184844,
+        "fwd_2d": -0.4813643240269564,
+        "fwd_3d": 2.867556044560583,
+        "fwd_5d": null,
+        "period_return": 4.0984733874295145
+      },
+      "2026-04-13": {
+        "fwd_1d": 2.915659223439056,
+        "fwd_2d": 6.378893471767885,
+        "fwd_3d": 7.651827620537619,
+        "fwd_5d": null,
+        "period_return": 4.0984733874295145
+      },
+      "2026-04-14": {
+        "fwd_1d": 3.3651188501934772,
+        "fwd_2d": 4.601990049751244,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": 4.0984733874295145
+      },
+      "2026-04-15": {
+        "fwd_1d": 1.1966040510729328,
+        "fwd_2d": null,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": 4.0984733874295145
+      },
+      "2026-04-17": {
+        "fwd_1d": null,
+        "fwd_2d": null,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": 4.0984733874295145
+      }
+    },
+    "449450": {
+      "2026-04-06": {
+        "fwd_1d": 0.0,
+        "fwd_2d": 0.0,
+        "fwd_3d": 0.0,
+        "fwd_5d": 0.0,
+        "period_return": -1.8088995335938485
+      },
+      "2026-04-07": {
+        "fwd_1d": 0.0,
+        "fwd_2d": 0.0,
+        "fwd_3d": -0.16387243161477374,
+        "fwd_5d": -0.16387243161477374,
+        "period_return": -1.8088995335938485
+      },
+      "2026-04-08": {
+        "fwd_1d": 0.0,
+        "fwd_2d": -0.16387243161477374,
+        "fwd_3d": 0.0,
+        "fwd_5d": 0.14496407412076137,
+        "period_return": -1.8088995335938485
+      },
+      "2026-04-09": {
+        "fwd_1d": -0.16387243161477374,
+        "fwd_2d": 0.0,
+        "fwd_3d": -0.16387243161477374,
+        "fwd_5d": -0.5294340098323459,
+        "period_return": -1.8088995335938485
+      },
+      "2026-04-10": {
+        "fwd_1d": 0.16414141414141414,
+        "fwd_2d": 0.0,
+        "fwd_3d": 0.30934343434343436,
+        "fwd_5d": -1.6477272727272725,
+        "period_return": -1.8088995335938485
+      },
+      "2026-04-11": {
+        "fwd_1d": -0.16387243161477374,
+        "fwd_2d": 0.14496407412076137,
+        "fwd_3d": -0.5294340098323459,
+        "fwd_5d": null,
+        "period_return": -1.8088995335938485
+      },
+      "2026-04-13": {
+        "fwd_1d": 0.30934343434343436,
+        "fwd_2d": -0.3661616161616162,
+        "fwd_3d": -1.6477272727272725,
+        "fwd_5d": null,
+        "period_return": -1.8088995335938485
+      },
+      "2026-04-14": {
+        "fwd_1d": -0.673421864182768,
+        "fwd_2d": -1.9510353074454023,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": -1.8088995335938485
+      },
+      "2026-04-15": {
+        "fwd_1d": -1.2862755037384361,
+        "fwd_2d": null,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": -1.8088995335938485
+      },
+      "2026-04-17": {
+        "fwd_1d": null,
+        "fwd_2d": null,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": -1.8088995335938485
+      }
+    },
+    "458760": {
+      "2026-04-06": {
+        "fwd_1d": 0.0,
+        "fwd_2d": 0.0,
+        "fwd_3d": 0.0,
+        "fwd_5d": 0.0,
+        "period_return": -0.5398110661268556
+      },
+      "2026-04-07": {
+        "fwd_1d": 0.0,
+        "fwd_2d": 0.0,
+        "fwd_3d": 0.4948268106162843,
+        "fwd_5d": 0.4948268106162843,
+        "period_return": -0.5398110661268556
+      },
+      "2026-04-08": {
+        "fwd_1d": 0.0,
+        "fwd_2d": 0.4948268106162843,
+        "fwd_3d": 0.0,
+        "fwd_5d": -0.1799370220422852,
+        "period_return": -0.5398110661268556
+      },
+      "2026-04-09": {
+        "fwd_1d": 0.4948268106162843,
+        "fwd_2d": 0.0,
+        "fwd_3d": 0.4948268106162843,
+        "fwd_5d": -1.03463787674314,
+        "period_return": -0.5398110661268556
+      },
+      "2026-04-10": {
+        "fwd_1d": -0.4923903312444047,
+        "fwd_2d": 0.0,
+        "fwd_3d": -0.6714413607878245,
+        "fwd_5d": -1.0295434198746642,
+        "period_return": -0.5398110661268556
+      },
+      "2026-04-11": {
+        "fwd_1d": 0.4948268106162843,
+        "fwd_2d": -0.1799370220422852,
+        "fwd_3d": -1.03463787674314,
+        "fwd_5d": null,
+        "period_return": -0.5398110661268556
+      },
+      "2026-04-13": {
+        "fwd_1d": -0.6714413607878245,
+        "fwd_2d": -1.521933751119069,
+        "fwd_3d": -1.0295434198746642,
+        "fwd_5d": null,
+        "period_return": -0.5398110661268556
+      },
+      "2026-04-14": {
+        "fwd_1d": -0.8562415502478594,
+        "fwd_2d": -0.3605227579990987,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": -0.5398110661268556
+      },
+      "2026-04-15": {
+        "fwd_1d": 0.5,
+        "fwd_2d": null,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": -0.5398110661268556
+      },
+      "2026-04-17": {
+        "fwd_1d": null,
+        "fwd_2d": null,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": -0.5398110661268556
+      }
+    },
+    "487240": {
+      "2026-04-06": {
+        "fwd_1d": 0.0,
+        "fwd_2d": 0.0,
+        "fwd_3d": 0.0,
+        "fwd_5d": 0.0,
+        "period_return": 5.289188075285066
+      },
+      "2026-04-07": {
+        "fwd_1d": 0.0,
+        "fwd_2d": 0.0,
+        "fwd_3d": -6.7454320648440715,
+        "fwd_5d": -6.7454320648440715,
+        "period_return": 5.289188075285066
+      },
+      "2026-04-08": {
+        "fwd_1d": 0.0,
+        "fwd_2d": -6.7454320648440715,
+        "fwd_3d": 0.0,
+        "fwd_5d": -1.2639098777304574,
+        "period_return": 5.289188075285066
+      },
+      "2026-04-09": {
+        "fwd_1d": -6.7454320648440715,
+        "fwd_2d": 0.0,
+        "fwd_3d": -6.7454320648440715,
+        "fwd_5d": 3.2559417502404173,
+        "period_return": 5.289188075285066
+      },
+      "2026-04-10": {
+        "fwd_1d": 7.2333529758397175,
+        "fwd_2d": 0.0,
+        "fwd_3d": 5.878020035356511,
+        "fwd_5d": 12.905126694166174,
+        "period_return": 5.289188075285066
+      },
+      "2026-04-11": {
+        "fwd_1d": -6.7454320648440715,
+        "fwd_2d": -1.2639098777304574,
+        "fwd_3d": 3.2559417502404173,
+        "fwd_5d": null,
+        "period_return": 5.289188075285066
+      },
+      "2026-04-13": {
+        "fwd_1d": 5.878020035356511,
+        "fwd_2d": 10.724808485562757,
+        "fwd_3d": 12.905126694166174,
+        "fwd_5d": null,
+        "period_return": 5.289188075285066
+      },
+      "2026-04-14": {
+        "fwd_1d": 4.577709753721998,
+        "fwd_2d": 6.636983442326423,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": 5.289188075285066
+      },
+      "2026-04-15": {
+        "fwd_1d": 1.9691325172964342,
+        "fwd_2d": null,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": 5.289188075285066
+      },
+      "2026-04-17": {
+        "fwd_1d": null,
+        "fwd_2d": null,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": 5.289188075285066
+      }
+    },
+    "000660": {
+      "2026-04-06": {
+        "fwd_1d": 0.0,
+        "fwd_2d": 0.0,
+        "fwd_3d": 0.0,
+        "fwd_5d": 0.0,
+        "period_return": 2.2665457842248413
+      },
+      "2026-04-07": {
+        "fwd_1d": 0.0,
+        "fwd_2d": 0.0,
+        "fwd_3d": -6.890299184043518,
+        "fwd_5d": -6.890299184043518,
+        "period_return": 2.2665457842248413
+      },
+      "2026-04-08": {
+        "fwd_1d": 0.0,
+        "fwd_2d": -6.890299184043518,
+        "fwd_3d": 0.0,
+        "fwd_5d": 0.7706255666364461,
+        "period_return": 2.2665457842248413
+      },
+      "2026-04-09": {
+        "fwd_1d": -6.890299184043518,
+        "fwd_2d": 0.0,
+        "fwd_3d": -6.890299184043518,
+        "fwd_5d": 5.983680870353581,
+        "period_return": 2.2665457842248413
+      },
+      "2026-04-10": {
+        "fwd_1d": 7.400194741966894,
+        "fwd_2d": 0.0,
+        "fwd_3d": 8.227848101265822,
+        "fwd_5d": 9.834469328140214,
+        "period_return": 2.2665457842248413
+      },
+      "2026-04-11": {
+        "fwd_1d": -6.890299184043518,
+        "fwd_2d": 0.7706255666364461,
+        "fwd_3d": 5.983680870353581,
+        "fwd_5d": null,
+        "period_return": 2.2665457842248413
+      },
+      "2026-04-13": {
+        "fwd_1d": 8.227848101265822,
+        "fwd_2d": 13.82667964946446,
+        "fwd_3d": 9.834469328140214,
+        "fwd_5d": null,
+        "period_return": 2.2665457842248413
+      },
+      "2026-04-14": {
+        "fwd_1d": 5.1731893837157,
+        "fwd_2d": 1.484480431848853,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": 2.2665457842248413
+      },
+      "2026-04-15": {
+        "fwd_1d": -3.507271171941831,
+        "fwd_2d": null,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": 2.2665457842248413
+      },
+      "2026-04-17": {
+        "fwd_1d": null,
+        "fwd_2d": null,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": 2.2665457842248413
+      }
+    },
+    "010120": {
+      "2026-04-06": {
+        "fwd_1d": 0.0,
+        "fwd_2d": 0.0,
+        "fwd_3d": 0.0,
+        "fwd_5d": 0.0,
+        "period_return": 0.4849137931034483
+      },
+      "2026-04-07": {
+        "fwd_1d": 0.0,
+        "fwd_2d": 0.0,
+        "fwd_3d": 324.5689655172414,
+        "fwd_5d": 324.5689655172414,
+        "period_return": 0.4849137931034483
+      },
+      "2026-04-08": {
+        "fwd_1d": 0.0,
+        "fwd_2d": 324.5689655172414,
+        "fwd_3d": 0.0,
+        "fwd_5d": -1.0237068965517242,
+        "period_return": 0.4849137931034483
+      },
+      "2026-04-09": {
+        "fwd_1d": 324.5689655172414,
+        "fwd_2d": 0.0,
+        "fwd_3d": 324.5689655172414,
+        "fwd_5d": 1.6163793103448276,
+        "period_return": 0.4849137931034483
+      },
+      "2026-04-10": {
+        "fwd_1d": -76.44670050761422,
+        "fwd_2d": 0.0,
+        "fwd_3d": -76.68781725888326,
+        "fwd_5d": -76.33248730964468,
+        "period_return": 0.4849137931034483
+      },
+      "2026-04-11": {
+        "fwd_1d": 324.5689655172414,
+        "fwd_2d": -1.0237068965517242,
+        "fwd_3d": 1.6163793103448276,
+        "fwd_5d": null,
+        "period_return": 0.4849137931034483
+      },
+      "2026-04-13": {
+        "fwd_1d": -76.68781725888326,
+        "fwd_2d": -76.06598984771573,
+        "fwd_3d": -76.33248730964468,
+        "fwd_5d": null,
+        "period_return": 0.4849137931034483
+      },
+      "2026-04-14": {
+        "fwd_1d": 2.667392487751769,
+        "fwd_2d": 1.5242242787152966,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": 0.4849137931034483
+      },
+      "2026-04-15": {
+        "fwd_1d": -1.1134676564156947,
+        "fwd_2d": null,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": 0.4849137931034483
+      },
+      "2026-04-17": {
+        "fwd_1d": null,
+        "fwd_2d": null,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": 0.4849137931034483
+      }
+    },
+    "064350": {
+      "2026-04-06": {
+        "fwd_1d": 0.0,
+        "fwd_2d": 0.0,
+        "fwd_3d": 0.0,
+        "fwd_5d": 0.0,
+        "period_return": 2.127659574468085
+      },
+      "2026-04-07": {
+        "fwd_1d": 0.0,
+        "fwd_2d": 0.0,
+        "fwd_3d": -0.7092198581560284,
+        "fwd_5d": -0.7092198581560284,
+        "period_return": 2.127659574468085
+      },
+      "2026-04-08": {
+        "fwd_1d": 0.0,
+        "fwd_2d": -0.7092198581560284,
+        "fwd_3d": 0.0,
+        "fwd_5d": 0.9456264775413712,
+        "period_return": 2.127659574468085
+      },
+      "2026-04-09": {
+        "fwd_1d": -0.7092198581560284,
+        "fwd_2d": 0.0,
+        "fwd_3d": -0.7092198581560284,
+        "fwd_5d": 1.8912529550827424,
+        "period_return": 2.127659574468085
+      },
+      "2026-04-10": {
+        "fwd_1d": 0.7142857142857143,
+        "fwd_2d": 0.0,
+        "fwd_3d": 1.6666666666666667,
+        "fwd_5d": 2.857142857142857,
+        "period_return": 2.127659574468085
+      },
+      "2026-04-11": {
+        "fwd_1d": -0.7092198581560284,
+        "fwd_2d": 0.9456264775413712,
+        "fwd_3d": 1.8912529550827424,
+        "fwd_5d": null,
+        "period_return": 2.127659574468085
+      },
+      "2026-04-13": {
+        "fwd_1d": 1.6666666666666667,
+        "fwd_2d": 2.619047619047619,
+        "fwd_3d": 2.857142857142857,
+        "fwd_5d": null,
+        "period_return": 2.127659574468085
+      },
+      "2026-04-14": {
+        "fwd_1d": 0.936768149882904,
+        "fwd_2d": 1.1709601873536302,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": 2.127659574468085
+      },
+      "2026-04-15": {
+        "fwd_1d": 0.23201856148491878,
+        "fwd_2d": null,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": 2.127659574468085
+      },
+      "2026-04-17": {
+        "fwd_1d": null,
+        "fwd_2d": null,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": 2.127659574468085
+      }
+    },
+    "047810": {
+      "2026-04-06": {
+        "fwd_1d": 0.0,
+        "fwd_2d": 0.0,
+        "fwd_3d": 0.0,
+        "fwd_5d": 0.0,
+        "period_return": -2.534919813760993
+      },
+      "2026-04-07": {
+        "fwd_1d": 0.0,
+        "fwd_2d": 0.0,
+        "fwd_3d": 3.414381789963787,
+        "fwd_5d": 3.414381789963787,
+        "period_return": -2.534919813760993
+      },
+      "2026-04-08": {
+        "fwd_1d": 0.0,
+        "fwd_2d": 3.414381789963787,
+        "fwd_3d": 0.0,
+        "fwd_5d": 0.5690636316606311,
+        "period_return": -2.534919813760993
+      },
+      "2026-04-09": {
+        "fwd_1d": 3.414381789963787,
+        "fwd_2d": 0.0,
+        "fwd_3d": 3.414381789963787,
+        "fwd_5d": -1.2933264355923435,
+        "period_return": -2.534919813760993
+      },
+      "2026-04-10": {
+        "fwd_1d": -3.3016508254127066,
+        "fwd_2d": 0.0,
+        "fwd_3d": -2.751375687843922,
+        "fwd_5d": -5.7528764382191095,
+        "period_return": -2.534919813760993
+      },
+      "2026-04-11": {
+        "fwd_1d": 3.414381789963787,
+        "fwd_2d": 0.5690636316606311,
+        "fwd_3d": -1.2933264355923435,
+        "fwd_5d": null,
+        "period_return": -2.534919813760993
+      },
+      "2026-04-13": {
+        "fwd_1d": -2.751375687843922,
+        "fwd_2d": -4.552276138069034,
+        "fwd_3d": -5.7528764382191095,
+        "fwd_5d": null,
+        "period_return": -2.534919813760993
+      },
+      "2026-04-14": {
+        "fwd_1d": -1.8518518518518516,
+        "fwd_2d": -3.0864197530864197,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": -2.534919813760993
+      },
+      "2026-04-15": {
+        "fwd_1d": -1.257861635220126,
+        "fwd_2d": null,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": -2.534919813760993
+      },
+      "2026-04-17": {
+        "fwd_1d": null,
+        "fwd_2d": null,
+        "fwd_3d": null,
+        "fwd_5d": null,
+        "period_return": -2.534919813760993
+      }
+    }
+  }
+}
