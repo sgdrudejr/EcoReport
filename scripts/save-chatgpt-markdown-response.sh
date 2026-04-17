@@ -11,9 +11,14 @@ Example:
 EOF
 }
 
-if [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ] || [ $# -lt 1 ]; then
+if [ "${1:-}" = "-h" ] || [ "${1:-}" = "--help" ]; then
   usage
-  exit $([ $# -lt 1 ] && echo 1 || echo 0)
+  exit 0
+fi
+
+if [ $# -lt 1 ]; then
+  usage
+  exit 1
 fi
 
 TARGET_PATH="$1"

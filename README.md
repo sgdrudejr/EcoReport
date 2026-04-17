@@ -10,6 +10,67 @@ EcoReport는 증권사 리포트, 시장 데이터, 계좌 상태, 실행 계획
 - 피드백, 챌린저, 고스트 포트폴리오를 통해 후행 검증을 남긴다.
 - 대시보드와 위키가 같은 산출물을 읽도록 유지한다.
 
+## 공용 진입 문서
+
+Claude Code와 Codex가 같이 작업할 때는 아래 순서로 보는 것을 기본으로 합니다.
+
+1. `README.md`
+2. `docs/EXECUTION_GUIDE.md`
+3. `docs/MULTI_TOOL_HANDOFF.md`
+
+`docs/EXECUTION_GUIDE.md`는 역할 설명보다 "딥리서치 하려면 무엇을 실행하는가", "수동 LLM 스프린트를 이어서 하려면 어느 파일을 여는가" 중심으로 정리한 공용 실행 가이드입니다.
+
+## 작업별 바로 가기
+
+### 일일 전체 파이프라인
+
+```bash
+cd /Users/seo/stock-pilot
+bash scripts/run-daily-system.sh --date YYYY-MM-DD
+node scripts/verify-daily-system.js --date YYYY-MM-DD
+```
+
+### 수동 LLM용 재료만 준비
+
+```bash
+cd /Users/seo/stock-pilot
+bash scripts/run-cycle.sh --date YYYY-MM-DD --manual-llm
+```
+
+이미 수집된 데이터로 프롬프트만 다시 만들려면:
+
+```bash
+cd /Users/seo/stock-pilot
+bash scripts/run-cycle.sh --date YYYY-MM-DD --manual-llm --skip-collect
+```
+
+### 딥리서치 / manual-kit
+
+```bash
+cd /Users/seo/stock-pilot
+node scripts/build-stage1-5-gemini-deep-research-prompt.js --date YYYY-MM-DD
+node scripts/run-gemini-deep-research-web.js --date YYYY-MM-DD
+node scripts/build-stage1-6-rich-briefing.js --date YYYY-MM-DD
+```
+
+### Stage 1~4 전략 파이프라인만 재실행
+
+```bash
+cd /Users/seo/stock-pilot
+bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD
+bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD --claude-stage2
+```
+
+### ChatGPT 수동 스프린트 이어서 열기
+
+```bash
+cd /Users/seo/stock-pilot
+bash scripts/open-chatgpt-web-prompt.sh triage
+bash scripts/open-chatgpt-web-prompt.sh synthesis
+bash scripts/open-chatgpt-web-prompt.sh coach
+bash scripts/open-chatgpt-web-prompt.sh advisory
+```
+
 ## 현재 운영 모델
 
 - 실행 환경: `Mac Mini + 로컬 실행 + private access`
@@ -222,15 +283,16 @@ flowchart TD
 ## 문서 진입 순서
 
 1. `README.md`
-2. `docs/REPO_STRUCTURE.md`
-3. `docs/OPERATOR_RUNBOOK.md`
-4. `docs/STAGE_1_4_ARCHITECTURE.md`
-5. `docs/SCORE_SYSTEM_V2.md`
-6. `dashboard/README.md`
+2. `docs/EXECUTION_GUIDE.md`
+3. `docs/REPO_STRUCTURE.md`
+4. `docs/OPERATOR_RUNBOOK.md`
+5. `docs/STAGE_1_4_ARCHITECTURE.md`
+6. `docs/SCORE_SYSTEM_V2.md`
+7. `dashboard/README.md`
 
 ## 운영 원칙
 
 - 공개 배포보다 로컬 운영을 우선합니다.
 - 날짜 기준 산출물은 `data/analysis-state/YYYY-MM-DD`, `data/intraday`, `data/feedback`에서 추적합니다.
 - 대시보드와 위키는 가능한 한 동일 파일 산출물을 읽습니다.
-- 구조가 바뀌면 코드와 함께 README와 구조 문서도 같이 갱신합니다.
+- 구조나 실행 흐름이 바뀌면 코드와 함께 `README.md`, `docs/EXECUTION_GUIDE.md`, 관련 runbook를 같이 갱신합니다.

@@ -11,6 +11,12 @@ Codex, Cursor, Claude, 터미널 세션 등 여러 도구가 같은 저장소를
 
 그래서 handoff는 항상 파일 기준으로 남겨야 합니다.
 
+공통 진입 순서는 아래를 기본으로 합니다.
+
+1. `README.md`
+2. `docs/EXECUTION_GUIDE.md`
+3. `docs/MULTI_TOOL_HANDOFF.md`
+
 ## 공통 운영 원칙
 
 ### 1. 날짜를 항상 명시한다
@@ -44,9 +50,10 @@ Codex, Cursor, Claude, 터미널 세션 등 여러 도구가 같은 저장소를
 
 1. `git branch --show-current`
 2. `git status --short`
-3. `data/analysis-state/YYYY-MM-DD/automation-cycle.json`
-4. `knowledge/daily/YYYY-MM-DD-automation-cycle.md`
-5. `data/analysis-state/YYYY-MM-DD/system-health.json`
+3. `docs/EXECUTION_GUIDE.md`에서 오늘 작업 경로 선택
+4. `data/analysis-state/YYYY-MM-DD/automation-cycle.json`
+5. `knowledge/daily/YYYY-MM-DD-automation-cycle.md`
+6. `data/analysis-state/YYYY-MM-DD/system-health.json`
 
 ### 4. 흐름을 바꾸면 문서도 같이 바꾼다
 
@@ -61,6 +68,7 @@ Codex, Cursor, Claude, 터미널 세션 등 여러 도구가 같은 저장소를
 최소 업데이트 대상:
 
 - `README.md`
+- `docs/EXECUTION_GUIDE.md`
 - `docs/OPERATOR_RUNBOOK.md`
 - 필요 시 `docs/EXPERIMENT_PLAYBOOK.md`
 - 필요 시 `docs/UPDATE_LOG.md`
@@ -84,22 +92,32 @@ Codex, Cursor, Claude, 터미널 세션 등 여러 도구가 같은 저장소를
 ### 운영/실행 담당
 
 1. `docs/DOCS_MAP.md`
-2. `docs/OPERATOR_RUNBOOK.md`
-3. `docs/EXPERIMENT_PLAYBOOK.md`
+2. `docs/EXECUTION_GUIDE.md`
+3. `docs/OPERATOR_RUNBOOK.md`
+4. `docs/EXPERIMENT_PLAYBOOK.md`
 
 ### UI/대시보드 담당
 
 1. `README.md`
-2. `docs/MULTI_TOOL_HANDOFF.md`
-3. 관련 화면과 데이터 로더 파일
-4. 최근 `knowledge/daily/YYYY-MM-DD-gemini-briefing-rich.md`
+2. `docs/EXECUTION_GUIDE.md`
+3. `docs/MULTI_TOOL_HANDOFF.md`
+4. 관련 화면과 데이터 로더 파일
+5. 최근 `knowledge/daily/YYYY-MM-DD-gemini-briefing-rich.md`
 
 ### 디버깅 담당
 
 1. `docs/MULTI_TOOL_HANDOFF.md`
-2. `FAILURES_AND_FALLBACKS.md`
-3. 해당 날짜 `automation-cycle` / `system-health`
-4. 관련 `logs/*.log`
+2. `docs/EXECUTION_GUIDE.md`
+3. `FAILURES_AND_FALLBACKS.md`
+4. 해당 날짜 `automation-cycle` / `system-health`
+5. 관련 `logs/*.log`
+
+### 수동 리서치 / 딥리서치 담당
+
+1. `docs/EXECUTION_GUIDE.md`
+2. `knowledge/daily/YYYY-MM-DD-report-summary-queue.md`
+3. `knowledge/daily/manual-kit/YYYY-MM-DD/*`
+4. `data/reports/YYYY-MM-DD/manual-compressed.json`
 
 ## 충돌 줄이는 규칙
 

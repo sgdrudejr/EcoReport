@@ -1,0 +1,287 @@
+{
+  "generatedAt": "2026-04-12T17:42:48.994Z",
+  "snapshotDates": [
+    "2026-04-03",
+    "2026-04-05",
+    "2026-04-06",
+    "2026-04-07"
+  ],
+  "sampleSize": 38,
+  "scoreReturnCorrelation": {
+    "actionScore_vs_ret5d": 0.4569,
+    "actionScore_vs_ret10d": null,
+    "actionScore_vs_ret20d": null
+  },
+  "signalHitRates": {
+    "buy_hit_5d": 1,
+    "hold_hit_5d": 0.8636,
+    "trim_negative_5d": 0
+  },
+  "factorCorrelations": {
+    "momentum": {
+      "vs_ret5d": 0.2695,
+      "vs_ret10d": null,
+      "count": 26
+    },
+    "research": {
+      "vs_ret5d": 0.2232,
+      "vs_ret10d": null,
+      "count": 26
+    },
+    "income": {
+      "vs_ret5d": -0.4222,
+      "vs_ret10d": null,
+      "count": 26
+    },
+    "macroFit": {
+      "vs_ret5d": 0.1042,
+      "vs_ret10d": null,
+      "count": 26
+    }
+  },
+  "regimeAccuracy": {
+    "SIDEWAYS": {
+      "count": 25,
+      "avgReturn5d": 2.8,
+      "scoreCorr5d": 0.455,
+      "buyHitRate": null
+    },
+    "BEAR": {
+      "count": 13,
+      "avgReturn5d": 3.29,
+      "scoreCorr5d": null,
+      "buyHitRate": 1
+    }
+  },
+  "worstMispredictions": {
+    "highScoreLosers": [],
+    "lowScoreWinners": [
+      {
+        "date": "2026-04-07",
+        "code": "251350",
+        "name": "KODEX 선진국ESG액티브",
+        "score": 34,
+        "bestReturn": 2.016,
+        "period": "3d"
+      }
+    ]
+  },
+  "weightSuggestions": [
+    {
+      "factor": "momentum",
+      "correlation_5d": 0.2695,
+      "suggestion": "비중↑ (양의 예측력)"
+    },
+    {
+      "factor": "research",
+      "correlation_5d": 0.2232,
+      "suggestion": "비중↑ (양의 예측력)"
+    },
+    {
+      "factor": "income",
+      "correlation_5d": -0.4222,
+      "suggestion": "비중↓ (음의 예측력)"
+    },
+    {
+      "factor": "macroFit",
+      "correlation_5d": 0.1042,
+      "suggestion": "유지"
+    }
+  ],
+  "sourceAccuracy": [
+    {
+      "source": "대신증권",
+      "sampleSize": 23,
+      "avgReturn5d": 2.9953,
+      "buyHitRate": 1,
+      "avgReportScore": 53.8696,
+      "note": "68점 BUY 우선, 부족 시 58점 실행권 기준"
+    },
+    {
+      "source": "유진투자증권",
+      "sampleSize": 17,
+      "avgReturn5d": 4.0115,
+      "buyHitRate": 1,
+      "avgReportScore": 69.1176,
+      "note": "68점 BUY 우선, 부족 시 58점 실행권 기준"
+    },
+    {
+      "source": "유안타증권",
+      "sampleSize": 15,
+      "avgReturn5d": 2.2675,
+      "buyHitRate": 1,
+      "avgReportScore": 52.4,
+      "note": "68점 BUY 우선, 부족 시 58점 실행권 기준"
+    },
+    {
+      "source": "industry:유진투자증권",
+      "sampleSize": 14,
+      "avgReturn5d": 4.5076,
+      "buyHitRate": 1,
+      "avgReportScore": 64.7857,
+      "note": "68점 BUY 우선, 부족 시 58점 실행권 기준"
+    },
+    {
+      "source": "하나증권",
+      "sampleSize": 12,
+      "avgReturn5d": 2.153,
+      "buyHitRate": 1,
+      "avgReportScore": 57.3333,
+      "note": "68점 BUY 우선, 부족 시 58점 실행권 기준"
+    },
+    {
+      "source": "industry:대신증권",
+      "sampleSize": 12,
+      "avgReturn5d": 1.7658,
+      "buyHitRate": null,
+      "avgReportScore": 56.3333,
+      "note": "표본 부족"
+    },
+    {
+      "source": "strategy:대신증권",
+      "sampleSize": 11,
+      "avgReturn5d": 4.3366,
+      "buyHitRate": 1,
+      "avgReportScore": 51.1818,
+      "note": "68점 BUY 우선, 부족 시 58점 실행권 기준"
+    },
+    {
+      "source": "industry:유안타증권",
+      "sampleSize": 10,
+      "avgReturn5d": 2.3151,
+      "buyHitRate": null,
+      "avgReportScore": 48.8,
+      "note": "표본 부족"
+    },
+    {
+      "source": "SK증권",
+      "sampleSize": 10,
+      "avgReturn5d": 2.1644,
+      "buyHitRate": null,
+      "avgReportScore": 66,
+      "note": "표본 부족"
+    },
+    {
+      "source": "industry:SK증권",
+      "sampleSize": 10,
+      "avgReturn5d": 2.1644,
+      "buyHitRate": null,
+      "avgReportScore": 66,
+      "note": "표본 부족"
+    },
+    {
+      "source": "industry:하나증권",
+      "sampleSize": 9,
+      "avgReturn5d": 2.3052,
+      "buyHitRate": null,
+      "avgReportScore": 46.6667,
+      "note": "표본 부족"
+    },
+    {
+      "source": "한화투자증권",
+      "sampleSize": 7,
+      "avgReturn5d": 2.1113,
+      "buyHitRate": null,
+      "avgReportScore": 45.7143,
+      "note": "표본 부족"
+    }
+  ],
+  "researchSourceAccuracy": [
+    {
+      "source": "대신증권",
+      "sampleSize": 23,
+      "avgReturn5d": 2.9953,
+      "buyHitRate": 1,
+      "avgReportScore": 53.8696,
+      "note": "68점 BUY 우선, 부족 시 58점 실행권 기준"
+    },
+    {
+      "source": "유진투자증권",
+      "sampleSize": 17,
+      "avgReturn5d": 4.0115,
+      "buyHitRate": 1,
+      "avgReportScore": 69.1176,
+      "note": "68점 BUY 우선, 부족 시 58점 실행권 기준"
+    },
+    {
+      "source": "유안타증권",
+      "sampleSize": 15,
+      "avgReturn5d": 2.2675,
+      "buyHitRate": 1,
+      "avgReportScore": 52.4,
+      "note": "68점 BUY 우선, 부족 시 58점 실행권 기준"
+    },
+    {
+      "source": "industry:유진투자증권",
+      "sampleSize": 14,
+      "avgReturn5d": 4.5076,
+      "buyHitRate": 1,
+      "avgReportScore": 64.7857,
+      "note": "68점 BUY 우선, 부족 시 58점 실행권 기준"
+    },
+    {
+      "source": "하나증권",
+      "sampleSize": 12,
+      "avgReturn5d": 2.153,
+      "buyHitRate": 1,
+      "avgReportScore": 57.3333,
+      "note": "68점 BUY 우선, 부족 시 58점 실행권 기준"
+    },
+    {
+      "source": "industry:대신증권",
+      "sampleSize": 12,
+      "avgReturn5d": 1.7658,
+      "buyHitRate": null,
+      "avgReportScore": 56.3333,
+      "note": "표본 부족"
+    },
+    {
+      "source": "strategy:대신증권",
+      "sampleSize": 11,
+      "avgReturn5d": 4.3366,
+      "buyHitRate": 1,
+      "avgReportScore": 51.1818,
+      "note": "68점 BUY 우선, 부족 시 58점 실행권 기준"
+    },
+    {
+      "source": "industry:유안타증권",
+      "sampleSize": 10,
+      "avgReturn5d": 2.3151,
+      "buyHitRate": null,
+      "avgReportScore": 48.8,
+      "note": "표본 부족"
+    },
+    {
+      "source": "SK증권",
+      "sampleSize": 10,
+      "avgReturn5d": 2.1644,
+      "buyHitRate": null,
+      "avgReportScore": 66,
+      "note": "표본 부족"
+    },
+    {
+      "source": "industry:SK증권",
+      "sampleSize": 10,
+      "avgReturn5d": 2.1644,
+      "buyHitRate": null,
+      "avgReportScore": 66,
+      "note": "표본 부족"
+    },
+    {
+      "source": "industry:하나증권",
+      "sampleSize": 9,
+      "avgReturn5d": 2.3052,
+      "buyHitRate": null,
+      "avgReportScore": 46.6667,
+      "note": "표본 부족"
+    },
+    {
+      "source": "한화투자증권",
+      "sampleSize": 7,
+      "avgReturn5d": 2.1113,
+      "buyHitRate": null,
+      "avgReportScore": 45.7143,
+      "note": "표본 부족"
+    }
+  ]
+}

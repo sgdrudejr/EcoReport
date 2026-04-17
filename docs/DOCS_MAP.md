@@ -8,7 +8,8 @@
 
 | 문서 | 용도 |
 |---|---|
-| `README.md` | 프로젝트 개요, 최신 실행 명령, 현재 구조 요약 |
+| `README.md` | 프로젝트 개요, 최신 실행 명령, 공용 진입점 |
+| `docs/EXECUTION_GUIDE.md` | 작업별 실행 가이드와 명령 모음 |
 | `docs/REPO_STRUCTURE.md` | 실제 로컬 파일 구조와 디렉터리 역할 |
 | `docs/OPERATOR_RUNBOOK.md` | 실제 운영 절차 |
 | `docs/STAGE_1_4_ARCHITECTURE.md` | Stage / feedback / intraday / storage 구조 |
@@ -43,11 +44,23 @@
 ### 운영만 빨리 돌리고 싶다
 
 1. `README.md`
-2. `docs/OPERATOR_RUNBOOK.md`
+2. `docs/EXECUTION_GUIDE.md`
+3. `docs/OPERATOR_RUNBOOK.md`
 
 ### 저장소 구조를 정확히 보고 싶다
 
 1. `docs/REPO_STRUCTURE.md`
+2. `README.md`
+
+### 딥리서치나 manual-kit 흐름을 이어서 하고 싶다
+
+1. `docs/EXECUTION_GUIDE.md`
+2. `docs/MULTI_TOOL_HANDOFF.md`
+3. `knowledge/daily/manual-kit/YYYY-MM-DD/*`
+
+### 수동 LLM 스프린트 명령만 빨리 찾고 싶다
+
+1. `docs/EXECUTION_GUIDE.md`
 2. `README.md`
 
 ### 점수나 실행 로직을 바꾸고 싶다
@@ -111,15 +124,16 @@
 ## 세션 시작 체크리스트
 
 1. `git status`
-2. 오늘 기준 `data/analysis-state/YYYY-MM-DD`
-3. 최신 `data/intraday/latest.json` 필요 여부
-4. 최신 `reports/daily`와 `knowledge/daily`
-5. 문서 변경이 필요한지 여부
+2. `docs/EXECUTION_GUIDE.md`에서 오늘 작업 경로 확인
+3. 오늘 기준 `data/analysis-state/YYYY-MM-DD`
+4. 최신 `data/intraday/latest.json` 필요 여부
+5. 최신 `reports/daily`와 `knowledge/daily`
+6. 문서 변경이 필요한지 여부
 
 ## 세션 종료 체크리스트
 
 1. 바뀐 코드와 문서가 일치하는지 확인
-2. 운영 흐름이 바뀌었으면 `README` 또는 `RUNBOOK` 갱신
+2. 운영 흐름이 바뀌었으면 `README` 또는 `RUNBOOK`, `EXECUTION_GUIDE` 갱신
 3. 구조 변화가 있으면 `REPO_STRUCTURE` 또는 `ARCHITECTURE` 갱신
 
 ## 정리 원칙

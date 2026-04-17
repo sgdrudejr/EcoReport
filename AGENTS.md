@@ -4,6 +4,14 @@ You are working in `/Users/seo/stock-pilot`.
 
 This repository follows a persistent `LLM Wiki` operating model inspired by Karpathy's `raw -> wiki -> schema` pattern.
 
+## Read First
+
+Before changing code or running workflow commands, read:
+
+1. `README.md`
+2. `docs/EXECUTION_GUIDE.md`
+3. `docs/MULTI_TOOL_HANDOFF.md`
+
 ## Mission
 
 Treat EcoReport as two linked systems:
@@ -34,10 +42,18 @@ Update or create the appropriate page in `knowledge/wiki/`.
 1. `data/` is the raw and computed evidence layer.
 2. `knowledge/daily/` is working memory for a given date.
 3. `knowledge/wiki/` is the durable synthesized layer.
-4. Do not redesign or flatten the repository structure.
-5. Keep all new wiki behavior inside `knowledge/wiki/` and helper scripts, unless the user explicitly wants a broader refactor.
+4. Prefer current entry scripts in `scripts/` over anything in `scripts/_archive/`.
+5. Do not redesign or flatten the repository structure.
+6. Keep all new wiki behavior inside `knowledge/wiki/` and helper scripts, unless the user explicitly wants a broader refactor.
 
 ## Default Workflow
+
+### When the task is about how to run something
+
+1. Open `docs/EXECUTION_GUIDE.md` first.
+2. Pick the task path that matches the request: full daily pipeline, manual LLM prep, deep research, Stage 1~4 rerun, or verification.
+3. Reuse the documented entry command instead of inventing a new flow.
+4. If the documented flow is stale, update the document in the same change.
 
 ### When the task is about today's pipeline or outputs
 
@@ -89,6 +105,7 @@ When you notice problems, fix or call out:
 ## Important Files
 
 - `README.md`
+- `docs/EXECUTION_GUIDE.md`
 - `docs/OPERATOR_RUNBOOK.md`
 - `docs/LLM_WIKI_SYSTEM.md`
 - `knowledge/wiki/index.md`
