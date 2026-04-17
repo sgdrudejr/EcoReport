@@ -460,22 +460,48 @@ function scoreRecord(input) {
   };
 }
 
-function classifyHoldingPolicy(result) {
+/**
+ * 커버리지 기반 동적 임계값 계산.
+ * factorCoverage + techCoverage 평균이 낮을수록 전체 점수 상한이 낮아지므로
+ * 임계값을 비례 조정한다. 커버리지 100% 기준 임계값을 기준으로 스케일.
+ *
+ * @param {number} baseCut   - 커버리지 100% 기준 임계값
+ * @param {number} coverage  - 0~1 사이 실제 커버리지 (factor + tech 평균)
+ * @param {number} floor     - 최소 임계값 (0으로 내려가지 않도록)
+ */
+function scaledCut(baseCut, coverage, floor = 5) {
+  // 커버리지 최소 25%를 보정 하한으로 적용 (너무 작아지면 의미 없음)
+  const effectiveCov = Math.max(coverage, 0.25);
+  return Math.max(baseCut * effectiveCov, floor);
+}
+
+function classifyHoldingPolicy(result, coverageMeta = {}) {
   if (result.filter_score === 0) return "EXIT";
-  if ((result.final_score ?? 0) >= 75) return "ADD";
-  if ((result.final_score ?? 0) >= 50) return "HOLD";
-  if ((result.final_score ?? 0) >= 30) return "TRIM";
+  const cov = ((coverageMeta.factorCoverage ?? 0) + (coverageMeta.techCoverage ?? 0)) / 2;
+  const score = result.final_score ?? 0;
+  if (score >= scaledCut(75, cov, 20)) return "ADD";
+  if (score >= scaledCut(50, cov, 14)) return "HOLD";
+  if (score >= scaledCut(30, cov, 8))  return "TRIM";
   return "EXIT";
 }
 
-function classifyCandidatePolicy(result, candidateMeta = {}) {
+function classifyCandidatePolicy(result, candidateMeta = {}, coverageMeta = {}) {
   const stance = String(candidateMeta.stance ?? "hold").toLowerCase();
-  if (!["buy", "accumulate", "add"].includes(stance)) {
+  if (!["buy", "accumulate", "add", "watch"].includes(stance)) {
     return "REJECT";
   }
   if (result.filter_score === 0) return "REJECT";
-  if ((result.final_score ?? 0) >= 70) return "BUY";
-  if ((result.final_score ?? 0) >= 45) return "WATCH";
+  const cov = ((coverageMeta.factorCoverage ?? 0) + (coverageMeta.techCoverage ?? 0)) / 2;
+  const score = result.final_score ?? 0;
+  // buy/accumulate/add stance → BUY or WATCH 가능
+  // watch stance → WATCH만 가능
+  if (["buy", "accumulate", "add"].includes(stance)) {
+    if (score >= scaledCut(70, cov, 18)) return "BUY";
+    if (score >= scaledCut(45, cov, 12)) return "WATCH";
+  } else {
+    // stance === "watch"
+    if (score >= scaledCut(45, cov, 12)) return "WATCH";
+  }
   return "REJECT";
 }
 
@@ -497,6 +523,7 @@ export function buildStockPilotQuantPack({
   technical,
   fred,
   stage2Data,
+  coverageMeta: externalCoverageMeta = null,
 }) {
   const technicalMap = technical?.scores ?? {};
   const macro = {
@@ -506,6 +533,21 @@ export function buildStockPilotQuantPack({
 
   const heldCodes = new Set();
   const holdings = [];
+
+  // 커버리지 메타: 보유+후보 전체 유니버스 기준으로 기술 데이터 가용 비율 계산
+  // (보유 종목만 보면 held codes에 기술 데이터가 많아 coverage가 과대평가됨)
+  const heldCodesList = (normalizedPortfolio?.accounts ?? []).flatMap(
+    (a) => (a.holdings ?? []).map((h) => h.code).filter(Boolean),
+  );
+  const candidateCodesList = (stage2Data?.candidate_scores ?? [])
+    .map((item) => item.code)
+    .filter(Boolean);
+  const universeAllCodes = [...new Set([...heldCodesList, ...candidateCodesList])];
+  const universeWithTech = universeAllCodes.filter((c) => Boolean(technicalMap[c]));
+  const techCoverage = universeAllCodes.length > 0 ? universeWithTech.length / universeAllCodes.length : 0;
+  const factorCoverage = techCoverage * 0.85;
+  // 외부에서 stage3가 계산한 coverage를 받으면 우선 사용 (더 정확함)
+  const coverageMeta = externalCoverageMeta ?? { factorCoverage, techCoverage };
 
   for (const account of normalizedPortfolio?.accounts ?? []) {
     for (const holding of account.holdings ?? []) {
@@ -533,7 +575,7 @@ export function buildStockPilotQuantPack({
       holdings.push({
         ...scored,
         position_key: `${account.key}:${code}`,
-        policy_state: classifyHoldingPolicy(scored),
+        policy_state: classifyHoldingPolicy(scored, coverageMeta),
       });
     }
   }
@@ -562,7 +604,7 @@ export function buildStockPilotQuantPack({
     const scored = scoreRecord(input);
     candidates.push({
       ...scored,
-      policy_state: classifyCandidatePolicy(scored, item),
+      policy_state: classifyCandidatePolicy(scored, item, coverageMeta),
     });
   }
 

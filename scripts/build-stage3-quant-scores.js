@@ -2283,12 +2283,32 @@ async function main() {
       100,
     ),
   );
+  // stage3가 이미 계산한 coverage를 stockpilot에 전달해 임계값 동적 조정에 활용
+  const portfolioCoverageSummary = {
+    factorCoverage: toRoundedNumber(
+      (normalizedPortfolio.accounts ?? []).reduce((sum, account) => {
+        const assets = accountTotalAssets(account);
+        const cov = accountCoverage[account.key]?.factorCoverage ?? 0;
+        return sum + cov * assets;
+      }, 0) / Math.max(totalAssets, 1),
+      4,
+    ),
+    techCoverage: toRoundedNumber(
+      (normalizedPortfolio.accounts ?? []).reduce((sum, account) => {
+        const acctAssets = accountTotalAssets(account);
+        const cov = accountCoverage[account.key]?.techCoverage ?? 0;
+        return sum + cov * acctAssets;
+      }, 0) / Math.max(totalAssets, 1),
+      4,
+    ),
+  };
   const stockpilotQuant = buildStockPilotQuantPack({
     asOfDate: args.date,
     normalizedPortfolio,
     technical,
     fred,
     stage2Data,
+    coverageMeta: portfolioCoverageSummary,
   });
 
   const outputPath = args.output ?? path.join(stateDir, "stage3-quant-scores.json");
