@@ -1,11 +1,12 @@
 # StockPilot 마스터 실행 가이드
 
-- 문서 버전: `1.0`
+- 문서 버전: `1.1`
 - 목적: `v1.0 -> v2.0`까지 자율 실행 가능한 단일 플레이북
 - 페어 문서:
   - `stockpilot_agent_brief.md`
   - `stockpilot_data_spec.md`
   - `stockpilot_v1_gap_analysis.md`
+  - `stockpilot_calibration_spec.md` ← v1.1 신규
 
 ## 0. 이 문서를 쓰는 법
 
@@ -71,13 +72,14 @@ decisions/ADR-XXXX-*.md
 | Phase | 목표 | 기간 | 완료 Gate |
 |---|---|---|---|
 | `Phase 1` | Hardening | 2주 | §3.8 |
-| `Phase 2` | Proof | 4주 | §4.5 |
-| `Phase 3` | Operationalize | 4주 | §5.5 |
-| `Phase 4` | Evolution | 12주 | §6.5 |
+| `Phase 2` | Proof | 5주 | §4.5 |
+| `Phase 3` | Operationalize | 6주 | §5.5 |
+| `Phase 4` | Evolution | 16주 | §6.5 |
 
 총 예상 기간:
 
-- 약 `22주`
+- 약 `29주` (캘리브레이션 레이어 포함, v1.1 기준)
+- ※ MVP Lite는 Phase 1 + Task 2.4(A) 만으로도 운영 가능 (~3주)
 
 ## 3. Phase 1 - Hardening
 
@@ -217,11 +219,37 @@ decisions/ADR-XXXX-*.md
   - `config/universe/sp500_membership.parquet`
   - `docs/universe_construction.md`
 
+### Task 2.4 - 캘리브레이션 Phase A: Percentile 오버레이 ⭐ MVP 필수
+
+> 선행: Task 2.1 (historical score 재활용)  
+> 참고: `docs/stockpilot/stockpilot_calibration_spec.md` §8 Phase A
+
+- 목표: 낮은 점수가 "시장 탓인지 모델 탓인지" 즉시 진단
+- 예상 시간: **1주**
+- 산출물:
+  - `score_distribution_stats` DB 테이블 + 웜업 적재
+  - 출력 스키마에 `calibration` + `diagnostics` 블록 추가
+  - 일일 Calibration Report 자동 발송
+
+에이전트 프롬프트:
+```text
+[역할] 캘리브레이션 Phase A 구현 에이전트
+[입력] docs/stockpilot/stockpilot_calibration_spec.md §1~3
+[목표] 10년 historical score 웜업 → percentile_universe 필드 출력
+[DoD] 매일 리포트 수신 + 종목별 percentile_universe 출력 확인
+```
+
+완료 기준:
+- [ ] `score_distribution_stats` 초기 적재 완료
+- [ ] `calibration.percentile_universe` 필드 출력 확인
+- [ ] 일일 Calibration Report 수신
+
 ### 4.5 Phase 2 Gate Review
 
 - [ ] OOS Sharpe `> 0.7`
 - [ ] 리스크 룰 적용 후 MDD 개선
 - [ ] 생존 편향 제거 후 성과 재확인
+- [ ] **Task 2.4 완료 (Calibration Phase A)**
 
 ## 5. Phase 3 - Operationalize
 
@@ -263,11 +291,29 @@ decisions/ADR-XXXX-*.md
   - `foreign_net_buy_kospi_5d`
   - `kr_credit_spread`
 
+### Task 3.4 - 캘리브레이션 Phase B: 레짐 조건부
+
+> 선행: Task 3.2 (Paper Trading) + Task 4.1 임시 레짐 분류기  
+> 참고: `docs/stockpilot/stockpilot_calibration_spec.md` §8 Phase B
+
+- 목표: 동일 레짐 과거 분포 대비 백분위로 임계값 자동 조정
+- 예상 시간: **2주**
+- 산출물:
+  - `src/regime/simple_rules.py`
+  - `(date, regime)` 분포 분리 저장
+  - `percentile_regime_90d`, `percentile_regime_1y` 필드
+  - `hybrid` threshold 모드 배포
+
+완료 기준:
+- [ ] 레짐별 백분위 계산 검증
+- [ ] hybrid 모드 30일 shadow 비교 완료
+
 ### 5.5 Phase 3 Gate Review
 
 - [ ] Paper trading 안정화
 - [ ] SLO 30일 안정
 - [ ] KR 필터 효과 검증
+- [ ] **Task 3.4 완료 (Calibration Phase B)**
 
 ## 6. Phase 4 - Evolution
 
@@ -302,11 +348,42 @@ decisions/ADR-XXXX-*.md
 - 목표:
   - 단일 파라미터 과적합 완화
 
+### Task 4.4 - 캘리브레이션 Phase C: 팩터 효능 모니터링
+
+> 선행: Task 4.1 (LLM 팩터 발견 루프)  
+> 참고: `docs/stockpilot/stockpilot_calibration_spec.md` §5
+
+- 목표: IC 기반 알파 소실 자동 감지 + 감쇠 메커니즘
+- 예상 시간: **4주**
+- 산출물:
+  - Forward return 파이프라인
+  - `factor_efficacy_daily` 테이블
+  - decay_flag 룰 + 알람
+  - shadow-mode 자동 감쇠
+
+완료 기준:
+- [ ] 인공 decay 주입 → 감지·알람·감쇠 작동 확인
+- [ ] 60일 IC 롤링 시계열 출력 확인
+
+### Task 4.5 - 캘리브레이션 Phase D: 베이지안 팩터 가중 갱신 (선택)
+
+> 선행: Task 4.4 (팩터 효능 모니터링 6개월 이상 운영 후)  
+> 참고: `docs/stockpilot/stockpilot_calibration_spec.md` §7
+
+- 목표: 팩터 가중치를 IC 관측으로 자동 업데이트
+- 예상 시간: **4주**
+- 주의: 조기 도입 시 과학습 위험 — Phase 4 완료 후 필요성 재검토
+
+완료 기준:
+- [ ] 분기별 베이지안 재학습 파이프라인 작동
+- [ ] 갱신 전후 백테스트 성과 비교
+
 ### 6.5 Phase 4 Gate Review
 
 - [ ] 분기별 후보 10개 이상 생성
 - [ ] 레짐/앙상블 중 최소 1개 채택
 - [ ] 브리프 v2.0 확정
+- [ ] **Task 4.4 완료 (Calibration Phase C)**
 
 ## 7. 공통 템플릿
 
