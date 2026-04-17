@@ -1,0 +1,2519 @@
+{
+  "date": "2026-04-14",
+  "generatedAt": "2026-04-14T07:15:00.516Z",
+  "entityCount": 358,
+  "entities": [
+    {
+      "entityId": "account:isa",
+      "entityType": "account",
+      "name": "ISA",
+      "aliases": [
+        "ISA"
+      ],
+      "metadata": {}
+    },
+    {
+      "entityId": "account:kis_main",
+      "entityType": "account",
+      "name": "KIS_MAIN",
+      "aliases": [
+        "KIS_MAIN"
+      ],
+      "metadata": {}
+    },
+    {
+      "entityId": "account:pension",
+      "entityType": "account",
+      "name": "PENSION",
+      "aliases": [
+        "PENSION"
+      ],
+      "metadata": {}
+    },
+    {
+      "entityId": "category:2차전지",
+      "entityType": "category",
+      "name": "2차전지",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "category:isa_미국인덱스",
+      "entityType": "category",
+      "name": "미국인덱스",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "category:it_플랫폼",
+      "entityType": "category",
+      "name": "IT/플랫폼",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "category:k_컬처",
+      "entityType": "category",
+      "name": "K-컬처",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "category:kis_main_방산",
+      "entityType": "category",
+      "name": "방산",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "category:kis_main_원자력",
+      "entityType": "category",
+      "name": "원자력",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "category:pension_sandp500",
+      "entityType": "category",
+      "name": "S&P500",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "category:pension_나스닥100",
+      "entityType": "category",
+      "name": "나스닥100",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "category:pension_현금파킹",
+      "entityType": "category",
+      "name": "현금파킹",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "category:sandp500",
+      "entityType": "category",
+      "name": "S&P500",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "category:경제분석",
+      "entityType": "category",
+      "name": "경제분석",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "category:금융",
+      "entityType": "category",
+      "name": "금융",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "category:기계",
+      "entityType": "category",
+      "name": "기계",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "category:기타",
+      "entityType": "category",
+      "name": "기타",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "category:나스닥100",
+      "entityType": "category",
+      "name": "나스닥100",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "category:미국인덱스",
+      "entityType": "category",
+      "name": "미국인덱스",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "category:바이오",
+      "entityType": "category",
+      "name": "바이오",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "category:반도체",
+      "entityType": "category",
+      "name": "반도체",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "category:방산",
+      "entityType": "category",
+      "name": "방산",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "category:산업분석",
+      "entityType": "category",
+      "name": "산업분석",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "category:소비재",
+      "entityType": "category",
+      "name": "소비재",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "category:시황정보",
+      "entityType": "category",
+      "name": "시황정보",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "category:원자력",
+      "entityType": "category",
+      "name": "원자력",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "category:인프라",
+      "entityType": "category",
+      "name": "인프라",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "category:자동차",
+      "entityType": "category",
+      "name": "자동차",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "category:전력_에너지",
+      "entityType": "category",
+      "name": "전력/에너지",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "category:조선_해운",
+      "entityType": "category",
+      "name": "조선/해운",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "category:종목분석",
+      "entityType": "category",
+      "name": "종목분석",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "category:지주사",
+      "entityType": "category",
+      "name": "지주사",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "category:채권분석",
+      "entityType": "category",
+      "name": "채권분석",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "category:투자전략",
+      "entityType": "category",
+      "name": "투자전략",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "category:현금파킹",
+      "entityType": "category",
+      "name": "현금파킹",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "category:화학_소재",
+      "entityType": "category",
+      "name": "화학/소재",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "macro_event:1292535",
+      "entityType": "macro_event",
+      "name": "일본 4대 기업, 2030년 1조 파라미터 AI 모델 개발 연합",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "macro_event:1296033",
+      "entityType": "macro_event",
+      "name": "미·한 협상 교착에 코스피 관망세 지속",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "macro_event:1300526",
+      "entityType": "macro_event",
+      "name": "삼성전기, 베트남에 1조7천억 투자해 AI 반도체 기판 확대",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "macro_event:1300578",
+      "entityType": "macro_event",
+      "name": "크라우드웍스, 조선업 AI 개발 사업 참여",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "macro_event:1300625",
+      "entityType": "macro_event",
+      "name": "에이프릴바이오, 4월 실적 저조 후 주가 반등 패턴",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "macro_event:1300627",
+      "entityType": "macro_event",
+      "name": "SpaceX, 2024년 Starlink 위성 월 340기 생산 확대",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "macro_event:1300630",
+      "entityType": "macro_event",
+      "name": "리가켐바이오, CLDN18.2 신약 FDA 임상 신청",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "macro_event:1300636",
+      "entityType": "macro_event",
+      "name": "쿠팡, 9조 인건비 절감 위해 자동화 가속",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "macro_event:1300637",
+      "entityType": "macro_event",
+      "name": "트럼프 정책·미·이란 협상에 이더리움 5% 상승",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "macro_event:1300638",
+      "entityType": "macro_event",
+      "name": "KT, 2026년 파트너스데이서 상생 협력 강화 발표",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "macro_event:1300639",
+      "entityType": "macro_event",
+      "name": "한국농어촌공사, 3년 연속 데이터 행정 최고 등급 획득",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "macro_event:1300641",
+      "entityType": "macro_event",
+      "name": "국산 NPU로 AI 인프라 구축 본격화",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "macro_event:stockeasy_market_signal",
+      "entityType": "macro_event",
+      "name": "StockEasy Market Signal",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "macro_event:stockeasy_strategy_room_summary",
+      "entityType": "macro_event",
+      "name": "StockEasy Strategy Room Summary",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_001",
+      "entityType": "report",
+      "name": "04/14, Kiwoom Morning Letter",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_002",
+      "entityType": "report",
+      "name": "이란 사태 모니터(14): 고유가 충격을 상쇄하는 반도체 랠리",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_003",
+      "entityType": "report",
+      "name": "[ESG & Transition] 통키[通 Keys] Transition Weekly",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_004",
+      "entityType": "report",
+      "name": "[IBKS Daily] 인터넷/게임",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_005",
+      "entityType": "report",
+      "name": "1Q26 Pre: 실적은 분기별 편차, 수주는 레벨업",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_006",
+      "entityType": "report",
+      "name": "1Q26 Preview: 추정치 상향을 주도하는 백화점",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_007",
+      "entityType": "report",
+      "name": "2026년 4월 둘째 주 자동차/이차전지 Weekl",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_008",
+      "entityType": "report",
+      "name": "건설 Weekly: 단기 변동성 심화, 장기 방향성 견고",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_009",
+      "entityType": "report",
+      "name": "글로벌 표준을 향해",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_010",
+      "entityType": "report",
+      "name": "미디어/엔터/레저 Weekly: 2026/04/07~2026/04/13",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_011",
+      "entityType": "report",
+      "name": "브로커리지가 견인하는 어닝 서프라이즈",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_012",
+      "entityType": "report",
+      "name": "알아두면 쓸모있는 콘텐츠 캘린더",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_013",
+      "entityType": "report",
+      "name": "정유화학 Weekly - 불확실성이 점점 해소되는 중",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_014",
+      "entityType": "report",
+      "name": "진짜는 이제부터 시작입니다",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_015",
+      "entityType": "report",
+      "name": "AI로 돈을 번다는 것",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_016",
+      "entityType": "report",
+      "name": "ECM 스킨부스터 시장, 이제 실적으로 증명한다",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_017",
+      "entityType": "report",
+      "name": "HD현대그룹: 사이클 변화에도 견고할 조선업의 로마 제국(HD현대중공업 필리핀야드 탐방기)",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_018",
+      "entityType": "report",
+      "name": "KOSDAQ UNBOXING #1. 섹터별 유망종목",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_019",
+      "entityType": "report",
+      "name": "[DS 시황 데일리] 현시점 2026-04-14",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_020",
+      "entityType": "report",
+      "name": "[DS Defense Daily] 2026-04-14",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_021",
+      "entityType": "report",
+      "name": "[IBKS Daily] Morning Brief(260414)",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_022",
+      "entityType": "report",
+      "name": "[Morning Brief] 미국-이란 비공식 접촉 가능성, 미 증시 상승 마감",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_023",
+      "entityType": "report",
+      "name": "4/13 KB 리서치 장마감코멘트",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_024",
+      "entityType": "report",
+      "name": "4/14 KB 리서치 모닝코멘트",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_025",
+      "entityType": "report",
+      "name": "국내주식 마감 시황 (26.04.13) - 협상 실패에도 밸류에이션이 하방 지지",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_026",
+      "entityType": "report",
+      "name": "Daily Morning Brief(2026.04.14)",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_027",
+      "entityType": "report",
+      "name": "SK증권 아침에 슥_2026.04.14",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_028",
+      "entityType": "report",
+      "name": "SK증권 Global Carbon Market Daily_260414",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_029",
+      "entityType": "report",
+      "name": "Yuanta Morning Snapshot (26.04.14)",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_030",
+      "entityType": "report",
+      "name": "[1Q26 Review] 별도 서프라이즈",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_031",
+      "entityType": "report",
+      "name": "[탐방노트] #체질개선 #영화개봉 #협업확대",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_032",
+      "entityType": "report",
+      "name": "[AI] 강기능식품 및 의약품 유통 사업 전문기업",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_033",
+      "entityType": "report",
+      "name": "[AI] 건축자재 유통 및 판매 전문기업",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_034",
+      "entityType": "report",
+      "name": "[AI] 닭고기 수직계열화 기반 육가공 전문기업",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_035",
+      "entityType": "report",
+      "name": "[AI] 액체생검 기반 암 진단 및 모니터링 서비스 전문기업",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_036",
+      "entityType": "report",
+      "name": "[AI] 초소형 SAR 위성 시스템 및 선박용 솔레노이드 전문기업",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_037",
+      "entityType": "report",
+      "name": "[AI] 핵산 원천기술 기반 생명과학 연구 및 진단 전문기업",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_038",
+      "entityType": "report",
+      "name": "1Q26 Preview: 브라질 효과 서서히",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_039",
+      "entityType": "report",
+      "name": "1Q26 Preview: 스페이스X와 함께",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_040",
+      "entityType": "report",
+      "name": "1Q26 Preview: 편안함",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_041",
+      "entityType": "report",
+      "name": "1Q26 Re: 단기 실적보다는 본질에 집중할 때",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_042",
+      "entityType": "report",
+      "name": "1Q26E Preview: 방향은 맞다",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_043",
+      "entityType": "report",
+      "name": "1Q는 착시, 2Q 기대는 더 커진다",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_044",
+      "entityType": "report",
+      "name": "개선될 실적과 카카오톡에 지워지는 무게",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_045",
+      "entityType": "report",
+      "name": "개화 전 인내의 시간",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_046",
+      "entityType": "report",
+      "name": "고수익 프로젝트 비중 확대",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_047",
+      "entityType": "report",
+      "name": "깜짝 실적, 이제는 방어력에 주목",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_048",
+      "entityType": "report",
+      "name": "놀라운 실적의 연속",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_049",
+      "entityType": "report",
+      "name": "다시 실적 모멘텀이 강해진다",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_050",
+      "entityType": "report",
+      "name": "단기 눈높이는 낮추나, 중장기 성장 스토리는 유효",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_051",
+      "entityType": "report",
+      "name": "무난한 성장 흐름 이어가는 중",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_052",
+      "entityType": "report",
+      "name": "반도체가 받치고, 태양광으로 점프",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_053",
+      "entityType": "report",
+      "name": "불확실성이 확대될수록 대장주를 찾기 마련",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_054",
+      "entityType": "report",
+      "name": "비용의 시간은 짧고, 수확의 시간은 길다",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_055",
+      "entityType": "report",
+      "name": "빅테크 고객확대, 수주 모멘텀 가속",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_056",
+      "entityType": "report",
+      "name": "수주했으니 이제 돈 벌 차례",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_057",
+      "entityType": "report",
+      "name": "실적 추정치 하향하나, 전쟁 리스크 해소에 주목",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_058",
+      "entityType": "report",
+      "name": "실적으로 승부한다",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_059",
+      "entityType": "report",
+      "name": "실체 '있는' 움직임",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_060",
+      "entityType": "report",
+      "name": "아쉬운 시작에도 주주환원 매력은 유효",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_061",
+      "entityType": "report",
+      "name": "올해 해양과 특수선 수주가 관건",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_062",
+      "entityType": "report",
+      "name": "위고비로 외형성장. 연구개발 모멘텀은 제한적.",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_063",
+      "entityType": "report",
+      "name": "이익 체력은 증명, 저평가 해소가 필요한 시점",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_064",
+      "entityType": "report",
+      "name": "일시적 조정, 성장 방향성 유효",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_065",
+      "entityType": "report",
+      "name": "적극적인 주주환원 정책이 가져다주는 편안함",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_066",
+      "entityType": "report",
+      "name": "전송장비 주도주인데 PBR 1.7배?",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_067",
+      "entityType": "report",
+      "name": "조선기자재에서 선박 MRO까지, 사업 구조의 확장",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_068",
+      "entityType": "report",
+      "name": "증설 확정에 따른 Re-Rating 논리 필요",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_069",
+      "entityType": "report",
+      "name": "증설 효과 본격화, 이익 체질 상향 구간",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_070",
+      "entityType": "report",
+      "name": "프리미엄 소비 회복으로 실적 정상화 국면 진입",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_071",
+      "entityType": "report",
+      "name": "하반기, 수주가 밀려온다",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_072",
+      "entityType": "report",
+      "name": "AI디레이팅 지속, 커머스와 크립토로 돌파구 모색",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_073",
+      "entityType": "report",
+      "name": "K-바이오 거버넌스의 새로운 기준을 제시할 오스코텍",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_074",
+      "entityType": "report",
+      "name": "NDR 후기: 고농도 SC제형화 플랫폼 및 CDMO 확장",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_075",
+      "entityType": "report",
+      "name": "Daily Bond Morning Brief(2026.04.13)",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_076",
+      "entityType": "report",
+      "name": "Daily Bond Morning Brief(2026.04.14)",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_077",
+      "entityType": "report",
+      "name": "Eugenes FICC Update",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_078",
+      "entityType": "report",
+      "name": "WGBI 편입 초기 성적표와 안착의 조건",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_079",
+      "entityType": "report",
+      "name": "[Global ETF] ETF 트렌드 & 포트폴리오: 디테일한 변화의 활용",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_080",
+      "entityType": "report",
+      "name": "[IBKS 코스닥 보고서] KOSDAQ 2026년 1분기 실적 Preview 20선",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_081",
+      "entityType": "report",
+      "name": "[IBKS Daily] Start with IBKS(2026.04.14) 협상 결렬에도 기대감 지속",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_082",
+      "entityType": "report",
+      "name": "[New K-ETF] 글로벌 AI 메모리 반도체 액티브",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_083",
+      "entityType": "report",
+      "name": "[Quant Comment] 어닝 서프라이즈의 조건",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_084",
+      "entityType": "report",
+      "name": "04/14 달러, 협상 기대 속 하락",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_085",
+      "entityType": "report",
+      "name": "04/14, 미 증시, 미-이란 후속 협상 기대감 재확산 등으로 강세",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_086",
+      "entityType": "report",
+      "name": "뉴 ETF 라인 업 : 美우주테크, 글로벌 AI 메모리반도체 등 5종목 상장",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_087",
+      "entityType": "report",
+      "name": "미국과 이란의 협상 결렬, 코스피 5,800 선 지지력 테스트",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_088",
+      "entityType": "report",
+      "name": "신현송 한은 총재 후보의 스테이블 코인 정책 방향성 점검",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_089",
+      "entityType": "report",
+      "name": "우주, 이벤트와 기술혁신이 만드는 장기 성장 사이클",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_090",
+      "entityType": "report",
+      "name": "주간 금리·환율 전망",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_091",
+      "entityType": "report",
+      "name": "China Focus-41개월 만에 PPI 플러스 전환",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_092",
+      "entityType": "report",
+      "name": "China Weekly Issue : 중국 3월 물가: PPI 반등과 수요 회복의 온도차",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_093",
+      "entityType": "report",
+      "name": "Encoding Finance, 0과 1로 그려지는 새로운 금융",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_094",
+      "entityType": "report",
+      "name": "Post-Tariff EM, 공급망 재편과 China+N 전략",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "report:report_095",
+      "entityType": "report",
+      "name": "THE GLOBAL 마켓 파인더(04/06~04/10)",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:2차전지",
+      "entityType": "sector",
+      "name": "2차전지",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:2차전지소부장",
+      "entityType": "sector",
+      "name": "2차전지소부장",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:ai_인프라",
+      "entityType": "sector",
+      "name": "AI/인프라",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:smr_소형모듈원자로",
+      "entityType": "sector",
+      "name": "SMR(소형모듈원자로)",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:건설",
+      "entityType": "sector",
+      "name": "건설",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:게임",
+      "entityType": "sector",
+      "name": "게임",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:금융",
+      "entityType": "sector",
+      "name": "금융",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:기타",
+      "entityType": "sector",
+      "name": "기타",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:로봇",
+      "entityType": "sector",
+      "name": "로봇",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:매크로",
+      "entityType": "sector",
+      "name": "매크로",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:메가테크",
+      "entityType": "sector",
+      "name": "메가테크",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:모멘텀",
+      "entityType": "sector",
+      "name": "모멘텀",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:바이오",
+      "entityType": "sector",
+      "name": "바이오",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:바이오_중소",
+      "entityType": "sector",
+      "name": "바이오(중소)",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:바이오_코스닥",
+      "entityType": "sector",
+      "name": "바이오(코스닥)",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:반도체",
+      "entityType": "sector",
+      "name": "반도체",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:반도체전공정",
+      "entityType": "sector",
+      "name": "반도체전공정",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:반도체후공정",
+      "entityType": "sector",
+      "name": "반도체후공정",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:방산",
+      "entityType": "sector",
+      "name": "방산",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:보험",
+      "entityType": "sector",
+      "name": "보험",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:상법개정안",
+      "entityType": "sector",
+      "name": "상법개정안",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:석유화학",
+      "entityType": "sector",
+      "name": "석유화학",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:식품",
+      "entityType": "sector",
+      "name": "식품",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:에너지",
+      "entityType": "sector",
+      "name": "에너지",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:엔터",
+      "entityType": "sector",
+      "name": "엔터",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:여행레저",
+      "entityType": "sector",
+      "name": "여행레저",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:외인수급",
+      "entityType": "sector",
+      "name": "외인수급",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:우주항공anduam",
+      "entityType": "sector",
+      "name": "우주항공&UAM",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:운송",
+      "entityType": "sector",
+      "name": "운송",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:원자력",
+      "entityType": "sector",
+      "name": "원자력",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:은행",
+      "entityType": "sector",
+      "name": "은행",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:의료ai",
+      "entityType": "sector",
+      "name": "의료AI",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:의료기기",
+      "entityType": "sector",
+      "name": "의료기기",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:인터넷",
+      "entityType": "sector",
+      "name": "인터넷",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:자동차",
+      "entityType": "sector",
+      "name": "자동차",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:자동차소부장",
+      "entityType": "sector",
+      "name": "자동차소부장",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:전력_태양광_ess",
+      "entityType": "sector",
+      "name": "전력/태양광/ESS",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:전력기기",
+      "entityType": "sector",
+      "name": "전력기기",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:조선",
+      "entityType": "sector",
+      "name": "조선",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:증권",
+      "entityType": "sector",
+      "name": "증권",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:철강_금속",
+      "entityType": "sector",
+      "name": "철강/금속",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:코스닥",
+      "entityType": "sector",
+      "name": "코스닥",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:코스피",
+      "entityType": "sector",
+      "name": "코스피",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:통신사_데이터",
+      "entityType": "sector",
+      "name": "통신사/데이터",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:헬스케어",
+      "entityType": "sector",
+      "name": "헬스케어",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "sector:화장품",
+      "entityType": "sector",
+      "name": "화장품",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:000150",
+      "entityType": "security",
+      "name": "두산",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:000650",
+      "entityType": "security",
+      "name": "천일고속",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:000660",
+      "entityType": "security",
+      "name": "SK하이닉스",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:000720",
+      "entityType": "security",
+      "name": "현대건설",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:001510",
+      "entityType": "security",
+      "name": "SK증권",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:001820",
+      "entityType": "security",
+      "name": "삼화콘덴서",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:005090",
+      "entityType": "security",
+      "name": "SGC에너지",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:006110",
+      "entityType": "security",
+      "name": "삼아알미늄",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:006800",
+      "entityType": "security",
+      "name": "미래에셋증권",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:006910",
+      "entityType": "security",
+      "name": "보성파워텍",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:007810",
+      "entityType": "security",
+      "name": "코리아써키트",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:009150",
+      "entityType": "security",
+      "name": "삼성전기",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:010060",
+      "entityType": "security",
+      "name": "OCI홀딩스",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:010170",
+      "entityType": "security",
+      "name": "대한광통신",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:010820",
+      "entityType": "security",
+      "name": "퍼스텍",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:011930",
+      "entityType": "security",
+      "name": "신성이엔지",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:016880",
+      "entityType": "security",
+      "name": "웅진",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:017900",
+      "entityType": "security",
+      "name": "광전자",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:019210",
+      "entityType": "security",
+      "name": "와이지-원",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:023160",
+      "entityType": "security",
+      "name": "태광",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:024850",
+      "entityType": "security",
+      "name": "HLB이노베이션",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:027360",
+      "entityType": "security",
+      "name": "아주IB투자",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:028050",
+      "entityType": "security",
+      "name": "삼성E&A",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:030530",
+      "entityType": "security",
+      "name": "원익홀딩스",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:031980",
+      "entityType": "security",
+      "name": "피에스케이홀딩스",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:032500",
+      "entityType": "security",
+      "name": "케이엠더블유",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:032820",
+      "entityType": "security",
+      "name": "우리기술",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:033160",
+      "entityType": "security",
+      "name": "엠케이전자",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:034020",
+      "entityType": "security",
+      "name": "두산에너빌리티",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:036170",
+      "entityType": "security",
+      "name": "에이치엠넥스",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:037460",
+      "entityType": "security",
+      "name": "삼지전자",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:038500",
+      "entityType": "security",
+      "name": "삼표시멘트",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:042700",
+      "entityType": "security",
+      "name": "한미반도체",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:043260",
+      "entityType": "security",
+      "name": "성호전자",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:044490",
+      "entityType": "security",
+      "name": "태웅",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:046120",
+      "entityType": "security",
+      "name": "오르비텍",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:046970",
+      "entityType": "security",
+      "name": "우리로",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:047040",
+      "entityType": "security",
+      "name": "대우건설",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:047810",
+      "entityType": "security",
+      "name": "한국항공우주",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:049080",
+      "entityType": "security",
+      "name": "기가레인",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:049630",
+      "entityType": "security",
+      "name": "재영솔루텍",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:050890",
+      "entityType": "security",
+      "name": "쏠리드",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:052710",
+      "entityType": "security",
+      "name": "아모텍",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:058610",
+      "entityType": "security",
+      "name": "에스피지",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:064290",
+      "entityType": "security",
+      "name": "인텍플러스",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:064350",
+      "entityType": "security",
+      "name": "현대로템",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:064850",
+      "entityType": "security",
+      "name": "에프앤가이드",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:069540",
+      "entityType": "security",
+      "name": "빛과전자",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:073490",
+      "entityType": "security",
+      "name": "이노와이어리스",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:077360",
+      "entityType": "security",
+      "name": "덕산하이메탈",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:079550",
+      "entityType": "security",
+      "name": "LIG넥스원",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:080580",
+      "entityType": "security",
+      "name": "오킨스전자",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:083650",
+      "entityType": "security",
+      "name": "비에이치아이",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:085620",
+      "entityType": "security",
+      "name": "미래에셋생명",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:088800",
+      "entityType": "security",
+      "name": "에이스테크",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:089970",
+      "entityType": "security",
+      "name": "브이엠",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:090710",
+      "entityType": "security",
+      "name": "휴림로봇",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:095340",
+      "entityType": "security",
+      "name": "ISC",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:097230",
+      "entityType": "security",
+      "name": "HJ중공업",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:098120",
+      "entityType": "security",
+      "name": "마이크로컨텍솔",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:099320",
+      "entityType": "security",
+      "name": "쎄트렉아이",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:100790",
+      "entityType": "security",
+      "name": "미래에셋벤처투자",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:101490",
+      "entityType": "security",
+      "name": "에스앤에스텍",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:108490",
+      "entityType": "security",
+      "name": "로보티즈",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:120110",
+      "entityType": "security",
+      "name": "코오롱인더",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:124500",
+      "entityType": "security",
+      "name": "아이티센글로벌",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:126340",
+      "entityType": "security",
+      "name": "비나텍",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:131290",
+      "entityType": "security",
+      "name": "티에스이",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:131970",
+      "entityType": "security",
+      "name": "두산테스나",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:133690",
+      "entityType": "security",
+      "name": "TIGER 미국나스닥100",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:138080",
+      "entityType": "security",
+      "name": "오이솔루션",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:138490",
+      "entityType": "security",
+      "name": "코오롱ENP",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:138910",
+      "entityType": "security",
+      "name": "KODEX 구리선물(H)",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:160980",
+      "entityType": "security",
+      "name": "싸이맥스",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:187870",
+      "entityType": "security",
+      "name": "디바이스",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:189300",
+      "entityType": "security",
+      "name": "인텔리안테크",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:218410",
+      "entityType": "security",
+      "name": "RFHIC",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:219130",
+      "entityType": "security",
+      "name": "타이거일렉",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:222800",
+      "entityType": "security",
+      "name": "심텍",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:226590",
+      "entityType": "security",
+      "name": "엠디바이스",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:234340",
+      "entityType": "security",
+      "name": "헥토파이낸셜",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:240810",
+      "entityType": "security",
+      "name": "원익IPS",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:241520",
+      "entityType": "security",
+      "name": "DSC인베스트먼트",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:241770",
+      "entityType": "security",
+      "name": "메카로",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:272210",
+      "entityType": "security",
+      "name": "한화시스템",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:290550",
+      "entityType": "security",
+      "name": "디케이티",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:295310",
+      "entityType": "security",
+      "name": "에이치브이엠",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:298020",
+      "entityType": "security",
+      "name": "효성티앤씨",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:298040",
+      "entityType": "security",
+      "name": "효성중공업",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:2차전지",
+      "entityType": "security",
+      "name": "2차전지",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:319400",
+      "entityType": "security",
+      "name": "현대무벡스",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:319660",
+      "entityType": "security",
+      "name": "피에스케이",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:322000",
+      "entityType": "security",
+      "name": "HD현대에너지솔루션",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:327260",
+      "entityType": "security",
+      "name": "RF머트리얼즈",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:347700",
+      "entityType": "security",
+      "name": "스피어",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:353200",
+      "entityType": "security",
+      "name": "대덕전자",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:357880",
+      "entityType": "security",
+      "name": "SKAI",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:360750",
+      "entityType": "security",
+      "name": "TIGER 미국S&P500",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:368770",
+      "entityType": "security",
+      "name": "파이버프로",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:375500",
+      "entityType": "security",
+      "name": "DL이앤씨",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:382800",
+      "entityType": "security",
+      "name": "지앤비에스 에코",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:388790",
+      "entityType": "security",
+      "name": "라이콤",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:420770",
+      "entityType": "security",
+      "name": "기가비스",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:423160",
+      "entityType": "security",
+      "name": "KODEX KOFR금리액티브(합성)",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:434730",
+      "entityType": "security",
+      "name": "HANARO 원자력iSelect",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:440110",
+      "entityType": "security",
+      "name": "파두",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:449450",
+      "entityType": "security",
+      "name": "PLUS K방산",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:458760",
+      "entityType": "security",
+      "name": "TIGER 미국배당다우존스스타데일리커...",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:474610",
+      "entityType": "security",
+      "name": "RF시스템즈",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:475150",
+      "entityType": "security",
+      "name": "SK이터닉스",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:hc홈센타",
+      "entityType": "security",
+      "name": "HC홈센타",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:it_플랫폼",
+      "entityType": "security",
+      "name": "IT/플랫폼",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:k_컬처",
+      "entityType": "security",
+      "name": "K-컬처",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:kt",
+      "entityType": "security",
+      "name": "KT",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:oci홀딩스",
+      "entityType": "security",
+      "name": "OCI홀딩스",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:광주신세계",
+      "entityType": "security",
+      "name": "광주신세계",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:금융",
+      "entityType": "security",
+      "name": "금융",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:기계",
+      "entityType": "security",
+      "name": "기계",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:대한항공",
+      "entityType": "security",
+      "name": "대한항공",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:두산에너빌리티",
+      "entityType": "security",
+      "name": "두산에너빌리티",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:루미르",
+      "entityType": "security",
+      "name": "루미르",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:바이오",
+      "entityType": "security",
+      "name": "바이오",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:반도체",
+      "entityType": "security",
+      "name": "반도체",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:방산",
+      "entityType": "security",
+      "name": "방산",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:소비재",
+      "entityType": "security",
+      "name": "소비재",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:오스코텍",
+      "entityType": "security",
+      "name": "오스코텍",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:인프라",
+      "entityType": "security",
+      "name": "인프라",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:자동차",
+      "entityType": "security",
+      "name": "자동차",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:전력_에너지",
+      "entityType": "security",
+      "name": "전력/에너지",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:조선_해운",
+      "entityType": "security",
+      "name": "조선/해운",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:지주사",
+      "entityType": "security",
+      "name": "지주사",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:한라ims",
+      "entityType": "security",
+      "name": "한라IMS",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "security:화학_소재",
+      "entityType": "security",
+      "name": "화학/소재",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "strategy_rule:momentum_easy",
+      "entityType": "strategy_rule",
+      "name": "1호 - 모멘텀 Easy",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "strategy_rule:peak_easy",
+      "entityType": "strategy_rule",
+      "name": "2호 - 피크 Easy",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "strategy_rule:source_marketvoice",
+      "entityType": "strategy_rule",
+      "name": "marketvoice",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "strategy_rule:source_reports",
+      "entityType": "strategy_rule",
+      "name": "reports",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "strategy_rule:source_stockeasy",
+      "entityType": "strategy_rule",
+      "name": "stockeasy",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "strategy_rule:value_easy",
+      "entityType": "strategy_rule",
+      "name": "3호 - 밸류 Easy",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "theme:2차전지",
+      "entityType": "theme",
+      "name": "2차전지",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "theme:ai_인프라",
+      "entityType": "theme",
+      "name": "AI 인프라",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "theme:ai_인프라_전력",
+      "entityType": "theme",
+      "name": "AI 인프라/전력",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "theme:hbm_메모리",
+      "entityType": "theme",
+      "name": "HBM/메모리",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "theme:it_플랫폼",
+      "entityType": "theme",
+      "name": "IT/플랫폼",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "theme:k_컬처",
+      "entityType": "theme",
+      "name": "K-컬처",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "theme:금_원자재",
+      "entityType": "theme",
+      "name": "금/원자재",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "theme:금리_매크로",
+      "entityType": "theme",
+      "name": "금리/매크로",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "theme:금융",
+      "entityType": "theme",
+      "name": "금융",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "theme:기계",
+      "entityType": "theme",
+      "name": "기계",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "theme:기타",
+      "entityType": "theme",
+      "name": "기타",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "theme:로봇",
+      "entityType": "theme",
+      "name": "로봇",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "theme:바이오",
+      "entityType": "theme",
+      "name": "바이오",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "theme:반도체",
+      "entityType": "theme",
+      "name": "반도체",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "theme:반도체_소부장",
+      "entityType": "theme",
+      "name": "반도체/소부장",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "theme:방산",
+      "entityType": "theme",
+      "name": "방산",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "theme:소비재",
+      "entityType": "theme",
+      "name": "소비재",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "theme:수소",
+      "entityType": "theme",
+      "name": "수소",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "theme:우주항공",
+      "entityType": "theme",
+      "name": "우주항공",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "theme:원자력",
+      "entityType": "theme",
+      "name": "원자력",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "theme:인프라",
+      "entityType": "theme",
+      "name": "인프라",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "theme:자동차",
+      "entityType": "theme",
+      "name": "자동차",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "theme:전력_에너지",
+      "entityType": "theme",
+      "name": "전력/에너지",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "theme:전력_인프라",
+      "entityType": "theme",
+      "name": "전력 인프라",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "theme:조선_해운",
+      "entityType": "theme",
+      "name": "조선/해운",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "theme:중동_유가",
+      "entityType": "theme",
+      "name": "중동/유가",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "theme:지주사",
+      "entityType": "theme",
+      "name": "지주사",
+      "aliases": [],
+      "metadata": {}
+    },
+    {
+      "entityId": "theme:화학_소재",
+      "entityType": "theme",
+      "name": "화학/소재",
+      "aliases": [],
+      "metadata": {}
+    }
+  ]
+}

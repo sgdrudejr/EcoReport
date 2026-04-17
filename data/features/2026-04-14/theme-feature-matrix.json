@@ -1,0 +1,370 @@
+{
+  "date": "2026-04-14",
+  "generatedAt": "2026-04-14T07:15:53.894Z",
+  "themeFeatures": [
+    {
+      "theme": "HBM/메모리",
+      "netScore": 0.1453,
+      "support": {
+        "reports": 0.6880000000000001,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "AI 인프라",
+      "netScore": 0.1237,
+      "support": {
+        "reports": 0.6880000000000001,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "전력 인프라",
+      "netScore": 0.1506,
+      "support": {
+        "reports": 0.6880000000000001,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "방산",
+      "netScore": 0.1568,
+      "support": {
+        "reports": 0.6880000000000001,
+        "stockeasy": 0.7448,
+        "marketvoice": 0,
+        "technical": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "금/원자재",
+      "netScore": 0.1417,
+      "support": {
+        "reports": 0.6880000000000001,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "금리/매크로",
+      "netScore": 0.073,
+      "support": {
+        "reports": 0.6880000000000001,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "원자력",
+      "netScore": 0.0734,
+      "support": {
+        "reports": 0.6880000000000001,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "로봇",
+      "netScore": 0.6685,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.6684666666666667,
+        "marketvoice": 0,
+        "technical": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "수소",
+      "netScore": 0.6216,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.6215999999999999,
+        "marketvoice": 0,
+        "technical": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "우주항공",
+      "netScore": 0.6635,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.6635333333333334,
+        "marketvoice": 0,
+        "technical": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "반도체/소부장",
+      "netScore": 0.6512,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.6512,
+        "marketvoice": 0,
+        "technical": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "소비재",
+      "netScore": 0.244,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7524,
+        "marketvoice": 0,
+        "technical": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "반도체",
+      "netScore": 0.4401,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7524,
+        "marketvoice": 0,
+        "technical": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "인프라",
+      "netScore": 0.2338,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7524,
+        "marketvoice": 0,
+        "technical": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "전력/에너지",
+      "netScore": -0.0486,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7524,
+        "marketvoice": 0,
+        "technical": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "기계",
+      "netScore": 0.588,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7524,
+        "marketvoice": 0,
+        "technical": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "금융",
+      "netScore": 0.5554,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7448,
+        "marketvoice": 0,
+        "technical": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "IT/플랫폼",
+      "netScore": 0.4495,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7448,
+        "marketvoice": 0,
+        "technical": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "화학/소재",
+      "netScore": 0.1606,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7372,
+        "marketvoice": 0,
+        "technical": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "지주사",
+      "netScore": 0.6188,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.6188,
+        "marketvoice": 0,
+        "technical": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "자동차",
+      "netScore": 0.4434,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.5304000000000001,
+        "marketvoice": 0,
+        "technical": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "2차전지",
+      "netScore": 0.5236,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.5236000000000001,
+        "marketvoice": 0,
+        "technical": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "K-컬처",
+      "netScore": 0.337,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.5032,
+        "marketvoice": 0,
+        "technical": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "조선/해운",
+      "netScore": 0.4298,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.4624000000000001,
+        "marketvoice": 0,
+        "technical": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "바이오",
+      "netScore": 0.4556,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.45560000000000006,
+        "marketvoice": 0,
+        "technical": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "기타",
+      "netScore": 0.4216,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.42160000000000003,
+        "marketvoice": 0,
+        "technical": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "중동/유가",
+      "netScore": 0.0464,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0.58,
+        "technical": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "AI 인프라/전력",
+      "netScore": 0.3047,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0.39440000000000003,
+        "technical": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    }
+  ]
+}

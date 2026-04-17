@@ -43,7 +43,7 @@
 
 | 항목 | 값 |
 |------|-----|
-| 프로젝트 루트 | `/Users/seo/Documents/Playground/EcoReport` |
+| 프로젝트 루트 | `/Users/seo/Documents/Playground/economy-report` |
 | Python venv | `.venv/bin/python3` |
 | Qwen API Key | `.env` 파일의 `QWEN_API_KEY` |
 | Windows LLM | `http://192.168.0.218:8080/v1` |
@@ -60,7 +60,7 @@
 
 ### 1-A. 증권사 리포트 수집
 ```bash
-cd /Users/seo/Documents/Playground/EcoReport
+cd /Users/seo/Documents/Playground/economy-report
 bash scripts/collect-report-assets.sh --date 2026-04-17
 ```
 - 네이버증권 + 신한투자증권 크롤링
@@ -243,7 +243,7 @@ DATE=2026-04-17
 ## 빠른 실행 (전체 자동화 예정)
 
 ```bash
-cd /Users/seo/Documents/Playground/EcoReport
+cd /Users/seo/Documents/Playground/economy-report
 DATE=$(date +%F)
 
 # Phase 1: 수집 (병렬)

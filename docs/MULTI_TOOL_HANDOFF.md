@@ -15,6 +15,12 @@ Codex, Cursor, Claude, 터미널 세션 등 여러 도구가 같은 저장소를
 
 ## 공통 운영 원칙
 
+### 0. 기준 루트를 흔들지 않는다
+
+- 실행과 수정은 `/Users/seo/Documents/Playground/economy-report`를 기준으로 한다.
+- `/Users/seo/Documents/Playground/stock-pilot-archive`는 레거시 참고본이다.
+- 예전 경로가 문서나 대화에 나오면 archive인지, 현재 루트인지 먼저 확인한다.
+
 ### 1. 날짜를 항상 명시한다
 
 - 상대 날짜 대신 `YYYY-MM-DD`를 사용합니다.

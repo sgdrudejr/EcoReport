@@ -4,6 +4,9 @@
 
 EcoReport는 Mac Mini에서 돌아가는 반자동 포트폴리오 인텔리전스 워크벤치입니다.
 
+> 현재 기준 워크스페이스는 `/Users/seo/Documents/Playground/economy-report` 입니다.  
+> `open-trading-api/`는 이제 이 루트 안에 같이 두고, 이전 체크아웃은 `/Users/seo/Documents/Playground/stock-pilot-archive`에 보관합니다.
+
 핵심 목표는 하나입니다.
 
 - 리포트를 많이 모으는 것이 아니라
@@ -26,6 +29,14 @@ EcoReport는 Mac Mini에서 돌아가는 반자동 포트폴리오 인텔리전�
 - 수집 후에는 반드시 `PDF 전문 텍스트화`를 거칩니다.
 - Stage 2만 LLM 의존도가 높고, Stage 1/3/4는 재현 가능한 코드로 유지합니다.
 - 지금은 수동 LLM 운영이 기본이며, 구조가 안정되면 그때 API를 붙입니다.
+
+## 현재 기준 디렉토리
+
+- 실행 루트: `/Users/seo/Documents/Playground/economy-report`
+- KIS helper: `/Users/seo/Documents/Playground/economy-report/open-trading-api`
+- 보조 worktree: `/Users/seo/Documents/Playground/economy-report-main-merge`, `/Users/seo/Documents/Playground/economy-report-main-publish`
+- 레거시 아카이브: `/Users/seo/Documents/Playground/stock-pilot-archive`
+- GitHub 원격: `sgdrudejr/EcoReport` 유지
 
 ## LLM 브리핑 + 딥리서치 파이프라인 (2026-04 현재)
 
@@ -56,7 +67,7 @@ flowchart TD
 ### 실행 명령
 
 ```bash
-cd /Users/seo/Documents/Playground/EcoReport
+cd /Users/seo/Documents/Playground/economy-report
 DATE=$(date +%F)
 
 # ① 브리핑 생성 (qwen3.5-flash)
@@ -180,14 +191,14 @@ flowchart TD
 가장 권장하는 일일 실행 방법은 아래 한 줄입니다.
 
 ```bash
-cd /Users/seo/Documents/Playground/EcoReport
+cd /Users/seo/Documents/Playground/economy-report
 bash scripts/run-daily-system.sh --date YYYY-MM-DD
 ```
 
 Gemini Deep Research 오버레이까지 포함한 완결형 자동 실행은 아래 명령을 사용합니다.
 
 ```bash
-cd /Users/seo/Documents/Playground/EcoReport
+cd /Users/seo/Documents/Playground/economy-report
 npm run automation:daily -- --date YYYY-MM-DD
 ```
 
@@ -215,14 +226,14 @@ npm run automation:daily -- --date YYYY-MM-DD
 수동으로만 먼저 갱신하고 싶을 때는 아래 명령을 사용합니다.
 
 ```bash
-cd /Users/seo/Documents/Playground/EcoReport
+cd /Users/seo/Documents/Playground/economy-report
 npm run portfolio:sync:kis -- --date YYYY-MM-DD
 ```
 
 Shadow 파이프라인만 따로 확인하고 싶을 때는 아래 명령을 사용합니다.
 
 ```bash
-cd /Users/seo/Documents/Playground/EcoReport
+cd /Users/seo/Documents/Playground/economy-report
 npm run shadow:pipeline -- --date YYYY-MM-DD
 ```
 
@@ -265,7 +276,7 @@ EcoReport는 이제 일일 산출물을 `persistent wiki`로 다시 컴파일합
 핵심 명령:
 
 ```bash
-cd /Users/seo/Documents/Playground/EcoReport
+cd /Users/seo/Documents/Playground/economy-report
 node scripts/build-llm-wiki.js --date YYYY-MM-DD
 node scripts/publish-llm-wiki-to-vault.js
 ```
@@ -308,7 +319,7 @@ Vercel preview 실패가 있어도 일일 운영은 막히지 않도록 설계�
 개발/검증 중에는 아래를 기준으로 봅니다.
 
 ```bash
-cd /Users/seo/Documents/Playground/EcoReport/dashboard
+cd /Users/seo/Documents/Playground/economy-report/dashboard
 npm run dev -- --hostname 0.0.0.0
 ```
 
@@ -336,7 +347,7 @@ npm run dev -- --hostname 0.0.0.0
 로컬 대시보드에서 OCR과 GitHub 동기화를 자동으로 쓰려면 아래 파일을 채웁니다.
 
 ```bash
-cd /Users/seo/Documents/Playground/EcoReport/dashboard
+cd /Users/seo/Documents/Playground/economy-report/dashboard
 cp .env.local.example .env.local
 ```
 
@@ -636,14 +647,14 @@ EcoReport/
 ### 1. 리포트 수집 + 텍스트화
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/economy-report
 bash scripts/collect-report-assets.sh --date 2026-04-03
 ```
 
 ### 2. RAG 코퍼스 생성
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/economy-report
 node scripts/build-report-rag-corpus.js --date 2026-04-03
 node scripts/build-portfolio-rag-corpus.js --date 2026-04-03
 node scripts/build-parallel-rag-corpus.js --date 2026-04-03
@@ -652,7 +663,7 @@ node scripts/build-parallel-rag-corpus.js --date 2026-04-03
 ### 3. Stage 1~6 + 전략 파이프라인 실행
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/economy-report
 npm run stage1.5:prompt -- --date 2026-04-03
 npm run stage1.5:gemini:run -- --date 2026-04-03
 npm run stage1.6:briefing -- --date 2026-04-03 --run-date 2026-04-03 --effective-market-date 2026-04-03
@@ -662,7 +673,7 @@ bash scripts/run-strategy-pipeline.sh --date 2026-04-03 --run-date 2026-04-03 --
 또는 개별 실행:
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/economy-report
 npm run stage1:extracts -- --date 2026-04-03
 npm run stage1.5:prompt -- --date 2026-04-03
 npm run stage1.5:gemini:web -- --date 2026-04-03

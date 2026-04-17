@@ -7,7 +7,7 @@ Usage:
   bash scripts/save-chatgpt-markdown-response.sh <target_path>
 
 Example:
-  bash scripts/save-chatgpt-markdown-response.sh /Users/seo/stock-pilot/knowledge/daily/2026-04-03-synthesis.md
+  bash scripts/save-chatgpt-markdown-response.sh /Users/seo/Documents/Playground/economy-report/knowledge/daily/2026-04-03-synthesis.md
 EOF
 }
 

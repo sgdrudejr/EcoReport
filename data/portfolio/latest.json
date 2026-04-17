@@ -1,6 +1,6 @@
 {
-  "date": "2026-04-15",
-  "updatedAt": "2026-04-15T00:41:25.665Z",
+  "date": "2026-04-17",
+  "updatedAt": "2026-04-16T15:17:34.634Z",
   "source": {
     "method": "broker_api_sync",
     "reviewer": "seo",
@@ -39,12 +39,12 @@
       "key": "KIS_MAIN",
       "label": "한투 일반",
       "accountNumber": "44367266-01",
-      "evaluationAmount": 2538724,
+      "evaluationAmount": 2541264,
       "cashAvailable": 116594,
       "settlementCash": 116594,
       "principal": 2392440,
-      "profitLoss": 29690,
-      "profitRate": 1.24,
+      "profitLoss": 32230,
+      "profitRate": 1.35,
       "screenshots": [],
       "incomplete": false,
       "holdings": [
@@ -53,11 +53,11 @@
           "name": "한국항공우주",
           "quantity": 5,
           "avgPrice": 200500,
-          "currentPrice": 190800,
-          "marketValue": 954000,
+          "currentPrice": 189900,
+          "marketValue": 949500,
           "purchaseValue": 1002500,
-          "profitLoss": -48500,
-          "profitRate": -4.83,
+          "profitLoss": -53000,
+          "profitRate": -5.28,
           "note": null
         },
         {
@@ -77,11 +77,11 @@
           "name": "KODEX 구리선물(H)",
           "quantity": 58,
           "avgPrice": 8765,
-          "currentPrice": 9505,
-          "marketValue": 551290,
+          "currentPrice": 9550,
+          "marketValue": 553900,
           "purchaseValue": 508370,
-          "profitLoss": 42920,
-          "profitRate": 8.44,
+          "profitLoss": 45530,
+          "profitRate": 8.95,
           "note": null
         },
         {
@@ -89,11 +89,11 @@
           "name": "HANARO 원자력iSelect",
           "quantity": 2,
           "avgPrice": 64630,
-          "currentPrice": 74735,
-          "marketValue": 149470,
+          "currentPrice": 76110,
+          "marketValue": 152220,
           "purchaseValue": 129260,
-          "profitLoss": 20210,
-          "profitRate": 15.63,
+          "profitLoss": 22960,
+          "profitRate": 17.76,
           "note": null
         },
         {
@@ -101,11 +101,11 @@
           "name": "PLUS K방산",
           "quantity": 7,
           "avgPrice": 77758.5714,
-          "currentPrice": 78910,
-          "marketValue": 552370,
+          "currentPrice": 79150,
+          "marketValue": 554050,
           "purchaseValue": 544310,
-          "profitLoss": 8060,
-          "profitRate": 1.48,
+          "profitLoss": 9740,
+          "profitRate": 1.78,
           "note": null
         }
       ]

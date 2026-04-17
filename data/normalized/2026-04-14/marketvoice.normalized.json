@@ -1,0 +1,2637 @@
+{
+  "date": "2026-04-14",
+  "bundleId": "normalized:marketvoice:2026-04-14",
+  "source": "marketvoice",
+  "sourceType": "event_feed",
+  "generatedAt": "2026-04-14T07:15:00.446Z",
+  "runId": null,
+  "qualitySummary": {
+    "status": "ok",
+    "flags": [
+      "low_coverage"
+    ]
+  },
+  "observations": [
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:topic:1296033",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1296033",
+      "entityName": "미·한 협상 교착에 코스피 관망세 지속",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [
+        "중동/유가"
+      ],
+      "direction": "negative",
+      "strength": 1,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "미·한 협상 교착에 코스피 관망세 지속",
+          "text": "미국과 한국 간 협상이 교착 상태에 빠지면서 코스피 시장은 뚜렷한 방향 없이 관망세를 보이고 있습니다. 전쟁 장기화로 유가 변동성이 증시에 영향을 주며 투자 심리에 경계와 안도감을 동시에 주고 있습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1296033"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다.",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5NjAzMw=="
+      ],
+      "metadata": {
+        "signalLabels": [
+          "중동/유가"
+        ],
+        "mainSource": {
+          "type": "TELEGRAM",
+          "name": "텔레그램",
+          "author": "증권사 애널 크롤러🇰🇷"
+        },
+        "deepResearchQuestion": "중동/유가 이슈가 단기 헤드라인인지, 실제 공급 차질과 가격 전이로 이어지는지 확인하세요.",
+        "topicEntityId": "macro_event:1296033"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:impact:1296033:category:미국인덱스:1",
+      "entityType": "category",
+      "entityId": "category:isa_미국인덱스",
+      "entityName": "미국인덱스",
+      "accountKey": "ISA",
+      "securityCode": null,
+      "category": "미국인덱스",
+      "themes": [
+        "중동/유가"
+      ],
+      "direction": "negative",
+      "strength": 0.68,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "미·한 협상 교착에 코스피 관망세 지속",
+          "text": "미국과 한국 간 협상이 교착 상태에 빠지면서 코스피 시장은 뚜렷한 방향 없이 관망세를 보이고 있습니다. 전쟁 장기화로 유가 변동성이 증시에 영향을 주며 투자 심리에 경계와 안도감을 동시에 주고 있습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1296033"
+        },
+        {
+          "kind": "snippet",
+          "title": "미·한 협상 교착에 코스피 관망세 지속",
+          "text": "미국과 한국 간 협상이 교착 상태에 빠진 가운데, 코스피 시장은 뚜렷한 방향성 없이 관망세를 이어가고 있습니다. 전쟁이 장기화되면서 유가의 변동성이 한국과 미국 증시에 중요한 영향을 미치고 있으며, 유가 상승은 투자 심리에 경계 신호로, 하락은 안도감을 주는 모습이 나타났습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1296033"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "geopolitics, oil",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5NjAzMw=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1296033",
+        "topicTitle": "미·한 협상 교착에 코스피 관망세 지속",
+        "channels": [
+          "TELEGRAM",
+          "중동/유가"
+        ],
+        "riskTags": [
+          "geopolitics",
+          "oil"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "중동/유가 이슈가 단기 헤드라인인지, 실제 공급 차질과 가격 전이로 이어지는지 확인하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:impact:1296033:category:현금파킹:2",
+      "entityType": "category",
+      "entityId": "category:pension_현금파킹",
+      "entityName": "현금파킹",
+      "accountKey": "PENSION",
+      "securityCode": null,
+      "category": "현금파킹",
+      "themes": [
+        "중동/유가"
+      ],
+      "direction": "positive",
+      "strength": 0.68,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "미·한 협상 교착에 코스피 관망세 지속",
+          "text": "미국과 한국 간 협상이 교착 상태에 빠지면서 코스피 시장은 뚜렷한 방향 없이 관망세를 보이고 있습니다. 전쟁 장기화로 유가 변동성이 증시에 영향을 주며 투자 심리에 경계와 안도감을 동시에 주고 있습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1296033"
+        },
+        {
+          "kind": "snippet",
+          "title": "미·한 협상 교착에 코스피 관망세 지속",
+          "text": "미국과 한국 간 협상이 교착 상태에 빠진 가운데, 코스피 시장은 뚜렷한 방향성 없이 관망세를 이어가고 있습니다. 전쟁이 장기화되면서 유가의 변동성이 한국과 미국 증시에 중요한 영향을 미치고 있으며, 유가 상승은 투자 심리에 경계 신호로, 하락은 안도감을 주는 모습이 나타났습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1296033"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "geopolitics, oil",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5NjAzMw=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1296033",
+        "topicTitle": "미·한 협상 교착에 코스피 관망세 지속",
+        "channels": [
+          "TELEGRAM",
+          "중동/유가"
+        ],
+        "riskTags": [
+          "geopolitics",
+          "oil"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "중동/유가 이슈가 단기 헤드라인인지, 실제 공급 차질과 가격 전이로 이어지는지 확인하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:impact:1296033:category:나스닥100:3",
+      "entityType": "category",
+      "entityId": "category:pension_나스닥100",
+      "entityName": "나스닥100",
+      "accountKey": "PENSION",
+      "securityCode": null,
+      "category": "나스닥100",
+      "themes": [
+        "중동/유가"
+      ],
+      "direction": "negative",
+      "strength": 0.68,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "미·한 협상 교착에 코스피 관망세 지속",
+          "text": "미국과 한국 간 협상이 교착 상태에 빠지면서 코스피 시장은 뚜렷한 방향 없이 관망세를 보이고 있습니다. 전쟁 장기화로 유가 변동성이 증시에 영향을 주며 투자 심리에 경계와 안도감을 동시에 주고 있습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1296033"
+        },
+        {
+          "kind": "snippet",
+          "title": "미·한 협상 교착에 코스피 관망세 지속",
+          "text": "미국과 한국 간 협상이 교착 상태에 빠진 가운데, 코스피 시장은 뚜렷한 방향성 없이 관망세를 이어가고 있습니다. 전쟁이 장기화되면서 유가의 변동성이 한국과 미국 증시에 중요한 영향을 미치고 있으며, 유가 상승은 투자 심리에 경계 신호로, 하락은 안도감을 주는 모습이 나타났습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1296033"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "geopolitics, oil",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5NjAzMw=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1296033",
+        "topicTitle": "미·한 협상 교착에 코스피 관망세 지속",
+        "channels": [
+          "TELEGRAM",
+          "중동/유가"
+        ],
+        "riskTags": [
+          "geopolitics",
+          "oil"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "중동/유가 이슈가 단기 헤드라인인지, 실제 공급 차질과 가격 전이로 이어지는지 확인하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:impact:1296033:category:s_p500:4",
+      "entityType": "category",
+      "entityId": "category:pension_sandp500",
+      "entityName": "S&P500",
+      "accountKey": "PENSION",
+      "securityCode": null,
+      "category": "S&P500",
+      "themes": [
+        "중동/유가"
+      ],
+      "direction": "negative",
+      "strength": 0.68,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "미·한 협상 교착에 코스피 관망세 지속",
+          "text": "미국과 한국 간 협상이 교착 상태에 빠지면서 코스피 시장은 뚜렷한 방향 없이 관망세를 보이고 있습니다. 전쟁 장기화로 유가 변동성이 증시에 영향을 주며 투자 심리에 경계와 안도감을 동시에 주고 있습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1296033"
+        },
+        {
+          "kind": "snippet",
+          "title": "미·한 협상 교착에 코스피 관망세 지속",
+          "text": "미국과 한국 간 협상이 교착 상태에 빠진 가운데, 코스피 시장은 뚜렷한 방향성 없이 관망세를 이어가고 있습니다. 전쟁이 장기화되면서 유가의 변동성이 한국과 미국 증시에 중요한 영향을 미치고 있으며, 유가 상승은 투자 심리에 경계 신호로, 하락은 안도감을 주는 모습이 나타났습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1296033"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "geopolitics, oil",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5NjAzMw=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1296033",
+        "topicTitle": "미·한 협상 교착에 코스피 관망세 지속",
+        "channels": [
+          "TELEGRAM",
+          "중동/유가"
+        ],
+        "riskTags": [
+          "geopolitics",
+          "oil"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "중동/유가 이슈가 단기 헤드라인인지, 실제 공급 차질과 가격 전이로 이어지는지 확인하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:impact:1296033:category:원자력:5",
+      "entityType": "category",
+      "entityId": "category:kis_main_원자력",
+      "entityName": "원자력",
+      "accountKey": "KIS_MAIN",
+      "securityCode": null,
+      "category": "원자력",
+      "themes": [
+        "중동/유가"
+      ],
+      "direction": "positive",
+      "strength": 0.68,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "미·한 협상 교착에 코스피 관망세 지속",
+          "text": "미국과 한국 간 협상이 교착 상태에 빠지면서 코스피 시장은 뚜렷한 방향 없이 관망세를 보이고 있습니다. 전쟁 장기화로 유가 변동성이 증시에 영향을 주며 투자 심리에 경계와 안도감을 동시에 주고 있습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1296033"
+        },
+        {
+          "kind": "snippet",
+          "title": "미·한 협상 교착에 코스피 관망세 지속",
+          "text": "미국과 한국 간 협상이 교착 상태에 빠진 가운데, 코스피 시장은 뚜렷한 방향성 없이 관망세를 이어가고 있습니다. 전쟁이 장기화되면서 유가의 변동성이 한국과 미국 증시에 중요한 영향을 미치고 있으며, 유가 상승은 투자 심리에 경계 신호로, 하락은 안도감을 주는 모습이 나타났습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1296033"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "geopolitics, oil",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5NjAzMw=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1296033",
+        "topicTitle": "미·한 협상 교착에 코스피 관망세 지속",
+        "channels": [
+          "TELEGRAM",
+          "중동/유가"
+        ],
+        "riskTags": [
+          "geopolitics",
+          "oil"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "중동/유가 이슈가 단기 헤드라인인지, 실제 공급 차질과 가격 전이로 이어지는지 확인하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:impact:1296033:category:방산:6",
+      "entityType": "category",
+      "entityId": "category:kis_main_방산",
+      "entityName": "방산",
+      "accountKey": "KIS_MAIN",
+      "securityCode": null,
+      "category": "방산",
+      "themes": [
+        "중동/유가"
+      ],
+      "direction": "positive",
+      "strength": 0.68,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "미·한 협상 교착에 코스피 관망세 지속",
+          "text": "미국과 한국 간 협상이 교착 상태에 빠지면서 코스피 시장은 뚜렷한 방향 없이 관망세를 보이고 있습니다. 전쟁 장기화로 유가 변동성이 증시에 영향을 주며 투자 심리에 경계와 안도감을 동시에 주고 있습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1296033"
+        },
+        {
+          "kind": "snippet",
+          "title": "미·한 협상 교착에 코스피 관망세 지속",
+          "text": "미국과 한국 간 협상이 교착 상태에 빠진 가운데, 코스피 시장은 뚜렷한 방향성 없이 관망세를 이어가고 있습니다. 전쟁이 장기화되면서 유가의 변동성이 한국과 미국 증시에 중요한 영향을 미치고 있으며, 유가 상승은 투자 심리에 경계 신호로, 하락은 안도감을 주는 모습이 나타났습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1296033"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "geopolitics, oil",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5NjAzMw=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1296033",
+        "topicTitle": "미·한 협상 교착에 코스피 관망세 지속",
+        "channels": [
+          "TELEGRAM",
+          "중동/유가"
+        ],
+        "riskTags": [
+          "geopolitics",
+          "oil"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "중동/유가 이슈가 단기 헤드라인인지, 실제 공급 차질과 가격 전이로 이어지는지 확인하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:impact:1296033:category:방산:7",
+      "entityType": "category",
+      "entityId": "category:kis_main_방산",
+      "entityName": "방산",
+      "accountKey": "KIS_MAIN",
+      "securityCode": null,
+      "category": "방산",
+      "themes": [
+        "중동/유가"
+      ],
+      "direction": "positive",
+      "strength": 0.68,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "미·한 협상 교착에 코스피 관망세 지속",
+          "text": "미국과 한국 간 협상이 교착 상태에 빠지면서 코스피 시장은 뚜렷한 방향 없이 관망세를 보이고 있습니다. 전쟁 장기화로 유가 변동성이 증시에 영향을 주며 투자 심리에 경계와 안도감을 동시에 주고 있습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1296033"
+        },
+        {
+          "kind": "snippet",
+          "title": "미·한 협상 교착에 코스피 관망세 지속",
+          "text": "미국과 한국 간 협상이 교착 상태에 빠진 가운데, 코스피 시장은 뚜렷한 방향성 없이 관망세를 이어가고 있습니다. 전쟁이 장기화되면서 유가의 변동성이 한국과 미국 증시에 중요한 영향을 미치고 있으며, 유가 상승은 투자 심리에 경계 신호로, 하락은 안도감을 주는 모습이 나타났습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1296033"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "geopolitics, oil",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5NjAzMw=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1296033",
+        "topicTitle": "미·한 협상 교착에 코스피 관망세 지속",
+        "channels": [
+          "TELEGRAM",
+          "중동/유가"
+        ],
+        "riskTags": [
+          "geopolitics",
+          "oil"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "중동/유가 이슈가 단기 헤드라인인지, 실제 공급 차질과 가격 전이로 이어지는지 확인하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:impact:1296033:category:원자력:8",
+      "entityType": "category",
+      "entityId": "category:kis_main_원자력",
+      "entityName": "원자력",
+      "accountKey": "KIS_MAIN",
+      "securityCode": null,
+      "category": "원자력",
+      "themes": [
+        "중동/유가"
+      ],
+      "direction": "positive",
+      "strength": 0.68,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "미·한 협상 교착에 코스피 관망세 지속",
+          "text": "미국과 한국 간 협상이 교착 상태에 빠지면서 코스피 시장은 뚜렷한 방향 없이 관망세를 보이고 있습니다. 전쟁 장기화로 유가 변동성이 증시에 영향을 주며 투자 심리에 경계와 안도감을 동시에 주고 있습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1296033"
+        },
+        {
+          "kind": "snippet",
+          "title": "미·한 협상 교착에 코스피 관망세 지속",
+          "text": "미국과 한국 간 협상이 교착 상태에 빠진 가운데, 코스피 시장은 뚜렷한 방향성 없이 관망세를 이어가고 있습니다. 전쟁이 장기화되면서 유가의 변동성이 한국과 미국 증시에 중요한 영향을 미치고 있으며, 유가 상승은 투자 심리에 경계 신호로, 하락은 안도감을 주는 모습이 나타났습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1296033"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "geopolitics, oil",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5NjAzMw=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1296033",
+        "topicTitle": "미·한 협상 교착에 코스피 관망세 지속",
+        "channels": [
+          "TELEGRAM",
+          "중동/유가"
+        ],
+        "riskTags": [
+          "geopolitics",
+          "oil"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "중동/유가 이슈가 단기 헤드라인인지, 실제 공급 차질과 가격 전이로 이어지는지 확인하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:topic:1300637",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1300637",
+      "entityName": "트럼프 정책·미·이란 협상에 이더리움 5% 상승",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [
+        "중동/유가"
+      ],
+      "direction": "neutral",
+      "strength": 1,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "트럼프 정책·미·이란 협상에 이더리움 5% 상승",
+          "text": "이더리움 가격이 2026년 4월 도널드 트럼프 대통령의 친 가상자산 정책과 미국-이란 협상 기대감에 힘입어 5% 올랐습니다. 중동 정세 완화로 위험자산 투자 심리가 개선됐습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300637"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다.",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTMwMDYzNw=="
+      ],
+      "metadata": {
+        "signalLabels": [
+          "중동/유가"
+        ],
+        "mainSource": {
+          "type": "COMPANY_NEWS",
+          "name": "뉴스",
+          "author": "뉴스1"
+        },
+        "deepResearchQuestion": "중동/유가 이슈가 단기 헤드라인인지, 실제 공급 차질과 가격 전이로 이어지는지 확인하세요.",
+        "topicEntityId": "macro_event:1300637"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:impact:1300637:category:미국인덱스:1",
+      "entityType": "category",
+      "entityId": "category:isa_미국인덱스",
+      "entityName": "미국인덱스",
+      "accountKey": "ISA",
+      "securityCode": null,
+      "category": "미국인덱스",
+      "themes": [
+        "중동/유가"
+      ],
+      "direction": "negative",
+      "strength": 0.68,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "트럼프 정책·미·이란 협상에 이더리움 5% 상승",
+          "text": "이더리움 가격이 2026년 4월 도널드 트럼프 대통령의 친 가상자산 정책과 미국-이란 협상 기대감에 힘입어 5% 올랐습니다. 중동 정세 완화로 위험자산 투자 심리가 개선됐습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300637"
+        },
+        {
+          "kind": "snippet",
+          "title": "트럼프 정책·미·이란 협상에 이더리움 5% 상승",
+          "text": "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300637"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "geopolitics, oil",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTMwMDYzNw=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1300637",
+        "topicTitle": "트럼프 정책·미·이란 협상에 이더리움 5% 상승",
+        "channels": [
+          "COMPANY_NEWS",
+          "중동/유가"
+        ],
+        "riskTags": [
+          "geopolitics",
+          "oil"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "중동/유가 이슈가 단기 헤드라인인지, 실제 공급 차질과 가격 전이로 이어지는지 확인하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:impact:1300637:category:현금파킹:2",
+      "entityType": "category",
+      "entityId": "category:pension_현금파킹",
+      "entityName": "현금파킹",
+      "accountKey": "PENSION",
+      "securityCode": null,
+      "category": "현금파킹",
+      "themes": [
+        "중동/유가"
+      ],
+      "direction": "positive",
+      "strength": 0.68,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "트럼프 정책·미·이란 협상에 이더리움 5% 상승",
+          "text": "이더리움 가격이 2026년 4월 도널드 트럼프 대통령의 친 가상자산 정책과 미국-이란 협상 기대감에 힘입어 5% 올랐습니다. 중동 정세 완화로 위험자산 투자 심리가 개선됐습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300637"
+        },
+        {
+          "kind": "snippet",
+          "title": "트럼프 정책·미·이란 협상에 이더리움 5% 상승",
+          "text": "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300637"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "geopolitics, oil",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTMwMDYzNw=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1300637",
+        "topicTitle": "트럼프 정책·미·이란 협상에 이더리움 5% 상승",
+        "channels": [
+          "COMPANY_NEWS",
+          "중동/유가"
+        ],
+        "riskTags": [
+          "geopolitics",
+          "oil"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "중동/유가 이슈가 단기 헤드라인인지, 실제 공급 차질과 가격 전이로 이어지는지 확인하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:impact:1300637:category:나스닥100:3",
+      "entityType": "category",
+      "entityId": "category:pension_나스닥100",
+      "entityName": "나스닥100",
+      "accountKey": "PENSION",
+      "securityCode": null,
+      "category": "나스닥100",
+      "themes": [
+        "중동/유가"
+      ],
+      "direction": "negative",
+      "strength": 0.68,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "트럼프 정책·미·이란 협상에 이더리움 5% 상승",
+          "text": "이더리움 가격이 2026년 4월 도널드 트럼프 대통령의 친 가상자산 정책과 미국-이란 협상 기대감에 힘입어 5% 올랐습니다. 중동 정세 완화로 위험자산 투자 심리가 개선됐습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300637"
+        },
+        {
+          "kind": "snippet",
+          "title": "트럼프 정책·미·이란 협상에 이더리움 5% 상승",
+          "text": "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300637"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "geopolitics, oil",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTMwMDYzNw=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1300637",
+        "topicTitle": "트럼프 정책·미·이란 협상에 이더리움 5% 상승",
+        "channels": [
+          "COMPANY_NEWS",
+          "중동/유가"
+        ],
+        "riskTags": [
+          "geopolitics",
+          "oil"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "중동/유가 이슈가 단기 헤드라인인지, 실제 공급 차질과 가격 전이로 이어지는지 확인하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:impact:1300637:category:s_p500:4",
+      "entityType": "category",
+      "entityId": "category:pension_sandp500",
+      "entityName": "S&P500",
+      "accountKey": "PENSION",
+      "securityCode": null,
+      "category": "S&P500",
+      "themes": [
+        "중동/유가"
+      ],
+      "direction": "negative",
+      "strength": 0.68,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "트럼프 정책·미·이란 협상에 이더리움 5% 상승",
+          "text": "이더리움 가격이 2026년 4월 도널드 트럼프 대통령의 친 가상자산 정책과 미국-이란 협상 기대감에 힘입어 5% 올랐습니다. 중동 정세 완화로 위험자산 투자 심리가 개선됐습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300637"
+        },
+        {
+          "kind": "snippet",
+          "title": "트럼프 정책·미·이란 협상에 이더리움 5% 상승",
+          "text": "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300637"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "geopolitics, oil",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTMwMDYzNw=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1300637",
+        "topicTitle": "트럼프 정책·미·이란 협상에 이더리움 5% 상승",
+        "channels": [
+          "COMPANY_NEWS",
+          "중동/유가"
+        ],
+        "riskTags": [
+          "geopolitics",
+          "oil"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "중동/유가 이슈가 단기 헤드라인인지, 실제 공급 차질과 가격 전이로 이어지는지 확인하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:impact:1300637:category:원자력:5",
+      "entityType": "category",
+      "entityId": "category:kis_main_원자력",
+      "entityName": "원자력",
+      "accountKey": "KIS_MAIN",
+      "securityCode": null,
+      "category": "원자력",
+      "themes": [
+        "중동/유가"
+      ],
+      "direction": "positive",
+      "strength": 0.68,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "트럼프 정책·미·이란 협상에 이더리움 5% 상승",
+          "text": "이더리움 가격이 2026년 4월 도널드 트럼프 대통령의 친 가상자산 정책과 미국-이란 협상 기대감에 힘입어 5% 올랐습니다. 중동 정세 완화로 위험자산 투자 심리가 개선됐습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300637"
+        },
+        {
+          "kind": "snippet",
+          "title": "트럼프 정책·미·이란 협상에 이더리움 5% 상승",
+          "text": "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300637"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "geopolitics, oil",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTMwMDYzNw=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1300637",
+        "topicTitle": "트럼프 정책·미·이란 협상에 이더리움 5% 상승",
+        "channels": [
+          "COMPANY_NEWS",
+          "중동/유가"
+        ],
+        "riskTags": [
+          "geopolitics",
+          "oil"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "중동/유가 이슈가 단기 헤드라인인지, 실제 공급 차질과 가격 전이로 이어지는지 확인하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:impact:1300637:category:방산:6",
+      "entityType": "category",
+      "entityId": "category:kis_main_방산",
+      "entityName": "방산",
+      "accountKey": "KIS_MAIN",
+      "securityCode": null,
+      "category": "방산",
+      "themes": [
+        "중동/유가"
+      ],
+      "direction": "positive",
+      "strength": 0.68,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "트럼프 정책·미·이란 협상에 이더리움 5% 상승",
+          "text": "이더리움 가격이 2026년 4월 도널드 트럼프 대통령의 친 가상자산 정책과 미국-이란 협상 기대감에 힘입어 5% 올랐습니다. 중동 정세 완화로 위험자산 투자 심리가 개선됐습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300637"
+        },
+        {
+          "kind": "snippet",
+          "title": "트럼프 정책·미·이란 협상에 이더리움 5% 상승",
+          "text": "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300637"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "geopolitics, oil",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTMwMDYzNw=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1300637",
+        "topicTitle": "트럼프 정책·미·이란 협상에 이더리움 5% 상승",
+        "channels": [
+          "COMPANY_NEWS",
+          "중동/유가"
+        ],
+        "riskTags": [
+          "geopolitics",
+          "oil"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "중동/유가 이슈가 단기 헤드라인인지, 실제 공급 차질과 가격 전이로 이어지는지 확인하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:impact:1300637:category:방산:7",
+      "entityType": "category",
+      "entityId": "category:kis_main_방산",
+      "entityName": "방산",
+      "accountKey": "KIS_MAIN",
+      "securityCode": null,
+      "category": "방산",
+      "themes": [
+        "중동/유가"
+      ],
+      "direction": "positive",
+      "strength": 0.68,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "트럼프 정책·미·이란 협상에 이더리움 5% 상승",
+          "text": "이더리움 가격이 2026년 4월 도널드 트럼프 대통령의 친 가상자산 정책과 미국-이란 협상 기대감에 힘입어 5% 올랐습니다. 중동 정세 완화로 위험자산 투자 심리가 개선됐습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300637"
+        },
+        {
+          "kind": "snippet",
+          "title": "트럼프 정책·미·이란 협상에 이더리움 5% 상승",
+          "text": "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300637"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "geopolitics, oil",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTMwMDYzNw=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1300637",
+        "topicTitle": "트럼프 정책·미·이란 협상에 이더리움 5% 상승",
+        "channels": [
+          "COMPANY_NEWS",
+          "중동/유가"
+        ],
+        "riskTags": [
+          "geopolitics",
+          "oil"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "중동/유가 이슈가 단기 헤드라인인지, 실제 공급 차질과 가격 전이로 이어지는지 확인하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:impact:1300637:category:원자력:8",
+      "entityType": "category",
+      "entityId": "category:kis_main_원자력",
+      "entityName": "원자력",
+      "accountKey": "KIS_MAIN",
+      "securityCode": null,
+      "category": "원자력",
+      "themes": [
+        "중동/유가"
+      ],
+      "direction": "positive",
+      "strength": 0.68,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "트럼프 정책·미·이란 협상에 이더리움 5% 상승",
+          "text": "이더리움 가격이 2026년 4월 도널드 트럼프 대통령의 친 가상자산 정책과 미국-이란 협상 기대감에 힘입어 5% 올랐습니다. 중동 정세 완화로 위험자산 투자 심리가 개선됐습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300637"
+        },
+        {
+          "kind": "snippet",
+          "title": "트럼프 정책·미·이란 협상에 이더리움 5% 상승",
+          "text": "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 현금파킹, 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300637"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "geopolitics, oil",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTMwMDYzNw=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1300637",
+        "topicTitle": "트럼프 정책·미·이란 협상에 이더리움 5% 상승",
+        "channels": [
+          "COMPANY_NEWS",
+          "중동/유가"
+        ],
+        "riskTags": [
+          "geopolitics",
+          "oil"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "중동/유가 이슈가 단기 헤드라인인지, 실제 공급 차질과 가격 전이로 이어지는지 확인하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:topic:1292535",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1292535",
+      "entityName": "일본 4대 기업, 2030년 1조 파라미터 AI 모델 개발 연합",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 0.68,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "일본 4대 기업, 2030년 1조 파라미터 AI 모델 개발 연합",
+          "text": "소프트뱅크, 혼다, 소니, NEC 등 일본 4개 기업이 합작해 2030년까지 1조 파라미터 규모 AI 모델 개발과 데이터센터 구축을 목표로 AI 산업 연합을 만듭니다. 약 100명 AI 기술자도 확보할 계획입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1292535"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 나스닥100, 연금저축의 S&P500 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5MjUzNQ=="
+      ],
+      "metadata": {
+        "signalLabels": [
+          "AI 인프라/전력"
+        ],
+        "mainSource": {
+          "type": "COMPANY_NEWS",
+          "name": "뉴스",
+          "author": "데일리안"
+        },
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요.",
+        "topicEntityId": "macro_event:1292535"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:impact:1292535:category:미국인덱스:1",
+      "entityType": "category",
+      "entityId": "category:isa_미국인덱스",
+      "entityName": "미국인덱스",
+      "accountKey": "ISA",
+      "securityCode": null,
+      "category": "미국인덱스",
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 0.582,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1m",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "일본 4대 기업, 2030년 1조 파라미터 AI 모델 개발 연합",
+          "text": "소프트뱅크, 혼다, 소니, NEC 등 일본 4개 기업이 합작해 2030년까지 1조 파라미터 규모 AI 모델 개발과 데이터센터 구축을 목표로 AI 산업 연합을 만듭니다. 약 100명 AI 기술자도 확보할 계획입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1292535"
+        },
+        {
+          "kind": "snippet",
+          "title": "일본 4대 기업, 2030년 1조 파라미터 AI 모델 개발 연합",
+          "text": "소프트뱅크, 혼다, 소니, NEC 등 일본 4개 주요 기업이 합작 회사를 설립해 대규모 인공지능 모델 개발에 나섰습니다. 여기에 8개 기업이 2030년까지 AI 산업 연합을 구축하기로 했으며, 약 100명의 AI 기술자 확보와 1조 파라미터 규모 멀티모달 AI 모델 개발, 데이터센터 직접 구축 등 구체적 인프라 전략이 추가로 밝혀졌습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1292535"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "ai, power",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5MjUzNQ=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1292535",
+        "topicTitle": "일본 4대 기업, 2030년 1조 파라미터 AI 모델 개발 연합",
+        "channels": [
+          "COMPANY_NEWS",
+          "TELEGRAM",
+          "AI 인프라/전력"
+        ],
+        "riskTags": [
+          "ai",
+          "power"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:impact:1292535:category:나스닥100:2",
+      "entityType": "category",
+      "entityId": "category:pension_나스닥100",
+      "entityName": "나스닥100",
+      "accountKey": "PENSION",
+      "securityCode": null,
+      "category": "나스닥100",
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 0.582,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1m",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "일본 4대 기업, 2030년 1조 파라미터 AI 모델 개발 연합",
+          "text": "소프트뱅크, 혼다, 소니, NEC 등 일본 4개 기업이 합작해 2030년까지 1조 파라미터 규모 AI 모델 개발과 데이터센터 구축을 목표로 AI 산업 연합을 만듭니다. 약 100명 AI 기술자도 확보할 계획입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1292535"
+        },
+        {
+          "kind": "snippet",
+          "title": "일본 4대 기업, 2030년 1조 파라미터 AI 모델 개발 연합",
+          "text": "소프트뱅크, 혼다, 소니, NEC 등 일본 4개 주요 기업이 합작 회사를 설립해 대규모 인공지능 모델 개발에 나섰습니다. 여기에 8개 기업이 2030년까지 AI 산업 연합을 구축하기로 했으며, 약 100명의 AI 기술자 확보와 1조 파라미터 규모 멀티모달 AI 모델 개발, 데이터센터 직접 구축 등 구체적 인프라 전략이 추가로 밝혀졌습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1292535"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "ai, power",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5MjUzNQ=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1292535",
+        "topicTitle": "일본 4대 기업, 2030년 1조 파라미터 AI 모델 개발 연합",
+        "channels": [
+          "COMPANY_NEWS",
+          "TELEGRAM",
+          "AI 인프라/전력"
+        ],
+        "riskTags": [
+          "ai",
+          "power"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:impact:1292535:category:s_p500:3",
+      "entityType": "category",
+      "entityId": "category:pension_sandp500",
+      "entityName": "S&P500",
+      "accountKey": "PENSION",
+      "securityCode": null,
+      "category": "S&P500",
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 0.582,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1m",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "일본 4대 기업, 2030년 1조 파라미터 AI 모델 개발 연합",
+          "text": "소프트뱅크, 혼다, 소니, NEC 등 일본 4개 기업이 합작해 2030년까지 1조 파라미터 규모 AI 모델 개발과 데이터센터 구축을 목표로 AI 산업 연합을 만듭니다. 약 100명 AI 기술자도 확보할 계획입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1292535"
+        },
+        {
+          "kind": "snippet",
+          "title": "일본 4대 기업, 2030년 1조 파라미터 AI 모델 개발 연합",
+          "text": "소프트뱅크, 혼다, 소니, NEC 등 일본 4개 주요 기업이 합작 회사를 설립해 대규모 인공지능 모델 개발에 나섰습니다. 여기에 8개 기업이 2030년까지 AI 산업 연합을 구축하기로 했으며, 약 100명의 AI 기술자 확보와 1조 파라미터 규모 멀티모달 AI 모델 개발, 데이터센터 직접 구축 등 구체적 인프라 전략이 추가로 밝혀졌습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1292535"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "ai, power",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTI5MjUzNQ=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1292535",
+        "topicTitle": "일본 4대 기업, 2030년 1조 파라미터 AI 모델 개발 연합",
+        "channels": [
+          "COMPANY_NEWS",
+          "TELEGRAM",
+          "AI 인프라/전력"
+        ],
+        "riskTags": [
+          "ai",
+          "power"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:topic:1300526",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1300526",
+      "entityName": "삼성전기, 베트남에 1조7천억 투자해 AI 반도체 기판 확대",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 0.68,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "삼성전기, 베트남에 1조7천억 투자해 AI 반도체 기판 확대",
+          "text": "삼성전기가 베트남에 약 1조 7810억원을 투자해 차세대 반도체 기판인 FC-BGA 생산능력 확대에 나섰습니다. 이번 투자는 13년 만의 대규모 프로젝트로 인공지능용 반도체 기판 생산을 목표로 합니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300526"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 나스닥100, 연금저축의 S&P500 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTMwMDUyNg=="
+      ],
+      "metadata": {
+        "signalLabels": [
+          "AI 인프라/전력"
+        ],
+        "mainSource": {
+          "type": "COMPANY_NEWS",
+          "name": "뉴스",
+          "author": "헤럴드경제"
+        },
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요.",
+        "topicEntityId": "macro_event:1300526"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:impact:1300526:category:미국인덱스:1",
+      "entityType": "category",
+      "entityId": "category:isa_미국인덱스",
+      "entityName": "미국인덱스",
+      "accountKey": "ISA",
+      "securityCode": null,
+      "category": "미국인덱스",
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 0.582,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1m",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "삼성전기, 베트남에 1조7천억 투자해 AI 반도체 기판 확대",
+          "text": "삼성전기가 베트남에 약 1조 7810억원을 투자해 차세대 반도체 기판인 FC-BGA 생산능력 확대에 나섰습니다. 이번 투자는 13년 만의 대규모 프로젝트로 인공지능용 반도체 기판 생산을 목표로 합니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300526"
+        },
+        {
+          "kind": "snippet",
+          "title": "삼성전기, 베트남에 1조7천억 투자해 AI 반도체 기판 확대",
+          "text": "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 나스닥100, 연금저축의 S&P500 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300526"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "ai, power",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTMwMDUyNg=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1300526",
+        "topicTitle": "삼성전기, 베트남에 1조7천억 투자해 AI 반도체 기판 확대",
+        "channels": [
+          "COMPANY_NEWS",
+          "TELEGRAM",
+          "AI 인프라/전력"
+        ],
+        "riskTags": [
+          "ai",
+          "power"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:impact:1300526:category:나스닥100:2",
+      "entityType": "category",
+      "entityId": "category:pension_나스닥100",
+      "entityName": "나스닥100",
+      "accountKey": "PENSION",
+      "securityCode": null,
+      "category": "나스닥100",
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 0.582,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1m",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "삼성전기, 베트남에 1조7천억 투자해 AI 반도체 기판 확대",
+          "text": "삼성전기가 베트남에 약 1조 7810억원을 투자해 차세대 반도체 기판인 FC-BGA 생산능력 확대에 나섰습니다. 이번 투자는 13년 만의 대규모 프로젝트로 인공지능용 반도체 기판 생산을 목표로 합니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300526"
+        },
+        {
+          "kind": "snippet",
+          "title": "삼성전기, 베트남에 1조7천억 투자해 AI 반도체 기판 확대",
+          "text": "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 나스닥100, 연금저축의 S&P500 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300526"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "ai, power",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTMwMDUyNg=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1300526",
+        "topicTitle": "삼성전기, 베트남에 1조7천억 투자해 AI 반도체 기판 확대",
+        "channels": [
+          "COMPANY_NEWS",
+          "TELEGRAM",
+          "AI 인프라/전력"
+        ],
+        "riskTags": [
+          "ai",
+          "power"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:impact:1300526:category:s_p500:3",
+      "entityType": "category",
+      "entityId": "category:pension_sandp500",
+      "entityName": "S&P500",
+      "accountKey": "PENSION",
+      "securityCode": null,
+      "category": "S&P500",
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 0.582,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1m",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "삼성전기, 베트남에 1조7천억 투자해 AI 반도체 기판 확대",
+          "text": "삼성전기가 베트남에 약 1조 7810억원을 투자해 차세대 반도체 기판인 FC-BGA 생산능력 확대에 나섰습니다. 이번 투자는 13년 만의 대규모 프로젝트로 인공지능용 반도체 기판 생산을 목표로 합니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300526"
+        },
+        {
+          "kind": "snippet",
+          "title": "삼성전기, 베트남에 1조7천억 투자해 AI 반도체 기판 확대",
+          "text": "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 나스닥100, 연금저축의 S&P500 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300526"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "ai, power",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTMwMDUyNg=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1300526",
+        "topicTitle": "삼성전기, 베트남에 1조7천억 투자해 AI 반도체 기판 확대",
+        "channels": [
+          "COMPANY_NEWS",
+          "TELEGRAM",
+          "AI 인프라/전력"
+        ],
+        "riskTags": [
+          "ai",
+          "power"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:topic:1300641",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1300641",
+      "entityName": "국산 NPU로 AI 인프라 구축 본격화",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 0.63,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "국산 NPU로 AI 인프라 구축 본격화",
+          "text": "삼성SDS와 LG CNS 등 주요 IT 기업들이 국내 개발 NPU를 활용해 AI 인프라 도입을 본격 추진하고 있습니다. 이들은 국산 NPU 기반 데이터센터와 AI 서비스 고도화에 나서며 기술 협력과 시범 운영도 진행 중입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300641"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 나스닥100, 연금저축의 S&P500 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTMwMDY0MQ=="
+      ],
+      "metadata": {
+        "signalLabels": [
+          "AI 인프라/전력"
+        ],
+        "mainSource": {
+          "type": "TELEGRAM",
+          "name": "텔레그램",
+          "author": "텐렙"
+        },
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요.",
+        "topicEntityId": "macro_event:1300641"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:impact:1300641:category:미국인덱스:1",
+      "entityType": "category",
+      "entityId": "category:isa_미국인덱스",
+      "entityName": "미국인덱스",
+      "accountKey": "ISA",
+      "securityCode": null,
+      "category": "미국인덱스",
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 0.562,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1m",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "국산 NPU로 AI 인프라 구축 본격화",
+          "text": "삼성SDS와 LG CNS 등 주요 IT 기업들이 국내 개발 NPU를 활용해 AI 인프라 도입을 본격 추진하고 있습니다. 이들은 국산 NPU 기반 데이터센터와 AI 서비스 고도화에 나서며 기술 협력과 시범 운영도 진행 중입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300641"
+        },
+        {
+          "kind": "snippet",
+          "title": "국산 NPU로 AI 인프라 구축 본격화",
+          "text": "삼성SDS와 LG CNS 등 주요 IT 서비스 기업들이 국내에서 개발된 NPU(신경망처리장치)를 활용한 인공지능 인프라 도입을 본격적으로 추진하고 있습니다. 이들 기업은 국산 NPU를 적용한 데이터센터 구축과 AI 서비스 고도화에 착수했으며, 관련 기술 협력과 시범 운영도 함께 진행 중입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300641"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "ai, power",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTMwMDY0MQ=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1300641",
+        "topicTitle": "국산 NPU로 AI 인프라 구축 본격화",
+        "channels": [
+          "TELEGRAM",
+          "AI 인프라/전력"
+        ],
+        "riskTags": [
+          "ai",
+          "power"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:impact:1300641:category:나스닥100:2",
+      "entityType": "category",
+      "entityId": "category:pension_나스닥100",
+      "entityName": "나스닥100",
+      "accountKey": "PENSION",
+      "securityCode": null,
+      "category": "나스닥100",
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 0.562,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1m",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "국산 NPU로 AI 인프라 구축 본격화",
+          "text": "삼성SDS와 LG CNS 등 주요 IT 기업들이 국내 개발 NPU를 활용해 AI 인프라 도입을 본격 추진하고 있습니다. 이들은 국산 NPU 기반 데이터센터와 AI 서비스 고도화에 나서며 기술 협력과 시범 운영도 진행 중입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300641"
+        },
+        {
+          "kind": "snippet",
+          "title": "국산 NPU로 AI 인프라 구축 본격화",
+          "text": "삼성SDS와 LG CNS 등 주요 IT 서비스 기업들이 국내에서 개발된 NPU(신경망처리장치)를 활용한 인공지능 인프라 도입을 본격적으로 추진하고 있습니다. 이들 기업은 국산 NPU를 적용한 데이터센터 구축과 AI 서비스 고도화에 착수했으며, 관련 기술 협력과 시범 운영도 함께 진행 중입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300641"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "ai, power",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTMwMDY0MQ=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1300641",
+        "topicTitle": "국산 NPU로 AI 인프라 구축 본격화",
+        "channels": [
+          "TELEGRAM",
+          "AI 인프라/전력"
+        ],
+        "riskTags": [
+          "ai",
+          "power"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:impact:1300641:category:s_p500:3",
+      "entityType": "category",
+      "entityId": "category:pension_sandp500",
+      "entityName": "S&P500",
+      "accountKey": "PENSION",
+      "securityCode": null,
+      "category": "S&P500",
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 0.562,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1m",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "국산 NPU로 AI 인프라 구축 본격화",
+          "text": "삼성SDS와 LG CNS 등 주요 IT 기업들이 국내 개발 NPU를 활용해 AI 인프라 도입을 본격 추진하고 있습니다. 이들은 국산 NPU 기반 데이터센터와 AI 서비스 고도화에 나서며 기술 협력과 시범 운영도 진행 중입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300641"
+        },
+        {
+          "kind": "snippet",
+          "title": "국산 NPU로 AI 인프라 구축 본격화",
+          "text": "삼성SDS와 LG CNS 등 주요 IT 서비스 기업들이 국내에서 개발된 NPU(신경망처리장치)를 활용한 인공지능 인프라 도입을 본격적으로 추진하고 있습니다. 이들 기업은 국산 NPU를 적용한 데이터센터 구축과 AI 서비스 고도화에 착수했으며, 관련 기술 협력과 시범 운영도 함께 진행 중입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300641"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "ai, power",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTMwMDY0MQ=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1300641",
+        "topicTitle": "국산 NPU로 AI 인프라 구축 본격화",
+        "channels": [
+          "TELEGRAM",
+          "AI 인프라/전력"
+        ],
+        "riskTags": [
+          "ai",
+          "power"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:topic:1300578",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1300578",
+      "entityName": "크라우드웍스, 조선업 AI 개발 사업 참여",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 0.57,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "크라우드웍스, 조선업 AI 개발 사업 참여",
+          "text": "크라우드웍스가 울산과학기술원과 함께 403억 원 규모 조선업 특화 초거대 AI 개발 사업에 데이터 구축 총괄 파트너로 참여합니다. 이 사업은 조선 산업의 생산성과 효율성 향상을 목표로 합니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300578"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 나스닥100, 연금저축의 S&P500 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTMwMDU3OA=="
+      ],
+      "metadata": {
+        "signalLabels": [
+          "AI 인프라/전력"
+        ],
+        "mainSource": {
+          "type": "COMPANY_NEWS",
+          "name": "뉴스",
+          "author": "이데일리"
+        },
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요.",
+        "topicEntityId": "macro_event:1300578"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:impact:1300578:category:미국인덱스:1",
+      "entityType": "category",
+      "entityId": "category:isa_미국인덱스",
+      "entityName": "미국인덱스",
+      "accountKey": "ISA",
+      "securityCode": null,
+      "category": "미국인덱스",
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 0.539,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1m",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "크라우드웍스, 조선업 AI 개발 사업 참여",
+          "text": "크라우드웍스가 울산과학기술원과 함께 403억 원 규모 조선업 특화 초거대 AI 개발 사업에 데이터 구축 총괄 파트너로 참여합니다. 이 사업은 조선 산업의 생산성과 효율성 향상을 목표로 합니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300578"
+        },
+        {
+          "kind": "snippet",
+          "title": "크라우드웍스, 조선업 AI 개발 사업 참여",
+          "text": "크라우드웍스가 울산과학기술원이 주관하는 403억 원 규모의 조선업 특화 초거대 인공지능 개발 사업에 데이터 구축 총괄 파트너로 참여합니다. 이번에 크라우드웍스는 울산과학기술원과 함께 조선 산업의 생산성과 효율성 향상을 목표로 AI 모델 개발 및 데이터 구축 사업에 공식적으로 참여한다고 밝혔습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300578"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "ai, power",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTMwMDU3OA=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1300578",
+        "topicTitle": "크라우드웍스, 조선업 AI 개발 사업 참여",
+        "channels": [
+          "COMPANY_NEWS",
+          "TELEGRAM",
+          "AI 인프라/전력"
+        ],
+        "riskTags": [
+          "ai",
+          "power"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:impact:1300578:category:나스닥100:2",
+      "entityType": "category",
+      "entityId": "category:pension_나스닥100",
+      "entityName": "나스닥100",
+      "accountKey": "PENSION",
+      "securityCode": null,
+      "category": "나스닥100",
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 0.539,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1m",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "크라우드웍스, 조선업 AI 개발 사업 참여",
+          "text": "크라우드웍스가 울산과학기술원과 함께 403억 원 규모 조선업 특화 초거대 AI 개발 사업에 데이터 구축 총괄 파트너로 참여합니다. 이 사업은 조선 산업의 생산성과 효율성 향상을 목표로 합니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300578"
+        },
+        {
+          "kind": "snippet",
+          "title": "크라우드웍스, 조선업 AI 개발 사업 참여",
+          "text": "크라우드웍스가 울산과학기술원이 주관하는 403억 원 규모의 조선업 특화 초거대 인공지능 개발 사업에 데이터 구축 총괄 파트너로 참여합니다. 이번에 크라우드웍스는 울산과학기술원과 함께 조선 산업의 생산성과 효율성 향상을 목표로 AI 모델 개발 및 데이터 구축 사업에 공식적으로 참여한다고 밝혔습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300578"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "ai, power",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTMwMDU3OA=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1300578",
+        "topicTitle": "크라우드웍스, 조선업 AI 개발 사업 참여",
+        "channels": [
+          "COMPANY_NEWS",
+          "TELEGRAM",
+          "AI 인프라/전력"
+        ],
+        "riskTags": [
+          "ai",
+          "power"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:impact:1300578:category:s_p500:3",
+      "entityType": "category",
+      "entityId": "category:pension_sandp500",
+      "entityName": "S&P500",
+      "accountKey": "PENSION",
+      "securityCode": null,
+      "category": "S&P500",
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 0.539,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1m",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "크라우드웍스, 조선업 AI 개발 사업 참여",
+          "text": "크라우드웍스가 울산과학기술원과 함께 403억 원 규모 조선업 특화 초거대 AI 개발 사업에 데이터 구축 총괄 파트너로 참여합니다. 이 사업은 조선 산업의 생산성과 효율성 향상을 목표로 합니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300578"
+        },
+        {
+          "kind": "snippet",
+          "title": "크라우드웍스, 조선업 AI 개발 사업 참여",
+          "text": "크라우드웍스가 울산과학기술원이 주관하는 403억 원 규모의 조선업 특화 초거대 인공지능 개발 사업에 데이터 구축 총괄 파트너로 참여합니다. 이번에 크라우드웍스는 울산과학기술원과 함께 조선 산업의 생산성과 효율성 향상을 목표로 AI 모델 개발 및 데이터 구축 사업에 공식적으로 참여한다고 밝혔습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300578"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "ai, power",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTMwMDU3OA=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1300578",
+        "topicTitle": "크라우드웍스, 조선업 AI 개발 사업 참여",
+        "channels": [
+          "COMPANY_NEWS",
+          "TELEGRAM",
+          "AI 인프라/전력"
+        ],
+        "riskTags": [
+          "ai",
+          "power"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:topic:1300639",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1300639",
+      "entityName": "한국농어촌공사, 3년 연속 데이터 행정 최고 등급 획득",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "neutral",
+      "strength": 0.5,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "한국농어촌공사, 3년 연속 데이터 행정 최고 등급 획득",
+          "text": "한국농어촌공사가 2026년 행정안전부 데이터기반행정 평가에서 3년 연속 최고 등급인 '매우 우수'를 받았습니다. 기후위기 대응 데이터와 AI 친화형 데이터 개방이 대국민 서비스 품질 향상에 기여했습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300639"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 나스닥100, 연금저축의 S&P500 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTMwMDYzOQ=="
+      ],
+      "metadata": {
+        "signalLabels": [
+          "AI 인프라/전력"
+        ],
+        "mainSource": {
+          "type": "COMPANY_NEWS",
+          "name": "뉴스",
+          "author": "데일리안"
+        },
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요.",
+        "topicEntityId": "macro_event:1300639"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:impact:1300639:category:미국인덱스:1",
+      "entityType": "category",
+      "entityId": "category:isa_미국인덱스",
+      "entityName": "미국인덱스",
+      "accountKey": "ISA",
+      "securityCode": null,
+      "category": "미국인덱스",
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 0.512,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1m",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "한국농어촌공사, 3년 연속 데이터 행정 최고 등급 획득",
+          "text": "한국농어촌공사가 2026년 행정안전부 데이터기반행정 평가에서 3년 연속 최고 등급인 '매우 우수'를 받았습니다. 기후위기 대응 데이터와 AI 친화형 데이터 개방이 대국민 서비스 품질 향상에 기여했습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300639"
+        },
+        {
+          "kind": "snippet",
+          "title": "한국농어촌공사, 3년 연속 데이터 행정 최고 등급 획득",
+          "text": "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 나스닥100, 연금저축의 S&P500 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300639"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "ai, power",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTMwMDYzOQ=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1300639",
+        "topicTitle": "한국농어촌공사, 3년 연속 데이터 행정 최고 등급 획득",
+        "channels": [
+          "COMPANY_NEWS",
+          "AI 인프라/전력"
+        ],
+        "riskTags": [
+          "ai",
+          "power"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:impact:1300639:category:나스닥100:2",
+      "entityType": "category",
+      "entityId": "category:pension_나스닥100",
+      "entityName": "나스닥100",
+      "accountKey": "PENSION",
+      "securityCode": null,
+      "category": "나스닥100",
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 0.512,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1m",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "한국농어촌공사, 3년 연속 데이터 행정 최고 등급 획득",
+          "text": "한국농어촌공사가 2026년 행정안전부 데이터기반행정 평가에서 3년 연속 최고 등급인 '매우 우수'를 받았습니다. 기후위기 대응 데이터와 AI 친화형 데이터 개방이 대국민 서비스 품질 향상에 기여했습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300639"
+        },
+        {
+          "kind": "snippet",
+          "title": "한국농어촌공사, 3년 연속 데이터 행정 최고 등급 획득",
+          "text": "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 나스닥100, 연금저축의 S&P500 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300639"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "ai, power",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTMwMDYzOQ=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1300639",
+        "topicTitle": "한국농어촌공사, 3년 연속 데이터 행정 최고 등급 획득",
+        "channels": [
+          "COMPANY_NEWS",
+          "AI 인프라/전력"
+        ],
+        "riskTags": [
+          "ai",
+          "power"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:impact:1300639:category:s_p500:3",
+      "entityType": "category",
+      "entityId": "category:pension_sandp500",
+      "entityName": "S&P500",
+      "accountKey": "PENSION",
+      "securityCode": null,
+      "category": "S&P500",
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 0.512,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1m",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "한국농어촌공사, 3년 연속 데이터 행정 최고 등급 획득",
+          "text": "한국농어촌공사가 2026년 행정안전부 데이터기반행정 평가에서 3년 연속 최고 등급인 '매우 우수'를 받았습니다. 기후위기 대응 데이터와 AI 친화형 데이터 개방이 대국민 서비스 품질 향상에 기여했습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300639"
+        },
+        {
+          "kind": "snippet",
+          "title": "한국농어촌공사, 3년 연속 데이터 행정 최고 등급 획득",
+          "text": "계좌 테마 기준으로는 ISA의 미국인덱스, 연금저축의 나스닥100, 연금저축의 S&P500 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300639"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "ai, power",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTMwMDYzOQ=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1300639",
+        "topicTitle": "한국농어촌공사, 3년 연속 데이터 행정 최고 등급 획득",
+        "channels": [
+          "COMPANY_NEWS",
+          "AI 인프라/전력"
+        ],
+        "riskTags": [
+          "ai",
+          "power"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:topic:1300630",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1300630",
+      "entityName": "리가켐바이오, CLDN18.2 신약 FDA 임상 신청",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.35,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "리가켐바이오, CLDN18.2 신약 FDA 임상 신청",
+          "text": "리가켐바이오는 CLDN18.2 표적 항체-약물 접합체 LCB02A의 미국 임상 1/2상 시험을 위해 FDA에 임상시험계획 승인을 신청했습니다. 위암 등 고형암 환자 191명을 대상으로 60개월간 진행될 예정입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300630"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTMwMDYzMA=="
+      ],
+      "metadata": {
+        "signalLabels": [],
+        "mainSource": {
+          "type": "DISCLOSURE",
+          "name": "공시",
+          "author": "공시"
+        },
+        "deepResearchQuestion": "리가켐바이오, CLDN18.2 신약 FDA 임상 신청가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+        "topicEntityId": "macro_event:1300630"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:topic:1300636",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1300636",
+      "entityName": "쿠팡, 9조 인건비 절감 위해 자동화 가속",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.35,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "쿠팡, 9조 인건비 절감 위해 자동화 가속",
+          "text": "쿠팡이 2026년 인건비가 9조 원에 달해 물류센터에 자동화 설비를 빠르게 도입하고 있습니다. 인공지능 분류 시스템과 로봇 자동화로 효율성과 비용 절감을 동시에 추구하고 있습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300636"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTMwMDYzNg=="
+      ],
+      "metadata": {
+        "signalLabels": [],
+        "mainSource": {
+          "type": "TELEGRAM",
+          "name": "텔레그램",
+          "author": "주식 급등일보🚀급등테마·대장주 탐색기 (텔레그램)"
+        },
+        "deepResearchQuestion": "쿠팡, 9조 인건비 절감 위해 자동화 가속가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+        "topicEntityId": "macro_event:1300636"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:topic:1300638",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1300638",
+      "entityName": "KT, 2026년 파트너스데이서 상생 협력 강화 발표",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [],
+      "direction": "mixed",
+      "strength": 0.35,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "KT, 2026년 파트너스데이서 상생 협력 강화 발표",
+          "text": "KT가 2026년 파트너스데이에서 협력사와 상생을 위해 기술 경쟁 체계 전환과 품질 우수사에 물량 우대, 다년계약 추진을 발표했습니다. 보안 강화와 창업 지원, 리스크 대응책도 함께 제시했습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300638"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTMwMDYzOA=="
+      ],
+      "metadata": {
+        "signalLabels": [],
+        "mainSource": {
+          "type": "COMPANY_NEWS",
+          "name": "뉴스",
+          "author": "뉴시스"
+        },
+        "deepResearchQuestion": "KT, 2026년 파트너스데이서 상생 협력 강화 발표가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+        "topicEntityId": "macro_event:1300638"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:topic:1300625",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1300625",
+      "entityName": "에이프릴바이오, 4월 실적 저조 후 주가 반등 패턴",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [],
+      "direction": "neutral",
+      "strength": 0.35,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "에이프릴바이오, 4월 실적 저조 후 주가 반등 패턴",
+          "text": "에이프릴바이오는 매년 4월에 실적이 저조한 경향을 보이고, 주가가 4월에 저점을 찍은 뒤 반등하는 패턴이 투자자들 사이에서 주목받고 있습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300625"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTMwMDYyNQ=="
+      ],
+      "metadata": {
+        "signalLabels": [],
+        "mainSource": {
+          "type": "TELEGRAM",
+          "name": "텔레그램",
+          "author": "증권사 애널 크롤러🇰🇷"
+        },
+        "deepResearchQuestion": "에이프릴바이오, 4월 실적 저조 후 주가 반등 패턴가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+        "topicEntityId": "macro_event:1300625"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-04-14:topic:1300627",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1300627",
+      "entityName": "SpaceX, 2024년 Starlink 위성 월 340기 생산 확대",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [],
+      "direction": "neutral",
+      "strength": 0.35,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "SpaceX, 2024년 Starlink 위성 월 340기 생산 확대",
+          "text": "SpaceX가 2024년에 Starlink 위성 생산량을 월 340기로 늘려 연간 4,000기 이상을 생산하고 있습니다. 지상 인프라도 2026년까지 2배 이상 확대하며, 다양한 시장에서 서비스 도입이 빠르게 늘고 있습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1300627"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTMwMDYyNw=="
+      ],
+      "metadata": {
+        "signalLabels": [],
+        "mainSource": {
+          "type": "TELEGRAM",
+          "name": "텔레그램",
+          "author": "증권사 애널 크롤러🇰🇷"
+        },
+        "deepResearchQuestion": "SpaceX, 2024년 Starlink 위성 월 340기 생산 확대가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+        "topicEntityId": "macro_event:1300627"
+      }
+    }
+  ]
+}

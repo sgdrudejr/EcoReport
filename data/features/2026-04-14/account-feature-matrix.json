@@ -1,0 +1,79 @@
+{
+  "date": "2026-04-14",
+  "generatedAt": "2026-04-14T07:15:53.894Z",
+  "accountFeatures": [
+    {
+      "accountKey": "ISA",
+      "netScore": 0.1097,
+      "support": {
+        "reports": 0.5418,
+        "stockeasy": 0,
+        "marketvoice": 0.39440000000000003,
+        "technical": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "topSupportingThemes": [
+        "AI 인프라",
+        "전력 인프라",
+        "금/원자재",
+        "금리/매크로",
+        "원자력"
+      ],
+      "topRisks": [
+        "geopolitics",
+        "oil",
+        "ai",
+        "power"
+      ]
+    },
+    {
+      "accountKey": "PENSION",
+      "netScore": 0.0885,
+      "support": {
+        "reports": 0.5418,
+        "stockeasy": 0,
+        "marketvoice": 0.39440000000000003,
+        "technical": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "topSupportingThemes": [
+        "HBM/메모리",
+        "AI 인프라",
+        "전력 인프라",
+        "방산",
+        "금/원자재"
+      ],
+      "topRisks": [
+        "geopolitics",
+        "oil",
+        "ai",
+        "power"
+      ]
+    },
+    {
+      "accountKey": "KIS_MAIN",
+      "netScore": 0.144,
+      "support": {
+        "reports": 0.5418,
+        "stockeasy": 0,
+        "marketvoice": 0.3672,
+        "technical": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "topSupportingThemes": [
+        "AI 인프라",
+        "전력 인프라",
+        "원자력",
+        "금/원자재",
+        "금리/매크로"
+      ],
+      "topRisks": [
+        "geopolitics",
+        "oil"
+      ]
+    }
+  ]
+}

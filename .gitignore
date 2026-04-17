@@ -36,6 +36,11 @@ logs/
 **/.DS_Store
 .obsidian/
 scripts/__pycache__/
+**/__pycache__/
+*.pyc
+
+# local machine overrides
+config/local-paths.local.json
 
 # daily generated knowledge / reports (synced via data branch)
 knowledge/daily/*-report-summary-queue.json
@@ -56,3 +61,7 @@ knowledge/rag/
 reports/
 reports/daily/*.md
 .aider*
+
+# StockEasy 수집 원본 (날짜별 raw 데이터)
+data/stockeasy/
+data/.stockeasy_session/

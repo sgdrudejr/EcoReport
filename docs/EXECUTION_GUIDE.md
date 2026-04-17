@@ -12,7 +12,9 @@ Last updated: 2026-04-17
 
 | 항목 | 값 |
 |------|-----|
-| 프로젝트 루트 | `/Users/seo/Documents/Playground/EcoReport` |
+| 프로젝트 루트 | `/Users/seo/Documents/Playground/economy-report` |
+| 로컬 KIS helper | `/Users/seo/Documents/Playground/economy-report/open-trading-api` |
+| 레거시 아카이브 | `/Users/seo/Documents/Playground/stock-pilot-archive` |
 | GitHub | `sgdrudejr/EcoReport` |
 | Python venv | `.venv/bin/python3` |
 | Node | `node` (v25.8.1) |
@@ -20,6 +22,8 @@ Last updated: 2026-04-17
 | Windows MAC | `A0:AD:9F:CD:47:D2` (Wake-on-LAN) |
 | Qwen API | `.env` → `QWEN_API_KEY` (주의: 30,720 토큰 한도, `/no_think` 태그 필수) |
 | 구 프로젝트 | `igzun-daily-report` → **참고용 레퍼런스만**, 런타임 의존 없음 |
+
+`stock-pilot` 체크아웃은 더 이상 실행 기준이 아닙니다. 옛 문서나 산출물을 복구할 때만 archive를 보고, 일상 작업은 모두 `economy-report` 루트에서 실행합니다.
 
 ---
 
@@ -31,7 +35,7 @@ Last updated: 2026-04-17
 
 ```bash
 DATE=2026-04-17  # 날짜 변경
-cd /Users/seo/Documents/Playground/EcoReport
+cd /Users/seo/Documents/Playground/economy-report
 
 # Phase 1: 수집
 bash scripts/collect-report-assets.sh --date $DATE
@@ -115,7 +119,7 @@ resp = client.chat.completions.create(
 from pathlib import Path; import subprocess, json
 
 DATE = "2026-04-17"
-base = Path(f"/Users/seo/Documents/Playground/EcoReport")
+base = Path(f"/Users/seo/Documents/Playground/economy-report")
 
 briefing  = (base / f"knowledge/daily/{DATE}-briefing.md").read_text()[:6000]
 mktview   = (base / f"reports/merged/final_market_view_{DATE}.md").read_text()[:2500]

@@ -20,7 +20,7 @@ EcoReport 실험은 “한 번 돌려봤다”에서 끝나면 안 됩니다.
 예:
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/economy-report
 npm run automation:daily -- --date 2026-04-03 --skip-push
 ```
 
@@ -61,7 +61,7 @@ npm run automation:daily -- --date 2026-04-03 --skip-push
 명령:
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/economy-report
 bash scripts/run-daily-system.sh --date YYYY-MM-DD
 ```
 
@@ -82,7 +82,7 @@ bash scripts/run-daily-system.sh --date YYYY-MM-DD
 명령:
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/economy-report
 npm run automation:daily -- --date YYYY-MM-DD --skip-push
 ```
 
@@ -103,7 +103,7 @@ npm run automation:daily -- --date YYYY-MM-DD --skip-push
 명령:
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/economy-report
 npm run stage1.5:prompt -- --date YYYY-MM-DD
 npm run stage1.5:gemini:run -- --date YYYY-MM-DD --poll-sec 30 --timeout-sec 1800
 npm run stage1.6:briefing -- --date YYYY-MM-DD --run-date YYYY-MM-DD --effective-market-date YYYY-MM-DD
@@ -127,7 +127,7 @@ bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD --run-date YYYY-MM-DD --
 권장 명령:
 
 ```bash
-cd /Users/seo/stock-pilot/dashboard
+cd /Users/seo/Documents/Playground/economy-report/dashboard
 npm run build
 npm run lint
 ```
@@ -148,7 +148,7 @@ npm run lint
 명령:
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/economy-report
 node scripts/build-llm-wiki.js --date YYYY-MM-DD
 node scripts/publish-llm-wiki-to-vault.js
 ```

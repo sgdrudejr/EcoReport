@@ -30,7 +30,7 @@ Vercel 워크플로 `.github/workflows/deploy.yml` 은 아래 세 경우에만 �
 로컬에서 GitHub API로 바로 Vercel 배포를 요청하려면:
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/economy-report
 GITHUB_TOKEN=... node scripts/dispatch-vercel-deploy.js --reason "share latest dashboard"
 ```
 
@@ -43,7 +43,7 @@ GITHUB_TOKEN=... node scripts/dispatch-vercel-deploy.js --reason "share latest d
 Git 커밋 자체를 배포 신호로 쓰고 싶으면:
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/economy-report
 bash scripts/request-vercel-deploy-signal.sh "phone preview refresh"
 git add .vercel-deploy-trigger
 git commit -m "chore: request vercel deploy"

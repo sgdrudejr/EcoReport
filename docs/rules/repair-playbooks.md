@@ -25,7 +25,7 @@
 우선 조치:
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/economy-report
 node scripts/build-impact-map.js --date YYYY-MM-DD
 ```
 
@@ -50,7 +50,7 @@ node scripts/build-impact-map.js --date YYYY-MM-DD
 우선 조치:
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/economy-report
 bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD --gemini-stage2
 ```
 
@@ -99,7 +99,7 @@ bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD --gemini-stage2
 우선 조치:
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/economy-report
 node scripts/build-stage4-execution-plan.js --date YYYY-MM-DD
 ```
 

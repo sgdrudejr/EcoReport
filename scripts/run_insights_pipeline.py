@@ -27,9 +27,8 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
 
 from report_orchestrator.config import load_config
-from report_orchestrator.llm import LlmClient
 from report_orchestrator.pipeline import ReportOrchestrator
-from report_orchestrator.text_processing import read_json
+from report_orchestrator.text_processing import ensure_dir, read_json
 
 
 # ── 작업지침서 로더 ───────────────────────────────────────────────────────────
@@ -120,24 +119,48 @@ def patch_orchestrator_with_instructions(orchestrator: ReportOrchestrator, instr
     orchestrator.extract_structured_analysis = types.MethodType(patched_extract_analysis, orchestrator)  # type: ignore[assignment]
 
 
-# ── Gemini 풀필드 직접 분석 ───────────────────────────────────────────────────
+# ── Provider별 풀필드 직접 분석 ────────────────────────────────────────────────
 
-def run_gemini_full_analysis(
+def resolve_provider_api_key(config) -> str:
+    if config.provider == "gemini":
+        return os.environ.get("GEMINI_API_KEY", config.api_key)
+    if config.provider == "qwen":
+        return (
+            os.environ.get("DASHSCOPE_API_KEY")
+            or os.environ.get("QWEN_API_KEY")
+            or config.api_key
+        )
+    return config.api_key
+
+
+def full_analysis_output_name(provider: str) -> str:
+    if provider == "gemini":
+        return "gemini_full_analysis.md"
+    if provider == "qwen":
+        return "qwen_full_analysis.md"
+    return "llm_full_analysis.md"
+
+
+def run_full_analysis(
     summaries: list[dict],
     instructions: str,
     date: str,
     config,
     out_dir: Path,
 ) -> None:
-    """75개 리포트 요약 전체 필드를 Gemini에 직접 넣어 심층 분석을 생성한다."""
+    """75개 리포트 요약 전체 필드를 provider별 OpenAI 호환 API로 심층 분석한다."""
     from openai import OpenAI
 
     total_chars = len(json.dumps(summaries, ensure_ascii=False))
-    print(f"  📨 Gemini 풀필드 분석 | {len(summaries)}개 리포트 | {total_chars:,}자 (≈{int(total_chars*0.4/1000)}K 토큰)")
+    provider_label = config.provider.upper()
+    print(
+        f"  📨 {provider_label} 풀필드 분석 | {len(summaries)}개 리포트 | {total_chars:,}자 "
+        f"(≈{int(total_chars*0.4/1000)}K 토큰)"
+    )
 
     client = OpenAI(
-        base_url="https://generativelanguage.googleapis.com/v1beta/openai/",
-        api_key=os.environ.get("GEMINI_API_KEY", config.api_key),
+        base_url=config.base_url,
+        api_key=resolve_provider_api_key(config),
     )
 
     response = client.chat.completions.create(
@@ -183,8 +206,11 @@ def run_gemini_full_analysis(
     finish = response.choices[0].finish_reason
     print(f"  ✅ 완료 | finish={finish} | {len(result):,}자")
 
-    out_path = out_dir / "gemini_full_analysis.md"
-    out_path.write_text(f"# {date} Gemini 전체 분석\n\n" + result, encoding="utf-8")
+    out_path = out_dir / full_analysis_output_name(config.provider)
+    out_path.write_text(
+        f"# {date} {provider_label} 전체 분석\n\n" + result,
+        encoding="utf-8",
+    )
     print(f"  📄 저장 → {out_path.relative_to(ROOT)}")
 
 
@@ -197,14 +223,14 @@ def main() -> int:
     parser.add_argument("--instructions", default=None, help="작업지침서 경로 (기본: config/insights-instructions.md)")
     parser.add_argument("--force", action="store_true", help="캐시 무시하고 재생성")
     parser.add_argument("--detail", choices=["standard", "deep"], default=None)
-    parser.add_argument("--provider", default=None, help="gemini | local (config 기본값 덮어쓰기)")
+    parser.add_argument("--provider", default=None, help="qwen | gemini | local (config 기본값 덮어쓰기)")
     args = parser.parse_args()
 
     # provider 오버라이드 (env를 통해)
     if args.provider:
         os.environ["REPORT_ORCHESTRATOR_PROVIDER"] = args.provider
     elif not os.getenv("REPORT_ORCHESTRATOR_PROVIDER"):
-        os.environ["REPORT_ORCHESTRATOR_PROVIDER"] = "gemini"  # 기본값: Gemini
+        os.environ["REPORT_ORCHESTRATOR_PROVIDER"] = "qwen"  # 기본값: Qwen
 
     if args.detail:
         os.environ["REPORT_ORCHESTRATOR_DETAIL"] = args.detail
@@ -213,7 +239,7 @@ def main() -> int:
 
     # .env 자동 로드 (python-dotenv 없어도 동작)
     env_path = ROOT / ".env"
-    if env_path.exists() and not os.getenv("GEMINI_API_KEY"):
+    if env_path.exists():
         for line in env_path.read_text().splitlines():
             line = line.strip()
             if line and not line.startswith("#") and "=" in line:
@@ -240,13 +266,13 @@ def main() -> int:
         return 1
     print(f"📚 report_summaries 로드: {len(summaries)}개 ({args.date})")
 
-    # Step 0: Gemini 풀필드 직접 분석 (핵심 단계)
-    print("\n🧠 Step 0: Gemini 풀필드 심층 분석...")
+    # Step 0: Provider 풀필드 직접 분석 (핵심 단계)
+    print(f"\n🧠 Step 0: {config.provider.upper()} 풀필드 심층 분석...")
     ensure_dir(config.merged_dir)
     try:
-        run_gemini_full_analysis(summaries, instructions, args.date, config, config.merged_dir)
+        run_full_analysis(summaries, instructions, args.date, config, config.merged_dir)
     except Exception as error:  # noqa: BLE001
-        print(f"  ❌ Gemini 풀필드 분석 실패: {error}")
+        print(f"  ❌ {config.provider.upper()} 풀필드 분석 실패: {error}")
 
     # 오케스트레이터 초기화 (LLM 연결 체크 없이)
     orchestrator = ReportOrchestrator(config, force=args.force, date_filter=args.date)
@@ -256,7 +282,6 @@ def main() -> int:
 
     # Step 1: 카테고리별 병합
     print("\n🗂  Step 1: 카테고리별 병합...")
-    from report_orchestrator.text_processing import ensure_dir
     ensure_dir(config.merged_dir)
     category_views = orchestrator.merge_by_category(summaries)
 
@@ -281,7 +306,7 @@ def main() -> int:
     print(f"""
 ✅ 인사이트 파이프라인 완료
 
-   🧠 Gemini 풀필드 분석  → reports/merged/gemini_full_analysis.md  ← 핵심 결과물
+   🧠 Provider 풀필드 분석 → reports/merged/{full_analysis_output_name(config.provider)}  ← 핵심 결과물
    🗂  카테고리 뷰         → reports/merged/by_category/ ({len(category_views)}개)
    🔬 구조화 분석         → reports/merged/structured_analysis.json
      컨센서스 {consensus_count}개 / 소수의견 {minority_count}개 / 모순 {contradiction_count}개 / 크로스신호 {cross_count}개

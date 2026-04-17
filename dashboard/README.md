@@ -11,7 +11,7 @@
 ## 실행
 
 ```bash
-cd /Users/seo/stock-pilot/dashboard
+cd /Users/seo/Documents/Playground/economy-report/dashboard
 npm install
 npm run dev -- --hostname 0.0.0.0
 ```

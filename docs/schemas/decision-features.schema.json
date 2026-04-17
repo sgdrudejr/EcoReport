@@ -1,0 +1,252 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ecoreport.local/schemas/decision-features.schema.json",
+  "title": "EcoReport Decision Features",
+  "type": "object",
+  "required": [
+    "date",
+    "generatedAt",
+    "accountFeatures",
+    "securityFeatures",
+    "themeFeatures",
+    "consensus",
+    "divergence",
+    "quality"
+  ],
+  "properties": {
+    "date": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "generatedAt": {
+      "type": "string"
+    },
+    "accountFeatures": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/accountFeature"
+      }
+    },
+    "securityFeatures": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/securityFeature"
+      }
+    },
+    "themeFeatures": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/themeFeature"
+      }
+    },
+    "consensus": {
+      "$ref": "#/$defs/consensusSummary"
+    },
+    "divergence": {
+      "$ref": "#/$defs/divergenceSummary"
+    },
+    "quality": {
+      "$ref": "#/$defs/qualitySummary"
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "supportVector": {
+      "type": "object",
+      "required": [
+        "reports",
+        "stockeasy",
+        "marketvoice",
+        "technical",
+        "macro",
+        "llm"
+      ],
+      "properties": {
+        "reports": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "stockeasy": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "marketvoice": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "technical": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "macro": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "llm": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "accountFeature": {
+      "type": "object",
+      "required": [
+        "accountKey",
+        "netScore",
+        "support",
+        "topSupportingThemes",
+        "topRisks"
+      ],
+      "properties": {
+        "accountKey": {
+          "type": "string"
+        },
+        "netScore": {
+          "type": "number"
+        },
+        "support": {
+          "$ref": "#/$defs/supportVector"
+        },
+        "topSupportingThemes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "topRisks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "securityFeature": {
+      "type": "object",
+      "required": [
+        "code",
+        "name",
+        "netScore",
+        "support",
+        "candidateAccounts"
+      ],
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "netScore": {
+          "type": "number"
+        },
+        "support": {
+          "$ref": "#/$defs/supportVector"
+        },
+        "candidateAccounts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "themeFeature": {
+      "type": "object",
+      "required": [
+        "theme",
+        "netScore",
+        "support"
+      ],
+      "properties": {
+        "theme": {
+          "type": "string"
+        },
+        "netScore": {
+          "type": "number"
+        },
+        "support": {
+          "$ref": "#/$defs/supportVector"
+        }
+      },
+      "additionalProperties": false
+    },
+    "consensusSummary": {
+      "type": "object",
+      "required": [
+        "topAlignedThemes",
+        "topAlignedSecurities"
+      ],
+      "properties": {
+        "topAlignedThemes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "topAlignedSecurities": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "divergenceSummary": {
+      "type": "object",
+      "required": [
+        "sourceConflicts",
+        "policyConflicts"
+      ],
+      "properties": {
+        "sourceConflicts": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        },
+        "policyConflicts": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "qualitySummary": {
+      "type": "object",
+      "required": [
+        "overallStatus",
+        "flags"
+      ],
+      "properties": {
+        "overallStatus": {
+          "type": "string",
+          "enum": [
+            "ok",
+            "warn",
+            "error"
+          ]
+        },
+        "flags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

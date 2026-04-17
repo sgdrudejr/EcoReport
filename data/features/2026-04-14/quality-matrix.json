@@ -1,0 +1,11 @@
+{
+  "date": "2026-04-14",
+  "generatedAt": "2026-04-14T07:15:53.894Z",
+  "quality": {
+    "overallStatus": "warn",
+    "flags": [
+      "low_coverage",
+      "partial"
+    ]
+  }
+}

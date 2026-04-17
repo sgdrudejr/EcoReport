@@ -1,0 +1,486 @@
+{
+  "source": "stockeasy",
+  "capturedAt": "2026-04-13T08:45:34.904Z",
+  "captureDate": "2026-04-13",
+  "sourceTradingDate": "2026-04-13",
+  "sourceTradingDateLabel": "4월 13일 기준",
+  "collector": {
+    "mode": "manual_safari_capture",
+    "urls": {
+      "home": "https://stockeasy.intellio.kr/",
+      "market": "https://stockeasy.intellio.kr/market-analysis",
+      "stock": "https://stockeasy.intellio.kr/stock-analysis",
+      "strategy": "https://stockeasy.intellio.kr/strategy-room"
+    }
+  },
+  "home": {
+    "title": "스탁이지 - AI 기반 주식 분석 플랫폼",
+    "topTimeline": [
+      {
+        "time": "15:40",
+        "headline": "장마감 브리핑"
+      },
+      {
+        "time": "15:35",
+        "headline": "지정학적 리스크 정점 통과 인식에 자동차 부품주 강세 마감"
+      },
+      {
+        "time": "15:00",
+        "headline": "AI 전력 수요 및 액면분할 호재에 전력·자동차주 강세"
+      },
+      {
+        "time": "14:30",
+        "headline": "에너지 독립성 강조 속 자동차·화학 섹터 강세하며 코스피 하락폭 축소"
+      },
+      {
+        "time": "14:00",
+        "headline": "미·이란 협상 결렬에 유가 급등, 저가 매수세 속 코스피 5800선 등락"
+      },
+      {
+        "time": "12:03",
+        "headline": "호르무즈 봉쇄 우려에 유가 급등, 코스피 5800선 하회 속 화학·전력주 강세"
+      }
+    ]
+  },
+  "marketSignal": {
+    "title": "스탁이지 - 시장신호",
+    "shortSignal": "G",
+    "longSignal": "G",
+    "kospi": {
+      "market": "코스피",
+      "statusLabel": "상승 추세",
+      "recommendedExposure": "80-100%",
+      "distributionDays": 2,
+      "lastFollowThroughDay": "2025.09.12"
+    },
+    "kosdaq": {
+      "market": "코스닥",
+      "statusLabel": "상승 둔화",
+      "recommendedExposure": "40-60%",
+      "distributionDays": 4,
+      "lastFollowThroughDay": "2025.12.29"
+    },
+    "updatedAtLabel": "updated 04/13 15:55"
+  },
+  "marketThemes": {
+    "title": "스탁이지 - 테마보드",
+    "mode": "등락률순",
+    "updatedAtLabel": "마지막 갱신 17시 45분 44초",
+    "refreshLabel": "1분 자동 갱신",
+    "themes": [
+      {
+        "rank": 1,
+        "name": "반도체/소부장",
+        "leaders": [
+          {
+            "name": "GST",
+            "price": 36900,
+            "changePct": 14.1,
+            "rs": 81,
+            "newHighGapPct": 1.1,
+            "vsPrevDayPct": 285.3
+          },
+          {
+            "name": "이오테크닉스",
+            "price": 490000,
+            "changePct": 9.4,
+            "rs": 92,
+            "newHighGapPct": -3.4,
+            "vsPrevDayPct": 111.3
+          },
+          {
+            "name": "네오셈",
+            "price": 16460,
+            "changePct": 7.7,
+            "rs": 79,
+            "newHighGapPct": -22.7,
+            "vsPrevDayPct": 309.7
+          }
+        ]
+      },
+      {
+        "rank": 2,
+        "name": "전력기기",
+        "leaders": [
+          {
+            "name": "LS ELECTRIC",
+            "price": 179200,
+            "changePct": 13.7,
+            "rs": 32,
+            "newHighGapPct": -80.2,
+            "vsPrevDayPct": 0
+          },
+          {
+            "name": "산일전기",
+            "price": 172900,
+            "changePct": 12.6,
+            "rs": 89,
+            "newHighGapPct": -6.8,
+            "vsPrevDayPct": 129.1
+          },
+          {
+            "name": "효성중공업",
+            "price": 3058000,
+            "changePct": 4,
+            "rs": 97,
+            "newHighGapPct": -1,
+            "vsPrevDayPct": 110.3
+          }
+        ]
+      },
+      {
+        "rank": 3,
+        "name": "통신",
+        "leaders": [
+          {
+            "name": "대한광통신",
+            "price": 19870,
+            "changePct": 11.8,
+            "rs": 99,
+            "newHighGapPct": -6.7,
+            "vsPrevDayPct": 65.1
+          },
+          {
+            "name": "이노와이어리스",
+            "price": 47850,
+            "changePct": 10.8,
+            "rs": 93,
+            "newHighGapPct": -5.1,
+            "vsPrevDayPct": 274.3
+          },
+          {
+            "name": "에치에프알",
+            "price": 30850,
+            "changePct": 3.4,
+            "rs": 92,
+            "newHighGapPct": -18.7,
+            "vsPrevDayPct": 66.8
+          }
+        ]
+      },
+      {
+        "rank": 4,
+        "name": "바이오",
+        "leaders": [
+          {
+            "name": "큐리옥스바이오시스템즈",
+            "price": 82500,
+            "changePct": 11,
+            "rs": 94,
+            "newHighGapPct": -44.7,
+            "vsPrevDayPct": 109
+          },
+          {
+            "name": "케어젠",
+            "price": 92000,
+            "changePct": 7.5,
+            "rs": 90,
+            "newHighGapPct": -40.2,
+            "vsPrevDayPct": 197.7
+          },
+          {
+            "name": "알지노믹스",
+            "price": 201500,
+            "changePct": 6.9,
+            "rs": 0,
+            "newHighGapPct": -17.8,
+            "vsPrevDayPct": 103.5
+          }
+        ]
+      },
+      {
+        "rank": 5,
+        "name": "우주항공",
+        "leaders": [
+          {
+            "name": "쎄트렉아이",
+            "price": 169700,
+            "changePct": 12.5,
+            "rs": 93,
+            "newHighGapPct": -24.2,
+            "vsPrevDayPct": 85
+          },
+          {
+            "name": "켄코아에어로스페이스",
+            "price": 21500,
+            "changePct": 8.6,
+            "rs": 78,
+            "newHighGapPct": -31.3,
+            "vsPrevDayPct": 197.2
+          },
+          {
+            "name": "인텔리안테크",
+            "price": 119400,
+            "changePct": 4.3,
+            "rs": 93,
+            "newHighGapPct": -20.1,
+            "vsPrevDayPct": 44.6
+          }
+        ]
+      }
+    ]
+  },
+  "stockAnalysis": {
+    "title": "스탁이지 - 종합 RS",
+    "sectorRs": [
+      {
+        "sector": "반도체",
+        "score": 93,
+        "rank": 1
+      },
+      {
+        "sector": "기계",
+        "score": 93,
+        "rank": 2
+      },
+      {
+        "sector": "인프라",
+        "score": 93,
+        "rank": 3
+      },
+      {
+        "sector": "전력/에너지",
+        "score": 92,
+        "rank": 4
+      },
+      {
+        "sector": "지주사",
+        "score": 91,
+        "rank": 5
+      },
+      {
+        "sector": "방산",
+        "score": 90,
+        "rank": 6
+      },
+      {
+        "sector": "금융",
+        "score": 85,
+        "rank": 7
+      },
+      {
+        "sector": "자동차",
+        "score": 78,
+        "rank": 8
+      },
+      {
+        "sector": "2차전지",
+        "score": 77,
+        "rank": 9
+      },
+      {
+        "sector": "K-컬처",
+        "score": 74,
+        "rank": 10
+      },
+      {
+        "sector": "화학/소재",
+        "score": 73,
+        "rank": 11
+      },
+      {
+        "sector": "조선/해운",
+        "score": 68,
+        "rank": 12
+      },
+      {
+        "sector": "바이오",
+        "score": 67,
+        "rank": 13
+      },
+      {
+        "sector": "소비재",
+        "score": 62,
+        "rank": 14
+      },
+      {
+        "sector": "IT/플랫폼",
+        "score": 57,
+        "rank": 15
+      }
+    ],
+    "stockLeaders": [
+      {
+        "sector": "소비재",
+        "rank": 1,
+        "name": "천일고속",
+        "code": "000650",
+        "price": 220000,
+        "changePct": -0.45,
+        "rs": 99,
+        "rs1m": 22,
+        "rs3m": 7,
+        "rs6m": 99,
+        "mmt": null,
+        "marketCapLabel": "3,123억"
+      },
+      {
+        "sector": "반도체",
+        "rank": 1,
+        "name": "광전자",
+        "code": "017900",
+        "price": 13680,
+        "changePct": 29.91,
+        "rs": 99,
+        "rs1m": 99,
+        "rs3m": 99,
+        "rs6m": 99,
+        "mmt": "7,927억",
+        "marketCapLabel": null
+      },
+      {
+        "sector": "인프라",
+        "rank": 1,
+        "name": "대우건설",
+        "code": "047040",
+        "price": 23750,
+        "changePct": -2.26,
+        "rs": 99,
+        "rs1m": 98,
+        "rs3m": 99,
+        "rs6m": 99,
+        "mmt": "9.8조",
+        "marketCapLabel": null
+      },
+      {
+        "sector": "전력/에너지",
+        "rank": 1,
+        "name": "HD현대에너지솔루션",
+        "code": "322000",
+        "price": 160900,
+        "changePct": -4.45,
+        "rs": 99,
+        "rs1m": 94,
+        "rs3m": 99,
+        "rs6m": 98,
+        "mmt": "1.8조",
+        "marketCapLabel": null
+      },
+      {
+        "sector": "인프라",
+        "rank": 3,
+        "name": "대한광통신",
+        "code": "010170",
+        "price": 19870,
+        "changePct": 11.82,
+        "rs": 99,
+        "rs1m": 99,
+        "rs3m": 99,
+        "rs6m": 99,
+        "mmt": "3.1조",
+        "marketCapLabel": null
+      },
+      {
+        "sector": "전력/에너지",
+        "rank": 2,
+        "name": "우리기술",
+        "code": "032820",
+        "price": 21100,
+        "changePct": 0.48,
+        "rs": 99,
+        "rs1m": 9,
+        "rs3m": 99,
+        "rs6m": 99,
+        "mmt": null,
+        "marketCapLabel": "3.6조"
+      },
+      {
+        "sector": "반도체",
+        "rank": 2,
+        "name": "에이치엠넥스",
+        "code": "036170",
+        "price": 6110,
+        "changePct": 18.41,
+        "rs": 99,
+        "rs1m": 82,
+        "rs3m": 99,
+        "rs6m": 99,
+        "mmt": "3,749억",
+        "marketCapLabel": null
+      },
+      {
+        "sector": "인프라",
+        "rank": 4,
+        "name": "삼표시멘트",
+        "code": "038500",
+        "price": 16800,
+        "changePct": -1.75,
+        "rs": 99,
+        "rs1m": 19,
+        "rs3m": 99,
+        "rs6m": 99,
+        "mmt": null,
+        "marketCapLabel": "1.8조"
+      },
+      {
+        "sector": "기계",
+        "rank": 1,
+        "name": "성호전자",
+        "code": "043260",
+        "price": 48000,
+        "changePct": 7.99,
+        "rs": 99,
+        "rs1m": 27,
+        "rs3m": 99,
+        "rs6m": 99,
+        "mmt": "3.4조",
+        "marketCapLabel": null
+      },
+      {
+        "sector": "인프라",
+        "rank": 5,
+        "name": "우리로",
+        "code": "046970",
+        "price": 9990,
+        "changePct": 29.91,
+        "rs": 99,
+        "rs1m": 99,
+        "rs3m": 99,
+        "rs6m": 99,
+        "mmt": "4,378억",
+        "marketCapLabel": null
+      }
+    ]
+  },
+  "strategyRoom": {
+    "title": "스탁이지 - 전략실",
+    "strategies": [
+      {
+        "key": "momentum_easy",
+        "name": "1호 - 모멘텀 Easy",
+        "style": "추세추종",
+        "cumulativeReturnPct": 1171.16,
+        "dayDeltaPct": 4.03,
+        "weekDeltaPct": 29.41,
+        "holdingCount": 18,
+        "todayBuyCount": 3,
+        "todayExitCount": 0,
+        "description": "스탁이지가 선별한 특별한 추세추종 전략으로, 모멘텀이 있는 종목의 상승 초입을 포착합니다."
+      },
+      {
+        "key": "peak_easy",
+        "name": "2호 - 피크 Easy",
+        "style": "52주 신고가",
+        "cumulativeReturnPct": 1424.87,
+        "dayDeltaPct": -37.95,
+        "weekDeltaPct": 26.63,
+        "holdingCount": 15,
+        "todayBuyCount": 1,
+        "todayExitCount": -4,
+        "description": "52주 신고가를 돌파한 종목을 기반으로 한 돌파 전략. 강한 상승 모멘텀을 포착합니다."
+      },
+      {
+        "key": "value_easy",
+        "name": "3호 - 밸류 Easy",
+        "style": "가치투자",
+        "cumulativeReturnPct": 233.44,
+        "dayDeltaPct": -4.88,
+        "weekDeltaPct": 59.72,
+        "holdingCount": 8,
+        "todayBuyCount": 0,
+        "todayExitCount": 0,
+        "description": "저평가된 우량주를 발굴하는 가치투자 전략. 안정적인 수익을 추구합니다."
+      }
+    ]
+  }
+}

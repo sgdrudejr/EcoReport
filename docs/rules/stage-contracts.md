@@ -5,7 +5,7 @@
 ## Validation Command
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/economy-report
 node scripts/validate-stage-contracts.js --date YYYY-MM-DD
 ```
 

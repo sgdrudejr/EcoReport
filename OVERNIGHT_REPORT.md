@@ -40,7 +40,7 @@
 실행 기준:
 
 ```bash
-ECOREPORT_ROOT=/Users/seo/Documents/Playground/EcoReport bash scripts/shadow/run-shadow-pipeline.sh --date YYYY-MM-DD
+ECOREPORT_ROOT=/Users/seo/Documents/Playground/economy-report bash scripts/shadow/run-shadow-pipeline.sh --date YYYY-MM-DD
 ```
 
 검증 날짜:

@@ -1,0 +1,1169 @@
+{
+  "date": "2026-04-13",
+  "runDate": "2026-04-13",
+  "effectiveMarketDate": "2026-04-13",
+  "runId": "2026-04-13-111214",
+  "generatedAt": "2026-04-13T11:12:35.503Z",
+  "portfolioDate": "2026-04-13",
+  "portfolioUpdatedAt": "2026-04-13T02:36:38.173Z",
+  "regime": {
+    "name": "BULL",
+    "confidence": 0.68,
+    "voteSum": 2,
+    "signals": [
+      "VIX 19.49<20",
+      "T10Y2Y 0.5 (플랫)",
+      "CPI YoY 3.286% 보통",
+      "가격>MA20>MA60"
+    ],
+    "market_context": {
+      "index": "KOSPI",
+      "signal": "BULLISH",
+      "vix": null,
+      "score": 96,
+      "close": 5858.87,
+      "ma": {
+        "ma5": 5690.866,
+        "ma20": 5551.7565,
+        "ma60": 5411.3985,
+        "ma120": 4746.0371
+      },
+      "rsi": 57.43,
+      "alerts": [],
+      "fallback": {
+        "source": "previous_technical_snapshot",
+        "recovered_from_date": "2026-04-10",
+        "reason": "executionBias is not defined"
+      }
+    }
+  },
+  "portfolioScore": 64,
+  "coverage": {
+    "factorCoverage": 0.9665,
+    "techCoverage": 0.9098,
+    "impactCoverage": 0.5884,
+    "stage2Available": true
+  },
+  "configUsed": {
+    "weightProfile": "balanced",
+    "maxWeights": {
+      "allocation": 0.4,
+      "factor": 0.1,
+      "tech": 0.25,
+      "report": 0.1,
+      "regime": 0.05,
+      "stage2": 0.05,
+      "leading": 0.05
+    },
+    "factorModel": {
+      "winsorZ": 3.5,
+      "scoreScale": 14,
+      "weights": {
+        "momentum": 0.35,
+        "research": 0.3,
+        "income": 0.15,
+        "macroFit": 0.2
+      },
+      "autoAdjust": {
+        "enabled": true,
+        "applied": false,
+        "reason": "no_feedback_suggestion",
+        "baseWeights": {
+          "momentum": 0.35,
+          "research": 0.3,
+          "income": 0.15,
+          "macroFit": 0.2
+        },
+        "appliedWeights": {
+          "momentum": 0.35,
+          "research": 0.3,
+          "income": 0.15,
+          "macroFit": 0.2
+        },
+        "source": "data/feedback/latest-feedback.json"
+      },
+      "baseWeights": {
+        "momentum": 0.35,
+        "research": 0.3,
+        "income": 0.15,
+        "macroFit": 0.2
+      },
+      "appliedWeights": {
+        "momentum": 0.35,
+        "research": 0.3,
+        "income": 0.15,
+        "macroFit": 0.2
+      }
+    },
+    "stopLoss": {
+      "enabled": true,
+      "fromEntry_pct": -0.1,
+      "fromRecentHigh_pct": -0.15,
+      "recentHighWindow": 20,
+      "forcedTrimScore": 35
+    },
+    "holdingBlend": {
+      "enabled": true,
+      "actionWeight": 0.92,
+      "factorWeight": 0.08,
+      "minFactorCoverage": 0.35,
+      "maxAdjustment": 18,
+      "gateMode": "sameSignal",
+      "minFactorDistance": 8
+    },
+    "covarianceModel": {
+      "enabled": true,
+      "shrinkage": 0.35,
+      "lambda": 0.55,
+      "minHistory": 20,
+      "annualization": 252,
+      "ridge": 0.000001
+    },
+    "taxAware": {
+      "enabled": true,
+      "alpha": 1.6,
+      "normalTaxRate": 0.154,
+      "minRiskFloor": 0.08,
+      "maxMultiplier": 1.15
+    },
+    "riskPenaltyCaps": {
+      "concentration": 10,
+      "covariance": 8,
+      "tailRisk": 15,
+      "dataQuality": 10,
+      "regimeStress": 10,
+      "total": 30
+    }
+  },
+  "positions": [
+    {
+      "positionKey": "ISA:360750",
+      "code": "360750",
+      "name": "TIGER 미국S&P500",
+      "accountKey": "ISA",
+      "accountLabel": "ISA",
+      "category": "미국인덱스",
+      "signal": "WATCH",
+      "conviction": "LOW",
+      "actionScore": 55,
+      "rawActionScore": 55,
+      "technicalBaseScore": 77,
+      "reportScore": 51,
+      "factorScore": 54,
+      "entryPrice": 24570,
+      "currentPrice": 24570,
+      "avgPrice": null,
+      "quantity": 20,
+      "marketValue": 491400,
+      "purchaseValue": null,
+      "profitLoss": null,
+      "profitRate": null,
+      "factors": {
+        "raw": {
+          "momentum": 0.668,
+          "research": 0.2995,
+          "income": 0.013,
+          "macroFit": 1.909
+        },
+        "zScores": {
+          "momentum": 0.2,
+          "research": -0.0038,
+          "income": 0.0438,
+          "macroFit": 1.1577
+        },
+        "weightedZ": 0.307,
+        "coverage": 1,
+        "availability": {
+          "momentum": 1,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "report": {
+        "available": true,
+        "impactScore": 51,
+        "impactValue": 0.029,
+        "impactCount": 2,
+        "unavailableReason": null
+      },
+      "probabilities": {
+        "p_buy": 0.3816,
+        "p_hold": 0.3345,
+        "p_sell": 0.2839
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 77점",
+          "리포트 영향 51점 (2건 연결)",
+          "RSI 62.1"
+        ],
+        "warnings": [
+          "WATCH 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    },
+    {
+      "positionKey": "ISA:458760",
+      "code": "458760",
+      "name": "TIGER 미국배당다우존스스타데일리커...",
+      "accountKey": "ISA",
+      "accountLabel": "ISA",
+      "category": "배당/커버드콜",
+      "signal": "HOLD",
+      "conviction": "LOW",
+      "actionScore": 60,
+      "rawActionScore": 60,
+      "technicalBaseScore": 47,
+      "reportScore": 45,
+      "factorScore": 51,
+      "entryPrice": 10185,
+      "currentPrice": 10185,
+      "avgPrice": 10210,
+      "quantity": 50,
+      "marketValue": 509250,
+      "purchaseValue": 510500,
+      "profitLoss": null,
+      "profitRate": null,
+      "factors": {
+        "raw": {
+          "momentum": 0.1296,
+          "research": -0.1285,
+          "income": 0.07,
+          "macroFit": 1.858
+        },
+        "zScores": {
+          "momentum": -0.5199,
+          "research": -1.4077,
+          "income": 2.9959,
+          "macroFit": 1.1243
+        },
+        "weightedZ": 0.07,
+        "coverage": 1,
+        "availability": {
+          "momentum": 1,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "report": {
+        "available": true,
+        "impactScore": 45,
+        "impactValue": -0.184,
+        "impactCount": 28,
+        "unavailableReason": null
+      },
+      "probabilities": {
+        "p_buy": 0.479,
+        "p_hold": 0.3295,
+        "p_sell": 0.1915
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 47점",
+          "리포트 영향 45점 (28건 연결)",
+          "RSI 47.9"
+        ],
+        "warnings": []
+      }
+    },
+    {
+      "positionKey": "PENSION:423160",
+      "code": "423160",
+      "name": "KODEX KOFR금리액티브(합성)",
+      "accountKey": "PENSION",
+      "accountLabel": "연금저축",
+      "category": "현금파킹",
+      "signal": "WATCH",
+      "conviction": "LOW",
+      "actionScore": 54,
+      "rawActionScore": 54,
+      "technicalBaseScore": 52,
+      "reportScore": 45,
+      "factorScore": 38,
+      "entryPrice": 110685,
+      "currentPrice": 110685,
+      "avgPrice": 110680,
+      "quantity": 2,
+      "marketValue": 221370,
+      "purchaseValue": 221360,
+      "profitLoss": null,
+      "profitRate": null,
+      "factors": {
+        "raw": {
+          "momentum": -0.0397,
+          "research": -0.1285,
+          "income": 0.032,
+          "macroFit": -2.5
+        },
+        "zScores": {
+          "momentum": -0.7464,
+          "research": -1.4077,
+          "income": 1.0279,
+          "macroFit": -1.7337
+        },
+        "weightedZ": -0.8761,
+        "coverage": 1,
+        "availability": {
+          "momentum": 1,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "report": {
+        "available": true,
+        "impactScore": 45,
+        "impactValue": -0.184,
+        "impactCount": 30,
+        "unavailableReason": null
+      },
+      "probabilities": {
+        "p_buy": 0.3433,
+        "p_hold": 0.3607,
+        "p_sell": 0.296
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 17점",
+          "리포트 영향 45점 (30건 연결)",
+          "RSI 52.1"
+        ],
+        "warnings": [
+          "WATCH 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    },
+    {
+      "positionKey": "PENSION:133690",
+      "code": "133690",
+      "name": "TIGER 미국나스닥100",
+      "accountKey": "PENSION",
+      "accountLabel": "연금저축",
+      "category": "나스닥100",
+      "signal": "WATCH",
+      "conviction": "LOW",
+      "actionScore": 56,
+      "rawActionScore": 57,
+      "technicalBaseScore": 70,
+      "reportScore": 51,
+      "factorScore": 49,
+      "entryPrice": 160160,
+      "currentPrice": 160160,
+      "avgPrice": 160520,
+      "quantity": 3,
+      "marketValue": 480480,
+      "purchaseValue": 481560,
+      "profitLoss": null,
+      "profitRate": null,
+      "factors": {
+        "raw": {
+          "momentum": 0.7011,
+          "research": 0.1023,
+          "income": 0.006,
+          "macroFit": 0.7725
+        },
+        "zScores": {
+          "momentum": 0.2443,
+          "research": -0.6506,
+          "income": -0.3187,
+          "macroFit": 0.4124
+        },
+        "weightedZ": -0.075,
+        "coverage": 1,
+        "availability": {
+          "momentum": 1,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "report": {
+        "available": true,
+        "impactScore": 51,
+        "impactValue": 0.03,
+        "impactCount": 36,
+        "unavailableReason": null
+      },
+      "probabilities": {
+        "p_buy": 0.4258,
+        "p_hold": 0.3317,
+        "p_sell": 0.2425
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 70점",
+          "리포트 영향 51점 (36건 연결)",
+          "RSI 61.9"
+        ],
+        "warnings": [
+          "WATCH 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    },
+    {
+      "positionKey": "PENSION:360750",
+      "code": "360750",
+      "name": "TIGER 미국S&P500",
+      "accountKey": "PENSION",
+      "accountLabel": "연금저축",
+      "category": "S&P500",
+      "signal": "WATCH",
+      "conviction": "LOW",
+      "actionScore": 55,
+      "rawActionScore": 55,
+      "technicalBaseScore": 77,
+      "reportScore": 51,
+      "factorScore": 55,
+      "entryPrice": 24570,
+      "currentPrice": 24570,
+      "avgPrice": 24625,
+      "quantity": 20,
+      "marketValue": 491400,
+      "purchaseValue": 492500,
+      "profitLoss": null,
+      "profitRate": null,
+      "factors": {
+        "raw": {
+          "momentum": 0.668,
+          "research": 0.3003,
+          "income": 0.013,
+          "macroFit": 2.0553
+        },
+        "zScores": {
+          "momentum": 0.2,
+          "research": -0.001,
+          "income": 0.0438,
+          "macroFit": 1.2537
+        },
+        "weightedZ": 0.327,
+        "coverage": 1,
+        "availability": {
+          "momentum": 1,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "report": {
+        "available": true,
+        "impactScore": 51,
+        "impactValue": 0.03,
+        "impactCount": 36,
+        "unavailableReason": null
+      },
+      "probabilities": {
+        "p_buy": 0.382,
+        "p_hold": 0.3345,
+        "p_sell": 0.2836
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 77점",
+          "리포트 영향 51점 (36건 연결)",
+          "RSI 62.1"
+        ],
+        "warnings": [
+          "WATCH 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    },
+    {
+      "positionKey": "TOSS:434730",
+      "code": "434730",
+      "name": "HANARO 원자력iSelect",
+      "accountKey": "TOSS",
+      "accountLabel": "토스증권",
+      "category": "원자력",
+      "signal": "HOLD",
+      "conviction": "MEDIUM",
+      "actionScore": 66,
+      "rawActionScore": 67,
+      "technicalBaseScore": 96,
+      "reportScore": 65,
+      "factorScore": 58,
+      "entryPrice": 64170,
+      "currentPrice": 64170,
+      "avgPrice": 64095,
+      "quantity": 7,
+      "marketValue": 443190,
+      "purchaseValue": 448670,
+      "profitLoss": 520,
+      "profitRate": 0.11,
+      "factors": {
+        "raw": {
+          "momentum": 1.1236,
+          "research": 0.6356,
+          "income": 0.004,
+          "macroFit": 0.1849
+        },
+        "zScores": {
+          "momentum": 0.8094,
+          "research": 1.0991,
+          "income": -0.4223,
+          "macroFit": 0.027
+        },
+        "weightedZ": 0.5551,
+        "coverage": 1,
+        "availability": {
+          "momentum": 1,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "report": {
+        "available": true,
+        "impactScore": 65,
+        "impactValue": 0.509,
+        "impactCount": 6,
+        "unavailableReason": null
+      },
+      "probabilities": {
+        "p_buy": 0.7168,
+        "p_hold": 0.2166,
+        "p_sell": 0.0667
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 96점",
+          "리포트 영향 65점 (6건 연결)",
+          "RSI 56.4"
+        ],
+        "warnings": []
+      }
+    },
+    {
+      "positionKey": "TOSS:251350",
+      "code": "251350",
+      "name": "KODEX 선진국ESG액티브",
+      "accountKey": "TOSS",
+      "accountLabel": "토스증권",
+      "category": "기타",
+      "signal": "WATCH",
+      "conviction": "LOW",
+      "actionScore": 43,
+      "rawActionScore": 43,
+      "technicalBaseScore": null,
+      "reportScore": null,
+      "factorScore": 32,
+      "entryPrice": 31000,
+      "currentPrice": 31000,
+      "avgPrice": 31098,
+      "quantity": 15,
+      "marketValue": 465000,
+      "purchaseValue": 466475,
+      "profitLoss": -1475,
+      "profitRate": -0.31,
+      "factors": {
+        "raw": {
+          "momentum": -0.9,
+          "research": 0,
+          "income": 0,
+          "macroFit": -1.6226
+        },
+        "zScores": {
+          "momentum": -1.8969,
+          "research": -0.9862,
+          "income": -0.6295,
+          "macroFit": -1.1583
+        },
+        "weightedZ": -1.2858,
+        "coverage": 0.5,
+        "availability": {
+          "momentum": 0,
+          "research": 0,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "report": {
+        "available": false,
+        "impactScore": null,
+        "impactValue": 0,
+        "impactCount": 0,
+        "unavailableReason": "no_linked_report"
+      },
+      "probabilities": {
+        "p_buy": 0.1775,
+        "p_hold": 0.3202,
+        "p_sell": 0.5022
+      },
+      "explain": {
+        "topDrivers": [],
+        "warnings": [
+          "기술 스냅샷이 없어 리포트/배분 쪽 해석 비중이 커졌습니다.",
+          "WATCH 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    },
+    {
+      "positionKey": "TOSS:449450",
+      "code": "449450",
+      "name": "PLUS V K생산",
+      "accountKey": "TOSS",
+      "accountLabel": "토스증권",
+      "category": "방산",
+      "signal": "HOLD",
+      "conviction": "MEDIUM",
+      "actionScore": 68,
+      "rawActionScore": 68,
+      "technicalBaseScore": 96,
+      "reportScore": 65,
+      "factorScore": 57,
+      "entryPrice": 76695,
+      "currentPrice": 76695,
+      "avgPrice": 77160,
+      "quantity": 5,
+      "marketValue": 383475,
+      "purchaseValue": 385800,
+      "profitLoss": -2325,
+      "profitRate": -0.6,
+      "factors": {
+        "raw": {
+          "momentum": 1.2085,
+          "research": 0.4856,
+          "income": 0.004,
+          "macroFit": 0.8261
+        },
+        "zScores": {
+          "momentum": 0.9229,
+          "research": 0.607,
+          "income": -0.4223,
+          "macroFit": 0.4476
+        },
+        "weightedZ": 0.5313,
+        "coverage": 1,
+        "availability": {
+          "momentum": 1,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "report": {
+        "available": true,
+        "impactScore": 65,
+        "impactValue": 0.509,
+        "impactCount": 6,
+        "unavailableReason": null
+      },
+      "probabilities": {
+        "p_buy": 0.7286,
+        "p_hold": 0.2093,
+        "p_sell": 0.0621
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 96점",
+          "리포트 영향 65점 (6건 연결)",
+          "RSI 60.3"
+        ],
+        "warnings": []
+      }
+    },
+    {
+      "positionKey": "KIS_MAIN:047810",
+      "code": "047810",
+      "name": "한국항공우주",
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "category": "방산",
+      "signal": "HOLD",
+      "conviction": "MEDIUM",
+      "actionScore": 70,
+      "rawActionScore": 70,
+      "technicalBaseScore": 96,
+      "reportScore": 72,
+      "factorScore": 57,
+      "entryPrice": 193300,
+      "currentPrice": 193300,
+      "avgPrice": 200500,
+      "quantity": 5,
+      "marketValue": 966500,
+      "purchaseValue": 1002500,
+      "profitLoss": -36000,
+      "profitRate": -3.59,
+      "factors": {
+        "raw": {
+          "momentum": 1.196,
+          "research": 0.6835,
+          "income": 0.004,
+          "macroFit": -0.819
+        },
+        "zScores": {
+          "momentum": 0.9061,
+          "research": 1.2561,
+          "income": -0.4223,
+          "macroFit": -0.6313
+        },
+        "weightedZ": 0.5044,
+        "coverage": 1,
+        "availability": {
+          "momentum": 1,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "report": {
+        "available": true,
+        "impactScore": 72,
+        "impactValue": 0.792,
+        "impactCount": 9,
+        "unavailableReason": null
+      },
+      "probabilities": {
+        "p_buy": 0.7946,
+        "p_hold": 0.1688,
+        "p_sell": 0.0366
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 96점",
+          "리포트 영향 72점 (9건 연결)",
+          "RSI 60.0"
+        ],
+        "warnings": []
+      }
+    },
+    {
+      "positionKey": "KIS_MAIN:064350",
+      "code": "064350",
+      "name": "현대로템",
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "category": "방산",
+      "signal": "HOLD",
+      "conviction": "MEDIUM",
+      "actionScore": 62,
+      "rawActionScore": 62,
+      "technicalBaseScore": 86,
+      "reportScore": 68,
+      "factorScore": 51,
+      "entryPrice": 206000,
+      "currentPrice": 206000,
+      "avgPrice": 208000,
+      "quantity": 1,
+      "marketValue": 206000,
+      "purchaseValue": 208000,
+      "profitLoss": -2000,
+      "profitRate": -0.96,
+      "factors": {
+        "raw": {
+          "momentum": 0.5523,
+          "research": 0.5646,
+          "income": 0.004,
+          "macroFit": -0.819
+        },
+        "zScores": {
+          "momentum": 0.0453,
+          "research": 0.866,
+          "income": -0.4223,
+          "macroFit": -0.6313
+        },
+        "weightedZ": 0.086,
+        "coverage": 1,
+        "availability": {
+          "momentum": 1,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "report": {
+        "available": true,
+        "impactScore": 68,
+        "impactValue": 0.622,
+        "impactCount": 7,
+        "unavailableReason": null
+      },
+      "probabilities": {
+        "p_buy": 0.6261,
+        "p_hold": 0.2696,
+        "p_sell": 0.1044
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 86점",
+          "리포트 영향 68점 (7건 연결)",
+          "RSI 55.3"
+        ],
+        "warnings": []
+      }
+    },
+    {
+      "positionKey": "KIS_MAIN:138910",
+      "code": "138910",
+      "name": "KODEX 구리선물(H)",
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "category": "기타",
+      "signal": "WATCH",
+      "conviction": "LOW",
+      "actionScore": 43,
+      "rawActionScore": 43,
+      "technicalBaseScore": null,
+      "reportScore": 49,
+      "factorScore": 33,
+      "entryPrice": 9075,
+      "currentPrice": 9075,
+      "avgPrice": 8765,
+      "quantity": 58,
+      "marketValue": 526350,
+      "purchaseValue": 508370,
+      "profitLoss": 17980,
+      "profitRate": 3.53,
+      "factors": {
+        "raw": {
+          "momentum": -0.9,
+          "research": -0.0277,
+          "income": 0,
+          "macroFit": -1.0435
+        },
+        "zScores": {
+          "momentum": -1.8969,
+          "research": -1.0772,
+          "income": -0.6295,
+          "macroFit": -0.7785
+        },
+        "weightedZ": -1.2372,
+        "coverage": 0.75,
+        "availability": {
+          "momentum": 0,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "report": {
+        "available": true,
+        "impactScore": 49,
+        "impactValue": -0.04,
+        "impactCount": 35,
+        "unavailableReason": null
+      },
+      "probabilities": {
+        "p_buy": 0.1682,
+        "p_hold": 0.316,
+        "p_sell": 0.5157
+      },
+      "explain": {
+        "topDrivers": [
+          "리포트 영향 49점 (35건 연결)"
+        ],
+        "warnings": [
+          "기술 스냅샷이 없어 리포트/배분 쪽 해석 비중이 커졌습니다.",
+          "WATCH 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    },
+    {
+      "positionKey": "KIS_MAIN:434730",
+      "code": "434730",
+      "name": "HANARO 원자력iSelect",
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "category": "원자력",
+      "signal": "HOLD",
+      "conviction": "MEDIUM",
+      "actionScore": 67,
+      "rawActionScore": 67,
+      "technicalBaseScore": 96,
+      "reportScore": 65,
+      "factorScore": 61,
+      "entryPrice": 70500,
+      "currentPrice": 70500,
+      "avgPrice": 64630,
+      "quantity": 2,
+      "marketValue": 141000,
+      "purchaseValue": 129260,
+      "profitLoss": 11740,
+      "profitRate": 9.08,
+      "factors": {
+        "raw": {
+          "momentum": 1.1236,
+          "research": 0.6356,
+          "income": 0.004,
+          "macroFit": 1.8847
+        },
+        "zScores": {
+          "momentum": 0.8094,
+          "research": 1.0991,
+          "income": -0.4223,
+          "macroFit": 1.1418
+        },
+        "weightedZ": 0.778,
+        "coverage": 1,
+        "availability": {
+          "momentum": 1,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "report": {
+        "available": true,
+        "impactScore": 65,
+        "impactValue": 0.509,
+        "impactCount": 6,
+        "unavailableReason": null
+      },
+      "probabilities": {
+        "p_buy": 0.7168,
+        "p_hold": 0.2166,
+        "p_sell": 0.0667
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 96점",
+          "리포트 영향 65점 (6건 연결)",
+          "RSI 56.4"
+        ],
+        "warnings": []
+      }
+    },
+    {
+      "positionKey": "KIS_MAIN:449450",
+      "code": "449450",
+      "name": "PLUS K방산",
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "category": "방산",
+      "signal": "HOLD",
+      "conviction": "MEDIUM",
+      "actionScore": 68,
+      "rawActionScore": 68,
+      "technicalBaseScore": 96,
+      "reportScore": 65,
+      "factorScore": 54,
+      "entryPrice": 78655,
+      "currentPrice": 78655,
+      "avgPrice": 77758.5714,
+      "quantity": 7,
+      "marketValue": 550585,
+      "purchaseValue": 544310,
+      "profitLoss": 6275,
+      "profitRate": 1.15,
+      "factors": {
+        "raw": {
+          "momentum": 1.2085,
+          "research": 0.4856,
+          "income": 0.004,
+          "macroFit": -0.819
+        },
+        "zScores": {
+          "momentum": 0.9229,
+          "research": 0.607,
+          "income": -0.4223,
+          "macroFit": -0.6313
+        },
+        "weightedZ": 0.3155,
+        "coverage": 1,
+        "availability": {
+          "momentum": 1,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "report": {
+        "available": true,
+        "impactScore": 65,
+        "impactValue": 0.509,
+        "impactCount": 6,
+        "unavailableReason": null
+      },
+      "probabilities": {
+        "p_buy": 0.7286,
+        "p_hold": 0.2093,
+        "p_sell": 0.0621
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 96점",
+          "리포트 영향 65점 (6건 연결)",
+          "RSI 60.3"
+        ],
+        "warnings": []
+      }
+    }
+  ],
+  "accountPlans": [
+    {
+      "key": "ISA",
+      "label": "ISA",
+      "totalScore": 64,
+      "stage2Bias": "selective_add",
+      "deployBudget": 3665433,
+      "reserveCash": 2612057,
+      "topGap": {
+        "category": "금",
+        "targetPct": 0.25,
+        "currentPct": 0,
+        "gapAmount": 2096060
+      },
+      "candidateFromGap": "KODEX 골드선물(H)",
+      "stagedBuys": [
+        {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "suggestedAmount": 962258,
+          "reason": "주가가 20일선 위에서 유지 중이며, 중기 추세는 약세이나 MACD 모멘텀이 우호적입니다. 중동 지정학적 불확실성 및 인플레이션 헤지 수요 증가로 금 가격 상승이 예상됩니다.",
+          "source": "stage2"
+        }
+      ],
+      "trims": [],
+      "holds": [
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "score": 55,
+          "reason": "대만 IC 테스트 기업 경원전자가 2026년 자본지출을 27% 늘려 500억 대만달러로 확정했습니다. AI 반도체 수요 증가에 대응하며, 엔비디아 등과 협력 강화로 매출과 수익성 개선을 기대하고 있습니다."
+        },
+        {
+          "code": "458760",
+          "name": "TIGER 미국배당다우존스스타데일리커...",
+          "score": 60,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는 9 5. 파워트레인 전략 (하이브리드 및 전동화) • 하이브리드(HEV) 고도화: TMED-1 에서 TMED-2 로 업그레이드하며 성 능 및 연비 각 4% 개선 달성. 30 년 110 만 대 판매 목표이며 터보 기반 엔진으로 경쟁사 대비 출력 우위 확보 • 수익성 전망: 내연기..."
+        }
+      ],
+      "watches": []
+    },
+    {
+      "key": "PENSION",
+      "label": "연금저축",
+      "totalScore": 72,
+      "stage2Bias": "selective_add",
+      "deployBudget": 756843,
+      "reserveCash": 758257,
+      "topGap": {
+        "category": "S&P500",
+        "targetPct": 0.4,
+        "currentPct": 0.1814388834530249,
+        "gapAmount": 591940
+      },
+      "candidateFromGap": "TIGER 미국S&P500",
+      "stagedBuys": [
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "suggestedAmount": 321105,
+          "reason": "주가가 20일선 위에서 유지 중이며, 중기 추세는 약세이나 MACD 모멘텀이 우호적입니다. 미국 시장의 견고한 펀더멘털과 AI 등 성장 테마가 장기 성장을 견인합니다.",
+          "source": "stage2"
+        }
+      ],
+      "trims": [],
+      "holds": [
+        {
+          "code": "423160",
+          "name": "KODEX KOFR금리액티브(합성)",
+          "score": 54,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는 9 5. 파워트레인 전략 (하이브리드 및 전동화) • 하이브리드(HEV) 고도화: TMED-1 에서 TMED-2 로 업그레이드하며 성 능 및 연비 각 4% 개선 달성. 30 년 110 만 대 판매 목표이며 터보 기반 엔진으로 경쟁사 대비 출력 우위 확보 • 수익성 전망: 내연기..."
+        },
+        {
+          "code": "133690",
+          "name": "TIGER 미국나스닥100",
+          "score": 56,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는  결국 AI가 실패하고 피지컬 AI를 밀기 시작하면서 5G/6G로의 진화가 가속화될 전망이다. 5G SA는 NSA와 달리 LTE 기반의 코어망을 쓰지 않고 접속망과 코어망을 모두 5G 기반으로 구축함에 따라 5G의 주요 특징인 초저지연을 극대화할 수 있는 IoT에 최적화된 기술이기... / 조건: 다만 SA 전환 후 CAPEX 증가에 따른 비용 증가 ....."
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "score": 55,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는  결국 AI가 실패하고 피지컬 AI를 밀기 시작하면서 5G/6G로의 진화가 가속화될 전망이다. 5G SA는 NSA와 달리 LTE 기반의 코어망을 쓰지 않고 접속망과 코어망을 모두 5G 기반으로 구축함에 따라 5G의 주요 특징인 초저지연을 극대화할 수 있는 IoT에 최적화된 기술이기... / 조건: 다만 SA 전환 후 CAPEX 증가에 따른 비용 증가 ....."
+        }
+      ],
+      "watches": []
+    },
+    {
+      "key": "TOSS",
+      "label": "토스증권",
+      "totalScore": 62,
+      "stage2Bias": "selective_add",
+      "deployBudget": 574653,
+      "reserveCash": 426292,
+      "topGap": {
+        "category": "전력기기",
+        "targetPct": 0.3,
+        "currentPct": 0,
+        "gapAmount": 687783
+      },
+      "candidateFromGap": "효성중공업",
+      "stagedBuys": [
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "suggestedAmount": 141883,
+          "reason": "주가가 20일선 위에서 유지 중이며, 중기 추세는 우상향, MACD 모멘텀이 우호적입니다. AI 인프라 투자 확대에 따른 전력 수요 증가로 전력기기 산업의 구조적 성장이 기대됩니다.",
+          "source": "stage2"
+        }
+      ],
+      "trims": [],
+      "holds": [
+        {
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "score": 66,
+          "reason": "도널드 트럼프가 호르무즈 해협 해상 봉쇄를 예고해 2026년 4월 아시아-태평양 주식시장이 약세를 보였습니다. 일본 닛케이는 1% 하락했고, 유가는 7.5% 급등하며 에너지주가 강세를 나타냈습니다."
+        }
+      ],
+      "watches": [
+        {
+          "code": "251350",
+          "name": "KODEX 선진국ESG액티브",
+          "score": 43,
+          "reason": "N/A"
+        }
+      ]
+    },
+    {
+      "key": "KIS_MAIN",
+      "label": "한투 일반",
+      "totalScore": 59,
+      "stage2Bias": "selective_add",
+      "deployBudget": 1037951,
+      "reserveCash": 606823,
+      "topGap": {
+        "category": "원자력",
+        "targetPct": 0.25,
+        "currentPct": 0.03494242801302237,
+        "gapAmount": 867802
+      },
+      "candidateFromGap": "HANARO 원자력iSelect",
+      "stagedBuys": [
+        {
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "suggestedAmount": 1037951,
+          "reason": "주가가 20일선 위에서 유지 중이며, 중기 추세는 우상향, MACD 모멘텀이 우호적입니다. 에너지 안보 강화와 탄소 중립 목표 달성을 위한 원자력 발전의 중요성이 부각됩니다.",
+          "source": "stage2"
+        }
+      ],
+      "trims": [],
+      "holds": [
+        {
+          "code": "064350",
+          "name": "현대로템",
+          "score": 62,
+          "reason": "매크로는 중립 시각이며 핵심 근거는 ◼ 기아 美 공장에 2029년부터 로봇 아틀라스 투입 기계연, 26년 휴머노이드 '상업적 임계점' 진입 전망 도구공간, 프리IPO 100억 조달 착수 ◼"
+        },
+        {
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "score": 67,
+          "reason": "도널드 트럼프가 호르무즈 해협 해상 봉쇄를 예고해 2026년 4월 아시아-태평양 주식시장이 약세를 보였습니다. 일본 닛케이는 1% 하락했고, 유가는 7.5% 급등하며 에너지주가 강세를 나타냈습니다."
+        }
+      ],
+      "watches": [
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "score": 43,
+          "reason": "9\n 5. 파워트레인 전략 (하이브리드 및 전동화)\n • 하이브리드(HEV) 고도화: TMED-1 에서 TMED-2 로 업그레이드하며 성\n 능 및 연비 각 4% 개선 달성. 30 년 110 만 대 판매 목표이며 터보 기반\n 엔진으로 경쟁사 대비 출력 우위 확보\n • 수익성 전망: 내연기관(ICE)은 현재 수익률 유지, 하..."
+        }
+      ]
+    }
+  ]
+}

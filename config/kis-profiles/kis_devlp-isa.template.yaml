@@ -1,0 +1,25 @@
+# 한투 ISA 전용 프로필 템플릿
+my_app: "IPSKhRQKfMaxAKheYIf91ghBOdV997jcUvuJ0"
+my_sec: "OEcgr81luPH9P4s90GzP/Cl7RwqqQOUTmvkf4DIh9nA8yjnCvMYhNjHT2YsJhV4QRGqZ6IxsLGBZnVTByWKSOp3s+s/yLhNVa9xv+jQJcRBTEJ5dIwlUro/iVdoImchGS7oPTCpYrGTWst1YrueyZ31+kvyTyGx54yFnxHTwx+RprNhe6is="
+
+paper_app: ""
+paper_sec: ""
+
+my_htsid: "ISA_HTS_ID"
+
+# 계좌번호 앞 8자리
+my_acct_stock: "44370689"
+my_acct_future: ""
+my_paper_stock: ""
+my_paper_future: ""
+
+# 계좌번호 뒤 2자리
+my_prod: "01"
+
+prod: "https://openapi.koreainvestment.com:9443"
+ops: "ws://ops.koreainvestment.com:21000"
+vps: "https://openapivts.koreainvestment.com:29443"
+vops: "ws://ops.koreainvestment.com:31000"
+
+my_token: ""
+my_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"

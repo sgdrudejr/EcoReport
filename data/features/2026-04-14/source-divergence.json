@@ -1,0 +1,292 @@
+{
+  "date": "2026-04-14",
+  "generatedAt": "2026-04-14T07:15:53.894Z",
+  "divergence": {
+    "sourceConflicts": [
+      {
+        "entityType": "security",
+        "entityId": "360750",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "reports"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "423160",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "reports"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "133690",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "reports"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "434730",
+        "directions": [
+          "negative",
+          "positive"
+        ],
+        "sources": [
+          "reports"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "047810",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "reports"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "138910",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "reports"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "458760",
+        "directions": [
+          "positive",
+          "negative",
+          "neutral"
+        ],
+        "sources": [
+          "reports"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "449450",
+        "directions": [
+          "positive",
+          "negative",
+          "neutral"
+        ],
+        "sources": [
+          "reports"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "064350",
+        "directions": [
+          "positive",
+          "negative",
+          "neutral"
+        ],
+        "sources": [
+          "reports"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "HBM/메모리",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "reports"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "AI 인프라",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "reports"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "전력 인프라",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "reports"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "방산",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "reports",
+          "stockeasy"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "금/원자재",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "reports"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "금리/매크로",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "reports"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "원자력",
+        "directions": [
+          "positive",
+          "negative",
+          "neutral"
+        ],
+        "sources": [
+          "reports"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "소비재",
+        "directions": [
+          "negative",
+          "positive"
+        ],
+        "sources": [
+          "stockeasy"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "반도체",
+        "directions": [
+          "neutral",
+          "positive",
+          "negative"
+        ],
+        "sources": [
+          "stockeasy"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "인프라",
+        "directions": [
+          "negative",
+          "positive"
+        ],
+        "sources": [
+          "stockeasy"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "전력/에너지",
+        "directions": [
+          "negative",
+          "positive"
+        ],
+        "sources": [
+          "stockeasy"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "기계",
+        "directions": [
+          "positive",
+          "negative"
+        ],
+        "sources": [
+          "stockeasy"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "IT/플랫폼",
+        "directions": [
+          "positive",
+          "negative"
+        ],
+        "sources": [
+          "stockeasy"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "화학/소재",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "stockeasy"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "중동/유가",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "marketvoice"
+        ]
+      }
+    ],
+    "policyConflicts": []
+  }
+}

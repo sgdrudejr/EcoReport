@@ -28,14 +28,14 @@
 가장 권장하는 방식은 아래 한 줄입니다.
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/economy-report
 bash scripts/run-daily-system.sh --date YYYY-MM-DD
 ```
 
 Gemini Deep Research까지 포함한 무인 자동 실행은 아래 러너를 사용합니다.
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/economy-report
 npm run automation:daily -- --date YYYY-MM-DD
 ```
 
@@ -75,7 +75,7 @@ npm run automation:daily -- --date YYYY-MM-DD
 ### 2. 리포트 수집 + 전문 텍스트화
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/economy-report
 bash scripts/collect-report-assets.sh --date YYYY-MM-DD
 ```
 
@@ -89,7 +89,7 @@ bash scripts/collect-report-assets.sh --date YYYY-MM-DD
 ### 3. 필요시 RAG 코퍼스 재생성
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/economy-report
 node scripts/build-report-rag-corpus.js --date YYYY-MM-DD
 node scripts/build-portfolio-rag-corpus.js --date YYYY-MM-DD
 node scripts/build-parallel-rag-corpus.js --date YYYY-MM-DD
@@ -98,14 +98,14 @@ node scripts/build-parallel-rag-corpus.js --date YYYY-MM-DD
 ### 4. Stage 1~4 파이프라인 실행
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/economy-report
 bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD
 ```
 
 Gemini Stage 2를 실제로 붙이고 싶으면:
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/economy-report
 bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD --gemini-stage2
 ```
 
@@ -124,7 +124,7 @@ bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD --gemini-stage2
 Gemini 웹 리서치를 끼워 넣고 싶을 때는 아래 순서로 실행합니다.
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/economy-report
 npm run stage1.5:prompt -- --date YYYY-MM-DD
 npm run stage1.5:gemini:run -- --date YYYY-MM-DD --poll-sec 30 --timeout-sec 1800
 npm run stage1.6:briefing -- --date YYYY-MM-DD --run-date YYYY-MM-DD --effective-market-date YYYY-MM-DD
@@ -166,7 +166,7 @@ bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD --run-date YYYY-MM-DD --
 ### 4.6. LLM Wiki 갱신
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/economy-report
 node scripts/build-llm-wiki.js --date YYYY-MM-DD
 ```
 
@@ -191,7 +191,7 @@ node scripts/build-llm-wiki.js --date YYYY-MM-DD
 4. Stage 3/4만 다시 실행
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/economy-report
 node scripts/build-stage3-quant-scores.js --date YYYY-MM-DD
 node scripts/build-stage4-execution-plan.js --date YYYY-MM-DD
 ```
@@ -199,7 +199,7 @@ node scripts/build-stage4-execution-plan.js --date YYYY-MM-DD
 ### 6. 일일 산출물 검증
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/economy-report
 node scripts/verify-daily-system.js --date YYYY-MM-DD
 ```
 
@@ -245,7 +245,7 @@ node scripts/verify-daily-system.js --date YYYY-MM-DD
 ## 날짜를 바꿔서 실행할 때
 
 ```bash
-cd /Users/seo/stock-pilot
+cd /Users/seo/Documents/Playground/economy-report
 bash scripts/run-daily-system.sh --date 2026-04-10
 ```
 
@@ -253,7 +253,7 @@ bash scripts/run-daily-system.sh --date 2026-04-10
 
 Vercel이 실패하거나 불필요할 때는 아래 문서를 따릅니다.
 
-- [PRIVATE_ACCESS_RUNBOOK.md](/Users/seo/stock-pilot/docs/PRIVATE_ACCESS_RUNBOOK.md)
+- [PRIVATE_ACCESS_RUNBOOK.md](/Users/seo/Documents/Playground/economy-report/docs/PRIVATE_ACCESS_RUNBOOK.md)
 
 핵심 원칙:
 

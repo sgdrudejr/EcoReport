@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Stage 1.6: Stage 1 리포트 추출물과 Gemini Deep Research 결과를 다시 합쳐
+// Stage 1.6: Stage 1 리포트 추출물과 Deep Research 결과를 다시 합쳐
 // 대시보드가 바로 읽을 수 있는 rich briefing을 생성합니다.
 
 import path from "node:path";
@@ -18,10 +18,11 @@ import {
 import { loadProjectEnv } from "./lib/env-loader.js";
 import { allRefinementArtifactPaths } from "./lib/refinement-rounds.js";
 
-const DEFAULT_PRIORITY_MODELS = ["gemini-2.5-flash", "gemini-2.0-flash"];
+const DEFAULT_PRIORITY_MODELS = ["qwen-max", "qwen-plus", "qwen-turbo"];
 const DEFAULT_MODEL = DEFAULT_PRIORITY_MODELS[0];
 const DEFAULT_ARCHIVE_NAME = "10-stage1-6-final-research-briefing.md";
 const DEFAULT_MAX_RETRIES = 5;
+const DEFAULT_BASE_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1";
 
 function parseArgs(argv) {
   const base = parseDateArgs(argv);
@@ -95,7 +96,7 @@ function isHardQuotaError(message) {
 }
 
 function isUnsupportedModelError(message) {
-  return /(is not found|not supported for generateContent)/i.test(String(message ?? ""));
+  return /(is not found|model_not_found|not supported)/i.test(String(message ?? ""));
 }
 
 function resolveAbsolute(target) {
@@ -140,9 +141,14 @@ function resolvePaths(args) {
 
 function loadApiKey() {
   loadProjectEnv(ROOT_DIR);
-  const apiKey = process.env.GEMINI_API_KEY?.trim();
+  const apiKey = (
+    process.env.DASHSCOPE_API_KEY ||
+    process.env.QWEN_API_KEY ||
+    process.env.GEMINI_API_KEY ||
+    ""
+  ).trim();
   if (!apiKey) {
-    throw new Error("GEMINI_API_KEY가 설정되지 않았습니다.");
+    throw new Error("DASHSCOPE_API_KEY 또는 QWEN_API_KEY가 설정되지 않았습니다.");
   }
   return apiKey;
 }
@@ -1175,66 +1181,62 @@ function buildFallbackBriefing({
   ].join("\n");
 }
 
-function extractGeminiText(payload) {
-  const texts = [];
-
-  for (const candidate of payload?.candidates ?? []) {
-    for (const part of candidate?.content?.parts ?? []) {
-      if (typeof part?.text === "string" && part.text.trim()) {
-        texts.push(part.text.trim());
-      }
-    }
+function extractProviderText(payload) {
+  const content = payload?.choices?.[0]?.message?.content ?? "";
+  if (typeof content === "string") {
+    return content.trim();
   }
-
-  return texts.join("\n\n").trim();
+  if (Array.isArray(content)) {
+    return content
+      .map((part) => (typeof part?.text === "string" ? part.text : ""))
+      .join("\n")
+      .trim();
+  }
+  return "";
 }
 
-async function callGemini({ apiKey, model, prompt }) {
-  const response = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${apiKey}`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        contents: [
-          {
-            role: "user",
-            parts: [{ text: prompt }],
-          },
-        ],
-        generationConfig: {
-          temperature: 0.3,
-          topP: 0.9,
-          maxOutputTokens: 8192,
-        },
-      }),
+async function callProvider({ apiKey, baseUrl, model, prompt }) {
+  const url = `${String(baseUrl || DEFAULT_BASE_URL).replace(/\/$/, "")}/chat/completions`;
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
     },
-  );
+    body: JSON.stringify({
+      model,
+      messages: [
+        { role: "system", content: "You are a financial analyst assistant." },
+        { role: "user", content: prompt },
+      ],
+      temperature: 0.3,
+      top_p: 0.9,
+      max_tokens: 8192,
+    }),
+  });
 
   const payload = await response.json();
   if (!response.ok) {
-    const message = payload?.error?.message || `Gemini 호출 실패 (${response.status})`;
+    const message = payload?.error?.message || `LLM 호출 실패 (${response.status})`;
     throw new Error(message);
   }
 
-  const text = extractGeminiText(payload);
+  const text = extractProviderText(payload);
   if (!text) {
-    throw new Error("Gemini 응답에서 텍스트를 추출하지 못했습니다.");
+    throw new Error("LLM 응답에서 텍스트를 추출하지 못했습니다.");
   }
 
   return { text, payload };
 }
 
-async function callGeminiWithRetry({ apiKey, modelCandidates, prompt, maxRetries }) {
+async function callProviderWithRetry({ apiKey, baseUrl, modelCandidates, prompt, maxRetries }) {
   let lastError = null;
   let delayMs = 0;
 
   for (let attempt = 1; attempt <= maxRetries; attempt += 1) {
     for (const model of modelCandidates) {
       try {
-        const response = await callGemini({ apiKey, model, prompt });
+        const response = await callProvider({ apiKey, baseUrl, model, prompt });
         return { ...response, model };
       } catch (error) {
         lastError = error;
@@ -1257,7 +1259,7 @@ async function callGeminiWithRetry({ apiKey, modelCandidates, prompt, maxRetries
 
     if (attempt < maxRetries) {
       console.warn(
-        `stage1.6 Gemini 외부 오류 감지: ${Math.ceil(delayMs / 1000)}초 후 재시도 (${attempt}/${maxRetries})`,
+        `stage1.6 외부 LLM 오류 감지: ${Math.ceil(delayMs / 1000)}초 후 재시도 (${attempt}/${maxRetries})`,
       );
       await sleep(delayMs);
       delayMs = 0;
@@ -1267,7 +1269,7 @@ async function callGeminiWithRetry({ apiKey, modelCandidates, prompt, maxRetries
   if (lastError) {
     throw lastError;
   }
-  throw new Error("stage1.6 Gemini 호출에 실패했습니다.");
+  throw new Error("stage1.6 LLM 호출에 실패했습니다.");
 }
 
 async function main() {
@@ -1331,15 +1333,17 @@ async function main() {
 
   const runMeta = buildRunMetadata(args);
   const modelCandidates = args.model ? [args.model] : DEFAULT_PRIORITY_MODELS;
+  const baseUrl = process.env.LLM_BASE_URL?.trim() || DEFAULT_BASE_URL;
 
   let text;
-  let source = "gemini";
+  let source = "qwen";
   let usedModel = args.model ?? DEFAULT_MODEL;
 
   try {
     const apiKey = loadApiKey();
-    const response = await callGeminiWithRetry({
+    const response = await callProviderWithRetry({
       apiKey,
+      baseUrl,
       modelCandidates,
       prompt,
       maxRetries: args.maxRetries,
@@ -1348,7 +1352,7 @@ async function main() {
     usedModel = response.model;
   } catch (error) {
     const message = error instanceof Error ? error.message : String(error);
-    console.warn(`stage1.6 Gemini fallback 활성화: ${message}`);
+    console.warn(`stage1.6 LLM fallback 활성화: ${message}`);
     text = buildFallbackBriefing({
       args,
       portfolio,

@@ -2,7 +2,8 @@
 
 > **실행 진입점 → [`docs/EXECUTION_GUIDE.md`](docs/EXECUTION_GUIDE.md)**
 
-You are working in `/Users/seo/Documents/Playground/EcoReport` (NOT `/Users/seo/stock-pilot`).
+You are working in `/Users/seo/Documents/Playground/economy-report`.
+The legacy checkout lives at `/Users/seo/Documents/Playground/stock-pilot-archive` and is archive-only unless the user explicitly asks to recover something from it.
 
 This repository follows a persistent `LLM Wiki` operating model inspired by Karpathy's `raw -> wiki -> schema` pattern.
 
@@ -38,6 +39,7 @@ Update or create the appropriate page in `knowledge/wiki/`.
 3. `knowledge/wiki/` is the durable synthesized layer.
 4. Do not redesign or flatten the repository structure.
 5. Keep all new wiki behavior inside `knowledge/wiki/` and helper scripts, unless the user explicitly wants a broader refactor.
+6. Treat `open-trading-api/` under the repo root as the local KIS helper workspace that supports execution scripts.
 
 ## Default Workflow
 
@@ -91,6 +93,8 @@ When you notice problems, fix or call out:
 ## Important Files
 
 - `README.md`
+- `CLAUDE.md`
+- `docs/EXECUTION_GUIDE.md`
 - `docs/OPERATOR_RUNBOOK.md`
 - `docs/LLM_WIKI_SYSTEM.md`
 - `knowledge/wiki/index.md`
@@ -101,4 +105,4 @@ When you notice problems, fix or call out:
 
 This repository itself is the Obsidian vault.
 Do not assume a separate publish step is needed.
-If you update `knowledge/wiki/`, the changes should be visible directly in Obsidian when the user opens `/Users/seo/stock-pilot`.
+If you update `knowledge/wiki/`, the changes should be visible directly in Obsidian when the user opens `/Users/seo/Documents/Playground/economy-report`.

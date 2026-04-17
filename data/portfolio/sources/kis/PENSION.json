@@ -1,0 +1,209 @@
+{
+  "env": "real",
+  "account": {
+    "cano": "44378641",
+    "acnt_prdt_cd": "22",
+    "formatted": "44378641-22"
+  },
+  "query": {
+    "start": "20260417",
+    "end": "20260417",
+    "period_scope": "inner",
+    "symbol": "",
+    "side": "all",
+    "filled": "all",
+    "exchange": "ALL",
+    "skip_realized": false
+  },
+  "balance": {
+    "rows": [],
+    "summary": [
+      {
+        "dnca_tot_amt": "0",
+        "nxdy_excc_amt": "0",
+        "prvs_rcdl_excc_amt": "0",
+        "cma_evlu_amt": "0",
+        "bfdy_buy_amt": "0",
+        "thdt_buy_amt": "0",
+        "nxdy_auto_rdpt_amt": "0",
+        "bfdy_sll_amt": "0",
+        "thdt_sll_amt": "0",
+        "d2_auto_rdpt_amt": "0",
+        "bfdy_tlex_amt": "0",
+        "thdt_tlex_amt": "0",
+        "tot_loan_amt": "0",
+        "scts_evlu_amt": "0",
+        "tot_evlu_amt": "0",
+        "nass_amt": "0",
+        "fncg_gld_auto_rdpt_yn": "",
+        "pchs_amt_smtl_amt": "0",
+        "evlu_amt_smtl_amt": "0",
+        "evlu_pfls_smtl_amt": "0",
+        "tot_stln_slng_chgs": "0",
+        "bfdy_tot_asst_evlu_amt": "0",
+        "asst_icdc_amt": "0",
+        "asst_icdc_erng_rt": "0.00000000"
+      }
+    ]
+  },
+  "assets": {
+    "rows": [
+      {
+        "pchs_amt": "0",
+        "evlu_amt": "0",
+        "evlu_pfls_amt": "0",
+        "crdt_lnd_amt": "0",
+        "real_nass_amt": "0",
+        "whol_weit_rt": "0.00000000"
+      },
+      {
+        "pchs_amt": "0",
+        "evlu_amt": "0",
+        "evlu_pfls_amt": "0",
+        "crdt_lnd_amt": "0",
+        "real_nass_amt": "0",
+        "whol_weit_rt": "0.00000000"
+      },
+      {
+        "pchs_amt": "0",
+        "evlu_amt": "0",
+        "evlu_pfls_amt": "0",
+        "crdt_lnd_amt": "0",
+        "real_nass_amt": "0",
+        "whol_weit_rt": "0.00000000"
+      },
+      {
+        "pchs_amt": "0",
+        "evlu_amt": "0",
+        "evlu_pfls_amt": "0",
+        "crdt_lnd_amt": "0",
+        "real_nass_amt": "0",
+        "whol_weit_rt": "0.00000000"
+      },
+      {
+        "pchs_amt": "0",
+        "evlu_amt": "0",
+        "evlu_pfls_amt": "0",
+        "crdt_lnd_amt": "0",
+        "real_nass_amt": "0",
+        "whol_weit_rt": "0.00000000"
+      },
+      {
+        "pchs_amt": "0",
+        "evlu_amt": "0",
+        "evlu_pfls_amt": "0",
+        "crdt_lnd_amt": "0",
+        "real_nass_amt": "0",
+        "whol_weit_rt": "0.00000000"
+      },
+      {
+        "pchs_amt": "0",
+        "evlu_amt": "0",
+        "evlu_pfls_amt": "0",
+        "crdt_lnd_amt": "0",
+        "real_nass_amt": "0",
+        "whol_weit_rt": "0.00000000"
+      },
+      {
+        "pchs_amt": "0",
+        "evlu_amt": "0",
+        "evlu_pfls_amt": "0",
+        "crdt_lnd_amt": "0",
+        "real_nass_amt": "0",
+        "whol_weit_rt": "0.00000000"
+      },
+      {
+        "pchs_amt": "0",
+        "evlu_amt": "0",
+        "evlu_pfls_amt": "0",
+        "crdt_lnd_amt": "0",
+        "real_nass_amt": "0",
+        "whol_weit_rt": "0.00000000"
+      },
+      {
+        "pchs_amt": "0",
+        "evlu_amt": "0",
+        "evlu_pfls_amt": "0",
+        "crdt_lnd_amt": "0",
+        "real_nass_amt": "0",
+        "whol_weit_rt": "0.00000000"
+      }
+    ],
+    "summary": [
+      {
+        "pchs_amt_smtl": "0",
+        "nass_tot_amt": "0",
+        "loan_amt_smtl": "0",
+        "evlu_pfls_amt_smtl": "0",
+        "evlu_amt_smtl": "0",
+        "tot_asst_amt": "0",
+        "tot_lnda_tot_ulst_lnda": "0",
+        "cma_auto_loan_amt": "0",
+        "tot_mgln_amt": "0",
+        "stln_evlu_amt": "0",
+        "crdt_fncg_amt": "0",
+        "ocl_apl_loan_amt": "0",
+        "pldg_stup_amt": "0",
+        "frcr_evlu_tota": "0",
+        "tot_dncl_amt": "0",
+        "cma_evlu_amt": "0",
+        "dncl_amt": "0",
+        "tot_sbst_amt": "0",
+        "thdt_rcvb_amt": "0",
+        "ovrs_stck_evlu_amt1": "0.000000",
+        "ovrs_bond_evlu_amt": "0.000000",
+        "mmf_cma_mgge_loan_amt": "0",
+        "sbsc_dncl_amt": "0",
+        "pbst_sbsc_fnds_loan_use_amt": "0",
+        "etpr_crdt_grnt_loan_amt": "0"
+      }
+    ]
+  },
+  "realized": {
+    "rows": [],
+    "summary": [
+      {
+        "dnca_tot_amt": "0",
+        "nxdy_excc_amt": "0",
+        "prvs_rcdl_excc_amt": "0",
+        "cma_evlu_amt": "0",
+        "bfdy_buy_amt": "0",
+        "thdt_buy_amt": "0",
+        "nxdy_auto_rdpt_amt": "0",
+        "bfdy_sll_amt": "0",
+        "thdt_sll_amt": "0",
+        "d2_auto_rdpt_amt": "0",
+        "bfdy_tlex_amt": "0",
+        "thdt_tlex_amt": "0",
+        "tot_loan_amt": "0",
+        "scts_evlu_amt": "0",
+        "tot_evlu_amt": "0",
+        "nass_amt": "0",
+        "fncg_gld_auto_rdpt_yn": "",
+        "pchs_amt_smtl_amt": "0",
+        "evlu_amt_smtl_amt": "0",
+        "evlu_pfls_smtl_amt": "0",
+        "tot_stln_slng_chgs": "0",
+        "bfdy_tot_asst_evlu_amt": "0",
+        "asst_icdc_amt": "0",
+        "asst_icdc_erng_rt": "0.00000000",
+        "rlzt_pfls": "0",
+        "rlzt_erng_rt": "0.00000000",
+        "real_evlu_pfls": "0",
+        "real_evlu_pfls_erng_rt": "0.00000000"
+      }
+    ]
+  },
+  "orders": {
+    "rows": [],
+    "summary": [
+      {
+        "tot_ord_qty": "0",
+        "tot_ccld_qty": "0",
+        "tot_ccld_amt": "0",
+        "prsm_tlex_smtl": "0",
+        "pchs_avg_pric": "0.0000"
+      }
+    ]
+  }
+}

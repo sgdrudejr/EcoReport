@@ -1,0 +1,271 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ecoreport.local/schemas/normalized-observations.schema.json",
+  "title": "EcoReport Normalized Observations Bundle",
+  "type": "object",
+  "required": [
+    "date",
+    "bundleId",
+    "source",
+    "sourceType",
+    "generatedAt",
+    "observations"
+  ],
+  "properties": {
+    "date": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "bundleId": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string",
+      "enum": [
+        "reports",
+        "stockeasy",
+        "marketvoice",
+        "portfolio",
+        "technical",
+        "macro",
+        "llm"
+      ]
+    },
+    "sourceType": {
+      "type": "string",
+      "enum": [
+        "research",
+        "market_capture",
+        "event_feed",
+        "broker_snapshot",
+        "derived_quant",
+        "macro_feed",
+        "llm_interpretation"
+      ]
+    },
+    "generatedAt": {
+      "type": "string"
+    },
+    "runId": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "qualitySummary": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "ok",
+            "warn",
+            "error"
+          ]
+        },
+        "flags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "observations": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/observation"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "evidence": {
+      "type": "object",
+      "required": [
+        "kind"
+      ],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "snippet",
+            "table_row",
+            "metric",
+            "quote",
+            "link",
+            "derived_note"
+          ]
+        },
+        "title": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "text": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "value": {
+          "type": [
+            "number",
+            "string",
+            "null"
+          ]
+        },
+        "refPath": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "observation": {
+      "type": "object",
+      "required": [
+        "observationId",
+        "entityType",
+        "entityId",
+        "direction",
+        "strength",
+        "confidence",
+        "freshnessDays",
+        "qualityFlags",
+        "evidence"
+      ],
+      "properties": {
+        "observationId": {
+          "type": "string"
+        },
+        "entityType": {
+          "type": "string",
+          "enum": [
+            "security",
+            "account",
+            "theme",
+            "sector",
+            "macro_event",
+            "category",
+            "report",
+            "strategy_rule"
+          ]
+        },
+        "entityId": {
+          "type": "string"
+        },
+        "entityName": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "accountKey": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "securityCode": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "category": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "themes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "direction": {
+          "type": "string",
+          "enum": [
+            "positive",
+            "negative",
+            "neutral",
+            "mixed"
+          ]
+        },
+        "strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "confidence": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "freshnessDays": {
+          "type": "number",
+          "minimum": 0
+        },
+        "horizon": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "1d",
+            "1w",
+            "1m",
+            "3m",
+            "6m",
+            null
+          ]
+        },
+        "qualityFlags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "stale",
+              "partial",
+              "fallback",
+              "mock",
+              "manual_review_needed",
+              "llm_generated",
+              "low_coverage",
+              "derived",
+              "network_degraded"
+            ]
+          }
+        },
+        "evidence": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        },
+        "derivedFrom": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "metadata": {
+          "type": "object"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

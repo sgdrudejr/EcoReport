@@ -29,13 +29,14 @@ from typing import Any
 BASE_URL = "https://stockeasy.intellio.kr"
 
 TARGETS = {
-    "sector":   f"{BASE_URL}/market-analysis?tab=etfSector",
-    "briefing": f"{BASE_URL}/market-analysis?tab=briefing",
-    "rs":       f"{BASE_URL}/stock-analysis",
-    "report":   f"{BASE_URL}/stock-analysis?tab=report",
-    "momentum": f"{BASE_URL}/strategy-room/momentum",
-    "peak":     f"{BASE_URL}/strategy-room/peak",
-    "value":    f"{BASE_URL}/strategy-room/value",
+    "sector":           f"{BASE_URL}/market-analysis?tab=etfSector",
+    "briefing":         f"{BASE_URL}/market-analysis?tab=briefing",
+    "rs":               f"{BASE_URL}/stock-analysis",
+    "report":           f"{BASE_URL}/stock-analysis?tab=report",
+    "industry_report":  f"{BASE_URL}/stock-analysis?tab=report",  # 산업리포트 탭 클릭 필요
+    "momentum":         f"{BASE_URL}/strategy-room/momentum",
+    "peak":             f"{BASE_URL}/strategy-room/peak",
+    "value":            f"{BASE_URL}/strategy-room/value",
 }
 
 RENDER_WAIT = 3500  # ms — Next.js SPA 렌더링 대기
@@ -171,45 +172,65 @@ def extract_rs(page) -> dict[str, Any]:
 # ── 리포트 ────────────────────────────────────────────────────────────────────
 
 def extract_report(page) -> dict[str, Any]:
-    """종목분석 > 리포트 탭 — 리포트 목록 + 요약 hover 수집."""
+    """종목분석 > 리포트 탭 — 기업리포트 (첫 페이지만)."""
+    page.wait_for_timeout(RENDER_WAIT)
+    return {
+        "tables": _tables(page),
+        "raw_text": _page_text(page),
+    }
+
+
+def extract_industry_report(page) -> dict[str, Any]:
+    """종목분석 > 리포트 탭 > 산업리포트 — 당일 전체 페이지 수집."""
     page.wait_for_timeout(RENDER_WAIT)
 
-    tables = _tables(page)
-    text = _page_text(page)
+    # 산업리포트 탭 클릭
+    page.get_by_text("산업리포트", exact=True).first.click()
+    page.wait_for_timeout(2000)
 
-    # 요약 버튼/링크 클릭 시도 (최대 5개)
-    summaries: list[str] = []
-    try:
-        summary_els = page.locator('button:has-text("요약"), [class*="summary"], [class*="Summary"]')
-        count = min(summary_els.count(), 5)
-        for i in range(count):
-            try:
-                summary_els.nth(i).click()
-                page.wait_for_timeout(1000)
-                popup_text = page.evaluate("""() => {
-                    const el = document.querySelector(
-                        '[class*="popup"], [class*="Popup"], [class*="modal"], '
-                        + '[class*="Modal"], [class*="tooltip"], [class*="Tooltip"], '
-                        + '[class*="overlay"], [class*="Overlay"]'
-                    );
-                    return el ? el.innerText.trim().slice(0, 1500) : '';
-                }""")
-                if popup_text:
-                    summaries.append(popup_text)
-                # 팝업 닫기 시도
-                try:
-                    page.keyboard.press("Escape")
-                except Exception:
-                    pass
-            except Exception:
-                pass
-    except Exception:
-        pass
+    all_reports: list[dict] = []
+    page_num = 1
+
+    while True:
+        tables = _tables(page)
+        if not tables or not tables[0].get("rows"):
+            break
+
+        t = tables[0]
+        headers = t["headers"]
+        today_rows = []
+
+        for row in t["rows"]:
+            if not any(row):
+                continue
+            entry: dict = {}
+            for j, h in enumerate(headers):
+                entry[h or f"col_{j}"] = row[j] if j < len(row) else ""
+            # 당일 날짜 행만 (첫 컬럼이 날짜)
+            date_val = row[0] if row else ""
+            if date_val and not any(c.isdigit() for c in date_val):
+                break  # 날짜 없는 행 = 하단 네비게이션
+            today_rows.append(entry)
+
+        all_reports.extend(today_rows)
+        print(f"      페이지 {page_num}: {len(today_rows)}개 수집 (누계 {len(all_reports)}개)")
+
+        # 다음 페이지 버튼
+        try:
+            next_btn = page.locator("button:has-text('다음'), [aria-label='next page'], [class*='next']").first
+            if next_btn.is_disabled() or next_btn.count() == 0:
+                break
+            next_btn.click()
+            page.wait_for_timeout(1500)
+            page_num += 1
+            if page_num > 30:  # 안전장치
+                break
+        except Exception:
+            break
 
     return {
-        "tables": tables,
-        "summaries": summaries,
-        "raw_text": text,
+        "total": len(all_reports),
+        "reports": all_reports,
     }
 
 
@@ -292,8 +313,9 @@ def extract_strategy(page, room: str) -> dict[str, Any]:
 def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description="StockEasy 크롤러")
     p.add_argument("--date", default=datetime.now(timezone.utc).strftime("%Y-%m-%d"))
-    p.add_argument("--targets", nargs="*", default=list(TARGETS.keys()),
-                   choices=list(TARGETS.keys()))
+    all_targets = list(TARGETS.keys())
+    p.add_argument("--targets", nargs="*", default=all_targets,
+                   choices=all_targets)
     p.add_argument("--output-dir", default=None)
     p.add_argument("--headless", action="store_true", default=True)
     p.add_argument("--timeout", type=int, default=30)
@@ -326,13 +348,14 @@ def main() -> None:
     }
 
     extractors = {
-        "sector":   extract_sector,
-        "briefing": extract_briefing,
-        "rs":       extract_rs,
-        "report":   extract_report,
-        "momentum": lambda p: extract_strategy(p, "momentum"),
-        "peak":     lambda p: extract_strategy(p, "peak"),
-        "value":    lambda p: extract_strategy(p, "value"),
+        "sector":          extract_sector,
+        "briefing":        extract_briefing,
+        "rs":              extract_rs,
+        "report":          extract_report,
+        "industry_report": extract_industry_report,
+        "momentum":        lambda p: extract_strategy(p, "momentum"),
+        "peak":            lambda p: extract_strategy(p, "peak"),
+        "value":           lambda p: extract_strategy(p, "value"),
     }
 
     with sync_playwright() as pw:

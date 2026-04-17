@@ -1,0 +1,25 @@
+# 한투 연금저축 전용 프로필 템플릿
+my_app: "PS9MF49FNyIltIuCa3LbwW7z5pXVJqjPJRtL"
+my_sec: "KsjvALOCJXSluvsPD5i8vGkeCpa3O7WJ5O29rtyXTNI1GKuihv68JLlwxr5EseAQKnkptG5DtmZHD0EvPPXVc6PwHQ5g1CMgHPgQ67F1z6FXltU+fx0P3OAnUnf0TySqA8hYTqXI7VPI1bDomIshtFsl7a64t/TsdLr5doOH8BRKlexJcSo="
+
+paper_app: ""
+paper_sec: ""
+
+my_htsid: "PENSION_HTS_ID"
+
+# 계좌번호 앞 8자리
+my_acct_stock: "44378641"
+my_acct_future: ""
+my_paper_stock: ""
+my_paper_future: ""
+
+# 계좌번호 뒤 2자리
+my_prod: "22"
+
+prod: "https://openapi.koreainvestment.com:9443"
+ops: "ws://ops.koreainvestment.com:21000"
+vps: "https://openapivts.koreainvestment.com:29443"
+vops: "ws://ops.koreainvestment.com:31000"
+
+my_token: ""
+my_agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"

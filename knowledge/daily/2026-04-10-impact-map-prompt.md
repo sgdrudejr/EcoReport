@@ -59,7 +59,7 @@
 - runId: 2026-04-10-000045
 - resolutionReason: today
 - generatedAt: 2026-04-10T00:01:44.773Z
-- logFile: /Users/seo/Documents/Playground/EcoReport/logs/2026-04-10-000045-automation-cycle.log
+- logFile: /Users/seo/Documents/Playground/economy-report/logs/2026-04-10-000045-automation-cycle.log
 - systemHealth: warn
 - changeSummary: 전일(2026-04-09) 대비, 포트폴리오 점수 66→65, 레짐 SIDEWAYS 유지, 리포트 69→69건, 신규 포커스 TIGER 미국배당다우존스스타데일리커...·한국항공우주, 제외 PLUS K방산·TIGER 미국배당다우존스타겟커버드콜2호
 ## Completion Checklist
@@ -90,7 +90,7 @@
   - tail: 🧭 전략 파이프라인 건너뜀 (--skip-strategy) | 📚 LLM Wiki 단계 건너뜀 (--skip-wiki) | 📤 GitHub 동기화 건너뜀 (--skip-push) | 🩺 시스템 검증 건너뜀 (--skip-verify) | ⚠️ 소프트 실패 1건이 있었지만 파이프라인은 계속 완료했습니다. | ================================================== | ✅ EcoReport Daily System 종료 (run: 2026-04-10 / effective: 2026-04-10) | ==================================================
 - [OK] Stage 1 Extracts (1s)
   - command: node scripts/build-stage1-report-extracts.js --date 2026-04-10 --run-date 2026-04-10 --effective-market-date 2026-04-10 --run-id 2026-04-10-000045
-  - tail: /Users/seo/Documents/Playground/EcoReport/data/analysis-state/2026-04-10/stage1-report-extracts-v2.json
+  - tail: /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-10/stage1-report-extracts-v2.json
 - [WARN] Gemini Deep Research Web (0s)
   - command: npm run stage1.5:gemini:run -- --date 2026-04-10 --poll-sec 30 --timeout-sec 1800
   - reason: Gemini Deep Research Web 실패 (exit 1)

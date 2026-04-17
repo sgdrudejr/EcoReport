@@ -16,6 +16,8 @@ EcoReport 문서가 늘어나도, 새 담당자나 다른 코딩 프로그램이
 
 → **[`docs/EXECUTION_GUIDE.md`](EXECUTION_GUIDE.md)** — 일일 파이프라인 · LLM 준비 · StockEasy · 딥리서치 · 검증 모두 수록
 
+기준 워크스페이스는 `/Users/seo/Documents/Playground/economy-report`이며, `/Users/seo/Documents/Playground/stock-pilot-archive`는 참고용 archive입니다.
+
 ## 5분 시작 순서
 
 새로 들어온 사람이나 에이전트는 보통 아래 순서로 읽으면 됩니다.
