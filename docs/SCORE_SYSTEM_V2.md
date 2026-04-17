@@ -153,6 +153,31 @@ Stage 3 산출물은 아래를 포함합니다.
 
 - `data/analysis-state/YYYY-MM-DD/stage3-quant-scores.json`
 
+## 병렬 StockPilot 수식 레이어
+
+2026-04-17 기준으로 Stage 3 산출물에는 기존 교차단면 점수 외에 `stockpilotQuant`가 병렬로 추가됩니다.
+
+- 목적: 사용자가 정의한 결정론적 수식을 그대로 계산해, `보유 종목`과 `신규 후보`를 섞지 않고 따로 채점
+- 입력: `data/technical/YYYY-MM-DD.json`, `data/macro/fred-YYYY-MM-DD.json`, `data/portfolio/latest.json`, `stage2-strategy-options.json`
+- 출력 위치: `stage3-quant-scores.json.stockpilotQuant`
+
+구조:
+
+- `stockpilotQuant.holdings[]`
+  - 계좌 보유 포지션별 결과
+  - 정책 상태는 `ADD / HOLD / TRIM / EXIT`
+- `stockpilotQuant.candidates[]`
+  - Stage 2 신규 후보 중 미보유 종목 결과
+  - 정책 상태는 `BUY / WATCH / REJECT`
+- `stockpilotQuant.summary`
+  - 필터 통과 수, 상위 점수 종목 요약
+
+중요한 운영 원칙:
+
+- 수식 점수는 holdings / candidates 모두 같은 공통 공식을 사용
+- 다만 액션 해석은 레이어별로 분리해 혼선을 막음
+- 아직 기술 스냅샷에 없는 입력(`anchored VWAP`, 이벤트 앵커 기반 POC 정밀값 등)은 `null + data_quality_flags`로 남기고, Stage 합산에서는 0점 처리
+
 ## 대시보드 표시 원칙
 
 대시보드는 아래를 한 번에 보여줘야 합니다.

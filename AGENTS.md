@@ -95,6 +95,7 @@ When you notice problems, fix or call out:
 - `README.md`
 - `CLAUDE.md`
 - `docs/EXECUTION_GUIDE.md`
+- `docs/stockpilot/README.md`
 - `docs/OPERATOR_RUNBOOK.md`
 - `docs/LLM_WIKI_SYSTEM.md`
 - `knowledge/wiki/index.md`

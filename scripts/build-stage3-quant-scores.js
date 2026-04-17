@@ -19,6 +19,7 @@ import {
   writeJson,
 } from "./lib/pipeline-utils.js";
 import { loadAnalysisContext } from "./lib/analysis-context.js";
+import { buildStockPilotQuantPack } from "./lib/stockpilot-quant.js";
 
 const REGIME_WEIGHTS = {
   BULL: {
@@ -2282,6 +2283,13 @@ async function main() {
       100,
     ),
   );
+  const stockpilotQuant = buildStockPilotQuantPack({
+    asOfDate: args.date,
+    normalizedPortfolio,
+    technical,
+    fred,
+    stage2Data,
+  });
 
   const outputPath = args.output ?? path.join(stateDir, "stage3-quant-scores.json");
   const runMeta = buildRunMetadata(args);
@@ -2358,6 +2366,7 @@ async function main() {
     factorStats,
     holdings: holdingScores,
     positions: positionScores,
+    stockpilotQuant,
     accounts: accountScores,
     portfolio: {
       totalScore: portfolioScore,

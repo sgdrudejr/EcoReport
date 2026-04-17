@@ -166,6 +166,7 @@ flowchart TD
 
 - [PIPELINE_MAP.md](docs/PIPELINE_MAP.md)
 - [DOCS_MAP.md](docs/DOCS_MAP.md)
+- [StockPilot Docs](docs/stockpilot/README.md)
 - [MULTI_TOOL_HANDOFF.md](docs/MULTI_TOOL_HANDOFF.md)
 - [EXPERIMENT_PLAYBOOK.md](docs/EXPERIMENT_PLAYBOOK.md)
 - [STAGE_1_4_ARCHITECTURE.md](docs/STAGE_1_4_ARCHITECTURE.md)
@@ -182,6 +183,7 @@ flowchart TD
 - 처음 들어오면: `README.md`
 - 전체 파이프라인을 한눈에 보면: `docs/PIPELINE_MAP.md`
 - 어떤 문서를 읽어야 할지 모르겠으면: `docs/DOCS_MAP.md`
+- StockPilot 수식/데이터/로드맵 작업이면: `docs/stockpilot/README.md`
 - 여러 툴이 번갈아 작업하면: `docs/MULTI_TOOL_HANDOFF.md`
 - 실제 실행/운영은: `docs/OPERATOR_RUNBOOK.md`
 - 실험/검증/회귀 테스트는: `docs/EXPERIMENT_PLAYBOOK.md`

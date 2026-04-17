@@ -11,6 +11,7 @@ import {
   ADX,
   ATR,
   BollingerBands,
+  EMA,
   MACD,
   RSI,
   SMA,
@@ -20,7 +21,7 @@ import {
 loadEnv();
 
 const HISTORY_PAGE_SIZE = 60;
-const HISTORY_PAGES = 3;
+const HISTORY_PAGES = 6;
 const REQUEST_DELAY_MS = 150;
 const FETCH_TIMEOUT_MS = 15_000;
 
@@ -796,7 +797,202 @@ function computeRecentHigh(highs, window = 20) {
   return Math.max(...series);
 }
 
-function calculateIndicators(history, snapshot) {
+function computeHeikinAshi(history) {
+  if (!Array.isArray(history) || history.length === 0) {
+    return null;
+  }
+
+  let prevOpen = null;
+  let prevClose = null;
+  let latest = null;
+
+  for (const row of history) {
+    const haClose = (row.open + row.high + row.low + row.close) / 4;
+    const haOpen =
+      prevOpen == null || prevClose == null
+        ? (row.open + row.close) / 2
+        : (prevOpen + prevClose) / 2;
+    latest = {
+      open: roundNumber(haOpen, 4),
+      close: roundNumber(haClose, 4),
+    };
+    prevOpen = haOpen;
+    prevClose = haClose;
+  }
+
+  return latest;
+}
+
+function highest(values, period, endIndex) {
+  if (endIndex - period + 1 < 0) return null;
+  const window = values.slice(endIndex - period + 1, endIndex + 1).filter((value) => value != null);
+  if (window.length < period) return null;
+  return Math.max(...window);
+}
+
+function lowest(values, period, endIndex) {
+  if (endIndex - period + 1 < 0) return null;
+  const window = values.slice(endIndex - period + 1, endIndex + 1).filter((value) => value != null);
+  if (window.length < period) return null;
+  return Math.min(...window);
+}
+
+function computeIchimoku(highs, lows) {
+  if (!Array.isArray(highs) || !Array.isArray(lows) || highs.length !== lows.length || highs.length < 78) {
+    return null;
+  }
+
+  const length = highs.length;
+  const spanAShifted = Array.from({ length }, () => null);
+  const spanBShifted = Array.from({ length }, () => null);
+
+  for (let index = 0; index < length; index += 1) {
+    const convHigh = highest(highs, 9, index);
+    const convLow = lowest(lows, 9, index);
+    const baseHigh = highest(highs, 26, index);
+    const baseLow = lowest(lows, 26, index);
+    const spanBHigh = highest(highs, 52, index);
+    const spanBLow = lowest(lows, 52, index);
+
+    if (convHigh == null || convLow == null || baseHigh == null || baseLow == null) {
+      continue;
+    }
+
+    const conversion = (convHigh + convLow) / 2;
+    const base = (baseHigh + baseLow) / 2;
+    const spanA = (conversion + base) / 2;
+    const spanB = spanBHigh != null && spanBLow != null ? (spanBHigh + spanBLow) / 2 : null;
+    const shiftedIndex = index + 26;
+
+    if (shiftedIndex < length) {
+      spanAShifted[shiftedIndex] = spanA;
+      if (spanB != null) {
+        spanBShifted[shiftedIndex] = spanB;
+      }
+    }
+  }
+
+  return {
+    senkou_span_a: roundNumber(spanAShifted.at(-1), 4),
+    senkou_span_b: roundNumber(spanBShifted.at(-1), 4),
+  };
+}
+
+function computeApproxVolumeProfilePoc(history, window = 120, bins = 24) {
+  const sample = history.slice(-window).filter((row) => row.high != null && row.low != null && row.close != null);
+  if (sample.length < 20) {
+    return null;
+  }
+
+  const typicalPrices = sample.map((row) => (row.high + row.low + row.close) / 3);
+  const minPrice = Math.min(...typicalPrices);
+  const maxPrice = Math.max(...typicalPrices);
+  const range = maxPrice - minPrice;
+  if (!(range > 0)) {
+    return roundNumber(typicalPrices.at(-1), 4);
+  }
+
+  const bucketWidth = range / bins;
+  const histogram = Array.from({ length: bins }, () => 0);
+
+  for (let index = 0; index < sample.length; index += 1) {
+    const price = typicalPrices[index];
+    const volume = sample[index].volume ?? 0;
+    const bucket = Math.min(Math.floor((price - minPrice) / bucketWidth), bins - 1);
+    histogram[bucket] += volume;
+  }
+
+  const maxVolume = Math.max(...histogram);
+  const maxIndex = histogram.findIndex((value) => value === maxVolume);
+  if (maxIndex < 0) return null;
+  return roundNumber(minPrice + (bucketWidth * (maxIndex + 0.5)), 4);
+}
+
+function computeAnchoredVwapApprox(history, anchorWindow = 20) {
+  const sample = history.slice(-anchorWindow).filter((row) => row.high != null && row.low != null && row.close != null);
+  if (sample.length < 5) {
+    return null;
+  }
+
+  let weighted = 0;
+  let volumeTotal = 0;
+  for (const row of sample) {
+    const price = (row.high + row.low + row.close) / 3;
+    const volume = row.volume ?? 0;
+    weighted += price * volume;
+    volumeTotal += volume;
+  }
+
+  if (!(volumeTotal > 0)) return null;
+  return roundNumber(weighted / volumeTotal, 4);
+}
+
+function deriveDivergenceMetrics(divergence) {
+  const reference = divergence?.reference ?? null;
+  if (!reference) {
+    return {
+      price_drop_ratio: null,
+      rsi_rise_value: null,
+    };
+  }
+
+  const prevPrice = reference.previousPrice ?? null;
+  const latestPrice = reference.latestPrice ?? null;
+  const prevRsi = reference.previousRsi ?? null;
+  const latestRsi = reference.latestRsi ?? null;
+
+  return {
+    price_drop_ratio:
+      prevPrice != null && prevPrice !== 0 && latestPrice != null
+        ? roundNumber((latestPrice - prevPrice) / prevPrice, 6)
+        : null,
+    rsi_rise_value:
+      prevRsi != null && latestRsi != null
+        ? roundNumber(latestRsi - prevRsi, 4)
+        : null,
+  };
+}
+
+function computeRelativeStrength(history, benchmarkHistory, window = 63) {
+  if (!Array.isArray(history) || !Array.isArray(benchmarkHistory)) {
+    return null;
+  }
+
+  const securityMap = new Map(history.map((row) => [row.date, row.close]));
+  const benchmarkMap = new Map(benchmarkHistory.map((row) => [row.date, row.close]));
+  const commonDates = history
+    .map((row) => row.date)
+    .filter((date) => securityMap.has(date) && benchmarkMap.has(date))
+    .sort();
+
+  if (commonDates.length <= window) {
+    return null;
+  }
+
+  const latestDate = commonDates.at(-1);
+  const baseDate = commonDates.at(-(window + 1));
+  const securityLatest = securityMap.get(latestDate);
+  const securityBase = securityMap.get(baseDate);
+  const benchmarkLatest = benchmarkMap.get(latestDate);
+  const benchmarkBase = benchmarkMap.get(baseDate);
+
+  if (
+    securityLatest == null ||
+    securityBase == null ||
+    benchmarkLatest == null ||
+    benchmarkBase == null ||
+    securityBase === 0 ||
+    benchmarkBase === 0
+  ) {
+    return null;
+  }
+
+  const securityReturn = (securityLatest / securityBase) - 1;
+  const benchmarkReturn = (benchmarkLatest / benchmarkBase) - 1;
+  return roundNumber(securityReturn - benchmarkReturn, 6);
+}
+
+function calculateIndicators(history, snapshot, options = {}) {
   const closes = history.map((row) => row.close);
   const highs = history.map((row) => row.high);
   const lows = history.map((row) => row.low);
@@ -806,6 +1002,7 @@ function calculateIndicators(history, snapshot) {
   const ma20Series = SMA.calculate({ period: 20, values: closes });
   const ma60Series = SMA.calculate({ period: 60, values: closes });
   const ma120Series = SMA.calculate({ period: 120, values: closes });
+  const ema20Series = EMA.calculate({ period: 20, values: closes });
   const volumeMa20Series = SMA.calculate({ period: 20, values: volumes });
   const rsiSeries = RSI.calculate({ period: 14, values: closes });
   const macdSeries = MACD.calculate({
@@ -838,6 +1035,7 @@ function calculateIndicators(history, snapshot) {
   const adx = getLatestAndPrevious(adxSeries);
   const atr = getLatestAndPrevious(atrSeries);
   const volumeMa20 = getLatestAndPrevious(volumeMa20Series);
+  const ema20 = getLatestAndPrevious(ema20Series);
 
   const latestClose = snapshot?.close ?? history.at(-1)?.close ?? null;
   const atrPct =
@@ -852,6 +1050,19 @@ function calculateIndicators(history, snapshot) {
   const recentHighWindow = 20;
   const recentHigh = computeRecentHigh(highs, recentHighWindow);
   const rsiDivergence = detectRsiDivergence(history, rsiSeries);
+  const divergenceMetrics = deriveDivergenceMetrics(rsiDivergence);
+  const heikinAshi = computeHeikinAshi(history);
+  const ichimoku = computeIchimoku(highs, lows);
+  const close252d = closes.length >= 253 ? closes.at(-253) : null;
+  const keltnerUpper =
+    ema20.latest != null && atr.latest != null ? roundNumber(ema20.latest + (atr.latest * 2), 4) : null;
+  const keltnerLower =
+    ema20.latest != null && atr.latest != null ? roundNumber(ema20.latest - (atr.latest * 2), 4) : null;
+  const pocPrice120d = computeApproxVolumeProfilePoc(history, 120);
+  const anchoredVwapApprox = computeAnchoredVwapApprox(history, 20);
+  const benchmarkHistory = options.benchmarkHistory ?? null;
+  const benchmarkCode = options.benchmarkCode ?? null;
+  const relativeStrength = computeRelativeStrength(history, benchmarkHistory, 63);
   const indicatorAnalysis = {
     rsi: analyzeRsi(rsi.latest, rsiDivergence),
     macd: analyzeMacd(macd.latest, macd.previous),
@@ -956,10 +1167,35 @@ function calculateIndicators(history, snapshot) {
           : null,
     },
     volume_ratio: roundNumber(volumeRatio, 3),
+    volume_current: roundNumber(snapshot?.volume ?? history.at(-1)?.volume ?? null, 4),
+    volume_ma_20: roundNumber(volumeMa20.latest, 4),
     close: roundNumber(latestClose, 4),
+    close_252d: roundNumber(close252d, 4),
     previous_close: roundNumber(snapshot?.previous_close ?? history.at(-2)?.close ?? null, 4),
     change_pct: roundNumber(snapshot?.change_pct ?? history.at(-1)?.change_pct ?? null, 6),
     history_points: history.length,
+    heikin_ashi: heikinAshi,
+    keltner: {
+      upper: keltnerUpper,
+      lower: keltnerLower,
+      middle: roundNumber(ema20.latest, 4),
+    },
+    ichimoku,
+    anchored_vwap: {
+      value: anchoredVwapApprox,
+      anchor_type: 'rolling_20d_approx',
+    },
+    volume_profile: {
+      poc_price_120d: pocPrice120d,
+      method: 'daily_typical_price_histogram',
+    },
+    relative_strength: {
+      benchmark_used: benchmarkCode,
+      window_days: 63,
+      rs_vs_benchmark: relativeStrength,
+    },
+    rsi_divergence_metrics: divergenceMetrics,
+    exchange: snapshot?.exchange ?? null,
     alerts,
     technical_analysis: {
       execution_bias: executionBias,
@@ -1015,9 +1251,11 @@ async function main() {
     market_context: {},
     scores: {},
   };
+  let kospiHistory = [];
+  let kosdaqHistory = [];
 
   try {
-    const kospiHistory = await initIndexHistoricalData('KOSPI');
+    kospiHistory = await initIndexHistoricalData('KOSPI');
     const kospiIndicators = calculateIndicators(kospiHistory, market.indices?.KOSPI ?? null);
     const vix = market.macro?.VIX?.close ?? null;
     output.market_context = {
@@ -1046,6 +1284,13 @@ async function main() {
     }
   }
 
+  try {
+    kosdaqHistory = await initIndexHistoricalData('KOSDAQ');
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.warn(`⚠️ KOSDAQ 벤치마크 로드 실패: ${message}`);
+  }
+
   for (const item of items) {
     try {
       const history = await initHistoricalData(item);
@@ -1054,7 +1299,14 @@ async function main() {
       }
 
       const snapshot = market.watchlist?.[item.code] ?? null;
-      const indicators = calculateIndicators(history, snapshot);
+      const benchmarkCode =
+        snapshot?.exchange === 'KOSDAQ'
+          ? '^KQ11'
+          : '^KS11';
+      const indicators = calculateIndicators(history, snapshot, {
+        benchmarkCode,
+        benchmarkHistory: snapshot?.exchange === 'KOSDAQ' ? kosdaqHistory : kospiHistory,
+      });
 
       output.scores[item.code] = {
         code: item.code,

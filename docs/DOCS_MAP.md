@@ -16,6 +16,10 @@ EcoReport 문서가 늘어나도, 새 담당자나 다른 코딩 프로그램이
 
 → **[`docs/EXECUTION_GUIDE.md`](EXECUTION_GUIDE.md)** — 일일 파이프라인 · LLM 준비 · StockEasy · 딥리서치 · 검증 모두 수록
 
+StockPilot 전용 설계/로드맵 문서는 여기서 시작합니다:
+
+→ **[`docs/stockpilot/README.md`](stockpilot/README.md)** — 에이전트 브리프 · 데이터 스펙 · 갭 분석 · 마스터 플레이북 진입점
+
 기준 워크스페이스는 `/Users/seo/Documents/Playground/economy-report`이며, `/Users/seo/Documents/Playground/stock-pilot-archive`는 참고용 archive입니다.
 
 ## 5분 시작 순서
@@ -122,6 +126,9 @@ EcoReport 문서가 늘어나도, 새 담당자나 다른 코딩 프로그램이
 
 - `docs/DATA_ARCHITECTURE_V2.md`
 - `docs/STAGE_1_4_ARCHITECTURE.md`
+- `docs/stockpilot/stockpilot_master_playbook.md`
+- `docs/stockpilot/stockpilot_data_spec.md`
+- `docs/stockpilot/stockpilot_v1_gap_analysis.md`
 - `docs/schemas/normalized-observations.schema.json`
 - `docs/schemas/evidence-graph.schema.json`
 - `docs/schemas/decision-features.schema.json`
@@ -131,6 +138,8 @@ EcoReport 문서가 늘어나도, 새 담당자나 다른 코딩 프로그램이
 - raw source를 어떤 공통 모델로 올릴지
 - evidence graph를 어떻게 정의할지
 - Stage 2를 evidence와 policy로 어떻게 분리할지
+- StockPilot v1.0 -> v2.0 로드맵을 어떤 순서로 밟아야 하는지
+- 결정론적 수식 스펙과 데이터 계약의 차이가 어디인지
 
 ## 소스 오브 트루스
 
