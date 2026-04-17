@@ -164,6 +164,7 @@ flowchart TD
 
 별도 아키텍처 문서:
 
+- [PIPELINE_MAP.md](docs/PIPELINE_MAP.md)
 - [DOCS_MAP.md](docs/DOCS_MAP.md)
 - [MULTI_TOOL_HANDOFF.md](docs/MULTI_TOOL_HANDOFF.md)
 - [EXPERIMENT_PLAYBOOK.md](docs/EXPERIMENT_PLAYBOOK.md)
@@ -179,6 +180,7 @@ flowchart TD
 여러 코딩 프로그램이나 다른 담당자가 이어받을 수 있게 문서를 역할별로 나눴습니다.
 
 - 처음 들어오면: `README.md`
+- 전체 파이프라인을 한눈에 보면: `docs/PIPELINE_MAP.md`
 - 어떤 문서를 읽어야 할지 모르겠으면: `docs/DOCS_MAP.md`
 - 여러 툴이 번갈아 작업하면: `docs/MULTI_TOOL_HANDOFF.md`
 - 실제 실행/운영은: `docs/OPERATOR_RUNBOOK.md`

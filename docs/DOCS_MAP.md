@@ -24,9 +24,10 @@ EcoReport 문서가 늘어나도, 새 담당자나 다른 코딩 프로그램이
 
 1. `docs/EXECUTION_GUIDE.md` ← **여기서 시작**
 2. `README.md`
-3. `docs/MULTI_TOOL_HANDOFF.md`
-4. `docs/OPERATOR_RUNBOOK.md`
-5. 작업 성격에 따라 아래 문서 추가
+3. `docs/PIPELINE_MAP.md`
+4. `docs/MULTI_TOOL_HANDOFF.md`
+5. `docs/OPERATOR_RUNBOOK.md`
+6. 작업 성격에 따라 아래 문서 추가
 
 ## 작업별 문서 라우팅
 
@@ -35,10 +36,12 @@ EcoReport 문서가 늘어나도, 새 담당자나 다른 코딩 프로그램이
 읽을 문서:
 
 - `README.md`
+- `docs/PIPELINE_MAP.md`
 - `docs/STAGE_1_4_ARCHITECTURE.md`
 
 이 문서들이 답하는 것:
 
+- 파이프라인 전체 흐름을 쉬운 말로 보면 어떤 구조인가
 - 파이프라인 전체 단계
 - 핵심 산출물
 - 대시보드와 백엔드의 연결 구조

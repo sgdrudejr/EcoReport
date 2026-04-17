@@ -214,6 +214,7 @@ handoff 파일 위치: [`docs/SESSION_HANDOFF.md`](SESSION_HANDOFF.md)
 
 | 문서 | 역할 |
 |------|------|
+| [`docs/PIPELINE_MAP.md`](PIPELINE_MAP.md) | 한글 설명이 붙은 전체 파이프라인 지도 |
 | [`docs/DAILY_PIPELINE_RUNBOOK.md`](DAILY_PIPELINE_RUNBOOK.md) | Phase별 상세 명령어 |
 | [`docs/STAGE_1_4_ARCHITECTURE.md`](STAGE_1_4_ARCHITECTURE.md) | 파이프라인 아키텍처 |
 | [`docs/OPERATOR_RUNBOOK.md`](OPERATOR_RUNBOOK.md) | 운영 절차 |
