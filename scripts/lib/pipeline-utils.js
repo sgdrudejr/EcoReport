@@ -167,6 +167,25 @@ export function buildRunMetadata(args, overrides = {}) {
   };
 }
 
+export function buildContractMetadata({
+  version = "1.0",
+  stage,
+  generatedAt = createGeneratedAt(),
+} = {}) {
+  return {
+    version,
+    stage,
+    generatedAt,
+  };
+}
+
+export function withContract(payload, contract) {
+  return {
+    ...payload,
+    _contract: buildContractMetadata(contract),
+  };
+}
+
 export async function ensureDir(filePath) {
   await fs.mkdir(path.dirname(filePath), { recursive: true });
 }

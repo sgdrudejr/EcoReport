@@ -1,0 +1,280 @@
+{
+  "date": "2026-04-10",
+  "collectedAt": "2026-04-12T13:54:38.467Z",
+  "source": "intraday-lite",
+  "macros": {
+    "VIX": {
+      "symbol": "^VIX",
+      "close": 19.49,
+      "previousClose": null,
+      "change": null,
+      "changePct": null,
+      "tradedAt": "2026-04-09",
+      "error": "stooq 결과 없음 (^VIX)"
+    },
+    "USDKRW": {
+      "symbol": "USDKRW",
+      "close": 1480.86,
+      "previousClose": null,
+      "change": null,
+      "changePct": null,
+      "tradedAt": "20260410T080004",
+      "error": "stooq 결과 없음 (USDKRW)"
+    },
+    "WTI": {
+      "symbol": "CL.F",
+      "close": 96.57,
+      "previousClose": null,
+      "change": null,
+      "changePct": null,
+      "tradedAt": "20260410T233811",
+      "error": "stooq 결과 없음 (CL.F)"
+    }
+  },
+  "holdings": {
+    "132030": {
+      "code": "132030",
+      "name": "KODEX 골드선물(H)",
+      "bucket": "core_etf",
+      "accountKeys": [],
+      "inPortfolio": false,
+      "close": 27025,
+      "previousClose": 26815,
+      "change": 210,
+      "changePct": 0.007831,
+      "volume": 277640,
+      "tradedAt": "2026-04-10T16:10:21+09:00"
+    },
+    "133690": {
+      "code": "133690",
+      "name": "TIGER 미국나스닥100",
+      "bucket": "core_etf",
+      "accountKeys": [
+        "PENSION"
+      ],
+      "inPortfolio": true,
+      "close": 164750,
+      "previousClose": 163385,
+      "change": 1365,
+      "changePct": 0.008355,
+      "volume": 675328,
+      "tradedAt": "2026-04-10T16:10:20+09:00"
+    },
+    "138910": {
+      "code": "138910",
+      "name": "KODEX 구리선물(H)",
+      "bucket": null,
+      "accountKeys": [
+        "KIS_MAIN"
+      ],
+      "inPortfolio": true,
+      "close": 9060,
+      "previousClose": 8950,
+      "change": 110,
+      "changePct": 0.012291,
+      "volume": 85472,
+      "tradedAt": "2026-04-10T16:10:21+09:00"
+    },
+    "251350": {
+      "code": "251350",
+      "name": "KODEX MSCI선진국",
+      "bucket": null,
+      "accountKeys": [
+        "TOSS"
+      ],
+      "inPortfolio": true,
+      "close": 37700,
+      "previousClose": 37915,
+      "change": -215,
+      "changePct": -0.005671,
+      "volume": 39890,
+      "tradedAt": "2026-04-10T16:10:19+09:00"
+    },
+    "267260": {
+      "code": "267260",
+      "name": "HD현대일렉트릭",
+      "bucket": "individual_stocks",
+      "accountKeys": [],
+      "inPortfolio": false,
+      "close": 999000,
+      "previousClose": 980000,
+      "change": 19000,
+      "changePct": 0.019388,
+      "volume": 178656,
+      "tradedAt": "2026-04-10T16:10:20+09:00"
+    },
+    "298040": {
+      "code": "298040",
+      "name": "효성중공업",
+      "bucket": "individual_stocks",
+      "accountKeys": [],
+      "inPortfolio": false,
+      "close": 2940000,
+      "previousClose": 2882000,
+      "change": 58000,
+      "changePct": 0.020125,
+      "volume": 76424,
+      "tradedAt": "2026-04-10T16:10:22+09:00"
+    },
+    "360750": {
+      "code": "360750",
+      "name": "TIGER 미국S&P500",
+      "bucket": "core_etf",
+      "accountKeys": [
+        "ISA",
+        "PENSION"
+      ],
+      "inPortfolio": true,
+      "close": 25105,
+      "previousClose": 24930,
+      "change": 175,
+      "changePct": 0.00702,
+      "volume": 12485403,
+      "tradedAt": "2026-04-10T16:10:19+09:00"
+    },
+    "423160": {
+      "code": "423160",
+      "name": "KODEX KOFR금리액티브(합성)",
+      "bucket": "core_etf",
+      "accountKeys": [
+        "PENSION"
+      ],
+      "inPortfolio": true,
+      "close": 110735,
+      "previousClose": 110715,
+      "change": 20,
+      "changePct": 0.000181,
+      "volume": 388472,
+      "tradedAt": "2026-04-10T16:10:16+09:00"
+    },
+    "434730": {
+      "code": "434730",
+      "name": "HANARO 원자력iSelect",
+      "bucket": "satellite_etf",
+      "accountKeys": [
+        "TOSS",
+        "KIS_MAIN"
+      ],
+      "inPortfolio": true,
+      "close": 70310,
+      "previousClose": 69730,
+      "change": 580,
+      "changePct": 0.008318,
+      "volume": 313511,
+      "tradedAt": "2026-04-10T16:10:18+09:00"
+    },
+    "449450": {
+      "code": "449450",
+      "name": "PLUS K방산",
+      "bucket": "satellite_etf",
+      "accountKeys": [
+        "TOSS",
+        "KIS_MAIN"
+      ],
+      "inPortfolio": true,
+      "close": 79200,
+      "previousClose": 78000,
+      "change": 1200,
+      "changePct": 0.015385,
+      "volume": 1349884,
+      "tradedAt": "2026-04-10T16:10:20+09:00"
+    },
+    "458760": {
+      "code": "458760",
+      "name": "TIGER 미국배당다우존스타겟커버드콜2호",
+      "bucket": "core_etf",
+      "accountKeys": [
+        "ISA"
+      ],
+      "inPortfolio": true,
+      "close": 11170,
+      "previousClose": 11180,
+      "change": -10,
+      "changePct": -0.000894,
+      "volume": 442963,
+      "tradedAt": "2026-04-10T16:10:21+09:00"
+    },
+    "487240": {
+      "code": "487240",
+      "name": "KODEX AI전력핵심설비",
+      "bucket": "satellite_etf",
+      "accountKeys": [],
+      "inPortfolio": false,
+      "close": 33940,
+      "previousClose": 33155,
+      "change": 785,
+      "changePct": 0.023677,
+      "volume": 2377382,
+      "tradedAt": "2026-04-10T16:10:18+09:00"
+    },
+    "005930": {
+      "code": "005930",
+      "name": "삼성전자",
+      "bucket": "individual_stocks",
+      "accountKeys": [],
+      "inPortfolio": false,
+      "close": 206000,
+      "previousClose": 204000,
+      "change": 2000,
+      "changePct": 0.009804,
+      "volume": 33380154,
+      "tradedAt": "2026-04-10T16:10:20+09:00"
+    },
+    "000660": {
+      "code": "000660",
+      "name": "SK하이닉스",
+      "bucket": "individual_stocks",
+      "accountKeys": [],
+      "inPortfolio": false,
+      "close": 1027000,
+      "previousClose": 998000,
+      "change": 29000,
+      "changePct": 0.029058,
+      "volume": 5272863,
+      "tradedAt": "2026-04-10T16:10:20+09:00"
+    },
+    "010120": {
+      "code": "010120",
+      "name": "LS ELECTRIC",
+      "bucket": "individual_stocks",
+      "accountKeys": [],
+      "inPortfolio": false,
+      "close": 788000,
+      "previousClose": 788000,
+      "change": 0,
+      "changePct": 0,
+      "volume": 0,
+      "tradedAt": "2026-04-10T16:10:18+09:00"
+    },
+    "064350": {
+      "code": "064350",
+      "name": "현대로템",
+      "bucket": "individual_stocks",
+      "accountKeys": [
+        "KIS_MAIN"
+      ],
+      "inPortfolio": true,
+      "close": 210000,
+      "previousClose": 203000,
+      "change": 7000,
+      "changePct": 0.034483,
+      "volume": 1106480,
+      "tradedAt": "2026-04-10T16:10:20+09:00"
+    },
+    "047810": {
+      "code": "047810",
+      "name": "한국항공우주",
+      "bucket": "individual_stocks",
+      "accountKeys": [
+        "KIS_MAIN"
+      ],
+      "inPortfolio": true,
+      "close": 199900,
+      "previousClose": 199900,
+      "change": 0,
+      "changePct": 0,
+      "volume": 1059448,
+      "tradedAt": "2026-04-10T16:10:19+09:00"
+    }
+  }
+}

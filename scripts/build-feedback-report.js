@@ -27,11 +27,28 @@ async function main() {
     path.join(ROOT_DIR, "data", "feedback", "analysis", `${args.date}-feedback.json`);
   const outputPath =
     args.output ?? path.join(ROOT_DIR, "reports", "feedback-summary.md");
+  const shadowPath = path.join(
+    ROOT_DIR,
+    "data",
+    "analysis-state",
+    args.date,
+    "stage3-shadow-final-insights.json",
+  );
 
-  const analysis = await readJson(inputPath, null);
+  const [analysis, shadow] = await Promise.all([
+    readJson(inputPath, null),
+    readJson(shadowPath, null),
+  ]);
   if (!analysis) {
     throw new Error("feedback analysis 파일이 없어 리포트를 만들 수 없습니다.");
   }
+  const scoreCorrelation =
+    analysis.scoreReturnCorrelationDetailed ?? analysis.scoreReturnCorrelation ?? {};
+  const signalAccuracy = analysis.signalAccuracy ?? {};
+  const regimeAccuracy =
+    analysis.regimeAccuracyByHorizon ?? analysis.regimeAccuracy ?? {};
+  const worstMispredictions =
+    analysis.worstMispredictionsDetailed ?? analysis.worstMispredictions ?? [];
 
   const lines = [
     "# EcoReport Feedback Summary",
@@ -45,7 +62,7 @@ async function main() {
     "",
     "| Horizon | Correlation | Samples |",
     "|---|---:|---:|",
-    ...Object.entries(analysis.scoreReturnCorrelation ?? {}).map(
+    ...Object.entries(scoreCorrelation).map(
       ([horizonKey, stat]) =>
         `| ${horizonKey} | ${fmtSignedNumber(stat?.correlation)} | ${stat?.sampleCount ?? 0} |`,
     ),
@@ -71,7 +88,7 @@ async function main() {
     "",
   ];
 
-  for (const [horizonKey, signals] of Object.entries(analysis.signalAccuracy ?? {})) {
+  for (const [horizonKey, signals] of Object.entries(signalAccuracy)) {
     lines.push(`### ${horizonKey}`);
     lines.push("");
     lines.push("| Signal | Avg Return | Hit Rate | Samples |");
@@ -95,15 +112,37 @@ async function main() {
     lines.push("");
   }
 
-  if ((analysis.worstMispredictions ?? []).length > 0) {
+  if (Array.isArray(worstMispredictions) && worstMispredictions.length > 0) {
     lines.push("## 최악 오판 사례");
     lines.push("");
-    for (const item of analysis.worstMispredictions.slice(0, 8)) {
+    for (const item of worstMispredictions.slice(0, 8)) {
       lines.push(
         `- ${item.date} ${item.name}(${item.code}) / ${item.signal} ${item.actionScore}점 / 실제 ${
           analysis.autoAdjustment?.primaryHorizonDays ?? 10
         }일 수익률 ${fmtSignedPercent(item.returnPct)}`,
       );
+    }
+    lines.push("");
+  }
+
+  if (shadow?.top_topics?.length) {
+    lines.push("## Shadow 시장축 복기");
+    lines.push("");
+    for (const topic of shadow.top_topics.slice(0, 5)) {
+      lines.push(
+        `- ${topic.bucket_label}: ${topic.decision_note ?? topic.thesis ?? "핵심 축 점검"}${
+          topic.risk_watch ? ` / 경계 ${topic.risk_watch}` : ""
+        }`,
+      );
+    }
+    lines.push("");
+  }
+
+  if ((shadow?.watchpoints ?? []).length > 0) {
+    lines.push("## 다음 사이클 체크포인트");
+    lines.push("");
+    for (const item of shadow.watchpoints.slice(0, 5)) {
+      lines.push(`- ${item}`);
     }
     lines.push("");
   }

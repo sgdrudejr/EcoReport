@@ -1,0 +1,22 @@
+{
+  "generatedAt": "2026-04-12T05:39:13.552Z",
+  "analysisFile": "2026-04-11-feedback.json",
+  "baselineWeights": {
+    "momentum": 0.35,
+    "research": 0.3,
+    "income": 0.15,
+    "macroFit": 0.2
+  },
+  "challengerWeights": {
+    "momentum": 0.3824,
+    "research": 0.3137,
+    "income": 0.1078,
+    "macroFit": 0.1961
+  },
+  "reasons": [
+    "momentum: corr=0.2168 -> +4.0%p",
+    "research: corr=0.1002 -> +2.0%p",
+    "income: corr=-0.3153 -> -4.0%p"
+  ],
+  "status": "shadow"
+}

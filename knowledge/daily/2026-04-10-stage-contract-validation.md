@@ -1,0 +1,50 @@
+# EcoReport Stage Contract Validation (2026-04-10)
+
+- overallStatus: **warn**
+- generatedAt: 2026-04-12T05:38:57.962Z
+- stage1Extracts: 69
+- stage1Candidates: 181
+- impactCount: 0
+- stage2Mode: actual
+- stage3Holdings: 10
+- stage4Plans: 4
+
+## Checks
+- [OK] Portfolio Snapshot Present: 계좌 4개 / coded holdings 10개
+- [OK] Portfolio Snapshot Completeness: 모든 계좌와 holding code가 연결 가능합니다. | ledger: portfolio_snapshot_incomplete -> docs/rules/repair-playbooks.md#portfolio-snapshot-incomplete
+- [OK] Stage 1 Extracts Present: extract 69건 / impact candidate 181건
+- [OK] Stage 1 Required Fields: 핵심 필드(id/title/report_type/date/text_path/key_thesis)가 채워져 있습니다.
+- [OK] Stage 1 Candidate Shape: portfolio_impacts_candidate 구조가 기본 계약을 충족합니다.
+- [OK] Impact Map Present: impact 0건
+- [WARN] Impact Map Bridge Coverage: Stage 1 candidate 181건인데 impact-map이 비어 있습니다. | ledger: impact_map_empty_with_stage1_candidates -> docs/rules/repair-playbooks.md#impact-map-empty
+- [OK] Impact Map Reference Integrity: impact-map의 report/ticker/shape 연결이 정상입니다.
+- [OK] Impact Map Coverage Count Consistency: coverage.impact_count 와 실제 impact 개수가 일치합니다.
+- [OK] Contract Spec Present: config/stage-contracts.json loaded (5 stages)
+- [OK] Stage 1 Contract Presence: _contract 메타데이터가 존재합니다.
+- [OK] Stage 1 Contract Shape: version=1.0, stage=stage1
+- [OK] Stage 1 Contract Required Keys: required keys / nested keys 계약을 충족합니다.
+- [OK] Impact Map Contract Presence: _contract 메타데이터가 존재합니다.
+- [OK] Impact Map Contract Shape: version=1.0, stage=impact-map
+- [OK] Impact Map Contract Required Keys: required keys / nested keys 계약을 충족합니다.
+- [OK] Stage 2 Contract Presence: _contract 메타데이터가 존재합니다.
+- [OK] Stage 2 Contract Shape: version=1.0, stage=stage2
+- [OK] Stage 2 Contract Required Keys: required keys / nested keys 계약을 충족합니다.
+- [OK] Stage 3 Contract Presence: _contract 메타데이터가 존재합니다.
+- [OK] Stage 3 Contract Shape: version=1.0, stage=stage3
+- [OK] Stage 3 Contract Required Keys: required keys / nested keys 계약을 충족합니다.
+- [OK] Stage 4 Contract Presence: _contract 메타데이터가 존재합니다.
+- [OK] Stage 4 Contract Shape: version=1.0, stage=stage4
+- [OK] Stage 4 Contract Required Keys: required keys / nested keys 계약을 충족합니다.
+- [OK] Stage 2 Availability: 실제 Stage 2 결과 사용 (unknown model) | ledger: stage2_missing_or_mock -> docs/rules/repair-playbooks.md#stage-2-missing-or-mock
+- [OK] Stage 2 Holdings Bias Shape: holdings_bias 0건이 기본 계약을 충족합니다.
+- [OK] Stage 2 Unknown Tickers: Stage 2 ticker가 portfolio/watchlist universe 안에 있습니다.
+- [OK] Stage 3 Quant Present: holding 10건
+- [OK] Stage 3 Portfolio Coverage: Stage 3 holdings가 포트폴리오 coded holding을 커버합니다.
+- [WARN] Stage 3 Report Reference Integrity: Stage 1에 없는 reportId 참조 3건 | examples: marketvoice_1290837, marketvoice_1290831, marketvoice_1290804
+- [WARN] Stage 3 Impact Coverage Consistency: impact-map(0)와 Stage 3 impactCoverage(0.6327)가 어긋납니다.
+- [OK] Stage 4 Plan Present: account plan 4건
+- [OK] Stage 4 Account Alignment: Stage 4 accountPlans가 현재 포트폴리오 계좌와 정렬됩니다.
+- [OK] Stage 4 Action Line Presence: 모든 account plan에 actionLine이 있습니다.
+- [OK] Stage 4 Driver Reference Integrity: Stage 4 stage1Drivers가 Stage 1 extract id와 연결됩니다.
+- [OK] Stage 4 Driver Coverage: Stage 4에 연결된 stage1Drivers 16건 | ledger: stage4_missing_stage1_drivers -> docs/rules/repair-playbooks.md#stage-4-missing-stage-1-drivers
+- [OK] Cross-Stage Date Alignment: 모든 주요 산출물의 date가 2026-04-10와 일치합니다.
