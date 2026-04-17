@@ -2,7 +2,7 @@
   "input_root": "data/reports",
   "output_root": "reports",
   "detail_level": "standard",
-  "provider": "qwen",
+  "provider": "local",
   "gemini_model": "gemini-2.5-flash",
   "qwen_model": "qwen-max",
   "windows_host": "192.168.0.218",
