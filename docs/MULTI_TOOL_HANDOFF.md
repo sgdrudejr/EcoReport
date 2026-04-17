@@ -1,5 +1,7 @@
 # EcoReport Multi-Tool Handoff
 
+> **실행 진입점 → [`docs/EXECUTION_GUIDE.md`](EXECUTION_GUIDE.md)**
+
 ## 목적
 
 Codex, Cursor, Claude, 터미널 세션 등 여러 도구가 같은 저장소를 번갈아 만질 때 충돌과 맥락 손실을 줄이기 위한 공통 규칙입니다.

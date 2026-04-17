@@ -10,14 +10,21 @@ EcoReport 문서가 늘어나도, 새 담당자나 다른 코딩 프로그램이
 - 지금 하려는 작업에 맞는 지침서는 무엇인가
 - 어떤 파일이 실제 소스 오브 트루스인가
 
+## 🚀 단일 진입점
+
+**실행과 관련된 모든 것은 먼저 여기를 보세요:**
+
+→ **[`docs/EXECUTION_GUIDE.md`](EXECUTION_GUIDE.md)** — 일일 파이프라인 · LLM 준비 · StockEasy · 딥리서치 · 검증 모두 수록
+
 ## 5분 시작 순서
 
 새로 들어온 사람이나 에이전트는 보통 아래 순서로 읽으면 됩니다.
 
-1. `README.md`
-2. `docs/MULTI_TOOL_HANDOFF.md`
-3. `docs/OPERATOR_RUNBOOK.md`
-4. 작업 성격에 따라 아래 문서 추가
+1. `docs/EXECUTION_GUIDE.md` ← **여기서 시작**
+2. `README.md`
+3. `docs/MULTI_TOOL_HANDOFF.md`
+4. `docs/OPERATOR_RUNBOOK.md`
+5. 작업 성격에 따라 아래 문서 추가
 
 ## 작업별 문서 라우팅
 

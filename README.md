@@ -1,5 +1,7 @@
 # EcoReport
 
+> **실행하려면 → [`docs/EXECUTION_GUIDE.md`](docs/EXECUTION_GUIDE.md) 먼저 보세요.**
+
 EcoReport는 Mac Mini에서 돌아가는 반자동 포트폴리오 인텔리전스 워크벤치입니다.
 
 핵심 목표는 하나입니다.

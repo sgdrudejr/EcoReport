@@ -1,6 +1,8 @@
 # AGENTS.md
 
-You are working in `/Users/seo/stock-pilot`.
+> **실행 진입점 → [`docs/EXECUTION_GUIDE.md`](docs/EXECUTION_GUIDE.md)**
+
+You are working in `/Users/seo/Documents/Playground/EcoReport` (NOT `/Users/seo/stock-pilot`).
 
 This repository follows a persistent `LLM Wiki` operating model inspired by Karpathy's `raw -> wiki -> schema` pattern.
 
