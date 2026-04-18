@@ -224,6 +224,33 @@ npm run automation:daily -- --date YYYY-MM-DD
 - `data/analysis-state/YYYY-MM-DD/automation-cycle.json`
 - `knowledge/daily/YYYY-MM-DD-automation-cycle.md`
 
+## StockEasy 역추정 재현 (매크로 백필 포함)
+
+StockEasy 전략(모멘텀/피크/밸류) 매수·매도 스타일을 다시 추정할 때는 아래 순서로 실행합니다.
+
+```bash
+cd /Users/seo/Documents/Playground/economy-report
+
+# 1) FRED 코어 매크로 백필 (옵션 1)
+python3 scripts/backfill-fred-core-macro.py --start 2025-12-01 --end 2026-04-17
+
+# 2) 전략별 거래 이력 캡처 (필요 시)
+node scripts/capture-stockeasy-strategy-history.js --date 2026-04-18 --strategy momentum
+node scripts/capture-stockeasy-strategy-history.js --date 2026-04-18 --strategy peak
+node scripts/capture-stockeasy-strategy-history.js --date 2026-04-18 --strategy value
+
+# 3) 전략별 역추정
+node scripts/analyze-stockeasy-reverse-engineering.js --date 2026-04-18 --strategy momentum --min-date 2025-12-01
+node scripts/analyze-stockeasy-reverse-engineering.js --date 2026-04-18 --strategy peak --min-date 2025-12-01
+node scripts/analyze-stockeasy-reverse-engineering.js --date 2026-04-18 --strategy value --min-date 2025-12-01
+```
+
+생성 경로:
+
+- JSON: `data/analysis-state/YYYY-MM-DD/stockeasy-*-reverse-engineering.json`
+- 요약: `knowledge/daily/YYYY-MM-DD-stockeasy-*-reverse-engineering.md`
+- 통합 비교: `knowledge/daily/YYYY-MM-DD-stockeasy-style-comparison.md`
+
 포트폴리오가 한국투자증권 Open API와 연결되어 있다면, 일일 러너는 시작 전에
 `data/portfolio/latest.json`에 KIS 계좌 스냅샷을 먼저 반영합니다.
 

@@ -178,6 +178,20 @@ Stage 3 산출물은 아래를 포함합니다.
 - 다만 액션 해석은 레이어별로 분리해 혼선을 막음
 - 아직 기술 스냅샷에 없는 입력(`anchored VWAP`, 이벤트 앵커 기반 POC 정밀값 등)은 `null + data_quality_flags`로 남기고, Stage 합산에서는 0점 처리
 
+### 2026-04-18 역추정 기반 v1.3 튜닝
+
+`StockEasy` 전략실(`모멘텀/피크/밸류`)의 최근 거래 표본을 같은 수식으로 역산한 결과를 반영해, 아래 항목을 조정했습니다.
+
+- `Score_Keltner_Vol` 가중치 상향: 돌파폭 + 거래량 급증 설명력 강화
+- `Score_Div` 구간 재정의: 과매도 극단보다 `RSI 45~68` 추세 지속 구간을 우대
+- `Score_Stoch` 완화: `K>D` 조건에서 80~90 구간도 약한 가점 허용
+
+관련 산출물:
+
+- `data/analysis-state/2026-04-18/stockeasy-momentum-reverse-engineering.json`
+- `data/analysis-state/2026-04-18/stockeasy-peak-reverse-engineering.json`
+- `data/analysis-state/2026-04-18/stockeasy-value-reverse-engineering.json`
+
 ## 대시보드 표시 원칙
 
 대시보드는 아래를 한 번에 보여줘야 합니다.

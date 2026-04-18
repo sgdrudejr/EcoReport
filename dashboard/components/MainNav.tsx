@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Activity, FlaskConical, LayoutGrid, Layers3, Newspaper } from "lucide-react";
+import { Activity, FlaskConical, LayoutGrid, Layers3, Newspaper, Sparkles } from "lucide-react";
 
 const links = [
+  { href: "/stockpilot", label: "신규 대시보드", icon: Sparkles },
   { href: "/", label: "실행 리포트", icon: LayoutGrid },
   { href: "/dashboard-test", label: "테스트 랩", icon: FlaskConical },
   { href: "/feedback-report", label: "피드백 리포트", icon: Activity },

@@ -316,7 +316,9 @@ function scoreRecord(input) {
     flags,
     compute: () => {
       if (!gates.keltner_break_and_volume) return 0;
-      return clamp((keltnerBreak * 3) + (volRatio * 2), 0, 15);
+      // StockEasy momentum/peak 역추정 반영:
+      // 돌파폭 + 거래량 급증 신호의 설명력이 높아 가중치를 상향.
+      return clamp((keltnerBreak * 3.5) + (volRatio * 2.5), 0, 15);
     },
   });
 
@@ -362,9 +364,9 @@ function scoreRecord(input) {
       ? roundNumber((factors.Score_POC ?? 0) + (factors.Score_VWAP ?? 0), 3)
       : null;
 
-  // [개선 v1.1] Score_Div: RSI 다이버전스 → RSI 모멘텀으로 대체
-  // 원인: price_drop_ratio / rsi_rise_value가 실데이터에서 거의 null → 항상 0
-  // 대체: RSI 과매도 회복 구간 감지 (진입 타이밍에 직접 기여)
+  // [개선 v1.3] Score_Div: 추세/돌파형 RSI 레짐 점수
+  // 최근 역추정에서 과매도 구간보다 중립~강세 초입(45~68)에서 매수 적합도가 높아
+  // 스코어 피크를 해당 구간으로 이동했다.
   // 기존 gates.bullish_divergence_detected는 하위 호환을 위해 유지
   gates.bullish_divergence_detected =
     Boolean(input.price_drop_ratio != null && input.price_drop_ratio < 0 && input.rsi_rise_value != null && input.rsi_rise_value > 0);
@@ -376,12 +378,13 @@ function scoreRecord(input) {
     flags,
     compute: () => {
       const rsi = input.rsi_14;
-      // RSI 과매도(30 이하) = 반등 기대 최고점 / 과매수(70 초과) = 진입 위험
-      if (rsi <= 30) return 10;
-      if (rsi <= 40) return 7.5;
-      if (rsi <= 55) return 4;   // 중립 구간
-      if (rsi <= 70) return 2;   // 과매수 주의
-      return 0;                   // 극도 과매수 — 진입 회피
+      if (rsi < 25) return 1;    // 급락 구간: 추세형 관점에선 보수 처리
+      if (rsi < 35) return 3;
+      if (rsi < 45) return 6;
+      if (rsi <= 68) return 10;  // 추세 지속 가능성이 높은 핵심 구간
+      if (rsi <= 78) return 6;
+      if (rsi <= 85) return 2;
+      return 0;                  // 과열 극단 구간
     },
   });
 
@@ -419,8 +422,9 @@ function scoreRecord(input) {
     },
   });
 
+  // 하위 호환을 위해 게이트 키 이름은 유지하되, 돌파형 장세를 반영해 90 미만까지 허용.
   gates.stoch_k_above_d_and_below_80 =
-    Boolean(input.stoch_k_14 != null && input.stoch_d_14 != null && input.stoch_k_14 > input.stoch_d_14 && input.stoch_k_14 < 80);
+    Boolean(input.stoch_k_14 != null && input.stoch_d_14 != null && input.stoch_k_14 > input.stoch_d_14 && input.stoch_k_14 < 90);
   factors.Score_Stoch = factorScore({
     name: "Score_Stoch",
     required: [
@@ -429,8 +433,17 @@ function scoreRecord(input) {
     ],
     flags,
     compute: () => {
-      if (!gates.stoch_k_above_d_and_below_80) return 0;
-      return clamp(10 - Math.abs(50 - input.stoch_k_14) * 0.2, 0, 10);
+      if (input.stoch_k_14 == null || input.stoch_d_14 == null) return null;
+      // 추세 전략에서 고점 돌파 구간(80~90)의 신호를 완전 배제하지 않고 약한 점수 부여.
+      if (input.stoch_k_14 > input.stoch_d_14) {
+        if (input.stoch_k_14 < 80) {
+          return clamp(10 - Math.abs(60 - input.stoch_k_14) * 0.2, 0, 10);
+        }
+        if (input.stoch_k_14 <= 90) {
+          return clamp(6 - (input.stoch_k_14 - 80) * 0.3, 2, 6);
+        }
+      }
+      return 0;
     },
   });
 
@@ -498,6 +511,14 @@ function scoreRecord(input) {
             .join(", ")
         : "",
   };
+}
+
+export function buildStockPilotInput(params) {
+  return buildInputRow(params);
+}
+
+export function scoreStockPilotInput(input) {
+  return scoreRecord(input);
 }
 
 /**

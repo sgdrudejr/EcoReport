@@ -43,6 +43,8 @@
     "strategy:pipeline": "bash scripts/run-strategy-pipeline.sh",
     "portfolio:sync:kis": "node scripts/sync-kis-portfolio.js",
     "external:stockeasy:capture": "node scripts/capture-stockeasy-snapshot.js",
+    "external:stockeasy:history": "node scripts/capture-stockeasy-strategy-history.js",
+    "analyze:stockeasy:reverse": "node scripts/analyze-stockeasy-reverse-engineering.js",
     "portfolio:rag": "node scripts/build-portfolio-rag-corpus.js",
     "parallel:rag": "node scripts/build-parallel-rag-corpus.js",
     "parallel:search": "node scripts/search-parallel-rag.js",
