@@ -1,0 +1,5087 @@
+{
+  "date": "2026-04-20",
+  "runDate": "2026-04-20",
+  "effectiveMarketDate": "2026-04-20",
+  "runId": "2026-04-20-024334",
+  "generatedAt": "2026-04-20T02:47:27.930Z",
+  "reportInputs": {
+    "reportCount": 100,
+    "available": true
+  },
+  "regime": {
+    "name": "BULL",
+    "confidence": 0.72,
+    "voteSum": 3,
+    "signals": [
+      "VIX 17.94<20",
+      "T10Y2Y 0.55>0.5",
+      "CPI YoY 3.286% 보통",
+      "가격>MA20>MA60"
+    ],
+    "market_context": {
+      "index": "KOSPI",
+      "signal": "BULLISH",
+      "vix": null,
+      "score": 96,
+      "close": 6264.58,
+      "ma": {
+        "ma5": 6148.928,
+        "ma20": 5676.143,
+        "ma60": 5539.8788,
+        "ma120": 4860.1057
+      },
+      "rsi": 64.33,
+      "alerts": []
+    }
+  },
+  "leadingIndicator": {
+    "score": 63,
+    "available": true,
+    "t10y2y": 0.55,
+    "vix": 17.94,
+    "cpiYoy": 3.286,
+    "cgMomentum": null
+  },
+  "coverage": {
+    "factorCoverage": 0.218,
+    "techCoverage": 0.1836,
+    "impactCoverage": 0.1882,
+    "stage2Available": true
+  },
+  "quality": {
+    "unrelatedEvidenceRatio": 0.0185,
+    "blockedEvidenceCount": 6
+  },
+  "configUsed": {
+    "weightProfile": "balanced",
+    "maxWeights": {
+      "allocation": 0.4,
+      "factor": 0.1,
+      "tech": 0.25,
+      "report": 0.1,
+      "regime": 0.05,
+      "stage2": 0.05,
+      "leading": 0.05
+    },
+    "factorModel": {
+      "winsorZ": 3.5,
+      "scoreScale": 14,
+      "weights": {
+        "momentum": 0.35,
+        "research": 0.3,
+        "income": 0.15,
+        "macroFit": 0.2
+      },
+      "autoAdjust": {
+        "enabled": true,
+        "applied": false,
+        "reason": "no_feedback_suggestion",
+        "baseWeights": {
+          "momentum": 0.35,
+          "research": 0.3,
+          "income": 0.15,
+          "macroFit": 0.2
+        },
+        "appliedWeights": {
+          "momentum": 0.35,
+          "research": 0.3,
+          "income": 0.15,
+          "macroFit": 0.2
+        },
+        "source": "data/feedback/latest-feedback.json"
+      },
+      "baseWeights": {
+        "momentum": 0.35,
+        "research": 0.3,
+        "income": 0.15,
+        "macroFit": 0.2
+      },
+      "appliedWeights": {
+        "momentum": 0.35,
+        "research": 0.3,
+        "income": 0.15,
+        "macroFit": 0.2
+      }
+    },
+    "stopLoss": {
+      "enabled": true,
+      "fromEntry_pct": -0.1,
+      "fromRecentHigh_pct": -0.15,
+      "recentHighWindow": 20,
+      "forcedTrimScore": 35
+    },
+    "holdingBlend": {
+      "enabled": true,
+      "actionWeight": 0.92,
+      "factorWeight": 0.08,
+      "minFactorCoverage": 0.35,
+      "maxAdjustment": 18,
+      "gateMode": "sameSignal",
+      "minFactorDistance": 8
+    },
+    "covarianceModel": {
+      "enabled": true,
+      "shrinkage": 0.35,
+      "lambda": 0.55,
+      "minHistory": 20,
+      "annualization": 252,
+      "ridge": 0.000001
+    },
+    "taxAware": {
+      "enabled": true,
+      "alpha": 1.6,
+      "normalTaxRate": 0.154,
+      "minRiskFloor": 0.08,
+      "maxMultiplier": 1.15
+    },
+    "riskPenaltyCaps": {
+      "concentration": 10,
+      "covariance": 8,
+      "tailRisk": 15,
+      "dataQuality": 10,
+      "regimeStress": 10,
+      "total": 30
+    }
+  },
+  "factorStats": {
+    "factorNames": [
+      "momentum",
+      "research",
+      "income",
+      "macroFit"
+    ],
+    "statsByFactor": {
+      "momentum": {
+        "mean": 0.6075,
+        "std": 0.8594,
+        "count": 5
+      },
+      "research": {
+        "mean": 0.7546,
+        "std": 0.1916,
+        "count": 5
+      },
+      "income": {
+        "mean": 0.0032,
+        "std": 0.0018,
+        "count": 5
+      },
+      "macroFit": {
+        "mean": -1.6068,
+        "std": 1.6127,
+        "count": 5
+      }
+    }
+  },
+  "holdings": {
+    "138910": {
+      "positionKey": "KIS_MAIN:138910",
+      "code": "138910",
+      "name": "KODEX 구리선물(H)",
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "category": "기타",
+      "marketValue": 551870,
+      "incomeYield": 0,
+      "technicalSignal": "N/A",
+      "technicalBaseScore": null,
+      "actionScore": 54,
+      "direction": -0.528,
+      "timing": 0.296,
+      "reportScore": 1.235,
+      "probabilities": {
+        "p_buy": 0.5734,
+        "p_hold": 0.2934,
+        "p_sell": 0.1332
+      },
+      "conviction": "MEDIUM",
+      "signal": "WATCH",
+      "features": {
+        "maTrend": -2.5,
+        "macdZ": 0,
+        "rsiMid": 0,
+        "adxTrend": 0,
+        "bbDist": 0,
+        "rsiTiming": 0,
+        "stochTiming": 0,
+        "volumeZ": 0
+      },
+      "rawActionScore": 54,
+      "rawSignal": "WATCH",
+      "reportImpacts": [
+        {
+          "reportId": "report_007",
+          "title": "2026년 4월 셋째 주 반도체 Weekly",
+          "broker": "교보증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "industry",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "- 미국: 나스닥 신고가 속 빅테크 실적발표 시즌 시작 CSP의 CapEx 등 AI 투자 기조와 수익성에 대한 확신 필요\n - 중국: 1분기 GDP 성장률 5.0%로 시장 컨센서스 상회. 중국-대만 국민당 대표 회담으로 지정학적 리스크 일부 완화\n - 대만: TSMC 호실적 발표. 모멘텀은 양호하나 다음주 자체 대형 이벤...",
+          "evidenceNumbers": [
+            {
+              "label": "thesis_anchor",
+              "value": "5.0%",
+              "why_it_matters": "핵심 투자 논리를 직접 뒷받침하는 수치"
+            },
+            {
+              "label": "catalyst_number",
+              "value": "35%",
+              "why_it_matters": "변화 촉매의 구체적 근거"
+            },
+            {
+              "label": "catalyst_number",
+              "value": "66.2%",
+              "why_it_matters": "변화 촉매의 구체적 근거"
+            },
+            {
+              "label": "catalyst_number",
+              "value": "$38.5",
+              "why_it_matters": "변화 촉매의 구체적 근거"
+            },
+            {
+              "label": "catalyst_number",
+              "value": "$69.2",
+              "why_it_matters": "변화 촉매의 구체적 근거"
+            },
+            {
+              "label": "supporting",
+              "value": "20%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "49.3%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "53.0%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "50%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "6.8%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "3.71%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "4.5%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "4.25%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "10%",
+              "why_it_matters": "보조 참고 수치"
+            }
+          ],
+          "relationType": "direct",
+          "relationWeight": 1,
+          "evidenceScore": 1,
+          "contribution": 0.4003
+        },
+        {
+          "reportId": "report_009",
+          "title": "2차전지 섹터 비중확대 유지, 다만 선별적 대응",
+          "broker": "유안타증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "industry",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "주목할 부분은 이러한 불확실성이 시장의 조기 낙관론과 실물 수급 펀더멘털 간의 심각한 괴리를\n 야기하고 있다는 점. 17일 발생한 유가 급락은 실제 공급 정상화가 아닌 외교적 완화 기대가 선물 가격에\n 선반영되었기 때문. 실제로는 지난 50일간 누적된 공급 결손은 이미 5억 배럴을 상회하며, 특히 설비\n 특성상 정상 가동...",
+          "evidenceNumbers": [
+            {
+              "label": "catalyst_number",
+              "value": "600,000",
+              "why_it_matters": "변화 촉매의 구체적 근거"
+            },
+            {
+              "label": "catalyst_number",
+              "value": "531,000",
+              "why_it_matters": "변화 촉매의 구체적 근거"
+            },
+            {
+              "label": "catalyst_number",
+              "value": "500,000",
+              "why_it_matters": "변화 촉매의 구체적 근거"
+            },
+            {
+              "label": "catalyst_number",
+              "value": "400,000",
+              "why_it_matters": "변화 촉매의 구체적 근거"
+            },
+            {
+              "label": "supporting",
+              "value": "10%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "25%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "40%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "300,000",
+              "why_it_matters": "보조 참고 수치"
+            }
+          ],
+          "relationType": "direct",
+          "relationWeight": 1,
+          "evidenceScore": 1,
+          "contribution": 0.4003
+        },
+        {
+          "reportId": "report_013",
+          "title": "실적 시즌 진입. 기대되는 호실적",
+          "broker": "하나증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "industry",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "데이터 포인트 및 주간 리뷰: 주가 회복 완료\n  ASML과 TSMC는 2026년 매출액 전망을 상향했다. AI 중심의 강한 수요가 지속되고 있기 때문이다. TSMC 실적에서 스마트폰\n 매출액이 전년동기대비 30% 이상 증가한 점은 복기해볼 필요가 있다. Apple 및 삼성전자는 메모리 가격 상승에 따른 원가 부담\n 구...",
+          "evidenceNumbers": [
+            {
+              "label": "thesis_anchor",
+              "value": "30%",
+              "why_it_matters": "핵심 투자 논리를 직접 뒷받침하는 수치"
+            },
+            {
+              "label": "catalyst_number",
+              "value": "34%",
+              "why_it_matters": "변화 촉매의 구체적 근거"
+            },
+            {
+              "label": "catalyst_number",
+              "value": "21%",
+              "why_it_matters": "변화 촉매의 구체적 근거"
+            },
+            {
+              "label": "catalyst_number",
+              "value": "14%",
+              "why_it_matters": "변화 촉매의 구체적 근거"
+            },
+            {
+              "label": "supporting",
+              "value": "5.7%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "4.9%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "9.8%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "7%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "27.5%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "20%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "10%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "9%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "31.12%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "26.67%",
+              "why_it_matters": "보조 참고 수치"
+            }
+          ],
+          "relationType": "direct",
+          "relationWeight": 1,
+          "evidenceScore": 1,
+          "contribution": 0.4003
+        },
+        {
+          "reportId": "report_016",
+          "title": "오리온 간담회 시사점",
+          "broker": "하나증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "industry",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": " ④ 배당: 오리온의 영업현금흐름 및 비영업자산 등을 감안하면 배당 여력은 충분하다. 시중 금리 이상으로 배당할 계획이며,\n 사업사 배당이 증가함에 따라 홀딩스 배당도 자연스럽게 증가할 것으로 보인다.\n  ⑤ 중국 전망: 올해 춘절 기간(작년 11월~2월) 동안 매출은 YoY 7% 성장한 것으로 추산되어 내부적으로는 ...",
+          "evidenceNumbers": [
+            {
+              "label": "thesis_anchor",
+              "value": "7%",
+              "why_it_matters": "핵심 투자 논리를 직접 뒷받침하는 수치"
+            },
+            {
+              "label": "catalyst_number",
+              "value": "1.3%",
+              "why_it_matters": "변화 촉매의 구체적 근거"
+            },
+            {
+              "label": "supporting",
+              "value": "40%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "11%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "11.1%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "6.1%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "4.3%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "3.4%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "3.0%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "2.7%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "2.6%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "140%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "1,500억원",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "1,000억원",
+              "why_it_matters": "보조 참고 수치"
+            }
+          ],
+          "relationType": "direct",
+          "relationWeight": 1,
+          "evidenceScore": 1,
+          "contribution": 0.4003
+        },
+        {
+          "reportId": "report_017",
+          "title": "우려 속 기회 찾기",
+          "broker": "DS투자증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "industry",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.54,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "음식료 업종 최선호주 삼양식품 유지, 차선호주 오리온 제시\n음식료 업종 내 최선호주로 삼양식품을 유지한다. 최근 삼양식품(003230)은 월\n별 라면 수출 실적이 최고치를 경신하며 수요 우려를 불식하고 신규 공장 가동\n후 실적 성장에 대한 기대감을 높여주고 있다. 1분기 실적 호조 후 2분기는 마케\n팅 비용 확대가 예상되...",
+          "evidenceNumbers": [
+            {
+              "label": "supporting",
+              "value": "10%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "1,600",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "1,400",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "1,200",
+              "why_it_matters": "보조 참고 수치"
+            }
+          ],
+          "relationType": "direct",
+          "relationWeight": 1,
+          "evidenceScore": 1,
+          "contribution": 0.3431
+        }
+      ],
+      "technical": {
+        "signal": null,
+        "score": null,
+        "adjustedScore": null,
+        "rsi": null,
+        "macd": null,
+        "bollinger": null,
+        "atr": null,
+        "recentHigh": null,
+        "volumeRatio": null
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "available": true,
+        "unavailableReason": null,
+        "impactScore": 81,
+        "impactValue": 1.235,
+        "impactCount": 46,
+        "coverageWeight": 1,
+        "directAccountImpactScore": 54,
+        "relationSummary": {
+          "directCount": 59,
+          "thematicCount": 0,
+          "secondOrderCount": 0,
+          "blockedCount": 6,
+          "unrelatedEvidenceRatio": 0.0923
+        }
+      },
+      "factor": {
+        "raw": {
+          "momentum": -0.9,
+          "research": 0.8976,
+          "income": 0,
+          "macroFit": -1.7535
+        },
+        "zScores": {
+          "momentum": -1.754,
+          "research": 0.7463,
+          "income": -1.7889,
+          "macroFit": -0.091
+        },
+        "weightedZ": -0.6765,
+        "score": 41,
+        "factorCoverage": 0.75,
+        "availability": {
+          "momentum": 0,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "actionBlend": {
+        "score": 54,
+        "signal": "WATCH",
+        "blended": false,
+        "rawActionScore": 54,
+        "factorScore": 41,
+        "actionWeight": 1,
+        "factorWeight": 0,
+        "factorCoverage": 0.75,
+        "delta": 0,
+        "gateMode": "sameSignal",
+        "factorApplied": false,
+        "rawSignal": "WATCH",
+        "factorSignal": "REDUCE"
+      },
+      "stopLoss": {
+        "enabled": true,
+        "triggered": false,
+        "entryPrice": 8765,
+        "currentPrice": 9515,
+        "recentHigh": null,
+        "drawdownFromEntryPct": 0.0856,
+        "drawdownFromRecentHighPct": null,
+        "triggers": []
+      },
+      "scores": {
+        "factorScore": 41,
+        "techScore": null,
+        "reportScore": 81,
+        "actionScore": 54,
+        "rawActionScore": 54
+      },
+      "explain": {
+        "topDrivers": [
+          "리포트 영향 81점 (46건 연결)"
+        ],
+        "warnings": [
+          "기술 스냅샷이 없어 리포트/배분 쪽 해석 비중이 커졌습니다.",
+          "WATCH 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    },
+    "434730": {
+      "positionKey": "KIS_MAIN:434730",
+      "code": "434730",
+      "name": "HANARO 원자력iSelect",
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "category": "원자력",
+      "marketValue": 152290,
+      "incomeYield": 0.004,
+      "technicalSignal": "STRONG_BUY",
+      "technicalBaseScore": 96,
+      "actionScore": 65,
+      "direction": 1.09,
+      "timing": -0.878,
+      "reportScore": 0.265,
+      "probabilities": {
+        "p_buy": 0.6549,
+        "p_hold": 0.2471,
+        "p_sell": 0.098
+      },
+      "conviction": "MEDIUM",
+      "signal": "HOLD",
+      "features": {
+        "maTrend": 2.5,
+        "macdZ": 0.5975678393037229,
+        "rsiMid": 1.1360000000000001,
+        "adxTrend": -0.29750000000000004,
+        "bbDist": -0.35,
+        "rsiTiming": -1.4200000000000004,
+        "stochTiming": -2.5,
+        "volumeZ": -0.11299999999999999
+      },
+      "rawActionScore": 65,
+      "rawSignal": "HOLD",
+      "reportImpacts": [
+        {
+          "reportId": "report_009",
+          "title": "2차전지 섹터 비중확대 유지, 다만 선별적 대응",
+          "broker": "유안타증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "industry",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.567,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는 주목할 부분은 이러한 불확실성이 시장의 조기 낙관론과 실물 수급 펀더멘털 간의 심각한 괴리를 야기하고 있다는 점. 17일 발생한 유가 급락은 실제 공급 정상화가 아닌 외교적 완화 기대가 선물 가격에 선반영되었기 때문. 실제로는 지난 50일간 누적된 공급 결손은 이미 5억 배럴을 상회...",
+          "evidenceNumbers": [
+            "catalyst_number: 600,000",
+            "catalyst_number: 531,000",
+            "catalyst_number: 500,000",
+            "catalyst_number: 400,000"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.2014
+        },
+        {
+          "reportId": "report_010",
+          "title": "건설/부동산 Weekly - Captive Premium",
+          "broker": "유진투자증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "industry",
+          "targetType": "category",
+          "direction": "negative",
+          "strength": 0.333,
+          "confidence": 0.74,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "매크로는 부정 시각이며 핵심 근거는 삼성바이오로직스, 6공장 건설 허가 신청 캡티브(Captive) 물량 보유는 밸류에이션 프리미엄을 정당화 6 공장은 18 만 리터 규모로, 연내 착공해 지난 4 월 17 일, 삼성 E&A 는 전자공시를 통해 삼성전자 평택 P5 복합동, 그린동, 2027년 준공 목표. 삼성E&A가 2~5...",
+          "evidenceNumbers": [
+            "supporting: 5,500",
+            "supporting: 8,790",
+            "supporting: 7,126",
+            "supporting: 6,192"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": -0.0995
+        },
+        {
+          "reportId": "report_041",
+          "title": "주간 증시 브리핑",
+          "broker": "유진투자증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "strategy",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.333,
+          "confidence": 0.74,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는 운송 • 26년 1Q GDP는 기저효과로 플러스(+) 전환이 예상. (P: +1.6%yoy) 美허니웰,록히드마틴,인텔 15 10 5 0 핵심 상방 요인은 반도체 수출 호조임. 2월과 3월 ◼ 韓 4월 소비자심리지수 반도체 수출액은 역대 최고치를 경신했으며1Q 반도체 (P: 107pt...",
+          "evidenceNumbers": [
+            "thesis_anchor: 1.6%",
+            "catalyst_number: 139%",
+            "supporting: 2.5%",
+            "supporting: 1.3%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.0689
+        },
+        {
+          "reportId": "marketvoice_1326912",
+          "title": "기관 매수에 힘입어 코스피 6,270선 강세 마감",
+          "broker": "SBS Biz",
+          "publishedDate": "2026-04-20T02:38:00+00:00",
+          "reportType": "marketvoice",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.528,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "reason": "2026년 4월 20일 코스피가 6,270선까지 오르며 강한 상승세를 보였습니다. 기관 투자자가 대규모 매수로 지수를 끌어올렸고, 삼성전자와 SK하이닉스 등 대형주가 특히 강세를 나타냈습니다.",
+          "evidenceNumbers": [
+            "인용 0건",
+            "원문 1건",
+            "국제유가 -0.88%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.0677
+        }
+      ],
+      "technical": {
+        "signal": "STRONG_BUY",
+        "score": 96,
+        "adjustedScore": 96,
+        "rsi": 64.2,
+        "macd": {
+          "value": 2503.5491,
+          "signal": 1567.1004,
+          "histogram": 936.4488
+        },
+        "bollinger": {
+          "upper": 77865.7936,
+          "middle": 68885.75,
+          "lower": 59905.7064,
+          "position": "upper_half"
+        },
+        "atr": {
+          "value": 2957.718,
+          "pct": 0.038828
+        },
+        "recentHigh": {
+          "window": 20,
+          "value": 76730,
+          "distance_pct": -0.007233
+        },
+        "volumeRatio": 0.887
+      },
+      "report": {
+        "sourceLayer": "impact-map",
+        "available": true,
+        "unavailableReason": null,
+        "impactScore": 58,
+        "impactValue": 0.265,
+        "impactCount": 4,
+        "coverageWeight": 0.55,
+        "directAccountImpactScore": 54,
+        "relationSummary": {
+          "directCount": 0,
+          "thematicCount": 4,
+          "secondOrderCount": 0,
+          "blockedCount": 0,
+          "unrelatedEvidenceRatio": 0
+        }
+      },
+      "factor": {
+        "raw": {
+          "momentum": 1.2469,
+          "research": 0.4643,
+          "income": 0.004,
+          "macroFit": 1.2195
+        },
+        "zScores": {
+          "momentum": 0.7441,
+          "research": -1.5148,
+          "income": 0.4472,
+          "macroFit": 1.7525
+        },
+        "weightedZ": 0.2236,
+        "score": 53,
+        "factorCoverage": 1,
+        "availability": {
+          "momentum": 1,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "actionBlend": {
+        "score": 65,
+        "signal": "HOLD",
+        "blended": false,
+        "rawActionScore": 65,
+        "factorScore": 53,
+        "actionWeight": 1,
+        "factorWeight": 0,
+        "factorCoverage": 1,
+        "delta": 0,
+        "gateMode": "sameSignal",
+        "factorApplied": false,
+        "rawSignal": "HOLD",
+        "factorSignal": "WATCH"
+      },
+      "stopLoss": {
+        "enabled": true,
+        "triggered": false,
+        "entryPrice": 64630,
+        "currentPrice": 76175,
+        "recentHigh": 76730,
+        "drawdownFromEntryPct": 0.1786,
+        "drawdownFromRecentHighPct": -0.0072,
+        "triggers": []
+      },
+      "scores": {
+        "factorScore": 53,
+        "techScore": 96,
+        "reportScore": 58,
+        "actionScore": 65,
+        "rawActionScore": 65
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 96점",
+          "리포트 영향 58점 (4건 연결)",
+          "RSI 64.2"
+        ],
+        "warnings": []
+      }
+    },
+    "449450": {
+      "positionKey": "KIS_MAIN:449450",
+      "code": "449450",
+      "name": "PLUS K방산",
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "category": "방산",
+      "marketValue": 545090,
+      "incomeYield": 0.004,
+      "technicalSignal": "STRONG_BUY",
+      "technicalBaseScore": 96,
+      "actionScore": 66,
+      "direction": 0.996,
+      "timing": -0.709,
+      "reportScore": 0.56,
+      "probabilities": {
+        "p_buy": 0.7067,
+        "p_hold": 0.2227,
+        "p_sell": 0.0706
+      },
+      "conviction": "MEDIUM",
+      "signal": "HOLD",
+      "features": {
+        "maTrend": 2.5,
+        "macdZ": 0.09214520736791354,
+        "rsiMid": 0.5080000000000001,
+        "adxTrend": -0.06583333333333326,
+        "bbDist": -0.35,
+        "rsiTiming": -0.6350000000000001,
+        "stochTiming": -2.5,
+        "volumeZ": -0.645
+      },
+      "rawActionScore": 66,
+      "rawSignal": "HOLD",
+      "reportImpacts": [
+        {
+          "reportId": "report_009",
+          "title": "2차전지 섹터 비중확대 유지, 다만 선별적 대응",
+          "broker": "유안타증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "industry",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.567,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는 주목할 부분은 이러한 불확실성이 시장의 조기 낙관론과 실물 수급 펀더멘털 간의 심각한 괴리를 야기하고 있다는 점. 17일 발생한 유가 급락은 실제 공급 정상화가 아닌 외교적 완화 기대가 선물 가격에 선반영되었기 때문. 실제로는 지난 50일간 누적된 공급 결손은 이미 5억 배럴을 상회...",
+          "evidenceNumbers": [
+            "catalyst_number: 600,000",
+            "catalyst_number: 531,000",
+            "catalyst_number: 500,000",
+            "catalyst_number: 400,000"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.2014
+        },
+        {
+          "reportId": "report_013",
+          "title": "실적 시즌 진입. 기대되는 호실적",
+          "broker": "하나증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "industry",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.567,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는 데이터 포인트 및 주간 리뷰: 주가 회복 완료  ASML과 TSMC는 2026년 매출액 전망을 상향했다. AI 중심의 강한 수요가 지속되고 있기 때문이다. TSMC 실적에서 스마트폰 매출액이 전년동기대비 30% 이상 증가한 점은 복기해볼 필요가 있다. Apple 및 삼성전자는 메모...",
+          "evidenceNumbers": [
+            "thesis_anchor: 30%",
+            "catalyst_number: 34%",
+            "catalyst_number: 21%",
+            "catalyst_number: 14%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.2014
+        },
+        {
+          "reportId": "report_025",
+          "title": "Arsenal of Democracy",
+          "broker": "하나증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "industry",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.486,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는  IEA, 페르시아만 유전·정유시설·파이프라인 피해와 호르무즈 해협 봉쇄 영향으로 수억 배럴 공급 차질 발생. IEA, 에너지 수급 불안 장기화  생산 정상화에 최대 2년 소요 및 LNG 시장은 회복 더 지연될 것으로 전망. 미국 국방부, GM·Ford와  WSJ, 미국 국방부...",
+          "evidenceNumbers": [
+            "catalyst_number: 5%",
+            "catalyst_number: 6,600달러",
+            "supporting: 70%",
+            "supporting: 1.5%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.1726
+        },
+        {
+          "reportId": "report_014",
+          "title": "안녕하세요 위클리에요(로봇/방산/항공/조선/해운) - 2026/04/13~2026/04/19",
+          "broker": "유진투자증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "industry",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.486,
+          "confidence": 0.74,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "매크로는 중립 시각이며 핵심 근거는 [방산] 주문해도 오지 않을 미국 무기 ◼ 현대로템, 현대위아 방산 사업부 인수 추진. KAI와 풍산에 이어 호황 속 업계 재편 활발 ◼ 일본, 살상력 있는 무기 수출 가능하도록 승인. 수출 컨트롤 타워 구축도 추진 ◼ 독일 IFV를 사겠다는 루마니아. IFV를 포기하고 드론을 사...",
+          "evidenceNumbers": [
+            "supporting: 12%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.1452
+        },
+        {
+          "reportId": "report_089",
+          "title": "[Quant Comment] 국내외 주간 이익 동향 체크",
+          "broker": "하나증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "strategy",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.567,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는 지난 주말 VIX -2.6%(17.5), 달러 98.1(-0.1%), 미국 10년물 국채 4.25%(-6bp), 원/달러 환율 1460원(-1.3%) 등으로 위험선호 부각, / 조건: 다만 일요일 오후 1시 현재 이란 호르무즈",
+          "evidenceNumbers": [
+            "thesis_anchor: 2.6%",
+            "thesis_anchor: 0.1%",
+            "thesis_anchor: 4.25%",
+            "thesis_anchor: 1.3%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.1394
+        }
+      ],
+      "technical": {
+        "signal": "STRONG_BUY",
+        "score": 96,
+        "adjustedScore": 96,
+        "rsi": 56.35,
+        "macd": {
+          "value": 1866.3273,
+          "signal": 1708.8637,
+          "histogram": 157.4636
+        },
+        "bollinger": {
+          "upper": 83162.6851,
+          "middle": 75107.25,
+          "lower": 67051.8149,
+          "position": "upper_half"
+        },
+        "atr": {
+          "value": 2943.301,
+          "pct": 0.037773
+        },
+        "recentHigh": {
+          "window": 20,
+          "value": 80070,
+          "distance_pct": -0.026852
+        },
+        "volumeRatio": 0.355
+      },
+      "report": {
+        "sourceLayer": "impact-map",
+        "available": true,
+        "unavailableReason": null,
+        "impactScore": 66,
+        "impactValue": 0.56,
+        "impactCount": 14,
+        "coverageWeight": 0.55,
+        "directAccountImpactScore": 54,
+        "relationSummary": {
+          "directCount": 0,
+          "thematicCount": 15,
+          "secondOrderCount": 0,
+          "blockedCount": 0,
+          "unrelatedEvidenceRatio": 0
+        }
+      },
+      "factor": {
+        "raw": {
+          "momentum": 1.0169,
+          "research": 0.6708,
+          "income": 0.004,
+          "macroFit": -2.5
+        },
+        "zScores": {
+          "momentum": 0.4764,
+          "research": -0.4372,
+          "income": 0.4472,
+          "macroFit": -0.5539
+        },
+        "weightedZ": -0.0081,
+        "score": 50,
+        "factorCoverage": 1,
+        "availability": {
+          "momentum": 1,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "actionBlend": {
+        "score": 66,
+        "signal": "HOLD",
+        "blended": false,
+        "rawActionScore": 66,
+        "factorScore": 50,
+        "actionWeight": 1,
+        "factorWeight": 0,
+        "factorCoverage": 1,
+        "delta": 0,
+        "gateMode": "sameSignal",
+        "factorApplied": false,
+        "rawSignal": "HOLD",
+        "factorSignal": "WATCH"
+      },
+      "stopLoss": {
+        "enabled": true,
+        "triggered": false,
+        "entryPrice": 77758.5714,
+        "currentPrice": 77920,
+        "recentHigh": 80070,
+        "drawdownFromEntryPct": 0.0021,
+        "drawdownFromRecentHighPct": -0.0269,
+        "triggers": []
+      },
+      "scores": {
+        "factorScore": 50,
+        "techScore": 96,
+        "reportScore": 66,
+        "actionScore": 66,
+        "rawActionScore": 66
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 96점",
+          "리포트 영향 66점 (14건 연결)",
+          "RSI 56.4"
+        ],
+        "warnings": []
+      }
+    },
+    "047810": {
+      "positionKey": "KIS_MAIN:047810",
+      "code": "047810",
+      "name": "한국항공우주",
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "category": "방산",
+      "marketValue": 934500,
+      "incomeYield": 0.004,
+      "technicalSignal": "BUY",
+      "technicalBaseScore": 76,
+      "actionScore": 70,
+      "direction": 0.924,
+      "timing": 0.074,
+      "reportScore": 0.752,
+      "probabilities": {
+        "p_buy": 0.795,
+        "p_hold": 0.1722,
+        "p_sell": 0.0329
+      },
+      "conviction": "MEDIUM",
+      "signal": "HOLD",
+      "features": {
+        "maTrend": 2.5,
+        "macdZ": -0.1519944587060539,
+        "rsiMid": 0.06560000000000002,
+        "adxTrend": -0.13083333333333336,
+        "bbDist": -0.35,
+        "rsiTiming": -0.08200000000000003,
+        "stochTiming": 0.2133333333333335,
+        "volumeZ": -0.516
+      },
+      "rawActionScore": 70,
+      "rawSignal": "HOLD",
+      "reportImpacts": [
+        {
+          "reportId": "report_089",
+          "title": "[Quant Comment] 국내외 주간 이익 동향 체크",
+          "broker": "하나증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "strategy",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.553,
+          "confidence": 0.95,
+          "horizon": "1m",
+          "decayHalfLifeDays": 30,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는 지난 주말 VIX -2.6%(17.5), 달러 98.1(-0.1%), 미국 10년물 국채 4.25%(-6bp), 원/달러 환율 1460원(-1.3%) 등으로 위험선호 부각, / 조건: 다만 일요일 오후 1시 현재 이란 호르무즈",
+          "evidenceNumbers": [
+            "thesis_anchor: 2.6%",
+            "thesis_anchor: 0.1%",
+            "thesis_anchor: 4.25%",
+            "thesis_anchor: 1.3%"
+          ],
+          "relationType": "direct",
+          "relationWeight": 1,
+          "evidenceScore": 1,
+          "contribution": 0.2364
+        },
+        {
+          "reportId": "report_009",
+          "title": "2차전지 섹터 비중확대 유지, 다만 선별적 대응",
+          "broker": "유안타증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "industry",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.567,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는 주목할 부분은 이러한 불확실성이 시장의 조기 낙관론과 실물 수급 펀더멘털 간의 심각한 괴리를 야기하고 있다는 점. 17일 발생한 유가 급락은 실제 공급 정상화가 아닌 외교적 완화 기대가 선물 가격에 선반영되었기 때문. 실제로는 지난 50일간 누적된 공급 결손은 이미 5억 배럴을 상회...",
+          "evidenceNumbers": [
+            "catalyst_number: 600,000",
+            "catalyst_number: 531,000",
+            "catalyst_number: 500,000",
+            "catalyst_number: 400,000"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.2014
+        },
+        {
+          "reportId": "report_013",
+          "title": "실적 시즌 진입. 기대되는 호실적",
+          "broker": "하나증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "industry",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.567,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는 데이터 포인트 및 주간 리뷰: 주가 회복 완료  ASML과 TSMC는 2026년 매출액 전망을 상향했다. AI 중심의 강한 수요가 지속되고 있기 때문이다. TSMC 실적에서 스마트폰 매출액이 전년동기대비 30% 이상 증가한 점은 복기해볼 필요가 있다. Apple 및 삼성전자는 메모...",
+          "evidenceNumbers": [
+            "thesis_anchor: 30%",
+            "catalyst_number: 34%",
+            "catalyst_number: 21%",
+            "catalyst_number: 14%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.2014
+        },
+        {
+          "reportId": "report_025",
+          "title": "Arsenal of Democracy",
+          "broker": "하나증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "industry",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.486,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는  IEA, 페르시아만 유전·정유시설·파이프라인 피해와 호르무즈 해협 봉쇄 영향으로 수억 배럴 공급 차질 발생. IEA, 에너지 수급 불안 장기화  생산 정상화에 최대 2년 소요 및 LNG 시장은 회복 더 지연될 것으로 전망. 미국 국방부, GM·Ford와  WSJ, 미국 국방부...",
+          "evidenceNumbers": [
+            "catalyst_number: 5%",
+            "catalyst_number: 6,600달러",
+            "supporting: 70%",
+            "supporting: 1.5%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.1726
+        },
+        {
+          "reportId": "report_014",
+          "title": "안녕하세요 위클리에요(로봇/방산/항공/조선/해운) - 2026/04/13~2026/04/19",
+          "broker": "유진투자증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "industry",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.486,
+          "confidence": 0.74,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "매크로는 중립 시각이며 핵심 근거는 [방산] 주문해도 오지 않을 미국 무기 ◼ 현대로템, 현대위아 방산 사업부 인수 추진. KAI와 풍산에 이어 호황 속 업계 재편 활발 ◼ 일본, 살상력 있는 무기 수출 가능하도록 승인. 수출 컨트롤 타워 구축도 추진 ◼ 독일 IFV를 사겠다는 루마니아. IFV를 포기하고 드론을 사...",
+          "evidenceNumbers": [
+            "supporting: 12%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.1452
+        }
+      ],
+      "technical": {
+        "signal": "BUY",
+        "score": 76,
+        "adjustedScore": 76,
+        "rsi": 50.82,
+        "macd": {
+          "value": 2991.1383,
+          "signal": 3527.2628,
+          "histogram": -536.1244
+        },
+        "bollinger": {
+          "upper": 202332.1193,
+          "middle": 186500,
+          "lower": 170667.8807,
+          "position": "upper_half"
+        },
+        "atr": {
+          "value": 8891.7331,
+          "pct": 0.047562
+        },
+        "recentHigh": {
+          "window": 20,
+          "value": 205500,
+          "distance_pct": -0.090268
+        },
+        "volumeRatio": 0.484
+      },
+      "report": {
+        "sourceLayer": "impact-map",
+        "available": true,
+        "unavailableReason": null,
+        "impactScore": 71,
+        "impactValue": 0.752,
+        "impactCount": 15,
+        "coverageWeight": 1,
+        "directAccountImpactScore": 54,
+        "relationSummary": {
+          "directCount": 1,
+          "thematicCount": 15,
+          "secondOrderCount": 0,
+          "blockedCount": 0,
+          "unrelatedEvidenceRatio": 0
+        }
+      },
+      "factor": {
+        "raw": {
+          "momentum": 0.8496,
+          "research": 0.8051,
+          "income": 0.004,
+          "macroFit": -2.5
+        },
+        "zScores": {
+          "momentum": 0.2818,
+          "research": 0.2635,
+          "income": 0.4472,
+          "macroFit": -0.5539
+        },
+        "weightedZ": 0.134,
+        "score": 52,
+        "factorCoverage": 1,
+        "availability": {
+          "momentum": 1,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "actionBlend": {
+        "score": 70,
+        "signal": "HOLD",
+        "blended": false,
+        "rawActionScore": 70,
+        "factorScore": 52,
+        "actionWeight": 1,
+        "factorWeight": 0,
+        "factorCoverage": 1,
+        "delta": 0,
+        "gateMode": "sameSignal",
+        "factorApplied": false,
+        "rawSignal": "HOLD",
+        "factorSignal": "WATCH"
+      },
+      "stopLoss": {
+        "enabled": true,
+        "triggered": false,
+        "entryPrice": 200500,
+        "currentPrice": 186950,
+        "recentHigh": 205500,
+        "drawdownFromEntryPct": -0.0676,
+        "drawdownFromRecentHighPct": -0.0903,
+        "triggers": []
+      },
+      "scores": {
+        "factorScore": 52,
+        "techScore": 76,
+        "reportScore": 71,
+        "actionScore": 70,
+        "rawActionScore": 70
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 76점",
+          "리포트 영향 71점 (15건 연결)",
+          "RSI 50.8"
+        ],
+        "warnings": []
+      }
+    },
+    "064350": {
+      "positionKey": "KIS_MAIN:064350",
+      "code": "064350",
+      "name": "현대로템",
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "category": "방산",
+      "marketValue": 217500,
+      "incomeYield": 0.004,
+      "technicalSignal": "STRONG_BUY",
+      "technicalBaseScore": 82,
+      "actionScore": 66,
+      "direction": 0.858,
+      "timing": -0.611,
+      "reportScore": 0.937,
+      "probabilities": {
+        "p_buy": 0.7485,
+        "p_hold": 0.2,
+        "p_sell": 0.0515
+      },
+      "conviction": "MEDIUM",
+      "signal": "HOLD",
+      "features": {
+        "maTrend": 0.8044751573235827,
+        "macdZ": 1.4967375522547854,
+        "rsiMid": 0.7031999999999999,
+        "adxTrend": -0.15916666666666668,
+        "bbDist": -0.35,
+        "rsiTiming": -0.8789999999999999,
+        "stochTiming": -2.5,
+        "volumeZ": -0.21299999999999997
+      },
+      "rawActionScore": 66,
+      "rawSignal": "HOLD",
+      "reportImpacts": [
+        {
+          "reportId": "report_014",
+          "title": "안녕하세요 위클리에요(로봇/방산/항공/조선/해운) - 2026/04/13~2026/04/19",
+          "broker": "유진투자증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "industry",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.574,
+          "confidence": 0.83,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "매크로는 중립 시각이며 핵심 근거는 [방산] 주문해도 오지 않을 미국 무기 ◼ 현대로템, 현대위아 방산 사업부 인수 추진. KAI와 풍산에 이어 호황 속 업계 재편 활발 ◼ 일본, 살상력 있는 무기 수출 가능하도록 승인. 수출 컨트롤 타워 구축도 추진 ◼ 독일 IFV를 사겠다는 루마니아. IFV를 포기하고 드론을 사...",
+          "evidenceNumbers": [
+            "supporting: 12%"
+          ],
+          "relationType": "direct",
+          "relationWeight": 1,
+          "evidenceScore": 1,
+          "contribution": 0.3561
+        },
+        {
+          "reportId": "report_038",
+          "title": "4/17 KB 리서치 장마감코멘트",
+          "broker": "KB증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "strategy",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.553,
+          "confidence": 0.95,
+          "horizon": "1m",
+          "decayHalfLifeDays": 30,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는 20 (월) 21 (화) 22 (수) 23 (목) 24 (금) 이창용 한은 총재 임기만료 (미) 2월 기업재고, 3월 소매판매, (한) 3월 PPI 연준 베이지북 (미) 4월 미시간대 소비자심리지수 (확정) (유) 2월 건설생산 3월 미결주택매매 (실적) OCI, 삼성바이오로직스, (미...",
+          "evidenceNumbers": [
+            "thesis_anchor: 6,000억원",
+            "supporting: 5.68%",
+            "supporting: 6.99%"
+          ],
+          "relationType": "direct",
+          "relationWeight": 1,
+          "evidenceScore": 1,
+          "contribution": 0.2364
+        },
+        {
+          "reportId": "report_098",
+          "title": "DS와 함께하는 Weekly TalkTalk Vol. 255",
+          "broker": "DS투자증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "strategy",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.553,
+          "confidence": 0.95,
+          "horizon": "1m",
+          "decayHalfLifeDays": 30,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는 TSMC 1Q26 실적 & 가이던스 핵심 정리 - 1Q26 순이익 NT$572.5B (+58% YoY)으로 사상 최대, GPM 66.2%로 신기록, OPM 58.1% - 2Q26 GPM 가이던스 65.5%~67.5% → 가동률 상승 + 비용 최적화로 마진 추가 개선, 2026년 Cape...",
+          "evidenceNumbers": [
+            "thesis_anchor: 58%",
+            "thesis_anchor: 66.2%",
+            "thesis_anchor: 58.1%",
+            "thesis_anchor: 65.5%"
+          ],
+          "relationType": "direct",
+          "relationWeight": 1,
+          "evidenceScore": 1,
+          "contribution": 0.2364
+        },
+        {
+          "reportId": "report_009",
+          "title": "2차전지 섹터 비중확대 유지, 다만 선별적 대응",
+          "broker": "유안타증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "industry",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.567,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는 주목할 부분은 이러한 불확실성이 시장의 조기 낙관론과 실물 수급 펀더멘털 간의 심각한 괴리를 야기하고 있다는 점. 17일 발생한 유가 급락은 실제 공급 정상화가 아닌 외교적 완화 기대가 선물 가격에 선반영되었기 때문. 실제로는 지난 50일간 누적된 공급 결손은 이미 5억 배럴을 상회...",
+          "evidenceNumbers": [
+            "catalyst_number: 600,000",
+            "catalyst_number: 531,000",
+            "catalyst_number: 500,000",
+            "catalyst_number: 400,000"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.2014
+        },
+        {
+          "reportId": "report_013",
+          "title": "실적 시즌 진입. 기대되는 호실적",
+          "broker": "하나증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "industry",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.567,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는 데이터 포인트 및 주간 리뷰: 주가 회복 완료  ASML과 TSMC는 2026년 매출액 전망을 상향했다. AI 중심의 강한 수요가 지속되고 있기 때문이다. TSMC 실적에서 스마트폰 매출액이 전년동기대비 30% 이상 증가한 점은 복기해볼 필요가 있다. Apple 및 삼성전자는 메모...",
+          "evidenceNumbers": [
+            "thesis_anchor: 30%",
+            "catalyst_number: 34%",
+            "catalyst_number: 21%",
+            "catalyst_number: 14%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.2014
+        }
+      ],
+      "technical": {
+        "signal": "STRONG_BUY",
+        "score": 82,
+        "adjustedScore": 82,
+        "rsi": 58.79,
+        "macd": {
+          "value": 4156.6276,
+          "signal": 1664.8236,
+          "histogram": 2491.804
+        },
+        "bollinger": {
+          "upper": 228624.635,
+          "middle": 200545,
+          "lower": 172465.365,
+          "position": "upper_half"
+        },
+        "atr": {
+          "value": 11881.5407,
+          "pct": 0.054378
+        },
+        "recentHigh": {
+          "window": 20,
+          "value": 225500,
+          "distance_pct": -0.031042
+        },
+        "volumeRatio": 0.787
+      },
+      "report": {
+        "sourceLayer": "impact-map",
+        "available": true,
+        "unavailableReason": null,
+        "impactScore": 75,
+        "impactValue": 0.937,
+        "impactCount": 17,
+        "coverageWeight": 1,
+        "directAccountImpactScore": 54,
+        "relationSummary": {
+          "directCount": 3,
+          "thematicCount": 15,
+          "secondOrderCount": 0,
+          "blockedCount": 0,
+          "unrelatedEvidenceRatio": 0
+        }
+      },
+      "factor": {
+        "raw": {
+          "momentum": 0.8239,
+          "research": 0.9352,
+          "income": 0.004,
+          "macroFit": -2.5
+        },
+        "zScores": {
+          "momentum": 0.2518,
+          "research": 0.9423,
+          "income": 0.4472,
+          "macroFit": -0.5539
+        },
+        "weightedZ": 0.3271,
+        "score": 55,
+        "factorCoverage": 1,
+        "availability": {
+          "momentum": 1,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "actionBlend": {
+        "score": 66,
+        "signal": "HOLD",
+        "blended": false,
+        "rawActionScore": 66,
+        "factorScore": 55,
+        "actionWeight": 1,
+        "factorWeight": 0,
+        "factorCoverage": 1,
+        "delta": 0,
+        "gateMode": "sameSignal",
+        "factorApplied": false,
+        "rawSignal": "HOLD",
+        "factorSignal": "WATCH"
+      },
+      "stopLoss": {
+        "enabled": true,
+        "triggered": false,
+        "entryPrice": 208000,
+        "currentPrice": 218500,
+        "recentHigh": 225500,
+        "drawdownFromEntryPct": 0.0505,
+        "drawdownFromRecentHighPct": -0.031,
+        "triggers": []
+      },
+      "scores": {
+        "factorScore": 55,
+        "techScore": 82,
+        "reportScore": 75,
+        "actionScore": 66,
+        "rawActionScore": 66
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 82점",
+          "리포트 영향 75점 (17건 연결)",
+          "RSI 58.8"
+        ],
+        "warnings": []
+      }
+    }
+  },
+  "positions": {
+    "KIS_MAIN:047810": {
+      "positionKey": "KIS_MAIN:047810",
+      "code": "047810",
+      "name": "한국항공우주",
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "category": "방산",
+      "marketValue": 934500,
+      "incomeYield": 0.004,
+      "technicalSignal": "BUY",
+      "technicalBaseScore": 76,
+      "actionScore": 70,
+      "direction": 0.924,
+      "timing": 0.074,
+      "reportScore": 0.752,
+      "probabilities": {
+        "p_buy": 0.795,
+        "p_hold": 0.1722,
+        "p_sell": 0.0329
+      },
+      "conviction": "MEDIUM",
+      "signal": "HOLD",
+      "features": {
+        "maTrend": 2.5,
+        "macdZ": -0.1519944587060539,
+        "rsiMid": 0.06560000000000002,
+        "adxTrend": -0.13083333333333336,
+        "bbDist": -0.35,
+        "rsiTiming": -0.08200000000000003,
+        "stochTiming": 0.2133333333333335,
+        "volumeZ": -0.516
+      },
+      "rawActionScore": 70,
+      "rawSignal": "HOLD",
+      "reportImpacts": [
+        {
+          "reportId": "report_089",
+          "title": "[Quant Comment] 국내외 주간 이익 동향 체크",
+          "broker": "하나증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "strategy",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.553,
+          "confidence": 0.95,
+          "horizon": "1m",
+          "decayHalfLifeDays": 30,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는 지난 주말 VIX -2.6%(17.5), 달러 98.1(-0.1%), 미국 10년물 국채 4.25%(-6bp), 원/달러 환율 1460원(-1.3%) 등으로 위험선호 부각, / 조건: 다만 일요일 오후 1시 현재 이란 호르무즈",
+          "evidenceNumbers": [
+            "thesis_anchor: 2.6%",
+            "thesis_anchor: 0.1%",
+            "thesis_anchor: 4.25%",
+            "thesis_anchor: 1.3%"
+          ],
+          "relationType": "direct",
+          "relationWeight": 1,
+          "evidenceScore": 1,
+          "contribution": 0.2364
+        },
+        {
+          "reportId": "report_009",
+          "title": "2차전지 섹터 비중확대 유지, 다만 선별적 대응",
+          "broker": "유안타증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "industry",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.567,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는 주목할 부분은 이러한 불확실성이 시장의 조기 낙관론과 실물 수급 펀더멘털 간의 심각한 괴리를 야기하고 있다는 점. 17일 발생한 유가 급락은 실제 공급 정상화가 아닌 외교적 완화 기대가 선물 가격에 선반영되었기 때문. 실제로는 지난 50일간 누적된 공급 결손은 이미 5억 배럴을 상회...",
+          "evidenceNumbers": [
+            "catalyst_number: 600,000",
+            "catalyst_number: 531,000",
+            "catalyst_number: 500,000",
+            "catalyst_number: 400,000"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.2014
+        },
+        {
+          "reportId": "report_013",
+          "title": "실적 시즌 진입. 기대되는 호실적",
+          "broker": "하나증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "industry",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.567,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는 데이터 포인트 및 주간 리뷰: 주가 회복 완료  ASML과 TSMC는 2026년 매출액 전망을 상향했다. AI 중심의 강한 수요가 지속되고 있기 때문이다. TSMC 실적에서 스마트폰 매출액이 전년동기대비 30% 이상 증가한 점은 복기해볼 필요가 있다. Apple 및 삼성전자는 메모...",
+          "evidenceNumbers": [
+            "thesis_anchor: 30%",
+            "catalyst_number: 34%",
+            "catalyst_number: 21%",
+            "catalyst_number: 14%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.2014
+        },
+        {
+          "reportId": "report_025",
+          "title": "Arsenal of Democracy",
+          "broker": "하나증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "industry",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.486,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는  IEA, 페르시아만 유전·정유시설·파이프라인 피해와 호르무즈 해협 봉쇄 영향으로 수억 배럴 공급 차질 발생. IEA, 에너지 수급 불안 장기화  생산 정상화에 최대 2년 소요 및 LNG 시장은 회복 더 지연될 것으로 전망. 미국 국방부, GM·Ford와  WSJ, 미국 국방부...",
+          "evidenceNumbers": [
+            "catalyst_number: 5%",
+            "catalyst_number: 6,600달러",
+            "supporting: 70%",
+            "supporting: 1.5%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.1726
+        },
+        {
+          "reportId": "report_014",
+          "title": "안녕하세요 위클리에요(로봇/방산/항공/조선/해운) - 2026/04/13~2026/04/19",
+          "broker": "유진투자증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "industry",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.486,
+          "confidence": 0.74,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "매크로는 중립 시각이며 핵심 근거는 [방산] 주문해도 오지 않을 미국 무기 ◼ 현대로템, 현대위아 방산 사업부 인수 추진. KAI와 풍산에 이어 호황 속 업계 재편 활발 ◼ 일본, 살상력 있는 무기 수출 가능하도록 승인. 수출 컨트롤 타워 구축도 추진 ◼ 독일 IFV를 사겠다는 루마니아. IFV를 포기하고 드론을 사...",
+          "evidenceNumbers": [
+            "supporting: 12%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.1452
+        }
+      ],
+      "technical": {
+        "signal": "BUY",
+        "score": 76,
+        "adjustedScore": 76,
+        "rsi": 50.82,
+        "macd": {
+          "value": 2991.1383,
+          "signal": 3527.2628,
+          "histogram": -536.1244
+        },
+        "bollinger": {
+          "upper": 202332.1193,
+          "middle": 186500,
+          "lower": 170667.8807,
+          "position": "upper_half"
+        },
+        "atr": {
+          "value": 8891.7331,
+          "pct": 0.047562
+        },
+        "recentHigh": {
+          "window": 20,
+          "value": 205500,
+          "distance_pct": -0.090268
+        },
+        "volumeRatio": 0.484
+      },
+      "report": {
+        "sourceLayer": "impact-map",
+        "available": true,
+        "unavailableReason": null,
+        "impactScore": 71,
+        "impactValue": 0.752,
+        "impactCount": 15,
+        "coverageWeight": 1,
+        "directAccountImpactScore": 54,
+        "relationSummary": {
+          "directCount": 1,
+          "thematicCount": 15,
+          "secondOrderCount": 0,
+          "blockedCount": 0,
+          "unrelatedEvidenceRatio": 0
+        }
+      },
+      "factor": {
+        "raw": {
+          "momentum": 0.8496,
+          "research": 0.8051,
+          "income": 0.004,
+          "macroFit": -2.5
+        },
+        "zScores": {
+          "momentum": 0.2818,
+          "research": 0.2635,
+          "income": 0.4472,
+          "macroFit": -0.5539
+        },
+        "weightedZ": 0.134,
+        "score": 52,
+        "factorCoverage": 1,
+        "availability": {
+          "momentum": 1,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "actionBlend": {
+        "score": 70,
+        "signal": "HOLD",
+        "blended": false,
+        "rawActionScore": 70,
+        "factorScore": 52,
+        "actionWeight": 1,
+        "factorWeight": 0,
+        "factorCoverage": 1,
+        "delta": 0,
+        "gateMode": "sameSignal",
+        "factorApplied": false,
+        "rawSignal": "HOLD",
+        "factorSignal": "WATCH"
+      },
+      "stopLoss": {
+        "enabled": true,
+        "triggered": false,
+        "entryPrice": 200500,
+        "currentPrice": 186950,
+        "recentHigh": 205500,
+        "drawdownFromEntryPct": -0.0676,
+        "drawdownFromRecentHighPct": -0.0903,
+        "triggers": []
+      },
+      "scores": {
+        "factorScore": 52,
+        "techScore": 76,
+        "reportScore": 71,
+        "actionScore": 70,
+        "rawActionScore": 70
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 76점",
+          "리포트 영향 71점 (15건 연결)",
+          "RSI 50.8"
+        ],
+        "warnings": []
+      }
+    },
+    "KIS_MAIN:064350": {
+      "positionKey": "KIS_MAIN:064350",
+      "code": "064350",
+      "name": "현대로템",
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "category": "방산",
+      "marketValue": 217500,
+      "incomeYield": 0.004,
+      "technicalSignal": "STRONG_BUY",
+      "technicalBaseScore": 82,
+      "actionScore": 66,
+      "direction": 0.858,
+      "timing": -0.611,
+      "reportScore": 0.937,
+      "probabilities": {
+        "p_buy": 0.7485,
+        "p_hold": 0.2,
+        "p_sell": 0.0515
+      },
+      "conviction": "MEDIUM",
+      "signal": "HOLD",
+      "features": {
+        "maTrend": 0.8044751573235827,
+        "macdZ": 1.4967375522547854,
+        "rsiMid": 0.7031999999999999,
+        "adxTrend": -0.15916666666666668,
+        "bbDist": -0.35,
+        "rsiTiming": -0.8789999999999999,
+        "stochTiming": -2.5,
+        "volumeZ": -0.21299999999999997
+      },
+      "rawActionScore": 66,
+      "rawSignal": "HOLD",
+      "reportImpacts": [
+        {
+          "reportId": "report_014",
+          "title": "안녕하세요 위클리에요(로봇/방산/항공/조선/해운) - 2026/04/13~2026/04/19",
+          "broker": "유진투자증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "industry",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.574,
+          "confidence": 0.83,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "매크로는 중립 시각이며 핵심 근거는 [방산] 주문해도 오지 않을 미국 무기 ◼ 현대로템, 현대위아 방산 사업부 인수 추진. KAI와 풍산에 이어 호황 속 업계 재편 활발 ◼ 일본, 살상력 있는 무기 수출 가능하도록 승인. 수출 컨트롤 타워 구축도 추진 ◼ 독일 IFV를 사겠다는 루마니아. IFV를 포기하고 드론을 사...",
+          "evidenceNumbers": [
+            "supporting: 12%"
+          ],
+          "relationType": "direct",
+          "relationWeight": 1,
+          "evidenceScore": 1,
+          "contribution": 0.3561
+        },
+        {
+          "reportId": "report_038",
+          "title": "4/17 KB 리서치 장마감코멘트",
+          "broker": "KB증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "strategy",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.553,
+          "confidence": 0.95,
+          "horizon": "1m",
+          "decayHalfLifeDays": 30,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는 20 (월) 21 (화) 22 (수) 23 (목) 24 (금) 이창용 한은 총재 임기만료 (미) 2월 기업재고, 3월 소매판매, (한) 3월 PPI 연준 베이지북 (미) 4월 미시간대 소비자심리지수 (확정) (유) 2월 건설생산 3월 미결주택매매 (실적) OCI, 삼성바이오로직스, (미...",
+          "evidenceNumbers": [
+            "thesis_anchor: 6,000억원",
+            "supporting: 5.68%",
+            "supporting: 6.99%"
+          ],
+          "relationType": "direct",
+          "relationWeight": 1,
+          "evidenceScore": 1,
+          "contribution": 0.2364
+        },
+        {
+          "reportId": "report_098",
+          "title": "DS와 함께하는 Weekly TalkTalk Vol. 255",
+          "broker": "DS투자증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "strategy",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.553,
+          "confidence": 0.95,
+          "horizon": "1m",
+          "decayHalfLifeDays": 30,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는 TSMC 1Q26 실적 & 가이던스 핵심 정리 - 1Q26 순이익 NT$572.5B (+58% YoY)으로 사상 최대, GPM 66.2%로 신기록, OPM 58.1% - 2Q26 GPM 가이던스 65.5%~67.5% → 가동률 상승 + 비용 최적화로 마진 추가 개선, 2026년 Cape...",
+          "evidenceNumbers": [
+            "thesis_anchor: 58%",
+            "thesis_anchor: 66.2%",
+            "thesis_anchor: 58.1%",
+            "thesis_anchor: 65.5%"
+          ],
+          "relationType": "direct",
+          "relationWeight": 1,
+          "evidenceScore": 1,
+          "contribution": 0.2364
+        },
+        {
+          "reportId": "report_009",
+          "title": "2차전지 섹터 비중확대 유지, 다만 선별적 대응",
+          "broker": "유안타증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "industry",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.567,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는 주목할 부분은 이러한 불확실성이 시장의 조기 낙관론과 실물 수급 펀더멘털 간의 심각한 괴리를 야기하고 있다는 점. 17일 발생한 유가 급락은 실제 공급 정상화가 아닌 외교적 완화 기대가 선물 가격에 선반영되었기 때문. 실제로는 지난 50일간 누적된 공급 결손은 이미 5억 배럴을 상회...",
+          "evidenceNumbers": [
+            "catalyst_number: 600,000",
+            "catalyst_number: 531,000",
+            "catalyst_number: 500,000",
+            "catalyst_number: 400,000"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.2014
+        },
+        {
+          "reportId": "report_013",
+          "title": "실적 시즌 진입. 기대되는 호실적",
+          "broker": "하나증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "industry",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.567,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는 데이터 포인트 및 주간 리뷰: 주가 회복 완료  ASML과 TSMC는 2026년 매출액 전망을 상향했다. AI 중심의 강한 수요가 지속되고 있기 때문이다. TSMC 실적에서 스마트폰 매출액이 전년동기대비 30% 이상 증가한 점은 복기해볼 필요가 있다. Apple 및 삼성전자는 메모...",
+          "evidenceNumbers": [
+            "thesis_anchor: 30%",
+            "catalyst_number: 34%",
+            "catalyst_number: 21%",
+            "catalyst_number: 14%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.2014
+        }
+      ],
+      "technical": {
+        "signal": "STRONG_BUY",
+        "score": 82,
+        "adjustedScore": 82,
+        "rsi": 58.79,
+        "macd": {
+          "value": 4156.6276,
+          "signal": 1664.8236,
+          "histogram": 2491.804
+        },
+        "bollinger": {
+          "upper": 228624.635,
+          "middle": 200545,
+          "lower": 172465.365,
+          "position": "upper_half"
+        },
+        "atr": {
+          "value": 11881.5407,
+          "pct": 0.054378
+        },
+        "recentHigh": {
+          "window": 20,
+          "value": 225500,
+          "distance_pct": -0.031042
+        },
+        "volumeRatio": 0.787
+      },
+      "report": {
+        "sourceLayer": "impact-map",
+        "available": true,
+        "unavailableReason": null,
+        "impactScore": 75,
+        "impactValue": 0.937,
+        "impactCount": 17,
+        "coverageWeight": 1,
+        "directAccountImpactScore": 54,
+        "relationSummary": {
+          "directCount": 3,
+          "thematicCount": 15,
+          "secondOrderCount": 0,
+          "blockedCount": 0,
+          "unrelatedEvidenceRatio": 0
+        }
+      },
+      "factor": {
+        "raw": {
+          "momentum": 0.8239,
+          "research": 0.9352,
+          "income": 0.004,
+          "macroFit": -2.5
+        },
+        "zScores": {
+          "momentum": 0.2518,
+          "research": 0.9423,
+          "income": 0.4472,
+          "macroFit": -0.5539
+        },
+        "weightedZ": 0.3271,
+        "score": 55,
+        "factorCoverage": 1,
+        "availability": {
+          "momentum": 1,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "actionBlend": {
+        "score": 66,
+        "signal": "HOLD",
+        "blended": false,
+        "rawActionScore": 66,
+        "factorScore": 55,
+        "actionWeight": 1,
+        "factorWeight": 0,
+        "factorCoverage": 1,
+        "delta": 0,
+        "gateMode": "sameSignal",
+        "factorApplied": false,
+        "rawSignal": "HOLD",
+        "factorSignal": "WATCH"
+      },
+      "stopLoss": {
+        "enabled": true,
+        "triggered": false,
+        "entryPrice": 208000,
+        "currentPrice": 218500,
+        "recentHigh": 225500,
+        "drawdownFromEntryPct": 0.0505,
+        "drawdownFromRecentHighPct": -0.031,
+        "triggers": []
+      },
+      "scores": {
+        "factorScore": 55,
+        "techScore": 82,
+        "reportScore": 75,
+        "actionScore": 66,
+        "rawActionScore": 66
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 82점",
+          "리포트 영향 75점 (17건 연결)",
+          "RSI 58.8"
+        ],
+        "warnings": []
+      }
+    },
+    "KIS_MAIN:138910": {
+      "positionKey": "KIS_MAIN:138910",
+      "code": "138910",
+      "name": "KODEX 구리선물(H)",
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "category": "기타",
+      "marketValue": 551870,
+      "incomeYield": 0,
+      "technicalSignal": "N/A",
+      "technicalBaseScore": null,
+      "actionScore": 54,
+      "direction": -0.528,
+      "timing": 0.296,
+      "reportScore": 1.235,
+      "probabilities": {
+        "p_buy": 0.5734,
+        "p_hold": 0.2934,
+        "p_sell": 0.1332
+      },
+      "conviction": "MEDIUM",
+      "signal": "WATCH",
+      "features": {
+        "maTrend": -2.5,
+        "macdZ": 0,
+        "rsiMid": 0,
+        "adxTrend": 0,
+        "bbDist": 0,
+        "rsiTiming": 0,
+        "stochTiming": 0,
+        "volumeZ": 0
+      },
+      "rawActionScore": 54,
+      "rawSignal": "WATCH",
+      "reportImpacts": [
+        {
+          "reportId": "report_007",
+          "title": "2026년 4월 셋째 주 반도체 Weekly",
+          "broker": "교보증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "industry",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "- 미국: 나스닥 신고가 속 빅테크 실적발표 시즌 시작 CSP의 CapEx 등 AI 투자 기조와 수익성에 대한 확신 필요\n - 중국: 1분기 GDP 성장률 5.0%로 시장 컨센서스 상회. 중국-대만 국민당 대표 회담으로 지정학적 리스크 일부 완화\n - 대만: TSMC 호실적 발표. 모멘텀은 양호하나 다음주 자체 대형 이벤...",
+          "evidenceNumbers": [
+            {
+              "label": "thesis_anchor",
+              "value": "5.0%",
+              "why_it_matters": "핵심 투자 논리를 직접 뒷받침하는 수치"
+            },
+            {
+              "label": "catalyst_number",
+              "value": "35%",
+              "why_it_matters": "변화 촉매의 구체적 근거"
+            },
+            {
+              "label": "catalyst_number",
+              "value": "66.2%",
+              "why_it_matters": "변화 촉매의 구체적 근거"
+            },
+            {
+              "label": "catalyst_number",
+              "value": "$38.5",
+              "why_it_matters": "변화 촉매의 구체적 근거"
+            },
+            {
+              "label": "catalyst_number",
+              "value": "$69.2",
+              "why_it_matters": "변화 촉매의 구체적 근거"
+            },
+            {
+              "label": "supporting",
+              "value": "20%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "49.3%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "53.0%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "50%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "6.8%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "3.71%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "4.5%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "4.25%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "10%",
+              "why_it_matters": "보조 참고 수치"
+            }
+          ],
+          "relationType": "direct",
+          "relationWeight": 1,
+          "evidenceScore": 1,
+          "contribution": 0.4003
+        },
+        {
+          "reportId": "report_009",
+          "title": "2차전지 섹터 비중확대 유지, 다만 선별적 대응",
+          "broker": "유안타증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "industry",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "주목할 부분은 이러한 불확실성이 시장의 조기 낙관론과 실물 수급 펀더멘털 간의 심각한 괴리를\n 야기하고 있다는 점. 17일 발생한 유가 급락은 실제 공급 정상화가 아닌 외교적 완화 기대가 선물 가격에\n 선반영되었기 때문. 실제로는 지난 50일간 누적된 공급 결손은 이미 5억 배럴을 상회하며, 특히 설비\n 특성상 정상 가동...",
+          "evidenceNumbers": [
+            {
+              "label": "catalyst_number",
+              "value": "600,000",
+              "why_it_matters": "변화 촉매의 구체적 근거"
+            },
+            {
+              "label": "catalyst_number",
+              "value": "531,000",
+              "why_it_matters": "변화 촉매의 구체적 근거"
+            },
+            {
+              "label": "catalyst_number",
+              "value": "500,000",
+              "why_it_matters": "변화 촉매의 구체적 근거"
+            },
+            {
+              "label": "catalyst_number",
+              "value": "400,000",
+              "why_it_matters": "변화 촉매의 구체적 근거"
+            },
+            {
+              "label": "supporting",
+              "value": "10%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "25%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "40%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "300,000",
+              "why_it_matters": "보조 참고 수치"
+            }
+          ],
+          "relationType": "direct",
+          "relationWeight": 1,
+          "evidenceScore": 1,
+          "contribution": 0.4003
+        },
+        {
+          "reportId": "report_013",
+          "title": "실적 시즌 진입. 기대되는 호실적",
+          "broker": "하나증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "industry",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "데이터 포인트 및 주간 리뷰: 주가 회복 완료\n  ASML과 TSMC는 2026년 매출액 전망을 상향했다. AI 중심의 강한 수요가 지속되고 있기 때문이다. TSMC 실적에서 스마트폰\n 매출액이 전년동기대비 30% 이상 증가한 점은 복기해볼 필요가 있다. Apple 및 삼성전자는 메모리 가격 상승에 따른 원가 부담\n 구...",
+          "evidenceNumbers": [
+            {
+              "label": "thesis_anchor",
+              "value": "30%",
+              "why_it_matters": "핵심 투자 논리를 직접 뒷받침하는 수치"
+            },
+            {
+              "label": "catalyst_number",
+              "value": "34%",
+              "why_it_matters": "변화 촉매의 구체적 근거"
+            },
+            {
+              "label": "catalyst_number",
+              "value": "21%",
+              "why_it_matters": "변화 촉매의 구체적 근거"
+            },
+            {
+              "label": "catalyst_number",
+              "value": "14%",
+              "why_it_matters": "변화 촉매의 구체적 근거"
+            },
+            {
+              "label": "supporting",
+              "value": "5.7%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "4.9%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "9.8%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "7%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "27.5%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "20%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "10%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "9%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "31.12%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "26.67%",
+              "why_it_matters": "보조 참고 수치"
+            }
+          ],
+          "relationType": "direct",
+          "relationWeight": 1,
+          "evidenceScore": 1,
+          "contribution": 0.4003
+        },
+        {
+          "reportId": "report_016",
+          "title": "오리온 간담회 시사점",
+          "broker": "하나증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "industry",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.63,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": " ④ 배당: 오리온의 영업현금흐름 및 비영업자산 등을 감안하면 배당 여력은 충분하다. 시중 금리 이상으로 배당할 계획이며,\n 사업사 배당이 증가함에 따라 홀딩스 배당도 자연스럽게 증가할 것으로 보인다.\n  ⑤ 중국 전망: 올해 춘절 기간(작년 11월~2월) 동안 매출은 YoY 7% 성장한 것으로 추산되어 내부적으로는 ...",
+          "evidenceNumbers": [
+            {
+              "label": "thesis_anchor",
+              "value": "7%",
+              "why_it_matters": "핵심 투자 논리를 직접 뒷받침하는 수치"
+            },
+            {
+              "label": "catalyst_number",
+              "value": "1.3%",
+              "why_it_matters": "변화 촉매의 구체적 근거"
+            },
+            {
+              "label": "supporting",
+              "value": "40%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "11%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "11.1%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "6.1%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "4.3%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "3.4%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "3.0%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "2.7%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "2.6%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "140%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "1,500억원",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "1,000억원",
+              "why_it_matters": "보조 참고 수치"
+            }
+          ],
+          "relationType": "direct",
+          "relationWeight": 1,
+          "evidenceScore": 1,
+          "contribution": 0.4003
+        },
+        {
+          "reportId": "report_017",
+          "title": "우려 속 기회 찾기",
+          "broker": "DS투자증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "industry",
+          "targetType": "holding",
+          "direction": "positive",
+          "strength": 0.54,
+          "confidence": 0.85,
+          "horizon": "3m",
+          "decayHalfLifeDays": 90,
+          "reason": "음식료 업종 최선호주 삼양식품 유지, 차선호주 오리온 제시\n음식료 업종 내 최선호주로 삼양식품을 유지한다. 최근 삼양식품(003230)은 월\n별 라면 수출 실적이 최고치를 경신하며 수요 우려를 불식하고 신규 공장 가동\n후 실적 성장에 대한 기대감을 높여주고 있다. 1분기 실적 호조 후 2분기는 마케\n팅 비용 확대가 예상되...",
+          "evidenceNumbers": [
+            {
+              "label": "supporting",
+              "value": "10%",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "1,600",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "1,400",
+              "why_it_matters": "보조 참고 수치"
+            },
+            {
+              "label": "supporting",
+              "value": "1,200",
+              "why_it_matters": "보조 참고 수치"
+            }
+          ],
+          "relationType": "direct",
+          "relationWeight": 1,
+          "evidenceScore": 1,
+          "contribution": 0.3431
+        }
+      ],
+      "technical": {
+        "signal": null,
+        "score": null,
+        "adjustedScore": null,
+        "rsi": null,
+        "macd": null,
+        "bollinger": null,
+        "atr": null,
+        "recentHigh": null,
+        "volumeRatio": null
+      },
+      "report": {
+        "sourceLayer": "stage1-candidate-capped",
+        "available": true,
+        "unavailableReason": null,
+        "impactScore": 81,
+        "impactValue": 1.235,
+        "impactCount": 46,
+        "coverageWeight": 1,
+        "directAccountImpactScore": 54,
+        "relationSummary": {
+          "directCount": 59,
+          "thematicCount": 0,
+          "secondOrderCount": 0,
+          "blockedCount": 6,
+          "unrelatedEvidenceRatio": 0.0923
+        }
+      },
+      "factor": {
+        "raw": {
+          "momentum": -0.9,
+          "research": 0.8976,
+          "income": 0,
+          "macroFit": -1.7535
+        },
+        "zScores": {
+          "momentum": -1.754,
+          "research": 0.7463,
+          "income": -1.7889,
+          "macroFit": -0.091
+        },
+        "weightedZ": -0.6765,
+        "score": 41,
+        "factorCoverage": 0.75,
+        "availability": {
+          "momentum": 0,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "actionBlend": {
+        "score": 54,
+        "signal": "WATCH",
+        "blended": false,
+        "rawActionScore": 54,
+        "factorScore": 41,
+        "actionWeight": 1,
+        "factorWeight": 0,
+        "factorCoverage": 0.75,
+        "delta": 0,
+        "gateMode": "sameSignal",
+        "factorApplied": false,
+        "rawSignal": "WATCH",
+        "factorSignal": "REDUCE"
+      },
+      "stopLoss": {
+        "enabled": true,
+        "triggered": false,
+        "entryPrice": 8765,
+        "currentPrice": 9515,
+        "recentHigh": null,
+        "drawdownFromEntryPct": 0.0856,
+        "drawdownFromRecentHighPct": null,
+        "triggers": []
+      },
+      "scores": {
+        "factorScore": 41,
+        "techScore": null,
+        "reportScore": 81,
+        "actionScore": 54,
+        "rawActionScore": 54
+      },
+      "explain": {
+        "topDrivers": [
+          "리포트 영향 81점 (46건 연결)"
+        ],
+        "warnings": [
+          "기술 스냅샷이 없어 리포트/배분 쪽 해석 비중이 커졌습니다.",
+          "WATCH 구간이라 비중 확대보다 관찰/점검이 우선입니다."
+        ]
+      }
+    },
+    "KIS_MAIN:434730": {
+      "positionKey": "KIS_MAIN:434730",
+      "code": "434730",
+      "name": "HANARO 원자력iSelect",
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "category": "원자력",
+      "marketValue": 152290,
+      "incomeYield": 0.004,
+      "technicalSignal": "STRONG_BUY",
+      "technicalBaseScore": 96,
+      "actionScore": 65,
+      "direction": 1.09,
+      "timing": -0.878,
+      "reportScore": 0.265,
+      "probabilities": {
+        "p_buy": 0.6549,
+        "p_hold": 0.2471,
+        "p_sell": 0.098
+      },
+      "conviction": "MEDIUM",
+      "signal": "HOLD",
+      "features": {
+        "maTrend": 2.5,
+        "macdZ": 0.5975678393037229,
+        "rsiMid": 1.1360000000000001,
+        "adxTrend": -0.29750000000000004,
+        "bbDist": -0.35,
+        "rsiTiming": -1.4200000000000004,
+        "stochTiming": -2.5,
+        "volumeZ": -0.11299999999999999
+      },
+      "rawActionScore": 65,
+      "rawSignal": "HOLD",
+      "reportImpacts": [
+        {
+          "reportId": "report_009",
+          "title": "2차전지 섹터 비중확대 유지, 다만 선별적 대응",
+          "broker": "유안타증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "industry",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.567,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는 주목할 부분은 이러한 불확실성이 시장의 조기 낙관론과 실물 수급 펀더멘털 간의 심각한 괴리를 야기하고 있다는 점. 17일 발생한 유가 급락은 실제 공급 정상화가 아닌 외교적 완화 기대가 선물 가격에 선반영되었기 때문. 실제로는 지난 50일간 누적된 공급 결손은 이미 5억 배럴을 상회...",
+          "evidenceNumbers": [
+            "catalyst_number: 600,000",
+            "catalyst_number: 531,000",
+            "catalyst_number: 500,000",
+            "catalyst_number: 400,000"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.2014
+        },
+        {
+          "reportId": "report_010",
+          "title": "건설/부동산 Weekly - Captive Premium",
+          "broker": "유진투자증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "industry",
+          "targetType": "category",
+          "direction": "negative",
+          "strength": 0.333,
+          "confidence": 0.74,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "매크로는 부정 시각이며 핵심 근거는 삼성바이오로직스, 6공장 건설 허가 신청 캡티브(Captive) 물량 보유는 밸류에이션 프리미엄을 정당화 6 공장은 18 만 리터 규모로, 연내 착공해 지난 4 월 17 일, 삼성 E&A 는 전자공시를 통해 삼성전자 평택 P5 복합동, 그린동, 2027년 준공 목표. 삼성E&A가 2~5...",
+          "evidenceNumbers": [
+            "supporting: 5,500",
+            "supporting: 8,790",
+            "supporting: 7,126",
+            "supporting: 6,192"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": -0.0995
+        },
+        {
+          "reportId": "report_041",
+          "title": "주간 증시 브리핑",
+          "broker": "유진투자증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "strategy",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.333,
+          "confidence": 0.74,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는 운송 • 26년 1Q GDP는 기저효과로 플러스(+) 전환이 예상. (P: +1.6%yoy) 美허니웰,록히드마틴,인텔 15 10 5 0 핵심 상방 요인은 반도체 수출 호조임. 2월과 3월 ◼ 韓 4월 소비자심리지수 반도체 수출액은 역대 최고치를 경신했으며1Q 반도체 (P: 107pt...",
+          "evidenceNumbers": [
+            "thesis_anchor: 1.6%",
+            "catalyst_number: 139%",
+            "supporting: 2.5%",
+            "supporting: 1.3%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.0689
+        },
+        {
+          "reportId": "marketvoice_1326912",
+          "title": "기관 매수에 힘입어 코스피 6,270선 강세 마감",
+          "broker": "SBS Biz",
+          "publishedDate": "2026-04-20T02:38:00+00:00",
+          "reportType": "marketvoice",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.528,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "reason": "2026년 4월 20일 코스피가 6,270선까지 오르며 강한 상승세를 보였습니다. 기관 투자자가 대규모 매수로 지수를 끌어올렸고, 삼성전자와 SK하이닉스 등 대형주가 특히 강세를 나타냈습니다.",
+          "evidenceNumbers": [
+            "인용 0건",
+            "원문 1건",
+            "국제유가 -0.88%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.0677
+        }
+      ],
+      "technical": {
+        "signal": "STRONG_BUY",
+        "score": 96,
+        "adjustedScore": 96,
+        "rsi": 64.2,
+        "macd": {
+          "value": 2503.5491,
+          "signal": 1567.1004,
+          "histogram": 936.4488
+        },
+        "bollinger": {
+          "upper": 77865.7936,
+          "middle": 68885.75,
+          "lower": 59905.7064,
+          "position": "upper_half"
+        },
+        "atr": {
+          "value": 2957.718,
+          "pct": 0.038828
+        },
+        "recentHigh": {
+          "window": 20,
+          "value": 76730,
+          "distance_pct": -0.007233
+        },
+        "volumeRatio": 0.887
+      },
+      "report": {
+        "sourceLayer": "impact-map",
+        "available": true,
+        "unavailableReason": null,
+        "impactScore": 58,
+        "impactValue": 0.265,
+        "impactCount": 4,
+        "coverageWeight": 0.55,
+        "directAccountImpactScore": 54,
+        "relationSummary": {
+          "directCount": 0,
+          "thematicCount": 4,
+          "secondOrderCount": 0,
+          "blockedCount": 0,
+          "unrelatedEvidenceRatio": 0
+        }
+      },
+      "factor": {
+        "raw": {
+          "momentum": 1.2469,
+          "research": 0.4643,
+          "income": 0.004,
+          "macroFit": 1.2195
+        },
+        "zScores": {
+          "momentum": 0.7441,
+          "research": -1.5148,
+          "income": 0.4472,
+          "macroFit": 1.7525
+        },
+        "weightedZ": 0.2236,
+        "score": 53,
+        "factorCoverage": 1,
+        "availability": {
+          "momentum": 1,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "actionBlend": {
+        "score": 65,
+        "signal": "HOLD",
+        "blended": false,
+        "rawActionScore": 65,
+        "factorScore": 53,
+        "actionWeight": 1,
+        "factorWeight": 0,
+        "factorCoverage": 1,
+        "delta": 0,
+        "gateMode": "sameSignal",
+        "factorApplied": false,
+        "rawSignal": "HOLD",
+        "factorSignal": "WATCH"
+      },
+      "stopLoss": {
+        "enabled": true,
+        "triggered": false,
+        "entryPrice": 64630,
+        "currentPrice": 76175,
+        "recentHigh": 76730,
+        "drawdownFromEntryPct": 0.1786,
+        "drawdownFromRecentHighPct": -0.0072,
+        "triggers": []
+      },
+      "scores": {
+        "factorScore": 53,
+        "techScore": 96,
+        "reportScore": 58,
+        "actionScore": 65,
+        "rawActionScore": 65
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 96점",
+          "리포트 영향 58점 (4건 연결)",
+          "RSI 64.2"
+        ],
+        "warnings": []
+      }
+    },
+    "KIS_MAIN:449450": {
+      "positionKey": "KIS_MAIN:449450",
+      "code": "449450",
+      "name": "PLUS K방산",
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "category": "방산",
+      "marketValue": 545090,
+      "incomeYield": 0.004,
+      "technicalSignal": "STRONG_BUY",
+      "technicalBaseScore": 96,
+      "actionScore": 66,
+      "direction": 0.996,
+      "timing": -0.709,
+      "reportScore": 0.56,
+      "probabilities": {
+        "p_buy": 0.7067,
+        "p_hold": 0.2227,
+        "p_sell": 0.0706
+      },
+      "conviction": "MEDIUM",
+      "signal": "HOLD",
+      "features": {
+        "maTrend": 2.5,
+        "macdZ": 0.09214520736791354,
+        "rsiMid": 0.5080000000000001,
+        "adxTrend": -0.06583333333333326,
+        "bbDist": -0.35,
+        "rsiTiming": -0.6350000000000001,
+        "stochTiming": -2.5,
+        "volumeZ": -0.645
+      },
+      "rawActionScore": 66,
+      "rawSignal": "HOLD",
+      "reportImpacts": [
+        {
+          "reportId": "report_009",
+          "title": "2차전지 섹터 비중확대 유지, 다만 선별적 대응",
+          "broker": "유안타증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "industry",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.567,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는 주목할 부분은 이러한 불확실성이 시장의 조기 낙관론과 실물 수급 펀더멘털 간의 심각한 괴리를 야기하고 있다는 점. 17일 발생한 유가 급락은 실제 공급 정상화가 아닌 외교적 완화 기대가 선물 가격에 선반영되었기 때문. 실제로는 지난 50일간 누적된 공급 결손은 이미 5억 배럴을 상회...",
+          "evidenceNumbers": [
+            "catalyst_number: 600,000",
+            "catalyst_number: 531,000",
+            "catalyst_number: 500,000",
+            "catalyst_number: 400,000"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.2014
+        },
+        {
+          "reportId": "report_013",
+          "title": "실적 시즌 진입. 기대되는 호실적",
+          "broker": "하나증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "industry",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.567,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는 데이터 포인트 및 주간 리뷰: 주가 회복 완료  ASML과 TSMC는 2026년 매출액 전망을 상향했다. AI 중심의 강한 수요가 지속되고 있기 때문이다. TSMC 실적에서 스마트폰 매출액이 전년동기대비 30% 이상 증가한 점은 복기해볼 필요가 있다. Apple 및 삼성전자는 메모...",
+          "evidenceNumbers": [
+            "thesis_anchor: 30%",
+            "catalyst_number: 34%",
+            "catalyst_number: 21%",
+            "catalyst_number: 14%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.2014
+        },
+        {
+          "reportId": "report_025",
+          "title": "Arsenal of Democracy",
+          "broker": "하나증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "industry",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.486,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는  IEA, 페르시아만 유전·정유시설·파이프라인 피해와 호르무즈 해협 봉쇄 영향으로 수억 배럴 공급 차질 발생. IEA, 에너지 수급 불안 장기화  생산 정상화에 최대 2년 소요 및 LNG 시장은 회복 더 지연될 것으로 전망. 미국 국방부, GM·Ford와  WSJ, 미국 국방부...",
+          "evidenceNumbers": [
+            "catalyst_number: 5%",
+            "catalyst_number: 6,600달러",
+            "supporting: 70%",
+            "supporting: 1.5%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.1726
+        },
+        {
+          "reportId": "report_014",
+          "title": "안녕하세요 위클리에요(로봇/방산/항공/조선/해운) - 2026/04/13~2026/04/19",
+          "broker": "유진투자증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "industry",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.486,
+          "confidence": 0.74,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "매크로는 중립 시각이며 핵심 근거는 [방산] 주문해도 오지 않을 미국 무기 ◼ 현대로템, 현대위아 방산 사업부 인수 추진. KAI와 풍산에 이어 호황 속 업계 재편 활발 ◼ 일본, 살상력 있는 무기 수출 가능하도록 승인. 수출 컨트롤 타워 구축도 추진 ◼ 독일 IFV를 사겠다는 루마니아. IFV를 포기하고 드론을 사...",
+          "evidenceNumbers": [
+            "supporting: 12%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.1452
+        },
+        {
+          "reportId": "report_089",
+          "title": "[Quant Comment] 국내외 주간 이익 동향 체크",
+          "broker": "하나증권",
+          "publishedDate": "2026-04-20",
+          "reportType": "strategy",
+          "targetType": "category",
+          "direction": "positive",
+          "strength": 0.567,
+          "confidence": 0.88,
+          "horizon": "3m",
+          "decayHalfLifeDays": 75,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는 지난 주말 VIX -2.6%(17.5), 달러 98.1(-0.1%), 미국 10년물 국채 4.25%(-6bp), 원/달러 환율 1460원(-1.3%) 등으로 위험선호 부각, / 조건: 다만 일요일 오후 1시 현재 이란 호르무즈",
+          "evidenceNumbers": [
+            "thesis_anchor: 2.6%",
+            "thesis_anchor: 0.1%",
+            "thesis_anchor: 4.25%",
+            "thesis_anchor: 1.3%"
+          ],
+          "relationType": "thematic",
+          "relationWeight": 0.72,
+          "evidenceScore": 0.82,
+          "contribution": 0.1394
+        }
+      ],
+      "technical": {
+        "signal": "STRONG_BUY",
+        "score": 96,
+        "adjustedScore": 96,
+        "rsi": 56.35,
+        "macd": {
+          "value": 1866.3273,
+          "signal": 1708.8637,
+          "histogram": 157.4636
+        },
+        "bollinger": {
+          "upper": 83162.6851,
+          "middle": 75107.25,
+          "lower": 67051.8149,
+          "position": "upper_half"
+        },
+        "atr": {
+          "value": 2943.301,
+          "pct": 0.037773
+        },
+        "recentHigh": {
+          "window": 20,
+          "value": 80070,
+          "distance_pct": -0.026852
+        },
+        "volumeRatio": 0.355
+      },
+      "report": {
+        "sourceLayer": "impact-map",
+        "available": true,
+        "unavailableReason": null,
+        "impactScore": 66,
+        "impactValue": 0.56,
+        "impactCount": 14,
+        "coverageWeight": 0.55,
+        "directAccountImpactScore": 54,
+        "relationSummary": {
+          "directCount": 0,
+          "thematicCount": 15,
+          "secondOrderCount": 0,
+          "blockedCount": 0,
+          "unrelatedEvidenceRatio": 0
+        }
+      },
+      "factor": {
+        "raw": {
+          "momentum": 1.0169,
+          "research": 0.6708,
+          "income": 0.004,
+          "macroFit": -2.5
+        },
+        "zScores": {
+          "momentum": 0.4764,
+          "research": -0.4372,
+          "income": 0.4472,
+          "macroFit": -0.5539
+        },
+        "weightedZ": -0.0081,
+        "score": 50,
+        "factorCoverage": 1,
+        "availability": {
+          "momentum": 1,
+          "research": 1,
+          "income": 1,
+          "macroFit": 1
+        }
+      },
+      "actionBlend": {
+        "score": 66,
+        "signal": "HOLD",
+        "blended": false,
+        "rawActionScore": 66,
+        "factorScore": 50,
+        "actionWeight": 1,
+        "factorWeight": 0,
+        "factorCoverage": 1,
+        "delta": 0,
+        "gateMode": "sameSignal",
+        "factorApplied": false,
+        "rawSignal": "HOLD",
+        "factorSignal": "WATCH"
+      },
+      "stopLoss": {
+        "enabled": true,
+        "triggered": false,
+        "entryPrice": 77758.5714,
+        "currentPrice": 77920,
+        "recentHigh": 80070,
+        "drawdownFromEntryPct": 0.0021,
+        "drawdownFromRecentHighPct": -0.0269,
+        "triggers": []
+      },
+      "scores": {
+        "factorScore": 50,
+        "techScore": 96,
+        "reportScore": 66,
+        "actionScore": 66,
+        "rawActionScore": 66
+      },
+      "explain": {
+        "topDrivers": [
+          "기술 기본점수 96점",
+          "리포트 영향 66점 (14건 연결)",
+          "RSI 56.4"
+        ],
+        "warnings": []
+      }
+    }
+  },
+  "stockpilotQuant": {
+    "schema_version": "1.1",
+    "as_of_date": "2026-04-20",
+    "methodology": {
+      "scoring_model": "stockpilot_deterministic_v1.2_percentile",
+      "note": "v1.2: ADX_Mom 방향 인식, HA 양방향, Div→RSI모멘텀, 퍼센타일 정규화, 레짐별 가중치 적용.",
+      "missing_data_policy": "결측 팩터는 null 반환, stage 합산은 0점 처리",
+      "regime_applied": "BULL",
+      "policy_layers": {
+        "holdings": [
+          "ADD",
+          "HOLD",
+          "TRIM",
+          "EXIT"
+        ],
+        "candidates": [
+          "BUY",
+          "WATCH",
+          "REJECT"
+        ]
+      }
+    },
+    "macro": {
+      "vix_close": 17.94,
+      "yield_spread_10y_2y": 0.55
+    },
+    "holdings": [
+      {
+        "ticker": "047810",
+        "code": "047810",
+        "name": "한국항공우주",
+        "asset_class": "STOCK_KR",
+        "benchmark": "^KS11",
+        "as_of_date": "2026-04-20",
+        "close": 186950,
+        "close_252d": 72200,
+        "ma_20": 186500,
+        "ma_60": 178505,
+        "ma_120": 147339.1667,
+        "ha_open": 190460.931,
+        "ha_close": 187825,
+        "volume_current": 277645,
+        "volume_ma_20": 573738,
+        "keltner_upper": 205347.3579,
+        "keltner_lower": 169780.4254,
+        "vwap_anchored": 186773.0645,
+        "poc_price_120d": 164756.9444,
+        "senkou_span_a": 183675,
+        "senkou_span_b": 162650,
+        "adx_14": 18.43,
+        "stoch_k_14": 40.95,
+        "stoch_d_14": 53.93,
+        "rsi_14": 50.82,
+        "price_drop_ratio": null,
+        "rsi_rise_value": null,
+        "vix_close": 17.94,
+        "yield_spread_10y_2y": 0.55,
+        "rs_vs_kospi": -0.184553,
+        "benchmark_used": "^KS11",
+        "sourceType": "holding",
+        "accountKey": "KIS_MAIN",
+        "sourceMeta": {
+          "accountLabel": "한투 일반",
+          "quantity": 5,
+          "avgPrice": 200500,
+          "currentPrice": 186900,
+          "profitRate": -6.78,
+          "marketValue": 934500
+        },
+        "final_score": 63.2,
+        "filter_score": 1,
+        "stage2_score": 16.075,
+        "stage3_score": 21.311,
+        "stage4_score": 4.759,
+        "factors": {
+          "Score_RS": 32.14,
+          "Score_Ichimoku": 35.71,
+          "Score_ADX_Mom": 60.71,
+          "Score_HA": 7.14,
+          "Score_Keltner_Vol": 50,
+          "Score_POC": 42.86,
+          "Score_VWAP": 92.86,
+          "Score_Resistance_Break": 92.86,
+          "Score_Div": 64.29,
+          "Score_GC": 46.43,
+          "Score_Stoch": 46.43,
+          "Score_Disp": 92.86
+        },
+        "derived": {
+          "Cloud_Top": 183675,
+          "Keltner_Break": -8.9591,
+          "Vol_Ratio": 0.4839
+        },
+        "gates": {
+          "price_above_ma120": true,
+          "vix_below_30": true,
+          "yield_spread_above_-0.5": true,
+          "keltner_break_and_volume": false,
+          "price_above_poc": true,
+          "price_above_vwap_anchored": true,
+          "bullish_divergence_detected": false,
+          "golden_cross_active": true,
+          "stoch_k_above_d_and_below_80": false
+        },
+        "data_quality_flags": [],
+        "commentary": "",
+        "position_key": "KIS_MAIN:047810",
+        "policy_state": "ADD"
+      },
+      {
+        "ticker": "064350",
+        "code": "064350",
+        "name": "현대로템",
+        "asset_class": "STOCK_KR",
+        "benchmark": "^KS11",
+        "as_of_date": "2026-04-20",
+        "close": 218500,
+        "close_252d": 90400,
+        "ma_20": 200545,
+        "ma_60": 207363.3333,
+        "ma_120": 202960,
+        "ha_open": 216061.5173,
+        "ha_close": 216375,
+        "volume_current": 608256,
+        "volume_ma_20": 773015.5,
+        "keltner_upper": 229640.4337,
+        "keltner_lower": 182114.2709,
+        "vwap_anchored": 201490.9382,
+        "poc_price_120d": 219893.75,
+        "senkou_span_a": 233025,
+        "senkou_span_b": 226350,
+        "adx_14": 18.09,
+        "stoch_k_14": 83.74,
+        "stoch_d_14": 85.91,
+        "rsi_14": 58.79,
+        "price_drop_ratio": null,
+        "rsi_rise_value": null,
+        "vix_close": 17.94,
+        "yield_spread_10y_2y": 0.55,
+        "rs_vs_kospi": -0.315514,
+        "benchmark_used": "^KS11",
+        "sourceType": "holding",
+        "accountKey": "KIS_MAIN",
+        "sourceMeta": {
+          "accountLabel": "한투 일반",
+          "quantity": 1,
+          "avgPrice": 208000,
+          "currentPrice": 217500,
+          "profitRate": 4.56,
+          "marketValue": 217500
+        },
+        "final_score": 47.4,
+        "filter_score": 1,
+        "stage2_score": 15.319,
+        "stage3_score": 12,
+        "stage4_score": 0,
+        "factors": {
+          "Score_RS": 32.14,
+          "Score_Ichimoku": 10.71,
+          "Score_ADX_Mom": 60.71,
+          "Score_HA": 42.86,
+          "Score_Keltner_Vol": 50,
+          "Score_POC": 42.86,
+          "Score_VWAP": 39.29,
+          "Score_Resistance_Break": 39.29,
+          "Score_Div": 64.29,
+          "Score_GC": 14.29,
+          "Score_Stoch": 46.43,
+          "Score_Disp": 28.57
+        },
+        "derived": {
+          "Cloud_Top": 233025,
+          "Keltner_Break": -4.8513,
+          "Vol_Ratio": 0.7869
+        },
+        "gates": {
+          "price_above_ma120": true,
+          "vix_below_30": true,
+          "yield_spread_above_-0.5": true,
+          "keltner_break_and_volume": false,
+          "price_above_poc": false,
+          "price_above_vwap_anchored": true,
+          "bullish_divergence_detected": false,
+          "golden_cross_active": false,
+          "stoch_k_above_d_and_below_80": false
+        },
+        "data_quality_flags": [],
+        "commentary": "",
+        "position_key": "KIS_MAIN:064350",
+        "policy_state": "ADD"
+      },
+      {
+        "ticker": "138910",
+        "code": "138910",
+        "name": "KODEX 구리선물(H)",
+        "asset_class": "ETF_KR",
+        "benchmark": "^KS11",
+        "as_of_date": "2026-04-20",
+        "close": null,
+        "close_252d": null,
+        "ma_20": null,
+        "ma_60": null,
+        "ma_120": null,
+        "ha_open": null,
+        "ha_close": null,
+        "volume_current": null,
+        "volume_ma_20": null,
+        "keltner_upper": null,
+        "keltner_lower": null,
+        "vwap_anchored": null,
+        "poc_price_120d": null,
+        "senkou_span_a": null,
+        "senkou_span_b": null,
+        "adx_14": null,
+        "stoch_k_14": null,
+        "stoch_d_14": null,
+        "rsi_14": null,
+        "price_drop_ratio": null,
+        "rsi_rise_value": null,
+        "vix_close": 17.94,
+        "yield_spread_10y_2y": 0.55,
+        "rs_vs_kospi": null,
+        "benchmark_used": "^KS11",
+        "sourceType": "holding",
+        "accountKey": "KIS_MAIN",
+        "sourceMeta": {
+          "accountLabel": "한투 일반",
+          "quantity": 58,
+          "avgPrice": 8765,
+          "currentPrice": 9515,
+          "profitRate": 8.55,
+          "marketValue": 551870
+        },
+        "final_score": 0,
+        "filter_score": 0,
+        "stage2_score": 0,
+        "stage3_score": 0,
+        "stage4_score": 0,
+        "factors": {
+          "Score_RS": null,
+          "Score_Ichimoku": null,
+          "Score_ADX_Mom": null,
+          "Score_HA": null,
+          "Score_Keltner_Vol": null,
+          "Score_POC": null,
+          "Score_VWAP": null,
+          "Score_Resistance_Break": null,
+          "Score_Div": null,
+          "Score_GC": null,
+          "Score_Stoch": null,
+          "Score_Disp": null
+        },
+        "derived": {
+          "Cloud_Top": null,
+          "Keltner_Break": null,
+          "Vol_Ratio": null
+        },
+        "gates": {
+          "price_above_ma120": false,
+          "vix_below_30": true,
+          "yield_spread_above_-0.5": true,
+          "keltner_break_and_volume": false,
+          "price_above_poc": false,
+          "price_above_vwap_anchored": false,
+          "bullish_divergence_detected": false,
+          "golden_cross_active": false,
+          "stoch_k_above_d_and_below_80": false
+        },
+        "data_quality_flags": [
+          "missing:close",
+          "missing:ma_120",
+          "missing:rs_vs_kospi",
+          "missing:senkou_span_a",
+          "missing:senkou_span_b",
+          "insufficient_history:ichimoku",
+          "missing:adx_14",
+          "insufficient_history:252d",
+          "missing:ha_open",
+          "missing:ha_close",
+          "missing:keltner_upper",
+          "missing:volume_current",
+          "missing:volume_ma_20",
+          "missing:poc_price_120d",
+          "missing:vwap_anchored",
+          "missing:rsi_14",
+          "missing:ma_20",
+          "missing:ma_60",
+          "missing:stoch_k_14",
+          "missing:stoch_d_14"
+        ],
+        "commentary": "price<=ma120",
+        "position_key": "KIS_MAIN:138910",
+        "policy_state": "EXIT"
+      },
+      {
+        "ticker": "434730",
+        "code": "434730",
+        "name": "HANARO 원자력iSelect",
+        "asset_class": "ETF_KR",
+        "benchmark": "^KS11",
+        "as_of_date": "2026-04-20",
+        "close": 76175,
+        "close_252d": 17095,
+        "ma_20": 68885.75,
+        "ma_60": 65979.0833,
+        "ma_120": 58090.0417,
+        "ha_open": 75022.7021,
+        "ha_close": 76045,
+        "volume_current": 552139,
+        "volume_ma_20": 622802.45,
+        "keltner_upper": 76313.1376,
+        "keltner_lower": 64482.2657,
+        "vwap_anchored": 69382.8929,
+        "poc_price_120d": 50538.3333,
+        "senkou_span_a": 64015,
+        "senkou_span_b": 60500,
+        "adx_14": 16.43,
+        "stoch_k_14": 96.17,
+        "stoch_d_14": 96.93,
+        "rsi_14": 64.2,
+        "price_drop_ratio": null,
+        "rsi_rise_value": null,
+        "vix_close": 17.94,
+        "yield_spread_10y_2y": 0.55,
+        "rs_vs_kospi": 0.049717,
+        "benchmark_used": "^KS11",
+        "sourceType": "holding",
+        "accountKey": "KIS_MAIN",
+        "sourceMeta": {
+          "accountLabel": "한투 일반",
+          "quantity": 2,
+          "avgPrice": 64630,
+          "currentPrice": 76145,
+          "profitRate": 17.81,
+          "marketValue": 152290
+        },
+        "final_score": 64.7,
+        "filter_score": 1,
+        "stage2_score": 32.97,
+        "stage3_score": 14,
+        "stage4_score": 0,
+        "factors": {
+          "Score_RS": 78.57,
+          "Score_Ichimoku": 78.57,
+          "Score_ADX_Mom": 60.71,
+          "Score_HA": 85.71,
+          "Score_Keltner_Vol": 50,
+          "Score_POC": 42.86,
+          "Score_VWAP": 39.29,
+          "Score_Resistance_Break": 39.29,
+          "Score_Div": 64.29,
+          "Score_GC": 46.43,
+          "Score_Stoch": 46.43,
+          "Score_Disp": 28.57
+        },
+        "derived": {
+          "Cloud_Top": 64015,
+          "Keltner_Break": -0.181,
+          "Vol_Ratio": 0.8865
+        },
+        "gates": {
+          "price_above_ma120": true,
+          "vix_below_30": true,
+          "yield_spread_above_-0.5": true,
+          "keltner_break_and_volume": false,
+          "price_above_poc": true,
+          "price_above_vwap_anchored": true,
+          "bullish_divergence_detected": false,
+          "golden_cross_active": true,
+          "stoch_k_above_d_and_below_80": false
+        },
+        "data_quality_flags": [],
+        "commentary": "",
+        "position_key": "KIS_MAIN:434730",
+        "policy_state": "ADD"
+      },
+      {
+        "ticker": "449450",
+        "code": "449450",
+        "name": "PLUS K방산",
+        "asset_class": "ETF_KR",
+        "benchmark": "^KS11",
+        "as_of_date": "2026-04-20",
+        "close": 77920,
+        "close_252d": 29335,
+        "ma_20": 75107.25,
+        "ma_60": 71940.8333,
+        "ma_120": 63347.2083,
+        "ha_open": 78661.0676,
+        "ha_close": 78290,
+        "volume_current": 397864,
+        "volume_ma_20": 1121899.4,
+        "keltner_upper": 82099.6902,
+        "keltner_lower": 70326.4861,
+        "vwap_anchored": 74691.492,
+        "poc_price_120d": 78689.5833,
+        "senkou_span_a": 75528.75,
+        "senkou_span_b": 69122.5,
+        "adx_14": 19.21,
+        "stoch_k_14": 82.33,
+        "stoch_d_14": 87.34,
+        "rsi_14": 56.35,
+        "price_drop_ratio": null,
+        "rsi_rise_value": null,
+        "vix_close": 17.94,
+        "yield_spread_10y_2y": 0.55,
+        "rs_vs_kospi": -0.195323,
+        "benchmark_used": "^KS11",
+        "sourceType": "holding",
+        "accountKey": "KIS_MAIN",
+        "sourceMeta": {
+          "accountLabel": "한투 일반",
+          "quantity": 7,
+          "avgPrice": 77758.5714,
+          "currentPrice": 77870,
+          "profitRate": 0.14,
+          "marketValue": 545090
+        },
+        "final_score": 52.9,
+        "filter_score": 1,
+        "stage2_score": 20.483,
+        "stage3_score": 14,
+        "stage4_score": 1.255,
+        "factors": {
+          "Score_RS": 32.14,
+          "Score_Ichimoku": 42.86,
+          "Score_ADX_Mom": 60.71,
+          "Score_HA": 28.57,
+          "Score_Keltner_Vol": 50,
+          "Score_POC": 42.86,
+          "Score_VWAP": 39.29,
+          "Score_Resistance_Break": 39.29,
+          "Score_Div": 64.29,
+          "Score_GC": 46.43,
+          "Score_Stoch": 46.43,
+          "Score_Disp": 71.43
+        },
+        "derived": {
+          "Cloud_Top": 75528.75,
+          "Keltner_Break": -5.091,
+          "Vol_Ratio": 0.3546
+        },
+        "gates": {
+          "price_above_ma120": true,
+          "vix_below_30": true,
+          "yield_spread_above_-0.5": true,
+          "keltner_break_and_volume": false,
+          "price_above_poc": false,
+          "price_above_vwap_anchored": true,
+          "bullish_divergence_detected": false,
+          "golden_cross_active": true,
+          "stoch_k_above_d_and_below_80": false
+        },
+        "data_quality_flags": [],
+        "commentary": "",
+        "position_key": "KIS_MAIN:449450",
+        "policy_state": "ADD"
+      }
+    ],
+    "candidates": [
+      {
+        "ticker": "360750",
+        "code": "360750",
+        "name": "TIGER 미국S&P500",
+        "asset_class": "ETF_KR",
+        "benchmark": "^KS11",
+        "as_of_date": "2026-04-20",
+        "close": 25955,
+        "close_252d": 17795,
+        "ma_20": 24875,
+        "ma_60": 24818.6667,
+        "ma_120": 24801.8333,
+        "ha_open": 25725.3149,
+        "ha_close": 25945,
+        "volume_current": 7094803,
+        "volume_ma_20": 11998811.05,
+        "keltner_upper": 25574.6059,
+        "keltner_lower": 24643.0066,
+        "vwap_anchored": 24904.3686,
+        "poc_price_120d": 24713.6319,
+        "senkou_span_a": 24802.5,
+        "senkou_span_b": 25000,
+        "adx_14": 20.6,
+        "stoch_k_14": 98.38,
+        "stoch_d_14": 98.9,
+        "rsi_14": 75.07,
+        "price_drop_ratio": null,
+        "rsi_rise_value": null,
+        "vix_close": 17.94,
+        "yield_spread_10y_2y": 0.55,
+        "rs_vs_kospi": -0.282738,
+        "benchmark_used": "^KS11",
+        "sourceType": "candidate",
+        "accountKey": null,
+        "sourceMeta": {
+          "stance": "buy",
+          "confidence": 0.85,
+          "target_accounts": [
+            "PENSION"
+          ],
+          "horizon": "3m",
+          "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적"
+        },
+        "final_score": 54,
+        "filter_score": 1,
+        "stage2_score": 24.519,
+        "stage3_score": 11,
+        "stage4_score": 0.658,
+        "factors": {
+          "Score_RS": 32.14,
+          "Score_Ichimoku": 50,
+          "Score_ADX_Mom": 60.71,
+          "Score_HA": 64.29,
+          "Score_Keltner_Vol": 50,
+          "Score_POC": 42.86,
+          "Score_VWAP": 39.29,
+          "Score_Resistance_Break": 39.29,
+          "Score_Div": 14.29,
+          "Score_GC": 89.29,
+          "Score_Stoch": 46.43,
+          "Score_Disp": 64.29
+        },
+        "derived": {
+          "Cloud_Top": 25000,
+          "Keltner_Break": 1.4874,
+          "Vol_Ratio": 0.5913
+        },
+        "gates": {
+          "price_above_ma120": true,
+          "vix_below_30": true,
+          "yield_spread_above_-0.5": true,
+          "keltner_break_and_volume": false,
+          "price_above_poc": true,
+          "price_above_vwap_anchored": true,
+          "bullish_divergence_detected": false,
+          "golden_cross_active": true,
+          "stoch_k_above_d_and_below_80": false
+        },
+        "data_quality_flags": [],
+        "commentary": "",
+        "policy_state": "BUY"
+      },
+      {
+        "ticker": "133690",
+        "code": "133690",
+        "name": "TIGER 미국나스닥100",
+        "asset_class": "ETF_KR",
+        "benchmark": "^KS11",
+        "as_of_date": "2026-04-20",
+        "close": 173450,
+        "close_252d": 107920,
+        "ma_20": 163109,
+        "ma_60": 162364.9167,
+        "ma_120": 163410.2083,
+        "ha_open": 171071.8741,
+        "ha_close": 173462.5,
+        "volume_current": 398340,
+        "volume_ma_20": 684082.4,
+        "keltner_upper": 169165.91,
+        "keltner_lower": 161373.9904,
+        "vwap_anchored": 162319.5748,
+        "poc_price_120d": 162304.1667,
+        "senkou_span_a": 161728.75,
+        "senkou_span_b": 162630,
+        "adx_14": 22.33,
+        "stoch_k_14": 98,
+        "stoch_d_14": 99.05,
+        "rsi_14": 77.39,
+        "price_drop_ratio": null,
+        "rsi_rise_value": null,
+        "vix_close": 17.94,
+        "yield_spread_10y_2y": 0.55,
+        "rs_vs_kospi": -0.264762,
+        "benchmark_used": "^KS11",
+        "sourceType": "candidate",
+        "accountKey": null,
+        "sourceMeta": {
+          "stance": "hold",
+          "confidence": 0.65,
+          "target_accounts": [
+            "PENSION"
+          ],
+          "horizon": "1m",
+          "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적"
+        },
+        "final_score": 55.8,
+        "filter_score": 1,
+        "stage2_score": 27.515,
+        "stage3_score": 11,
+        "stage4_score": 0,
+        "factors": {
+          "Score_RS": 32.14,
+          "Score_Ichimoku": 78.57,
+          "Score_ADX_Mom": 60.71,
+          "Score_HA": 71.43,
+          "Score_Keltner_Vol": 50,
+          "Score_POC": 42.86,
+          "Score_VWAP": 39.29,
+          "Score_Resistance_Break": 39.29,
+          "Score_Div": 14.29,
+          "Score_GC": 89.29,
+          "Score_Stoch": 46.43,
+          "Score_Disp": 28.57
+        },
+        "derived": {
+          "Cloud_Top": 162630,
+          "Keltner_Break": 2.5325,
+          "Vol_Ratio": 0.5823
+        },
+        "gates": {
+          "price_above_ma120": true,
+          "vix_below_30": true,
+          "yield_spread_above_-0.5": true,
+          "keltner_break_and_volume": false,
+          "price_above_poc": true,
+          "price_above_vwap_anchored": true,
+          "bullish_divergence_detected": false,
+          "golden_cross_active": true,
+          "stoch_k_above_d_and_below_80": false
+        },
+        "data_quality_flags": [],
+        "commentary": "",
+        "policy_state": "BUY"
+      },
+      {
+        "ticker": "458760",
+        "code": "458760",
+        "name": "TIGER 미국배당+7%프리미엄다우존스",
+        "asset_class": "ETF_KR",
+        "benchmark": "^KS11",
+        "as_of_date": "2026-04-20",
+        "close": 11040,
+        "close_252d": 9640,
+        "ma_20": 11208.5,
+        "ma_60": 11049.6667,
+        "ma_120": 10480.5,
+        "ha_open": 11022.5165,
+        "ha_close": 11038.75,
+        "volume_current": 175946,
+        "volume_ma_20": 526678.5,
+        "keltner_upper": 11352.1706,
+        "keltner_lower": 10946.8812,
+        "vwap_anchored": 11223.2946,
+        "poc_price_120d": 11224.3056,
+        "senkou_span_a": 11062.5,
+        "senkou_span_b": 10542.5,
+        "adx_14": 14.84,
+        "stoch_k_14": 21.7,
+        "stoch_d_14": 16.05,
+        "rsi_14": 43.1,
+        "price_drop_ratio": null,
+        "rsi_rise_value": null,
+        "vix_close": 17.94,
+        "yield_spread_10y_2y": 0.55,
+        "rs_vs_kospi": -0.252967,
+        "benchmark_used": "^KS11",
+        "sourceType": "candidate",
+        "accountKey": null,
+        "sourceMeta": {
+          "stance": "watch",
+          "confidence": 0.65,
+          "target_accounts": [
+            "ISA"
+          ],
+          "horizon": "1m",
+          "thesis": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화"
+        },
+        "final_score": 50.4,
+        "filter_score": 1,
+        "stage2_score": 15.245,
+        "stage3_score": 11,
+        "stage4_score": 5.837,
+        "factors": {
+          "Score_RS": 32.14,
+          "Score_Ichimoku": 10.71,
+          "Score_ADX_Mom": 14.29,
+          "Score_HA": 50,
+          "Score_Keltner_Vol": 50,
+          "Score_POC": 42.86,
+          "Score_VWAP": 39.29,
+          "Score_Resistance_Break": 39.29,
+          "Score_Div": 14.29,
+          "Score_GC": 89.29,
+          "Score_Stoch": 100,
+          "Score_Disp": 85.71
+        },
+        "derived": {
+          "Cloud_Top": 11062.5,
+          "Keltner_Break": -2.7499,
+          "Vol_Ratio": 0.3341
+        },
+        "gates": {
+          "price_above_ma120": true,
+          "vix_below_30": true,
+          "yield_spread_above_-0.5": true,
+          "keltner_break_and_volume": false,
+          "price_above_poc": false,
+          "price_above_vwap_anchored": false,
+          "bullish_divergence_detected": false,
+          "golden_cross_active": true,
+          "stoch_k_above_d_and_below_80": true
+        },
+        "data_quality_flags": [],
+        "commentary": "",
+        "policy_state": "REJECT"
+      },
+      {
+        "ticker": "132030",
+        "code": "132030",
+        "name": "KODEX 골드선물(H)",
+        "asset_class": "ETF_KR",
+        "benchmark": "^KS11",
+        "as_of_date": "2026-04-20",
+        "close": 27225,
+        "close_252d": 18075,
+        "ma_20": 26497.25,
+        "ma_60": 28038.5833,
+        "ma_120": 26389.9583,
+        "ha_open": 27236.5888,
+        "ha_close": 27112.5,
+        "volume_current": 79389,
+        "volume_ma_20": 264345,
+        "keltner_upper": 28260.1957,
+        "keltner_lower": 25786.2535,
+        "vwap_anchored": 26319.2875,
+        "poc_price_120d": 26569.2361,
+        "senkou_span_a": 28982.5,
+        "senkou_span_b": 28550,
+        "adx_14": 18.21,
+        "stoch_k_14": 73.94,
+        "stoch_d_14": 79.38,
+        "rsi_14": 51,
+        "price_drop_ratio": null,
+        "rsi_rise_value": null,
+        "vix_close": 17.94,
+        "yield_spread_10y_2y": 0.55,
+        "rs_vs_kospi": -0.282319,
+        "benchmark_used": "^KS11",
+        "sourceType": "candidate",
+        "accountKey": null,
+        "sourceMeta": {
+          "stance": "buy",
+          "confidence": 0.85,
+          "target_accounts": [
+            "ISA"
+          ],
+          "horizon": "3m",
+          "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 약세, MACD 모멘텀이 우호적"
+        },
+        "final_score": 61.6,
+        "filter_score": 1,
+        "stage2_score": 13.998,
+        "stage3_score": 14.082,
+        "stage4_score": 2.253,
+        "factors": {
+          "Score_RS": 32.14,
+          "Score_Ichimoku": 10.71,
+          "Score_ADX_Mom": 60.71,
+          "Score_HA": 21.43,
+          "Score_Keltner_Vol": 50,
+          "Score_POC": 92.86,
+          "Score_VWAP": 85.71,
+          "Score_Resistance_Break": 85.71,
+          "Score_Div": 64.29,
+          "Score_GC": 7.14,
+          "Score_Stoch": 46.43,
+          "Score_Disp": 78.57
+        },
+        "derived": {
+          "Cloud_Top": 28982.5,
+          "Keltner_Break": -3.6631,
+          "Vol_Ratio": 0.3003
+        },
+        "gates": {
+          "price_above_ma120": true,
+          "vix_below_30": true,
+          "yield_spread_above_-0.5": true,
+          "keltner_break_and_volume": false,
+          "price_above_poc": true,
+          "price_above_vwap_anchored": true,
+          "bullish_divergence_detected": false,
+          "golden_cross_active": false,
+          "stoch_k_above_d_and_below_80": false
+        },
+        "data_quality_flags": [],
+        "commentary": "",
+        "policy_state": "BUY"
+      },
+      {
+        "ticker": "423160",
+        "code": "423160",
+        "name": "KODEX KOFR금리액티브",
+        "asset_class": "ETF_KR",
+        "benchmark": "^KS11",
+        "as_of_date": "2026-04-20",
+        "close": 110795,
+        "close_252d": 109955,
+        "ma_20": 110736.5,
+        "ma_60": 110740.5,
+        "ma_120": 110742.4167,
+        "ha_open": 110775.6688,
+        "ha_close": 110798.75,
+        "volume_current": 169835,
+        "volume_ma_20": 327233.25,
+        "keltner_upper": 110781.6941,
+        "keltner_lower": 110705.5831,
+        "vwap_anchored": 110748.9026,
+        "poc_price_120d": 110743.9583,
+        "senkou_span_a": 110706.25,
+        "senkou_span_b": 110737.5,
+        "adx_14": 16.52,
+        "stoch_k_14": 100,
+        "stoch_d_14": 100,
+        "rsi_14": 62.9,
+        "price_drop_ratio": null,
+        "rsi_rise_value": null,
+        "vix_close": 17.94,
+        "yield_spread_10y_2y": 0.55,
+        "rs_vs_kospi": -0.306177,
+        "benchmark_used": "^KS11",
+        "sourceType": "candidate",
+        "accountKey": null,
+        "sourceMeta": {
+          "stance": "buy",
+          "confidence": 0.85,
+          "target_accounts": [
+            "전계좌"
+          ],
+          "horizon": "3m",
+          "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 약세, MACD 모멘텀이 우호적"
+        },
+        "final_score": 65.5,
+        "filter_score": 1,
+        "stage2_score": 9.463,
+        "stage3_score": 28.825,
+        "stage4_score": 4.947,
+        "factors": {
+          "Score_RS": 32.14,
+          "Score_Ichimoku": 28.57,
+          "Score_ADX_Mom": 0,
+          "Score_HA": 35.71,
+          "Score_Keltner_Vol": 50,
+          "Score_POC": 100,
+          "Score_VWAP": 100,
+          "Score_Resistance_Break": 100,
+          "Score_Div": 64.29,
+          "Score_GC": 46.43,
+          "Score_Stoch": 46.43,
+          "Score_Disp": 100
+        },
+        "derived": {
+          "Cloud_Top": 110737.5,
+          "Keltner_Break": 0.012,
+          "Vol_Ratio": 0.519
+        },
+        "gates": {
+          "price_above_ma120": true,
+          "vix_below_30": true,
+          "yield_spread_above_-0.5": true,
+          "keltner_break_and_volume": false,
+          "price_above_poc": true,
+          "price_above_vwap_anchored": true,
+          "bullish_divergence_detected": false,
+          "golden_cross_active": false,
+          "stoch_k_above_d_and_below_80": false
+        },
+        "data_quality_flags": [],
+        "commentary": "",
+        "policy_state": "BUY"
+      },
+      {
+        "ticker": "487240",
+        "code": "487240",
+        "name": "KODEX AI전력핵심설비",
+        "asset_class": "ETF_KR",
+        "benchmark": "^KS11",
+        "as_of_date": "2026-04-20",
+        "close": 38435,
+        "close_252d": 8050,
+        "ma_20": 33718.25,
+        "ma_60": 31378.4167,
+        "ma_120": 27844.0833,
+        "ha_open": 37969.1617,
+        "ha_close": 38561.25,
+        "volume_current": 1823578,
+        "volume_ma_20": 3686740.05,
+        "keltner_upper": 37841.7713,
+        "keltner_lower": 31389.8585,
+        "vwap_anchored": 33958.5926,
+        "poc_price_120d": 26531.1111,
+        "senkou_span_a": 30590,
+        "senkou_span_b": 29075,
+        "adx_14": 18.53,
+        "stoch_k_14": 91.56,
+        "stoch_d_14": 95.19,
+        "rsi_14": 67.67,
+        "price_drop_ratio": null,
+        "rsi_rise_value": null,
+        "vix_close": 17.94,
+        "yield_spread_10y_2y": 0.55,
+        "rs_vs_kospi": 0.148092,
+        "benchmark_used": "^KS11",
+        "sourceType": "candidate",
+        "accountKey": null,
+        "sourceMeta": {
+          "stance": "buy",
+          "confidence": 0.85,
+          "target_accounts": [
+            "KIS_MAIN"
+          ],
+          "horizon": "3m",
+          "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적"
+        },
+        "final_score": 65.4,
+        "filter_score": 1,
+        "stage2_score": 37.807,
+        "stage3_score": 14,
+        "stage4_score": 0,
+        "factors": {
+          "Score_RS": 92.86,
+          "Score_Ichimoku": 78.57,
+          "Score_ADX_Mom": 60.71,
+          "Score_HA": 78.57,
+          "Score_Keltner_Vol": 50,
+          "Score_POC": 42.86,
+          "Score_VWAP": 39.29,
+          "Score_Resistance_Break": 39.29,
+          "Score_Div": 64.29,
+          "Score_GC": 46.43,
+          "Score_Stoch": 46.43,
+          "Score_Disp": 28.57
+        },
+        "derived": {
+          "Cloud_Top": 30590,
+          "Keltner_Break": 1.5677,
+          "Vol_Ratio": 0.4946
+        },
+        "gates": {
+          "price_above_ma120": true,
+          "vix_below_30": true,
+          "yield_spread_above_-0.5": true,
+          "keltner_break_and_volume": false,
+          "price_above_poc": true,
+          "price_above_vwap_anchored": true,
+          "bullish_divergence_detected": false,
+          "golden_cross_active": true,
+          "stoch_k_above_d_and_below_80": false
+        },
+        "data_quality_flags": [],
+        "commentary": "",
+        "policy_state": "BUY"
+      },
+      {
+        "ticker": "005930",
+        "code": "005930",
+        "name": "삼성전자",
+        "asset_class": "STOCK_KR",
+        "benchmark": "^KS11",
+        "as_of_date": "2026-04-20",
+        "close": 217750,
+        "close_252d": 53200,
+        "ma_20": 195790,
+        "ma_60": 184798.3333,
+        "ma_120": 148548.3333,
+        "ha_open": 214135.8415,
+        "ha_close": 215375,
+        "volume_current": 16625695,
+        "volume_ma_20": 26666256.6,
+        "keltner_upper": 220431.2678,
+        "keltner_lower": 181906.3503,
+        "vwap_anchored": 194384.5013,
+        "poc_price_120d": 102937.5,
+        "senkou_span_a": 188300,
+        "senkou_span_b": 166700,
+        "adx_14": 18.55,
+        "stoch_k_14": 96.59,
+        "stoch_d_14": 97.23,
+        "rsi_14": 62.31,
+        "price_drop_ratio": null,
+        "rsi_rise_value": null,
+        "vix_close": 17.94,
+        "yield_spread_10y_2y": 0.55,
+        "rs_vs_kospi": 0.205064,
+        "benchmark_used": "^KS11",
+        "sourceType": "candidate",
+        "accountKey": null,
+        "sourceMeta": {
+          "stance": "buy",
+          "confidence": 0.85,
+          "target_accounts": [],
+          "horizon": "3m",
+          "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적"
+        },
+        "final_score": 63.3,
+        "filter_score": 1,
+        "stage2_score": 36.273,
+        "stage3_score": 14,
+        "stage4_score": 0,
+        "factors": {
+          "Score_RS": 92.86,
+          "Score_Ichimoku": 78.57,
+          "Score_ADX_Mom": 60.71,
+          "Score_HA": 57.14,
+          "Score_Keltner_Vol": 50,
+          "Score_POC": 42.86,
+          "Score_VWAP": 39.29,
+          "Score_Resistance_Break": 39.29,
+          "Score_Div": 64.29,
+          "Score_GC": 46.43,
+          "Score_Stoch": 46.43,
+          "Score_Disp": 28.57
+        },
+        "derived": {
+          "Cloud_Top": 188300,
+          "Keltner_Break": -1.2164,
+          "Vol_Ratio": 0.6235
+        },
+        "gates": {
+          "price_above_ma120": true,
+          "vix_below_30": true,
+          "yield_spread_above_-0.5": true,
+          "keltner_break_and_volume": false,
+          "price_above_poc": true,
+          "price_above_vwap_anchored": true,
+          "bullish_divergence_detected": false,
+          "golden_cross_active": true,
+          "stoch_k_above_d_and_below_80": false
+        },
+        "data_quality_flags": [],
+        "commentary": "",
+        "policy_state": "REJECT"
+      },
+      {
+        "ticker": "000660",
+        "code": "000660",
+        "name": "SK하이닉스",
+        "asset_class": "STOCK_KR",
+        "benchmark": "^KS11",
+        "as_of_date": "2026-04-20",
+        "close": 1168000,
+        "close_252d": 164800,
+        "ma_20": 985250,
+        "ma_60": 932916.6667,
+        "ma_120": 768525,
+        "ha_open": 1131775.5075,
+        "ha_close": 1147750,
+        "volume_current": 3099908,
+        "volume_ma_20": 4389656.35,
+        "keltner_upper": 1144888.7551,
+        "keltner_lower": 904453.1451,
+        "vwap_anchored": 972784.1402,
+        "poc_price_120d": 572385.4167,
+        "senkou_span_a": 934500,
+        "senkou_span_b": 840000,
+        "adx_14": 20.1,
+        "stoch_k_14": 98.59,
+        "stoch_d_14": 93.81,
+        "rsi_14": 65.21,
+        "price_drop_ratio": null,
+        "rsi_rise_value": null,
+        "vix_close": 17.94,
+        "yield_spread_10y_2y": 0.55,
+        "rs_vs_kospi": 0.25301,
+        "benchmark_used": "^KS11",
+        "sourceType": "candidate",
+        "accountKey": null,
+        "sourceMeta": {
+          "stance": "buy",
+          "confidence": 0.85,
+          "target_accounts": [],
+          "horizon": "3m",
+          "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적"
+        },
+        "final_score": 67.6,
+        "filter_score": 1,
+        "stage2_score": 38.105,
+        "stage3_score": 14,
+        "stage4_score": 0,
+        "factors": {
+          "Score_RS": 92.86,
+          "Score_Ichimoku": 78.57,
+          "Score_ADX_Mom": 60.71,
+          "Score_HA": 100,
+          "Score_Keltner_Vol": 50,
+          "Score_POC": 42.86,
+          "Score_VWAP": 39.29,
+          "Score_Resistance_Break": 39.29,
+          "Score_Div": 64.29,
+          "Score_GC": 46.43,
+          "Score_Stoch": 46.43,
+          "Score_Disp": 28.57
+        },
+        "derived": {
+          "Cloud_Top": 934500,
+          "Keltner_Break": 2.0186,
+          "Vol_Ratio": 0.7062
+        },
+        "gates": {
+          "price_above_ma120": true,
+          "vix_below_30": true,
+          "yield_spread_above_-0.5": true,
+          "keltner_break_and_volume": false,
+          "price_above_poc": true,
+          "price_above_vwap_anchored": true,
+          "bullish_divergence_detected": false,
+          "golden_cross_active": true,
+          "stoch_k_above_d_and_below_80": false
+        },
+        "data_quality_flags": [],
+        "commentary": "",
+        "policy_state": "WATCH"
+      },
+      {
+        "ticker": "267260",
+        "code": "267260",
+        "name": "HD현대일렉트릭",
+        "asset_class": "STOCK_KR",
+        "benchmark": "^KS11",
+        "as_of_date": "2026-04-20",
+        "close": 1086000,
+        "close_252d": 265000,
+        "ma_20": 964450,
+        "ma_60": 950183.3333,
+        "ma_120": 891791.6667,
+        "ha_open": 1071153.4901,
+        "ha_close": 1089500,
+        "volume_current": 71707,
+        "volume_ma_20": 132342.7,
+        "keltner_upper": 1090829.8083,
+        "keltner_lower": 896996.5934,
+        "vwap_anchored": 966679.823,
+        "poc_price_120d": 904270.8333,
+        "senkou_span_a": 955750,
+        "senkou_span_b": 935000,
+        "adx_14": 20.07,
+        "stoch_k_14": 91.91,
+        "stoch_d_14": 94,
+        "rsi_14": 65.6,
+        "price_drop_ratio": null,
+        "rsi_rise_value": null,
+        "vix_close": 17.94,
+        "yield_spread_10y_2y": 0.55,
+        "rs_vs_kospi": -0.087792,
+        "benchmark_used": "^KS11",
+        "sourceType": "candidate",
+        "accountKey": null,
+        "sourceMeta": {
+          "stance": "buy",
+          "confidence": 0.85,
+          "target_accounts": [],
+          "horizon": "3m",
+          "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적"
+        },
+        "final_score": 62.9,
+        "filter_score": 1,
+        "stage2_score": 28.083,
+        "stage3_score": 15,
+        "stage4_score": 0,
+        "factors": {
+          "Score_RS": 32.14,
+          "Score_Ichimoku": 78.57,
+          "Score_ADX_Mom": 60.71,
+          "Score_HA": 92.86,
+          "Score_Keltner_Vol": 50,
+          "Score_POC": 42.86,
+          "Score_VWAP": 39.29,
+          "Score_Resistance_Break": 39.29,
+          "Score_Div": 64.29,
+          "Score_GC": 89.29,
+          "Score_Stoch": 46.43,
+          "Score_Disp": 28.57
+        },
+        "derived": {
+          "Cloud_Top": 955750,
+          "Keltner_Break": -0.4428,
+          "Vol_Ratio": 0.5418
+        },
+        "gates": {
+          "price_above_ma120": true,
+          "vix_below_30": true,
+          "yield_spread_above_-0.5": true,
+          "keltner_break_and_volume": false,
+          "price_above_poc": true,
+          "price_above_vwap_anchored": true,
+          "bullish_divergence_detected": false,
+          "golden_cross_active": true,
+          "stoch_k_above_d_and_below_80": false
+        },
+        "data_quality_flags": [],
+        "commentary": "",
+        "policy_state": "BUY"
+      },
+      {
+        "ticker": "010120",
+        "code": "010120",
+        "name": "LS일렉트릭",
+        "asset_class": "STOCK_KR",
+        "benchmark": "^KS11",
+        "as_of_date": "2026-04-20",
+        "close": 184900,
+        "close_252d": 152900,
+        "ma_20": 608480,
+        "ma_60": 652576.6667,
+        "ma_120": 562859.1667,
+        "ha_open": 190823.608,
+        "ha_close": 185775,
+        "volume_current": 792247,
+        "volume_ma_20": 488142.2,
+        "keltner_upper": 838186.6968,
+        "keltner_lower": 183640.5053,
+        "vwap_anchored": 287040.9665,
+        "poc_price_120d": 194290.9722,
+        "senkou_span_a": 680750,
+        "senkou_span_b": 637000,
+        "adx_14": 29.63,
+        "stoch_k_14": 22.3,
+        "stoch_d_14": 22.52,
+        "rsi_14": 19.13,
+        "price_drop_ratio": null,
+        "rsi_rise_value": null,
+        "vix_close": 17.94,
+        "yield_spread_10y_2y": 0.55,
+        "rs_vs_kospi": -0.954881,
+        "benchmark_used": "^KS11",
+        "sourceType": "candidate",
+        "accountKey": null,
+        "sourceMeta": {
+          "stance": "trim",
+          "confidence": 0.85,
+          "target_accounts": [],
+          "horizon": "1m",
+          "thesis": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 둔화"
+        },
+        "final_score": 0,
+        "filter_score": 0,
+        "stage2_score": 8.063,
+        "stage3_score": 1.649,
+        "stage4_score": 0,
+        "factors": {
+          "Score_RS": 32.14,
+          "Score_Ichimoku": 10.71,
+          "Score_ADX_Mom": 7.14,
+          "Score_HA": 0,
+          "Score_Keltner_Vol": 50,
+          "Score_POC": 42.86,
+          "Score_VWAP": 39.29,
+          "Score_Resistance_Break": 39.29,
+          "Score_Div": 0,
+          "Score_GC": 0,
+          "Score_Stoch": 46.43,
+          "Score_Disp": 28.57
+        },
+        "derived": {
+          "Cloud_Top": 680750,
+          "Keltner_Break": -77.9405,
+          "Vol_Ratio": 1.623
+        },
+        "gates": {
+          "price_above_ma120": false,
+          "vix_below_30": true,
+          "yield_spread_above_-0.5": true,
+          "keltner_break_and_volume": false,
+          "price_above_poc": false,
+          "price_above_vwap_anchored": false,
+          "bullish_divergence_detected": false,
+          "golden_cross_active": false,
+          "stoch_k_above_d_and_below_80": false
+        },
+        "data_quality_flags": [],
+        "commentary": "price<=ma120",
+        "policy_state": "REJECT"
+      },
+      {
+        "ticker": "298040",
+        "code": "298040",
+        "name": "효성중공업",
+        "asset_class": "STOCK_KR",
+        "benchmark": "^KS11",
+        "as_of_date": "2026-04-20",
+        "close": 2992000,
+        "close_252d": 393500,
+        "ma_20": 2797050,
+        "ma_60": 2603966.6667,
+        "ma_120": 2304991.6667,
+        "ha_open": 2996298.6842,
+        "ha_close": 2979750,
+        "volume_current": 19084,
+        "volume_ma_20": 47665.2,
+        "keltner_upper": 3156130.6933,
+        "keltner_lower": 2504687.6325,
+        "vwap_anchored": 2824187.3995,
+        "poc_price_120d": 2337729.1667,
+        "senkou_span_a": 2512750,
+        "senkou_span_b": 2336000,
+        "adx_14": 17.1,
+        "stoch_k_14": 73.44,
+        "stoch_d_14": 74.67,
+        "rsi_14": 59.66,
+        "price_drop_ratio": null,
+        "rsi_rise_value": null,
+        "vix_close": 17.94,
+        "yield_spread_10y_2y": 0.55,
+        "rs_vs_kospi": 0.028417,
+        "benchmark_used": "^KS11",
+        "sourceType": "candidate",
+        "accountKey": null,
+        "sourceMeta": {
+          "stance": "buy",
+          "confidence": 0.85,
+          "target_accounts": [],
+          "horizon": "3m",
+          "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적"
+        },
+        "final_score": 56.9,
+        "filter_score": 1,
+        "stage2_score": 26.627,
+        "stage3_score": 14,
+        "stage4_score": 0,
+        "factors": {
+          "Score_RS": 71.43,
+          "Score_Ichimoku": 78.57,
+          "Score_ADX_Mom": 60.71,
+          "Score_HA": 14.29,
+          "Score_Keltner_Vol": 50,
+          "Score_POC": 42.86,
+          "Score_VWAP": 39.29,
+          "Score_Resistance_Break": 39.29,
+          "Score_Div": 64.29,
+          "Score_GC": 46.43,
+          "Score_Stoch": 46.43,
+          "Score_Disp": 28.57
+        },
+        "derived": {
+          "Cloud_Top": 2512750,
+          "Keltner_Break": -5.2004,
+          "Vol_Ratio": 0.4004
+        },
+        "gates": {
+          "price_above_ma120": true,
+          "vix_below_30": true,
+          "yield_spread_above_-0.5": true,
+          "keltner_break_and_volume": false,
+          "price_above_poc": true,
+          "price_above_vwap_anchored": true,
+          "bullish_divergence_detected": false,
+          "golden_cross_active": true,
+          "stoch_k_above_d_and_below_80": false
+        },
+        "data_quality_flags": [],
+        "commentary": "",
+        "policy_state": "BUY"
+      }
+    ],
+    "summary": {
+      "n_holdings": 5,
+      "n_candidates": 11,
+      "n_passed_filter_holdings": 4,
+      "n_passed_filter_candidates": 10,
+      "top_holdings": [
+        {
+          "ticker": "434730",
+          "name": "HANARO 원자력iSelect",
+          "final_score": 64.7,
+          "policy_state": "ADD"
+        },
+        {
+          "ticker": "047810",
+          "name": "한국항공우주",
+          "final_score": 63.2,
+          "policy_state": "ADD"
+        },
+        {
+          "ticker": "449450",
+          "name": "PLUS K방산",
+          "final_score": 52.9,
+          "policy_state": "ADD"
+        },
+        {
+          "ticker": "064350",
+          "name": "현대로템",
+          "final_score": 47.4,
+          "policy_state": "ADD"
+        },
+        {
+          "ticker": "138910",
+          "name": "KODEX 구리선물(H)",
+          "final_score": 0,
+          "policy_state": "EXIT"
+        }
+      ],
+      "top_candidates": [
+        {
+          "ticker": "000660",
+          "name": "SK하이닉스",
+          "final_score": 67.6,
+          "policy_state": "WATCH"
+        },
+        {
+          "ticker": "423160",
+          "name": "KODEX KOFR금리액티브",
+          "final_score": 65.5,
+          "policy_state": "BUY"
+        },
+        {
+          "ticker": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "final_score": 65.4,
+          "policy_state": "BUY"
+        },
+        {
+          "ticker": "005930",
+          "name": "삼성전자",
+          "final_score": 63.3,
+          "policy_state": "REJECT"
+        },
+        {
+          "ticker": "267260",
+          "name": "HD현대일렉트릭",
+          "final_score": 62.9,
+          "policy_state": "BUY"
+        },
+        {
+          "ticker": "132030",
+          "name": "KODEX 골드선물(H)",
+          "final_score": 61.6,
+          "policy_state": "BUY"
+        },
+        {
+          "ticker": "298040",
+          "name": "효성중공업",
+          "final_score": 56.9,
+          "policy_state": "BUY"
+        },
+        {
+          "ticker": "133690",
+          "name": "TIGER 미국나스닥100",
+          "final_score": 55.8,
+          "policy_state": "BUY"
+        },
+        {
+          "ticker": "360750",
+          "name": "TIGER 미국S&P500",
+          "final_score": 54,
+          "policy_state": "BUY"
+        },
+        {
+          "ticker": "458760",
+          "name": "TIGER 미국배당+7%프리미엄다우존스",
+          "final_score": 50.4,
+          "policy_state": "REJECT"
+        }
+      ]
+    }
+  },
+  "accounts": {
+    "ISA": {
+      "key": "ISA",
+      "label": "한투 ISA",
+      "allocationScore": 74,
+      "holdingsScore": 50,
+      "factorScore": null,
+      "reportCoverageScore": null,
+      "reportStatus": "unavailable",
+      "reportUnavailableReason": "no_mapped_impacts",
+      "stage2Bias": "hold",
+      "preTaxScore": 68,
+      "baseScore": 72,
+      "totalScore": 68,
+      "note": "선별적 보강은 가능하지만 약한 자산군과 패널티 요인을 함께 줄여야 합니다.",
+      "coverage": {
+        "factorCoverage": 0,
+        "techCoverage": 0,
+        "impactCoverage": 0,
+        "stage2Available": true,
+        "fredAvailable": true
+      },
+      "baseScores": {
+        "allocationScore": 74,
+        "factorScore": null,
+        "techScore": null,
+        "reportScore": null,
+        "regimeFit": 67,
+        "stage2Score": 50,
+        "leadingScore": 63,
+        "actionBlend": 50,
+        "rawActionBlend": 50
+      },
+      "rawHoldingsScore": 50,
+      "effectiveWeights": {
+        "allocation": 0.864,
+        "factor": 0,
+        "tech": 0,
+        "report": 0,
+        "regime": 0.036,
+        "stage2": 0.05,
+        "leading": 0.05
+      },
+      "riskPenalty": {
+        "total": 4,
+        "portfolioVolatility": 0,
+        "breakdown": {
+          "dataQuality": {
+            "total": 4,
+            "incompletePenalty": 0,
+            "unmappedExposurePct": 0,
+            "unmappedPenalty": 0,
+            "missingTechnicalPenalty": 4
+          },
+          "concentration": {
+            "total": 0,
+            "hhi": 0,
+            "hhiPenalty": 0,
+            "maxPositionPct": 0,
+            "maxPositionPenalty": 0
+          },
+          "covariance": {
+            "total": 0,
+            "annualizedVolatility": 0,
+            "sampleCount": null,
+            "holdingsWithData": 0,
+            "shrinkage": 0.35,
+            "lambda": 0.55
+          },
+          "tailRisk": {
+            "total": 0,
+            "method": "not_applicable",
+            "maxDrawdownPct": null,
+            "cvar95Pct": null,
+            "holdingsWithData": 0
+          },
+          "regimeStress": {
+            "total": 0,
+            "currentRiskPct": 0,
+            "desiredRiskPct": 29.72,
+            "excessRiskPct": 0
+          }
+        },
+        "notes": []
+      },
+      "taxAdjustment": {
+        "enabled": true,
+        "preTaxScore": 68,
+        "afterTaxScore": 68,
+        "multiplier": 1,
+        "expectedYield": 0,
+        "normalTaxRate": 0.154,
+        "accountTaxRate": 0.099,
+        "taxSpread": 0.055,
+        "riskProxy": 0.08,
+        "lift": 0,
+        "addedScore": 0
+      },
+      "accountDirectImpact": {
+        "value": 0,
+        "score": 50,
+        "impacts": []
+      }
+    },
+    "PENSION": {
+      "key": "PENSION",
+      "label": "한투 연금저축",
+      "allocationScore": 50,
+      "holdingsScore": 50,
+      "factorScore": null,
+      "reportCoverageScore": null,
+      "reportStatus": "unavailable",
+      "reportUnavailableReason": "no_mapped_impacts",
+      "stage2Bias": "selective_add",
+      "preTaxScore": 47.05,
+      "baseScore": 51.05,
+      "totalScore": 47,
+      "note": "배분 괴리 또는 리스크 패널티가 커서 공격적 확대보다 재정비가 우선입니다.",
+      "coverage": {
+        "factorCoverage": 0,
+        "techCoverage": 0,
+        "impactCoverage": 0,
+        "stage2Available": true,
+        "fredAvailable": true
+      },
+      "baseScores": {
+        "allocationScore": 50,
+        "factorScore": null,
+        "techScore": null,
+        "reportScore": null,
+        "regimeFit": 50,
+        "stage2Score": 58,
+        "leadingScore": 63,
+        "actionBlend": 50,
+        "rawActionBlend": 50
+      },
+      "rawHoldingsScore": 50,
+      "effectiveWeights": {
+        "allocation": 0.864,
+        "factor": 0,
+        "tech": 0,
+        "report": 0,
+        "regime": 0.036,
+        "stage2": 0.05,
+        "leading": 0.05
+      },
+      "riskPenalty": {
+        "total": 4,
+        "portfolioVolatility": 0,
+        "breakdown": {
+          "dataQuality": {
+            "total": 4,
+            "incompletePenalty": 0,
+            "unmappedExposurePct": 0,
+            "unmappedPenalty": 0,
+            "missingTechnicalPenalty": 4
+          },
+          "concentration": {
+            "total": 0,
+            "hhi": 0,
+            "hhiPenalty": 0,
+            "maxPositionPct": 0,
+            "maxPositionPenalty": 0
+          },
+          "covariance": {
+            "total": 0,
+            "annualizedVolatility": 0,
+            "sampleCount": null,
+            "holdingsWithData": 0,
+            "shrinkage": 0.35,
+            "lambda": 0.55
+          },
+          "tailRisk": {
+            "total": 0,
+            "method": "not_applicable",
+            "maxDrawdownPct": null,
+            "cvar95Pct": null,
+            "holdingsWithData": 0
+          },
+          "regimeStress": {
+            "total": 0,
+            "currentRiskPct": 0,
+            "desiredRiskPct": 71.23,
+            "excessRiskPct": 0
+          }
+        },
+        "notes": []
+      },
+      "taxAdjustment": {
+        "enabled": true,
+        "preTaxScore": 47.05,
+        "afterTaxScore": 47.05,
+        "multiplier": 1,
+        "expectedYield": 0,
+        "normalTaxRate": 0.154,
+        "accountTaxRate": 0.154,
+        "taxSpread": 0,
+        "riskProxy": 0.08,
+        "lift": 0,
+        "addedScore": 0
+      },
+      "accountDirectImpact": {
+        "value": 0,
+        "score": 50,
+        "impacts": []
+      }
+    },
+    "KIS_MAIN": {
+      "key": "KIS_MAIN",
+      "label": "한투 일반",
+      "allocationScore": 36,
+      "holdingsScore": 66,
+      "factorScore": 50,
+      "reportCoverageScore": 82,
+      "reportStatus": "available",
+      "reportUnavailableReason": null,
+      "stage2Bias": "selective_add",
+      "preTaxScore": 39.04,
+      "baseScore": 52.04,
+      "totalScore": 39,
+      "note": "기본 점수보다 리스크 패널티가 점수를 크게 누르고 있어 구조 조정이 우선입니다.",
+      "coverage": {
+        "factorCoverage": 0.95,
+        "techCoverage": 0.8,
+        "impactCoverage": 0.82,
+        "stage2Available": true,
+        "fredAvailable": true
+      },
+      "baseScores": {
+        "allocationScore": 36,
+        "factorScore": 50,
+        "techScore": 84,
+        "reportScore": 68,
+        "regimeFit": 37,
+        "stage2Score": 58,
+        "leadingScore": 63,
+        "actionBlend": 66,
+        "rawActionBlend": 66
+      },
+      "rawHoldingsScore": 66,
+      "effectiveWeights": {
+        "allocation": 0.487,
+        "factor": 0.095,
+        "tech": 0.2,
+        "report": 0.082,
+        "regime": 0.036,
+        "stage2": 0.05,
+        "leading": 0.05
+      },
+      "riskPenalty": {
+        "total": 13,
+        "portfolioVolatility": 0.5302,
+        "breakdown": {
+          "dataQuality": {
+            "total": 5,
+            "incompletePenalty": 0,
+            "unmappedExposurePct": 21.92,
+            "unmappedPenalty": 5,
+            "missingTechnicalPenalty": 0
+          },
+          "concentration": {
+            "total": 0,
+            "hhi": 0.268,
+            "hhiPenalty": 0,
+            "maxPositionPct": 38.92,
+            "maxPositionPenalty": 0
+          },
+          "covariance": {
+            "total": 2.92,
+            "annualizedVolatility": 53.02,
+            "sampleCount": 60,
+            "holdingsWithData": 4,
+            "shrinkage": 0.35,
+            "lambda": 0.55
+          },
+          "tailRisk": {
+            "total": 5,
+            "method": "portfolio_weighted_returns",
+            "maxDrawdownPct": 14.26,
+            "cvar95Pct": -8.235,
+            "holdingsWithData": 4
+          },
+          "regimeStress": {
+            "total": 0,
+            "currentRiskPct": 73.45,
+            "desiredRiskPct": 85.17,
+            "excessRiskPct": 0
+          }
+        },
+        "notes": [
+          "'기타' 비중 21.9%가 남아 분류 품질 패널티가 붙었습니다.",
+          "축소 공분산 기준 연율 변동성 53.02%로 상관 리스크 패널티가 반영됐습니다.",
+          "최대낙폭 14.26% / CVaR(95%) -8.235% 수준으로 꼬리 리스크 패널티가 적용됐습니다."
+        ]
+      },
+      "taxAdjustment": {
+        "enabled": true,
+        "preTaxScore": 39.04,
+        "afterTaxScore": 39.04,
+        "multiplier": 1,
+        "expectedYield": 0.0031,
+        "normalTaxRate": 0.154,
+        "accountTaxRate": 0.154,
+        "taxSpread": 0,
+        "riskProxy": 0.5302,
+        "lift": 0,
+        "addedScore": 0
+      },
+      "accountDirectImpact": {
+        "value": 0.137,
+        "score": 54,
+        "impacts": [
+          {
+            "reportId": "report_007",
+            "title": "2026년 4월 셋째 주 반도체 Weekly",
+            "broker": "교보증권",
+            "publishedDate": "2026-04-20",
+            "reportType": "industry",
+            "targetType": "account",
+            "direction": "positive",
+            "strength": 0.353,
+            "confidence": 0.82,
+            "horizon": "3m",
+            "decayHalfLifeDays": 45,
+            "reason": "매크로는 긍정 시각이며 핵심 근거는 - 미국: 나스닥 신고가 속 빅테크 실적발표 시즌 시작 CSP의 CapEx 등 AI 투자 기조와 수익성에 대한 확신 필요 - 중국: 1분기 GDP 성장률 5.0%로 시장 컨센서스 상회. 중국-대만 국민당 대표 회담으로 지정학적 리스크 일부 완화 - 대만: TSMC 호실적 발표. 모멘...",
+            "evidenceNumbers": [
+              "thesis_anchor: 5.0%",
+              "catalyst_number: 35%",
+              "catalyst_number: 66.2%",
+              "catalyst_number: $38.5"
+            ],
+            "contribution": 0.0757
+          },
+          {
+            "reportId": "report_016",
+            "title": "오리온 간담회 시사점",
+            "broker": "하나증권",
+            "publishedDate": "2026-04-20",
+            "reportType": "industry",
+            "targetType": "account",
+            "direction": "positive",
+            "strength": 0.353,
+            "confidence": 0.82,
+            "horizon": "3m",
+            "decayHalfLifeDays": 45,
+            "reason": "매크로는 긍정 시각이며 핵심 근거는  ④ 배당: 오리온의 영업현금흐름 및 비영업자산 등을 감안하면 배당 여력은 충분하다. 시중 금리 이상으로 배당할 계획이며, 사업사 배당이 증가함에 따라 홀딩스 배당도 자연스럽게 증가할 것으로 보인다.  ⑤ 중국 전망: 올해 춘절 기간(작년 11월~2월) 동안 매출은 YoY 7% ...",
+            "evidenceNumbers": [
+              "thesis_anchor: 7%",
+              "catalyst_number: 1.3%",
+              "supporting: 40%",
+              "supporting: 11%"
+            ],
+            "contribution": 0.0757
+          },
+          {
+            "reportId": "report_017",
+            "title": "우려 속 기회 찾기",
+            "broker": "DS투자증권",
+            "publishedDate": "2026-04-20",
+            "reportType": "industry",
+            "targetType": "account",
+            "direction": "positive",
+            "strength": 0.302,
+            "confidence": 0.82,
+            "horizon": "3m",
+            "decayHalfLifeDays": 45,
+            "reason": "매크로는 긍정 시각이며 핵심 근거는 음식료 업종 최선호주 삼양식품 유지, 차선호주 오리온 제시 음식료 업종 내 최선호주로 삼양식품을 유지한다. 최근 삼양식품(003230)은 월 별 라면 수출 실적이 최고치를 경신하며 수요 우려를 불식하고 신규 공장 가동 후 실적 성장에 대한 기대감을 높여주고 있다. 1분기 실적 호조 후 ...",
+            "evidenceNumbers": [
+              "supporting: 10%",
+              "supporting: 1,600",
+              "supporting: 1,400",
+              "supporting: 1,200"
+            ],
+            "contribution": 0.0648
+          },
+          {
+            "reportId": "report_019",
+            "title": "자본규제 추가 완화로 2분기 CET 1 상당폭 상승 전망",
+            "broker": "하나증권",
+            "publishedDate": "2026-04-20",
+            "reportType": "industry",
+            "targetType": "account",
+            "direction": "positive",
+            "strength": 0.258,
+            "confidence": 0.82,
+            "horizon": "3m",
+            "decayHalfLifeDays": 45,
+            "reason": "매크로는 중립 시각이며 핵심 근거는  우리 필드테스트에 따르면 은행 3월 월중 NIM이 전월대비 큰폭 상승하면서 1분기 분기 NIM 상승 폭도 예상보다 더 커질 것으로 전망. 3월 월중 NIM 상승 폭이 큰 이유는 연체회수가 많은 분기말월의 계절성과 더불어 1월초부터 3월 중순까지 시중금리가 큰폭 상승한데 따라 대출...",
+            "evidenceNumbers": [
+              "supporting: 75.8%",
+              "supporting: 12.3%",
+              "supporting: 0.9%",
+              "supporting: 0.2%"
+            ],
+            "contribution": 0.0553
+          }
+        ]
+      }
+    }
+  },
+  "portfolio": {
+    "totalScore": 61,
+    "baseScore": 67.42,
+    "preTaxScore": 61.35,
+    "riskPenalty": {
+      "total": 6.07
+    },
+    "taxAdjustment": {
+      "addedScore": 0,
+      "afterTaxScore": 61.35
+    },
+    "note": "선별적 추가와 방어를 병행해야 하는 구간"
+  }
+}

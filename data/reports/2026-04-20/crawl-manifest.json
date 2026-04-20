@@ -1,0 +1,149 @@
+{
+  "date": "2026-04-20",
+  "generated_at": "2026-04-20T02:44:15.377Z",
+  "input_sources": [
+    {
+      "source": "네이버증권",
+      "category": "종목분석",
+      "list_url": "https://finance.naver.com/research/company_list.naver"
+    },
+    {
+      "source": "네이버증권",
+      "category": "산업분석",
+      "list_url": "https://finance.naver.com/research/industry_list.naver"
+    },
+    {
+      "source": "네이버증권",
+      "category": "경제분석",
+      "list_url": "https://finance.naver.com/research/economy_list.naver"
+    },
+    {
+      "source": "네이버증권",
+      "category": "시황정보",
+      "list_url": "https://finance.naver.com/research/market_info_list.naver"
+    },
+    {
+      "source": "네이버증권",
+      "category": "투자전략",
+      "list_url": "https://finance.naver.com/research/invest_list.naver"
+    },
+    {
+      "source": "네이버증권",
+      "category": "채권분석",
+      "list_url": "https://finance.naver.com/research/debenture_list.naver"
+    },
+    {
+      "source": "신한투자증권",
+      "category": "전체",
+      "list_url": "https://www.shinhansec.com/siw/insights/research/list/view-popup.do",
+      "api_url": "https://www.shinhansec.com/siw/etc/browse/search05/data.do"
+    }
+  ],
+  "page_logs": [
+    {
+      "source": "네이버증권",
+      "category": "종목분석",
+      "page": 1,
+      "matchedCount": 28,
+      "totalRowsOnPage": 28
+    },
+    {
+      "source": "네이버증권",
+      "category": "종목분석",
+      "page": 2,
+      "matchedCount": 1,
+      "totalRowsOnPage": 29
+    },
+    {
+      "source": "네이버증권",
+      "category": "산업분석",
+      "page": 1,
+      "matchedCount": 26,
+      "totalRowsOnPage": 26
+    },
+    {
+      "source": "네이버증권",
+      "category": "산업분석",
+      "page": 2,
+      "matchedCount": 1,
+      "totalRowsOnPage": 25
+    },
+    {
+      "source": "네이버증권",
+      "category": "경제분석",
+      "page": 1,
+      "matchedCount": 5,
+      "totalRowsOnPage": 27
+    },
+    {
+      "source": "네이버증권",
+      "category": "시황정보",
+      "page": 1,
+      "matchedCount": 13,
+      "totalRowsOnPage": 20
+    },
+    {
+      "source": "네이버증권",
+      "category": "투자전략",
+      "page": 1,
+      "matchedCount": 20,
+      "totalRowsOnPage": 25
+    },
+    {
+      "source": "네이버증권",
+      "category": "채권분석",
+      "page": 1,
+      "matchedCount": 7,
+      "totalRowsOnPage": 25
+    },
+    {
+      "source": "신한투자증권",
+      "category": "전체",
+      "page": 1,
+      "matchedCount": 0,
+      "totalRowsOnPage": 10
+    }
+  ],
+  "category_failures": [],
+  "total_matched_before_dedupe": 101,
+  "total_unique_after_dedupe": 101,
+  "downloaded_count": 100,
+  "failed_download_count": 1,
+  "source_counts": {
+    "네이버증권": 100
+  },
+  "category_counts": {
+    "종목분석": 29,
+    "산업분석": 27,
+    "투자전략": 19,
+    "시황정보": 13,
+    "채권분석": 7,
+    "경제분석": 5
+  },
+  "top_brokers": {
+    "하나증권": 15,
+    "키움증권": 14,
+    "유진투자증권": 11,
+    "유안타증권": 9,
+    "iM증권": 9,
+    "한국IR협의회": 8,
+    "SK증권": 7,
+    "대신증권": 6,
+    "DS투자증권": 5,
+    "IBK투자증권": 5,
+    "한화투자증권": 4,
+    "교보증권": 3,
+    "다올투자증권": 2,
+    "KB증권": 2
+  },
+  "download_failures": [
+    {
+      "source": "네이버증권",
+      "category": "투자전략",
+      "broker": "SK증권",
+      "title": "[The Market Visualized] 시장 데이터와 사뭇 다른 주말 분위기",
+      "pdf_url": "https://stock.pstatic.net/stock-research/invest/64/20260420_invest_936271000.pdf",
+      "error": "HTTP 400"
+    }
+  ]
+}
