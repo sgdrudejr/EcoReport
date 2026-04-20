@@ -2,8 +2,8 @@
   "date": "2026-04-20",
   "runDate": "2026-04-20",
   "effectiveMarketDate": "2026-04-20",
-  "runId": "2026-04-20-024334",
-  "generatedAt": "2026-04-20T02:47:26.376Z",
+  "runId": "2026-04-20-025315",
+  "generatedAt": "2026-04-20T03:09:33.252Z",
   "source": "mock",
   "mockMode": "fallback",
   "purpose": "gemini_unavailable_fallback",
@@ -338,6 +338,6 @@
   "_contract": {
     "version": "1.0",
     "stage": "stage2",
-    "generatedAt": "2026-04-20T02:47:26.376Z"
+    "generatedAt": "2026-04-20T03:09:33.252Z"
   }
 }

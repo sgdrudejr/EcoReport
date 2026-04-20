@@ -2,8 +2,8 @@
   "date": "2026-04-20",
   "runDate": "2026-04-20",
   "effectiveMarketDate": "2026-04-20",
-  "runId": "2026-04-20-024334",
-  "generatedAt": "2026-04-20T02:47:27.930Z",
+  "runId": "2026-04-20-025315",
+  "generatedAt": "2026-04-20T03:09:34.797Z",
   "reportInputs": {
     "reportCount": 100,
     "available": true
@@ -23,14 +23,14 @@
       "signal": "BULLISH",
       "vix": null,
       "score": 96,
-      "close": 6264.58,
+      "close": 6264.06,
       "ma": {
-        "ma5": 6148.928,
-        "ma20": 5676.143,
-        "ma60": 5539.8788,
-        "ma120": 4860.1057
+        "ma5": 6148.234,
+        "ma20": 5675.9695,
+        "ma60": 5539.821,
+        "ma120": 4860.0768
       },
-      "rsi": 64.33,
+      "rsi": 64.27,
       "alerts": []
     }
   },
@@ -152,13 +152,13 @@
     ],
     "statsByFactor": {
       "momentum": {
-        "mean": 0.6075,
-        "std": 0.8594,
+        "mean": 0.6078,
+        "std": 0.8596,
         "count": 5
       },
       "research": {
-        "mean": 0.7546,
-        "std": 0.1916,
+        "mean": 0.7539,
+        "std": 0.1929,
         "count": 5
       },
       "income": {
@@ -167,8 +167,8 @@
         "count": 5
       },
       "macroFit": {
-        "mean": -1.6068,
-        "std": 1.6127,
+        "mean": -1.6062,
+        "std": 1.6124,
         "count": 5
       }
     }
@@ -181,7 +181,7 @@
       "accountKey": "KIS_MAIN",
       "accountLabel": "한투 일반",
       "category": "기타",
-      "marketValue": 551870,
+      "marketValue": 550710,
       "incomeYield": 0,
       "technicalSignal": "N/A",
       "technicalBaseScore": null,
@@ -613,15 +613,15 @@
           "momentum": -0.9,
           "research": 0.8976,
           "income": 0,
-          "macroFit": -1.7535
+          "macroFit": -1.75
         },
         "zScores": {
           "momentum": -1.754,
-          "research": 0.7463,
+          "research": 0.7448,
           "income": -1.7889,
-          "macroFit": -0.091
+          "macroFit": -0.0892
         },
-        "weightedZ": -0.6765,
+        "weightedZ": -0.6766,
         "score": 41,
         "factorCoverage": 0.75,
         "availability": {
@@ -650,9 +650,9 @@
         "enabled": true,
         "triggered": false,
         "entryPrice": 8765,
-        "currentPrice": 9515,
+        "currentPrice": 9495,
         "recentHigh": null,
-        "drawdownFromEntryPct": 0.0856,
+        "drawdownFromEntryPct": 0.0833,
         "drawdownFromRecentHighPct": null,
         "triggers": []
       },
@@ -680,30 +680,30 @@
       "accountKey": "KIS_MAIN",
       "accountLabel": "한투 일반",
       "category": "원자력",
-      "marketValue": 152290,
+      "marketValue": 152440,
       "incomeYield": 0.004,
       "technicalSignal": "STRONG_BUY",
       "technicalBaseScore": 96,
       "actionScore": 65,
       "direction": 1.09,
-      "timing": -0.878,
-      "reportScore": 0.265,
+      "timing": -0.876,
+      "reportScore": 0.26,
       "probabilities": {
-        "p_buy": 0.6549,
-        "p_hold": 0.2471,
-        "p_sell": 0.098
+        "p_buy": 0.654,
+        "p_hold": 0.2476,
+        "p_sell": 0.0985
       },
       "conviction": "MEDIUM",
       "signal": "HOLD",
       "features": {
         "maTrend": 2.5,
-        "macdZ": 0.5975678393037229,
-        "rsiMid": 1.1360000000000001,
+        "macdZ": 0.5989528865942886,
+        "rsiMid": 1.14,
         "adxTrend": -0.29750000000000004,
         "bbDist": -0.35,
-        "rsiTiming": -1.4200000000000004,
+        "rsiTiming": -1.425,
         "stochTiming": -2.5,
-        "volumeZ": -0.11299999999999999
+        "volumeZ": -0.08599999999999997
       },
       "rawActionScore": 65,
       "rawSignal": "HOLD",
@@ -781,62 +781,64 @@
           "contribution": 0.0689
         },
         {
-          "reportId": "marketvoice_1326912",
-          "title": "기관 매수에 힘입어 코스피 6,270선 강세 마감",
-          "broker": "SBS Biz",
-          "publishedDate": "2026-04-20T02:38:00+00:00",
+          "reportId": "marketvoice_1326944",
+          "title": "2026년 이란 전쟁으로 항공료 급등과 운항 감소",
+          "broker": "Arab times",
+          "publishedDate": "2026-04-20T02:48:01+00:00",
           "reportType": "marketvoice",
           "targetType": "category",
           "direction": "positive",
-          "strength": 0.528,
+          "strength": 0.493,
           "confidence": 0.54,
           "horizon": "1w",
           "decayHalfLifeDays": 7,
-          "reason": "2026년 4월 20일 코스피가 6,270선까지 오르며 강한 상승세를 보였습니다. 기관 투자자가 대규모 매수로 지수를 끌어올렸고, 삼성전자와 SK하이닉스 등 대형주가 특히 강세를 나타냈습니다.",
+          "reason": "2026년 이란 전쟁으로 국제 유가가 급등하며 항공 연료 공급이 불안정해졌습니다. 이에 글로벌 항공사들이 항공편을 줄이고 요금을 올리고 있어 여행객들은 항공권 가격 상승과 운항 감소에 대비해야 합니다.",
           "evidenceNumbers": [
             "인용 0건",
-            "원문 1건",
-            "국제유가 -0.88%"
+            "원문 6건",
+            "우주항공 -0.32%",
+            "여름 -0.29%",
+            "국제유가 -0.82%"
           ],
           "relationType": "thematic",
           "relationWeight": 0.72,
           "evidenceScore": 0.82,
-          "contribution": 0.0677
+          "contribution": 0.0633
         }
       ],
       "technical": {
         "signal": "STRONG_BUY",
         "score": 96,
         "adjustedScore": 96,
-        "rsi": 64.2,
+        "rsi": 64.25,
         "macd": {
-          "value": 2503.5491,
-          "signal": 1567.1004,
-          "histogram": 936.4488
+          "value": 2506.74,
+          "signal": 1567.7385,
+          "histogram": 939.0015
         },
         "bollinger": {
-          "upper": 77865.7936,
-          "middle": 68885.75,
-          "lower": 59905.7064,
+          "upper": 77874.3063,
+          "middle": 68887.75,
+          "lower": 59901.1937,
           "position": "upper_half"
         },
         "atr": {
           "value": 2957.718,
-          "pct": 0.038828
+          "pct": 0.03881
         },
         "recentHigh": {
           "window": 20,
           "value": 76730,
-          "distance_pct": -0.007233
+          "distance_pct": -0.006777
         },
-        "volumeRatio": 0.887
+        "volumeRatio": 0.914
       },
       "report": {
         "sourceLayer": "impact-map",
         "available": true,
         "unavailableReason": null,
         "impactScore": 58,
-        "impactValue": 0.265,
+        "impactValue": 0.26,
         "impactCount": 4,
         "coverageWeight": 0.55,
         "directAccountImpactScore": 54,
@@ -850,18 +852,18 @@
       },
       "factor": {
         "raw": {
-          "momentum": 1.2469,
-          "research": 0.4643,
+          "momentum": 1.2481,
+          "research": 0.4609,
           "income": 0.004,
-          "macroFit": 1.2195
+          "macroFit": 1.219
         },
         "zScores": {
-          "momentum": 0.7441,
-          "research": -1.5148,
+          "momentum": 0.7449,
+          "research": -1.5189,
           "income": 0.4472,
-          "macroFit": 1.7525
+          "macroFit": 1.7522
         },
-        "weightedZ": 0.2236,
+        "weightedZ": 0.2226,
         "score": 53,
         "factorCoverage": 1,
         "availability": {
@@ -890,10 +892,10 @@
         "enabled": true,
         "triggered": false,
         "entryPrice": 64630,
-        "currentPrice": 76175,
+        "currentPrice": 76210,
         "recentHigh": 76730,
-        "drawdownFromEntryPct": 0.1786,
-        "drawdownFromRecentHighPct": -0.0072,
+        "drawdownFromEntryPct": 0.1792,
+        "drawdownFromRecentHighPct": -0.0068,
         "triggers": []
       },
       "scores": {
@@ -907,7 +909,7 @@
         "topDrivers": [
           "기술 기본점수 96점",
           "리포트 영향 58점 (4건 연결)",
-          "RSI 64.2"
+          "RSI 64.3"
         ],
         "warnings": []
       }
@@ -919,30 +921,30 @@
       "accountKey": "KIS_MAIN",
       "accountLabel": "한투 일반",
       "category": "방산",
-      "marketValue": 545090,
+      "marketValue": 545230,
       "incomeYield": 0.004,
       "technicalSignal": "STRONG_BUY",
       "technicalBaseScore": 96,
       "actionScore": 66,
-      "direction": 0.996,
-      "timing": -0.709,
+      "direction": 0.995,
+      "timing": -0.705,
       "reportScore": 0.56,
       "probabilities": {
-        "p_buy": 0.7067,
+        "p_buy": 0.7068,
         "p_hold": 0.2227,
-        "p_sell": 0.0706
+        "p_sell": 0.0705
       },
       "conviction": "MEDIUM",
       "signal": "HOLD",
       "features": {
         "maTrend": 2.5,
-        "macdZ": 0.09214520736791354,
-        "rsiMid": 0.5080000000000001,
+        "macdZ": 0.09086783258238441,
+        "rsiMid": 0.5016000000000003,
         "adxTrend": -0.06583333333333326,
         "bbDist": -0.35,
-        "rsiTiming": -0.6350000000000001,
+        "rsiTiming": -0.6270000000000003,
         "stochTiming": -2.5,
-        "volumeZ": -0.645
+        "volumeZ": -0.635
       },
       "rawActionScore": 66,
       "rawSignal": "HOLD",
@@ -1069,28 +1071,28 @@
         "signal": "STRONG_BUY",
         "score": 96,
         "adjustedScore": 96,
-        "rsi": 56.35,
+        "rsi": 56.27,
         "macd": {
-          "value": 1866.3273,
-          "signal": 1708.8637,
-          "histogram": 157.4636
+          "value": 1863.5352,
+          "signal": 1708.3053,
+          "histogram": 155.23
         },
         "bollinger": {
-          "upper": 83162.6851,
-          "middle": 75107.25,
-          "lower": 67051.8149,
+          "upper": 83158.505,
+          "middle": 75105.5,
+          "lower": 67052.495,
           "position": "upper_half"
         },
         "atr": {
           "value": 2943.301,
-          "pct": 0.037773
+          "pct": 0.037785
         },
         "recentHigh": {
           "window": 20,
           "value": 80070,
-          "distance_pct": -0.026852
+          "distance_pct": -0.027164
         },
-        "volumeRatio": 0.355
+        "volumeRatio": 0.365
       },
       "report": {
         "sourceLayer": "impact-map",
@@ -1111,18 +1113,18 @@
       },
       "factor": {
         "raw": {
-          "momentum": 1.0169,
+          "momentum": 1.0152,
           "research": 0.6708,
           "income": 0.004,
           "macroFit": -2.5
         },
         "zScores": {
-          "momentum": 0.4764,
-          "research": -0.4372,
+          "momentum": 0.474,
+          "research": -0.4306,
           "income": 0.4472,
-          "macroFit": -0.5539
+          "macroFit": -0.5543
         },
-        "weightedZ": -0.0081,
+        "weightedZ": -0.0071,
         "score": 50,
         "factorCoverage": 1,
         "availability": {
@@ -1151,10 +1153,10 @@
         "enabled": true,
         "triggered": false,
         "entryPrice": 77758.5714,
-        "currentPrice": 77920,
+        "currentPrice": 77895,
         "recentHigh": 80070,
-        "drawdownFromEntryPct": 0.0021,
-        "drawdownFromRecentHighPct": -0.0269,
+        "drawdownFromEntryPct": 0.0018,
+        "drawdownFromRecentHighPct": -0.0272,
         "triggers": []
       },
       "scores": {
@@ -1168,7 +1170,7 @@
         "topDrivers": [
           "기술 기본점수 96점",
           "리포트 영향 66점 (14건 연결)",
-          "RSI 56.4"
+          "RSI 56.3"
         ],
         "warnings": []
       }
@@ -1180,30 +1182,30 @@
       "accountKey": "KIS_MAIN",
       "accountLabel": "한투 일반",
       "category": "방산",
-      "marketValue": 934500,
+      "marketValue": 935000,
       "incomeYield": 0.004,
       "technicalSignal": "BUY",
       "technicalBaseScore": 76,
       "actionScore": 70,
-      "direction": 0.924,
-      "timing": 0.074,
+      "direction": 0.926,
+      "timing": 0.064,
       "reportScore": 0.752,
       "probabilities": {
-        "p_buy": 0.795,
-        "p_hold": 0.1722,
-        "p_sell": 0.0329
+        "p_buy": 0.7946,
+        "p_hold": 0.1724,
+        "p_sell": 0.033
       },
       "conviction": "MEDIUM",
       "signal": "HOLD",
       "features": {
         "maTrend": 2.5,
-        "macdZ": -0.1519944587060539,
-        "rsiMid": 0.06560000000000002,
+        "macdZ": -0.14824182512292966,
+        "rsiMid": 0.0775999999999999,
         "adxTrend": -0.13083333333333336,
         "bbDist": -0.35,
-        "rsiTiming": -0.08200000000000003,
-        "stochTiming": 0.2133333333333335,
-        "volumeZ": -0.516
+        "rsiTiming": -0.09699999999999989,
+        "stochTiming": 0.1779166666666665,
+        "volumeZ": -0.507
       },
       "rawActionScore": 70,
       "rawSignal": "HOLD",
@@ -1330,28 +1332,28 @@
         "signal": "BUY",
         "score": 76,
         "adjustedScore": 76,
-        "rsi": 50.82,
+        "rsi": 50.97,
         "macd": {
-          "value": 2991.1383,
-          "signal": 3527.2628,
-          "histogram": -536.1244
+          "value": 3007.0928,
+          "signal": 3530.4537,
+          "histogram": -523.3609
         },
         "bollinger": {
-          "upper": 202332.1193,
-          "middle": 186500,
-          "lower": 170667.8807,
+          "upper": 202343.3698,
+          "middle": 186510,
+          "lower": 170676.6302,
           "position": "upper_half"
         },
         "atr": {
           "value": 8891.7331,
-          "pct": 0.047562
+          "pct": 0.047524
         },
         "recentHigh": {
           "window": 20,
           "value": 205500,
-          "distance_pct": -0.090268
+          "distance_pct": -0.089538
         },
-        "volumeRatio": 0.484
+        "volumeRatio": 0.493
       },
       "report": {
         "sourceLayer": "impact-map",
@@ -1372,18 +1374,18 @@
       },
       "factor": {
         "raw": {
-          "momentum": 0.8496,
+          "momentum": 0.8531,
           "research": 0.8051,
           "income": 0.004,
           "macroFit": -2.5
         },
         "zScores": {
-          "momentum": 0.2818,
-          "research": 0.2635,
+          "momentum": 0.2854,
+          "research": 0.2653,
           "income": 0.4472,
-          "macroFit": -0.5539
+          "macroFit": -0.5543
         },
-        "weightedZ": 0.134,
+        "weightedZ": 0.1357,
         "score": 52,
         "factorCoverage": 1,
         "availability": {
@@ -1412,10 +1414,10 @@
         "enabled": true,
         "triggered": false,
         "entryPrice": 200500,
-        "currentPrice": 186950,
+        "currentPrice": 187100,
         "recentHigh": 205500,
-        "drawdownFromEntryPct": -0.0676,
-        "drawdownFromRecentHighPct": -0.0903,
+        "drawdownFromEntryPct": -0.0668,
+        "drawdownFromRecentHighPct": -0.0895,
         "triggers": []
       },
       "scores": {
@@ -1429,7 +1431,7 @@
         "topDrivers": [
           "기술 기본점수 76점",
           "리포트 영향 71점 (15건 연결)",
-          "RSI 50.8"
+          "RSI 51.0"
         ],
         "warnings": []
       }
@@ -1446,25 +1448,25 @@
       "technicalSignal": "STRONG_BUY",
       "technicalBaseScore": 82,
       "actionScore": 66,
-      "direction": 0.858,
-      "timing": -0.611,
+      "direction": 0.855,
+      "timing": -0.615,
       "reportScore": 0.937,
       "probabilities": {
-        "p_buy": 0.7485,
-        "p_hold": 0.2,
-        "p_sell": 0.0515
+        "p_buy": 0.7475,
+        "p_hold": 0.2006,
+        "p_sell": 0.0519
       },
       "conviction": "MEDIUM",
       "signal": "HOLD",
       "features": {
-        "maTrend": 0.8044751573235827,
-        "macdZ": 1.4967375522547854,
-        "rsiMid": 0.7031999999999999,
+        "maTrend": 0.779449639616252,
+        "macdZ": 1.5086750317192579,
+        "rsiMid": 0.7239999999999998,
         "adxTrend": -0.15916666666666668,
         "bbDist": -0.35,
-        "rsiTiming": -0.8789999999999999,
+        "rsiTiming": -0.9049999999999997,
         "stochTiming": -2.5,
-        "volumeZ": -0.21299999999999997
+        "volumeZ": -0.19799999999999995
       },
       "rawActionScore": 66,
       "rawSignal": "HOLD",
@@ -1590,28 +1592,28 @@
         "signal": "STRONG_BUY",
         "score": 82,
         "adjustedScore": 82,
-        "rsi": 58.79,
+        "rsi": 59.05,
         "macd": {
-          "value": 4156.6276,
-          "signal": 1664.8236,
-          "histogram": 2491.804
+          "value": 4196.5137,
+          "signal": 1672.8008,
+          "histogram": 2523.7128
         },
         "bollinger": {
-          "upper": 228624.635,
-          "middle": 200545,
-          "lower": 172465.365,
+          "upper": 228710.796,
+          "middle": 200570,
+          "lower": 172429.204,
           "position": "upper_half"
         },
         "atr": {
           "value": 11881.5407,
-          "pct": 0.054378
+          "pct": 0.054502
         },
         "recentHigh": {
           "window": 20,
           "value": 225500,
-          "distance_pct": -0.031042
+          "distance_pct": -0.033259
         },
-        "volumeRatio": 0.787
+        "volumeRatio": 0.802
       },
       "report": {
         "sourceLayer": "impact-map",
@@ -1632,18 +1634,18 @@
       },
       "factor": {
         "raw": {
-          "momentum": 0.8239,
+          "momentum": 0.8224,
           "research": 0.9352,
           "income": 0.004,
           "macroFit": -2.5
         },
         "zScores": {
-          "momentum": 0.2518,
-          "research": 0.9423,
+          "momentum": 0.2497,
+          "research": 0.9394,
           "income": 0.4472,
-          "macroFit": -0.5539
+          "macroFit": -0.5543
         },
-        "weightedZ": 0.3271,
+        "weightedZ": 0.3254,
         "score": 55,
         "factorCoverage": 1,
         "availability": {
@@ -1672,10 +1674,10 @@
         "enabled": true,
         "triggered": false,
         "entryPrice": 208000,
-        "currentPrice": 218500,
+        "currentPrice": 218000,
         "recentHigh": 225500,
-        "drawdownFromEntryPct": 0.0505,
-        "drawdownFromRecentHighPct": -0.031,
+        "drawdownFromEntryPct": 0.0481,
+        "drawdownFromRecentHighPct": -0.0333,
         "triggers": []
       },
       "scores": {
@@ -1689,7 +1691,7 @@
         "topDrivers": [
           "기술 기본점수 82점",
           "리포트 영향 75점 (17건 연결)",
-          "RSI 58.8"
+          "RSI 59.0"
         ],
         "warnings": []
       }
@@ -1703,30 +1705,30 @@
       "accountKey": "KIS_MAIN",
       "accountLabel": "한투 일반",
       "category": "방산",
-      "marketValue": 934500,
+      "marketValue": 935000,
       "incomeYield": 0.004,
       "technicalSignal": "BUY",
       "technicalBaseScore": 76,
       "actionScore": 70,
-      "direction": 0.924,
-      "timing": 0.074,
+      "direction": 0.926,
+      "timing": 0.064,
       "reportScore": 0.752,
       "probabilities": {
-        "p_buy": 0.795,
-        "p_hold": 0.1722,
-        "p_sell": 0.0329
+        "p_buy": 0.7946,
+        "p_hold": 0.1724,
+        "p_sell": 0.033
       },
       "conviction": "MEDIUM",
       "signal": "HOLD",
       "features": {
         "maTrend": 2.5,
-        "macdZ": -0.1519944587060539,
-        "rsiMid": 0.06560000000000002,
+        "macdZ": -0.14824182512292966,
+        "rsiMid": 0.0775999999999999,
         "adxTrend": -0.13083333333333336,
         "bbDist": -0.35,
-        "rsiTiming": -0.08200000000000003,
-        "stochTiming": 0.2133333333333335,
-        "volumeZ": -0.516
+        "rsiTiming": -0.09699999999999989,
+        "stochTiming": 0.1779166666666665,
+        "volumeZ": -0.507
       },
       "rawActionScore": 70,
       "rawSignal": "HOLD",
@@ -1853,28 +1855,28 @@
         "signal": "BUY",
         "score": 76,
         "adjustedScore": 76,
-        "rsi": 50.82,
+        "rsi": 50.97,
         "macd": {
-          "value": 2991.1383,
-          "signal": 3527.2628,
-          "histogram": -536.1244
+          "value": 3007.0928,
+          "signal": 3530.4537,
+          "histogram": -523.3609
         },
         "bollinger": {
-          "upper": 202332.1193,
-          "middle": 186500,
-          "lower": 170667.8807,
+          "upper": 202343.3698,
+          "middle": 186510,
+          "lower": 170676.6302,
           "position": "upper_half"
         },
         "atr": {
           "value": 8891.7331,
-          "pct": 0.047562
+          "pct": 0.047524
         },
         "recentHigh": {
           "window": 20,
           "value": 205500,
-          "distance_pct": -0.090268
+          "distance_pct": -0.089538
         },
-        "volumeRatio": 0.484
+        "volumeRatio": 0.493
       },
       "report": {
         "sourceLayer": "impact-map",
@@ -1895,18 +1897,18 @@
       },
       "factor": {
         "raw": {
-          "momentum": 0.8496,
+          "momentum": 0.8531,
           "research": 0.8051,
           "income": 0.004,
           "macroFit": -2.5
         },
         "zScores": {
-          "momentum": 0.2818,
-          "research": 0.2635,
+          "momentum": 0.2854,
+          "research": 0.2653,
           "income": 0.4472,
-          "macroFit": -0.5539
+          "macroFit": -0.5543
         },
-        "weightedZ": 0.134,
+        "weightedZ": 0.1357,
         "score": 52,
         "factorCoverage": 1,
         "availability": {
@@ -1935,10 +1937,10 @@
         "enabled": true,
         "triggered": false,
         "entryPrice": 200500,
-        "currentPrice": 186950,
+        "currentPrice": 187100,
         "recentHigh": 205500,
-        "drawdownFromEntryPct": -0.0676,
-        "drawdownFromRecentHighPct": -0.0903,
+        "drawdownFromEntryPct": -0.0668,
+        "drawdownFromRecentHighPct": -0.0895,
         "triggers": []
       },
       "scores": {
@@ -1952,7 +1954,7 @@
         "topDrivers": [
           "기술 기본점수 76점",
           "리포트 영향 71점 (15건 연결)",
-          "RSI 50.8"
+          "RSI 51.0"
         ],
         "warnings": []
       }
@@ -1969,25 +1971,25 @@
       "technicalSignal": "STRONG_BUY",
       "technicalBaseScore": 82,
       "actionScore": 66,
-      "direction": 0.858,
-      "timing": -0.611,
+      "direction": 0.855,
+      "timing": -0.615,
       "reportScore": 0.937,
       "probabilities": {
-        "p_buy": 0.7485,
-        "p_hold": 0.2,
-        "p_sell": 0.0515
+        "p_buy": 0.7475,
+        "p_hold": 0.2006,
+        "p_sell": 0.0519
       },
       "conviction": "MEDIUM",
       "signal": "HOLD",
       "features": {
-        "maTrend": 0.8044751573235827,
-        "macdZ": 1.4967375522547854,
-        "rsiMid": 0.7031999999999999,
+        "maTrend": 0.779449639616252,
+        "macdZ": 1.5086750317192579,
+        "rsiMid": 0.7239999999999998,
         "adxTrend": -0.15916666666666668,
         "bbDist": -0.35,
-        "rsiTiming": -0.8789999999999999,
+        "rsiTiming": -0.9049999999999997,
         "stochTiming": -2.5,
-        "volumeZ": -0.21299999999999997
+        "volumeZ": -0.19799999999999995
       },
       "rawActionScore": 66,
       "rawSignal": "HOLD",
@@ -2113,28 +2115,28 @@
         "signal": "STRONG_BUY",
         "score": 82,
         "adjustedScore": 82,
-        "rsi": 58.79,
+        "rsi": 59.05,
         "macd": {
-          "value": 4156.6276,
-          "signal": 1664.8236,
-          "histogram": 2491.804
+          "value": 4196.5137,
+          "signal": 1672.8008,
+          "histogram": 2523.7128
         },
         "bollinger": {
-          "upper": 228624.635,
-          "middle": 200545,
-          "lower": 172465.365,
+          "upper": 228710.796,
+          "middle": 200570,
+          "lower": 172429.204,
           "position": "upper_half"
         },
         "atr": {
           "value": 11881.5407,
-          "pct": 0.054378
+          "pct": 0.054502
         },
         "recentHigh": {
           "window": 20,
           "value": 225500,
-          "distance_pct": -0.031042
+          "distance_pct": -0.033259
         },
-        "volumeRatio": 0.787
+        "volumeRatio": 0.802
       },
       "report": {
         "sourceLayer": "impact-map",
@@ -2155,18 +2157,18 @@
       },
       "factor": {
         "raw": {
-          "momentum": 0.8239,
+          "momentum": 0.8224,
           "research": 0.9352,
           "income": 0.004,
           "macroFit": -2.5
         },
         "zScores": {
-          "momentum": 0.2518,
-          "research": 0.9423,
+          "momentum": 0.2497,
+          "research": 0.9394,
           "income": 0.4472,
-          "macroFit": -0.5539
+          "macroFit": -0.5543
         },
-        "weightedZ": 0.3271,
+        "weightedZ": 0.3254,
         "score": 55,
         "factorCoverage": 1,
         "availability": {
@@ -2195,10 +2197,10 @@
         "enabled": true,
         "triggered": false,
         "entryPrice": 208000,
-        "currentPrice": 218500,
+        "currentPrice": 218000,
         "recentHigh": 225500,
-        "drawdownFromEntryPct": 0.0505,
-        "drawdownFromRecentHighPct": -0.031,
+        "drawdownFromEntryPct": 0.0481,
+        "drawdownFromRecentHighPct": -0.0333,
         "triggers": []
       },
       "scores": {
@@ -2212,7 +2214,7 @@
         "topDrivers": [
           "기술 기본점수 82점",
           "리포트 영향 75점 (17건 연결)",
-          "RSI 58.8"
+          "RSI 59.0"
         ],
         "warnings": []
       }
@@ -2224,7 +2226,7 @@
       "accountKey": "KIS_MAIN",
       "accountLabel": "한투 일반",
       "category": "기타",
-      "marketValue": 551870,
+      "marketValue": 550710,
       "incomeYield": 0,
       "technicalSignal": "N/A",
       "technicalBaseScore": null,
@@ -2656,15 +2658,15 @@
           "momentum": -0.9,
           "research": 0.8976,
           "income": 0,
-          "macroFit": -1.7535
+          "macroFit": -1.75
         },
         "zScores": {
           "momentum": -1.754,
-          "research": 0.7463,
+          "research": 0.7448,
           "income": -1.7889,
-          "macroFit": -0.091
+          "macroFit": -0.0892
         },
-        "weightedZ": -0.6765,
+        "weightedZ": -0.6766,
         "score": 41,
         "factorCoverage": 0.75,
         "availability": {
@@ -2693,9 +2695,9 @@
         "enabled": true,
         "triggered": false,
         "entryPrice": 8765,
-        "currentPrice": 9515,
+        "currentPrice": 9495,
         "recentHigh": null,
-        "drawdownFromEntryPct": 0.0856,
+        "drawdownFromEntryPct": 0.0833,
         "drawdownFromRecentHighPct": null,
         "triggers": []
       },
@@ -2723,30 +2725,30 @@
       "accountKey": "KIS_MAIN",
       "accountLabel": "한투 일반",
       "category": "원자력",
-      "marketValue": 152290,
+      "marketValue": 152440,
       "incomeYield": 0.004,
       "technicalSignal": "STRONG_BUY",
       "technicalBaseScore": 96,
       "actionScore": 65,
       "direction": 1.09,
-      "timing": -0.878,
-      "reportScore": 0.265,
+      "timing": -0.876,
+      "reportScore": 0.26,
       "probabilities": {
-        "p_buy": 0.6549,
-        "p_hold": 0.2471,
-        "p_sell": 0.098
+        "p_buy": 0.654,
+        "p_hold": 0.2476,
+        "p_sell": 0.0985
       },
       "conviction": "MEDIUM",
       "signal": "HOLD",
       "features": {
         "maTrend": 2.5,
-        "macdZ": 0.5975678393037229,
-        "rsiMid": 1.1360000000000001,
+        "macdZ": 0.5989528865942886,
+        "rsiMid": 1.14,
         "adxTrend": -0.29750000000000004,
         "bbDist": -0.35,
-        "rsiTiming": -1.4200000000000004,
+        "rsiTiming": -1.425,
         "stochTiming": -2.5,
-        "volumeZ": -0.11299999999999999
+        "volumeZ": -0.08599999999999997
       },
       "rawActionScore": 65,
       "rawSignal": "HOLD",
@@ -2824,62 +2826,64 @@
           "contribution": 0.0689
         },
         {
-          "reportId": "marketvoice_1326912",
-          "title": "기관 매수에 힘입어 코스피 6,270선 강세 마감",
-          "broker": "SBS Biz",
-          "publishedDate": "2026-04-20T02:38:00+00:00",
+          "reportId": "marketvoice_1326944",
+          "title": "2026년 이란 전쟁으로 항공료 급등과 운항 감소",
+          "broker": "Arab times",
+          "publishedDate": "2026-04-20T02:48:01+00:00",
           "reportType": "marketvoice",
           "targetType": "category",
           "direction": "positive",
-          "strength": 0.528,
+          "strength": 0.493,
           "confidence": 0.54,
           "horizon": "1w",
           "decayHalfLifeDays": 7,
-          "reason": "2026년 4월 20일 코스피가 6,270선까지 오르며 강한 상승세를 보였습니다. 기관 투자자가 대규모 매수로 지수를 끌어올렸고, 삼성전자와 SK하이닉스 등 대형주가 특히 강세를 나타냈습니다.",
+          "reason": "2026년 이란 전쟁으로 국제 유가가 급등하며 항공 연료 공급이 불안정해졌습니다. 이에 글로벌 항공사들이 항공편을 줄이고 요금을 올리고 있어 여행객들은 항공권 가격 상승과 운항 감소에 대비해야 합니다.",
           "evidenceNumbers": [
             "인용 0건",
-            "원문 1건",
-            "국제유가 -0.88%"
+            "원문 6건",
+            "우주항공 -0.32%",
+            "여름 -0.29%",
+            "국제유가 -0.82%"
           ],
           "relationType": "thematic",
           "relationWeight": 0.72,
           "evidenceScore": 0.82,
-          "contribution": 0.0677
+          "contribution": 0.0633
         }
       ],
       "technical": {
         "signal": "STRONG_BUY",
         "score": 96,
         "adjustedScore": 96,
-        "rsi": 64.2,
+        "rsi": 64.25,
         "macd": {
-          "value": 2503.5491,
-          "signal": 1567.1004,
-          "histogram": 936.4488
+          "value": 2506.74,
+          "signal": 1567.7385,
+          "histogram": 939.0015
         },
         "bollinger": {
-          "upper": 77865.7936,
-          "middle": 68885.75,
-          "lower": 59905.7064,
+          "upper": 77874.3063,
+          "middle": 68887.75,
+          "lower": 59901.1937,
           "position": "upper_half"
         },
         "atr": {
           "value": 2957.718,
-          "pct": 0.038828
+          "pct": 0.03881
         },
         "recentHigh": {
           "window": 20,
           "value": 76730,
-          "distance_pct": -0.007233
+          "distance_pct": -0.006777
         },
-        "volumeRatio": 0.887
+        "volumeRatio": 0.914
       },
       "report": {
         "sourceLayer": "impact-map",
         "available": true,
         "unavailableReason": null,
         "impactScore": 58,
-        "impactValue": 0.265,
+        "impactValue": 0.26,
         "impactCount": 4,
         "coverageWeight": 0.55,
         "directAccountImpactScore": 54,
@@ -2893,18 +2897,18 @@
       },
       "factor": {
         "raw": {
-          "momentum": 1.2469,
-          "research": 0.4643,
+          "momentum": 1.2481,
+          "research": 0.4609,
           "income": 0.004,
-          "macroFit": 1.2195
+          "macroFit": 1.219
         },
         "zScores": {
-          "momentum": 0.7441,
-          "research": -1.5148,
+          "momentum": 0.7449,
+          "research": -1.5189,
           "income": 0.4472,
-          "macroFit": 1.7525
+          "macroFit": 1.7522
         },
-        "weightedZ": 0.2236,
+        "weightedZ": 0.2226,
         "score": 53,
         "factorCoverage": 1,
         "availability": {
@@ -2933,10 +2937,10 @@
         "enabled": true,
         "triggered": false,
         "entryPrice": 64630,
-        "currentPrice": 76175,
+        "currentPrice": 76210,
         "recentHigh": 76730,
-        "drawdownFromEntryPct": 0.1786,
-        "drawdownFromRecentHighPct": -0.0072,
+        "drawdownFromEntryPct": 0.1792,
+        "drawdownFromRecentHighPct": -0.0068,
         "triggers": []
       },
       "scores": {
@@ -2950,7 +2954,7 @@
         "topDrivers": [
           "기술 기본점수 96점",
           "리포트 영향 58점 (4건 연결)",
-          "RSI 64.2"
+          "RSI 64.3"
         ],
         "warnings": []
       }
@@ -2962,30 +2966,30 @@
       "accountKey": "KIS_MAIN",
       "accountLabel": "한투 일반",
       "category": "방산",
-      "marketValue": 545090,
+      "marketValue": 545230,
       "incomeYield": 0.004,
       "technicalSignal": "STRONG_BUY",
       "technicalBaseScore": 96,
       "actionScore": 66,
-      "direction": 0.996,
-      "timing": -0.709,
+      "direction": 0.995,
+      "timing": -0.705,
       "reportScore": 0.56,
       "probabilities": {
-        "p_buy": 0.7067,
+        "p_buy": 0.7068,
         "p_hold": 0.2227,
-        "p_sell": 0.0706
+        "p_sell": 0.0705
       },
       "conviction": "MEDIUM",
       "signal": "HOLD",
       "features": {
         "maTrend": 2.5,
-        "macdZ": 0.09214520736791354,
-        "rsiMid": 0.5080000000000001,
+        "macdZ": 0.09086783258238441,
+        "rsiMid": 0.5016000000000003,
         "adxTrend": -0.06583333333333326,
         "bbDist": -0.35,
-        "rsiTiming": -0.6350000000000001,
+        "rsiTiming": -0.6270000000000003,
         "stochTiming": -2.5,
-        "volumeZ": -0.645
+        "volumeZ": -0.635
       },
       "rawActionScore": 66,
       "rawSignal": "HOLD",
@@ -3112,28 +3116,28 @@
         "signal": "STRONG_BUY",
         "score": 96,
         "adjustedScore": 96,
-        "rsi": 56.35,
+        "rsi": 56.27,
         "macd": {
-          "value": 1866.3273,
-          "signal": 1708.8637,
-          "histogram": 157.4636
+          "value": 1863.5352,
+          "signal": 1708.3053,
+          "histogram": 155.23
         },
         "bollinger": {
-          "upper": 83162.6851,
-          "middle": 75107.25,
-          "lower": 67051.8149,
+          "upper": 83158.505,
+          "middle": 75105.5,
+          "lower": 67052.495,
           "position": "upper_half"
         },
         "atr": {
           "value": 2943.301,
-          "pct": 0.037773
+          "pct": 0.037785
         },
         "recentHigh": {
           "window": 20,
           "value": 80070,
-          "distance_pct": -0.026852
+          "distance_pct": -0.027164
         },
-        "volumeRatio": 0.355
+        "volumeRatio": 0.365
       },
       "report": {
         "sourceLayer": "impact-map",
@@ -3154,18 +3158,18 @@
       },
       "factor": {
         "raw": {
-          "momentum": 1.0169,
+          "momentum": 1.0152,
           "research": 0.6708,
           "income": 0.004,
           "macroFit": -2.5
         },
         "zScores": {
-          "momentum": 0.4764,
-          "research": -0.4372,
+          "momentum": 0.474,
+          "research": -0.4306,
           "income": 0.4472,
-          "macroFit": -0.5539
+          "macroFit": -0.5543
         },
-        "weightedZ": -0.0081,
+        "weightedZ": -0.0071,
         "score": 50,
         "factorCoverage": 1,
         "availability": {
@@ -3194,10 +3198,10 @@
         "enabled": true,
         "triggered": false,
         "entryPrice": 77758.5714,
-        "currentPrice": 77920,
+        "currentPrice": 77895,
         "recentHigh": 80070,
-        "drawdownFromEntryPct": 0.0021,
-        "drawdownFromRecentHighPct": -0.0269,
+        "drawdownFromEntryPct": 0.0018,
+        "drawdownFromRecentHighPct": -0.0272,
         "triggers": []
       },
       "scores": {
@@ -3211,7 +3215,7 @@
         "topDrivers": [
           "기술 기본점수 96점",
           "리포트 영향 66점 (14건 연결)",
-          "RSI 56.4"
+          "RSI 56.3"
         ],
         "warnings": []
       }
@@ -3251,30 +3255,30 @@
         "asset_class": "STOCK_KR",
         "benchmark": "^KS11",
         "as_of_date": "2026-04-20",
-        "close": 186950,
+        "close": 187100,
         "close_252d": 72200,
-        "ma_20": 186500,
-        "ma_60": 178505,
-        "ma_120": 147339.1667,
+        "ma_20": 186510,
+        "ma_60": 178508.3333,
+        "ma_120": 147340.8333,
         "ha_open": 190460.931,
-        "ha_close": 187825,
-        "volume_current": 277645,
-        "volume_ma_20": 573738,
-        "keltner_upper": 205347.3579,
-        "keltner_lower": 169780.4254,
-        "vwap_anchored": 186773.0645,
+        "ha_close": 187875,
+        "volume_current": 282828,
+        "volume_ma_20": 573982.4,
+        "keltner_upper": 205366.4056,
+        "keltner_lower": 169799.473,
+        "vwap_anchored": 186775.0736,
         "poc_price_120d": 164756.9444,
         "senkou_span_a": 183675,
         "senkou_span_b": 162650,
         "adx_14": 18.43,
-        "stoch_k_14": 40.95,
-        "stoch_d_14": 53.93,
-        "rsi_14": 50.82,
+        "stoch_k_14": 41.59,
+        "stoch_d_14": 54.14,
+        "rsi_14": 50.97,
         "price_drop_ratio": null,
         "rsi_rise_value": null,
         "vix_close": 17.94,
         "yield_spread_10y_2y": 0.55,
-        "rs_vs_kospi": -0.184553,
+        "rs_vs_kospi": -0.18263,
         "benchmark_used": "^KS11",
         "sourceType": "holding",
         "accountKey": "KIS_MAIN",
@@ -3282,15 +3286,15 @@
           "accountLabel": "한투 일반",
           "quantity": 5,
           "avgPrice": 200500,
-          "currentPrice": 186900,
-          "profitRate": -6.78,
-          "marketValue": 934500
+          "currentPrice": 187000,
+          "profitRate": -6.73,
+          "marketValue": 935000
         },
         "final_score": 63.2,
         "filter_score": 1,
-        "stage2_score": 16.075,
-        "stage3_score": 21.311,
-        "stage4_score": 4.759,
+        "stage2_score": 16.285,
+        "stage3_score": 21.152,
+        "stage4_score": 4.684,
         "factors": {
           "Score_RS": 32.14,
           "Score_Ichimoku": 35.71,
@@ -3307,8 +3311,8 @@
         },
         "derived": {
           "Cloud_Top": 183675,
-          "Keltner_Break": -8.9591,
-          "Vol_Ratio": 0.4839
+          "Keltner_Break": -8.8945,
+          "Vol_Ratio": 0.4927
         },
         "gates": {
           "price_above_ma120": true,
@@ -3333,30 +3337,30 @@
         "asset_class": "STOCK_KR",
         "benchmark": "^KS11",
         "as_of_date": "2026-04-20",
-        "close": 218500,
+        "close": 218000,
         "close_252d": 90400,
-        "ma_20": 200545,
-        "ma_60": 207363.3333,
-        "ma_120": 202960,
+        "ma_20": 200570,
+        "ma_60": 207371.6667,
+        "ma_120": 202964.1667,
         "ha_open": 216061.5173,
-        "ha_close": 216375,
-        "volume_current": 608256,
-        "volume_ma_20": 773015.5,
-        "keltner_upper": 229640.4337,
-        "keltner_lower": 182114.2709,
-        "vwap_anchored": 201490.9382,
+        "ha_close": 216500,
+        "volume_current": 619966,
+        "volume_ma_20": 773327.4,
+        "keltner_upper": 229688.0527,
+        "keltner_lower": 182161.8899,
+        "vwap_anchored": 201504.1469,
         "poc_price_120d": 219893.75,
         "senkou_span_a": 233025,
         "senkou_span_b": 226350,
         "adx_14": 18.09,
-        "stoch_k_14": 83.74,
-        "stoch_d_14": 85.91,
-        "rsi_14": 58.79,
+        "stoch_k_14": 84.76,
+        "stoch_d_14": 86.25,
+        "rsi_14": 59.05,
         "price_drop_ratio": null,
         "rsi_rise_value": null,
         "vix_close": 17.94,
         "yield_spread_10y_2y": 0.55,
-        "rs_vs_kospi": -0.315514,
+        "rs_vs_kospi": -0.312513,
         "benchmark_used": "^KS11",
         "sourceType": "holding",
         "accountKey": "KIS_MAIN",
@@ -3368,16 +3372,16 @@
           "profitRate": 4.56,
           "marketValue": 217500
         },
-        "final_score": 47.4,
+        "final_score": 48.1,
         "filter_score": 1,
-        "stage2_score": 15.319,
+        "stage2_score": 15.446,
         "stage3_score": 12,
         "stage4_score": 0,
         "factors": {
           "Score_RS": 32.14,
           "Score_Ichimoku": 10.71,
           "Score_ADX_Mom": 60.71,
-          "Score_HA": 42.86,
+          "Score_HA": 50,
           "Score_Keltner_Vol": 50,
           "Score_POC": 42.86,
           "Score_VWAP": 39.29,
@@ -3389,8 +3393,8 @@
         },
         "derived": {
           "Cloud_Top": 233025,
-          "Keltner_Break": -4.8513,
-          "Vol_Ratio": 0.7869
+          "Keltner_Break": -5.0887,
+          "Vol_Ratio": 0.8017
         },
         "gates": {
           "price_above_ma120": true,
@@ -3446,9 +3450,9 @@
           "accountLabel": "한투 일반",
           "quantity": 58,
           "avgPrice": 8765,
-          "currentPrice": 9515,
-          "profitRate": 8.55,
-          "marketValue": 551870
+          "currentPrice": 9495,
+          "profitRate": 8.32,
+          "marketValue": 550710
         },
         "final_score": 0,
         "filter_score": 0,
@@ -3518,30 +3522,30 @@
         "asset_class": "ETF_KR",
         "benchmark": "^KS11",
         "as_of_date": "2026-04-20",
-        "close": 76175,
+        "close": 76210,
         "close_252d": 17095,
-        "ma_20": 68885.75,
-        "ma_60": 65979.0833,
-        "ma_120": 58090.0417,
+        "ma_20": 68887.75,
+        "ma_60": 65979.75,
+        "ma_120": 58090.375,
         "ha_open": 75022.7021,
-        "ha_close": 76045,
-        "volume_current": 552139,
-        "volume_ma_20": 622802.45,
-        "keltner_upper": 76313.1376,
-        "keltner_lower": 64482.2657,
-        "vwap_anchored": 69382.8929,
-        "poc_price_120d": 50538.3333,
+        "ha_close": 76055,
+        "volume_current": 569728,
+        "volume_ma_20": 623578.55,
+        "keltner_upper": 76316.9471,
+        "keltner_lower": 64486.0752,
+        "vwap_anchored": 69391.942,
+        "poc_price_120d": 50540.2778,
         "senkou_span_a": 64015,
         "senkou_span_b": 60500,
         "adx_14": 16.43,
-        "stoch_k_14": 96.17,
-        "stoch_d_14": 96.93,
-        "rsi_14": 64.2,
+        "stoch_k_14": 96.44,
+        "stoch_d_14": 97.02,
+        "rsi_14": 64.25,
         "price_drop_ratio": null,
         "rsi_rise_value": null,
         "vix_close": 17.94,
         "yield_spread_10y_2y": 0.55,
-        "rs_vs_kospi": 0.049717,
+        "rs_vs_kospi": 0.051152,
         "benchmark_used": "^KS11",
         "sourceType": "holding",
         "accountKey": "KIS_MAIN",
@@ -3549,20 +3553,20 @@
           "accountLabel": "한투 일반",
           "quantity": 2,
           "avgPrice": 64630,
-          "currentPrice": 76145,
-          "profitRate": 17.81,
-          "marketValue": 152290
+          "currentPrice": 76220,
+          "profitRate": 17.93,
+          "marketValue": 152440
         },
-        "final_score": 64.7,
+        "final_score": 64,
         "filter_score": 1,
-        "stage2_score": 32.97,
+        "stage2_score": 33.142,
         "stage3_score": 14,
         "stage4_score": 0,
         "factors": {
           "Score_RS": 78.57,
           "Score_Ichimoku": 78.57,
           "Score_ADX_Mom": 60.71,
-          "Score_HA": 85.71,
+          "Score_HA": 78.57,
           "Score_Keltner_Vol": 50,
           "Score_POC": 42.86,
           "Score_VWAP": 39.29,
@@ -3574,8 +3578,8 @@
         },
         "derived": {
           "Cloud_Top": 64015,
-          "Keltner_Break": -0.181,
-          "Vol_Ratio": 0.8865
+          "Keltner_Break": -0.1401,
+          "Vol_Ratio": 0.9136
         },
         "gates": {
           "price_above_ma120": true,
@@ -3600,30 +3604,30 @@
         "asset_class": "ETF_KR",
         "benchmark": "^KS11",
         "as_of_date": "2026-04-20",
-        "close": 77920,
+        "close": 77895,
         "close_252d": 29335,
-        "ma_20": 75107.25,
-        "ma_60": 71940.8333,
-        "ma_120": 63347.2083,
+        "ma_20": 75105.5,
+        "ma_60": 71940.25,
+        "ma_120": 63346.9167,
         "ha_open": 78661.0676,
-        "ha_close": 78290,
-        "volume_current": 397864,
-        "volume_ma_20": 1121899.4,
-        "keltner_upper": 82099.6902,
-        "keltner_lower": 70326.4861,
-        "vwap_anchored": 74691.492,
+        "ha_close": 78281.25,
+        "volume_current": 409649,
+        "volume_ma_20": 1122495.1,
+        "keltner_upper": 82096.3569,
+        "keltner_lower": 70323.1527,
+        "vwap_anchored": 74693.1375,
         "poc_price_120d": 78689.5833,
         "senkou_span_a": 75528.75,
         "senkou_span_b": 69122.5,
         "adx_14": 19.21,
-        "stoch_k_14": 82.33,
-        "stoch_d_14": 87.34,
-        "rsi_14": 56.35,
+        "stoch_k_14": 82.05,
+        "stoch_d_14": 87.24,
+        "rsi_14": 56.27,
         "price_drop_ratio": null,
         "rsi_rise_value": null,
         "vix_close": 17.94,
         "yield_spread_10y_2y": 0.55,
-        "rs_vs_kospi": -0.195323,
+        "rs_vs_kospi": -0.195099,
         "benchmark_used": "^KS11",
         "sourceType": "holding",
         "accountKey": "KIS_MAIN",
@@ -3631,15 +3635,15 @@
           "accountLabel": "한투 일반",
           "quantity": 7,
           "avgPrice": 77758.5714,
-          "currentPrice": 77870,
-          "profitRate": 0.14,
-          "marketValue": 545090
+          "currentPrice": 77890,
+          "profitRate": 0.16,
+          "marketValue": 545230
         },
         "final_score": 52.9,
         "filter_score": 1,
-        "stage2_score": 20.483,
+        "stage2_score": 20.397,
         "stage3_score": 14,
-        "stage4_score": 1.255,
+        "stage4_score": 1.286,
         "factors": {
           "Score_RS": 32.14,
           "Score_Ichimoku": 42.86,
@@ -3656,8 +3660,8 @@
         },
         "derived": {
           "Cloud_Top": 75528.75,
-          "Keltner_Break": -5.091,
-          "Vol_Ratio": 0.3546
+          "Keltner_Break": -5.1176,
+          "Vol_Ratio": 0.3649
         },
         "gates": {
           "price_above_ma120": true,
@@ -3684,30 +3688,30 @@
         "asset_class": "ETF_KR",
         "benchmark": "^KS11",
         "as_of_date": "2026-04-20",
-        "close": 25955,
+        "close": 25960,
         "close_252d": 17795,
-        "ma_20": 24875,
-        "ma_60": 24818.6667,
-        "ma_120": 24801.8333,
+        "ma_20": 24875.25,
+        "ma_60": 24818.75,
+        "ma_120": 24801.875,
         "ha_open": 25725.3149,
-        "ha_close": 25945,
-        "volume_current": 7094803,
-        "volume_ma_20": 11998811.05,
-        "keltner_upper": 25574.6059,
-        "keltner_lower": 24643.0066,
-        "vwap_anchored": 24904.3686,
-        "poc_price_120d": 24713.6319,
+        "ha_close": 25946.25,
+        "volume_current": 7167264,
+        "volume_ma_20": 12002434.1,
+        "keltner_upper": 25575.0821,
+        "keltner_lower": 24643.4828,
+        "vwap_anchored": 24904.73,
+        "poc_price_120d": 24714.2917,
         "senkou_span_a": 24802.5,
         "senkou_span_b": 25000,
         "adx_14": 20.6,
-        "stoch_k_14": 98.38,
-        "stoch_d_14": 98.9,
-        "rsi_14": 75.07,
+        "stoch_k_14": 98.7,
+        "stoch_d_14": 99.01,
+        "rsi_14": 75.13,
         "price_drop_ratio": null,
         "rsi_rise_value": null,
         "vix_close": 17.94,
         "yield_spread_10y_2y": 0.55,
-        "rs_vs_kospi": -0.282738,
+        "rs_vs_kospi": -0.281818,
         "benchmark_used": "^KS11",
         "sourceType": "candidate",
         "accountKey": null,
@@ -3722,9 +3726,9 @@
         },
         "final_score": 54,
         "filter_score": 1,
-        "stage2_score": 24.519,
+        "stage2_score": 24.569,
         "stage3_score": 11,
-        "stage4_score": 0.658,
+        "stage4_score": 0.639,
         "factors": {
           "Score_RS": 32.14,
           "Score_Ichimoku": 50,
@@ -3741,8 +3745,8 @@
         },
         "derived": {
           "Cloud_Top": 25000,
-          "Keltner_Break": 1.4874,
-          "Vol_Ratio": 0.5913
+          "Keltner_Break": 1.5051,
+          "Vol_Ratio": 0.5972
         },
         "gates": {
           "price_above_ma120": true,
@@ -3766,30 +3770,30 @@
         "asset_class": "ETF_KR",
         "benchmark": "^KS11",
         "as_of_date": "2026-04-20",
-        "close": 173450,
+        "close": 173500,
         "close_252d": 107920,
-        "ma_20": 163109,
-        "ma_60": 162364.9167,
-        "ma_120": 163410.2083,
+        "ma_20": 163110.25,
+        "ma_60": 162365.3333,
+        "ma_120": 163410.4167,
         "ha_open": 171071.8741,
-        "ha_close": 173462.5,
-        "volume_current": 398340,
-        "volume_ma_20": 684082.4,
-        "keltner_upper": 169165.91,
-        "keltner_lower": 161373.9904,
-        "vwap_anchored": 162319.5748,
-        "poc_price_120d": 162304.1667,
+        "ha_close": 173468.75,
+        "volume_current": 410700,
+        "volume_ma_20": 684708.95,
+        "keltner_upper": 169168.291,
+        "keltner_lower": 161376.3714,
+        "vwap_anchored": 162329.9615,
+        "poc_price_120d": 162307.4653,
         "senkou_span_a": 161728.75,
         "senkou_span_b": 162630,
         "adx_14": 22.33,
-        "stoch_k_14": 98,
-        "stoch_d_14": 99.05,
-        "rsi_14": 77.39,
+        "stoch_k_14": 98.16,
+        "stoch_d_14": 99.11,
+        "rsi_14": 77.42,
         "price_drop_ratio": null,
         "rsi_rise_value": null,
         "vix_close": 17.94,
         "yield_spread_10y_2y": 0.55,
-        "rs_vs_kospi": -0.264762,
+        "rs_vs_kospi": -0.263888,
         "benchmark_used": "^KS11",
         "sourceType": "candidate",
         "accountKey": null,
@@ -3802,16 +3806,16 @@
           "horizon": "1m",
           "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적"
         },
-        "final_score": 55.8,
+        "final_score": 57.9,
         "filter_score": 1,
-        "stage2_score": 27.515,
+        "stage2_score": 28.082,
         "stage3_score": 11,
         "stage4_score": 0,
         "factors": {
           "Score_RS": 32.14,
           "Score_Ichimoku": 78.57,
           "Score_ADX_Mom": 60.71,
-          "Score_HA": 71.43,
+          "Score_HA": 92.86,
           "Score_Keltner_Vol": 50,
           "Score_POC": 42.86,
           "Score_VWAP": 39.29,
@@ -3823,8 +3827,8 @@
         },
         "derived": {
           "Cloud_Top": 162630,
-          "Keltner_Break": 2.5325,
-          "Vol_Ratio": 0.5823
+          "Keltner_Break": 2.5606,
+          "Vol_Ratio": 0.5998
         },
         "gates": {
           "price_above_ma120": true,
@@ -3855,11 +3859,11 @@
         "ma_120": 10480.5,
         "ha_open": 11022.5165,
         "ha_close": 11038.75,
-        "volume_current": 175946,
-        "volume_ma_20": 526678.5,
+        "volume_current": 177945,
+        "volume_ma_20": 526785,
         "keltner_upper": 11352.1706,
         "keltner_lower": 10946.8812,
-        "vwap_anchored": 11223.2946,
+        "vwap_anchored": 11223.2562,
         "poc_price_120d": 11224.3056,
         "senkou_span_a": 11062.5,
         "senkou_span_b": 10542.5,
@@ -3871,7 +3875,7 @@
         "rsi_rise_value": null,
         "vix_close": 17.94,
         "yield_spread_10y_2y": 0.55,
-        "rs_vs_kospi": -0.252967,
+        "rs_vs_kospi": -0.252244,
         "benchmark_used": "^KS11",
         "sourceType": "candidate",
         "accountKey": null,
@@ -3884,7 +3888,7 @@
           "horizon": "1m",
           "thesis": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화"
         },
-        "final_score": 50.4,
+        "final_score": 49.7,
         "filter_score": 1,
         "stage2_score": 15.245,
         "stage3_score": 11,
@@ -3893,7 +3897,7 @@
           "Score_RS": 32.14,
           "Score_Ichimoku": 10.71,
           "Score_ADX_Mom": 14.29,
-          "Score_HA": 50,
+          "Score_HA": 42.86,
           "Score_Keltner_Vol": 50,
           "Score_POC": 42.86,
           "Score_VWAP": 39.29,
@@ -3906,7 +3910,7 @@
         "derived": {
           "Cloud_Top": 11062.5,
           "Keltner_Break": -2.7499,
-          "Vol_Ratio": 0.3341
+          "Vol_Ratio": 0.3378
         },
         "gates": {
           "price_above_ma120": true,
@@ -3930,30 +3934,30 @@
         "asset_class": "ETF_KR",
         "benchmark": "^KS11",
         "as_of_date": "2026-04-20",
-        "close": 27225,
+        "close": 27220,
         "close_252d": 18075,
-        "ma_20": 26497.25,
-        "ma_60": 28038.5833,
-        "ma_120": 26389.9583,
+        "ma_20": 26497.5,
+        "ma_60": 28038.6667,
+        "ma_120": 26390,
         "ha_open": 27236.5888,
-        "ha_close": 27112.5,
-        "volume_current": 79389,
-        "volume_ma_20": 264345,
-        "keltner_upper": 28260.1957,
-        "keltner_lower": 25786.2535,
-        "vwap_anchored": 26319.2875,
+        "ha_close": 27113.75,
+        "volume_current": 80815,
+        "volume_ma_20": 264426.1,
+        "keltner_upper": 28260.6719,
+        "keltner_lower": 25786.7297,
+        "vwap_anchored": 26319.5709,
         "poc_price_120d": 26569.2361,
         "senkou_span_a": 28982.5,
         "senkou_span_b": 28550,
         "adx_14": 18.21,
-        "stoch_k_14": 73.94,
-        "stoch_d_14": 79.38,
-        "rsi_14": 51,
+        "stoch_k_14": 74.22,
+        "stoch_d_14": 79.48,
+        "rsi_14": 51.04,
         "price_drop_ratio": null,
         "rsi_rise_value": null,
         "vix_close": 17.94,
         "yield_spread_10y_2y": 0.55,
-        "rs_vs_kospi": -0.282319,
+        "rs_vs_kospi": -0.281408,
         "benchmark_used": "^KS11",
         "sourceType": "candidate",
         "accountKey": null,
@@ -3968,9 +3972,9 @@
         },
         "final_score": 61.6,
         "filter_score": 1,
-        "stage2_score": 13.998,
-        "stage3_score": 14.082,
-        "stage4_score": 2.253,
+        "stage2_score": 14.008,
+        "stage3_score": 14.16,
+        "stage4_score": 2.273,
         "factors": {
           "Score_RS": 32.14,
           "Score_Ichimoku": 10.71,
@@ -3987,8 +3991,8 @@
         },
         "derived": {
           "Cloud_Top": 28982.5,
-          "Keltner_Break": -3.6631,
-          "Vol_Ratio": 0.3003
+          "Keltner_Break": -3.6824,
+          "Vol_Ratio": 0.3056
         },
         "gates": {
           "price_above_ma120": true,
@@ -4012,18 +4016,18 @@
         "asset_class": "ETF_KR",
         "benchmark": "^KS11",
         "as_of_date": "2026-04-20",
-        "close": 110795,
+        "close": 110800,
         "close_252d": 109955,
         "ma_20": 110736.5,
         "ma_60": 110740.5,
         "ma_120": 110742.4167,
         "ha_open": 110775.6688,
         "ha_close": 110798.75,
-        "volume_current": 169835,
-        "volume_ma_20": 327233.25,
+        "volume_current": 177787,
+        "volume_ma_20": 327620.1,
         "keltner_upper": 110781.6941,
         "keltner_lower": 110705.5831,
-        "vwap_anchored": 110748.9026,
+        "vwap_anchored": 110748.961,
         "poc_price_120d": 110743.9583,
         "senkou_span_a": 110706.25,
         "senkou_span_b": 110737.5,
@@ -4035,7 +4039,7 @@
         "rsi_rise_value": null,
         "vix_close": 17.94,
         "yield_spread_10y_2y": 0.55,
-        "rs_vs_kospi": -0.306177,
+        "rs_vs_kospi": -0.305453,
         "benchmark_used": "^KS11",
         "sourceType": "candidate",
         "accountKey": null,
@@ -4050,9 +4054,9 @@
         },
         "final_score": 65.5,
         "filter_score": 1,
-        "stage2_score": 9.463,
-        "stage3_score": 28.825,
-        "stage4_score": 4.947,
+        "stage2_score": 9.481,
+        "stage3_score": 28.807,
+        "stage4_score": 4.943,
         "factors": {
           "Score_RS": 32.14,
           "Score_Ichimoku": 28.57,
@@ -4069,8 +4073,8 @@
         },
         "derived": {
           "Cloud_Top": 110737.5,
-          "Keltner_Break": 0.012,
-          "Vol_Ratio": 0.519
+          "Keltner_Break": 0.0165,
+          "Vol_Ratio": 0.5427
         },
         "gates": {
           "price_above_ma120": true,
@@ -4094,30 +4098,30 @@
         "asset_class": "ETF_KR",
         "benchmark": "^KS11",
         "as_of_date": "2026-04-20",
-        "close": 38435,
+        "close": 38465,
         "close_252d": 8050,
-        "ma_20": 33718.25,
-        "ma_60": 31378.4167,
-        "ma_120": 27844.0833,
+        "ma_20": 33719.5,
+        "ma_60": 31378.8333,
+        "ma_120": 27844.2917,
         "ha_open": 37969.1617,
-        "ha_close": 38561.25,
-        "volume_current": 1823578,
-        "volume_ma_20": 3686740.05,
-        "keltner_upper": 37841.7713,
-        "keltner_lower": 31389.8585,
-        "vwap_anchored": 33958.5926,
-        "poc_price_120d": 26531.1111,
+        "ha_close": 38567.5,
+        "volume_current": 1857594,
+        "volume_ma_20": 3688484.05,
+        "keltner_upper": 37844.1522,
+        "keltner_lower": 31392.2394,
+        "vwap_anchored": 33961.0184,
+        "poc_price_120d": 26533.3681,
         "senkou_span_a": 30590,
         "senkou_span_b": 29075,
         "adx_14": 18.53,
-        "stoch_k_14": 91.56,
-        "stoch_d_14": 95.19,
-        "rsi_14": 67.67,
+        "stoch_k_14": 91.84,
+        "stoch_d_14": 95.28,
+        "rsi_14": 67.73,
         "price_drop_ratio": null,
         "rsi_rise_value": null,
         "vix_close": 17.94,
         "yield_spread_10y_2y": 0.55,
-        "rs_vs_kospi": 0.148092,
+        "rs_vs_kospi": 0.149761,
         "benchmark_used": "^KS11",
         "sourceType": "candidate",
         "accountKey": null,
@@ -4130,16 +4134,16 @@
           "horizon": "3m",
           "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적"
         },
-        "final_score": 65.4,
+        "final_score": 64.7,
         "filter_score": 1,
-        "stage2_score": 37.807,
+        "stage2_score": 37.837,
         "stage3_score": 14,
         "stage4_score": 0,
         "factors": {
           "Score_RS": 92.86,
           "Score_Ichimoku": 78.57,
           "Score_ADX_Mom": 60.71,
-          "Score_HA": 78.57,
+          "Score_HA": 71.43,
           "Score_Keltner_Vol": 50,
           "Score_POC": 42.86,
           "Score_VWAP": 39.29,
@@ -4151,8 +4155,8 @@
         },
         "derived": {
           "Cloud_Top": 30590,
-          "Keltner_Break": 1.5677,
-          "Vol_Ratio": 0.4946
+          "Keltner_Break": 1.6405,
+          "Vol_Ratio": 0.5036
         },
         "gates": {
           "price_above_ma120": true,
@@ -4176,30 +4180,30 @@
         "asset_class": "STOCK_KR",
         "benchmark": "^KS11",
         "as_of_date": "2026-04-20",
-        "close": 217750,
+        "close": 217250,
         "close_252d": 53200,
-        "ma_20": 195790,
-        "ma_60": 184798.3333,
-        "ma_120": 148548.3333,
+        "ma_20": 195777.5,
+        "ma_60": 184794.1667,
+        "ma_120": 148546.25,
         "ha_open": 214135.8415,
-        "ha_close": 215375,
-        "volume_current": 16625695,
-        "volume_ma_20": 26666256.6,
-        "keltner_upper": 220431.2678,
-        "keltner_lower": 181906.3503,
-        "vwap_anchored": 194384.5013,
+        "ha_close": 215312.5,
+        "volume_current": 16849422,
+        "volume_ma_20": 26677311.7,
+        "keltner_upper": 220407.4583,
+        "keltner_lower": 181882.5407,
+        "vwap_anchored": 194390.8943,
         "poc_price_120d": 102937.5,
         "senkou_span_a": 188300,
         "senkou_span_b": 166700,
         "adx_14": 18.55,
-        "stoch_k_14": 96.59,
-        "stoch_d_14": 97.23,
-        "rsi_14": 62.31,
+        "stoch_k_14": 96.02,
+        "stoch_d_14": 97.04,
+        "rsi_14": 62.2,
         "price_drop_ratio": null,
         "rsi_rise_value": null,
         "vix_close": 17.94,
         "yield_spread_10y_2y": 0.55,
-        "rs_vs_kospi": 0.205064,
+        "rs_vs_kospi": 0.20405,
         "benchmark_used": "^KS11",
         "sourceType": "candidate",
         "accountKey": null,
@@ -4212,7 +4216,7 @@
         },
         "final_score": 63.3,
         "filter_score": 1,
-        "stage2_score": 36.273,
+        "stage2_score": 36.209,
         "stage3_score": 14,
         "stage4_score": 0,
         "factors": {
@@ -4231,8 +4235,8 @@
         },
         "derived": {
           "Cloud_Top": 188300,
-          "Keltner_Break": -1.2164,
-          "Vol_Ratio": 0.6235
+          "Keltner_Break": -1.4326,
+          "Vol_Ratio": 0.6316
         },
         "gates": {
           "price_above_ma120": true,
@@ -4256,30 +4260,30 @@
         "asset_class": "STOCK_KR",
         "benchmark": "^KS11",
         "as_of_date": "2026-04-20",
-        "close": 1168000,
+        "close": 1167000,
         "close_252d": 164800,
-        "ma_20": 985250,
-        "ma_60": 932916.6667,
-        "ma_120": 768525,
+        "ma_20": 985200,
+        "ma_60": 932900,
+        "ma_120": 768516.6667,
         "ha_open": 1131775.5075,
-        "ha_close": 1147750,
-        "volume_current": 3099908,
-        "volume_ma_20": 4389656.35,
-        "keltner_upper": 1144888.7551,
-        "keltner_lower": 904453.1451,
-        "vwap_anchored": 972784.1402,
-        "poc_price_120d": 572385.4167,
+        "ha_close": 1147500,
+        "volume_current": 3158077,
+        "volume_ma_20": 4392557.8,
+        "keltner_upper": 1144793.517,
+        "keltner_lower": 904357.907,
+        "vwap_anchored": 972891.4045,
+        "poc_price_120d": 572350.6944,
         "senkou_span_a": 934500,
         "senkou_span_b": 840000,
         "adx_14": 20.1,
-        "stoch_k_14": 98.59,
-        "stoch_d_14": 93.81,
-        "rsi_14": 65.21,
+        "stoch_k_14": 98.31,
+        "stoch_d_14": 93.71,
+        "rsi_14": 65.15,
         "price_drop_ratio": null,
         "rsi_rise_value": null,
         "vix_close": 17.94,
         "yield_spread_10y_2y": 0.55,
-        "rs_vs_kospi": 0.25301,
+        "rs_vs_kospi": 0.252398,
         "benchmark_used": "^KS11",
         "sourceType": "candidate",
         "accountKey": null,
@@ -4290,16 +4294,16 @@
           "horizon": "3m",
           "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적"
         },
-        "final_score": 67.6,
+        "final_score": 66.2,
         "filter_score": 1,
-        "stage2_score": 38.105,
+        "stage2_score": 38.057,
         "stage3_score": 14,
         "stage4_score": 0,
         "factors": {
           "Score_RS": 92.86,
           "Score_Ichimoku": 78.57,
           "Score_ADX_Mom": 60.71,
-          "Score_HA": 100,
+          "Score_HA": 85.71,
           "Score_Keltner_Vol": 50,
           "Score_POC": 42.86,
           "Score_VWAP": 39.29,
@@ -4311,8 +4315,8 @@
         },
         "derived": {
           "Cloud_Top": 934500,
-          "Keltner_Break": 2.0186,
-          "Vol_Ratio": 0.7062
+          "Keltner_Break": 1.9398,
+          "Vol_Ratio": 0.719
         },
         "gates": {
           "price_above_ma120": true,
@@ -4336,30 +4340,30 @@
         "asset_class": "STOCK_KR",
         "benchmark": "^KS11",
         "as_of_date": "2026-04-20",
-        "close": 1086000,
+        "close": 1089000,
         "close_252d": 265000,
-        "ma_20": 964450,
-        "ma_60": 950183.3333,
-        "ma_120": 891791.6667,
+        "ma_20": 964500,
+        "ma_60": 950200,
+        "ma_120": 891800,
         "ha_open": 1071153.4901,
-        "ha_close": 1089500,
-        "volume_current": 71707,
-        "volume_ma_20": 132342.7,
-        "keltner_upper": 1090829.8083,
-        "keltner_lower": 896996.5934,
-        "vwap_anchored": 966679.823,
+        "ha_close": 1089750,
+        "volume_current": 74319,
+        "volume_ma_20": 132473.7,
+        "keltner_upper": 1090925.0464,
+        "keltner_lower": 897091.8315,
+        "vwap_anchored": 966808.1613,
         "poc_price_120d": 904270.8333,
         "senkou_span_a": 955750,
         "senkou_span_b": 935000,
         "adx_14": 20.07,
-        "stoch_k_14": 91.91,
-        "stoch_d_14": 94,
-        "rsi_14": 65.6,
+        "stoch_k_14": 92.34,
+        "stoch_d_14": 94.14,
+        "rsi_14": 65.69,
         "price_drop_ratio": null,
         "rsi_rise_value": null,
         "vix_close": 17.94,
         "yield_spread_10y_2y": 0.55,
-        "rs_vs_kospi": -0.087792,
+        "rs_vs_kospi": -0.085948,
         "benchmark_used": "^KS11",
         "sourceType": "candidate",
         "accountKey": null,
@@ -4370,16 +4374,16 @@
           "horizon": "3m",
           "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적"
         },
-        "final_score": 62.9,
+        "final_score": 63.7,
         "filter_score": 1,
-        "stage2_score": 28.083,
+        "stage2_score": 28.125,
         "stage3_score": 15,
         "stage4_score": 0,
         "factors": {
           "Score_RS": 32.14,
           "Score_Ichimoku": 78.57,
           "Score_ADX_Mom": 60.71,
-          "Score_HA": 92.86,
+          "Score_HA": 100,
           "Score_Keltner_Vol": 50,
           "Score_POC": 42.86,
           "Score_VWAP": 39.29,
@@ -4391,8 +4395,8 @@
         },
         "derived": {
           "Cloud_Top": 955750,
-          "Keltner_Break": -0.4428,
-          "Vol_Ratio": 0.5418
+          "Keltner_Break": -0.1765,
+          "Vol_Ratio": 0.561
         },
         "gates": {
           "price_above_ma120": true,
@@ -4416,30 +4420,30 @@
         "asset_class": "STOCK_KR",
         "benchmark": "^KS11",
         "as_of_date": "2026-04-20",
-        "close": 184900,
+        "close": 184700,
         "close_252d": 152900,
-        "ma_20": 608480,
-        "ma_60": 652576.6667,
-        "ma_120": 562859.1667,
+        "ma_20": 608470,
+        "ma_60": 652573.3333,
+        "ma_120": 562857.5,
         "ha_open": 190823.608,
-        "ha_close": 185775,
-        "volume_current": 792247,
-        "volume_ma_20": 488142.2,
-        "keltner_upper": 838186.6968,
-        "keltner_lower": 183640.5053,
-        "vwap_anchored": 287040.9665,
+        "ha_close": 185725,
+        "volume_current": 811150,
+        "volume_ma_20": 489033.2,
+        "keltner_upper": 838167.6492,
+        "keltner_lower": 183621.4577,
+        "vwap_anchored": 286850.4945,
         "poc_price_120d": 194290.9722,
         "senkou_span_a": 680750,
         "senkou_span_b": 637000,
         "adx_14": 29.63,
-        "stoch_k_14": 22.3,
-        "stoch_d_14": 22.52,
-        "rsi_14": 19.13,
+        "stoch_k_14": 22.28,
+        "stoch_d_14": 22.51,
+        "rsi_14": 19.12,
         "price_drop_ratio": null,
         "rsi_rise_value": null,
         "vix_close": 17.94,
         "yield_spread_10y_2y": 0.55,
-        "rs_vs_kospi": -0.954881,
+        "rs_vs_kospi": -0.954538,
         "benchmark_used": "^KS11",
         "sourceType": "candidate",
         "accountKey": null,
@@ -4452,8 +4456,8 @@
         },
         "final_score": 0,
         "filter_score": 0,
-        "stage2_score": 8.063,
-        "stage3_score": 1.649,
+        "stage2_score": 7.983,
+        "stage3_score": 1.648,
         "stage4_score": 0,
         "factors": {
           "Score_RS": 32.14,
@@ -4471,8 +4475,8 @@
         },
         "derived": {
           "Cloud_Top": 680750,
-          "Keltner_Break": -77.9405,
-          "Vol_Ratio": 1.623
+          "Keltner_Break": -77.9638,
+          "Vol_Ratio": 1.6587
         },
         "gates": {
           "price_above_ma120": false,
@@ -4496,30 +4500,30 @@
         "asset_class": "STOCK_KR",
         "benchmark": "^KS11",
         "as_of_date": "2026-04-20",
-        "close": 2992000,
+        "close": 3004000,
         "close_252d": 393500,
-        "ma_20": 2797050,
-        "ma_60": 2603966.6667,
-        "ma_120": 2304991.6667,
+        "ma_20": 2797500,
+        "ma_60": 2604116.6667,
+        "ma_120": 2305066.6667,
         "ha_open": 2996298.6842,
-        "ha_close": 2979750,
-        "volume_current": 19084,
-        "volume_ma_20": 47665.2,
-        "keltner_upper": 3156130.6933,
-        "keltner_lower": 2504687.6325,
-        "vwap_anchored": 2824187.3995,
+        "ha_close": 2982000,
+        "volume_current": 20621,
+        "volume_ma_20": 47742.45,
+        "keltner_upper": 3156987.8362,
+        "keltner_lower": 2505544.7754,
+        "vwap_anchored": 2824505.0669,
         "poc_price_120d": 2337729.1667,
         "senkou_span_a": 2512750,
         "senkou_span_b": 2336000,
         "adx_14": 17.1,
-        "stoch_k_14": 73.44,
-        "stoch_d_14": 74.67,
-        "rsi_14": 59.66,
+        "stoch_k_14": 74.75,
+        "stoch_d_14": 75.11,
+        "rsi_14": 59.97,
         "price_drop_ratio": null,
         "rsi_rise_value": null,
         "vix_close": 17.94,
         "yield_spread_10y_2y": 0.55,
-        "rs_vs_kospi": 0.028417,
+        "rs_vs_kospi": 0.033153,
         "benchmark_used": "^KS11",
         "sourceType": "candidate",
         "accountKey": null,
@@ -4532,7 +4536,7 @@
         },
         "final_score": 56.9,
         "filter_score": 1,
-        "stage2_score": 26.627,
+        "stage2_score": 27.265,
         "stage3_score": 14,
         "stage4_score": 0,
         "factors": {
@@ -4551,8 +4555,8 @@
         },
         "derived": {
           "Cloud_Top": 2512750,
-          "Keltner_Break": -5.2004,
-          "Vol_Ratio": 0.4004
+          "Keltner_Break": -4.846,
+          "Vol_Ratio": 0.4319
         },
         "gates": {
           "price_above_ma120": true,
@@ -4579,7 +4583,7 @@
         {
           "ticker": "434730",
           "name": "HANARO 원자력iSelect",
-          "final_score": 64.7,
+          "final_score": 64,
           "policy_state": "ADD"
         },
         {
@@ -4597,7 +4601,7 @@
         {
           "ticker": "064350",
           "name": "현대로템",
-          "final_score": 47.4,
+          "final_score": 48.1,
           "policy_state": "ADD"
         },
         {
@@ -4611,7 +4615,7 @@
         {
           "ticker": "000660",
           "name": "SK하이닉스",
-          "final_score": 67.6,
+          "final_score": 66.2,
           "policy_state": "WATCH"
         },
         {
@@ -4623,7 +4627,13 @@
         {
           "ticker": "487240",
           "name": "KODEX AI전력핵심설비",
-          "final_score": 65.4,
+          "final_score": 64.7,
+          "policy_state": "BUY"
+        },
+        {
+          "ticker": "267260",
+          "name": "HD현대일렉트릭",
+          "final_score": 63.7,
           "policy_state": "BUY"
         },
         {
@@ -4633,27 +4643,21 @@
           "policy_state": "REJECT"
         },
         {
-          "ticker": "267260",
-          "name": "HD현대일렉트릭",
-          "final_score": 62.9,
-          "policy_state": "BUY"
-        },
-        {
           "ticker": "132030",
           "name": "KODEX 골드선물(H)",
           "final_score": 61.6,
           "policy_state": "BUY"
         },
         {
-          "ticker": "298040",
-          "name": "효성중공업",
-          "final_score": 56.9,
+          "ticker": "133690",
+          "name": "TIGER 미국나스닥100",
+          "final_score": 57.9,
           "policy_state": "BUY"
         },
         {
-          "ticker": "133690",
-          "name": "TIGER 미국나스닥100",
-          "final_score": 55.8,
+          "ticker": "298040",
+          "name": "효성중공업",
+          "final_score": 56.9,
           "policy_state": "BUY"
         },
         {
@@ -4665,7 +4669,7 @@
         {
           "ticker": "458760",
           "name": "TIGER 미국배당+7%프리미엄다우존스",
-          "final_score": 50.4,
+          "final_score": 49.7,
           "policy_state": "REJECT"
         }
       ]
@@ -4922,25 +4926,25 @@
       },
       "riskPenalty": {
         "total": 13,
-        "portfolioVolatility": 0.5302,
+        "portfolioVolatility": 0.5305,
         "breakdown": {
           "dataQuality": {
             "total": 5,
             "incompletePenalty": 0,
-            "unmappedExposurePct": 21.92,
+            "unmappedExposurePct": 21.88,
             "unmappedPenalty": 5,
             "missingTechnicalPenalty": 0
           },
           "concentration": {
             "total": 0,
-            "hhi": 0.268,
+            "hhi": 0.2681,
             "hhiPenalty": 0,
-            "maxPositionPct": 38.92,
+            "maxPositionPct": 38.94,
             "maxPositionPenalty": 0
           },
           "covariance": {
             "total": 2.92,
-            "annualizedVolatility": 53.02,
+            "annualizedVolatility": 53.05,
             "sampleCount": 60,
             "holdingsWithData": 4,
             "shrinkage": 0.35,
@@ -4949,21 +4953,21 @@
           "tailRisk": {
             "total": 5,
             "method": "portfolio_weighted_returns",
-            "maxDrawdownPct": 14.26,
-            "cvar95Pct": -8.235,
+            "maxDrawdownPct": 14.27,
+            "cvar95Pct": -8.2397,
             "holdingsWithData": 4
           },
           "regimeStress": {
             "total": 0,
-            "currentRiskPct": 73.45,
+            "currentRiskPct": 73.49,
             "desiredRiskPct": 85.17,
             "excessRiskPct": 0
           }
         },
         "notes": [
           "'기타' 비중 21.9%가 남아 분류 품질 패널티가 붙었습니다.",
-          "축소 공분산 기준 연율 변동성 53.02%로 상관 리스크 패널티가 반영됐습니다.",
-          "최대낙폭 14.26% / CVaR(95%) -8.235% 수준으로 꼬리 리스크 패널티가 적용됐습니다."
+          "축소 공분산 기준 연율 변동성 53.05%로 상관 리스크 패널티가 반영됐습니다.",
+          "최대낙폭 14.27% / CVaR(95%) -8.2397% 수준으로 꼬리 리스크 패널티가 적용됐습니다."
         ]
       },
       "taxAdjustment": {
@@ -4975,7 +4979,7 @@
         "normalTaxRate": 0.154,
         "accountTaxRate": 0.154,
         "taxSpread": 0,
-        "riskProxy": 0.5302,
+        "riskProxy": 0.5305,
         "lift": 0,
         "addedScore": 0
       },

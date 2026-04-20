@@ -2,7 +2,7 @@
 
 - 실행일: 2026-04-20
 - 기준 거래일: 2026-04-20
-- run_id: 2026-04-20-024334
+- run_id: 2026-04-20-025315
 - 포트폴리오 총점: 61점
 - 레짐: BULL (신뢰도 0.72)
 - 긴급 방어 모드: NO
@@ -97,14 +97,14 @@
 - 남길 예수금: 0원
 - 검증 confidence: 0
 - validator flags: 없음
-- 가장 부족한 자산군: 전력기기 / 503,569원
+- 가장 부족한 자산군: 전력기기 / 503,495원
 - 우선 보강 후보: 효성중공업
 - 매크로 → 자산군 → 액션: 한투 일반은 전력기기을 우선 보강하고, 효성중공업를 중심으로 116,594원 한도에서 분할 접근하는 편이 좋습니다.
 
 ### 1차 실행
-- 효성중공업(298040) 16,576원 / technical_fallback / urgency=next_tranche / 이유: 주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적
-- KODEX AI전력핵심설비(487240) 21,500원 / technical_fallback / urgency=next_tranche / 이유: 주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적
-- HD현대일렉트릭(267260) 20,221원 / technical_fallback / urgency=next_tranche / 이유: 주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적
+- 효성중공업(298040) 16,603원 / technical_fallback / urgency=next_tranche / 이유: 주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적
+- KODEX AI전력핵심설비(487240) 21,466원 / technical_fallback / urgency=next_tranche / 이유: 주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적
+- HD현대일렉트릭(267260) 20,229원 / technical_fallback / urgency=next_tranche / 이유: 주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적
 
 ### 비중 축소/재점검
 - 즉시 축소 대상 없음

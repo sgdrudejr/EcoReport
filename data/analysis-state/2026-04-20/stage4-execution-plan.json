@@ -2,8 +2,8 @@
   "date": "2026-04-20",
   "runDate": "2026-04-20",
   "effectiveMarketDate": "2026-04-20",
-  "runId": "2026-04-20-024334",
-  "generatedAt": "2026-04-20T02:47:28.005Z",
+  "runId": "2026-04-20-025315",
+  "generatedAt": "2026-04-20T03:09:34.871Z",
   "portfolioScore": 61,
   "regime": {
     "name": "BULL",
@@ -20,14 +20,14 @@
       "signal": "BULLISH",
       "vix": null,
       "score": 96,
-      "close": 6264.58,
+      "close": 6264.06,
       "ma": {
-        "ma5": 6148.928,
-        "ma20": 5676.143,
-        "ma60": 5539.8788,
-        "ma120": 4860.1057
+        "ma5": 6148.234,
+        "ma20": 5675.9695,
+        "ma60": 5539.821,
+        "ma120": 4860.0768
       },
-      "rsi": 64.33,
+      "rsi": 64.27,
       "alerts": []
     }
   },
@@ -114,13 +114,13 @@
             "ISA"
           ],
           "technical": {
-            "rsi": 51,
+            "rsi": 51.04,
             "bollingerPosition": "upper_half",
-            "atrPct": 0.022718,
-            "dayChangePct": 0.002,
+            "atrPct": 0.022722,
+            "dayChangePct": 0.0018,
             "fallback": null
           },
-          "currentPrice": 27225,
+          "currentPrice": 27220,
           "maxCorrelationToPortfolio": null,
           "entryCondition": "technical_fallback",
           "entryTriggers": [
@@ -291,7 +291,7 @@
         "category": "전력기기",
         "targetPct": 0.2,
         "currentPct": 0,
-        "gapAmount": 503569
+        "gapAmount": 503495
       },
       "candidateFromGap": "효성중공업",
       "stage2Candidates": [
@@ -339,27 +339,27 @@
           "confidence": 0.85,
           "targetAccounts": [],
           "technical": {
-            "rsi": 59.66,
+            "rsi": 59.97,
             "bollingerPosition": "upper_half",
-            "atrPct": 0.054432,
-            "dayChangePct": 0.004,
+            "atrPct": 0.054215,
+            "dayChangePct": 0.0081,
             "fallback": null
           },
-          "currentPrice": 2992000,
+          "currentPrice": 3004000,
           "maxCorrelationToPortfolio": 0.8671,
           "entryCondition": "technical_fallback",
           "entryTriggers": [
-            "RSI 59.7",
+            "RSI 60",
             "볼린저 upper_half"
           ],
           "urgency": "next_tranche",
           "conditionMet": false,
           "fallback": true,
           "sizingMethod": "inverse_atr",
-          "baseSuggestedAmount": 33152,
-          "suggestedAmount": 16576,
+          "baseSuggestedAmount": 33206,
+          "suggestedAmount": 16603,
           "correlationHaircutApplied": true,
-          "maxSinglePositionAmount": 755353
+          "maxSinglePositionAmount": 755242
         },
         {
           "code": "487240",
@@ -373,13 +373,13 @@
             "KIS_MAIN"
           ],
           "technical": {
-            "rsi": 67.67,
+            "rsi": 67.73,
             "bollingerPosition": "upper_half",
-            "atrPct": 0.041966,
-            "dayChangePct": 0.003,
+            "atrPct": 0.041934,
+            "dayChangePct": 0.0038,
             "fallback": null
           },
-          "currentPrice": 38435,
+          "currentPrice": 38465,
           "maxCorrelationToPortfolio": 0.9511,
           "entryCondition": "technical_fallback",
           "entryTriggers": [
@@ -390,10 +390,10 @@
           "conditionMet": false,
           "fallback": true,
           "sizingMethod": "inverse_atr",
-          "baseSuggestedAmount": 43000,
-          "suggestedAmount": 21500,
+          "baseSuggestedAmount": 42931,
+          "suggestedAmount": 21466,
           "correlationHaircutApplied": true,
-          "maxSinglePositionAmount": 755353
+          "maxSinglePositionAmount": 755242
         },
         {
           "code": "267260",
@@ -405,27 +405,27 @@
           "confidence": 0.85,
           "targetAccounts": [],
           "technical": {
-            "rsi": 65.6,
+            "rsi": 65.69,
             "bollingerPosition": "upper_half",
-            "atrPct": 0.044621,
-            "dayChangePct": -0.0009,
+            "atrPct": 0.044498,
+            "dayChangePct": 0.0009,
             "fallback": null
           },
-          "currentPrice": 1086000,
-          "maxCorrelationToPortfolio": 0.9111,
+          "currentPrice": 1089000,
+          "maxCorrelationToPortfolio": 0.9112,
           "entryCondition": "technical_fallback",
           "entryTriggers": [
-            "RSI 65.6",
+            "RSI 65.7",
             "볼린저 upper_half"
           ],
           "urgency": "next_tranche",
           "conditionMet": false,
           "fallback": true,
           "sizingMethod": "inverse_atr",
-          "baseSuggestedAmount": 40442,
-          "suggestedAmount": 20221,
+          "baseSuggestedAmount": 40457,
+          "suggestedAmount": 20229,
           "correlationHaircutApplied": true,
-          "maxSinglePositionAmount": 755353
+          "maxSinglePositionAmount": 755242
         }
       ],
       "rejectedAlternatives": [
@@ -474,17 +474,17 @@
           "accountKey": "KIS_MAIN",
           "currentPrice": 217500,
           "entryPrice": 208000,
-          "atrPct": 0.054378,
-          "rsi": 58.79,
+          "atrPct": 0.054502,
+          "rsi": 59.05,
           "bollingerPosition": "upper_half",
           "stopLoss": {
             "enabled": true,
             "triggered": false,
             "entryPrice": 208000,
-            "currentPrice": 218500,
+            "currentPrice": 218000,
             "recentHigh": 225500,
-            "drawdownFromEntryPct": 0.0505,
-            "drawdownFromRecentHighPct": -0.031,
+            "drawdownFromEntryPct": 0.0481,
+            "drawdownFromRecentHighPct": -0.0333,
             "triggers": []
           },
           "reason": "매크로는 중립 시각이며 핵심 근거는 [방산] 주문해도 오지 않을 미국 무기 ◼ 현대로템, 현대위아 방산 사업부 인수 추진. KAI와 풍산에 이어 호황 속 업계 재편 활발 ◼ 일본, 살상력 있는 무기 수출 가능하도록 승인. 수출 컨트롤 타워 구축도 추진 ◼ 독일 IFV를 사겠다는 루마니아. IFV를 포기하고 드론을 사..."
@@ -494,7 +494,7 @@
           "name": "KODEX 구리선물(H)",
           "score": 54,
           "accountKey": "KIS_MAIN",
-          "currentPrice": 9515,
+          "currentPrice": 9495,
           "entryPrice": 8765,
           "atrPct": null,
           "rsi": null,
@@ -503,9 +503,9 @@
             "enabled": true,
             "triggered": false,
             "entryPrice": 8765,
-            "currentPrice": 9515,
+            "currentPrice": 9495,
             "recentHigh": null,
-            "drawdownFromEntryPct": 0.0856,
+            "drawdownFromEntryPct": 0.0833,
             "drawdownFromRecentHighPct": null,
             "triggers": []
           },
@@ -516,19 +516,19 @@
           "name": "HANARO 원자력iSelect",
           "score": 65,
           "accountKey": "KIS_MAIN",
-          "currentPrice": 76145,
+          "currentPrice": 76220,
           "entryPrice": 64630,
-          "atrPct": 0.038828,
-          "rsi": 64.2,
+          "atrPct": 0.03881,
+          "rsi": 64.25,
           "bollingerPosition": "upper_half",
           "stopLoss": {
             "enabled": true,
             "triggered": false,
             "entryPrice": 64630,
-            "currentPrice": 76175,
+            "currentPrice": 76210,
             "recentHigh": 76730,
-            "drawdownFromEntryPct": 0.1786,
-            "drawdownFromRecentHighPct": -0.0072,
+            "drawdownFromEntryPct": 0.1792,
+            "drawdownFromRecentHighPct": -0.0068,
             "triggers": []
           },
           "reason": "매크로는 긍정 시각이며 핵심 근거는 주목할 부분은 이러한 불확실성이 시장의 조기 낙관론과 실물 수급 펀더멘털 간의 심각한 괴리를 야기하고 있다는 점. 17일 발생한 유가 급락은 실제 공급 정상화가 아닌 외교적 완화 기대가 선물 가격에 선반영되었기 때문. 실제로는 지난 50일간 누적된 공급 결손은 이미 5억 배럴을 상회..."
