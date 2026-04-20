@@ -6,6 +6,28 @@
 
 Mac Mini가 PDF 오케스트레이션을 담당하고, Windows PC의 로컬 llama-server가 실제 추론을 담당하는 구조는 동작 확인이 끝났다. 표준 모드는 실배치 성공, deep 모드는 구현 완료 및 대형 문서 ad hoc 검증 성공 상태다.
 
+## 2026-04-20 Handoff Update
+
+오늘 반영/확정된 내용:
+
+- 앞으로 기준 워크스페이스를 `/Users/seo/Documents/Playground/economy-report` 하나로 고정
+- `/Users/seo/Documents/Playground/stock-pilot-archive`는 보관용 archive로만 사용
+- Codex 완료/실패 알림용 래퍼 추가: `scripts/run-with-telegram-notify.sh`
+- 로컬 비밀값 템플릿 추가: `config/telegram_notify.env.example`
+- 실제 비밀값 파일은 `config/telegram_notify.env` 사용(로컬 전용, gitignore)
+
+다음 세션 시작 권장 순서(고정):
+
+1. `docs/PROJECT_MEMORY.md`
+2. `docs/SESSION_HANDOFF.md`
+3. `docs/MULTI_TOOL_HANDOFF.md`
+4. `README.md`
+5. `docs/EXECUTION_GUIDE.md`
+
+다음 Codex에게 전달할 한 줄 가이드:
+
+- "먼저 `docs/PROJECT_MEMORY.md` -> `docs/SESSION_HANDOFF.md` -> `docs/MULTI_TOOL_HANDOFF.md` -> `README.md` 순서로 읽고, 작업 루트는 `/Users/seo/Documents/Playground/economy-report`만 사용해줘."
+
 ## 2026-04-17 Workspace Consolidation
 
 오늘 반영/확정된 내용:

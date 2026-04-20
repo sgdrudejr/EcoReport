@@ -190,6 +190,21 @@ flowchart TD
 - 실패 원인과 폴백은: `FAILURES_AND_FALLBACKS.md`
 - 최근 변경 이력은: `docs/UPDATE_LOG.md`
 
+### 다음 Codex에게 전달할 고정 시작 순서 (핸드오프)
+
+다음 세션을 시작할 때는 아래 순서로 읽고 작업을 시작합니다.
+
+1. `docs/PROJECT_MEMORY.md`
+2. `docs/SESSION_HANDOFF.md`
+3. `docs/MULTI_TOOL_HANDOFF.md`
+4. `README.md`
+5. `docs/EXECUTION_GUIDE.md`
+
+참고:
+
+- 현재 기준 워크스페이스는 `/Users/seo/Documents/Playground/economy-report` 입니다.
+- `/Users/seo/Documents/Playground/stock-pilot-archive`는 보관용 아카이브입니다.
+
 ## 매일 운영 명령
 
 가장 권장하는 일일 실행 방법은 아래 한 줄입니다.
@@ -198,6 +213,36 @@ flowchart TD
 cd /Users/seo/Documents/Playground/economy-report
 bash scripts/run-daily-system.sh --date YYYY-MM-DD
 ```
+
+### Telegram 알림
+
+일일 러너(`scripts/run-daily-system.sh`)는 마지막에 `scripts/send-telegram-summary.js`를 호출해 텔레그램 요약 알림을 전송합니다.
+
+사전 설정:
+
+```bash
+export TELEGRAM_BOT_TOKEN="your-bot-token"
+export TELEGRAM_CHAT_ID="your-chat-id"
+```
+
+임의 명령(예: 테스트, 배포, 백필) 완료/실패를 텔레그램으로 받고 싶으면 아래 래퍼를 사용합니다.
+
+```bash
+cd /Users/seo/Documents/Playground/economy-report
+cp config/telegram_notify.env.example config/telegram_notify.env
+# config/telegram_notify.env에 BOT_TOKEN / CHAT_ID 입력
+bash scripts/run-with-telegram-notify.sh <command> [args...]
+```
+
+예시:
+
+```bash
+bash scripts/run-with-telegram-notify.sh npm run automation:daily -- --date YYYY-MM-DD
+```
+
+주의:
+
+- 토큰/채팅 ID가 들어간 `config/telegram_notify.env`는 `.gitignore`에 포함되어 Git에 올라가지 않습니다.
 
 Gemini Deep Research 오버레이까지 포함한 완결형 자동 실행은 아래 명령을 사용합니다.
 
