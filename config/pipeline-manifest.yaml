@@ -72,12 +72,33 @@
       "allow_failure": true
     },
     {
+      "id": "stage2_enriched_report_index",
+      "label": "Stage 2 Enriched Report Index",
+      "command": "node scripts/build-stage2-enriched-report-index.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
+      "inputs": [
+        "data/analysis-state/{{date}}/stage1-report-extracts-v2.json",
+        "data/analysis-state/{{date}}/stage1-chunk-summaries.json",
+        "reports/report_summaries/{{date}}"
+      ],
+      "outputs": [
+        "data/analysis-state/{{date}}/stage2-enriched-report-index.json"
+      ],
+      "depends_on": [
+        "stage1_extracts",
+        "stage1_4_summarize"
+      ],
+      "cache_key": "stage2-enriched:{{date}}",
+      "timeout": 300000,
+      "allow_failure": true
+    },
+    {
       "id": "stage1_4_agenda",
       "label": "Stage 4 Research Agenda",
       "command": ".venv/bin/python scripts/build-stage1-4-research-agenda.py --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}} --max-input-summaries 30",
       "inputs": [
         "data/analysis-state/{{date}}/stage1-report-extracts-v2.json",
         "data/analysis-state/{{date}}/stage1-chunk-summaries.json",
+        "data/analysis-state/{{date}}/stage2-enriched-report-index.json",
         "data/portfolio/latest.json"
       ],
       "outputs": [
@@ -85,7 +106,8 @@
       ],
       "depends_on": [
         "stage1_extracts",
-        "stage1_4_summarize"
+        "stage1_4_summarize",
+        "stage2_enriched_report_index"
       ],
       "cache_key": "stage1.4b:{{date}}",
       "timeout": 300000,
@@ -268,6 +290,22 @@
         "stage4_execution_plan"
       ],
       "cache_key": "stage4-table:{{date}}",
+      "timeout": 300000,
+      "allow_failure": true
+    },
+    {
+      "id": "stage6_briefing_delta",
+      "label": "Stage 6 Briefing Delta",
+      "command": "node scripts/build-briefing-delta.js --date {{date}}",
+      "inputs": [
+        "knowledge/daily/{{date}}-gemini-briefing-rich.md"
+      ],
+      "outputs": [
+        "knowledge/daily/{{date}}-briefing-delta.md",
+        "data/analysis-state/{{date}}/briefing-delta.json"
+      ],
+      "depends_on": [],
+      "cache_key": "stage6-delta:{{date}}",
       "timeout": 300000,
       "allow_failure": true
     },

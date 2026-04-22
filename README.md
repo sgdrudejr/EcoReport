@@ -495,6 +495,7 @@ GITHUB_TOKEN=...
 
 - `data/analysis-state/YYYY-MM-DD/stage1-report-extracts-v2.json`
 - `knowledge/daily/YYYY-MM-DD-stage1-report-extracts-v2.md`
+- `data/analysis-state/YYYY-MM-DD/stage2-enriched-report-index.json`
 
 핵심 필드:
 
@@ -516,6 +517,8 @@ GITHUB_TOKEN=...
 
 - 이 단계는 추천을 만드는 단계가 아니라 **리포트 연구 노트를 만드는 단계**입니다.
 - 최대한 많은 근거를 보존하고, 리포트-포트폴리오 관련성을 후보 수준으로 붙입니다.
+- 추가로 Windows 로컬 요약 산출물과 `report_id` 기준으로 조인한 `stage2-enriched-report-index.json`을 만들 수 있습니다.
+- 이 파일에는 `요약 + 분류 + 포트폴리오 관련도`가 한 번에 들어 있어 Stage 4 품질을 높이는 기본 인덱스로 사용됩니다.
 
 ### Stage 3. Top Report Summary Selection
 
@@ -572,6 +575,8 @@ GITHUB_TOKEN=...
 
 - Stage 2 구조화 추출물과 Stage 4 어젠다를 기반으로 Gemini Web Deep Research 프롬프트를
   `macro / sector·security / new_candidate` 3개로 나눠 만듭니다.
+- 프롬프트에는 이제 `포트폴리오 컨텍스트`뿐 아니라 `현재 보유 핵심`, `개인화 리스크 포인트`가 명시적으로 포함됩니다.
+- 따라서 Gemini는 generic 요약이 아니라, 현재 보유와 신규 후보의 중복/대체/추가매수 리스크를 같이 평가하도록 유도됩니다.
 - Safari에서 Gemini 웹을 열고 `도구 -> Deep Research` 선택, 전송, 결과 저장/클립보드 복사까지 자동화할 수 있습니다.
 - 이 단계는 완전 자동 API 호출이 아니라 웹 기반 수동 리서치를 파이프라인 안에 안전하게 끼워 넣는 레이어입니다.
 
@@ -589,11 +594,14 @@ GITHUB_TOKEN=...
 - `knowledge/daily/YYYY-MM-DD-gemini-briefing-rich.md`
 - `knowledge/daily/YYYY-MM-DD-gemini-briefing-rich.md.meta.json`
 - `knowledge/daily/manual-kit/YYYY-MM-DD/10-stage1-6-final-research-briefing.md`
+- `knowledge/daily/YYYY-MM-DD-briefing-delta.md`
+- `data/analysis-state/YYYY-MM-DD/briefing-delta.json`
 
 설명:
 
 - Stage 2의 사실 근거와 Deep Research의 시나리오/대안 자산/촉매 해석을 다시 조합해 대시보드용 최종 매크로 브리핑을 만듭니다.
 - 대시보드의 `Macro View`는 이 rich briefing을 우선 읽습니다.
+- 추가로 직전 거래일 rich briefing과 비교한 `delta briefing`을 생성해, "오늘 새로 바뀐 것"에 바로 집중할 수 있게 합니다.
 
 ### Stage 7. Strategy Exploration
 

@@ -166,6 +166,8 @@ function buildFailureHint(stepId) {
       return "리포트 인덱스, 전문 텍스트, 포트폴리오 스냅샷이 모두 생성됐는지와 Stage 1 추출 로그를 확인하세요.";
     case "stage1_4_summarize":
       return "reports/report_summaries/<date> 산출물, Stage 1 extracts 우선순위 계산, report_id 매칭, stage1-chunk-summaries.json 저장 경로를 확인하세요.";
+    case "stage2_enriched_report_index":
+      return "stage1-report-extracts-v2.json, reports/report_summaries/<date>, stage1-chunk-summaries.json 조인 상태와 report_id 일치 여부를 확인하세요.";
     case "stage1_4_agenda":
       return "DASHSCOPE_API_KEY(QWEN_API_KEY), stage1-chunk-summaries.json 또는 stage1 extracts 폴백 입력, Qwen JSON 응답 형식을 확인하세요.";
     case "stage1_5_prompt_split":
@@ -208,6 +210,8 @@ function buildFailureHint(stepId) {
       return "reports/daily/<date>-briefing.md 파일 존재 여부와 HTML 변환 스크립트 로그를 확인하세요.";
     case "execution_plan_table":
       return "stage4 실행계획 파일 존재 여부와 텔레그램용 표 export 스크립트 로그를 확인하세요.";
+    case "stage6_briefing_delta":
+      return "knowledge/daily/<date>-gemini-briefing-rich.md 와 직전 거래일 rich briefing 존재 여부를 확인하세요.";
     case "telegram_completion":
       return "TELEGRAM_BOT_TOKEN/TELEGRAM_CHAT_ID 설정과 Telegram Bot 권한(채팅 참여/전송 권한)을 확인하세요.";
     case "verify_outputs":
@@ -600,6 +604,13 @@ function buildArtifactMap(date, logFile) {
       date,
       "stage1-chunk-summaries.json",
     ),
+    stage2EnrichedReportIndex: path.join(
+      ROOT_DIR,
+      "data",
+      "analysis-state",
+      date,
+      "stage2-enriched-report-index.json",
+    ),
     stage1ResearchAgenda: path.join(
       ROOT_DIR,
       "data",
@@ -671,6 +682,8 @@ function buildArtifactMap(date, logFile) {
       "daily",
       `${date}-gemini-briefing-rich.md`,
     ),
+    briefingDeltaMarkdown: path.join(ROOT_DIR, "knowledge", "daily", `${date}-briefing-delta.md`),
+    briefingDeltaJson: path.join(ROOT_DIR, "data", "analysis-state", date, "briefing-delta.json"),
     finalResearchBriefingArchive: path.join(
       ROOT_DIR,
       "knowledge",
@@ -878,6 +891,7 @@ function buildTelegramCompletionMessage(summary) {
   lines.push("- paths:");
   lines.push(`- finalBriefingMd: ${finalBriefingMdPath}`);
   lines.push(`- finalBriefingHtml: ${artifact.dailyBriefingHtml?.path ?? "N/A"}`);
+  lines.push(`- briefingDelta: ${artifact.briefingDeltaMarkdown?.path ?? "N/A"}`);
   lines.push(`- executionPlanTable: ${artifact.executionPlanTable?.path ?? "N/A"}`);
   lines.push(`- wikiDaily: ${artifact.wikiDaily?.path ?? "N/A"}`);
   lines.push(`- automationMd: ${artifact.automationMarkdown?.path ?? "N/A"}`);
@@ -1131,6 +1145,26 @@ async function main() {
         warnNote: artifacts.finalResearchBriefing,
       }),
     );
+    const briefingDelta = await runCommand({
+      id: "stage6_briefing_delta",
+      label: "Stage 6 Briefing Delta",
+      command: "node",
+      args: [
+        "scripts/build-briefing-delta.js",
+        "--date",
+        date,
+      ],
+      logger,
+      soft: true,
+      skip: !(await fileExists(artifacts.finalResearchBriefing)),
+    });
+    steps.push({
+      ...briefingDelta,
+      debugHint:
+        briefingDelta.status === "ok" || briefingDelta.status === "skipped"
+          ? null
+          : buildFailureHint(briefingDelta.id),
+    });
     steps.push(
       await reuseOrWarnStep({
         id: "strategy_refresh_round3_final",
@@ -1569,6 +1603,38 @@ async function main() {
       stage1_4Summarize.status === "ok" || stage1_4Summarize.status === "skipped"
         ? null
         : buildFailureHint(stage1_4Summarize.id),
+  });
+
+  const stage2EnrichedReportIndex = await runCommandWithRetry({
+    id: "stage2_enriched_report_index",
+    label: "Stage 2 Enriched Report Index",
+    command: "npm",
+    args: [
+      "run",
+      "stage2:enriched-report-index",
+      "--",
+      "--date",
+      date,
+      "--run-date",
+      runDate,
+      "--effective-market-date",
+      date,
+      "--run-id",
+      runId,
+    ],
+    logger,
+    soft: true,
+    skip: stage1Extracts.status !== "ok",
+    timeoutMs: 300_000,
+    retries: 1,
+    backoffMs: 5_000,
+  });
+  steps.push({
+    ...stage2EnrichedReportIndex,
+    debugHint:
+      stage2EnrichedReportIndex.status === "ok" || stage2EnrichedReportIndex.status === "skipped"
+        ? null
+        : buildFailureHint(stage2EnrichedReportIndex.id),
   });
 
   const stage1_4Agenda = isCheckpointed("stage1_4_agenda")
@@ -2054,6 +2120,27 @@ async function main() {
     fallbackBackoffMs: 30_000,
   });
   steps.push({ ...richBriefingRound3Final, debugHint: richBriefingRound3Final.status === "ok" ? null : richBriefingRound3Final.status === "skipped" ? null : buildFailureHint(richBriefingRound3Final.id) });
+
+  const briefingDelta = await runCommand({
+    id: "stage6_briefing_delta",
+    label: "Stage 6 Briefing Delta",
+    command: "node",
+    args: [
+      "scripts/build-briefing-delta.js",
+      "--date",
+      date,
+    ],
+    logger,
+    soft: true,
+    skip: richBriefingRound3Final.status !== "ok",
+  });
+  steps.push({
+    ...briefingDelta,
+    debugHint:
+      briefingDelta.status === "ok" || briefingDelta.status === "skipped"
+        ? null
+        : buildFailureHint(briefingDelta.id),
+  });
 
   const strategyRefreshRound3Final = await runCommand({
     id: "strategy_refresh_round3_final",

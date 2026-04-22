@@ -233,6 +233,11 @@ if [[ "$RUN_STAGE1_4" == "1" ]]; then
     echo "WARN: Stage 3(top report selection) 실패. Stage 4에서 extracts 폴백으로 계속 진행합니다." >&2
   fi
 
+  echo "== Stage 2: enriched report index =="
+  if ! node scripts/build-stage2-enriched-report-index.js "${STAGE2_COMMON_ARGS[@]}"; then
+    echo "WARN: Stage 2(enriched report index) 실패. Stage 4/5는 기존 입력으로 계속 진행합니다." >&2
+  fi
+
   echo "== Stage 4: research agenda =="
   if ! "$(python_bin)" scripts/build-stage1-4-research-agenda.py \
     "${STAGE2_COMMON_ARGS[@]}" \

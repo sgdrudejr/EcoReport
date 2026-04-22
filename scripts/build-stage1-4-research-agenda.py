@@ -237,6 +237,43 @@ def build_summary_inputs(
     extracts: list[dict[str, Any]],
     max_input: int,
 ) -> tuple[list[dict[str, Any]], str]:
+    enriched_path = state_dir / "stage2-enriched-report-index.json"
+    enriched_json = load_json(enriched_path, None)
+
+    if isinstance(enriched_json, dict) and isinstance(enriched_json.get("items"), list) and enriched_json["items"]:
+        rows: list[dict[str, Any]] = []
+        for item in enriched_json["items"]:
+            report_id = normalize_text(item.get("report_id") or "")
+            summary = (
+                item.get("summary_for_agenda")
+                or item.get("summary_stage3_selected")
+                or item.get("summary_local_compact")
+                or item.get("summary_stage1")
+                or ""
+            )
+            if not report_id or not normalize_text(summary):
+                continue
+
+            rows.append(
+                {
+                    "report_id": report_id,
+                    "title": item.get("title") or "",
+                    "broker": item.get("broker") or "",
+                    "sector": item.get("sector") or "",
+                    "summary": truncate_text(summary, 260),
+                    "priority_score": clamp_int(item.get("priority_score"), 0, 100, 50),
+                    "report_type": item.get("report_type") or "",
+                    "themes": item.get("themes") or [],
+                    "related_accounts": ((item.get("portfolio_relevance") or {}).get("relatedAccounts") or item.get("related_accounts") or []),
+                    "inferred_type": item.get("inferred_type") or "",
+                    "label_hint": item.get("label_hint") or truncate_text(item.get("title") or "토픽", 34),
+                }
+            )
+
+        rows.sort(key=lambda row: row.get("priority_score", 0), reverse=True)
+        if rows:
+            return rows[:max(1, max_input)], "enriched_report_index"
+
     summary_path = state_dir / "stage1-chunk-summaries.json"
     summary_json = load_json(summary_path, None)
 

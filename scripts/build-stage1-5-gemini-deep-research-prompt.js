@@ -159,6 +159,60 @@ function buildPortfolioContext(portfolio, limit = 500) {
   return hardLimit(lines.join(" | "), limit);
 }
 
+function buildCurrentHoldingsContext(portfolio, limit = 600) {
+  const accounts = portfolio?.accounts ?? [];
+  const lines = [];
+
+  for (const account of accounts) {
+    const accountLabel = account?.label ?? account?.key ?? "계좌";
+    const holdings = (account?.holdings ?? [])
+      .slice(0, 5)
+      .map((item) => item?.name)
+      .filter(Boolean);
+
+    const cash = won(account?.cashAvailable);
+    if (holdings.length > 0) {
+      lines.push(`${accountLabel}: 보유 ${holdings.join(", ")} / 현금 ${cash}`);
+    } else {
+      lines.push(`${accountLabel}: 보유 없음 / 현금 ${cash}`);
+    }
+  }
+
+  return hardLimit(lines.join(" | "), limit);
+}
+
+function buildPersonalizedRiskContext(portfolio, topics = [], limit = 600) {
+  const accounts = portfolio?.accounts ?? [];
+  const holdings = accounts.flatMap((account) => account?.holdings ?? []);
+  const holdingNames = holdings.map((item) => compact(item?.name)).filter(Boolean);
+  const totalEval = sumAccountField(accounts, "evaluationAmount");
+  const totalCash = sumAccountField(accounts, "cashAvailable");
+  const cashRatio = totalEval > 0 ? `${Math.round((totalCash / totalEval) * 100)}%` : "N/A";
+
+  const overlappingTopics = [];
+  for (const topic of topics) {
+    const topicSignal = compact([topic?.label, topic?.summary, ...(topic?.keywords ?? [])].join(" ")).toLowerCase();
+    const matchedHolding = holdingNames.find((name) => topicSignal.includes(name.toLowerCase()));
+    if (matchedHolding) {
+      overlappingTopics.push(`${topic.label} ↔ ${matchedHolding}`);
+    }
+    if (overlappingTopics.length >= 4) break;
+  }
+
+  const lines = [
+    `총 현금 비중 ${cashRatio} 수준으로 대기 자금 활용 여부를 같이 판단할 것`,
+    holdingNames.length > 0
+      ? `현재 보유와 직접 겹치는 이슈는 기존 보유 유지/축소/교체 관점까지 평가할 것`
+      : "현재 보유가 거의 없으면 신규 편입 우선순위를 더 명확히 제시할 것",
+  ];
+
+  if (overlappingTopics.length > 0) {
+    lines.push(`직접 겹침 후보: ${overlappingTopics.join(" / ")}`);
+  }
+
+  return hardLimit(lines.join(" | "), limit);
+}
+
 function selectStockeasyContextByPart(stockeasyMarkdown, marketVoiceMarkdown, part, limit = 500) {
   const lines = String(stockeasyMarkdown ?? "")
     .split("\n")
@@ -354,6 +408,38 @@ function inferTopicFromExtract(extract) {
   };
 }
 
+function inferTopicFromEnrichedItem(item) {
+  const label = truncate(item?.label_hint || item?.title || item?.sector || "리서치 토픽", 36);
+  const type = normalizeTopicType(item?.inferred_type || item?.report_type, "sector");
+  const relatedAccounts = item?.portfolio_relevance?.relatedAccounts ?? item?.related_accounts ?? [];
+  const relatedHoldings = item?.portfolio_relevance?.relatedHoldings ?? [];
+
+  return {
+    label,
+    type,
+    summary: truncate(
+      item?.summary_for_agenda ||
+        item?.summary_stage3_selected ||
+        item?.summary_local_compact ||
+        item?.summary_stage1 ||
+        `${label} 관련 핵심 변수를 점검하세요.`,
+      200,
+    ),
+    questions: normalizeQuestions([], label, type),
+    keywords: normalizeKeywords([], [
+      ...(Array.isArray(item?.themes) ? item.themes : []),
+      item?.sector,
+      ...relatedHoldings.map((holding) => holding?.name),
+      label,
+    ]),
+    priority: Math.max(1, Math.min(100, Math.round(Number(item?.priority_score ?? 60) || 60))),
+    accountKeys: (Array.isArray(relatedAccounts) ? relatedAccounts : [])
+      .map((value) => compact(value).toUpperCase())
+      .filter(Boolean)
+      .slice(0, 3),
+  };
+}
+
 function normalizeAgendaTopic(topic, knownAccountKeys = []) {
   const label = truncate(topic?.label ?? "리서치 토픽", 36);
   const fallbackType = normalizeTopicType(topic?.type, "sector");
@@ -389,7 +475,7 @@ function dedupeTopics(topics, maxCount = 24) {
   return result;
 }
 
-function buildTopics(stage1, agenda, knownAccountKeys) {
+function buildTopics(stage1, agenda, enrichedIndex, knownAccountKeys) {
   if (Array.isArray(agenda?.topics) && agenda.topics.length > 0) {
     const normalized = agenda.topics
       .filter((topic) => topic && typeof topic === "object")
@@ -397,6 +483,18 @@ function buildTopics(stage1, agenda, knownAccountKeys) {
     return {
       source: "agenda",
       topics: dedupeTopics(normalized, 30),
+    };
+  }
+
+  if (Array.isArray(enrichedIndex?.items) && enrichedIndex.items.length > 0) {
+    const inferred = enrichedIndex.items
+      .sort((a, b) => Number(b?.priority_score ?? 0) - Number(a?.priority_score ?? 0))
+      .slice(0, 40)
+      .map((item) => inferTopicFromEnrichedItem(item));
+
+    return {
+      source: "enriched_report_index",
+      topics: dedupeTopics(inferred, 24),
     };
   }
 
@@ -443,7 +541,7 @@ function renderTopicSection(topic) {
   ].join("\n");
 }
 
-function renderPrompt({ date, part, portfolioContext, stockeasyContext, topics }) {
+function renderPrompt({ date, part, portfolioContext, holdingsContext, riskContext, stockeasyContext, topics }) {
   const config = PART_CONFIG[part];
   const topicBlocks = topics.map((topic) => renderTopicSection(topic));
 
@@ -452,6 +550,8 @@ function renderPrompt({ date, part, portfolioContext, stockeasyContext, topics }
     `[날짜] ${date}`,
     `[목적] ${config.goal}`,
     `[포트폴리오 컨텍스트] ${portfolioContext}`,
+    `[현재 보유 핵심] ${holdingsContext}`,
+    `[개인화 리스크 포인트] ${riskContext}`,
     `[StockEasy 시그널] ${stockeasyContext}`,
     "",
     "## 조사 요청 토픽",
@@ -460,13 +560,14 @@ function renderPrompt({ date, part, portfolioContext, stockeasyContext, topics }
     "[출력 형식]",
     "- 각 토픽마다 반드시 4개 섹션으로 작성: 현황 / 계좌 번역 / No-Go 조건 / 체크포인트",
     "- 계좌 번역에는 ISA, PENSION, KIS_MAIN 각각의 실행 관점을 분리해 작성",
+    "- 반드시 현재 보유 종목/ETF와의 중복, 대체, 추가매수 위험을 함께 평가",
     "- No-Go 조건은 정량 신호 또는 이벤트 조건을 명확히 적고, 체크포인트는 모니터링 빈도까지 포함",
   ];
 
   return lines.join("\n");
 }
 
-function buildPromptWithBudget({ date, part, portfolioContext, stockeasyContext, topics }) {
+function buildPromptWithBudget({ date, part, portfolioContext, holdingsContext, riskContext, stockeasyContext, topics }) {
   const config = PART_CONFIG[part];
   const sortedTopics = [...topics].sort((a, b) => b.priority - a.priority);
   const maxCount = Math.min(config.maxTopics, sortedTopics.length || 1);
@@ -476,6 +577,8 @@ function buildPromptWithBudget({ date, part, portfolioContext, stockeasyContext,
       date,
       part,
       portfolioContext,
+      holdingsContext,
+      riskContext,
       stockeasyContext,
       topics: sortedTopics.slice(0, count),
     });
@@ -492,6 +595,8 @@ function buildPromptWithBudget({ date, part, portfolioContext, stockeasyContext,
     date,
     part,
     portfolioContext: hardLimit(portfolioContext, 320),
+    holdingsContext: hardLimit(holdingsContext, 320),
+    riskContext: hardLimit(riskContext, 320),
     stockeasyContext: hardLimit(stockeasyContext, 320),
     topics: sortedTopics.slice(0, 1).map((topic) => ({
       ...topic,
@@ -540,8 +645,10 @@ async function main() {
 
   const agendaPath = path.join(paths.analysisDir, "stage1-research-agenda.json");
   const agenda = await readJson(agendaPath, null);
+  const enrichedIndexPath = path.join(paths.analysisDir, "stage2-enriched-report-index.json");
+  const enrichedIndex = await readJson(enrichedIndexPath, null);
 
-  const topicBundle = buildTopics(stage1, agenda, knownAccountKeys);
+  const topicBundle = buildTopics(stage1, agenda, enrichedIndex, knownAccountKeys);
   if (!topicBundle.topics.length) {
     throw new Error("프롬프트 생성에 사용할 토픽이 없습니다. stage1 extracts 또는 agenda를 확인하세요.");
   }
@@ -562,15 +669,19 @@ async function main() {
   });
 
   const portfolioContext = buildPortfolioContext(portfolio, 500);
+  const holdingsContext = buildCurrentHoldingsContext(portfolio, 560);
   const manualKitDir = resolveManualKitDir(args.date);
 
   const generatePart = async (part, explicitOutput = null) => {
     const partTopics = selectTopicsForPart(topicBundle.topics, part);
     const stockeasyContext = selectStockeasyContextByPart(stockeasyMarkdown, marketVoiceMarkdown, part, 500);
+    const riskContext = buildPersonalizedRiskContext(portfolio, partTopics, 560);
     const built = buildPromptWithBudget({
       date: args.date,
       part,
       portfolioContext,
+      holdingsContext,
+      riskContext,
       stockeasyContext,
       topics: partTopics,
     });
