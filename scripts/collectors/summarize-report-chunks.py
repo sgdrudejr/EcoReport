@@ -1,9 +1,15 @@
 #!/usr/bin/env python3
-"""Stage 1.4a: summarize selected report chunks with local LM Studio (OpenAI-compatible).
+"""Stage 1.4a: select top report_summaries and compact them for research agenda input.
 
 Example:
   .venv/bin/python scripts/collectors/summarize-report-chunks.py --date 2026-04-22
-  .venv/bin/python scripts/collectors/summarize-report-chunks.py --date 2026-04-22 --top-n 30 --concurrency 6
+  .venv/bin/python scripts/collectors/summarize-report-chunks.py --date 2026-04-22 --top-n 30
+
+Notes:
+  - This stage no longer re-summarizes chunks with another LLM by default.
+  - It reuses the Windows local orchestrator output in reports/report_summaries/{date}/.
+  - If local report summaries are missing, it writes an empty artifact so Stage 1.4b can
+    fall back to stage1 extracts without blocking the pipeline.
 """
 
 from __future__ import annotations
@@ -12,12 +18,8 @@ import argparse
 import json
 import os
 import sys
-import threading
-from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 from typing import Any
-
-from openai import OpenAI
 
 SCRIPTS_DIR = Path(__file__).resolve().parents[1]
 if str(SCRIPTS_DIR) not in sys.path:
@@ -26,57 +28,63 @@ if str(SCRIPTS_DIR) not in sys.path:
 from lib.env_loader import load_simple_dotenv
 
 
-DEFAULT_LOCAL_BASE_URL = "http://localhost:1234/v1"
 DEFAULT_OUTPUT_NAME = "stage1-chunk-summaries.json"
-
-_THREAD_LOCAL = threading.local()
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Stage 1.4a local LLM chunk summarizer")
+    parser = argparse.ArgumentParser(description="Stage 1.4a top report summary selector")
     parser.add_argument("--date", required=True, help="대상 날짜 (YYYY-MM-DD)")
     parser.add_argument("--run-date", default=None, help="실행일 (YYYY-MM-DD) - 호환용")
     parser.add_argument("--effective-market-date", default=None, help="기준 거래일 (YYYY-MM-DD) - 호환용")
     parser.add_argument("--run-id", default=None, help="run id - 호환용")
     parser.add_argument("--top-n", type=int, default=30, help="우선순위 상위 리포트 개수")
-    parser.add_argument("--concurrency", type=int, default=6, help="청크 요약 동시 실행 수")
-    parser.add_argument("--chunk-char-limit", type=int, default=150, help="청크 요약 최대 글자 수")
     parser.add_argument("--report-char-limit", type=int, default=400, help="리포트 병합 요약 최대 글자 수")
     parser.add_argument("--output", default=None, help="출력 경로")
+    parser.add_argument("--concurrency", type=int, default=0, help="하위 호환용 (사용 안 함)")
     parser.add_argument(
-        "--model",
-        default=None,
-        help="강제 사용할 로컬 모델명 (기본: LOCAL_LLM_MODEL 또는 /v1/models 첫 번째)",
+        "--provider",
+        default="local",
+        help="하위 호환용 (사용 안 함, report_summaries 재사용)",
     )
+    parser.add_argument("--model", default=None, help="하위 호환용 (사용 안 함)")
+    parser.add_argument("--chunk-char-limit", type=int, default=0, help="하위 호환용 (사용 안 함)")
+    parser.add_argument("--max-chunks-per-report", type=int, default=0, help="하위 호환용 (사용 안 함)")
     return parser.parse_args()
 
 
-def load_json(path: Path) -> Any:
-    return json.loads(path.read_text(encoding="utf-8"))
-
-
-def load_jsonl(path: Path) -> list[dict[str, Any]]:
-    rows: list[dict[str, Any]] = []
-    with path.open("r", encoding="utf-8") as handle:
-        for line in handle:
-            line = line.strip()
-            if not line:
-                continue
-            rows.append(json.loads(line))
-    return rows
+def load_json(path: Path, fallback: Any = None) -> Any:
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return fallback
 
 
 def normalize_text(value: Any) -> str:
     return " ".join(str(value or "").replace("\n", " ").split()).strip()
 
 
-def truncate_text(value: str, limit: int) -> str:
+def truncate_text(value: Any, limit: int) -> str:
     text = normalize_text(value)
     if len(text) <= limit:
         return text
     if limit <= 3:
         return text[:limit]
     return f"{text[: max(0, limit - 3)]}..."
+
+
+def unique_nonempty(values: list[str]) -> list[str]:
+    result: list[str] = []
+    seen: set[str] = set()
+    for value in values:
+        text = normalize_text(value)
+        if not text:
+            continue
+        key = text.lower()
+        if key in seen:
+            continue
+        seen.add(key)
+        result.append(text)
+    return result
 
 
 def score_extract_priority(extract: dict[str, Any]) -> int:
@@ -109,12 +117,11 @@ def score_extract_priority(extract: dict[str, Any]) -> int:
 
     score += min(6, len(extract.get("catalysts") or []) * 2)
     score += min(4, len(extract.get("risks") or []))
-
     return score
 
 
 def select_top_reports(stage1_extracts: list[dict[str, Any]], top_n: int) -> list[dict[str, Any]]:
-    scored = []
+    scored: list[dict[str, Any]] = []
     for extract in stage1_extracts:
         report_id = str(extract.get("id") or "").strip()
         if not report_id:
@@ -131,107 +138,69 @@ def select_top_reports(stage1_extracts: list[dict[str, Any]], top_n: int) -> lis
 
     scored.sort(key=lambda row: row["priority_score"], reverse=True)
 
-    seen: set[str] = set()
     selected: list[dict[str, Any]] = []
+    seen: set[str] = set()
     for row in scored:
-        if row["report_id"] in seen:
+        report_id = row["report_id"]
+        if report_id in seen:
             continue
-        seen.add(row["report_id"])
+        seen.add(report_id)
         selected.append(row)
         if len(selected) >= top_n:
             break
     return selected
 
 
-def get_client(base_url: str) -> OpenAI:
-    client = getattr(_THREAD_LOCAL, "client", None)
-    if client is None:
-        # LM Studio OpenAI-compatible endpoint generally accepts any non-empty api_key.
-        client = OpenAI(base_url=base_url, api_key=os.getenv("LOCAL_LLM_API_KEY", "lm-studio"))
-        _THREAD_LOCAL.client = client
-    return client
-
-
-def resolve_model(base_url: str, explicit_model: str | None) -> str:
-    env_model = (os.getenv("LOCAL_LLM_MODEL") or "").strip()
-    model_name = (explicit_model or env_model).strip()
-    if model_name:
-        return model_name
-
-    try:
-        client = OpenAI(base_url=base_url, api_key=os.getenv("LOCAL_LLM_API_KEY", "lm-studio"))
-        models = client.models.list().data
-    except Exception as exc:  # noqa: BLE001
-        raise RuntimeError(
-            "로컬 LLM 모델 조회에 실패했습니다. "
-            f"LOCAL_LLM_BASE_URL={base_url} 연결 상태를 확인하세요. ({exc})"
-        ) from exc
-
-    if not models:
-        raise RuntimeError(
-            "로컬 LLM 모델 목록이 비어 있습니다. LM Studio에서 모델을 로드한 뒤 다시 실행하세요."
-        )
-
-    model = models[0].id
-    if not model:
-        raise RuntimeError("로컬 LLM 모델명을 확인할 수 없습니다 (/v1/models 응답 오류).")
-    return model
-
-
-def summarize_chunk(
-    base_url: str,
-    model_name: str,
-    chunk_text: str,
-    title: str,
-    broker: str,
-    char_limit: int,
-) -> str:
-    user_content = (
-        f"[{title or '제목 없음'} / {broker or '브로커 미상'}]\n"
-        f"{chunk_text}\n\n"
-        "위 내용을 한국어로 핵심만 요약하세요. "
-        f"{char_limit}자 이내, 불필요한 수식어 없이 사실/핵심 논지만 작성하세요."
-    )
-
-    response = get_client(base_url).chat.completions.create(
-        model=model_name,
-        messages=[
-            {
-                "role": "system",
-                "content": "You are a financial research summarizer. Summarize in Korean.",
-            },
-            {"role": "user", "content": user_content},
-        ],
-        temperature=0.2,
-        max_tokens=220,
-    )
-
-    text = normalize_text(response.choices[0].message.content if response.choices else "")
-    text = text.lstrip("-•* ")
-    if not text:
-        raise RuntimeError("요약 응답이 비어 있습니다.")
-    return truncate_text(text, char_limit)
-
-
-def merge_report_summaries(parts: list[str], char_limit: int) -> str:
-    merged = ""
-    seen: set[str] = set()
-    for part in parts:
-        clean = normalize_text(part)
-        if not clean or clean in seen:
+def build_company_names(report: dict[str, Any], limit: int = 3) -> str:
+    names: list[str] = []
+    for item in report.get("company_mentions") or []:
+        if not isinstance(item, dict):
             continue
-        seen.add(clean)
+        name = normalize_text(item.get("name") or "")
+        if name:
+            names.append(name)
+        if len(names) >= limit:
+            break
+    names = unique_nonempty(names)
+    return ", ".join(names[:limit])
 
-        candidate = clean if not merged else f"{merged} {clean}"
-        if len(candidate) <= char_limit:
-            merged = candidate
-            continue
 
-        if not merged:
-            merged = truncate_text(clean, char_limit)
-        break
+def compact_report_summary(report_payload: dict[str, Any], char_limit: int) -> str:
+    report = report_payload.get("report") or {}
+    parts: list[str] = []
 
-    return merged
+    core_summary = truncate_text(report.get("core_summary") or "", 190)
+    if core_summary:
+        parts.append(core_summary)
+
+    macro_view = unique_nonempty([truncate_text(item, 90) for item in (report.get("macro_view") or [])[:2]])
+    if macro_view:
+        parts.append(f"매크로: {' / '.join(macro_view)}")
+
+    sector_view = unique_nonempty([truncate_text(item, 90) for item in (report.get("sector_view") or [])[:2]])
+    if sector_view:
+        parts.append(f"섹터: {' / '.join(sector_view)}")
+
+    company_names = build_company_names(report, limit=3)
+    if company_names:
+        parts.append(f"관련 종목: {company_names}")
+
+    merged = " ".join(unique_nonempty(parts))
+    return truncate_text(merged, char_limit)
+
+
+def empty_payload(date: str, reason: str, selected_reports: int) -> dict[str, Any]:
+    return {
+        "date": date,
+        "model": "",
+        "source": reason,
+        "summaries": [],
+        "stats": {
+            "selected_report_count": selected_reports,
+            "found_report_summary_count": 0,
+            "missing_report_summary_count": selected_reports,
+        },
+    }
 
 
 def main() -> None:
@@ -242,144 +211,61 @@ def main() -> None:
     if env_path.exists():
         load_simple_dotenv(env_path)
 
-    base_url = (os.getenv("LOCAL_LLM_BASE_URL") or "").strip()
-    used_default_base = False
-    if not base_url:
-        base_url = DEFAULT_LOCAL_BASE_URL
-        used_default_base = True
-
-    if not base_url.startswith("http"):
-        raise RuntimeError(
-            "LOCAL_LLM_BASE_URL 형식이 올바르지 않습니다. 예: http://192.168.0.xxx:1234/v1"
-        )
-
     state_dir = root / "data" / "analysis-state" / args.date
-    chunks_path = state_dir / "chunk-index" / "chunks.jsonl"
     extracts_path = state_dir / "stage1-report-extracts-v2.json"
+    report_summaries_dir = root / "reports" / "report_summaries" / args.date
     output_path = Path(args.output) if args.output else state_dir / DEFAULT_OUTPUT_NAME
 
-    if not chunks_path.exists():
-        raise RuntimeError(f"청크 인덱스 파일이 없습니다: {chunks_path}")
     if not extracts_path.exists():
         raise RuntimeError(f"Stage 1 추출 파일이 없습니다: {extracts_path}")
 
-    stage1 = load_json(extracts_path)
+    stage1 = load_json(extracts_path, {})
     extracts = stage1.get("extracts") or []
     if not extracts:
         raise RuntimeError(f"extracts가 비어 있습니다: {extracts_path}")
 
     top_reports = select_top_reports(extracts, max(1, args.top_n))
-    selected_report_ids = {row["report_id"] for row in top_reports}
-    report_meta = {row["report_id"]: row for row in top_reports}
+    output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    chunks = load_jsonl(chunks_path)
-    target_chunks: list[dict[str, Any]] = []
-    for chunk in chunks:
-        report_id = str(chunk.get("report_id") or "")
-        if report_id not in selected_report_ids:
-            continue
-
-        text = normalize_text(chunk.get("text") or chunk.get("core_text") or "")
-        if not text:
-            continue
-
-        target_chunks.append(
-            {
-                "chunk_id": chunk.get("chunk_id") or "",
-                "report_id": report_id,
-                "chunk_seq": int(chunk.get("chunk_seq") or 0),
-                "text": text,
-            }
-        )
-
-    if not target_chunks:
-        payload = {
-            "date": args.date,
-            "model": "",
-            "source": "local_llm",
-            "summaries": [],
-            "stats": {
-                "selected_report_count": len(top_reports),
-                "selected_chunk_count": 0,
-                "summarized_chunk_count": 0,
-                "failed_chunk_count": 0,
-            },
-        }
-        output_path.parent.mkdir(parents=True, exist_ok=True)
+    if not report_summaries_dir.exists():
+        payload = empty_payload(args.date, "report_summaries_missing", len(top_reports))
         output_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        print(f"[warn] report_summaries 디렉터리가 없습니다: {report_summaries_dir}", file=sys.stderr)
         print(f"saved: {output_path}")
-        print("selected_chunks: 0")
+        print("selected_reports: 0")
         return
 
-    model_name = resolve_model(base_url, args.model)
-
-    # Fast connectivity check before running concurrent jobs.
-    try:
-        OpenAI(base_url=base_url, api_key=os.getenv("LOCAL_LLM_API_KEY", "lm-studio")).chat.completions.create(
-            model=model_name,
-            messages=[
-                {"role": "system", "content": "You are a test assistant."},
-                {"role": "user", "content": "ping"},
-            ],
-            temperature=0,
-            max_tokens=4,
-        )
-    except Exception as exc:  # noqa: BLE001
-        suffix = (
-            " (LOCAL_LLM_BASE_URL 미설정으로 localhost 기본값을 사용 중입니다.)"
-            if used_default_base
-            else ""
-        )
-        raise RuntimeError(
-            "로컬 LLM 연결 테스트에 실패했습니다. "
-            f"LOCAL_LLM_BASE_URL={base_url} 를 확인하세요.{suffix} ({exc})"
-        ) from exc
-
-    summarized_by_report: dict[str, list[tuple[int, str]]] = {}
-    failed_count = 0
-
-    with ThreadPoolExecutor(max_workers=max(1, args.concurrency)) as executor:
-        future_map = {
-            executor.submit(
-                summarize_chunk,
-                base_url,
-                model_name,
-                row["text"],
-                report_meta[row["report_id"]]["title"],
-                report_meta[row["report_id"]]["broker"],
-                max(40, args.chunk_char_limit),
-            ): row
-            for row in target_chunks
-        }
-
-        for future in as_completed(future_map):
-            row = future_map[future]
-            report_id = row["report_id"]
-            try:
-                summary = future.result()
-                summarized_by_report.setdefault(report_id, []).append((row["chunk_seq"], summary))
-            except Exception as exc:  # noqa: BLE001
-                failed_count += 1
-                print(
-                    f"[warn] chunk summarize 실패: report_id={report_id} chunk_id={row['chunk_id']} ({exc})",
-                    file=sys.stderr,
-                )
-
     summaries: list[dict[str, Any]] = []
-    for report_id, rows in summarized_by_report.items():
-        rows.sort(key=lambda item: item[0])
-        merged = merge_report_summaries([item[1] for item in rows], max(80, args.report_char_limit))
-        if not merged:
+    found_count = 0
+    missing_count = 0
+    detected_model = ""
+
+    for meta in top_reports:
+        report_id = meta["report_id"]
+        report_path = report_summaries_dir / f"{report_id}.json"
+        payload = load_json(report_path, None)
+        if not isinstance(payload, dict):
+            missing_count += 1
             continue
 
-        meta = report_meta[report_id]
+        report = payload.get("report") or {}
+        file_meta = payload.get("meta") or {}
+        compact = compact_report_summary(payload, max(120, args.report_char_limit))
+        if not compact:
+            missing_count += 1
+            continue
+
+        found_count += 1
+        if not detected_model:
+            detected_model = normalize_text(file_meta.get("model") or "")
+
         summaries.append(
             {
                 "report_id": report_id,
-                "title": meta.get("title") or "",
-                "broker": meta.get("broker") or "",
+                "title": report.get("report_title") or meta.get("title") or file_meta.get("report_title") or "",
+                "broker": report.get("publisher") or meta.get("broker") or "",
                 "sector": meta.get("sector") or "",
-                "summary": merged,
+                "summary": compact,
                 "priority_score": int(meta.get("priority_score") or 0),
             }
         )
@@ -388,26 +274,22 @@ def main() -> None:
 
     payload = {
         "date": args.date,
-        "model": model_name,
-        "source": "local_llm",
+        "model": detected_model,
+        "source": "report_summaries_local",
         "summaries": summaries,
         "stats": {
             "selected_report_count": len(top_reports),
-            "selected_chunk_count": len(target_chunks),
-            "summarized_chunk_count": sum(len(rows) for rows in summarized_by_report.values()),
-            "failed_chunk_count": failed_count,
+            "found_report_summary_count": found_count,
+            "missing_report_summary_count": missing_count,
         },
     }
 
-    output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
     print(f"saved: {output_path}")
-    print(f"model: {model_name}")
     print(f"selected_reports: {len(top_reports)}")
-    print(f"selected_chunks: {len(target_chunks)}")
-    print(f"summarized_chunks: {payload['stats']['summarized_chunk_count']}")
-    print(f"failed_chunks: {failed_count}")
+    print(f"found_report_summaries: {found_count}")
+    print(f"missing_report_summaries: {missing_count}")
 
 
 if __name__ == "__main__":

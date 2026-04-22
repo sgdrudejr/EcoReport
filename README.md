@@ -114,25 +114,26 @@ flowchart TD
     B --> B1["PDFs + index.json"]
     B --> B2["text/*.txt + text-manifest.json"]
 
-    B2 --> C["Stage 1<br/>build-stage1-report-extracts.js"]
-    P["Portfolio Snapshot<br/>data/portfolio/latest.json"] --> C
+    P["Stage 1<br/>Portfolio Snapshot"] --> C
+    B2 --> C["Stage 2<br/>build-stage1-report-extracts.js"]
+    P --> C
     W["Watchlist / Strategy"] --> C
     C --> C1["stage1-report-extracts-v2.json"]
     C --> C2["stage1-report-extracts-v2.md"]
 
-    C1 --> M["Stage 1.5 Prompt<br/>build-stage1-5-gemini-deep-research-prompt.js"]
+    C1 --> M["Stage 5 Prompt Split<br/>build-stage1-5-gemini-deep-research-prompt.js"]
     P --> M
     M --> M1["07-stage1-5-gemini-deep-research-prompt.md"]
-    M1 --> N["Gemini Web Deep Research<br/>run-gemini-deep-research-web.js"]
+    M1 --> N["Stage 5 Gemini Web<br/>run-gemini-deep-research-web.js"]
     N --> N1["09-stage1-5-gemini-deep-research-response.md"]
-    C1 --> O["Stage 1.6 Rich Briefing<br/>build-stage1-6-rich-briefing.js"]
+    C1 --> O["Stage 6 Rich Briefing<br/>build-stage1-6-rich-briefing.js"]
     P --> O
     N1 --> O
     O --> O1["knowledge/daily/YYYY-MM-DD-gemini-briefing-rich.md"]
 
-    O1 --> D["Stage 2 Prompt<br/>build-stage2-strategy-prompt.js"]
+    O1 --> D["Stage 7 Prompt<br/>build-stage2-strategy-prompt.js"]
     C1 --> D
-    C1 --> E["Stage 2 Mock<br/>build-stage2-strategy-mock.js"]
+    C1 --> E["Stage 7 Mock<br/>build-stage2-strategy-mock.js"]
     T["Technical Snapshot<br/>data/technical/YYYY-MM-DD.json"] --> D
     T --> E
     P --> D
@@ -141,7 +142,7 @@ flowchart TD
     E --> E1["stage2-strategy-options.mock.json"]
     D --> D1["08-stage2-strategy-prompt.md"]
 
-    C1 --> F["Stage 3 Quant<br/>build-stage3-quant-scores.js"]
+    C1 --> F["Stage 8 Quant<br/>build-stage3-quant-scores.js"]
     E1 --> F
     T --> F
     P --> F
@@ -207,16 +208,16 @@ flowchart TD
 
 ## 매일 운영 명령
 
-가장 권장하는 일일 실행 방법은 아래 한 줄입니다.
+가장 권장하는 일일 실행 방법은 아래 한 줄입니다. (`daily`는 `automation:daily`와 동일)
 
 ```bash
 cd /Users/seo/Documents/Playground/economy-report
-bash scripts/run-daily-system.sh --date YYYY-MM-DD
+npm run daily -- --date YYYY-MM-DD
 ```
 
 ### Telegram 알림
 
-일일 러너(`scripts/run-daily-system.sh`)는 마지막에 `scripts/send-telegram-summary.js`를 호출해 텔레그램 요약 알림을 전송합니다.
+일일 자동화 러너(`scripts/run-daily-automation-cycle.js`)는 단계 진행/결과를 요약해 텔레그램 알림 스크립트와 함께 운영할 수 있습니다.
 
 사전 설정:
 
@@ -244,7 +245,7 @@ bash scripts/run-with-telegram-notify.sh npm run automation:daily -- --date YYYY
 
 - 토큰/채팅 ID가 들어간 `config/telegram_notify.env`는 `.gitignore`에 포함되어 Git에 올라가지 않습니다.
 
-Gemini Deep Research 오버레이까지 포함한 완결형 자동 실행은 아래 명령을 사용합니다.
+동일 명령(완결형 자동 실행)은 아래와 같습니다.
 
 ```bash
 cd /Users/seo/Documents/Playground/economy-report
@@ -447,9 +448,41 @@ GITHUB_TOKEN=...
 - 고전형 PAT를 쓴다면 보통 `repo` 권한이면 충분합니다.
 - fine-grained PAT를 쓴다면 이 저장소 기준 `Contents: write`가 필요합니다.
 
-## Stage 1~4 개요
+## Canonical Stage Map
 
-### Stage 1. 리포트 연구 노트화
+이제부터 사람이 읽는 공식 단계 이름은 아래 정수 Stage를 기준으로 맞춥니다.
+기존 파일명과 legacy npm alias는 하위 호환 때문에 유지될 수 있지만, 운영/자동화/문서는 아래 번호를 기준으로 사용합니다.
+
+1. `Stage 1` Portfolio Snapshot
+2. `Stage 2` Report Extracts
+3. `Stage 3` Top Report Summary Selection
+4. `Stage 4` Research Agenda
+5. `Stage 5` Deep Research Prompt Split
+6. `Stage 6` Rich Briefing Synthesis
+7. `Stage 7` Strategy Exploration
+8. `Stage 8` Quant Scoring
+9. `Stage 9` Execution Plan
+10. `Stage 10+` Follow-up / refinement / delivery rounds in automation
+
+### Stage 1. Portfolio Snapshot
+
+입력:
+
+- 한국투자증권 Open API 설정
+- 계좌 매핑 설정
+
+출력:
+
+- `data/portfolio/latest.json`
+
+설명:
+
+- 전체 파이프라인은 이 스냅샷을 공통 제약조건으로 사용합니다.
+- 계좌별 보유 종목, 평가금액, 현금, 손익 상태를 먼저 주입해야 이후 단계에서
+  "이미 비중이 높은 테마인지", "어느 계좌에서 실행 가능한지"를 계산할 수 있습니다.
+- `run-daily-system.sh`뿐 아니라 `run-strategy-pipeline.sh`도 이제 시작 시 이 단계를 먼저 시도합니다.
+
+### Stage 2. Report Extracts
 
 입력:
 
@@ -484,30 +517,70 @@ GITHUB_TOKEN=...
 - 이 단계는 추천을 만드는 단계가 아니라 **리포트 연구 노트를 만드는 단계**입니다.
 - 최대한 많은 근거를 보존하고, 리포트-포트폴리오 관련성을 후보 수준으로 붙입니다.
 
-### Stage 1.5. Gemini Deep Research 수동 연동
+### Stage 3. Top Report Summary Selection
 
 입력:
 
+- `data/analysis-state/YYYY-MM-DD/stage1-report-extracts-v2.json`
+- `reports/report_summaries/YYYY-MM-DD/*.json`
+
+출력:
+
+- `data/analysis-state/YYYY-MM-DD/stage1-chunk-summaries.json`
+
+설명:
+
+- 이 단계는 더 이상 청크를 다시 LLM에 넣어 재요약하지 않습니다.
+- Windows 로컬 요약 오케스트레이터가 이미 만든 `report_summaries`에서
+  Stage 2 priority 기준 상위 N개 리포트만 골라, Gemini 앞단 입력용으로 짧게 압축합니다.
+- 즉 역할은 `재요약`이 아니라 `선택 + 입력 정리`입니다.
+
+### Stage 4. Research Agenda
+
+입력:
+
+- `data/analysis-state/YYYY-MM-DD/stage1-chunk-summaries.json`
 - `data/analysis-state/YYYY-MM-DD/stage1-report-extracts-v2.json`
 - `data/portfolio/latest.json`
 
 출력:
 
+- `data/analysis-state/YYYY-MM-DD/stage1-research-agenda.json`
+
+설명:
+
+- 상위 리포트 요약들을 Qwen API가 5~7개 토픽으로 묶고 질문, 키워드, priority를 붙입니다.
+- `stage1-chunk-summaries.json`이 비어 있거나 없으면 Stage 2 extracts에서 폴백합니다.
+
+### Stage 5. Gemini Deep Research Prompt Split
+
+입력:
+
+- `data/analysis-state/YYYY-MM-DD/stage1-report-extracts-v2.json`
+- `data/analysis-state/YYYY-MM-DD/stage1-research-agenda.json`
+- `data/portfolio/latest.json`
+
+출력:
+
+- `knowledge/daily/manual-kit/YYYY-MM-DD/07a-stage1-5-macro-prompt.md`
+- `knowledge/daily/manual-kit/YYYY-MM-DD/07b-stage1-5-sector-prompt.md`
+- `knowledge/daily/manual-kit/YYYY-MM-DD/07c-stage1-5-newcandidate-prompt.md`
 - `knowledge/daily/manual-kit/YYYY-MM-DD/07-stage1-5-gemini-deep-research-prompt.md`
 - `knowledge/daily/manual-kit/YYYY-MM-DD/09-stage1-5-gemini-deep-research-response.md`
 
 설명:
 
-- Stage 1 구조화 추출물과 최신 포트폴리오를 Gemini Web Deep Research용 프롬프트로 묶습니다.
+- Stage 2 구조화 추출물과 Stage 4 어젠다를 기반으로 Gemini Web Deep Research 프롬프트를
+  `macro / sector·security / new_candidate` 3개로 나눠 만듭니다.
 - Safari에서 Gemini 웹을 열고 `도구 -> Deep Research` 선택, 전송, 결과 저장/클립보드 복사까지 자동화할 수 있습니다.
 - 이 단계는 완전 자동 API 호출이 아니라 웹 기반 수동 리서치를 파이프라인 안에 안전하게 끼워 넣는 레이어입니다.
 
-### Stage 1.6. 최종 Rich Briefing 합성
+### Stage 6. Rich Briefing Synthesis
 
 입력:
 
-- Stage 1 연구 노트
-- Stage 1.5 Gemini Deep Research 결과
+- Stage 2 연구 노트
+- Stage 5 Gemini Deep Research 결과
 - 기존 어드바이저 브리핑
 - 포트폴리오 상태
 
@@ -519,14 +592,14 @@ GITHUB_TOKEN=...
 
 설명:
 
-- Stage 1의 사실 근거와 Deep Research의 시나리오/대안 자산/촉매 해석을 다시 조합해 대시보드용 최종 매크로 브리핑을 만듭니다.
+- Stage 2의 사실 근거와 Deep Research의 시나리오/대안 자산/촉매 해석을 다시 조합해 대시보드용 최종 매크로 브리핑을 만듭니다.
 - 대시보드의 `Macro View`는 이 rich briefing을 우선 읽습니다.
 
-### Stage 2. 전략 탐색
+### Stage 7. Strategy Exploration
 
 입력:
 
-- Stage 1 연구 노트
+- Stage 2 연구 노트
 - 포트폴리오 상태
 - 기술지표
 - Daily / Gemini 브리핑
@@ -540,10 +613,10 @@ GITHUB_TOKEN=...
 설명:
 
 - 실제 LLM이 붙을 자리입니다.
-- 현재는 mock JSON을 먼저 만들어 Stage 3/4를 계속 검증합니다.
+- 현재는 mock JSON을 먼저 만들어 Stage 8/9를 계속 검증합니다.
 - 나중에는 이 mock 자리에 실제 LLM 응답 JSON이 들어갑니다.
 
-### Stage 3. 퀀트 점수화
+### Stage 8. Quant Scoring
 
 입력:
 
@@ -559,20 +632,20 @@ GITHUB_TOKEN=...
 설명:
 
 - 종목, 계좌, 포트폴리오 점수를 계산합니다.
-- 현재 Stage 3는 `교차단면 팩터 점수 + coverage-aware base score - 리스크 패널티 + tax-aware 조정` 구조입니다.
-- BaseScore는 `배분 + 팩터 + 기술 + 리포트 + 레짐 적합도 + Stage 2 점수 + 선행지표`를 coverage-aware 가중치로 합성합니다.
+- 현재 Stage 8은 `교차단면 팩터 점수 + coverage-aware base score - 리스크 패널티 + tax-aware 조정` 구조입니다.
+- BaseScore는 `배분 + 팩터 + 기술 + 리포트 + 레짐 적합도 + Stage 7 점수 + 선행지표`를 coverage-aware 가중치로 합성합니다.
 - 팩터 점수는 `모멘텀 / 리서치 강도 / 인컴 수익률 / 레짐 적합도`를 Z-score 정규화 후 bounded score로 변환합니다.
 - RiskPenalty는 `데이터 품질 + 집중도 + 축소 공분산 기반 변동성 + 레짐 스트레스 + tail risk`를 별도 감점으로 관리합니다.
 - 계좌별 최종 점수는 예상 인컴 수익률과 계좌 세율 가정을 사용해 tax-aware multiplier로 한 번 더 보정합니다.
 - 대시보드는 이 파일의 `baseScores`, `effectiveWeights`, `riskPenalty`를 읽어 “왜 이 점수인지 / 뭘 하면 점수가 올라가는지”를 설명합니다.
 
-### Stage 4. 실행 계획 생성
+### Stage 9. Execution Plan
 
 입력:
 
-- Stage 1 연구 노트
-- Stage 2 전략 탐색 결과
-- Stage 3 점수
+- Stage 2 연구 노트
+- Stage 7 전략 탐색 결과
+- Stage 8 점수
 - 포트폴리오 현재 상태
 
 출력:
@@ -740,9 +813,9 @@ node scripts/build-parallel-rag-corpus.js --date 2026-04-03
 
 ```bash
 cd /Users/seo/Documents/Playground/economy-report
-npm run stage1.5:prompt -- --date 2026-04-03
-npm run stage1.5:gemini:run -- --date 2026-04-03
-npm run stage1.6:briefing -- --date 2026-04-03 --run-date 2026-04-03 --effective-market-date 2026-04-03
+npm run stage5:deep-research-prompt -- --date 2026-04-03
+npm run stage5:gemini:run -- --date 2026-04-03
+npm run stage6:rich-briefing -- --date 2026-04-03 --run-date 2026-04-03 --effective-market-date 2026-04-03
 bash scripts/run-strategy-pipeline.sh --date 2026-04-03 --run-date 2026-04-03 --effective-market-date 2026-04-03 --gemini-stage2
 ```
 
@@ -750,15 +823,15 @@ bash scripts/run-strategy-pipeline.sh --date 2026-04-03 --run-date 2026-04-03 --
 
 ```bash
 cd /Users/seo/Documents/Playground/economy-report
-npm run stage1:extracts -- --date 2026-04-03
-npm run stage1.5:prompt -- --date 2026-04-03
-npm run stage1.5:gemini:web -- --date 2026-04-03
-npm run stage1.5:gemini:run -- --date 2026-04-03 --poll-sec 30 --timeout-sec 1800
-npm run stage1.6:briefing -- --date 2026-04-03
-npm run stage2:prompt -- --date 2026-04-03
-npm run stage2:mock -- --date 2026-04-03
-npm run stage3:quant -- --date 2026-04-03
-npm run stage4:plan -- --date 2026-04-03
+npm run stage1:portfolio-sync -- --date 2026-04-03
+npm run stage2:extracts -- --date 2026-04-03
+npm run stage5:deep-research-prompt -- --date 2026-04-03
+npm run stage5:gemini:web -- --date 2026-04-03
+npm run stage5:gemini:run -- --date 2026-04-03 --poll-sec 30 --timeout-sec 1800
+npm run stage6:rich-briefing -- --date 2026-04-03
+npm run stage9:strategy-prompt -- --date 2026-04-03
+npm run stage13:quant-scores -- --date 2026-04-03
+npm run stage14:execution-plan -- --date 2026-04-03
 ```
 
 Gemini Deep Research 자동화는 기존 탭을 재사용하지 않고 항상 새 Safari 창을 열어 진행합니다.

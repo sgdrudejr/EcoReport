@@ -27,6 +27,7 @@ function parseArgs(argv) {
     forceCollect: false,
     freshStart: false,
     reuseFrontDocument: false,
+    tailOnly: false,
   };
 
   for (let index = 0; index < argv.length; index += 1) {
@@ -54,6 +55,8 @@ function parseArgs(argv) {
       args.freshStart = true;
     } else if (token === "--reuse-front-document") {
       args.reuseFrontDocument = true;
+    } else if (token === "--tail-only") {
+      args.tailOnly = true;
     }
   }
 
@@ -96,7 +99,6 @@ function hasSuccessfulStrategyRefresh(steps) {
 function buildSameDayStatus(steps, artifacts) {
   const blockingStepIds = [
     "baseline_daily_system",
-    "windows_local_summary",
     "stage1_extracts",
     "rich_briefing_round3_final",
     "verify_outputs",
@@ -159,11 +161,11 @@ function buildFailureHint(stepId) {
     case "baseline_daily_system":
       return "수집, 시장 데이터, Stage 2 Python 의존성, 또는 기본 파이프라인 로그를 먼저 확인하세요.";
     case "windows_local_summary":
-      return "Windows 로컬 LLM 서버(5070Ti) 상태, Wake-on-LAN, local-report-orchestrator 설정(base_url/model), run_stats 로그를 확인하세요.";
+      return "Windows 로컬 LLM 서버(5070Ti) 상태, Wake-on-LAN, local-report-orchestrator 설정(base_url/model), run_stats 로그를 확인하세요. 이 단계는 권장 경로이며, 실패해도 Stage 3/4 fallback 경로는 계속 진행될 수 있습니다.";
     case "stage1_extracts":
       return "리포트 인덱스, 전문 텍스트, 포트폴리오 스냅샷이 모두 생성됐는지와 Stage 1 추출 로그를 확인하세요.";
     case "stage1_4_summarize":
-      return "LOCAL_LLM_BASE_URL/LOCAL_LLM_MODEL, Windows LM Studio 서버 상태, /v1/models 응답, chunk-index/chunks.jsonl 경로를 확인하세요.";
+      return "reports/report_summaries/<date> 산출물, Stage 1 extracts 우선순위 계산, report_id 매칭, stage1-chunk-summaries.json 저장 경로를 확인하세요.";
     case "stage1_4_agenda":
       return "DASHSCOPE_API_KEY(QWEN_API_KEY), stage1-chunk-summaries.json 또는 stage1 extracts 폴백 입력, Qwen JSON 응답 형식을 확인하세요.";
     case "stage1_5_prompt_split":
@@ -204,6 +206,8 @@ function buildFailureHint(stepId) {
       return "knowledge/wiki 생성 권한과 Obsidian vault 경로를 확인하세요.";
     case "daily_briefing_html":
       return "reports/daily/<date>-briefing.md 파일 존재 여부와 HTML 변환 스크립트 로그를 확인하세요.";
+    case "execution_plan_table":
+      return "stage4 실행계획 파일 존재 여부와 텔레그램용 표 export 스크립트 로그를 확인하세요.";
     case "telegram_completion":
       return "TELEGRAM_BOT_TOKEN/TELEGRAM_CHAT_ID 설정과 Telegram Bot 권한(채팅 참여/전송 권한)을 확인하세요.";
     case "verify_outputs":
@@ -679,6 +683,8 @@ function buildArtifactMap(date, logFile) {
     stage4: path.join(ROOT_DIR, "data", "analysis-state", date, "stage4-execution-plan.json"),
     dailyBriefing: path.join(ROOT_DIR, "reports", "daily", `${date}-briefing.md`),
     dailyBriefingHtml: path.join(ROOT_DIR, "reports", "daily", `${date}-briefing.html`),
+    executionPlanTable: path.join(ROOT_DIR, "reports", "daily", `${date}-stage4-execution-plan-table.md`),
+    executionPlanTelegram: path.join(ROOT_DIR, "reports", "daily", `${date}-stage4-execution-plan-telegram.txt`),
     wikiDaily: path.join(ROOT_DIR, "knowledge", "wiki", "daily", `${date}.md`),
     wikiOperatingRules: path.join(ROOT_DIR, "knowledge", "wiki", "memory", "operating-rules.md"),
     wikiResearchBacklog: path.join(ROOT_DIR, "knowledge", "wiki", "memory", "research-backlog.md"),
@@ -872,6 +878,7 @@ function buildTelegramCompletionMessage(summary) {
   lines.push("- paths:");
   lines.push(`- finalBriefingMd: ${finalBriefingMdPath}`);
   lines.push(`- finalBriefingHtml: ${artifact.dailyBriefingHtml?.path ?? "N/A"}`);
+  lines.push(`- executionPlanTable: ${artifact.executionPlanTable?.path ?? "N/A"}`);
   lines.push(`- wikiDaily: ${artifact.wikiDaily?.path ?? "N/A"}`);
   lines.push(`- automationMd: ${artifact.automationMarkdown?.path ?? "N/A"}`);
 
@@ -1030,6 +1037,308 @@ async function main() {
     });
   }
 
+  async function reuseOrWarnStep({
+    id,
+    label,
+    artifactPath,
+    successNote,
+    warnReason,
+    warnNote,
+  }) {
+    if (artifactPath && (await fileExists(artifactPath))) {
+      return {
+        ...reuseArtifactStep({
+          id,
+          label,
+          artifactPath,
+          note: successNote,
+        }),
+        debugHint: null,
+      };
+    }
+
+    return {
+      ...preflightWarnStep({
+        id,
+        label,
+        reason: warnReason,
+        note: warnNote,
+      }),
+      debugHint: buildFailureHint(id),
+    };
+  }
+
+  async function finalizeFromExistingArtifacts() {
+    const steps = [];
+
+    steps.push(
+      await reuseOrWarnStep({
+        id: "baseline_daily_system",
+        label: "Baseline Daily System",
+        artifactPath: artifacts.dailyBriefing,
+        successNote: `기존 산출물 재사용: ${artifacts.dailyBriefing}`,
+        warnReason: "기존 baseline briefing 산출물을 찾지 못했습니다.",
+        warnNote: artifacts.dailyBriefing,
+      }),
+    );
+    steps.push(
+      await reuseOrWarnStep({
+        id: "windows_local_summary",
+        label: "Windows Local Report Summary (Preferred)",
+        artifactPath: artifacts.localSummaryFinalView,
+        successNote: `기존 Windows 로컬 요약 재사용: ${artifacts.localSummaryFinalView}`,
+        warnReason: "Windows 로컬 요약 산출물이 없어 tail-only 요약에는 경고로 기록합니다.",
+        warnNote: artifacts.localSummaryFinalView,
+      }),
+    );
+    steps.push(
+      await reuseOrWarnStep({
+        id: "stage1_extracts",
+        label: "Stage 2 Report Extracts",
+        artifactPath: artifacts.stage1,
+        successNote: `기존 Stage 1 extracts 재사용: ${artifacts.stage1}`,
+        warnReason: "Stage 1 extracts 산출물을 찾지 못했습니다.",
+        warnNote: artifacts.stage1,
+      }),
+    );
+    steps.push(
+      await reuseOrWarnStep({
+        id: "deep_research_follow_up_web",
+        label: "Stage 11 Gemini Follow-up Web",
+        artifactPath: artifacts.deepResearchFollowUpResponse,
+        successNote: `기존 2차 Gemini 응답 재사용: ${artifacts.deepResearchFollowUpResponse}`,
+        warnReason: "2차 Gemini follow-up 응답이 없습니다.",
+        warnNote: artifacts.deepResearchFollowUpResponse,
+      }),
+    );
+    steps.push(
+      await reuseOrWarnStep({
+        id: "deep_research_round3_web",
+        label: "Stage 16 Gemini Final Refinement Web",
+        artifactPath: artifacts.round3Response,
+        successNote: `기존 3차 Gemini 응답 재사용: ${artifacts.round3Response}`,
+        warnReason: "3차 Gemini refinement 응답이 없습니다.",
+        warnNote: artifacts.round3Response,
+      }),
+    );
+    steps.push(
+      await reuseOrWarnStep({
+        id: "rich_briefing_round3_final",
+        label: "Stage 17 Rich Briefing Final",
+        artifactPath: artifacts.finalResearchBriefing,
+        successNote: `기존 최종 rich briefing 재사용: ${artifacts.finalResearchBriefing}`,
+        warnReason: "최종 rich briefing 산출물이 없습니다.",
+        warnNote: artifacts.finalResearchBriefing,
+      }),
+    );
+    steps.push(
+      await reuseOrWarnStep({
+        id: "strategy_refresh_round3_final",
+        label: "Stage 18 Strategy Refresh Final",
+        artifactPath: artifacts.stage4,
+        successNote: `기존 Stage 4 실행계획 재사용: ${artifacts.stage4}`,
+        warnReason: "최종 전략/실행계획 산출물이 없습니다.",
+        warnNote: artifacts.stage4,
+      }),
+    );
+    steps.push(
+      await reuseOrWarnStep({
+        id: "wiki_rebuild_final",
+        label: "LLM Wiki Rebuild Final",
+        artifactPath: artifacts.wikiDaily,
+        successNote: `기존 일일 위키 재사용: ${artifacts.wikiDaily}`,
+        warnReason: "일일 위키 산출물이 없습니다.",
+        warnNote: artifacts.wikiDaily,
+      }),
+    );
+
+    const verify = await runCommand({
+      id: "verify_outputs",
+      label: "Verify Outputs",
+      command: "node",
+      args: [
+        "scripts/verify-daily-system.js",
+        "--date",
+        date,
+        "--run-date",
+        runDate,
+        "--effective-market-date",
+        date,
+        "--run-id",
+        runId,
+      ],
+      logger,
+      soft: true,
+      skip: false,
+    });
+    steps.push({ ...verify, debugHint: verify.status === "ok" ? null : buildFailureHint(verify.id) });
+
+    let systemHealth = await readJson(artifacts.systemHealth, null);
+    let artifactStatus = await buildArtifactStatus(artifacts);
+    const changeSummary = await buildPreviousDayChangeSummary(date);
+
+    const buildSummary = () => ({
+      date,
+      runDate,
+      effectiveMarketDate: date,
+      runId,
+      resolutionReason: `${resolved.reason} / tail-only`,
+      generatedAt: new Date().toISOString(),
+      overallStatus: computeOverallStatus(steps),
+      sameDayStatus: buildSameDayStatus(steps, artifactStatus),
+      logFile,
+      systemHealthOverall: systemHealth?.overallStatus ?? null,
+      previousTradingDate: changeSummary.previousTradingDate,
+      changeSummary: changeSummary.line,
+      steps,
+      artifacts: artifactStatus,
+    });
+
+    let summary = buildSummary();
+    await writeSummary({
+      summaryPathJson: artifacts.automationJson,
+      summaryPathMarkdown: artifacts.automationMarkdown,
+      summary,
+    });
+
+    if (!cli.skipPush) {
+      const push = await runCommand({
+        id: "push_data_branch",
+        label: "Push Data Branch",
+        command: "bash",
+        args: ["scripts/push-to-github.sh", date],
+        logger,
+        soft: true,
+        skip: false,
+      });
+      steps.push({ ...push, debugHint: push.status === "ok" ? null : buildFailureHint(push.id) });
+    }
+
+    const briefingSource = (await fileExists(artifacts.finalResearchBriefing))
+      ? artifacts.finalResearchBriefing
+      : artifacts.dailyBriefing;
+    const dailyBriefingHtml = await runCommand({
+      id: "daily_briefing_html",
+      label: "Export Daily Briefing HTML",
+      command: "node",
+      args: [
+        "scripts/export-daily-briefing-html.js",
+        "--date",
+        date,
+        "--briefing",
+        briefingSource,
+        "--output",
+        artifacts.dailyBriefingHtml,
+      ],
+      logger,
+      soft: true,
+      skip: !(await fileExists(briefingSource)),
+    });
+    steps.push({
+      ...dailyBriefingHtml,
+      debugHint:
+        dailyBriefingHtml.status === "ok" || dailyBriefingHtml.status === "skipped"
+          ? null
+          : buildFailureHint(dailyBriefingHtml.id),
+    });
+
+    const executionPlanTable = await runCommand({
+      id: "execution_plan_table",
+      label: "Stage 19 Execution Plan Table",
+      command: "node",
+      args: [
+        "scripts/export-stage4-execution-plan-table.js",
+        "--date",
+        date,
+        "--output",
+        artifacts.executionPlanTable,
+        "--telegram-output",
+        artifacts.executionPlanTelegram,
+      ],
+      logger,
+      soft: true,
+      skip: !(await fileExists(artifacts.stage4)),
+    });
+    steps.push({
+      ...executionPlanTable,
+      debugHint:
+        executionPlanTable.status === "ok" || executionPlanTable.status === "skipped"
+          ? null
+          : buildFailureHint(executionPlanTable.id),
+    });
+
+    systemHealth = await readJson(artifacts.systemHealth, null);
+    artifactStatus = await buildArtifactStatus(artifacts);
+    summary = buildSummary();
+    await writeSummary({
+      summaryPathJson: artifacts.automationJson,
+      summaryPathMarkdown: artifacts.automationMarkdown,
+      summary,
+    });
+
+    const telegramArgs = [
+      "scripts/send-telegram-summary.js",
+      "--date",
+      date,
+      "--event",
+      "automation-cycle-complete",
+      "--message",
+      buildTelegramCompletionMessage(summary),
+    ];
+    if (summary.artifacts.dailyBriefingHtml?.exists) {
+      telegramArgs.push("--document", artifacts.dailyBriefingHtml);
+      telegramArgs.push("--caption", `EcoReport ${date} briefing.html`);
+    }
+    if (summary.artifacts.executionPlanTelegram?.exists) {
+      telegramArgs.push("--followup-message-file", artifacts.executionPlanTelegram);
+      telegramArgs.push("--followup-preformatted");
+    }
+
+    const telegramCompletion = await runCommand({
+      id: "telegram_completion",
+      label: "Telegram Completion Notification",
+      command: "node",
+      args: telegramArgs,
+      logger,
+      soft: true,
+      skip: false,
+    });
+    steps.push({
+      ...telegramCompletion,
+      debugHint:
+        telegramCompletion.status === "ok" || telegramCompletion.status === "skipped"
+          ? null
+          : buildFailureHint(telegramCompletion.id),
+    });
+
+    artifactStatus = await buildArtifactStatus(artifacts);
+    summary = buildSummary();
+    await writeSummary({
+      summaryPathJson: artifacts.automationJson,
+      summaryPathMarkdown: artifacts.automationMarkdown,
+      summary,
+    });
+
+    logger.write("==================================================");
+    logger.write(`🏁 EcoReport Automation Tail 종료 (${summary.overallStatus.toUpperCase()})`);
+    if (summary.changeSummary) {
+      logger.write(`↔ 전일 대비: ${summary.changeSummary}`);
+    }
+    logger.write(`🧾 요약 JSON: ${artifacts.automationJson}`);
+    logger.write(`🧾 요약 MD: ${artifacts.automationMarkdown}`);
+    logger.write("==================================================");
+    logger.close();
+
+    if (summary.overallStatus === "error") {
+      process.exit(1);
+    }
+  }
+
+  if (cli.tailOnly) {
+    await finalizeFromExistingArtifacts();
+    return;
+  }
+
   const baselineArgs = [
     "scripts/run-daily-system.sh",
     "--date",
@@ -1158,11 +1467,11 @@ async function main() {
 
   const windowsLocalSummary = await runCommandWithRetry({
     id: "windows_local_summary",
-    label: "Windows Local Report Summary (Required)",
+    label: "Windows Local Report Summary (Preferred)",
     command: "bash",
     args: ["scripts/run-local-report-orchestrator.sh", "--date", date],
     logger,
-    soft: false,
+    soft: true,
     skip: baseline.status !== "ok",
     timeoutMs: 2_700_000,
     retries: 1,
@@ -1179,13 +1488,13 @@ async function main() {
   const stage1Extracts = isCheckpointed("stage1_extracts")
     ? reuseArtifactStep({
         id: "stage1_extracts",
-        label: "Stage 1 Extracts",
+        label: "Stage 2 Report Extracts",
         artifactPath: artifacts.stage1,
         note: "체크포인트에서 재개",
       })
     : await runCommandWithRetry({
         id: "stage1_extracts",
-        label: "Stage 1 Extracts",
+        label: "Stage 2 Report Extracts",
         command: "node",
         args: [
           "scripts/build-stage1-report-extracts.js",
@@ -1200,7 +1509,7 @@ async function main() {
         ],
         logger,
         soft: false,
-        skip: baseline.status !== "ok" || windowsLocalSummary.status !== "ok",
+        skip: baseline.status !== "ok",
         timeoutMs: 300_000,
         retries: 1,
         backoffMs: 5_000,
@@ -1219,17 +1528,17 @@ async function main() {
   const stage1_4Summarize = isCheckpointed("stage1_4_summarize")
     ? reuseArtifactStep({
         id: "stage1_4_summarize",
-        label: "Stage 1.4a Local Chunk Summaries",
+        label: "Stage 3 Top Report Summary Selection",
         artifactPath: artifacts.stage1ChunkSummaries,
         note: "체크포인트에서 재개",
       })
     : await runCommandWithRetry({
         id: "stage1_4_summarize",
-        label: "Stage 1.4a Local Chunk Summaries",
+        label: "Stage 3 Top Report Summary Selection",
         command: "npm",
         args: [
           "run",
-          "stage1.4:summarize",
+          "stage3:top-report-selection",
           "--",
           "--date",
           date,
@@ -1265,17 +1574,17 @@ async function main() {
   const stage1_4Agenda = isCheckpointed("stage1_4_agenda")
     ? reuseArtifactStep({
         id: "stage1_4_agenda",
-        label: "Stage 1.4b Research Agenda",
+        label: "Stage 4 Research Agenda",
         artifactPath: artifacts.stage1ResearchAgenda,
         note: "체크포인트에서 재개",
       })
     : await runCommandWithRetry({
         id: "stage1_4_agenda",
-        label: "Stage 1.4b Research Agenda",
+        label: "Stage 4 Research Agenda",
         command: "npm",
         args: [
           "run",
-          "stage1.4:agenda",
+          "stage4:research-agenda",
           "--",
           "--date",
           date,
@@ -1309,17 +1618,17 @@ async function main() {
   const stage1_5PromptSplit = isCheckpointed("stage1_5_prompt_split")
     ? reuseArtifactStep({
         id: "stage1_5_prompt_split",
-        label: "Stage 1.5 Split Prompt Build",
+        label: "Stage 5 Deep Research Prompt Split",
         artifactPath: artifacts.deepResearchPrompt,
         note: "체크포인트에서 재개",
       })
     : await runCommandWithRetry({
         id: "stage1_5_prompt_split",
-        label: "Stage 1.5 Split Prompt Build",
+        label: "Stage 5 Deep Research Prompt Split",
         command: "npm",
         args: [
           "run",
-          "stage1.5:prompt",
+          "stage5:deep-research-prompt",
           "--",
           "--date",
           date,
@@ -1356,24 +1665,24 @@ async function main() {
     existingDeepResearch
       ? reuseArtifactStep({
           id: "deep_research_web",
-          label: "Gemini Deep Research Web",
+          label: "Stage 6 Gemini Deep Research Web",
           artifactPath: artifacts.deepResearchResponse,
           note: `same-day Deep Research 응답 재사용: ${artifacts.deepResearchResponse}`,
         })
       : readinessReport?.blockers?.safariAutomationAvailable === false
         ? preflightWarnStep({
             id: "deep_research_web",
-            label: "Gemini Deep Research Web",
+            label: "Stage 6 Gemini Deep Research Web",
             reason: "Gemini Deep Research Web 사전 차단 (Safari 자동화 unavailable)",
             note: readinessReport.checks.find((item) => item.key === "safari_automation")?.detail,
           })
       : await runCommand({
           id: "deep_research_web",
-          label: "Gemini Deep Research Web",
+          label: "Stage 6 Gemini Deep Research Web",
           command: "npm",
           args: [
             "run",
-            "stage1.5:gemini:run",
+            "stage5:gemini:run",
             "--",
             "--date",
             date,
@@ -1395,11 +1704,11 @@ async function main() {
 
   const richBriefing = await runRichBriefingStep({
     id: "rich_briefing_overlay",
-    label: "Stage 1.6 Rich Briefing Overlay",
+    label: "Stage 7 Rich Briefing Round 1",
     command: "npm",
     args: [
       "run",
-      "stage1.6:briefing",
+      "stage6:rich-briefing",
       "--",
       "--date",
       date,
@@ -1422,7 +1731,7 @@ async function main() {
 
   const strategyRefresh = await runCommandWithRetry({
     id: "strategy_refresh",
-    label: "Strategy Refresh After Deep Research",
+    label: "Stage 8 Strategy Refresh Round 1",
     command: "bash",
     args: [
       "scripts/run-strategy-pipeline.sh",
@@ -1472,7 +1781,7 @@ async function main() {
 
   const followUpReindex = await runCommand({
     id: "followup_reindex",
-    label: "Stage 1.7 Follow-up Research Map",
+    label: "Stage 9 Follow-up Research Map",
     command: "node",
     args: [
       "scripts/build-stage1-7-followup-research-map.js",
@@ -1493,7 +1802,7 @@ async function main() {
 
   const followUpPrompt = await runCommand({
     id: "followup_prompt",
-    label: "Stage 1.7 Gemini Follow-up Prompt",
+    label: "Stage 10 Gemini Follow-up Prompt",
     command: "node",
     args: [
       "scripts/build-stage1-7-gemini-follow-up-prompt.js",
@@ -1518,20 +1827,20 @@ async function main() {
     existingFollowUpDeepResearch
       ? reuseArtifactStep({
           id: "deep_research_follow_up_web",
-          label: "Gemini Deep Research Follow-up Web",
+          label: "Stage 11 Gemini Follow-up Web",
           artifactPath: artifacts.deepResearchFollowUpResponse,
           note: `same-day Deep Research follow-up 응답 재사용: ${artifacts.deepResearchFollowUpResponse}`,
         })
       : readinessReport?.blockers?.safariAutomationAvailable === false
         ? preflightWarnStep({
             id: "deep_research_follow_up_web",
-            label: "Gemini Deep Research Follow-up Web",
+            label: "Stage 11 Gemini Follow-up Web",
             reason: "Gemini Deep Research Follow-up Web 사전 차단 (Safari 자동화 unavailable)",
             note: readinessReport.checks.find((item) => item.key === "safari_automation")?.detail,
           })
       : await runCommand({
           id: "deep_research_follow_up_web",
-          label: "Gemini Deep Research Follow-up Web",
+          label: "Stage 11 Gemini Follow-up Web",
           command: "node",
           args: [
             "scripts/run-gemini-deep-research-web.js",
@@ -1555,11 +1864,11 @@ async function main() {
 
   const richBriefingFinal = await runRichBriefingStep({
     id: "rich_briefing_final",
-    label: "Stage 1.6 Rich Briefing Final",
+    label: "Stage 12 Rich Briefing Round 2",
     command: "npm",
     args: [
       "run",
-      "stage1.6:briefing",
+      "stage6:rich-briefing",
       "--",
       "--date",
       date,
@@ -1582,7 +1891,7 @@ async function main() {
 
   const strategyRefreshFinal = await runCommandWithRetry({
     id: "strategy_refresh_final",
-    label: "Strategy Refresh After Follow-up Research",
+    label: "Stage 13 Strategy Refresh Round 2",
     command: "bash",
     args: [
       "scripts/run-strategy-pipeline.sh",
@@ -1632,7 +1941,7 @@ async function main() {
 
   const round3Reindex = await runCommand({
     id: "round3_reindex",
-    label: "Stage 1.8 Final Refinement Map",
+    label: "Stage 14 Final Refinement Map",
     command: "node",
     args: [
       "scripts/build-stage1-7-followup-research-map.js",
@@ -1655,7 +1964,7 @@ async function main() {
 
   const round3Prompt = await runCommand({
     id: "round3_prompt",
-    label: "Stage 1.8 Gemini Final Refinement Prompt",
+    label: "Stage 15 Gemini Final Refinement Prompt",
     command: "node",
     args: [
       "scripts/build-stage1-7-gemini-follow-up-prompt.js",
@@ -1684,20 +1993,20 @@ async function main() {
     existingRound3DeepResearch
       ? reuseArtifactStep({
           id: "deep_research_round3_web",
-          label: "Gemini Deep Research Round 3 Web",
+          label: "Stage 16 Gemini Final Refinement Web",
           artifactPath: artifacts.round3Response,
           note: `same-day Deep Research round3 응답 재사용: ${artifacts.round3Response}`,
         })
       : readinessReport?.blockers?.safariAutomationAvailable === false
         ? preflightWarnStep({
             id: "deep_research_round3_web",
-            label: "Gemini Deep Research Round 3 Web",
+            label: "Stage 16 Gemini Final Refinement Web",
             reason: "Gemini Deep Research Round 3 Web 사전 차단 (Safari 자동화 unavailable)",
             note: readinessReport.checks.find((item) => item.key === "safari_automation")?.detail,
           })
       : await runCommand({
           id: "deep_research_round3_web",
-          label: "Gemini Deep Research Round 3 Web",
+          label: "Stage 16 Gemini Final Refinement Web",
           command: "node",
           args: [
             "scripts/run-gemini-deep-research-web.js",
@@ -1721,11 +2030,11 @@ async function main() {
 
   const richBriefingRound3Final = await runRichBriefingStep({
     id: "rich_briefing_round3_final",
-    label: "Stage 1.6 Rich Briefing Final After Round 3",
+    label: "Stage 17 Rich Briefing Final",
     command: "npm",
     args: [
       "run",
-      "stage1.6:briefing",
+      "stage6:rich-briefing",
       "--",
       "--date",
       date,
@@ -1748,7 +2057,7 @@ async function main() {
 
   const strategyRefreshRound3Final = await runCommand({
     id: "strategy_refresh_round3_final",
-    label: "Strategy Refresh After Round 3",
+    label: "Stage 18 Strategy Refresh Final",
     command: "bash",
     args: [
       "scripts/run-strategy-pipeline.sh",
@@ -1918,6 +2227,31 @@ async function main() {
         : buildFailureHint(dailyBriefingHtml.id),
   });
 
+  const executionPlanTable = await runCommand({
+    id: "execution_plan_table",
+    label: "Stage 19 Execution Plan Table",
+    command: "node",
+    args: [
+      "scripts/export-stage4-execution-plan-table.js",
+      "--date",
+      date,
+      "--output",
+      artifacts.executionPlanTable,
+      "--telegram-output",
+      artifacts.executionPlanTelegram,
+    ],
+    logger,
+    soft: true,
+    skip: !(await fileExists(artifacts.stage4)),
+  });
+  steps.push({
+    ...executionPlanTable,
+    debugHint:
+      executionPlanTable.status === "ok" || executionPlanTable.status === "skipped"
+        ? null
+        : buildFailureHint(executionPlanTable.id),
+  });
+
   summary.generatedAt = new Date().toISOString();
   summary.overallStatus = computeOverallStatus(steps);
   summary.steps = steps;
@@ -1941,6 +2275,10 @@ async function main() {
   if (summary.artifacts.dailyBriefingHtml?.exists) {
     telegramArgs.push("--document", artifacts.dailyBriefingHtml);
     telegramArgs.push("--caption", `EcoReport ${date} briefing.html`);
+  }
+  if (summary.artifacts.executionPlanTelegram?.exists) {
+    telegramArgs.push("--followup-message-file", artifacts.executionPlanTelegram);
+    telegramArgs.push("--followup-preformatted");
   }
 
   const telegramCompletion = await runCommand({

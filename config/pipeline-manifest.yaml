@@ -2,8 +2,21 @@
   "version": "1.0",
   "steps": [
     {
+      "id": "portfolio_snapshot_sync",
+      "label": "Stage 1 Portfolio Snapshot Sync",
+      "command": "node scripts/sync-kis-portfolio.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
+      "inputs": [],
+      "outputs": [
+        "data/portfolio/latest.json"
+      ],
+      "depends_on": [],
+      "cache_key": "portfolio:{{date}}",
+      "timeout": 300000,
+      "allow_failure": true
+    },
+    {
       "id": "stage1_extracts",
-      "label": "Stage 1 Extracts",
+      "label": "Stage 2 Report Extracts",
       "command": "node scripts/build-stage1-report-extracts.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
       "inputs": [
         "data/reports/{{date}}/index.json",
@@ -12,13 +25,15 @@
       "outputs": [
         "data/analysis-state/{{date}}/stage1-report-extracts-v2.json"
       ],
-      "depends_on": [],
+      "depends_on": [
+        "portfolio_snapshot_sync"
+      ],
       "cache_key": "stage1:{{date}}",
       "timeout": 600000
     },
     {
       "id": "stage1_5_prompt",
-      "label": "Stage 1.5 Deep Research Prompt",
+      "label": "Stage 5 Deep Research Prompt Split",
       "command": "node scripts/build-stage1-5-gemini-deep-research-prompt.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
       "inputs": [
         "data/analysis-state/{{date}}/stage1-report-extracts-v2.json",
@@ -40,11 +55,11 @@
     },
     {
       "id": "stage1_4_summarize",
-      "label": "Stage 1.4a Local Chunk Summaries",
+      "label": "Stage 3 Top Report Summary Selection",
       "command": ".venv/bin/python scripts/collectors/summarize-report-chunks.py --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}} --top-n 30 --concurrency 6",
       "inputs": [
-        "data/analysis-state/{{date}}/chunk-index/chunks.jsonl",
-        "data/analysis-state/{{date}}/stage1-report-extracts-v2.json"
+        "data/analysis-state/{{date}}/stage1-report-extracts-v2.json",
+        "reports/report_summaries/{{date}}"
       ],
       "outputs": [
         "data/analysis-state/{{date}}/stage1-chunk-summaries.json"
@@ -58,7 +73,7 @@
     },
     {
       "id": "stage1_4_agenda",
-      "label": "Stage 1.4b Research Agenda",
+      "label": "Stage 4 Research Agenda",
       "command": ".venv/bin/python scripts/build-stage1-4-research-agenda.py --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}} --max-input-summaries 30",
       "inputs": [
         "data/analysis-state/{{date}}/stage1-report-extracts-v2.json",
@@ -78,7 +93,7 @@
     },
     {
       "id": "stage2_prompt",
-      "label": "Stage 2 Strategy Prompt",
+      "label": "Stage 6 Strategy Prompt",
       "command": "node scripts/build-stage2-strategy-prompt.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
       "inputs": [
         "data/analysis-state/{{date}}/stage1-report-extracts-v2.json",
@@ -96,7 +111,7 @@
     },
     {
       "id": "stage2_strategy",
-      "label": "Stage 2 Strategy",
+      "label": "Stage 7 Strategy Options",
       "command": "bash scripts/run-stage2-step.sh --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}} --mode {{stage2Mode}}",
       "inputs": [
         "knowledge/daily/manual-kit/{{date}}/08-stage2-strategy-prompt.md"
@@ -130,7 +145,7 @@
     },
     {
       "id": "stage2_5_etf_candidates",
-      "label": "Stage 2.5 ETF Candidates",
+      "label": "Stage 8 ETF Candidate Matching",
       "command": "node scripts/build-stage2-5-etf-candidates.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
       "inputs": [
         "data/analysis-state/{{date}}/stage2-strategy-options.json",
@@ -169,7 +184,7 @@
     },
     {
       "id": "impact_map",
-      "label": "Impact Map",
+      "label": "Stage 9 Impact Map",
       "command": "node scripts/build-impact-map.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
       "inputs": [
         "data/analysis-state/{{date}}/stage1-report-extracts-v2.json",
@@ -187,7 +202,7 @@
     },
     {
       "id": "stage3_quant",
-      "label": "Stage 3 Quant",
+      "label": "Stage 10 Quant Scores",
       "command": "node scripts/build-stage3-quant-scores.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
       "inputs": [
         "data/analysis-state/{{date}}/impact-map.json",
@@ -222,7 +237,7 @@
     },
     {
       "id": "stage4_execution_plan",
-      "label": "Stage 4 Execution Plan",
+      "label": "Stage 11 Execution Plan",
       "command": "node scripts/build-stage4-execution-plan.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
       "inputs": [
         "data/analysis-state/{{date}}/stage3-quant-scores.json",
@@ -237,6 +252,24 @@
       ],
       "cache_key": "stage4:{{date}}",
       "timeout": 300000
+    },
+    {
+      "id": "stage4_execution_plan_table",
+      "label": "Stage 12 Execution Plan Table",
+      "command": "node scripts/export-stage4-execution-plan-table.js --date {{date}} --output reports/daily/{{date}}-stage4-execution-plan-table.md --telegram-output reports/daily/{{date}}-stage4-execution-plan-telegram.txt",
+      "inputs": [
+        "data/analysis-state/{{date}}/stage4-execution-plan.json"
+      ],
+      "outputs": [
+        "reports/daily/{{date}}-stage4-execution-plan-table.md",
+        "reports/daily/{{date}}-stage4-execution-plan-telegram.txt"
+      ],
+      "depends_on": [
+        "stage4_execution_plan"
+      ],
+      "cache_key": "stage4-table:{{date}}",
+      "timeout": 300000,
+      "allow_failure": true
     },
     {
       "id": "feedback_snapshot",
