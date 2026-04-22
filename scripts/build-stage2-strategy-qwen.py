@@ -1,9 +1,13 @@
 #!/usr/bin/env python3
 """
-Legacy compatibility wrapper target for Stage 2 strategy generation.
+Stage 2 전략 탐색을 Qwen API로 실행해 JSON 결과를 저장한다.
 
-Canonical script name is `build-stage2-strategy-qwen.py`.
-This file remains for backward compatibility with older automation/docs.
+이 스크립트의 역할은:
+- Windows 로컬 요약과 Stage 2/4/6의 구조화 산출물을 읽고
+- 압축된 전략 판단과 JSON 액션 후보를 Qwen API로 생성하며
+- 외부 신규 검색은 담당하지 않는다
+
+외부 신규 조사/검색 보강은 Gemini Deep Research 단계에서 별도로 수행한다.
 """
 
 from __future__ import annotations

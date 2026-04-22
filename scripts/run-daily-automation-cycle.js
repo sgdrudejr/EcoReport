@@ -179,7 +179,7 @@ function buildFailureHint(stepId) {
     case "rich_briefing_overlay":
       return "09-stage1-5 결과 파일과 GEMINI_API_KEY, 그리고 Stage 1 추출물이 모두 있는지 확인하세요.";
     case "strategy_refresh":
-      return "stage2 raw 응답과 종목 alias 매핑, Gemini JSON 응답 형식을 확인하세요.";
+      return "stage2 raw 응답과 종목 alias 매핑, Qwen JSON 응답 형식을 확인하세요.";
     case "followup_reindex":
       return "Stage 1 extract, Stage 4 plan, 리포트 전문 텍스트 경로가 모두 살아 있는지 확인하세요.";
     case "followup_prompt":
@@ -203,7 +203,7 @@ function buildFailureHint(stepId) {
     case "rich_briefing_final":
       return "follow-up map, follow-up deep research 응답, GEMINI_API_KEY를 함께 확인하세요.";
     case "strategy_refresh_final":
-      return "Stage 2 prompt에 follow-up map/response가 정상 주입됐는지와 Gemini JSON 응답 형식을 확인하세요.";
+      return "Stage 2 prompt에 follow-up map/response가 정상 주입됐는지와 Qwen JSON 응답 형식을 확인하세요.";
     case "wiki_publish":
       return "knowledge/wiki 생성 권한과 Obsidian vault 경로를 확인하세요.";
     case "daily_briefing_html":
@@ -1680,8 +1680,8 @@ async function main() {
     date,
     "--run-id",
     runId,
-    "--gemini-stage2",
-    "--strict-gemini-stage2",
+    "--qwen-stage2",
+    "--strict-qwen-stage2",
     "--baseline-only",
     "--skip-telegram",
   ];
@@ -2076,8 +2076,8 @@ async function main() {
           date,
           "--run-id",
           runId,
-          "--gemini-stage2",
-          "--strict-gemini-stage2",
+          "--qwen-stage2",
+          "--strict-qwen-stage2",
         ],
         logger,
         soft: true,
@@ -2272,8 +2272,8 @@ async function main() {
           date,
           "--run-id",
           runId,
-          "--gemini-stage2",
-          "--strict-gemini-stage2",
+          "--qwen-stage2",
+          "--strict-qwen-stage2",
         ],
         logger,
         soft: true,
@@ -2495,8 +2495,8 @@ async function main() {
           date,
           "--run-id",
           runId,
-          "--gemini-stage2",
-          "--strict-gemini-stage2",
+          "--qwen-stage2",
+          "--strict-qwen-stage2",
         ],
         logger,
         soft: true,

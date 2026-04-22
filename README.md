@@ -478,6 +478,25 @@ GITHUB_TOKEN=...
 9. `Stage 9` Execution Plan
 10. `Stage 10+` Follow-up / refinement / delivery rounds in automation
 
+### Execution Roles
+
+1. `Mac`
+- 수집, 텍스트화, 포트폴리오 스냅샷, 구조화 추출, 프롬프트 생성, 정량 점수, 실행계획, 자동화/검증/텔레그램을 담당합니다.
+
+2. `Windows Local LLM`
+- 긴 리포트 원문과 많은 청크를 처리합니다.
+- 청크 요약, 리포트별 병합 요약, 시장 전체 병합처럼 **문서량이 큰 작업**을 맡습니다.
+- 비용이 거의 없고, 대량 문서 압축에 우선 사용합니다.
+
+3. `Qwen API`
+- 이미 압축된 입력을 다시 정제하는 역할만 맡습니다.
+- Research Agenda, rich briefing, Stage 7 전략 JSON처럼 **인사이트 정리/판단**이 필요한 곳에만 씁니다.
+- 원문 전체를 다시 읽히는 용도로는 쓰지 않습니다.
+
+4. `Gemini Deep Research`
+- 새로운 외부 검색 결과, 반론, 촉매 업데이트, 정책/산업 동향 같은 **추가 조사**가 필요할 때만 사용합니다.
+- 즉 기존 요약을 대체하는 엔진이 아니라, 기존 내부 근거 위에 외부 리서치 레이어를 덧붙이는 역할입니다.
+
 ### Stage 1. Portfolio Snapshot
 
 입력:
@@ -549,8 +568,9 @@ GITHUB_TOKEN=...
 
 - 이 단계는 더 이상 청크를 다시 LLM에 넣어 재요약하지 않습니다.
 - Windows 로컬 요약 오케스트레이터가 이미 만든 `report_summaries`에서
-  Stage 2 priority 기준 상위 N개 리포트만 골라, Gemini 앞단 입력용으로 짧게 압축합니다.
+  Stage 2 priority 기준 상위 N개 리포트만 골라, 다음 Stage 입력용으로 짧게 압축합니다.
 - 즉 역할은 `재요약`이 아니라 `선택 + 입력 정리`입니다.
+- 큰 문서량 처리는 여기서 다시 API로 보내지 않고, 이미 만들어진 Windows 병합본을 재사용합니다.
 
 ### Stage 4. Research Agenda
 
@@ -568,6 +588,7 @@ GITHUB_TOKEN=...
 
 - 상위 리포트 요약들을 Qwen API가 5~7개 토픽으로 묶고 질문, 키워드, priority를 붙입니다.
 - `stage1-chunk-summaries.json`이 비어 있거나 없으면 Stage 2 extracts에서 폴백합니다.
+- 이 단계의 목적은 대용량 요약이 아니라, **무엇을 더 조사해야 하는지 질문 구조를 만드는 것**입니다.
 
 ### Stage 5. Gemini Deep Research Prompt Split
 
@@ -593,6 +614,7 @@ GITHUB_TOKEN=...
 - 따라서 Gemini는 generic 요약이 아니라, 현재 보유와 신규 후보의 중복/대체/추가매수 리스크를 같이 평가하도록 유도됩니다.
 - Safari에서 Gemini 웹을 열고 `도구 -> Deep Research` 선택, 전송, 결과 저장/클립보드 복사까지 자동화할 수 있습니다.
 - 이 단계는 완전 자동 API 호출이 아니라 웹 기반 수동 리서치를 파이프라인 안에 안전하게 끼워 넣는 레이어입니다.
+- 즉 기존 내부 요약을 다시 만드는 단계가 아니라, **새로운 외부 검색 근거를 추가하는 단계**입니다.
 
 ### Stage 6. Rich Briefing Synthesis
 
@@ -616,6 +638,7 @@ GITHUB_TOKEN=...
 - Stage 2의 사실 근거와 Deep Research의 시나리오/대안 자산/촉매 해석을 다시 조합해 대시보드용 최종 매크로 브리핑을 만듭니다.
 - 대시보드의 `Macro View`는 이 rich briefing을 우선 읽습니다.
 - 추가로 직전 거래일 rich briefing과 비교한 `delta briefing`을 생성해, "오늘 새로 바뀐 것"에 바로 집중할 수 있게 합니다.
+- 여기서 Qwen API는 긴 문서를 다시 읽는 것이 아니라, Windows 병합본과 Gemini 추가 조사 결과를 **짧은 판단 문서로 합성**하는 역할입니다.
 
 ### Stage 7. Strategy Exploration
 
@@ -634,9 +657,9 @@ GITHUB_TOKEN=...
 
 설명:
 
-- 실제 LLM이 붙을 자리입니다.
-- 현재는 mock JSON을 먼저 만들어 Stage 8/9를 계속 검증합니다.
-- 나중에는 이 mock 자리에 실제 LLM 응답 JSON이 들어갑니다.
+- 실제 인사이트 판단용 LLM이 붙는 자리입니다.
+- 기본 실행자는 `Qwen API`이며, 입력은 Stage 2 구조화 데이터 + Stage 4/6 압축 산출물입니다.
+- 즉 Stage 7은 새로운 웹 검색을 하는 단계가 아니라, **이미 정리된 근거를 투자 액션 JSON으로 번역**하는 단계입니다.
 
 ### Stage 8. Quant Scoring
 

@@ -8,7 +8,7 @@ REQUESTED_DATE=""
 RUN_DATE="${RUN_DATE:-$(node "$ROOT_DIR/scripts/resolve-cycle-date.js" --field run_date)}"
 EFFECTIVE_MARKET_DATE=""
 RUN_ID="${ECOREPORT_RUN_ID:-}"
-USE_GEMINI_STAGE2=0
+USE_QWEN_STAGE2=1
 BUILD_STAGE1_5_PROMPT=1
 RUN_STAGE1_4=1
 STAGE2_PROVIDER="unknown"
@@ -61,7 +61,7 @@ has_env_key() {
   [[ -n "$(env_value_from_sources "$1" 2>/dev/null || true)" ]]
 }
 
-stage2_gemini_preflight() {
+stage2_qwen_preflight() {
   local py
   py="$(python_bin)"
 
@@ -100,12 +100,12 @@ wait_with_timeout() {
   wait "$pid"
 }
 
-stage2_run_gemini() {
+stage2_run_qwen() {
   local py err_file
   py="$(python_bin)"
   err_file="$(mktemp)"
 
-  "$py" scripts/build-stage2-strategy-gemini.py "${STAGE2_COMMON_ARGS[@]}" --output "$STAGE2_OUTPUT" 2>"$err_file" &
+  "$py" scripts/build-stage2-strategy-qwen.py "${STAGE2_COMMON_ARGS[@]}" --output "$STAGE2_OUTPUT" 2>"$err_file" &
   local pid=$!
 
   if wait_with_timeout "$pid" "$STAGE2_TIMEOUT_SEC"; then
@@ -116,21 +116,21 @@ stage2_run_gemini() {
   fi
 
   if [[ ! -s "$err_file" ]]; then
-    printf 'Gemini Stage 2 timed out after %ss\n' "$STAGE2_TIMEOUT_SEC" >"$err_file"
+    printf 'Qwen Stage 7 timed out after %ss\n' "$STAGE2_TIMEOUT_SEC" >"$err_file"
   fi
-  echo "!! Gemini Stage 2 실행 실패 -> $(tr '\n' ' ' <"$err_file" | sed 's/[[:space:]]\+/ /g')" >&2
+  echo "!! Qwen Stage 7 실행 실패 -> $(tr '\n' ' ' <"$err_file" | sed 's/[[:space:]]\+/ /g')" >&2
   rm -f "$err_file"
   return 1
 }
 
-try_stage2_gemini() {
+try_stage2_qwen() {
   local preflight_output
-  if ! preflight_output="$(stage2_gemini_preflight 2>&1)"; then
-    echo "!! Gemini Stage 2 사전 점검 실패 (${preflight_output})"
+  if ! preflight_output="$(stage2_qwen_preflight 2>&1)"; then
+    echo "!! Qwen Stage 7 사전 점검 실패 (${preflight_output})"
     return 1
   fi
 
-  stage2_run_gemini
+  stage2_run_qwen
 }
 
 while [[ $# -gt 0 ]]; do
@@ -159,7 +159,11 @@ while [[ $# -gt 0 ]]; do
       exit 2
       ;;
     --gemini-stage2)
-      USE_GEMINI_STAGE2=1
+      USE_QWEN_STAGE2=1
+      shift
+      ;;
+    --qwen-stage2)
+      USE_QWEN_STAGE2=1
       shift
       ;;
     --claude-stage2)
@@ -167,6 +171,9 @@ while [[ $# -gt 0 ]]; do
       exit 2
       ;;
     --strict-gemini-stage2)
+      shift
+      ;;
+    --strict-qwen-stage2)
       shift
       ;;
     --skip-stage1-5-prompt)
@@ -256,15 +263,15 @@ fi
 echo "== Stage 6: strategy prompt =="
 node scripts/build-stage2-strategy-prompt.js "${STAGE2_COMMON_ARGS[@]}"
 
-if [[ "$USE_GEMINI_STAGE2" == "1" ]]; then
+if [[ "$USE_QWEN_STAGE2" == "1" ]]; then
   echo "== Stage 7: Qwen strategy options =="
-  if ! try_stage2_gemini; then
+  if ! try_stage2_qwen; then
     echo "ERROR: Stage 7(Qwen strategy options) failed. Mock fallback is disabled." >&2
     exit 1
   fi
 else
   echo "== Stage 7: default provider (Qwen, fail-fast) =="
-  if ! try_stage2_gemini; then
+  if ! try_stage2_qwen; then
     echo "ERROR: Stage 7(Qwen strategy options) failed. Mock fallback is disabled." >&2
     exit 1
   fi
