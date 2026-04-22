@@ -18,11 +18,24 @@ import {
 import { loadProjectEnv } from "./lib/env-loader.js";
 import { allRefinementArtifactPaths } from "./lib/refinement-rounds.js";
 
-const DEFAULT_PRIORITY_MODELS = ["qwen-max", "qwen-plus", "qwen-turbo"];
+const DEFAULT_PRIORITY_MODELS = [
+  "qwen3.5-397b-a17b",
+  "qwen3.5-122b-a10b",
+  "qwen3.5-27b",
+  "qwen3.6-plus",
+  "qwen3.6-plus-2026-04-02",
+  "qwen3.5-35b-a3b",
+  "qwen3.6-flash",
+  "qwen3.6-flash-2026-04-16",
+  "qwen3.5-plus-2026-02-15",
+  "qwen3.5-flash",
+  "qwen3.5-flash-2026-02-23",
+  "qwen3.6-35b-a3b",
+];
 const DEFAULT_MODEL = DEFAULT_PRIORITY_MODELS[0];
 const DEFAULT_ARCHIVE_NAME = "10-stage1-6-final-research-briefing.md";
 const DEFAULT_MAX_RETRIES = 5;
-const DEFAULT_BASE_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1";
+const DEFAULT_BASE_URL = "https://dashscope-intl.aliyuncs.com/compatible-mode/v1";
 
 function parseArgs(argv) {
   const base = parseDateArgs(argv);
@@ -142,8 +155,8 @@ function resolvePaths(args) {
 function loadApiKey() {
   loadProjectEnv(ROOT_DIR);
   const apiKey = (
-    process.env.DASHSCOPE_API_KEY ||
     process.env.QWEN_API_KEY ||
+    process.env.DASHSCOPE_API_KEY ||
     process.env.GEMINI_API_KEY ||
     ""
   ).trim();
