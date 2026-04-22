@@ -1,5 +1,7 @@
 {
   "version": "1.0",
+  "checkpoint_dir": "data/analysis-state/{{date}}/checkpoints",
+  "checkpoint_pattern": "{{stepId}}-complete.json",
   "steps": [
     {
       "id": "portfolio_snapshot_sync",
@@ -12,7 +14,8 @@
       "depends_on": [],
       "cache_key": "portfolio:{{date}}",
       "timeout": 300000,
-      "allow_failure": true
+      "allow_failure": true,
+      "failure_policy": "degrade"
     },
     {
       "id": "stage1_extracts",
@@ -29,7 +32,8 @@
         "portfolio_snapshot_sync"
       ],
       "cache_key": "stage1:{{date}}",
-      "timeout": 600000
+      "timeout": 600000,
+      "failure_policy": "block"
     },
     {
       "id": "stage1_5_prompt",
@@ -51,7 +55,8 @@
       ],
       "cache_key": "stage1.5:{{date}}",
       "timeout": 300000,
-      "allow_failure": true
+      "allow_failure": true,
+      "failure_policy": "degrade"
     },
     {
       "id": "stage1_4_summarize",
@@ -69,7 +74,8 @@
       ],
       "cache_key": "stage1.4a:{{date}}",
       "timeout": 300000,
-      "allow_failure": true
+      "allow_failure": true,
+      "failure_policy": "degrade"
     },
     {
       "id": "stage2_enriched_report_index",
@@ -89,7 +95,8 @@
       ],
       "cache_key": "stage2-enriched:{{date}}",
       "timeout": 300000,
-      "allow_failure": true
+      "allow_failure": true,
+      "failure_policy": "degrade"
     },
     {
       "id": "stage1_4_agenda",
@@ -111,7 +118,8 @@
       ],
       "cache_key": "stage1.4b:{{date}}",
       "timeout": 300000,
-      "allow_failure": true
+      "allow_failure": true,
+      "failure_policy": "degrade"
     },
     {
       "id": "stage2_prompt",
@@ -184,7 +192,8 @@
       ],
       "cache_key": "stage2.5:{{date}}",
       "timeout": 300000,
-      "allow_failure": true
+      "allow_failure": true,
+      "failure_policy": "degrade"
     },
     {
       "id": "technical_refresh_stage2",

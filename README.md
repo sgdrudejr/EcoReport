@@ -215,6 +215,20 @@ cd /Users/seo/Documents/Playground/economy-report
 npm run daily -- --date YYYY-MM-DD
 ```
 
+### 자동화 체크포인트 / 재개 규약
+
+- `scripts/run-daily-automation-cycle.js`는 각 스텝 완료 시 `data/analysis-state/YYYY-MM-DD/checkpoints/<stepId>-complete.json`을 남깁니다.
+- 체크포인트에는 `completedAt`, `status`, `failurePolicy`, `failureCategory`, `artifacts`, `rowCount`, `runId`가 기록됩니다.
+- 다음 실행에서 같은 날짜의 체크포인트가 있으면 이미 처리된 스텝은 재사용하고, 남은 스텝부터 이어서 진행합니다.
+- `npm run daily -- --date YYYY-MM-DD --fresh-start`를 주면 체크포인트를 지우고 처음부터 다시 돕니다.
+
+### 실패 정책
+
+- `block`: 앞 단계가 실패하면 해당 지점에서 중단하고 알림/로그를 남깁니다. 예: `baseline_daily_system`, `stage1_extracts`
+- `degrade`: 실패해도 경고 상태로 체크포인트를 남기고 다음 단계로 진행합니다. 예: `windows_local_summary`, `Qwen API agenda`, `Gemini web`, `rich briefing`
+
+이 구분 덕분에 Windows LLM 타임아웃, Gemini 세션 실패, Qwen rate limit이 나와도 매일 파이프라인 전체가 무조건 처음부터 다시 깨지지 않고, 가능한 범위에서 재개됩니다.
+
 ### Telegram 알림
 
 일일 자동화 러너(`scripts/run-daily-automation-cycle.js`)는 단계 진행/결과를 요약해 텔레그램 알림 스크립트와 함께 운영할 수 있습니다.
