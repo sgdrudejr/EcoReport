@@ -96,6 +96,7 @@ function hasSuccessfulStrategyRefresh(steps) {
 function buildSameDayStatus(steps, artifacts) {
   const blockingStepIds = [
     "baseline_daily_system",
+    "windows_local_summary",
     "stage1_extracts",
     "rich_briefing_round3_final",
     "verify_outputs",
@@ -157,12 +158,20 @@ function buildFailureHint(stepId) {
       return "Safari 자동화, 리포트 수집 네트워크(Naver/Shinhan), Gemini Python, Obsidian vault 쓰기 권한, GitHub 네트워크 상태를 readiness 리포트에서 먼저 확인하세요.";
     case "baseline_daily_system":
       return "수집, 시장 데이터, Stage 2 Python 의존성, 또는 기본 파이프라인 로그를 먼저 확인하세요.";
+    case "windows_local_summary":
+      return "Windows 로컬 LLM 서버(5070Ti) 상태, Wake-on-LAN, local-report-orchestrator 설정(base_url/model), run_stats 로그를 확인하세요.";
     case "stage1_extracts":
       return "리포트 인덱스, 전문 텍스트, 포트폴리오 스냅샷이 모두 생성됐는지와 Stage 1 추출 로그를 확인하세요.";
+    case "stage1_4_summarize":
+      return "LOCAL_LLM_BASE_URL/LOCAL_LLM_MODEL, Windows LM Studio 서버 상태, /v1/models 응답, chunk-index/chunks.jsonl 경로를 확인하세요.";
+    case "stage1_4_agenda":
+      return "DASHSCOPE_API_KEY(QWEN_API_KEY), stage1-chunk-summaries.json 또는 stage1 extracts 폴백 입력, Qwen JSON 응답 형식을 확인하세요.";
+    case "stage1_5_prompt_split":
+      return "stage1-research-agenda.json 존재 여부와 07a/07b/07c 파일 생성 권한(knowledge/daily/manual-kit/<date>)을 확인하세요.";
     case "stockeasy_capture":
       return "Safari 로그인 상태, StockEasy 세션 유지 여부, 그리고 시장분석/테마보드 화면이 실제로 열리는지 확인하세요.";
     case "deep_research_web":
-      return "Safari가 잠겨 있지 않은지, Gemini 로그인 상태인지, Deep Research 도구가 노출되는지 확인하세요.";
+      return "Safari가 잠겨 있지 않은지, Gemini 로그인 상태인지, Deep Research 도구가 노출되는지, 그리고 07a/07b/07c(또는 legacy 07) 프롬프트 파일이 준비됐는지 확인하세요.";
     case "rich_briefing_overlay":
       return "09-stage1-5 결과 파일과 GEMINI_API_KEY, 그리고 Stage 1 추출물이 모두 있는지 확인하세요.";
     case "strategy_refresh":
@@ -193,6 +202,10 @@ function buildFailureHint(stepId) {
       return "Stage 2 prompt에 follow-up map/response가 정상 주입됐는지와 Gemini JSON 응답 형식을 확인하세요.";
     case "wiki_publish":
       return "knowledge/wiki 생성 권한과 Obsidian vault 경로를 확인하세요.";
+    case "daily_briefing_html":
+      return "reports/daily/<date>-briefing.md 파일 존재 여부와 HTML 변환 스크립트 로그를 확인하세요.";
+    case "telegram_completion":
+      return "TELEGRAM_BOT_TOKEN/TELEGRAM_CHAT_ID 설정과 Telegram Bot 권한(채팅 참여/전송 권한)을 확인하세요.";
     case "verify_outputs":
       return "system-health 리포트의 warn/error 체크를 기준으로 빠진 산출물을 확인하세요.";
     case "push_data_branch":
@@ -570,8 +583,26 @@ function buildArtifactMap(date, logFile) {
     logFile,
     automationReadiness: path.join(ROOT_DIR, "data", "analysis-state", date, "automation-readiness.json"),
     stockeasySnapshot: path.join(ROOT_DIR, "data", "external", "stockeasy", date, "snapshot.json"),
+    localSummaryChunkDir: path.join(ROOT_DIR, "reports", "chunk_summaries", date),
+    localSummaryReportDir: path.join(ROOT_DIR, "reports", "report_summaries", date),
+    localSummaryRunStats: path.join(ROOT_DIR, "reports", "logs", "run_stats.json"),
+    localSummaryFinalView: path.join(ROOT_DIR, "reports", "merged", "final_market_view.json"),
     chunkIndexStats: path.join(ROOT_DIR, "data", "analysis-state", date, "chunk-index", "stats.json"),
     stage1: path.join(ROOT_DIR, "data", "analysis-state", date, "stage1-report-extracts-v2.json"),
+    stage1ChunkSummaries: path.join(
+      ROOT_DIR,
+      "data",
+      "analysis-state",
+      date,
+      "stage1-chunk-summaries.json",
+    ),
+    stage1ResearchAgenda: path.join(
+      ROOT_DIR,
+      "data",
+      "analysis-state",
+      date,
+      "stage1-research-agenda.json",
+    ),
     stage1Shadow: path.join(
       ROOT_DIR,
       "data",
@@ -591,6 +622,30 @@ function buildArtifactMap(date, logFile) {
       "manual-kit",
       date,
       "07-stage1-5-gemini-deep-research-prompt.md",
+    ),
+    deepResearchPromptMacro: path.join(
+      ROOT_DIR,
+      "knowledge",
+      "daily",
+      "manual-kit",
+      date,
+      "07a-stage1-5-macro-prompt.md",
+    ),
+    deepResearchPromptSector: path.join(
+      ROOT_DIR,
+      "knowledge",
+      "daily",
+      "manual-kit",
+      date,
+      "07b-stage1-5-sector-prompt.md",
+    ),
+    deepResearchPromptNewCandidate: path.join(
+      ROOT_DIR,
+      "knowledge",
+      "daily",
+      "manual-kit",
+      date,
+      "07c-stage1-5-newcandidate-prompt.md",
     ),
     deepResearchResponse: path.join(
       ROOT_DIR,
@@ -623,6 +678,7 @@ function buildArtifactMap(date, logFile) {
     stage2: path.join(ROOT_DIR, "data", "analysis-state", date, "stage2-strategy-options.json"),
     stage4: path.join(ROOT_DIR, "data", "analysis-state", date, "stage4-execution-plan.json"),
     dailyBriefing: path.join(ROOT_DIR, "reports", "daily", `${date}-briefing.md`),
+    dailyBriefingHtml: path.join(ROOT_DIR, "reports", "daily", `${date}-briefing.html`),
     wikiDaily: path.join(ROOT_DIR, "knowledge", "wiki", "daily", `${date}.md`),
     wikiOperatingRules: path.join(ROOT_DIR, "knowledge", "wiki", "memory", "operating-rules.md"),
     wikiResearchBacklog: path.join(ROOT_DIR, "knowledge", "wiki", "memory", "research-backlog.md"),
@@ -781,6 +837,47 @@ async function buildPreviousDayChangeSummary(date) {
   };
 }
 
+function buildTelegramCompletionMessage(summary) {
+  const lines = [
+    `EcoReport ${summary.date} 자동화 완료`,
+    `- overallStatus: ${summary.overallStatus}`,
+    summary.sameDayStatus ? `- sameDayStatus: ${summary.sameDayStatus}` : null,
+    summary.systemHealthOverall ? `- systemHealth: ${summary.systemHealthOverall}` : null,
+    summary.changeSummary ? `- changeSummary: ${summary.changeSummary}` : null,
+  ].filter(Boolean);
+
+  const failedOrWarned = summary.steps.filter(
+    (step) => step.status === "error" || step.status === "warn",
+  );
+
+  const checklist = summary.steps
+    .map((step) => `- [${step.status.toUpperCase()}] ${step.label}`)
+    .slice(0, 20);
+  lines.push("- completionChecklist:");
+  lines.push(...checklist);
+
+  const failureLines =
+    failedOrWarned.length > 0
+      ? failedOrWarned
+          .slice(0, 6)
+          .map((step) => `- ${step.label}: ${step.errorMessage ?? "로그 확인 필요"}`)
+      : ["- 없음"];
+  lines.push("- failedOrWarned:");
+  lines.push(...failureLines);
+
+  const artifact = summary.artifacts ?? {};
+  const finalBriefingMdPath = artifact.finalResearchBriefing?.exists
+    ? artifact.finalResearchBriefing.path
+    : (artifact.dailyBriefing?.path ?? "N/A");
+  lines.push("- paths:");
+  lines.push(`- finalBriefingMd: ${finalBriefingMdPath}`);
+  lines.push(`- finalBriefingHtml: ${artifact.dailyBriefingHtml?.path ?? "N/A"}`);
+  lines.push(`- wikiDaily: ${artifact.wikiDaily?.path ?? "N/A"}`);
+  lines.push(`- automationMd: ${artifact.automationMarkdown?.path ?? "N/A"}`);
+
+  return lines.join("\n");
+}
+
 async function writeSummary({
   summaryPathJson,
   summaryPathMarkdown,
@@ -937,18 +1034,16 @@ async function main() {
     "scripts/run-daily-system.sh",
     "--date",
     date,
-      "--run-date",
-      runDate,
-      "--effective-market-date",
-      date,
-      "--run-id",
-      runId,
-      "--gemini-stage2",
-      "--skip-push",
-      "--skip-verify",
-    "--skip-strategy",
-    "--skip-wiki",
-    "--no-gemini-briefing",
+    "--run-date",
+    runDate,
+    "--effective-market-date",
+    date,
+    "--run-id",
+    runId,
+    "--gemini-stage2",
+    "--strict-gemini-stage2",
+    "--baseline-only",
+    "--skip-telegram",
   ];
   if (cli.forceCollect) {
     baselineArgs.push("--force-collect");
@@ -1061,6 +1156,26 @@ async function main() {
   }
   steps.push({ ...baseline, debugHint: baseline.status === "ok" ? null : buildFailureHint(baseline.id) });
 
+  const windowsLocalSummary = await runCommandWithRetry({
+    id: "windows_local_summary",
+    label: "Windows Local Report Summary (Required)",
+    command: "bash",
+    args: ["scripts/run-local-report-orchestrator.sh", "--date", date],
+    logger,
+    soft: false,
+    skip: baseline.status !== "ok",
+    timeoutMs: 2_700_000,
+    retries: 1,
+    backoffMs: 30_000,
+  });
+  steps.push({
+    ...windowsLocalSummary,
+    debugHint:
+      windowsLocalSummary.status === "ok" || windowsLocalSummary.status === "skipped"
+        ? null
+        : buildFailureHint(windowsLocalSummary.id),
+  });
+
   const stage1Extracts = isCheckpointed("stage1_extracts")
     ? reuseArtifactStep({
         id: "stage1_extracts",
@@ -1085,7 +1200,7 @@ async function main() {
         ],
         logger,
         soft: false,
-        skip: baseline.status !== "ok",
+        skip: baseline.status !== "ok" || windowsLocalSummary.status !== "ok",
         timeoutMs: 300_000,
         retries: 1,
         backoffMs: 5_000,
@@ -1101,10 +1216,143 @@ async function main() {
         : buildFailureHint(stage1Extracts.id),
   });
 
+  const stage1_4Summarize = isCheckpointed("stage1_4_summarize")
+    ? reuseArtifactStep({
+        id: "stage1_4_summarize",
+        label: "Stage 1.4a Local Chunk Summaries",
+        artifactPath: artifacts.stage1ChunkSummaries,
+        note: "체크포인트에서 재개",
+      })
+    : await runCommandWithRetry({
+        id: "stage1_4_summarize",
+        label: "Stage 1.4a Local Chunk Summaries",
+        command: "npm",
+        args: [
+          "run",
+          "stage1.4:summarize",
+          "--",
+          "--date",
+          date,
+          "--run-date",
+          runDate,
+          "--effective-market-date",
+          date,
+          "--run-id",
+          runId,
+          "--top-n",
+          "30",
+          "--concurrency",
+          "6",
+        ],
+        logger,
+        soft: true,
+        skip: stage1Extracts.status !== "ok",
+        timeoutMs: 600_000,
+        retries: 1,
+        backoffMs: 5_000,
+      });
+  if (stage1_4Summarize.status === "ok") {
+    await saveCheckpoint("stage1_4_summarize");
+  }
+  steps.push({
+    ...stage1_4Summarize,
+    debugHint:
+      stage1_4Summarize.status === "ok" || stage1_4Summarize.status === "skipped"
+        ? null
+        : buildFailureHint(stage1_4Summarize.id),
+  });
+
+  const stage1_4Agenda = isCheckpointed("stage1_4_agenda")
+    ? reuseArtifactStep({
+        id: "stage1_4_agenda",
+        label: "Stage 1.4b Research Agenda",
+        artifactPath: artifacts.stage1ResearchAgenda,
+        note: "체크포인트에서 재개",
+      })
+    : await runCommandWithRetry({
+        id: "stage1_4_agenda",
+        label: "Stage 1.4b Research Agenda",
+        command: "npm",
+        args: [
+          "run",
+          "stage1.4:agenda",
+          "--",
+          "--date",
+          date,
+          "--run-date",
+          runDate,
+          "--effective-market-date",
+          date,
+          "--run-id",
+          runId,
+          "--max-input-summaries",
+          "30",
+        ],
+        logger,
+        soft: true,
+        skip: stage1Extracts.status !== "ok",
+        timeoutMs: 300_000,
+        retries: 1,
+        backoffMs: 5_000,
+      });
+  if (stage1_4Agenda.status === "ok") {
+    await saveCheckpoint("stage1_4_agenda");
+  }
+  steps.push({
+    ...stage1_4Agenda,
+    debugHint:
+      stage1_4Agenda.status === "ok" || stage1_4Agenda.status === "skipped"
+        ? null
+        : buildFailureHint(stage1_4Agenda.id),
+  });
+
+  const stage1_5PromptSplit = isCheckpointed("stage1_5_prompt_split")
+    ? reuseArtifactStep({
+        id: "stage1_5_prompt_split",
+        label: "Stage 1.5 Split Prompt Build",
+        artifactPath: artifacts.deepResearchPrompt,
+        note: "체크포인트에서 재개",
+      })
+    : await runCommandWithRetry({
+        id: "stage1_5_prompt_split",
+        label: "Stage 1.5 Split Prompt Build",
+        command: "npm",
+        args: [
+          "run",
+          "stage1.5:prompt",
+          "--",
+          "--date",
+          date,
+          "--run-date",
+          runDate,
+          "--effective-market-date",
+          date,
+          "--run-id",
+          runId,
+        ],
+        logger,
+        soft: true,
+        skip: stage1Extracts.status !== "ok",
+        timeoutMs: 240_000,
+        retries: 1,
+        backoffMs: 5_000,
+      });
+  if (stage1_5PromptSplit.status === "ok") {
+    await saveCheckpoint("stage1_5_prompt_split");
+  }
+  steps.push({
+    ...stage1_5PromptSplit,
+    debugHint:
+      stage1_5PromptSplit.status === "ok" || stage1_5PromptSplit.status === "skipped"
+        ? null
+        : buildFailureHint(stage1_5PromptSplit.id),
+  });
+
   const existingDeepResearch = !cli.freshStart && await fileExists(artifacts.deepResearchResponse);
   const deepResearch =
     baseline.status === "ok" &&
     stage1Extracts.status === "ok" &&
+    stage1_5PromptSplit.status === "ok" &&
     existingDeepResearch
       ? reuseArtifactStep({
           id: "deep_research_web",
@@ -1137,7 +1385,11 @@ async function main() {
           ],
           logger,
           soft: true,
-          skip: baseline.status !== "ok" || stage1Extracts.status !== "ok",
+          skip:
+            baseline.status !== "ok" ||
+            windowsLocalSummary.status !== "ok" ||
+            stage1Extracts.status !== "ok" ||
+            stage1_5PromptSplit.status !== "ok",
         });
   steps.push({ ...deepResearch, debugHint: deepResearch.status === "ok" ? null : deepResearch.status === "skipped" ? null : buildFailureHint(deepResearch.id) });
 
@@ -1183,6 +1435,7 @@ async function main() {
       "--run-id",
       runId,
       "--gemini-stage2",
+      "--strict-gemini-stage2",
     ],
     logger,
     soft: true,
@@ -1342,6 +1595,7 @@ async function main() {
       "--run-id",
       runId,
       "--gemini-stage2",
+      "--strict-gemini-stage2",
     ],
     logger,
     soft: true,
@@ -1507,6 +1761,7 @@ async function main() {
       "--run-id",
       runId,
       "--gemini-stage2",
+      "--strict-gemini-stage2",
     ],
     logger,
     soft: true,
@@ -1634,17 +1889,87 @@ async function main() {
             skip: false,
           });
     steps.push({ ...push, debugHint: push.status === "ok" ? null : buildFailureHint(push.id) });
-    summary.generatedAt = new Date().toISOString();
-    summary.overallStatus = computeOverallStatus(steps);
-    summary.steps = steps;
-    summary.artifacts = await buildArtifactStatus(artifacts);
-    summary.sameDayStatus = buildSameDayStatus(summary.steps, summary.artifacts);
-    await writeSummary({
-      summaryPathJson: artifacts.automationJson,
-      summaryPathMarkdown: artifacts.automationMarkdown,
-      summary,
-    });
   }
+
+  const dailyBriefingHtml = await runCommand({
+    id: "daily_briefing_html",
+    label: "Export Daily Briefing HTML",
+    command: "node",
+    args: [
+      "scripts/export-daily-briefing-html.js",
+      "--date",
+      date,
+      "--briefing",
+      (await fileExists(artifacts.finalResearchBriefing))
+        ? artifacts.finalResearchBriefing
+        : artifacts.dailyBriefing,
+      "--output",
+      artifacts.dailyBriefingHtml,
+    ],
+    logger,
+    soft: true,
+    skip: !(await fileExists(artifacts.dailyBriefing)),
+  });
+  steps.push({
+    ...dailyBriefingHtml,
+    debugHint:
+      dailyBriefingHtml.status === "ok" || dailyBriefingHtml.status === "skipped"
+        ? null
+        : buildFailureHint(dailyBriefingHtml.id),
+  });
+
+  summary.generatedAt = new Date().toISOString();
+  summary.overallStatus = computeOverallStatus(steps);
+  summary.steps = steps;
+  summary.artifacts = await buildArtifactStatus(artifacts);
+  summary.sameDayStatus = buildSameDayStatus(summary.steps, summary.artifacts);
+  await writeSummary({
+    summaryPathJson: artifacts.automationJson,
+    summaryPathMarkdown: artifacts.automationMarkdown,
+    summary,
+  });
+
+  const telegramArgs = [
+    "scripts/send-telegram-summary.js",
+    "--date",
+    date,
+    "--event",
+    "automation-cycle-complete",
+    "--message",
+    buildTelegramCompletionMessage(summary),
+  ];
+  if (summary.artifacts.dailyBriefingHtml?.exists) {
+    telegramArgs.push("--document", artifacts.dailyBriefingHtml);
+    telegramArgs.push("--caption", `EcoReport ${date} briefing.html`);
+  }
+
+  const telegramCompletion = await runCommand({
+    id: "telegram_completion",
+    label: "Telegram Completion Notification",
+    command: "node",
+    args: telegramArgs,
+    logger,
+    soft: true,
+    skip: false,
+  });
+  steps.push({
+    ...telegramCompletion,
+    debugHint:
+      telegramCompletion.status === "ok" || telegramCompletion.status === "skipped"
+        ? null
+        : buildFailureHint(telegramCompletion.id),
+  });
+
+  summary.generatedAt = new Date().toISOString();
+  summary.overallStatus = computeOverallStatus(steps);
+  summary.steps = steps;
+  summary.artifacts = await buildArtifactStatus(artifacts);
+  summary.sameDayStatus = buildSameDayStatus(summary.steps, summary.artifacts);
+  await writeSummary({
+    summaryPathJson: artifacts.automationJson,
+    summaryPathMarkdown: artifacts.automationMarkdown,
+    summary,
+  });
 
   logger.write("==================================================");
   logger.write(`🏁 EcoReport Automation Cycle 종료 (${summary.overallStatus.toUpperCase()})`);

@@ -41,6 +41,9 @@ ALLOWED_TYPES = {"macro", "sector", "security", "new_candidate"}
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Stage 1.4b research agenda builder")
     parser.add_argument("--date", required=True, help="대상 날짜 (YYYY-MM-DD)")
+    parser.add_argument("--run-date", default=None, help="실행일 (YYYY-MM-DD) - 호환용")
+    parser.add_argument("--effective-market-date", default=None, help="기준 거래일 (YYYY-MM-DD) - 호환용")
+    parser.add_argument("--run-id", default=None, help="run id - 호환용")
     parser.add_argument("--model", default=None, help="강제 모델명")
     parser.add_argument("--temperature", type=float, default=0.2, help="생성 온도")
     parser.add_argument("--max-retries", type=int, default=2, help="JSON 파싱 실패 재시도 횟수")

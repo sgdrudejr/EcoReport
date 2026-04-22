@@ -21,15 +21,58 @@
       "label": "Stage 1.5 Deep Research Prompt",
       "command": "node scripts/build-stage1-5-gemini-deep-research-prompt.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
       "inputs": [
+        "data/analysis-state/{{date}}/stage1-report-extracts-v2.json",
+        "data/analysis-state/{{date}}/stage1-research-agenda.json"
+      ],
+      "outputs": [
+        "knowledge/daily/manual-kit/{{date}}/07a-stage1-5-macro-prompt.md",
+        "knowledge/daily/manual-kit/{{date}}/07b-stage1-5-sector-prompt.md",
+        "knowledge/daily/manual-kit/{{date}}/07c-stage1-5-newcandidate-prompt.md",
+        "knowledge/daily/manual-kit/{{date}}/07-stage1-5-gemini-deep-research-prompt.md"
+      ],
+      "depends_on": [
+        "stage1_extracts",
+        "stage1_4_agenda"
+      ],
+      "cache_key": "stage1.5:{{date}}",
+      "timeout": 300000,
+      "allow_failure": true
+    },
+    {
+      "id": "stage1_4_summarize",
+      "label": "Stage 1.4a Local Chunk Summaries",
+      "command": ".venv/bin/python scripts/collectors/summarize-report-chunks.py --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}} --top-n 30 --concurrency 6",
+      "inputs": [
+        "data/analysis-state/{{date}}/chunk-index/chunks.jsonl",
         "data/analysis-state/{{date}}/stage1-report-extracts-v2.json"
       ],
       "outputs": [
-        "knowledge/daily/{{date}}-gemini-deep-research-prompt.md"
+        "data/analysis-state/{{date}}/stage1-chunk-summaries.json"
       ],
       "depends_on": [
         "stage1_extracts"
       ],
-      "cache_key": "stage1.5:{{date}}",
+      "cache_key": "stage1.4a:{{date}}",
+      "timeout": 300000,
+      "allow_failure": true
+    },
+    {
+      "id": "stage1_4_agenda",
+      "label": "Stage 1.4b Research Agenda",
+      "command": ".venv/bin/python scripts/build-stage1-4-research-agenda.py --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}} --max-input-summaries 30",
+      "inputs": [
+        "data/analysis-state/{{date}}/stage1-report-extracts-v2.json",
+        "data/analysis-state/{{date}}/stage1-chunk-summaries.json",
+        "data/portfolio/latest.json"
+      ],
+      "outputs": [
+        "data/analysis-state/{{date}}/stage1-research-agenda.json"
+      ],
+      "depends_on": [
+        "stage1_extracts",
+        "stage1_4_summarize"
+      ],
+      "cache_key": "stage1.4b:{{date}}",
       "timeout": 300000,
       "allow_failure": true
     },
@@ -46,7 +89,7 @@
         "knowledge/daily/manual-kit/{{date}}/08-stage2-strategy-prompt.md"
       ],
       "depends_on": [
-        "stage1_extracts"
+        "stage1_5_prompt"
       ],
       "cache_key": "stage2-prompt:{{date}}",
       "timeout": 300000
@@ -69,6 +112,44 @@
       "timeout": 900000
     },
     {
+      "id": "kis_etf_ranking",
+      "label": "KIS ETF Ranking",
+      "command": ".venv/bin/python scripts/collectors/fetch-kis-etf-ranking.py --date {{date}} --top-n 80",
+      "inputs": [
+        "data/reference/stockeasy-theme-etf-map.json"
+      ],
+      "outputs": [
+        "data/external/kis-etf/{{date}}/etf-ranking.json"
+      ],
+      "depends_on": [
+        "stage1_extracts"
+      ],
+      "cache_key": "kis-etf:{{date}}",
+      "timeout": 300000,
+      "allow_failure": true
+    },
+    {
+      "id": "stage2_5_etf_candidates",
+      "label": "Stage 2.5 ETF Candidates",
+      "command": "node scripts/build-stage2-5-etf-candidates.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
+      "inputs": [
+        "data/analysis-state/{{date}}/stage2-strategy-options.json",
+        "data/external/kis-etf/{{date}}/etf-ranking.json",
+        "data/reference/stockeasy-theme-etf-map.json"
+      ],
+      "outputs": [
+        "data/analysis-state/{{date}}/stage2-5-etf-candidates.json",
+        "data/analysis-state/{{date}}/stage2-strategy-options.enriched.json"
+      ],
+      "depends_on": [
+        "stage2_strategy",
+        "kis_etf_ranking"
+      ],
+      "cache_key": "stage2.5:{{date}}",
+      "timeout": 300000,
+      "allow_failure": true
+    },
+    {
       "id": "technical_refresh_stage2",
       "label": "Stage 2 Candidate Technical Refresh",
       "command": "node scripts/calc-technicals.js --date {{date}} --include-stage2-candidates --merge-existing",
@@ -80,7 +161,7 @@
         "data/technical/{{date}}.json"
       ],
       "depends_on": [
-        "stage2_strategy"
+        "stage2_5_etf_candidates"
       ],
       "cache_key": "technical-refresh:{{date}}",
       "timeout": 300000,
@@ -99,7 +180,7 @@
       ],
       "depends_on": [
         "stage1_extracts",
-        "stage2_strategy"
+        "stage2_5_etf_candidates"
       ],
       "cache_key": "impact-map:{{date}}",
       "timeout": 300000

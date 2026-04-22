@@ -8,11 +8,9 @@ REQUESTED_DATE=""
 RUN_DATE="${RUN_DATE:-$(node "$ROOT_DIR/scripts/resolve-cycle-date.js" --field run_date)}"
 EFFECTIVE_MARKET_DATE=""
 RUN_ID="${ECOREPORT_RUN_ID:-}"
-USE_MOCK_STAGE2=0
 USE_GEMINI_STAGE2=0
-ALLOW_STAGE2_MOCK_FALLBACK=1
 BUILD_STAGE1_5_PROMPT=1
-STAGE1_5_PID=""
+RUN_STAGE1_4=1
 STAGE2_PROVIDER="unknown"
 STAGE2_FINAL_STATUS="pending"
 STAGE2_TIMEOUT_SEC="${STAGE2_TIMEOUT_SEC:-240}"
@@ -67,8 +65,8 @@ stage2_gemini_preflight() {
   local py
   py="$(python_bin)"
 
-  if ! has_env_key "GEMINI_API_KEY"; then
-    echo "GEMINI_API_KEY missing"
+  if ! has_env_key "DASHSCOPE_API_KEY" && ! has_env_key "QWEN_API_KEY"; then
+    echo "DASHSCOPE_API_KEY or QWEN_API_KEY missing"
     return 1
   fi
 
@@ -76,22 +74,12 @@ stage2_gemini_preflight() {
 import importlib.util
 import sys
 
-if importlib.util.find_spec("google.genai") is None:
-    print("google.genai missing")
+if importlib.util.find_spec("openai") is None:
+    print("openai missing")
     sys.exit(1)
 
 print("ready")
 PY
-}
-
-wait_for_stage1_prompt() {
-  if [[ -z "$STAGE1_5_PID" ]]; then
-    return 0
-  fi
-
-  if ! wait "$STAGE1_5_PID"; then
-    echo "!! Stage 1.5 prompt background step failed, but continuing with generated artifacts" >&2
-  fi
 }
 
 wait_with_timeout() {
@@ -135,14 +123,6 @@ stage2_run_gemini() {
   return 1
 }
 
-stage2_run_mock() {
-  local reason="${1:-fallback}"
-  echo "!! ${reason} -> deterministic mock fallback으로 계속 진행"
-  node scripts/build-stage2-strategy-mock.js "${STAGE2_COMMON_ARGS[@]}" --output "$STAGE2_OUTPUT" --mock-mode fallback
-  STAGE2_PROVIDER="mock"
-  STAGE2_FINAL_STATUS="fallback_mock"
-}
-
 try_stage2_gemini() {
   local preflight_output
   if ! preflight_output="$(stage2_gemini_preflight 2>&1)"; then
@@ -172,29 +152,29 @@ while [[ $# -gt 0 ]]; do
       shift 2
       ;;
     --no-mock-stage2)
-      USE_MOCK_STAGE2=0
       shift
       ;;
     --mock-stage2)
-      USE_MOCK_STAGE2=1
-      USE_GEMINI_STAGE2=0
-      shift
+      echo "ERROR: --mock-stage2 is disabled. Stage 2 must use Qwen and fail-fast on errors." >&2
+      exit 2
       ;;
     --gemini-stage2)
       USE_GEMINI_STAGE2=1
-      USE_MOCK_STAGE2=0
       shift
       ;;
     --claude-stage2)
-      echo "ERROR: --claude-stage2 is no longer supported. Use --gemini-stage2 or --mock-stage2." >&2
+      echo "ERROR: --claude-stage2 is no longer supported." >&2
       exit 2
       ;;
     --strict-gemini-stage2)
-      ALLOW_STAGE2_MOCK_FALLBACK=0
       shift
       ;;
     --skip-stage1-5-prompt)
       BUILD_STAGE1_5_PROMPT=0
+      shift
+      ;;
+    --skip-stage1-4)
+      RUN_STAGE1_4=0
       shift
       ;;
     *)
@@ -239,39 +219,59 @@ echo "run_id=$RUN_ID / run_date=$RUN_DATE / effective_market_date=$DATE"
 echo "== Stage 1: report extracts =="
 node scripts/build-stage1-report-extracts.js "${STAGE2_COMMON_ARGS[@]}"
 
+if [[ "$RUN_STAGE1_4" == "1" ]]; then
+  echo "== Stage 1.4a: local chunk summaries =="
+  if ! "$(python_bin)" scripts/collectors/summarize-report-chunks.py \
+    "${STAGE2_COMMON_ARGS[@]}" \
+    --top-n "${STAGE1_4_TOP_N:-30}" \
+    --concurrency "${STAGE1_4_CONCURRENCY:-6}"; then
+    echo "WARN: Stage 1.4a(local summarize) 실패. Stage 1.4b에서 extracts 폴백으로 계속 진행합니다." >&2
+  fi
+
+  echo "== Stage 1.4b: research agenda =="
+  if ! "$(python_bin)" scripts/build-stage1-4-research-agenda.py \
+    "${STAGE2_COMMON_ARGS[@]}" \
+    --max-input-summaries "${STAGE1_4_MAX_INPUT_SUMMARIES:-30}"; then
+    echo "WARN: Stage 1.4b(research agenda) 실패. Stage 1.5는 extracts 추론 폴백으로 계속 진행합니다." >&2
+  fi
+fi
+
 if [[ "$BUILD_STAGE1_5_PROMPT" == "1" ]]; then
-  echo "== Stage 1.5: deep research prompt (background) =="
-  node scripts/build-stage1-5-gemini-deep-research-prompt.js "${STAGE2_COMMON_ARGS[@]}" &
-  STAGE1_5_PID=$!
+  echo "== Stage 1.5: deep research prompts (07a/07b/07c + legacy 07) =="
+  if ! node scripts/build-stage1-5-gemini-deep-research-prompt.js "${STAGE2_COMMON_ARGS[@]}"; then
+    echo "WARN: Stage 1.5 prompt 생성 실패. Stage 2 이하는 계속 진행합니다." >&2
+  fi
 fi
 
 echo "== Stage 2: strategy prompt =="
 node scripts/build-stage2-strategy-prompt.js "${STAGE2_COMMON_ARGS[@]}"
 
-if [[ "$USE_MOCK_STAGE2" == "1" ]]; then
-  echo "== Stage 2 actual: Mock strategy options =="
-  stage2_run_mock "명시적 mock 요청"
-elif [[ "$USE_GEMINI_STAGE2" == "1" ]]; then
-  echo "== Stage 2 actual: Gemini strategy options =="
+if [[ "$USE_GEMINI_STAGE2" == "1" ]]; then
+  echo "== Stage 2 actual: Qwen strategy options =="
   if ! try_stage2_gemini; then
-    if [[ "$ALLOW_STAGE2_MOCK_FALLBACK" != "1" ]]; then
-      exit 1
-    fi
-    stage2_run_mock "Gemini Stage 2 사용 불가"
+    echo "ERROR: Stage 2(Qwen) failed. Mock fallback is disabled." >&2
+    exit 1
   fi
 else
-  echo "== Stage 2 actual: default fallback chain (Gemini -> Mock) =="
+  echo "== Stage 2 actual: default provider (Qwen, fail-fast) =="
   if ! try_stage2_gemini; then
-    stage2_run_mock "기본 Stage 2 provider 실패"
+    echo "ERROR: Stage 2(Qwen) failed. Mock fallback is disabled." >&2
+    exit 1
   fi
 fi
-
-wait_for_stage1_prompt
 
 echo "== Stage 2 result =="
 echo "provider=$STAGE2_PROVIDER / status=$STAGE2_FINAL_STATUS / output=$STAGE2_OUTPUT"
 
-echo "== Stage 2.5: impact map =="
+echo "== External: KIS ETF ranking =="
+if ! "$(python_bin)" scripts/collectors/fetch-kis-etf-ranking.py --date "$DATE" --top-n 80; then
+  echo "WARN: KIS ETF ranking 수집 실패. 기존/없음 데이터로 Stage 2.5를 계속 진행합니다." >&2
+fi
+
+echo "== Stage 2.5: ETF candidate matching =="
+node scripts/build-stage2-5-etf-candidates.js "${STAGE2_COMMON_ARGS[@]}"
+
+echo "== Stage 2.6: impact map =="
 node scripts/build-impact-map.js "${STAGE2_COMMON_ARGS[@]}"
 
 echo "== Shadow pipeline: Stage 0~3 =="
