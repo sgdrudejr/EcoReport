@@ -1691,30 +1691,35 @@ async function main() {
 
   const steps = [];
 
-  const readinessStep = await runCommand({
-    id: "automation_readiness",
-    label: "Automation Environment Readiness",
-    command: "node",
-    args: [
-      "scripts/check-automation-readiness.js",
-      "--date",
-      date,
-      "--run-date",
-      runDate,
-      "--effective-market-date",
-      date,
-      "--run-id",
-      runId,
-    ],
-    logger,
-    soft: true,
-    timeoutMs: 60_000,
-    skip: isCheckpointed("automation_readiness"),
-  });
+  const readinessStep = isCheckpointed("automation_readiness")
+    ? checkpointResumeStep({
+        id: "automation_readiness",
+        label: "Automation Environment Readiness",
+        artifactPath: artifacts.automationReadiness,
+      })
+    : await runCommand({
+        id: "automation_readiness",
+        label: "Automation Environment Readiness",
+        command: "node",
+        args: [
+          "scripts/check-automation-readiness.js",
+          "--date",
+          date,
+          "--run-date",
+          runDate,
+          "--effective-market-date",
+          date,
+          "--run-id",
+          runId,
+        ],
+        logger,
+        soft: true,
+        timeoutMs: 60_000,
+      });
   const readinessReport = await readJson(artifacts.automationReadiness, null);
   const readinessWarnings = readinessReport?.checks?.filter((item) => item.status !== "ok") ?? [];
   const readinessSummary = readinessWarnings.map((item) => `${item.label}: ${item.detail}`).join(" | ");
-  if (readinessStep.status === "ok" && readinessWarnings.length > 0) {
+  if (!isCheckpointed("automation_readiness") && readinessStep.status === "ok" && readinessWarnings.length > 0) {
     readinessStep.status = "warn";
     readinessStep.errorMessage = `자동화 환경 경고 ${readinessWarnings.length}건`;
     readinessStep.outputTail = readinessSummary || readinessStep.outputTail;
@@ -1722,7 +1727,13 @@ async function main() {
   await appendStep(readinessStep);
 
   const stockeasyCapture =
-    readinessReport?.blockers?.stockeasyCaptureReady === false
+    isCheckpointed("stockeasy_capture")
+      ? checkpointResumeStep({
+          id: "stockeasy_capture",
+          label: "StockEasy Market Capture",
+          artifactPath: artifacts.stockeasySnapshot,
+        })
+      : readinessReport?.blockers?.stockeasyCaptureReady === false
       ? preflightWarnStep({
           id: "stockeasy_capture",
           label: "StockEasy Market Capture",
