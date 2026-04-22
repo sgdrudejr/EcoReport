@@ -1,0 +1,93 @@
+# EcoReport Automation Cycle (2026-04-22)
+- overallStatus: **ok**
+- sameDayStatus: **complete**
+- runDate: 2026-04-22
+- effectiveMarketDate: 2026-04-22
+- previousTradingDate: 2026-04-21
+- runId: 2026-04-22-152804
+- resolutionReason: requested / tail-only
+- generatedAt: 2026-04-22T15:28:04.267Z
+- logFile: /Users/seo/Documents/Playground/economy-report/logs/2026-04-22-152804-automation-cycle.log
+- systemHealth: warn
+- changeSummary: 전일(2026-04-21) 대비, KOSPI +1.21%, 포트폴리오 점수 61→52, 레짐 BULL 유지, 리포트 100→97건, 신규 포커스 TIGER 미국나스닥100·KODEX 신재생에너지액티브, 제외 KODEX AI 전력핵심설비
+## Completion Checklist
+- [x] Baseline Daily System
+- [x] Windows Local Report Summary (Required)
+- [x] Stage 1 Report Extracts
+- [x] Gemini Deep Research Follow-up Web
+- [x] Gemini Deep Research Round 3 Web
+- [x] Stage 1.6 Rich Briefing Final After Round 3
+- [x] Strategy Refresh After Round 3
+- [x] LLM Wiki Rebuild Final
+- [x] Verify Outputs
+## Step Results
+- [OK] Baseline Daily System (0s)
+  - command: reuse-existing-artifact /Users/seo/Documents/Playground/economy-report/reports/daily/2026-04-22-briefing.md
+  - tail: 기존 산출물 재사용: /Users/seo/Documents/Playground/economy-report/reports/daily/2026-04-22-briefing.md
+- [OK] Windows Local Report Summary (Required) (0s)
+  - command: reuse-existing-artifact /Users/seo/Documents/Playground/economy-report/reports/merged/final_market_view.json
+  - tail: 기존 Windows 로컬 요약 재사용: /Users/seo/Documents/Playground/economy-report/reports/merged/final_market_view.json
+- [OK] Stage 1 Report Extracts (0s)
+  - command: reuse-existing-artifact /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-22/stage1-report-extracts-v2.json
+  - tail: 기존 Stage 1 extracts 재사용: /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-22/stage1-report-extracts-v2.json
+- [OK] Gemini Deep Research Follow-up Web (0s)
+  - command: reuse-existing-artifact /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-22/13-stage1-7-gemini-follow-up-response.md
+  - tail: 기존 2차 Gemini 응답 재사용: /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-22/13-stage1-7-gemini-follow-up-response.md
+- [OK] Gemini Deep Research Round 3 Web (0s)
+  - command: reuse-existing-artifact /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-22/16-stage1-8-gemini-final-refinement-response.md
+  - tail: 기존 3차 Gemini 응답 재사용: /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-22/16-stage1-8-gemini-final-refinement-response.md
+- [OK] Stage 1.6 Rich Briefing Final After Round 3 (0s)
+  - command: reuse-existing-artifact /Users/seo/Documents/Playground/economy-report/knowledge/daily/2026-04-22-gemini-briefing-rich.md
+  - tail: 기존 최종 rich briefing 재사용: /Users/seo/Documents/Playground/economy-report/knowledge/daily/2026-04-22-gemini-briefing-rich.md
+- [OK] Strategy Refresh After Round 3 (0s)
+  - command: reuse-existing-artifact /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-22/stage4-execution-plan.json
+  - tail: 기존 Stage 4 실행계획 재사용: /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-22/stage4-execution-plan.json
+- [OK] LLM Wiki Rebuild Final (0s)
+  - command: reuse-existing-artifact /Users/seo/Documents/Playground/economy-report/knowledge/wiki/daily/2026-04-22.md
+  - tail: 기존 일일 위키 재사용: /Users/seo/Documents/Playground/economy-report/knowledge/wiki/daily/2026-04-22.md
+- [OK] Verify Outputs (0s)
+  - command: node scripts/verify-daily-system.js --date 2026-04-22 --run-date 2026-04-22 --effective-market-date 2026-04-22 --run-id 2026-04-22-152804
+  - tail: /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-22/system-health.json
+## Failed Or Warned Steps
+- 없음
+## Artifacts
+- [OK] /Users/seo/Documents/Playground/economy-report/logs/2026-04-22-152804-automation-cycle.log
+- [OK] /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-22/automation-readiness.json
+- [OK] /Users/seo/Documents/Playground/economy-report/data/external/stockeasy/2026-04-22/snapshot.json
+- [OK] /Users/seo/Documents/Playground/economy-report/reports/chunk_summaries/2026-04-22
+- [OK] /Users/seo/Documents/Playground/economy-report/reports/report_summaries/2026-04-22
+- [OK] /Users/seo/Documents/Playground/economy-report/reports/logs/run_stats.json
+- [OK] /Users/seo/Documents/Playground/economy-report/reports/merged/final_market_view.json
+- [OK] /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-22/chunk-index/stats.json
+- [OK] /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-22/stage1-report-extracts-v2.json
+- [MISS] /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-22/stage1-chunk-summaries.json
+- [OK] /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-22/stage1-research-agenda.json
+- [OK] /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-22/stage1-shadow/stage1-shadow-extracts.json
+- [OK] /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-22/stage2-shadow-topic-buckets.json
+- [OK] /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-22/stage3-shadow-final-insights.json
+- [OK] /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-22/stage1-followup-research-map.json
+- [OK] /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-22/11-stage1-7-followup-research-map.md
+- [OK] /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-22/07-stage1-5-gemini-deep-research-prompt.md
+- [OK] /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-22/07a-stage1-5-macro-prompt.md
+- [OK] /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-22/07b-stage1-5-sector-prompt.md
+- [OK] /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-22/07c-stage1-5-newcandidate-prompt.md
+- [OK] /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-22/09-stage1-5-gemini-deep-research-response.md
+- [OK] /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-22/12-stage1-7-gemini-follow-up-prompt.md
+- [OK] /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-22/13-stage1-7-gemini-follow-up-response.md
+- [OK] /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-22/stage1-final-refinement-map.json
+- [OK] /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-22/14-stage1-8-final-refinement-map.md
+- [OK] /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-22/15-stage1-8-gemini-final-refinement-prompt.md
+- [OK] /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-22/16-stage1-8-gemini-final-refinement-response.md
+- [OK] /Users/seo/Documents/Playground/economy-report/knowledge/daily/2026-04-22-gemini-briefing-rich.md
+- [OK] /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-22/10-stage1-6-final-research-briefing.md
+- [OK] /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-22/stage2-strategy-options.json
+- [OK] /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-22/stage4-execution-plan.json
+- [OK] /Users/seo/Documents/Playground/economy-report/reports/daily/2026-04-22-briefing.md
+- [MISS] /Users/seo/Documents/Playground/economy-report/reports/daily/2026-04-22-briefing.html
+- [OK] /Users/seo/Documents/Playground/economy-report/knowledge/wiki/daily/2026-04-22.md
+- [OK] /Users/seo/Documents/Playground/economy-report/knowledge/wiki/memory/operating-rules.md
+- [OK] /Users/seo/Documents/Playground/economy-report/knowledge/wiki/memory/research-backlog.md
+- [OK] /Users/seo/Documents/Playground/economy-report/knowledge/wiki/memory/decision-journal.md
+- [OK] /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-22/system-health.json
+- [MISS] /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-22/automation-cycle.json
+- [MISS] /Users/seo/Documents/Playground/economy-report/knowledge/daily/2026-04-22-automation-cycle.md

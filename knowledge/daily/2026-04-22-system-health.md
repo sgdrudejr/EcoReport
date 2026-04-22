@@ -1,0 +1,42 @@
+# EcoReport Daily Health (2026-04-22)
+
+- overallStatus: **warn**
+- generatedAt: 2026-04-22T15:28:04.244Z
+- runId: 2026-04-22-151648
+- runDate: 2026-04-22
+- effectiveMarketDate: 2026-04-22
+- reports: 97건 / textified 97건 / OCR 0건
+- stage1 extracts: 97건
+
+## Checks
+- [OK] 포트폴리오 스냅샷: 계좌 3개 (data/portfolio/latest.json)
+- [OK] 리포트 인덱스: 리포트 97건 (data/reports/2026-04-22/index.json)
+- [OK] 전문 텍스트화: 성공 97/97 · OCR 0건 (data/reports/2026-04-22/text-manifest.json)
+- [OK] 시장 데이터: market 스냅샷 생성됨 (data/market/2026-04-22.json)
+- [OK] 기술 점수: 종목 15개 (data/technical/2026-04-22.json)
+- [OK] RAG 코퍼스: 리포트 703 / 포트폴리오 18 / 병렬 721 (knowledge/rag/2026-04-22/parallel-manifest.json)
+- [OK] Stage 1 연구 노트: 추출 97건 (data/analysis-state/2026-04-22/stage1-report-extracts-v2.json)
+- [WARN] Stage 1 품질: contamination 0.00 / weak_claim 0.76 (data/analysis-state/2026-04-22/stage1-report-extracts-v2.json)
+- [OK] Stage 2 전략 탐색: Gemini 실제 결과 (qwen3.5-397b-a17b) (data/analysis-state/2026-04-22/stage2-strategy-options.json)
+- [OK] Impact Map: 리포트 103건 (data/analysis-state/2026-04-22/impact-map.json)
+- [OK] Stage 3 퀀트 점수: 포트폴리오 52점 (data/analysis-state/2026-04-22/stage3-quant-scores.json)
+- [OK] Stage 3 관계 품질: unrelated 0.00 / blocked 2건 (data/analysis-state/2026-04-22/stage3-quant-scores.json)
+- [OK] Stage 4 실행 계획: 계좌 계획 3개 (data/analysis-state/2026-04-22/stage4-execution-plan.json)
+- [OK] Stage 4 논리 품질: conflict 0건 / no_action 0건 / low_conf_reject 0건 (data/analysis-state/2026-04-22/stage4-execution-plan.json)
+- [OK] 일일 브리핑: briefing.md 생성됨 (reports/daily/2026-04-22-briefing.md)
+- [OK] LLM Wiki Daily: daily wiki 생성됨 (knowledge/wiki/daily/2026-04-22.md)
+- [OK] 경제 리포트 브리핑: rich Gemini 브리핑 생성됨 (knowledge/daily/2026-04-22-gemini-briefing-rich.md)
+- [OK] Deep Research 프롬프트: Stage 1.5 프롬프트 생성됨 (knowledge/daily/manual-kit/2026-04-22/07-stage1-5-gemini-deep-research-prompt.md)
+- [OK] Deep Research 결과: Gemini Deep Research 결과 저장됨 (knowledge/daily/manual-kit/2026-04-22/09-stage1-5-gemini-deep-research-response.md)
+- [OK] Deep Research 최종 브리핑: Stage 1.6 최종 브리핑 저장됨 (knowledge/daily/manual-kit/2026-04-22/10-stage1-6-final-research-briefing.md)
+- [OK] Follow-up Research Map: Stage 1.7 follow-up reindex map 생성됨 (data/analysis-state/2026-04-22/stage1-followup-research-map.json)
+- [OK] Follow-up Deep Research 프롬프트: 2차 Deep Research 프롬프트 생성됨 (knowledge/daily/manual-kit/2026-04-22/12-stage1-7-gemini-follow-up-prompt.md)
+- [OK] Follow-up Deep Research 결과: 2차 Deep Research 결과 저장됨 (knowledge/daily/manual-kit/2026-04-22/13-stage1-7-gemini-follow-up-response.md)
+- [OK] Round 3 Refinement Map: 3차 refinement map 생성됨 (data/analysis-state/2026-04-22/stage1-final-refinement-map.json)
+- [OK] Round 3 Deep Research 프롬프트: 3차 Deep Research 프롬프트 생성됨 (knowledge/daily/manual-kit/2026-04-22/15-stage1-8-gemini-final-refinement-prompt.md)
+- [OK] Round 3 Deep Research 결과: 3차 Deep Research 결과 저장됨 (knowledge/daily/manual-kit/2026-04-22/16-stage1-8-gemini-final-refinement-response.md)
+- [WARN] Freshness / Run ID: run-id 누락: Refinement Round 2, Refinement Round 3, LLM Wiki Daily (data/analysis-state/2026-04-22/stage4-execution-plan.json)
+- [WARN] 종목 코드 정규화: portfolio 0건 / stage4 7건 미해결 (한투 ISA:stage2Candidates:KODEX 신재생에너지액티브, 한투 ISA:stage2Candidates:TIGER 글로벌AI전력인프라액티브, 한투 ISA:stagedBuys:KODEX 신재생에너지액티브, 한투 ISA:stagedBuys:TIGER 글로벌AI전력인프라액티브 외 3건) (data/portfolio/latest.json)
+- [OK] Fallback Recovery: 추가 복구 fallback 없음 (data/analysis-state/2026-04-22/fallback-summary.json)
+- [OK] Fallback Checklist: 실패 폴백 체크리스트 준비됨 (docs/FAILURE_FALLBACK_CHECKLIST.md)
+- [OK] LLM Wiki Memory: operating rules / research backlog / decision journal 생성됨 (knowledge/wiki/memory/decision-journal.md)
