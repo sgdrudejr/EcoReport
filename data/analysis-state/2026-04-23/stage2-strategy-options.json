@@ -2,8 +2,8 @@
   "date": "2026-04-23",
   "runDate": "2026-04-23",
   "effectiveMarketDate": "2026-04-23",
-  "runId": "2026-04-23-031656",
-  "generatedAt": "2026-04-23T03:20:19.862Z",
+  "runId": "2026-04-23-032801",
+  "generatedAt": "2026-04-23T03:31:15.455Z",
   "source": "mock",
   "mockMode": "fallback",
   "purpose": "gemini_unavailable_fallback",
@@ -102,13 +102,19 @@
   "account_actions": [
     {
       "account_key": "ISA",
-      "bias": "hold",
-      "rationale": "배분 유지와 선택적 관찰이 적절한 상태",
+      "bias": "selective_add",
+      "rationale": "기술점수 상위 보유/후보가 존재해 선별 보강이 가능한 상태",
       "buy_candidates": [
-        "132030"
+        "132030",
+        "487240"
       ],
       "trim_candidates": [],
-      "hold_candidates": [],
+      "hold_candidates": [
+        "0162Z0",
+        "069500",
+        "385510",
+        "411060"
+      ],
       "reserve_cash_note": "다음 tranche 전까지 예수금 일부를 유지하며 분할 접근"
     },
     {
@@ -117,10 +123,15 @@
       "rationale": "기술점수 상위 보유/후보가 존재해 선별 보강이 가능한 상태",
       "buy_candidates": [
         "360750",
+        "487240",
         "133690"
       ],
       "trim_candidates": [],
-      "hold_candidates": [],
+      "hold_candidates": [
+        "0162Z0",
+        "069500",
+        "379810"
+      ],
       "reserve_cash_note": "다음 tranche 전까지 예수금 일부를 유지하며 분할 접근"
     },
     {
@@ -135,13 +146,140 @@
       ],
       "trim_candidates": [],
       "hold_candidates": [
+        "007660",
         "047810",
-        "138910"
+        "138910",
+        "329180"
       ],
       "reserve_cash_note": "다음 tranche 전까지 예수금 일부를 유지하며 분할 접근"
     }
   ],
   "candidate_scores": [
+    {
+      "code": "0162Z0",
+      "name": "RISE 삼성전자SK하이닉스채권혼합50",
+      "stance": "hold",
+      "target_accounts": [
+        "ISA"
+      ],
+      "horizon": "1m",
+      "confidence": "LOW",
+      "thesis": "기술점수와 현재 배분 상태를 기준으로 분류",
+      "risks": []
+    },
+    {
+      "code": "069500",
+      "name": "KODEX 200",
+      "stance": "hold",
+      "target_accounts": [
+        "ISA"
+      ],
+      "horizon": "1m",
+      "confidence": "LOW",
+      "thesis": "기술점수와 현재 배분 상태를 기준으로 분류",
+      "risks": []
+    },
+    {
+      "code": "132030",
+      "name": "KODEX 골드선물(H)",
+      "stance": "buy",
+      "target_accounts": [
+        "ISA"
+      ],
+      "horizon": "3m",
+      "confidence": "MEDIUM",
+      "thesis": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 우호적",
+      "risks": []
+    },
+    {
+      "code": "385510",
+      "name": "KODEX 신재생에너지액티브",
+      "stance": "hold",
+      "target_accounts": [
+        "ISA"
+      ],
+      "horizon": "1m",
+      "confidence": "LOW",
+      "thesis": "기술점수와 현재 배분 상태를 기준으로 분류",
+      "risks": []
+    },
+    {
+      "code": "411060",
+      "name": "ACE KRX금현물",
+      "stance": "hold",
+      "target_accounts": [
+        "ISA"
+      ],
+      "horizon": "1m",
+      "confidence": "LOW",
+      "thesis": "기술점수와 현재 배분 상태를 기준으로 분류",
+      "risks": []
+    },
+    {
+      "code": "475300",
+      "name": "SOL 반도체전공정",
+      "stance": "hold",
+      "target_accounts": [
+        "ISA"
+      ],
+      "horizon": "1m",
+      "confidence": "LOW",
+      "thesis": "기술점수와 현재 배분 상태를 기준으로 분류",
+      "risks": []
+    },
+    {
+      "code": "487240",
+      "name": "KODEX AI전력핵심설비",
+      "stance": "buy",
+      "target_accounts": [
+        "ISA"
+      ],
+      "horizon": "3m",
+      "confidence": "HIGH",
+      "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+      "risks": [
+        "RSI 과매수 구간 진입",
+        "거래량 급증(20일 평균 대비 2배 이상)"
+      ]
+    },
+    {
+      "code": "360750",
+      "name": "TIGER 미국S&P500",
+      "stance": "buy",
+      "target_accounts": [
+        "PENSION"
+      ],
+      "horizon": "3m",
+      "confidence": "HIGH",
+      "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+      "risks": [
+        "RSI 과매수 구간 진입"
+      ]
+    },
+    {
+      "code": "379810",
+      "name": "KODEX 미국나스닥100",
+      "stance": "hold",
+      "target_accounts": [
+        "PENSION"
+      ],
+      "horizon": "1m",
+      "confidence": "LOW",
+      "thesis": "기술점수와 현재 배분 상태를 기준으로 분류",
+      "risks": []
+    },
+    {
+      "code": "007660",
+      "name": "이수페타시스",
+      "stance": "hold",
+      "target_accounts": [
+        "KIS_MAIN"
+      ],
+      "horizon": "1m",
+      "confidence": "LOW",
+      "thesis": "기술점수와 현재 배분 상태를 기준으로 분류",
+      "risks": []
+    },
     {
       "code": "047810",
       "name": "한국항공우주",
@@ -179,6 +317,18 @@
       "risks": []
     },
     {
+      "code": "329180",
+      "name": "HD현대중공업",
+      "stance": "hold",
+      "target_accounts": [
+        "KIS_MAIN"
+      ],
+      "horizon": "1m",
+      "confidence": "LOW",
+      "thesis": "기술점수와 현재 배분 상태를 기준으로 분류",
+      "risks": []
+    },
+    {
       "code": "434730",
       "name": "HANARO 원자력iSelect",
       "stance": "buy",
@@ -203,20 +353,6 @@
       "confidence": "HIGH",
       "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
       "risks": []
-    },
-    {
-      "code": "360750",
-      "name": "TIGER 미국S&P500",
-      "stance": "buy",
-      "target_accounts": [
-        "PENSION"
-      ],
-      "horizon": "3m",
-      "confidence": "HIGH",
-      "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
-      "risks": [
-        "RSI 과매수 구간 진입"
-      ]
     },
     {
       "code": "133690",
@@ -245,18 +381,6 @@
       "risks": []
     },
     {
-      "code": "132030",
-      "name": "KODEX 골드선물(H)",
-      "stance": "buy",
-      "target_accounts": [
-        "ISA"
-      ],
-      "horizon": "3m",
-      "confidence": "MEDIUM",
-      "thesis": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 우호적",
-      "risks": []
-    },
-    {
       "code": "423160",
       "name": "KODEX KOFR금리액티브",
       "stance": "hold",
@@ -267,21 +391,6 @@
       "confidence": "MEDIUM",
       "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 약세, MACD 모멘텀이 우호적",
       "risks": []
-    },
-    {
-      "code": "487240",
-      "name": "KODEX AI전력핵심설비",
-      "stance": "buy",
-      "target_accounts": [
-        "KIS_MAIN"
-      ],
-      "horizon": "3m",
-      "confidence": "HIGH",
-      "thesis": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
-      "risks": [
-        "RSI 과매수 구간 진입",
-        "거래량 급증(20일 평균 대비 2배 이상)"
-      ]
     },
     {
       "code": "005930",
@@ -346,6 +455,6 @@
   "_contract": {
     "version": "1.0",
     "stage": "stage2",
-    "generatedAt": "2026-04-23T03:20:19.862Z"
+    "generatedAt": "2026-04-23T03:31:15.455Z"
   }
 }

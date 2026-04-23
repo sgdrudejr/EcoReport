@@ -2,8 +2,8 @@
   "date": "2026-04-23",
   "runDate": "2026-04-23",
   "effectiveMarketDate": "2026-04-23",
-  "runId": "2026-04-23-031656",
-  "generatedAt": "2026-04-23T03:20:17.663Z",
+  "runId": "2026-04-23-032801",
+  "generatedAt": "2026-04-23T03:31:13.252Z",
   "reportCount": 56,
   "quality": {
     "contaminationEvidenceCount": 0,
@@ -30,7 +30,14 @@
       ],
       "text_path": "data/reports/2026-04-23/text/report_001.txt",
       "text_length": 10845,
-      "related_holdings_in_my_portfolio": [],
+      "related_holdings_in_my_portfolio": [
+        {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        }
+      ],
       "related_accounts": [
         "ISA",
         "PENSION",
@@ -288,6 +295,30 @@
       "text_length": 48652,
       "related_holdings_in_my_portfolio": [
         {
+          "code": "069500",
+          "name": "KODEX 200",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "007660",
+          "name": "이수페타시스",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
           "code": "047810",
           "name": "한국항공우주",
           "accountKey": "KIS_MAIN",
@@ -298,12 +329,18 @@
           "name": "현대로템",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
+        },
+        {
+          "code": "329180",
+          "name": "HD현대중공업",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
-        "KIS_MAIN",
+        "PENSION",
         "ISA",
-        "PENSION"
+        "KIS_MAIN"
       ],
       "key_thesis": "매크로는 부정 시각이며 핵심 근거는  22일(수) WTI 가격은 미국과 이란의 휴전 연장에도 중동발 지정학적 리스크가 높아\n   美재무 \"많은 걸프 국가가 스와프 라인 요청\" 지며 상승. 미-이란 협상에 진전이 부재한 가운데 호르무즈 해협에서 컨테이너 선박\n 중동전쟁에 4월 소비심리 1년만에 '비관적'…계엄 후 최대...",
       "key_points": [
@@ -362,37 +399,15 @@
       "sentiment_score": -0.5,
       "portfolio_impacts_candidate": [
         {
-          "target_type": "account",
-          "target_code": null,
-          "target_name": "ISA",
+          "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
           "account_key": "ISA",
           "direction": "negative",
           "horizon": "1m",
-          "strength": 0.31,
+          "strength": 0.36,
           "reason": " 22일(수) WTI 가격은 미국과 이란의 휴전 연장에도 중동발 지정학적 리스크가 높아\n   美재무 \"많은 걸프 국가가 스와프 라인 요청\" 지며 상승. 미-이란 협상에 진전이 부재한 가운데 호르무즈 해협에서 컨테이너 선박\n 중동전쟁에 4월 소비심리 1년만에 '비관적'…계엄 후 최대폭↓ 이 공격받았다는 소식이 보도된 ...",
-          "action_hint": "보류"
-        },
-        {
-          "target_type": "account",
-          "target_code": null,
-          "target_name": "PENSION",
-          "account_key": "PENSION",
-          "direction": "negative",
-          "horizon": "1m",
-          "strength": 0.31,
-          "reason": " 22일(수) WTI 가격은 미국과 이란의 휴전 연장에도 중동발 지정학적 리스크가 높아\n   美재무 \"많은 걸프 국가가 스와프 라인 요청\" 지며 상승. 미-이란 협상에 진전이 부재한 가운데 호르무즈 해협에서 컨테이너 선박\n 중동전쟁에 4월 소비심리 1년만에 '비관적'…계엄 후 최대폭↓ 이 공격받았다는 소식이 보도된 ...",
-          "action_hint": "보류"
-        },
-        {
-          "target_type": "account",
-          "target_code": null,
-          "target_name": "KIS_MAIN",
-          "account_key": "KIS_MAIN",
-          "direction": "negative",
-          "horizon": "1m",
-          "strength": 0.31,
-          "reason": " 22일(수) WTI 가격은 미국과 이란의 휴전 연장에도 중동발 지정학적 리스크가 높아\n   美재무 \"많은 걸프 국가가 스와프 라인 요청\" 지며 상승. 미-이란 협상에 진전이 부재한 가운데 호르무즈 해협에서 컨테이너 선박\n 중동전쟁에 4월 소비심리 1년만에 '비관적'…계엄 후 최대폭↓ 이 공격받았다는 소식이 보도된 ...",
-          "action_hint": "보류"
+          "action_hint": "감축"
         }
       ],
       "confidence": "MEDIUM",
@@ -449,6 +464,24 @@
       "text_length": 6251,
       "related_holdings_in_my_portfolio": [
         {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
           "code": "047810",
           "name": "한국항공우주",
           "accountKey": "KIS_MAIN",
@@ -459,16 +492,24 @@
           "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
+        },
+        {
+          "code": "329180",
+          "name": "HD현대중공업",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
+        "ISA",
+        "PENSION",
         "KIS_MAIN"
       ],
       "key_thesis": "매크로는 긍정 시각이며 핵심 근거는 Top Picks 및 관심종목 HD현대중공업의 북미 데이터센터향 발전용 엔진 공급계약\n*CP 2026년 4월 22일\n HD현대중공업은 4월 22일 에너지인프라 개발 기업 Aperion Energy Group과의 6,271억원\nHD현대중공업(329180)\n 엔진발전기 공급계약 체결 내용을...",
       "key_points": [
         "매크로는 긍정 시각이며 핵심 근거는 Top Picks 및 관심종목 HD현대중공업의 북미 데이터센터향 발전용 엔진 공급계약\n*CP 2026년 4월 22일\n HD현대중공업은 4월 22일 에너지인프라 개발 기업 Aperion Energy Group과의 6,271억원\nHD현대중공업(329180)\n 엔진발전기 공급계약 체결 내용을...",
-        "매크로는 중립 시각이며 핵심 근거는 HD현대마린솔루션\n 괴리율\n (원) 날짜 투자의견 목표주가\n HD현대마린솔루션 수정TP 평균 최고/최저\n 300,000\n 25.10.31 BUY 285,000\n 250,000 25.7.8 BUY 230,000 -9.51% 10.00%\n 200,000",
         "매크로는 중립 시각이며 핵심 근거는 기존 발전용 대형 가스터빈 납기가 길어지면서 단기 수요 대응이 가능한 모든 수단을 활용\n 되고 있다. 연료전지와 항공엔진을 거쳐 발전용 엔진까지 선택지가 넓어지고 있다. 핀란드\n 바르질라는 최근 미국 하이퍼스케일 데이터센터 프로젝트향 대규모 엔진 공급 계약을 체결\n 한 바 있다. 보도자...",
+        "매크로는 중립 시각이며 핵심 근거는 HD현대마린솔루션\n 괴리율\n (원) 날짜 투자의견 목표주가\n HD현대마린솔루션 수정TP 평균 최고/최저\n 300,000\n 25.10.31 BUY 285,000\n 250,000 25.7.8 BUY 230,000 -9.51% 10.00%\n 200,000",
         "매크로는 긍정 시각이며 핵심 근거는 미국 데이터센터 개발사의 선택은 단순 발전설비 제작과 납기뿐만 아니라 품질까지 고려한\n 결정이었을 것으로 판단된다. After Market Solution을 전문적으로 제공하는 계열사를 통해\n 유지보수관리 및 부품 공급 등에서 안정성을 보장받을 수 있기 때문이다. 엔진 제조사들의\n 전방..."
       ],
       "primary_claim": {
@@ -502,19 +543,6 @@
           "entity": "매크로",
           "direction": "neutral",
           "strength": "weak",
-          "horizon": "medium",
-          "reason": "HD현대마린솔루션\n 괴리율\n (원) 날짜 투자의견 목표주가\n HD현대마린솔루션 수정TP 평균 최고/최저\n 300,000\n 25.10.31 BUY 285,000\n 250,000 25.7.8 BUY 230,000 -9.51% 10.00%\n 200,000",
-          "condition": null,
-          "counterpoint": null,
-          "source_span": "paragraph_14",
-          "classification": "weak_claim",
-          "classification_confidence": 0.48,
-          "summary": "매크로는 중립 시각이며 핵심 근거는 HD현대마린솔루션\n 괴리율\n (원) 날짜 투자의견 목표주가\n HD현대마린솔루션 수정TP 평균 최고/최저\n 300,000\n 25.10.31 BUY 285,000\n 250,000 25.7.8 BUY 230,000 -9.51% 10.00%\n 200,000"
-        },
-        {
-          "entity": "매크로",
-          "direction": "neutral",
-          "strength": "weak",
           "horizon": "short",
           "reason": "기존 발전용 대형 가스터빈 납기가 길어지면서 단기 수요 대응이 가능한 모든 수단을 활용\n 되고 있다. 연료전지와 항공엔진을 거쳐 발전용 엔진까지 선택지가 넓어지고 있다. 핀란드\n 바르질라는 최근 미국 하이퍼스케일 데이터센터 프로젝트향 대규모 엔진 공급 계약을 체결\n 한 바 있다. 보도자...",
           "condition": null,
@@ -523,6 +551,19 @@
           "classification": "weak_claim",
           "classification_confidence": 0.48,
           "summary": "매크로는 중립 시각이며 핵심 근거는 기존 발전용 대형 가스터빈 납기가 길어지면서 단기 수요 대응이 가능한 모든 수단을 활용\n 되고 있다. 연료전지와 항공엔진을 거쳐 발전용 엔진까지 선택지가 넓어지고 있다. 핀란드\n 바르질라는 최근 미국 하이퍼스케일 데이터센터 프로젝트향 대규모 엔진 공급 계약을 체결\n 한 바 있다. 보도자..."
+        },
+        {
+          "entity": "매크로",
+          "direction": "neutral",
+          "strength": "weak",
+          "horizon": "medium",
+          "reason": "HD현대마린솔루션\n 괴리율\n (원) 날짜 투자의견 목표주가\n HD현대마린솔루션 수정TP 평균 최고/최저\n 300,000\n 25.10.31 BUY 285,000\n 250,000 25.7.8 BUY 230,000 -9.51% 10.00%\n 200,000",
+          "condition": null,
+          "counterpoint": null,
+          "source_span": "paragraph_14",
+          "classification": "weak_claim",
+          "classification_confidence": 0.48,
+          "summary": "매크로는 중립 시각이며 핵심 근거는 HD현대마린솔루션\n 괴리율\n (원) 날짜 투자의견 목표주가\n HD현대마린솔루션 수정TP 평균 최고/최저\n 300,000\n 25.10.31 BUY 285,000\n 250,000 25.7.8 BUY 230,000 -9.51% 10.00%\n 200,000"
         },
         {
           "entity": "매크로",
@@ -627,6 +668,39 @@
       "portfolio_impacts_candidate": [
         {
           "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.37,
+          "reason": "Top Picks 및 관심종목 HD현대중공업의 북미 데이터센터향 발전용 엔진 공급계약\n*CP 2026년 4월 22일\n HD현대중공업은 4월 22일 에너지인프라 개발 기업 Aperion Energy Group과의 6,271억원\nHD현대중공업(329180)\n 엔진발전기 공급계약 체결 내용을 공시했다. 첫 데이터센터향 발전설비...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "487240",
+          "target_name": "KODEX AI전력핵심설비",
+          "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.37,
+          "reason": "Top Picks 및 관심종목 HD현대중공업의 북미 데이터센터향 발전용 엔진 공급계약\n*CP 2026년 4월 22일\n HD현대중공업은 4월 22일 에너지인프라 개발 기업 Aperion Energy Group과의 6,271억원\nHD현대중공업(329180)\n 엔진발전기 공급계약 체결 내용을 공시했다. 첫 데이터센터향 발전설비...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "360750",
+          "target_name": "TIGER 미국S&P500",
+          "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.37,
+          "reason": "Top Picks 및 관심종목 HD현대중공업의 북미 데이터센터향 발전용 엔진 공급계약\n*CP 2026년 4월 22일\n HD현대중공업은 4월 22일 에너지인프라 개발 기업 Aperion Energy Group과의 6,271억원\nHD현대중공업(329180)\n 엔진발전기 공급계약 체결 내용을 공시했다. 첫 데이터센터향 발전설비...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
           "target_code": "047810",
           "target_name": "한국항공우주",
           "account_key": "KIS_MAIN",
@@ -646,6 +720,17 @@
           "strength": 0.37,
           "reason": "Top Picks 및 관심종목 HD현대중공업의 북미 데이터센터향 발전용 엔진 공급계약\n*CP 2026년 4월 22일\n HD현대중공업은 4월 22일 에너지인프라 개발 기업 Aperion Energy Group과의 6,271억원\nHD현대중공업(329180)\n 엔진발전기 공급계약 체결 내용을 공시했다. 첫 데이터센터향 발전설비...",
           "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "329180",
+          "target_name": "HD현대중공업",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.37,
+          "reason": "Top Picks 및 관심종목 HD현대중공업의 북미 데이터센터향 발전용 엔진 공급계약\n*CP 2026년 4월 22일\n HD현대중공업은 4월 22일 에너지인프라 개발 기업 Aperion Energy Group과의 6,271억원\nHD현대중공업(329180)\n 엔진발전기 공급계약 체결 내용을 공시했다. 첫 데이터센터향 발전설비...",
+          "action_hint": "보강"
         }
       ],
       "confidence": "MEDIUM",
@@ -657,19 +742,19 @@
       },
       "evidence_notes": [
         {
-          "score": 23,
+          "score": 37,
           "classification": "weak_claim",
           "excerpt": "Top Picks 및 관심종목 HD현대중공업의 북미 데이터센터향 발전용 엔진 공급계약\n*CP 2026년 4월 22일\n HD현대중공업은 4월 22일 에너지인프라 개발 기업 Aperion Energy Group과의 6,271억원\nHD현대중공업(329180)\n 엔진발전기 공급계약 체결 내용을 공시했다. 첫 데이터센터향 발전설비 공급계약이며 향후\nBUY I TP 740,000원 I CP 641,000원\n 데이터센터 수주가 확대될 여지가 존재한다. 20MW급 힘센엔진(H..."
+        },
+        {
+          "score": 16,
+          "classification": "weak_claim",
+          "excerpt": "기존 발전용 대형 가스터빈 납기가 길어지면서 단기 수요 대응이 가능한 모든 수단을 활용\n 되고 있다. 연료전지와 항공엔진을 거쳐 발전용 엔진까지 선택지가 넓어지고 있다. 핀란드\n 바르질라는 최근 미국 하이퍼스케일 데이터센터 프로젝트향 대규모 엔진 공급 계약을 체결\n 한 바 있다. 보도자료에 따르면 바르질라의 미국 데이터센터 시장향 엔진 판매량은 누적\n 1.6GW를 상회한 것으로 알려졌다. HD현대중공업 엔진기계사업부의 과거 공급물량 대부분\n 디젤엔진이지만 201..."
         },
         {
           "score": 15,
           "classification": "weak_claim",
           "excerpt": "HD현대마린솔루션\n 괴리율\n (원) 날짜 투자의견 목표주가\n HD현대마린솔루션 수정TP 평균 최고/최저\n 300,000\n 25.10.31 BUY 285,000\n 250,000 25.7.8 BUY 230,000 -9.51% 10.00%\n 200,000"
-        },
-        {
-          "score": 2,
-          "classification": "weak_claim",
-          "excerpt": "기존 발전용 대형 가스터빈 납기가 길어지면서 단기 수요 대응이 가능한 모든 수단을 활용\n 되고 있다. 연료전지와 항공엔진을 거쳐 발전용 엔진까지 선택지가 넓어지고 있다. 핀란드\n 바르질라는 최근 미국 하이퍼스케일 데이터센터 프로젝트향 대규모 엔진 공급 계약을 체결\n 한 바 있다. 보도자료에 따르면 바르질라의 미국 데이터센터 시장향 엔진 판매량은 누적\n 1.6GW를 상회한 것으로 알려졌다. HD현대중공업 엔진기계사업부의 과거 공급물량 대부분\n 디젤엔진이지만 201..."
         },
         {
           "score": 0,
@@ -717,6 +802,24 @@
       "text_length": 6887,
       "related_holdings_in_my_portfolio": [
         {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
           "code": "138910",
           "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
@@ -730,6 +833,8 @@
         }
       ],
       "related_accounts": [
+        "ISA",
+        "PENSION",
         "KIS_MAIN"
       ],
       "key_thesis": "매크로는 부정 시각이며 핵심 근거는 SMR 시장 X-energy 와의 CI(Conventional Island) 표준화 설계 계약 체결에 이어, NI\n 선점과 가능성과 (Nuclear Island) 설계 계약 연계 수주가 기대되며, X-energy 의 Key Supply Chain\n 플랜트 CAPA Partner 로서 S...",
@@ -849,6 +954,39 @@
       "portfolio_impacts_candidate": [
         {
           "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.46,
+          "reason": "SMR 시장 X-energy 와의 CI(Conventional Island) 표준화 설계 계약 체결에 이어, NI\n 선점과 가능성과 (Nuclear Island) 설계 계약 연계 수주가 기대되며, X-energy 의 Key Supply Chain\n 플랜트 CAPA Partner 로서 SMR 시장 내 견고한 입지를 구축할 ...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "487240",
+          "target_name": "KODEX AI전력핵심설비",
+          "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.46,
+          "reason": "SMR 시장 X-energy 와의 CI(Conventional Island) 표준화 설계 계약 체결에 이어, NI\n 선점과 가능성과 (Nuclear Island) 설계 계약 연계 수주가 기대되며, X-energy 의 Key Supply Chain\n 플랜트 CAPA Partner 로서 SMR 시장 내 견고한 입지를 구축할 ...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "360750",
+          "target_name": "TIGER 미국S&P500",
+          "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.46,
+          "reason": "SMR 시장 X-energy 와의 CI(Conventional Island) 표준화 설계 계약 체결에 이어, NI\n 선점과 가능성과 (Nuclear Island) 설계 계약 연계 수주가 기대되며, X-energy 의 Key Supply Chain\n 플랜트 CAPA Partner 로서 SMR 시장 내 견고한 입지를 구축할 ...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
           "target_code": "138910",
           "target_name": "KODEX 구리선물(H)",
           "account_key": "KIS_MAIN",
@@ -939,6 +1077,24 @@
       "text_length": 23623,
       "related_holdings_in_my_portfolio": [
         {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
           "code": "047810",
           "name": "한국항공우주",
           "accountKey": "KIS_MAIN",
@@ -957,6 +1113,12 @@
           "accountLabel": "한투 일반"
         },
         {
+          "code": "329180",
+          "name": "HD현대중공업",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
           "code": "449450",
           "name": "PLUS K방산",
           "accountKey": "KIS_MAIN",
@@ -964,6 +1126,8 @@
         }
       ],
       "related_accounts": [
+        "ISA",
+        "PENSION",
         "KIS_MAIN"
       ],
       "key_thesis": "매크로는 중립 시각이며 핵심 근거는 요 ◼ 일론머스크 CEO가 X에서 지난 주 공개된 테슬라 손\n 특허 관련 설계 실패를 언급하며 실망감이 있었으나,\n 테슬라 1Q 실적 발표에서 옵티머스 생산을 2Q부터\n 진행한다고 언급하며 정상 추진을 확인.\n ◼ LIG넥스원이 말레이시아향 1,400억원 규모의 해궁\n 을 수주. 천궁 ...",
@@ -1032,6 +1196,39 @@
       "portfolio_impacts_candidate": [
         {
           "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "neutral",
+          "horizon": "3m",
+          "strength": 0.28,
+          "reason": "요 ◼ 일론머스크 CEO가 X에서 지난 주 공개된 테슬라 손\n 특허 관련 설계 실패를 언급하며 실망감이 있었으나,\n 테슬라 1Q 실적 발표에서 옵티머스 생산을 2Q부터\n 진행한다고 언급하며 정상 추진을 확인.\n ◼ LIG넥스원이 말레이시아향 1,400억원 규모의 해궁\n 을 수주. 천궁 중심의 수주 흐름에서 아이템 다변화,...",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "487240",
+          "target_name": "KODEX AI전력핵심설비",
+          "account_key": "PENSION",
+          "direction": "neutral",
+          "horizon": "3m",
+          "strength": 0.28,
+          "reason": "요 ◼ 일론머스크 CEO가 X에서 지난 주 공개된 테슬라 손\n 특허 관련 설계 실패를 언급하며 실망감이 있었으나,\n 테슬라 1Q 실적 발표에서 옵티머스 생산을 2Q부터\n 진행한다고 언급하며 정상 추진을 확인.\n ◼ LIG넥스원이 말레이시아향 1,400억원 규모의 해궁\n 을 수주. 천궁 중심의 수주 흐름에서 아이템 다변화,...",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "360750",
+          "target_name": "TIGER 미국S&P500",
+          "account_key": "PENSION",
+          "direction": "neutral",
+          "horizon": "3m",
+          "strength": 0.28,
+          "reason": "요 ◼ 일론머스크 CEO가 X에서 지난 주 공개된 테슬라 손\n 특허 관련 설계 실패를 언급하며 실망감이 있었으나,\n 테슬라 1Q 실적 발표에서 옵티머스 생산을 2Q부터\n 진행한다고 언급하며 정상 추진을 확인.\n ◼ LIG넥스원이 말레이시아향 1,400억원 규모의 해궁\n 을 수주. 천궁 중심의 수주 흐름에서 아이템 다변화,...",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
           "target_code": "047810",
           "target_name": "한국항공우주",
           "account_key": "KIS_MAIN",
@@ -1065,6 +1262,17 @@
         },
         {
           "target_type": "holding",
+          "target_code": "329180",
+          "target_name": "HD현대중공업",
+          "account_key": "KIS_MAIN",
+          "direction": "neutral",
+          "horizon": "3m",
+          "strength": 0.28,
+          "reason": "요 ◼ 일론머스크 CEO가 X에서 지난 주 공개된 테슬라 손\n 특허 관련 설계 실패를 언급하며 실망감이 있었으나,\n 테슬라 1Q 실적 발표에서 옵티머스 생산을 2Q부터\n 진행한다고 언급하며 정상 추진을 확인.\n ◼ LIG넥스원이 말레이시아향 1,400억원 규모의 해궁\n 을 수주. 천궁 중심의 수주 흐름에서 아이템 다변화,...",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
           "target_code": "449450",
           "target_name": "PLUS K방산",
           "account_key": "KIS_MAIN",
@@ -1084,7 +1292,7 @@
       },
       "evidence_notes": [
         {
-          "score": 2,
+          "score": 16,
           "classification": "weak_claim",
           "excerpt": "요 ◼ 일론머스크 CEO가 X에서 지난 주 공개된 테슬라 손\n 특허 관련 설계 실패를 언급하며 실망감이 있었으나,\n 테슬라 1Q 실적 발표에서 옵티머스 생산을 2Q부터\n 진행한다고 언급하며 정상 추진을 확인.\n ◼ LIG넥스원이 말레이시아향 1,400억원 규모의 해궁\n 을 수주. 천궁 중심의 수주 흐름에서 아이템 다변화,\n 그리고 중둥 중심 시장 공략에서 아시아 지역으로의\n 다변화를 확인할 수 있는 의미있는 수주.\n ◼ HD현대중공업이 22일 국내 조선소로는 처..."
         },
@@ -1147,6 +1355,24 @@
       "text_length": 560501,
       "related_holdings_in_my_portfolio": [
         {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
           "code": "047810",
           "name": "한국항공우주",
           "accountKey": "KIS_MAIN",
@@ -1165,6 +1391,12 @@
           "accountLabel": "한투 일반"
         },
         {
+          "code": "329180",
+          "name": "HD현대중공업",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
           "code": "449450",
           "name": "PLUS K방산",
           "accountKey": "KIS_MAIN",
@@ -1172,6 +1404,8 @@
         }
       ],
       "related_accounts": [
+        "ISA",
+        "PENSION",
         "KIS_MAIN"
       ],
       "key_thesis": "매크로는 긍정 시각이며 핵심 근거는 • 765kV 수주 확대 - 이익 레벨을 결정하는 핵심 변수: 수주 측면에서는 업종 내 가장 강한 흐름이 확인. 2월 약 7,800억원 규모의 765kV\n목표주가 4,200,000원 (M)\n 변압기 수주를 포함해, 1Q26 신규 수주는 2조원을 상회하며 분기 기준 최대치를 기록할 것으로...",
@@ -1346,6 +1580,39 @@
       "portfolio_impacts_candidate": [
         {
           "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.63,
+          "reason": "• 765kV 수주 확대 - 이익 레벨을 결정하는 핵심 변수: 수주 측면에서는 업종 내 가장 강한 흐름이 확인. 2월 약 7,800억원 규모의 765kV\n목표주가 4,200,000원 (M)\n 변압기 수주를 포함해, 1Q26 신규 수주는 2조원을 상회하며 분기 기준 최대치를 기록할 것으로 전망. 이는 단순 물량 증가가 아니...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "487240",
+          "target_name": "KODEX AI전력핵심설비",
+          "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.63,
+          "reason": "• 765kV 수주 확대 - 이익 레벨을 결정하는 핵심 변수: 수주 측면에서는 업종 내 가장 강한 흐름이 확인. 2월 약 7,800억원 규모의 765kV\n목표주가 4,200,000원 (M)\n 변압기 수주를 포함해, 1Q26 신규 수주는 2조원을 상회하며 분기 기준 최대치를 기록할 것으로 전망. 이는 단순 물량 증가가 아니...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "360750",
+          "target_name": "TIGER 미국S&P500",
+          "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.63,
+          "reason": "• 765kV 수주 확대 - 이익 레벨을 결정하는 핵심 변수: 수주 측면에서는 업종 내 가장 강한 흐름이 확인. 2월 약 7,800억원 규모의 765kV\n목표주가 4,200,000원 (M)\n 변압기 수주를 포함해, 1Q26 신규 수주는 2조원을 상회하며 분기 기준 최대치를 기록할 것으로 전망. 이는 단순 물량 증가가 아니...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
           "target_code": "047810",
           "target_name": "한국항공우주",
           "account_key": "KIS_MAIN",
@@ -1458,6 +1725,24 @@
       "text_length": 14689,
       "related_holdings_in_my_portfolio": [
         {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
           "code": "138910",
           "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
@@ -1465,6 +1750,8 @@
         }
       ],
       "related_accounts": [
+        "ISA",
+        "PENSION",
         "KIS_MAIN"
       ],
       "key_thesis": "매크로는 긍정 시각이며 핵심 근거는 ◎ M&A 평균 거래 사이즈 $3.3bn+\n>> 릴리가 기술 도입뿐만 아니라 M&A도 최다를 기록해 활발한 R&D 투자 중.\n 1분기에만 M&A 3건 최대 금액 합산 $11.4bn.\n 수면 장애/자가면역질환/염증질환 분야로 전임상~2상 단계 확보하여, 기존 제품과의 시너지 효과를 노린 ...",
@@ -1634,6 +1921,39 @@
       "portfolio_impacts_candidate": [
         {
           "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.54,
+          "reason": "◎ M&A 평균 거래 사이즈 $3.3bn+\n>> 릴리가 기술 도입뿐만 아니라 M&A도 최다를 기록해 활발한 R&D 투자 중.\n 1분기에만 M&A 3건 최대 금액 합산 $11.4bn.\n 수면 장애/자가면역질환/염증질환 분야로 전임상~2상 단계 확보하여, 기존 제품과의 시너지 효과를 노린 목적으로 해석.\n 릴리는 장기 성장 ...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "487240",
+          "target_name": "KODEX AI전력핵심설비",
+          "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.54,
+          "reason": "◎ M&A 평균 거래 사이즈 $3.3bn+\n>> 릴리가 기술 도입뿐만 아니라 M&A도 최다를 기록해 활발한 R&D 투자 중.\n 1분기에만 M&A 3건 최대 금액 합산 $11.4bn.\n 수면 장애/자가면역질환/염증질환 분야로 전임상~2상 단계 확보하여, 기존 제품과의 시너지 효과를 노린 목적으로 해석.\n 릴리는 장기 성장 ...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "360750",
+          "target_name": "TIGER 미국S&P500",
+          "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.54,
+          "reason": "◎ M&A 평균 거래 사이즈 $3.3bn+\n>> 릴리가 기술 도입뿐만 아니라 M&A도 최다를 기록해 활발한 R&D 투자 중.\n 1분기에만 M&A 3건 최대 금액 합산 $11.4bn.\n 수면 장애/자가면역질환/염증질환 분야로 전임상~2상 단계 확보하여, 기존 제품과의 시너지 효과를 노린 목적으로 해석.\n 릴리는 장기 성장 ...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
           "target_code": "138910",
           "target_name": "KODEX 구리선물(H)",
           "account_key": "KIS_MAIN",
@@ -1715,6 +2035,24 @@
       "text_length": 9233,
       "related_holdings_in_my_portfolio": [
         {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
           "code": "047810",
           "name": "한국항공우주",
           "accountKey": "KIS_MAIN",
@@ -1733,6 +2071,12 @@
           "accountLabel": "한투 일반"
         },
         {
+          "code": "329180",
+          "name": "HD현대중공업",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
           "code": "434730",
           "name": "HANARO 원자력iSelect",
           "accountKey": "KIS_MAIN",
@@ -1746,14 +2090,16 @@
         }
       ],
       "related_accounts": [
+        "ISA",
+        "PENSION",
         "KIS_MAIN"
       ],
       "key_thesis": "매크로는 중립 시각이며 핵심 근거는  4월 22일, HD현대중공업이 미국 텍사스 소재 데이터센터향 육상용 발전 엔 미국 데이터센터 전력 수요 전망\n 진 공급 계약을 공시. 계약 금액은 6,271억원이며, 총 684MW 규모.\n 20MW급 힘쎈(HiMSEN) 엔진(+발전기) 총 33세트를 공급하는 건으로 파\n 악. 공급 ...",
       "key_points": [
         "매크로는 중립 시각이며 핵심 근거는  4월 22일, HD현대중공업이 미국 텍사스 소재 데이터센터향 육상용 발전 엔 미국 데이터센터 전력 수요 전망\n 진 공급 계약을 공시. 계약 금액은 6,271억원이며, 총 684MW 규모.\n 20MW급 힘쎈(HiMSEN) 엔진(+발전기) 총 33세트를 공급하는 건으로 파\n 악. 공급 ...",
-        "매크로는 긍정 시각이며 핵심 근거는  AI 발전 속 데이터센터 수요 증가 중. 대규모 부하 급증으로 전력 수요도 동\n 반 증가. IEA는 데이터 센터의 전력 소비가 2025년 485 TWh에서 2030\n 년 950 TWh로 두 배 증가할 것으로 전망(전 세계 전력 수요의 3% 차지).",
         "매크로는 중립 시각이며 핵심 근거는 과거 2년간 투자의견 및 목표주가 변동내역\n HD현대중공업(329180.KS) 주가 및 목표주가 추이\n 목표가격 괴리율(%)\n 추천일자 투자의견 목표가(원) 담당 애널리스트: 양승윤\n 대상시점 평균주가대비 최고(최저)주가 대비\n2024-07-26 Buy 210,000 1년 -6.7 2....",
-        "매크로는 중립 시각이며 핵심 근거는 전에 활용되는 대형 가스터빈은 수요 급증에 주력 업체(GE 베르노바, 미쓰\n 비시중공업, 지멘스 에너지 3사)들의 공급 능력이 따라가지 못하고 있음.\n HD현대중공업의 H54GV\n 주요 가스터빈 업체 중 미쓰비시중공업은 3월 당사와의 미팅에서 “현재 고\n 객과 2029년 또는 2030..."
+        "매크로는 중립 시각이며 핵심 근거는 전에 활용되는 대형 가스터빈은 수요 급증에 주력 업체(GE 베르노바, 미쓰\n 비시중공업, 지멘스 에너지 3사)들의 공급 능력이 따라가지 못하고 있음.\n HD현대중공업의 H54GV\n 주요 가스터빈 업체 중 미쓰비시중공업은 3월 당사와의 미팅에서 “현재 고\n 객과 2029년 또는 2030...",
+        "매크로는 긍정 시각이며 핵심 근거는  AI 발전 속 데이터센터 수요 증가 중. 대규모 부하 급증으로 전력 수요도 동\n 반 증가. IEA는 데이터 센터의 전력 소비가 2025년 485 TWh에서 2030\n 년 950 TWh로 두 배 증가할 것으로 전망(전 세계 전력 수요의 3% 차지)."
       ],
       "primary_claim": {
         "entity": "매크로",
@@ -1784,19 +2130,6 @@
         },
         {
           "entity": "매크로",
-          "direction": "positive",
-          "strength": "weak",
-          "horizon": "medium",
-          "reason": " AI 발전 속 데이터센터 수요 증가 중. 대규모 부하 급증으로 전력 수요도 동\n 반 증가. IEA는 데이터 센터의 전력 소비가 2025년 485 TWh에서 2030\n 년 950 TWh로 두 배 증가할 것으로 전망(전 세계 전력 수요의 3% 차지).",
-          "condition": null,
-          "counterpoint": null,
-          "source_span": "paragraph_4",
-          "classification": "weak_claim",
-          "classification_confidence": 0.48,
-          "summary": "매크로는 긍정 시각이며 핵심 근거는  AI 발전 속 데이터센터 수요 증가 중. 대규모 부하 급증으로 전력 수요도 동\n 반 증가. IEA는 데이터 센터의 전력 소비가 2025년 485 TWh에서 2030\n 년 950 TWh로 두 배 증가할 것으로 전망(전 세계 전력 수요의 3% 차지)."
-        },
-        {
-          "entity": "매크로",
           "direction": "neutral",
           "strength": "weak",
           "horizon": "medium",
@@ -1820,6 +2153,19 @@
           "classification": "weak_claim",
           "classification_confidence": 0.48,
           "summary": "매크로는 중립 시각이며 핵심 근거는 전에 활용되는 대형 가스터빈은 수요 급증에 주력 업체(GE 베르노바, 미쓰\n 비시중공업, 지멘스 에너지 3사)들의 공급 능력이 따라가지 못하고 있음.\n HD현대중공업의 H54GV\n 주요 가스터빈 업체 중 미쓰비시중공업은 3월 당사와의 미팅에서 “현재 고\n 객과 2029년 또는 2030..."
+        },
+        {
+          "entity": "매크로",
+          "direction": "positive",
+          "strength": "weak",
+          "horizon": "medium",
+          "reason": " AI 발전 속 데이터센터 수요 증가 중. 대규모 부하 급증으로 전력 수요도 동\n 반 증가. IEA는 데이터 센터의 전력 소비가 2025년 485 TWh에서 2030\n 년 950 TWh로 두 배 증가할 것으로 전망(전 세계 전력 수요의 3% 차지).",
+          "condition": null,
+          "counterpoint": null,
+          "source_span": "paragraph_4",
+          "classification": "weak_claim",
+          "classification_confidence": 0.48,
+          "summary": "매크로는 긍정 시각이며 핵심 근거는  AI 발전 속 데이터센터 수요 증가 중. 대규모 부하 급증으로 전력 수요도 동\n 반 증가. IEA는 데이터 센터의 전력 소비가 2025년 485 TWh에서 2030\n 년 950 TWh로 두 배 증가할 것으로 전망(전 세계 전력 수요의 3% 차지)."
         }
       ],
       "key_numbers": [
@@ -1835,12 +2181,12 @@
         },
         {
           "label": "supporting",
-          "value": "3%",
+          "value": "30%",
           "why_it_matters": "보조 참고 수치"
         },
         {
           "label": "supporting",
-          "value": "30%",
+          "value": "3%",
           "why_it_matters": "보조 참고 수치"
         },
         {
@@ -1862,6 +2208,39 @@
       "thesis_novelty": "MED",
       "sentiment_score": 0.25,
       "portfolio_impacts_candidate": [
+        {
+          "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.37,
+          "reason": " 4월 22일, HD현대중공업이 미국 텍사스 소재 데이터센터향 육상용 발전 엔 미국 데이터센터 전력 수요 전망\n 진 공급 계약을 공시. 계약 금액은 6,271억원이며, 총 684MW 규모.\n 20MW급 힘쎈(HiMSEN) 엔진(+발전기) 총 33세트를 공급하는 건으로 파\n 악. 공급 제품은 H54GV 가스엔진. 계약 기...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "487240",
+          "target_name": "KODEX AI전력핵심설비",
+          "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.37,
+          "reason": " 4월 22일, HD현대중공업이 미국 텍사스 소재 데이터센터향 육상용 발전 엔 미국 데이터센터 전력 수요 전망\n 진 공급 계약을 공시. 계약 금액은 6,271억원이며, 총 684MW 규모.\n 20MW급 힘쎈(HiMSEN) 엔진(+발전기) 총 33세트를 공급하는 건으로 파\n 악. 공급 제품은 H54GV 가스엔진. 계약 기...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "360750",
+          "target_name": "TIGER 미국S&P500",
+          "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.37,
+          "reason": " 4월 22일, HD현대중공업이 미국 텍사스 소재 데이터센터향 육상용 발전 엔 미국 데이터센터 전력 수요 전망\n 진 공급 계약을 공시. 계약 금액은 6,271억원이며, 총 684MW 규모.\n 20MW급 힘쎈(HiMSEN) 엔진(+발전기) 총 33세트를 공급하는 건으로 파\n 악. 공급 제품은 H54GV 가스엔진. 계약 기...",
+          "action_hint": "보강"
+        },
         {
           "target_type": "holding",
           "target_code": "047810",
@@ -1888,6 +2267,17 @@
           "target_type": "holding",
           "target_code": "138910",
           "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.37,
+          "reason": " 4월 22일, HD현대중공업이 미국 텍사스 소재 데이터센터향 육상용 발전 엔 미국 데이터센터 전력 수요 전망\n 진 공급 계약을 공시. 계약 금액은 6,271억원이며, 총 684MW 규모.\n 20MW급 힘쎈(HiMSEN) 엔진(+발전기) 총 33세트를 공급하는 건으로 파\n 악. 공급 제품은 H54GV 가스엔진. 계약 기...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "329180",
+          "target_name": "HD현대중공업",
           "account_key": "KIS_MAIN",
           "direction": "positive",
           "horizon": "3m",
@@ -1927,24 +2317,24 @@
       },
       "evidence_notes": [
         {
-          "score": 20,
+          "score": 34,
           "classification": "weak_claim",
           "excerpt": " 4월 22일, HD현대중공업이 미국 텍사스 소재 데이터센터향 육상용 발전 엔 미국 데이터센터 전력 수요 전망\n 진 공급 계약을 공시. 계약 금액은 6,271억원이며, 총 684MW 규모.\n 20MW급 힘쎈(HiMSEN) 엔진(+발전기) 총 33세트를 공급하는 건으로 파\n 악. 공급 제품은 H54GV 가스엔진. 계약 기간은 2030년 10월까지."
+        },
+        {
+          "score": 23,
+          "classification": "weak_claim",
+          "excerpt": "과거 2년간 투자의견 및 목표주가 변동내역\n HD현대중공업(329180.KS) 주가 및 목표주가 추이\n 목표가격 괴리율(%)\n 추천일자 투자의견 목표가(원) 담당 애널리스트: 양승윤\n 대상시점 평균주가대비 최고(최저)주가 대비\n2024-07-26 Buy 210,000 1년 -6.7 2.9\n2024-10-02 Buy 260,000 1년 -7.9 25.8 (원)"
+        },
+        {
+          "score": 16,
+          "classification": "weak_claim",
+          "excerpt": "전에 활용되는 대형 가스터빈은 수요 급증에 주력 업체(GE 베르노바, 미쓰\n 비시중공업, 지멘스 에너지 3사)들의 공급 능력이 따라가지 못하고 있음.\n HD현대중공업의 H54GV\n 주요 가스터빈 업체 중 미쓰비시중공업은 3월 당사와의 미팅에서 “현재 고\n 객과 2029년 또는 2030년 생산 물량에 대해 논의 중이며, 생산 능력은 비\n 공개이나, 2024년 대비 30% 이상 증강할 계획이며, 증설 효과는 2027년\n 이후부터 본격적으로 반영될 것으로 예상함. ..."
         },
         {
           "score": 15,
           "classification": "weak_claim",
           "excerpt": " AI 발전 속 데이터센터 수요 증가 중. 대규모 부하 급증으로 전력 수요도 동\n 반 증가. IEA는 데이터 센터의 전력 소비가 2025년 485 TWh에서 2030\n 년 950 TWh로 두 배 증가할 것으로 전망(전 세계 전력 수요의 3% 차지)."
-        },
-        {
-          "score": 9,
-          "classification": "weak_claim",
-          "excerpt": "과거 2년간 투자의견 및 목표주가 변동내역\n HD현대중공업(329180.KS) 주가 및 목표주가 추이\n 목표가격 괴리율(%)\n 추천일자 투자의견 목표가(원) 담당 애널리스트: 양승윤\n 대상시점 평균주가대비 최고(최저)주가 대비\n2024-07-26 Buy 210,000 1년 -6.7 2.9\n2024-10-02 Buy 260,000 1년 -7.9 25.8 (원)"
-        },
-        {
-          "score": 2,
-          "classification": "weak_claim",
-          "excerpt": "전에 활용되는 대형 가스터빈은 수요 급증에 주력 업체(GE 베르노바, 미쓰\n 비시중공업, 지멘스 에너지 3사)들의 공급 능력이 따라가지 못하고 있음.\n HD현대중공업의 H54GV\n 주요 가스터빈 업체 중 미쓰비시중공업은 3월 당사와의 미팅에서 “현재 고\n 객과 2029년 또는 2030년 생산 물량에 대해 논의 중이며, 생산 능력은 비\n 공개이나, 2024년 대비 30% 이상 증강할 계획이며, 증설 효과는 2027년\n 이후부터 본격적으로 반영될 것으로 예상함. ..."
         },
         {
           "score": -40,
@@ -1989,6 +2379,30 @@
       "text_length": 16756,
       "related_holdings_in_my_portfolio": [
         {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "007660",
+          "name": "이수페타시스",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
           "code": "047810",
           "name": "한국항공우주",
           "accountKey": "KIS_MAIN",
@@ -2007,6 +2421,12 @@
           "accountLabel": "한투 일반"
         },
         {
+          "code": "329180",
+          "name": "HD현대중공업",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
           "code": "449450",
           "name": "PLUS K방산",
           "accountKey": "KIS_MAIN",
@@ -2014,6 +2434,8 @@
         }
       ],
       "related_accounts": [
+        "ISA",
+        "PENSION",
         "KIS_MAIN"
       ],
       "key_thesis": "매크로는 중립 시각이며 핵심 근거는 지수 종합 주식시장 동향\n[한국] 전일 코스피와 코스닥은 각각 0.5%, 0.2% 상승. 이란과 미국의 협상 결렬되면서 불확실성 확대. SK하이닉스 실 KOSPI 12MF PER & EPS KOSPI 목표주가 상∙하향 종목 수\n (배) (원)\n적 발표 앞두고 반도체 대형주 차익실현 매물... / 조건: 단 소식으로 지수 상승 전환. 지정학적 긴장감 ↑ 및 ...",
@@ -2075,6 +2497,39 @@
       "thesis_novelty": "MED",
       "sentiment_score": 0,
       "portfolio_impacts_candidate": [
+        {
+          "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "지수 종합 주식시장 동향\n[한국] 전일 코스피와 코스닥은 각각 0.5%, 0.2% 상승. 이란과 미국의 협상 결렬되면서 불확실성 확대. SK하이닉스 실 KOSPI 12MF PER & EPS KOSPI 목표주가 상∙하향 종목 수\n (배) (원)\n적 발표 앞두고 반도체 대형주 차익실현 매물 출회. 외국인 현선물 1조원 가량 ...",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "487240",
+          "target_name": "KODEX AI전력핵심설비",
+          "account_key": "PENSION",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "지수 종합 주식시장 동향\n[한국] 전일 코스피와 코스닥은 각각 0.5%, 0.2% 상승. 이란과 미국의 협상 결렬되면서 불확실성 확대. SK하이닉스 실 KOSPI 12MF PER & EPS KOSPI 목표주가 상∙하향 종목 수\n (배) (원)\n적 발표 앞두고 반도체 대형주 차익실현 매물 출회. 외국인 현선물 1조원 가량 ...",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "360750",
+          "target_name": "TIGER 미국S&P500",
+          "account_key": "PENSION",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "지수 종합 주식시장 동향\n[한국] 전일 코스피와 코스닥은 각각 0.5%, 0.2% 상승. 이란과 미국의 협상 결렬되면서 불확실성 확대. SK하이닉스 실 KOSPI 12MF PER & EPS KOSPI 목표주가 상∙하향 종목 수\n (배) (원)\n적 발표 앞두고 반도체 대형주 차익실현 매물 출회. 외국인 현선물 1조원 가량 ...",
+          "action_hint": "관찰"
+        },
         {
           "target_type": "holding",
           "target_code": "047810",
@@ -2185,6 +2640,24 @@
       "text_length": 22129,
       "related_holdings_in_my_portfolio": [
         {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
           "code": "047810",
           "name": "한국항공우주",
           "accountKey": "KIS_MAIN",
@@ -2203,6 +2676,12 @@
           "accountLabel": "한투 일반"
         },
         {
+          "code": "329180",
+          "name": "HD현대중공업",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
           "code": "449450",
           "name": "PLUS K방산",
           "accountKey": "KIS_MAIN",
@@ -2210,6 +2689,8 @@
         }
       ],
       "related_accounts": [
+        "ISA",
+        "PENSION",
         "KIS_MAIN"
       ],
       "key_thesis": "매크로는 중립 시각이며 핵심 근거는 이번 제안에는 항공기 조달을 위한 344억 달러도 포함\n (십억원) (%)\n이 자금은 F-35 전투기, P-8A 해상 초계기 및 기타 플랫폼을 포함한 123대의 항공기 구매에 사용될 예정 기업명 체결계약명 수주일자 계약금액 매출비중 계약상대방\n무기 조달 총액은 226억 달러이며, 스탠다...",
@@ -2333,6 +2814,39 @@
       "portfolio_impacts_candidate": [
         {
           "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "이번 제안에는 항공기 조달을 위한 344억 달러도 포함\n (십억원) (%)\n이 자금은 F-35 전투기, P-8A 해상 초계기 및 기타 플랫폼을 포함한 123대의 항공기 구매에 사용될 예정 기업명 체결계약명 수주일자 계약금액 매출비중 계약상대방\n무기 조달 총액은 226억 달러이며, 스탠다드 미사일, 전술 토마호크 미사일, ...",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "487240",
+          "target_name": "KODEX AI전력핵심설비",
+          "account_key": "PENSION",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "이번 제안에는 항공기 조달을 위한 344억 달러도 포함\n (십억원) (%)\n이 자금은 F-35 전투기, P-8A 해상 초계기 및 기타 플랫폼을 포함한 123대의 항공기 구매에 사용될 예정 기업명 체결계약명 수주일자 계약금액 매출비중 계약상대방\n무기 조달 총액은 226억 달러이며, 스탠다드 미사일, 전술 토마호크 미사일, ...",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "360750",
+          "target_name": "TIGER 미국S&P500",
+          "account_key": "PENSION",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "이번 제안에는 항공기 조달을 위한 344억 달러도 포함\n (십억원) (%)\n이 자금은 F-35 전투기, P-8A 해상 초계기 및 기타 플랫폼을 포함한 123대의 항공기 구매에 사용될 예정 기업명 체결계약명 수주일자 계약금액 매출비중 계약상대방\n무기 조달 총액은 226억 달러이며, 스탠다드 미사일, 전술 토마호크 미사일, ...",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
           "target_code": "047810",
           "target_name": "한국항공우주",
           "account_key": "KIS_MAIN",
@@ -2446,13 +2960,45 @@
       "text_length": 8728,
       "related_holdings_in_my_portfolio": [
         {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "007660",
+          "name": "이수페타시스",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
           "code": "138910",
           "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "329180",
+          "name": "HD현대중공업",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
+        "ISA",
+        "PENSION",
         "KIS_MAIN"
       ],
       "key_thesis": "매크로는 중립 시각이며 핵심 근거는 SK하이닉스 -0.1% 1,223,000 8,716,350 4월 23일 1분기 실적발표 예정, 실적 컨센서스는 매출액 50.1조원, 영업이익은 34.9조원 수준\n 출처: Quantiwise, 언론기사 종합, IBK투자증권",
@@ -2549,6 +3095,39 @@
       "portfolio_impacts_candidate": [
         {
           "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "SK하이닉스 -0.1% 1,223,000 8,716,350 4월 23일 1분기 실적발표 예정, 실적 컨센서스는 매출액 50.1조원, 영업이익은 34.9조원 수준\n 출처: Quantiwise, 언론기사 종합, IBK투자증권",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "487240",
+          "target_name": "KODEX AI전력핵심설비",
+          "account_key": "PENSION",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "SK하이닉스 -0.1% 1,223,000 8,716,350 4월 23일 1분기 실적발표 예정, 실적 컨센서스는 매출액 50.1조원, 영업이익은 34.9조원 수준\n 출처: Quantiwise, 언론기사 종합, IBK투자증권",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "360750",
+          "target_name": "TIGER 미국S&P500",
+          "account_key": "PENSION",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "SK하이닉스 -0.1% 1,223,000 8,716,350 4월 23일 1분기 실적발표 예정, 실적 컨센서스는 매출액 50.1조원, 영업이익은 34.9조원 수준\n 출처: Quantiwise, 언론기사 종합, IBK투자증권",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
           "target_code": "138910",
           "target_name": "KODEX 구리선물(H)",
           "account_key": "KIS_MAIN",
@@ -2628,6 +3207,24 @@
       "text_length": 21113,
       "related_holdings_in_my_portfolio": [
         {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
           "code": "047810",
           "name": "한국항공우주",
           "accountKey": "KIS_MAIN",
@@ -2638,9 +3235,17 @@
           "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
+        },
+        {
+          "code": "329180",
+          "name": "HD현대중공업",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
+        "ISA",
+        "PENSION",
         "KIS_MAIN"
       ],
       "key_thesis": "매크로는 부정 시각이며 핵심 근거는 - 달러-원 환율은 서울 외환시장에서 1,476.0 원으로 마감. 야간시장\n중동전쟁 협상 연장: 트럼프 대통령 향후 이란 정부로부터 통일된 협 에서 1,480.3원으로 마감\n상안을 받고 협상안이 종결될 때까지 휴전 연장 발표. 이와 함께 기업\n들의 호실적에 뉴욕 3대지수 일제히 상승 마... / 조건: 다만, SK하이닉스 실적발표: 악시오스에 따르면 트럼프...",
@@ -2725,6 +3330,39 @@
       "portfolio_impacts_candidate": [
         {
           "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "negative",
+          "horizon": "1m",
+          "strength": 0.63,
+          "reason": "- 달러-원 환율은 서울 외환시장에서 1,476.0 원으로 마감. 야간시장\n중동전쟁 협상 연장: 트럼프 대통령 향후 이란 정부로부터 통일된 협 에서 1,480.3원으로 마감\n상안을 받고 협상안이 종결될 때까지 휴전 연장 발표. 이와 함께 기업\n들의 호실적에 뉴욕 3대지수 일제히 상승 마감하는 모습 보임. 다만, SK하이닉...",
+          "action_hint": "감축"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "487240",
+          "target_name": "KODEX AI전력핵심설비",
+          "account_key": "PENSION",
+          "direction": "negative",
+          "horizon": "1m",
+          "strength": 0.63,
+          "reason": "- 달러-원 환율은 서울 외환시장에서 1,476.0 원으로 마감. 야간시장\n중동전쟁 협상 연장: 트럼프 대통령 향후 이란 정부로부터 통일된 협 에서 1,480.3원으로 마감\n상안을 받고 협상안이 종결될 때까지 휴전 연장 발표. 이와 함께 기업\n들의 호실적에 뉴욕 3대지수 일제히 상승 마감하는 모습 보임. 다만, SK하이닉...",
+          "action_hint": "감축"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "360750",
+          "target_name": "TIGER 미국S&P500",
+          "account_key": "PENSION",
+          "direction": "negative",
+          "horizon": "1m",
+          "strength": 0.63,
+          "reason": "- 달러-원 환율은 서울 외환시장에서 1,476.0 원으로 마감. 야간시장\n중동전쟁 협상 연장: 트럼프 대통령 향후 이란 정부로부터 통일된 협 에서 1,480.3원으로 마감\n상안을 받고 협상안이 종결될 때까지 휴전 연장 발표. 이와 함께 기업\n들의 호실적에 뉴욕 3대지수 일제히 상승 마감하는 모습 보임. 다만, SK하이닉...",
+          "action_hint": "감축"
+        },
+        {
+          "target_type": "holding",
           "target_code": "138910",
           "target_name": "KODEX 구리선물(H)",
           "account_key": "KIS_MAIN",
@@ -2806,6 +3444,30 @@
       "text_length": 7059,
       "related_holdings_in_my_portfolio": [
         {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "007660",
+          "name": "이수페타시스",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
           "code": "047810",
           "name": "한국항공우주",
           "accountKey": "KIS_MAIN",
@@ -2824,6 +3486,12 @@
           "accountLabel": "한투 일반"
         },
         {
+          "code": "329180",
+          "name": "HD현대중공업",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
           "code": "449450",
           "name": "PLUS K방산",
           "accountKey": "KIS_MAIN",
@@ -2831,6 +3499,8 @@
         }
       ],
       "related_accounts": [
+        "ISA",
+        "PENSION",
         "KIS_MAIN"
       ],
       "key_thesis": "매크로는 긍정 시각이며 핵심 근거는 20 (월) 21 (화) 22 (수) 23 (목) 24 (금)\n이창용 한은 총재 임기만료 (미) 2월 기업재고, 3월 소매판매, (한) 3월 PPI 연준 베이지북 (미) 4월 미시간대 소비자심리지수 (확정)\n(유) 2월 건설생산 3월 미결주택매매 (실적) 삼성바이오로직스, OCI, (미...",
@@ -2932,6 +3602,39 @@
       "portfolio_impacts_candidate": [
         {
           "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.46,
+          "reason": "20 (월) 21 (화) 22 (수) 23 (목) 24 (금)\n이창용 한은 총재 임기만료 (미) 2월 기업재고, 3월 소매판매, (한) 3월 PPI 연준 베이지북 (미) 4월 미시간대 소비자심리지수 (확정)\n(유) 2월 건설생산 3월 미결주택매매 (실적) 삼성바이오로직스, OCI, (미) 4월 S&P 글로벌 종합 PMI ...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "487240",
+          "target_name": "KODEX AI전력핵심설비",
+          "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.46,
+          "reason": "20 (월) 21 (화) 22 (수) 23 (목) 24 (금)\n이창용 한은 총재 임기만료 (미) 2월 기업재고, 3월 소매판매, (한) 3월 PPI 연준 베이지북 (미) 4월 미시간대 소비자심리지수 (확정)\n(유) 2월 건설생산 3월 미결주택매매 (실적) 삼성바이오로직스, OCI, (미) 4월 S&P 글로벌 종합 PMI ...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "360750",
+          "target_name": "TIGER 미국S&P500",
+          "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.46,
+          "reason": "20 (월) 21 (화) 22 (수) 23 (목) 24 (금)\n이창용 한은 총재 임기만료 (미) 2월 기업재고, 3월 소매판매, (한) 3월 PPI 연준 베이지북 (미) 4월 미시간대 소비자심리지수 (확정)\n(유) 2월 건설생산 3월 미결주택매매 (실적) 삼성바이오로직스, OCI, (미) 4월 S&P 글로벌 종합 PMI ...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
           "target_code": "047810",
           "target_name": "한국항공우주",
           "account_key": "KIS_MAIN",
@@ -3028,6 +3731,18 @@
       "text_length": 21289,
       "related_holdings_in_my_portfolio": [
         {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
           "code": "047810",
           "name": "한국항공우주",
           "accountKey": "KIS_MAIN",
@@ -3047,6 +3762,8 @@
         }
       ],
       "related_accounts": [
+        "ISA",
+        "PENSION",
         "KIS_MAIN"
       ],
       "key_thesis": "4/23 KB 리서치 모닝코멘트",
@@ -3065,6 +3782,17 @@
       "thesis_novelty": "LOW",
       "sentiment_score": 0,
       "portfolio_impacts_candidate": [
+        {
+          "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "4/23 KB 리서치 모닝코멘트",
+          "action_hint": "관찰"
+        },
         {
           "target_type": "holding",
           "target_code": "138910",
@@ -3123,6 +3851,30 @@
       "text_length": 2508,
       "related_holdings_in_my_portfolio": [
         {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "007660",
+          "name": "이수페타시스",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
           "code": "047810",
           "name": "한국항공우주",
           "accountKey": "KIS_MAIN",
@@ -3141,6 +3893,12 @@
           "accountLabel": "한투 일반"
         },
         {
+          "code": "329180",
+          "name": "HD현대중공업",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
           "code": "449450",
           "name": "PLUS K방산",
           "accountKey": "KIS_MAIN",
@@ -3148,6 +3906,8 @@
         }
       ],
       "related_accounts": [
+        "ISA",
+        "PENSION",
         "KIS_MAIN"
       ],
       "key_thesis": "매크로는 긍정 시각이며 핵심 근거는  1) 23일 장전 SK하이닉스 1분기 실적발표. 영업이익 컨센서스는 이미 36조원까지 상향된 상황. 단기 모멘텀 집중될 전망 2) 테슬라 실적(23일\n 오전) 3) 한국 1분기 GDP(23일 오전, 예상 YoY +2.7%) 4) 미국 S&P글로벌 PMI(23일 밤)\n Appendix",
@@ -3295,6 +4055,39 @@
       "portfolio_impacts_candidate": [
         {
           "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": " 1) 23일 장전 SK하이닉스 1분기 실적발표. 영업이익 컨센서스는 이미 36조원까지 상향된 상황. 단기 모멘텀 집중될 전망 2) 테슬라 실적(23일\n 오전) 3) 한국 1분기 GDP(23일 오전, 예상 YoY +2.7%) 4) 미국 S&P글로벌 PMI(23일 밤)\n Appendix",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "487240",
+          "target_name": "KODEX AI전력핵심설비",
+          "account_key": "PENSION",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": " 1) 23일 장전 SK하이닉스 1분기 실적발표. 영업이익 컨센서스는 이미 36조원까지 상향된 상황. 단기 모멘텀 집중될 전망 2) 테슬라 실적(23일\n 오전) 3) 한국 1분기 GDP(23일 오전, 예상 YoY +2.7%) 4) 미국 S&P글로벌 PMI(23일 밤)\n Appendix",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "360750",
+          "target_name": "TIGER 미국S&P500",
+          "account_key": "PENSION",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": " 1) 23일 장전 SK하이닉스 1분기 실적발표. 영업이익 컨센서스는 이미 36조원까지 상향된 상황. 단기 모멘텀 집중될 전망 2) 테슬라 실적(23일\n 오전) 3) 한국 1분기 GDP(23일 오전, 예상 YoY +2.7%) 4) 미국 S&P글로벌 PMI(23일 밤)\n Appendix",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
           "target_code": "047810",
           "target_name": "한국항공우주",
           "account_key": "KIS_MAIN",
@@ -3406,6 +4199,12 @@
       "text_length": 3900,
       "related_holdings_in_my_portfolio": [
         {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
           "code": "138910",
           "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
@@ -3413,6 +4212,7 @@
         }
       ],
       "related_accounts": [
+        "ISA",
         "KIS_MAIN"
       ],
       "key_thesis": "매크로는 중립 시각이며 핵심 근거는 지난 14일 미국 3월 PPI가 전월대비 0.5% 상승하며 시장 예상치인 1.1%를 하회\n했다. 게다가 트럼프 대통령이 이란과의 종전 협상이 이틀 내에 재개될 수 있다고\n발언한 것까지 가세하자, 시장은 더이상 인플레이션을 걱정하지 않는 듯한 모습을\n보였다(전일대비 달러인덱스 -0.3%,...",
@@ -3554,6 +4354,17 @@
       "portfolio_impacts_candidate": [
         {
           "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "negative",
+          "horizon": "1m",
+          "strength": 0.63,
+          "reason": "지난 14일 미국 3월 PPI가 전월대비 0.5% 상승하며 시장 예상치인 1.1%를 하회\n했다. 게다가 트럼프 대통령이 이란과의 종전 협상이 이틀 내에 재개될 수 있다고\n발언한 것까지 가세하자, 시장은 더이상 인플레이션을 걱정하지 않는 듯한 모습을\n보였다(전일대비 달러인덱스 -0.3%, 미국채 2년 -2.7bp, 미국채 ...",
+          "action_hint": "감축"
+        },
+        {
+          "target_type": "holding",
           "target_code": "138910",
           "target_name": "KODEX 구리선물(H)",
           "account_key": "KIS_MAIN",
@@ -3625,8 +4436,23 @@
       ],
       "text_path": "data/reports/2026-04-23/text/report_017.txt",
       "text_length": 21951,
-      "related_holdings_in_my_portfolio": [],
-      "related_accounts": [],
+      "related_holdings_in_my_portfolio": [
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        }
+      ],
+      "related_accounts": [
+        "PENSION"
+      ],
       "key_thesis": "Daily Bond Morning Brief(2026.04.23)",
       "key_points": [],
       "primary_claim": null,
@@ -3642,26 +4468,26 @@
       "sentiment_score": 0,
       "portfolio_impacts_candidate": [
         {
-          "target_type": "theme",
-          "target_code": null,
-          "target_name": "HBM/메모리",
-          "account_key": null,
+          "target_type": "holding",
+          "target_code": "487240",
+          "target_name": "KODEX AI전력핵심설비",
+          "account_key": "PENSION",
           "direction": "neutral",
           "horizon": "1m",
-          "strength": 0.23,
+          "strength": 0.28,
           "reason": "Daily Bond Morning Brief(2026.04.23)",
-          "action_hint": "주의"
+          "action_hint": "관찰"
         },
         {
-          "target_type": "theme",
-          "target_code": null,
-          "target_name": "AI 인프라",
-          "account_key": null,
+          "target_type": "holding",
+          "target_code": "360750",
+          "target_name": "TIGER 미국S&P500",
+          "account_key": "PENSION",
           "direction": "neutral",
           "horizon": "1m",
-          "strength": 0.23,
+          "strength": 0.28,
           "reason": "Daily Bond Morning Brief(2026.04.23)",
-          "action_hint": "주의"
+          "action_hint": "관찰"
         }
       ],
       "confidence": "MEDIUM",
@@ -3734,6 +4560,30 @@
       "text_length": 24288,
       "related_holdings_in_my_portfolio": [
         {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "007660",
+          "name": "이수페타시스",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
           "code": "047810",
           "name": "한국항공우주",
           "accountKey": "KIS_MAIN",
@@ -3752,6 +4602,12 @@
           "accountLabel": "한투 일반"
         },
         {
+          "code": "329180",
+          "name": "HD현대중공업",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
           "code": "449450",
           "name": "PLUS K방산",
           "accountKey": "KIS_MAIN",
@@ -3759,29 +4615,44 @@
         }
       ],
       "related_accounts": [
+        "ISA",
+        "PENSION",
         "KIS_MAIN"
       ],
-      "key_thesis": "매크로는 중립 시각이며 핵심 근거는 A034020 두산에너빌리티 115,900 0.2 11.2 15.1 26.9 53.9 351.9 529.5\n 기계\n A267260 HD현대일렉트릭 1,090,000 3.0 3.8 19.4 21.9 40.8 262.1 2,037.3",
+      "key_thesis": "매크로는 중립 시각이며 핵심 근거는 A329180 HD현대중공업 641,000 11.3 35.1 27.7 1.6 25.9 76.3 483.3\n 조선\n A009540 HD한국조선해양 463,000 8.3 15.3 26.5 8.1 13.8 100.9 440.9",
       "key_points": [
+        "매크로는 중립 시각이며 핵심 근거는 A329180 HD현대중공업 641,000 11.3 35.1 27.7 1.6 25.9 76.3 483.3\n 조선\n A009540 HD한국조선해양 463,000 8.3 15.3 26.5 8.1 13.8 100.9 440.9",
         "매크로는 중립 시각이며 핵심 근거는 A034020 두산에너빌리티 115,900 0.2 11.2 15.1 26.9 53.9 351.9 529.5\n 기계\n A267260 HD현대일렉트릭 1,090,000 3.0 3.8 19.4 21.9 40.8 262.1 2,037.3",
         "매크로는 중립 시각이며 핵심 근거는 중국 휴전 연장 및 광 네트워크 구축 소식에 상승 마감 투자자별 순매수 대금 (단위 : 억원)\n 24,000\nㆍ 트럼프의 휴전 연장 발표 및 당국 10G급 광 네트워크 구축 소식에 상승\n 12,000\n 국내 휴전 연장 및 실적 기대감에 상승 마감",
-        "매크로는 중립 시각이며 핵심 근거는 A028260 삼성물산 301,000 -1.0 -2.1 9.7 0.7 25.7 159.9 179.2\n 자본재\n A012450 한화에어로스페이스 1,416,000 1.8 -6.2 10.8 7.7 50.5 73.3 1,205.2",
-        "매크로는 중립 시각이며 핵심 근거는 A373220 LG에너지솔루션 484,500 1.4 18.8 36.1 22.8 31.5 45.9 -15.3\n IT가전\n A006400 삼성SDI 659,000 2.2 39.9 75.0 103.4 144.5 271.7 -8.3"
+        "매크로는 중립 시각이며 핵심 근거는 A028260 삼성물산 301,000 -1.0 -2.1 9.7 0.7 25.7 159.9 179.2\n 자본재\n A012450 한화에어로스페이스 1,416,000 1.8 -6.2 10.8 7.7 50.5 73.3 1,205.2"
       ],
       "primary_claim": {
         "entity": "매크로",
         "direction": "neutral",
         "strength": "weak",
         "horizon": "medium",
-        "reason": "A034020 두산에너빌리티 115,900 0.2 11.2 15.1 26.9 53.9 351.9 529.5\n 기계\n A267260 HD현대일렉트릭 1,090,000 3.0 3.8 19.4 21.9 40.8 262.1 2,037.3",
+        "reason": "A329180 HD현대중공업 641,000 11.3 35.1 27.7 1.6 25.9 76.3 483.3\n 조선\n A009540 HD한국조선해양 463,000 8.3 15.3 26.5 8.1 13.8 100.9 440.9",
         "condition": null,
         "counterpoint": null,
-        "source_span": "paragraph_89",
+        "source_span": "paragraph_90",
         "classification": "weak_claim",
         "classification_confidence": 0.48,
-        "summary": "매크로는 중립 시각이며 핵심 근거는 A034020 두산에너빌리티 115,900 0.2 11.2 15.1 26.9 53.9 351.9 529.5\n 기계\n A267260 HD현대일렉트릭 1,090,000 3.0 3.8 19.4 21.9 40.8 262.1 2,037.3"
+        "summary": "매크로는 중립 시각이며 핵심 근거는 A329180 HD현대중공업 641,000 11.3 35.1 27.7 1.6 25.9 76.3 483.3\n 조선\n A009540 HD한국조선해양 463,000 8.3 15.3 26.5 8.1 13.8 100.9 440.9"
       },
       "claim_candidates": [
+        {
+          "entity": "매크로",
+          "direction": "neutral",
+          "strength": "weak",
+          "horizon": "medium",
+          "reason": "A329180 HD현대중공업 641,000 11.3 35.1 27.7 1.6 25.9 76.3 483.3\n 조선\n A009540 HD한국조선해양 463,000 8.3 15.3 26.5 8.1 13.8 100.9 440.9",
+          "condition": null,
+          "counterpoint": null,
+          "source_span": "paragraph_90",
+          "classification": "weak_claim",
+          "classification_confidence": 0.48,
+          "summary": "매크로는 중립 시각이며 핵심 근거는 A329180 HD현대중공업 641,000 11.3 35.1 27.7 1.6 25.9 76.3 483.3\n 조선\n A009540 HD한국조선해양 463,000 8.3 15.3 26.5 8.1 13.8 100.9 440.9"
+        },
         {
           "entity": "매크로",
           "direction": "neutral",
@@ -3820,35 +4691,17 @@
           "classification": "weak_claim",
           "classification_confidence": 0.48,
           "summary": "매크로는 중립 시각이며 핵심 근거는 A028260 삼성물산 301,000 -1.0 -2.1 9.7 0.7 25.7 159.9 179.2\n 자본재\n A012450 한화에어로스페이스 1,416,000 1.8 -6.2 10.8 7.7 50.5 73.3 1,205.2"
-        },
-        {
-          "entity": "매크로",
-          "direction": "neutral",
-          "strength": "weak",
-          "horizon": "medium",
-          "reason": "A373220 LG에너지솔루션 484,500 1.4 18.8 36.1 22.8 31.5 45.9 -15.3\n IT가전\n A006400 삼성SDI 659,000 2.2 39.9 75.0 103.4 144.5 271.7 -8.3",
-          "condition": null,
-          "counterpoint": null,
-          "source_span": "paragraph_85",
-          "classification": "weak_claim",
-          "classification_confidence": 0.48,
-          "summary": "매크로는 중립 시각이며 핵심 근거는 A373220 LG에너지솔루션 484,500 1.4 18.8 36.1 22.8 31.5 45.9 -15.3\n IT가전\n A006400 삼성SDI 659,000 2.2 39.9 75.0 103.4 144.5 271.7 -8.3"
         }
       ],
       "key_numbers": [
         {
           "label": "thesis_anchor",
-          "value": "115,900",
+          "value": "641,000",
           "why_it_matters": "핵심 투자 논리를 직접 뒷받침하는 수치"
         },
         {
           "label": "thesis_anchor",
-          "value": "1,090,000",
-          "why_it_matters": "핵심 투자 논리를 직접 뒷받침하는 수치"
-        },
-        {
-          "label": "thesis_anchor",
-          "value": "2,037.3",
+          "value": "463,000",
           "why_it_matters": "핵심 투자 논리를 직접 뒷받침하는 수치"
         },
         {
@@ -3860,6 +4713,21 @@
           "label": "catalyst_number",
           "value": "12,000",
           "why_it_matters": "변화 촉매의 구체적 근거"
+        },
+        {
+          "label": "supporting",
+          "value": "115,900",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "1,090,000",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "2,037.3",
+          "why_it_matters": "보조 참고 수치"
         },
         {
           "label": "supporting",
@@ -3885,16 +4753,6 @@
           "label": "supporting",
           "value": "659,000",
           "why_it_matters": "보조 참고 수치"
-        },
-        {
-          "label": "supporting",
-          "value": "641,000",
-          "why_it_matters": "보조 참고 수치"
-        },
-        {
-          "label": "supporting",
-          "value": "463,000",
-          "why_it_matters": "보조 참고 수치"
         }
       ],
       "what_changed": [],
@@ -3910,13 +4768,46 @@
       "portfolio_impacts_candidate": [
         {
           "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "A329180 HD현대중공업 641,000 11.3 35.1 27.7 1.6 25.9 76.3 483.3\n 조선\n A009540 HD한국조선해양 463,000 8.3 15.3 26.5 8.1 13.8 100.9 440.9",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "487240",
+          "target_name": "KODEX AI전력핵심설비",
+          "account_key": "PENSION",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "A329180 HD현대중공업 641,000 11.3 35.1 27.7 1.6 25.9 76.3 483.3\n 조선\n A009540 HD한국조선해양 463,000 8.3 15.3 26.5 8.1 13.8 100.9 440.9",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "360750",
+          "target_name": "TIGER 미국S&P500",
+          "account_key": "PENSION",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "A329180 HD현대중공업 641,000 11.3 35.1 27.7 1.6 25.9 76.3 483.3\n 조선\n A009540 HD한국조선해양 463,000 8.3 15.3 26.5 8.1 13.8 100.9 440.9",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
           "target_code": "047810",
           "target_name": "한국항공우주",
           "account_key": "KIS_MAIN",
           "direction": "neutral",
           "horizon": "1m",
           "strength": 0.28,
-          "reason": "A034020 두산에너빌리티 115,900 0.2 11.2 15.1 26.9 53.9 351.9 529.5\n 기계\n A267260 HD현대일렉트릭 1,090,000 3.0 3.8 19.4 21.9 40.8 262.1 2,037.3",
+          "reason": "A329180 HD현대중공업 641,000 11.3 35.1 27.7 1.6 25.9 76.3 483.3\n 조선\n A009540 HD한국조선해양 463,000 8.3 15.3 26.5 8.1 13.8 100.9 440.9",
           "action_hint": "관찰"
         },
         {
@@ -3927,7 +4818,7 @@
           "direction": "neutral",
           "horizon": "1m",
           "strength": 0.28,
-          "reason": "A034020 두산에너빌리티 115,900 0.2 11.2 15.1 26.9 53.9 351.9 529.5\n 기계\n A267260 HD현대일렉트릭 1,090,000 3.0 3.8 19.4 21.9 40.8 262.1 2,037.3",
+          "reason": "A329180 HD현대중공업 641,000 11.3 35.1 27.7 1.6 25.9 76.3 483.3\n 조선\n A009540 HD한국조선해양 463,000 8.3 15.3 26.5 8.1 13.8 100.9 440.9",
           "action_hint": "관찰"
         },
         {
@@ -3938,7 +4829,18 @@
           "direction": "neutral",
           "horizon": "1m",
           "strength": 0.28,
-          "reason": "A034020 두산에너빌리티 115,900 0.2 11.2 15.1 26.9 53.9 351.9 529.5\n 기계\n A267260 HD현대일렉트릭 1,090,000 3.0 3.8 19.4 21.9 40.8 262.1 2,037.3",
+          "reason": "A329180 HD현대중공업 641,000 11.3 35.1 27.7 1.6 25.9 76.3 483.3\n 조선\n A009540 HD한국조선해양 463,000 8.3 15.3 26.5 8.1 13.8 100.9 440.9",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "329180",
+          "target_name": "HD현대중공업",
+          "account_key": "KIS_MAIN",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "A329180 HD현대중공업 641,000 11.3 35.1 27.7 1.6 25.9 76.3 483.3\n 조선\n A009540 HD한국조선해양 463,000 8.3 15.3 26.5 8.1 13.8 100.9 440.9",
           "action_hint": "관찰"
         },
         {
@@ -3949,7 +4851,7 @@
           "direction": "neutral",
           "horizon": "1m",
           "strength": 0.28,
-          "reason": "A034020 두산에너빌리티 115,900 0.2 11.2 15.1 26.9 53.9 351.9 529.5\n 기계\n A267260 HD현대일렉트릭 1,090,000 3.0 3.8 19.4 21.9 40.8 262.1 2,037.3",
+          "reason": "A329180 HD현대중공업 641,000 11.3 35.1 27.7 1.6 25.9 76.3 483.3\n 조선\n A009540 HD한국조선해양 463,000 8.3 15.3 26.5 8.1 13.8 100.9 440.9",
           "action_hint": "관찰"
         }
       ],
@@ -3961,6 +4863,11 @@
         "totalClaims": 4
       },
       "evidence_notes": [
+        {
+          "score": 18,
+          "classification": "weak_claim",
+          "excerpt": "A329180 HD현대중공업 641,000 11.3 35.1 27.7 1.6 25.9 76.3 483.3\n 조선\n A009540 HD한국조선해양 463,000 8.3 15.3 26.5 8.1 13.8 100.9 440.9"
+        },
         {
           "score": 12,
           "classification": "weak_claim",
@@ -3980,11 +4887,6 @@
           "score": 4,
           "classification": "weak_claim",
           "excerpt": "A373220 LG에너지솔루션 484,500 1.4 18.8 36.1 22.8 31.5 45.9 -15.3\n IT가전\n A006400 삼성SDI 659,000 2.2 39.9 75.0 103.4 144.5 271.7 -8.3"
-        },
-        {
-          "score": 4,
-          "classification": "weak_claim",
-          "excerpt": "A329180 HD현대중공업 641,000 11.3 35.1 27.7 1.6 25.9 76.3 483.3\n 조선\n A009540 HD한국조선해양 463,000 8.3 15.3 26.5 8.1 13.8 100.9 440.9"
         },
         {
           "score": -40,
@@ -4023,6 +4925,24 @@
       "text_length": 6768,
       "related_holdings_in_my_portfolio": [
         {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
           "code": "138910",
           "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
@@ -4036,6 +4956,8 @@
         }
       ],
       "related_accounts": [
+        "ISA",
+        "PENSION",
         "KIS_MAIN"
       ],
       "key_thesis": "SK증권 Global Carbon Market Daily_260423",
@@ -4052,6 +4974,39 @@
       "thesis_novelty": "LOW",
       "sentiment_score": 0,
       "portfolio_impacts_candidate": [
+        {
+          "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "SK증권 Global Carbon Market Daily_260423",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "487240",
+          "target_name": "KODEX AI전력핵심설비",
+          "account_key": "PENSION",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "SK증권 Global Carbon Market Daily_260423",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "360750",
+          "target_name": "TIGER 미국S&P500",
+          "account_key": "PENSION",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "SK증권 Global Carbon Market Daily_260423",
+          "action_hint": "관찰"
+        },
         {
           "target_type": "holding",
           "target_code": "138910",
@@ -4144,6 +5099,36 @@
       "text_length": 12680,
       "related_holdings_in_my_portfolio": [
         {
+          "code": "069500",
+          "name": "KODEX 200",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "007660",
+          "name": "이수페타시스",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
           "code": "064350",
           "name": "현대로템",
           "accountKey": "KIS_MAIN",
@@ -4154,9 +5139,17 @@
           "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
+        },
+        {
+          "code": "329180",
+          "name": "HD현대중공업",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
+        "PENSION",
+        "ISA",
         "KIS_MAIN"
       ],
       "key_thesis": "매크로는 부정 시각이며 핵심 근거는 ▶ 아시아 증시 독일(DAX) 24,194.90 -0.31 +0.53 +8.11 900\n 4,000\n 닛케이지수는 전장대비 236.69pt(+0.40%) 상승한 59,585.86pt에 마감. 지수 일본(NIKKEI225) 59,585.86 +0.40 +2.50 +15.67 800\n 는 ...",
@@ -4277,6 +5270,39 @@
       "thesis_novelty": "LOW",
       "sentiment_score": -0.25,
       "portfolio_impacts_candidate": [
+        {
+          "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "negative",
+          "horizon": "1m",
+          "strength": 0.37,
+          "reason": "▶ 아시아 증시 독일(DAX) 24,194.90 -0.31 +0.53 +8.11 900\n 4,000\n 닛케이지수는 전장대비 236.69pt(+0.40%) 상승한 59,585.86pt에 마감. 지수 일본(NIKKEI225) 59,585.86 +0.40 +2.50 +15.67 800\n 는 장 초반 하락 출발했으나, AI 및 ...",
+          "action_hint": "감축"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "487240",
+          "target_name": "KODEX AI전력핵심설비",
+          "account_key": "PENSION",
+          "direction": "negative",
+          "horizon": "1m",
+          "strength": 0.37,
+          "reason": "▶ 아시아 증시 독일(DAX) 24,194.90 -0.31 +0.53 +8.11 900\n 4,000\n 닛케이지수는 전장대비 236.69pt(+0.40%) 상승한 59,585.86pt에 마감. 지수 일본(NIKKEI225) 59,585.86 +0.40 +2.50 +15.67 800\n 는 장 초반 하락 출발했으나, AI 및 ...",
+          "action_hint": "감축"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "360750",
+          "target_name": "TIGER 미국S&P500",
+          "account_key": "PENSION",
+          "direction": "negative",
+          "horizon": "1m",
+          "strength": 0.37,
+          "reason": "▶ 아시아 증시 독일(DAX) 24,194.90 -0.31 +0.53 +8.11 900\n 4,000\n 닛케이지수는 전장대비 236.69pt(+0.40%) 상승한 59,585.86pt에 마감. 지수 일본(NIKKEI225) 59,585.86 +0.40 +2.50 +15.67 800\n 는 장 초반 하락 출발했으나, AI 및 ...",
+          "action_hint": "감축"
+        },
         {
           "target_type": "holding",
           "target_code": "138910",
@@ -5965,8 +6991,17 @@
       ],
       "text_path": "data/reports/2026-04-23/text/report_030.txt",
       "text_length": 32069,
-      "related_holdings_in_my_portfolio": [],
-      "related_accounts": [],
+      "related_holdings_in_my_portfolio": [
+        {
+          "code": "329180",
+          "name": "HD현대중공업",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        }
+      ],
+      "related_accounts": [
+        "KIS_MAIN"
+      ],
       "key_thesis": "HD현대마린솔루션는 중립 시각이며 핵심 근거는 여지분 5%에 대한 마지막 블록딜 발생은 오버행 발현이 아닌 상존 리스크의 해소. 중장기\n증익에 대한 가시성이 매우 높은 종목임에도 리레이팅 Catalyst의 발현이 어려웠으나, 금번\n현중의 데이터센터향 엔진 수주를 통해 중장기 이익 예상치에 큰 변화를 줄 수 있는 +α가\n발생. “좋은...",
       "key_points": [
         "HD현대마린솔루션는 중립 시각이며 핵심 근거는 여지분 5%에 대한 마지막 블록딜 발생은 오버행 발현이 아닌 상존 리스크의 해소. 중장기\n증익에 대한 가시성이 매우 높은 종목임에도 리레이팅 Catalyst의 발현이 어려웠으나, 금번\n현중의 데이터센터향 엔진 수주를 통해 중장기 이익 예상치에 큰 변화를 줄 수 있는 +α가\n발생. “좋은...",
@@ -7689,6 +8724,24 @@
       "text_length": 9872,
       "related_holdings_in_my_portfolio": [
         {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
           "code": "138910",
           "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
@@ -7696,6 +8749,8 @@
         }
       ],
       "related_accounts": [
+        "ISA",
+        "PENSION",
         "KIS_MAIN"
       ],
       "key_thesis": "매크로는 부정 시각이며 핵심 근거는 1분기 GDP 1.7% 서프라이즈. 지정학적 우려를 압도한 실물 경제의 체력, 그리고 남겨진 숙제\n한국은행이 발표한 26년 1분기 실질 GDP 성장률(속보치)은 전분기 대비 +1.7%로 시장 기대치를 크게 상회했다. 이는 단순한 분기\n변동성을 넘어, 기존에 한은이 4월 금통위를 통해 강...",
@@ -7828,6 +8883,39 @@
       "portfolio_impacts_candidate": [
         {
           "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "negative",
+          "horizon": "3m",
+          "strength": 0.63,
+          "reason": "1분기 GDP 1.7% 서프라이즈. 지정학적 우려를 압도한 실물 경제의 체력, 그리고 남겨진 숙제\n한국은행이 발표한 26년 1분기 실질 GDP 성장률(속보치)은 전분기 대비 +1.7%로 시장 기대치를 크게 상회했다. 이는 단순한 분기\n변동성을 넘어, 기존에 한은이 4월 금통위를 통해 강조했던 중동의 지정학 리스크에 따른 ...",
+          "action_hint": "감축"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "487240",
+          "target_name": "KODEX AI전력핵심설비",
+          "account_key": "PENSION",
+          "direction": "negative",
+          "horizon": "3m",
+          "strength": 0.63,
+          "reason": "1분기 GDP 1.7% 서프라이즈. 지정학적 우려를 압도한 실물 경제의 체력, 그리고 남겨진 숙제\n한국은행이 발표한 26년 1분기 실질 GDP 성장률(속보치)은 전분기 대비 +1.7%로 시장 기대치를 크게 상회했다. 이는 단순한 분기\n변동성을 넘어, 기존에 한은이 4월 금통위를 통해 강조했던 중동의 지정학 리스크에 따른 ...",
+          "action_hint": "감축"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "360750",
+          "target_name": "TIGER 미국S&P500",
+          "account_key": "PENSION",
+          "direction": "negative",
+          "horizon": "3m",
+          "strength": 0.63,
+          "reason": "1분기 GDP 1.7% 서프라이즈. 지정학적 우려를 압도한 실물 경제의 체력, 그리고 남겨진 숙제\n한국은행이 발표한 26년 1분기 실질 GDP 성장률(속보치)은 전분기 대비 +1.7%로 시장 기대치를 크게 상회했다. 이는 단순한 분기\n변동성을 넘어, 기존에 한은이 4월 금통위를 통해 강조했던 중동의 지정학 리스크에 따른 ...",
+          "action_hint": "감축"
+        },
+        {
+          "target_type": "holding",
           "target_code": "138910",
           "target_name": "KODEX 구리선물(H)",
           "account_key": "KIS_MAIN",
@@ -7906,6 +8994,12 @@
       "text_length": 12792,
       "related_holdings_in_my_portfolio": [
         {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
           "code": "138910",
           "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
@@ -7913,6 +9007,7 @@
         }
       ],
       "related_accounts": [
+        "ISA",
         "KIS_MAIN"
       ],
       "key_thesis": "매크로는 중립 시각이며 핵심 근거는 요약하면 정기적인 수입 증가율은 완만해지고 레버리지 여력은 제한적이나 이미 쌓아 올린\n부(wealth)가 커 웬만한 충격을 다 흡수하고 있는 셈이다. 기본적으로 (실질) 소비가 완만한\n둔화에 그치는 시나리오를 예상한다. 이 경우 연준의 인하도 1, 2회에 그치고 10년 금리는\n4% 초반... / 조건: 경우 연준의 인하도 1, 2회에 그치고 10년 금리는",
@@ -8028,6 +9123,17 @@
       "portfolio_impacts_candidate": [
         {
           "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "negative",
+          "horizon": "3m",
+          "strength": 0.46,
+          "reason": "요약하면 정기적인 수입 증가율은 완만해지고 레버리지 여력은 제한적이나 이미 쌓아 올린\n부(wealth)가 커 웬만한 충격을 다 흡수하고 있는 셈이다. 기본적으로 (실질) 소비가 완만한\n둔화에 그치는 시나리오를 예상한다. 이 경우 연준의 인하도 1, 2회에 그치고 10년 금리는\n4% 초반에서 바닥을 다질 가능성이 높다.",
+          "action_hint": "감축"
+        },
+        {
+          "target_type": "holding",
           "target_code": "138910",
           "target_name": "KODEX 구리선물(H)",
           "account_key": "KIS_MAIN",
@@ -8103,8 +9209,23 @@
       ],
       "text_path": "data/reports/2026-04-23/text/report_042.txt",
       "text_length": 14806,
-      "related_holdings_in_my_portfolio": [],
-      "related_accounts": [],
+      "related_holdings_in_my_portfolio": [
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        }
+      ],
+      "related_accounts": [
+        "PENSION"
+      ],
       "key_thesis": "Daily Bond Morning Brief(2026.04.23)",
       "key_points": [],
       "primary_claim": null,
@@ -8120,15 +9241,26 @@
       "sentiment_score": 0,
       "portfolio_impacts_candidate": [
         {
-          "target_type": "theme",
-          "target_code": null,
-          "target_name": "AI 인프라",
-          "account_key": null,
+          "target_type": "holding",
+          "target_code": "487240",
+          "target_name": "KODEX AI전력핵심설비",
+          "account_key": "PENSION",
           "direction": "neutral",
           "horizon": "3m",
-          "strength": 0.23,
+          "strength": 0.28,
           "reason": "Daily Bond Morning Brief(2026.04.23)",
-          "action_hint": "주의"
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "360750",
+          "target_name": "TIGER 미국S&P500",
+          "account_key": "PENSION",
+          "direction": "neutral",
+          "horizon": "3m",
+          "strength": 0.28,
+          "reason": "Daily Bond Morning Brief(2026.04.23)",
+          "action_hint": "관찰"
         }
       ],
       "confidence": "MEDIUM",
@@ -8179,6 +9311,12 @@
       "text_length": 10647,
       "related_holdings_in_my_portfolio": [
         {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
           "code": "138910",
           "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
@@ -8186,6 +9324,7 @@
         }
       ],
       "related_accounts": [
+        "ISA",
         "KIS_MAIN"
       ],
       "key_thesis": "Eugenes FICC Update",
@@ -8205,6 +9344,17 @@
       "thesis_novelty": "LOW",
       "sentiment_score": 0,
       "portfolio_impacts_candidate": [
+        {
+          "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "Eugenes FICC Update",
+          "action_hint": "관찰"
+        },
         {
           "target_type": "holding",
           "target_code": "138910",
@@ -8285,6 +9435,12 @@
       "text_length": 18558,
       "related_holdings_in_my_portfolio": [
         {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
           "code": "138910",
           "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
@@ -8292,6 +9448,7 @@
         }
       ],
       "related_accounts": [
+        "ISA",
         "KIS_MAIN"
       ],
       "key_thesis": "매크로는 긍정 시각이며 핵심 근거는 올해 초 글로벌 신평사들의 평가를 돌이켜 보면, Moody’s는 고령화, 정부부채 증가,\n 지정학적 위험을 구조적 제약 요인으로 제시했고, Fitch 역시 정부부채 증가세 가운데\n 재정 투입이 잠재성장률 개선으로 이어지지 않으면 국가신용에 부담이 될 수 있다고\n 언급한 바 있다. IMF...",
@@ -8409,6 +9566,17 @@
       "portfolio_impacts_candidate": [
         {
           "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.37,
+          "reason": "올해 초 글로벌 신평사들의 평가를 돌이켜 보면, Moody’s는 고령화, 정부부채 증가,\n 지정학적 위험을 구조적 제약 요인으로 제시했고, Fitch 역시 정부부채 증가세 가운데\n 재정 투입이 잠재성장률 개선으로 이어지지 않으면 국가신용에 부담이 될 수 있다고\n 언급한 바 있다. IMF 역시 한국 재정 경로를 연간 예산과...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
           "target_code": "138910",
           "target_name": "KODEX 구리선물(H)",
           "account_key": "KIS_MAIN",
@@ -8487,6 +9655,12 @@
       "text_length": 18076,
       "related_holdings_in_my_portfolio": [
         {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
           "code": "138910",
           "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
@@ -8494,6 +9668,7 @@
         }
       ],
       "related_accounts": [
+        "ISA",
         "KIS_MAIN"
       ],
       "key_thesis": "매크로는 부정 시각이며 핵심 근거는 한편 올해 국채 순발행 규모가 약 115 조원 수준으로 예상되는 가운데, WGBI 편입발 외국인 자금 유입\n 규모가 70~80 조원에 달할 것으로 전망된다는 점은 수급 측면에서 긍정적인 요인이다. 특히 보험사 등 국내\n 장기 투자자의 매수세가 제한적인 상황에서 외국인 자금은 공급 부담을...",
@@ -8618,6 +9793,17 @@
       "portfolio_impacts_candidate": [
         {
           "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "negative",
+          "horizon": "3m",
+          "strength": 0.63,
+          "reason": "한편 올해 국채 순발행 규모가 약 115 조원 수준으로 예상되는 가운데, WGBI 편입발 외국인 자금 유입\n 규모가 70~80 조원에 달할 것으로 전망된다는 점은 수급 측면에서 긍정적인 요인이다. 특히 보험사 등 국내\n 장기 투자자의 매수세가 제한적인 상황에서 외국인 자금은 공급 부담을 완화시키는 역할을 수행할 수 있다....",
+          "action_hint": "감축"
+        },
+        {
+          "target_type": "holding",
           "target_code": "138910",
           "target_name": "KODEX 구리선물(H)",
           "account_key": "KIS_MAIN",
@@ -8697,6 +9883,24 @@
       "text_length": 9862,
       "related_holdings_in_my_portfolio": [
         {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
           "code": "138910",
           "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
@@ -8704,6 +9908,8 @@
         }
       ],
       "related_accounts": [
+        "ISA",
+        "PENSION",
         "KIS_MAIN"
       ],
       "key_thesis": "매크로는 긍정 시각이며 핵심 근거는 해당 절차가 진행될 경우 가장 직접적인 수혜는 커브 스티프닝 포지션에서 나온다. 장기채\n 수요가 단기채로 전환되는 구조적 흐름 속에서, 장단기 금리차 확대가 구조적으로 진행된다.\n 금융주에도 유리한 환경이 조성된다. 단기 조달·장기 운용의 만기 변환 구조상, 스프레드\n 확대는 NIM 개... / 조건: 경우 가장 직접적인 수혜는 커브 스티프닝 포지션에서 나...",
@@ -8860,6 +10066,39 @@
       "portfolio_impacts_candidate": [
         {
           "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.46,
+          "reason": "해당 절차가 진행될 경우 가장 직접적인 수혜는 커브 스티프닝 포지션에서 나온다. 장기채\n 수요가 단기채로 전환되는 구조적 흐름 속에서, 장단기 금리차 확대가 구조적으로 진행된다.\n 금융주에도 유리한 환경이 조성된다. 단기 조달·장기 운용의 만기 변환 구조상, 스프레드\n 확대는 NIM 개선으로 직결되기 때문이다. 재무부 입...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "487240",
+          "target_name": "KODEX AI전력핵심설비",
+          "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.46,
+          "reason": "해당 절차가 진행될 경우 가장 직접적인 수혜는 커브 스티프닝 포지션에서 나온다. 장기채\n 수요가 단기채로 전환되는 구조적 흐름 속에서, 장단기 금리차 확대가 구조적으로 진행된다.\n 금융주에도 유리한 환경이 조성된다. 단기 조달·장기 운용의 만기 변환 구조상, 스프레드\n 확대는 NIM 개선으로 직결되기 때문이다. 재무부 입...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "360750",
+          "target_name": "TIGER 미국S&P500",
+          "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.46,
+          "reason": "해당 절차가 진행될 경우 가장 직접적인 수혜는 커브 스티프닝 포지션에서 나온다. 장기채\n 수요가 단기채로 전환되는 구조적 흐름 속에서, 장단기 금리차 확대가 구조적으로 진행된다.\n 금융주에도 유리한 환경이 조성된다. 단기 조달·장기 운용의 만기 변환 구조상, 스프레드\n 확대는 NIM 개선으로 직결되기 때문이다. 재무부 입...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
           "target_code": "138910",
           "target_name": "KODEX 구리선물(H)",
           "account_key": "KIS_MAIN",
@@ -8941,6 +10180,30 @@
       "text_length": 91384,
       "related_holdings_in_my_portfolio": [
         {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "007660",
+          "name": "이수페타시스",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
           "code": "047810",
           "name": "한국항공우주",
           "accountKey": "KIS_MAIN",
@@ -8959,6 +10222,12 @@
           "accountLabel": "한투 일반"
         },
         {
+          "code": "329180",
+          "name": "HD현대중공업",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
           "code": "449450",
           "name": "PLUS K방산",
           "accountKey": "KIS_MAIN",
@@ -8966,6 +10235,8 @@
         }
       ],
       "related_accounts": [
+        "ISA",
+        "PENSION",
         "KIS_MAIN"
       ],
       "key_thesis": "매크로는 긍정 시각이며 핵심 근거는 '진짜모멘텀'은 컨센서스의 비교가 아닌, 내년에 가장 비관적으로 바라보는 개별 예상치\n 값이 올해 가장 낙관적으로 전망하는 개별 예상치보다 높은 종목. 모멘텀을 가장 보수\n 적으로 볼 수 있는 방법. 2027년 기준, 진짜모멘텀 보유 종목 상위에 LG화학, LG생활\n 건강, 한화시스템,...",
@@ -9135,6 +10406,39 @@
       "portfolio_impacts_candidate": [
         {
           "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.37,
+          "reason": "'진짜모멘텀'은 컨센서스의 비교가 아닌, 내년에 가장 비관적으로 바라보는 개별 예상치\n 값이 올해 가장 낙관적으로 전망하는 개별 예상치보다 높은 종목. 모멘텀을 가장 보수\n 적으로 볼 수 있는 방법. 2027년 기준, 진짜모멘텀 보유 종목 상위에 LG화학, LG생활\n 건강, 한화시스템, HD현대마린솔루션, 한세실업, 효성...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "487240",
+          "target_name": "KODEX AI전력핵심설비",
+          "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.37,
+          "reason": "'진짜모멘텀'은 컨센서스의 비교가 아닌, 내년에 가장 비관적으로 바라보는 개별 예상치\n 값이 올해 가장 낙관적으로 전망하는 개별 예상치보다 높은 종목. 모멘텀을 가장 보수\n 적으로 볼 수 있는 방법. 2027년 기준, 진짜모멘텀 보유 종목 상위에 LG화학, LG생활\n 건강, 한화시스템, HD현대마린솔루션, 한세실업, 효성...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "360750",
+          "target_name": "TIGER 미국S&P500",
+          "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.37,
+          "reason": "'진짜모멘텀'은 컨센서스의 비교가 아닌, 내년에 가장 비관적으로 바라보는 개별 예상치\n 값이 올해 가장 낙관적으로 전망하는 개별 예상치보다 높은 종목. 모멘텀을 가장 보수\n 적으로 볼 수 있는 방법. 2027년 기준, 진짜모멘텀 보유 종목 상위에 LG화학, LG생활\n 건강, 한화시스템, HD현대마린솔루션, 한세실업, 효성...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
           "target_code": "047810",
           "target_name": "한국항공우주",
           "account_key": "KIS_MAIN",
@@ -9245,13 +10549,33 @@
       "text_length": 11591,
       "related_holdings_in_my_portfolio": [
         {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
           "code": "138910",
           "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "329180",
+          "name": "HD현대중공업",
           "accountKey": "KIS_MAIN",
           "accountLabel": "한투 일반"
         }
       ],
       "related_accounts": [
+        "ISA",
+        "PENSION",
         "KIS_MAIN"
       ],
       "key_thesis": "반도체는 긍정 시각이며 핵심 근거는 자산배분/ETF 규제 완화로 ETF 시장 추가 확장 기대\n김인식 국내 ETF 시장은 이번 제도 개편을 통해 상품 구조 측면에서 한 단계 확장되었다.\n02 6915 5472 금융당국은 국내-해외상장 ETF 간 비대칭 규제 해소를 목적으로 단일종목 레버리지\nKds4539@ibks.com ·...",
@@ -9338,6 +10662,28 @@
       "portfolio_impacts_candidate": [
         {
           "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.54,
+          "reason": "자산배분/ETF 규제 완화로 ETF 시장 추가 확장 기대\n김인식 국내 ETF 시장은 이번 제도 개편을 통해 상품 구조 측면에서 한 단계 확장되었다.\n02 6915 5472 금융당국은 국내-해외상장 ETF 간 비대칭 규제 해소를 목적으로 단일종목 레버리지\nKds4539@ibks.com ·인버스 ETF 도입을 허용한 가운데 ...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "360750",
+          "target_name": "TIGER 미국S&P500",
+          "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.54,
+          "reason": "자산배분/ETF 규제 완화로 ETF 시장 추가 확장 기대\n김인식 국내 ETF 시장은 이번 제도 개편을 통해 상품 구조 측면에서 한 단계 확장되었다.\n02 6915 5472 금융당국은 국내-해외상장 ETF 간 비대칭 규제 해소를 목적으로 단일종목 레버리지\nKds4539@ibks.com ·인버스 ETF 도입을 허용한 가운데 ...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
           "target_code": "138910",
           "target_name": "KODEX 구리선물(H)",
           "account_key": "KIS_MAIN",
@@ -9420,6 +10766,36 @@
       "text_length": 14938,
       "related_holdings_in_my_portfolio": [
         {
+          "code": "069500",
+          "name": "KODEX 200",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "007660",
+          "name": "이수페타시스",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
           "code": "047810",
           "name": "한국항공우주",
           "accountKey": "KIS_MAIN",
@@ -9438,6 +10814,12 @@
           "accountLabel": "한투 일반"
         },
         {
+          "code": "329180",
+          "name": "HD현대중공업",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
           "code": "449450",
           "name": "PLUS K방산",
           "accountKey": "KIS_MAIN",
@@ -9445,6 +10827,8 @@
         }
       ],
       "related_accounts": [
+        "PENSION",
+        "ISA",
         "KIS_MAIN"
       ],
       "key_thesis": "매크로는 부정 시각이며 핵심 근거는 ▶ 중국증시 ▶ 유럽증시\n- 정부의 강력한 시장 부양 의지에 상승. 중국 인민은행이 시장의 예상보다 강력 - 에너지 가격 상승에 따른 우려에 하락. 휴전 연장이라는 소식은 있었지만 유\n한 유동성 지원 방안을 발표하며 투자심리는 안정화. 유가가 급등세를 보이자 에 럽은 에너지 가격 상승에...",
@@ -9508,6 +10892,39 @@
       "thesis_novelty": "LOW",
       "sentiment_score": -0.75,
       "portfolio_impacts_candidate": [
+        {
+          "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "negative",
+          "horizon": "1m",
+          "strength": 0.54,
+          "reason": "▶ 중국증시 ▶ 유럽증시\n- 정부의 강력한 시장 부양 의지에 상승. 중국 인민은행이 시장의 예상보다 강력 - 에너지 가격 상승에 따른 우려에 하락. 휴전 연장이라는 소식은 있었지만 유\n한 유동성 지원 방안을 발표하며 투자심리는 안정화. 유가가 급등세를 보이자 에 럽은 에너지 가격 상승에 따른 실물 경제 타격과 공급망 리스...",
+          "action_hint": "감축"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "487240",
+          "target_name": "KODEX AI전력핵심설비",
+          "account_key": "PENSION",
+          "direction": "negative",
+          "horizon": "1m",
+          "strength": 0.54,
+          "reason": "▶ 중국증시 ▶ 유럽증시\n- 정부의 강력한 시장 부양 의지에 상승. 중국 인민은행이 시장의 예상보다 강력 - 에너지 가격 상승에 따른 우려에 하락. 휴전 연장이라는 소식은 있었지만 유\n한 유동성 지원 방안을 발표하며 투자심리는 안정화. 유가가 급등세를 보이자 에 럽은 에너지 가격 상승에 따른 실물 경제 타격과 공급망 리스...",
+          "action_hint": "감축"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "360750",
+          "target_name": "TIGER 미국S&P500",
+          "account_key": "PENSION",
+          "direction": "negative",
+          "horizon": "1m",
+          "strength": 0.54,
+          "reason": "▶ 중국증시 ▶ 유럽증시\n- 정부의 강력한 시장 부양 의지에 상승. 중국 인민은행이 시장의 예상보다 강력 - 에너지 가격 상승에 따른 우려에 하락. 휴전 연장이라는 소식은 있었지만 유\n한 유동성 지원 방안을 발표하며 투자심리는 안정화. 유가가 급등세를 보이자 에 럽은 에너지 가격 상승에 따른 실물 경제 타격과 공급망 리스...",
+          "action_hint": "감축"
+        },
         {
           "target_type": "holding",
           "target_code": "047810",
@@ -9602,6 +11019,24 @@
       "text_length": 29648,
       "related_holdings_in_my_portfolio": [
         {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
           "code": "138910",
           "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
@@ -9609,6 +11044,8 @@
         }
       ],
       "related_accounts": [
+        "ISA",
+        "PENSION",
         "KIS_MAIN"
       ],
       "key_thesis": "매크로는 중립 시각이며 핵심 근거는 [2]\n KIWOOM FICC DAILY\nCRB vs. S&P GSCI CRB vs. 달러인덱스 CRB vs. 미국 BEI(10년)\n CRB Index(좌) CRB Index(좌) CRB Index(좌)\n (pt) (pt) (pt) (pt) (pt) (%)\n S&P GSCI(우) 달러인...",
@@ -9699,6 +11136,39 @@
       "portfolio_impacts_candidate": [
         {
           "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "[2]\n KIWOOM FICC DAILY\nCRB vs. S&P GSCI CRB vs. 달러인덱스 CRB vs. 미국 BEI(10년)\n CRB Index(좌) CRB Index(좌) CRB Index(좌)\n (pt) (pt) (pt) (pt) (pt) (%)\n S&P GSCI(우) 달러인덱스(우) 400 미국 BEI(우) ...",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "487240",
+          "target_name": "KODEX AI전력핵심설비",
+          "account_key": "PENSION",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "[2]\n KIWOOM FICC DAILY\nCRB vs. S&P GSCI CRB vs. 달러인덱스 CRB vs. 미국 BEI(10년)\n CRB Index(좌) CRB Index(좌) CRB Index(좌)\n (pt) (pt) (pt) (pt) (pt) (%)\n S&P GSCI(우) 달러인덱스(우) 400 미국 BEI(우) ...",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "360750",
+          "target_name": "TIGER 미국S&P500",
+          "account_key": "PENSION",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "[2]\n KIWOOM FICC DAILY\nCRB vs. S&P GSCI CRB vs. 달러인덱스 CRB vs. 미국 BEI(10년)\n CRB Index(좌) CRB Index(좌) CRB Index(좌)\n (pt) (pt) (pt) (pt) (pt) (%)\n S&P GSCI(우) 달러인덱스(우) 400 미국 BEI(우) ...",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
           "target_code": "138910",
           "target_name": "KODEX 구리선물(H)",
           "account_key": "KIS_MAIN",
@@ -9780,6 +11250,24 @@
       "text_length": 10326,
       "related_holdings_in_my_portfolio": [
         {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
           "code": "047810",
           "name": "한국항공우주",
           "accountKey": "KIS_MAIN",
@@ -9798,6 +11286,12 @@
           "accountLabel": "한투 일반"
         },
         {
+          "code": "329180",
+          "name": "HD현대중공업",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
           "code": "449450",
           "name": "PLUS K방산",
           "accountKey": "KIS_MAIN",
@@ -9805,42 +11299,31 @@
         }
       ],
       "related_accounts": [
+        "ISA",
+        "PENSION",
         "KIS_MAIN"
       ],
-      "key_thesis": "매크로는 긍정 시각이며 핵심 근거는 한편, AI, 테크 관련 기업의 실적 발표가 금주부터 본격화되는 가운데 AI 모멘텀에 기반한 기업 호실적이 최근\n 미 증시 랠리의 정당성을 부여. 가령, 이 날 AI 인프라 핵심 기업인 GE버노바(+13.7%)는 전년 대비 수주액이\n 71% 급등하는 등 데이터전력 수요 폭발에 1분기 어...",
+      "key_thesis": "매크로는 긍정 시각이며 핵심 근거는 실적 시즌에 대한 기대감 높아지고 있는 가운데 금일 SK하이닉스(반도체), 현대차(자동차), KB금융, 신한지주,\n 하나금융지주(은행), HD현대중공업(조선) 등 국내 주도 업종을 담당하는 대표주들의 실적 발표가 예정. 특히, 앞\n 서 삼성전자의 1분기 잠정실적이 시장 예상치를 대폭 상...",
       "key_points": [
-        "매크로는 긍정 시각이며 핵심 근거는 한편, AI, 테크 관련 기업의 실적 발표가 금주부터 본격화되는 가운데 AI 모멘텀에 기반한 기업 호실적이 최근\n 미 증시 랠리의 정당성을 부여. 가령, 이 날 AI 인프라 핵심 기업인 GE버노바(+13.7%)는 전년 대비 수주액이\n 71% 급등하는 등 데이터전력 수요 폭발에 1분기 어...",
         "매크로는 긍정 시각이며 핵심 근거는 실적 시즌에 대한 기대감 높아지고 있는 가운데 금일 SK하이닉스(반도체), 현대차(자동차), KB금융, 신한지주,\n 하나금융지주(은행), HD현대중공업(조선) 등 국내 주도 업종을 담당하는 대표주들의 실적 발표가 예정. 특히, 앞\n 서 삼성전자의 1분기 잠정실적이 시장 예상치를 대폭 상...",
+        "매크로는 긍정 시각이며 핵심 근거는 한편, AI, 테크 관련 기업의 실적 발표가 금주부터 본격화되는 가운데 AI 모멘텀에 기반한 기업 호실적이 최근\n 미 증시 랠리의 정당성을 부여. 가령, 이 날 AI 인프라 핵심 기업인 GE버노바(+13.7%)는 전년 대비 수주액이\n 71% 급등하는 등 데이터전력 수요 폭발에 1분기 어...",
         "매크로는 중립 시각이며 핵심 근거는 미 증시, 트럼프 휴전 연장, 기술주 호실적 기대감에 상승 마감\n 증시 코멘트 및 대응 전략\n 22일(수) 미 증시는 미-이란 2차 협상 난항에도 트럼프 대통령의 휴전 연장 발언, GE버노바(+13.7%) 등 주요\n 기업 호실적, 견조한 AI 수요 속 M7 및 주요 반도체주 실적 시즌 ...",
         "매크로는 중립 시각이며 핵심 근거는 금일 국내 증시도 전일 미 증시에서 M7 및 주요 반도체(필라델피아 반도체지수 +2.7%) 기업 동반 상승이 훈풍\n 으로 작용하는 가운데 반도체, 자동차, 은행, 조선 등 주요 기업 실적 발표를 주시하며 상승 경로 이어갈 전망"
       ],
       "primary_claim": {
         "entity": "매크로",
         "direction": "positive",
-        "strength": "strong",
+        "strength": "medium",
         "horizon": "medium",
-        "reason": "한편, AI, 테크 관련 기업의 실적 발표가 금주부터 본격화되는 가운데 AI 모멘텀에 기반한 기업 호실적이 최근\n 미 증시 랠리의 정당성을 부여. 가령, 이 날 AI 인프라 핵심 기업인 GE버노바(+13.7%)는 전년 대비 수주액이\n 71% 급등하는 등 데이터전력 수요 폭발에 1분기 어...",
+        "reason": "실적 시즌에 대한 기대감 높아지고 있는 가운데 금일 SK하이닉스(반도체), 현대차(자동차), KB금융, 신한지주,\n 하나금융지주(은행), HD현대중공업(조선) 등 국내 주도 업종을 담당하는 대표주들의 실적 발표가 예정. 특히, 앞\n 서 삼성전자의 1분기 잠정실적이 시장 예상치를 대폭 상...",
         "condition": null,
         "counterpoint": "다만, 현재 국내 증시의 양호한 유동성 여건이 이를 상쇄해줄 것으로 판단.",
-        "source_span": "paragraph_4",
+        "source_span": "paragraph_7",
         "classification": "investment_claim",
         "classification_confidence": 0.78,
-        "summary": "매크로는 긍정 시각이며 핵심 근거는 한편, AI, 테크 관련 기업의 실적 발표가 금주부터 본격화되는 가운데 AI 모멘텀에 기반한 기업 호실적이 최근\n 미 증시 랠리의 정당성을 부여. 가령, 이 날 AI 인프라 핵심 기업인 GE버노바(+13.7%)는 전년 대비 수주액이\n 71% 급등하는 등 데이터전력 수요 폭발에 1분기 어..."
+        "summary": "매크로는 긍정 시각이며 핵심 근거는 실적 시즌에 대한 기대감 높아지고 있는 가운데 금일 SK하이닉스(반도체), 현대차(자동차), KB금융, 신한지주,\n 하나금융지주(은행), HD현대중공업(조선) 등 국내 주도 업종을 담당하는 대표주들의 실적 발표가 예정. 특히, 앞\n 서 삼성전자의 1분기 잠정실적이 시장 예상치를 대폭 상..."
       },
       "claim_candidates": [
-        {
-          "entity": "매크로",
-          "direction": "positive",
-          "strength": "strong",
-          "horizon": "medium",
-          "reason": "한편, AI, 테크 관련 기업의 실적 발표가 금주부터 본격화되는 가운데 AI 모멘텀에 기반한 기업 호실적이 최근\n 미 증시 랠리의 정당성을 부여. 가령, 이 날 AI 인프라 핵심 기업인 GE버노바(+13.7%)는 전년 대비 수주액이\n 71% 급등하는 등 데이터전력 수요 폭발에 1분기 어...",
-          "condition": null,
-          "counterpoint": "다만, 현재 국내 증시의 양호한 유동성 여건이 이를 상쇄해줄 것으로 판단.",
-          "source_span": "paragraph_4",
-          "classification": "investment_claim",
-          "classification_confidence": 0.78,
-          "summary": "매크로는 긍정 시각이며 핵심 근거는 한편, AI, 테크 관련 기업의 실적 발표가 금주부터 본격화되는 가운데 AI 모멘텀에 기반한 기업 호실적이 최근\n 미 증시 랠리의 정당성을 부여. 가령, 이 날 AI 인프라 핵심 기업인 GE버노바(+13.7%)는 전년 대비 수주액이\n 71% 급등하는 등 데이터전력 수요 폭발에 1분기 어..."
-        },
         {
           "entity": "매크로",
           "direction": "positive",
@@ -9853,6 +11336,19 @@
           "classification": "investment_claim",
           "classification_confidence": 0.78,
           "summary": "매크로는 긍정 시각이며 핵심 근거는 실적 시즌에 대한 기대감 높아지고 있는 가운데 금일 SK하이닉스(반도체), 현대차(자동차), KB금융, 신한지주,\n 하나금융지주(은행), HD현대중공업(조선) 등 국내 주도 업종을 담당하는 대표주들의 실적 발표가 예정. 특히, 앞\n 서 삼성전자의 1분기 잠정실적이 시장 예상치를 대폭 상..."
+        },
+        {
+          "entity": "매크로",
+          "direction": "positive",
+          "strength": "strong",
+          "horizon": "medium",
+          "reason": "한편, AI, 테크 관련 기업의 실적 발표가 금주부터 본격화되는 가운데 AI 모멘텀에 기반한 기업 호실적이 최근\n 미 증시 랠리의 정당성을 부여. 가령, 이 날 AI 인프라 핵심 기업인 GE버노바(+13.7%)는 전년 대비 수주액이\n 71% 급등하는 등 데이터전력 수요 폭발에 1분기 어...",
+          "condition": null,
+          "counterpoint": "다만, 현재 국내 증시의 양호한 유동성 여건이 이를 상쇄해줄 것으로 판단.",
+          "source_span": "paragraph_4",
+          "classification": "investment_claim",
+          "classification_confidence": 0.78,
+          "summary": "매크로는 긍정 시각이며 핵심 근거는 한편, AI, 테크 관련 기업의 실적 발표가 금주부터 본격화되는 가운데 AI 모멘텀에 기반한 기업 호실적이 최근\n 미 증시 랠리의 정당성을 부여. 가령, 이 날 AI 인프라 핵심 기업인 GE버노바(+13.7%)는 전년 대비 수주액이\n 71% 급등하는 등 데이터전력 수요 폭발에 1분기 어..."
         },
         {
           "entity": "매크로",
@@ -9883,14 +11379,14 @@
       ],
       "key_numbers": [
         {
-          "label": "thesis_anchor",
+          "label": "catalyst_number",
           "value": "13.7%",
-          "why_it_matters": "핵심 투자 논리를 직접 뒷받침하는 수치"
+          "why_it_matters": "변화 촉매의 구체적 근거"
         },
         {
-          "label": "thesis_anchor",
+          "label": "catalyst_number",
           "value": "71%",
-          "why_it_matters": "핵심 투자 논리를 직접 뒷받침하는 수치"
+          "why_it_matters": "변화 촉매의 구체적 근거"
         },
         {
           "label": "supporting",
@@ -9944,13 +11440,13 @@
         "쟁 이후 주식시장으로의 머니무브 재개되고 있는 흐름. 이처럼 양호한 국내 증시 유동성 여건을 감안시, 반도체\n외에도 조선, 방산, 금융, 자동차 등 국내 대표 주도 업종들이 실적 발표를 치르는 과정에서 순차적으로 순환하\n며 반등하는 장세가 당분간 이어질 것으로 판단."
       ],
       "bull_case": [
-        "한편, AI, 테크 관련 기업의 실적 발표가 금주부터 본격화되는 가운데 AI 모멘텀에 기반한 기업 호실적이 최근\n 미 증시 랠리의 정당성을 부여. 가령, 이 날 AI 인프라 핵심 기업인 GE버노바(+13.7%)는 전년 대비 수주액이\n 71% 급등하는 등 데이터전력 수요 폭발에 1분기 어닝 서프라이즈 기록하며 주가 급등세 연출. 이처럼, AI 산업\n 확장세 속 메모리 반도체 수요 기대감도 이어...",
-        "실적 시즌에 대한 기대감 높아지고 있는 가운데 금일 SK하이닉스(반도체), 현대차(자동차), KB금융, 신한지주,\n 하나금융지주(은행), HD현대중공업(조선) 등 국내 주도 업종을 담당하는 대표주들의 실적 발표가 예정. 특히, 앞\n 서 삼성전자의 1분기 잠정실적이 시장 예상치를 대폭 상회하는 어닝 서프라이즈(1분기 영업이익 57.2조 원 vs\n 컨센 40조 원, 컨센서스 대비 약 40% 상회..."
+        "실적 시즌에 대한 기대감 높아지고 있는 가운데 금일 SK하이닉스(반도체), 현대차(자동차), KB금융, 신한지주,\n 하나금융지주(은행), HD현대중공업(조선) 등 국내 주도 업종을 담당하는 대표주들의 실적 발표가 예정. 특히, 앞\n 서 삼성전자의 1분기 잠정실적이 시장 예상치를 대폭 상회하는 어닝 서프라이즈(1분기 영업이익 57.2조 원 vs\n 컨센 40조 원, 컨센서스 대비 약 40% 상회...",
+        "한편, AI, 테크 관련 기업의 실적 발표가 금주부터 본격화되는 가운데 AI 모멘텀에 기반한 기업 호실적이 최근\n 미 증시 랠리의 정당성을 부여. 가령, 이 날 AI 인프라 핵심 기업인 GE버노바(+13.7%)는 전년 대비 수주액이\n 71% 급등하는 등 데이터전력 수요 폭발에 1분기 어닝 서프라이즈 기록하며 주가 급등세 연출. 이처럼, AI 산업\n 확장세 속 메모리 반도체 수요 기대감도 이어..."
       ],
       "bear_case": [],
       "catalysts": [
-        "한편, AI, 테크 관련 기업의 실적 발표가 금주부터 본격화되는 가운데 AI 모멘텀에 기반한 기업 호실적이 최근\n 미 증시 랠리의 정당성을 부여. 가령, 이 날 AI 인프라 핵심 기업인 GE버노바(+13.7%)는 전년 대비 수주액이\n 71% 급등하는 등 데이터전력 수요 폭발에 1분기 어닝 서프라이즈 기록하며 주가 급등세 ...",
         "실적 시즌에 대한 기대감 높아지고 있는 가운데 금일 SK하이닉스(반도체), 현대차(자동차), KB금융, 신한지주,\n 하나금융지주(은행), HD현대중공업(조선) 등 국내 주도 업종을 담당하는 대표주들의 실적 발표가 예정. 특히, 앞\n 서 삼성전자의 1분기 잠정실적이 시장 예상치를 대폭 상회하는 어닝 서프라이즈(1분기 영업이...",
+        "한편, AI, 테크 관련 기업의 실적 발표가 금주부터 본격화되는 가운데 AI 모멘텀에 기반한 기업 호실적이 최근\n 미 증시 랠리의 정당성을 부여. 가령, 이 날 AI 인프라 핵심 기업인 GE버노바(+13.7%)는 전년 대비 수주액이\n 71% 급등하는 등 데이터전력 수요 폭발에 1분기 어닝 서프라이즈 기록하며 주가 급등세 ...",
         "미 증시, 트럼프 휴전 연장, 기술주 호실적 기대감에 상승 마감\n 증시 코멘트 및 대응 전략\n 22일(수) 미 증시는 미-이란 2차 협상 난항에도 트럼프 대통령의 휴전 연장 발언, GE버노바(+13.7%) 등 주요\n 기업 호실적, 견조한 AI 수요 속 M7 및 주요 반도체주 실적 시즌 기대감 이어진 결과 3대 지수는 상승..."
       ],
       "risks": [
@@ -9962,13 +11458,46 @@
       "portfolio_impacts_candidate": [
         {
           "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.54,
+          "reason": "실적 시즌에 대한 기대감 높아지고 있는 가운데 금일 SK하이닉스(반도체), 현대차(자동차), KB금융, 신한지주,\n 하나금융지주(은행), HD현대중공업(조선) 등 국내 주도 업종을 담당하는 대표주들의 실적 발표가 예정. 특히, 앞\n 서 삼성전자의 1분기 잠정실적이 시장 예상치를 대폭 상회하는 어닝 서프라이즈(1분기 영업이...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "487240",
+          "target_name": "KODEX AI전력핵심설비",
+          "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.54,
+          "reason": "실적 시즌에 대한 기대감 높아지고 있는 가운데 금일 SK하이닉스(반도체), 현대차(자동차), KB금융, 신한지주,\n 하나금융지주(은행), HD현대중공업(조선) 등 국내 주도 업종을 담당하는 대표주들의 실적 발표가 예정. 특히, 앞\n 서 삼성전자의 1분기 잠정실적이 시장 예상치를 대폭 상회하는 어닝 서프라이즈(1분기 영업이...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "360750",
+          "target_name": "TIGER 미국S&P500",
+          "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.54,
+          "reason": "실적 시즌에 대한 기대감 높아지고 있는 가운데 금일 SK하이닉스(반도체), 현대차(자동차), KB금융, 신한지주,\n 하나금융지주(은행), HD현대중공업(조선) 등 국내 주도 업종을 담당하는 대표주들의 실적 발표가 예정. 특히, 앞\n 서 삼성전자의 1분기 잠정실적이 시장 예상치를 대폭 상회하는 어닝 서프라이즈(1분기 영업이...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
           "target_code": "047810",
           "target_name": "한국항공우주",
           "account_key": "KIS_MAIN",
           "direction": "positive",
           "horizon": "1m",
           "strength": 0.54,
-          "reason": "한편, AI, 테크 관련 기업의 실적 발표가 금주부터 본격화되는 가운데 AI 모멘텀에 기반한 기업 호실적이 최근\n 미 증시 랠리의 정당성을 부여. 가령, 이 날 AI 인프라 핵심 기업인 GE버노바(+13.7%)는 전년 대비 수주액이\n 71% 급등하는 등 데이터전력 수요 폭발에 1분기 어닝 서프라이즈 기록하며 주가 급등세 ...",
+          "reason": "실적 시즌에 대한 기대감 높아지고 있는 가운데 금일 SK하이닉스(반도체), 현대차(자동차), KB금융, 신한지주,\n 하나금융지주(은행), HD현대중공업(조선) 등 국내 주도 업종을 담당하는 대표주들의 실적 발표가 예정. 특히, 앞\n 서 삼성전자의 1분기 잠정실적이 시장 예상치를 대폭 상회하는 어닝 서프라이즈(1분기 영업이...",
           "action_hint": "보강"
         },
         {
@@ -9979,7 +11508,7 @@
           "direction": "positive",
           "horizon": "1m",
           "strength": 0.54,
-          "reason": "한편, AI, 테크 관련 기업의 실적 발표가 금주부터 본격화되는 가운데 AI 모멘텀에 기반한 기업 호실적이 최근\n 미 증시 랠리의 정당성을 부여. 가령, 이 날 AI 인프라 핵심 기업인 GE버노바(+13.7%)는 전년 대비 수주액이\n 71% 급등하는 등 데이터전력 수요 폭발에 1분기 어닝 서프라이즈 기록하며 주가 급등세 ...",
+          "reason": "실적 시즌에 대한 기대감 높아지고 있는 가운데 금일 SK하이닉스(반도체), 현대차(자동차), KB금융, 신한지주,\n 하나금융지주(은행), HD현대중공업(조선) 등 국내 주도 업종을 담당하는 대표주들의 실적 발표가 예정. 특히, 앞\n 서 삼성전자의 1분기 잠정실적이 시장 예상치를 대폭 상회하는 어닝 서프라이즈(1분기 영업이...",
           "action_hint": "보강"
         },
         {
@@ -9990,7 +11519,18 @@
           "direction": "positive",
           "horizon": "1m",
           "strength": 0.54,
-          "reason": "한편, AI, 테크 관련 기업의 실적 발표가 금주부터 본격화되는 가운데 AI 모멘텀에 기반한 기업 호실적이 최근\n 미 증시 랠리의 정당성을 부여. 가령, 이 날 AI 인프라 핵심 기업인 GE버노바(+13.7%)는 전년 대비 수주액이\n 71% 급등하는 등 데이터전력 수요 폭발에 1분기 어닝 서프라이즈 기록하며 주가 급등세 ...",
+          "reason": "실적 시즌에 대한 기대감 높아지고 있는 가운데 금일 SK하이닉스(반도체), 현대차(자동차), KB금융, 신한지주,\n 하나금융지주(은행), HD현대중공업(조선) 등 국내 주도 업종을 담당하는 대표주들의 실적 발표가 예정. 특히, 앞\n 서 삼성전자의 1분기 잠정실적이 시장 예상치를 대폭 상회하는 어닝 서프라이즈(1분기 영업이...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "329180",
+          "target_name": "HD현대중공업",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.54,
+          "reason": "실적 시즌에 대한 기대감 높아지고 있는 가운데 금일 SK하이닉스(반도체), 현대차(자동차), KB금융, 신한지주,\n 하나금융지주(은행), HD현대중공업(조선) 등 국내 주도 업종을 담당하는 대표주들의 실적 발표가 예정. 특히, 앞\n 서 삼성전자의 1분기 잠정실적이 시장 예상치를 대폭 상회하는 어닝 서프라이즈(1분기 영업이...",
           "action_hint": "보강"
         },
         {
@@ -10001,7 +11541,7 @@
           "direction": "positive",
           "horizon": "1m",
           "strength": 0.54,
-          "reason": "한편, AI, 테크 관련 기업의 실적 발표가 금주부터 본격화되는 가운데 AI 모멘텀에 기반한 기업 호실적이 최근\n 미 증시 랠리의 정당성을 부여. 가령, 이 날 AI 인프라 핵심 기업인 GE버노바(+13.7%)는 전년 대비 수주액이\n 71% 급등하는 등 데이터전력 수요 폭발에 1분기 어닝 서프라이즈 기록하며 주가 급등세 ...",
+          "reason": "실적 시즌에 대한 기대감 높아지고 있는 가운데 금일 SK하이닉스(반도체), 현대차(자동차), KB금융, 신한지주,\n 하나금융지주(은행), HD현대중공업(조선) 등 국내 주도 업종을 담당하는 대표주들의 실적 발표가 예정. 특히, 앞\n 서 삼성전자의 1분기 잠정실적이 시장 예상치를 대폭 상회하는 어닝 서프라이즈(1분기 영업이...",
           "action_hint": "보강"
         }
       ],
@@ -10014,14 +11554,14 @@
       },
       "evidence_notes": [
         {
+          "score": 61,
+          "classification": "investment_claim",
+          "excerpt": "실적 시즌에 대한 기대감 높아지고 있는 가운데 금일 SK하이닉스(반도체), 현대차(자동차), KB금융, 신한지주,\n 하나금융지주(은행), HD현대중공업(조선) 등 국내 주도 업종을 담당하는 대표주들의 실적 발표가 예정. 특히, 앞\n 서 삼성전자의 1분기 잠정실적이 시장 예상치를 대폭 상회하는 어닝 서프라이즈(1분기 영업이익 57.2조 원 vs\n 컨센 40조 원, 컨센서스 대비 약 40% 상회)를 기록. 이에 SK하이닉스 1분기 영업이익 전망치는 4월 초 31.1..."
+        },
+        {
           "score": 53,
           "classification": "investment_claim",
           "excerpt": "한편, AI, 테크 관련 기업의 실적 발표가 금주부터 본격화되는 가운데 AI 모멘텀에 기반한 기업 호실적이 최근\n 미 증시 랠리의 정당성을 부여. 가령, 이 날 AI 인프라 핵심 기업인 GE버노바(+13.7%)는 전년 대비 수주액이\n 71% 급등하는 등 데이터전력 수요 폭발에 1분기 어닝 서프라이즈 기록하며 주가 급등세 연출. 이처럼, AI 산업\n 확장세 속 메모리 반도체 수요 기대감도 이어짐에 따라 최근 필라델피아 반도체지수 또한 16거래일 연속 상승\n 하며 ..."
-        },
-        {
-          "score": 47,
-          "classification": "investment_claim",
-          "excerpt": "실적 시즌에 대한 기대감 높아지고 있는 가운데 금일 SK하이닉스(반도체), 현대차(자동차), KB금융, 신한지주,\n 하나금융지주(은행), HD현대중공업(조선) 등 국내 주도 업종을 담당하는 대표주들의 실적 발표가 예정. 특히, 앞\n 서 삼성전자의 1분기 잠정실적이 시장 예상치를 대폭 상회하는 어닝 서프라이즈(1분기 영업이익 57.2조 원 vs\n 컨센 40조 원, 컨센서스 대비 약 40% 상회)를 기록. 이에 SK하이닉스 1분기 영업이익 전망치는 4월 초 31.1..."
         },
         {
           "score": 26,
@@ -10073,6 +11613,24 @@
       "text_length": 14621,
       "related_holdings_in_my_portfolio": [
         {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
           "code": "138910",
           "name": "KODEX 구리선물(H)",
           "accountKey": "KIS_MAIN",
@@ -10080,6 +11638,8 @@
         }
       ],
       "related_accounts": [
+        "ISA",
+        "PENSION",
         "KIS_MAIN"
       ],
       "key_thesis": "매크로는 긍정 시각이며 핵심 근거는 ▶ 1Q 어닝시즌: AI 혁신과 비용 부담 사이의 업종별 차별화\n Summary\n ⚫ 코스피의 2026년 영업이익은 795 조원까지 상향(168%, YoY) 조정. 이중 65%는 반도체 업종이 차지\n ⚫ 1분기 어닝시즌과 함께 실적 전망 수정이 본격화되고 있으나, 업종별 실적 차별화 흐...",
@@ -10239,6 +11799,39 @@
       "portfolio_impacts_candidate": [
         {
           "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.54,
+          "reason": "▶ 1Q 어닝시즌: AI 혁신과 비용 부담 사이의 업종별 차별화\n Summary\n ⚫ 코스피의 2026년 영업이익은 795 조원까지 상향(168%, YoY) 조정. 이중 65%는 반도체 업종이 차지\n ⚫ 1분기 어닝시즌과 함께 실적 전망 수정이 본격화되고 있으나, 업종별 실적 차별화 흐름 심화\n ⚫ 매크로 불안을 상쇄하는...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "487240",
+          "target_name": "KODEX AI전력핵심설비",
+          "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.54,
+          "reason": "▶ 1Q 어닝시즌: AI 혁신과 비용 부담 사이의 업종별 차별화\n Summary\n ⚫ 코스피의 2026년 영업이익은 795 조원까지 상향(168%, YoY) 조정. 이중 65%는 반도체 업종이 차지\n ⚫ 1분기 어닝시즌과 함께 실적 전망 수정이 본격화되고 있으나, 업종별 실적 차별화 흐름 심화\n ⚫ 매크로 불안을 상쇄하는...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "360750",
+          "target_name": "TIGER 미국S&P500",
+          "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.54,
+          "reason": "▶ 1Q 어닝시즌: AI 혁신과 비용 부담 사이의 업종별 차별화\n Summary\n ⚫ 코스피의 2026년 영업이익은 795 조원까지 상향(168%, YoY) 조정. 이중 65%는 반도체 업종이 차지\n ⚫ 1분기 어닝시즌과 함께 실적 전망 수정이 본격화되고 있으나, 업종별 실적 차별화 흐름 심화\n ⚫ 매크로 불안을 상쇄하는...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
           "target_code": "138910",
           "target_name": "KODEX 구리선물(H)",
           "account_key": "KIS_MAIN",
@@ -10320,6 +11913,24 @@
       "text_length": 636646,
       "related_holdings_in_my_portfolio": [
         {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
           "code": "047810",
           "name": "한국항공우주",
           "accountKey": "KIS_MAIN",
@@ -10345,6 +11956,8 @@
         }
       ],
       "related_accounts": [
+        "ISA",
+        "PENSION",
         "KIS_MAIN"
       ],
       "key_thesis": "매크로는 긍정 시각이며 핵심 근거는 결론적으로 중국 우주 산업은 정책 기반의 중장기 성장성은 유효하나, 투자 관점에서는 현 시점에서는\n 이벤트 중심의 트레이딩 접근이 보다 적합한 구간으로 판단된다. 중장기적으로는 재사용 로켓\n 상용화와 위성 인프라의 상업적 수익성 검증 여부가 밸류에이션 리레이팅의 핵심 변수로 작용할\n 전...",
@@ -10510,6 +12123,39 @@
       "portfolio_impacts_candidate": [
         {
           "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.63,
+          "reason": "결론적으로 중국 우주 산업은 정책 기반의 중장기 성장성은 유효하나, 투자 관점에서는 현 시점에서는\n 이벤트 중심의 트레이딩 접근이 보다 적합한 구간으로 판단된다. 중장기적으로는 재사용 로켓\n 상용화와 위성 인프라의 상업적 수익성 검증 여부가 밸류에이션 리레이팅의 핵심 변수로 작용할\n 전망이다.",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "487240",
+          "target_name": "KODEX AI전력핵심설비",
+          "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.63,
+          "reason": "결론적으로 중국 우주 산업은 정책 기반의 중장기 성장성은 유효하나, 투자 관점에서는 현 시점에서는\n 이벤트 중심의 트레이딩 접근이 보다 적합한 구간으로 판단된다. 중장기적으로는 재사용 로켓\n 상용화와 위성 인프라의 상업적 수익성 검증 여부가 밸류에이션 리레이팅의 핵심 변수로 작용할\n 전망이다.",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "360750",
+          "target_name": "TIGER 미국S&P500",
+          "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.63,
+          "reason": "결론적으로 중국 우주 산업은 정책 기반의 중장기 성장성은 유효하나, 투자 관점에서는 현 시점에서는\n 이벤트 중심의 트레이딩 접근이 보다 적합한 구간으로 판단된다. 중장기적으로는 재사용 로켓\n 상용화와 위성 인프라의 상업적 수익성 검증 여부가 밸류에이션 리레이팅의 핵심 변수로 작용할\n 전망이다.",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
           "target_code": "047810",
           "target_name": "한국항공우주",
           "account_key": "KIS_MAIN",
@@ -10623,6 +12269,30 @@
       "text_length": 14273,
       "related_holdings_in_my_portfolio": [
         {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "007660",
+          "name": "이수페타시스",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
           "code": "047810",
           "name": "한국항공우주",
           "accountKey": "KIS_MAIN",
@@ -10641,6 +12311,12 @@
           "accountLabel": "한투 일반"
         },
         {
+          "code": "329180",
+          "name": "HD현대중공업",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
           "code": "449450",
           "name": "PLUS K방산",
           "accountKey": "KIS_MAIN",
@@ -10648,6 +12324,8 @@
         }
       ],
       "related_accounts": [
+        "ISA",
+        "PENSION",
         "KIS_MAIN"
       ],
       "key_thesis": "매크로는 긍정 시각이며 핵심 근거는 - 케빈 워시 연준 의장 지명자의 청문회도 진행. 워시는 연준의 통화정책 독립성을 강조하며, 인플레이\n 션 판단에 집중해야 하고, 대차대조표도 점진적으로 축소돼야 한다고 발언\n - 트럼프 대통령의 기대에 따라 금리인하 가능성을 고려하던 시장은 워시의 연준 독립성 발언을 매파적\n 으로 인...",
@@ -10775,6 +12453,39 @@
       "portfolio_impacts_candidate": [
         {
           "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "- 케빈 워시 연준 의장 지명자의 청문회도 진행. 워시는 연준의 통화정책 독립성을 강조하며, 인플레이\n 션 판단에 집중해야 하고, 대차대조표도 점진적으로 축소돼야 한다고 발언\n - 트럼프 대통령의 기대에 따라 금리인하 가능성을 고려하던 시장은 워시의 연준 독립성 발언을 매파적\n 으로 인식하는 모습\n - 한편, 미국 3월 ...",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "487240",
+          "target_name": "KODEX AI전력핵심설비",
+          "account_key": "PENSION",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "- 케빈 워시 연준 의장 지명자의 청문회도 진행. 워시는 연준의 통화정책 독립성을 강조하며, 인플레이\n 션 판단에 집중해야 하고, 대차대조표도 점진적으로 축소돼야 한다고 발언\n - 트럼프 대통령의 기대에 따라 금리인하 가능성을 고려하던 시장은 워시의 연준 독립성 발언을 매파적\n 으로 인식하는 모습\n - 한편, 미국 3월 ...",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "360750",
+          "target_name": "TIGER 미국S&P500",
+          "account_key": "PENSION",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "- 케빈 워시 연준 의장 지명자의 청문회도 진행. 워시는 연준의 통화정책 독립성을 강조하며, 인플레이\n 션 판단에 집중해야 하고, 대차대조표도 점진적으로 축소돼야 한다고 발언\n - 트럼프 대통령의 기대에 따라 금리인하 가능성을 고려하던 시장은 워시의 연준 독립성 발언을 매파적\n 으로 인식하는 모습\n - 한편, 미국 3월 ...",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
           "target_code": "047810",
           "target_name": "한국항공우주",
           "account_key": "KIS_MAIN",
@@ -10889,6 +12600,24 @@
       "text_length": 148897,
       "related_holdings_in_my_portfolio": [
         {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
           "code": "047810",
           "name": "한국항공우주",
           "accountKey": "KIS_MAIN",
@@ -10920,6 +12649,8 @@
         }
       ],
       "related_accounts": [
+        "ISA",
+        "PENSION",
         "KIS_MAIN"
       ],
       "key_thesis": "매크로는 중립 시각이며 핵심 근거는 외국인·개인은 외국인과 개인은 한국 주식시장에서 가장 대칭적인 수급 구조를 가진 두 주체다. 외국인\n대칭 구조 은 가격과 이익 모멘텀이 살아 있는 종목을 매수하고, 개인은 낙폭이 크고 이익 전망이\n 하향된 종목을 매수한다. 이 대칭은 대형주에서 가장 깨끗하며 중형에서도 핵심 축이 유\n ...",
@@ -11019,6 +12750,39 @@
       "thesis_novelty": "HIGH",
       "sentiment_score": 0.25,
       "portfolio_impacts_candidate": [
+        {
+          "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.37,
+          "reason": "외국인·개인은 외국인과 개인은 한국 주식시장에서 가장 대칭적인 수급 구조를 가진 두 주체다. 외국인\n대칭 구조 은 가격과 이익 모멘텀이 살아 있는 종목을 매수하고, 개인은 낙폭이 크고 이익 전망이\n 하향된 종목을 매수한다. 이 대칭은 대형주에서 가장 깨끗하며 중형에서도 핵심 축이 유\n 지된다.",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "487240",
+          "target_name": "KODEX AI전력핵심설비",
+          "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.37,
+          "reason": "외국인·개인은 외국인과 개인은 한국 주식시장에서 가장 대칭적인 수급 구조를 가진 두 주체다. 외국인\n대칭 구조 은 가격과 이익 모멘텀이 살아 있는 종목을 매수하고, 개인은 낙폭이 크고 이익 전망이\n 하향된 종목을 매수한다. 이 대칭은 대형주에서 가장 깨끗하며 중형에서도 핵심 축이 유\n 지된다.",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "360750",
+          "target_name": "TIGER 미국S&P500",
+          "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.37,
+          "reason": "외국인·개인은 외국인과 개인은 한국 주식시장에서 가장 대칭적인 수급 구조를 가진 두 주체다. 외국인\n대칭 구조 은 가격과 이익 모멘텀이 살아 있는 종목을 매수하고, 개인은 낙폭이 크고 이익 전망이\n 하향된 종목을 매수한다. 이 대칭은 대형주에서 가장 깨끗하며 중형에서도 핵심 축이 유\n 지된다.",
+          "action_hint": "보강"
+        },
         {
           "target_type": "holding",
           "target_code": "047810",
@@ -11138,8 +12902,17 @@
       "themes": [],
       "text_path": "data/reports/2026-04-23/text/report_056.txt",
       "text_length": 18048,
-      "related_holdings_in_my_portfolio": [],
-      "related_accounts": [],
+      "related_holdings_in_my_portfolio": [
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        }
+      ],
+      "related_accounts": [
+        "PENSION"
+      ],
       "key_thesis": "반도체는 긍정 시각이며 핵심 근거는 1개월 기준으로 추정치 상단은 +16.8% 상승한 / 조건: 단 추정치는 거의 변동 없 이(-0.2%) 유지되어, 상단의 변화가 하단 변화보다 더 기민하게 변하고 있음을 알 | 단 추정치의 3M 변화율이 +52.1%로 가장 높아, 보수적 추",
       "key_points": [
         "반도체는 긍정 시각이며 핵심 근거는 1개월 기준으로 추정치 상단은 +16.8% 상승한 / 조건: 단 추정치는 거의 변동 없 이(-0.2%) 유지되어, 상단의 변화가 하단 변화보다 더 기민하게 변하고 있음을 알 | 단 추정치의 3M 변화율이 +52.1%로 가장 높아, 보수적 추",
@@ -11307,7 +13080,19 @@
       "new_info": "과거 연도별로 순이익 추정치 변화 궤적을 비교해보면, 2026년의 상승 기울기는\n과거와 비교할 수 없는 이례적 현상이다. 대부분의 연도에서 코스피 순이익 추정\n치는 연초 대비 하향 조정되거나 20% 가량 상승에 그쳤다. 반도체 업종의 실적\n급성장 기대가 전체 코스피 컨센서스를 견인하며 현재(2026년)은 과거 관찰되지\n않았던 가파른 상승을 보이고 있다.",
       "thesis_novelty": "MED",
       "sentiment_score": 0.25,
-      "portfolio_impacts_candidate": [],
+      "portfolio_impacts_candidate": [
+        {
+          "target_type": "holding",
+          "target_code": "360750",
+          "target_name": "TIGER 미국S&P500",
+          "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.37,
+          "reason": "1개월 기준으로 추정치 상단은 +16.8% 상승한 반면, 하단 추정치는 거의 변동 없\n이(-0.2%) 유지되어, 상단의 변화가 하단 변화보다 더 기민하게 변하고 있음을 알\n수 있다. 3개월 기준으로는 전 구간이 +34~52% 상승하며, 전반적인 이익 전망 개\n선이 확인된다. 특히 하단 추정치의 3M 변화율이 +52.1%로...",
+          "action_hint": "보강"
+        }
+      ],
       "confidence": "MEDIUM",
       "quality": {
         "contaminationEvidenceCount": 0,
@@ -11362,6 +13147,6 @@
   "_contract": {
     "version": "1.0",
     "stage": "stage1",
-    "generatedAt": "2026-04-23T03:20:17.663Z"
+    "generatedAt": "2026-04-23T03:31:13.252Z"
   }
 }
