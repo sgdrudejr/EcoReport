@@ -1,0 +1,1454 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-04-23",
+  "runDate": "2026-04-23",
+  "effectiveMarketDate": "2026-04-23",
+  "runId": "2026-04-23-031656",
+  "generatedAt": "2026-04-23T03:18:32.724Z",
+  "provenance": {
+    "source": "moneytoring-graphql",
+    "endpoint": "https://api.moneytoring.ai/graphql",
+    "topicLimit": 12,
+    "detailLimit": 8
+  },
+  "summary": {
+    "overview": "머니토링 12건 중 포트폴리오 직결 0건, 계좌 테마 연결 2건, 관심종목 연결 6건, 딥리서치 후보 0건을 추렸습니다.",
+    "directHoldingTopics": 0,
+    "thematicAccountTopics": 2,
+    "watchlistTopics": 6,
+    "highPriorityTopics": 0
+  },
+  "topics": [
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM0NDc4MQ==",
+      "numericId": "1344781",
+      "title": "중동 긴장 지속에 브렌트유 100달러선 유지",
+      "summary": "이란과 미국 간 휴전 종료 후 종전이 확정되지 않아 중동 긴장이 계속되고 있습니다. 이 영향으로 브렌트유 가격은 한때 4.2% 급등했으며, 배럴당 100달러를 유지하고 있습니다. 미국 주가는 하락했고 아시아 기술주는 2.4% 올랐습니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1344781",
+      "displayUpdatedAt": "2026-04-23T03:09:12+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 1,
+      "mainSource": {
+        "type": "TELEGRAM",
+        "name": "텔레그램",
+        "author": "증권사 애널 크롤러🇰🇷"
+      },
+      "uniqueSourceTypeList": [
+        "TELEGRAM"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZToxODI3OA==",
+          "name": "증권사 애널 채널 크롤러",
+          "code": "텔레그램-2107410272",
+          "type": "INFLUENCER",
+          "country": "EMPTY",
+          "fluctuationRate": null
+        }
+      ],
+      "sourceInfo": [
+        {
+          "type": "TELEGRAM",
+          "count": 1
+        }
+      ],
+      "subTopics": [
+        {
+          "id": "U3ViVG9waWNUeXBlOjE0MTc5NDI=",
+          "title": "이란-미국 휴전 종료 후 중동 긴장, 시장 영향",
+          "summary": "이란과 미국 간 휴전이 끝난 뒤에도 종전이 확정되지 않아 중동 지역의 긴장감이 이어지고 있습니다. 이로 인해 브렌트유 가격은 한때 4.2% 급등한 후 일부 상승폭을 반납했지만 배럴당 100달러를 유지하고 있습니다. 미국 주가 지수 선물은 변동성이 큰 장세 속에서 하락했고, 아시아 기술주 지수는 2.4% 상승하며 사상 최고치를 기록했습니다.",
+          "updatedAt": "2026-04-23T12:09:12+09:00",
+          "sourceOrigins": [
+            {
+              "title": "이란-미국 휴전 불발 속 유가 100달러 유지",
+              "author": "증권사 애널 크롤러🇰🇷",
+              "type": "TELEGRAM",
+              "url": "https://t.me/AnalystCrawler/580008"
+            }
+          ]
+        }
+      ],
+      "signalDirection": "negative",
+      "signalLabels": [
+        "중동/유가"
+      ],
+      "relevanceScore": 40,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [
+          {
+            "accountKey": "KIS_MAIN",
+            "accountLabel": "한투 일반",
+            "category": "방산",
+            "matchReasons": [
+              "중동/유가"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "KIS_MAIN",
+            "accountLabel": "한투 일반",
+            "category": "원자력",
+            "matchReasons": [
+              "중동/유가"
+            ],
+            "impactDirection": "positive"
+          }
+        ],
+        "watchlist": []
+      },
+      "portfolioLinkage": "계좌 테마 기준으로는 한투 일반의 방산, 한투 일반의 원자력 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다.",
+      "deepResearchQuestion": "중동/유가 이슈가 단기 헤드라인인지, 실제 공급 차질과 가격 전이로 이어지는지 확인하세요.",
+      "impactEntries": [
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "KIS_MAIN",
+            "name": "방산"
+          },
+          "direction": "positive",
+          "strength": 0.474,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "이란과 미국 간 휴전 종료 후 종전이 확정되지 않아 중동 긴장이 계속되고 있습니다. 이 영향으로 브렌트유 가격은 한때 4.2% 급등했으며, 배럴당 100달러를 유지하고 있습니다. 미국 주가는 하락했고 아시아 기술주는 2.4% 올랐습니다.",
+              "이란과 미국 간 휴전이 끝난 뒤에도 종전이 확정되지 않아 중동 지역의 긴장감이 이어지고 있습니다. 이로 인해 브렌트유 가격은 한때 4.2% 급등한 후 일부 상승폭을 반납했지만 배럴당 100달러를 유지하고 있습니다. 미국 주가 지수 선물은 변동성이 큰 장세 속에서 하락했고, 아시아 기술주 지수는 2.4% 상승하며 사상 최고치를 기록했습니다.",
+              "계좌 테마 기준으로는 한투 일반의 방산, 한투 일반의 원자력 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "KIS_MAIN",
+            "name": "원자력"
+          },
+          "direction": "positive",
+          "strength": 0.474,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "이란과 미국 간 휴전 종료 후 종전이 확정되지 않아 중동 긴장이 계속되고 있습니다. 이 영향으로 브렌트유 가격은 한때 4.2% 급등했으며, 배럴당 100달러를 유지하고 있습니다. 미국 주가는 하락했고 아시아 기술주는 2.4% 올랐습니다.",
+              "이란과 미국 간 휴전이 끝난 뒤에도 종전이 확정되지 않아 중동 지역의 긴장감이 이어지고 있습니다. 이로 인해 브렌트유 가격은 한때 4.2% 급등한 후 일부 상승폭을 반납했지만 배럴당 100달러를 유지하고 있습니다. 미국 주가 지수 선물은 변동성이 큰 장세 속에서 하락했고, 아시아 기술주 지수는 2.4% 상승하며 사상 최고치를 기록했습니다.",
+              "계좌 테마 기준으로는 한투 일반의 방산, 한투 일반의 원자력 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        }
+      ]
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM0NDc5Nw==",
+      "numericId": "1344797",
+      "title": "중국 제조업, 이란 전쟁 여파로 원가 상승 고심",
+      "summary": "중국 제조업계가 2026년 이란 전쟁으로 원유 공급 차질과 원가 상승에 큰 타격을 받았으며, 광저우 노동자들은 생계난을 겪고 있습니다. 중국은 첨단 기술과 전기차 수출로 미래 경쟁력을 키우고 신흥시장 개척에 힘쓰고 있습니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1344797",
+      "displayUpdatedAt": "2026-04-23T03:05:00+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 1,
+      "mainSource": {
+        "type": "COMPANY_NEWS",
+        "name": "뉴스",
+        "author": "이데일리"
+      },
+      "uniqueSourceTypeList": [
+        "COMPANY_NEWS"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZTozMDA5",
+          "name": "석유화학",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -2.068418264389038
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZTozMzUx",
+          "name": "자동차",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -1.4388024806976318
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToxODc2NQ==",
+          "name": "에너지자원",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -3.1074225902557373
+        }
+      ],
+      "sourceInfo": [],
+      "subTopics": [],
+      "signalDirection": "negative",
+      "signalLabels": [
+        "중동/유가"
+      ],
+      "relevanceScore": 40,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [
+          {
+            "accountKey": "KIS_MAIN",
+            "accountLabel": "한투 일반",
+            "category": "방산",
+            "matchReasons": [
+              "중동/유가"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "KIS_MAIN",
+            "accountLabel": "한투 일반",
+            "category": "원자력",
+            "matchReasons": [
+              "중동/유가"
+            ],
+            "impactDirection": "positive"
+          }
+        ],
+        "watchlist": []
+      },
+      "portfolioLinkage": "계좌 테마 기준으로는 한투 일반의 방산, 한투 일반의 원자력 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다.",
+      "deepResearchQuestion": "중동/유가 이슈가 단기 헤드라인인지, 실제 공급 차질과 가격 전이로 이어지는지 확인하세요.",
+      "impactEntries": [
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "KIS_MAIN",
+            "name": "방산"
+          },
+          "direction": "positive",
+          "strength": 0.474,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "COMPANY_NEWS",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "중국 제조업계가 2026년 이란 전쟁으로 원유 공급 차질과 원가 상승에 큰 타격을 받았으며, 광저우 노동자들은 생계난을 겪고 있습니다. 중국은 첨단 기술과 전기차 수출로 미래 경쟁력을 키우고 신흥시장 개척에 힘쓰고 있습니다.",
+              "계좌 테마 기준으로는 한투 일반의 방산, 한투 일반의 원자력 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "석유화학 -2.07%",
+              "자동차 -1.44%",
+              "에너지자원 -3.11%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "KIS_MAIN",
+            "name": "원자력"
+          },
+          "direction": "positive",
+          "strength": 0.474,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "COMPANY_NEWS",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "중국 제조업계가 2026년 이란 전쟁으로 원유 공급 차질과 원가 상승에 큰 타격을 받았으며, 광저우 노동자들은 생계난을 겪고 있습니다. 중국은 첨단 기술과 전기차 수출로 미래 경쟁력을 키우고 신흥시장 개척에 힘쓰고 있습니다.",
+              "계좌 테마 기준으로는 한투 일반의 방산, 한투 일반의 원자력 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "석유화학 -2.07%",
+              "자동차 -1.44%",
+              "에너지자원 -3.11%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        }
+      ]
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM0Mjg5MA==",
+      "numericId": "1342890",
+      "title": "삼성전자 노조 파업 예고에 메모리 반도체 공급 우려",
+      "summary": "KB증권은 삼성전자 디바이스솔루션 노조가 2026년 5월 21일부터 6월 7일까지 18일간 파업을 예고해 메모리 반도체 공급 차질과 가격 상승 우려가 크다고 분석했습니다. 노조는 성과급 상한 철폐와 기본급 7% 인상을 요구하고 있습니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1342890",
+      "displayUpdatedAt": "2026-04-23T03:06:00+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 43,
+      "mainSource": {
+        "type": "COMPANY_NEWS",
+        "name": "뉴스",
+        "author": "매일경제"
+      },
+      "uniqueSourceTypeList": [
+        "COMPANY_NEWS",
+        "TELEGRAM"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZToyNTk=",
+          "name": "삼성전자",
+          "code": "005930",
+          "type": "COMPANY",
+          "country": "KR",
+          "fluctuationRate": 0.9195402298850575
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyODc2",
+          "name": "반도체",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -1.4598965644836426
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyNDY1",
+          "name": "AI",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -1.8011987209320068
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyODIy",
+          "name": "메모리반도체",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -2.563595771789551
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyNDg0",
+          "name": "HBM",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -0.8218169212341309
+        }
+      ],
+      "sourceInfo": [],
+      "subTopics": [],
+      "signalDirection": "negative",
+      "signalLabels": [
+        "AI 인프라/전력"
+      ],
+      "relevanceScore": 39,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [],
+        "watchlist": [
+          {
+            "code": "005930",
+            "name": "삼성전자",
+            "accountHint": null,
+            "accountKey": null,
+            "category": "반도체",
+            "matchReasons": [
+              "키워드코드:005930",
+              "삼성전자",
+              "hbm",
+              "메모리",
+              "반도체"
+            ]
+          },
+          {
+            "code": "000660",
+            "name": "SK하이닉스",
+            "accountHint": null,
+            "accountKey": null,
+            "category": "반도체",
+            "matchReasons": [
+              "hbm",
+              "반도체",
+              "메모리"
+            ]
+          }
+        ]
+      },
+      "portfolioLinkage": "핵심 시그널은 AI 인프라/전력입니다.",
+      "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요.",
+      "impactEntries": []
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM0NDM1Ng==",
+      "numericId": "1344356",
+      "title": "SK하이닉스 1분기 매출·영업이익 역대 최고 기록",
+      "summary": "SK하이닉스가 2026년 1분기에 매출 52조 원, 영업이익 37조 원으로 역대 최고 실적을 냈습니다. AI 기술 발전과 IT 업체 수요 증가로 가격 상승이 이어질 전망이며, 2027년 HBM4E 양산도 계획 중입니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1344356",
+      "displayUpdatedAt": "2026-04-23T03:06:00+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 36,
+      "mainSource": {
+        "type": "COMPANY_NEWS",
+        "name": "뉴스",
+        "author": "이데일리"
+      },
+      "uniqueSourceTypeList": [
+        "COMPANY_NEWS",
+        "IR",
+        "TELEGRAM"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZTozMg==",
+          "name": "SK하이닉스",
+          "code": "000660",
+          "type": "COMPANY",
+          "country": "KR",
+          "fluctuationRate": -1.553556827473426
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyNDY1",
+          "name": "AI",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -1.8011987209320068
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyODIy",
+          "name": "메모리반도체",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -2.563595771789551
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyODc2",
+          "name": "반도체",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -1.4598965644836426
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyNDg0",
+          "name": "HBM",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -0.8218169212341309
+        }
+      ],
+      "sourceInfo": [],
+      "subTopics": [],
+      "signalDirection": "neutral",
+      "signalLabels": [
+        "AI 인프라/전력"
+      ],
+      "relevanceScore": 35,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [],
+        "watchlist": [
+          {
+            "code": "005930",
+            "name": "삼성전자",
+            "accountHint": null,
+            "accountKey": null,
+            "category": "반도체",
+            "matchReasons": [
+              "hbm",
+              "메모리",
+              "반도체"
+            ]
+          },
+          {
+            "code": "000660",
+            "name": "SK하이닉스",
+            "accountHint": null,
+            "accountKey": null,
+            "category": "반도체",
+            "matchReasons": [
+              "키워드코드:000660",
+              "SK하이닉스",
+              "sk하이닉스",
+              "하이닉스",
+              "hbm"
+            ]
+          }
+        ]
+      },
+      "portfolioLinkage": "핵심 시그널은 AI 인프라/전력입니다.",
+      "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요.",
+      "impactEntries": []
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM0Mjg5Mg==",
+      "numericId": "1342892",
+      "title": "테슬라, 삼성과 인텔 공정 도입해 AI칩 강화",
+      "summary": "테슬라는 2026년 실적 발표에서 인텔 14A 공정을 Terafab 프로젝트에 도입한다고 밝혔습니다. 일론 머스크는 AI4.1 칩 생산을 삼성전자에 맡기고, 성능 향상된 칩을 출시할 예정입니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1342892",
+      "displayUpdatedAt": "2026-04-23T03:09:00+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 7,
+      "mainSource": {
+        "type": "TELEGRAM",
+        "name": "텔레그램",
+        "author": "증권사 애널 크롤러🇰🇷"
+      },
+      "uniqueSourceTypeList": [
+        "COMPANY_NEWS",
+        "TELEGRAM"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZTo1MjQz",
+          "name": "인텔",
+          "code": "INTC",
+          "type": "COMPANY",
+          "country": "US",
+          "fluctuationRate": -1.4941140959855252
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToxMzMyMA==",
+          "name": "테슬라",
+          "code": "TSLA",
+          "type": "COMPANY",
+          "country": "US",
+          "fluctuationRate": 0.28207649707571425
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyNDY1",
+          "name": "AI",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -1.8011987209320068
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyODg2",
+          "name": "반도체제조",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -2.2348523139953613
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyNzQ1",
+          "name": "데이터센터",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -0.9992897510528564
+        }
+      ],
+      "sourceInfo": [
+        {
+          "type": "COMPANY_NEWS",
+          "count": 3
+        },
+        {
+          "type": "TELEGRAM",
+          "count": 4
+        }
+      ],
+      "subTopics": [
+        {
+          "id": "U3ViVG9waWNUeXBlOjE0MTU5NzY=",
+          "title": "테슬라, AI4.1 칩 생산 삼성전자에 위탁 계획 공개",
+          "summary": "테슬라는 2026년 실적 발표에서 Terafab 프로젝트에 인텔의 14A 공정을 도입할 계획을 밝혔습니다. 이어 일론 머스크는 인공지능 칩 AI4.1의 생산을 삼성전자 파운드리에 맡기고, 메모리 용량과 연산 성능이 향상된 AI4.1 칩을 출시할 예정이라고 밝혔습니다. 테슬라와 삼성전자의 협력은 AI5, AI6 칩 생산까지 확대될 계획입니다.",
+          "updatedAt": "2026-04-23T12:09:00+09:00",
+          "sourceOrigins": [
+            {
+              "title": "일론 머스크 테슬라 CEO \"삼성 파운드리에 `AI4.1` 칩 생산도 맡겨\"",
+              "author": "한국경제",
+              "type": "COMPANY_NEWS",
+              "url": "https://www.hankyung.com/article/202604231532i"
+            },
+            {
+              "title": "엘론 머스크, 인텔 14A 칩 기술로 '테라팹' 프로젝트 진행 계획",
+              "author": "OregonLive.com",
+              "type": "COMPANY_NEWS",
+              "url": "https://www.oregonlive.com/silicon-forest/2026/04/elon-musk-says-hell-use-intels-14a-chip-technology-for-his-terafab.html"
+            },
+            {
+              "title": "인텔 주가 3.49% 상승 소식 전달",
+              "author": "급등일보 미국주식🇺🇸 속보·리서치",
+              "type": "TELEGRAM",
+              "url": "https://t.me/FastStockNewsUSA/18890"
+            }
+          ]
+        }
+      ],
+      "signalDirection": "neutral",
+      "signalLabels": [
+        "AI 인프라/전력"
+      ],
+      "relevanceScore": 32,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [],
+        "watchlist": [
+          {
+            "code": "005930",
+            "name": "삼성전자",
+            "accountHint": null,
+            "accountKey": null,
+            "category": "반도체",
+            "matchReasons": [
+              "삼성전자",
+              "메모리",
+              "반도체",
+              "파운드리"
+            ]
+          },
+          {
+            "code": "000660",
+            "name": "SK하이닉스",
+            "accountHint": null,
+            "accountKey": null,
+            "category": "반도체",
+            "matchReasons": [
+              "반도체",
+              "메모리"
+            ]
+          }
+        ]
+      },
+      "portfolioLinkage": "핵심 시그널은 AI 인프라/전력입니다.",
+      "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요.",
+      "impactEntries": []
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM0MjYxNg==",
+      "numericId": "1342616",
+      "title": "SK하이닉스, HBM 공장 착공과 인디애나 투자로 1분기 최대 실적",
+      "summary": "SK하이닉스는 청주 P&T7에서 HBM 전용 공장 착공과 미국 인디애나 투자로 생산을 크게 늘리고 있습니다. 2026년 1분기 영업이익 3조 7,600억 원, 매출 52조 원으로 최대 실적을 냈습니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1342616",
+      "displayUpdatedAt": "2026-04-23T03:13:31+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 6,
+      "mainSource": {
+        "type": "TELEGRAM",
+        "name": "텔레그램",
+        "author": "[ IT는 SK ]"
+      },
+      "uniqueSourceTypeList": [
+        "TELEGRAM",
+        "YOUTUBE"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZTozMg==",
+          "name": "SK하이닉스",
+          "code": "000660",
+          "type": "COMPANY",
+          "country": "KR",
+          "fluctuationRate": -1.553556827473426
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyODc2",
+          "name": "반도체",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -1.4598965644836426
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyNDY1",
+          "name": "AI",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -1.8011987209320068
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyNTk=",
+          "name": "삼성전자",
+          "code": "005930",
+          "type": "COMPANY",
+          "country": "KR",
+          "fluctuationRate": 0.9195402298850575
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZTo0OTU2Mjk=",
+          "name": "건설",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 0.5308747291564941
+        }
+      ],
+      "sourceInfo": [
+        {
+          "type": "TELEGRAM",
+          "count": 5
+        },
+        {
+          "type": "YOUTUBE",
+          "count": 1
+        }
+      ],
+      "subTopics": [
+        {
+          "id": "U3ViVG9waWNUeXBlOjE0MTU2ODA=",
+          "title": "삼성중공업·SK하이닉스, 데이터센터 사업 투자자 관심",
+          "summary": "SK하이닉스는 청주 P&T7에서 HBM 전용 패키징 공장 착공과 미국 인디애나 투자 등 대규모 생산 확대를 추진하고 있습니다. 2026년 1분기 SK하이닉스가 영업이익 3조 7,600억 원과 매출 52조 원으로 사상 최대 실적을 기록했고, 삼성전자 노조는 1분기 영업이익 57조 2,000억 원을 근거로 성과급 확대를 요구하며 대규모 집회를 준비하고 있습니다. 최근 삼성중공업의 부유식 데이터센터 사업과 SK하이닉스의 반도체 관련 이슈가 투자자 커뮤니티에서 높은 관심을 받고 있다는 점이 새롭게 확인됐습니다.",
+          "updatedAt": "2026-04-23T12:13:31+09:00",
+          "sourceOrigins": [
+            {
+              "title": "삼성중공업, SK하이닉스 등 인기 투자 이슈",
+              "author": "텔레모아-공식채널📈",
+              "type": "TELEGRAM",
+              "url": "https://t.me/primestocknote/40198"
+            },
+            {
+              "title": "바이오스펙테이터, SK하이닉스, 로슈 등 인기 소식",
+              "author": "텔레모아-공식채널📈",
+              "type": "TELEGRAM",
+              "url": "https://t.me/primestocknote/40195"
+            },
+            {
+              "title": "[손경제] 하이닉스 실적 | 삼성전자 집회 | 케빈워시 청문회 | 출생아 수 | 중국 전기차 배터리 | 20260423(목)",
+              "author": "손에잡히는경제",
+              "type": "YOUTUBE",
+              "url": "https://www.youtube.com/watch?v=nrhk-Oe1GKM"
+            }
+          ]
+        }
+      ],
+      "signalDirection": "neutral",
+      "signalLabels": [
+        "AI 인프라/전력"
+      ],
+      "relevanceScore": 31,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [],
+        "watchlist": [
+          {
+            "code": "005930",
+            "name": "삼성전자",
+            "accountHint": null,
+            "accountKey": null,
+            "category": "반도체",
+            "matchReasons": [
+              "키워드코드:005930",
+              "삼성전자",
+              "hbm",
+              "반도체"
+            ]
+          },
+          {
+            "code": "000660",
+            "name": "SK하이닉스",
+            "accountHint": null,
+            "accountKey": null,
+            "category": "반도체",
+            "matchReasons": [
+              "키워드코드:000660",
+              "SK하이닉스",
+              "sk하이닉스",
+              "하이닉스",
+              "hbm"
+            ]
+          }
+        ]
+      },
+      "portfolioLinkage": "핵심 시그널은 AI 인프라/전력입니다.",
+      "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요.",
+      "impactEntries": []
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM0NDc5Mw==",
+      "numericId": "1344793",
+      "title": "SK하이닉스·삼성 법인세 110조 원 돌파 전망",
+      "summary": "SK하이닉스가 2026년 1분기에 역대 최대 실적을 내면서 법인세 납부액이 크게 늘었고, 삼성전자와 함께 두 회사 법인세가 110조~114조 원에 이를 전망입니다. 이로 인해 세수 개선이 기대됩니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1344793",
+      "displayUpdatedAt": "2026-04-23T03:06:00+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 1,
+      "mainSource": {
+        "type": "COMPANY_NEWS",
+        "name": "뉴스",
+        "author": "문화일보"
+      },
+      "uniqueSourceTypeList": [
+        "COMPANY_NEWS"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZToyODc2",
+          "name": "반도체",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -1.4598965644836426
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyNDY1",
+          "name": "AI",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -1.8011987209320068
+        }
+      ],
+      "sourceInfo": [],
+      "subTopics": [],
+      "signalDirection": "neutral",
+      "signalLabels": [
+        "AI 인프라/전력"
+      ],
+      "relevanceScore": 26,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [],
+        "watchlist": [
+          {
+            "code": "005930",
+            "name": "삼성전자",
+            "accountHint": null,
+            "accountKey": null,
+            "category": "반도체",
+            "matchReasons": [
+              "삼성전자",
+              "반도체"
+            ]
+          },
+          {
+            "code": "000660",
+            "name": "SK하이닉스",
+            "accountHint": null,
+            "accountKey": null,
+            "category": "반도체",
+            "matchReasons": [
+              "SK하이닉스",
+              "sk하이닉스",
+              "하이닉스",
+              "반도체"
+            ]
+          }
+        ]
+      },
+      "portfolioLinkage": "핵심 시그널은 AI 인프라/전력입니다.",
+      "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요.",
+      "impactEntries": []
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM0NDc5Ng==",
+      "numericId": "1344796",
+      "title": "이재명 대통령, 베트남서 한-베 경협 확대 논의",
+      "summary": "이재명 대통령이 2026년 4월 23일 베트남 하노이에서 열린 한-베트남 비즈니스 포럼에 참석해 양국 경제 협력 확대를 논의했습니다. 삼성전자, SK, LG 등 250여 명 기업인이 참여해 70건 이상의 협력 양해각서를 체결했습니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1344796",
+      "displayUpdatedAt": "2026-04-23T03:09:00+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 1,
+      "mainSource": {
+        "type": "COMPANY_NEWS",
+        "name": "뉴스",
+        "author": "뉴시스"
+      },
+      "uniqueSourceTypeList": [
+        "COMPANY_NEWS"
+      ],
+      "keywordList": [],
+      "sourceInfo": [
+        {
+          "type": "COMPANY_NEWS",
+          "count": 1
+        }
+      ],
+      "subTopics": [
+        {
+          "id": "U3ViVG9waWNUeXBlOjE0MTc5NTg=",
+          "title": "이재명 대통령, 한-베트남 비즈니스 포럼 참석",
+          "summary": "이재명 대통령이 2026년 4월 23일 베트남 하노이에서 열린 한-베트남 비즈니스 포럼에 참석해 양국 간 경제 협력 확대 방안을 논의했습니다. 삼성전자, SK, LG 등 한국 주요 기업인 250여 명과 베트남 기업인들이 함께했으며, 첨단기술, 인프라, 에너지, 금융 등 다양한 분야에서 70건이 넘는 민간 협력 양해각서가 체결됐습니다.",
+          "updatedAt": "2026-04-23T12:09:00+09:00",
+          "sourceOrigins": [
+            {
+              "title": "이 대통령, 오늘 `한-베트남 비즈니스 포럼` 참석…이재용·최태원·구광모 등 참석",
+              "author": "뉴시스",
+              "type": "COMPANY_NEWS",
+              "url": "https://www.newsis.com/view/NISX20260423_0003603426"
+            }
+          ]
+        }
+      ],
+      "signalDirection": "neutral",
+      "signalLabels": [],
+      "relevanceScore": 12,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [],
+        "watchlist": [
+          {
+            "code": "005930",
+            "name": "삼성전자",
+            "accountHint": null,
+            "accountKey": null,
+            "category": "반도체",
+            "matchReasons": [
+              "삼성전자"
+            ]
+          }
+        ]
+      },
+      "portfolioLinkage": "",
+      "deepResearchQuestion": "이재명 대통령, 베트남서 한-베 경협 확대 논의가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+      "impactEntries": []
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM0NDc5NQ==",
+      "numericId": "1344795",
+      "title": "미국 전문가들, 트럼프 외교정책 동맹·군사력 중심 평가",
+      "summary": "2026년 4월 23일 서울 글로벌 콘퍼런스에서 미국 전문가들이 도널드 트럼프 전 대통령의 외교정책이 동맹과 군사력을 활용한 협상 전략이라고 평가했습니다. 미·중 경쟁 속 미국은 핵심 동맹국과 협력을 강화하며, 한국은 반도체, 조선, 자동차, AI, 에너지 분야에서 전략적 파트너 역할을 확대하고 있다고 밝혔습니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1344795",
+      "displayUpdatedAt": "2026-04-23T03:06:00+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 1,
+      "mainSource": {
+        "type": "COMPANY_NEWS",
+        "name": "뉴스",
+        "author": "머니투데이"
+      },
+      "uniqueSourceTypeList": [
+        "COMPANY_NEWS"
+      ],
+      "keywordList": [],
+      "sourceInfo": [
+        {
+          "type": "COMPANY_NEWS",
+          "count": 1
+        }
+      ],
+      "subTopics": [
+        {
+          "id": "U3ViVG9waWNUeXBlOjE0MTc5NTc=",
+          "title": "미국 전문가, 트럼프 외교정책과 동맹 협력 평가",
+          "summary": "2026년 4월 23일 서울에서 열린 글로벌 콘퍼런스에서 미국 정책 전문가들이 도널드 트럼프 전 대통령의 외교정책이 동맹과 군사력을 활용한 협상 전략으로 전개되고 있다고 평가했습니다. 이들은 미·중 경쟁이 심화되는 가운데 에너지 안보와 첨단기술이 결합된 새로운 패권 질서가 형성되고 있으며, 미국이 핵심 동맹국과의 협력을 강화하고 있다고 진단했습니다. 또한 한국이 반도체, 조선, 자동차, AI, 에너지 등 분야에서 미국의 전략적 파트너로서 역할을 확대하고 있다고 강조했습니다.",
+          "updatedAt": "2026-04-23T12:06:00+09:00",
+          "sourceOrigins": [
+            {
+              "title": "\"동맹·군사력 앞세운 트럼프 외교…패권 판도는 `힘·에너지·기술`\"",
+              "author": "머니투데이",
+              "type": "COMPANY_NEWS",
+              "url": "https://www.mt.co.kr/industry/2026/04/23/2026042310554062676"
+            }
+          ]
+        }
+      ],
+      "signalDirection": "positive",
+      "signalLabels": [
+        "AI 인프라/전력"
+      ],
+      "relevanceScore": 12,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [],
+        "watchlist": []
+      },
+      "portfolioLinkage": "핵심 시그널은 AI 인프라/전력입니다.",
+      "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요.",
+      "impactEntries": []
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM0NDY5MQ==",
+      "numericId": "1344691",
+      "title": "신한금융, 2026년 주주환원율 산식 공개",
+      "summary": "신한금융지주회사가 2026년 기업가치 제고를 위해 주주환원율 산식과 적용 예시를 공개했습니다. 성장률과 자기자본이익률에 따라 주주환원율을 산출하는 방식이 도입되어 주주가치를 높이고자 합니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1344691",
+      "displayUpdatedAt": "2026-04-23T03:08:00+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 3,
+      "mainSource": {
+        "type": "DISCLOSURE",
+        "name": "공시",
+        "author": "공시"
+      },
+      "uniqueSourceTypeList": [
+        "DISCLOSURE",
+        "COMPANY_NEWS",
+        "TELEGRAM"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZToxMDA2",
+          "name": "신한지주",
+          "code": "055550",
+          "type": "COMPANY",
+          "country": "KR",
+          "fluctuationRate": -0.3042596348884381
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyNjc1",
+          "name": "금융",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -0.439608097076416
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyNjc3",
+          "name": "금융지주",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 0.050759315490722656
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZTozNDU5",
+          "name": "지주회사",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -0.07954239845275879
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZTozODEx",
+          "name": "한화 Research 금융 김도하",
+          "code": "텔레그램-1455656976",
+          "type": "INFLUENCER",
+          "country": "EMPTY",
+          "fluctuationRate": null
+        }
+      ],
+      "sourceInfo": [
+        {
+          "type": "DISCLOSURE",
+          "count": 1
+        },
+        {
+          "type": "COMPANY_NEWS",
+          "count": 1
+        },
+        {
+          "type": "TELEGRAM",
+          "count": 1
+        }
+      ],
+      "subTopics": [
+        {
+          "id": "U3ViVG9waWNUeXBlOjE0MTc4NTA=",
+          "title": "신한금융지주, 주주환원율 산식 공식과 예시 공개",
+          "summary": "신한금융지주회사가 2026년 기업가치 제고를 위한 구체적 목표와 이행 현황을 자율공시로 공개했습니다. 이번에 주주환원율 산식의 공식과 적용 예시를 새롭게 발표했으며, 자기자본이익률과 성장률에 연동해 주주환원율을 산출하는 방식이 도입되었습니다. 예시로 성장률 4.5%와 목표 ROE 10%일 때 주주환원율은 55%가 됩니다.",
+          "updatedAt": "2026-04-23T12:08:00+09:00",
+          "sourceOrigins": [
+            {
+              "title": "신한금융, ‘신한 밸류업 2.0’ 발표…‘상한 없는 주주환원율’ 제시",
+              "author": "이데일리",
+              "type": "COMPANY_NEWS",
+              "url": "http://www.edaily.co.kr/news/newspath.asp?newsid=04165606645419072"
+            },
+            {
+              "title": "신한지주, 주주환원율 산식 및 가치 상승 전략 발표",
+              "author": "한화 Research 금융 김도하",
+              "type": "TELEGRAM",
+              "url": "https://t.me/dh_finance/3834"
+            },
+            {
+              "title": "기업가치제고계획(자율공시) (2026년)",
+              "author": "공시",
+              "type": "DISCLOSURE",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260423800235"
+            }
+          ]
+        }
+      ],
+      "signalDirection": "neutral",
+      "signalLabels": [],
+      "relevanceScore": 6,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [],
+        "watchlist": []
+      },
+      "portfolioLinkage": "",
+      "deepResearchQuestion": "신한금융, 2026년 주주환원율 산식 공개가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+      "impactEntries": []
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM0NDc5MQ==",
+      "numericId": "1344791",
+      "title": "유한킴벌리, 5월 숲속 꿀잠대회 참가자 모집",
+      "summary": "유한킴벌리가 2026년 5월 30일 서울숲에서 '2026 숲속 꿀잠대회'를 열고 참가자 70명을 모집합니다. 5월 6일까지 신청 가능하며, 우승자에게 몽골 왕복 항공권이 주어집니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1344791",
+      "displayUpdatedAt": "2026-04-23T03:09:00+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 1,
+      "mainSource": {
+        "type": "COMPANY_NEWS",
+        "name": "뉴스",
+        "author": "한국경제"
+      },
+      "uniqueSourceTypeList": [
+        "COMPANY_NEWS"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZTozMDAy",
+          "name": "생활용품",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 0.6214380264282227
+        }
+      ],
+      "sourceInfo": [
+        {
+          "type": "COMPANY_NEWS",
+          "count": 1
+        }
+      ],
+      "subTopics": [
+        {
+          "id": "U3ViVG9waWNUeXBlOjE0MTc5NTM=",
+          "title": "유한킴벌리, 5월 숲속 꿀잠대회 개최 및 참가자 모집",
+          "summary": "유한킴벌리가 2026년 5월 30일 서울숲에서 '2026 숲속 꿀잠대회'를 열고 참가자 70명을 모집합니다. 신청은 5월 6일까지 공식 홈페이지에서 가능하며, 대회는 2시간 숙면 경쟁과 심박수 측정 방식으로 진행됩니다. 우승자에게는 몽골 왕복 항공권이, 모든 참가자에게는 주요 브랜드 제품으로 구성된 '꿀잠 키트'가 제공됩니다.",
+          "updatedAt": "2026-04-23T12:09:00+09:00",
+          "sourceOrigins": [
+            {
+              "title": "‘2시간 숙면’ 경쟁…유한킴벌리, 서울숲 꿀잠대회 참가자 모집",
+              "author": "한국경제",
+              "type": "COMPANY_NEWS",
+              "url": "https://www.hankyung.com/article/202604231536i"
+            }
+          ]
+        }
+      ],
+      "signalDirection": "neutral",
+      "signalLabels": [],
+      "relevanceScore": 3,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [],
+        "watchlist": []
+      },
+      "portfolioLinkage": "",
+      "deepResearchQuestion": "유한킴벌리, 5월 숲속 꿀잠대회 참가자 모집가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+      "impactEntries": []
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM0NDc5MA==",
+      "numericId": "1344790",
+      "title": "RoE 목표 높고 성장률 낮을수록 환원율 상승",
+      "summary": "기업의 자기자본이익률(RoE) 목표가 높고 성장률 타겟이 낮을수록 환원율이 상승하는 경향이 있습니다. 이는 투자자들이 기업의 성장 전망과 수익성 목표에 따라 기대 수익률을 다르게 본다는 뜻입니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1344790",
+      "displayUpdatedAt": "2026-04-23T03:06:12+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 1,
+      "mainSource": {
+        "type": "TELEGRAM",
+        "name": "텔레그램",
+        "author": "한화 Research 금융 김도하"
+      },
+      "uniqueSourceTypeList": [
+        "TELEGRAM"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZTozODEx",
+          "name": "한화 Research 금융 김도하",
+          "code": "텔레그램-1455656976",
+          "type": "INFLUENCER",
+          "country": "EMPTY",
+          "fluctuationRate": null
+        }
+      ],
+      "sourceInfo": [
+        {
+          "type": "TELEGRAM",
+          "count": 1
+        }
+      ],
+      "subTopics": [
+        {
+          "id": "U3ViVG9waWNUeXBlOjE0MTc5NTI=",
+          "title": "기업 RoE 목표와 성장률이 환원율에 미치는 영향 설명",
+          "summary": "언론이 기업이 설정하는 자기자본이익률(RoE) 목표와 성장률 타겟이 환원율에 미치는 영향을 설명했습니다. RoE 목표가 높아지고 성장률 타겟이 낮아질수록 환원율이 상승하는 경향이 확인됐으며, 이는 투자자들이 기대하는 수익률이 기업의 성장 전망과 수익성 목표에 따라 달라진다는 점을 보여줍니다. 환원율은 기업 가치 평가에서 미래 현금흐름을 현재 가치로 환산할 때 중요한 지표로 활용됩니다.",
+          "updatedAt": "2026-04-23T12:06:12+09:00",
+          "sourceOrigins": [
+            {
+              "title": "RoE 목표 상승 시 환원율 증가, 성장률 타겟 하락 영향",
+              "author": "한화 Research 금융 김도하",
+              "type": "TELEGRAM",
+              "url": "https://t.me/dh_finance/3835"
+            }
+          ]
+        }
+      ],
+      "signalDirection": "neutral",
+      "signalLabels": [],
+      "relevanceScore": 3,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [],
+        "watchlist": []
+      },
+      "portfolioLinkage": "",
+      "deepResearchQuestion": "RoE 목표 높고 성장률 낮을수록 환원율 상승가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+      "impactEntries": []
+    }
+  ],
+  "accountDigests": [
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "topTopics": []
+    },
+    {
+      "accountKey": "PENSION",
+      "accountLabel": "한투 연금저축",
+      "topTopics": []
+    },
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "topTopics": [
+        {
+          "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM0NDc4MQ==",
+          "title": "중동 긴장 지속에 브렌트유 100달러선 유지",
+          "topicUrl": "https://www.moneytoring.ai/mv/1344781",
+          "relevanceScore": 40,
+          "signalDirection": "negative",
+          "portfolioLinkage": "계좌 테마 기준으로는 한투 일반의 방산, 한투 일반의 원자력 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다.",
+          "matchedNames": [],
+          "matchedCategories": [
+            "방산",
+            "원자력"
+          ],
+          "sourceCount": 1,
+          "updatedAt": "2026-04-23T03:09:12+00:00"
+        },
+        {
+          "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM0NDc5Nw==",
+          "title": "중국 제조업, 이란 전쟁 여파로 원가 상승 고심",
+          "topicUrl": "https://www.moneytoring.ai/mv/1344797",
+          "relevanceScore": 40,
+          "signalDirection": "negative",
+          "portfolioLinkage": "계좌 테마 기준으로는 한투 일반의 방산, 한투 일반의 원자력 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다.",
+          "matchedNames": [],
+          "matchedCategories": [
+            "방산",
+            "원자력"
+          ],
+          "sourceCount": 1,
+          "updatedAt": "2026-04-23T03:05:00+00:00"
+        }
+      ]
+    }
+  ],
+  "deepResearchCandidates": [],
+  "impactReports": [
+    {
+      "reportId": "marketvoice_1344781",
+      "title": "중동 긴장 지속에 브렌트유 100달러선 유지",
+      "broker": "증권사 애널 크롤러🇰🇷",
+      "source": "moneytoring",
+      "publishedDate": "2026-04-23T03:09:12+00:00",
+      "reportMeta": {
+        "report_type": "marketvoice",
+        "sector": "중동/유가",
+        "themes": [
+          "중동/유가"
+        ],
+        "key_numbers": [
+          "원문 1건",
+          "인용 0건"
+        ]
+      },
+      "impacts": [
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "KIS_MAIN",
+            "name": "방산"
+          },
+          "direction": "positive",
+          "strength": 0.474,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "이란과 미국 간 휴전 종료 후 종전이 확정되지 않아 중동 긴장이 계속되고 있습니다. 이 영향으로 브렌트유 가격은 한때 4.2% 급등했으며, 배럴당 100달러를 유지하고 있습니다. 미국 주가는 하락했고 아시아 기술주는 2.4% 올랐습니다.",
+              "이란과 미국 간 휴전이 끝난 뒤에도 종전이 확정되지 않아 중동 지역의 긴장감이 이어지고 있습니다. 이로 인해 브렌트유 가격은 한때 4.2% 급등한 후 일부 상승폭을 반납했지만 배럴당 100달러를 유지하고 있습니다. 미국 주가 지수 선물은 변동성이 큰 장세 속에서 하락했고, 아시아 기술주 지수는 2.4% 상승하며 사상 최고치를 기록했습니다.",
+              "계좌 테마 기준으로는 한투 일반의 방산, 한투 일반의 원자력 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "KIS_MAIN",
+            "name": "원자력"
+          },
+          "direction": "positive",
+          "strength": 0.474,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "이란과 미국 간 휴전 종료 후 종전이 확정되지 않아 중동 긴장이 계속되고 있습니다. 이 영향으로 브렌트유 가격은 한때 4.2% 급등했으며, 배럴당 100달러를 유지하고 있습니다. 미국 주가는 하락했고 아시아 기술주는 2.4% 올랐습니다.",
+              "이란과 미국 간 휴전이 끝난 뒤에도 종전이 확정되지 않아 중동 지역의 긴장감이 이어지고 있습니다. 이로 인해 브렌트유 가격은 한때 4.2% 급등한 후 일부 상승폭을 반납했지만 배럴당 100달러를 유지하고 있습니다. 미국 주가 지수 선물은 변동성이 큰 장세 속에서 하락했고, 아시아 기술주 지수는 2.4% 상승하며 사상 최고치를 기록했습니다.",
+              "계좌 테마 기준으로는 한투 일반의 방산, 한투 일반의 원자력 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        }
+      ]
+    },
+    {
+      "reportId": "marketvoice_1344797",
+      "title": "중국 제조업, 이란 전쟁 여파로 원가 상승 고심",
+      "broker": "이데일리",
+      "source": "moneytoring",
+      "publishedDate": "2026-04-23T03:05:00+00:00",
+      "reportMeta": {
+        "report_type": "marketvoice",
+        "sector": "중동/유가",
+        "themes": [
+          "중동/유가"
+        ],
+        "key_numbers": [
+          "원문 1건",
+          "인용 0건"
+        ]
+      },
+      "impacts": [
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "KIS_MAIN",
+            "name": "방산"
+          },
+          "direction": "positive",
+          "strength": 0.474,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "COMPANY_NEWS",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "중국 제조업계가 2026년 이란 전쟁으로 원유 공급 차질과 원가 상승에 큰 타격을 받았으며, 광저우 노동자들은 생계난을 겪고 있습니다. 중국은 첨단 기술과 전기차 수출로 미래 경쟁력을 키우고 신흥시장 개척에 힘쓰고 있습니다.",
+              "계좌 테마 기준으로는 한투 일반의 방산, 한투 일반의 원자력 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "석유화학 -2.07%",
+              "자동차 -1.44%",
+              "에너지자원 -3.11%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "KIS_MAIN",
+            "name": "원자력"
+          },
+          "direction": "positive",
+          "strength": 0.474,
+          "confidence": 0.54,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "COMPANY_NEWS",
+            "중동/유가"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "중국 제조업계가 2026년 이란 전쟁으로 원유 공급 차질과 원가 상승에 큰 타격을 받았으며, 광저우 노동자들은 생계난을 겪고 있습니다. 중국은 첨단 기술과 전기차 수출로 미래 경쟁력을 키우고 신흥시장 개척에 힘쓰고 있습니다.",
+              "계좌 테마 기준으로는 한투 일반의 방산, 한투 일반의 원자력 판단과 맞물립니다. 핵심 시그널은 중동/유가입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "석유화학 -2.07%",
+              "자동차 -1.44%",
+              "에너지자원 -3.11%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil"
+          ]
+        }
+      ]
+    }
+  ]
+}
