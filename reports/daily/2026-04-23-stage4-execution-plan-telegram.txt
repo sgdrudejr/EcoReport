@@ -1,0 +1,32 @@
+EcoReport 2026-04-23 실행계획 표
+레짐: BULL | 점수: 45
+
+[한투 ISA]
+액션 | 종목 | 금액 | 긴급도
+BUY | TIGER 글로벌AI전력인프... | 1,276,025원 | next_tranche
+BUY | KODEX 미국AI전력핵심인프라 | 850,684원 | next_tranche
+HOLD | KODEX 골드선물(H) | - | hold
+HOLD | KODEX AI전력핵심설비 | - | hold
+WATCH | RISE 삼성전자SK하이닉스... | - | watch
+WATCH | KODEX 200 | - | watch
+WATCH | KODEX 신재생에너지액티브 | - | watch
+
+[한투 연금저축]
+액션 | 종목 | 금액 | 긴급도
+BUY | TIGER 미국S&P500 | 2,814,397원 | next_tranche
+HOLD | TIGER 미국S&P500 | - | hold
+HOLD | KODEX AI전력핵심설비 | - | hold
+WATCH | RISE 삼성전자SK하이닉스... | - | watch
+WATCH | KODEX 200 | - | watch
+WATCH | KODEX 미국나스닥100 | - | watch
+
+[한투 일반]
+액션 | 종목 | 금액 | 긴급도
+BUY | KODEX AI전력핵심설비 | 291,586원 | this_week
+BUY | TIGER 글로벌AI전력인프... | 349,903원 | next_tranche
+BUY | KODEX 미국AI전력핵심인프라 | 233,269원 | next_tranche
+HOLD | 현대로템 | - | hold
+HOLD | HD현대중공업 | - | hold
+HOLD | PLUS K방산 | - | hold
+WATCH | 이수페타시스 | - | watch
+WATCH | KODEX 구리선물(H) | - | watch

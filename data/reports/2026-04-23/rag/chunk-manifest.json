@@ -1,10 +1,10 @@
 {
   "date": "2026-04-23",
-  "generated_at": "2026-04-23T03:29:59.389Z",
-  "total_reports": 56,
-  "unique_reports": 56,
+  "generated_at": "2026-04-23T15:06:23.612Z",
+  "total_reports": 67,
+  "unique_reports": 67,
   "duplicate_reports": 0,
-  "total_chunks": 491,
+  "total_chunks": 527,
   "target_chars": 1200,
   "max_chars": 1800,
   "overlap_paragraphs": 1,
@@ -16,8 +16,8 @@
   },
   "duplicate_entries": [],
   "chunk_type_counts": {
-    "table": 363,
-    "analysis": 98,
-    "disclaimer": 30
+    "table": 381,
+    "analysis": 107,
+    "disclaimer": 39
   }
 }

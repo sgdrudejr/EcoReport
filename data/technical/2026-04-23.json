@@ -1,19 +1,19 @@
 {
   "date": "2026-04-23",
-  "generated_at": "2026-04-23T03:29:39.630Z",
+  "generated_at": "2026-04-23T15:06:03.979Z",
   "market_context": {
     "index": "KOSPI",
     "signal": "BULLISH",
     "vix": null,
     "score": 90,
-    "close": 6362.6,
+    "close": 6475.81,
     "ma": {
-      "ma5": 6316.002,
-      "ma20": 5799.3415,
-      "ma60": 5611.0127,
-      "ma120": 4919.4867
+      "ma5": 6338.644,
+      "ma20": 5805.002,
+      "ma60": 5612.8995,
+      "ma120": 4920.4302
     },
-    "rsi": 65.03,
+    "rsi": 68.21,
     "alerts": []
   },
   "scores": {
@@ -26,65 +26,65 @@
       "score": 69,
       "signal": "BUY",
       "signal_reason": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 우호적",
-      "rsi": 45.46,
+      "rsi": 45.88,
       "macd": {
-        "value": -87.2052,
-        "signal": -168.8828,
-        "histogram": 81.6775
+        "value": -83.6155,
+        "signal": -168.1648,
+        "histogram": 84.5493
       },
       "bollinger": {
-        "upper": 27852.6259,
-        "middle": 26731.75,
-        "lower": 25610.8741,
+        "upper": 27854.5516,
+        "middle": 26734,
+        "lower": 25613.4484,
         "position": "lower_half"
       },
       "stochastic": {
-        "k": 33.66,
-        "d": 54.91
+        "k": 36.63,
+        "d": 55.9
       },
       "adx": {
-        "value": 16.93,
-        "pdi": 26.46,
-        "mdi": 36.62
+        "value": 16.94,
+        "pdi": 26.44,
+        "mdi": 36.66
       },
       "atr": {
-        "value": 564.3906,
-        "pct": 0.021162
+        "value": 564.7477,
+        "pct": 0.02114
       },
       "ma": {
-        "ma5": 27049,
-        "ma20": 26731.75,
-        "ma60": 27977.25,
-        "ma120": 26473.125
+        "ma5": 27058,
+        "ma20": 26734,
+        "ma60": 27978,
+        "ma120": 26473.5
       },
       "recent_high": {
         "window": 20,
         "value": 27675,
-        "distance_pct": -0.036314
+        "distance_pct": -0.034688
       },
-      "volume_ratio": 0.444,
-      "volume_current": 104221,
-      "volume_ma_20": 234557.9,
-      "close": 26670,
+      "volume_ratio": 0.749,
+      "volume_current": 178569,
+      "volume_ma_20": 238275.3,
+      "close": 26715,
       "close_252d": 18690,
       "previous_close": 27090,
-      "change_pct": -0.0155,
+      "change_pct": -0.0138,
       "history_points": 360,
       "heikin_ashi": {
         "open": 27107.3861,
-        "close": 26773.75
+        "close": 26783.75
       },
       "keltner": {
-        "upper": 28130.4017,
-        "lower": 25872.8394,
-        "middle": 27001.6205
+        "upper": 28135.4017,
+        "lower": 25876.4108,
+        "middle": 27005.9063
       },
       "ichimoku": {
         "senkou_span_a": 28883.75,
         "senkou_span_b": 28550
       },
       "anchored_vwap": {
-        "value": 26576.5523,
+        "value": 26579.8099,
         "anchor_type": "rolling_20d_approx"
       },
       "volume_profile": {
@@ -94,7 +94,7 @@
       "relative_strength": {
         "benchmark_used": "^KS11",
         "window_days": 63,
-        "rs_vs_benchmark": -0.321582
+        "rs_vs_benchmark": -0.343099
       },
       "rsi_divergence_metrics": {
         "price_drop_ratio": null,
@@ -112,8 +112,8 @@
           "rsi": {
             "side": "neutral",
             "label": "중립",
-            "summary": "RSI 45.46로 중립 구간입니다.",
-            "value": 45.46,
+            "summary": "RSI 45.88로 중립 구간입니다.",
+            "value": 45.88,
             "divergence": "none",
             "strength": "low"
           },
@@ -121,9 +121,9 @@
             "side": "buy_side",
             "label": "매수 쪽",
             "summary": "MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다.",
-            "value": -87.2052,
-            "signal": -168.8828,
-            "histogram": 81.6775,
+            "value": -83.6155,
+            "signal": -168.1648,
+            "histogram": 84.5493,
             "crossover": "none"
           },
           "bollinger": {
@@ -131,7 +131,7 @@
             "label": "중립",
             "summary": "가격이 볼린저 중단 부근에 있어 중립에 가깝습니다.",
             "position": "lower_half",
-            "distanceRatio": 0.472
+            "distanceRatio": 0.492
           },
           "movingAverage": {
             "side": "neutral",
@@ -207,7 +207,7 @@
         0.000184,
         -0.001288,
         -0.001842,
-        -0.015504
+        -0.013843
       ]
     },
     "133690": {
@@ -219,21 +219,21 @@
       "score": 73,
       "signal": "BUY",
       "signal_reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
-      "rsi": 80.64,
+      "rsi": 80.94,
       "macd": {
-        "value": 3674.7399,
-        "signal": 2368.1821,
-        "histogram": 1306.5578
+        "value": 3695.8795,
+        "signal": 2372.41,
+        "histogram": 1323.4695
       },
       "bollinger": {
-        "upper": 178058.025,
-        "middle": 165281.25,
-        "lower": 152504.475,
+        "upper": 178116.1605,
+        "middle": 165294.5,
+        "lower": 152472.8395,
         "position": "upper_half"
       },
       "stochastic": {
-        "k": 96.06,
-        "d": 97.1
+        "k": 97.66,
+        "d": 97.64
       },
       "adx": {
         "value": 28.6,
@@ -242,52 +242,52 @@
       },
       "atr": {
         "value": 1818.399,
-        "pct": 0.010332
+        "pct": 0.010317
       },
       "ma": {
-        "ma5": 174174,
-        "ma20": 165281.25,
-        "ma60": 162851.8333,
-        "ma120": 163708.375
+        "ma5": 174227,
+        "ma20": 165294.5,
+        "ma60": 162856.25,
+        "ma120": 163710.5833
       },
       "recent_high": {
         "window": 20,
         "value": 176645,
-        "distance_pct": -0.00368
+        "distance_pct": -0.00218
       },
-      "volume_ratio": 0.604,
-      "volume_current": 417745,
-      "volume_ma_20": 692020.7,
-      "close": 175995,
+      "volume_ratio": 1.186,
+      "volume_current": 846485,
+      "volume_ma_20": 713457.7,
+      "close": 176260,
       "close_252d": 123100,
       "previous_close": 174520,
-      "change_pct": 0.0085,
+      "change_pct": 0.01,
       "history_points": 360,
       "heikin_ashi": {
         "open": 173827.4218,
-        "close": 176195
+        "close": 176261.25
       },
       "keltner": {
-        "upper": 171401.9834,
-        "lower": 164128.3874,
-        "middle": 167765.1854
+        "upper": 171427.2215,
+        "lower": 164153.6255,
+        "middle": 167790.4235
       },
       "ichimoku": {
         "senkou_span_a": 161245,
         "senkou_span_b": 162630
       },
       "anchored_vwap": {
-        "value": 164221.8187,
+        "value": 164582.3056,
         "anchor_type": "rolling_20d_approx"
       },
       "volume_profile": {
-        "poc_price_120d": 162477.1181,
+        "poc_price_120d": 162508.4028,
         "method": "daily_typical_price_histogram"
       },
       "relative_strength": {
         "benchmark_used": "^KS11",
         "window_days": 63,
-        "rs_vs_benchmark": -0.235996
+        "rs_vs_benchmark": -0.257562
       },
       "rsi_divergence_metrics": {
         "price_drop_ratio": null,
@@ -307,8 +307,8 @@
           "rsi": {
             "side": "sell_side",
             "label": "매도 쪽",
-            "summary": "RSI 80.64로 과매수에 가까워 매도 쪽 경계가 필요합니다.",
-            "value": 80.64,
+            "summary": "RSI 80.94로 과매수에 가까워 매도 쪽 경계가 필요합니다.",
+            "value": 80.94,
             "divergence": "none",
             "strength": "high"
           },
@@ -316,9 +316,9 @@
             "side": "buy_side",
             "label": "매수 쪽",
             "summary": "MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다.",
-            "value": 3674.7399,
-            "signal": 2368.1821,
-            "histogram": 1306.5578,
+            "value": 3695.8795,
+            "signal": 2372.41,
+            "histogram": 1323.4695,
             "crossover": "none"
           },
           "bollinger": {
@@ -326,7 +326,7 @@
             "label": "매도 쪽",
             "summary": "가격이 볼린저 상단에 가까워 단기 과열에 따른 매도 쪽 경계가 필요합니다.",
             "position": "upper_half",
-            "distanceRatio": 0.919
+            "distanceRatio": 0.928
           },
           "movingAverage": {
             "side": "buy_side",
@@ -402,7 +402,7 @@
         0.003846,
         0.001613,
         0.003796,
-        0.008452
+        0.00997
       ]
     },
     "267260": {
@@ -411,24 +411,24 @@
       "account": null,
       "bucket": "individual_stocks",
       "type": "stock",
-      "score": 90,
+      "score": 94,
       "signal": "STRONG_BUY",
       "signal_reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
-      "rsi": 65.6,
+      "rsi": 67.47,
       "macd": {
-        "value": 43071.9006,
-        "signal": 29598.8634,
-        "histogram": 13473.0372
+        "value": 44747.1143,
+        "signal": 29933.9061,
+        "histogram": 14813.2082
       },
       "bollinger": {
-        "upper": 1161503.8898,
-        "middle": 983150,
-        "lower": 804796.1102,
+        "upper": 1165701.0744,
+        "middle": 984200,
+        "lower": 802698.9256,
         "position": "upper_half"
       },
       "stochastic": {
-        "k": 84.59,
-        "d": 85.21
+        "k": 92.48,
+        "d": 87.84
       },
       "adx": {
         "value": 21.39,
@@ -437,59 +437,61 @@
       },
       "atr": {
         "value": 50602.7047,
-        "pct": 0.04567
+        "pct": 0.044821
       },
       "ma": {
-        "ma5": 1086000,
-        "ma20": 983150,
-        "ma60": 960016.6667,
-        "ma120": 898600
+        "ma5": 1090200,
+        "ma20": 984200,
+        "ma60": 960366.6667,
+        "ma120": 898775
       },
       "recent_high": {
         "window": 20,
         "value": 1149000,
-        "distance_pct": -0.035683
+        "distance_pct": -0.017406
       },
-      "volume_ratio": 1.54,
-      "volume_current": 223750,
-      "volume_ma_20": 145274,
-      "close": 1108000,
+      "volume_ratio": 2.079,
+      "volume_current": 311050,
+      "volume_ma_20": 149639,
+      "close": 1129000,
       "close_252d": 314000,
       "previous_close": 1090000,
-      "change_pct": 0.0165,
+      "change_pct": 0.0358,
       "history_points": 360,
       "heikin_ashi": {
         "open": 1073769.1863,
-        "close": 1114250
+        "close": 1119500
       },
       "keltner": {
-        "upper": 1119259.9009,
-        "lower": 916849.0819,
-        "middle": 1018054.4914
+        "upper": 1121259.9009,
+        "lower": 918849.0819,
+        "middle": 1020054.4914
       },
       "ichimoku": {
         "senkou_span_a": 947250,
         "senkou_span_b": 935500
       },
       "anchored_vwap": {
-        "value": 993864.0526,
+        "value": 998193.2109,
         "anchor_type": "rolling_20d_approx"
       },
       "volume_profile": {
-        "poc_price_120d": 882250,
+        "poc_price_120d": 822895.8333,
         "method": "daily_typical_price_histogram"
       },
       "relative_strength": {
         "benchmark_used": "^KS11",
         "window_days": 63,
-        "rs_vs_benchmark": -0.091348
+        "rs_vs_benchmark": -0.091569
       },
       "rsi_divergence_metrics": {
         "price_drop_ratio": null,
         "rsi_rise_value": null
       },
       "exchange": "KOSPI",
-      "alerts": [],
+      "alerts": [
+        "거래량 급증(20일 평균 대비 2배 이상)"
+      ],
       "technical_analysis": {
         "execution_bias": {
           "side": "neutral",
@@ -500,8 +502,8 @@
           "rsi": {
             "side": "sell_side",
             "label": "매도 쪽",
-            "summary": "RSI 65.6로 과매수에 가까워 매도 쪽 경계가 필요합니다.",
-            "value": 65.6,
+            "summary": "RSI 67.47로 과매수에 가까워 매도 쪽 경계가 필요합니다.",
+            "value": 67.47,
             "divergence": "none",
             "strength": "medium"
           },
@@ -509,9 +511,9 @@
             "side": "buy_side",
             "label": "매수 쪽",
             "summary": "MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다.",
-            "value": 43071.9006,
-            "signal": 29598.8634,
-            "histogram": 13473.0372,
+            "value": 44747.1143,
+            "signal": 29933.9061,
+            "histogram": 14813.2082,
             "crossover": "none"
           },
           "bollinger": {
@@ -519,7 +521,7 @@
             "label": "매도 쪽",
             "summary": "가격이 볼린저 상단에 가까워 단기 과열에 따른 매도 쪽 경계가 필요합니다.",
             "position": "upper_half",
-            "distanceRatio": 0.85
+            "distanceRatio": 0.899
           },
           "movingAverage": {
             "side": "buy_side",
@@ -595,7 +597,7 @@
         0,
         -0.026679,
         0.030246,
-        0.016514
+        0.03578
       ]
     },
     "298040": {
@@ -604,24 +606,24 @@
       "account": null,
       "bucket": "individual_stocks",
       "type": "stock",
-      "score": 98,
+      "score": 94,
       "signal": "STRONG_BUY",
       "signal_reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
-      "rsi": 65.81,
+      "rsi": 68.29,
       "macd": {
-        "value": 128982.5125,
-        "signal": 107792.3267,
-        "histogram": 21190.1858
+        "value": 136082.2276,
+        "signal": 109212.2697,
+        "histogram": 26869.9579
       },
       "bollinger": {
-        "upper": 3279735.8245,
-        "middle": 2833550,
-        "lower": 2387364.1755,
+        "upper": 3299394.4083,
+        "middle": 2838000,
+        "lower": 2376605.5917,
         "position": "upper_half"
       },
       "stochastic": {
-        "k": 77.18,
-        "d": 78.98
+        "k": 88.79,
+        "d": 82.85
       },
       "adx": {
         "value": 20.77,
@@ -630,52 +632,52 @@
       },
       "atr": {
         "value": 161990.4835,
-        "pct": 0.050956
+        "pct": 0.049569
       },
       "ma": {
-        "ma5": 3051000,
-        "ma20": 2833550,
-        "ma60": 2641733.3333,
-        "ma120": 2334516.6667
+        "ma5": 3068800,
+        "ma20": 2838000,
+        "ma60": 2643216.6667,
+        "ma120": 2335258.3333
       },
       "recent_high": {
         "window": 20,
         "value": 3354000,
-        "distance_pct": -0.052177
+        "distance_pct": -0.025641
       },
-      "volume_ratio": 2.092,
-      "volume_current": 102289,
-      "volume_ma_20": 48898.45,
-      "close": 3179000,
+      "volume_ratio": 2.566,
+      "volume_current": 128899,
+      "volume_ma_20": 50228.95,
+      "close": 3268000,
       "close_252d": 432000,
       "previous_close": 3084000,
-      "change_pct": 0.0308,
+      "change_pct": 0.0597,
       "history_points": 360,
       "heikin_ashi": {
         "open": 3030443.5855,
-        "close": 3191500
+        "close": 3213750
       },
       "keltner": {
-        "upper": 3223946.6574,
-        "lower": 2575984.7232,
-        "middle": 2899965.6903
+        "upper": 3232422.8479,
+        "lower": 2584460.9137,
+        "middle": 2908441.8808
       },
       "ichimoku": {
         "senkou_span_a": 2516500,
         "senkou_span_b": 2338500
       },
       "anchored_vwap": {
-        "value": 2876061.7395,
+        "value": 2888837.52,
         "anchor_type": "rolling_20d_approx"
       },
       "volume_profile": {
-        "poc_price_120d": 2336208.3333,
+        "poc_price_120d": 2347951.3889,
         "method": "daily_typical_price_histogram"
       },
       "relative_strength": {
         "benchmark_used": "^KS11",
         "window_days": 63,
-        "rs_vs_benchmark": 0.053952
+        "rs_vs_benchmark": 0.068749
       },
       "rsi_divergence_metrics": {
         "price_drop_ratio": null,
@@ -695,8 +697,8 @@
           "rsi": {
             "side": "sell_side",
             "label": "매도 쪽",
-            "summary": "RSI 65.81로 과매수에 가까워 매도 쪽 경계가 필요합니다.",
-            "value": 65.81,
+            "summary": "RSI 68.29로 과매수에 가까워 매도 쪽 경계가 필요합니다.",
+            "value": 68.29,
             "divergence": "none",
             "strength": "medium"
           },
@@ -704,9 +706,9 @@
             "side": "buy_side",
             "label": "매수 쪽",
             "summary": "MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다.",
-            "value": 128982.5125,
-            "signal": 107792.3267,
-            "histogram": 21190.1858,
+            "value": 136082.2276,
+            "signal": 109212.2697,
+            "histogram": 26869.9579,
             "crossover": "none"
           },
           "bollinger": {
@@ -714,7 +716,7 @@
             "label": "매도 쪽",
             "summary": "가격이 볼린저 상단에 가까워 단기 과열에 따른 매도 쪽 경계가 필요합니다.",
             "position": "upper_half",
-            "distanceRatio": 0.887
+            "distanceRatio": 0.966
           },
           "movingAverage": {
             "side": "buy_side",
@@ -790,7 +792,7 @@
         0.010067,
         -0.002658,
         0.027315,
-        0.030804
+        0.059663
       ]
     },
     "360750": {
@@ -802,21 +804,21 @@
       "score": 85,
       "signal": "STRONG_BUY",
       "signal_reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
-      "rsi": 77.47,
+      "rsi": 77.59,
       "macd": {
-        "value": 380.6166,
-        "signal": 250.8542,
-        "histogram": 129.7624
+        "value": 381.4144,
+        "signal": 251.0137,
+        "histogram": 130.4006
       },
       "bollinger": {
-        "upper": 26438.4788,
-        "middle": 25113,
-        "lower": 23787.5212,
+        "upper": 26440.5347,
+        "middle": 25113.5,
+        "lower": 23786.4653,
         "position": "upper_half"
       },
       "stochastic": {
-        "k": 97.24,
-        "d": 96.34
+        "k": 97.85,
+        "d": 96.54
       },
       "adx": {
         "value": 26.63,
@@ -825,52 +827,52 @@
       },
       "atr": {
         "value": 209.5535,
-        "pct": 0.008015
+        "pct": 0.008014
       },
       "ma": {
-        "ma5": 26026,
-        "ma20": 25113,
-        "ma60": 24867.25,
-        "ma120": 24844.3333
+        "ma5": 26028,
+        "ma20": 25113.5,
+        "ma60": 24867.4167,
+        "ma120": 24844.4167
       },
       "recent_high": {
         "window": 20,
         "value": 26185,
-        "distance_pct": -0.001528
+        "distance_pct": -0.001337
       },
-      "volume_ratio": 0.711,
-      "volume_current": 8851742,
-      "volume_ma_20": 12455608.3,
-      "close": 26145,
+      "volume_ratio": 1.543,
+      "volume_current": 20083310,
+      "volume_ma_20": 13015827.05,
+      "close": 26150,
       "close_252d": 19715,
       "previous_close": 26045,
-      "change_pct": 0.0038,
+      "change_pct": 0.004,
       "history_points": 360,
       "heikin_ashi": {
         "open": 25998.6331,
-        "close": 26132.5
+        "close": 26135
       },
       "keltner": {
-        "upper": 25779.8717,
-        "lower": 24941.6576,
-        "middle": 25360.7647
+        "upper": 25780.8241,
+        "lower": 24942.61,
+        "middle": 25361.7171
       },
       "ichimoku": {
         "senkou_span_a": 24802.5,
         "senkou_span_b": 25000
       },
       "anchored_vwap": {
-        "value": 25126.6957,
+        "value": 25169.8495,
         "anchor_type": "rolling_20d_approx"
       },
       "volume_profile": {
-        "poc_price_120d": 24511.1458,
+        "poc_price_120d": 24512.0486,
         "method": "daily_typical_price_histogram"
       },
       "relative_strength": {
         "benchmark_used": "^KS11",
         "window_days": 63,
-        "rs_vs_benchmark": -0.264358
+        "rs_vs_benchmark": -0.287132
       },
       "rsi_divergence_metrics": {
         "price_drop_ratio": null,
@@ -890,8 +892,8 @@
           "rsi": {
             "side": "sell_side",
             "label": "매도 쪽",
-            "summary": "RSI 77.47로 과매수에 가까워 매도 쪽 경계가 필요합니다.",
-            "value": 77.47,
+            "summary": "RSI 77.59로 과매수에 가까워 매도 쪽 경계가 필요합니다.",
+            "value": 77.59,
             "divergence": "none",
             "strength": "high"
           },
@@ -899,9 +901,9 @@
             "side": "buy_side",
             "label": "매수 쪽",
             "summary": "MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다.",
-            "value": 380.6166,
-            "signal": 250.8542,
-            "histogram": 129.7624,
+            "value": 381.4144,
+            "signal": 251.0137,
+            "histogram": 130.4006,
             "crossover": "none"
           },
           "bollinger": {
@@ -909,7 +911,7 @@
             "label": "매도 쪽",
             "summary": "가격이 볼린저 상단에 가까워 단기 과열에 따른 매도 쪽 경계가 필요합니다.",
             "position": "upper_half",
-            "distanceRatio": 0.889
+            "distanceRatio": 0.891
           },
           "movingAverage": {
             "side": "buy_side",
@@ -985,7 +987,7 @@
         0.00212,
         0.000577,
         0.001346,
-        0.003648
+        0.004031
       ]
     },
     "423160": {
@@ -1033,9 +1035,9 @@
         "value": 110850,
         "distance_pct": -0.000226
       },
-      "volume_ratio": 0.626,
-      "volume_current": 200409,
-      "volume_ma_20": 320256,
+      "volume_ratio": 1.336,
+      "volume_current": 443981,
+      "volume_ma_20": 332434.6,
       "close": 110825,
       "close_252d": 109975,
       "previous_close": 110810,
@@ -1055,7 +1057,7 @@
         "senkou_span_b": 110737.5
       },
       "anchored_vwap": {
-        "value": 110746.4975,
+        "value": 110749.3123,
         "anchor_type": "rolling_20d_approx"
       },
       "volume_profile": {
@@ -1065,7 +1067,7 @@
       "relative_strength": {
         "benchmark_used": "^KS11",
         "window_days": 63,
-        "rs_vs_benchmark": -0.302142
+        "rs_vs_benchmark": -0.325313
       },
       "rsi_divergence_metrics": {
         "price_drop_ratio": null,
@@ -1190,21 +1192,21 @@
       "score": 94,
       "signal": "STRONG_BUY",
       "signal_reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
-      "rsi": 68.92,
+      "rsi": 71.29,
       "macd": {
-        "value": 3142.6645,
-        "signal": 2235.974,
-        "histogram": 906.6905
+        "value": 3298.22,
+        "signal": 2267.0851,
+        "histogram": 1031.1349
       },
       "bollinger": {
-        "upper": 81298.4705,
-        "middle": 70225,
-        "lower": 59151.5295,
+        "upper": 81747.8982,
+        "middle": 70322.5,
+        "lower": 58897.1018,
         "position": "upper_half"
       },
       "stochastic": {
-        "k": 83.77,
-        "d": 91.46
+        "k": 93.98,
+        "d": 94.86
       },
       "adx": {
         "value": 19.12,
@@ -1213,52 +1215,52 @@
       },
       "atr": {
         "value": 2997.8467,
-        "pct": 0.037732
+        "pct": 0.036829
       },
       "ma": {
-        "ma5": 77136,
-        "ma20": 70225,
-        "ma60": 66887.4167,
-        "ma120": 58849.5417
+        "ma5": 77526,
+        "ma20": 70322.5,
+        "ma60": 66919.9167,
+        "ma120": 58865.7917
       },
       "recent_high": {
         "window": 20,
         "value": 82550,
-        "distance_pct": -0.037553
+        "distance_pct": -0.013931
       },
-      "volume_ratio": 2.195,
-      "volume_current": 1532337,
-      "volume_ma_20": 698074.15,
-      "close": 79450,
+      "volume_ratio": 2.454,
+      "volume_current": 1738163,
+      "volume_ma_20": 708365.45,
+      "close": 81400,
       "close_252d": 18370,
       "previous_close": 77650,
-      "change_pct": 0.0232,
+      "change_pct": 0.0483,
       "history_points": 360,
       "heikin_ashi": {
         "open": 76529.7128,
-        "close": 80403.75
+        "close": 80743.75
       },
       "keltner": {
-        "upper": 78373.2168,
-        "lower": 66381.83,
-        "middle": 72377.5234
+        "upper": 78558.9311,
+        "lower": 66567.5442,
+        "middle": 72563.2377
       },
       "ichimoku": {
         "senkou_span_a": 65270,
         "senkou_span_b": 60687.5
       },
       "anchored_vwap": {
-        "value": 71576.5015,
+        "value": 71761.1091,
         "anchor_type": "rolling_20d_approx"
       },
       "volume_profile": {
-        "poc_price_120d": 51164.2014,
+        "poc_price_120d": 51230.3125,
         "method": "daily_typical_price_histogram"
       },
       "relative_strength": {
         "benchmark_used": "^KS11",
         "window_days": 63,
-        "rs_vs_benchmark": -0.003544
+        "rs_vs_benchmark": 0.00516
       },
       "rsi_divergence_metrics": {
         "price_drop_ratio": null,
@@ -1266,6 +1268,7 @@
       },
       "exchange": "KOSPI",
       "alerts": [
+        "RSI 과매수 구간 진입",
         "거래량 급증(20일 평균 대비 2배 이상)"
       ],
       "technical_analysis": {
@@ -1278,18 +1281,18 @@
           "rsi": {
             "side": "sell_side",
             "label": "매도 쪽",
-            "summary": "RSI 68.92로 과매수에 가까워 매도 쪽 경계가 필요합니다.",
-            "value": 68.92,
+            "summary": "RSI 71.29로 과매수에 가까워 매도 쪽 경계가 필요합니다.",
+            "value": 71.29,
             "divergence": "none",
-            "strength": "medium"
+            "strength": "high"
           },
           "macd": {
             "side": "buy_side",
             "label": "매수 쪽",
             "summary": "MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다.",
-            "value": 3142.6645,
-            "signal": 2235.974,
-            "histogram": 906.6905,
+            "value": 3298.22,
+            "signal": 2267.0851,
+            "histogram": 1031.1349,
             "crossover": "none"
           },
           "bollinger": {
@@ -1297,7 +1300,7 @@
             "label": "매도 쪽",
             "summary": "가격이 볼린저 상단에 가까워 단기 과열에 따른 매도 쪽 경계가 필요합니다.",
             "position": "upper_half",
-            "distanceRatio": 0.917
+            "distanceRatio": 0.985
           },
           "movingAverage": {
             "side": "buy_side",
@@ -1373,7 +1376,7 @@
         0.005285,
         0.009331,
         0.011068,
-        0.023181
+        0.048294
       ]
     },
     "449450": {
@@ -1385,65 +1388,65 @@
       "score": 100,
       "signal": "STRONG_BUY",
       "signal_reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
-      "rsi": 56.54,
+      "rsi": 59.1,
       "macd": {
-        "value": 1924.8456,
-        "signal": 1816.1787,
-        "histogram": 108.6669
+        "value": 2007.0109,
+        "signal": 1832.6117,
+        "histogram": 174.3991
       },
       "bollinger": {
-        "upper": 84260.4159,
-        "middle": 76319.75,
-        "lower": 68379.0841,
+        "upper": 84396.6714,
+        "middle": 76371.25,
+        "lower": 68345.8286,
         "position": "upper_half"
       },
       "stochastic": {
-        "k": 55.21,
-        "d": 70.31
+        "k": 67.9,
+        "d": 74.54
       },
       "adx": {
-        "value": 20.99,
-        "pdi": 29.09,
-        "mdi": 14.8
+        "value": 20.8,
+        "pdi": 28.83,
+        "mdi": 15.55
       },
       "atr": {
-        "value": 2914.2414,
-        "pct": 0.036836
+        "value": 2939.9557,
+        "pct": 0.036683
       },
       "ma": {
-        "ma5": 78987,
-        "ma20": 76319.75,
-        "ma60": 72546.0833,
-        "ma120": 63874.5
+        "ma5": 79193,
+        "ma20": 76371.25,
+        "ma60": 72563.25,
+        "ma120": 63883.0833
       },
       "recent_high": {
         "window": 20,
         "value": 82750,
-        "distance_pct": -0.043927
+        "distance_pct": -0.03148
       },
-      "volume_ratio": 0.741,
-      "volume_current": 884645,
-      "volume_ma_20": 1194435.7,
-      "close": 79115,
+      "volume_ratio": 1.059,
+      "volume_current": 1286086,
+      "volume_ma_20": 1214507.75,
+      "close": 80145,
       "close_252d": 32595,
       "previous_close": 81415,
-      "change_pct": -0.0283,
+      "change_pct": -0.0156,
       "history_points": 360,
       "heikin_ashi": {
         "open": 79541.5397,
-        "close": 80256.25
+        "close": 80423.75
       },
       "keltner": {
-        "upper": 82947.1074,
-        "lower": 71290.1417,
-        "middle": 77118.6246
+        "upper": 83096.6312,
+        "lower": 71336.8084,
+        "middle": 77216.7198
       },
       "ichimoku": {
         "senkou_span_a": 76263.75,
         "senkou_span_b": 69325
       },
       "anchored_vwap": {
-        "value": 76274.5799,
+        "value": 76345.9085,
         "anchor_type": "rolling_20d_approx"
       },
       "volume_profile": {
@@ -1453,7 +1456,7 @@
       "relative_strength": {
         "benchmark_used": "^KS11",
         "window_days": 63,
-        "rs_vs_benchmark": -0.163522
+        "rs_vs_benchmark": -0.171868
       },
       "rsi_divergence_metrics": {
         "price_drop_ratio": null,
@@ -1471,8 +1474,8 @@
           "rsi": {
             "side": "neutral",
             "label": "중립",
-            "summary": "RSI 56.54로 중립 구간입니다.",
-            "value": 56.54,
+            "summary": "RSI 59.1로 중립 구간입니다.",
+            "value": 59.1,
             "divergence": "none",
             "strength": "low"
           },
@@ -1480,9 +1483,9 @@
             "side": "buy_side",
             "label": "매수 쪽",
             "summary": "MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다.",
-            "value": 1924.8456,
-            "signal": 1816.1787,
-            "histogram": 108.6669,
+            "value": 2007.0109,
+            "signal": 1832.6117,
+            "histogram": 174.3991,
             "crossover": "none"
           },
           "bollinger": {
@@ -1490,7 +1493,7 @@
             "label": "중립",
             "summary": "가격이 볼린저 중단 부근에 있어 중립에 가깝습니다.",
             "position": "upper_half",
-            "distanceRatio": 0.676
+            "distanceRatio": 0.735
           },
           "movingAverage": {
             "side": "buy_side",
@@ -1566,7 +1569,7 @@
         0.007895,
         -0.006496,
         0.043782,
-        -0.02825
+        -0.015599
       ]
     },
     "458760": {
@@ -1578,65 +1581,65 @@
       "score": 43,
       "signal": "HOLD",
       "signal_reason": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화",
-      "rsi": 47.19,
+      "rsi": 48.5,
       "macd": {
-        "value": -36.12,
-        "signal": -15.8557,
-        "histogram": -20.2643
+        "value": -34.5246,
+        "signal": -15.5366,
+        "histogram": -18.988
       },
       "bollinger": {
-        "upper": 11449.847,
-        "middle": 11179.25,
-        "lower": 10908.653,
+        "upper": 11449.6656,
+        "middle": 11180.25,
+        "lower": 10910.8344,
         "position": "lower_half"
       },
       "stochastic": {
-        "k": 39.29,
-        "d": 30.87
+        "k": 44.05,
+        "d": 32.46
       },
       "adx": {
-        "value": 13.48,
-        "pdi": 22.33,
-        "mdi": 25.21
+        "value": 13.36,
+        "pdi": 22.91,
+        "mdi": 25.02
       },
       "atr": {
-        "value": 94.5262,
-        "pct": 0.008524
+        "value": 95.2405,
+        "pct": 0.008572
       },
       "ma": {
-        "ma5": 11056,
-        "ma20": 11179.25,
-        "ma60": 11078.5833,
-        "ma120": 10514.7083
+        "ma5": 11060,
+        "ma20": 11180.25,
+        "ma60": 11078.9167,
+        "ma120": 10514.875
       },
       "recent_high": {
         "window": 20,
         "value": 11530,
-        "distance_pct": -0.038161
+        "distance_pct": -0.036427
       },
-      "volume_ratio": 0.854,
-      "volume_current": 476370,
-      "volume_ma_20": 557716.25,
-      "close": 11090,
+      "volume_ratio": 1.099,
+      "volume_current": 620861,
+      "volume_ma_20": 564940.8,
+      "close": 11110,
       "close_252d": 10110,
       "previous_close": 11065,
-      "change_pct": 0.0023,
+      "change_pct": 0.0041,
       "history_points": 360,
       "heikin_ashi": {
         "open": 11049.3771,
-        "close": 11077.5
+        "close": 11085
       },
       "keltner": {
-        "upper": 11316.1588,
-        "lower": 10938.0541,
-        "middle": 11127.1065
+        "upper": 11319.4921,
+        "lower": 10938.5303,
+        "middle": 11129.0112
       },
       "ichimoku": {
         "senkou_span_a": 11162.5,
         "senkou_span_b": 10542.5
       },
       "anchored_vwap": {
-        "value": 11195.6433,
+        "value": 11194.7352,
         "anchor_type": "rolling_20d_approx"
       },
       "volume_profile": {
@@ -1646,7 +1649,7 @@
       "relative_strength": {
         "benchmark_used": "^KS11",
         "window_days": 63,
-        "rs_vs_benchmark": -0.235931
+        "rs_vs_benchmark": -0.257179
       },
       "rsi_divergence_metrics": {
         "price_drop_ratio": null,
@@ -1664,8 +1667,8 @@
           "rsi": {
             "side": "neutral",
             "label": "중립",
-            "summary": "RSI 47.19로 중립 구간입니다.",
-            "value": 47.19,
+            "summary": "RSI 48.5로 중립 구간입니다.",
+            "value": 48.5,
             "divergence": "none",
             "strength": "low"
           },
@@ -1673,9 +1676,9 @@
             "side": "sell_side",
             "label": "매도 쪽",
             "summary": "MACD가 시그널선 아래에 있고 히스토그램도 마이너스라 매도 쪽 모멘텀이 우세합니다.",
-            "value": -36.12,
-            "signal": -15.8557,
-            "histogram": -20.2643,
+            "value": -34.5246,
+            "signal": -15.5366,
+            "histogram": -18.988,
             "crossover": "none"
           },
           "bollinger": {
@@ -1683,7 +1686,7 @@
             "label": "중립",
             "summary": "가격이 볼린저 중단 부근에 있어 중립에 가깝습니다.",
             "position": "lower_half",
-            "distanceRatio": 0.335
+            "distanceRatio": 0.37
           },
           "movingAverage": {
             "side": "neutral",
@@ -1759,7 +1762,7 @@
         0.000452,
         -0.004521,
         0.004995,
-        0.002259
+        0.004067
       ]
     },
     "487240": {
@@ -1768,24 +1771,24 @@
       "account": "KIS_MAIN",
       "bucket": "satellite_etf",
       "type": "etf",
-      "score": 98,
-      "signal": "STRONG_BUY",
+      "score": 79,
+      "signal": "BUY",
       "signal_reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
-      "rsi": 74.05,
+      "rsi": 76.25,
       "macd": {
-        "value": 2266.8933,
-        "signal": 1628.3601,
-        "histogram": 638.5332
+        "value": 2368.2038,
+        "signal": 1648.6222,
+        "histogram": 719.5817
       },
       "bollinger": {
-        "upper": 41982.9511,
-        "middle": 34711.5,
-        "lower": 27440.0489,
-        "position": "upper_half"
+        "upper": 42292.9645,
+        "middle": 34775,
+        "lower": 27257.0355,
+        "position": "above_upper"
       },
       "stochastic": {
-        "k": 79.59,
-        "d": 90.82
+        "k": 89.14,
+        "d": 94
       },
       "adx": {
         "value": 23.89,
@@ -1794,52 +1797,52 @@
       },
       "atr": {
         "value": 1731.222,
-        "pct": 0.041933
+        "pct": 0.040682
       },
       "ma": {
-        "ma5": 39366,
-        "ma20": 34711.5,
-        "ma60": 32050.4167,
-        "ma120": 28280.0833
+        "ma5": 39620,
+        "ma20": 34775,
+        "ma60": 32071.5833,
+        "ma120": 28290.6667
       },
       "recent_high": {
         "window": 20,
         "value": 44000,
-        "distance_pct": -0.061705
+        "distance_pct": -0.032841
       },
-      "volume_ratio": 2.146,
-      "volume_current": 8627128,
-      "volume_ma_20": 4019364.4,
-      "close": 41285,
+      "volume_ratio": 2.818,
+      "volume_current": 11766915,
+      "volume_ma_20": 4176353.75,
+      "close": 42555,
       "close_252d": 8850,
       "previous_close": 40000,
-      "change_pct": 0.0321,
+      "change_pct": 0.0639,
       "history_points": 360,
       "heikin_ashi": {
         "open": 38922.0827,
-        "close": 42168.75
+        "close": 42388.75
       },
       "keltner": {
-        "upper": 39501.7112,
-        "lower": 32576.8233,
-        "middle": 36039.2672
+        "upper": 39622.6635,
+        "lower": 32697.7756,
+        "middle": 36160.2196
       },
       "ichimoku": {
         "senkou_span_a": 30817.5,
         "senkou_span_b": 29095
       },
       "anchored_vwap": {
-        "value": 35519.1113,
+        "value": 35810.1287,
         "anchor_type": "rolling_20d_approx"
       },
       "volume_profile": {
-        "poc_price_120d": 26895.3125,
+        "poc_price_120d": 26962.5347,
         "method": "daily_typical_price_histogram"
       },
       "relative_strength": {
         "benchmark_used": "^KS11",
         "window_days": 63,
-        "rs_vs_benchmark": 0.226231
+        "rs_vs_benchmark": 0.250079
       },
       "rsi_divergence_metrics": {
         "price_drop_ratio": null,
@@ -1848,6 +1851,7 @@
       "exchange": "KOSPI",
       "alerts": [
         "RSI 과매수 구간 진입",
+        "볼린저밴드 상단 이탈",
         "거래량 급증(20일 평균 대비 2배 이상)"
       ],
       "technical_analysis": {
@@ -1860,8 +1864,8 @@
           "rsi": {
             "side": "sell_side",
             "label": "매도 쪽",
-            "summary": "RSI 74.05로 과매수에 가까워 매도 쪽 경계가 필요합니다.",
-            "value": 74.05,
+            "summary": "RSI 76.25로 과매수에 가까워 매도 쪽 경계가 필요합니다.",
+            "value": 76.25,
             "divergence": "none",
             "strength": "high"
           },
@@ -1869,17 +1873,17 @@
             "side": "buy_side",
             "label": "매수 쪽",
             "summary": "MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다.",
-            "value": 2266.8933,
-            "signal": 1628.3601,
-            "histogram": 638.5332,
+            "value": 2368.2038,
+            "signal": 1648.6222,
+            "histogram": 719.5817,
             "crossover": "none"
           },
           "bollinger": {
             "side": "sell_side",
             "label": "매도 쪽",
             "summary": "가격이 볼린저 상단에 가까워 단기 과열에 따른 매도 쪽 경계가 필요합니다.",
-            "position": "upper_half",
-            "distanceRatio": 0.952
+            "position": "above_upper",
+            "distanceRatio": 1.017
           },
           "movingAverage": {
             "side": "buy_side",
@@ -1955,7 +1959,7 @@
         0.006785,
         0.001685,
         0.035063,
-        0.032125
+        0.063875
       ]
     },
     "005930": {
@@ -1967,94 +1971,96 @@
       "score": 100,
       "signal": "STRONG_BUY",
       "signal_reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
-      "rsi": 62.5,
+      "rsi": 64.8,
       "macd": {
-        "value": 8734.2845,
-        "signal": 7231.8514,
-        "histogram": 1502.4331
+        "value": 9133.1449,
+        "signal": 7311.6235,
+        "histogram": 1821.5214
       },
       "bollinger": {
-        "upper": 232173.7746,
-        "middle": 200500,
-        "lower": 168826.2254,
+        "upper": 233091.5831,
+        "middle": 200750,
+        "lower": 168408.4169,
         "position": "upper_half"
       },
       "stochastic": {
-        "k": 74.62,
-        "d": 86.61
+        "k": 87.31,
+        "d": 90.84
       },
       "adx": {
         "value": 20.79,
-        "pdi": 36.35,
-        "mdi": 17.58
+        "pdi": 35.94,
+        "mdi": 17.38
       },
       "atr": {
-        "value": 9314.2793,
-        "pct": 0.042434
+        "value": 9421.4222,
+        "pct": 0.041966
       },
       "ma": {
-        "ma5": 217300,
-        "ma20": 200500,
-        "ma60": 188116.6667,
-        "ma120": 151487.5
+        "ma5": 218300,
+        "ma20": 200750,
+        "ma60": 188200,
+        "ma120": 151529.1667
       },
       "recent_high": {
         "window": 20,
         "value": 229500,
-        "distance_pct": -0.043573
+        "distance_pct": -0.021786
       },
-      "volume_ratio": 1.692,
-      "volume_current": 44985639,
-      "volume_ma_20": 26591219.8,
-      "close": 219500,
+      "volume_ratio": 2.36,
+      "volume_current": 65118272,
+      "volume_ma_20": 27597851.45,
+      "close": 224500,
       "close_252d": 56400,
       "previous_close": 217500,
-      "change_pct": 0.0092,
+      "change_pct": 0.0322,
       "history_points": 360,
       "heikin_ashi": {
         "open": 217485.7302,
-        "close": 221875
+        "close": 222625
       },
       "keltner": {
-        "upper": 224128.9524,
-        "lower": 186871.8352,
-        "middle": 205500.3938
+        "upper": 224819.4286,
+        "lower": 187133.74,
+        "middle": 205976.5843
       },
       "ichimoku": {
         "senkou_span_a": 187725,
         "senkou_span_b": 170600
       },
       "anchored_vwap": {
-        "value": 199349.4577,
+        "value": 200305.7716,
         "anchor_type": "rolling_20d_approx"
       },
       "volume_profile": {
-        "poc_price_120d": 108592.3611,
+        "poc_price_120d": 108696.5278,
         "method": "daily_typical_price_histogram"
       },
       "relative_strength": {
         "benchmark_used": "^KS11",
         "window_days": 63,
-        "rs_vs_benchmark": 0.209431
+        "rs_vs_benchmark": 0.220695
       },
       "rsi_divergence_metrics": {
         "price_drop_ratio": null,
         "rsi_rise_value": null
       },
       "exchange": "KOSPI",
-      "alerts": [],
+      "alerts": [
+        "거래량 급증(20일 평균 대비 2배 이상)"
+      ],
       "technical_analysis": {
         "execution_bias": {
-          "side": "buy_side",
-          "label": "매수 쪽",
-          "summary": "여러 기술 지표가 매수 쪽에 더 가깝습니다."
+          "side": "neutral",
+          "label": "중립",
+          "summary": "기술 지표가 엇갈려 현재는 중립 또는 관망에 가깝습니다."
         },
         "indicators": {
           "rsi": {
             "side": "neutral",
             "label": "중립",
-            "summary": "RSI 62.5로 중립 구간입니다.",
-            "value": 62.5,
+            "summary": "RSI 64.8로 중립 구간입니다.",
+            "value": 64.8,
             "divergence": "none",
             "strength": "low"
           },
@@ -2062,17 +2068,17 @@
             "side": "buy_side",
             "label": "매수 쪽",
             "summary": "MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다.",
-            "value": 8734.2845,
-            "signal": 7231.8514,
-            "histogram": 1502.4331,
+            "value": 9133.1449,
+            "signal": 7311.6235,
+            "histogram": 1821.5214,
             "crossover": "none"
           },
           "bollinger": {
-            "side": "neutral",
-            "label": "중립",
-            "summary": "가격이 볼린저 중단 부근에 있어 중립에 가깝습니다.",
+            "side": "sell_side",
+            "label": "매도 쪽",
+            "summary": "가격이 볼린저 상단에 가까워 단기 과열에 따른 매도 쪽 경계가 필요합니다.",
             "position": "upper_half",
-            "distanceRatio": 0.8
+            "distanceRatio": 0.867
           },
           "movingAverage": {
             "side": "buy_side",
@@ -2148,7 +2154,7 @@
         -0.006944,
         0.020979,
         -0.006849,
-        0.009195
+        0.032184
       ]
     },
     "000660": {
@@ -2157,85 +2163,87 @@
       "account": null,
       "bucket": "individual_stocks",
       "type": "stock",
-      "score": 90,
+      "score": 94,
       "signal": "STRONG_BUY",
       "signal_reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
-      "rsi": 65.08,
+      "rsi": 68.47,
       "macd": {
-        "value": 74349.418,
-        "signal": 53044.258,
-        "histogram": 21305.16
+        "value": 76583.0362,
+        "signal": 53490.9816,
+        "histogram": 23092.0546
       },
       "bollinger": {
-        "upper": 1291861.2322,
-        "middle": 1021650,
-        "lower": 751438.7678,
+        "upper": 1297143.0317,
+        "middle": 1023050,
+        "lower": 748956.9683,
         "position": "upper_half"
       },
       "stochastic": {
-        "k": 80.2,
-        "d": 92.18
+        "k": 87.04,
+        "d": 94.46
       },
       "adx": {
         "value": 24.58,
-        "pdi": 41.96,
-        "mdi": 15.46
+        "pdi": 41.47,
+        "mdi": 15.27
       },
       "atr": {
-        "value": 60250.9533,
-        "pct": 0.050335
+        "value": 60965.239,
+        "pct": 0.049768
       },
       "ma": {
-        "ma5": 1187600,
-        "ma20": 1021650,
-        "ma60": 955916.6667,
-        "ma120": 785825
+        "ma5": 1193200,
+        "ma20": 1023050,
+        "ma60": 956383.3333,
+        "ma120": 786058.3333
       },
       "recent_high": {
         "window": 20,
         "value": 1278000,
-        "distance_pct": -0.06338
+        "distance_pct": -0.041471
       },
-      "volume_ratio": 1.574,
-      "volume_current": 6949178,
-      "volume_ma_20": 4416249.35,
-      "close": 1197000,
+      "volume_ratio": 2.155,
+      "volume_current": 9825673,
+      "volume_ma_20": 4559934.2,
+      "close": 1225000,
       "close_252d": 183200,
       "previous_close": 1223000,
-      "change_pct": -0.0213,
+      "change_pct": 0.0016,
       "history_points": 360,
       "heikin_ashi": {
         "open": 1198471.9384,
-        "close": 1227750
+        "close": 1232250
       },
       "keltner": {
-        "upper": 1194073.6128,
-        "lower": 953069.7995,
-        "middle": 1073571.7062
+        "upper": 1198168.8509,
+        "lower": 954307.8947,
+        "middle": 1076238.3728
       },
       "ichimoku": {
         "senkou_span_a": 939500,
         "senkou_span_b": 862000
       },
       "anchored_vwap": {
-        "value": 1011370.1664,
+        "value": 1018674.6156,
         "anchor_type": "rolling_20d_approx"
       },
       "volume_profile": {
-        "poc_price_120d": 884854.1667,
+        "poc_price_120d": 562104.1667,
         "method": "daily_typical_price_histogram"
       },
       "relative_strength": {
         "benchmark_used": "^KS11",
         "window_days": 63,
-        "rs_vs_benchmark": 0.308759
+        "rs_vs_benchmark": 0.323273
       },
       "rsi_divergence_metrics": {
         "price_drop_ratio": null,
         "rsi_rise_value": null
       },
       "exchange": "KOSPI",
-      "alerts": [],
+      "alerts": [
+        "거래량 급증(20일 평균 대비 2배 이상)"
+      ],
       "technical_analysis": {
         "execution_bias": {
           "side": "neutral",
@@ -2246,8 +2254,8 @@
           "rsi": {
             "side": "sell_side",
             "label": "매도 쪽",
-            "summary": "RSI 65.08로 과매수에 가까워 매도 쪽 경계가 필요합니다.",
-            "value": 65.08,
+            "summary": "RSI 68.47로 과매수에 가까워 매도 쪽 경계가 필요합니다.",
+            "value": 68.47,
             "divergence": "none",
             "strength": "medium"
           },
@@ -2255,9 +2263,9 @@
             "side": "buy_side",
             "label": "매수 쪽",
             "summary": "MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다.",
-            "value": 74349.418,
-            "signal": 53044.258,
-            "histogram": 21305.16,
+            "value": 76583.0362,
+            "signal": 53490.9816,
+            "histogram": 23092.0546,
             "crossover": "none"
           },
           "bollinger": {
@@ -2265,7 +2273,7 @@
             "label": "매도 쪽",
             "summary": "가격이 볼린저 상단에 가까워 단기 과열에 따른 매도 쪽 경계가 필요합니다.",
             "position": "upper_half",
-            "distanceRatio": 0.824
+            "distanceRatio": 0.868
           },
           "movingAverage": {
             "side": "buy_side",
@@ -2341,7 +2349,7 @@
         0.033688,
         0.049743,
         -0.000817,
-        -0.021259
+        0.001635
       ]
     },
     "010120": {
@@ -2353,21 +2361,21 @@
       "score": 26,
       "signal": "REDUCE",
       "signal_reason": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 둔화",
-      "rsi": 22.32,
+      "rsi": 23.79,
       "macd": {
-        "value": -156037.5254,
-        "signal": -116085.7814,
-        "histogram": -39951.7441
+        "value": -155199.9186,
+        "signal": -115918.26,
+        "histogram": -39281.6586
       },
       "bollinger": {
-        "upper": 1101594.2184,
-        "middle": 513165,
-        "lower": -75264.2184,
+        "upper": 1101041.5979,
+        "middle": 513690,
+        "lower": -73661.5979,
         "position": "lower_half"
       },
       "stochastic": {
-        "k": 24.91,
-        "d": 23.54
+        "k": 26.18,
+        "d": 23.96
       },
       "adx": {
         "value": 30.31,
@@ -2376,42 +2384,42 @@
       },
       "atr": {
         "value": 134863.3054,
-        "pct": 0.653091
+        "pct": 0.62149
       },
       "ma": {
-        "ma5": 191220,
-        "ma20": 513165,
-        "ma60": 636788.3333,
-        "ma120": 558331.6667
+        "ma5": 193320,
+        "ma20": 513690,
+        "ma60": 636963.3333,
+        "ma120": 558419.1667
       },
       "recent_high": {
         "window": 20,
         "value": 829000,
-        "distance_pct": -0.750905
+        "distance_pct": -0.738239
       },
-      "volume_ratio": 6.737,
-      "volume_current": 5852961,
-      "volume_ma_20": 868751.1,
-      "close": 206500,
+      "volume_ratio": 7.857,
+      "volume_current": 7455449,
+      "volume_ma_20": 948875.5,
+      "close": 217000,
       "close_252d": 168300,
       "previous_close": 194200,
-      "change_pct": 0.0633,
+      "change_pct": 0.1174,
       "history_points": 360,
       "heikin_ashi": {
         "open": 189824.826,
-        "close": 208475
+        "close": 211100
       },
       "keltner": {
-        "upper": 698876.4999,
-        "lower": 159423.2783,
-        "middle": 429149.8891
+        "upper": 699876.4999,
+        "lower": 160423.2783,
+        "middle": 430149.8891
       },
       "ichimoku": {
         "senkou_span_a": 717750,
         "senkou_span_b": 644500
       },
       "anchored_vwap": {
-        "value": 235976.6169,
+        "value": 235324.1823,
         "anchor_type": "rolling_20d_approx"
       },
       "volume_profile": {
@@ -2421,7 +2429,7 @@
       "relative_strength": {
         "benchmark_used": "^KS11",
         "window_days": 63,
-        "rs_vs_benchmark": -0.908944
+        "rs_vs_benchmark": -0.912115
       },
       "rsi_divergence_metrics": {
         "price_drop_ratio": null,
@@ -2442,8 +2450,8 @@
           "rsi": {
             "side": "buy_side",
             "label": "매수 쪽",
-            "summary": "RSI 22.32로 과매도에 가까워 매수 쪽 신호가 강합니다.",
-            "value": 22.32,
+            "summary": "RSI 23.79로 과매도에 가까워 매수 쪽 신호가 강합니다.",
+            "value": 23.79,
             "divergence": "none",
             "strength": "high"
           },
@@ -2451,9 +2459,9 @@
             "side": "sell_side",
             "label": "매도 쪽",
             "summary": "MACD가 시그널선 아래에 있고 히스토그램도 마이너스라 매도 쪽 모멘텀이 우세합니다.",
-            "value": -156037.5254,
-            "signal": -116085.7814,
-            "histogram": -39951.7441,
+            "value": -155199.9186,
+            "signal": -115918.26,
+            "histogram": -39281.6586,
             "crossover": "none"
           },
           "bollinger": {
@@ -2461,7 +2469,7 @@
             "label": "중립",
             "summary": "가격이 볼린저 중단 부근에 있어 중립에 가깝습니다.",
             "position": "lower_half",
-            "distanceRatio": 0.239
+            "distanceRatio": 0.247
           },
           "movingAverage": {
             "side": "sell_side",
@@ -2537,7 +2545,7 @@
         -0.012332,
         0.002714,
         0.051435,
-        0.063337
+        0.117405
       ]
     },
     "064350": {
@@ -2546,24 +2554,24 @@
       "account": null,
       "bucket": "individual_stocks",
       "type": "stock",
-      "score": 86,
+      "score": 80,
       "signal": "STRONG_BUY",
       "signal_reason": "주가가 20일선 위에서 유지 중, 중기 추세는 약세, MACD 모멘텀이 우호적",
-      "rsi": 64.15,
+      "rsi": 66.49,
       "macd": {
-        "value": 7529.8742,
-        "signal": 4056.2712,
-        "histogram": 3473.603
+        "value": 7769.1905,
+        "signal": 4104.1345,
+        "histogram": 3665.056
       },
       "bollinger": {
-        "upper": 239433.3187,
-        "middle": 207250,
-        "lower": 175066.6813,
+        "upper": 240076.842,
+        "middle": 207400,
+        "lower": 174723.158,
         "position": "upper_half"
       },
       "stochastic": {
-        "k": 67.74,
-        "d": 83.01
+        "k": 74.19,
+        "d": 85.16
       },
       "adx": {
         "value": 23.39,
@@ -2572,42 +2580,42 @@
       },
       "atr": {
         "value": 12175.7062,
-        "pct": 0.052369
+        "pct": 0.051702
       },
       "ma": {
-        "ma5": 225200,
-        "ma20": 207250,
-        "ma60": 208413.3333,
-        "ma120": 202843.3333
+        "ma5": 225800,
+        "ma20": 207400,
+        "ma60": 208463.3333,
+        "ma120": 202868.3333
       },
       "recent_high": {
         "window": 20,
         "value": 247500,
-        "distance_pct": -0.060606
+        "distance_pct": -0.048485
       },
-      "volume_ratio": 1.148,
-      "volume_current": 910039,
-      "volume_ma_20": 792773.75,
-      "close": 232500,
+      "volume_ratio": 1.681,
+      "volume_current": 1371019,
+      "volume_ma_20": 815822.75,
+      "close": 235500,
       "close_252d": 99000,
       "previous_close": 237500,
-      "change_pct": -0.0211,
+      "change_pct": -0.0084,
       "history_points": 360,
       "heikin_ashi": {
         "open": 226085.8147,
-        "close": 236750
+        "close": 237500
       },
       "keltner": {
-        "upper": 236777.608,
-        "lower": 188074.7832,
-        "middle": 212426.1956
+        "upper": 237063.3222,
+        "lower": 188360.4975,
+        "middle": 212711.9099
       },
       "ichimoku": {
         "senkou_span_a": 222700,
         "senkou_span_b": 227500
       },
       "anchored_vwap": {
-        "value": 209456.9321,
+        "value": 210300.2833,
         "anchor_type": "rolling_20d_approx"
       },
       "volume_profile": {
@@ -2617,7 +2625,7 @@
       "relative_strength": {
         "benchmark_used": "^KS11",
         "window_days": 63,
-        "rs_vs_benchmark": -0.238204
+        "rs_vs_benchmark": -0.247645
       },
       "rsi_divergence_metrics": {
         "price_drop_ratio": null,
@@ -2633,20 +2641,20 @@
         },
         "indicators": {
           "rsi": {
-            "side": "neutral",
-            "label": "중립",
-            "summary": "RSI 64.15로 중립 구간입니다.",
-            "value": 64.15,
+            "side": "sell_side",
+            "label": "매도 쪽",
+            "summary": "RSI 66.49로 과매수에 가까워 매도 쪽 경계가 필요합니다.",
+            "value": 66.49,
             "divergence": "none",
-            "strength": "low"
+            "strength": "medium"
           },
           "macd": {
             "side": "buy_side",
             "label": "매수 쪽",
             "summary": "MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다.",
-            "value": 7529.8742,
-            "signal": 4056.2712,
-            "histogram": 3473.603,
+            "value": 7769.1905,
+            "signal": 4104.1345,
+            "histogram": 3665.056,
             "crossover": "none"
           },
           "bollinger": {
@@ -2654,7 +2662,7 @@
             "label": "매도 쪽",
             "summary": "가격이 볼린저 상단에 가까워 단기 과열에 따른 매도 쪽 경계가 필요합니다.",
             "position": "upper_half",
-            "distanceRatio": 0.892
+            "distanceRatio": 0.93
           },
           "movingAverage": {
             "side": "neutral",
@@ -2730,7 +2738,7 @@
         0.011574,
         0.01373,
         0.072235,
-        -0.021053
+        -0.008421
       ]
     },
     "047810": {
@@ -2742,65 +2750,65 @@
       "score": 47,
       "signal": "HOLD",
       "signal_reason": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화",
-      "rsi": 45.49,
+      "rsi": 47.55,
       "macd": {
-        "value": 1096.7739,
-        "signal": 2612.2951,
-        "histogram": -1515.5212
+        "value": 1328.1129,
+        "signal": 2658.5629,
+        "histogram": -1330.45
       },
       "bollinger": {
-        "upper": 201972.7169,
-        "middle": 186425,
-        "lower": 170877.2831,
+        "upper": 201913.1548,
+        "middle": 186570,
+        "lower": 171226.8452,
         "position": "lower_half"
       },
       "stochastic": {
-        "k": 0.38,
-        "d": 10.98
+        "k": 13.86,
+        "d": 15.47
       },
       "adx": {
-        "value": 15.27,
-        "pdi": 23.86,
-        "mdi": 25.2
+        "value": 15.35,
+        "pdi": 23.72,
+        "mdi": 25.65
       },
       "atr": {
-        "value": 8417.6887,
-        "pct": 0.046869
+        "value": 8467.6887,
+        "pct": 0.046398
       },
       "ma": {
-        "ma5": 184620,
-        "ma20": 186425,
-        "ma60": 179421.6667,
-        "ma120": 149320.8333
+        "ma5": 185200,
+        "ma20": 186570,
+        "ma60": 179470,
+        "ma120": 149345
       },
       "recent_high": {
         "window": 20,
         "value": 205500,
-        "distance_pct": -0.126034
+        "distance_pct": -0.111922
       },
-      "volume_ratio": 1.205,
-      "volume_current": 707334,
-      "volume_ma_20": 586865.25,
-      "close": 179600,
+      "volume_ratio": 1.647,
+      "volume_current": 989576,
+      "volume_ma_20": 600977.35,
+      "close": 182500,
       "close_252d": 75600,
       "previous_close": 185800,
-      "change_pct": -0.0334,
+      "change_pct": -0.0178,
       "history_points": 360,
       "heikin_ashi": {
         "open": 186051.3664,
-        "close": 183025
+        "close": 183575
       },
       "keltner": {
-        "upper": 203086.971,
-        "lower": 169416.2164,
-        "middle": 186251.5937
+        "upper": 203463.1615,
+        "lower": 169592.4068,
+        "middle": 186527.7842
       },
       "ichimoku": {
         "senkou_span_a": 184775,
         "senkou_span_b": 163200
       },
       "anchored_vwap": {
-        "value": 186911.4122,
+        "value": 186857.2413,
         "anchor_type": "rolling_20d_approx"
       },
       "volume_profile": {
@@ -2810,7 +2818,7 @@
       "relative_strength": {
         "benchmark_used": "^KS11",
         "window_days": 63,
-        "rs_vs_benchmark": -0.21839
+        "rs_vs_benchmark": -0.22406
       },
       "rsi_divergence_metrics": {
         "price_drop_ratio": null,
@@ -2828,8 +2836,8 @@
           "rsi": {
             "side": "neutral",
             "label": "중립",
-            "summary": "RSI 45.49로 중립 구간입니다.",
-            "value": 45.49,
+            "summary": "RSI 47.55로 중립 구간입니다.",
+            "value": 47.55,
             "divergence": "none",
             "strength": "low"
           },
@@ -2837,9 +2845,9 @@
             "side": "sell_side",
             "label": "매도 쪽",
             "summary": "MACD가 시그널선 아래에 있고 히스토그램도 마이너스라 매도 쪽 모멘텀이 우세합니다.",
-            "value": 1096.7739,
-            "signal": 2612.2951,
-            "histogram": -1515.5212,
+            "value": 1328.1129,
+            "signal": 2658.5629,
+            "histogram": -1330.45,
             "crossover": "none"
           },
           "bollinger": {
@@ -2847,7 +2855,7 @@
             "label": "중립",
             "summary": "가격이 볼린저 중단 부근에 있어 중립에 가깝습니다.",
             "position": "lower_half",
-            "distanceRatio": 0.281
+            "distanceRatio": 0.367
           },
           "movingAverage": {
             "side": "neutral",
@@ -2923,7 +2931,7 @@
         -0.008493,
         -0.023019,
         0.018082,
-        -0.033369
+        -0.017761
       ]
     }
   }

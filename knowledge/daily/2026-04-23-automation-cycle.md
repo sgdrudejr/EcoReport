@@ -1,0 +1,209 @@
+# EcoReport Automation Cycle (2026-04-23)
+- overallStatus: **ok**
+- sameDayStatus: **complete**
+- runDate: 2026-04-24
+- effectiveMarketDate: 2026-04-23
+- previousTradingDate: 2026-04-22
+- runId: 2026-04-24-150218
+- resolutionReason: requested
+- generatedAt: 2026-04-23T15:26:11.808Z
+- logFile: /Users/seo/Documents/Playground/economy-report/logs/2026-04-23-150218-automation-cycle.log
+- systemHealth: warn
+- changeSummary: 전일(2026-04-22) 대비, KOSPI +2.12%, 포트폴리오 점수 52→45, 레짐 BULL 유지, 리포트 97→67건, 신규 포커스 KODEX 미국AI전력핵심인프라, 제외 TIGER 미국나스닥100·KODEX 신재생에너지액티브
+## Completion Checklist
+- [x] Automation Environment Readiness
+- [ ] StockEasy Market Capture (warn)
+- [x] Baseline Daily System
+- [x] Windows Local Report Summary (Preferred)
+- [x] Stage 2 Report Extracts
+- [x] Stage 3 Top Report Summary Selection
+- [x] Stage 2 Enriched Report Index
+- [x] Stage 4 Research Agenda
+- [x] Stage 5 Deep Research Prompt Split
+- [x] Stage 6 Gemini Deep Research Web
+- [x] Stage 7 Rich Briefing Round 1
+- [x] Stage 8 Strategy Refresh Round 1
+- [x] LLM Wiki Rebuild After First Synthesis
+- [x] Stage 9 Follow-up Research Map
+- [x] Stage 10 Gemini Follow-up Prompt
+- [x] Stage 11 Gemini Follow-up Web
+- [x] Stage 12 Rich Briefing Round 2
+- [x] Stage 13 Strategy Refresh Round 2
+- [x] LLM Wiki Rebuild After Round 2
+- [x] Stage 14 Final Refinement Map
+- [x] Stage 15 Gemini Final Refinement Prompt
+- [x] Stage 16 Gemini Final Refinement Web
+- [x] Stage 17 Rich Briefing Final
+- [x] Stage 6 Briefing Delta
+- [ ] Stage 18 Strategy Refresh Final (warn)
+- [x] LLM Wiki Rebuild Final
+- [x] LLM Wiki Publish
+- [x] Verify Outputs
+## Step Results
+- [OK] Automation Environment Readiness (34s)
+  - command: node scripts/check-automation-readiness.js --date 2026-04-23 --run-date 2026-04-24 --effective-market-date 2026-04-23 --run-id 2026-04-24-150218
+  - policy: degrade / category: generic
+  - tail: /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-23/automation-readiness.json
+- [WARN] StockEasy Market Capture (1m 30s)
+  - command: npm run external:stockeasy:capture -- --date 2026-04-23
+  - policy: degrade / category: generic
+  - reason: StockEasy Market Capture 타임아웃 (90s)
+  - degraded: true
+  - tail: "leadingSectorCount": 44, |   "themeCount": 0, |   "sectorCount": 15, |   "leaderCount": 10, |   "promisingTop100Count": 100, |   "industryReportCount": 23, |   "strategyCount": 3 | }
+  - debug: Safari 로그인 상태, StockEasy 세션 유지 여부, 그리고 시장분석/테마보드 화면이 실제로 열리는지 확인하세요.
+- [OK] Baseline Daily System (2m 2s)
+  - command: bash scripts/run-daily-system.sh --date 2026-04-23 --run-date 2026-04-24 --effective-market-date 2026-04-23 --run-id 2026-04-24-150218 --qwen-stage2 --strict-qwen-stage2 --baseline-only --skip-telegram
+  - policy: block / category: generic
+  - tail: 📚 LLM Wiki 단계 건너뜀 (--skip-wiki) | 📤 GitHub 동기화 건너뜀 (--skip-push) | 🩺 시스템 검증 건너뜀 (--skip-verify) | 📨 Telegram 알림 건너뜀 (--skip-telegram) | 👻 Ghost Portfolio 스냅샷... | ================================================== | ✅ EcoReport Daily System 종료 (run: 2026-04-24 / effective: 2026-04-23) | ==================================================
+- [OK] Windows Local Report Summary (Preferred) (1m 20s)
+  - command: bash scripts/run-local-report-orchestrator.sh --date 2026-04-23
+  - policy: degrade / category: windows_local_llm
+  - tail: 🔗 시황정보: cross enrichment 캐시 재사용 |   🔗 종목분석: cross enrichment 캐시 재사용 |   🔗 채권분석: cross enrichment 캐시 재사용 |   🔗 투자전략: cross enrichment 캐시 재사용 | 🔬 구조화 분석 추출 중... |      ⚠️ 구조화 분석 Gemini 실패, 로컬 폴백 사용: Error code: 400 - {'error': {'code': 400, 'message': 'request (16480 tokens) exceeds the available context size (16384 tokens), try increasing it', 'type': 'exceed_context_size_error', 'n_prompt_tokens': 16480, 'n_ctx': 16384}} | raw_excerpt= |   📋 딥리서치 프롬프트 생성 → reports/merged/deep_research_prompt.md | ⚠️ Windows shutdown was not completed: Shutdown skipped because no shutdown transport is configured.
+- [OK] Stage 2 Report Extracts (2s)
+  - command: node scripts/build-stage1-report-extracts.js --date 2026-04-23 --run-date 2026-04-24 --effective-market-date 2026-04-23 --run-id 2026-04-24-150218
+  - policy: block / category: generic
+  - tail: /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-23/stage1-report-extracts-v2.json
+- [OK] Stage 3 Top Report Summary Selection (0s)
+  - command: npm run stage3:top-report-selection -- --date 2026-04-23 --run-date 2026-04-24 --effective-market-date 2026-04-23 --run-id 2026-04-24-150218 --top-n 30 --concurrency 6
+  - policy: degrade / category: generic
+  - tail: > ecoreport@1.0.0 stage3:top-report-selection | > .venv/bin/python scripts/collectors/summarize-report-chunks.py --date 2026-04-23 --run-date 2026-04-24 --effective-market-date 2026-04-23 --run-id 2026-04-24-150218 --top-n 30 --concurrency 6 | saved: /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-23/stage1-chunk-summaries.json | selected_reports: 30 | found_report_summaries: 30 | missing_report_summaries: 0
+- [OK] Stage 2 Enriched Report Index (0s)
+  - command: npm run stage2:enriched-report-index -- --date 2026-04-23 --run-date 2026-04-24 --effective-market-date 2026-04-23 --run-id 2026-04-24-150218
+  - policy: degrade / category: generic
+  - tail: > ecoreport@1.0.0 stage2:enriched-report-index | > node scripts/build-stage2-enriched-report-index.js --date 2026-04-23 --run-date 2026-04-24 --effective-market-date 2026-04-23 --run-id 2026-04-24-150218 | saved: /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-23/stage2-enriched-report-index.json | enriched_count: 67 | report_summaries: 67 | selected_summaries: 30
+- [OK] Stage 4 Research Agenda (1m 37s)
+  - command: npm run stage4:research-agenda -- --date 2026-04-23 --run-date 2026-04-24 --effective-market-date 2026-04-23 --run-id 2026-04-24-150218 --max-input-summaries 30
+  - policy: degrade / category: qwen_api
+  - tail: > ecoreport@1.0.0 stage4:research-agenda | > .venv/bin/python scripts/build-stage1-4-research-agenda.py --date 2026-04-23 --run-date 2026-04-24 --effective-market-date 2026-04-23 --run-id 2026-04-24-150218 --max-input-summaries 30 | saved: /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-23/stage1-research-agenda.json | source: qwen_api | model: qwen3.5-397b-a17b | input_source: enriched_report_index | topics: 6
+- [OK] Stage 5 Deep Research Prompt Split (0s)
+  - command: npm run stage5:deep-research-prompt -- --date 2026-04-23 --run-date 2026-04-24 --effective-market-date 2026-04-23 --run-id 2026-04-24-150218
+  - policy: degrade / category: generic
+  - tail: > ecoreport@1.0.0 stage5:deep-research-prompt | > node scripts/build-stage1-5-gemini-deep-research-prompt.js --date 2026-04-23 --run-date 2026-04-24 --effective-market-date 2026-04-23 --run-id 2026-04-24-150218 | topic_source: agenda | agenda_path: /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-23/stage1-research-agenda.json | saved: /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-23/07a-stage1-5-macro-prompt.md (part=macro, chars=2063, topics=2, limit=4000) | saved: /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-23/07b-stage1-5-sector-prompt.md (part=sector, chars=2327, topics=3, limit=5000) | saved: /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-23/07c-stage1-5-newcandidate-prompt.md (part=newcandidate, chars=1776, topics=1, limit=4000) | legacy_saved: /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-23/07-stage1-5-gemini-deep-research-prompt.md
+- [OK] Stage 6 Gemini Deep Research Web (5m 20s)
+  - command: npm run stage5:gemini:run -- --date 2026-04-23 --poll-sec 30 --timeout-sec 1800
+  - policy: degrade / category: gemini_web
+  - tail: {"title":"포트폴리오 리스크 점검 및 연구 계획 - Google Gemini","messageCount":3,"promptSubmitted":true,"researchStarted":true,"promptInjected":true,"pageRefreshCount":0,"hasDeepResearchSelected":true,"hasResearchStartButton":false,"hasStopButton":true,"hasPlanGenerating":false,"hasReportGenerating":true,"hasTransientError":false,"composerContainsPrompt":false,"bodyBlockCount":39,"mainTextBlockCount":3} | {"title":"포트폴리오 리스크 점검 및 연구 계획 - Google Gemini","messageCount":3,"promptSubmitted":true,"researchStarted":true,"promptInjected":true,"pageRefreshCount":0,"hasDeepResearchSelected":true,"hasResearchStartButton":false,"hasStopButton":true,"hasPlanGenerating":false,"hasReportGenerating":true,"hasTransientError":false,"composerContainsPrompt":false,"bodyBlockCount":55,"mainTextBlockCount":3} | {"title":"포트폴리오 리스크 점검 및 연구 계획 - Google Gemini","messageCount":3,"promptSubmitted":true,"researchStarted":true,"promptInjected":true,"pageRefreshCount":0,"hasDeepResearchSelected":true,"hasResearchStartButton":false,"hasStopButton":true,"hasPlanGenerating":false,"hasReportGenerating":true,"hasTransientError":false,"composerContainsPrompt":false,"bodyBlockCount":66,"mainTextBlockCount":3} | {"title":"포트폴리오 리스크 점검 및 연구 계획 - Google Gemini","messageCount":3,"promptSubmitted":true,"researchStarted":true,"promptInjected":true,"pageRefreshCount":0,"hasDeepResearchSelected":true,"hasResearchStartButton":false,"hasStopButton":true,"hasPlanGenerating":false,"hasReportGenerating":true,"hasTransientError":false,"composerContainsPrompt":false,"bodyBlockCount":66,"mainTextBlockCount":3} | {"title":"포트폴리오 리스크 점검 및 연구 계획 - Google Gemini","messageCount":3,"promptSubmitted":true,"researchStarted":true,"promptInjected":true,"pageRefreshCount":0,"hasDeepResearchSelected":true,"hasResearchStartButton":false,"hasStopButton":true,"hasPlanGenerating":false,"hasReportGenerating":true,"hasTransientError":false,"composerContainsPrompt":false,"bodyBlockCount":66,"mainTextBlockCount":3} | closed: closed-tab | saved: /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-23/09-stage1-5-gemini-deep-research-response.md | copied_chars: 2200
+- [OK] Stage 7 Rich Briefing Round 1 (1m 21s)
+  - command: npm run stage6:rich-briefing -- --date 2026-04-23 --run-date 2026-04-24 --effective-market-date 2026-04-23 --run-id 2026-04-24-150218
+  - policy: degrade / category: qwen_api
+  - tail: > ecoreport@1.0.0 stage6:rich-briefing | > node scripts/build-stage1-6-rich-briefing.js --date 2026-04-23 --run-date 2026-04-24 --effective-market-date 2026-04-23 --run-id 2026-04-24-150218 | /Users/seo/Documents/Playground/economy-report/knowledge/daily/2026-04-23-gemini-briefing-rich.md | briefing source=qwen / model=qwen3.5-397b-a17b
+- [OK] Stage 8 Strategy Refresh Round 1 (3m 9s)
+  - command: bash scripts/run-strategy-pipeline.sh --date 2026-04-23 --run-date 2026-04-24 --effective-market-date 2026-04-23 --run-id 2026-04-24-150218 --qwen-stage2 --strict-qwen-stage2
+  - policy: degrade / category: generic
+  - tail: /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-23/stage4-execution-plan.json | == Stage 12: feedback snapshot == | /Users/seo/Documents/Playground/economy-report/data/feedback/snapshots/2026-04-23.json | == Stage 13: feedback analysis == | /Users/seo/Documents/Playground/economy-report/data/feedback/analysis/2026-04-23-feedback.json | == Stage 14: feedback report == | /Users/seo/Documents/Playground/economy-report/reports/feedback-summary.md | Done.
+- [OK] LLM Wiki Rebuild After First Synthesis (0s)
+  - command: node scripts/build-llm-wiki.js --date 2026-04-23 --run-date 2026-04-24 --effective-market-date 2026-04-23 --run-id 2026-04-24-150218
+  - policy: degrade / category: generic
+  - tail: /Users/seo/Documents/Playground/economy-report/knowledge/wiki
+- [OK] Stage 9 Follow-up Research Map (2s)
+  - command: node scripts/build-stage1-7-followup-research-map.js --date 2026-04-23 --run-date 2026-04-24 --effective-market-date 2026-04-23 --run-id 2026-04-24-150218
+  - policy: degrade / category: generic
+  - tail: /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-23/stage1-followup-research-map.json | /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-23/11-stage1-7-followup-research-map.md
+- [OK] Stage 10 Gemini Follow-up Prompt (0s)
+  - command: node scripts/build-stage1-7-gemini-follow-up-prompt.js --date 2026-04-23 --run-date 2026-04-24 --effective-market-date 2026-04-23 --run-id 2026-04-24-150218
+  - policy: degrade / category: generic
+  - tail: /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-23/12-stage1-7-gemini-follow-up-prompt.md
+- [OK] Stage 11 Gemini Follow-up Web (0s)
+  - command: reuse-existing-artifact /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-23/13-stage1-7-gemini-follow-up-response.md
+  - policy: degrade / category: gemini_web
+  - tail: same-day Deep Research follow-up 응답 재사용: /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-23/13-stage1-7-gemini-follow-up-response.md
+- [OK] Stage 12 Rich Briefing Round 2 (1m 21s)
+  - command: npm run stage6:rich-briefing -- --date 2026-04-23 --run-date 2026-04-24 --effective-market-date 2026-04-23 --run-id 2026-04-24-150218
+  - policy: degrade / category: qwen_api
+  - tail: > ecoreport@1.0.0 stage6:rich-briefing | > node scripts/build-stage1-6-rich-briefing.js --date 2026-04-23 --run-date 2026-04-24 --effective-market-date 2026-04-23 --run-id 2026-04-24-150218 | /Users/seo/Documents/Playground/economy-report/knowledge/daily/2026-04-23-gemini-briefing-rich.md | briefing source=qwen / model=qwen3.5-397b-a17b
+- [OK] Stage 13 Strategy Refresh Round 2 (3m 19s)
+  - command: bash scripts/run-strategy-pipeline.sh --date 2026-04-23 --run-date 2026-04-24 --effective-market-date 2026-04-23 --run-id 2026-04-24-150218 --qwen-stage2 --strict-qwen-stage2
+  - policy: degrade / category: generic
+  - tail: /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-23/stage4-execution-plan.json | == Stage 12: feedback snapshot == | /Users/seo/Documents/Playground/economy-report/data/feedback/snapshots/2026-04-23.json | == Stage 13: feedback analysis == | /Users/seo/Documents/Playground/economy-report/data/feedback/analysis/2026-04-23-feedback.json | == Stage 14: feedback report == | /Users/seo/Documents/Playground/economy-report/reports/feedback-summary.md | Done.
+- [OK] LLM Wiki Rebuild After Round 2 (0s)
+  - command: node scripts/build-llm-wiki.js --date 2026-04-23 --run-date 2026-04-24 --effective-market-date 2026-04-23 --run-id 2026-04-24-150218
+  - policy: degrade / category: generic
+  - tail: /Users/seo/Documents/Playground/economy-report/knowledge/wiki
+- [OK] Stage 14 Final Refinement Map (1s)
+  - command: node scripts/build-stage1-7-followup-research-map.js --date 2026-04-23 --run-date 2026-04-24 --effective-market-date 2026-04-23 --run-id 2026-04-24-150218 --round 3
+  - policy: degrade / category: generic
+  - tail: /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-23/stage1-final-refinement-map.json | /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-23/14-stage1-8-final-refinement-map.md
+- [OK] Stage 15 Gemini Final Refinement Prompt (0s)
+  - command: node scripts/build-stage1-7-gemini-follow-up-prompt.js --date 2026-04-23 --run-date 2026-04-24 --effective-market-date 2026-04-23 --run-id 2026-04-24-150218 --round 3
+  - policy: degrade / category: generic
+  - tail: /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-23/15-stage1-8-gemini-final-refinement-prompt.md
+- [OK] Stage 16 Gemini Final Refinement Web (0s)
+  - command: reuse-existing-artifact /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-23/16-stage1-8-gemini-final-refinement-response.md
+  - policy: degrade / category: gemini_web
+  - tail: same-day Deep Research round3 응답 재사용: /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-23/16-stage1-8-gemini-final-refinement-response.md
+- [OK] Stage 17 Rich Briefing Final (2m 7s)
+  - command: npm run stage6:rich-briefing -- --date 2026-04-23 --run-date 2026-04-24 --effective-market-date 2026-04-23 --run-id 2026-04-24-150218
+  - policy: degrade / category: qwen_api
+  - tail: > ecoreport@1.0.0 stage6:rich-briefing | > node scripts/build-stage1-6-rich-briefing.js --date 2026-04-23 --run-date 2026-04-24 --effective-market-date 2026-04-23 --run-id 2026-04-24-150218 | /Users/seo/Documents/Playground/economy-report/knowledge/daily/2026-04-23-gemini-briefing-rich.md | briefing source=qwen / model=qwen3.5-397b-a17b
+- [OK] Stage 6 Briefing Delta (0s)
+  - command: node scripts/build-briefing-delta.js --date 2026-04-23
+  - policy: degrade / category: generic
+  - tail: saved: /Users/seo/Documents/Playground/economy-report/knowledge/daily/2026-04-23-briefing-delta.md | json: /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-23/briefing-delta.json | previousTradingDate: 2026-04-22
+- [WARN] Stage 18 Strategy Refresh Final (8s)
+  - command: bash scripts/run-strategy-pipeline.sh --date 2026-04-23 --run-date 2026-04-24 --effective-market-date 2026-04-23 --run-id 2026-04-24-150218 --qwen-stage2 --strict-qwen-stage2
+  - policy: degrade / category: generic
+  - reason: Stage 18 Strategy Refresh Final 실패 (exit 1)
+  - degraded: true
+  - tail: saved: /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-23/07b-stage1-5-sector-prompt.md (part=sector, chars=2666, topics=3, limit=5000) | saved: /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-23/07c-stage1-5-newcandidate-prompt.md (part=newcandidate, chars=3097, topics=4, limit=4000) | legacy_saved: /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-23/07-stage1-5-gemini-deep-research-prompt.md | == Stage 6: strategy prompt == | /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-23/08-stage2-strategy-prompt.md | == Stage 7: Qwen strategy options == | !! Qwen Stage 7 실행 실패 -> stage2 Qwen 생성 실패: Error code: 403 - {'error': {'message': 'The free tier of the model has been exhausted. If you wish to continue access the model on a paid basis, please disable the "use free tier only" mode in the management console.', 'type': 'AllocationQuota.FreeTierOnly', 'param': None, 'code': 'AllocationQuota.FreeTierOnly'}, 'id': 'chatcmpl-829fb44f-bd85-965f-baa8-4d448529c1ac', 'request_id': '829fb44f-bd85-965f-baa8-4d448529c1ac'} | raw_length=0 | ERROR: Stage 7(Qwen strategy options) failed. Mock fallback is disabled.
+  - debug: Stage 2 prompt에 3차 refinement 결과가 정상 주입됐는지 확인하세요.
+- [OK] LLM Wiki Rebuild Final (0s)
+  - command: node scripts/build-llm-wiki.js --date 2026-04-23 --run-date 2026-04-24 --effective-market-date 2026-04-23 --run-id 2026-04-24-150218
+  - policy: degrade / category: generic
+  - tail: /Users/seo/Documents/Playground/economy-report/knowledge/wiki
+- [OK] LLM Wiki Publish (0s)
+  - command: node scripts/publish-llm-wiki-to-vault.js
+  - policy: degrade / category: generic
+  - tail: /Users/seo/my-wiki/wiki/ecoreport
+- [OK] Verify Outputs (0s)
+  - command: node scripts/verify-daily-system.js --date 2026-04-23 --run-date 2026-04-24 --effective-market-date 2026-04-23 --run-id 2026-04-24-150218
+  - policy: degrade / category: generic
+  - tail: /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-23/system-health.json
+## Failed Or Warned Steps
+- StockEasy Market Capture: StockEasy Market Capture 타임아웃 (90s)
+- Stage 18 Strategy Refresh Final: Stage 18 Strategy Refresh Final 실패 (exit 1)
+## Artifacts
+- [OK] /Users/seo/Documents/Playground/economy-report/logs/2026-04-23-150218-automation-cycle.log
+- [OK] /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-23/automation-readiness.json
+- [OK] /Users/seo/Documents/Playground/economy-report/data/external/stockeasy/2026-04-23/snapshot.json
+- [OK] /Users/seo/Documents/Playground/economy-report/reports/chunk_summaries/2026-04-23
+- [OK] /Users/seo/Documents/Playground/economy-report/reports/report_summaries/2026-04-23
+- [OK] /Users/seo/Documents/Playground/economy-report/reports/logs/run_stats.json
+- [OK] /Users/seo/Documents/Playground/economy-report/reports/merged/final_market_view.json
+- [OK] /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-23/chunk-index/stats.json
+- [OK] /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-23/stage1-report-extracts-v2.json
+- [OK] /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-23/stage1-chunk-summaries.json
+- [OK] /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-23/stage2-enriched-report-index.json
+- [OK] /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-23/stage1-research-agenda.json
+- [OK] /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-23/stage1-shadow/stage1-shadow-extracts.json
+- [OK] /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-23/stage2-shadow-topic-buckets.json
+- [OK] /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-23/stage3-shadow-final-insights.json
+- [OK] /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-23/stage1-followup-research-map.json
+- [OK] /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-23/11-stage1-7-followup-research-map.md
+- [OK] /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-23/07-stage1-5-gemini-deep-research-prompt.md
+- [OK] /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-23/07a-stage1-5-macro-prompt.md
+- [OK] /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-23/07b-stage1-5-sector-prompt.md
+- [OK] /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-23/07c-stage1-5-newcandidate-prompt.md
+- [OK] /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-23/09-stage1-5-gemini-deep-research-response.md
+- [OK] /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-23/12-stage1-7-gemini-follow-up-prompt.md
+- [OK] /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-23/13-stage1-7-gemini-follow-up-response.md
+- [OK] /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-23/stage1-final-refinement-map.json
+- [OK] /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-23/14-stage1-8-final-refinement-map.md
+- [OK] /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-23/15-stage1-8-gemini-final-refinement-prompt.md
+- [OK] /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-23/16-stage1-8-gemini-final-refinement-response.md
+- [OK] /Users/seo/Documents/Playground/economy-report/knowledge/daily/2026-04-23-gemini-briefing-rich.md
+- [OK] /Users/seo/Documents/Playground/economy-report/knowledge/daily/2026-04-23-briefing-delta.md
+- [OK] /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-23/briefing-delta.json
+- [OK] /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-23/10-stage1-6-final-research-briefing.md
+- [OK] /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-23/stage2-strategy-options.json
+- [OK] /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-23/stage4-execution-plan.json
+- [OK] /Users/seo/Documents/Playground/economy-report/reports/daily/2026-04-23-briefing.md
+- [OK] /Users/seo/Documents/Playground/economy-report/reports/daily/2026-04-23-briefing.html
+- [OK] /Users/seo/Documents/Playground/economy-report/reports/daily/2026-04-23-stage4-execution-plan-table.md
+- [OK] /Users/seo/Documents/Playground/economy-report/reports/daily/2026-04-23-stage4-execution-plan-telegram.txt
+- [OK] /Users/seo/Documents/Playground/economy-report/knowledge/wiki/daily/2026-04-23.md
+- [OK] /Users/seo/Documents/Playground/economy-report/knowledge/wiki/memory/operating-rules.md
+- [OK] /Users/seo/Documents/Playground/economy-report/knowledge/wiki/memory/research-backlog.md
+- [OK] /Users/seo/Documents/Playground/economy-report/knowledge/wiki/memory/decision-journal.md
+- [OK] /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-23/system-health.json
+- [OK] /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-23/automation-cycle.json
+- [OK] /Users/seo/Documents/Playground/economy-report/knowledge/daily/2026-04-23-automation-cycle.md

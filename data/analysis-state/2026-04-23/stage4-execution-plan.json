@@ -1,16 +1,16 @@
 {
   "date": "2026-04-23",
-  "runDate": "2026-04-23",
+  "runDate": "2026-04-24",
   "effectiveMarketDate": "2026-04-23",
-  "runId": "2026-04-23-032801",
-  "generatedAt": "2026-04-23T03:31:16.538Z",
+  "runId": "2026-04-24-150218",
+  "generatedAt": "2026-04-23T15:23:45.645Z",
   "portfolioScore": 45,
   "regime": {
     "name": "BULL",
     "confidence": 0.72,
     "voteSum": 3,
     "signals": [
-      "VIX 19.5<20",
+      "VIX 18.92<20",
       "T10Y2Y 0.51>0.5",
       "CPI YoY 3.286% 보통",
       "가격>MA20>MA60"
@@ -20,21 +20,21 @@
       "signal": "BULLISH",
       "vix": null,
       "score": 90,
-      "close": 6362.6,
+      "close": 6475.81,
       "ma": {
-        "ma5": 6316.002,
-        "ma20": 5799.3415,
-        "ma60": 5611.0127,
-        "ma120": 4919.4867
+        "ma5": 6338.644,
+        "ma20": 5805.002,
+        "ma60": 5612.8995,
+        "ma120": 4920.4302
       },
-      "rsi": 65.03,
+      "rsi": 68.21,
       "alerts": []
     }
   },
   "emergencyDefense": {
     "enabled": false,
     "vix": null,
-    "worstIndexDropPct": -0.86,
+    "worstIndexDropPct": 0.9,
     "triggers": [],
     "marketDataAvailable": true
   },
@@ -61,170 +61,193 @@
     {
       "key": "ISA",
       "label": "한투 ISA",
-      "totalScore": 42,
+      "totalScore": 41,
       "stage2Bias": "selective_add",
-      "deployBudget": 4218893,
-      "plannedDeployBudget": 4218893,
-      "reserveCash": 4234150,
+      "deployBudget": 5077184,
+      "plannedDeployBudget": 5077184,
+      "reserveCash": 3375859,
       "topGap": {
         "category": "배당/커버드콜",
         "targetPct": 0.3,
         "currentPct": 0,
-        "gapAmount": 5036986
+        "gapAmount": 5078416
       },
       "candidateFromGap": "TIGER 미국배당+7%프리미엄다우존스",
       "stage2Candidates": [
         {
-          "code": "132030",
-          "name": "KODEX 골드선물(H)",
-          "score": null,
-          "reason": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 우호적",
-          "source": "stage2",
-          "stance": "buy",
-          "confidence": 0.6,
-          "targetAccounts": [
-            "ISA"
-          ]
-        },
-        {
           "code": "487240",
           "name": "KODEX AI전력핵심설비",
           "score": null,
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+          "reason": "AI 전력 인프라 신호와 ETF 키워드가 일치하며 당일 등락률 +6.39% 흐름이 동행합니다.",
           "source": "stage2",
           "stance": "buy",
           "confidence": 0.85,
           "targetAccounts": [
-            "ISA"
+            "KIS_MAIN",
+            "ISA",
+            "PENSION"
+          ]
+        },
+        {
+          "code": "491010",
+          "name": "TIGER 글로벌AI전력인프라액티브",
+          "score": null,
+          "reason": "AI 전력 인프라 신호와 ETF 키워드가 일치하며 당일 등락률 +2.00% 흐름이 동행합니다.",
+          "source": "stage2",
+          "stance": "buy",
+          "confidence": 0.85,
+          "targetAccounts": [
+            "ISA",
+            "PENSION"
+          ]
+        },
+        {
+          "code": "487230",
+          "name": "KODEX 미국AI전력핵심인프라",
+          "score": null,
+          "reason": "AI 전력 인프라 신호와 ETF 키워드가 일치하며 당일 등락률 +2.14% 흐름이 동행합니다.",
+          "source": "stage2",
+          "stance": "buy",
+          "confidence": 0.85,
+          "targetAccounts": [
+            "ISA",
+            "PENSION"
           ]
         }
       ],
-      "stagedBuys": [],
-      "rejectedAlternatives": [
+      "stagedBuys": [
         {
-          "code": "458760",
-          "name": "TIGER 미국배당+7%프리미엄다우존스",
+          "code": "491010",
+          "name": "TIGER 글로벌AI전력인프라액티브",
           "score": null,
-          "reason": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화",
-          "source": "stage2",
-          "stance": "watch",
-          "confidence": 0.35,
-          "targetAccounts": [
-            "ISA"
-          ],
-          "rejectionReason": "Stage 2 stance가 watch라 신규 매수 후보에서 제외"
-        },
-        {
-          "code": "0162Z0",
-          "name": "RISE 삼성전자SK하이닉스채권혼합50",
-          "score": null,
-          "reason": "기술점수와 현재 배분 상태를 기준으로 분류",
-          "source": "stage2",
-          "stance": "hold",
-          "confidence": 0.35,
-          "targetAccounts": [
-            "ISA"
-          ],
-          "rejectionReason": "Stage 2 stance가 hold라 신규 매수 후보에서 제외"
-        },
-        {
-          "code": "069500",
-          "name": "KODEX 200",
-          "score": null,
-          "reason": "기술점수와 현재 배분 상태를 기준으로 분류",
-          "source": "stage2",
-          "stance": "hold",
-          "confidence": 0.35,
-          "targetAccounts": [
-            "ISA"
-          ],
-          "rejectionReason": "Stage 2 stance가 hold라 신규 매수 후보에서 제외"
-        },
-        {
-          "code": "132030",
-          "name": "KODEX 골드선물(H)",
-          "score": 60,
-          "reason": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 우호적",
+          "reason": "AI 전력 인프라 신호와 ETF 키워드가 일치하며 당일 등락률 +2.00% 흐름이 동행합니다.",
           "source": "stage2",
           "stance": "buy",
-          "confidence": 0.6,
+          "confidence": 0.85,
           "targetAccounts": [
-            "ISA"
+            "ISA",
+            "PENSION"
           ],
           "technical": {
-            "rsi": 45.46,
-            "bollingerPosition": "lower_half",
-            "atrPct": 0.021162,
-            "dayChangePct": -0.0155,
+            "rsi": null,
+            "bollingerPosition": null,
+            "atrPct": null,
+            "dayChangePct": null,
             "fallback": null
           },
-          "currentPrice": 26670,
-          "maxCorrelationToPortfolio": 0.548,
+          "currentPrice": null,
+          "maxCorrelationToPortfolio": null,
+          "entryCondition": "technical_fallback",
+          "entryTriggers": [
+            "기술 조건 또는 점수가 충분하지 않음"
+          ],
+          "urgency": "next_tranche",
+          "conditionMet": false,
+          "fallback": true,
+          "sizingMethod": "ranked",
+          "baseSuggestedAmount": 1523155,
+          "suggestedAmount": 1523155,
+          "correlationHaircutApplied": false,
+          "maxSinglePositionAmount": 5078416
+        },
+        {
+          "code": "487230",
+          "name": "KODEX 미국AI전력핵심인프라",
+          "score": null,
+          "reason": "AI 전력 인프라 신호와 ETF 키워드가 일치하며 당일 등락률 +2.14% 흐름이 동행합니다.",
+          "source": "stage2",
+          "stance": "buy",
+          "confidence": 0.85,
+          "targetAccounts": [
+            "ISA",
+            "PENSION"
+          ],
+          "technical": {
+            "rsi": null,
+            "bollingerPosition": null,
+            "atrPct": null,
+            "dayChangePct": null,
+            "fallback": null
+          },
+          "currentPrice": null,
+          "maxCorrelationToPortfolio": null,
+          "entryCondition": "technical_fallback",
+          "entryTriggers": [
+            "기술 조건 또는 점수가 충분하지 않음"
+          ],
+          "urgency": "next_tranche",
+          "conditionMet": false,
+          "fallback": true,
+          "sizingMethod": "ranked",
+          "baseSuggestedAmount": 1015437,
+          "suggestedAmount": 1015437,
+          "correlationHaircutApplied": false,
+          "maxSinglePositionAmount": 5078416
+        }
+      ],
+      "rejectedAlternatives": [
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "score": 67,
+          "reason": "AI 전력 인프라 신호와 ETF 키워드가 일치하며 당일 등락률 +6.39% 흐름이 동행합니다.",
+          "source": "stage2",
+          "stance": "buy",
+          "confidence": 0.85,
+          "targetAccounts": [
+            "KIS_MAIN",
+            "ISA",
+            "PENSION"
+          ],
+          "technical": {
+            "rsi": 76.25,
+            "bollingerPosition": "above_upper",
+            "atrPct": 0.040682,
+            "dayChangePct": 0.0639,
+            "fallback": null
+          },
+          "currentPrice": 42555,
+          "maxCorrelationToPortfolio": 0.5383,
           "entryCondition": "watch",
           "entryTriggers": [
-            "RSI 45.5",
-            "볼린저 lower_half"
+            "RSI 76.3",
+            "볼린저 above_upper"
           ],
           "urgency": "this_week",
           "conditionMet": false,
           "fallback": false,
           "sizingMethod": "inverse_atr",
-          "baseSuggestedAmount": 2803881,
-          "suggestedAmount": 2803881,
+          "baseSuggestedAmount": 2538592,
+          "suggestedAmount": 2538592,
           "correlationHaircutApplied": false,
-          "maxSinglePositionAmount": 5036986,
-          "rejectionReason": "부족 자산군(배당/커버드콜)과 실행 후보 카테고리(금)가 달라 제외"
-        },
-        {
-          "code": "487240",
-          "name": "KODEX AI전력핵심설비",
-          "score": 68,
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
-          "source": "stage2",
-          "stance": "buy",
-          "confidence": 0.85,
-          "targetAccounts": [
-            "ISA"
-          ],
-          "technical": {
-            "rsi": 74.05,
-            "bollingerPosition": "upper_half",
-            "atrPct": 0.041933,
-            "dayChangePct": 0.0321,
-            "fallback": null
-          },
-          "currentPrice": 41285,
-          "maxCorrelationToPortfolio": 0.548,
-          "entryCondition": "dca_keep",
-          "entryTriggers": [
-            "RSI 74",
-            "볼린저 upper_half"
-          ],
-          "urgency": "next_tranche",
-          "conditionMet": false,
-          "fallback": false,
-          "sizingMethod": "inverse_atr",
-          "baseSuggestedAmount": 1415012,
-          "suggestedAmount": 1415012,
-          "correlationHaircutApplied": false,
-          "maxSinglePositionAmount": 5036986,
+          "maxSinglePositionAmount": 5078416,
           "rejectionReason": "부족 자산군(배당/커버드콜)과 실행 후보 카테고리(전력기기)가 달라 제외"
         }
       ],
-      "noAction": true,
-      "noActionReason": "전략-실행 검증 후 통과한 매수 후보가 없어 no_action으로 유지",
+      "noAction": false,
+      "noActionReason": null,
       "validatorFlags": [
-        "gap_action_mismatch:KODEX 골드선물(H)",
-        "gap_action_mismatch:KODEX AI전력핵심설비",
-        "no_action_after_validation"
+        "gap_action_mismatch:KODEX AI전력핵심설비"
       ],
-      "validationConfidence": 0,
+      "validationConfidence": 0.85,
       "validationEvidence": [
+        {
+          "code": "491010",
+          "name": "TIGER 글로벌AI전력인프라액티브",
+          "source": "stage2",
+          "reason": "AI 전력 인프라 신호와 ETF 키워드가 일치하며 당일 등락률 +2.00% 흐름이 동행합니다."
+        },
+        {
+          "code": "487230",
+          "name": "KODEX 미국AI전력핵심인프라",
+          "source": "stage2",
+          "reason": "AI 전력 인프라 신호와 ETF 키워드가 일치하며 당일 등락률 +2.14% 흐름이 동행합니다."
+        },
         {
           "code": "132030",
           "name": "KODEX 골드선물(H)",
           "source": "stage3",
-          "reason": "World Central Kitchen이 중동 전쟁과 유가, 비료 가격 상승으로 전 세계 식량 위기와 기아가 심각해졌다고 밝혔습니다. 이 단체는 Gaza에서 하루 100만 끼니를 제공하며 여러 지역에서 구호 활동을 이어가고 있습니다."
+          "reason": "2026년 3월 말 이후 미국 주식시장이 대형 은행 등 주요 기업 실적 호조로 반등세를 보이고 있습니다. AI 영향과 유가 변동성으로 업종별 실적 차이가 커지고, 소비재 등 방어주가 강세입니다."
         }
       ],
       "trims": [],
@@ -232,24 +255,46 @@
         {
           "code": "132030",
           "name": "KODEX 골드선물(H)",
-          "score": 60,
+          "score": 61,
           "accountKey": "ISA",
-          "currentPrice": 26670,
+          "currentPrice": 26715,
           "entryPrice": 27035,
-          "atrPct": 0.021162,
-          "rsi": 45.46,
+          "atrPct": 0.02114,
+          "rsi": 45.88,
           "bollingerPosition": "lower_half",
           "stopLoss": {
             "enabled": true,
             "triggered": false,
             "entryPrice": 27035,
-            "currentPrice": 26670,
+            "currentPrice": 26715,
             "recentHigh": 27675,
-            "drawdownFromEntryPct": -0.0135,
-            "drawdownFromRecentHighPct": -0.0363,
+            "drawdownFromEntryPct": -0.0118,
+            "drawdownFromRecentHighPct": -0.0347,
             "triggers": []
           },
-          "reason": "World Central Kitchen이 중동 전쟁과 유가, 비료 가격 상승으로 전 세계 식량 위기와 기아가 심각해졌다고 밝혔습니다. 이 단체는 Gaza에서 하루 100만 끼니를 제공하며 여러 지역에서 구호 활동을 이어가고 있습니다."
+          "reason": "2026년 3월 말 이후 미국 주식시장이 대형 은행 등 주요 기업 실적 호조로 반등세를 보이고 있습니다. AI 영향과 유가 변동성으로 업종별 실적 차이가 커지고, 소비재 등 방어주가 강세입니다."
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "score": 67,
+          "accountKey": "ISA",
+          "currentPrice": 42555,
+          "entryPrice": 39940,
+          "atrPct": 0.040682,
+          "rsi": 76.25,
+          "bollingerPosition": "above_upper",
+          "stopLoss": {
+            "enabled": true,
+            "triggered": false,
+            "entryPrice": 39940,
+            "currentPrice": 42555,
+            "recentHigh": 44000,
+            "drawdownFromEntryPct": 0.0655,
+            "drawdownFromRecentHighPct": -0.0328,
+            "triggers": []
+          },
+          "reason": "한화엔진과 HD현대중공업 주식이 데이터센터 엔진 사업 기대감 후 분할 매도됐습니다. 투자자는 두 회사의 생산능력이 부족해 실적 반영이 늦을 것으로 보고 매도했으며, 이후 주가 상승에도 자신의 판단을 중시했습니다."
         }
       ],
       "watches": [
@@ -258,7 +303,7 @@
           "name": "RISE 삼성전자SK하이닉스채권혼합50",
           "score": 43,
           "accountKey": "ISA",
-          "currentPrice": 11155,
+          "currentPrice": 11290,
           "entryPrice": 11200,
           "atrPct": null,
           "rsi": null,
@@ -267,9 +312,9 @@
             "enabled": true,
             "triggered": false,
             "entryPrice": 11200,
-            "currentPrice": 11155,
+            "currentPrice": 11290,
             "recentHigh": null,
-            "drawdownFromEntryPct": -0.004,
+            "drawdownFromEntryPct": 0.008,
             "drawdownFromRecentHighPct": null,
             "triggers": []
           },
@@ -280,7 +325,7 @@
           "name": "KODEX 200",
           "score": 43,
           "accountKey": "ISA",
-          "currentPrice": 96505,
+          "currentPrice": 98355,
           "entryPrice": 97145,
           "atrPct": null,
           "rsi": null,
@@ -289,9 +334,9 @@
             "enabled": true,
             "triggered": false,
             "entryPrice": 97145,
-            "currentPrice": 96505,
+            "currentPrice": 98355,
             "recentHigh": null,
-            "drawdownFromEntryPct": -0.0066,
+            "drawdownFromEntryPct": 0.0125,
             "drawdownFromRecentHighPct": null,
             "triggers": []
           },
@@ -302,7 +347,7 @@
           "name": "KODEX 신재생에너지액티브",
           "score": 43,
           "accountKey": "ISA",
-          "currentPrice": 50800,
+          "currentPrice": 52370,
           "entryPrice": 52225,
           "atrPct": null,
           "rsi": null,
@@ -311,9 +356,9 @@
             "enabled": true,
             "triggered": false,
             "entryPrice": 52225,
-            "currentPrice": 50800,
+            "currentPrice": 52370,
             "recentHigh": null,
-            "drawdownFromEntryPct": -0.0273,
+            "drawdownFromEntryPct": 0.0028,
             "drawdownFromRecentHighPct": null,
             "triggers": []
           },
@@ -321,10 +366,10 @@
         }
       ],
       "macroCommentary": {
-        "summary": "추세 우상향 장세 한투 ISA은 변동성 완충형 인컴 자산 비중 조정이 핵심입니다. 절세 계좌 특성상 국내 ETF 중심의 방어·인컴·테마 배치를 유연하게 조정하는 역할로 작동하는 계좌입니다.",
+        "summary": "중동 지정학 리스크와 유가 상승이 시장 변동성을 키우고 있습니다. 한투 ISA은 변동성 완충형 인컴 자산 비중 조정이 핵심입니다. 절세 계좌 특성상 국내 ETF 중심의 방어·인컴·테마 배치를 유연하게 조정하는 역할로 작동하는 계좌입니다.",
         "drivers": [
-          "추세 우상향 장세",
-          "기술점수 상위 보유/후보가 존재해 선별 보강이 가능한 상태",
+          "중동 지정학 리스크와 유가 상승이 시장 변동성을 키우고 있습니다.",
+          "절세 혜택을 고려하여 배당/커버드콜 ETF 와 국내 우량주를 중심으로 대기 자금을 운용합니다.",
           "밸류에이션 부담 속 종목 선택는 ISA에 긍정 신호를 줍니다 (유가).",
           "유안타 1Q26 Preview: 컨센 상회 부합 하회 한눈에 보기는 ISA에 긍정 신호를 줍니다 (금리)."
         ],
@@ -333,8 +378,8 @@
           "배당/커버드콜",
           "미국인덱스"
         ],
-        "actionLine": "한투 ISA은 오늘은 no_action으로 유지합니다. 전략-실행 검증 후 통과한 매수 후보가 없어 no_action으로 유지",
-        "reserveNote": "다음 tranche 전까지 예수금 일부를 유지하며 분할 접근"
+        "actionLine": "한투 ISA은 배당/커버드콜을 우선 보강하고, KODEX AI전력핵심설비를 중심으로 5,077,184원 한도에서 분할 접근하는 편이 좋습니다.",
+        "reserveNote": "현금 비중 38% 에서 30% 대로 점진 축소, 추격 매수보다 조정 시 분할 진입"
       },
       "stage1Drivers": [
         {
@@ -349,19 +394,19 @@
         },
         {
           "id": "report_003",
-          "title": "데이터센터향 중속엔진 공급계약 확인",
-          "thesis": "매크로는 긍정 시각이며 핵심 근거는 Top Picks 및 관심종목 HD현대중공업의 북미 데이터센터향 발전용 엔진 공급계약\n*CP 2026년 4월 22일\n HD현대중공업은 4월 22일 에너지인프라 개발 기업 Aperion Energy Group과의 6,271억원\nHD현대중공업(329180)\n 엔진발전기 공급계약 체결 내용을..."
+          "title": "한국 1분기 GDP; IT, 건설이 주도한 서프라이즈",
+          "thesis": "매크로는 긍정 시각이며 핵심 근거는 중동 사태 장기화에도 수출, 설비투자 호조 속 금년 2% 성장 기대\n 1분기 경제 성장은 추세적 요인과 일시적 요소가 혼재됐다. 추세적 성장 동력은\n 반도체가 주도하는 수출과 투자 확대다. 1분기 급증에 따른 기저효과로 향후 속\n 도 조절은 예상된다. 그럼에도 1~2월 수입이 반도체 관..."
         },
         {
           "id": "report_004",
-          "title": "밸류에이션 부담 속 종목 선택",
-          "thesis": "매크로는 부정 시각이며 핵심 근거는 SMR 시장 X-energy 와의 CI(Conventional Island) 표준화 설계 계약 체결에 이어, NI\n 선점과 가능성과 (Nuclear Island) 설계 계약 연계 수주가 기대되며, X-energy 의 Key Supply Chain\n 플랜트 CAPA Partner 로서 S..."
+          "title": "데이터센터향 중속엔진 공급계약 확인",
+          "thesis": "매크로는 긍정 시각이며 핵심 근거는 Top Picks 및 관심종목 HD현대중공업의 북미 데이터센터향 발전용 엔진 공급계약\n*CP 2026년 4월 22일\n HD현대중공업은 4월 22일 에너지인프라 개발 기업 Aperion Energy Group과의 6,271억원\nHD현대중공업(329180)\n 엔진발전기 공급계약 체결 내용을..."
         }
       ],
       "emergencyDefense": {
         "enabled": false,
         "vix": null,
-        "worstIndexDropPct": -0.86,
+        "worstIndexDropPct": 0.9,
         "triggers": [],
         "marketDataAvailable": true
       },
@@ -370,190 +415,187 @@
     {
       "key": "PENSION",
       "label": "한투 연금저축",
-      "totalScore": 52,
-      "stage2Bias": "selective_add",
-      "deployBudget": 2801889,
-      "plannedDeployBudget": 2801889,
-      "reserveCash": 2828105,
+      "totalScore": 51,
+      "stage2Bias": "aggressive_add",
+      "deployBudget": 3509213,
+      "plannedDeployBudget": 3509213,
+      "reserveCash": 2120781,
       "topGap": {
         "category": "S&P500",
         "targetPct": 0.4,
-        "currentPct": 0.12514585188897465,
-        "gapAmount": 2870526
+        "currentPct": 0.12459685888221704,
+        "gapAmount": 2890038
       },
       "candidateFromGap": "TIGER 미국S&P500",
       "stage2Candidates": [
         {
-          "code": "360750",
-          "name": "TIGER 미국S&P500",
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
           "score": null,
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+          "reason": "AI 전력 인프라 신호와 ETF 키워드가 일치하며 당일 등락률 +6.39% 흐름이 동행합니다.",
           "source": "stage2",
           "stance": "buy",
           "confidence": 0.85,
           "targetAccounts": [
+            "KIS_MAIN",
+            "ISA",
             "PENSION"
           ]
         },
         {
-          "code": "487240",
-          "name": "KODEX AI전력핵심설비",
+          "code": "491010",
+          "name": "TIGER 글로벌AI전력인프라액티브",
           "score": null,
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+          "reason": "AI 전력 인프라 신호와 ETF 키워드가 일치하며 당일 등락률 +2.00% 흐름이 동행합니다.",
           "source": "stage2",
           "stance": "buy",
           "confidence": 0.85,
           "targetAccounts": [
-            "ISA"
+            "ISA",
+            "PENSION"
           ]
         },
         {
-          "code": "133690",
-          "name": "TIGER 미국나스닥100",
+          "code": "487230",
+          "name": "KODEX 미국AI전력핵심인프라",
           "score": null,
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+          "reason": "AI 전력 인프라 신호와 ETF 키워드가 일치하며 당일 등락률 +2.14% 흐름이 동행합니다.",
           "source": "stage2",
           "stance": "buy",
           "confidence": 0.85,
           "targetAccounts": [
+            "ISA",
             "PENSION"
           ]
         }
       ],
       "stagedBuys": [
         {
-          "code": "360750",
-          "name": "TIGER 미국S&P500",
-          "score": 58,
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+          "code": "491010",
+          "name": "TIGER 글로벌AI전력인프라액티브",
+          "score": null,
+          "reason": "AI 전력 인프라 신호와 ETF 키워드가 일치하며 당일 등락률 +2.00% 흐름이 동행합니다.",
           "source": "stage2",
           "stance": "buy",
           "confidence": 0.85,
           "targetAccounts": [
+            "ISA",
             "PENSION"
           ],
           "technical": {
-            "rsi": 77.47,
-            "bollingerPosition": "upper_half",
-            "atrPct": 0.008015,
-            "dayChangePct": 0.0038,
+            "rsi": null,
+            "bollingerPosition": null,
+            "atrPct": null,
+            "dayChangePct": null,
             "fallback": null
           },
-          "currentPrice": 26145,
-          "maxCorrelationToPortfolio": 0.2704,
+          "currentPrice": null,
+          "maxCorrelationToPortfolio": null,
+          "entryCondition": "technical_fallback",
+          "entryTriggers": [
+            "기술 조건 또는 점수가 충분하지 않음"
+          ],
+          "urgency": "next_tranche",
+          "conditionMet": false,
+          "fallback": true,
+          "sizingMethod": "ranked",
+          "baseSuggestedAmount": 1052764,
+          "suggestedAmount": 1052764,
+          "correlationHaircutApplied": false,
+          "maxSinglePositionAmount": 3148153
+        },
+        {
+          "code": "487230",
+          "name": "KODEX 미국AI전력핵심인프라",
+          "score": null,
+          "reason": "AI 전력 인프라 신호와 ETF 키워드가 일치하며 당일 등락률 +2.14% 흐름이 동행합니다.",
+          "source": "stage2",
+          "stance": "buy",
+          "confidence": 0.85,
+          "targetAccounts": [
+            "ISA",
+            "PENSION"
+          ],
+          "technical": {
+            "rsi": null,
+            "bollingerPosition": null,
+            "atrPct": null,
+            "dayChangePct": null,
+            "fallback": null
+          },
+          "currentPrice": null,
+          "maxCorrelationToPortfolio": null,
+          "entryCondition": "technical_fallback",
+          "entryTriggers": [
+            "기술 조건 또는 점수가 충분하지 않음"
+          ],
+          "urgency": "next_tranche",
+          "conditionMet": false,
+          "fallback": true,
+          "sizingMethod": "ranked",
+          "baseSuggestedAmount": 701843,
+          "suggestedAmount": 701843,
+          "correlationHaircutApplied": false,
+          "maxSinglePositionAmount": 3148153
+        }
+      ],
+      "rejectedAlternatives": [
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "score": 67,
+          "reason": "AI 전력 인프라 신호와 ETF 키워드가 일치하며 당일 등락률 +6.39% 흐름이 동행합니다.",
+          "source": "stage2",
+          "stance": "buy",
+          "confidence": 0.85,
+          "targetAccounts": [
+            "KIS_MAIN",
+            "ISA",
+            "PENSION"
+          ],
+          "technical": {
+            "rsi": 76.25,
+            "bollingerPosition": "above_upper",
+            "atrPct": 0.040682,
+            "dayChangePct": 0.0639,
+            "fallback": null
+          },
+          "currentPrice": 42555,
+          "maxCorrelationToPortfolio": 0.2731,
           "entryCondition": "watch",
           "entryTriggers": [
-            "RSI 77.5",
-            "볼린저 upper_half"
+            "RSI 76.3",
+            "볼린저 above_upper"
           ],
           "urgency": "this_week",
           "conditionMet": false,
           "fallback": false,
           "sizingMethod": "inverse_atr",
-          "baseSuggestedAmount": 1269925,
-          "suggestedAmount": 1269925,
+          "baseSuggestedAmount": 1754607,
+          "suggestedAmount": 1754607,
           "correlationHaircutApplied": false,
-          "maxSinglePositionAmount": 3133144
-        }
-      ],
-      "rejectedAlternatives": [
-        {
-          "code": "379810",
-          "name": "KODEX 미국나스닥100",
-          "score": null,
-          "reason": "기술점수와 현재 배분 상태를 기준으로 분류",
-          "source": "stage2",
-          "stance": "hold",
-          "confidence": 0.35,
-          "targetAccounts": [
-            "PENSION"
-          ],
-          "rejectionReason": "Stage 2 stance가 hold라 신규 매수 후보에서 제외"
-        },
-        {
-          "code": "487240",
-          "name": "KODEX AI전력핵심설비",
-          "score": 68,
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
-          "source": "stage2",
-          "stance": "buy",
-          "confidence": 0.85,
-          "targetAccounts": [
-            "ISA"
-          ],
-          "technical": {
-            "rsi": 74.05,
-            "bollingerPosition": "upper_half",
-            "atrPct": 0.041933,
-            "dayChangePct": 0.0321,
-            "fallback": null
-          },
-          "currentPrice": 41285,
-          "maxCorrelationToPortfolio": 0.2704,
-          "entryCondition": "dca_keep",
-          "entryTriggers": [
-            "RSI 74",
-            "볼린저 upper_half"
-          ],
-          "urgency": "next_tranche",
-          "conditionMet": false,
-          "fallback": false,
-          "sizingMethod": "inverse_atr",
-          "baseSuggestedAmount": 302846,
-          "suggestedAmount": 302846,
-          "correlationHaircutApplied": false,
-          "maxSinglePositionAmount": 3133144,
+          "maxSinglePositionAmount": 3148153,
           "rejectionReason": "부족 자산군(S&P500)과 실행 후보 카테고리(전력기기)가 달라 제외"
-        },
-        {
-          "code": "133690",
-          "name": "TIGER 미국나스닥100",
-          "score": null,
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
-          "source": "stage2",
-          "stance": "buy",
-          "confidence": 0.85,
-          "targetAccounts": [
-            "PENSION"
-          ],
-          "technical": {
-            "rsi": 80.64,
-            "bollingerPosition": "upper_half",
-            "atrPct": 0.010332,
-            "dayChangePct": 0.0085,
-            "fallback": null
-          },
-          "currentPrice": 175995,
-          "maxCorrelationToPortfolio": 0.9031,
-          "entryCondition": "technical_fallback",
-          "entryTriggers": [
-            "RSI 80.6",
-            "볼린저 upper_half"
-          ],
-          "urgency": "next_tranche",
-          "conditionMet": false,
-          "fallback": true,
-          "sizingMethod": "inverse_atr",
-          "baseSuggestedAmount": 1229118,
-          "suggestedAmount": 614559,
-          "correlationHaircutApplied": true,
-          "maxSinglePositionAmount": 3133144,
-          "rejectionReason": "부족 자산군(S&P500)과 실행 후보 카테고리(나스닥100)가 달라 제외"
         }
       ],
       "noAction": false,
       "noActionReason": null,
       "validatorFlags": [
-        "gap_action_mismatch:KODEX AI전력핵심설비",
-        "gap_action_mismatch:TIGER 미국나스닥100"
+        "gap_action_mismatch:KODEX AI전력핵심설비"
       ],
       "validationConfidence": 0.85,
       "validationEvidence": [
         {
-          "code": "360750",
-          "name": "TIGER 미국S&P500",
+          "code": "491010",
+          "name": "TIGER 글로벌AI전력인프라액티브",
           "source": "stage2",
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적"
+          "reason": "AI 전력 인프라 신호와 ETF 키워드가 일치하며 당일 등락률 +2.00% 흐름이 동행합니다."
+        },
+        {
+          "code": "487230",
+          "name": "KODEX 미국AI전력핵심인프라",
+          "source": "stage2",
+          "reason": "AI 전력 인프라 신호와 ETF 키워드가 일치하며 당일 등락률 +2.14% 흐름이 동행합니다."
         },
         {
           "code": "360750",
@@ -567,24 +609,46 @@
         {
           "code": "360750",
           "name": "TIGER 미국S&P500",
-          "score": 58,
+          "score": 60,
           "accountKey": "PENSION",
-          "currentPrice": 26140,
+          "currentPrice": 26150,
           "entryPrice": 26045,
-          "atrPct": 0.008015,
-          "rsi": 77.47,
+          "atrPct": 0.008014,
+          "rsi": 77.59,
           "bollingerPosition": "upper_half",
           "stopLoss": {
             "enabled": true,
             "triggered": false,
             "entryPrice": 26045,
-            "currentPrice": 26145,
+            "currentPrice": 26150,
             "recentHigh": 26185,
-            "drawdownFromEntryPct": 0.0038,
-            "drawdownFromRecentHighPct": -0.0015,
+            "drawdownFromEntryPct": 0.004,
+            "drawdownFromRecentHighPct": -0.0013,
             "triggers": []
           },
           "reason": "매크로는 긍정 시각이며 핵심 근거는 • 765kV 수주 확대 - 이익 레벨을 결정하는 핵심 변수: 수주 측면에서는 업종 내 가장 강한 흐름이 확인. 2월 약 7,800억원 규모의 765kV 목표주가 4,200,000원 (M) 변압기 수주를 포함해, 1Q26 신규 수주는 2조원을 상회하며 분기 기준 최대치를 기록할 것으로..."
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "score": 67,
+          "accountKey": "PENSION",
+          "currentPrice": 42555,
+          "entryPrice": 42455,
+          "atrPct": 0.040682,
+          "rsi": 76.25,
+          "bollingerPosition": "above_upper",
+          "stopLoss": {
+            "enabled": true,
+            "triggered": false,
+            "entryPrice": 42455,
+            "currentPrice": 42555,
+            "recentHigh": 44000,
+            "drawdownFromEntryPct": 0.0024,
+            "drawdownFromRecentHighPct": -0.0328,
+            "triggers": []
+          },
+          "reason": "한화엔진과 HD현대중공업 주식이 데이터센터 엔진 사업 기대감 후 분할 매도됐습니다. 투자자는 두 회사의 생산능력이 부족해 실적 반영이 늦을 것으로 보고 매도했으며, 이후 주가 상승에도 자신의 판단을 중시했습니다."
         }
       ],
       "watches": [
@@ -593,7 +657,7 @@
           "name": "RISE 삼성전자SK하이닉스채권혼합50",
           "score": 43,
           "accountKey": "PENSION",
-          "currentPrice": 11150,
+          "currentPrice": 11290,
           "entryPrice": 11360,
           "atrPct": null,
           "rsi": null,
@@ -602,9 +666,9 @@
             "enabled": true,
             "triggered": false,
             "entryPrice": 11360,
-            "currentPrice": 11150,
+            "currentPrice": 11290,
             "recentHigh": null,
-            "drawdownFromEntryPct": -0.0185,
+            "drawdownFromEntryPct": -0.0062,
             "drawdownFromRecentHighPct": null,
             "triggers": []
           },
@@ -615,7 +679,7 @@
           "name": "KODEX 200",
           "score": 43,
           "accountKey": "PENSION",
-          "currentPrice": 96510,
+          "currentPrice": 98355,
           "entryPrice": 99140,
           "atrPct": null,
           "rsi": null,
@@ -624,9 +688,9 @@
             "enabled": true,
             "triggered": false,
             "entryPrice": 99140,
-            "currentPrice": 96510,
+            "currentPrice": 98355,
             "recentHigh": null,
-            "drawdownFromEntryPct": -0.0265,
+            "drawdownFromEntryPct": -0.0079,
             "drawdownFromRecentHighPct": null,
             "triggers": []
           },
@@ -637,7 +701,7 @@
           "name": "KODEX 미국나스닥100",
           "score": 43,
           "accountKey": "PENSION",
-          "currentPrice": 26365,
+          "currentPrice": 26415,
           "entryPrice": 26155,
           "atrPct": null,
           "rsi": null,
@@ -646,9 +710,9 @@
             "enabled": true,
             "triggered": false,
             "entryPrice": 26155,
-            "currentPrice": 26365,
+            "currentPrice": 26415,
             "recentHigh": null,
-            "drawdownFromEntryPct": 0.008,
+            "drawdownFromEntryPct": 0.0099,
             "drawdownFromRecentHighPct": null,
             "triggers": []
           },
@@ -656,10 +720,10 @@
         }
       ],
       "macroCommentary": {
-        "summary": "추세 우상향 장세 한투 연금저축은 미국 코어 인덱스 비중 조정이 핵심입니다. 장기 복리 관점에서 미국 코어 자산과 방어 자산을 안정적으로 쌓는 역할로 작동하는 계좌입니다.",
+        "summary": "중동 지정학 리스크와 유가 상승이 시장 변동성을 키우고 있습니다. 한투 연금저축은 미국 코어 인덱스 비중 조정이 핵심입니다. 장기 복리 관점에서 미국 코어 자산과 방어 자산을 안정적으로 쌓는 역할로 작동하는 계좌입니다.",
         "drivers": [
-          "추세 우상향 장세",
-          "기술점수 상위 보유/후보가 존재해 선별 보강이 가능한 상태",
+          "중동 지정학 리스크와 유가 상승이 시장 변동성을 키우고 있습니다.",
+          "장기 복리 효과를 극대화하기 위해 미국 코어 지수를 주된 매수 대상으로 삼아 현금을 투입합니다.",
           "데이터센터향 중속엔진 공급계약 확인는 S&P500에 긍정 신호를 줍니다 (유가).",
           "밸류에이션 부담 속 종목 선택는 S&P500에 긍정 신호를 줍니다 (유가)."
         ],
@@ -668,8 +732,8 @@
           "S&P500",
           "나스닥100"
         ],
-        "actionLine": "한투 연금저축은 S&P500을 우선 보강하고, TIGER 미국S&P500를 중심으로 2,801,889원 한도에서 분할 접근하는 편이 좋습니다.",
-        "reserveNote": "다음 tranche 전까지 예수금 일부를 유지하며 분할 접근"
+        "actionLine": "한투 연금저축은 S&P500을 우선 보강하고, KODEX AI전력핵심설비를 중심으로 3,509,213원 한도에서 분할 접근하는 편이 좋습니다.",
+        "reserveNote": "562 만 원 현금 중 400 만 원 투입, RSI 과열로 2~3 회 분할 매수"
       },
       "stage1Drivers": [
         {
@@ -684,19 +748,19 @@
         },
         {
           "id": "report_003",
-          "title": "데이터센터향 중속엔진 공급계약 확인",
-          "thesis": "매크로는 긍정 시각이며 핵심 근거는 Top Picks 및 관심종목 HD현대중공업의 북미 데이터센터향 발전용 엔진 공급계약\n*CP 2026년 4월 22일\n HD현대중공업은 4월 22일 에너지인프라 개발 기업 Aperion Energy Group과의 6,271억원\nHD현대중공업(329180)\n 엔진발전기 공급계약 체결 내용을..."
+          "title": "한국 1분기 GDP; IT, 건설이 주도한 서프라이즈",
+          "thesis": "매크로는 긍정 시각이며 핵심 근거는 중동 사태 장기화에도 수출, 설비투자 호조 속 금년 2% 성장 기대\n 1분기 경제 성장은 추세적 요인과 일시적 요소가 혼재됐다. 추세적 성장 동력은\n 반도체가 주도하는 수출과 투자 확대다. 1분기 급증에 따른 기저효과로 향후 속\n 도 조절은 예상된다. 그럼에도 1~2월 수입이 반도체 관..."
         },
         {
           "id": "report_004",
-          "title": "밸류에이션 부담 속 종목 선택",
-          "thesis": "매크로는 부정 시각이며 핵심 근거는 SMR 시장 X-energy 와의 CI(Conventional Island) 표준화 설계 계약 체결에 이어, NI\n 선점과 가능성과 (Nuclear Island) 설계 계약 연계 수주가 기대되며, X-energy 의 Key Supply Chain\n 플랜트 CAPA Partner 로서 S..."
+          "title": "데이터센터향 중속엔진 공급계약 확인",
+          "thesis": "매크로는 긍정 시각이며 핵심 근거는 Top Picks 및 관심종목 HD현대중공업의 북미 데이터센터향 발전용 엔진 공급계약\n*CP 2026년 4월 22일\n HD현대중공업은 4월 22일 에너지인프라 개발 기업 Aperion Energy Group과의 6,271억원\nHD현대중공업(329180)\n 엔진발전기 공급계약 체결 내용을..."
         }
       ],
       "emergencyDefense": {
         "enabled": false,
         "vix": null,
-        "worstIndexDropPct": -0.86,
+        "worstIndexDropPct": 0.9,
         "triggers": [],
         "marketDataAvailable": true
       },
@@ -705,8 +769,8 @@
     {
       "key": "KIS_MAIN",
       "label": "한투 일반",
-      "totalScore": 43,
-      "stage2Bias": "selective_add",
+      "totalScore": 44,
+      "stage2Bias": "hold",
       "deployBudget": 1166344,
       "plannedDeployBudget": 1166344,
       "reserveCash": 0,
@@ -714,241 +778,166 @@
         "category": "전력기기",
         "targetPct": 0.2,
         "currentPct": 0,
-        "gapAmount": 916473
+        "gapAmount": 994322
       },
       "candidateFromGap": "효성중공업",
       "stage2Candidates": [
         {
-          "code": "298040",
-          "name": "효성중공업",
-          "score": null,
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
-          "source": "stage2",
-          "stance": "buy",
-          "confidence": 0.85,
-          "targetAccounts": []
-        },
-        {
           "code": "487240",
           "name": "KODEX AI전력핵심설비",
           "score": null,
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+          "reason": "AI 전력 인프라 신호와 ETF 키워드가 일치하며 당일 등락률 +6.39% 흐름이 동행합니다.",
           "source": "stage2",
           "stance": "buy",
           "confidence": 0.85,
           "targetAccounts": [
-            "ISA"
+            "KIS_MAIN",
+            "ISA",
+            "PENSION"
           ]
         },
         {
-          "code": "267260",
-          "name": "HD현대일렉트릭",
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
           "score": null,
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+          "reason": "AI 전력 인프라 신호와 ETF 키워드가 일치하며 당일 등락률 +4.83% 흐름이 동행합니다.",
           "source": "stage2",
           "stance": "buy",
           "confidence": 0.85,
-          "targetAccounts": []
+          "targetAccounts": [
+            "KIS_MAIN",
+            "ISA",
+            "PENSION"
+          ]
         }
       ],
       "stagedBuys": [
         {
-          "code": "298040",
-          "name": "효성중공업",
-          "score": null,
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
-          "source": "stage2",
-          "stance": "buy",
-          "confidence": 0.85,
-          "targetAccounts": [],
-          "technical": {
-            "rsi": 65.81,
-            "bollingerPosition": "upper_half",
-            "atrPct": 0.050956,
-            "dayChangePct": 0.0308,
-            "fallback": null
-          },
-          "currentPrice": 3179000,
-          "maxCorrelationToPortfolio": 0.8677,
-          "entryCondition": "technical_fallback",
-          "entryTriggers": [
-            "RSI 65.8",
-            "볼린저 upper_half"
-          ],
-          "urgency": "next_tranche",
-          "conditionMet": false,
-          "fallback": true,
-          "sizingMethod": "inverse_atr",
-          "baseSuggestedAmount": 350157,
-          "suggestedAmount": 175079,
-          "correlationHaircutApplied": true,
-          "maxSinglePositionAmount": 1374709
-        },
-        {
           "code": "487240",
           "name": "KODEX AI전력핵심설비",
-          "score": 68,
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+          "score": 67,
+          "reason": "AI 전력 인프라 신호와 ETF 키워드가 일치하며 당일 등락률 +6.39% 흐름이 동행합니다.",
           "source": "stage2",
           "stance": "buy",
           "confidence": 0.85,
           "targetAccounts": [
-            "ISA"
+            "KIS_MAIN",
+            "ISA",
+            "PENSION"
           ],
           "technical": {
-            "rsi": 74.05,
-            "bollingerPosition": "upper_half",
-            "atrPct": 0.041933,
-            "dayChangePct": 0.0321,
+            "rsi": 76.25,
+            "bollingerPosition": "above_upper",
+            "atrPct": 0.040682,
+            "dayChangePct": 0.0639,
             "fallback": null
           },
-          "currentPrice": 41285,
-          "maxCorrelationToPortfolio": 0.9496,
+          "currentPrice": 42555,
+          "maxCorrelationToPortfolio": 0.9501,
+          "entryCondition": "watch",
+          "entryTriggers": [
+            "RSI 76.3",
+            "볼린저 above_upper"
+          ],
+          "urgency": "this_week",
+          "conditionMet": false,
+          "fallback": false,
+          "sizingMethod": "inverse_atr",
+          "baseSuggestedAmount": 554183,
+          "suggestedAmount": 277092,
+          "correlationHaircutApplied": true,
+          "maxSinglePositionAmount": 1491483
+        }
+      ],
+      "rejectedAlternatives": [
+        {
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "score": 68,
+          "reason": "AI 전력 인프라 신호와 ETF 키워드가 일치하며 당일 등락률 +4.83% 흐름이 동행합니다.",
+          "source": "stage2",
+          "stance": "buy",
+          "confidence": 0.85,
+          "targetAccounts": [
+            "KIS_MAIN",
+            "ISA",
+            "PENSION"
+          ],
+          "technical": {
+            "rsi": 71.29,
+            "bollingerPosition": "upper_half",
+            "atrPct": 0.036829,
+            "dayChangePct": 0.0483,
+            "fallback": null
+          },
+          "currentPrice": 81400,
+          "maxCorrelationToPortfolio": 0.6296,
           "entryCondition": "dca_keep",
           "entryTriggers": [
-            "RSI 74",
+            "RSI 71.3",
             "볼린저 upper_half"
           ],
           "urgency": "next_tranche",
           "conditionMet": false,
           "fallback": false,
           "sizingMethod": "inverse_atr",
-          "baseSuggestedAmount": 425502,
-          "suggestedAmount": 212751,
-          "correlationHaircutApplied": true,
-          "maxSinglePositionAmount": 1374709
-        },
-        {
-          "code": "267260",
-          "name": "HD현대일렉트릭",
-          "score": null,
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
-          "source": "stage2",
-          "stance": "buy",
-          "confidence": 0.85,
-          "targetAccounts": [],
-          "technical": {
-            "rsi": 65.6,
-            "bollingerPosition": "upper_half",
-            "atrPct": 0.04567,
-            "dayChangePct": 0.0165,
-            "fallback": null
-          },
-          "currentPrice": 1108000,
-          "maxCorrelationToPortfolio": 0.9048,
-          "entryCondition": "technical_fallback",
-          "entryTriggers": [
-            "RSI 65.6",
-            "볼린저 upper_half"
-          ],
-          "urgency": "next_tranche",
-          "conditionMet": false,
-          "fallback": true,
-          "sizingMethod": "inverse_atr",
-          "baseSuggestedAmount": 390685,
-          "suggestedAmount": 195343,
-          "correlationHaircutApplied": true,
-          "maxSinglePositionAmount": 1374709
-        }
-      ],
-      "rejectedAlternatives": [
-        {
-          "code": "010120",
-          "name": "LS일렉트릭",
-          "score": null,
-          "reason": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 둔화",
-          "source": "stage2",
-          "stance": "trim",
-          "confidence": 0.85,
-          "targetAccounts": [],
-          "rejectionReason": "Stage 2 stance가 trim라 신규 매수 후보에서 제외"
+          "baseSuggestedAmount": 612161,
+          "suggestedAmount": 612161,
+          "correlationHaircutApplied": false,
+          "maxSinglePositionAmount": 1491483,
+          "rejectionReason": "부족 자산군(전력기기)과 실행 후보 카테고리(원자력)가 달라 제외"
         }
       ],
       "noAction": false,
       "noActionReason": null,
-      "validatorFlags": [],
+      "validatorFlags": [
+        "gap_action_mismatch:HANARO 원자력iSelect"
+      ],
       "validationConfidence": 0.85,
       "validationEvidence": [
-        {
-          "code": "298040",
-          "name": "효성중공업",
-          "source": "stage2",
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적"
-        },
         {
           "code": "487240",
           "name": "KODEX AI전력핵심설비",
           "source": "stage2",
-          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적"
+          "reason": "AI 전력 인프라 신호와 ETF 키워드가 일치하며 당일 등락률 +6.39% 흐름이 동행합니다."
         },
         {
           "code": "064350",
           "name": "현대로템",
           "source": "stage3",
-          "reason": "매크로는 부정 시각이며 핵심 근거는 ▶ 중국증시 ▶ 유럽증시 - 정부의 강력한 시장 부양 의지에 상승. 중국 인민은행이 시장의 예상보다 강력 - 에너지 가격 상승에 따른 우려에 하락. 휴전 연장이라는 소식은 있었지만 유 한 유동성 지원 방안을 발표하며 투자심리는 안정화. 유가가 급등세를 보이자 에 럽은 에너지 가격 상승에..."
+          "reason": "매크로는 긍정 시각이며 핵심 근거는 정상회담에서 이어지는 호재들 실적 시즌에 엇갈린 KS·KQ 지난 한국-인도 정상회담 이후 조선·원전 협력 소식에 관련주가 (%) 0.8 1.0 반응한데 이어 간밤 한국-베트남 정상회담에서 나온 소식도 업종 0.5 0.5 상승 재료로 작용했습니다. 전력 인프라 확충 및 신규 원전 협..."
         }
       ],
-      "trims": [
-        {
-          "code": "047810",
-          "name": "한국항공우주",
-          "score": 35,
-          "accountKey": "KIS_MAIN",
-          "currentPrice": 179600,
-          "entryPrice": 200500,
-          "atrPct": 0.046869,
-          "rsi": 45.49,
-          "bollingerPosition": "lower_half",
-          "stopLoss": {
-            "enabled": true,
-            "triggered": true,
-            "entryPrice": 200500,
-            "currentPrice": 179600,
-            "recentHigh": 205500,
-            "drawdownFromEntryPct": -0.1042,
-            "drawdownFromRecentHighPct": -0.126,
-            "forcedScore": 35,
-            "forcedSignal": "REDUCE",
-            "triggers": [
-              {
-                "type": "entry_drawdown",
-                "thresholdPct": -0.1,
-                "observedPct": -0.1042
-              }
-            ]
-          },
-          "reason": "매크로는 긍정 시각이며 핵심 근거는 결론적으로 중국 우주 산업은 정책 기반의 중장기 성장성은 유효하나, 투자 관점에서는 현 시점에서는 이벤트 중심의 트레이딩 접근이 보다 적합한 구간으로 판단된다. 중장기적으로는 재사용 로켓 상용화와 위성 인프라의 상업적 수익성 검증 여부가 밸류에이션 리레이팅의 핵심 변수로 작용할 전..."
-        }
-      ],
+      "trims": [],
       "holds": [
         {
           "code": "064350",
           "name": "현대로템",
-          "score": 64,
+          "score": 66,
           "accountKey": "KIS_MAIN",
-          "currentPrice": 232000,
+          "currentPrice": 235500,
           "entryPrice": 208000,
-          "atrPct": 0.052369,
-          "rsi": 64.15,
+          "atrPct": 0.051702,
+          "rsi": 66.49,
           "bollingerPosition": "upper_half",
           "stopLoss": {
             "enabled": true,
             "triggered": false,
             "entryPrice": 208000,
-            "currentPrice": 232500,
+            "currentPrice": 235500,
             "recentHigh": 247500,
-            "drawdownFromEntryPct": 0.1178,
-            "drawdownFromRecentHighPct": -0.0606,
+            "drawdownFromEntryPct": 0.1322,
+            "drawdownFromRecentHighPct": -0.0485,
             "triggers": []
           },
-          "reason": "매크로는 부정 시각이며 핵심 근거는 ▶ 중국증시 ▶ 유럽증시 - 정부의 강력한 시장 부양 의지에 상승. 중국 인민은행이 시장의 예상보다 강력 - 에너지 가격 상승에 따른 우려에 하락. 휴전 연장이라는 소식은 있었지만 유 한 유동성 지원 방안을 발표하며 투자심리는 안정화. 유가가 급등세를 보이자 에 럽은 에너지 가격 상승에..."
+          "reason": "매크로는 긍정 시각이며 핵심 근거는 정상회담에서 이어지는 호재들 실적 시즌에 엇갈린 KS·KQ 지난 한국-인도 정상회담 이후 조선·원전 협력 소식에 관련주가 (%) 0.8 1.0 반응한데 이어 간밤 한국-베트남 정상회담에서 나온 소식도 업종 0.5 0.5 상승 재료로 작용했습니다. 전력 인프라 확충 및 신규 원전 협..."
         },
         {
           "code": "329180",
           "name": "HD현대중공업",
           "score": 53,
           "accountKey": "KIS_MAIN",
-          "currentPrice": 628000,
+          "currentPrice": 641000,
           "entryPrice": 617000,
           "atrPct": null,
           "rsi": null,
@@ -957,32 +946,32 @@
             "enabled": true,
             "triggered": false,
             "entryPrice": 617000,
-            "currentPrice": 628000,
+            "currentPrice": 641000,
             "recentHigh": null,
-            "drawdownFromEntryPct": 0.0178,
+            "drawdownFromEntryPct": 0.0389,
             "drawdownFromRecentHighPct": null,
             "triggers": []
           },
-          "reason": "매크로는 긍정 시각이며 핵심 근거는 Top Picks 및 관심종목 HD현대중공업의 북미 데이터센터향 발전용 엔진 공급계약 *CP 2026년 4월 22일 HD현대중공업은 4월 22일 에너지인프라 개발 기업 Aperion Energy Group과의 6,271억원 HD현대중공업(329180) 엔진발전기 공급계약 체결 내용을..."
+          "reason": "한화엔진과 HD현대중공업 주식이 데이터센터 엔진 사업 기대감 후 분할 매도됐습니다. 투자자는 두 회사의 생산능력이 부족해 실적 반영이 늦을 것으로 보고 매도했으며, 이후 주가 상승에도 자신의 판단을 중시했습니다."
         },
         {
           "code": "449450",
           "name": "PLUS K방산",
-          "score": 67,
+          "score": 66,
           "accountKey": "KIS_MAIN",
-          "currentPrice": 79145,
+          "currentPrice": 80145,
           "entryPrice": 77758.5714,
-          "atrPct": 0.036836,
-          "rsi": 56.54,
+          "atrPct": 0.036683,
+          "rsi": 59.1,
           "bollingerPosition": "upper_half",
           "stopLoss": {
             "enabled": true,
             "triggered": false,
             "entryPrice": 77758.5714,
-            "currentPrice": 79115,
+            "currentPrice": 80145,
             "recentHigh": 82750,
-            "drawdownFromEntryPct": 0.0174,
-            "drawdownFromRecentHighPct": -0.0439,
+            "drawdownFromEntryPct": 0.0307,
+            "drawdownFromRecentHighPct": -0.0315,
             "triggers": []
           },
           "reason": "매크로는 긍정 시각이며 핵심 근거는 • 765kV 수주 확대 - 이익 레벨을 결정하는 핵심 변수: 수주 측면에서는 업종 내 가장 강한 흐름이 확인. 2월 약 7,800억원 규모의 765kV 목표주가 4,200,000원 (M) 변압기 수주를 포함해, 1Q26 신규 수주는 2조원을 상회하며 분기 기준 최대치를 기록할 것으로..."
@@ -994,7 +983,7 @@
           "name": "이수페타시스",
           "score": 43,
           "accountKey": "KIS_MAIN",
-          "currentPrice": 148300,
+          "currentPrice": 150200,
           "entryPrice": 152600,
           "atrPct": null,
           "rsi": null,
@@ -1003,9 +992,9 @@
             "enabled": true,
             "triggered": false,
             "entryPrice": 152600,
-            "currentPrice": 148300,
+            "currentPrice": 150200,
             "recentHigh": null,
-            "drawdownFromEntryPct": -0.0282,
+            "drawdownFromEntryPct": -0.0157,
             "drawdownFromRecentHighPct": null,
             "triggers": []
           },
@@ -1014,9 +1003,9 @@
         {
           "code": "138910",
           "name": "KODEX 구리선물(H)",
-          "score": 44,
+          "score": 47,
           "accountKey": "KIS_MAIN",
-          "currentPrice": 9435,
+          "currentPrice": 9445,
           "entryPrice": 8765,
           "atrPct": null,
           "rsi": null,
@@ -1025,9 +1014,9 @@
             "enabled": true,
             "triggered": false,
             "entryPrice": 8765,
-            "currentPrice": 9435,
+            "currentPrice": 9445,
             "recentHigh": null,
-            "drawdownFromEntryPct": 0.0764,
+            "drawdownFromEntryPct": 0.0776,
             "drawdownFromRecentHighPct": null,
             "triggers": []
           },
@@ -1035,10 +1024,10 @@
         }
       ],
       "macroCommentary": {
-        "summary": "추세 우상향 장세 한투 일반은 AI·전력 인프라 비중 조정이 핵심입니다. 전술 테마와 현금 운용을 함께 조절하며 국내 ETF 알파를 쌓는 역할로 작동하는 계좌입니다.",
+        "summary": "중동 지정학 리스크와 유가 상승이 시장 변동성을 키우고 있습니다. 한투 일반은 AI·전력 인프라 비중 조정이 핵심입니다. 전술 테마와 현금 운용을 함께 조절하며 국내 ETF 알파를 쌓는 역할로 작동하는 계좌입니다.",
         "drivers": [
-          "추세 우상향 장세",
-          "기술점수 상위 보유/후보가 존재해 선별 보강이 가능한 상태",
+          "중동 지정학 리스크와 유가 상승이 시장 변동성을 키우고 있습니다.",
+          "현금 여력이 부족하므로 기존 보유 종목의 모멘텀을 활용하며 추가 자금 투입은 제한합니다.",
           "데이터센터향 중속엔진 공급계약 확인는 HD현대중공업에 긍정 신호를 줍니다 (유가).",
           "밸류에이션 부담 속 종목 선택는 원자력에 긍정 신호를 줍니다 (유가)."
         ],
@@ -1047,8 +1036,8 @@
           "전력기기",
           "원자력"
         ],
-        "actionLine": "한투 일반은 전력기기을 우선 보강하고, 효성중공업를 중심으로 1,166,344원 한도에서 분할 접근하는 편이 좋습니다.",
-        "reserveNote": "다음 tranche 전까지 예수금 일부를 유지하며 분할 접근"
+        "actionLine": "한투 일반은 전력기기을 우선 보강하고, KODEX AI전력핵심설비를 중심으로 1,166,344원 한도에서 분할 접근하는 편이 좋습니다.",
+        "reserveNote": "현금 116 만 원은 유가 변동성 관전을 위해 현금성 자산으로 대기"
       },
       "stage1Drivers": [
         {
@@ -1063,19 +1052,19 @@
         },
         {
           "id": "report_003",
-          "title": "데이터센터향 중속엔진 공급계약 확인",
-          "thesis": "매크로는 긍정 시각이며 핵심 근거는 Top Picks 및 관심종목 HD현대중공업의 북미 데이터센터향 발전용 엔진 공급계약\n*CP 2026년 4월 22일\n HD현대중공업은 4월 22일 에너지인프라 개발 기업 Aperion Energy Group과의 6,271억원\nHD현대중공업(329180)\n 엔진발전기 공급계약 체결 내용을..."
+          "title": "한국 1분기 GDP; IT, 건설이 주도한 서프라이즈",
+          "thesis": "매크로는 긍정 시각이며 핵심 근거는 중동 사태 장기화에도 수출, 설비투자 호조 속 금년 2% 성장 기대\n 1분기 경제 성장은 추세적 요인과 일시적 요소가 혼재됐다. 추세적 성장 동력은\n 반도체가 주도하는 수출과 투자 확대다. 1분기 급증에 따른 기저효과로 향후 속\n 도 조절은 예상된다. 그럼에도 1~2월 수입이 반도체 관..."
         },
         {
           "id": "report_004",
-          "title": "밸류에이션 부담 속 종목 선택",
-          "thesis": "매크로는 부정 시각이며 핵심 근거는 SMR 시장 X-energy 와의 CI(Conventional Island) 표준화 설계 계약 체결에 이어, NI\n 선점과 가능성과 (Nuclear Island) 설계 계약 연계 수주가 기대되며, X-energy 의 Key Supply Chain\n 플랜트 CAPA Partner 로서 S..."
+          "title": "데이터센터향 중속엔진 공급계약 확인",
+          "thesis": "매크로는 긍정 시각이며 핵심 근거는 Top Picks 및 관심종목 HD현대중공업의 북미 데이터센터향 발전용 엔진 공급계약\n*CP 2026년 4월 22일\n HD현대중공업은 4월 22일 에너지인프라 개발 기업 Aperion Energy Group과의 6,271억원\nHD현대중공업(329180)\n 엔진발전기 공급계약 체결 내용을..."
         }
       ],
       "emergencyDefense": {
         "enabled": false,
         "vix": null,
-        "worstIndexDropPct": -0.86,
+        "worstIndexDropPct": 0.9,
         "triggers": [],
         "marketDataAvailable": true
       },

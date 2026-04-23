@@ -1,17 +1,17 @@
 {
   "date": "2026-04-23",
-  "runDate": "2026-04-23",
+  "runDate": "2026-04-24",
   "effectiveMarketDate": "2026-04-23",
-  "runId": "2026-04-23-032801",
-  "generatedAt": "2026-04-23T03:31:13.252Z",
-  "reportCount": 56,
+  "runId": "2026-04-24-150218",
+  "generatedAt": "2026-04-23T15:26:07.223Z",
+  "reportCount": 67,
   "quality": {
     "contaminationEvidenceCount": 0,
-    "totalEvidenceCount": 251,
+    "totalEvidenceCount": 294,
     "contaminationRate": 0,
-    "weakClaimCount": 127,
-    "totalClaims": 166,
-    "weakClaimRatio": 0.7651
+    "weakClaimCount": 149,
+    "totalClaims": 199,
+    "weakClaimRatio": 0.7487
   },
   "extracts": [
     {
@@ -448,6 +448,256 @@
     {
       "id": "report_003",
       "schemaVersion": 2,
+      "title": "한국 1분기 GDP; IT, 건설이 주도한 서프라이즈",
+      "broker": "신한투자증권",
+      "source": "신한투자증권",
+      "date": "2026-04-23",
+      "category": "경제분석",
+      "report_type": "macro",
+      "sector": "매크로",
+      "themes": [
+        "금/원자재"
+      ],
+      "text_path": "data/reports/2026-04-23/text/report_003.txt",
+      "text_length": 7742,
+      "related_holdings_in_my_portfolio": [
+        {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        }
+      ],
+      "related_accounts": [
+        "ISA",
+        "PENSION",
+        "KIS_MAIN"
+      ],
+      "key_thesis": "매크로는 긍정 시각이며 핵심 근거는 중동 사태 장기화에도 수출, 설비투자 호조 속 금년 2% 성장 기대\n 1분기 경제 성장은 추세적 요인과 일시적 요소가 혼재됐다. 추세적 성장 동력은\n 반도체가 주도하는 수출과 투자 확대다. 1분기 급증에 따른 기저효과로 향후 속\n 도 조절은 예상된다. 그럼에도 1~2월 수입이 반도체 관...",
+      "key_points": [
+        "매크로는 긍정 시각이며 핵심 근거는 중동 사태 장기화에도 수출, 설비투자 호조 속 금년 2% 성장 기대\n 1분기 경제 성장은 추세적 요인과 일시적 요소가 혼재됐다. 추세적 성장 동력은\n 반도체가 주도하는 수출과 투자 확대다. 1분기 급증에 따른 기저효과로 향후 속\n 도 조절은 예상된다. 그럼에도 1~2월 수입이 반도체 관...",
+        "매크로는 긍정 시각이며 핵심 근거는 수출과 투자의 쌍끌이 회복 속 완만한 소비 증가\n 반도체 등 IT가 주도한 수출과 투자의 성장세 견인이었다. 내수의 핵심인 민간소\n 비는 의류 등 재화가 늘었으나 전기대비 0.5% 증가하는데 그쳐 성장기여도가\n 0.2%p에 불과했다. 정부소비 역시 0.1% 늘었다. 작년 4분기 역성장했...",
+        "매크로는 중립 시각이며 핵심 근거는 1분기 깜짝 성장을 기록한 건설투자는 선행지표인 건설수주 흐름을 감안 시 2분\n 기에는 1분기 서프라이즈를 대부분 되돌릴 것으로 예상된다. 여전히 부동산 규제\n 로 주택건축 부문이 빠르게 회복되기 어렵다. 특히 원재료 가격 상승이 우려돼 2\n 분기부터 1분기 긍정적 효과가 소멸될 가능성...",
+        "매크로는 긍정 시각이며 핵심 근거는 종합하면 금년 연간 성장률은 2% 내외를 전망한다. 지정학 충격 속에 에너지 가\n 격 상승 등에 따른 소비 및 생산 하방 압력이 상존한다. 그럼에도 반도체 등 IT\n 산업 호조로 인한 투자 및 수출 확대가 하방 압력을 상쇄할 수 있다.\n 1 I\n신한생각 I 한국 GDP 2026년 4월 ..."
+      ],
+      "primary_claim": {
+        "entity": "매크로",
+        "direction": "positive",
+        "strength": "strong",
+        "horizon": "long",
+        "reason": "중동 사태 장기화에도 수출, 설비투자 호조 속 금년 2% 성장 기대\n 1분기 경제 성장은 추세적 요인과 일시적 요소가 혼재됐다. 추세적 성장 동력은\n 반도체가 주도하는 수출과 투자 확대다. 1분기 급증에 따른 기저효과로 향후 속\n 도 조절은 예상된다. 그럼에도 1~2월 수입이 반도체 관...",
+        "condition": null,
+        "counterpoint": "우려돼 2 분기부터 1분기 긍정적 효과가 소멸될 가능성이 높다.",
+        "source_span": "paragraph_3",
+        "classification": "investment_claim",
+        "classification_confidence": 0.78,
+        "summary": "매크로는 긍정 시각이며 핵심 근거는 중동 사태 장기화에도 수출, 설비투자 호조 속 금년 2% 성장 기대\n 1분기 경제 성장은 추세적 요인과 일시적 요소가 혼재됐다. 추세적 성장 동력은\n 반도체가 주도하는 수출과 투자 확대다. 1분기 급증에 따른 기저효과로 향후 속\n 도 조절은 예상된다. 그럼에도 1~2월 수입이 반도체 관..."
+      },
+      "claim_candidates": [
+        {
+          "entity": "매크로",
+          "direction": "positive",
+          "strength": "strong",
+          "horizon": "long",
+          "reason": "중동 사태 장기화에도 수출, 설비투자 호조 속 금년 2% 성장 기대\n 1분기 경제 성장은 추세적 요인과 일시적 요소가 혼재됐다. 추세적 성장 동력은\n 반도체가 주도하는 수출과 투자 확대다. 1분기 급증에 따른 기저효과로 향후 속\n 도 조절은 예상된다. 그럼에도 1~2월 수입이 반도체 관...",
+          "condition": null,
+          "counterpoint": "우려돼 2 분기부터 1분기 긍정적 효과가 소멸될 가능성이 높다.",
+          "source_span": "paragraph_3",
+          "classification": "investment_claim",
+          "classification_confidence": 0.78,
+          "summary": "매크로는 긍정 시각이며 핵심 근거는 중동 사태 장기화에도 수출, 설비투자 호조 속 금년 2% 성장 기대\n 1분기 경제 성장은 추세적 요인과 일시적 요소가 혼재됐다. 추세적 성장 동력은\n 반도체가 주도하는 수출과 투자 확대다. 1분기 급증에 따른 기저효과로 향후 속\n 도 조절은 예상된다. 그럼에도 1~2월 수입이 반도체 관..."
+        },
+        {
+          "entity": "매크로",
+          "direction": "positive",
+          "strength": "weak",
+          "horizon": "long",
+          "reason": "수출과 투자의 쌍끌이 회복 속 완만한 소비 증가\n 반도체 등 IT가 주도한 수출과 투자의 성장세 견인이었다. 내수의 핵심인 민간소\n 비는 의류 등 재화가 늘었으나 전기대비 0.5% 증가하는데 그쳐 성장기여도가\n 0.2%p에 불과했다. 정부소비 역시 0.1% 늘었다. 작년 4분기 역성장했...",
+          "condition": null,
+          "counterpoint": "우려돼 2 분기부터 1분기 긍정적 효과가 소멸될 가능성이 높다.",
+          "source_span": "paragraph_2",
+          "classification": "weak_claim",
+          "classification_confidence": 0.48,
+          "summary": "매크로는 긍정 시각이며 핵심 근거는 수출과 투자의 쌍끌이 회복 속 완만한 소비 증가\n 반도체 등 IT가 주도한 수출과 투자의 성장세 견인이었다. 내수의 핵심인 민간소\n 비는 의류 등 재화가 늘었으나 전기대비 0.5% 증가하는데 그쳐 성장기여도가\n 0.2%p에 불과했다. 정부소비 역시 0.1% 늘었다. 작년 4분기 역성장했..."
+        },
+        {
+          "entity": "매크로",
+          "direction": "neutral",
+          "strength": "medium",
+          "horizon": "short",
+          "reason": "1분기 깜짝 성장을 기록한 건설투자는 선행지표인 건설수주 흐름을 감안 시 2분\n 기에는 1분기 서프라이즈를 대부분 되돌릴 것으로 예상된다. 여전히 부동산 규제\n 로 주택건축 부문이 빠르게 회복되기 어렵다. 특히 원재료 가격 상승이 우려돼 2\n 분기부터 1분기 긍정적 효과가 소멸될 가능성...",
+          "condition": null,
+          "counterpoint": "우려돼 2 분기부터 1분기 긍정적 효과가 소멸될 가능성이 높다.",
+          "source_span": "paragraph_4",
+          "classification": "investment_claim",
+          "classification_confidence": 0.86,
+          "summary": "매크로는 중립 시각이며 핵심 근거는 1분기 깜짝 성장을 기록한 건설투자는 선행지표인 건설수주 흐름을 감안 시 2분\n 기에는 1분기 서프라이즈를 대부분 되돌릴 것으로 예상된다. 여전히 부동산 규제\n 로 주택건축 부문이 빠르게 회복되기 어렵다. 특히 원재료 가격 상승이 우려돼 2\n 분기부터 1분기 긍정적 효과가 소멸될 가능성..."
+        },
+        {
+          "entity": "매크로",
+          "direction": "positive",
+          "strength": "weak",
+          "horizon": "short",
+          "reason": "종합하면 금년 연간 성장률은 2% 내외를 전망한다. 지정학 충격 속에 에너지 가\n 격 상승 등에 따른 소비 및 생산 하방 압력이 상존한다. 그럼에도 반도체 등 IT\n 산업 호조로 인한 투자 및 수출 확대가 하방 압력을 상쇄할 수 있다.\n 1 I\n신한생각 I 한국 GDP 2026년 4월 ...",
+          "condition": null,
+          "counterpoint": "우려돼 2 분기부터 1분기 긍정적 효과가 소멸될 가능성이 높다.",
+          "source_span": "paragraph_6",
+          "classification": "weak_claim",
+          "classification_confidence": 0.48,
+          "summary": "매크로는 긍정 시각이며 핵심 근거는 종합하면 금년 연간 성장률은 2% 내외를 전망한다. 지정학 충격 속에 에너지 가\n 격 상승 등에 따른 소비 및 생산 하방 압력이 상존한다. 그럼에도 반도체 등 IT\n 산업 호조로 인한 투자 및 수출 확대가 하방 압력을 상쇄할 수 있다.\n 1 I\n신한생각 I 한국 GDP 2026년 4월 ..."
+        }
+      ],
+      "key_numbers": [
+        {
+          "label": "thesis_anchor",
+          "value": "2%",
+          "why_it_matters": "핵심 투자 논리를 직접 뒷받침하는 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "0.5%",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "0.2%",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "0.1%",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "2.8%",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "4.8%",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "5.1%",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "3.0%",
+          "why_it_matters": "보조 참고 수치"
+        }
+      ],
+      "what_changed": [
+        "수출과 투자의 쌍끌이 회복 속 완만한 소비 증가\n 반도체 등 IT가 주도한 수출과 투자의 성장세 견인이었다. 내수의 핵심인 민간소\n 비는 의류 등 재화가 늘었으나 전기대비 0.5% 증가하는데 그쳐 성장기여도가\n 0.2%p에 불과했다. 정부소비 역시 0.1% 늘었다. 작년 4분기 역성장했던 투자는\n 모든 항목에서 급증했다. 건설은 2.8% 증가했는데 작년 말 건설현장 사고로 인\n 해 지연된 공사 정상화 영향이 컸다. 설비투자 역...",
+        "중동 사태 장기화에도 수출, 설비투자 호조 속 금년 2% 성장 기대\n 1분기 경제 성장은 추세적 요인과 일시적 요소가 혼재됐다. 추세적 성장 동력은\n 반도체가 주도하는 수출과 투자 확대다. 1분기 급증에 따른 기저효과로 향후 속\n 도 조절은 예상된다. 그럼에도 1~2월 수입이 반도체 관련 장비 중심으로 유입된\n 점을 감안 시 이에 대응할 설비투자와 수출 흐름 역시 매우 견조할 전망이다.",
+        "민간 소비의 경우 1분기에는 공공 일자리 등 소득 보전 정책이 집중되고 예산\n 조기 집행이 이뤄진 영향에 긍정적인 흐름을 보였다. 2분기 중 추경 효과 반영이\n 기대되나 에너지 가격 상승에 따른 물가 충격이 혼재되어 있어 하반기로 갈수록\n 소비 성장세는 점차 둔화될 것으로 예상된다."
+      ],
+      "bull_case": [
+        "중동 사태 장기화에도 수출, 설비투자 호조 속 금년 2% 성장 기대\n 1분기 경제 성장은 추세적 요인과 일시적 요소가 혼재됐다. 추세적 성장 동력은\n 반도체가 주도하는 수출과 투자 확대다. 1분기 급증에 따른 기저효과로 향후 속\n 도 조절은 예상된다. 그럼에도 1~2월 수입이 반도체 관련 장비 중심으로 유입된\n 점을 감안 시 이에 대응할 설비투자와 수출 흐름 역시 매우 견조할 전망이다.",
+        "수출과 투자의 쌍끌이 회복 속 완만한 소비 증가\n 반도체 등 IT가 주도한 수출과 투자의 성장세 견인이었다. 내수의 핵심인 민간소\n 비는 의류 등 재화가 늘었으나 전기대비 0.5% 증가하는데 그쳐 성장기여도가\n 0.2%p에 불과했다. 정부소비 역시 0.1% 늘었다. 작년 4분기 역성장했던 투자는\n 모든 항목에서 급증했다. 건설은 2.8% 증가했는데 작년 말 건설현장 사고로 인\n 해 지연된 공..."
+      ],
+      "bear_case": [],
+      "catalysts": [
+        "1분기 깜짝 성장을 기록한 건설투자는 선행지표인 건설수주 흐름을 감안 시 2분\n 기에는 1분기 서프라이즈를 대부분 되돌릴 것으로 예상된다. 여전히 부동산 규제\n 로 주택건축 부문이 빠르게 회복되기 어렵다. 특히 원재료 가격 상승이 우려돼 2\n 분기부터 1분기 긍정적 효과가 소멸될 가능성이 높다.",
+        "민간 소비의 경우 1분기에는 공공 일자리 등 소득 보전 정책이 집중되고 예산\n 조기 집행이 이뤄진 영향에 긍정적인 흐름을 보였다. 2분기 중 추경 효과 반영이\n 기대되나 에너지 가격 상승에 따른 물가 충격이 혼재되어 있어 하반기로 갈수록\n 소비 성장세는 점차 둔화될 것으로 예상된다."
+      ],
+      "risks": [
+        "1분기 깜짝 성장을 기록한 건설투자는 선행지표인 건설수주 흐름을 감안 시 2분\n 기에는 1분기 서프라이즈를 대부분 되돌릴 것으로 예상된다. 여전히 부동산 규제\n 로 주택건축 부문이 빠르게 회복되기 어렵다. 특히 원재료 가격 상승이 우려돼 2\n 분기부터 1분기 긍정적 효과가 소멸될 가능성이 높다.",
+        "민간 소비의 경우 1분기에는 공공 일자리 등 소득 보전 정책이 집중되고 예산\n 조기 집행이 이뤄진 영향에 긍정적인 흐름을 보였다. 2분기 중 추경 효과 반영이\n 기대되나 에너지 가격 상승에 따른 물가 충격이 혼재되어 있어 하반기로 갈수록\n 소비 성장세는 점차 둔화될 것으로 예상된다."
+      ],
+      "new_info": "수출과 투자의 쌍끌이 회복 속 완만한 소비 증가\n 반도체 등 IT가 주도한 수출과 투자의 성장세 견인이었다. 내수의 핵심인 민간소\n 비는 의류 등 재화가 늘었으나 전기대비 0.5% 증가하는데 그쳐 성장기여도가\n 0.2%p에 불과했다. 정부소비 역시 0.1% 늘었다. 작년 4분기 역성장했던 투자는\n 모든 항목에서 급증했다. 건설은 2.8% 증가했는데 작년 말 건설현장 사고로 인\n 해 지연된 공사 정상화 영향이 컸다. 설비투자 역...",
+      "thesis_novelty": "MED",
+      "sentiment_score": 0.5,
+      "portfolio_impacts_candidate": [
+        {
+          "target_type": "account",
+          "target_code": null,
+          "target_name": "ISA",
+          "account_key": "ISA",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.31,
+          "reason": "중동 사태 장기화에도 수출, 설비투자 호조 속 금년 2% 성장 기대\n 1분기 경제 성장은 추세적 요인과 일시적 요소가 혼재됐다. 추세적 성장 동력은\n 반도체가 주도하는 수출과 투자 확대다. 1분기 급증에 따른 기저효과로 향후 속\n 도 조절은 예상된다. 그럼에도 1~2월 수입이 반도체 관련 장비 중심으로 유입된\n 점을 감안...",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "account",
+          "target_code": null,
+          "target_name": "PENSION",
+          "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.31,
+          "reason": "중동 사태 장기화에도 수출, 설비투자 호조 속 금년 2% 성장 기대\n 1분기 경제 성장은 추세적 요인과 일시적 요소가 혼재됐다. 추세적 성장 동력은\n 반도체가 주도하는 수출과 투자 확대다. 1분기 급증에 따른 기저효과로 향후 속\n 도 조절은 예상된다. 그럼에도 1~2월 수입이 반도체 관련 장비 중심으로 유입된\n 점을 감안...",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "account",
+          "target_code": null,
+          "target_name": "KIS_MAIN",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.31,
+          "reason": "중동 사태 장기화에도 수출, 설비투자 호조 속 금년 2% 성장 기대\n 1분기 경제 성장은 추세적 요인과 일시적 요소가 혼재됐다. 추세적 성장 동력은\n 반도체가 주도하는 수출과 투자 확대다. 1분기 급증에 따른 기저효과로 향후 속\n 도 조절은 예상된다. 그럼에도 1~2월 수입이 반도체 관련 장비 중심으로 유입된\n 점을 감안...",
+          "action_hint": "관찰"
+        }
+      ],
+      "confidence": "HIGH",
+      "quality": {
+        "contaminationEvidenceCount": 0,
+        "totalEvidenceCount": 5,
+        "weakClaimCount": 2,
+        "totalClaims": 4
+      },
+      "evidence_notes": [
+        {
+          "score": 43,
+          "classification": "investment_claim",
+          "excerpt": "중동 사태 장기화에도 수출, 설비투자 호조 속 금년 2% 성장 기대\n 1분기 경제 성장은 추세적 요인과 일시적 요소가 혼재됐다. 추세적 성장 동력은\n 반도체가 주도하는 수출과 투자 확대다. 1분기 급증에 따른 기저효과로 향후 속\n 도 조절은 예상된다. 그럼에도 1~2월 수입이 반도체 관련 장비 중심으로 유입된\n 점을 감안 시 이에 대응할 설비투자와 수출 흐름 역시 매우 견조할 전망이다."
+        },
+        {
+          "score": 33,
+          "classification": "weak_claim",
+          "excerpt": "수출과 투자의 쌍끌이 회복 속 완만한 소비 증가\n 반도체 등 IT가 주도한 수출과 투자의 성장세 견인이었다. 내수의 핵심인 민간소\n 비는 의류 등 재화가 늘었으나 전기대비 0.5% 증가하는데 그쳐 성장기여도가\n 0.2%p에 불과했다. 정부소비 역시 0.1% 늘었다. 작년 4분기 역성장했던 투자는\n 모든 항목에서 급증했다. 건설은 2.8% 증가했는데 작년 말 건설현장 사고로 인\n 해 지연된 공사 정상화 영향이 컸다. 설비투자 역시 기계류와 운송장비가 모두\n 늘어나..."
+        },
+        {
+          "score": 23,
+          "classification": "investment_claim",
+          "excerpt": "1분기 깜짝 성장을 기록한 건설투자는 선행지표인 건설수주 흐름을 감안 시 2분\n 기에는 1분기 서프라이즈를 대부분 되돌릴 것으로 예상된다. 여전히 부동산 규제\n 로 주택건축 부문이 빠르게 회복되기 어렵다. 특히 원재료 가격 상승이 우려돼 2\n 분기부터 1분기 긍정적 효과가 소멸될 가능성이 높다."
+        },
+        {
+          "score": 20,
+          "classification": "weak_claim",
+          "excerpt": "종합하면 금년 연간 성장률은 2% 내외를 전망한다. 지정학 충격 속에 에너지 가\n 격 상승 등에 따른 소비 및 생산 하방 압력이 상존한다. 그럼에도 반도체 등 IT\n 산업 호조로 인한 투자 및 수출 확대가 하방 압력을 상쇄할 수 있다.\n 1 I\n신한생각 I 한국 GDP 2026년 4월 23일"
+        },
+        {
+          "score": 18,
+          "classification": "investment_claim",
+          "excerpt": "민간 소비의 경우 1분기에는 공공 일자리 등 소득 보전 정책이 집중되고 예산\n 조기 집행이 이뤄진 영향에 긍정적인 흐름을 보였다. 2분기 중 추경 효과 반영이\n 기대되나 에너지 가격 상승에 따른 물가 충격이 혼재되어 있어 하반기로 갈수록\n 소비 성장세는 점차 둔화될 것으로 예상된다."
+        },
+        {
+          "score": -40,
+          "classification": "metadata",
+          "excerpt": "지출항목별 성장기여도\n (%p QoQ) 소비\n 4 투자\n 순수출\n 통계상불일치\n 2"
+        },
+        {
+          "score": -40,
+          "classification": "metadata",
+          "excerpt": "2 I\n 신한생각 I 한국 GDP 2026년 4월 23일"
+        },
+        {
+          "score": -40,
+          "classification": "metadata",
+          "excerpt": "분기별 GDP 성장률\n (%) QoQ (좌축) (%)\n 2.4 8\n YoY (우축)"
+        }
+      ]
+    },
+    {
+      "id": "report_004",
+      "schemaVersion": 2,
       "title": "데이터센터향 중속엔진 공급계약 확인",
       "broker": "하나증권",
       "source": "네이버증권",
@@ -460,7 +710,7 @@
         "전력 인프라",
         "금/원자재"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_003.txt",
+      "text_path": "data/reports/2026-04-23/text/report_004.txt",
       "text_length": 6251,
       "related_holdings_in_my_portfolio": [
         {
@@ -784,7 +1034,7 @@
       ]
     },
     {
-      "id": "report_004",
+      "id": "report_005",
       "schemaVersion": 2,
       "title": "밸류에이션 부담 속 종목 선택",
       "broker": "유진투자증권",
@@ -798,7 +1048,7 @@
         "원자력",
         "금/원자재"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_004.txt",
+      "text_path": "data/reports/2026-04-23/text/report_005.txt",
       "text_length": 6887,
       "related_holdings_in_my_portfolio": [
         {
@@ -1059,7 +1309,7 @@
       ]
     },
     {
-      "id": "report_005",
+      "id": "report_006",
       "schemaVersion": 2,
       "title": "안녕하세요 데일리에요(로봇/방산/조선)",
       "broker": "유진투자증권",
@@ -1073,7 +1323,7 @@
         "방산",
         "금/원자재"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_005.txt",
+      "text_path": "data/reports/2026-04-23/text/report_006.txt",
       "text_length": 23623,
       "related_holdings_in_my_portfolio": [
         {
@@ -1334,7 +1584,7 @@
       ]
     },
     {
-      "id": "report_006",
+      "id": "report_007",
       "schemaVersion": 2,
       "title": "유안타 1Q26 Preview: 컨센 상회 부합 하회 한눈에 보기",
       "broker": "유안타증권",
@@ -1351,7 +1601,7 @@
         "금/원자재",
         "금리/매크로"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_006.txt",
+      "text_path": "data/reports/2026-04-23/text/report_007.txt",
       "text_length": 560501,
       "related_holdings_in_my_portfolio": [
         {
@@ -1707,7 +1957,7 @@
       ]
     },
     {
-      "id": "report_007",
+      "id": "report_008",
       "schemaVersion": 2,
       "title": "제약/바이오 인싸이트: 1Q26 기술 거래 트렌드. 릴리의 독주, 중국의 약진, 한국의 플랫폼",
       "broker": "키움증권",
@@ -1721,7 +1971,7 @@
         "AI 인프라",
         "금/원자재"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_007.txt",
+      "text_path": "data/reports/2026-04-23/text/report_008.txt",
       "text_length": 14689,
       "related_holdings_in_my_portfolio": [
         {
@@ -2015,7 +2265,7 @@
       ]
     },
     {
-      "id": "report_008",
+      "id": "report_009",
       "schemaVersion": 2,
       "title": "조선과 AI(Feat. HD 현대중공업의 데이터센터향 엔진 공급)",
       "broker": "유진투자증권",
@@ -2031,7 +2281,7 @@
         "원자력",
         "금/원자재"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_008.txt",
+      "text_path": "data/reports/2026-04-23/text/report_009.txt",
       "text_length": 9233,
       "related_holdings_in_my_portfolio": [
         {
@@ -2359,7 +2609,7 @@
       ]
     },
     {
-      "id": "report_009",
+      "id": "report_010",
       "schemaVersion": 2,
       "title": "[DS 시황 데일리] 현시점 2026-04-23",
       "broker": "DS투자증권",
@@ -2375,7 +2625,7 @@
         "방산",
         "금/원자재"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_009.txt",
+      "text_path": "data/reports/2026-04-23/text/report_010.txt",
       "text_length": 16756,
       "related_holdings_in_my_portfolio": [
         {
@@ -2621,7 +2871,7 @@
       ]
     },
     {
-      "id": "report_010",
+      "id": "report_011",
       "schemaVersion": 2,
       "title": "[DS Defense Daily] 2026-04-23",
       "broker": "DS투자증권",
@@ -2636,7 +2886,7 @@
         "방산",
         "금/원자재"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_010.txt",
+      "text_path": "data/reports/2026-04-23/text/report_011.txt",
       "text_length": 22129,
       "related_holdings_in_my_portfolio": [
         {
@@ -2941,7 +3191,7 @@
       ]
     },
     {
-      "id": "report_011",
+      "id": "report_012",
       "schemaVersion": 2,
       "title": "[IBKS Daily] Morning Brief(260423)",
       "broker": "IBK투자증권",
@@ -2956,7 +3206,7 @@
         "금/원자재",
         "금리/매크로"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_011.txt",
+      "text_path": "data/reports/2026-04-23/text/report_012.txt",
       "text_length": 8728,
       "related_holdings_in_my_portfolio": [
         {
@@ -3189,7 +3439,7 @@
       ]
     },
     {
-      "id": "report_012",
+      "id": "report_013",
       "schemaVersion": 2,
       "title": "[Morning Brief] 중동전쟁 휴전 연장, 미 증시 상승 마감",
       "broker": "iM증권",
@@ -3203,7 +3453,7 @@
         "금/원자재",
         "금리/매크로"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_012.txt",
+      "text_path": "data/reports/2026-04-23/text/report_013.txt",
       "text_length": 21113,
       "related_holdings_in_my_portfolio": [
         {
@@ -3424,7 +3674,7 @@
       ]
     },
     {
-      "id": "report_013",
+      "id": "report_014",
       "schemaVersion": 2,
       "title": "4/22 KB 리서치 장마감코멘트",
       "broker": "KB증권",
@@ -3440,7 +3690,7 @@
         "금/원자재",
         "금리/매크로"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_013.txt",
+      "text_path": "data/reports/2026-04-23/text/report_014.txt",
       "text_length": 7059,
       "related_holdings_in_my_portfolio": [
         {
@@ -3714,7 +3964,7 @@
       ]
     },
     {
-      "id": "report_014",
+      "id": "report_015",
       "schemaVersion": 2,
       "title": "4/23 KB 리서치 모닝코멘트",
       "broker": "KB증권",
@@ -3727,7 +3977,7 @@
         "금/원자재",
         "금리/매크로"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_014.txt",
+      "text_path": "data/reports/2026-04-23/text/report_015.txt",
       "text_length": 21289,
       "related_holdings_in_my_portfolio": [
         {
@@ -3831,7 +4081,255 @@
       ]
     },
     {
-      "id": "report_015",
+      "id": "report_016",
+      "schemaVersion": 2,
+      "title": "국내 주식 마감 시황 - 격한 조정에도 전고점 지지에 6,500p 근접 (4월 23일)",
+      "broker": "신한투자증권",
+      "source": "신한투자증권",
+      "date": "2026-04-23",
+      "category": "시황정보",
+      "report_type": "strategy",
+      "sector": "매크로",
+      "themes": [
+        "AI 인프라",
+        "전력 인프라",
+        "원자력",
+        "금/원자재"
+      ],
+      "text_path": "data/reports/2026-04-23/text/report_016.txt",
+      "text_length": 5722,
+      "related_holdings_in_my_portfolio": [
+        {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "064350",
+          "name": "현대로템",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        }
+      ],
+      "related_accounts": [
+        "ISA",
+        "PENSION",
+        "KIS_MAIN"
+      ],
+      "key_thesis": "매크로는 긍정 시각이며 핵심 근거는 정상회담에서 이어지는 호재들 실적 시즌에 엇갈린 KS·KQ\n지난 한국-인도 정상회담 이후 조선·원전 협력 소식에 관련주가 (%)\n 0.8\n 1.0\n반응한데 이어 간밤 한국-베트남 정상회담에서 나온 소식도 업종 0.5\n 0.5\n상승 재료로 작용했습니다. 전력 인프라 확충 및 신규 원전 협...",
+      "key_points": [
+        "매크로는 긍정 시각이며 핵심 근거는 정상회담에서 이어지는 호재들 실적 시즌에 엇갈린 KS·KQ\n지난 한국-인도 정상회담 이후 조선·원전 협력 소식에 관련주가 (%)\n 0.8\n 1.0\n반응한데 이어 간밤 한국-베트남 정상회담에서 나온 소식도 업종 0.5\n 0.5\n상승 재료로 작용했습니다. 전력 인프라 확충 및 신규 원전 협..."
+      ],
+      "primary_claim": {
+        "entity": "매크로",
+        "direction": "positive",
+        "strength": "weak",
+        "horizon": "medium",
+        "reason": "정상회담에서 이어지는 호재들 실적 시즌에 엇갈린 KS·KQ\n지난 한국-인도 정상회담 이후 조선·원전 협력 소식에 관련주가 (%)\n 0.8\n 1.0\n반응한데 이어 간밤 한국-베트남 정상회담에서 나온 소식도 업종 0.5\n 0.5\n상승 재료로 작용했습니다. 전력 인프라 확충 및 신규 원전 협...",
+        "condition": null,
+        "counterpoint": null,
+        "source_span": "paragraph_10",
+        "classification": "weak_claim",
+        "classification_confidence": 0.48,
+        "summary": "매크로는 긍정 시각이며 핵심 근거는 정상회담에서 이어지는 호재들 실적 시즌에 엇갈린 KS·KQ\n지난 한국-인도 정상회담 이후 조선·원전 협력 소식에 관련주가 (%)\n 0.8\n 1.0\n반응한데 이어 간밤 한국-베트남 정상회담에서 나온 소식도 업종 0.5\n 0.5\n상승 재료로 작용했습니다. 전력 인프라 확충 및 신규 원전 협..."
+      },
+      "claim_candidates": [
+        {
+          "entity": "매크로",
+          "direction": "positive",
+          "strength": "weak",
+          "horizon": "medium",
+          "reason": "정상회담에서 이어지는 호재들 실적 시즌에 엇갈린 KS·KQ\n지난 한국-인도 정상회담 이후 조선·원전 협력 소식에 관련주가 (%)\n 0.8\n 1.0\n반응한데 이어 간밤 한국-베트남 정상회담에서 나온 소식도 업종 0.5\n 0.5\n상승 재료로 작용했습니다. 전력 인프라 확충 및 신규 원전 협...",
+          "condition": null,
+          "counterpoint": null,
+          "source_span": "paragraph_10",
+          "classification": "weak_claim",
+          "classification_confidence": 0.48,
+          "summary": "매크로는 긍정 시각이며 핵심 근거는 정상회담에서 이어지는 호재들 실적 시즌에 엇갈린 KS·KQ\n지난 한국-인도 정상회담 이후 조선·원전 협력 소식에 관련주가 (%)\n 0.8\n 1.0\n반응한데 이어 간밤 한국-베트남 정상회담에서 나온 소식도 업종 0.5\n 0.5\n상승 재료로 작용했습니다. 전력 인프라 확충 및 신규 원전 협..."
+        }
+      ],
+      "key_numbers": [
+        {
+          "label": "supporting",
+          "value": "5.8%",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "0.8%",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "1,566억원",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "3,345억원",
+          "why_it_matters": "보조 참고 수치"
+        }
+      ],
+      "what_changed": [
+        "다시 협력 확대 강조한 삼성전자(+3.2%)가 지수 견인했습니다. 그 6,450 1,170",
+        "정상회담에서 이어지는 호재들 실적 시즌에 엇갈린 KS·KQ\n지난 한국-인도 정상회담 이후 조선·원전 협력 소식에 관련주가 (%)\n 0.8\n 1.0\n반응한데 이어 간밤 한국-베트남 정상회담에서 나온 소식도 업종 0.5\n 0.5\n상승 재료로 작용했습니다. 전력 인프라 확충 및 신규 원전 협력\n 0.0\n확대 발표 소식에 원전주(두산에너빌리티 +5.8%) 모멘텀 이어졌\n (0.5) (0.2)\n습니다. 한편 현대로템(-0.8%)은 호치..."
+      ],
+      "bull_case": [
+        "정상회담에서 이어지는 호재들 실적 시즌에 엇갈린 KS·KQ\n지난 한국-인도 정상회담 이후 조선·원전 협력 소식에 관련주가 (%)\n 0.8\n 1.0\n반응한데 이어 간밤 한국-베트남 정상회담에서 나온 소식도 업종 0.5\n 0.5\n상승 재료로 작용했습니다. 전력 인프라 확충 및 신규 원전 협력\n 0.0\n확대 발표 소식에 원전주(두산에너빌리티 +5.8%) 모멘텀 이어졌\n (0.5) (0.2)\n습니다..."
+      ],
+      "bear_case": [],
+      "catalysts": [
+        "정상회담에서 이어지는 호재들 실적 시즌에 엇갈린 KS·KQ\n지난 한국-인도 정상회담 이후 조선·원전 협력 소식에 관련주가 (%)\n 0.8\n 1.0\n반응한데 이어 간밤 한국-베트남 정상회담에서 나온 소식도 업종 0.5\n 0.5\n상승 재료로 작용했습니다. 전력 인프라 확충 및 신규 원전 협력\n 0.0\n확대 발표 소식에 원전주..."
+      ],
+      "risks": [],
+      "new_info": "다시 협력 확대 강조한 삼성전자(+3.2%)가 지수 견인했습니다. 그 6,450 1,170",
+      "thesis_novelty": "MED",
+      "sentiment_score": 0.75,
+      "portfolio_impacts_candidate": [
+        {
+          "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.54,
+          "reason": "정상회담에서 이어지는 호재들 실적 시즌에 엇갈린 KS·KQ\n지난 한국-인도 정상회담 이후 조선·원전 협력 소식에 관련주가 (%)\n 0.8\n 1.0\n반응한데 이어 간밤 한국-베트남 정상회담에서 나온 소식도 업종 0.5\n 0.5\n상승 재료로 작용했습니다. 전력 인프라 확충 및 신규 원전 협력\n 0.0\n확대 발표 소식에 원전주...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "487240",
+          "target_name": "KODEX AI전력핵심설비",
+          "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.54,
+          "reason": "정상회담에서 이어지는 호재들 실적 시즌에 엇갈린 KS·KQ\n지난 한국-인도 정상회담 이후 조선·원전 협력 소식에 관련주가 (%)\n 0.8\n 1.0\n반응한데 이어 간밤 한국-베트남 정상회담에서 나온 소식도 업종 0.5\n 0.5\n상승 재료로 작용했습니다. 전력 인프라 확충 및 신규 원전 협력\n 0.0\n확대 발표 소식에 원전주...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "360750",
+          "target_name": "TIGER 미국S&P500",
+          "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.54,
+          "reason": "정상회담에서 이어지는 호재들 실적 시즌에 엇갈린 KS·KQ\n지난 한국-인도 정상회담 이후 조선·원전 협력 소식에 관련주가 (%)\n 0.8\n 1.0\n반응한데 이어 간밤 한국-베트남 정상회담에서 나온 소식도 업종 0.5\n 0.5\n상승 재료로 작용했습니다. 전력 인프라 확충 및 신규 원전 협력\n 0.0\n확대 발표 소식에 원전주...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "064350",
+          "target_name": "현대로템",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.54,
+          "reason": "정상회담에서 이어지는 호재들 실적 시즌에 엇갈린 KS·KQ\n지난 한국-인도 정상회담 이후 조선·원전 협력 소식에 관련주가 (%)\n 0.8\n 1.0\n반응한데 이어 간밤 한국-베트남 정상회담에서 나온 소식도 업종 0.5\n 0.5\n상승 재료로 작용했습니다. 전력 인프라 확충 및 신규 원전 협력\n 0.0\n확대 발표 소식에 원전주...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.54,
+          "reason": "정상회담에서 이어지는 호재들 실적 시즌에 엇갈린 KS·KQ\n지난 한국-인도 정상회담 이후 조선·원전 협력 소식에 관련주가 (%)\n 0.8\n 1.0\n반응한데 이어 간밤 한국-베트남 정상회담에서 나온 소식도 업종 0.5\n 0.5\n상승 재료로 작용했습니다. 전력 인프라 확충 및 신규 원전 협력\n 0.0\n확대 발표 소식에 원전주...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "434730",
+          "target_name": "HANARO 원자력iSelect",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "1m",
+          "strength": 0.54,
+          "reason": "정상회담에서 이어지는 호재들 실적 시즌에 엇갈린 KS·KQ\n지난 한국-인도 정상회담 이후 조선·원전 협력 소식에 관련주가 (%)\n 0.8\n 1.0\n반응한데 이어 간밤 한국-베트남 정상회담에서 나온 소식도 업종 0.5\n 0.5\n상승 재료로 작용했습니다. 전력 인프라 확충 및 신규 원전 협력\n 0.0\n확대 발표 소식에 원전주...",
+          "action_hint": "보강"
+        }
+      ],
+      "confidence": "MEDIUM",
+      "quality": {
+        "contaminationEvidenceCount": 0,
+        "totalEvidenceCount": 1,
+        "weakClaimCount": 1,
+        "totalClaims": 1
+      },
+      "evidence_notes": [
+        {
+          "score": 33,
+          "classification": "weak_claim",
+          "excerpt": "정상회담에서 이어지는 호재들 실적 시즌에 엇갈린 KS·KQ\n지난 한국-인도 정상회담 이후 조선·원전 협력 소식에 관련주가 (%)\n 0.8\n 1.0\n반응한데 이어 간밤 한국-베트남 정상회담에서 나온 소식도 업종 0.5\n 0.5\n상승 재료로 작용했습니다. 전력 인프라 확충 및 신규 원전 협력\n 0.0\n확대 발표 소식에 원전주(두산에너빌리티 +5.8%) 모멘텀 이어졌\n (0.5) (0.2)\n습니다. 한편 현대로템(-0.8%)은 호치민 도시철도 2건 공급계약 (0.6)..."
+        },
+        {
+          "score": -40,
+          "classification": "metadata",
+          "excerpt": "국내 주식 마감 시황 2026년 4월 23일"
+        },
+        {
+          "score": -40,
+          "classification": "metadata",
+          "excerpt": "격한 조정에도 전고점 지지에 6,500p 근접"
+        },
+        {
+          "score": -40,
+          "classification": "metadata",
+          "excerpt": "[ Market Analyst ] 강진혁 선임연구원 ☎ (02) 3772-2329  kjinhyeok@shinhan.com"
+        },
+        {
+          "score": -40,
+          "classification": "metadata",
+          "excerpt": "전고점 부근 저가 매수세 유입&삼성전자 강세 KOSPI, KOSDAQ 장중 흐름"
+        },
+        {
+          "score": -40,
+          "classification": "metadata",
+          "excerpt": "특히 SK하이닉스(고가 +3.6%→종가 +0.2%) Sell-on 물량도 출회 (p) KOSPI(좌축)\n 전일종가\n (p)"
+        },
+        {
+          "score": -40,
+          "classification": "metadata",
+          "excerpt": "되면서 KOSPI도 6,300p 초반까지 눌렸지만 전고점(2/26 6,307p) 6,600 KOSDAQ(우축)\n 전일종가\n 1,190"
+        },
+        {
+          "score": -40,
+          "classification": "metadata",
+          "excerpt": "부근에서 저가 매수세 유입되며 지지를 받았습니다. 특히 Tesla가 6,525 1,180"
+        }
+      ]
+    },
+    {
+      "id": "report_017",
       "schemaVersion": 2,
       "title": "국내주식 마감 시황 (26.04.22) - 협상 안해? 그래도 KOSPI는 엔진 달고 간다",
       "broker": "유안타증권",
@@ -3847,7 +4345,7 @@
         "금/원자재",
         "금리/매크로"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_015.txt",
+      "text_path": "data/reports/2026-04-23/text/report_017.txt",
       "text_length": 2508,
       "related_holdings_in_my_portfolio": [
         {
@@ -4182,7 +4680,313 @@
       ]
     },
     {
-      "id": "report_016",
+      "id": "report_018",
+      "schemaVersion": 2,
+      "title": "마켓레이더(4월 23일, 오전)",
+      "broker": "신한투자증권",
+      "source": "신한투자증권",
+      "date": "2026-04-23",
+      "category": "시황정보",
+      "report_type": "strategy",
+      "sector": "매크로",
+      "themes": [
+        "HBM/메모리",
+        "AI 인프라",
+        "전력 인프라",
+        "원자력",
+        "금/원자재",
+        "금리/매크로"
+      ],
+      "text_path": "data/reports/2026-04-23/text/report_018.txt",
+      "text_length": 3179,
+      "related_holdings_in_my_portfolio": [
+        {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "064350",
+          "name": "현대로템",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        }
+      ],
+      "related_accounts": [
+        "ISA",
+        "PENSION",
+        "KIS_MAIN"
+      ],
+      "key_thesis": "매크로는 중립 시각이며 핵심 근거는 KOSDAQ은 0.1% 하락한 1,180.0p. 2차전지 차익실현 매도세에도 소부장 강세&헬스케어 수급 유입\n :Tesla 실적 이후 배터리 매물 출회(에코프로 -2.6%) vs. 바이오 수급 유입(알테오젠 +1.3%, ABL +3.9%)\n :하이닉스 호실적 발표에 반도체 장비↑(리노공...",
+      "key_points": [
+        "매크로는 중립 시각이며 핵심 근거는 KOSDAQ은 0.1% 하락한 1,180.0p. 2차전지 차익실현 매도세에도 소부장 강세&헬스케어 수급 유입\n :Tesla 실적 이후 배터리 매물 출회(에코프로 -2.6%) vs. 바이오 수급 유입(알테오젠 +1.3%, ABL +3.9%)\n :하이닉스 호실적 발표에 반도체 장비↑(리노공...",
+        "매크로는 부정 시각이며 핵심 근거는 달러-원 환율은 0.1원 하락한 1,480.2원. 미국-이란 휴전 무기한 연장과 호르무즈 봉쇄 유지 속 관망\n아시아 증시 혼조. 일본(니케이) -0.4%, 대만(가권) +1.5%, 홍콩(항셍) -1.0%, 중국(상해) -0.2%",
+        "매크로는 중립 시각이며 핵심 근거는 업종별 주가 등락률 (%)\n 4\n 2\n 0\n (2)\n (4)\n 기계 화학 증권\n 코스피 코스닥 대형주 중형주 소형주 건설업 유통업 보험업 제조업 금융업 의약품 통신업\n 전기전자 의료정밀 음식료품 운수장비 서비스업 섬유의복 종이목재 철강금속\n 전기가스업 비금속광물 운수창고업"
+      ],
+      "primary_claim": {
+        "entity": "매크로",
+        "direction": "neutral",
+        "strength": "weak",
+        "horizon": "medium",
+        "reason": "KOSDAQ은 0.1% 하락한 1,180.0p. 2차전지 차익실현 매도세에도 소부장 강세&헬스케어 수급 유입\n :Tesla 실적 이후 배터리 매물 출회(에코프로 -2.6%) vs. 바이오 수급 유입(알테오젠 +1.3%, ABL +3.9%)\n :하이닉스 호실적 발표에 반도체 장비↑(리노공...",
+        "condition": null,
+        "counterpoint": null,
+        "source_span": "paragraph_5",
+        "classification": "weak_claim",
+        "classification_confidence": 0.48,
+        "summary": "매크로는 중립 시각이며 핵심 근거는 KOSDAQ은 0.1% 하락한 1,180.0p. 2차전지 차익실현 매도세에도 소부장 강세&헬스케어 수급 유입\n :Tesla 실적 이후 배터리 매물 출회(에코프로 -2.6%) vs. 바이오 수급 유입(알테오젠 +1.3%, ABL +3.9%)\n :하이닉스 호실적 발표에 반도체 장비↑(리노공..."
+      },
+      "claim_candidates": [
+        {
+          "entity": "매크로",
+          "direction": "neutral",
+          "strength": "weak",
+          "horizon": "medium",
+          "reason": "KOSDAQ은 0.1% 하락한 1,180.0p. 2차전지 차익실현 매도세에도 소부장 강세&헬스케어 수급 유입\n :Tesla 실적 이후 배터리 매물 출회(에코프로 -2.6%) vs. 바이오 수급 유입(알테오젠 +1.3%, ABL +3.9%)\n :하이닉스 호실적 발표에 반도체 장비↑(리노공...",
+          "condition": null,
+          "counterpoint": null,
+          "source_span": "paragraph_5",
+          "classification": "weak_claim",
+          "classification_confidence": 0.48,
+          "summary": "매크로는 중립 시각이며 핵심 근거는 KOSDAQ은 0.1% 하락한 1,180.0p. 2차전지 차익실현 매도세에도 소부장 강세&헬스케어 수급 유입\n :Tesla 실적 이후 배터리 매물 출회(에코프로 -2.6%) vs. 바이오 수급 유입(알테오젠 +1.3%, ABL +3.9%)\n :하이닉스 호실적 발표에 반도체 장비↑(리노공..."
+        },
+        {
+          "entity": "매크로",
+          "direction": "negative",
+          "strength": "weak",
+          "horizon": "medium",
+          "reason": "달러-원 환율은 0.1원 하락한 1,480.2원. 미국-이란 휴전 무기한 연장과 호르무즈 봉쇄 유지 속 관망\n아시아 증시 혼조. 일본(니케이) -0.4%, 대만(가권) +1.5%, 홍콩(항셍) -1.0%, 중국(상해) -0.2%",
+          "condition": null,
+          "counterpoint": null,
+          "source_span": "paragraph_6",
+          "classification": "weak_claim",
+          "classification_confidence": 0.48,
+          "summary": "매크로는 부정 시각이며 핵심 근거는 달러-원 환율은 0.1원 하락한 1,480.2원. 미국-이란 휴전 무기한 연장과 호르무즈 봉쇄 유지 속 관망\n아시아 증시 혼조. 일본(니케이) -0.4%, 대만(가권) +1.5%, 홍콩(항셍) -1.0%, 중국(상해) -0.2%"
+        },
+        {
+          "entity": "매크로",
+          "direction": "neutral",
+          "strength": "weak",
+          "horizon": "medium",
+          "reason": "업종별 주가 등락률 (%)\n 4\n 2\n 0\n (2)\n (4)\n 기계 화학 증권\n 코스피 코스닥 대형주 중형주 소형주 건설업 유통업 보험업 제조업 금융업 의약품 통신업\n 전기전자 의료정밀 음식료품 운수장비 서비스업 섬유의복 종이목재 철강금속\n 전기가스업 비금속광물 운수창고업",
+          "condition": null,
+          "counterpoint": null,
+          "source_span": "paragraph_7",
+          "classification": "weak_claim",
+          "classification_confidence": 0.48,
+          "summary": "매크로는 중립 시각이며 핵심 근거는 업종별 주가 등락률 (%)\n 4\n 2\n 0\n (2)\n (4)\n 기계 화학 증권\n 코스피 코스닥 대형주 중형주 소형주 건설업 유통업 보험업 제조업 금융업 의약품 통신업\n 전기전자 의료정밀 음식료품 운수장비 서비스업 섬유의복 종이목재 철강금속\n 전기가스업 비금속광물 운수창고업"
+        }
+      ],
+      "key_numbers": [
+        {
+          "label": "thesis_anchor",
+          "value": "0.1%",
+          "why_it_matters": "핵심 투자 논리를 직접 뒷받침하는 수치"
+        },
+        {
+          "label": "thesis_anchor",
+          "value": "2.6%",
+          "why_it_matters": "핵심 투자 논리를 직접 뒷받침하는 수치"
+        },
+        {
+          "label": "thesis_anchor",
+          "value": "1.3%",
+          "why_it_matters": "핵심 투자 논리를 직접 뒷받침하는 수치"
+        },
+        {
+          "label": "thesis_anchor",
+          "value": "3.9%",
+          "why_it_matters": "핵심 투자 논리를 직접 뒷받침하는 수치"
+        },
+        {
+          "label": "thesis_anchor",
+          "value": "1,180.0",
+          "why_it_matters": "핵심 투자 논리를 직접 뒷받침하는 수치"
+        },
+        {
+          "label": "catalyst_number",
+          "value": "2.3%",
+          "why_it_matters": "변화 촉매의 구체적 근거"
+        },
+        {
+          "label": "supporting",
+          "value": "5.9%",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "7.2%",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "0.4%",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "1.5%",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "1.0%",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "0.2%",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "1,480.2원",
+          "why_it_matters": "보조 참고 수치"
+        }
+      ],
+      "what_changed": [
+        "달러-원 환율은 0.1원 하락한 1,480.2원. 미국-이란 휴전 무기한 연장과 호르무즈 봉쇄 유지 속 관망\n아시아 증시 혼조. 일본(니케이) -0.4%, 대만(가권) +1.5%, 홍콩(항셍) -1.0%, 중국(상해) -0.2%"
+      ],
+      "bull_case": [],
+      "bear_case": [
+        "달러-원 환율은 0.1원 하락한 1,480.2원. 미국-이란 휴전 무기한 연장과 호르무즈 봉쇄 유지 속 관망\n아시아 증시 혼조. 일본(니케이) -0.4%, 대만(가권) +1.5%, 홍콩(항셍) -1.0%, 중국(상해) -0.2%"
+      ],
+      "catalysts": [
+        "KOSDAQ은 0.1% 하락한 1,180.0p. 2차전지 차익실현 매도세에도 소부장 강세&헬스케어 수급 유입\n :Tesla 실적 이후 배터리 매물 출회(에코프로 -2.6%) vs. 바이오 수급 유입(알테오젠 +1.3%, ABL +3.9%)\n :하이닉스 호실적 발표에 반도체 장비↑(리노공업 +2.3%). 3세대 식각장비 공..."
+      ],
+      "risks": [],
+      "new_info": "달러-원 환율은 0.1원 하락한 1,480.2원. 미국-이란 휴전 무기한 연장과 호르무즈 봉쇄 유지 속 관망\n아시아 증시 혼조. 일본(니케이) -0.4%, 대만(가권) +1.5%, 홍콩(항셍) -1.0%, 중국(상해) -0.2%",
+      "thesis_novelty": "LOW",
+      "sentiment_score": 0,
+      "portfolio_impacts_candidate": [
+        {
+          "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "KOSDAQ은 0.1% 하락한 1,180.0p. 2차전지 차익실현 매도세에도 소부장 강세&헬스케어 수급 유입\n :Tesla 실적 이후 배터리 매물 출회(에코프로 -2.6%) vs. 바이오 수급 유입(알테오젠 +1.3%, ABL +3.9%)\n :하이닉스 호실적 발표에 반도체 장비↑(리노공업 +2.3%). 3세대 식각장비 공...",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "487240",
+          "target_name": "KODEX AI전력핵심설비",
+          "account_key": "PENSION",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "KOSDAQ은 0.1% 하락한 1,180.0p. 2차전지 차익실현 매도세에도 소부장 강세&헬스케어 수급 유입\n :Tesla 실적 이후 배터리 매물 출회(에코프로 -2.6%) vs. 바이오 수급 유입(알테오젠 +1.3%, ABL +3.9%)\n :하이닉스 호실적 발표에 반도체 장비↑(리노공업 +2.3%). 3세대 식각장비 공...",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "360750",
+          "target_name": "TIGER 미국S&P500",
+          "account_key": "PENSION",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "KOSDAQ은 0.1% 하락한 1,180.0p. 2차전지 차익실현 매도세에도 소부장 강세&헬스케어 수급 유입\n :Tesla 실적 이후 배터리 매물 출회(에코프로 -2.6%) vs. 바이오 수급 유입(알테오젠 +1.3%, ABL +3.9%)\n :하이닉스 호실적 발표에 반도체 장비↑(리노공업 +2.3%). 3세대 식각장비 공...",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "KOSDAQ은 0.1% 하락한 1,180.0p. 2차전지 차익실현 매도세에도 소부장 강세&헬스케어 수급 유입\n :Tesla 실적 이후 배터리 매물 출회(에코프로 -2.6%) vs. 바이오 수급 유입(알테오젠 +1.3%, ABL +3.9%)\n :하이닉스 호실적 발표에 반도체 장비↑(리노공업 +2.3%). 3세대 식각장비 공...",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "434730",
+          "target_name": "HANARO 원자력iSelect",
+          "account_key": "KIS_MAIN",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "KOSDAQ은 0.1% 하락한 1,180.0p. 2차전지 차익실현 매도세에도 소부장 강세&헬스케어 수급 유입\n :Tesla 실적 이후 배터리 매물 출회(에코프로 -2.6%) vs. 바이오 수급 유입(알테오젠 +1.3%, ABL +3.9%)\n :하이닉스 호실적 발표에 반도체 장비↑(리노공업 +2.3%). 3세대 식각장비 공...",
+          "action_hint": "관찰"
+        }
+      ],
+      "confidence": "LOW",
+      "quality": {
+        "contaminationEvidenceCount": 0,
+        "totalEvidenceCount": 3,
+        "weakClaimCount": 3,
+        "totalClaims": 3
+      },
+      "evidence_notes": [
+        {
+          "score": 10,
+          "classification": "weak_claim",
+          "excerpt": "KOSDAQ은 0.1% 하락한 1,180.0p. 2차전지 차익실현 매도세에도 소부장 강세&헬스케어 수급 유입\n :Tesla 실적 이후 배터리 매물 출회(에코프로 -2.6%) vs. 바이오 수급 유입(알테오젠 +1.3%, ABL +3.9%)\n :하이닉스 호실적 발표에 반도체 장비↑(리노공업 +2.3%). 3세대 식각장비 공동개발 브이엠(+5.9%) 상승\n :신한울 3·4호기 단조품 공급계약 체결 태웅(+7.2%). 전력반도체 소재 대량 양산 기대되는 코스텍시스 上"
+        },
+        {
+          "score": 10,
+          "classification": "weak_claim",
+          "excerpt": "달러-원 환율은 0.1원 하락한 1,480.2원. 미국-이란 휴전 무기한 연장과 호르무즈 봉쇄 유지 속 관망\n아시아 증시 혼조. 일본(니케이) -0.4%, 대만(가권) +1.5%, 홍콩(항셍) -1.0%, 중국(상해) -0.2%"
+        },
+        {
+          "score": 0,
+          "classification": "weak_claim",
+          "excerpt": "업종별 주가 등락률 (%)\n 4\n 2\n 0\n (2)\n (4)\n 기계 화학 증권\n 코스피 코스닥 대형주 중형주 소형주 건설업 유통업 보험업 제조업 금융업 의약품 통신업\n 전기전자 의료정밀 음식료품 운수장비 서비스업 섬유의복 종이목재 철강금속\n 전기가스업 비금속광물 운수창고업"
+        },
+        {
+          "score": -40,
+          "classification": "metadata",
+          "excerpt": "Market Radar 2026년 4월 23일"
+        },
+        {
+          "score": -40,
+          "classification": "metadata",
+          "excerpt": "삼성전자에 이은 하이닉스 호실적, 일"
+        },
+        {
+          "score": -40,
+          "classification": "metadata",
+          "excerpt": "[ Market Analyst ] 강진혁 선임연구원"
+        },
+        {
+          "score": -120,
+          "classification": "table_caption",
+          "excerpt": "KOSPI는 1.2% 상승한 6,496.8p. 중동 협상 기대↑+SK하이닉스 호실적에 신고가 랠리 속 6,500p 돌파\n :중동 협상 국면에서 국지적 마찰은 노이즈로 작용. Trump, 이르면 금요일 2차 협상 언급→美 신고가 랠리\n :ASML 호실적에 따라 美 메모리(Micron +8.5%, Sandisk +8.4%) 중심 반도체 강세(SOX 16일 연속 상승)\n :SK하이닉스(+0.5%) 사상 최대 실적(영업이익 37.6조원) 발표하며 KOSPI 6,500p..."
+        }
+      ]
+    },
+    {
+      "id": "report_019",
       "schemaVersion": 2,
       "title": "미국 인플레, 안심하긴 이르다",
       "broker": "메리츠증권",
@@ -4195,7 +4999,7 @@
         "금/원자재",
         "금리/매크로"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_016.txt",
+      "text_path": "data/reports/2026-04-23/text/report_019.txt",
       "text_length": 3900,
       "related_holdings_in_my_portfolio": [
         {
@@ -4421,7 +5225,7 @@
       ]
     },
     {
-      "id": "report_017",
+      "id": "report_020",
       "schemaVersion": 2,
       "title": "Daily Bond Morning Brief(2026.04.23)",
       "broker": "다올투자증권",
@@ -4434,7 +5238,7 @@
         "HBM/메모리",
         "AI 인프라"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_017.txt",
+      "text_path": "data/reports/2026-04-23/text/report_020.txt",
       "text_length": 21951,
       "related_holdings_in_my_portfolio": [
         {
@@ -4541,7 +5345,7 @@
       ]
     },
     {
-      "id": "report_018",
+      "id": "report_021",
       "schemaVersion": 2,
       "title": "SK증권 아침에 슥_2026.04.23",
       "broker": "SK증권",
@@ -4556,7 +5360,7 @@
         "방산",
         "금/원자재"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_018.txt",
+      "text_path": "data/reports/2026-04-23/text/report_021.txt",
       "text_length": 24288,
       "related_holdings_in_my_portfolio": [
         {
@@ -4906,7 +5710,7 @@
       ]
     },
     {
-      "id": "report_019",
+      "id": "report_022",
       "schemaVersion": 2,
       "title": "SK증권 Global Carbon Market Daily_260423",
       "broker": "SK증권",
@@ -4921,7 +5725,7 @@
         "원자력",
         "금/원자재"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_019.txt",
+      "text_path": "data/reports/2026-04-23/text/report_022.txt",
       "text_length": 6768,
       "related_holdings_in_my_portfolio": [
         {
@@ -5081,7 +5885,7 @@
       ]
     },
     {
-      "id": "report_020",
+      "id": "report_023",
       "schemaVersion": 2,
       "title": "Yuanta Morning Snapshot (2026.04.23)",
       "broker": "유안타증권",
@@ -5095,7 +5899,7 @@
         "금/원자재",
         "금리/매크로"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_020.txt",
+      "text_path": "data/reports/2026-04-23/text/report_023.txt",
       "text_length": 12680,
       "related_holdings_in_my_portfolio": [
         {
@@ -5366,7 +6170,223 @@
       ]
     },
     {
-      "id": "report_021",
+      "id": "report_024",
+      "schemaVersion": 2,
+      "title": "신한 속보; 한화솔루션 유상증자 규모 축소 발표",
+      "broker": "신한투자증권",
+      "source": "신한투자증권",
+      "date": "2026-04-23",
+      "category": "신한 속보",
+      "report_type": "theme",
+      "sector": "매크로",
+      "themes": [
+        "금/원자재"
+      ],
+      "text_path": "data/reports/2026-04-23/text/report_024.txt",
+      "text_length": 6200,
+      "related_holdings_in_my_portfolio": [
+        {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
+          "code": "047810",
+          "name": "한국항공우주",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        }
+      ],
+      "related_accounts": [
+        "ISA",
+        "KIS_MAIN"
+      ],
+      "key_thesis": "매크로는 부정 시각이며 핵심 근거는 애널리스트 코멘트\n  유상증자 발표 당일(3/26) 주주가치 희석과 수급 부담, 자금조달 필요성에 대한 우려가 반영되며 18% 급락\n  이후 시장 우려를 완화하기 위해 유상증자 규모를 축소한 것으로 판단\n  케미칼 부진 및 신재생에너지 수익성 둔화에 따른 실적 감소로 재무구조는 지... / 조건: 다만, 단기적으로는 금번 1분기를 포함한 실적 개선 흐...",
+      "key_points": [
+        "매크로는 부정 시각이며 핵심 근거는 애널리스트 코멘트\n  유상증자 발표 당일(3/26) 주주가치 희석과 수급 부담, 자금조달 필요성에 대한 우려가 반영되며 18% 급락\n  이후 시장 우려를 완화하기 위해 유상증자 규모를 축소한 것으로 판단\n  케미칼 부진 및 신재생에너지 수익성 둔화에 따른 실적 감소로 재무구조는 지... / 조건: 다만, 단기적으로는 금번 1분기를 포함한 실적 개선 흐...",
+        "매크로는 중립 시각이며 핵심 근거는 유상증자 규모 축소 발표\n 주요 내용\n  지난 17일 3월 26일(목) 공시한 2.4조원 규모의 유상증자 금액을 1.8조원으로 0.6조원 축소 발표\n  축소 금액은 1) 비영업용 자산 매각(약 3,000억원, 한화임팩트 보유 지분 활용 등)과 2) 해외법인 자본성 조\n 달(약 3,0..."
+      ],
+      "primary_claim": {
+        "entity": "매크로",
+        "direction": "negative",
+        "strength": "medium",
+        "horizon": "long",
+        "reason": "애널리스트 코멘트\n  유상증자 발표 당일(3/26) 주주가치 희석과 수급 부담, 자금조달 필요성에 대한 우려가 반영되며 18% 급락\n  이후 시장 우려를 완화하기 위해 유상증자 규모를 축소한 것으로 판단\n  케미칼 부진 및 신재생에너지 수익성 둔화에 따른 실적 감소로 재무구조는 지...",
+        "condition": "다만, 단기적으로는 금번 1분기를 포함한 실적 개선 흐름의 지속 여부가 중요할 전망",
+        "counterpoint": "우려가 반영되며 18% 급락  이후 시장 우려를 완화하기 위해 유상증자 규모를 축소한 것으로 판단 | 부담, 자금조달 필요성에 대한 우려가 반영되며 18% 급락 | 다만, 단기적으로는 금번 1분기를 포함한 실적 개선 흐름의 지속 여부가 중요할 전망",
+        "source_span": "paragraph_3",
+        "classification": "investment_claim",
+        "classification_confidence": 0.95,
+        "summary": "매크로는 부정 시각이며 핵심 근거는 애널리스트 코멘트\n  유상증자 발표 당일(3/26) 주주가치 희석과 수급 부담, 자금조달 필요성에 대한 우려가 반영되며 18% 급락\n  이후 시장 우려를 완화하기 위해 유상증자 규모를 축소한 것으로 판단\n  케미칼 부진 및 신재생에너지 수익성 둔화에 따른 실적 감소로 재무구조는 지... / 조건: 다만, 단기적으로는 금번 1분기를 포함한 실적 개선 흐..."
+      },
+      "claim_candidates": [
+        {
+          "entity": "매크로",
+          "direction": "negative",
+          "strength": "medium",
+          "horizon": "long",
+          "reason": "애널리스트 코멘트\n  유상증자 발표 당일(3/26) 주주가치 희석과 수급 부담, 자금조달 필요성에 대한 우려가 반영되며 18% 급락\n  이후 시장 우려를 완화하기 위해 유상증자 규모를 축소한 것으로 판단\n  케미칼 부진 및 신재생에너지 수익성 둔화에 따른 실적 감소로 재무구조는 지...",
+          "condition": "다만, 단기적으로는 금번 1분기를 포함한 실적 개선 흐름의 지속 여부가 중요할 전망",
+          "counterpoint": "우려가 반영되며 18% 급락  이후 시장 우려를 완화하기 위해 유상증자 규모를 축소한 것으로 판단 | 부담, 자금조달 필요성에 대한 우려가 반영되며 18% 급락 | 다만, 단기적으로는 금번 1분기를 포함한 실적 개선 흐름의 지속 여부가 중요할 전망",
+          "source_span": "paragraph_3",
+          "classification": "investment_claim",
+          "classification_confidence": 0.95,
+          "summary": "매크로는 부정 시각이며 핵심 근거는 애널리스트 코멘트\n  유상증자 발표 당일(3/26) 주주가치 희석과 수급 부담, 자금조달 필요성에 대한 우려가 반영되며 18% 급락\n  이후 시장 우려를 완화하기 위해 유상증자 규모를 축소한 것으로 판단\n  케미칼 부진 및 신재생에너지 수익성 둔화에 따른 실적 감소로 재무구조는 지... / 조건: 다만, 단기적으로는 금번 1분기를 포함한 실적 개선 흐..."
+        },
+        {
+          "entity": "매크로",
+          "direction": "neutral",
+          "strength": "weak",
+          "horizon": "medium",
+          "reason": "유상증자 규모 축소 발표\n 주요 내용\n  지난 17일 3월 26일(목) 공시한 2.4조원 규모의 유상증자 금액을 1.8조원으로 0.6조원 축소 발표\n  축소 금액은 1) 비영업용 자산 매각(약 3,000억원, 한화임팩트 보유 지분 활용 등)과 2) 해외법인 자본성 조\n 달(약 3,0...",
+          "condition": null,
+          "counterpoint": "우려 존재, 향후 주주부담 완화를 최우선 목표로 진행 | 우려가 반영되며 18% 급락  이후 시장 우려를 완화하기 위해 유상증자 규모를 축소한 것으로 판단 | 부담, 자금조달 필요성에 대한 우려가 반영되며 18% 급락",
+          "source_span": "paragraph_2",
+          "classification": "weak_claim",
+          "classification_confidence": 0.48,
+          "summary": "매크로는 중립 시각이며 핵심 근거는 유상증자 규모 축소 발표\n 주요 내용\n  지난 17일 3월 26일(목) 공시한 2.4조원 규모의 유상증자 금액을 1.8조원으로 0.6조원 축소 발표\n  축소 금액은 1) 비영업용 자산 매각(약 3,000억원, 한화임팩트 보유 지분 활용 등)과 2) 해외법인 자본성 조\n 달(약 3,0..."
+        }
+      ],
+      "key_numbers": [
+        {
+          "label": "thesis_anchor",
+          "value": "18%",
+          "why_it_matters": "핵심 투자 논리를 직접 뒷받침하는 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "50%",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "3,000억원",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "9,067억원",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "9,077억원",
+          "why_it_matters": "보조 참고 수치"
+        }
+      ],
+      "what_changed": [
+        "유상증자 규모 축소 발표\n 주요 내용\n  지난 17일 3월 26일(목) 공시한 2.4조원 규모의 유상증자 금액을 1.8조원으로 0.6조원 축소 발표\n  축소 금액은 1) 비영업용 자산 매각(약 3,000억원, 한화임팩트 보유 지분 활용 등)과 2) 해외법인 자본성 조\n 달(약 3,000억원)로 보충할 계획\n  최종 증자 자금은 채무상환자금 50%(9,067억원), 시설자금 50%(9,077억원)로 구성\n  시설자금은 기...",
+        "애널리스트 코멘트\n  유상증자 발표 당일(3/26) 주주가치 희석과 수급 부담, 자금조달 필요성에 대한 우려가 반영되며 18% 급락\n  이후 시장 우려를 완화하기 위해 유상증자 규모를 축소한 것으로 판단\n  케미칼 부진 및 신재생에너지 수익성 둔화에 따른 실적 감소로 재무구조는 지속적으로 악화 (순차입금 23년\n 7.4조원 → 25년 12.6조원). 향후 재무구조 개선과 동시에 중장기 성장을 위한 투자가 병행되어야 하는 ...",
+        "간담회 주요 내용 정리\n 1. 개요\n  기존 2.4조원(시설투자 0.9조원, 채무상환 1.5조원)에서 1.8조원(0.9조원, 0.9조\n 원)으로 조정\n  자구안 6천억원 발표: 자산 매각 3천억원(한화임팩트, 한화호텔앤리조트), 자본\n 성 조달 3천억원(6월말 목표)\n  ’27~’30년까지 EBITDA 13.8조원 창출 가능한 기반 마련, 6천억원 주주환원 자\n 금 마련 가능\n 2. 신재생 부문(큐셀) 업데이트\n  ’2..."
+      ],
+      "bull_case": [],
+      "bear_case": [
+        "애널리스트 코멘트\n  유상증자 발표 당일(3/26) 주주가치 희석과 수급 부담, 자금조달 필요성에 대한 우려가 반영되며 18% 급락\n  이후 시장 우려를 완화하기 위해 유상증자 규모를 축소한 것으로 판단\n  케미칼 부진 및 신재생에너지 수익성 둔화에 따른 실적 감소로 재무구조는 지속적으로 악화 (순차입금 23년\n 7.4조원 → 25년 12.6조원). 향후 재무구조 개선과 동시에 중장기 ..."
+      ],
+      "catalysts": [
+        "애널리스트 코멘트\n  유상증자 발표 당일(3/26) 주주가치 희석과 수급 부담, 자금조달 필요성에 대한 우려가 반영되며 18% 급락\n  이후 시장 우려를 완화하기 위해 유상증자 규모를 축소한 것으로 판단\n  케미칼 부진 및 신재생에너지 수익성 둔화에 따른 실적 감소로 재무구조는 지속적으로 악화 (순차입금 23년\n 7..."
+      ],
+      "risks": [
+        "애널리스트 코멘트\n  유상증자 발표 당일(3/26) 주주가치 희석과 수급 부담, 자금조달 필요성에 대한 우려가 반영되며 18% 급락\n  이후 시장 우려를 완화하기 위해 유상증자 규모를 축소한 것으로 판단\n  케미칼 부진 및 신재생에너지 수익성 둔화에 따른 실적 감소로 재무구조는 지속적으로 악화 (순차입금 23년\n 7...",
+        "유상증자 규모 축소 발표\n 주요 내용\n  지난 17일 3월 26일(목) 공시한 2.4조원 규모의 유상증자 금액을 1.8조원으로 0.6조원 축소 발표\n  축소 금액은 1) 비영업용 자산 매각(약 3,000억원, 한화임팩트 보유 지분 활용 등)과 2) 해외법인 자본성 조\n 달(약 3,000억원)로 보충할 계획\n  최종 ..."
+      ],
+      "new_info": "유상증자 규모 축소 발표\n 주요 내용\n  지난 17일 3월 26일(목) 공시한 2.4조원 규모의 유상증자 금액을 1.8조원으로 0.6조원 축소 발표\n  축소 금액은 1) 비영업용 자산 매각(약 3,000억원, 한화임팩트 보유 지분 활용 등)과 2) 해외법인 자본성 조\n 달(약 3,000억원)로 보충할 계획\n  최종 증자 자금은 채무상환자금 50%(9,067억원), 시설자금 50%(9,077억원)로 구성\n  시설자금은 기...",
+      "thesis_novelty": "MED",
+      "sentiment_score": 0,
+      "portfolio_impacts_candidate": [
+        {
+          "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "neutral",
+          "horizon": "3m",
+          "strength": 0.28,
+          "reason": "애널리스트 코멘트\n  유상증자 발표 당일(3/26) 주주가치 희석과 수급 부담, 자금조달 필요성에 대한 우려가 반영되며 18% 급락\n  이후 시장 우려를 완화하기 위해 유상증자 규모를 축소한 것으로 판단\n  케미칼 부진 및 신재생에너지 수익성 둔화에 따른 실적 감소로 재무구조는 지속적으로 악화 (순차입금 23년\n 7...",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "047810",
+          "target_name": "한국항공우주",
+          "account_key": "KIS_MAIN",
+          "direction": "neutral",
+          "horizon": "3m",
+          "strength": 0.28,
+          "reason": "애널리스트 코멘트\n  유상증자 발표 당일(3/26) 주주가치 희석과 수급 부담, 자금조달 필요성에 대한 우려가 반영되며 18% 급락\n  이후 시장 우려를 완화하기 위해 유상증자 규모를 축소한 것으로 판단\n  케미칼 부진 및 신재생에너지 수익성 둔화에 따른 실적 감소로 재무구조는 지속적으로 악화 (순차입금 23년\n 7...",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "neutral",
+          "horizon": "3m",
+          "strength": 0.28,
+          "reason": "애널리스트 코멘트\n  유상증자 발표 당일(3/26) 주주가치 희석과 수급 부담, 자금조달 필요성에 대한 우려가 반영되며 18% 급락\n  이후 시장 우려를 완화하기 위해 유상증자 규모를 축소한 것으로 판단\n  케미칼 부진 및 신재생에너지 수익성 둔화에 따른 실적 감소로 재무구조는 지속적으로 악화 (순차입금 23년\n 7...",
+          "action_hint": "관찰"
+        }
+      ],
+      "confidence": "HIGH",
+      "quality": {
+        "contaminationEvidenceCount": 0,
+        "totalEvidenceCount": 2,
+        "weakClaimCount": 1,
+        "totalClaims": 2
+      },
+      "evidence_notes": [
+        {
+          "score": 43,
+          "classification": "investment_claim",
+          "excerpt": "애널리스트 코멘트\n  유상증자 발표 당일(3/26) 주주가치 희석과 수급 부담, 자금조달 필요성에 대한 우려가 반영되며 18% 급락\n  이후 시장 우려를 완화하기 위해 유상증자 규모를 축소한 것으로 판단\n  케미칼 부진 및 신재생에너지 수익성 둔화에 따른 실적 감소로 재무구조는 지속적으로 악화 (순차입금 23년\n 7.4조원 → 25년 12.6조원). 향후 재무구조 개선과 동시에 중장기 성장을 위한 투자가 병행되어야 하는 상황\n  신재생에너지 사업은 미국 ..."
+        },
+        {
+          "score": 18,
+          "classification": "weak_claim",
+          "excerpt": "유상증자 규모 축소 발표\n 주요 내용\n  지난 17일 3월 26일(목) 공시한 2.4조원 규모의 유상증자 금액을 1.8조원으로 0.6조원 축소 발표\n  축소 금액은 1) 비영업용 자산 매각(약 3,000억원, 한화임팩트 보유 지분 활용 등)과 2) 해외법인 자본성 조\n 달(약 3,000억원)로 보충할 계획\n  최종 증자 자금은 채무상환자금 50%(9,067억원), 시설자금 50%(9,077억원)로 구성\n  시설자금은 기존 금액과 변동 없으며, 태양광 고출..."
+        },
+        {
+          "score": -40,
+          "classification": "metadata",
+          "excerpt": "주가 (4월 22일) 47,550원 [ Analyst ] 이진명 수석연구원 김명주 연구원\n 시가총액 8,173.5십억원  jinmyung.lee93@shinhan.com  kimmj@shinhan.com"
+        },
+        {
+          "score": -40,
+          "classification": "metadata",
+          "excerpt": "1 I\n신한 속보 I 한화솔루션 2026년 4월 24일"
+        },
+        {
+          "score": -40,
+          "classification": "metadata",
+          "excerpt": "2 I\n신한 속보 I 한화솔루션 2026년 4월 24일"
+        },
+        {
+          "score": -40,
+          "classification": "metadata",
+          "excerpt": "3 I\n 신한 속보 I 한화솔루션 2026년 4월 24일"
+        },
+        {
+          "score": -120,
+          "classification": "table_caption",
+          "excerpt": "간담회 주요 내용 정리\n 1. 개요\n  기존 2.4조원(시설투자 0.9조원, 채무상환 1.5조원)에서 1.8조원(0.9조원, 0.9조\n 원)으로 조정\n  자구안 6천억원 발표: 자산 매각 3천억원(한화임팩트, 한화호텔앤리조트), 자본\n 성 조달 3천억원(6월말 목표)\n  ’27~’30년까지 EBITDA 13.8조원 창출 가능한 기반 마련, 6천억원 주주환원 자\n 금 마련 가능\n 2. 신재생 부문(큐셀) 업데이트\n  ’26~’30년 총 CapEx 3.5조원..."
+        },
+        {
+          "score": -120,
+          "classification": "table_caption",
+          "excerpt": " ’28년 초 탑콘 셀이 미국으로 가서 모듈화되면서 AMPC 수취→ASP 증대로 수\n 익에 기여, ’29년 이후 텐덤 생산에 따른 수익도 기대. 전체 모듈 생산 8.5GW\n →’30년 13.5GW 목표, 기본 설비 대면적화 및 탑콘 전환 완료, 텐덤 양산 설\n 비 구축 및 상업화 기반 확보 가능\n 2-2. 신재생 부문 실적 전망\n  매출은 ’25년 6.9조원→’30년 21.5조원, 영업이익은 ’29년에 2.5조원, ’30년은\n 1.7조원 (미국 세제혜택 소멸..."
+        }
+      ]
+    },
+    {
+      "id": "report_025",
       "schemaVersion": 2,
       "title": "[AI] 배합사료 제조 및 계란 가공식품 전문기업",
       "broker": "한국IR협의회",
@@ -5380,7 +6400,7 @@
         "금/원자재",
         "금리/매크로"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_021.txt",
+      "text_path": "data/reports/2026-04-23/text/report_025.txt",
       "text_length": 24867,
       "related_holdings_in_my_portfolio": [],
       "related_accounts": [],
@@ -5599,7 +6619,7 @@
       ]
     },
     {
-      "id": "report_022",
+      "id": "report_026",
       "schemaVersion": 2,
       "title": "[AI] IT 인프라 구축 및 유지보수 서비스 전문기업",
       "broker": "한국IR협의회",
@@ -5612,7 +6632,7 @@
         "AI 인프라",
         "금/원자재"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_022.txt",
+      "text_path": "data/reports/2026-04-23/text/report_026.txt",
       "text_length": 23949,
       "related_holdings_in_my_portfolio": [],
       "related_accounts": [],
@@ -5834,7 +6854,199 @@
       ]
     },
     {
-      "id": "report_023",
+      "id": "report_027",
+      "schemaVersion": 2,
+      "title": "1Q26 Conference call",
+      "broker": "SK증권",
+      "source": "네이버증권",
+      "date": "2026-04-23",
+      "category": "종목분석",
+      "report_type": "stock",
+      "sector": "매크로",
+      "themes": [
+        "HBM/메모리",
+        "AI 인프라",
+        "전력 인프라",
+        "금/원자재"
+      ],
+      "text_path": "data/reports/2026-04-23/text/report_027.txt",
+      "text_length": 10875,
+      "related_holdings_in_my_portfolio": [],
+      "related_accounts": [],
+      "key_thesis": "SK하이닉스는 긍정 시각이며 핵심 근거는 4Q25 컨퍼런스 콜 기준 시장 전망 1Q26 컨퍼런스 콜 기준 시장 전망\n AI 컴퓨팅 내 메모리 중요성 상승\n 서버 시장 중심으로 메모리 수요 폭발적 증가하나, 공\n시장 전체 고성능 메모리 수요 급증 / 조건: 다만, 서버향 메모리 수요 강세가 이를 상쇄. | 단 공정 전환 가속화 올해 CapEx 규모는 전년 대비 크게 증가할 것으로 예상",
+      "key_points": [
+        "SK하이닉스는 긍정 시각이며 핵심 근거는 4Q25 컨퍼런스 콜 기준 시장 전망 1Q26 컨퍼런스 콜 기준 시장 전망\n AI 컴퓨팅 내 메모리 중요성 상승\n 서버 시장 중심으로 메모리 수요 폭발적 증가하나, 공\n시장 전체 고성능 메모리 수요 급증 / 조건: 다만, 서버향 메모리 수요 강세가 이를 상쇄. | 단 공정 전환 가속화 올해 CapEx 규모는 전년 대비 크게 증가할 것으로 예상",
+        "SK하이닉스는 중립 시각이며 핵심 근거는 메모리 효율화 기술은 개별 기기의 메모리 사용량을 줄이는 것처럼 보이나, 실제로는 단위 메모리당\n처리 컨텍스트, 사용자 극대화시키는 방향. 시장 규모 키우고, 수요 견인하는 선순환 구조 전망\n<스마트폰, PC>\n가격 상승에 따른 원가 부담으로 세트 출하량 조정, 제품 포트 변화 등 일부... / 조건: 다만, 서버향 메모리 수요 강세가 상쇄하며 전체 ...",
+        "SK하이닉스는 부정 시각이며 핵심 근거는 Q) 장기공급계약 업데이트. 확대 시점 및 과거 계약과의 차이. 계약의 범위와 조건\n공급 부족 장기화로 중장기 물량 확보에 대한 요청 크게 증가. 고객들은 가격과 공급 불확실성을 사\n업의 핵심 리스크로 인식. 우리도 수요 가시성 확보를 통한 투자 증가 부담 완화 매우 중요",
+        "SK하이닉스는 긍정 시각이며 핵심 근거는 3\n# CapEx\n고객 수요가 공급역량 상회지속. 수요 구조적 성장 대응 위해 공급 역량 확보가 핵심 경쟁력\n올해 설비투자는 전년대비 크게 증가. 대부분은 M15X 램프업과 용인클러스터 인프라, EUV 등 핵\n심장비 확보를 위한 것"
+      ],
+      "primary_claim": {
+        "entity": "SK하이닉스",
+        "direction": "positive",
+        "strength": "medium",
+        "horizon": "long",
+        "reason": "4Q25 컨퍼런스 콜 기준 시장 전망 1Q26 컨퍼런스 콜 기준 시장 전망\n AI 컴퓨팅 내 메모리 중요성 상승\n 서버 시장 중심으로 메모리 수요 폭발적 증가하나, 공\n시장 전체 고성능 메모리 수요 급증",
+        "condition": "다만, 서버향 메모리 수요 강세가 이를 상쇄. | 단 공정 전환 가속화 올해 CapEx 규모는 전년 대비 크게 증가할 것으로 예상",
+        "counterpoint": "반면, 공급은 제한 급 업계 전반의 CAPA 제약으로 수요 증가폭 제한 | 부담으로 세트 출하량 조정, 제품 포트폴리 | 다만, 서버향 메모리 수요 강세가 이를 상쇄.",
+        "source_span": "paragraph_4",
+        "classification": "investment_claim",
+        "classification_confidence": 0.94,
+        "summary": "SK하이닉스는 긍정 시각이며 핵심 근거는 4Q25 컨퍼런스 콜 기준 시장 전망 1Q26 컨퍼런스 콜 기준 시장 전망\n AI 컴퓨팅 내 메모리 중요성 상승\n 서버 시장 중심으로 메모리 수요 폭발적 증가하나, 공\n시장 전체 고성능 메모리 수요 급증 / 조건: 다만, 서버향 메모리 수요 강세가 이를 상쇄. | 단 공정 전환 가속화 올해 CapEx 규모는 전년 대비 크게 증가할 것으로 예상"
+      },
+      "claim_candidates": [
+        {
+          "entity": "SK하이닉스",
+          "direction": "positive",
+          "strength": "medium",
+          "horizon": "long",
+          "reason": "4Q25 컨퍼런스 콜 기준 시장 전망 1Q26 컨퍼런스 콜 기준 시장 전망\n AI 컴퓨팅 내 메모리 중요성 상승\n 서버 시장 중심으로 메모리 수요 폭발적 증가하나, 공\n시장 전체 고성능 메모리 수요 급증",
+          "condition": "다만, 서버향 메모리 수요 강세가 이를 상쇄. | 단 공정 전환 가속화 올해 CapEx 규모는 전년 대비 크게 증가할 것으로 예상",
+          "counterpoint": "반면, 공급은 제한 급 업계 전반의 CAPA 제약으로 수요 증가폭 제한 | 부담으로 세트 출하량 조정, 제품 포트폴리 | 다만, 서버향 메모리 수요 강세가 이를 상쇄.",
+          "source_span": "paragraph_4",
+          "classification": "investment_claim",
+          "classification_confidence": 0.94,
+          "summary": "SK하이닉스는 긍정 시각이며 핵심 근거는 4Q25 컨퍼런스 콜 기준 시장 전망 1Q26 컨퍼런스 콜 기준 시장 전망\n AI 컴퓨팅 내 메모리 중요성 상승\n 서버 시장 중심으로 메모리 수요 폭발적 증가하나, 공\n시장 전체 고성능 메모리 수요 급증 / 조건: 다만, 서버향 메모리 수요 강세가 이를 상쇄. | 단 공정 전환 가속화 올해 CapEx 규모는 전년 대비 크게 증가할 것으로 예상"
+        },
+        {
+          "entity": "SK하이닉스",
+          "direction": "neutral",
+          "strength": "medium",
+          "horizon": "medium",
+          "reason": "메모리 효율화 기술은 개별 기기의 메모리 사용량을 줄이는 것처럼 보이나, 실제로는 단위 메모리당\n처리 컨텍스트, 사용자 극대화시키는 방향. 시장 규모 키우고, 수요 견인하는 선순환 구조 전망\n<스마트폰, PC>\n가격 상승에 따른 원가 부담으로 세트 출하량 조정, 제품 포트 변화 등 일부...",
+          "condition": "다만, 서버향 메모리 수요 강세가 상쇄하며 전체 시장 성장 견인",
+          "counterpoint": "부담으로 세트 출하량 조정, 제품 포트 변화 등 일부 수요 둔화 움직임 | 다만, 서버향 메모리 수요 강세가 상쇄하며 전체 시장 성장 견인 | 반면, 공급은 제한 급 업계 전반의 CAPA 제약으로 수요 증가폭 제한",
+          "source_span": "paragraph_11",
+          "classification": "investment_claim",
+          "classification_confidence": 0.86,
+          "summary": "SK하이닉스는 중립 시각이며 핵심 근거는 메모리 효율화 기술은 개별 기기의 메모리 사용량을 줄이는 것처럼 보이나, 실제로는 단위 메모리당\n처리 컨텍스트, 사용자 극대화시키는 방향. 시장 규모 키우고, 수요 견인하는 선순환 구조 전망\n<스마트폰, PC>\n가격 상승에 따른 원가 부담으로 세트 출하량 조정, 제품 포트 변화 등 일부... / 조건: 다만, 서버향 메모리 수요 강세가 상쇄하며 전체 ..."
+        },
+        {
+          "entity": "SK하이닉스",
+          "direction": "negative",
+          "strength": "weak",
+          "horizon": "long",
+          "reason": "Q) 장기공급계약 업데이트. 확대 시점 및 과거 계약과의 차이. 계약의 범위와 조건\n공급 부족 장기화로 중장기 물량 확보에 대한 요청 크게 증가. 고객들은 가격과 공급 불확실성을 사\n업의 핵심 리스크로 인식. 우리도 수요 가시성 확보를 통한 투자 증가 부담 완화 매우 중요",
+          "condition": null,
+          "counterpoint": "리스크로 인식. 우리도 수요 가시성 확보를 통한 투자 증가 부담 완화 매우 중요 | 반면, 공급은 제한 급 업계 전반의 CAPA 제약으로 수요 증가폭 제한 | 부담으로 세트 출하량 조정, 제품 포트폴리",
+          "source_span": "paragraph_29",
+          "classification": "weak_claim",
+          "classification_confidence": 0.48,
+          "summary": "SK하이닉스는 부정 시각이며 핵심 근거는 Q) 장기공급계약 업데이트. 확대 시점 및 과거 계약과의 차이. 계약의 범위와 조건\n공급 부족 장기화로 중장기 물량 확보에 대한 요청 크게 증가. 고객들은 가격과 공급 불확실성을 사\n업의 핵심 리스크로 인식. 우리도 수요 가시성 확보를 통한 투자 증가 부담 완화 매우 중요"
+        },
+        {
+          "entity": "SK하이닉스",
+          "direction": "positive",
+          "strength": "weak",
+          "horizon": "medium",
+          "reason": "3\n# CapEx\n고객 수요가 공급역량 상회지속. 수요 구조적 성장 대응 위해 공급 역량 확보가 핵심 경쟁력\n올해 설비투자는 전년대비 크게 증가. 대부분은 M15X 램프업과 용인클러스터 인프라, EUV 등 핵\n심장비 확보를 위한 것",
+          "condition": null,
+          "counterpoint": "반면, 공급은 제한 급 업계 전반의 CAPA 제약으로 수요 증가폭 제한 | 부담으로 세트 출하량 조정, 제품 포트폴리 | 다만, 서버향 메모리 수요 강세가 이를 상쇄.",
+          "source_span": "paragraph_18",
+          "classification": "weak_claim",
+          "classification_confidence": 0.48,
+          "summary": "SK하이닉스는 긍정 시각이며 핵심 근거는 3\n# CapEx\n고객 수요가 공급역량 상회지속. 수요 구조적 성장 대응 위해 공급 역량 확보가 핵심 경쟁력\n올해 설비투자는 전년대비 크게 증가. 대부분은 M15X 램프업과 용인클러스터 인프라, EUV 등 핵\n심장비 확보를 위한 것"
+        }
+      ],
+      "key_numbers": [
+        {
+          "label": "supporting",
+          "value": "20%",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "10%",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "77%",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "53%",
+          "why_it_matters": "보조 참고 수치"
+        }
+      ],
+      "what_changed": [
+        "1Q26 DRAM 31.4 조원, NAND 6.2 조원, OPM DRAM 77%, NAND 53% 추정\n 장기공급계약 통한 수요 가시성, 투자 효율성 개선, 업황 변동성 완화 기대\n 수요 전방위 확대. 공급부족 장기화 가능성. 배당, 자사주 매입 소각 등 연내 추가 주주환원 방안 마련할 것",
+        "4Q25 컨퍼런스 콜 기준 시장 전망 1Q26 컨퍼런스 콜 기준 시장 전망\n AI 컴퓨팅 내 메모리 중요성 상승\n 서버 시장 중심으로 메모리 수요 폭발적 증가하나, 공\n시장 전체 고성능 메모리 수요 급증 반면, 공급은 제한\n 급 업계 전반의 CAPA 제약으로 수요 증가폭 제한\n -> 가격 환경 우호적 기조 당분간 유지 전망\nDRAM B/G 26년 20% 이상 성장 N/A\nNAND B/G 26년 10% 후반 성장 N/A\n 부품 ...",
+        "디램: 출하 가이던스 부합하는 출하. 공급 여력 내 HBM과 128GB 이상 고용량 서버 모듈 위주 판\n매 대응. ASP는 일반 디램 가격 강세 가속화로 60% 중반 상승\n낸드: 전분기 판매 확대에 따른 기저. 고부가 믹스 전환 위한 단품 축소, 생산 리드타임 증가해 출\n하량 전분기대비 10% 감소. 가격은 전제품 강세로 70% 중반 상승"
+      ],
+      "bull_case": [
+        "4Q25 컨퍼런스 콜 기준 시장 전망 1Q26 컨퍼런스 콜 기준 시장 전망\n AI 컴퓨팅 내 메모리 중요성 상승\n 서버 시장 중심으로 메모리 수요 폭발적 증가하나, 공\n시장 전체 고성능 메모리 수요 급증 반면, 공급은 제한\n 급 업계 전반의 CAPA 제약으로 수요 증가폭 제한\n -> 가격 환경 우호적 기조 당분간 유지 전망\nDRAM B/G 26년 20% 이상 성장 N/A\nNAND B/G 26...",
+        "3\n# CapEx\n고객 수요가 공급역량 상회지속. 수요 구조적 성장 대응 위해 공급 역량 확보가 핵심 경쟁력\n올해 설비투자는 전년대비 크게 증가. 대부분은 M15X 램프업과 용인클러스터 인프라, EUV 등 핵\n심장비 확보를 위한 것"
+      ],
+      "bear_case": [
+        "Q) 장기공급계약 업데이트. 확대 시점 및 과거 계약과의 차이. 계약의 범위와 조건\n공급 부족 장기화로 중장기 물량 확보에 대한 요청 크게 증가. 고객들은 가격과 공급 불확실성을 사\n업의 핵심 리스크로 인식. 우리도 수요 가시성 확보를 통한 투자 증가 부담 완화 매우 중요"
+      ],
+      "catalysts": [
+        "4Q25 컨퍼런스 콜 기준 시장 전망 1Q26 컨퍼런스 콜 기준 시장 전망\n AI 컴퓨팅 내 메모리 중요성 상승\n 서버 시장 중심으로 메모리 수요 폭발적 증가하나, 공\n시장 전체 고성능 메모리 수요 급증 반면, 공급은 제한\n 급 업계 전반의 CAPA 제약으로 수요 증가폭 제한\n -> 가격 환경 우호적 기조 당분간 유지 전...",
+        "메모리 효율화 기술은 개별 기기의 메모리 사용량을 줄이는 것처럼 보이나, 실제로는 단위 메모리당\n처리 컨텍스트, 사용자 극대화시키는 방향. 시장 규모 키우고, 수요 견인하는 선순환 구조 전망\n<스마트폰, PC>\n가격 상승에 따른 원가 부담으로 세트 출하량 조정, 제품 포트 변화 등 일부 수요 둔화 움직임\n다만, 서버향 메...",
+        "Q) 장기공급계약 업데이트. 확대 시점 및 과거 계약과의 차이. 계약의 범위와 조건\n공급 부족 장기화로 중장기 물량 확보에 대한 요청 크게 증가. 고객들은 가격과 공급 불확실성을 사\n업의 핵심 리스크로 인식. 우리도 수요 가시성 확보를 통한 투자 증가 부담 완화 매우 중요"
+      ],
+      "risks": [
+        "4Q25 컨퍼런스 콜 기준 시장 전망 1Q26 컨퍼런스 콜 기준 시장 전망\n AI 컴퓨팅 내 메모리 중요성 상승\n 서버 시장 중심으로 메모리 수요 폭발적 증가하나, 공\n시장 전체 고성능 메모리 수요 급증 반면, 공급은 제한\n 급 업계 전반의 CAPA 제약으로 수요 증가폭 제한\n -> 가격 환경 우호적 기조 당분간 유지 전...",
+        "메모리 효율화 기술은 개별 기기의 메모리 사용량을 줄이는 것처럼 보이나, 실제로는 단위 메모리당\n처리 컨텍스트, 사용자 극대화시키는 방향. 시장 규모 키우고, 수요 견인하는 선순환 구조 전망\n<스마트폰, PC>\n가격 상승에 따른 원가 부담으로 세트 출하량 조정, 제품 포트 변화 등 일부 수요 둔화 움직임\n다만, 서버향 메...",
+        "Q) 장기공급계약 업데이트. 확대 시점 및 과거 계약과의 차이. 계약의 범위와 조건\n공급 부족 장기화로 중장기 물량 확보에 대한 요청 크게 증가. 고객들은 가격과 공급 불확실성을 사\n업의 핵심 리스크로 인식. 우리도 수요 가시성 확보를 통한 투자 증가 부담 완화 매우 중요"
+      ],
+      "new_info": "1Q26 DRAM 31.4 조원, NAND 6.2 조원, OPM DRAM 77%, NAND 53% 추정\n 장기공급계약 통한 수요 가시성, 투자 효율성 개선, 업황 변동성 완화 기대\n 수요 전방위 확대. 공급부족 장기화 가능성. 배당, 자사주 매입 소각 등 연내 추가 주주환원 방안 마련할 것",
+      "thesis_novelty": "MED",
+      "sentiment_score": -0.25,
+      "portfolio_impacts_candidate": [],
+      "confidence": "HIGH",
+      "quality": {
+        "contaminationEvidenceCount": 0,
+        "totalEvidenceCount": 8,
+        "weakClaimCount": 2,
+        "totalClaims": 4
+      },
+      "evidence_notes": [
+        {
+          "score": 58,
+          "classification": "investment_claim",
+          "excerpt": "4Q25 컨퍼런스 콜 기준 시장 전망 1Q26 컨퍼런스 콜 기준 시장 전망\n AI 컴퓨팅 내 메모리 중요성 상승\n 서버 시장 중심으로 메모리 수요 폭발적 증가하나, 공\n시장 전체 고성능 메모리 수요 급증 반면, 공급은 제한\n 급 업계 전반의 CAPA 제약으로 수요 증가폭 제한\n -> 가격 환경 우호적 기조 당분간 유지 전망\nDRAM B/G 26년 20% 이상 성장 N/A\nNAND B/G 26년 10% 후반 성장 N/A\n 부품 원가 상승·소비 심리 약화, Set ..."
+        },
+        {
+          "score": 31,
+          "classification": "investment_claim",
+          "excerpt": "메모리 효율화 기술은 개별 기기의 메모리 사용량을 줄이는 것처럼 보이나, 실제로는 단위 메모리당\n처리 컨텍스트, 사용자 극대화시키는 방향. 시장 규모 키우고, 수요 견인하는 선순환 구조 전망\n<스마트폰, PC>\n가격 상승에 따른 원가 부담으로 세트 출하량 조정, 제품 포트 변화 등 일부 수요 둔화 움직임\n다만, 서버향 메모리 수요 강세가 상쇄하며 전체 시장 성장 견인\nAI 컴퓨터 내 메모리 중요성 높아지며, 고성능 메모리 수요 급증 반면, 공급은 제한적"
+        },
+        {
+          "score": 23,
+          "classification": "weak_claim",
+          "excerpt": "Q) 장기공급계약 업데이트. 확대 시점 및 과거 계약과의 차이. 계약의 범위와 조건\n공급 부족 장기화로 중장기 물량 확보에 대한 요청 크게 증가. 고객들은 가격과 공급 불확실성을 사\n업의 핵심 리스크로 인식. 우리도 수요 가시성 확보를 통한 투자 증가 부담 완화 매우 중요"
+        },
+        {
+          "score": 18,
+          "classification": "weak_claim",
+          "excerpt": "3\n# CapEx\n고객 수요가 공급역량 상회지속. 수요 구조적 성장 대응 위해 공급 역량 확보가 핵심 경쟁력\n올해 설비투자는 전년대비 크게 증가. 대부분은 M15X 램프업과 용인클러스터 인프라, EUV 등 핵\n심장비 확보를 위한 것"
+        },
+        {
+          "score": 18,
+          "classification": "weak_claim",
+          "excerpt": "# 재무 건전성 목표, 주주환원\n전례없는 성장 기회 맞이. 높은 투자 수익률 감안하면 지금은 창출되는 현금을 사업에 재투자 필요\n장기적이고, 전략적이고 필요한 투자 집행할 수 있도록 건전성 확보할 것\n순현금 100조원 이상의 달성과 주주환원 확대는 병행 가능한 목표\n배당과 함께 자사주 매입 소각 등 추가적인 수단 적극 검토해 연내 실행방안 마련할 것"
+        },
+        {
+          "score": 18,
+          "classification": "weak_claim",
+          "excerpt": "Q) 투자 기조와 향후 공급과잉 우려에 대한 의견\n투자 방침은 Discipline 내 수요 가시성을 고려한 투자. 현재 견조한 메모리 수요 지속 상황에서\n26년 투자는 미래 인프라 준비와 수요 대응 위한 핵심 장비 확보를 위해 전년대비 크게 증가 예상.\n중장기 생산 능력 확보 위한 용인 클러스터 팹을 빠르게 진행하고, 내년 초 완공 예정인 P1 부터\n이후 P6까지 마무리하기 위해 단계적으로 투자 집행 예정\n27년까지 선단 전환 위한 필수 장비 투자 역시 계획대로..."
+        },
+        {
+          "score": 15,
+          "classification": "weak_claim",
+          "excerpt": "# 2Q26 전망 (B/G)\nDRAM: +한자리 수 후반%. 고용량 서버 모듈, 모바일 제품 수요 적극 대응\nNAND: +10% 중반. 321단, eSSD 확판"
+        },
+        {
+          "score": 14,
+          "classification": "weak_claim",
+          "excerpt": "1Q26 DRAM 31.4 조원, NAND 6.2 조원, OPM DRAM 77%, NAND 53% 추정\n 장기공급계약 통한 수요 가시성, 투자 효율성 개선, 업황 변동성 완화 기대\n 수요 전방위 확대. 공급부족 장기화 가능성. 배당, 자사주 매입 소각 등 연내 추가 주주환원 방안 마련할 것"
+        }
+      ]
+    },
+    {
+      "id": "report_028",
       "schemaVersion": 2,
       "title": "1Q26 Re: 든든한 로직스",
       "broker": "DS투자증권",
@@ -5847,7 +7059,7 @@
         "금/원자재",
         "금리/매크로"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_023.txt",
+      "text_path": "data/reports/2026-04-23/text/report_028.txt",
       "text_length": 26137,
       "related_holdings_in_my_portfolio": [],
       "related_accounts": [],
@@ -5969,7 +7181,7 @@
       ]
     },
     {
-      "id": "report_024",
+      "id": "report_029",
       "schemaVersion": 2,
       "title": "1Q26 Re: 사업은 여전히 잘 하고 있다",
       "broker": "하나증권",
@@ -5982,7 +7194,7 @@
         "금/원자재",
         "금리/매크로"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_024.txt",
+      "text_path": "data/reports/2026-04-23/text/report_029.txt",
       "text_length": 29073,
       "related_holdings_in_my_portfolio": [],
       "related_accounts": [],
@@ -6083,7 +7295,7 @@
       ]
     },
     {
-      "id": "report_025",
+      "id": "report_030",
       "schemaVersion": 2,
       "title": "1Q26 Review 실망시키지 않는 실적. 기대치 부합.",
       "broker": "키움증권",
@@ -6096,7 +7308,7 @@
         "AI 인프라",
         "금/원자재"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_025.txt",
+      "text_path": "data/reports/2026-04-23/text/report_030.txt",
       "text_length": 7375,
       "related_holdings_in_my_portfolio": [],
       "related_accounts": [],
@@ -6322,7 +7534,7 @@
       ]
     },
     {
-      "id": "report_026",
+      "id": "report_031",
       "schemaVersion": 2,
       "title": "26년 기대 이상으로 하드캐리 할 중국법인",
       "broker": "iM증권",
@@ -6336,7 +7548,7 @@
         "금/원자재",
         "금리/매크로"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_026.txt",
+      "text_path": "data/reports/2026-04-23/text/report_031.txt",
       "text_length": 23134,
       "related_holdings_in_my_portfolio": [],
       "related_accounts": [],
@@ -6508,7 +7720,7 @@
       ]
     },
     {
-      "id": "report_027",
+      "id": "report_032",
       "schemaVersion": 2,
       "title": "동탄시티병원 스마트 병동 투어 후기: 현장에서 확인한 씨어스의 경쟁력",
       "broker": "유진투자증권",
@@ -6521,7 +7733,7 @@
         "AI 인프라",
         "금/원자재"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_027.txt",
+      "text_path": "data/reports/2026-04-23/text/report_032.txt",
       "text_length": 18599,
       "related_holdings_in_my_portfolio": [],
       "related_accounts": [],
@@ -6655,7 +7867,7 @@
       ]
     },
     {
-      "id": "report_028",
+      "id": "report_033",
       "schemaVersion": 2,
       "title": "반도체, 배터리 부문 호조로 이익 급증 예상",
       "broker": "유진투자증권",
@@ -6668,7 +7880,7 @@
         "AI 인프라",
         "금/원자재"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_028.txt",
+      "text_path": "data/reports/2026-04-23/text/report_033.txt",
       "text_length": 19048,
       "related_holdings_in_my_portfolio": [],
       "related_accounts": [],
@@ -6813,7 +8025,7 @@
       ]
     },
     {
-      "id": "report_029",
+      "id": "report_034",
       "schemaVersion": 2,
       "title": "반등: 상반기 '루빈', 하반기 '건식 4680'",
       "broker": "SK증권",
@@ -6826,7 +8038,7 @@
         "AI 인프라",
         "금/원자재"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_029.txt",
+      "text_path": "data/reports/2026-04-23/text/report_034.txt",
       "text_length": 27187,
       "related_holdings_in_my_portfolio": [],
       "related_accounts": [],
@@ -6974,7 +8186,7 @@
       ]
     },
     {
-      "id": "report_030",
+      "id": "report_035",
       "schemaVersion": 2,
       "title": "발전엔진 최대수혜: 저위험, 고마진, 반영구",
       "broker": "유안타증권",
@@ -6989,7 +8201,7 @@
         "금/원자재",
         "금리/매크로"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_030.txt",
+      "text_path": "data/reports/2026-04-23/text/report_035.txt",
       "text_length": 32069,
       "related_holdings_in_my_portfolio": [
         {
@@ -7203,7 +8415,7 @@
       ]
     },
     {
-      "id": "report_031",
+      "id": "report_036",
       "schemaVersion": 2,
       "title": "불확실성 완화 국면",
       "broker": "IBK투자증권",
@@ -7216,7 +8428,7 @@
         "AI 인프라",
         "금/원자재"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_031.txt",
+      "text_path": "data/reports/2026-04-23/text/report_036.txt",
       "text_length": 33682,
       "related_holdings_in_my_portfolio": [],
       "related_accounts": [],
@@ -7376,7 +8588,7 @@
       ]
     },
     {
-      "id": "report_032",
+      "id": "report_037",
       "schemaVersion": 2,
       "title": "소재혁신센터 가동에 따른 소재 사업 매출 원년",
       "broker": "유진투자증권",
@@ -7388,7 +8600,7 @@
       "themes": [
         "금/원자재"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_032.txt",
+      "text_path": "data/reports/2026-04-23/text/report_037.txt",
       "text_length": 41895,
       "related_holdings_in_my_portfolio": [],
       "related_accounts": [],
@@ -7484,7 +8696,7 @@
       ]
     },
     {
-      "id": "report_033",
+      "id": "report_038",
       "schemaVersion": 2,
       "title": "순조로운 출발 예상",
       "broker": "IBK투자증권",
@@ -7498,7 +8710,7 @@
         "전력 인프라",
         "금/원자재"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_033.txt",
+      "text_path": "data/reports/2026-04-23/text/report_038.txt",
       "text_length": 34514,
       "related_holdings_in_my_portfolio": [],
       "related_accounts": [],
@@ -7685,7 +8897,7 @@
       ]
     },
     {
-      "id": "report_034",
+      "id": "report_039",
       "schemaVersion": 2,
       "title": "숨겨진 ESS·로봇 수혜주",
       "broker": "SK증권",
@@ -7700,7 +8912,7 @@
         "원자력",
         "금/원자재"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_034.txt",
+      "text_path": "data/reports/2026-04-23/text/report_039.txt",
       "text_length": 24826,
       "related_holdings_in_my_portfolio": [],
       "related_accounts": [],
@@ -7881,7 +9093,7 @@
       ]
     },
     {
-      "id": "report_035",
+      "id": "report_040",
       "schemaVersion": 2,
       "title": "요소 비료 강세와 전후 재건 수요의 반사 수혜",
       "broker": "하나증권",
@@ -7893,7 +9105,7 @@
       "themes": [
         "금/원자재"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_035.txt",
+      "text_path": "data/reports/2026-04-23/text/report_040.txt",
       "text_length": 24871,
       "related_holdings_in_my_portfolio": [],
       "related_accounts": [],
@@ -8041,7 +9253,7 @@
       ]
     },
     {
-      "id": "report_036",
+      "id": "report_041",
       "schemaVersion": 2,
       "title": "원엑시아 품고 체질 개선 돌입",
       "broker": "미래에셋증권",
@@ -8055,7 +9267,7 @@
         "방산",
         "금/원자재"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_036.txt",
+      "text_path": "data/reports/2026-04-23/text/report_041.txt",
       "text_length": 49584,
       "related_holdings_in_my_portfolio": [],
       "related_accounts": [],
@@ -8209,7 +9421,7 @@
       ]
     },
     {
-      "id": "report_037",
+      "id": "report_042",
       "schemaVersion": 2,
       "title": "유상증자 Comment(2): 유상증자 규모 축소와 차세대 기술 주도권 확보 전략",
       "broker": "한화투자증권",
@@ -8224,7 +9436,7 @@
         "원자력",
         "금/원자재"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_037.txt",
+      "text_path": "data/reports/2026-04-23/text/report_042.txt",
       "text_length": 15164,
       "related_holdings_in_my_portfolio": [],
       "related_accounts": [],
@@ -8386,7 +9598,7 @@
       ]
     },
     {
-      "id": "report_038",
+      "id": "report_043",
       "schemaVersion": 2,
       "title": "익숙함 속 커져가는 기대감",
       "broker": "iM증권",
@@ -8399,7 +9611,7 @@
         "AI 인프라",
         "금/원자재"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_038.txt",
+      "text_path": "data/reports/2026-04-23/text/report_043.txt",
       "text_length": 22184,
       "related_holdings_in_my_portfolio": [],
       "related_accounts": [],
@@ -8592,7 +9804,7 @@
       ]
     },
     {
-      "id": "report_039",
+      "id": "report_044",
       "schemaVersion": 2,
       "title": "추가 성장 동력 유효",
       "broker": "IBK투자증권",
@@ -8605,7 +9817,7 @@
         "금/원자재",
         "금리/매크로"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_039.txt",
+      "text_path": "data/reports/2026-04-23/text/report_044.txt",
       "text_length": 19405,
       "related_holdings_in_my_portfolio": [],
       "related_accounts": [],
@@ -8706,7 +9918,7 @@
       ]
     },
     {
-      "id": "report_040",
+      "id": "report_045",
       "schemaVersion": 2,
       "title": "매파적(Hawkish) 5월을 예고하다",
       "broker": "iM증권",
@@ -8720,7 +9932,7 @@
         "금/원자재",
         "금리/매크로"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_040.txt",
+      "text_path": "data/reports/2026-04-23/text/report_045.txt",
       "text_length": 9872,
       "related_holdings_in_my_portfolio": [
         {
@@ -8977,7 +10189,7 @@
       ]
     },
     {
-      "id": "report_041",
+      "id": "report_046",
       "schemaVersion": 2,
       "title": "어느 때보다 중요한 소비(소매판매) 지표",
       "broker": "하나증권",
@@ -8990,7 +10202,7 @@
         "금/원자재",
         "금리/매크로"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_041.txt",
+      "text_path": "data/reports/2026-04-23/text/report_046.txt",
       "text_length": 12792,
       "related_holdings_in_my_portfolio": [
         {
@@ -9195,7 +10407,7 @@
       ]
     },
     {
-      "id": "report_042",
+      "id": "report_047",
       "schemaVersion": 2,
       "title": "Daily Bond Morning Brief(2026.04.23)",
       "broker": "다올투자증권",
@@ -9207,7 +10419,7 @@
       "themes": [
         "AI 인프라"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_042.txt",
+      "text_path": "data/reports/2026-04-23/text/report_047.txt",
       "text_length": 14806,
       "related_holdings_in_my_portfolio": [
         {
@@ -9294,7 +10506,7 @@
       ]
     },
     {
-      "id": "report_043",
+      "id": "report_048",
       "schemaVersion": 2,
       "title": "Eugenes FICC Update",
       "broker": "유진투자증권",
@@ -9307,7 +10519,7 @@
         "금/원자재",
         "금리/매크로"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_043.txt",
+      "text_path": "data/reports/2026-04-23/text/report_048.txt",
       "text_length": 10647,
       "related_holdings_in_my_portfolio": [
         {
@@ -9418,7 +10630,7 @@
       ]
     },
     {
-      "id": "report_044",
+      "id": "report_049",
       "schemaVersion": 2,
       "title": "KP: 국가부채 우려와 KP 시장이 점검해야 할 신호",
       "broker": "하나증권",
@@ -9431,7 +10643,7 @@
         "금/원자재",
         "금리/매크로"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_044.txt",
+      "text_path": "data/reports/2026-04-23/text/report_049.txt",
       "text_length": 18558,
       "related_holdings_in_my_portfolio": [
         {
@@ -9638,7 +10850,7 @@
       ]
     },
     {
-      "id": "report_045",
+      "id": "report_050",
       "schemaVersion": 2,
       "title": "WGBI 편입 영향 점검",
       "broker": "키움증권",
@@ -9651,7 +10863,7 @@
         "금/원자재",
         "금리/매크로"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_045.txt",
+      "text_path": "data/reports/2026-04-23/text/report_050.txt",
       "text_length": 18076,
       "related_holdings_in_my_portfolio": [
         {
@@ -9865,7 +11077,7 @@
       ]
     },
     {
-      "id": "report_046",
+      "id": "report_051",
       "schemaVersion": 2,
       "title": "[미국은 지금] 케빈 워시의 계획(Feat, 청문회)",
       "broker": "키움증권",
@@ -9879,7 +11091,7 @@
         "금/원자재",
         "금리/매크로"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_046.txt",
+      "text_path": "data/reports/2026-04-23/text/report_051.txt",
       "text_length": 9862,
       "related_holdings_in_my_portfolio": [
         {
@@ -10160,7 +11372,7 @@
       ]
     },
     {
-      "id": "report_047",
+      "id": "report_052",
       "schemaVersion": 2,
       "title": "[EPS LIVE #208] 한국 ROE 24.7%로 미국과 대만 추월",
       "broker": "한화투자증권",
@@ -10176,7 +11388,7 @@
         "금/원자재",
         "금리/매크로"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_047.txt",
+      "text_path": "data/reports/2026-04-23/text/report_052.txt",
       "text_length": 91384,
       "related_holdings_in_my_portfolio": [
         {
@@ -10533,7 +11745,7 @@
       ]
     },
     {
-      "id": "report_048",
+      "id": "report_053",
       "schemaVersion": 2,
       "title": "[ETF Spot Comment] 국내외 ETF 비대칭 규제 해소로 전술적 투자 수단 확보",
       "broker": "IBK투자증권",
@@ -10545,7 +11757,7 @@
       "themes": [
         "금/원자재"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_048.txt",
+      "text_path": "data/reports/2026-04-23/text/report_053.txt",
       "text_length": 11591,
       "related_holdings_in_my_portfolio": [
         {
@@ -10745,7 +11957,7 @@
       ]
     },
     {
-      "id": "report_049",
+      "id": "report_054",
       "schemaVersion": 2,
       "title": "[IBKS Daily] Start with IBKS(2026.04.23) 전쟁통에도 실적은 나온다",
       "broker": "IBK투자증권",
@@ -10762,7 +11974,7 @@
         "금/원자재",
         "금리/매크로"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_049.txt",
+      "text_path": "data/reports/2026-04-23/text/report_054.txt",
       "text_length": 14938,
       "related_holdings_in_my_portfolio": [
         {
@@ -11001,7 +12213,7 @@
       ]
     },
     {
-      "id": "report_050",
+      "id": "report_055",
       "schemaVersion": 2,
       "title": "04/23 달러, 중동발 불안에 상승",
       "broker": "키움증권",
@@ -11015,7 +12227,7 @@
         "금/원자재",
         "금리/매크로"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_050.txt",
+      "text_path": "data/reports/2026-04-23/text/report_055.txt",
       "text_length": 29648,
       "related_holdings_in_my_portfolio": [
         {
@@ -11230,7 +12442,7 @@
       ]
     },
     {
-      "id": "report_051",
+      "id": "report_056",
       "schemaVersion": 2,
       "title": "04/23, 미 증시, 트럼프 휴전 연장, 기술주 호실적 기대감에 상승 마감",
       "broker": "키움증권",
@@ -11246,7 +12458,7 @@
         "방산",
         "금/원자재"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_051.txt",
+      "text_path": "data/reports/2026-04-23/text/report_056.txt",
       "text_length": 10326,
       "related_holdings_in_my_portfolio": [
         {
@@ -11596,7 +12808,7 @@
       ]
     },
     {
-      "id": "report_052",
+      "id": "report_057",
       "schemaVersion": 2,
       "title": "1Q 어닝시즌: AI 혁신과 비용 부담 사이의 업종별 차별화",
       "broker": "키움증권",
@@ -11609,7 +12821,7 @@
         "AI 인프라",
         "금/원자재"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_052.txt",
+      "text_path": "data/reports/2026-04-23/text/report_057.txt",
       "text_length": 14621,
       "related_holdings_in_my_portfolio": [
         {
@@ -11893,7 +13105,7 @@
       ]
     },
     {
-      "id": "report_053",
+      "id": "report_058",
       "schemaVersion": 2,
       "title": "눈 앞으로 다가온 우주 시대: 위성통신에서 우주 안보까지",
       "broker": "키움증권",
@@ -11909,7 +13121,7 @@
         "금/원자재",
         "금리/매크로"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_053.txt",
+      "text_path": "data/reports/2026-04-23/text/report_058.txt",
       "text_length": 636646,
       "related_holdings_in_my_portfolio": [
         {
@@ -12250,7 +13462,7 @@
       ]
     },
     {
-      "id": "report_054",
+      "id": "report_059",
       "schemaVersion": 2,
       "title": "대외 변수에도 실적/수주 모멘텀 유효, 코스피 6,400 선 돌파",
       "broker": "대신증권",
@@ -12265,7 +13477,7 @@
         "금/원자재",
         "금리/매크로"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_054.txt",
+      "text_path": "data/reports/2026-04-23/text/report_059.txt",
       "text_length": 14273,
       "related_holdings_in_my_portfolio": [
         {
@@ -12580,7 +13792,7 @@
       ]
     },
     {
-      "id": "report_055",
+      "id": "report_060",
       "schemaVersion": 2,
       "title": "수급의 정석, 구조와 알파",
       "broker": "대신증권",
@@ -12596,7 +13808,7 @@
         "금/원자재",
         "금리/매크로"
       ],
-      "text_path": "data/reports/2026-04-23/text/report_055.txt",
+      "text_path": "data/reports/2026-04-23/text/report_060.txt",
       "text_length": 148897,
       "related_holdings_in_my_portfolio": [
         {
@@ -12890,7 +14102,7 @@
       ]
     },
     {
-      "id": "report_056",
+      "id": "report_061",
       "schemaVersion": 2,
       "title": "실적 컨센서스, 너 얼마나 믿을 수 있니?",
       "broker": "메리츠증권",
@@ -12900,7 +14112,7 @@
       "report_type": "strategy",
       "sector": "반도체",
       "themes": [],
-      "text_path": "data/reports/2026-04-23/text/report_056.txt",
+      "text_path": "data/reports/2026-04-23/text/report_061.txt",
       "text_length": 18048,
       "related_holdings_in_my_portfolio": [
         {
@@ -13142,11 +14354,1662 @@
           "excerpt": "코스피 2026년 순이익 592조원\n코스피 12개월 선행(12MF) 순이익 추정치는 현재 630.9조원으로, 2026년 순이익\n은 592.0조원, 2027년 순이익은 710.9조원으로 시장은 내년에도 20% 이익 성장을\n예상하고 있다. 실적 추정치의 최근 1년의 추이를 보면, 코스피 12MF 순이익은\n200조원 수준에서 630.9조원까지 가파르게 상승했다."
         }
       ]
+    },
+    {
+      "id": "report_062",
+      "schemaVersion": 2,
+      "title": "글로벌 전략; Global Portfolio (4월 23일)",
+      "broker": "신한투자증권",
+      "source": "신한투자증권",
+      "date": "2026-04-23",
+      "category": "해외 주식",
+      "report_type": "theme",
+      "sector": "매크로",
+      "themes": [
+        "AI 인프라",
+        "전력 인프라",
+        "금/원자재",
+        "금리/매크로"
+      ],
+      "text_path": "data/reports/2026-04-23/text/report_062.txt",
+      "text_length": 29928,
+      "related_holdings_in_my_portfolio": [
+        {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "047810",
+          "name": "한국항공우주",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        }
+      ],
+      "related_accounts": [
+        "ISA",
+        "PENSION",
+        "KIS_MAIN"
+      ],
+      "key_thesis": "글로벌 전략; Global Portfolio (4월 23일)",
+      "key_points": [],
+      "primary_claim": null,
+      "claim_candidates": [],
+      "key_numbers": [],
+      "what_changed": [
+        "글로벌 포트폴리오 성과분해 글로벌 포트폴리오 1. USD (80) + CNY (20) 글로벌 포트폴리오 2. 미국 글로벌 포트폴리오 3. 중국\n (2020.03.05 = 100, Index) (%p) (2020.10.30 = 100, Index) (%p) (2021.02.18 = 100, Index) (%p)\n 포트폴리오 목표비중\n 380 BM 대비 상대성과 (우축) 160 BM 대비 상대성과 (우축) 140 BM 대비 상대성...",
+        "15 1M 수급 헬스케어 아스트라제네카 AZN.US US 5.0 (0.5) (3.2) 6.1 (6.0) 26/04/09 롱셩석유화학 002493.SZ CN (2.7) (1.2) 6.5 (12.2) 26/01/23\n 종합 0.2 바이오/ 일라이 릴리 LLY.US US 3.0 2.0 1.8 1.6 50.1 24/01/04 CATL 300750.SZ CN 편입 (2.5) 1.2 5.7 26/04/23\n * 이익: 12개월 선행 EP...",
+        "퀄리티 (0.3)\n 중국 공급 개혁 ETF 516160.SH CN 5.0 0.2 4.2 4.2 27.2 25/09/05 CATL(300750.SZ) 리튬 가격 상승과 중국 내 ESS 감산 기조 수혜주\n (1)\n 스타+차이넥스트 ETF 159781.SZ CN 3.0 2.5 7.9 14.9 18.2 25/09/24 방어/대체 단기채/유동성(USD) SHV.US US 9.5 0.0 0.1 0.0 0.1 25/08/11\n 대형 1.2..."
+      ],
+      "bull_case": [],
+      "bear_case": [],
+      "catalysts": [],
+      "risks": [],
+      "new_info": "글로벌 포트폴리오 성과분해 글로벌 포트폴리오 1. USD (80) + CNY (20) 글로벌 포트폴리오 2. 미국 글로벌 포트폴리오 3. 중국\n (2020.03.05 = 100, Index) (%p) (2020.10.30 = 100, Index) (%p) (2021.02.18 = 100, Index) (%p)\n 포트폴리오 목표비중\n 380 BM 대비 상대성과 (우축) 160 BM 대비 상대성과 (우축) 140 BM 대비 상대성...",
+      "thesis_novelty": "LOW",
+      "sentiment_score": 0,
+      "portfolio_impacts_candidate": [
+        {
+          "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "글로벌 전략; Global Portfolio (4월 23일)",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "487240",
+          "target_name": "KODEX AI전력핵심설비",
+          "account_key": "PENSION",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "글로벌 전략; Global Portfolio (4월 23일)",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "360750",
+          "target_name": "TIGER 미국S&P500",
+          "account_key": "PENSION",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "글로벌 전략; Global Portfolio (4월 23일)",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "neutral",
+          "horizon": "1m",
+          "strength": 0.28,
+          "reason": "글로벌 전략; Global Portfolio (4월 23일)",
+          "action_hint": "관찰"
+        }
+      ],
+      "confidence": "MEDIUM",
+      "quality": {
+        "contaminationEvidenceCount": 0,
+        "totalEvidenceCount": 0,
+        "weakClaimCount": 0,
+        "totalClaims": 0
+      },
+      "evidence_notes": [
+        {
+          "score": -40,
+          "classification": "metadata",
+          "excerpt": "(4) 0\n 샤프비율 베타 금리민감도 MDD VaR CVaR"
+        },
+        {
+          "score": -120,
+          "classification": "table_caption",
+          "excerpt": "글로벌 포트폴리오 성과분해 글로벌 포트폴리오 1. USD (80) + CNY (20) 글로벌 포트폴리오 2. 미국 글로벌 포트폴리오 3. 중국\n (2020.03.05 = 100, Index) (%p) (2020.10.30 = 100, Index) (%p) (2021.02.18 = 100, Index) (%p)\n 포트폴리오 목표비중\n 380 BM 대비 상대성과 (우축) 160 BM 대비 상대성과 (우축) 140 BM 대비 상대성과(우축) 30\n 글로벌 포트폴리오 ..."
+        },
+        {
+          "score": -120,
+          "classification": "table_caption",
+          "excerpt": "IT H/W IT S/W\n 중국 그린\n 방어/대체\n 민감주 소비재 바이오\n 포트1\n S&P500 CSI300\n ACWI\n 민감주 테슬라 TSLA.US US 2.0 0.3 (1.1) 5.3 13.5 25/08/12 ` 에너지 공급 개혁 ETF 516160.SH CN 편출 0.2 4.2 4.2 27.2 25/09/05\n 자금광업 601899.SH SH (0.4) 1.8 12.3 19.4 25/10/20\n (%) 1M 이익 (Z Score) 스타일 점수 바이오/ 일라..."
+        },
+        {
+          "score": -120,
+          "classification": "table_caption",
+          "excerpt": "15 1M 수급 헬스케어 아스트라제네카 AZN.US US 5.0 (0.5) (3.2) 6.1 (6.0) 26/04/09 롱셩석유화학 002493.SZ CN (2.7) (1.2) 6.5 (12.2) 26/01/23\n 종합 0.2 바이오/ 일라이 릴리 LLY.US US 3.0 2.0 1.8 1.6 50.1 24/01/04 CATL 300750.SZ CN 편입 (2.5) 1.2 5.7 26/04/23\n * 이익: 12개월 선행 EPS의 변화율\n 헬스케어 가던트헬스 G..."
+        },
+        {
+          "score": -120,
+          "classification": "table_caption",
+          "excerpt": "퀄리티 (0.3)\n 중국 공급 개혁 ETF 516160.SH CN 5.0 0.2 4.2 4.2 27.2 25/09/05 CATL(300750.SZ) 리튬 가격 상승과 중국 내 ESS 감산 기조 수혜주\n (1)\n 스타+차이넥스트 ETF 159781.SZ CN 3.0 2.5 7.9 14.9 18.2 25/09/24 방어/대체 단기채/유동성(USD) SHV.US US 9.5 0.0 0.1 0.0 0.1 25/08/11\n 대형 1.2\n AI ETF 159819.SZ C..."
+        },
+        {
+          "score": -999,
+          "classification": "disclaimer",
+          "excerpt": "Compliance Notice\n • 본 자료는 당사 리서치센터 해외주식팀의 의견을 반영하여 ETF와 주식 등으로 구성한 글로벌 포트폴리오이며 투자를 유도할 목적이 아니라 투자자의 투자 판단에 참고가 되는 정보제공을 목적으로 하고 있습니다. 따라서 종목의 선택이나 투자의 최종결정은 투자자 자신의 판단으로 하시기 바랍니다.\n • 포트폴리오 변경은 주1회를 기준으로 하나 주가 수익률 변화와 변동 상황 발생 시 수시 변경도 진행하고 있습니다. 특히 종목별 비중, 편출..."
+        }
+      ]
+    },
+    {
+      "id": "report_063",
+      "schemaVersion": 2,
+      "title": "보잉(BA.US); 737 MAX 여름 47대 증산 계획",
+      "broker": "신한투자증권",
+      "source": "신한투자증권",
+      "date": "2026-04-23",
+      "category": "해외 주식",
+      "report_type": "theme",
+      "sector": "매크로",
+      "themes": [
+        "방산",
+        "금/원자재"
+      ],
+      "text_path": "data/reports/2026-04-23/text/report_063.txt",
+      "text_length": 13610,
+      "related_holdings_in_my_portfolio": [
+        {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "047810",
+          "name": "한국항공우주",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "064350",
+          "name": "현대로템",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "449450",
+          "name": "PLUS K방산",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        }
+      ],
+      "related_accounts": [
+        "ISA",
+        "PENSION",
+        "KIS_MAIN"
+      ],
+      "key_thesis": "매크로는 중립 시각이며 핵심 근거는 ✓ 투자판단 ★★★★☆ ✓ 목표주가 (LSEG, 컨센서스) 267.5 달러 [Global Equity Analyst]\n✓ 상승여력 15.6% ✓ 현재주가 (4 월 22 일) 231.3 달러 이주은 연구위원\n  junelee@shinhan.com / 조건: 단 ★★★★☆ ✓ 목표주가 (LSEG, 컨센서스) 267.",
+      "key_points": [
+        "매크로는 중립 시각이며 핵심 근거는 ✓ 투자판단 ★★★★☆ ✓ 목표주가 (LSEG, 컨센서스) 267.5 달러 [Global Equity Analyst]\n✓ 상승여력 15.6% ✓ 현재주가 (4 월 22 일) 231.3 달러 이주은 연구위원\n  junelee@shinhan.com / 조건: 단 ★★★★☆ ✓ 목표주가 (LSEG, 컨센서스) 267.",
+        "매크로는 긍정 시각이며 핵심 근거는 방산&우주: 매출 76억달러(+21%), OPM 3.1%(+0.6%p), 방산용 무기 30 주가\n대 인도(+4대). 신규 수주 90억달러, 수주잔고 860억달러로 역대 최고. (-1Y=0)\n 80\n 보잉\nPAC-3 탐색기(Seeker) 생산 확대를 위한 7년 계약 체결. 라인메탈과 S&...",
+        "매크로는 긍정 시각이며 핵심 근거는 상업용 항공기 분기별 매출 추이 및 증가율 방산, 우주&보안 분기별 매출 추이 및 증가율\n (십억달러) (%) (십억달러) (%)\n 상업용항공기(좌축) 방산,우주&보안(좌축)\n12 150 8 40\n YoY(우축) YoY(우축)"
+      ],
+      "primary_claim": {
+        "entity": "매크로",
+        "direction": "neutral",
+        "strength": "weak",
+        "horizon": "medium",
+        "reason": "✓ 투자판단 ★★★★☆ ✓ 목표주가 (LSEG, 컨센서스) 267.5 달러 [Global Equity Analyst]\n✓ 상승여력 15.6% ✓ 현재주가 (4 월 22 일) 231.3 달러 이주은 연구위원\n  junelee@shinhan.com",
+        "condition": "단 ★★★★☆ ✓ 목표주가 (LSEG, 컨센서스) 267.",
+        "counterpoint": null,
+        "source_span": "paragraph_2",
+        "classification": "weak_claim",
+        "classification_confidence": 0.48,
+        "summary": "매크로는 중립 시각이며 핵심 근거는 ✓ 투자판단 ★★★★☆ ✓ 목표주가 (LSEG, 컨센서스) 267.5 달러 [Global Equity Analyst]\n✓ 상승여력 15.6% ✓ 현재주가 (4 월 22 일) 231.3 달러 이주은 연구위원\n  junelee@shinhan.com / 조건: 단 ★★★★☆ ✓ 목표주가 (LSEG, 컨센서스) 267."
+      },
+      "claim_candidates": [
+        {
+          "entity": "매크로",
+          "direction": "neutral",
+          "strength": "weak",
+          "horizon": "medium",
+          "reason": "✓ 투자판단 ★★★★☆ ✓ 목표주가 (LSEG, 컨센서스) 267.5 달러 [Global Equity Analyst]\n✓ 상승여력 15.6% ✓ 현재주가 (4 월 22 일) 231.3 달러 이주은 연구위원\n  junelee@shinhan.com",
+          "condition": "단 ★★★★☆ ✓ 목표주가 (LSEG, 컨센서스) 267.",
+          "counterpoint": null,
+          "source_span": "paragraph_2",
+          "classification": "weak_claim",
+          "classification_confidence": 0.48,
+          "summary": "매크로는 중립 시각이며 핵심 근거는 ✓ 투자판단 ★★★★☆ ✓ 목표주가 (LSEG, 컨센서스) 267.5 달러 [Global Equity Analyst]\n✓ 상승여력 15.6% ✓ 현재주가 (4 월 22 일) 231.3 달러 이주은 연구위원\n  junelee@shinhan.com / 조건: 단 ★★★★☆ ✓ 목표주가 (LSEG, 컨센서스) 267."
+        },
+        {
+          "entity": "매크로",
+          "direction": "positive",
+          "strength": "weak",
+          "horizon": "medium",
+          "reason": "방산&우주: 매출 76억달러(+21%), OPM 3.1%(+0.6%p), 방산용 무기 30 주가\n대 인도(+4대). 신규 수주 90억달러, 수주잔고 860억달러로 역대 최고. (-1Y=0)\n 80\n 보잉\nPAC-3 탐색기(Seeker) 생산 확대를 위한 7년 계약 체결. 라인메탈과 S&...",
+          "condition": null,
+          "counterpoint": null,
+          "source_span": "paragraph_4",
+          "classification": "weak_claim",
+          "classification_confidence": 0.48,
+          "summary": "매크로는 긍정 시각이며 핵심 근거는 방산&우주: 매출 76억달러(+21%), OPM 3.1%(+0.6%p), 방산용 무기 30 주가\n대 인도(+4대). 신규 수주 90억달러, 수주잔고 860억달러로 역대 최고. (-1Y=0)\n 80\n 보잉\nPAC-3 탐색기(Seeker) 생산 확대를 위한 7년 계약 체결. 라인메탈과 S&..."
+        },
+        {
+          "entity": "매크로",
+          "direction": "positive",
+          "strength": "weak",
+          "horizon": "medium",
+          "reason": "상업용 항공기 분기별 매출 추이 및 증가율 방산, 우주&보안 분기별 매출 추이 및 증가율\n (십억달러) (%) (십억달러) (%)\n 상업용항공기(좌축) 방산,우주&보안(좌축)\n12 150 8 40\n YoY(우축) YoY(우축)",
+          "condition": null,
+          "counterpoint": null,
+          "source_span": "paragraph_15",
+          "classification": "weak_claim",
+          "classification_confidence": 0.48,
+          "summary": "매크로는 긍정 시각이며 핵심 근거는 상업용 항공기 분기별 매출 추이 및 증가율 방산, 우주&보안 분기별 매출 추이 및 증가율\n (십억달러) (%) (십억달러) (%)\n 상업용항공기(좌축) 방산,우주&보안(좌축)\n12 150 8 40\n YoY(우축) YoY(우축)"
+        }
+      ],
+      "key_numbers": [
+        {
+          "label": "thesis_anchor",
+          "value": "15.6%",
+          "why_it_matters": "핵심 투자 논리를 직접 뒷받침하는 수치"
+        },
+        {
+          "label": "catalyst_number",
+          "value": "21%",
+          "why_it_matters": "변화 촉매의 구체적 근거"
+        },
+        {
+          "label": "catalyst_number",
+          "value": "3.1%",
+          "why_it_matters": "변화 촉매의 구체적 근거"
+        },
+        {
+          "label": "catalyst_number",
+          "value": "0.6%",
+          "why_it_matters": "변화 촉매의 구체적 근거"
+        }
+      ],
+      "what_changed": [
+        "신한생각 미국-중국 정상회담에 따른 수주 모멘텀\n737MAX 월 생샨량이 42대로 안정을 보이면서 여름 47대, 연말 52대를\n목표로 증산 추진. 737 MAX 생산과 인도 증대로 잉여현금흐름, 영업이익 S&P500 지수 (pt) 7,137.9\n순차적으로 (+) 전환될 것으로 전망. 단기적으로 미·중 정상회담 결과에 시가총액 (조원) 268.7\n 발행주식수 (백만주) 784.7\n따라 중국 대규모 수주 가능성 높음. 이전 고점까...",
+        "방산&우주: 매출 76억달러(+21%), OPM 3.1%(+0.6%p), 방산용 무기 30 주가\n대 인도(+4대). 신규 수주 90억달러, 수주잔고 860억달러로 역대 최고. (-1Y=0)\n 80\n 보잉\nPAC-3 탐색기(Seeker) 생산 확대를 위한 7년 계약 체결. 라인메탈과 S&P 500",
+        "40\n글로벌 서비스: 매출 54억달러(+5.3%), OPM 18.1%(-0.5%p). 싱가포르\n항공사와 역대 최대 규모 계약 체결하면서 신규수주 80억달러 체결 20"
+      ],
+      "bull_case": [
+        "방산&우주: 매출 76억달러(+21%), OPM 3.1%(+0.6%p), 방산용 무기 30 주가\n대 인도(+4대). 신규 수주 90억달러, 수주잔고 860억달러로 역대 최고. (-1Y=0)\n 80\n 보잉\nPAC-3 탐색기(Seeker) 생산 확대를 위한 7년 계약 체결. 라인메탈과 S&P 500",
+        "상업용 항공기 분기별 매출 추이 및 증가율 방산, 우주&보안 분기별 매출 추이 및 증가율\n (십억달러) (%) (십억달러) (%)\n 상업용항공기(좌축) 방산,우주&보안(좌축)\n12 150 8 40\n YoY(우축) YoY(우축)"
+      ],
+      "bear_case": [],
+      "catalysts": [
+        "방산&우주: 매출 76억달러(+21%), OPM 3.1%(+0.6%p), 방산용 무기 30 주가\n대 인도(+4대). 신규 수주 90억달러, 수주잔고 860억달러로 역대 최고. (-1Y=0)\n 80\n 보잉\nPAC-3 탐색기(Seeker) 생산 확대를 위한 7년 계약 체결. 라인메탈과 S&P 500"
+      ],
+      "risks": [],
+      "new_info": "신한생각 미국-중국 정상회담에 따른 수주 모멘텀\n737MAX 월 생샨량이 42대로 안정을 보이면서 여름 47대, 연말 52대를\n목표로 증산 추진. 737 MAX 생산과 인도 증대로 잉여현금흐름, 영업이익 S&P500 지수 (pt) 7,137.9\n순차적으로 (+) 전환될 것으로 전망. 단기적으로 미·중 정상회담 결과에 시가총액 (조원) 268.7\n 발행주식수 (백만주) 784.7\n따라 중국 대규모 수주 가능성 높음. 이전 고점까...",
+      "thesis_novelty": "MED",
+      "sentiment_score": 0.75,
+      "portfolio_impacts_candidate": [
+        {
+          "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.54,
+          "reason": "✓ 투자판단 ★★★★☆ ✓ 목표주가 (LSEG, 컨센서스) 267.5 달러 [Global Equity Analyst]\n✓ 상승여력 15.6% ✓ 현재주가 (4 월 22 일) 231.3 달러 이주은 연구위원\n  junelee@shinhan.com",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "360750",
+          "target_name": "TIGER 미국S&P500",
+          "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.54,
+          "reason": "✓ 투자판단 ★★★★☆ ✓ 목표주가 (LSEG, 컨센서스) 267.5 달러 [Global Equity Analyst]\n✓ 상승여력 15.6% ✓ 현재주가 (4 월 22 일) 231.3 달러 이주은 연구위원\n  junelee@shinhan.com",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "047810",
+          "target_name": "한국항공우주",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.54,
+          "reason": "✓ 투자판단 ★★★★☆ ✓ 목표주가 (LSEG, 컨센서스) 267.5 달러 [Global Equity Analyst]\n✓ 상승여력 15.6% ✓ 현재주가 (4 월 22 일) 231.3 달러 이주은 연구위원\n  junelee@shinhan.com",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "064350",
+          "target_name": "현대로템",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.54,
+          "reason": "✓ 투자판단 ★★★★☆ ✓ 목표주가 (LSEG, 컨센서스) 267.5 달러 [Global Equity Analyst]\n✓ 상승여력 15.6% ✓ 현재주가 (4 월 22 일) 231.3 달러 이주은 연구위원\n  junelee@shinhan.com",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.54,
+          "reason": "✓ 투자판단 ★★★★☆ ✓ 목표주가 (LSEG, 컨센서스) 267.5 달러 [Global Equity Analyst]\n✓ 상승여력 15.6% ✓ 현재주가 (4 월 22 일) 231.3 달러 이주은 연구위원\n  junelee@shinhan.com",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "449450",
+          "target_name": "PLUS K방산",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.54,
+          "reason": "✓ 투자판단 ★★★★☆ ✓ 목표주가 (LSEG, 컨센서스) 267.5 달러 [Global Equity Analyst]\n✓ 상승여력 15.6% ✓ 현재주가 (4 월 22 일) 231.3 달러 이주은 연구위원\n  junelee@shinhan.com",
+          "action_hint": "보강"
+        }
+      ],
+      "confidence": "MEDIUM",
+      "quality": {
+        "contaminationEvidenceCount": 0,
+        "totalEvidenceCount": 3,
+        "weakClaimCount": 3,
+        "totalClaims": 3
+      },
+      "evidence_notes": [
+        {
+          "score": 12,
+          "classification": "weak_claim",
+          "excerpt": "✓ 투자판단 ★★★★☆ ✓ 목표주가 (LSEG, 컨센서스) 267.5 달러 [Global Equity Analyst]\n✓ 상승여력 15.6% ✓ 현재주가 (4 월 22 일) 231.3 달러 이주은 연구위원\n  junelee@shinhan.com"
+        },
+        {
+          "score": 6,
+          "classification": "weak_claim",
+          "excerpt": "방산&우주: 매출 76억달러(+21%), OPM 3.1%(+0.6%p), 방산용 무기 30 주가\n대 인도(+4대). 신규 수주 90억달러, 수주잔고 860억달러로 역대 최고. (-1Y=0)\n 80\n 보잉\nPAC-3 탐색기(Seeker) 생산 확대를 위한 7년 계약 체결. 라인메탈과 S&P 500"
+        },
+        {
+          "score": 0,
+          "classification": "weak_claim",
+          "excerpt": "상업용 항공기 분기별 매출 추이 및 증가율 방산, 우주&보안 분기별 매출 추이 및 증가율\n (십억달러) (%) (십억달러) (%)\n 상업용항공기(좌축) 방산,우주&보안(좌축)\n12 150 8 40\n YoY(우축) YoY(우축)"
+        },
+        {
+          "score": -40,
+          "classification": "metadata",
+          "excerpt": "보잉 (BA.US)\n737 MAX 여름 47대 증산 계획\n 2026 년 4 월 23 일"
+        },
+        {
+          "score": -40,
+          "classification": "metadata",
+          "excerpt": "MQ-28 고스트뱃 독일 공급을 위한 파트너십 체결 60"
+        },
+        {
+          "score": -40,
+          "classification": "metadata",
+          "excerpt": "40\n글로벌 서비스: 매출 54억달러(+5.3%), OPM 18.1%(-0.5%p). 싱가포르\n항공사와 역대 최대 규모 계약 체결하면서 신규수주 80억달러 체결 20"
+        },
+        {
+          "score": -40,
+          "classification": "metadata",
+          "excerpt": "0\n737 MAX 42대 → 47대 → 52대 추진 04/25 08/25 12/25 04/26"
+        },
+        {
+          "score": -40,
+          "classification": "metadata",
+          "excerpt": "중동 이슈에도 신규 항공기 수요 지속. 737 MAX 월 안정적으로 42대 생\n산하면서 여름 47대 증산 추진. 연말 노스라인 생산시설 가동을 시작으로\n52대까지 확대. 잉여현금흐름 10~30억달러 달성 목표 유지"
+        }
+      ]
+    },
+    {
+      "id": "report_064",
+      "schemaVersion": 2,
+      "title": "필립모리스; 불 꺼도 1등",
+      "broker": "신한투자증권",
+      "source": "신한투자증권",
+      "date": "2026-04-23",
+      "category": "해외 주식",
+      "report_type": "theme",
+      "sector": "매크로",
+      "themes": [
+        "금/원자재",
+        "금리/매크로"
+      ],
+      "text_path": "data/reports/2026-04-23/text/report_064.txt",
+      "text_length": 14547,
+      "related_holdings_in_my_portfolio": [
+        {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        }
+      ],
+      "related_accounts": [
+        "ISA",
+        "PENSION",
+        "KIS_MAIN"
+      ],
+      "key_thesis": "매크로는 중립 시각이며 핵심 근거는 ✓ 투자판단 ★★★☆☆ ✓ 목표주가 (LSEG, 컨센서스) 188.7 달러 [음식료]\n✓ 상승여력 15.1% ✓ 현재주가 (04 월 22 일) 164.0 달러 조상훈 연구위원\n  sanghoonpure.cho@shinhan.com / 조건: 단 ★★★☆☆ ✓ 목표주가 (LSEG, 컨센서스) 188.",
+      "key_points": [
+        "매크로는 중립 시각이며 핵심 근거는 ✓ 투자판단 ★★★☆☆ ✓ 목표주가 (LSEG, 컨센서스) 188.7 달러 [음식료]\n✓ 상승여력 15.1% ✓ 현재주가 (04 월 22 일) 164.0 달러 조상훈 연구위원\n  sanghoonpure.cho@shinhan.com / 조건: 단 ★★★☆☆ ✓ 목표주가 (LSEG, 컨센서스) 188.",
+        "매크로는 긍정 시각이며 핵심 근거는 Smoke-Free 카테고리의 영향 부각. 각 지역별 궐련형 전자담배 성장률은 (20)\n일본 +10.4%(추정), 유럽 +5.4%, 유럽·일본 외 지역 +19.4%. 니코틴 파 04/25 07/25 10/25 01/26 04/26",
+        "매크로는 부정 시각이며 핵심 근거는 견조한 실적 기반 지속적인 주주환원\n미국 내 ZYN 재고 조정 및 R&D 비용 집행으로 2026년 조정 EPS 가이\n던스 소폭 하향(+11.1~13.1%→+10.9~12.9%). / 조건: 다만 양호한 영업현금흐름 (2026F 135억달러)을 바탕으로 지속적인 주주환원은 주가 하방 지지",
+        "매크로는 중립 시각이며 핵심 근거는 글로벌 Peer 그룹 상대주가 추이 12개월 선행 PER 밴드 차트\n(22=0) 필립모리스 (달러)\n 25x\n120 KT&G 210\n BAT 22x\n 180\n 80\n 19x\n 150\n 40 16x\n 120\n 13x\n 0\n 90"
+      ],
+      "primary_claim": {
+        "entity": "매크로",
+        "direction": "neutral",
+        "strength": "weak",
+        "horizon": "medium",
+        "reason": "✓ 투자판단 ★★★☆☆ ✓ 목표주가 (LSEG, 컨센서스) 188.7 달러 [음식료]\n✓ 상승여력 15.1% ✓ 현재주가 (04 월 22 일) 164.0 달러 조상훈 연구위원\n  sanghoonpure.cho@shinhan.com",
+        "condition": "단 ★★★☆☆ ✓ 목표주가 (LSEG, 컨센서스) 188.",
+        "counterpoint": "다만 양호한 영업현금흐름 (2026F 135억달러)을 바탕으로 지속적인 주주환원은 주가 하방 지지",
+        "source_span": "paragraph_2",
+        "classification": "weak_claim",
+        "classification_confidence": 0.48,
+        "summary": "매크로는 중립 시각이며 핵심 근거는 ✓ 투자판단 ★★★☆☆ ✓ 목표주가 (LSEG, 컨센서스) 188.7 달러 [음식료]\n✓ 상승여력 15.1% ✓ 현재주가 (04 월 22 일) 164.0 달러 조상훈 연구위원\n  sanghoonpure.cho@shinhan.com / 조건: 단 ★★★☆☆ ✓ 목표주가 (LSEG, 컨센서스) 188."
+      },
+      "claim_candidates": [
+        {
+          "entity": "매크로",
+          "direction": "neutral",
+          "strength": "weak",
+          "horizon": "medium",
+          "reason": "✓ 투자판단 ★★★☆☆ ✓ 목표주가 (LSEG, 컨센서스) 188.7 달러 [음식료]\n✓ 상승여력 15.1% ✓ 현재주가 (04 월 22 일) 164.0 달러 조상훈 연구위원\n  sanghoonpure.cho@shinhan.com",
+          "condition": "단 ★★★☆☆ ✓ 목표주가 (LSEG, 컨센서스) 188.",
+          "counterpoint": "다만 양호한 영업현금흐름 (2026F 135억달러)을 바탕으로 지속적인 주주환원은 주가 하방 지지",
+          "source_span": "paragraph_2",
+          "classification": "weak_claim",
+          "classification_confidence": 0.48,
+          "summary": "매크로는 중립 시각이며 핵심 근거는 ✓ 투자판단 ★★★☆☆ ✓ 목표주가 (LSEG, 컨센서스) 188.7 달러 [음식료]\n✓ 상승여력 15.1% ✓ 현재주가 (04 월 22 일) 164.0 달러 조상훈 연구위원\n  sanghoonpure.cho@shinhan.com / 조건: 단 ★★★☆☆ ✓ 목표주가 (LSEG, 컨센서스) 188."
+        },
+        {
+          "entity": "매크로",
+          "direction": "positive",
+          "strength": "weak",
+          "horizon": "medium",
+          "reason": "Smoke-Free 카테고리의 영향 부각. 각 지역별 궐련형 전자담배 성장률은 (20)\n일본 +10.4%(추정), 유럽 +5.4%, 유럽·일본 외 지역 +19.4%. 니코틴 파 04/25 07/25 10/25 01/26 04/26",
+          "condition": null,
+          "counterpoint": "다만 양호한 영업현금흐름 (2026F 135억달러)을 바탕으로 지속적인 주주환원은 주가 하방 지지",
+          "source_span": "paragraph_5",
+          "classification": "weak_claim",
+          "classification_confidence": 0.48,
+          "summary": "매크로는 긍정 시각이며 핵심 근거는 Smoke-Free 카테고리의 영향 부각. 각 지역별 궐련형 전자담배 성장률은 (20)\n일본 +10.4%(추정), 유럽 +5.4%, 유럽·일본 외 지역 +19.4%. 니코틴 파 04/25 07/25 10/25 01/26 04/26"
+        },
+        {
+          "entity": "매크로",
+          "direction": "negative",
+          "strength": "weak",
+          "horizon": "medium",
+          "reason": "견조한 실적 기반 지속적인 주주환원\n미국 내 ZYN 재고 조정 및 R&D 비용 집행으로 2026년 조정 EPS 가이\n던스 소폭 하향(+11.1~13.1%→+10.9~12.9%).",
+          "condition": "다만 양호한 영업현금흐름 (2026F 135억달러)을 바탕으로 지속적인 주주환원은 주가 하방 지지",
+          "counterpoint": "다만 양호한 영업현금흐름 (2026F 135억달러)을 바탕으로 지속적인 주주환원은 주가 하방 지지",
+          "source_span": "paragraph_7",
+          "classification": "weak_claim",
+          "classification_confidence": 0.48,
+          "summary": "매크로는 부정 시각이며 핵심 근거는 견조한 실적 기반 지속적인 주주환원\n미국 내 ZYN 재고 조정 및 R&D 비용 집행으로 2026년 조정 EPS 가이\n던스 소폭 하향(+11.1~13.1%→+10.9~12.9%). / 조건: 다만 양호한 영업현금흐름 (2026F 135억달러)을 바탕으로 지속적인 주주환원은 주가 하방 지지"
+        },
+        {
+          "entity": "매크로",
+          "direction": "neutral",
+          "strength": "weak",
+          "horizon": "medium",
+          "reason": "글로벌 Peer 그룹 상대주가 추이 12개월 선행 PER 밴드 차트\n(22=0) 필립모리스 (달러)\n 25x\n120 KT&G 210\n BAT 22x\n 180\n 80\n 19x\n 150\n 40 16x\n 120\n 13x\n 0\n 90",
+          "condition": null,
+          "counterpoint": "다만 양호한 영업현금흐름 (2026F 135억달러)을 바탕으로 지속적인 주주환원은 주가 하방 지지",
+          "source_span": "paragraph_12",
+          "classification": "weak_claim",
+          "classification_confidence": 0.48,
+          "summary": "매크로는 중립 시각이며 핵심 근거는 글로벌 Peer 그룹 상대주가 추이 12개월 선행 PER 밴드 차트\n(22=0) 필립모리스 (달러)\n 25x\n120 KT&G 210\n BAT 22x\n 180\n 80\n 19x\n 150\n 40 16x\n 120\n 13x\n 0\n 90"
+        }
+      ],
+      "key_numbers": [
+        {
+          "label": "thesis_anchor",
+          "value": "15.1%",
+          "why_it_matters": "핵심 투자 논리를 직접 뒷받침하는 수치"
+        },
+        {
+          "label": "catalyst_number",
+          "value": "13.1%",
+          "why_it_matters": "변화 촉매의 구체적 근거"
+        },
+        {
+          "label": "catalyst_number",
+          "value": "12.9%",
+          "why_it_matters": "변화 촉매의 구체적 근거"
+        },
+        {
+          "label": "supporting",
+          "value": "10.4%",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "5.4%",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "19.4%",
+          "why_it_matters": "보조 참고 수치"
+        }
+      ],
+      "what_changed": [
+        "견조한 실적 기반 지속적인 주주환원\n미국 내 ZYN 재고 조정 및 R&D 비용 집행으로 2026년 조정 EPS 가이\n던스 소폭 하향(+11.1~13.1%→+10.9~12.9%). 다만 양호한 영업현금흐름\n(2026F 135억달러)을 바탕으로 지속적인 주주환원은 주가 하방 지지"
+      ],
+      "bull_case": [
+        "Smoke-Free 카테고리의 영향 부각. 각 지역별 궐련형 전자담배 성장률은 (20)\n일본 +10.4%(추정), 유럽 +5.4%, 유럽·일본 외 지역 +19.4%. 니코틴 파 04/25 07/25 10/25 01/26 04/26"
+      ],
+      "bear_case": [
+        "견조한 실적 기반 지속적인 주주환원\n미국 내 ZYN 재고 조정 및 R&D 비용 집행으로 2026년 조정 EPS 가이\n던스 소폭 하향(+11.1~13.1%→+10.9~12.9%). 다만 양호한 영업현금흐름\n(2026F 135억달러)을 바탕으로 지속적인 주주환원은 주가 하방 지지"
+      ],
+      "catalysts": [
+        "견조한 실적 기반 지속적인 주주환원\n미국 내 ZYN 재고 조정 및 R&D 비용 집행으로 2026년 조정 EPS 가이\n던스 소폭 하향(+11.1~13.1%→+10.9~12.9%). 다만 양호한 영업현금흐름\n(2026F 135억달러)을 바탕으로 지속적인 주주환원은 주가 하방 지지"
+      ],
+      "risks": [],
+      "new_info": "견조한 실적 기반 지속적인 주주환원\n미국 내 ZYN 재고 조정 및 R&D 비용 집행으로 2026년 조정 EPS 가이\n던스 소폭 하향(+11.1~13.1%→+10.9~12.9%). 다만 양호한 영업현금흐름\n(2026F 135억달러)을 바탕으로 지속적인 주주환원은 주가 하방 지지",
+      "thesis_novelty": "LOW",
+      "sentiment_score": 0,
+      "portfolio_impacts_candidate": [
+        {
+          "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "neutral",
+          "horizon": "3m",
+          "strength": 0.28,
+          "reason": "✓ 투자판단 ★★★☆☆ ✓ 목표주가 (LSEG, 컨센서스) 188.7 달러 [음식료]\n✓ 상승여력 15.1% ✓ 현재주가 (04 월 22 일) 164.0 달러 조상훈 연구위원\n  sanghoonpure.cho@shinhan.com",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "neutral",
+          "horizon": "3m",
+          "strength": 0.28,
+          "reason": "✓ 투자판단 ★★★☆☆ ✓ 목표주가 (LSEG, 컨센서스) 188.7 달러 [음식료]\n✓ 상승여력 15.1% ✓ 현재주가 (04 월 22 일) 164.0 달러 조상훈 연구위원\n  sanghoonpure.cho@shinhan.com",
+          "action_hint": "관찰"
+        }
+      ],
+      "confidence": "MEDIUM",
+      "quality": {
+        "contaminationEvidenceCount": 0,
+        "totalEvidenceCount": 4,
+        "weakClaimCount": 4,
+        "totalClaims": 4
+      },
+      "evidence_notes": [
+        {
+          "score": 12,
+          "classification": "weak_claim",
+          "excerpt": "✓ 투자판단 ★★★☆☆ ✓ 목표주가 (LSEG, 컨센서스) 188.7 달러 [음식료]\n✓ 상승여력 15.1% ✓ 현재주가 (04 월 22 일) 164.0 달러 조상훈 연구위원\n  sanghoonpure.cho@shinhan.com"
+        },
+        {
+          "score": 6,
+          "classification": "weak_claim",
+          "excerpt": "Smoke-Free 카테고리의 영향 부각. 각 지역별 궐련형 전자담배 성장률은 (20)\n일본 +10.4%(추정), 유럽 +5.4%, 유럽·일본 외 지역 +19.4%. 니코틴 파 04/25 07/25 10/25 01/26 04/26"
+        },
+        {
+          "score": 4,
+          "classification": "weak_claim",
+          "excerpt": "견조한 실적 기반 지속적인 주주환원\n미국 내 ZYN 재고 조정 및 R&D 비용 집행으로 2026년 조정 EPS 가이\n던스 소폭 하향(+11.1~13.1%→+10.9~12.9%). 다만 양호한 영업현금흐름\n(2026F 135억달러)을 바탕으로 지속적인 주주환원은 주가 하방 지지"
+        },
+        {
+          "score": 0,
+          "classification": "weak_claim",
+          "excerpt": "글로벌 Peer 그룹 상대주가 추이 12개월 선행 PER 밴드 차트\n(22=0) 필립모리스 (달러)\n 25x\n120 KT&G 210\n BAT 22x\n 180\n 80\n 19x\n 150\n 40 16x\n 120\n 13x\n 0\n 90"
+        },
+        {
+          "score": -40,
+          "classification": "metadata",
+          "excerpt": "필립 모리스 (PM.US)\n불 꺼도 1등\n 2026 년 4 월 23 일"
+        },
+        {
+          "score": -40,
+          "classification": "metadata",
+          "excerpt": "& PMI GTR 부진은 중동 분쟁에 따른 글로벌 면세점 출하 차질에 기인 0"
+        },
+        {
+          "score": -40,
+          "classification": "metadata",
+          "excerpt": "우치는 1Q26 미국 출하량 155백만캔(23억본) 기록"
+        },
+        {
+          "score": -40,
+          "classification": "metadata",
+          "excerpt": "2 I\n 해외기업 분석 I 필립 모리스 2026년 4월 23일"
+        }
+      ]
+    },
+    {
+      "id": "report_065",
+      "schemaVersion": 2,
+      "title": "Global 헬스케어 Weekly(4월 4주차)",
+      "broker": "신한투자증권",
+      "source": "신한투자증권",
+      "date": "2026-04-23",
+      "category": "해외 주식",
+      "report_type": "theme",
+      "sector": "AI/인프라",
+      "themes": [
+        "AI 인프라"
+      ],
+      "text_path": "data/reports/2026-04-23/text/report_065.txt",
+      "text_length": 48062,
+      "related_holdings_in_my_portfolio": [
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        }
+      ],
+      "related_accounts": [
+        "PENSION"
+      ],
+      "key_thesis": "AI/인프라는 긍정 시각이며 핵심 근거는 - 주간 수익률: 제약(-2.1%) < 의료기기(-1.7%) < 바이오텍(+0.6%) Top Picks\n - AACR에서 차세대 항암제 임상 발표로 관련 바이오텍 관심 점증. 이중항체, RNA 등 ◆ 서밋테라(SMMT.US): 현재 주가 24.6달러\n 신규 모달리티의 양호한 데이터가 공...",
+      "key_points": [
+        "AI/인프라는 긍정 시각이며 핵심 근거는 - 주간 수익률: 제약(-2.1%) < 의료기기(-1.7%) < 바이오텍(+0.6%) Top Picks\n - AACR에서 차세대 항암제 임상 발표로 관련 바이오텍 관심 점증. 이중항체, RNA 등 ◆ 서밋테라(SMMT.US): 현재 주가 24.6달러\n 신규 모달리티의 양호한 데이터가 공...",
+        "AI/인프라는 중립 시각이며 핵심 근거는 주간 산업 이슈 주간 산업 이슈\n ◆ [산업] AACR 통해 이중항체, CAR-T, RNA 등 차세대 항암제 성과 확인돼 관련 ◆ [아스트라제네카(AZN.UK)] AI를 신약개발 전 과정에 도입 및 환자선별에 활용\n 바이오텍 상승세 지속. 5월 ASCO, ADA 등 대형 이벤트로 추가 ...",
+        "AI/인프라는 중립 시각이며 핵심 근거는 2 I\n 최근 1년 주가와 EPS 추이 12MF 밸류에이션 밴드\n 일라이 릴리\n (달러) (달러) (달러)\n 주가 (좌축) 60x 50x 40x\n 1,300 41 1,300\n EPS (우축)\n 30x\n 1,000 32 1,000",
+        "AI/인프라는 중립 시각이며 핵심 근거는 유나이티드 헬스그룹\n 존슨앤존슨 메드페이스\n 노보 노디스크\n 로슈 암젠 머크 앤섬 론자\n 애보트\n 일라이 릴리\n GSK\n 모더나 다나허\n 써모피셔\n 탠덤다이어비츠 시그나헬스케어 아스트라 제네카\n 길리어드 리제네론\n 노보노디스크\n 인튜이티브서지컬\n 존슨앤존슨"
+      ],
+      "primary_claim": {
+        "entity": "AI/인프라",
+        "direction": "positive",
+        "strength": "strong",
+        "horizon": "medium",
+        "reason": "- 주간 수익률: 제약(-2.1%) < 의료기기(-1.7%) < 바이오텍(+0.6%) Top Picks\n - AACR에서 차세대 항암제 임상 발표로 관련 바이오텍 관심 점증. 이중항체, RNA 등 ◆ 서밋테라(SMMT.US): 현재 주가 24.6달러\n 신규 모달리티의 양호한 데이터가 공...",
+        "condition": null,
+        "counterpoint": "리스크 경감. 2025년 제약사 중 - 1) 26년 양호한 가이던스로 비만약 견조한 수요 확인, 2) 경구 비만약 오포글리프론의 시판 | 우려 완화. 당뇨병 임상에서 심혈관 위험 감소 입증. | 우려 지속 ◆ [일라이 릴리(LLY.",
+        "source_span": "paragraph_2",
+        "classification": "investment_claim",
+        "classification_confidence": 0.94,
+        "summary": "AI/인프라는 긍정 시각이며 핵심 근거는 - 주간 수익률: 제약(-2.1%) < 의료기기(-1.7%) < 바이오텍(+0.6%) Top Picks\n - AACR에서 차세대 항암제 임상 발표로 관련 바이오텍 관심 점증. 이중항체, RNA 등 ◆ 서밋테라(SMMT.US): 현재 주가 24.6달러\n 신규 모달리티의 양호한 데이터가 공..."
+      },
+      "claim_candidates": [
+        {
+          "entity": "AI/인프라",
+          "direction": "positive",
+          "strength": "strong",
+          "horizon": "medium",
+          "reason": "- 주간 수익률: 제약(-2.1%) < 의료기기(-1.7%) < 바이오텍(+0.6%) Top Picks\n - AACR에서 차세대 항암제 임상 발표로 관련 바이오텍 관심 점증. 이중항체, RNA 등 ◆ 서밋테라(SMMT.US): 현재 주가 24.6달러\n 신규 모달리티의 양호한 데이터가 공...",
+          "condition": null,
+          "counterpoint": "리스크 경감. 2025년 제약사 중 - 1) 26년 양호한 가이던스로 비만약 견조한 수요 확인, 2) 경구 비만약 오포글리프론의 시판 | 우려 완화. 당뇨병 임상에서 심혈관 위험 감소 입증. | 우려 지속 ◆ [일라이 릴리(LLY.",
+          "source_span": "paragraph_2",
+          "classification": "investment_claim",
+          "classification_confidence": 0.94,
+          "summary": "AI/인프라는 긍정 시각이며 핵심 근거는 - 주간 수익률: 제약(-2.1%) < 의료기기(-1.7%) < 바이오텍(+0.6%) Top Picks\n - AACR에서 차세대 항암제 임상 발표로 관련 바이오텍 관심 점증. 이중항체, RNA 등 ◆ 서밋테라(SMMT.US): 현재 주가 24.6달러\n 신규 모달리티의 양호한 데이터가 공..."
+        },
+        {
+          "entity": "AI/인프라",
+          "direction": "neutral",
+          "strength": "medium",
+          "horizon": "medium",
+          "reason": "주간 산업 이슈 주간 산업 이슈\n ◆ [산업] AACR 통해 이중항체, CAR-T, RNA 등 차세대 항암제 성과 확인돼 관련 ◆ [아스트라제네카(AZN.UK)] AI를 신약개발 전 과정에 도입 및 환자선별에 활용\n 바이오텍 상승세 지속. 5월 ASCO, ADA 등 대형 이벤트로 추가 ...",
+          "condition": null,
+          "counterpoint": "우려 지속 ◆ [일라이 릴리(LLY. | 리스크 경감. 2025년 제약사 중 - 1) 26년 양호한 가이던스로 비만약 견조한 수요 확인, 2) 경구 비만약 오포글리프론의 시판 | 우려 완화. 당뇨병 임상에서 심혈관 위험 감소 입증.",
+          "source_span": "paragraph_3",
+          "classification": "investment_claim",
+          "classification_confidence": 0.78,
+          "summary": "AI/인프라는 중립 시각이며 핵심 근거는 주간 산업 이슈 주간 산업 이슈\n ◆ [산업] AACR 통해 이중항체, CAR-T, RNA 등 차세대 항암제 성과 확인돼 관련 ◆ [아스트라제네카(AZN.UK)] AI를 신약개발 전 과정에 도입 및 환자선별에 활용\n 바이오텍 상승세 지속. 5월 ASCO, ADA 등 대형 이벤트로 추가 ..."
+        },
+        {
+          "entity": "AI/인프라",
+          "direction": "neutral",
+          "strength": "weak",
+          "horizon": "medium",
+          "reason": "2 I\n 최근 1년 주가와 EPS 추이 12MF 밸류에이션 밴드\n 일라이 릴리\n (달러) (달러) (달러)\n 주가 (좌축) 60x 50x 40x\n 1,300 41 1,300\n EPS (우축)\n 30x\n 1,000 32 1,000",
+          "condition": null,
+          "counterpoint": "리스크 경감. 2025년 제약사 중 - 1) 26년 양호한 가이던스로 비만약 견조한 수요 확인, 2) 경구 비만약 오포글리프론의 시판 | 우려 완화. 당뇨병 임상에서 심혈관 위험 감소 입증. | 우려 지속 ◆ [일라이 릴리(LLY.",
+          "source_span": "paragraph_14",
+          "classification": "weak_claim",
+          "classification_confidence": 0.48,
+          "summary": "AI/인프라는 중립 시각이며 핵심 근거는 2 I\n 최근 1년 주가와 EPS 추이 12MF 밸류에이션 밴드\n 일라이 릴리\n (달러) (달러) (달러)\n 주가 (좌축) 60x 50x 40x\n 1,300 41 1,300\n EPS (우축)\n 30x\n 1,000 32 1,000"
+        },
+        {
+          "entity": "AI/인프라",
+          "direction": "neutral",
+          "strength": "weak",
+          "horizon": "medium",
+          "reason": "유나이티드 헬스그룹\n 존슨앤존슨 메드페이스\n 노보 노디스크\n 로슈 암젠 머크 앤섬 론자\n 애보트\n 일라이 릴리\n GSK\n 모더나 다나허\n 써모피셔\n 탠덤다이어비츠 시그나헬스케어 아스트라 제네카\n 길리어드 리제네론\n 노보노디스크\n 인튜이티브서지컬\n 존슨앤존슨",
+          "condition": null,
+          "counterpoint": "리스크 경감. 2025년 제약사 중 - 1) 26년 양호한 가이던스로 비만약 견조한 수요 확인, 2) 경구 비만약 오포글리프론의 시판 | 우려 완화. 당뇨병 임상에서 심혈관 위험 감소 입증. | 우려 지속 ◆ [일라이 릴리(LLY.",
+          "source_span": "paragraph_12",
+          "classification": "weak_claim",
+          "classification_confidence": 0.48,
+          "summary": "AI/인프라는 중립 시각이며 핵심 근거는 유나이티드 헬스그룹\n 존슨앤존슨 메드페이스\n 노보 노디스크\n 로슈 암젠 머크 앤섬 론자\n 애보트\n 일라이 릴리\n GSK\n 모더나 다나허\n 써모피셔\n 탠덤다이어비츠 시그나헬스케어 아스트라 제네카\n 길리어드 리제네론\n 노보노디스크\n 인튜이티브서지컬\n 존슨앤존슨"
+        }
+      ],
+      "key_numbers": [
+        {
+          "label": "thesis_anchor",
+          "value": "2.1%",
+          "why_it_matters": "핵심 투자 논리를 직접 뒷받침하는 수치"
+        },
+        {
+          "label": "thesis_anchor",
+          "value": "1.7%",
+          "why_it_matters": "핵심 투자 논리를 직접 뒷받침하는 수치"
+        },
+        {
+          "label": "thesis_anchor",
+          "value": "0.6%",
+          "why_it_matters": "핵심 투자 논리를 직접 뒷받침하는 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "1,300",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "1,000",
+          "why_it_matters": "보조 참고 수치"
+        }
+      ],
+      "what_changed": [
+        "- 주간 수익률: 제약(-2.1%) < 의료기기(-1.7%) < 바이오텍(+0.6%) Top Picks\n - AACR에서 차세대 항암제 임상 발표로 관련 바이오텍 관심 점증. 이중항체, RNA 등 ◆ 서밋테라(SMMT.US): 현재 주가 24.6달러\n 신규 모달리티의 양호한 데이터가 공개됐으며 5월 말부터 ASCO, ADA 개최돼 상승 - 1) 이중항체 면역항암제 임상에서 구체적 성과 입증. 신속한 임상으로 미국 내 최초 승인..."
+      ],
+      "bull_case": [
+        "- 주간 수익률: 제약(-2.1%) < 의료기기(-1.7%) < 바이오텍(+0.6%) Top Picks\n - AACR에서 차세대 항암제 임상 발표로 관련 바이오텍 관심 점증. 이중항체, RNA 등 ◆ 서밋테라(SMMT.US): 현재 주가 24.6달러\n 신규 모달리티의 양호한 데이터가 공개됐으며 5월 말부터 ASCO, ADA 개최돼 상승 - 1) 이중항체 면역항암제 임상에서 구체적 성과 입증...."
+      ],
+      "bear_case": [],
+      "catalysts": [
+        "- 주간 수익률: 제약(-2.1%) < 의료기기(-1.7%) < 바이오텍(+0.6%) Top Picks\n - AACR에서 차세대 항암제 임상 발표로 관련 바이오텍 관심 점증. 이중항체, RNA 등 ◆ 서밋테라(SMMT.US): 현재 주가 24.6달러\n 신규 모달리티의 양호한 데이터가 공개됐으며 5월 말부터 ASCO, AD...",
+        "주간 산업 이슈 주간 산업 이슈\n ◆ [산업] AACR 통해 이중항체, CAR-T, RNA 등 차세대 항암제 성과 확인돼 관련 ◆ [아스트라제네카(AZN.UK)] AI를 신약개발 전 과정에 도입 및 환자선별에 활용\n 바이오텍 상승세 지속. 5월 ASCO, ADA 등 대형 이벤트로 추가 상승 모멘텀 가능할 전망 ◆ [머크(..."
+      ],
+      "risks": [
+        "- 주간 수익률: 제약(-2.1%) < 의료기기(-1.7%) < 바이오텍(+0.6%) Top Picks\n - AACR에서 차세대 항암제 임상 발표로 관련 바이오텍 관심 점증. 이중항체, RNA 등 ◆ 서밋테라(SMMT.US): 현재 주가 24.6달러\n 신규 모달리티의 양호한 데이터가 공개됐으며 5월 말부터 ASCO, AD...",
+        "주간 산업 이슈 주간 산업 이슈\n ◆ [산업] AACR 통해 이중항체, CAR-T, RNA 등 차세대 항암제 성과 확인돼 관련 ◆ [아스트라제네카(AZN.UK)] AI를 신약개발 전 과정에 도입 및 환자선별에 활용\n 바이오텍 상승세 지속. 5월 ASCO, ADA 등 대형 이벤트로 추가 상승 모멘텀 가능할 전망 ◆ [머크(..."
+      ],
+      "new_info": "- 주간 수익률: 제약(-2.1%) < 의료기기(-1.7%) < 바이오텍(+0.6%) Top Picks\n - AACR에서 차세대 항암제 임상 발표로 관련 바이오텍 관심 점증. 이중항체, RNA 등 ◆ 서밋테라(SMMT.US): 현재 주가 24.6달러\n 신규 모달리티의 양호한 데이터가 공개됐으며 5월 말부터 ASCO, ADA 개최돼 상승 - 1) 이중항체 면역항암제 임상에서 구체적 성과 입증. 신속한 임상으로 미국 내 최초 승인...",
+      "thesis_novelty": "MED",
+      "sentiment_score": 0.75,
+      "portfolio_impacts_candidate": [
+        {
+          "target_type": "holding",
+          "target_code": "487240",
+          "target_name": "KODEX AI전력핵심설비",
+          "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.54,
+          "reason": "- 주간 수익률: 제약(-2.1%) < 의료기기(-1.7%) < 바이오텍(+0.6%) Top Picks\n - AACR에서 차세대 항암제 임상 발표로 관련 바이오텍 관심 점증. 이중항체, RNA 등 ◆ 서밋테라(SMMT.US): 현재 주가 24.6달러\n 신규 모달리티의 양호한 데이터가 공개됐으며 5월 말부터 ASCO, AD...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "360750",
+          "target_name": "TIGER 미국S&P500",
+          "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.54,
+          "reason": "- 주간 수익률: 제약(-2.1%) < 의료기기(-1.7%) < 바이오텍(+0.6%) Top Picks\n - AACR에서 차세대 항암제 임상 발표로 관련 바이오텍 관심 점증. 이중항체, RNA 등 ◆ 서밋테라(SMMT.US): 현재 주가 24.6달러\n 신규 모달리티의 양호한 데이터가 공개됐으며 5월 말부터 ASCO, AD...",
+          "action_hint": "보강"
+        }
+      ],
+      "confidence": "HIGH",
+      "quality": {
+        "contaminationEvidenceCount": 0,
+        "totalEvidenceCount": 4,
+        "weakClaimCount": 2,
+        "totalClaims": 4
+      },
+      "evidence_notes": [
+        {
+          "score": 60,
+          "classification": "investment_claim",
+          "excerpt": "- 주간 수익률: 제약(-2.1%) < 의료기기(-1.7%) < 바이오텍(+0.6%) Top Picks\n - AACR에서 차세대 항암제 임상 발표로 관련 바이오텍 관심 점증. 이중항체, RNA 등 ◆ 서밋테라(SMMT.US): 현재 주가 24.6달러\n 신규 모달리티의 양호한 데이터가 공개됐으며 5월 말부터 ASCO, ADA 개최돼 상승 - 1) 이중항체 면역항암제 임상에서 구체적 성과 입증. 신속한 임상으로 미국 내 최초 승인 가능성\n 모멘텀 이어질 전망. AS..."
+        },
+        {
+          "score": 41,
+          "classification": "investment_claim",
+          "excerpt": "주간 산업 이슈 주간 산업 이슈\n ◆ [산업] AACR 통해 이중항체, CAR-T, RNA 등 차세대 항암제 성과 확인돼 관련 ◆ [아스트라제네카(AZN.UK)] AI를 신약개발 전 과정에 도입 및 환자선별에 활용\n 바이오텍 상승세 지속. 5월 ASCO, ADA 등 대형 이벤트로 추가 상승 모멘텀 가능할 전망 ◆ [머크(MRK.US)] 이중항체 면역항암제 사람 대상 최초 데이터에서 양호한 결과 발표\n ◆ [일라이 릴리(LLY.US)] 캘로니아 테라 70억달러 인..."
+        },
+        {
+          "score": 4,
+          "classification": "weak_claim",
+          "excerpt": "2 I\n 최근 1년 주가와 EPS 추이 12MF 밸류에이션 밴드\n 일라이 릴리\n (달러) (달러) (달러)\n 주가 (좌축) 60x 50x 40x\n 1,300 41 1,300\n EPS (우축)\n 30x\n 1,000 32 1,000"
+        },
+        {
+          "score": 0,
+          "classification": "weak_claim",
+          "excerpt": "유나이티드 헬스그룹\n 존슨앤존슨 메드페이스\n 노보 노디스크\n 로슈 암젠 머크 앤섬 론자\n 애보트\n 일라이 릴리\n GSK\n 모더나 다나허\n 써모피셔\n 탠덤다이어비츠 시그나헬스케어 아스트라 제네카\n 길리어드 리제네론\n 노보노디스크\n 인튜이티브서지컬\n 존슨앤존슨"
+        },
+        {
+          "score": -40,
+          "classification": "metadata",
+          "excerpt": "글로벌 헬스케어 Weekly\n [글로벌주식팀] 하헌호 수석연구원\n ☎ 02-3772-1297\n * heonhoha@shinhan.com"
+        },
+        {
+          "score": -40,
+          "classification": "metadata",
+          "excerpt": "5 210 젭바운드(일라이 릴리) 75 위고비 주사제"
+        },
+        {
+          "score": -40,
+          "classification": "metadata",
+          "excerpt": "브리스톨 마이어스 보스턴 사이언티픽\n 화이자 애브비 인슐렛"
+        },
+        {
+          "score": -40,
+          "classification": "metadata",
+          "excerpt": "종목별 12MF 매출액 컨센 변화율 종목별 12MF EPS 컨센 변화율\n (%) (%)\n 4 4"
+        }
+      ]
+    },
+    {
+      "id": "report_066",
+      "schemaVersion": 2,
+      "title": "Daily 신한생각(4월 23일)",
+      "broker": "신한투자증권",
+      "source": "신한투자증권",
+      "date": "2026-04-23",
+      "category": "Daily 신한생각",
+      "report_type": "theme",
+      "sector": "매크로",
+      "themes": [
+        "HBM/메모리",
+        "AI 인프라",
+        "전력 인프라",
+        "방산",
+        "원자력",
+        "금/원자재",
+        "금리/매크로"
+      ],
+      "text_path": "data/reports/2026-04-23/text/report_066.txt",
+      "text_length": 97373,
+      "related_holdings_in_my_portfolio": [
+        {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "047810",
+          "name": "한국항공우주",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "064350",
+          "name": "현대로템",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "449450",
+          "name": "PLUS K방산",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        }
+      ],
+      "related_accounts": [
+        "ISA",
+        "PENSION",
+        "KIS_MAIN"
+      ],
+      "key_thesis": "207940는 긍정 시각이며 핵심 근거는 결론적으로 전쟁 지속 및 협상 전후 국면에서 단기/초우량물로 대응하고, 명시적\n 종전 기조가 확인된 이후 듀레이션 확대 및 여전·회사채 투자에 나서도 늦지 않\n 다는 판단이다. 협상 전까지 전쟁 리스크 장기화 가능성을 염두에 두고 선제적\n 포지셔닝보다는 보수적 대응이 필요하다. 협상을 ...",
+      "key_points": [
+        "207940는 긍정 시각이며 핵심 근거는 결론적으로 전쟁 지속 및 협상 전후 국면에서 단기/초우량물로 대응하고, 명시적\n 종전 기조가 확인된 이후 듀레이션 확대 및 여전·회사채 투자에 나서도 늦지 않\n 다는 판단이다. 협상 전까지 전쟁 리스크 장기화 가능성을 염두에 두고 선제적\n 포지셔닝보다는 보수적 대응이 필요하다. 협상을 ...",
+        "207940는 긍정 시각이며 핵심 근거는 디와이파워 (210540) KDQ\n주가 (원) 15,550\n  유압실린더를 공급하며 건설 중장비 분야 등에 광범위하게 적용되는 핵심 부품. 시장 확장 기대\n추천일 26년 4월 14일\n  건설장비 업황 개선에 힘입어 디와이파워 실적 전망 긍정적\n수익률 4.9%\n  중국, 인도 등 공...",
+        "207940는 긍정 시각이며 핵심 근거는 비츠로셀 (082920) KDQ\n주가 (원) 56,600\n  국제 정세로 인한 방산주 강세의 수혜 기대\n추천일 26년 3월 4일\n  중동 리스크 발 원유 가격 상승에 따른 고온전지 가격 동반 상승 전망\n수익률 170.2%\n  유도무기에 탑재되는 열전지 부분 수주 증가 예상\n상대수익...",
+        "207940는 긍정 시각이며 핵심 근거는 슈프리마 (110790) KDQ\n주가 (원) 54,000\n  북미, 인도, 중동 등 전 지역 보안 강화 추세 속 핵심 수혜\n추천일 26년 2월 10일\n  영상보안 제품을 통한 로봇보안 분야 라인업 확대\n수익률 17.0%\n  풍부한 보유현금과 실적모멘텀 바탕, 최근 자사주 소각으로 ..."
+      ],
+      "primary_claim": {
+        "entity": "207940",
+        "direction": "positive",
+        "strength": "medium",
+        "horizon": "long",
+        "reason": "결론적으로 전쟁 지속 및 협상 전후 국면에서 단기/초우량물로 대응하고, 명시적\n 종전 기조가 확인된 이후 듀레이션 확대 및 여전·회사채 투자에 나서도 늦지 않\n 다는 판단이다. 협상 전까지 전쟁 리스크 장기화 가능성을 염두에 두고 선제적\n 포지셔닝보다는 보수적 대응이 필요하다. 협상을 ...",
+        "condition": null,
+        "counterpoint": "리스크 장기화 가능성을 염두에 두고 선제적 | 리스크 해소가 분명 해진다면 우선적 상위등급 매수 전략을 권고한다. | 리스크 테이킹 전략을 제시한다. 1 I",
+        "source_span": "paragraph_34",
+        "classification": "investment_claim",
+        "classification_confidence": 0.78,
+        "summary": "207940는 긍정 시각이며 핵심 근거는 결론적으로 전쟁 지속 및 협상 전후 국면에서 단기/초우량물로 대응하고, 명시적\n 종전 기조가 확인된 이후 듀레이션 확대 및 여전·회사채 투자에 나서도 늦지 않\n 다는 판단이다. 협상 전까지 전쟁 리스크 장기화 가능성을 염두에 두고 선제적\n 포지셔닝보다는 보수적 대응이 필요하다. 협상을 ..."
+      },
+      "claim_candidates": [
+        {
+          "entity": "207940",
+          "direction": "positive",
+          "strength": "medium",
+          "horizon": "long",
+          "reason": "결론적으로 전쟁 지속 및 협상 전후 국면에서 단기/초우량물로 대응하고, 명시적\n 종전 기조가 확인된 이후 듀레이션 확대 및 여전·회사채 투자에 나서도 늦지 않\n 다는 판단이다. 협상 전까지 전쟁 리스크 장기화 가능성을 염두에 두고 선제적\n 포지셔닝보다는 보수적 대응이 필요하다. 협상을 ...",
+          "condition": null,
+          "counterpoint": "리스크 장기화 가능성을 염두에 두고 선제적 | 리스크 해소가 분명 해진다면 우선적 상위등급 매수 전략을 권고한다. | 리스크 테이킹 전략을 제시한다. 1 I",
+          "source_span": "paragraph_34",
+          "classification": "investment_claim",
+          "classification_confidence": 0.78,
+          "summary": "207940는 긍정 시각이며 핵심 근거는 결론적으로 전쟁 지속 및 협상 전후 국면에서 단기/초우량물로 대응하고, 명시적\n 종전 기조가 확인된 이후 듀레이션 확대 및 여전·회사채 투자에 나서도 늦지 않\n 다는 판단이다. 협상 전까지 전쟁 리스크 장기화 가능성을 염두에 두고 선제적\n 포지셔닝보다는 보수적 대응이 필요하다. 협상을 ..."
+        },
+        {
+          "entity": "207940",
+          "direction": "positive",
+          "strength": "medium",
+          "horizon": "medium",
+          "reason": "디와이파워 (210540) KDQ\n주가 (원) 15,550\n  유압실린더를 공급하며 건설 중장비 분야 등에 광범위하게 적용되는 핵심 부품. 시장 확장 기대\n추천일 26년 4월 14일\n  건설장비 업황 개선에 힘입어 디와이파워 실적 전망 긍정적\n수익률 4.9%\n  중국, 인도 등 공...",
+          "condition": null,
+          "counterpoint": "리스크 장기화 가능성을 염두에 두고 선제적 | 리스크 해소가 분명 해진다면 우선적 상위등급 매수 전략을 권고한다. | 리스크 테이킹 전략을 제시한다. 1 I",
+          "source_span": "paragraph_108",
+          "classification": "investment_claim",
+          "classification_confidence": 0.86,
+          "summary": "207940는 긍정 시각이며 핵심 근거는 디와이파워 (210540) KDQ\n주가 (원) 15,550\n  유압실린더를 공급하며 건설 중장비 분야 등에 광범위하게 적용되는 핵심 부품. 시장 확장 기대\n추천일 26년 4월 14일\n  건설장비 업황 개선에 힘입어 디와이파워 실적 전망 긍정적\n수익률 4.9%\n  중국, 인도 등 공..."
+        },
+        {
+          "entity": "207940",
+          "direction": "positive",
+          "strength": "strong",
+          "horizon": "medium",
+          "reason": "비츠로셀 (082920) KDQ\n주가 (원) 56,600\n  국제 정세로 인한 방산주 강세의 수혜 기대\n추천일 26년 3월 4일\n  중동 리스크 발 원유 가격 상승에 따른 고온전지 가격 동반 상승 전망\n수익률 170.2%\n  유도무기에 탑재되는 열전지 부분 수주 증가 예상\n상대수익...",
+          "condition": null,
+          "counterpoint": "리스크 발 원유 가격 상승에 따른 고온전지 가격 동반 상승 전망 | 리스크 장기화 가능성을 염두에 두고 선제적 | 리스크 해소가 분명 해진다면 우선적 상위등급 매수 전략을 권고한다.",
+          "source_span": "paragraph_114",
+          "classification": "investment_claim",
+          "classification_confidence": 0.86,
+          "summary": "207940는 긍정 시각이며 핵심 근거는 비츠로셀 (082920) KDQ\n주가 (원) 56,600\n  국제 정세로 인한 방산주 강세의 수혜 기대\n추천일 26년 3월 4일\n  중동 리스크 발 원유 가격 상승에 따른 고온전지 가격 동반 상승 전망\n수익률 170.2%\n  유도무기에 탑재되는 열전지 부분 수주 증가 예상\n상대수익..."
+        },
+        {
+          "entity": "207940",
+          "direction": "positive",
+          "strength": "strong",
+          "horizon": "medium",
+          "reason": "슈프리마 (110790) KDQ\n주가 (원) 54,000\n  북미, 인도, 중동 등 전 지역 보안 강화 추세 속 핵심 수혜\n추천일 26년 2월 10일\n  영상보안 제품을 통한 로봇보안 분야 라인업 확대\n수익률 17.0%\n  풍부한 보유현금과 실적모멘텀 바탕, 최근 자사주 소각으로 ...",
+          "condition": null,
+          "counterpoint": "리스크 장기화 가능성을 염두에 두고 선제적 | 리스크 해소가 분명 해진다면 우선적 상위등급 매수 전략을 권고한다. | 리스크 테이킹 전략을 제시한다. 1 I",
+          "source_span": "paragraph_116",
+          "classification": "investment_claim",
+          "classification_confidence": 0.86,
+          "summary": "207940는 긍정 시각이며 핵심 근거는 슈프리마 (110790) KDQ\n주가 (원) 54,000\n  북미, 인도, 중동 등 전 지역 보안 강화 추세 속 핵심 수혜\n추천일 26년 2월 10일\n  영상보안 제품을 통한 로봇보안 분야 라인업 확대\n수익률 17.0%\n  풍부한 보유현금과 실적모멘텀 바탕, 최근 자사주 소각으로 ..."
+        }
+      ],
+      "key_numbers": [
+        {
+          "label": "catalyst_number",
+          "value": "4.9%",
+          "why_it_matters": "변화 촉매의 구체적 근거"
+        },
+        {
+          "label": "catalyst_number",
+          "value": "170.2%",
+          "why_it_matters": "변화 촉매의 구체적 근거"
+        },
+        {
+          "label": "catalyst_number",
+          "value": "166.4%",
+          "why_it_matters": "변화 촉매의 구체적 근거"
+        },
+        {
+          "label": "catalyst_number",
+          "value": "15,550",
+          "why_it_matters": "변화 촉매의 구체적 근거"
+        },
+        {
+          "label": "catalyst_number",
+          "value": "56,600",
+          "why_it_matters": "변화 촉매의 구체적 근거"
+        },
+        {
+          "label": "supporting",
+          "value": "5.6%",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "17.0%",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "12.3%",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "58.3%",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "43.3%",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "6.9%",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "32%",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "43%",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "54,000",
+          "why_it_matters": "보조 참고 수치"
+        }
+      ],
+      "what_changed": [
+        "[주식] 램리서치, 루멘텀홀딩스, 클라우드플레어, 버티브, 블룸에너지, [MP]반도체, IT하드웨어, 유틸리티↑VS 상사자본재, 건강관리, 조선↓\nL3해리스, 일라이 릴리, 코스트코, 터비엔전공, 호사전자 [중소형주]선익시스템 [신규], 에스엠, 큐리언트, 테스, 디와이파워,\n 경동나비엔,제이에스코퍼레이션, 코나아이, 효성티앤씨, 비츠로셀,\n 지아이이노베이션, 슈프리마, 스피어, 인텔리안테크,씨엠티엑스, 티에스이,\n 솔브레인,...",
+        "EPS 성장 기조가 여전히 우호적인 만큼 매수 스탠스를 유지한다. 전쟁 국면에서\n 외국인 투자자들도 순매도로 일관하던 흐름에서 벗어나 최근 일본 증시로 재유\n 입되고 있다. 수급 측면에서도 실적에 대한 기대가 확인되고 있음을 시사한다.",
+        "이번 실적 시즌 역시 반도체와 방산, 은행 업종이 주도할 가능성이 높다. 이들만\n 으로 올해 일본 증시 EPS 증가분의 약 61%를 설명하고 있다. 은행은 전년도 엔\n 화 채권 평가손실과 선제적 대손충당금 적립에 따른 낮은 기저를 바탕으로 이번\n 분기 실적 개선 폭이 확대될 전망이다. 방산의 경우 일본 정부의 방위비 증액,\n 살상 무기 수출 규제 철폐 추진으로 가이던스 상향이 기대된다."
+      ],
+      "bull_case": [
+        "결론적으로 전쟁 지속 및 협상 전후 국면에서 단기/초우량물로 대응하고, 명시적\n 종전 기조가 확인된 이후 듀레이션 확대 및 여전·회사채 투자에 나서도 늦지 않\n 다는 판단이다. 협상 전까지 전쟁 리스크 장기화 가능성을 염두에 두고 선제적\n 포지셔닝보다는 보수적 대응이 필요하다. 협상을 통해 전쟁 리스크 해소가 분명\n 해진다면 우선적 상위등급 매수 전략을 권고한다. 여전·회사채는 등급 구분 없...",
+        "디와이파워 (210540) KDQ\n주가 (원) 15,550\n  유압실린더를 공급하며 건설 중장비 분야 등에 광범위하게 적용되는 핵심 부품. 시장 확장 기대\n추천일 26년 4월 14일\n  건설장비 업황 개선에 힘입어 디와이파워 실적 전망 긍정적\n수익률 4.9%\n  중국, 인도 등 공장 운영을 통해 글로벌 수요 대응\n상대수익 -5.6%p"
+      ],
+      "bear_case": [],
+      "catalysts": [
+        "결론적으로 전쟁 지속 및 협상 전후 국면에서 단기/초우량물로 대응하고, 명시적\n 종전 기조가 확인된 이후 듀레이션 확대 및 여전·회사채 투자에 나서도 늦지 않\n 다는 판단이다. 협상 전까지 전쟁 리스크 장기화 가능성을 염두에 두고 선제적\n 포지셔닝보다는 보수적 대응이 필요하다. 협상을 통해 전쟁 리스크 해소가 분명\n 해진...",
+        "디와이파워 (210540) KDQ\n주가 (원) 15,550\n  유압실린더를 공급하며 건설 중장비 분야 등에 광범위하게 적용되는 핵심 부품. 시장 확장 기대\n추천일 26년 4월 14일\n  건설장비 업황 개선에 힘입어 디와이파워 실적 전망 긍정적\n수익률 4.9%\n  중국, 인도 등 공장 운영을 통해 글로벌 수요 대응\n상...",
+        "비츠로셀 (082920) KDQ\n주가 (원) 56,600\n  국제 정세로 인한 방산주 강세의 수혜 기대\n추천일 26년 3월 4일\n  중동 리스크 발 원유 가격 상승에 따른 고온전지 가격 동반 상승 전망\n수익률 170.2%\n  유도무기에 탑재되는 열전지 부분 수주 증가 예상\n상대수익 166.4%p"
+      ],
+      "risks": [
+        "결론적으로 전쟁 지속 및 협상 전후 국면에서 단기/초우량물로 대응하고, 명시적\n 종전 기조가 확인된 이후 듀레이션 확대 및 여전·회사채 투자에 나서도 늦지 않\n 다는 판단이다. 협상 전까지 전쟁 리스크 장기화 가능성을 염두에 두고 선제적\n 포지셔닝보다는 보수적 대응이 필요하다. 협상을 통해 전쟁 리스크 해소가 분명\n 해진...",
+        "비츠로셀 (082920) KDQ\n주가 (원) 56,600\n  국제 정세로 인한 방산주 강세의 수혜 기대\n추천일 26년 3월 4일\n  중동 리스크 발 원유 가격 상승에 따른 고온전지 가격 동반 상승 전망\n수익률 170.2%\n  유도무기에 탑재되는 열전지 부분 수주 증가 예상\n상대수익 166.4%p",
+        "리스크 지속 시 단기/초우량물, 리스크 해소 시 순차적 리스크 테이킹 전략\n 부정적 시나리오에서는 협상 결렬 가능성이 존재하고, 협상 결과가 미진하거나\n 이행 과정에서의 노이즈가 불거질 수 있다. 반도체 이익 상향 조정이 국고채 금\n 리 하단을 지지하는 가운데 불식되지 않은 전쟁 리스크는 금리 상방 재료로 작\n 용할 것이..."
+      ],
+      "new_info": "[주식] 램리서치, 루멘텀홀딩스, 클라우드플레어, 버티브, 블룸에너지, [MP]반도체, IT하드웨어, 유틸리티↑VS 상사자본재, 건강관리, 조선↓\nL3해리스, 일라이 릴리, 코스트코, 터비엔전공, 호사전자 [중소형주]선익시스템 [신규], 에스엠, 큐리언트, 테스, 디와이파워,\n 경동나비엔,제이에스코퍼레이션, 코나아이, 효성티앤씨, 비츠로셀,\n 지아이이노베이션, 슈프리마, 스피어, 인텔리안테크,씨엠티엑스, 티에스이,\n 솔브레인,...",
+      "thesis_novelty": "MED",
+      "sentiment_score": 1,
+      "portfolio_impacts_candidate": [
+        {
+          "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.63,
+          "reason": "결론적으로 전쟁 지속 및 협상 전후 국면에서 단기/초우량물로 대응하고, 명시적\n 종전 기조가 확인된 이후 듀레이션 확대 및 여전·회사채 투자에 나서도 늦지 않\n 다는 판단이다. 협상 전까지 전쟁 리스크 장기화 가능성을 염두에 두고 선제적\n 포지셔닝보다는 보수적 대응이 필요하다. 협상을 통해 전쟁 리스크 해소가 분명\n 해진...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "487240",
+          "target_name": "KODEX AI전력핵심설비",
+          "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.63,
+          "reason": "결론적으로 전쟁 지속 및 협상 전후 국면에서 단기/초우량물로 대응하고, 명시적\n 종전 기조가 확인된 이후 듀레이션 확대 및 여전·회사채 투자에 나서도 늦지 않\n 다는 판단이다. 협상 전까지 전쟁 리스크 장기화 가능성을 염두에 두고 선제적\n 포지셔닝보다는 보수적 대응이 필요하다. 협상을 통해 전쟁 리스크 해소가 분명\n 해진...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "360750",
+          "target_name": "TIGER 미국S&P500",
+          "account_key": "PENSION",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.63,
+          "reason": "결론적으로 전쟁 지속 및 협상 전후 국면에서 단기/초우량물로 대응하고, 명시적\n 종전 기조가 확인된 이후 듀레이션 확대 및 여전·회사채 투자에 나서도 늦지 않\n 다는 판단이다. 협상 전까지 전쟁 리스크 장기화 가능성을 염두에 두고 선제적\n 포지셔닝보다는 보수적 대응이 필요하다. 협상을 통해 전쟁 리스크 해소가 분명\n 해진...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "047810",
+          "target_name": "한국항공우주",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.63,
+          "reason": "결론적으로 전쟁 지속 및 협상 전후 국면에서 단기/초우량물로 대응하고, 명시적\n 종전 기조가 확인된 이후 듀레이션 확대 및 여전·회사채 투자에 나서도 늦지 않\n 다는 판단이다. 협상 전까지 전쟁 리스크 장기화 가능성을 염두에 두고 선제적\n 포지셔닝보다는 보수적 대응이 필요하다. 협상을 통해 전쟁 리스크 해소가 분명\n 해진...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "064350",
+          "target_name": "현대로템",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.63,
+          "reason": "결론적으로 전쟁 지속 및 협상 전후 국면에서 단기/초우량물로 대응하고, 명시적\n 종전 기조가 확인된 이후 듀레이션 확대 및 여전·회사채 투자에 나서도 늦지 않\n 다는 판단이다. 협상 전까지 전쟁 리스크 장기화 가능성을 염두에 두고 선제적\n 포지셔닝보다는 보수적 대응이 필요하다. 협상을 통해 전쟁 리스크 해소가 분명\n 해진...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.63,
+          "reason": "결론적으로 전쟁 지속 및 협상 전후 국면에서 단기/초우량물로 대응하고, 명시적\n 종전 기조가 확인된 이후 듀레이션 확대 및 여전·회사채 투자에 나서도 늦지 않\n 다는 판단이다. 협상 전까지 전쟁 리스크 장기화 가능성을 염두에 두고 선제적\n 포지셔닝보다는 보수적 대응이 필요하다. 협상을 통해 전쟁 리스크 해소가 분명\n 해진...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "434730",
+          "target_name": "HANARO 원자력iSelect",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.63,
+          "reason": "결론적으로 전쟁 지속 및 협상 전후 국면에서 단기/초우량물로 대응하고, 명시적\n 종전 기조가 확인된 이후 듀레이션 확대 및 여전·회사채 투자에 나서도 늦지 않\n 다는 판단이다. 협상 전까지 전쟁 리스크 장기화 가능성을 염두에 두고 선제적\n 포지셔닝보다는 보수적 대응이 필요하다. 협상을 통해 전쟁 리스크 해소가 분명\n 해진...",
+          "action_hint": "보강"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "449450",
+          "target_name": "PLUS K방산",
+          "account_key": "KIS_MAIN",
+          "direction": "positive",
+          "horizon": "3m",
+          "strength": 0.63,
+          "reason": "결론적으로 전쟁 지속 및 협상 전후 국면에서 단기/초우량물로 대응하고, 명시적\n 종전 기조가 확인된 이후 듀레이션 확대 및 여전·회사채 투자에 나서도 늦지 않\n 다는 판단이다. 협상 전까지 전쟁 리스크 장기화 가능성을 염두에 두고 선제적\n 포지셔닝보다는 보수적 대응이 필요하다. 협상을 통해 전쟁 리스크 해소가 분명\n 해진...",
+          "action_hint": "보강"
+        }
+      ],
+      "confidence": "HIGH",
+      "quality": {
+        "contaminationEvidenceCount": 0,
+        "totalEvidenceCount": 8,
+        "weakClaimCount": 0,
+        "totalClaims": 4
+      },
+      "evidence_notes": [
+        {
+          "score": 54,
+          "classification": "investment_claim",
+          "excerpt": "결론적으로 전쟁 지속 및 협상 전후 국면에서 단기/초우량물로 대응하고, 명시적\n 종전 기조가 확인된 이후 듀레이션 확대 및 여전·회사채 투자에 나서도 늦지 않\n 다는 판단이다. 협상 전까지 전쟁 리스크 장기화 가능성을 염두에 두고 선제적\n 포지셔닝보다는 보수적 대응이 필요하다. 협상을 통해 전쟁 리스크 해소가 분명\n 해진다면 우선적 상위등급 매수 전략을 권고한다. 여전·회사채는 등급 구분 없이\n 약세를 보였기 때문에 상위등급이 선제적 강세를 보일 공산이 크다. ..."
+        },
+        {
+          "score": 50,
+          "classification": "investment_claim",
+          "excerpt": "디와이파워 (210540) KDQ\n주가 (원) 15,550\n  유압실린더를 공급하며 건설 중장비 분야 등에 광범위하게 적용되는 핵심 부품. 시장 확장 기대\n추천일 26년 4월 14일\n  건설장비 업황 개선에 힘입어 디와이파워 실적 전망 긍정적\n수익률 4.9%\n  중국, 인도 등 공장 운영을 통해 글로벌 수요 대응\n상대수익 -5.6%p"
+        },
+        {
+          "score": 42,
+          "classification": "investment_claim",
+          "excerpt": "비츠로셀 (082920) KDQ\n주가 (원) 56,600\n  국제 정세로 인한 방산주 강세의 수혜 기대\n추천일 26년 3월 4일\n  중동 리스크 발 원유 가격 상승에 따른 고온전지 가격 동반 상승 전망\n수익률 170.2%\n  유도무기에 탑재되는 열전지 부분 수주 증가 예상\n상대수익 166.4%p"
+        },
+        {
+          "score": 42,
+          "classification": "investment_claim",
+          "excerpt": "슈프리마 (110790) KDQ\n주가 (원) 54,000\n  북미, 인도, 중동 등 전 지역 보안 강화 추세 속 핵심 수혜\n추천일 26년 2월 10일\n  영상보안 제품을 통한 로봇보안 분야 라인업 확대\n수익률 17.0%\n  풍부한 보유현금과 실적모멘텀 바탕, 최근 자사주 소각으로 주주환원 기대도 유효\n상대수익 12.3%p"
+        },
+        {
+          "score": 41,
+          "classification": "investment_claim",
+          "excerpt": "리스크 지속 시 단기/초우량물, 리스크 해소 시 순차적 리스크 테이킹 전략\n 부정적 시나리오에서는 협상 결렬 가능성이 존재하고, 협상 결과가 미진하거나\n 이행 과정에서의 노이즈가 불거질 수 있다. 반도체 이익 상향 조정이 국고채 금\n 리 하단을 지지하는 가운데 불식되지 않은 전쟁 리스크는 금리 상방 재료로 작\n 용할 것이다. 특히 석유화학·운송·건설 등 에너지 의존 섹터와 여전사 등 조달 비\n 용 취약 산업에 대한 리스크 회피 심리가 점증될 공산이 크다. 단기/..."
+        },
+        {
+          "score": 37,
+          "classification": "investment_claim",
+          "excerpt": "효성티앤씨 (298020) KSP\n주가 (원) 531,000\n  글로벌 스판덱스 1위 업체로서 업사이클 구간에서 이익 레버리지 가장 클 전망\n추천일 26년 3월 6일\n  중국 구조조정 본격화에 따른 수급 밸런스 개선 및 판가 인상 등으로 시황 회복 가시화\n수익률 58.3%\n  경쟁사 화펑 대비 높은 밸류에이션 매력 및 이익 기여도 등으로 디스카운트 해소 기대\n상대수익 43.3%p"
+        },
+        {
+          "score": 37,
+          "classification": "investment_claim",
+          "excerpt": "지아이이노베이션 (358570) KDQ\n주가 (원) 14,540\n  IL-2 항암제 GI-101a 및 GI-102+키트루다/엔허투 병용 결과 학회 발표 전망(4월 AACR 등)\n추천일 26년 2월 26일\n  다케다는 이노벤트로부터 16조원 IL-2 x PD-1 확보, 긍정적 결과 발표 시 대규모 기술이전 기대\n수익률 -5.6%\n  알러지 치료제 GI-301 글로벌 임상 2상 개시, 임상 1상서 블록버스터 졸레어 대비 우위 확인\n상대수익 -6.9%p"
+        },
+        {
+          "score": 35,
+          "classification": "investment_claim",
+          "excerpt": "버티브 I 1분기 실적 기대감 유효\n VRT.US  26년 가이던스는 매출액 135억달러(+32%), Adj-EPS 6.02달러(+43%, 컨센 5.53달러) 제시\n 3 수주 증가세는 2026년에도 이어갈 전망. 4분기 실적에서 수주와 2026년 가이던스 기대\n 월\n 블룸에너지 I 여기서 유럽 수주가 나온다면\n BE.US  현금 및 현금성 자산이 24년 9.5억달러에서 25년 24.8억달러로 증가\n 들\n 어\n  Brookfield와 JV 당시 유럽 발주를..."
+        }
+      ]
+    },
+    {
+      "id": "report_067",
+      "schemaVersion": 2,
+      "title": "Daily Market Digest (4월 23일)",
+      "broker": "신한투자증권",
+      "source": "신한투자증권",
+      "date": "2026-04-23",
+      "category": "Daily 신한생각",
+      "report_type": "theme",
+      "sector": "매크로",
+      "themes": [
+        "AI 인프라",
+        "방산",
+        "원자력",
+        "금/원자재",
+        "금리/매크로"
+      ],
+      "text_path": "data/reports/2026-04-23/text/report_067.txt",
+      "text_length": 34225,
+      "related_holdings_in_my_portfolio": [
+        {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA"
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축"
+        },
+        {
+          "code": "007660",
+          "name": "이수페타시스",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "047810",
+          "name": "한국항공우주",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "064350",
+          "name": "현대로템",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "329180",
+          "name": "HD현대중공업",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        },
+        {
+          "code": "449450",
+          "name": "PLUS K방산",
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반"
+        }
+      ],
+      "related_accounts": [
+        "ISA",
+        "PENSION",
+        "KIS_MAIN"
+      ],
+      "key_thesis": "매크로는 중립 시각이며 핵심 근거는 유틸리티 1,338.6 (1.3) (6.1) (6.2) 6532 베이커런트컨설팅 4.4 22.8 31.9\n ✚ KOSPI, KOSDAQ 동향 ✚ 외국인 순매수 상위 (억원, %) ✚ 기관 순매수 상위 (억원, %)\n (100p) KOSPI(좌축) (p) 기업명 금액 등락률 기업명 금액 ...",
+      "key_points": [
+        "매크로는 중립 시각이며 핵심 근거는 유틸리티 1,338.6 (1.3) (6.1) (6.2) 6532 베이커런트컨설팅 4.4 22.8 31.9\n ✚ KOSPI, KOSDAQ 동향 ✚ 외국인 순매수 상위 (억원, %) ✚ 기관 순매수 상위 (억원, %)\n (100p) KOSPI(좌축) (p) 기업명 금액 등락률 기업명 금액 ...",
+        "매크로는 중립 시각이며 핵심 근거는 -미국 시장은 Trump의 휴전 연장 발표 안도 랠리. S&P500 +1.1%, NASDAQ (100p) KOSPI(좌축) (배) (천억원) 1D KOSPI\n +1.6%, Dow +0.7%. S&P500·NASDAQ 사상 최고가 재경신 68\n 12MF PER(우축)\n 13.0 100 1...",
+        "매크로는 중립 시각이며 핵심 근거는 ✚ 미국 섹터별 등락률 상하위 Top5 (GICS Lv. 1,3) (%) ✚ 한국 업종별 증감율 상하위 Top5 (%, 십억원)\n 주가상승률 주가상승률 주가상승률 외국인 순매수 기관 순매수\n섹터 섹터 업종\n(GICS Lv.1) 1D 1W 1M (GICS Lv.3) 1D 1W 1M (WI...",
+        "매크로는 중립 시각이며 핵심 근거는 ✚ 미국 상승률 상위 종목(S&P100+NASDAQ100) & 테마 (%) ✚ 한국 KOSPI200 상승률 상위 종목 & 52주 신고가 (%)\nTop Mover 주가상승률 Top Mover 주가상승률 Top Mover 주가상승률 52주 신고가 주가상승률"
+      ],
+      "primary_claim": {
+        "entity": "매크로",
+        "direction": "neutral",
+        "strength": "weak",
+        "horizon": "medium",
+        "reason": "유틸리티 1,338.6 (1.3) (6.1) (6.2) 6532 베이커런트컨설팅 4.4 22.8 31.9\n ✚ KOSPI, KOSDAQ 동향 ✚ 외국인 순매수 상위 (억원, %) ✚ 기관 순매수 상위 (억원, %)\n (100p) KOSPI(좌축) (p) 기업명 금액 등락률 기업명 금액 ...",
+        "condition": null,
+        "counterpoint": null,
+        "source_span": "paragraph_72",
+        "classification": "weak_claim",
+        "classification_confidence": 0.48,
+        "summary": "매크로는 중립 시각이며 핵심 근거는 유틸리티 1,338.6 (1.3) (6.1) (6.2) 6532 베이커런트컨설팅 4.4 22.8 31.9\n ✚ KOSPI, KOSDAQ 동향 ✚ 외국인 순매수 상위 (억원, %) ✚ 기관 순매수 상위 (억원, %)\n (100p) KOSPI(좌축) (p) 기업명 금액 등락률 기업명 금액 ..."
+      },
+      "claim_candidates": [
+        {
+          "entity": "매크로",
+          "direction": "neutral",
+          "strength": "weak",
+          "horizon": "medium",
+          "reason": "유틸리티 1,338.6 (1.3) (6.1) (6.2) 6532 베이커런트컨설팅 4.4 22.8 31.9\n ✚ KOSPI, KOSDAQ 동향 ✚ 외국인 순매수 상위 (억원, %) ✚ 기관 순매수 상위 (억원, %)\n (100p) KOSPI(좌축) (p) 기업명 금액 등락률 기업명 금액 ...",
+          "condition": null,
+          "counterpoint": null,
+          "source_span": "paragraph_72",
+          "classification": "weak_claim",
+          "classification_confidence": 0.48,
+          "summary": "매크로는 중립 시각이며 핵심 근거는 유틸리티 1,338.6 (1.3) (6.1) (6.2) 6532 베이커런트컨설팅 4.4 22.8 31.9\n ✚ KOSPI, KOSDAQ 동향 ✚ 외국인 순매수 상위 (억원, %) ✚ 기관 순매수 상위 (억원, %)\n (100p) KOSPI(좌축) (p) 기업명 금액 등락률 기업명 금액 ..."
+        },
+        {
+          "entity": "매크로",
+          "direction": "neutral",
+          "strength": "weak",
+          "horizon": "medium",
+          "reason": "-미국 시장은 Trump의 휴전 연장 발표 안도 랠리. S&P500 +1.1%, NASDAQ (100p) KOSPI(좌축) (배) (천억원) 1D KOSPI\n +1.6%, Dow +0.7%. S&P500·NASDAQ 사상 최고가 재경신 68\n 12MF PER(우축)\n 13.0 100 1...",
+          "condition": null,
+          "counterpoint": null,
+          "source_span": "paragraph_3",
+          "classification": "weak_claim",
+          "classification_confidence": 0.48,
+          "summary": "매크로는 중립 시각이며 핵심 근거는 -미국 시장은 Trump의 휴전 연장 발표 안도 랠리. S&P500 +1.1%, NASDAQ (100p) KOSPI(좌축) (배) (천억원) 1D KOSPI\n +1.6%, Dow +0.7%. S&P500·NASDAQ 사상 최고가 재경신 68\n 12MF PER(우축)\n 13.0 100 1..."
+        },
+        {
+          "entity": "매크로",
+          "direction": "neutral",
+          "strength": "weak",
+          "horizon": "medium",
+          "reason": "✚ 미국 섹터별 등락률 상하위 Top5 (GICS Lv. 1,3) (%) ✚ 한국 업종별 증감율 상하위 Top5 (%, 십억원)\n 주가상승률 주가상승률 주가상승률 외국인 순매수 기관 순매수\n섹터 섹터 업종\n(GICS Lv.1) 1D 1W 1M (GICS Lv.3) 1D 1W 1M (WI...",
+          "condition": null,
+          "counterpoint": null,
+          "source_span": "paragraph_7",
+          "classification": "weak_claim",
+          "classification_confidence": 0.48,
+          "summary": "매크로는 중립 시각이며 핵심 근거는 ✚ 미국 섹터별 등락률 상하위 Top5 (GICS Lv. 1,3) (%) ✚ 한국 업종별 증감율 상하위 Top5 (%, 십억원)\n 주가상승률 주가상승률 주가상승률 외국인 순매수 기관 순매수\n섹터 섹터 업종\n(GICS Lv.1) 1D 1W 1M (GICS Lv.3) 1D 1W 1M (WI..."
+        },
+        {
+          "entity": "매크로",
+          "direction": "neutral",
+          "strength": "weak",
+          "horizon": "medium",
+          "reason": "✚ 미국 상승률 상위 종목(S&P100+NASDAQ100) & 테마 (%) ✚ 한국 KOSPI200 상승률 상위 종목 & 52주 신고가 (%)\nTop Mover 주가상승률 Top Mover 주가상승률 Top Mover 주가상승률 52주 신고가 주가상승률",
+          "condition": null,
+          "counterpoint": null,
+          "source_span": "paragraph_18",
+          "classification": "weak_claim",
+          "classification_confidence": 0.48,
+          "summary": "매크로는 중립 시각이며 핵심 근거는 ✚ 미국 상승률 상위 종목(S&P100+NASDAQ100) & 테마 (%) ✚ 한국 KOSPI200 상승률 상위 종목 & 52주 신고가 (%)\nTop Mover 주가상승률 Top Mover 주가상승률 Top Mover 주가상승률 52주 신고가 주가상승률"
+        }
+      ],
+      "key_numbers": [
+        {
+          "label": "thesis_anchor",
+          "value": "1,338.6",
+          "why_it_matters": "핵심 투자 논리를 직접 뒷받침하는 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "1.1%",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "1.6%",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "0.7%",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "1,240",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "1,518",
+          "why_it_matters": "보조 참고 수치"
+        },
+        {
+          "label": "supporting",
+          "value": "1,102",
+          "why_it_matters": "보조 참고 수치"
+        }
+      ],
+      "what_changed": [
+        "-Palantir(+4.6%), 美 농무부와 공급망 안정화 관련 3억$ 계약 등 SW 강세 지속 (100)\n (76.4) (77.1)\n 20 7.0\n 04/25 08/25 12/25 04/26 외국인 기관 개인\n -한국 시장은 SK하이닉스 실적 대기하며 6,400p 안착 및 신고가. KOSPI +0.5%\n -반도체 쉬어갔지만 2차전지·산업재 등 호실적 기대 종목 상승하며 지수 지지\n (원) (기준값: 100) (천달러/온스) ...",
+        "PICK 글로벌 광산 2.9 0.6 22.1 VXX VIX (1.1) 1.1 (17.8) 베트남 VN 1,857 1.3 4.6 12.7\n✚ 중국 Daily Review Summary ✚ 유럽 Daily Review Summary ✚ 일본 Daily Review Summary\n-상해종합 +0.5%. AI 밸류체인 강세에 4,100p 회 -Eurostoxx -0.5%. 호르무즈 해협 긴장으로 인해 -Nikkei225 +0.4%. ..."
+      ],
+      "bull_case": [],
+      "bear_case": [],
+      "catalysts": [],
+      "risks": [],
+      "new_info": "-Palantir(+4.6%), 美 농무부와 공급망 안정화 관련 3억$ 계약 등 SW 강세 지속 (100)\n (76.4) (77.1)\n 20 7.0\n 04/25 08/25 12/25 04/26 외국인 기관 개인\n -한국 시장은 SK하이닉스 실적 대기하며 6,400p 안착 및 신고가. KOSPI +0.5%\n -반도체 쉬어갔지만 2차전지·산업재 등 호실적 기대 종목 상승하며 지수 지지\n (원) (기준값: 100) (천달러/온스) ...",
+      "thesis_novelty": "LOW",
+      "sentiment_score": 0,
+      "portfolio_impacts_candidate": [
+        {
+          "target_type": "holding",
+          "target_code": "132030",
+          "target_name": "KODEX 골드선물(H)",
+          "account_key": "ISA",
+          "direction": "neutral",
+          "horizon": "3m",
+          "strength": 0.28,
+          "reason": "유틸리티 1,338.6 (1.3) (6.1) (6.2) 6532 베이커런트컨설팅 4.4 22.8 31.9\n ✚ KOSPI, KOSDAQ 동향 ✚ 외국인 순매수 상위 (억원, %) ✚ 기관 순매수 상위 (억원, %)\n (100p) KOSPI(좌축) (p) 기업명 금액 등락률 기업명 금액 등락률\n 68 KOSDAQ(우축) 1...",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "487240",
+          "target_name": "KODEX AI전력핵심설비",
+          "account_key": "PENSION",
+          "direction": "neutral",
+          "horizon": "3m",
+          "strength": 0.28,
+          "reason": "유틸리티 1,338.6 (1.3) (6.1) (6.2) 6532 베이커런트컨설팅 4.4 22.8 31.9\n ✚ KOSPI, KOSDAQ 동향 ✚ 외국인 순매수 상위 (억원, %) ✚ 기관 순매수 상위 (억원, %)\n (100p) KOSPI(좌축) (p) 기업명 금액 등락률 기업명 금액 등락률\n 68 KOSDAQ(우축) 1...",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "360750",
+          "target_name": "TIGER 미국S&P500",
+          "account_key": "PENSION",
+          "direction": "neutral",
+          "horizon": "3m",
+          "strength": 0.28,
+          "reason": "유틸리티 1,338.6 (1.3) (6.1) (6.2) 6532 베이커런트컨설팅 4.4 22.8 31.9\n ✚ KOSPI, KOSDAQ 동향 ✚ 외국인 순매수 상위 (억원, %) ✚ 기관 순매수 상위 (억원, %)\n (100p) KOSPI(좌축) (p) 기업명 금액 등락률 기업명 금액 등락률\n 68 KOSDAQ(우축) 1...",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "007660",
+          "target_name": "이수페타시스",
+          "account_key": "KIS_MAIN",
+          "direction": "neutral",
+          "horizon": "3m",
+          "strength": 0.28,
+          "reason": "유틸리티 1,338.6 (1.3) (6.1) (6.2) 6532 베이커런트컨설팅 4.4 22.8 31.9\n ✚ KOSPI, KOSDAQ 동향 ✚ 외국인 순매수 상위 (억원, %) ✚ 기관 순매수 상위 (억원, %)\n (100p) KOSPI(좌축) (p) 기업명 금액 등락률 기업명 금액 등락률\n 68 KOSDAQ(우축) 1...",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "047810",
+          "target_name": "한국항공우주",
+          "account_key": "KIS_MAIN",
+          "direction": "neutral",
+          "horizon": "3m",
+          "strength": 0.28,
+          "reason": "유틸리티 1,338.6 (1.3) (6.1) (6.2) 6532 베이커런트컨설팅 4.4 22.8 31.9\n ✚ KOSPI, KOSDAQ 동향 ✚ 외국인 순매수 상위 (억원, %) ✚ 기관 순매수 상위 (억원, %)\n (100p) KOSPI(좌축) (p) 기업명 금액 등락률 기업명 금액 등락률\n 68 KOSDAQ(우축) 1...",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "064350",
+          "target_name": "현대로템",
+          "account_key": "KIS_MAIN",
+          "direction": "neutral",
+          "horizon": "3m",
+          "strength": 0.28,
+          "reason": "유틸리티 1,338.6 (1.3) (6.1) (6.2) 6532 베이커런트컨설팅 4.4 22.8 31.9\n ✚ KOSPI, KOSDAQ 동향 ✚ 외국인 순매수 상위 (억원, %) ✚ 기관 순매수 상위 (억원, %)\n (100p) KOSPI(좌축) (p) 기업명 금액 등락률 기업명 금액 등락률\n 68 KOSDAQ(우축) 1...",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "138910",
+          "target_name": "KODEX 구리선물(H)",
+          "account_key": "KIS_MAIN",
+          "direction": "neutral",
+          "horizon": "3m",
+          "strength": 0.28,
+          "reason": "유틸리티 1,338.6 (1.3) (6.1) (6.2) 6532 베이커런트컨설팅 4.4 22.8 31.9\n ✚ KOSPI, KOSDAQ 동향 ✚ 외국인 순매수 상위 (억원, %) ✚ 기관 순매수 상위 (억원, %)\n (100p) KOSPI(좌축) (p) 기업명 금액 등락률 기업명 금액 등락률\n 68 KOSDAQ(우축) 1...",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "329180",
+          "target_name": "HD현대중공업",
+          "account_key": "KIS_MAIN",
+          "direction": "neutral",
+          "horizon": "3m",
+          "strength": 0.28,
+          "reason": "유틸리티 1,338.6 (1.3) (6.1) (6.2) 6532 베이커런트컨설팅 4.4 22.8 31.9\n ✚ KOSPI, KOSDAQ 동향 ✚ 외국인 순매수 상위 (억원, %) ✚ 기관 순매수 상위 (억원, %)\n (100p) KOSPI(좌축) (p) 기업명 금액 등락률 기업명 금액 등락률\n 68 KOSDAQ(우축) 1...",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "434730",
+          "target_name": "HANARO 원자력iSelect",
+          "account_key": "KIS_MAIN",
+          "direction": "neutral",
+          "horizon": "3m",
+          "strength": 0.28,
+          "reason": "유틸리티 1,338.6 (1.3) (6.1) (6.2) 6532 베이커런트컨설팅 4.4 22.8 31.9\n ✚ KOSPI, KOSDAQ 동향 ✚ 외국인 순매수 상위 (억원, %) ✚ 기관 순매수 상위 (억원, %)\n (100p) KOSPI(좌축) (p) 기업명 금액 등락률 기업명 금액 등락률\n 68 KOSDAQ(우축) 1...",
+          "action_hint": "관찰"
+        },
+        {
+          "target_type": "holding",
+          "target_code": "449450",
+          "target_name": "PLUS K방산",
+          "account_key": "KIS_MAIN",
+          "direction": "neutral",
+          "horizon": "3m",
+          "strength": 0.28,
+          "reason": "유틸리티 1,338.6 (1.3) (6.1) (6.2) 6532 베이커런트컨설팅 4.4 22.8 31.9\n ✚ KOSPI, KOSDAQ 동향 ✚ 외국인 순매수 상위 (억원, %) ✚ 기관 순매수 상위 (억원, %)\n (100p) KOSPI(좌축) (p) 기업명 금액 등락률 기업명 금액 등락률\n 68 KOSDAQ(우축) 1...",
+          "action_hint": "관찰"
+        }
+      ],
+      "confidence": "MEDIUM",
+      "quality": {
+        "contaminationEvidenceCount": 0,
+        "totalEvidenceCount": 5,
+        "weakClaimCount": 4,
+        "totalClaims": 4
+      },
+      "evidence_notes": [
+        {
+          "score": 36,
+          "classification": "weak_claim",
+          "excerpt": "유틸리티 1,338.6 (1.3) (6.1) (6.2) 6532 베이커런트컨설팅 4.4 22.8 31.9\n ✚ KOSPI, KOSDAQ 동향 ✚ 외국인 순매수 상위 (억원, %) ✚ 기관 순매수 상위 (억원, %)\n (100p) KOSPI(좌축) (p) 기업명 금액 등락률 기업명 금액 등락률\n 68 KOSDAQ(우축) 1,240\n백 이수페타시스 1,518 21.2 HD현대중공업 1,102 11.3"
+        },
+        {
+          "score": 11,
+          "classification": "weak_claim",
+          "excerpt": "-미국 시장은 Trump의 휴전 연장 발표 안도 랠리. S&P500 +1.1%, NASDAQ (100p) KOSPI(좌축) (배) (천억원) 1D KOSPI\n +1.6%, Dow +0.7%. S&P500·NASDAQ 사상 최고가 재경신 68\n 12MF PER(우축)\n 13.0 100 1W 87.4"
+        },
+        {
+          "score": 0,
+          "classification": "weak_claim",
+          "excerpt": "✚ 미국 섹터별 등락률 상하위 Top5 (GICS Lv. 1,3) (%) ✚ 한국 업종별 증감율 상하위 Top5 (%, 십억원)\n 주가상승률 주가상승률 주가상승률 외국인 순매수 기관 순매수\n섹터 섹터 업종\n(GICS Lv.1) 1D 1W 1M (GICS Lv.3) 1D 1W 1M (WI26) 1D 1W 1M 1D 1W 1D 1W"
+        },
+        {
+          "score": 0,
+          "classification": "weak_claim",
+          "excerpt": "✚ 미국 상승률 상위 종목(S&P100+NASDAQ100) & 테마 (%) ✚ 한국 KOSPI200 상승률 상위 종목 & 52주 신고가 (%)\nTop Mover 주가상승률 Top Mover 주가상승률 Top Mover 주가상승률 52주 신고가 주가상승률"
+        },
+        {
+          "score": 0,
+          "classification": "weak_claim",
+          "excerpt": "은행 (1.8) (1.0) 1.5 23.8 (23) (56) 동진쎄미켐 10.4 6.9 21.3 64.8\n✚ 일간 채권 등락률 ✚ 일간 달러인덱스 등락률 ✚ 일간 상품 등락률\n(%) 미 국채 10년 (p) 달러인덱스 (p) WTI\n4.31 98.7 94.0"
+        },
+        {
+          "score": -40,
+          "classification": "metadata",
+          "excerpt": "2026년 4월 23일 목요일 2026년 4월 23일 목요일"
+        },
+        {
+          "score": -40,
+          "classification": "metadata",
+          "excerpt": "반도체 2.0 5.8 25.8 담배 5.2 1.8 0.7 IT하드웨어 7.2 27.8 54.3 75 131 15 200"
+        },
+        {
+          "score": -40,
+          "classification": "metadata",
+          "excerpt": "부동산 1.9 4.1 9.9 IT H/W, 저장장치 4.3 6.8 32.5 조선 6.0 15.5 11.3 (32) (346) 239 810"
+        }
+      ]
     }
   ],
   "_contract": {
     "version": "1.0",
     "stage": "stage1",
-    "generatedAt": "2026-04-23T03:31:13.252Z"
+    "generatedAt": "2026-04-23T15:26:07.223Z"
   }
 }
