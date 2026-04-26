@@ -13,8 +13,8 @@ EcoReport는 Mac Mini에서 돌아가는 반자동 포트폴리오 인텔리전�
 - 리포트, 기술지표, 내 계좌 상태를 같은 구조 안에 넣고
 - 실제 계좌 운용 지침까지 연결하는 것
 
-현재 기본 모드는 **API 대량 호출형**이 아니라 **수동 LLM 개입형**입니다.
-즉, EcoReport가 재료와 점수를 준비하고, ChatGPT/Gemini/Claude 같은 LLM은 해석과 전략 탐색을 담당합니다.
+현재 기본 모드는 **리포트 원문 기반의 반자동 투자 리서치 파이프라인**입니다.
+EcoReport가 수집, 텍스트화, 계좌/퀀트 결합, 검증, 기록을 맡고, LLM은 단계별로 제한된 역할만 맡습니다.
 
 ## 현재 목표
 
@@ -22,13 +22,17 @@ EcoReport는 Mac Mini에서 돌아가는 반자동 포트폴리오 인텔리전�
 - 증권사 PDF를 단순 요약이 아니라 연구 노트 형태로 축적하기
 - 기술지표와 리포트 영향을 같이 반영한 계좌 점수 만들기
 - 최종적으로 "오늘 뭘 보강/보류/관망할지"를 계좌 단위로 제시하기
+- 100개 리포트에서 매일 달라진 비평균 신호, 신규 후보, 반대 근거를 보존하기
 
 ## 핵심 원칙
 
 - `igzun-daily-report`는 참고 레퍼런스일 뿐, EcoReport 런타임 의존성이 아닙니다.
 - 수집 후에는 반드시 `PDF 전문 텍스트화`를 거칩니다.
-- Stage 2만 LLM 의존도가 높고, Stage 1/3/4는 재현 가능한 코드로 유지합니다.
-- 지금은 수동 LLM 운영이 기본이며, 구조가 안정되면 그때 API를 붙입니다.
+- 리포트 요약을 여러 번 평균내지 않고, 주장/숫자/촉매/리스크/신규 후보를 구조화해 보존합니다.
+- Stage 7 전략 탐색은 Qwen 실제 LLM 결과가 필요하며, mock fallback은 운영 경로에서 금지합니다.
+- Gemini Deep Research는 최종 요약자가 아니라 외부 검색, 반증, 최신 촉매 확인용 보조 레이어입니다.
+- `system-health`가 `ok`인 완성 데이터만 `data` 브랜치에 push합니다.
+- Vercel 배포는 완성 데이터가 안정될 때까지 중단합니다.
 
 ## 현재 기준 디렉토리
 
@@ -38,71 +42,73 @@ EcoReport는 Mac Mini에서 돌아가는 반자동 포트폴리오 인텔리전�
 - 레거시 아카이브: `/Users/seo/Documents/Playground/stock-pilot-archive`
 - GitHub 원격: `sgdrudejr/EcoReport` 유지
 
-## LLM 브리핑 + 딥리서치 파이프라인 (2026-04 현재)
+## 현재 운영 방향 (2026-04)
 
-증권사 리포트 청크 → Qwen 브리핑 → Gemini 딥리서치 → 인사이트 도출의 4단계 자동 파이프라인입니다.
+최근 운영상 가장 큰 문제는 최종 산출물이 너무 평균화되어 1주일 내내 비슷한 말을 반복한다는 점입니다.
+따라서 EcoReport의 방향은 "더 긴 요약"이 아니라 **오늘 달라진 투자 신호를 잃지 않는 구조화**로 바뀝니다.
+
+핵심 질문은 아래입니다.
+
+- 오늘 새로 등장한 주장과 종목은 무엇인가?
+- 기존 보유 종목의 thesis를 약화시키는 근거는 무엇인가?
+- 컨센서스와 반대로 말하는 리포트는 무엇인가?
+- 신규 후보가 기존 보유 종목을 대체하거나 보강할 만큼 강한가?
+- 실제 계좌에서 오늘 할 일은 매수, 보류, 감시, 축소 중 무엇인가?
+
+Gemini Deep Research는 계속 사용할 수 있지만, 역할은 축소합니다.
+
+- `해야 할 일`: 외부 웹 검색, 최신 데이터 확인, 반론 찾기, 정책/산업 촉매 검증
+- `하지 말아야 할 일`: 100개 리포트 전체를 다시 평균 요약해 최종 결론을 만드는 일
+
+## 현재 플로우
+
+100개 안팎의 증권사 리포트를 수집한 뒤, 로컬/외부 LLM과 코드 단계를 아래처럼 나누어 씁니다.
 
 ```mermaid
 flowchart TD
-    A["chunks.jsonl<br/>data/reports/{date}/rag/"] --> B["① 브리핑 생성<br/>generate_briefing.py<br/>qwen3.5-flash"]
-    P["merged-portfolio.md<br/>data/portfolio/rag/"] --> C
-
-    B --> BR["{date}-briefing.md"]
-    BR --> C["② Gemini 딥리서치<br/>Chrome → gemini.google.com<br/>Google Search 실시간 검색"]
-    P --> C
-    C --> DR["{date}-deepresearch.md"]
-
-    DR --> E["③ 인사이트 도출<br/>qwen3.5-flash<br/>계좌별 운영방안 + 추천종목"]
-    P --> E
-    E --> INS["{date}-insights.md"]
+    A["증권사 리포트 100개 내외<br/>Naver / Shinhan"] --> B["PDF 저장 + 전문 텍스트화<br/>collect-report-assets.sh"]
+    B --> C["Windows Local LLM<br/>청크 요약 + 리포트별 병합"]
+    C --> D["Stage 1.4<br/>상위 리포트 선별 + research agenda"]
+    B --> E["Stage 2<br/>report extracts: 주장/숫자/리스크/계좌 연결"]
+    D --> F["Stage 5<br/>Gemini Deep Research 질문 분할"]
+    E --> F
+    F --> G["Gemini Deep Research<br/>외부 검증/반론/최신 촉매"]
+    G --> H["Stage 6<br/>rich briefing synthesis"]
+    E --> I["Stage 7<br/>Qwen strategy exploration"]
+    H --> I
+    J["Portfolio Snapshot<br/>KIS / ISA / 연금 / 토스"] --> I
+    K["Technical / Quant<br/>가격, 모멘텀, 리스크"] --> I
+    I --> L["Impact Map<br/>리포트 → 계좌/종목 영향"]
+    L --> M["Stage 8 Quant Scoring"]
+    M --> N["Stage 9 Execution Plan<br/>계좌별 매수/보류/감시/축소"]
+    N --> O["system-health 검증"]
+    O --> P["ok일 때만 data branch push"]
 ```
 
 ### 역할 분담
-| 단계 | 담당 | 이유 |
-|------|------|------|
-| 브리핑 (대용량 청크 → 요약) | **qwen3.5-flash** | 저렴, 컨텍스트 길어도 안정적 |
-| 딥리서치 (실시간 검색 포함) | **Gemini 웹 Deep Research** | Google 검색 품질 최고, 무료 |
-| 인사이트 도출 (요약 → 액션) | **qwen3.5-flash** | 저렴, Gemini 결과 재처리 |
 
-### 실행 명령
+| 담당 | 역할 | 하지 않는 일 |
+|------|------|-------------|
+| Mac Mini 코드 | 수집, 텍스트화, 계좌/퀀트 결합, 검증, 기록 | 투자 판단을 임의 생성하지 않음 |
+| Windows Local LLM | 긴 PDF/청크를 싸게 많이 읽고 리포트별 요약 생성 | 최종 매매 판단을 내리지 않음 |
+| Qwen API | Research agenda, 전략 JSON, 계좌별 액션 후보 생성 | 원문 100개를 통째로 다시 평균 요약하지 않음 |
+| Gemini Deep Research | 외부 검색, 최신 이슈, 반론, 촉매 검증 | 내부 리포트의 최종 결론을 덮어쓰지 않음 |
+| Quant/Technical | 매수 가능 타이밍과 리스크 필터 | 리포트 thesis를 대체하지 않음 |
 
-```bash
-cd /Users/seo/Documents/Playground/economy-report
-DATE=$(date +%F)
+### 왜 이렇게 나누는가
 
-# ① 브리핑 생성 (qwen3.5-flash)
-.venv/bin/python3 scripts/generate_briefing.py \
-  --input data/reports/$DATE/rag/chunks.jsonl \
-  --output knowledge/daily/$DATE-briefing.md \
-  --model qwen3.5-flash \
-  --max-chunks 80 --min-chunks 60 \
-  --run-date $DATE --effective-market-date $DATE
+리포트 100개에서 중요한 것은 평균 의견이 아니라 희소한 변화입니다.
+그래서 EcoReport는 앞으로 아래 산출물을 더 중요하게 봅니다.
 
-# ② Gemini 웹 딥리서치 (Chrome 자동화 또는 수동)
-#    브리핑 + 포트폴리오를 Gemini Deep Research에 입력
+- `오늘 새로 등장한 주장`
+- `기존 보유 종목에 불리한 근거`
+- `반대 의견 또는 thesis 파괴 조건`
+- `신규 후보와 기존 보유의 대체/보강 관계`
+- `계좌별 실행 가능성`
+- `어제와 달라진 액션`
 
-# ③ 인사이트 도출 (qwen3.5-flash, 딥리서치 결과 입력 후)
-.venv/bin/python3 scripts/generate_insights.py \
-  --deepresearch knowledge/daily/$DATE-deepresearch.md \
-  --portfolio data/portfolio/rag/latest/merged-portfolio.md \
-  --briefing knowledge/daily/$DATE-briefing.md \
-  --output knowledge/daily/$DATE-insights.md \
-  --date $DATE --model qwen3.5-flash
-```
-
-> `--briefing` 옵션을 지정하면 `portfolio_filter.py`가 자동으로 호출되어 브리핑 키워드와 관련 있는 보유종목만 컨텍스트에 포함합니다 (Relevant Chunking).
-> 생성 직후 검증 루프(Self-Correction)가 실행되어 리스크 가이드라인 위반 여부를 체크합니다.
-
-### Gemini 딥리서치 전용 브리핑 (레거시 / 수동)
-
-`generate_gemini_briefing_deepresearch.py`는 `google-genai` SDK를 직접 사용하는 구버전입니다.
-Gemini API 한도가 있을 때 또는 웹 딥리서치 프롬프트 소재로 활용합니다.
-
-```bash
-.venv/bin/python3 scripts/generate_gemini_briefing_deepresearch.py \
-  --input data/reports/$DATE/rag/chunks.jsonl \
-  --output knowledge/daily/$DATE-gemini-briefing.md
-```
+좋은 산출물은 "AI 전력/방산/금리 주시"처럼 넓은 문장이 아니라,
+"어떤 리포트의 어떤 숫자 때문에 어느 계좌의 어떤 종목 액션이 바뀌었는지"를 설명해야 합니다.
 
 ---
 
@@ -114,52 +120,59 @@ flowchart TD
     B --> B1["PDFs + index.json"]
     B --> B2["text/*.txt + text-manifest.json"]
 
-    P["Stage 1<br/>Portfolio Snapshot"] --> C
-    B2 --> C["Stage 2<br/>build-stage1-report-extracts.js"]
-    P --> C
-    W["Watchlist / Strategy"] --> C
-    C --> C1["stage1-report-extracts-v2.json"]
-    C --> C2["stage1-report-extracts-v2.md"]
+    B2 --> C["Windows Local LLM<br/>reports/report_summaries/YYYY-MM-DD"]
+    B2 --> D["Stage 2 Extracts<br/>build-stage1-report-extracts.js"]
+    P["Stage 1 Portfolio Snapshot<br/>data/portfolio/latest.json"] --> D
+    W["Watchlist / Strategy Config"] --> D
+    D --> D1["stage1-report-extracts-v2.json"]
 
-    C1 --> M["Stage 5 Prompt Split<br/>build-stage1-5-gemini-deep-research-prompt.js"]
-    P --> M
-    M --> M1["07-stage1-5-gemini-deep-research-prompt.md"]
-    M1 --> N["Stage 5 Gemini Web<br/>run-gemini-deep-research-web.js"]
-    N --> N1["09-stage1-5-gemini-deep-research-response.md"]
-    C1 --> O["Stage 6 Rich Briefing<br/>build-stage1-6-rich-briefing.js"]
-    P --> O
+    C --> E["Stage 3 Top Report Summary Selection<br/>summarize-report-chunks.py"]
+    D1 --> E
+    E --> F["Stage 4 Research Agenda<br/>build-stage1-4-research-agenda.py"]
+    D1 --> F
+    F --> F1["stage1-research-agenda.json"]
+
+    F1 --> G["Stage 5 Gemini Prompt Split<br/>build-stage1-5-gemini-deep-research-prompt.js"]
+    D1 --> G
+    P --> G
+    G --> G1["07a/07b/07c prompts"]
+    G1 --> H["Gemini Deep Research<br/>external validation only"]
+    H --> H1["Deep Research responses"]
+
+    H1 --> I["Stage 6 Rich Briefing<br/>build-stage1-6-rich-briefing.js"]
+    F1 --> I
+    D1 --> I
+    I --> I1["gemini-briefing-rich.md"]
+
+    D1 --> J["Stage 7 Strategy Prompt<br/>build-stage2-strategy-prompt.js"]
+    I1 --> J
+    P --> J
+    T["Technical Snapshot<br/>data/technical/YYYY-MM-DD.json"] --> J
+    J --> J1["08-stage2-strategy-prompt.md"]
+    J1 --> K["Stage 7 Qwen Strategy<br/>build-stage2-strategy-qwen.py"]
+    K --> K1["stage2-strategy-options.json"]
+
+    K1 --> L["Stage 7.5 ETF Candidate Matching<br/>build-stage2-5-etf-candidates.js"]
+    D1 --> M["Impact Map<br/>build-impact-map.js"]
+    K1 --> M
+    M --> M1["impact-map.json"]
+
+    M1 --> N["Stage 8 Quant Scoring<br/>build-stage3-quant-scores.js"]
+    T --> N
+    P --> N
+    N --> N1["stage3-quant-scores.json"]
+
+    K1 --> O["Stage 9 Execution Plan<br/>build-stage4-execution-plan.js"]
     N1 --> O
-    O --> O1["knowledge/daily/YYYY-MM-DD-gemini-briefing-rich.md"]
+    P --> O
+    O --> O1["stage4-execution-plan.json / reports/daily/*.md"]
 
-    O1 --> D["Stage 7 Prompt<br/>build-stage2-strategy-prompt.js"]
-    C1 --> D
-    C1 --> E["Stage 7 Real LLM<br/>build-stage2-strategy-qwen.py"]
-    T["Technical Snapshot<br/>data/technical/YYYY-MM-DD.json"] --> D
-    T --> E
-    P --> D
-    P --> E
-    G["Daily / Gemini Briefing"] --> D
-    E --> E1["stage2-strategy-options.json"]
-    D --> D1["08-stage2-strategy-prompt.md"]
+    O1 --> Q["System Health<br/>verify-daily-system.js"]
+    Q --> PUSH["data branch push<br/>only when overallStatus=ok"]
 
-    C1 --> F["Stage 8 Quant<br/>build-stage3-quant-scores.js"]
-    E1 --> F
-    T --> F
-    P --> F
-    W --> F
-    F --> F1["stage3-quant-scores.json"]
-
-    C1 --> H["Stage 4 Execution<br/>build-stage4-execution-plan.js"]
-    E1 --> H
-    F1 --> H
-    P --> H
-    W --> H
-    H --> H1["stage4-execution-plan.json"]
-    H --> H2["stage4-execution-plan.md"]
-
-    B2 --> R["Report RAG Corpus"]
+    B2 --> RR["Report RAG Corpus"]
     P --> PR["Portfolio RAG Corpus"]
-    R --> XR["Parallel RAG Corpus"]
+    RR --> XR["Parallel RAG Corpus"]
     PR --> XR
 ```
 
@@ -269,13 +282,15 @@ npm run automation:daily -- --date YYYY-MM-DD
 이 러너는 다음을 한 번에 묶습니다.
 
 1. 리포트 수집 + 전문 텍스트화
-2. 시장 데이터 수집 + 기술 점수 계산
-3. 리포트/포트폴리오/병렬 RAG 재생성
-4. Gemini 경제 브리핑 생성(키가 있을 때)
-5. Stage 1~4 실행
-6. `knowledge/wiki/` 지속형 투자 위키 갱신
-7. `data` 브랜치 동기화
-8. 일일 시스템 검증 리포트 생성
+2. Windows Local LLM 리포트별 요약
+3. 시장 데이터 수집 + 기술 점수 계산
+4. 리포트/포트폴리오/병렬 RAG 재생성
+5. Research agenda + Gemini 외부 검증 프롬프트 생성
+6. Qwen 실제 LLM 기반 Stage 7 전략 탐색
+7. Impact map, Quant scoring, Execution plan 생성
+8. `knowledge/wiki/` 지속형 투자 위키 갱신
+9. 일일 시스템 검증 리포트 생성
+10. `system-health=ok`일 때만 `data` 브랜치 동기화
 
 검증 결과는 아래에 저장됩니다.
 
