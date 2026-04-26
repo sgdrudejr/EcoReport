@@ -2,11 +2,11 @@
   "date": "2026-04-24",
   "runDate": "2026-04-26",
   "effectiveMarketDate": "2026-04-24",
-  "runId": "2026-04-26-045214",
-  "generatedAt": "2026-04-26T04:53:08.221Z",
+  "runId": "2026-04-26-082938",
+  "generatedAt": "2026-04-26T08:31:00.618Z",
   "regime": "SIDEWAYS",
   "regimeConfidence": 0.55,
-  "portfolioScore": 38,
+  "portfolioScore": 39,
   "marketClose": 6475.81,
   "positions": [
     {
@@ -539,10 +539,10 @@
     },
     {
       "key": "PENSION",
-      "totalScore": 46,
-      "stage2Bias": "defensive",
+      "totalScore": 47,
+      "stage2Bias": "aggressive_add",
       "deployBudget": 2298937,
-      "buysCount": 1,
+      "buysCount": 2,
       "holdsCount": 2,
       "trimsCount": 0,
       "watchesCount": 3,

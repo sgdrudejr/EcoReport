@@ -7,6 +7,7 @@ import {
   CATEGORY_BY_CODE,
   PREFERRED_LABEL_BY_CATEGORY,
   ROOT_DIR,
+  SECURITIES_BY_CODE,
   buildRunMetadata,
   enrichPortfolioWithSecurityCodes,
   parseDateArgs,
@@ -54,6 +55,158 @@ function safeCategory(accountKey, code) {
     CATEGORY_BY_CODE[code]?.default ??
     "기타"
   );
+}
+
+function compactText(value) {
+  return String(value ?? "")
+    .replace(/\r/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function isUsableReason(value) {
+  const text = compactText(value);
+  return Boolean(text && text !== "N/A" && text !== "-" && text !== "점수 기반 분류");
+}
+
+function addKeyword(bucket, value, weight) {
+  const text = compactText(value).toLowerCase();
+  if (!text || text.length < 2) return;
+  if (/^(kr|us|ai|etf|kodex|tiger|rise|ace)$/i.test(text)) return;
+  const current = bucket.get(text) ?? 0;
+  bucket.set(text, Math.max(current, weight));
+}
+
+function securityKeywordWeights(code, accountKey) {
+  const security = SECURITIES_BY_CODE[code] ?? {};
+  const weights = new Map();
+  addKeyword(weights, security.name, 10);
+  for (const alias of security.keywords?.aliases ?? []) addKeyword(weights, alias, 9);
+  for (const hint of security.keywords?.topic_hints ?? []) addKeyword(weights, hint, 6);
+  for (const theme of security.keywords?.theme ?? []) addKeyword(weights, theme, 4);
+  for (const macro of security.keywords?.macro ?? []) addKeyword(weights, macro, 3);
+  addKeyword(weights, security.categories?.[accountKey] ?? security.categories?.default, 5);
+  for (const sector of security.thematic_triggers?.sectors ?? []) addKeyword(weights, sector, 4);
+  for (const theme of security.thematic_triggers?.themes ?? []) addKeyword(weights, theme, 4);
+  return weights;
+}
+
+function extractSignalText(value) {
+  if (typeof value === "string") return compactText(value);
+  if (!value || typeof value !== "object") return "";
+  const parts = [
+    value.claim,
+    value.summary,
+    value.view,
+    value.thesis,
+    value.topic,
+    value.entity,
+    value.name,
+    value.side_a,
+    value.side_b,
+    value.why_it_matters,
+  ]
+    .filter(Boolean)
+    .map(compactText);
+  return compactText(parts.join(" / "));
+}
+
+function pushSignal(rows, value, source, baseWeight = 1) {
+  if (Array.isArray(value)) {
+    for (const item of value) pushSignal(rows, item, source, baseWeight);
+    return;
+  }
+  if (value?.items && Array.isArray(value.items)) {
+    for (const item of value.items) pushSignal(rows, item, value.category ?? source, baseWeight);
+    return;
+  }
+  const text = extractSignalText(value);
+  if (text.length < 20) return;
+  rows.push({ text, source, baseWeight });
+}
+
+function buildDailySignalCorpus(fullReportPayload, atomPayload) {
+  const rows = [];
+  const finalReport = fullReportPayload?.final_report ?? fullReportPayload ?? {};
+  const categoryViews = fullReportPayload?.category_views ?? finalReport.category_views ?? {};
+
+  for (const item of finalReport.top_insight_atoms ?? []) pushSignal(rows, item, "top_atom", 1.4);
+  for (const item of finalReport.new_candidates ?? []) pushSignal(rows, item, "new_candidate", 1.35);
+  for (const item of finalReport.risk_atoms ?? []) pushSignal(rows, item, "risk_atom", 1.25);
+  for (const item of finalReport.consensus ?? finalReport.today_consensus ?? []) pushSignal(rows, item, "consensus", 1.0);
+  for (const item of finalReport.minority_views ?? []) pushSignal(rows, item, "minority", 1.25);
+  for (const item of finalReport.contradictions ?? []) pushSignal(rows, item, "contradiction", 1.15);
+
+  for (const [category, view] of Object.entries(categoryViews)) {
+    pushSignal(rows, view.market_summary, category, 1.0);
+    pushSignal(rows, view.consensus_view, category, 1.0);
+    pushSignal(rows, view.minority_view, category, 1.2);
+    pushSignal(rows, view.contradictions, category, 1.1);
+    pushSignal(rows, view.key_signals, category, 1.05);
+    pushSignal(rows, view.risks, category, 1.1);
+    pushSignal(rows, view.actionable_points, category, 1.15);
+  }
+
+  for (const item of atomPayload?.top_atoms ?? []) pushSignal(rows, item, "top_atom", 1.35);
+  for (const item of atomPayload?.new_candidates ?? []) pushSignal(rows, item, "new_candidate", 1.3);
+  for (const item of atomPayload?.risk_atoms ?? []) pushSignal(rows, item, "risk_atom", 1.2);
+
+  const seen = new Set();
+  return rows.filter((row) => {
+    const key = row.text.toLowerCase();
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+}
+
+function bestDailySignalForSecurity({ code, accountKey, dailySignals }) {
+  const keywordWeights = securityKeywordWeights(code, accountKey);
+  if (keywordWeights.size === 0 || !dailySignals?.length) return null;
+
+  let best = null;
+  for (const signal of dailySignals) {
+    const text = signal.text.toLowerCase();
+    let score = 0;
+    const hits = [];
+    for (const [keyword, weight] of keywordWeights.entries()) {
+      if (text.includes(keyword)) {
+        score += weight * (signal.baseWeight ?? 1);
+        hits.push(keyword);
+      }
+    }
+    if (score <= 0) continue;
+    const candidate = { ...signal, score, hits: hits.slice(0, 4) };
+    if (!best || candidate.score > best.score) best = candidate;
+  }
+
+  return best && best.score >= 4 ? best : null;
+}
+
+function buildHoldingReason({ holding, account, quantHolding, technicalItem, score, dailySignals }) {
+  const impactReason = quantHolding?.reportImpacts?.find((item) => isUsableReason(item?.reason))?.reason;
+  if (isUsableReason(impactReason)) {
+    return simplifyDriverText(impactReason);
+  }
+
+  if (isUsableReason(quantHolding?.technicalSignal)) {
+    return `기술 신호: ${quantHolding.technicalSignal}`;
+  }
+
+  const signal = bestDailySignalForSecurity({
+    code: holding.code,
+    accountKey: account.key,
+    dailySignals,
+  });
+  const category = safeCategory(account.key, holding.code);
+  const scoreText = typeof score === "number" ? `현재 점수 ${score}점` : "점수 확인 필요";
+  const dataGap = technicalItem ? "" : " 가격/기술 데이터가 부족해";
+
+  if (signal) {
+    return `${scoreText}.${dataGap} 직접 종목 리포트는 약하지만 ${signal.hits.join(", ")} 신호가 연결됩니다: ${simplifyDriverText(signal.text)}`;
+  }
+
+  return `${scoreText}.${dataGap} 직접 연결 리포트가 부족해 ${categoryNarrative(category)} 노출은 관찰로 유지합니다. 신규 매수 전 가격 데이터와 후속 리포트 확인이 필요합니다.`;
 }
 
 function holdingEntryPrice(holding) {
@@ -269,7 +422,7 @@ function buildCategoryGaps(account, strategy) {
     .sort((left, right) => right.gapAmount - left.gapAmount);
 }
 
-function executionBuckets(account, quant, stage2Action, strategy, technicalMap) {
+function executionBuckets(account, quant, stage2Action, strategy, technicalMap, dailySignals) {
   const gaps = buildCategoryGaps(account, strategy);
   const nextTranchePct =
     strategy?.dca_plan?.schedule?.find((item) => item.status !== "done" && item.status !== "completed")?.pct ?? 0.25;
@@ -299,7 +452,14 @@ function executionBuckets(account, quant, stage2Action, strategy, technicalMap) 
       rsi: technicalItem?.rsi ?? null,
       bollingerPosition: technicalItem?.bollinger?.position ?? null,
       stopLoss: quantHolding?.stopLoss ?? null,
-      reason: quantHolding?.reportImpacts?.[0]?.reason ?? quantHolding?.technicalSignal ?? "점수 기반 분류",
+      reason: buildHoldingReason({
+        holding,
+        account,
+        quantHolding,
+        technicalItem,
+        score,
+        dailySignals,
+      }),
     };
     if (score >= 68) buy.push(entry);
     else if (score <= 38) trim.push(entry);
@@ -588,7 +748,231 @@ function distributeBudget({
   }).filter((item) => item.suggestedAmount > 0);
 }
 
-function validateExecutionPlan({ account, bucket, stagedBuys, trims, holds, rejectedAlternatives }) {
+function allocationBucketForCategory(strategy, category) {
+  if (!category) return null;
+  const buckets = strategy?.allocationPolicy?.categoryBuckets ?? {};
+  for (const [bucketName, categories] of Object.entries(buckets)) {
+    if (Array.isArray(categories) && categories.includes(category)) {
+      return bucketName;
+    }
+  }
+  return null;
+}
+
+function securityAllocationBucket({ strategy, code, category }) {
+  const categoryBucket = allocationBucketForCategory(strategy, category);
+  if (categoryBucket) return categoryBucket;
+  const securityBucket = SECURITIES_BY_CODE[code]?.bucket ?? "";
+  if (String(securityBucket).includes("satellite")) return "satellite";
+  if (String(securityBucket).includes("core")) return "core";
+  return null;
+}
+
+function isSatelliteSecurity(code, strategy, category = null) {
+  const resolvedCategory = category ?? CATEGORY_BY_CODE[code]?.default ?? null;
+  return securityAllocationBucket({ strategy, code, category: resolvedCategory }) === "satellite";
+}
+
+function satelliteClustersForCategory(strategy, category) {
+  const clusters = strategy?.allocationPolicy?.clusters ?? [];
+  return clusters.filter((cluster) => Array.isArray(cluster.categories) && cluster.categories.includes(category));
+}
+
+function satellitePolicy(strategy) {
+  const configured = strategy?.allocationPolicy?.satellite ?? {};
+  return {
+    categoryMaxPct:
+      configured.categoryMaxPct ??
+      strategy?.satellite_rules?.max_per_theme_pct ??
+      null,
+    clusterMaxPct:
+      configured.clusterMaxPct ??
+      strategy?.satellite_rules?.max_cluster_pct ??
+      null,
+    singlePositionMaxPct: configured.singlePositionMaxPct ?? null,
+    maxDailyBuysPerCategory:
+      configured.maxDailyBuysPerCategory ??
+      strategy?.satellite_rules?.max_daily_buys_per_theme ??
+      null,
+  };
+}
+
+function buildSatelliteExposureTracker(portfolio, strategy) {
+  const byCategory = new Map();
+  const byCluster = new Map();
+  const byCode = new Map();
+  let totalAssets = 0;
+  for (const account of portfolio.accounts ?? []) {
+    totalAssets += account.cashAvailable ?? 0;
+    for (const holding of account.holdings ?? []) {
+      const value = holding.marketValue ?? 0;
+      totalAssets += value;
+      const category = safeCategory(account.key, holding.code);
+      if (holding.code) {
+        byCode.set(holding.code, (byCode.get(holding.code) ?? 0) + value);
+      }
+      if (holding.code && isSatelliteSecurity(holding.code, strategy, category)) {
+        byCategory.set(category, (byCategory.get(category) ?? 0) + value);
+      }
+      for (const cluster of satelliteClustersForCategory(strategy, category)) {
+        byCluster.set(cluster.key, (byCluster.get(cluster.key) ?? 0) + value);
+      }
+    }
+  }
+  return {
+    totalAssets,
+    byCategory,
+    byCluster,
+    byCode,
+    plannedByCategory: new Map(),
+    plannedByCluster: new Map(),
+    plannedByCode: new Map(),
+    plannedCountByCategory: new Map(),
+  };
+}
+
+function satelliteAllocationCapCheck({ item, account, strategy, exposureTracker }) {
+  if (!item.code) {
+    return { allowed: true };
+  }
+  const category = safeCategory(account.key, item.code);
+  const allocationBucket = securityAllocationBucket({ strategy, code: item.code, category });
+  if (allocationBucket !== "satellite") {
+    return { allowed: true };
+  }
+  const totalAssets = exposureTracker?.totalAssets ?? 0;
+  if (totalAssets <= 0) return { allowed: true };
+  const policy = satellitePolicy(strategy);
+  const amount = item.suggestedAmount ?? 0;
+
+  const plannedCount = exposureTracker.plannedCountByCategory.get(category) ?? 0;
+  if (
+    typeof policy.maxDailyBuysPerCategory === "number" &&
+    policy.maxDailyBuysPerCategory > 0 &&
+    plannedCount >= policy.maxDailyBuysPerCategory
+  ) {
+    return {
+      allowed: false,
+      reasonType: "satellite_daily_category_limit",
+      category,
+      cap: policy.maxDailyBuysPerCategory,
+      currentCount: plannedCount,
+    };
+  }
+
+  if (typeof policy.singlePositionMaxPct === "number" && policy.singlePositionMaxPct > 0) {
+    const currentCodeValue = exposureTracker.byCode.get(item.code) ?? 0;
+    const plannedCodeValue = exposureTracker.plannedByCode.get(item.code) ?? 0;
+    const nextCodePct = (currentCodeValue + plannedCodeValue + amount) / totalAssets;
+    if (nextCodePct > policy.singlePositionMaxPct) {
+      return {
+        allowed: false,
+        reasonType: "satellite_single_position_cap",
+        category,
+        cap: policy.singlePositionMaxPct,
+        currentPct: currentCodeValue / totalAssets,
+        nextPct: nextCodePct,
+      };
+    }
+  }
+
+  if (typeof policy.categoryMaxPct === "number" && policy.categoryMaxPct > 0) {
+    const currentValue = exposureTracker.byCategory.get(category) ?? 0;
+    const plannedValue = exposureTracker.plannedByCategory.get(category) ?? 0;
+    const nextValue = currentValue + plannedValue + amount;
+    const nextPct = nextValue / totalAssets;
+    if (nextPct > policy.categoryMaxPct) {
+      return {
+        allowed: false,
+        reasonType: "satellite_category_cap",
+        category,
+        cap: policy.categoryMaxPct,
+        currentPct: currentValue / totalAssets,
+        nextPct,
+        currentValue,
+        nextValue,
+      };
+    }
+  }
+
+  for (const cluster of satelliteClustersForCategory(strategy, category)) {
+    const clusterCap = cluster.maxPct ?? policy.clusterMaxPct;
+    if (typeof clusterCap !== "number" || clusterCap <= 0) continue;
+    const currentClusterValue = exposureTracker.byCluster.get(cluster.key) ?? 0;
+    const plannedClusterValue = exposureTracker.plannedByCluster.get(cluster.key) ?? 0;
+    const nextClusterPct = (currentClusterValue + plannedClusterValue + amount) / totalAssets;
+    if (nextClusterPct > clusterCap) {
+      return {
+        allowed: false,
+        reasonType: "satellite_cluster_cap",
+        category,
+        cluster: cluster.label ?? cluster.key,
+        cap: clusterCap,
+        currentPct: currentClusterValue / totalAssets,
+        nextPct: nextClusterPct,
+      };
+    }
+  }
+
+  return {
+    allowed: true,
+    category,
+    allocationBucket,
+  };
+}
+
+function registerSatelliteBuy({ item, account, strategy, exposureTracker }) {
+  if (!item.code) return;
+  const category = safeCategory(account.key, item.code);
+  if (!isSatelliteSecurity(item.code, strategy, category)) return;
+  const amount = item.suggestedAmount ?? 0;
+  exposureTracker.plannedByCategory.set(
+    category,
+    (exposureTracker.plannedByCategory.get(category) ?? 0) + amount,
+  );
+  exposureTracker.plannedCountByCategory.set(
+    category,
+    (exposureTracker.plannedCountByCategory.get(category) ?? 0) + 1,
+  );
+  exposureTracker.plannedByCode.set(
+    item.code,
+    (exposureTracker.plannedByCode.get(item.code) ?? 0) + amount,
+  );
+  for (const cluster of satelliteClustersForCategory(strategy, category)) {
+    exposureTracker.plannedByCluster.set(
+      cluster.key,
+      (exposureTracker.plannedByCluster.get(cluster.key) ?? 0) + amount,
+    );
+  }
+}
+
+function pctLabel(value) {
+  return `${roundNumber(value * 100, 1)}%`;
+}
+
+function satelliteCapRejectionMessage(capCheck) {
+  if (capCheck.reasonType === "satellite_daily_category_limit") {
+    return `${capCheck.category} 섹터는 오늘 이미 신규 진입 후보가 있어 추가 매수 제외`;
+  }
+  if (capCheck.reasonType === "satellite_single_position_cap") {
+    return (
+      `${capCheck.category} 위성 단일 포지션이 ${pctLabel(capCheck.nextPct)}로 ` +
+      `한도 ${pctLabel(capCheck.cap)}를 넘어 신규 매수 제외`
+    );
+  }
+  if (capCheck.reasonType === "satellite_cluster_cap") {
+    return (
+      `${capCheck.cluster} 클러스터 비중이 ${pctLabel(capCheck.nextPct)}로 ` +
+      `한도 ${pctLabel(capCheck.cap)}를 넘어 신규 매수 제외`
+    );
+  }
+  return (
+    `${capCheck.category} 위성 섹터 비중이 ${pctLabel(capCheck.nextPct)}로 ` +
+    `한도 ${pctLabel(capCheck.cap)}를 넘어 신규 매수 제외`
+  );
+}
+
+function validateExecutionPlan({ account, bucket, stagedBuys, trims, holds, rejectedAlternatives, strategy, exposureTracker }) {
   const validatorFlags = [];
   const validatedBuys = [];
   const rejected = [...rejectedAlternatives];
@@ -639,7 +1023,19 @@ function validateExecutionPlan({ account, bucket, stagedBuys, trims, holds, reje
       continue;
     }
 
+    const satelliteCap = satelliteAllocationCapCheck({ item, account, strategy, exposureTracker });
+    if (!satelliteCap.allowed) {
+      validatorFlags.push(`${satelliteCap.reasonType ?? "satellite_cap"}:${item.name}`);
+      rejected.push({
+        ...item,
+        rejectionReason: satelliteCapRejectionMessage(satelliteCap),
+        satelliteCap,
+      });
+      continue;
+    }
+
     validatedBuys.push(item);
+    registerSatelliteBuy({ item, account, strategy, exposureTracker });
   }
 
   if (validatedBuys.length === 0 && bucket.deployBudget > 0) {
@@ -868,7 +1264,7 @@ function buildMacroCommentary({
 async function main() {
   const args = parseDateArgs(process.argv.slice(2));
   const stateDir = path.join(ROOT_DIR, "data", "analysis-state", args.date);
-  const [portfolio, strategy, stage1, stage2Enriched, stage2Raw, quant, impactMap, technical, market] = await Promise.all([
+  const [portfolio, strategy, stage1, stage2Enriched, stage2Raw, quant, impactMap, technical, market, fullDailyReport, insightAtoms] = await Promise.all([
     readJson(path.join(ROOT_DIR, "data", "portfolio", "latest.json"), { accounts: [] }),
     readJson(path.join(ROOT_DIR, "config", "strategy.json"), { accounts: {} }),
     readJson(path.join(stateDir, "stage1-report-extracts-v2.json"), { extracts: [] }),
@@ -878,6 +1274,8 @@ async function main() {
     readJson(path.join(stateDir, "impact-map.json"), { reports: [] }),
     readJson(path.join(ROOT_DIR, "data", "technical", `${args.date}.json`), { scores: {}, market_context: {} }),
     readJson(path.join(ROOT_DIR, "data", "market", `${args.date}.json`), { indices: {}, macro: {}, watchlist: {} }),
+    readJson(path.join(stateDir, "stage1-4-full-daily-report.json"), null),
+    readJson(path.join(stateDir, "stage1-4-insight-atoms.json"), null),
   ]);
   const stage2 = stage2Enriched ?? stage2Raw;
   if (!stage2) {
@@ -899,12 +1297,14 @@ async function main() {
     market,
     entryConfig,
   });
+  const dailySignals = buildDailySignalCorpus(fullDailyReport, insightAtoms);
+  const satelliteExposureTracker = buildSatelliteExposureTracker(normalizedPortfolio, strategy);
 
   const accountPlans = (normalizedPortfolio.accounts ?? []).map((account) => {
     const stage2Action =
       stage2Data.account_actions?.find((item) => item.account_key === account.key || item.account_key === normalizeStrategyAccountKey(account)) ??
       null;
-    const bucket = executionBuckets(account, quant, stage2Action, strategy, technicalMap);
+    const bucket = executionBuckets(account, quant, stage2Action, strategy, technicalMap, dailySignals);
     bucket.emergencyDefense = emergencyDefense;
     const stage2CandidateSet = resolveStage2Candidates(account, stage2Data, bucket);
     const stage2Candidates = stage2CandidateSet.accepted ?? [];
@@ -930,6 +1330,8 @@ async function main() {
       trims: bucket.trim.slice(0, 3),
       holds: bucket.hold.slice(0, 3),
       rejectedAlternatives: stage2CandidateSet.rejected ?? [],
+      strategy,
+      exposureTracker: satelliteExposureTracker,
     });
     const macroCommentary = buildMacroCommentary({
       account,
@@ -1030,8 +1432,8 @@ async function main() {
         : ["- 즉시 축소 대상 없음"]),
       "",
       "### 유지/관찰",
-      ...(account.holds.length > 0 ? account.holds.map((item) => `- 유지: ${item.name}(${item.code}) / ${item.score}점`) : ["- 유지 후보 없음"]),
-      ...(account.watches.length > 0 ? account.watches.map((item) => `- 관찰: ${item.name}(${item.code}) / ${item.score}점`) : []),
+      ...(account.holds.length > 0 ? account.holds.map((item) => `- 유지: ${item.name}(${item.code}) / ${item.score}점 / 이유: ${item.reason}`) : ["- 유지 후보 없음"]),
+      ...(account.watches.length > 0 ? account.watches.map((item) => `- 관찰: ${item.name}(${item.code}) / ${item.score}점 / 이유: ${item.reason}`) : []),
       "",
       "### Stage 1 근거",
       ...(account.stage1Drivers.length > 0

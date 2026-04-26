@@ -31,6 +31,7 @@ EcoReport가 수집, 텍스트화, 계좌/퀀트 결합, 검증, 기록을 맡�
 - 리포트 요약을 여러 번 평균내지 않고, 주장/숫자/촉매/리스크/신규 후보를 구조화해 보존합니다.
 - Stage 7 전략 탐색은 Qwen 실제 LLM 결과가 필요하며, mock fallback은 운영 경로에서 금지합니다.
 - Gemini Deep Research는 최종 요약자가 아니라 외부 검색, 반증, 최신 촉매 확인용 보조 레이어입니다.
+- 전략 비중은 `안전자산 20% / 코어 30% / 위성 섹터 50%`를 기본 축으로 보고, 위성 섹터는 카테고리/클러스터 한도로 쏠림을 제어합니다.
 - `system-health`가 `ok`인 완성 데이터만 `data` 브랜치에 push합니다.
 - Vercel 배포는 완성 데이터가 안정될 때까지 중단합니다.
 
@@ -185,6 +186,7 @@ flowchart TD
 - [EXPERIMENT_PLAYBOOK.md](docs/EXPERIMENT_PLAYBOOK.md)
 - [STAGE_1_4_ARCHITECTURE.md](docs/STAGE_1_4_ARCHITECTURE.md)
 - [OPERATOR_RUNBOOK.md](docs/OPERATOR_RUNBOOK.md)
+- [ECOREPORT_DAILY_AUTOMATION.md](docs/ECOREPORT_DAILY_AUTOMATION.md)
 - [SCORE_SYSTEM_V2.md](docs/SCORE_SYSTEM_V2.md)
 - [PRIVATE_ACCESS_RUNBOOK.md](docs/PRIVATE_ACCESS_RUNBOOK.md)
 - [FAILURES_AND_FALLBACKS.md](FAILURES_AND_FALLBACKS.md)
@@ -200,6 +202,7 @@ flowchart TD
 - StockPilot 수식/데이터/로드맵 작업이면: `docs/stockpilot/README.md`
 - 여러 툴이 번갈아 작업하면: `docs/MULTI_TOOL_HANDOFF.md`
 - 실제 실행/운영은: `docs/OPERATOR_RUNBOOK.md`
+- 매일 자동화와 최종 출력물 재생성은: `docs/ECOREPORT_DAILY_AUTOMATION.md`
 - 실험/검증/회귀 테스트는: `docs/EXPERIMENT_PLAYBOOK.md`
 - 실패 원인과 폴백은: `FAILURES_AND_FALLBACKS.md`
 - 최근 변경 이력은: `docs/UPDATE_LOG.md`
