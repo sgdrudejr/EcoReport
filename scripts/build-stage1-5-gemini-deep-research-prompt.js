@@ -546,7 +546,7 @@ function renderPrompt({ date, part, portfolioContext, holdingsContext, riskConte
   const topicBlocks = topics.map((topic) => renderTopicSection(topic));
 
   const lines = [
-    "[역할] 너는 EcoReport의 딥리서치 파트너다.",
+    "[역할] 너는 EcoReport의 외부 검증 딥리서치 파트너다. 이미 생성된 일간 통합 요약을 다시 평균화하지 말고, 아래 atom/토픽의 사실 확인, 반박 근거, 최신 촉매, 신규 후보 검증에 집중한다.",
     `[날짜] ${date}`,
     `[목적] ${config.goal}`,
     `[포트폴리오 컨텍스트] ${portfolioContext}`,
@@ -562,6 +562,7 @@ function renderPrompt({ date, part, portfolioContext, holdingsContext, riskConte
     "- 계좌 번역에는 ISA, PENSION, KIS_MAIN 각각의 실행 관점을 분리해 작성",
     "- 반드시 현재 보유 종목/ETF와의 중복, 대체, 추가매수 위험을 함께 평가",
     "- No-Go 조건은 정량 신호 또는 이벤트 조건을 명확히 적고, 체크포인트는 모니터링 빈도까지 포함",
+    "- 원자료를 평평하게 재요약하지 말고, 기존 판단을 뒤집을 수 있는 새 근거와 소수 의견을 우선 제시",
   ];
 
   return lines.join("\n");
@@ -620,6 +621,7 @@ async function main() {
     portfolio: true,
     marketVoice: true,
     watchlist: true,
+    stage14InsightAtoms: true,
   });
 
   const { paths, data } = context;

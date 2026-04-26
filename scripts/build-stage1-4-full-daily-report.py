@@ -142,6 +142,9 @@ def clean_list(values: Any, *, limit: int = 5, char_limit: int = 180) -> list[st
 def parse_args(argv: list[str]) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Build full daily report and insight atoms from all report summaries")
     parser.add_argument("--date", default=None, help="대상 날짜 (YYYY-MM-DD). 생략 시 최신 report_summaries 날짜")
+    parser.add_argument("--run-date", default=None, help="실행일 (공통 파이프라인 호환용)")
+    parser.add_argument("--effective-market-date", default=None, help="기준 거래일 (공통 파이프라인 호환용)")
+    parser.add_argument("--run-id", default=None, help="run id (공통 파이프라인 호환용)")
     parser.add_argument("--config", default=None, help="local-report-orchestrator.json 경로")
     parser.add_argument("--detail", choices=["standard", "deep"], default=None, help="병합 상세도")
     parser.add_argument("--force", action="store_true", help="캐시 무시")
@@ -827,7 +830,7 @@ def main(argv: list[str]) -> int:
     if args.detail:
         os.environ["REPORT_ORCHESTRATOR_DETAIL"] = args.detail
     config = load_config(args.config)
-    date = args.date or find_latest_summary_date(config.report_summaries_dir)
+    date = args.effective_market_date or args.date or find_latest_summary_date(config.report_summaries_dir)
 
     summaries = load_report_summaries(config, date)
     state_dir = config.repo_root / "data" / "analysis-state" / date
