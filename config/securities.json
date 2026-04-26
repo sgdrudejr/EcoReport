@@ -49,6 +49,28 @@
       }
     },
     {
+      "code": "379810",
+      "name": "KODEX 미국나스닥100",
+      "type": "etf",
+      "bucket": "core_etf",
+      "asset_class": "equity",
+      "region": "US",
+      "categories": {
+        "default": "나스닥100",
+        "PENSION": "나스닥100"
+      },
+      "keywords": {
+        "topic_hints": ["나스닥", "nasdaq", "기술주", "미국 빅테크"],
+        "aliases": ["kodex 미국나스닥100", "미국나스닥100", "kodex nasdaq100", "나스닥100 etf"],
+        "macro": ["나스닥", "nasdaq", "미국 기술주", "빅테크"],
+        "theme": ["나스닥", "nasdaq", "기술주"]
+      },
+      "thematic_triggers": {
+        "sectors": ["반도체"],
+        "themes": ["AI 인프라", "HBM/메모리"]
+      }
+    },
+    {
       "code": "458760",
       "name": "TIGER 미국배당+7%프리미엄다우존스",
       "type": "etf",
@@ -152,6 +174,137 @@
       "thematic_triggers": {
         "sectors": ["전력기기"],
         "themes": ["전력 인프라", "AI 인프라"]
+      }
+    },
+    {
+      "code": "491010",
+      "name": "TIGER 글로벌AI전력인프라액티브",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "asset_class": "equity",
+      "region": "GLOBAL",
+      "categories": {
+        "default": "전력기기",
+        "ISA": "전력기기",
+        "PENSION": "전력기기",
+        "KIS_MAIN": "전력기기"
+      },
+      "keywords": {
+        "topic_hints": ["전력", "전력 인프라", "ai 인프라", "데이터센터 전력", "글로벌 전력망"],
+        "aliases": [
+          "tiger 글로벌ai전력인프라액티브",
+          "글로벌ai전력인프라액티브",
+          "tiger 글로벌 ai 전력 인프라 액티브",
+          "글로벌 ai 전력 인프라"
+        ],
+        "macro": [],
+        "theme": ["전력", "전력기기", "전력 인프라", "AI 인프라", "데이터센터"]
+      },
+      "thematic_triggers": {
+        "sectors": ["전력기기"],
+        "themes": ["전력 인프라", "AI 인프라", "데이터센터 전력"]
+      }
+    },
+    {
+      "code": "487230",
+      "name": "KODEX 미국AI전력핵심인프라",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "asset_class": "equity",
+      "region": "US",
+      "categories": {
+        "default": "전력기기",
+        "ISA": "전력기기",
+        "PENSION": "전력기기",
+        "KIS_MAIN": "전력기기"
+      },
+      "keywords": {
+        "topic_hints": ["미국 전력", "ai 전력", "전력 인프라", "데이터센터 전력", "미국 ai 인프라"],
+        "aliases": [
+          "kodex 미국ai전력핵심인프라",
+          "미국ai전력핵심인프라",
+          "kodex 미국 ai 전력 핵심 인프라",
+          "미국 ai 전력 핵심 인프라"
+        ],
+        "macro": ["미국 전력", "미국 인프라", "데이터센터"],
+        "theme": ["전력", "전력기기", "전력 인프라", "AI 인프라", "데이터센터", "미국"]
+      },
+      "thematic_triggers": {
+        "sectors": ["전력기기"],
+        "themes": ["전력 인프라", "AI 인프라", "데이터센터 전력"]
+      }
+    },
+    {
+      "code": "0162Z0",
+      "name": "RISE 삼성전자SK하이닉스채권혼합50",
+      "type": "etf",
+      "bucket": "core_etf",
+      "asset_class": "mixed",
+      "region": "KR",
+      "categories": {
+        "default": "반도체/채권혼합",
+        "ISA": "반도체/채권혼합",
+        "PENSION": "반도체/채권혼합"
+      },
+      "keywords": {
+        "topic_hints": ["삼성전자", "sk하이닉스", "반도체", "채권혼합", "반도체 채권혼합"],
+        "aliases": [
+          "rise 삼성전자sk하이닉스채권혼합50",
+          "삼성전자sk하이닉스채권혼합50",
+          "삼성전자 sk하이닉스 채권혼합50",
+          "반도체채권혼합50"
+        ],
+        "macro": ["반도체", "채권", "금리"],
+        "theme": ["반도체", "삼성전자", "SK하이닉스", "채권혼합"]
+      },
+      "thematic_triggers": {
+        "sectors": ["반도체"],
+        "themes": ["HBM/메모리", "금리/매크로"]
+      }
+    },
+    {
+      "code": "069500",
+      "name": "KODEX 200",
+      "type": "etf",
+      "bucket": "core_etf",
+      "asset_class": "equity",
+      "region": "KR",
+      "categories": {
+        "default": "국내인덱스",
+        "ISA": "국내인덱스",
+        "PENSION": "국내인덱스"
+      },
+      "keywords": {
+        "topic_hints": ["코스피200", "kospi200", "국내 지수", "대형주"],
+        "aliases": ["kodex 200", "코덱스 200", "kospi200 etf", "코스피200 etf"],
+        "macro": ["코스피", "코스피200", "국내증시"],
+        "theme": ["코스피200", "국내 대형주", "지수"]
+      },
+      "thematic_triggers": {
+        "sectors": ["반도체"],
+        "themes": ["국내 인덱스", "반도체"]
+      }
+    },
+    {
+      "code": "385510",
+      "name": "KODEX 신재생에너지액티브",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "asset_class": "equity",
+      "region": "KR",
+      "categories": {
+        "default": "신재생에너지",
+        "ISA": "신재생에너지"
+      },
+      "keywords": {
+        "topic_hints": ["신재생", "재생에너지", "태양광", "풍력", "에너지 전환"],
+        "aliases": ["kodex 신재생에너지액티브", "신재생에너지액티브", "신재생에너지 etf"],
+        "macro": ["에너지", "전력", "정책"],
+        "theme": ["신재생", "재생에너지", "태양광", "풍력", "전력"]
+      },
+      "thematic_triggers": {
+        "sectors": ["전력기기"],
+        "themes": ["전력 인프라", "에너지 전환"]
       }
     },
     {
@@ -393,6 +546,27 @@
       }
     },
     {
+      "code": "329180",
+      "name": "HD현대중공업",
+      "type": "stock",
+      "bucket": "individual_stock",
+      "asset_class": "equity",
+      "region": "KR",
+      "categories": {
+        "default": "조선"
+      },
+      "keywords": {
+        "topic_hints": ["hd현대중공업", "현대중공업", "조선", "엔진", "데이터센터 중속엔진"],
+        "aliases": ["hd현대중공업", "현대중공업"],
+        "macro": ["조선", "유가", "운임"],
+        "theme": ["조선", "엔진", "데이터센터", "전력 인프라"]
+      },
+      "thematic_triggers": {
+        "sectors": ["조선", "전력기기"],
+        "themes": ["전력 인프라", "AI 인프라"]
+      }
+    },
+    {
       "code": "064350",
       "name": "현대로템",
       "type": "stock",
@@ -432,6 +606,27 @@
       "thematic_triggers": {
         "sectors": ["방산"],
         "themes": ["방산"]
+      }
+    },
+    {
+      "code": "007660",
+      "name": "이수페타시스",
+      "type": "stock",
+      "bucket": "individual_stock",
+      "asset_class": "equity",
+      "region": "KR",
+      "categories": {
+        "default": "반도체/PCB"
+      },
+      "keywords": {
+        "topic_hints": ["이수페타시스", "pcb", "고다층 pcb", "ai 서버", "네트워크 장비"],
+        "aliases": ["이수페타시스"],
+        "macro": [],
+        "theme": ["PCB", "AI 서버", "반도체", "네트워크"]
+      },
+      "thematic_triggers": {
+        "sectors": ["반도체"],
+        "themes": ["AI 인프라", "HBM/메모리"]
       }
     }
   ],

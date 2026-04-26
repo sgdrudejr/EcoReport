@@ -139,6 +139,140 @@ def clean_list(values: Any, *, limit: int = 5, char_limit: int = 180) -> list[st
     return result
 
 
+def compact_prompt_value(value: Any, *, list_limit: int = 5, string_limit: int = 180) -> Any:
+    if isinstance(value, str):
+        return clip(value, string_limit)
+    if isinstance(value, (int, float, bool)) or value is None:
+        return value
+    if isinstance(value, list):
+        return [
+            compact_prompt_value(item, list_limit=list_limit, string_limit=string_limit)
+            for item in value[:list_limit]
+        ]
+    if isinstance(value, dict):
+        return {
+            str(key): compact_prompt_value(item, list_limit=list_limit, string_limit=string_limit)
+            for key, item in value.items()
+            if item not in ("", None, [], {})
+        }
+    return clip(value, string_limit)
+
+
+def brief_items(values: Any, *, limit: int = 3, char_limit: int = 120) -> list[str]:
+    if not isinstance(values, list):
+        return []
+    result: list[str] = []
+    for value in values:
+        if isinstance(value, dict):
+            text = (
+                value.get("claim")
+                or value.get("summary")
+                or value.get("topic")
+                or value.get("view")
+                or value.get("name")
+                or json.dumps(value, ensure_ascii=False)
+            )
+        else:
+            text = value
+        clipped = clip(text, char_limit)
+        if clipped:
+            result.append(clipped)
+        if len(result) >= limit:
+            break
+    return result
+
+
+def brief_company_mentions(values: Any, *, limit: int = 3) -> list[str]:
+    if not isinstance(values, list):
+        return []
+    result: list[str] = []
+    for value in values:
+        if isinstance(value, dict):
+            name = clip(value.get("name"), 40)
+            view = clip(value.get("view") or value.get("rating") or "", 80)
+            text = f"{name}: {view}" if view else name
+        else:
+            text = clip(value, 100)
+        if text:
+            result.append(text)
+        if len(result) >= limit:
+            break
+    return result
+
+
+def brief_atoms(values: Any, *, limit: int = 8, char_limit: int = 120) -> list[dict[str, Any]]:
+    if not isinstance(values, list):
+        return []
+    result: list[dict[str, Any]] = []
+    for atom in values:
+        if not isinstance(atom, dict):
+            continue
+        result.append(
+            {
+                "type": atom.get("atom_type"),
+                "entity": clip(atom.get("entity") or atom.get("title"), 40),
+                "claim": clip(atom.get("claim"), char_limit),
+                "report_id": atom.get("report_id"),
+            }
+        )
+        if len(result) >= limit:
+            break
+    return result
+
+
+def evidence_suffix(item: dict[str, Any]) -> str:
+    evidence = item.get("evidence_report_ids") or item.get("evidence") or []
+    if not isinstance(evidence, list) or not evidence:
+        return ""
+    return f" (근거: {', '.join(str(value) for value in evidence[:4])})"
+
+
+def format_claim_item(item: Any, *, char_limit: int = 300) -> str:
+    if not isinstance(item, dict):
+        return clip(item, char_limit)
+    claim = item.get("claim") or item.get("summary") or item.get("view") or item.get("name") or item.get("topic")
+    if not claim:
+        return clip(json.dumps(item, ensure_ascii=False), char_limit)
+    text = clip(claim, char_limit)
+    why = item.get("why_it_matters")
+    if why:
+        text += f" - 의미: {clip(why, 180)}"
+    return text + evidence_suffix(item)
+
+
+def format_grouped_claims(item: Any, *, char_limit: int = 300) -> list[str]:
+    if not isinstance(item, dict) or not isinstance(item.get("items"), list):
+        return [format_claim_item(item, char_limit=char_limit)]
+    category = clip(item.get("category"), 60)
+    rows: list[str] = []
+    for child in item.get("items", [])[:3]:
+        prefix = f"**{category}**: " if category else ""
+        rows.append(prefix + format_claim_item(child, char_limit=char_limit))
+    return rows
+
+
+def format_contradiction_item(item: Any) -> str:
+    if not isinstance(item, dict):
+        return clip(item, 360)
+    topic = clip(item.get("topic") or item.get("claim") or "쟁점", 80)
+    side_a = clip(item.get("side_a") or item.get("bull_case") or item.get("positive_view"), 150)
+    side_b = clip(item.get("side_b") or item.get("bear_case") or item.get("negative_view"), 150)
+    if side_a or side_b:
+        return f"**{topic}**: A) {side_a or 'N/A'} / B) {side_b or 'N/A'}{evidence_suffix(item)}"
+    return format_claim_item(item, char_limit=360)
+
+
+def format_grouped_contradictions(item: Any) -> list[str]:
+    if not isinstance(item, dict) or not isinstance(item.get("items"), list):
+        return [format_contradiction_item(item)]
+    category = clip(item.get("category"), 60)
+    rows: list[str] = []
+    for child in item.get("items", [])[:3]:
+        prefix = f"**{category}**: " if category else ""
+        rows.append(prefix + format_contradiction_item(child))
+    return rows
+
+
 def parse_args(argv: list[str]) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Build full daily report and insight atoms from all report summaries")
     parser.add_argument("--date", default=None, help="대상 날짜 (YYYY-MM-DD). 생략 시 최신 report_summaries 날짜")
@@ -149,6 +283,7 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     parser.add_argument("--detail", choices=["standard", "deep"], default=None, help="병합 상세도")
     parser.add_argument("--force", action="store_true", help="캐시 무시")
     parser.add_argument("--skip-llm", action="store_true", help="LLM 호출 없이 로컬 병합/atom만 생성")
+    parser.add_argument("--llm-final", action="store_true", help="최종 일간 병합까지 LLM으로 수행. 기본은 카테고리 LLM 결과를 결정론적으로 합성")
     parser.add_argument("--llm-atoms", action="store_true", help="insight atom도 리포트별 LLM으로 보강")
     parser.add_argument("--merge-only", action="store_true", help="atom 파일은 읽기만 하고 full report만 생성")
     parser.add_argument("--atoms-only", action="store_true", help="insight atoms만 생성")
@@ -701,15 +836,15 @@ def llm_final_merge(
         category: {
             "report_count": view.get("report_count"),
             "overall_sentiment": view.get("overall_sentiment"),
-            "market_summary": clip(view.get("market_summary"), 700),
-            "consensus_view": view.get("consensus_view", [])[:6],
-            "minority_view": view.get("minority_view", [])[:5],
-            "contradictions": view.get("contradictions", [])[:5],
-            "investment_hypothesis": clip(view.get("investment_hypothesis"), 500),
-            "key_signals": view.get("key_signals", [])[:6],
-            "risks": view.get("risks", [])[:5],
-            "company_mentions": view.get("company_mentions", [])[:10],
-            "actionable_points": view.get("actionable_points", [])[:5],
+            "market_summary": clip(view.get("market_summary"), 260),
+            "consensus_view": brief_items(view.get("consensus_view", []), limit=3, char_limit=120),
+            "minority_view": brief_items(view.get("minority_view", []), limit=2, char_limit=110),
+            "contradictions": brief_items(view.get("contradictions", []), limit=2, char_limit=110),
+            "investment_hypothesis": clip(view.get("investment_hypothesis"), 220),
+            "key_signals": brief_items(view.get("key_signals", []), limit=3, char_limit=100),
+            "risks": brief_items(view.get("risks", []), limit=2, char_limit=100),
+            "company_mentions": brief_company_mentions(view.get("company_mentions", []), limit=3),
+            "actionable_points": brief_items(view.get("actionable_points", []), limit=2, char_limit=100),
         }
         for category, view in category_views.items()
     }
@@ -746,9 +881,9 @@ def llm_final_merge(
                     },
                     "category_views": compact_categories,
                     "insight_atoms": {
-                        "top_atoms": atom_payload.get("top_atoms", [])[:30],
-                        "new_candidates": atom_payload.get("new_candidates", [])[:20],
-                        "risk_atoms": atom_payload.get("risk_atoms", [])[:15],
+                        "top_atoms": brief_atoms(atom_payload.get("top_atoms", []), limit=8, char_limit=120),
+                        "new_candidates": brief_atoms(atom_payload.get("new_candidates", []), limit=6, char_limit=120),
+                        "risk_atoms": brief_atoms(atom_payload.get("risk_atoms", []), limit=5, char_limit=120),
                     },
                 },
                 ensure_ascii=False,
@@ -783,17 +918,20 @@ def render_markdown(date: str, final_report: dict[str, Any], category_views: dic
     consensus = final_report.get("today_consensus") or final_report.get("consensus") or []
     if isinstance(consensus, list):
         for item in consensus[:10]:
-            lines.append(f"- {clip(item if isinstance(item, str) else json.dumps(item, ensure_ascii=False), 320)}")
+            for row in format_grouped_claims(item, char_limit=300):
+                lines.append(f"- {row}")
     lines.extend(["", "## 소수 의견 / 비컨센서스"])
     minority = final_report.get("minority_views") or []
     if isinstance(minority, list):
         for item in minority[:10]:
-            lines.append(f"- {clip(item if isinstance(item, str) else json.dumps(item, ensure_ascii=False), 320)}")
+            for row in format_grouped_claims(item, char_limit=300):
+                lines.append(f"- {row}")
     lines.extend(["", "## 충돌하는 시각"])
     contradictions = final_report.get("contradictions") or []
     if isinstance(contradictions, list):
         for item in contradictions[:10]:
-            lines.append(f"- {clip(item if isinstance(item, str) else json.dumps(item, ensure_ascii=False), 360)}")
+            for row in format_grouped_contradictions(item):
+                lines.append(f"- {row}")
     lines.extend(["", "## 신규 후보 / 종목 아이디어"])
     candidates = final_report.get("new_candidates") or atom_payload.get("new_candidates", [])
     if isinstance(candidates, list):
@@ -805,7 +943,7 @@ def render_markdown(date: str, final_report: dict[str, Any], category_views: dic
             else:
                 lines.append(f"- {clip(item, 320)}")
     lines.extend(["", "## 리스크 Watch"])
-    risks = final_report.get("risk_watch") or atom_payload.get("risk_atoms", [])
+    risks = final_report.get("risk_watch") or final_report.get("risk_atoms") or atom_payload.get("risk_atoms", [])
     if isinstance(risks, list):
         for item in risks[:12]:
             if isinstance(item, dict):
@@ -900,8 +1038,9 @@ def main(argv: list[str]) -> int:
             },
         )
 
-    if args.skip_llm or client is None:
+    if args.skip_llm or client is None or not args.llm_final:
         final_report = local_final_merge(date, category_views, atom_payload)
+        final_report["merge_method"] = "deterministic_from_category_views"
     else:
         try:
             final_report = llm_final_merge(
