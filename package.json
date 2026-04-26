@@ -37,6 +37,7 @@
     "stage13:quant-scores": "node scripts/build-stage3-quant-scores.js",
     "stage14:execution-plan": "node scripts/build-stage4-execution-plan.js",
     "stage15:execution-plan-table": "node scripts/export-stage4-execution-plan-table.js",
+    "stage16:final-html": "node scripts/export-final-report-html.js",
     "stage0:chunk-index": "node scripts/build-report-chunk-index.js",
     "stage1:extracts": "node scripts/build-stage1-report-extracts.js",
     "stage1:enriched": "node scripts/build-stage2-enriched-report-index.js",
