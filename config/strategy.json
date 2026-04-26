@@ -24,11 +24,13 @@
     "KIS_MAIN": {
       "cash": 7319564,
       "target_allocation": {
-        "전력기기": 0.2,
-        "방산": 0.25,
-        "원자력": 0.2,
-        "미국인덱스": 0.15,
-        "현금파킹": 0.2
+        "현금파킹": 0.2,
+        "미국인덱스": 0.3,
+        "전력기기": 0.1,
+        "방산": 0.1,
+        "원자력": 0.1,
+        "조선": 0.1,
+        "반도체/PCB": 0.1
       }
     }
   },
@@ -42,8 +44,57 @@
       { "tranche": 4, "pct": 0.25, "target_date": "2026-06-mid", "status": "pending" }
     ]
   },
+  "allocationPolicy": {
+    "name": "Safety 20 / Core 30 / Satellite 50",
+    "description": "전체 포트폴리오는 금/현금성 안전자산 20%, 장기 코어 30%, 나머지 50%를 겹치지 않는 섹터 위성 전략으로 운용한다.",
+    "portfolioTargets": {
+      "safety": 0.2,
+      "core": 0.3,
+      "satellite": 0.5
+    },
+    "categoryBuckets": {
+      "safety": ["금", "현금파킹", "단기채", "채권"],
+      "core": ["S&P500", "나스닥100", "미국인덱스", "국내인덱스", "국내대형주", "배당/커버드콜", "반도체/채권혼합"],
+      "satellite": ["전력기기", "방산", "원자력", "조선", "신재생에너지", "반도체", "반도체/PCB", "구리"]
+    },
+    "satellite": {
+      "categoryMaxPct": 0.125,
+      "clusterMaxPct": 0.25,
+      "singlePositionMaxPct": 0.05,
+      "maxDailyBuysPerCategory": 1,
+      "rebalanceNote": "강한 신호가 있어도 같은 날 같은 섹터 후보는 1개만 신규 진입한다."
+    },
+    "clusters": [
+      {
+        "key": "ai_power_infra",
+        "label": "AI/전력/인프라",
+        "categories": ["전력기기", "원자력", "신재생에너지", "조선"],
+        "maxPct": 0.25
+      },
+      {
+        "key": "geopolitics_defense",
+        "label": "지정학/방산",
+        "categories": ["방산", "조선", "원자력"],
+        "maxPct": 0.15
+      },
+      {
+        "key": "semi_ai_hardware",
+        "label": "반도체/AI 하드웨어",
+        "categories": ["반도체", "반도체/PCB", "반도체/채권혼합", "전력기기"],
+        "maxPct": 0.18
+      },
+      {
+        "key": "cyclical_industrials",
+        "label": "경기민감 산업재",
+        "categories": ["조선", "신재생에너지", "전력기기", "구리"],
+        "maxPct": 0.2
+      }
+    ]
+  },
   "satellite_rules": {
-    "max_per_theme_pct": 0.05,
+    "max_per_theme_pct": 0.125,
+    "max_cluster_pct": 0.25,
+    "max_daily_buys_per_theme": 1,
     "initial_position_pct": 0.025,
     "max_concurrent_themes": 6,
     "exit_trigger": "테마 소멸 또는 -10%"

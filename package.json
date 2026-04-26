@@ -109,7 +109,8 @@
     "verify": "node scripts/verify-daily-system.js",
     "daily": "npm run automation:daily",
     "daily:baseline": "bash scripts/run-daily-system.sh --baseline-only",
-    "daily:quality": "bash scripts/run-quality-gated-cycle.sh"
+    "daily:quality": "bash scripts/run-quality-gated-cycle.sh",
+    "daily:final-output": "bash scripts/run-final-output-cycle.sh"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.55.0",

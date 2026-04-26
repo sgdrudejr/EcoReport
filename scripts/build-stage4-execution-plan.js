@@ -748,66 +748,228 @@ function distributeBudget({
   }).filter((item) => item.suggestedAmount > 0);
 }
 
-function isSatelliteSecurity(code) {
-  const bucket = SECURITIES_BY_CODE[code]?.bucket ?? "";
-  return String(bucket).includes("satellite");
+function allocationBucketForCategory(strategy, category) {
+  if (!category) return null;
+  const buckets = strategy?.allocationPolicy?.categoryBuckets ?? {};
+  for (const [bucketName, categories] of Object.entries(buckets)) {
+    if (Array.isArray(categories) && categories.includes(category)) {
+      return bucketName;
+    }
+  }
+  return null;
 }
 
-function buildSatelliteExposureTracker(portfolio) {
+function securityAllocationBucket({ strategy, code, category }) {
+  const categoryBucket = allocationBucketForCategory(strategy, category);
+  if (categoryBucket) return categoryBucket;
+  const securityBucket = SECURITIES_BY_CODE[code]?.bucket ?? "";
+  if (String(securityBucket).includes("satellite")) return "satellite";
+  if (String(securityBucket).includes("core")) return "core";
+  return null;
+}
+
+function isSatelliteSecurity(code, strategy, category = null) {
+  const resolvedCategory = category ?? CATEGORY_BY_CODE[code]?.default ?? null;
+  return securityAllocationBucket({ strategy, code, category: resolvedCategory }) === "satellite";
+}
+
+function satelliteClustersForCategory(strategy, category) {
+  const clusters = strategy?.allocationPolicy?.clusters ?? [];
+  return clusters.filter((cluster) => Array.isArray(cluster.categories) && cluster.categories.includes(category));
+}
+
+function satellitePolicy(strategy) {
+  const configured = strategy?.allocationPolicy?.satellite ?? {};
+  return {
+    categoryMaxPct:
+      configured.categoryMaxPct ??
+      strategy?.satellite_rules?.max_per_theme_pct ??
+      null,
+    clusterMaxPct:
+      configured.clusterMaxPct ??
+      strategy?.satellite_rules?.max_cluster_pct ??
+      null,
+    singlePositionMaxPct: configured.singlePositionMaxPct ?? null,
+    maxDailyBuysPerCategory:
+      configured.maxDailyBuysPerCategory ??
+      strategy?.satellite_rules?.max_daily_buys_per_theme ??
+      null,
+  };
+}
+
+function buildSatelliteExposureTracker(portfolio, strategy) {
   const byCategory = new Map();
+  const byCluster = new Map();
+  const byCode = new Map();
   let totalAssets = 0;
   for (const account of portfolio.accounts ?? []) {
     totalAssets += account.cashAvailable ?? 0;
     for (const holding of account.holdings ?? []) {
       const value = holding.marketValue ?? 0;
       totalAssets += value;
-      if (!holding.code || !isSatelliteSecurity(holding.code)) continue;
       const category = safeCategory(account.key, holding.code);
-      byCategory.set(category, (byCategory.get(category) ?? 0) + value);
+      if (holding.code) {
+        byCode.set(holding.code, (byCode.get(holding.code) ?? 0) + value);
+      }
+      if (holding.code && isSatelliteSecurity(holding.code, strategy, category)) {
+        byCategory.set(category, (byCategory.get(category) ?? 0) + value);
+      }
+      for (const cluster of satelliteClustersForCategory(strategy, category)) {
+        byCluster.set(cluster.key, (byCluster.get(cluster.key) ?? 0) + value);
+      }
     }
   }
   return {
     totalAssets,
     byCategory,
+    byCluster,
+    byCode,
     plannedByCategory: new Map(),
+    plannedByCluster: new Map(),
+    plannedByCode: new Map(),
+    plannedCountByCategory: new Map(),
   };
 }
 
-function satelliteThemeCapCheck({ item, account, strategy, exposureTracker }) {
-  const cap = strategy?.satellite_rules?.max_per_theme_pct;
-  if (typeof cap !== "number" || cap <= 0 || !item.code || !isSatelliteSecurity(item.code)) {
+function satelliteAllocationCapCheck({ item, account, strategy, exposureTracker }) {
+  if (!item.code) {
     return { allowed: true };
   }
   const category = safeCategory(account.key, item.code);
+  const allocationBucket = securityAllocationBucket({ strategy, code: item.code, category });
+  if (allocationBucket !== "satellite") {
+    return { allowed: true };
+  }
   const totalAssets = exposureTracker?.totalAssets ?? 0;
   if (totalAssets <= 0) return { allowed: true };
-  const currentValue = exposureTracker.byCategory.get(category) ?? 0;
-  const plannedValue = exposureTracker.plannedByCategory.get(category) ?? 0;
-  const nextValue = currentValue + plannedValue + (item.suggestedAmount ?? 0);
-  const currentPct = currentValue / totalAssets;
-  const nextPct = nextValue / totalAssets;
+  const policy = satellitePolicy(strategy);
+  const amount = item.suggestedAmount ?? 0;
+
+  const plannedCount = exposureTracker.plannedCountByCategory.get(category) ?? 0;
+  if (
+    typeof policy.maxDailyBuysPerCategory === "number" &&
+    policy.maxDailyBuysPerCategory > 0 &&
+    plannedCount >= policy.maxDailyBuysPerCategory
+  ) {
+    return {
+      allowed: false,
+      reasonType: "satellite_daily_category_limit",
+      category,
+      cap: policy.maxDailyBuysPerCategory,
+      currentCount: plannedCount,
+    };
+  }
+
+  if (typeof policy.singlePositionMaxPct === "number" && policy.singlePositionMaxPct > 0) {
+    const currentCodeValue = exposureTracker.byCode.get(item.code) ?? 0;
+    const plannedCodeValue = exposureTracker.plannedByCode.get(item.code) ?? 0;
+    const nextCodePct = (currentCodeValue + plannedCodeValue + amount) / totalAssets;
+    if (nextCodePct > policy.singlePositionMaxPct) {
+      return {
+        allowed: false,
+        reasonType: "satellite_single_position_cap",
+        category,
+        cap: policy.singlePositionMaxPct,
+        currentPct: currentCodeValue / totalAssets,
+        nextPct: nextCodePct,
+      };
+    }
+  }
+
+  if (typeof policy.categoryMaxPct === "number" && policy.categoryMaxPct > 0) {
+    const currentValue = exposureTracker.byCategory.get(category) ?? 0;
+    const plannedValue = exposureTracker.plannedByCategory.get(category) ?? 0;
+    const nextValue = currentValue + plannedValue + amount;
+    const nextPct = nextValue / totalAssets;
+    if (nextPct > policy.categoryMaxPct) {
+      return {
+        allowed: false,
+        reasonType: "satellite_category_cap",
+        category,
+        cap: policy.categoryMaxPct,
+        currentPct: currentValue / totalAssets,
+        nextPct,
+        currentValue,
+        nextValue,
+      };
+    }
+  }
+
+  for (const cluster of satelliteClustersForCategory(strategy, category)) {
+    const clusterCap = cluster.maxPct ?? policy.clusterMaxPct;
+    if (typeof clusterCap !== "number" || clusterCap <= 0) continue;
+    const currentClusterValue = exposureTracker.byCluster.get(cluster.key) ?? 0;
+    const plannedClusterValue = exposureTracker.plannedByCluster.get(cluster.key) ?? 0;
+    const nextClusterPct = (currentClusterValue + plannedClusterValue + amount) / totalAssets;
+    if (nextClusterPct > clusterCap) {
+      return {
+        allowed: false,
+        reasonType: "satellite_cluster_cap",
+        category,
+        cluster: cluster.label ?? cluster.key,
+        cap: clusterCap,
+        currentPct: currentClusterValue / totalAssets,
+        nextPct: nextClusterPct,
+      };
+    }
+  }
+
   return {
-    allowed: nextPct <= cap,
+    allowed: true,
     category,
-    cap,
-    currentPct,
-    nextPct,
-    currentValue,
-    nextValue,
+    allocationBucket,
   };
 }
 
-function registerSatelliteBuy({ item, account, exposureTracker }) {
-  if (!item.code || !isSatelliteSecurity(item.code)) return;
+function registerSatelliteBuy({ item, account, strategy, exposureTracker }) {
+  if (!item.code) return;
   const category = safeCategory(account.key, item.code);
+  if (!isSatelliteSecurity(item.code, strategy, category)) return;
+  const amount = item.suggestedAmount ?? 0;
   exposureTracker.plannedByCategory.set(
     category,
-    (exposureTracker.plannedByCategory.get(category) ?? 0) + (item.suggestedAmount ?? 0),
+    (exposureTracker.plannedByCategory.get(category) ?? 0) + amount,
   );
+  exposureTracker.plannedCountByCategory.set(
+    category,
+    (exposureTracker.plannedCountByCategory.get(category) ?? 0) + 1,
+  );
+  exposureTracker.plannedByCode.set(
+    item.code,
+    (exposureTracker.plannedByCode.get(item.code) ?? 0) + amount,
+  );
+  for (const cluster of satelliteClustersForCategory(strategy, category)) {
+    exposureTracker.plannedByCluster.set(
+      cluster.key,
+      (exposureTracker.plannedByCluster.get(cluster.key) ?? 0) + amount,
+    );
+  }
 }
 
 function pctLabel(value) {
   return `${roundNumber(value * 100, 1)}%`;
+}
+
+function satelliteCapRejectionMessage(capCheck) {
+  if (capCheck.reasonType === "satellite_daily_category_limit") {
+    return `${capCheck.category} 섹터는 오늘 이미 신규 진입 후보가 있어 추가 매수 제외`;
+  }
+  if (capCheck.reasonType === "satellite_single_position_cap") {
+    return (
+      `${capCheck.category} 위성 단일 포지션이 ${pctLabel(capCheck.nextPct)}로 ` +
+      `한도 ${pctLabel(capCheck.cap)}를 넘어 신규 매수 제외`
+    );
+  }
+  if (capCheck.reasonType === "satellite_cluster_cap") {
+    return (
+      `${capCheck.cluster} 클러스터 비중이 ${pctLabel(capCheck.nextPct)}로 ` +
+      `한도 ${pctLabel(capCheck.cap)}를 넘어 신규 매수 제외`
+    );
+  }
+  return (
+    `${capCheck.category} 위성 섹터 비중이 ${pctLabel(capCheck.nextPct)}로 ` +
+    `한도 ${pctLabel(capCheck.cap)}를 넘어 신규 매수 제외`
+  );
 }
 
 function validateExecutionPlan({ account, bucket, stagedBuys, trims, holds, rejectedAlternatives, strategy, exposureTracker }) {
@@ -861,21 +1023,19 @@ function validateExecutionPlan({ account, bucket, stagedBuys, trims, holds, reje
       continue;
     }
 
-    const themeCap = satelliteThemeCapCheck({ item, account, strategy, exposureTracker });
-    if (!themeCap.allowed) {
-      validatorFlags.push(`satellite_theme_cap:${item.name}`);
+    const satelliteCap = satelliteAllocationCapCheck({ item, account, strategy, exposureTracker });
+    if (!satelliteCap.allowed) {
+      validatorFlags.push(`${satelliteCap.reasonType ?? "satellite_cap"}:${item.name}`);
       rejected.push({
         ...item,
-        rejectionReason:
-          `${themeCap.category} 위성 테마 비중이 이미 ${pctLabel(themeCap.currentPct)}로 ` +
-          `한도 ${pctLabel(themeCap.cap)}를 넘거나 근접해 신규 매수 제외`,
-        themeCap,
+        rejectionReason: satelliteCapRejectionMessage(satelliteCap),
+        satelliteCap,
       });
       continue;
     }
 
     validatedBuys.push(item);
-    registerSatelliteBuy({ item, account, exposureTracker });
+    registerSatelliteBuy({ item, account, strategy, exposureTracker });
   }
 
   if (validatedBuys.length === 0 && bucket.deployBudget > 0) {
@@ -1138,7 +1298,7 @@ async function main() {
     entryConfig,
   });
   const dailySignals = buildDailySignalCorpus(fullDailyReport, insightAtoms);
-  const satelliteExposureTracker = buildSatelliteExposureTracker(normalizedPortfolio);
+  const satelliteExposureTracker = buildSatelliteExposureTracker(normalizedPortfolio, strategy);
 
   const accountPlans = (normalizedPortfolio.accounts ?? []).map((account) => {
     const stage2Action =

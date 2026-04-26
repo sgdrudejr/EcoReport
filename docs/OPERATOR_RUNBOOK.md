@@ -9,6 +9,7 @@
 운영 전에 아래 문서를 같이 보면 훨씬 빠릅니다.
 
 - 전체 문서 지도: `docs/DOCS_MAP.md`
+- 매일 자동화/최종 출력물: `docs/ECOREPORT_DAILY_AUTOMATION.md`
 - 여러 툴 handoff 규칙: `docs/MULTI_TOOL_HANDOFF.md`
 - 실험/검증 절차: `docs/EXPERIMENT_PLAYBOOK.md`
 - 실패와 폴백: `FAILURES_AND_FALLBACKS.md`
@@ -38,6 +39,18 @@ Gemini Deep Research까지 포함한 무인 자동 실행은 아래 러너를 �
 cd /Users/seo/Documents/Playground/economy-report
 npm run automation:daily -- --date YYYY-MM-DD
 ```
+
+이미 수집/LLM 응답이 있고 최종 출력물만 다시 정리할 때는 아래 명령을 사용합니다.
+
+```bash
+cd /Users/seo/Documents/Playground/economy-report
+npm run daily:final-output -- --date YYYY-MM-DD
+```
+
+이 명령의 최종 산출물은 두 가지입니다.
+
+1. 읽을 수 있는 경제 리포트: `reports/daily/YYYY-MM-DD-final.html`
+2. 실행 전략: `reports/daily/YYYY-MM-DD-stage4-execution-plan-table.md`
 
 이 명령은 아래를 순서대로 수행합니다.
 
