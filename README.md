@@ -69,20 +69,21 @@ Gemini Deep Research는 계속 사용할 수 있지만, 역할은 축소합니�
 flowchart TD
     A["증권사 리포트 100개 내외<br/>Naver / Shinhan"] --> B["PDF 저장 + 전문 텍스트화<br/>collect-report-assets.sh"]
     B --> C["Windows Local LLM<br/>청크 요약 + 리포트별 병합"]
-    C --> D["Stage 1.4<br/>상위 리포트 선별 + research agenda"]
-    B --> E["Stage 2<br/>report extracts: 주장/숫자/리스크/계좌 연결"]
-    D --> F["Stage 5<br/>Gemini Deep Research 질문 분할"]
+    C --> D["02. Chunk Summary<br/>청크 요약 + full daily report"]
+    B --> E["03. Report Indexing<br/>주장/숫자/리스크/계좌 연결"]
+    D --> F["05. Deep Research<br/>Gemini 질문 분할"]
     E --> F
     F --> G["Gemini Deep Research<br/>외부 검증/반론/최신 촉매"]
-    G --> H["Stage 6<br/>rich briefing synthesis"]
-    E --> I["Stage 7<br/>Qwen strategy exploration"]
+    G --> H["06. Briefing Synthesis<br/>rich briefing synthesis"]
+    E --> I["07. Strategy Options<br/>Qwen strategy exploration"]
     H --> I
     J["Portfolio Snapshot<br/>KIS / ISA / 연금 / 토스"] --> I
     K["Technical / Quant<br/>가격, 모멘텀, 리스크"] --> I
-    I --> L["Impact Map<br/>리포트 → 계좌/종목 영향"]
-    L --> M["Stage 8 Quant Scoring"]
-    M --> N["Stage 9 Execution Plan<br/>계좌별 매수/보류/감시/축소"]
-    N --> O["system-health 검증"]
+    I --> L["09. Impact Mapping<br/>리포트 → 계좌/종목 영향"]
+    L --> M["10. Quant Scoring"]
+    M --> N["11. Execution Plan<br/>계좌별 매수/보류/감시/축소"]
+    N --> QG["13. Quality Gates<br/>근거/중복/날짜/카테고리 검사"]
+    QG --> O["12. Final Outputs + system-health"]
     O --> P["ok일 때만 data branch push"]
 ```
 
@@ -122,53 +123,55 @@ flowchart TD
     B --> B2["text/*.txt + text-manifest.json"]
 
     B2 --> C["Windows Local LLM<br/>reports/report_summaries/YYYY-MM-DD"]
-    B2 --> D["Stage 2 Extracts<br/>build-stage1-report-extracts.js"]
-    P["Stage 1 Portfolio Snapshot<br/>data/portfolio/latest.json"] --> D
+    B2 --> D["03. Report Extraction<br/>build-stage1-report-extracts.js"]
+    P["01. Portfolio Sync<br/>data/portfolio/latest.json"] --> D
     W["Watchlist / Strategy Config"] --> D
     D --> D1["stage1-report-extracts-v2.json"]
 
-    C --> E["Stage 3 Top Report Summary Selection<br/>summarize-report-chunks.py"]
+    C --> E["02. Chunk Summary<br/>summarize-report-chunks.py"]
     D1 --> E
-    E --> F["Stage 4 Research Agenda<br/>build-stage1-4-research-agenda.py"]
+    E --> F["04. Research Agenda<br/>build-stage1-4-research-agenda.py"]
     D1 --> F
     F --> F1["stage1-research-agenda.json"]
 
-    F1 --> G["Stage 5 Gemini Prompt Split<br/>build-stage1-5-gemini-deep-research-prompt.js"]
+    F1 --> G["05. Deep Research Prompt<br/>build-stage1-5-gemini-deep-research-prompt.js"]
     D1 --> G
     P --> G
     G --> G1["07a/07b/07c prompts"]
     G1 --> H["Gemini Deep Research<br/>external validation only"]
     H --> H1["Deep Research responses"]
 
-    H1 --> I["Stage 6 Rich Briefing<br/>build-stage1-6-rich-briefing.js"]
+    H1 --> I["06. Briefing Synthesis<br/>build-stage1-6-rich-briefing.js"]
     F1 --> I
     D1 --> I
     I --> I1["gemini-briefing-rich.md"]
 
-    D1 --> J["Stage 7 Strategy Prompt<br/>build-stage2-strategy-prompt.js"]
+    D1 --> J["07. Strategy Prompt<br/>build-stage2-strategy-prompt.js"]
     I1 --> J
     P --> J
     T["Technical Snapshot<br/>data/technical/YYYY-MM-DD.json"] --> J
     J --> J1["08-stage2-strategy-prompt.md"]
-    J1 --> K["Stage 7 Qwen Strategy<br/>build-stage2-strategy-qwen.py"]
+    J1 --> K["07. Strategy Options<br/>build-stage2-strategy-qwen.py"]
     K --> K1["stage2-strategy-options.json"]
 
-    K1 --> L["Stage 7.5 ETF Candidate Matching<br/>build-stage2-5-etf-candidates.js"]
-    D1 --> M["Impact Map<br/>build-impact-map.js"]
+    K1 --> L["08. Candidate Matching<br/>build-stage2-5-etf-candidates.js"]
+    D1 --> M["09. Impact Mapping<br/>build-impact-map.js"]
     K1 --> M
     M --> M1["impact-map.json"]
 
-    M1 --> N["Stage 8 Quant Scoring<br/>build-stage3-quant-scores.js"]
+    M1 --> N["10. Quant Scoring<br/>build-stage3-quant-scores.js"]
     T --> N
     P --> N
     N --> N1["stage3-quant-scores.json"]
 
-    K1 --> O["Stage 9 Execution Plan<br/>build-stage4-execution-plan.js"]
+    K1 --> O["11. Execution Plan<br/>build-stage4-execution-plan.js"]
     N1 --> O
     P --> O
     O --> O1["stage4-execution-plan.json / reports/daily/*.md"]
 
-    O1 --> Q["System Health<br/>verify-daily-system.js"]
+    O1 --> GATE["13. Quality Gates<br/>audit-data-quality.js"]
+    GATE --> HTML["12. Final Outputs<br/>export-final-report-html.js"]
+    HTML --> Q["System Health<br/>verify-daily-system.js"]
     Q --> PUSH["data branch push<br/>only when overallStatus=ok"]
 
     B2 --> RR["Report RAG Corpus"]
@@ -178,6 +181,8 @@ flowchart TD
 ```
 
 별도 아키텍처 문서:
+
+- 단계 이름 기준: [docs/STAGE_NAMES.md](docs/STAGE_NAMES.md)
 
 - [PIPELINE_MAP.md](docs/PIPELINE_MAP.md)
 - [DOCS_MAP.md](docs/DOCS_MAP.md)
@@ -482,19 +487,24 @@ GITHUB_TOKEN=...
 
 ## Canonical Stage Map
 
-이제부터 사람이 읽는 공식 단계 이름은 아래 정수 Stage를 기준으로 맞춥니다.
+이제부터 사람이 읽는 공식 단계 이름은 `NN. English Step Name`을 기준으로 맞춥니다.
 기존 파일명과 legacy npm alias는 하위 호환 때문에 유지될 수 있지만, 운영/자동화/문서는 아래 번호를 기준으로 사용합니다.
 
-1. `Stage 1` Portfolio Snapshot
-2. `Stage 2` Report Extracts
-3. `Stage 3` Top Report Summary Selection
-4. `Stage 4` Research Agenda
-5. `Stage 5` Deep Research Prompt Split
-6. `Stage 6` Rich Briefing Synthesis
-7. `Stage 7` Strategy Exploration
-8. `Stage 8` Quant Scoring
-9. `Stage 9` Execution Plan
-10. `Stage 10+` Follow-up / refinement / delivery rounds in automation
+1. `01. Report Collection`
+2. `02. Chunk Summary`
+3. `03. Report Indexing`
+4. `04. Research Agenda`
+5. `05. Deep Research`
+6. `06. Briefing Synthesis`
+7. `07. Strategy Options`
+8. `08. Candidate Matching`
+9. `09. Impact Mapping`
+10. `10. Quant Scoring`
+11. `11. Execution Plan`
+12. `12. Final Outputs`
+13. `13. Quality Gates`
+
+자세한 기준은 [docs/STAGE_NAMES.md](docs/STAGE_NAMES.md)와 `config/stage-names.json`에 고정합니다.
 
 ### Execution Roles
 
@@ -508,14 +518,14 @@ GITHUB_TOKEN=...
 
 3. `Qwen API`
 - 이미 압축된 입력을 다시 정제하는 역할만 맡습니다.
-- Research Agenda, rich briefing, Stage 7 전략 JSON처럼 **인사이트 정리/판단**이 필요한 곳에만 씁니다.
+- Research Agenda, rich briefing, `07. Strategy Options` 전략 JSON처럼 **인사이트 정리/판단**이 필요한 곳에만 씁니다.
 - 원문 전체를 다시 읽히는 용도로는 쓰지 않습니다.
 
 4. `Gemini Deep Research`
 - 새로운 외부 검색 결과, 반론, 촉매 업데이트, 정책/산업 동향 같은 **추가 조사**가 필요할 때만 사용합니다.
 - 즉 기존 요약을 대체하는 엔진이 아니라, 기존 내부 근거 위에 외부 리서치 레이어를 덧붙이는 역할입니다.
 
-### Stage 1. Portfolio Snapshot
+### 01. Report Collection / Portfolio Sync
 
 입력:
 
@@ -533,7 +543,7 @@ GITHUB_TOKEN=...
   "이미 비중이 높은 테마인지", "어느 계좌에서 실행 가능한지"를 계산할 수 있습니다.
 - `run-daily-system.sh`뿐 아니라 `run-strategy-pipeline.sh`도 이제 시작 시 이 단계를 먼저 시도합니다.
 
-### Stage 2. Report Extracts
+### 03. Report Indexing
 
 입력:
 
@@ -569,9 +579,9 @@ GITHUB_TOKEN=...
 - 이 단계는 추천을 만드는 단계가 아니라 **리포트 연구 노트를 만드는 단계**입니다.
 - 최대한 많은 근거를 보존하고, 리포트-포트폴리오 관련성을 후보 수준으로 붙입니다.
 - 추가로 Windows 로컬 요약 산출물과 `report_id` 기준으로 조인한 `stage2-enriched-report-index.json`을 만들 수 있습니다.
-- 이 파일에는 `요약 + 분류 + 포트폴리오 관련도`가 한 번에 들어 있어 Stage 4 품질을 높이는 기본 인덱스로 사용됩니다.
+- 이 파일에는 `요약 + 분류 + 포트폴리오 관련도`가 한 번에 들어 있어 `11. Execution Plan` 품질을 높이는 기본 인덱스로 사용됩니다.
 
-### Stage 3. Top Report Summary Selection
+### 02. Chunk Summary
 
 입력:
 
@@ -586,11 +596,11 @@ GITHUB_TOKEN=...
 
 - 이 단계는 더 이상 청크를 다시 LLM에 넣어 재요약하지 않습니다.
 - Windows 로컬 요약 오케스트레이터가 이미 만든 `report_summaries`에서
-  Stage 2 priority 기준 상위 N개 리포트만 골라, 다음 Stage 입력용으로 짧게 압축합니다.
+  `03. Report Indexing` priority 기준 상위 N개 리포트만 골라, 다음 입력용으로 짧게 압축합니다.
 - 즉 역할은 `재요약`이 아니라 `선택 + 입력 정리`입니다.
 - 큰 문서량 처리는 여기서 다시 API로 보내지 않고, 이미 만들어진 Windows 병합본을 재사용합니다.
 
-### Stage 4. Research Agenda
+### 04. Research Agenda
 
 입력:
 
@@ -626,7 +636,7 @@ GITHUB_TOKEN=...
 
 설명:
 
-- Stage 2 구조화 추출물과 Stage 4 어젠다를 기반으로 Gemini Web Deep Research 프롬프트를
+- `03. Report Indexing` 구조화 추출물과 `04. Research Agenda`를 기반으로 Gemini Web Deep Research 프롬프트를
   `macro / sector·security / new_candidate` 3개로 나눠 만듭니다.
 - 프롬프트에는 이제 `포트폴리오 컨텍스트`뿐 아니라 `현재 보유 핵심`, `개인화 리스크 포인트`가 명시적으로 포함됩니다.
 - 따라서 Gemini는 generic 요약이 아니라, 현재 보유와 신규 후보의 중복/대체/추가매수 리스크를 같이 평가하도록 유도됩니다.
@@ -634,12 +644,12 @@ GITHUB_TOKEN=...
 - 이 단계는 완전 자동 API 호출이 아니라 웹 기반 수동 리서치를 파이프라인 안에 안전하게 끼워 넣는 레이어입니다.
 - 즉 기존 내부 요약을 다시 만드는 단계가 아니라, **새로운 외부 검색 근거를 추가하는 단계**입니다.
 
-### Stage 6. Rich Briefing Synthesis
+### 06. Briefing Synthesis
 
 입력:
 
-- Stage 2 연구 노트
-- Stage 5 Gemini Deep Research 결과
+- `03. Report Indexing` 연구 노트
+- `05. Deep Research` 결과
 - 기존 어드바이저 브리핑
 - 포트폴리오 상태
 
@@ -653,16 +663,16 @@ GITHUB_TOKEN=...
 
 설명:
 
-- Stage 2의 사실 근거와 Deep Research의 시나리오/대안 자산/촉매 해석을 다시 조합해 대시보드용 최종 매크로 브리핑을 만듭니다.
+- `03. Report Indexing`의 사실 근거와 Deep Research의 시나리오/대안 자산/촉매 해석을 다시 조합해 대시보드용 최종 매크로 브리핑을 만듭니다.
 - 대시보드의 `Macro View`는 이 rich briefing을 우선 읽습니다.
 - 추가로 직전 거래일 rich briefing과 비교한 `delta briefing`을 생성해, "오늘 새로 바뀐 것"에 바로 집중할 수 있게 합니다.
 - 여기서 Qwen API는 긴 문서를 다시 읽는 것이 아니라, Windows 병합본과 Gemini 추가 조사 결과를 **짧은 판단 문서로 합성**하는 역할입니다.
 
-### Stage 7. Strategy Exploration
+### 07. Strategy Options
 
 입력:
 
-- Stage 2 연구 노트
+- `03. Report Indexing` 연구 노트
 - 포트폴리오 상태
 - 기술지표
 - Daily / Gemini 브리핑
@@ -675,16 +685,16 @@ GITHUB_TOKEN=...
 설명:
 
 - 실제 인사이트 판단용 LLM이 붙는 자리입니다.
-- 기본 실행자는 `Qwen API`이며, 입력은 Stage 2 구조화 데이터 + Stage 4/6 압축 산출물입니다.
-- 즉 Stage 7은 새로운 웹 검색을 하는 단계가 아니라, **이미 정리된 근거를 투자 액션 JSON으로 번역**하는 단계입니다.
+- 기본 실행자는 `Qwen API`이며, 입력은 `03. Report Indexing` 구조화 데이터 + `04. Research Agenda`/`06. Briefing Synthesis` 압축 산출물입니다.
+- 즉 `07. Strategy Options`는 새로운 웹 검색을 하는 단계가 아니라, **이미 정리된 근거를 투자 액션 JSON으로 번역**하는 단계입니다.
 
-### Stage 8. Quant Scoring
+### 10. Quant Scoring
 
 입력:
 
 - 기술지표
-- `impact-map.json` (있으면 우선 사용, 없으면 Stage 1 리포트 영향 후보 fallback)
-- Stage 2 전략 bias
+- `impact-map.json` (있으면 우선 사용, 없으면 `03. Report Indexing` 리포트 영향 후보 fallback)
+- `07. Strategy Options` 전략 bias
 - 전략 파일 / 목표 배분
 
 출력:
@@ -736,7 +746,7 @@ EcoReport/
 ├── config/                    # 전략, 관심종목, RSS 피드, 알림 규칙
 ├── dashboard/                 # Next.js 대시보드
 ├── data/
-│   ├── analysis-state/        # Stage 1~4 산출물
+│   ├── analysis-state/        # 01~13 단계 산출물과 품질 게이트
 │   ├── market/                # 날짜별 시장 데이터
 │   ├── news/                  # 날짜별 RSS 뉴스
 │   ├── portfolio/             # 최신 계좌 스냅샷
@@ -785,7 +795,7 @@ EcoReport/
 용도:
 
 - 계좌별 평가금액, 예수금, 보유 종목, 종목별 손익/수익률 저장
-- 대시보드와 Stage 1~4 전체의 기준 데이터
+- 대시보드와 01~13 전체의 기준 데이터
 
 ### 기술 점수
 
@@ -847,9 +857,9 @@ EcoReport/
 - 전략 해석은 사람이 ChatGPT/Gemini/Claude에 질문
 - 응답은 수동 저장 또는 후속 자동 저장 스크립트로 반영
 
-### 2. Stage 1~4 코드 검증 모드
+### 2. 03~13 코드 검증 모드
 
-Stage 2는 실제 LLM 결과가 있어야 다음 단계로 진행합니다. mock Stage 2는 운영/검증 경로에서 비활성화되어 있습니다.
+`07. Strategy Options`는 실제 LLM 결과가 있어야 다음 단계로 진행합니다. mock 전략 후보는 운영/검증 경로에서 비활성화되어 있습니다.
 
 이 모드가 중요한 이유:
 
@@ -874,7 +884,7 @@ node scripts/build-portfolio-rag-corpus.js --date 2026-04-03
 node scripts/build-parallel-rag-corpus.js --date 2026-04-03
 ```
 
-### 3. Stage 1~6 + 전략 파이프라인 실행
+### 3. 01~13 + 전략 파이프라인 실행
 
 ```bash
 cd /Users/seo/Documents/Playground/economy-report
@@ -897,6 +907,7 @@ npm run stage6:rich-briefing -- --date 2026-04-03
 npm run stage9:strategy-prompt -- --date 2026-04-03
 npm run stage13:quant-scores -- --date 2026-04-03
 npm run stage14:execution-plan -- --date 2026-04-03
+npm run audit:data -- --date 2026-04-03
 ```
 
 Gemini Deep Research 자동화는 기존 탭을 재사용하지 않고 항상 새 Safari 창을 열어 진행합니다.
@@ -947,7 +958,7 @@ bash scripts/open-chatgpt-web-prompt.sh ideas
 - 수집 후 전문 텍스트화 + OCR fallback
 - 리포트/포트폴리오 RAG 코퍼스 생성
 - 기술지표 계산
-- Stage 1~4 전략 파이프라인 산출물 생성
+- 03~13 전략/품질 파이프라인 산출물 생성
 - 계좌 스냅샷 저장
 - 로컬 대시보드 표시
 - 경제 리포트 요약 + 어드바이저 브리핑 동시 표시
@@ -965,14 +976,14 @@ bash scripts/open-chatgpt-web-prompt.sh ideas
 
 다음 단계 핵심은 `impact-map.json`입니다.
 
-### 2. Stage 2 Qwen 자동 실행
+### 2. 07. Strategy Options Qwen 자동 실행
 
 `QWEN_API_KEY` 또는 `DASHSCOPE_API_KEY`가 `.env`에 있으면 `run-daily-system.sh`가 `build-stage2-strategy-qwen.py`를 실행합니다.
 키가 없거나 Qwen 호출이 실패하면 mock으로 가지 않고 파이프라인을 중단합니다.
 수동으로 LLM에 묻고 싶다면 `open-chatgpt-web-prompt.sh` 또는 `knowledge/daily/manual-kit/` 프롬프트를 활용합니다.
 Python 가상환경에는 `openai` 패키지가 설치되어 있어야 하며, Qwen 스크립트는 DashScope 호환 OpenAI 클라이언트를 사용합니다.
 
-### 3. Stage 1 품질 고도화
+### 3. 03. Report Indexing 품질 고도화
 
 현재도 연구 노트는 생성되지만, 아래는 더 개선해야 합니다.
 

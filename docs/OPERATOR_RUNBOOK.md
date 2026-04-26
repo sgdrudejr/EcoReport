@@ -9,6 +9,7 @@
 운영 전에 아래 문서를 같이 보면 훨씬 빠릅니다.
 
 - 전체 문서 지도: `docs/DOCS_MAP.md`
+- 단계 이름 기준: `docs/STAGE_NAMES.md`
 - 매일 자동화/최종 출력물: `docs/ECOREPORT_DAILY_AUTOMATION.md`
 - 여러 툴 handoff 규칙: `docs/MULTI_TOOL_HANDOFF.md`
 - 실험/검증 절차: `docs/EXPERIMENT_PLAYBOOK.md`
@@ -19,7 +20,7 @@
 
 - `igzun-daily-report`는 참고용 레퍼런스이며 EcoReport 런타임 의존성이 아닙니다.
 - 수집 단계는 반드시 `전문 텍스트화`까지 포함합니다.
-- Stage 2만 LLM 의존도가 크고, Stage 1/3/4는 EcoReport 내부 코드로 재현 가능해야 합니다.
+- `07. Strategy Options`만 LLM 의존도가 크고, `03. Report Indexing`, `10. Quant Scoring`, `11. Execution Plan`, `13. Quality Gates`는 EcoReport 내부 코드로 재현 가능해야 합니다.
 - 기본 접속 경로는 공개 배포보다 **Mac Mini 로컬 + private access**를 우선합니다.
 
 ## 하루 운영 순서
@@ -58,19 +59,19 @@ npm run daily:final-output -- --date YYYY-MM-DD
 2. 시장 데이터 수집 + 기술지표 계산
 3. 리포트/포트폴리오/병렬 RAG 재생성
 4. Gemini 경제 브리핑 생성(키가 있을 때)
-5. Stage 1~4 실행
+5. 03~11 의사결정 파이프라인 실행
 6. `knowledge/wiki/` 지속형 투자 위키 갱신
 7. `data` 브랜치 동기화
-8. 일일 산출물 검증
+8. `13. Quality Gates`와 일일 산출물 검증
 
 자동 실행 러너는 여기에 더해 아래를 수행합니다.
 
 9. Gemini Deep Research 웹 실행
-10. 1차 합성 기준 Stage 2~4 재계산 + 위키 메모리 갱신
+10. 1차 합성 기준 07~11 재계산 + 위키 메모리 갱신
 11. 2차 재인덱싱 / 2차 Deep Research / rich briefing 재합성
-12. 2차 합성 기준 Stage 2~4 재계산 + 위키 메모리 재갱신
+12. 2차 합성 기준 07~11 재계산 + 위키 메모리 재갱신
 13. 3차 세부화 / 3차 Deep Research / 최종 rich briefing 재합성
-14. 최종 Stage 2~4 재계산 + 위키 메모리 최종 갱신
+14. 최종 07~13 재계산 + 위키 메모리 최종 갱신
 15. 실패/경고 요약을 `automation-cycle` JSON/Markdown으로 저장
 
 전제 조건:
@@ -108,7 +109,7 @@ node scripts/build-portfolio-rag-corpus.js --date YYYY-MM-DD
 node scripts/build-parallel-rag-corpus.js --date YYYY-MM-DD
 ```
 
-### 4. Stage 1~4 파이프라인 실행
+### 4. 03~11 의사결정 파이프라인 실행
 
 ```bash
 cd /Users/seo/Documents/Playground/economy-report
@@ -171,7 +172,7 @@ bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD --run-date YYYY-MM-DD --
 
 의도:
 
-- Stage 1 fact anchor를 유지한 채 Gemini Deep Research의 반박 시나리오, 대안 자산, 촉매 일정을 대시보드 매크로 브리핑으로 승격
+- `03. Report Indexing` fact anchor를 유지한 채 Gemini Deep Research의 반박 시나리오, 대안 자산, 촉매 일정을 대시보드 매크로 브리핑으로 승격
 - 그 결과를 다시 Stage 2~4와 위키 메모리에 흘려보낸 뒤, 남은 빈틈만 2차/3차 refinement로 더 좁게 다시 묻습니다.
 - 마지막 라운드는 새 general thesis 확대보다 `무효화 조건 / 대체재 / 계좌 번역 / 정확한 체크포인트`를 정리하는 데 목적이 있습니다.
 
@@ -200,7 +201,7 @@ node scripts/build-llm-wiki.js --date YYYY-MM-DD
 1. `08-stage2-strategy-prompt.md`를 ChatGPT/Gemini/Claude에 넣음
 2. 동일 스키마의 실제 전략 JSON을 받음
 3. `stage2-strategy-options.json`으로 저장
-4. Stage 3/4만 다시 실행
+4. 10. Quant Scoring / 11. Execution Plan만 다시 실행
 
 ```bash
 cd /Users/seo/Documents/Playground/economy-report
@@ -238,7 +239,7 @@ node scripts/verify-daily-system.js --date YYYY-MM-DD
 
 ## 현재 약점
 
-### 1. Stage 1 관련성은 아직 후보 수준
+### 1. 03. Report Indexing 관련성은 아직 후보 수준
 
 - `related_holdings_in_my_portfolio`
 - `portfolio_impacts_candidate`
@@ -250,7 +251,7 @@ node scripts/verify-daily-system.js --date YYYY-MM-DD
 
 실제 전략적 판단은 사람이 LLM에 직접 질문해서 받은 JSON으로 덮어써야 합니다.
 
-### 3. Stage 4는 실행 초안
+### 3. 11. Execution Plan은 실행 초안
 
 현재도 바로 읽을 수는 있지만, 실제 매수 금액/후보 우선순위는 Stage 2 실제 JSON이 들어올수록 좋아집니다.
 

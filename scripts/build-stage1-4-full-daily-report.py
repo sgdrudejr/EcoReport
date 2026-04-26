@@ -58,6 +58,11 @@ NOVELTY_KEYWORDS = [
 ]
 NEGATIVE_KEYWORDS = ["리스크", "우려", "하향", "둔화", "부담", "감소", "압박", "실패", "취소"]
 POSITIVE_KEYWORDS = ["상향", "개선", "성장", "호조", "수혜", "증가", "강세", "반등", "매력", "수주"]
+RISKY_CLAIM_RE = re.compile(
+    r"(확실|필연|무조건|반드시|최선|몰빵|급등|폭등|구조적|강력|대세|주도|보장|"
+    r"will|must|guarantee|guaranteed)",
+    re.IGNORECASE,
+)
 
 
 def now_iso() -> str:
@@ -430,6 +435,279 @@ def atom_score(atom: dict[str, Any]) -> float:
     return novelty * 0.55 + conviction * 0.45
 
 
+def normalize_evidence_list(value: Any) -> list[str]:
+    if isinstance(value, dict):
+        value = value.get("evidence_report_ids") or value.get("evidence") or value.get("report_id") or []
+    if isinstance(value, str):
+        value = [value]
+    if not isinstance(value, list):
+        return []
+    result: list[str] = []
+    seen: set[str] = set()
+    for item in value:
+        text = compact(item)
+        if not text or text in seen:
+            continue
+        seen.add(text)
+        result.append(text)
+    return result[:8]
+
+
+def evidence_source_family(evidence_id: str) -> str:
+    text = compact(evidence_id).lower()
+    if re.fullmatch(r"report[_-]\d+", text):
+        return text
+    text = re.sub(r"[_-]?\d+$", "", text)
+    return text or evidence_id
+
+
+def claim_quality_for_item(
+    *,
+    claim_id: str,
+    section: str,
+    claim: str,
+    evidence: list[str],
+    category: str | None = None,
+    entity: str | None = None,
+) -> dict[str, Any]:
+    fingerprint = claim_fingerprint(claim)
+    source_diversity = len({evidence_source_family(item) for item in evidence})
+    flags: list[str] = []
+    if not evidence:
+        flags.append("missing_evidence")
+    elif len(evidence) < 2:
+        flags.append("thin_evidence")
+    if source_diversity <= 1 and len(evidence) > 1:
+        flags.append("single_source_family")
+    if RISKY_CLAIM_RE.search(claim):
+        flags.append("risky_language")
+    if len(claim) > 220 and len(evidence) < 2:
+        flags.append("long_claim_weak_evidence")
+
+    status = "ok"
+    severity = "low"
+    if "risky_language" in flags and ("missing_evidence" in flags or "thin_evidence" in flags):
+        status = "hold"
+        severity = "high"
+    elif "missing_evidence" in flags or "long_claim_weak_evidence" in flags:
+        status = "weak_evidence"
+        severity = "medium"
+    elif flags:
+        status = "warn"
+        severity = "low"
+
+    return {
+        "id": claim_id,
+        "section": section,
+        "category": category,
+        "entity": entity,
+        "claim": clip(claim, 260),
+        "fingerprint": fingerprint,
+        "evidence": evidence,
+        "evidenceCount": len(evidence),
+        "sourceDiversity": source_diversity,
+        "status": status,
+        "severity": severity,
+        "flags": flags,
+    }
+
+
+def add_quality_claim(rows: list[dict[str, Any]], seen: set[str], *, section: str, item: Any, category: str | None = None) -> None:
+    if not isinstance(item, dict):
+        claim = clip(item, 260)
+        entity = None
+        evidence: list[str] = []
+    else:
+        claim = clip(item.get("claim") or item.get("summary") or item.get("view") or item.get("topic") or item.get("name"), 260)
+        entity = clip(item.get("entity") or item.get("name") or item.get("title"), 80)
+        evidence = normalize_evidence_list(item)
+    if not claim:
+        return
+    fingerprint = claim_fingerprint(claim)
+    claim_id = f"claim_{len(rows) + 1:03d}_{stable_hash(section + fingerprint, 6)}"
+    if fingerprint in seen:
+        rows.append(
+            {
+                "id": claim_id,
+                "section": section,
+                "category": category,
+                "entity": entity,
+                "claim": claim,
+                "fingerprint": fingerprint,
+                "evidence": evidence,
+                "evidenceCount": len(evidence),
+                "sourceDiversity": len({evidence_source_family(value) for value in evidence}),
+                "status": "duplicate",
+                "severity": "low",
+                "flags": ["duplicate_claim"],
+            }
+        )
+        return
+    seen.add(fingerprint)
+    rows.append(
+        claim_quality_for_item(
+            claim_id=claim_id,
+            section=section,
+            claim=claim,
+            evidence=evidence,
+            category=category,
+            entity=entity,
+        )
+    )
+
+
+def collect_claim_quality(final_report: dict[str, Any], atom_payload: dict[str, Any]) -> dict[str, Any]:
+    rows: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    sections = final_report.get("presentation", {}).get("sections", {})
+    for section_key in ("consensus", "minority"):
+        section = sections.get(section_key) if isinstance(sections.get(section_key), dict) else {}
+        for group in section.get("groups") or []:
+            if not isinstance(group, dict):
+                continue
+            for claim in group.get("claims") or []:
+                add_quality_claim(rows, seen, section=section_key, item=claim, category=group.get("category"))
+    contradiction_section = sections.get("contradictions") if isinstance(sections.get("contradictions"), dict) else {}
+    for group in contradiction_section.get("groups") or []:
+        if not isinstance(group, dict):
+            continue
+        for item in group.get("items") or []:
+            if not isinstance(item, dict):
+                continue
+            claim = {
+                "claim": f"{item.get('topic')}: A) {item.get('side_a')} / B) {item.get('side_b')}",
+                "evidence_report_ids": item.get("evidence_report_ids") or [],
+            }
+            add_quality_claim(rows, seen, section="contradictions", item=claim, category=group.get("category"))
+    for section_key in ("new_candidates", "risk_watch"):
+        section = sections.get(section_key) if isinstance(sections.get(section_key), dict) else {}
+        for item in section.get("items") or []:
+            add_quality_claim(rows, seen, section=section_key, item=item, category=item.get("category") if isinstance(item, dict) else None)
+    for atom in (atom_payload.get("top_atoms") or [])[:20]:
+        add_quality_claim(rows, seen, section="insight_atoms", item=atom, category=atom.get("category") if isinstance(atom, dict) else None)
+
+    status_counts = Counter(row.get("status", "unknown") for row in rows)
+    flagged = [row for row in rows if row.get("status") not in {"ok"}]
+    risky = [
+        row
+        for row in flagged
+        if row.get("status") in {"hold", "weak_evidence"} or "risky_language" in (row.get("flags") or [])
+    ]
+    return {
+        "schemaVersion": 1,
+        "claimCount": len(rows),
+        "statusCounts": dict(status_counts),
+        "flaggedCount": len(flagged),
+        "riskyClaimCount": len(risky),
+        "policy": {
+            "hold": "위험 표현과 근거 부족이 동시에 있으면 최종 리포트에서 보류/재검토 대상으로 표시",
+            "weak_evidence": "근거가 없거나 너무 얇은 주장은 실행 전략 후보로 직접 연결하지 않음",
+        },
+        "claims": rows,
+        "flaggedClaims": flagged[:30],
+        "riskyClaims": risky[:20],
+    }
+
+
+def compact_quality_claim(row: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "id": row.get("id"),
+        "section": row.get("section"),
+        "category": row.get("category"),
+        "entity": row.get("entity"),
+        "claim": clip(row.get("claim"), 180),
+        "evidence": normalize_evidence_list(row.get("evidence"))[:4],
+        "quality": {
+            "status": row.get("status"),
+            "severity": row.get("severity"),
+            "flags": row.get("flags") or [],
+            "evidenceCount": row.get("evidenceCount", 0),
+            "sourceDiversity": row.get("sourceDiversity", 0),
+        },
+    }
+
+
+def build_ai_exchange_payload(
+    *,
+    date: str,
+    run_date: str | None,
+    effective_market_date: str | None,
+    run_id: str | None,
+    final_report: dict[str, Any],
+    atom_payload: dict[str, Any],
+    claim_quality: dict[str, Any],
+    category_views: dict[str, dict[str, Any]],
+) -> dict[str, Any]:
+    quality_claims = claim_quality.get("claims") if isinstance(claim_quality.get("claims"), list) else []
+    important_claims = [
+        row
+        for row in quality_claims
+        if row.get("status") in {"ok", "warn", "weak_evidence", "hold"}
+    ][:60]
+    return {
+        "schemaVersion": 1,
+        "purpose": "ai_to_ai_compact_context",
+        "date": date,
+        "runDate": run_date,
+        "effectiveMarketDate": effective_market_date or date,
+        "runId": run_id,
+        "sourceReportCount": atom_payload.get("source_report_count"),
+        "categoryCount": len(category_views),
+        "tokenPolicy": {
+            "fullTextExcluded": True,
+            "maxClaimChars": 180,
+            "maxEvidenceIdsPerClaim": 4,
+            "useIdsForFollowUp": True,
+        },
+        "summary": {
+            "overallSentiment": final_report.get("overall_sentiment"),
+            "oneLine": clip(final_report.get("one_line") or final_report.get("market_summary"), 240),
+            "mergeMethod": final_report.get("merge_method"),
+        },
+        "claimQuality": {
+            "statusCounts": claim_quality.get("statusCounts", {}),
+            "flaggedCount": claim_quality.get("flaggedCount", 0),
+            "riskyClaimCount": claim_quality.get("riskyClaimCount", 0),
+        },
+        "claims": [compact_quality_claim(row) for row in important_claims],
+        "topAtoms": [
+            {
+                "id": atom.get("atom_id"),
+                "type": atom.get("atom_type"),
+                "category": atom.get("category"),
+                "entity": clip(atom.get("entity") or atom.get("title"), 60),
+                "claim": clip(atom.get("claim"), 170),
+                "direction": atom.get("direction"),
+                "score": round(atom_score(atom), 3),
+                "evidence": normalize_evidence_list(atom)[:4],
+            }
+            for atom in (atom_payload.get("top_atoms") or [])[:30]
+            if isinstance(atom, dict)
+        ],
+        "newCandidates": [
+            {
+                "id": atom.get("atom_id"),
+                "entity": clip(atom.get("entity") or atom.get("title"), 60),
+                "claim": clip(atom.get("claim"), 160),
+                "evidence": normalize_evidence_list(atom)[:4],
+            }
+            for atom in (atom_payload.get("new_candidates") or [])[:15]
+            if isinstance(atom, dict)
+        ],
+        "riskFlags": [
+            {
+                "id": row.get("id"),
+                "section": row.get("section"),
+                "status": row.get("status"),
+                "flags": row.get("flags") or [],
+                "claim": clip(row.get("claim"), 160),
+            }
+            for row in (claim_quality.get("riskyClaims") or [])[:20]
+            if isinstance(row, dict)
+        ],
+    }
+
+
 def format_atom_line(atom: Any, *, char_limit: int = 260) -> str:
     if not isinstance(atom, dict):
         return clip(atom, char_limit)
@@ -493,6 +771,7 @@ def build_presentation_schema(
     return {
         "schemaVersion": 1,
         "date": date,
+        "quality": final_report.get("claim_quality", {}),
         "principles": [
             "category_header_once",
             "dedupe_claims_by_fingerprint",
@@ -1280,10 +1559,30 @@ def render_markdown(date: str, final_report: dict[str, Any], category_views: dic
         "## 한 줄 진단",
         f"- {final_report.get('one_line') or final_report.get('market_summary') or 'N/A'}",
         "",
-        "## 인사이트 레이더",
-        "",
-        "### 새롭고 강한 신호",
     ]
+    claim_quality = final_report.get("claim_quality") if isinstance(final_report.get("claim_quality"), dict) else {}
+    risky_claims = claim_quality.get("riskyClaims") if isinstance(claim_quality.get("riskyClaims"), list) else []
+    if risky_claims:
+        lines.extend(
+            [
+                "## 품질 경고",
+                "- 아래 주장은 근거가 얇거나 표현이 강해 다음 재검토 프롬프트에서 우선 확인합니다.",
+            ]
+        )
+        for row in risky_claims[:5]:
+            status_label = row.get("status") or "warn"
+            lines.append(
+                f"- [{status_label}] {clip(row.get('claim'), 180)}"
+                f"{evidence_label(normalize_evidence_list(row.get('evidence')))}"
+            )
+        lines.append("")
+    lines.extend(
+        [
+            "## 인사이트 레이더",
+            "",
+            "### 새롭고 강한 신호",
+        ]
+    )
     radar_atoms = insight_radar.get("signals") if isinstance(insight_radar.get("signals"), list) else []
     if radar_atoms:
         for atom in radar_atoms:
@@ -1368,6 +1667,9 @@ def main(argv: list[str]) -> int:
         os.environ["REPORT_ORCHESTRATOR_DETAIL"] = args.detail
     config = load_config(args.config)
     date = args.effective_market_date or args.date or find_latest_summary_date(config.report_summaries_dir)
+    run_date = args.run_date or date
+    effective_market_date = args.effective_market_date or date
+    run_id = args.run_id
 
     summaries = load_report_summaries(config, date)
     state_dir = config.repo_root / "data" / "analysis-state" / date
@@ -1456,11 +1758,32 @@ def main(argv: list[str]) -> int:
             final_report["llm_error"] = clip(str(error), 500)
 
     final_report["presentation"] = build_presentation_schema(date, final_report, category_views, atom_payload)
+    claim_quality = collect_claim_quality(final_report, atom_payload)
+    final_report["claim_quality"] = claim_quality
+    final_report["presentation"]["quality"] = {
+        "statusCounts": claim_quality.get("statusCounts", {}),
+        "flaggedCount": claim_quality.get("flaggedCount", 0),
+        "riskyClaimCount": claim_quality.get("riskyClaimCount", 0),
+    }
+
+    ai_exchange_payload = build_ai_exchange_payload(
+        date=date,
+        run_date=run_date,
+        effective_market_date=effective_market_date,
+        run_id=run_id,
+        final_report=final_report,
+        atom_payload=atom_payload,
+        claim_quality=claim_quality,
+        category_views=category_views,
+    )
 
     full_payload = {
         "schemaVersion": 1,
         "generated_at": now_iso(),
         "date": date,
+        "runDate": run_date,
+        "effectiveMarketDate": effective_market_date,
+        "runId": run_id,
         "source": "all_report_summaries",
         "source_report_count": len(summaries),
         "category_count": len(category_views),
@@ -1471,14 +1794,18 @@ def main(argv: list[str]) -> int:
         "insight_atoms_path": str(atoms_path.relative_to(config.repo_root)),
     }
     json_path = state_dir / "stage1-4-full-daily-report.json"
+    ai_exchange_path = state_dir / "stage1-4-ai-exchange.json"
+    full_payload["ai_exchange_path"] = str(ai_exchange_path.relative_to(config.repo_root))
     md_path = state_dir / "stage1-4-full-daily-report.md"
     knowledge_md_path = daily_dir / f"{date}-full-daily-report.md"
     markdown = render_markdown(date, final_report, category_views, atom_payload)
     write_json(json_path, full_payload)
+    write_json(ai_exchange_path, ai_exchange_payload)
     write_text(md_path, markdown)
     write_text(knowledge_md_path, markdown)
 
     print(str(json_path))
+    print(str(ai_exchange_path))
     print(str(atoms_path))
     print(str(knowledge_md_path))
     return 0

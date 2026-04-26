@@ -164,6 +164,7 @@ async function main() {
     wikiOperatingRules: path.join(ROOT_DIR, "knowledge", "wiki", "memory", "operating-rules.md"),
     wikiResearchBacklog: path.join(ROOT_DIR, "knowledge", "wiki", "memory", "research-backlog.md"),
     wikiDecisionJournal: path.join(ROOT_DIR, "knowledge", "wiki", "memory", "decision-journal.md"),
+    dataQuality: path.join(analysisDir, "data-quality-audit.json"),
     fallbackSummary: path.join(analysisDir, "fallback-summary.json"),
     fallbackChecklist: path.join(ROOT_DIR, "docs", "FAILURE_FALLBACK_CHECKLIST.md"),
   };
@@ -185,6 +186,7 @@ async function main() {
     stage4,
     briefingText,
     wikiDailyText,
+    dataQuality,
     fallbackSummary,
     geminiRichMeta,
   ] = await Promise.all([
@@ -204,6 +206,7 @@ async function main() {
     readJson(paths.stage4, null),
     readText(paths.briefing, ""),
     readText(paths.wikiDaily, ""),
+    readJson(paths.dataQuality, null),
     readJson(paths.fallbackSummary, null),
     readJson(paths.geminiRichMeta, null),
   ]);
@@ -262,16 +265,17 @@ async function main() {
   );
 
   const artifactMetas = [
-    { key: "stage1", label: "Stage 1", path: relative(paths.stage1), meta: extractJsonMeta(stage1) },
+    { key: "stage1", label: "03. Report Extraction", path: relative(paths.stage1), meta: extractJsonMeta(stage1) },
     {
       key: "stage2",
-      label: "Stage 2",
+      label: "07. Strategy Options",
       path: relative(paths.stage2),
       meta: extractJsonMeta(stage2),
     },
-    { key: "impact_map", label: "Impact Map", path: relative(paths.impactMap), meta: extractJsonMeta(impactMap) },
-    { key: "stage3", label: "Stage 3", path: relative(paths.stage3), meta: extractJsonMeta(stage3) },
-    { key: "stage4", label: "Stage 4", path: relative(paths.stage4), meta: extractJsonMeta(stage4) },
+    { key: "impact_map", label: "09. Impact Mapping", path: relative(paths.impactMap), meta: extractJsonMeta(impactMap) },
+    { key: "stage3", label: "10. Quant Scoring", path: relative(paths.stage3), meta: extractJsonMeta(stage3) },
+    { key: "stage4", label: "11. Execution Plan", path: relative(paths.stage4), meta: extractJsonMeta(stage4) },
+    { key: "data_quality", label: "13. Quality Gates", path: relative(paths.dataQuality), meta: extractJsonMeta(dataQuality) },
     {
       key: "refinement_round2",
       label: "Refinement Round 2",
@@ -442,6 +446,21 @@ async function main() {
       status: statusFromCondition(stage4ActionConflictCount === 0, "error"),
       detail: `conflict ${stage4ActionConflictCount}건 / no_action ${stage4NoActionCount}건 / low_conf_reject ${lowConfidenceActionRejectionCount}건`,
       path: relative(paths.stage4),
+    },
+    {
+      key: "data_quality",
+      label: "13. Quality Gates",
+      status: dataQuality
+        ? dataQuality.overallStatus === "error"
+          ? "error"
+          : dataQuality.overallStatus === "warn"
+          ? "warn"
+          : "ok"
+        : "warn",
+      detail: dataQuality
+        ? `overall ${dataQuality.overallStatus} / risky ${dataQuality.counts?.riskyClaimCount ?? 0}건`
+        : "data-quality-audit.json 누락",
+      path: relative(paths.dataQuality),
     },
     {
       key: "briefing",

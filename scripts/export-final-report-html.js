@@ -288,7 +288,40 @@ function renderSystemHealth(systemHealth) {
   ].join("\n");
 }
 
-function buildHtml({ date, dailyMarkdown, fullReport, stage4, systemHealth }) {
+function renderDataQuality(dataQuality) {
+  if (!dataQuality) {
+    return '<span class="health warn">WARN</span><p>data-quality-audit.json을 찾을 수 없습니다. 최종 실행 전 `npm run audit:data`를 실행하세요.</p>';
+  }
+  const status = dataQuality.overallStatus ?? "warn";
+  const checks = (dataQuality.checks ?? []).filter((item) => item.status !== "ok");
+  const riskyClaims = dataQuality.riskyClaims ?? [];
+  return [
+    `<span class="health ${escapeHtml(status === "ok" ? "ok" : status === "error" ? "error" : "warn")}">${escapeHtml(status.toUpperCase())}</span>`,
+    `<p>실행 후보 노출 정책: <strong>${escapeHtml(dataQuality.guardrails?.executionBuyPolicy ?? "validated_only")}</strong>. 위험 claim은 전체 재요약 없이 작은 프롬프트로만 재검토합니다.</p>`,
+    checks.length
+      ? `<div class="quality-grid">${checks
+          .map(
+            (item) =>
+              `<div class="quality-item ${escapeHtml(item.status)}"><strong>${escapeHtml(item.key)}</strong><span>${escapeHtml(item.detail ?? item.status)}</span></div>`,
+          )
+          .join("")}</div>`
+      : '<p>품질 게이트 경고 없음</p>',
+    riskyClaims.length
+      ? [
+          '<h3>경고/보류/근거 약함 Claim</h3>',
+          '<div class="risk-list">',
+          ...riskyClaims.slice(0, 8).map(
+            (item) =>
+              `<div class="risk-item"><strong>[${escapeHtml(item.severity ?? "warn")}] ${escapeHtml(item.id ?? "")}</strong><p>${escapeHtml(item.claim ?? "")}</p><small>${escapeHtml((item.reasons ?? []).join(", "))}</small></div>`,
+          ),
+          "</div>",
+          `<p class="muted">Mini review prompt: ${escapeHtml(dataQuality.aiReviewPromptPath ?? "-")}</p>`,
+        ].join("\n")
+      : '<p>위험 claim 없음</p>',
+  ].join("\n");
+}
+
+function buildHtml({ date, dailyMarkdown, fullReport, stage4, systemHealth, dataQuality }) {
   const finalReport = fullReport?.final_report ?? {};
   const presentationSections = finalReport.presentation?.sections ?? {};
   const insightRadar = presentationSections.insight_radar ?? {};
@@ -384,13 +417,24 @@ function buildHtml({ date, dailyMarkdown, fullReport, stage4, systemHealth }) {
     .health { display: inline-block; border-radius: 999px; padding: 4px 10px; font-size: 0.82rem; font-weight: 800; margin-bottom: 8px; }
     .health.ok { color: var(--teal); background: var(--green-bg); }
     .health.warn { color: var(--amber); background: var(--amber-bg); }
+    .health.error { color: var(--rose); background: var(--rose-bg); }
+    .quality-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 12px 0 18px; }
+    .quality-item { border: 1px solid var(--line); border-radius: 8px; padding: 12px; min-width: 0; }
+    .quality-item strong { display: block; margin-bottom: 4px; }
+    .quality-item span, .muted { color: var(--muted); font-size: 0.92rem; }
+    .quality-item.warn { background: var(--amber-bg); }
+    .quality-item.error { background: var(--rose-bg); }
+    .risk-list { display: grid; gap: 10px; }
+    .risk-item { border-left: 4px solid var(--amber); background: #fffaf0; padding: 10px 12px; border-radius: 0 8px 8px 0; }
+    .risk-item p { margin: 5px 0; }
+    .risk-item small { color: var(--muted); }
     .file-list { display: grid; gap: 6px; color: var(--muted); font-size: 0.92rem; }
     footer { color: var(--muted); font-size: 0.86rem; margin-top: 22px; }
     @media (max-width: 900px) {
       .layout { grid-template-columns: 1fr; padding: 16px; }
       nav { position: static; display: flex; flex-wrap: wrap; gap: 4px; }
       nav a { padding: 7px 9px; }
-      .metrics, .account-metrics, .split { grid-template-columns: 1fr; }
+      .metrics, .account-metrics, .split, .quality-grid { grid-template-columns: 1fr; }
       .hero-inner { padding: 28px 16px 18px; }
       .band { padding: 16px; }
     }
@@ -421,6 +465,7 @@ function buildHtml({ date, dailyMarkdown, fullReport, stage4, systemHealth }) {
       <a href="#summary">요약</a>
       <a href="#execution">실행 전략</a>
       <a href="#economy">경제 리포트</a>
+      <a href="#quality">품질 경고</a>
       <a href="#health">검증 상태</a>
       <a href="#files">원본 파일</a>
     </nav>
@@ -452,6 +497,10 @@ function buildHtml({ date, dailyMarkdown, fullReport, stage4, systemHealth }) {
         <p>아래 섹션은 70개 리포트를 통합한 본문입니다. 처음 세 섹션은 펼쳐두고, 나머지는 필요할 때 열어볼 수 있게 접었습니다.</p>
         ${renderReportSections(dailyMarkdown)}
       </section>
+      <section id="quality" class="band">
+        <h2>품질 경고</h2>
+        ${renderDataQuality(dataQuality)}
+      </section>
       <section id="health" class="band">
         <h2>검증 상태</h2>
         ${renderSystemHealth(systemHealth)}
@@ -460,6 +509,8 @@ function buildHtml({ date, dailyMarkdown, fullReport, stage4, systemHealth }) {
         <h2>원본 파일</h2>
         <div class="file-list">
           <div>경제 리포트: knowledge/daily/${escapeHtml(date)}-full-daily-report.md</div>
+          <div>AI 교환 JSON: data/analysis-state/${escapeHtml(date)}/stage1-4-ai-exchange.json</div>
+          <div>품질 감사: data/analysis-state/${escapeHtml(date)}/data-quality-audit.json</div>
           <div>실행 전략: reports/daily/${escapeHtml(date)}-stage4-execution-plan.md</div>
           <div>실행 전략 표: reports/daily/${escapeHtml(date)}-stage4-execution-plan-table.md</div>
           <div>HTML 생성 시각: ${escapeHtml(generatedAt)}</div>
@@ -479,13 +530,15 @@ async function main() {
   const fullReportPath = path.join(ROOT_DIR, "data", "analysis-state", args.date, "stage1-4-full-daily-report.json");
   const stage4Path = path.join(ROOT_DIR, "data", "analysis-state", args.date, "stage4-execution-plan.json");
   const systemHealthPath = path.join(ROOT_DIR, "data", "analysis-state", args.date, "system-health.json");
+  const dataQualityPath = path.join(ROOT_DIR, "data", "analysis-state", args.date, "data-quality-audit.json");
   const outputPath = args.output ?? path.join(ROOT_DIR, "reports", "daily", `${args.date}-final.html`);
 
-  const [dailyMarkdown, fullReport, stage4, systemHealth] = await Promise.all([
+  const [dailyMarkdown, fullReport, stage4, systemHealth, dataQuality] = await Promise.all([
     readText(dailyMarkdownPath, ""),
     readJson(fullReportPath, null),
     readJson(stage4Path, null),
     readJson(systemHealthPath, null),
+    readJson(dataQualityPath, null),
   ]);
 
   if (!dailyMarkdown.trim()) {
@@ -495,7 +548,7 @@ async function main() {
     throw new Error(`Stage 4 실행 전략 JSON을 찾을 수 없습니다: ${stage4Path}`);
   }
 
-  await writeText(outputPath, buildHtml({ date: args.date, dailyMarkdown, fullReport, stage4, systemHealth }));
+  await writeText(outputPath, buildHtml({ date: args.date, dailyMarkdown, fullReport, stage4, systemHealth, dataQuality }));
   process.stdout.write(`${outputPath}\n`);
 }
 

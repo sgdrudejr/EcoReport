@@ -28,10 +28,11 @@ StockPilot 전용 설계/로드맵 문서는 여기서 시작합니다:
 
 1. `docs/EXECUTION_GUIDE.md` ← **여기서 시작**
 2. `README.md`
-3. `docs/PIPELINE_MAP.md`
-4. `docs/MULTI_TOOL_HANDOFF.md`
-5. `docs/OPERATOR_RUNBOOK.md`
-6. `docs/ECOREPORT_DAILY_AUTOMATION.md`
+3. `docs/STAGE_NAMES.md`
+4. `docs/PIPELINE_MAP.md`
+5. `docs/MULTI_TOOL_HANDOFF.md`
+6. `docs/OPERATOR_RUNBOOK.md`
+7. `docs/ECOREPORT_DAILY_AUTOMATION.md`
 7. 작업 성격에 따라 아래 문서 추가
 
 ## 작업별 문서 라우팅
@@ -41,6 +42,7 @@ StockPilot 전용 설계/로드맵 문서는 여기서 시작합니다:
 읽을 문서:
 
 - `README.md`
+- `docs/STAGE_NAMES.md`
 - `docs/PIPELINE_MAP.md`
 - `docs/REPO_STRUCTURE.md`
 - `docs/STAGE_1_4_ARCHITECTURE.md`
