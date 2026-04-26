@@ -663,6 +663,15 @@ def is_model_not_found(error_message: str) -> bool:
     return "model_not_found" in lowered or "is not found" in lowered or "not supported" in lowered
 
 
+def is_model_quota_error(error_message: str) -> bool:
+    lowered = error_message.lower()
+    return (
+        "allocationquota.freetieronly" in lowered
+        or "free tier" in lowered
+        or "free_tier" in lowered
+    )
+
+
 def call_qwen_agenda(
     client: OpenAI,
     model_name: str,
@@ -818,7 +827,7 @@ def main() -> None:
             break
         except Exception as exc:  # noqa: BLE001
             api_error = exc
-            if is_model_not_found(str(exc)):
+            if is_model_not_found(str(exc)) or is_model_quota_error(str(exc)):
                 continue
             break
 

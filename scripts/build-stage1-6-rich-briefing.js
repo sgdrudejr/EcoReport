@@ -103,9 +103,13 @@ function isRetryableQuotaError(message) {
 }
 
 function isHardQuotaError(message) {
-  return /(billing details|free[_ -]?tier|limit:\s*0|quota exceeded for metric)/i.test(
+  return /(billing details|limit:\s*0|quota exceeded for metric)/i.test(
     String(message ?? ""),
   );
+}
+
+function isModelQuotaError(message) {
+  return /(AllocationQuota\.FreeTierOnly|free[_ -]?tier)/i.test(String(message ?? ""));
 }
 
 function isUnsupportedModelError(message) {
@@ -1281,6 +1285,9 @@ async function callProviderWithRetry({ apiKey, baseUrl, modelCandidates, prompt,
         lastError = error;
         const message = error instanceof Error ? error.message : String(error);
         if (isUnsupportedModelError(message)) {
+          continue;
+        }
+        if (isModelQuotaError(message)) {
           continue;
         }
         if (isHardQuotaError(message)) {
