@@ -273,6 +273,157 @@ def format_grouped_contradictions(item: Any) -> list[str]:
     return rows
 
 
+def claim_fingerprint(value: Any) -> str:
+    text = compact(value).lower()
+    text = re.sub(r"\([^)]*\)", " ", text)
+    text = re.sub(r"\d[\d,.\-%]*", "#", text)
+    tokens = re.findall(r"[0-9a-zA-Z가-힣]+", text)
+    return " ".join(tokens[:24])
+
+
+def structured_claim_item(item: Any, *, char_limit: int = 300) -> dict[str, Any] | None:
+    if isinstance(item, dict):
+        claim = item.get("claim") or item.get("summary") or item.get("view") or item.get("name") or item.get("topic")
+        if not claim:
+            return None
+        evidence = item.get("evidence_report_ids") or item.get("evidence") or []
+        return {
+            "claim": clip(claim, char_limit),
+            "why_it_matters": clip(item.get("why_it_matters"), 180) if item.get("why_it_matters") else None,
+            "evidence_report_ids": evidence[:5] if isinstance(evidence, list) else [],
+            "fingerprint": claim_fingerprint(claim),
+        }
+    text = clip(item, char_limit)
+    if not text:
+        return None
+    return {
+        "claim": text,
+        "why_it_matters": None,
+        "evidence_report_ids": [],
+        "fingerprint": claim_fingerprint(text),
+    }
+
+
+def flatten_group_items(group: Any) -> tuple[str | None, list[Any]]:
+    if isinstance(group, dict) and isinstance(group.get("items"), list):
+        return clip(group.get("category"), 80), group.get("items") or []
+    return None, [group]
+
+
+def build_claim_groups(
+    raw_groups: Any,
+    category_views: dict[str, dict[str, Any]],
+    *,
+    item_limit: int = 2,
+    group_limit: int = 12,
+    char_limit: int = 300,
+) -> list[dict[str, Any]]:
+    if not isinstance(raw_groups, list):
+        return []
+    groups: list[dict[str, Any]] = []
+    global_seen: set[str] = set()
+    for raw_group in raw_groups:
+        category, items = flatten_group_items(raw_group)
+        local_seen: set[str] = set()
+        claims: list[dict[str, Any]] = []
+        for item in items:
+            structured = structured_claim_item(item, char_limit=char_limit)
+            if not structured:
+                continue
+            key = structured.get("fingerprint") or claim_fingerprint(structured.get("claim"))
+            if not key or key in local_seen or key in global_seen:
+                continue
+            local_seen.add(key)
+            global_seen.add(key)
+            claims.append(structured)
+            if len(claims) >= item_limit:
+                break
+        if not claims:
+            continue
+        view = category_views.get(category or "", {})
+        groups.append(
+            {
+                "category": category or "통합",
+                "report_count": view.get("report_count"),
+                "sentiment": view.get("overall_sentiment"),
+                "summary": clip(view.get("market_summary"), 220),
+                "claims": claims,
+                "key_signals": clean_list(view.get("key_signals"), limit=2, char_limit=160),
+            }
+        )
+        if len(groups) >= group_limit:
+            break
+    return groups
+
+
+def structured_contradiction_item(item: Any, *, char_limit: int = 180) -> dict[str, Any] | None:
+    if not isinstance(item, dict):
+        text = clip(item, char_limit)
+        if not text:
+            return None
+        return {
+            "topic": "쟁점",
+            "side_a": text,
+            "side_b": "",
+            "evidence_report_ids": [],
+            "fingerprint": claim_fingerprint(text),
+        }
+    topic = item.get("topic") or item.get("claim") or "쟁점"
+    side_a = item.get("side_a") or item.get("bull_case") or item.get("positive_view") or ""
+    side_b = item.get("side_b") or item.get("bear_case") or item.get("negative_view") or ""
+    if not topic and not side_a and not side_b:
+        return None
+    evidence = item.get("evidence_report_ids") or item.get("evidence") or []
+    return {
+        "topic": clip(topic, 100),
+        "side_a": clip(side_a, char_limit),
+        "side_b": clip(side_b, char_limit),
+        "evidence_report_ids": evidence[:5] if isinstance(evidence, list) else [],
+        "fingerprint": claim_fingerprint(f"{topic} {side_a} {side_b}"),
+    }
+
+
+def build_contradiction_groups(
+    raw_groups: Any,
+    category_views: dict[str, dict[str, Any]],
+    *,
+    item_limit: int = 2,
+    group_limit: int = 10,
+) -> list[dict[str, Any]]:
+    if not isinstance(raw_groups, list):
+        return []
+    groups: list[dict[str, Any]] = []
+    global_seen: set[str] = set()
+    for raw_group in raw_groups:
+        category, items = flatten_group_items(raw_group)
+        rows: list[dict[str, Any]] = []
+        for item in items:
+            structured = structured_contradiction_item(item)
+            if not structured:
+                continue
+            key = structured.get("fingerprint") or claim_fingerprint(structured.get("topic"))
+            if not key or key in global_seen:
+                continue
+            global_seen.add(key)
+            rows.append(structured)
+            if len(rows) >= item_limit:
+                break
+        if not rows:
+            continue
+        view = category_views.get(category or "", {})
+        groups.append(
+            {
+                "category": category or "통합",
+                "report_count": view.get("report_count"),
+                "summary": clip(view.get("market_summary"), 180),
+                "items": rows,
+            }
+        )
+        if len(groups) >= group_limit:
+            break
+    return groups
+
+
 def atom_score(atom: dict[str, Any]) -> float:
     novelty = atom.get("novelty_score") if isinstance(atom.get("novelty_score"), (int, float)) else 0
     conviction = atom.get("conviction_score") if isinstance(atom.get("conviction_score"), (int, float)) else 0
@@ -317,6 +468,171 @@ def build_research_questions(final_report: dict[str, Any], atom_payload: dict[st
         if len(questions) >= limit:
             return questions
     return questions
+
+
+def build_presentation_schema(
+    date: str,
+    final_report: dict[str, Any],
+    category_views: dict[str, dict[str, Any]],
+    atom_payload: dict[str, Any],
+) -> dict[str, Any]:
+    radar_signals = sorted(
+        [
+            atom
+            for atom in (final_report.get("top_insight_atoms") or atom_payload.get("top_atoms") or [])
+            if isinstance(atom, dict) and atom.get("direction") in {"positive", "mixed", "neutral"}
+        ],
+        key=atom_score,
+        reverse=True,
+    )[:6]
+    radar_risks = sorted(
+        [atom for atom in (final_report.get("risk_atoms") or atom_payload.get("risk_atoms") or []) if isinstance(atom, dict)],
+        key=atom_score,
+        reverse=True,
+    )[:5]
+    return {
+        "schemaVersion": 1,
+        "date": date,
+        "principles": [
+            "category_header_once",
+            "dedupe_claims_by_fingerprint",
+            "separate_consensus_minority_contradiction",
+            "prefer_structured_groups_over_flat_bullets",
+        ],
+        "sections": {
+            "insight_radar": {
+                "signals": radar_signals,
+                "risks": radar_risks,
+                "questions": build_research_questions(final_report, atom_payload),
+            },
+            "consensus": {
+                "title": "오늘의 컨센서스",
+                "groups": build_claim_groups(
+                    final_report.get("today_consensus") or final_report.get("consensus") or [],
+                    category_views,
+                    item_limit=2,
+                    group_limit=9,
+                    char_limit=280,
+                ),
+            },
+            "minority": {
+                "title": "소수 의견 / 비컨센서스",
+                "groups": build_claim_groups(
+                    final_report.get("minority_views") or [],
+                    category_views,
+                    item_limit=2,
+                    group_limit=9,
+                    char_limit=280,
+                ),
+            },
+            "contradictions": {
+                "title": "충돌하는 시각",
+                "groups": build_contradiction_groups(
+                    final_report.get("contradictions") or [],
+                    category_views,
+                    item_limit=2,
+                    group_limit=9,
+                ),
+            },
+            "new_candidates": {
+                "title": "신규 후보 / 종목 아이디어",
+                "items": (final_report.get("new_candidates") or atom_payload.get("new_candidates") or [])[:12],
+            },
+            "risk_watch": {
+                "title": "리스크 Watch",
+                "items": (final_report.get("risk_watch") or final_report.get("risk_atoms") or atom_payload.get("risk_atoms") or [])[:12],
+            },
+            "category_summaries": {
+                "title": "카테고리별 통합",
+                "groups": [
+                    {
+                        "category": category,
+                        "report_count": view.get("report_count", 0),
+                        "summary": clip(view.get("market_summary"), 500),
+                        "key_signals": clean_list(view.get("key_signals"), limit=5, char_limit=220),
+                    }
+                    for category, view in category_views.items()
+                ],
+            },
+        },
+    }
+
+
+def evidence_label(values: Any) -> str:
+    if not isinstance(values, list) or not values:
+        return ""
+    return f" (근거: {', '.join(str(value) for value in values[:4])})"
+
+
+def render_structured_claim(item: dict[str, Any], *, prefix: str = "핵심") -> str:
+    text = f"{prefix}: {clip(item.get('claim'), 320)}"
+    if item.get("why_it_matters"):
+        text += f" - 의미: {clip(item.get('why_it_matters'), 160)}"
+    return text + evidence_label(item.get("evidence_report_ids"))
+
+
+def append_claim_group_section(lines: list[str], title: str, groups: list[dict[str, Any]]) -> None:
+    lines.extend(["", f"## {title}"])
+    if not groups:
+        lines.append("- 해당 없음")
+        return
+    for group in groups:
+        label = group.get("category") or "통합"
+        count = group.get("report_count")
+        suffix = f" ({count}건)" if count else ""
+        lines.extend(["", f"### {label}{suffix}"])
+        if group.get("summary"):
+            lines.append(f"- 요약: {clip(group.get('summary'), 260)}")
+        for index, claim in enumerate(group.get("claims") or [], start=1):
+            lines.append(f"- {render_structured_claim(claim, prefix=f'핵심 {index}')}")
+        if group.get("key_signals"):
+            lines.append(f"- 보조 신호: {' / '.join(clip(signal, 90) for signal in group.get('key_signals')[:2])}")
+
+
+def append_contradiction_section(lines: list[str], title: str, groups: list[dict[str, Any]]) -> None:
+    lines.extend(["", f"## {title}"])
+    if not groups:
+        lines.append("- 해당 없음")
+        return
+    for group in groups:
+        label = group.get("category") or "통합"
+        count = group.get("report_count")
+        suffix = f" ({count}건)" if count else ""
+        lines.extend(["", f"### {label}{suffix}"])
+        if group.get("summary"):
+            lines.append(f"- 배경: {clip(group.get('summary'), 220)}")
+        for item in group.get("items") or []:
+            topic = clip(item.get("topic") or "쟁점", 90)
+            side_a = clip(item.get("side_a") or "N/A", 150)
+            side_b = clip(item.get("side_b") or "N/A", 150)
+            lines.append(f"- **{topic}**: A) {side_a} / B) {side_b}{evidence_label(item.get('evidence_report_ids'))}")
+
+
+def append_atom_list_section(lines: list[str], title: str, items: list[Any], *, limit: int = 12) -> None:
+    lines.extend(["", f"## {title}"])
+    if not items:
+        lines.append("- 해당 없음")
+        return
+    seen: set[str] = set()
+    count = 0
+    for item in items:
+        if isinstance(item, dict):
+            label = item.get("entity") or item.get("name") or item.get("title") or item.get("claim")
+            claim = item.get("claim") or item.get("view") or item.get("summary") or ""
+            key = claim_fingerprint(f"{label} {claim}")
+            if key in seen:
+                continue
+            seen.add(key)
+            lines.append(f"- **{clip(label, 80)}**: {clip(claim, 260)}")
+        else:
+            key = claim_fingerprint(item)
+            if key in seen:
+                continue
+            seen.add(key)
+            lines.append(f"- {clip(item, 320)}")
+        count += 1
+        if count >= limit:
+            break
 
 
 def parse_args(argv: list[str]) -> argparse.Namespace:
@@ -949,6 +1265,11 @@ def llm_final_merge(
 
 
 def render_markdown(date: str, final_report: dict[str, Any], category_views: dict[str, dict[str, Any]], atom_payload: dict[str, Any]) -> str:
+    presentation = final_report.get("presentation")
+    if not isinstance(presentation, dict):
+        presentation = build_presentation_schema(date, final_report, category_views, atom_payload)
+    sections = presentation.get("sections") if isinstance(presentation.get("sections"), dict) else {}
+    insight_radar = sections.get("insight_radar") if isinstance(sections.get("insight_radar"), dict) else {}
     lines = [
         f"# {date} Full Daily Report",
         "",
@@ -963,85 +1284,79 @@ def render_markdown(date: str, final_report: dict[str, Any], category_views: dic
         "",
         "### 새롭고 강한 신호",
     ]
-    radar_atoms = sorted(
-        [
-            atom
-            for atom in (final_report.get("top_insight_atoms") or atom_payload.get("top_atoms") or [])
-            if isinstance(atom, dict) and atom.get("direction") in {"positive", "mixed", "neutral"}
-        ],
-        key=atom_score,
-        reverse=True,
-    )[:6]
+    radar_atoms = insight_radar.get("signals") if isinstance(insight_radar.get("signals"), list) else []
     if radar_atoms:
         for atom in radar_atoms:
             lines.append(f"- {format_atom_line(atom)}")
     else:
         lines.append("- 포착된 고신뢰 신규 신호 없음")
     lines.extend(["", "### 평균에 묻히면 안 되는 리스크"])
-    radar_risks = sorted(
-        [atom for atom in (final_report.get("risk_atoms") or atom_payload.get("risk_atoms") or []) if isinstance(atom, dict)],
-        key=atom_score,
-        reverse=True,
-    )[:5]
+    radar_risks = insight_radar.get("risks") if isinstance(insight_radar.get("risks"), list) else []
     if radar_risks:
         for atom in radar_risks:
             lines.append(f"- {format_atom_line(atom)}")
     else:
         lines.append("- 별도 리스크 atom 없음")
     lines.extend(["", "### 다음 검증 질문"])
-    questions = build_research_questions(final_report, atom_payload)
+    questions = insight_radar.get("questions") if isinstance(insight_radar.get("questions"), list) else []
     if questions:
         for question in questions:
             lines.append(f"- {question}")
     else:
         lines.append("- 신규 후보의 실적 연결성과 리스크 현실화 여부를 다음 리포트에서 확인")
-    lines.extend([
-        "",
-        "## 오늘의 컨센서스",
-    ])
-    consensus = final_report.get("today_consensus") or final_report.get("consensus") or []
-    if isinstance(consensus, list):
-        for item in consensus[:10]:
-            for row in format_grouped_claims(item, char_limit=300):
-                lines.append(f"- {row}")
-    lines.extend(["", "## 소수 의견 / 비컨센서스"])
-    minority = final_report.get("minority_views") or []
-    if isinstance(minority, list):
-        for item in minority[:10]:
-            for row in format_grouped_claims(item, char_limit=300):
-                lines.append(f"- {row}")
-    lines.extend(["", "## 충돌하는 시각"])
-    contradictions = final_report.get("contradictions") or []
-    if isinstance(contradictions, list):
-        for item in contradictions[:10]:
-            for row in format_grouped_contradictions(item):
-                lines.append(f"- {row}")
-    lines.extend(["", "## 신규 후보 / 종목 아이디어"])
-    candidates = final_report.get("new_candidates") or atom_payload.get("new_candidates", [])
-    if isinstance(candidates, list):
-        for item in candidates[:12]:
-            if isinstance(item, dict):
-                label = item.get("entity") or item.get("name") or item.get("claim")
-                claim = item.get("claim") or item.get("view") or item
-                lines.append(f"- **{clip(label, 80)}**: {clip(claim, 260)}")
-            else:
-                lines.append(f"- {clip(item, 320)}")
-    lines.extend(["", "## 리스크 Watch"])
-    risks = final_report.get("risk_watch") or final_report.get("risk_atoms") or atom_payload.get("risk_atoms", [])
-    if isinstance(risks, list):
-        for item in risks[:12]:
-            if isinstance(item, dict):
-                lines.append(f"- {clip(item.get('entity'), 80)}: {clip(item.get('claim'), 260)}")
-            else:
-                lines.append(f"- {clip(item, 320)}")
+
+    consensus_section = sections.get("consensus") if isinstance(sections.get("consensus"), dict) else {}
+    append_claim_group_section(
+        lines,
+        consensus_section.get("title") or "오늘의 컨센서스",
+        consensus_section.get("groups") if isinstance(consensus_section.get("groups"), list) else [],
+    )
+    minority_section = sections.get("minority") if isinstance(sections.get("minority"), dict) else {}
+    append_claim_group_section(
+        lines,
+        minority_section.get("title") or "소수 의견 / 비컨센서스",
+        minority_section.get("groups") if isinstance(minority_section.get("groups"), list) else [],
+    )
+    contradiction_section = sections.get("contradictions") if isinstance(sections.get("contradictions"), dict) else {}
+    append_contradiction_section(
+        lines,
+        contradiction_section.get("title") or "충돌하는 시각",
+        contradiction_section.get("groups") if isinstance(contradiction_section.get("groups"), list) else [],
+    )
+    candidate_section = sections.get("new_candidates") if isinstance(sections.get("new_candidates"), dict) else {}
+    append_atom_list_section(
+        lines,
+        candidate_section.get("title") or "신규 후보 / 종목 아이디어",
+        candidate_section.get("items") if isinstance(candidate_section.get("items"), list) else [],
+    )
+    risk_section = sections.get("risk_watch") if isinstance(sections.get("risk_watch"), dict) else {}
+    append_atom_list_section(
+        lines,
+        risk_section.get("title") or "리스크 Watch",
+        risk_section.get("items") if isinstance(risk_section.get("items"), list) else [],
+    )
+
     lines.extend(["", "## 카테고리별 통합"])
-    for category, view in category_views.items():
+    category_section = sections.get("category_summaries") if isinstance(sections.get("category_summaries"), dict) else {}
+    category_groups = category_section.get("groups") if isinstance(category_section.get("groups"), list) else []
+    if not category_groups:
+        category_groups = [
+            {
+                "category": category,
+                "report_count": view.get("report_count", 0),
+                "summary": clip(view.get("market_summary"), 500),
+                "key_signals": clean_list(view.get("key_signals"), limit=5, char_limit=220),
+            }
+            for category, view in category_views.items()
+        ]
+    for group in category_groups:
+        category = group.get("category")
         lines.extend([
             "",
-            f"### {category} ({view.get('report_count', 0)}건)",
-            f"- {clip(view.get('market_summary'), 500)}",
+            f"### {category} ({group.get('report_count', 0)}건)",
+            f"- {clip(group.get('summary'), 500)}",
         ])
-        for signal in (view.get("key_signals") or [])[:5]:
+        for signal in (group.get("key_signals") or [])[:5]:
             lines.append(f"- {clip(signal, 220)}")
     lines.append("")
     return "\n".join(lines)
@@ -1139,6 +1454,8 @@ def main(argv: list[str]) -> int:
             final_report = local_final_merge(date, category_views, atom_payload)
             final_report["merge_method"] = "local_after_llm_error"
             final_report["llm_error"] = clip(str(error), 500)
+
+    final_report["presentation"] = build_presentation_schema(date, final_report, category_views, atom_payload)
 
     full_payload = {
         "schemaVersion": 1,

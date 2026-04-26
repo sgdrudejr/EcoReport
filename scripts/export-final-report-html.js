@@ -290,11 +290,13 @@ function renderSystemHealth(systemHealth) {
 
 function buildHtml({ date, dailyMarkdown, fullReport, stage4, systemHealth }) {
   const finalReport = fullReport?.final_report ?? {};
-  const topAtoms = [...(finalReport.top_insight_atoms ?? [])]
+  const presentationSections = finalReport.presentation?.sections ?? {};
+  const insightRadar = presentationSections.insight_radar ?? {};
+  const topAtoms = [...(insightRadar.signals ?? finalReport.top_insight_atoms ?? [])]
     .filter((item) => ["positive", "mixed", "neutral"].includes(item?.direction ?? "neutral"))
     .sort((left, right) => atomScore(right) - atomScore(left))
     .slice(0, 4);
-  const riskAtoms = [...(finalReport.risk_atoms ?? [])].sort((left, right) => atomScore(right) - atomScore(left)).slice(0, 3);
+  const riskAtoms = [...(insightRadar.risks ?? finalReport.risk_atoms ?? [])].sort((left, right) => atomScore(right) - atomScore(left)).slice(0, 3);
   const accountPlans = stage4?.accountPlans ?? [];
   const buyCount = accountPlans.reduce((sum, plan) => sum + (plan.stagedBuys?.length ?? 0), 0);
   const reportCount = finalReport.report_count ?? fullReport?.source_report_count ?? "-";
