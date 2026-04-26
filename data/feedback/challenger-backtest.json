@@ -1,8 +1,11 @@
 {
-  "generatedAt": "2026-04-20T02:55:42.388Z",
-  "lookbackSnapshots": 13,
-  "baselineHitRate": 0,
-  "challengerHitRate": 0,
+  "generatedAt": "2026-04-26T16:14:55.640Z",
+  "analysisDate": "2026-04-24",
+  "lookbackSnapshots": 17,
+  "positionCount": 71,
+  "minSamples": 24,
+  "baselineHitRate": 0.8450704225352113,
+  "challengerHitRate": 0.8450704225352113,
   "improvement": 0,
   "promoted": false,
   "challengerWeights": {
@@ -10,5 +13,6 @@
     "research": 0.3,
     "income": 0.15,
     "macroFit": 0.2
-  }
+  },
+  "status": "evaluated"
 }

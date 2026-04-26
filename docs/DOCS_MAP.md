@@ -42,6 +42,7 @@ StockPilot 전용 설계/로드맵 문서는 여기서 시작합니다:
 
 - `README.md`
 - `docs/PIPELINE_MAP.md`
+- `docs/REPO_STRUCTURE.md`
 - `docs/STAGE_1_4_ARCHITECTURE.md`
 
 이 문서들이 답하는 것:
@@ -49,6 +50,7 @@ StockPilot 전용 설계/로드맵 문서는 여기서 시작합니다:
 - 파이프라인 전체 흐름을 쉬운 말로 보면 어떤 구조인가
 - 파이프라인 전체 단계
 - 핵심 산출물
+- 파일과 디렉토리의 기준 위치
 - 대시보드와 백엔드의 연결 구조
 
 ### 2. 오늘 파이프라인을 실제로 돌리고 싶다

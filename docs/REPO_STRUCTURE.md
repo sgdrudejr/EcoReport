@@ -1,223 +1,188 @@
 # EcoReport Repository Structure
 
-이 문서는 현재 `/Users/seo/stock-pilot` 로컬 저장소의 실제 구조를 코드 기준으로 정리합니다.
+이 문서는 현재 운영 기준의 파일 위치와 디렉토리 역할을 고정합니다.
 
-## 최상위 구조
+## Canonical Paths
+
+| 역할 | 경로 |
+|---|---|
+| 실행 루트 | `/Users/seo/Documents/Playground/economy-report` |
+| main publish worktree | `/Users/seo/Documents/Playground/economy-report-main-publish` |
+| shadow/merge 보조 worktree | `/Users/seo/Documents/Playground/economy-report-main-merge` |
+| 레거시 참고 archive | `/Users/seo/Documents/Playground/stock-pilot-archive` |
+| GitHub 원격 | `https://github.com/sgdrudejr/EcoReport.git` |
+
+일상 실행은 `economy-report` 루트에서 합니다. `main` 브랜치는 충돌을 줄이기 위해 `economy-report-main-publish` worktree에서 관리할 수 있습니다.
+
+## Filing Audit
+
+경로가 꼬였는지 확인할 때는 아래 명령을 먼저 실행합니다.
+
+```bash
+cd /Users/seo/Documents/Playground/economy-report
+npm run audit:filing
+```
+
+이 감사는 아래 항목을 확인합니다.
+
+- 필수 디렉토리와 파일 존재
+- `package.json` 스크립트가 실제 파일을 가리키는지
+- `/Users/seo/stock-pilot` 또는 `/Users/seo/Documents/Playground/EcoReport` 같은 옛 절대경로가 남았는지
+- Codex 자동화의 cwd가 현재 루트를 가리키는지
+- worktree에 실행 루트와 main 루트가 등록되어 있는지
+- 캐시가 아닌 빈 디렉토리가 남았는지
+
+## Top-Level Layout
 
 ```text
-stock-pilot/
-├── config/                  전략, 계약, DAG, alerts, Telegram 설정
-├── dashboard/               Next.js 16 대시보드 워크스페이스
-├── data/                    일자별 산출물, 피드백, intraday, SQLite 저장소
-├── docs/                    운영/구조 문서
-├── knowledge/               daily 문서와 wiki 메모리
-├── logs/                    일일 러너 로그
-├── reports/                 브리핑/리포트 출력물
-├── scripts/                 파이프라인, 검증, 수집, 보조 유틸
-└── package.json             루트 스크립트 + workspaces
+economy-report/
+├── .github/workflows/          GitHub self-hosted trigger
+├── config/                     전략, 보안 마스터, 로컬 경로 예시, API 설정
+├── dashboard/                  Next.js 대시보드 workspace
+├── data/                       구조화 데이터와 일부 추적 산출물
+├── docs/                       운영/아키텍처/규칙 문서
+├── knowledge/                  일일 지식 산출물과 장기 wiki
+├── prompts/                    수동 LLM 프롬프트 템플릿
+├── reports/                    최종 리포트와 실행 전략 출력물
+├── scripts/                    수집, 변환, 분석, 자동화 스크립트
+├── package.json                루트 npm scripts
+└── requirements-report-orchestrator.txt
 ```
 
 ## config/
 
-현재 운영에 직접 쓰이는 핵심 설정 파일:
-
-- `config/strategy.json`: 배분/점수/세금 가정
-- `config/watchlist.json`: 관심 종목/ETF
-- `config/securities.json`: 보안 마스터와 카테고리 규칙
-- `config/alerts.json`: 장중 경보 조건
-- `config/pipeline-manifest.yaml`: DAG 정의
-- `config/stage-contracts.json`: Stage JSON contract 규격
-- `config/telegram.json`: Telegram bot 설정
-- `config/market-calendar.json`: 휴장일/달력
+| 파일 | 역할 |
+|---|---|
+| `config/strategy.json` | 계좌 목표, 20/30/50 allocation policy, 점수/세금/리스크 설정 |
+| `config/securities.json` | 종목/ETF 코드, 카테고리, 키워드, 테마 매핑의 단일 기준 |
+| `config/watchlist.json` | 추적 대상 종목/ETF |
+| `config/portfolio-sync.json` | KIS 계좌 동기화 설정 |
+| `config/local-paths.example.json` | 로컬 절대경로 예시 |
+| `config/local-paths.local.json` | 개인 로컬 override. Git에 올리지 않음 |
+| `config/pipeline-manifest.yaml` | DAG 기반 실행 정의 |
+| `config/stage-contracts.json` | Stage별 JSON contract |
+| `config/market-calendar.json` | 휴장일/거래일 계산 기준 |
 
 ## scripts/
 
-### 일일 운영 엔트리
+### Daily Entry Points
 
-- `scripts/run-daily-system.sh`
-- `scripts/run-strategy-pipeline.sh`
-- `scripts/run-pipeline-dag.js`
+| 명령 | 역할 |
+|---|---|
+| `npm run automation:daily` | 전체 일일 자동화 |
+| `npm run daily:final-output` | 기존 산출물로 경제 리포트/실행 전략만 재생성 |
+| `npm run daily:quality` | quality-gated daily runner |
+| `npm run verify` | 일일 산출물 검증 |
+| `npm run audit:filing` | 파일/경로/자동화 설정 감사 |
 
-### Stage 1 ~ 4
+### Stage Scripts
 
-- `scripts/build-stage1-report-extracts.js`
-- `scripts/build-stage1-5-gemini-deep-research-prompt.js`
-- `scripts/build-stage1-6-rich-briefing.js`
-- `scripts/build-stage1-7-followup-research-map.js`
-- `scripts/build-stage1-7-gemini-follow-up-prompt.js`
-- `scripts/build-stage2-strategy-prompt.js`
-- `scripts/build-stage2-strategy-gemini.py`
-- `scripts/build-stage2-strategy-claude.js`
-- `scripts/build-stage2-strategy-mock.js`
-- `scripts/build-impact-map.js`
-- `scripts/build-stage3-quant-scores.js`
-- `scripts/build-holding-clusters.js`
-- `scripts/build-stage4-execution-plan.js`
-- `scripts/build-stage4-critic.js`
+| Stage | 주요 파일 |
+|---|---|
+| Stage 1 | `build-report-chunk-index.js`, `build-stage1-report-extracts.js`, `build-stage2-enriched-report-index.js` |
+| Stage 1.4 | `collectors/summarize-report-chunks.py`, `build-stage1-4-research-agenda.py`, `build-stage1-4-full-daily-report.py` |
+| Stage 1.5~1.8 | `build-stage1-5-gemini-deep-research-prompt.js`, `run-gemini-deep-research-web.js`, `build-stage1-6-rich-briefing.js`, follow-up/refinement scripts |
+| Stage 2 | `build-stage2-strategy-prompt.js`, `build-stage2-strategy-qwen.py`, `build-stage2-strategy-gemini.py`, `build-stage2-strategy-claude.js` |
+| Stage 2.5 | `build-stage2-5-etf-candidates.js`, `build-impact-map.js` |
+| Stage 3 | `build-stage3-quant-scores.js` |
+| Stage 4 | `build-stage4-execution-plan.js`, `export-stage4-execution-plan-table.js` |
+| Final View | `export-final-report-html.js` |
 
-### 운영 보강
+### Supporting Scripts
 
-- `scripts/send-telegram-summary.js`
-- `scripts/fetch-market-data-lite.js`
-- `scripts/evaluate-alert-triggers.js`
-- `scripts/recompute-stage3-intraday.js`
-- `scripts/run-intraday-alert-pipeline.js`
-- `scripts/build-rebalancing-schedule.js`
-
-### 피드백 / 검증 / 실험
-
-- `scripts/build-feedback-snapshot.js`
-- `scripts/build-feedback-analysis.js`
-- `scripts/auto-tune-weights.js`
-- `scripts/auto-tune-challenger.js`
-- `scripts/backtest-challenger.js`
-- `scripts/build-ghost-portfolio.js`
-- `scripts/backtest-engine.js`
-- `scripts/validate-stage-contracts.js`
-- `scripts/validate-briefing-fidelity.js`
-- `scripts/verify-daily-system.js`
-
-### scripts/lib/
-
-공용 헬퍼는 주로 여기 있습니다.
-
-- `scripts/lib/pipeline-utils.js`: 공용 파일 IO, contract metadata, root/date helpers
-- `scripts/lib/analysis-context.js`: Stage prompt용 공용 로더
-- `scripts/lib/timeseries-db.js`: `better-sqlite3` 래퍼
-- `scripts/lib/refinement-rounds.js`
-- `scripts/lib/trading-calendar.js`
+- `sync-kis-portfolio.js`: KIS 계좌 스냅샷 수집
+- `fetch-market-data.js`, `fetch-market-data-lite.js`: 시장 데이터
+- `build-feedback-snapshot.js`, `build-feedback-analysis.js`: 피드백 학습
+- `auto-tune-challenger.js`, `backtest-challenger.js`: challenger weight shadow 검증
+- `build-llm-wiki.js`, `publish-llm-wiki-to-vault.js`: 장기 wiki
+- `push-to-github.sh`: `system-health` gate를 통과한 데이터만 data branch 동기화
 
 ## data/
 
-### 일자별 Stage 산출물
+`data/`에는 두 종류가 섞입니다.
+
+| 경로 | Git 정책 | 역할 |
+|---|---|---|
+| `data/portfolio/latest.json` | tracked | 최신 계좌 스냅샷 |
+| `data/portfolio/sources/kis/` | tracked | KIS 원천 스냅샷 일부 |
+| `data/feedback/` | tracked | 피드백 분석, challenger 결과 |
+| `data/external/kis-etf/` | tracked | KIS ETF 후보 보조 데이터 |
+| `data/analysis-state/` | ignored | 날짜별 Stage 1~4 실행 산출물 |
+| `data/reports/` | ignored | PDF, 텍스트, RAG, 수집 manifest |
+| `data/market/`, `data/technical/` | ignored | 날짜별 시장/기술 데이터 |
+| `data/stockeasy/` | ignored | StockEasy raw capture |
+
+`data/analysis-state/YYYY-MM-DD/`는 아래 파일을 중심으로 봅니다.
 
 ```text
-data/analysis-state/YYYY-MM-DD/
-├── stage1-report-extracts-v2.json
-├── impact-map.json
-├── stage2-strategy-options.json
-├── stage3-quant-scores.json
-├── holding-clusters.json
-├── stage4-execution-plan.json
-├── rebalancing-schedule.json
-├── pipeline-run.json
-├── stage-contract-validation.json
-└── briefing-fidelity-validation.json
+stage1-report-extracts-v2.json
+stage1-4-full-daily-report.json
+stage1-4-insight-atoms.json
+stage2-strategy-options.json
+stage2-5-etf-candidates.json
+impact-map.json
+stage3-quant-scores.json
+stage4-execution-plan.json
+automation-cycle.json
+system-health.json
 ```
-
-### 장중 상태
-
-```text
-data/intraday/
-├── latest.json
-└── YYYY-MM-DD/
-    ├── market-lite.json
-    ├── emergency-alerts.json
-    └── emergency-alerts.md
-```
-
-### 피드백 / 검증
-
-- `data/feedback/snapshots/`
-- `data/feedback/analysis/`
-- `data/feedback/challenger-weights.json`
-- `data/feedback/challenger-backtest.json`
-- `data/feedback/ghost-portfolio.jsonl`
-
-### 저장소 / 백테스트
-
-- `data/timeseries.db`
-- `data/backtest/engine-latest.json`
-- `data/backtest/engine-results.json`
-
-## dashboard/
-
-### app/
-
-```text
-dashboard/app/
-├── api/
-│   ├── intraday/route.ts
-│   └── trigger/route.ts
-├── components/
-│   ├── BacktestSummary.tsx
-│   ├── EvidenceChain.tsx
-│   ├── GhostPortfolio.tsx
-│   ├── IntradayAlertBanner.tsx
-│   ├── IntradayAutoRefresh.tsx
-│   └── ScoreBreakdownPanel.tsx
-├── dashboard-test/
-│   ├── page.tsx
-│   ├── decision/page.tsx
-│   └── feedback/page.tsx
-├── feedback-report/page.tsx
-├── market-news/page.tsx
-├── reports/page.tsx
-├── reports/[slug]/page.tsx
-├── simulator/
-│   ├── page.tsx
-│   ├── simulator-client.tsx
-│   ├── SimulatorEngine.ts
-│   └── SliderPanel.tsx
-├── lib/data-loader.ts
-└── page.tsx
-```
-
-### components/
-
-이 폴더에는 메인 페이지가 재사용하는 범용 UI 컴포넌트가 있습니다.
-
-- `AccountTabs.tsx`
-- `HoldingTabs.tsx`
-- `RecommendationTabs.tsx`
-- `RecommendationItemTabs.tsx`
-- `AllocationHeatmap.tsx`
-- `ClusterMap.tsx`
-- `FeedbackPanel.tsx`
-- `MainNav.tsx`
-- `ExperimentalUiProvider.tsx`
-- `ExperimentalVisibility.tsx`
 
 ## knowledge/
 
-### knowledge/daily/
+| 경로 | 역할 |
+|---|---|
+| `knowledge/daily/YYYY-MM-DD-full-daily-report.md` | 읽을 수 있는 경제 리포트 Markdown |
+| `knowledge/daily/manual-kit/YYYY-MM-DD/` | Gemini/LLM 프롬프트와 응답 |
+| `knowledge/wiki/` | 장기 투자 메모리 |
+| `knowledge/rag/` | 병렬 RAG corpus. Git에는 올리지 않음 |
 
-- 일별 브리핑
-- manual-kit prompt / response
-- fidelity / validation markdown
+## reports/
 
-### knowledge/wiki/
+| 파일 | 역할 |
+|---|---|
+| `reports/daily/YYYY-MM-DD-final.html` | 경제 리포트 + 실행 전략 HTML |
+| `reports/daily/YYYY-MM-DD-stage4-execution-plan.md` | 계좌별 실행 전략 Markdown |
+| `reports/daily/YYYY-MM-DD-stage4-execution-plan-table.md` | 실행 전략 표 |
+| `reports/daily/YYYY-MM-DD-stage4-execution-plan-telegram.txt` | Telegram 요약 |
 
-- `memory/`: decision journal, operating rules, backlog
-- `accounts/`: 계좌별 노트
-- `securities/`: 종목/ETF별 메모
-- `daily/`: 일일 요약 연결
+`reports/`는 기본적으로 ignored입니다. 단, 사람이 바로 열어보는 최종 HTML은 필요할 때 `git add -f`로 고정합니다.
 
-## 단계별 진행 방식
+## dashboard/
 
-### 일일 기본 흐름
+Next.js workspace입니다.
 
-1. 리포트 수집/텍스트화
-2. 포트폴리오 동기화
-3. 시장 데이터 / technical / marketvoice / FRED 수집
-4. RAG 코퍼스 갱신
-5. optional Gemini 브리핑 생성
-6. Stage 1 -> 1.5 -> 1.6 -> 2 -> 2.5 -> 3 -> clusters -> 4
-7. wiki / vault 게시
-8. verify + Telegram summary
-9. ghost / challenger 백그라운드 실행
+```text
+dashboard/
+├── app/              App Router pages/routes
+├── components/       공용 UI 컴포넌트
+├── lib/              데이터 로더와 UI 유틸
+├── public/           정적 자산
+└── package.json
+```
 
-### 장중 보강 흐름
+`dashboard/.next/`와 `dashboard/node_modules/`는 로컬 캐시이며 Git에 올리지 않습니다.
 
-1. `fetch-market-data-lite.js`
-2. `evaluate-alert-triggers.js`
-3. `recompute-stage3-intraday.js`
-4. `data/intraday/latest.json` 갱신
-5. dashboard polling 반영
+## Local-Only / Cleanup Policy
 
-### 구조를 읽는 권장 순서
+안전하게 지워도 되는 로컬 캐시:
 
-1. `README.md`
-2. `docs/REPO_STRUCTURE.md`
-3. `docs/STAGE_1_4_ARCHITECTURE.md`
-4. `dashboard/README.md`
+- `scripts/__pycache__/`
+- `dashboard/.next/`
+- `.pytest_cache/`
+- `.DS_Store`
+
+주의해서 다뤄야 하는 경로:
+
+- `data/reports/`: PDF와 텍스트 원본이므로 날짜별 재현성에 필요할 수 있음
+- `data/analysis-state/`: 일일 실행 재현에 필요한 중간 산출물
+- `knowledge/daily/manual-kit/`: LLM 프롬프트/응답 원본
+- `open-trading-api/`: 로컬 KIS helper. ignored지만 런타임 의존
+
+## Codex Automations
+
+현재 기준 활성 자동화:
+
+- `EcoReport Daily Automation`: 매일 10:00, 전체 실행
+- `EcoReport Daily QA`: 매일 13:00, 최종 산출물과 health 점검
+
+오래된 `/Users/seo/Documents/Playground/EcoReport` 경로를 가리키는 자동화는 사용하지 않습니다.

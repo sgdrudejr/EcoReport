@@ -220,5 +220,5 @@ Stage 3 산출물은 아래를 포함합니다.
 
 4. Feedback auto-tune 운영 정교화
 
-- 현재는 `auto-tune-weights.js`가 안전장치와 dry-run을 제공
+- 현재는 `auto-tune-challenger.js`와 `backtest-challenger.js`가 shadow weight 제안과 표본 검증을 제공
 - 이후에는 더 긴 기간/레짐별 표본 검증이 필요합니다.

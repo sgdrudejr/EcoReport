@@ -78,7 +78,6 @@ function resolveOpenTradingApiPaths() {
       process.env.KIS_OPEN_TRADING_API_ROOT,
       path.join(ROOT_DIR, "open-trading-api"),
       path.join(path.dirname(ROOT_DIR), "open-trading-api"),
-      path.join(process.env.HOME ?? "", "stock-pilot", "open-trading-api"),
     ) ?? path.join(ROOT_DIR, "open-trading-api");
   const python = path.join(root, ".venv", "bin", "python");
   const script = path.join(

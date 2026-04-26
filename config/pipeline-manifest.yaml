@@ -250,36 +250,17 @@
       "timeout": 300000
     },
     {
-      "id": "holding_clusters",
-      "label": "Holding Clusters",
-      "command": "node scripts/build-holding-clusters.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
-      "inputs": [
-        "data/analysis-state/{{date}}/stage3-quant-scores.json"
-      ],
-      "outputs": [
-        "data/analysis-state/{{date}}/holding-clusters.json"
-      ],
-      "depends_on": [
-        "stage3_quant"
-      ],
-      "cache_key": "holding-clusters:{{date}}",
-      "timeout": 300000,
-      "allow_failure": true
-    },
-    {
       "id": "stage4_execution_plan",
       "label": "Stage 11 Execution Plan",
       "command": "node scripts/build-stage4-execution-plan.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
       "inputs": [
-        "data/analysis-state/{{date}}/stage3-quant-scores.json",
-        "data/analysis-state/{{date}}/holding-clusters.json"
+        "data/analysis-state/{{date}}/stage3-quant-scores.json"
       ],
       "outputs": [
         "data/analysis-state/{{date}}/stage4-execution-plan.json"
       ],
       "depends_on": [
-        "stage3_quant",
-        "holding_clusters"
+        "stage3_quant"
       ],
       "cache_key": "stage4:{{date}}",
       "timeout": 300000

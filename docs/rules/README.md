@@ -20,7 +20,7 @@
 
 ```bash
 cd /Users/seo/Documents/Playground/economy-report
-node scripts/validate-stage-contracts.js --date YYYY-MM-DD
+npm run verify -- --date YYYY-MM-DD
 ```
 
 이 검증기는 일일 산출물이 "파일이 있느냐"만이 아니라 "앞 단계 근거가 다음 단계 액션으로 이어졌느냐"를 확인하는 데 목적이 있습니다.

@@ -728,6 +728,9 @@ GITHUB_TOKEN=...
 
 ## 디렉토리 구조
 
+현재 파일링의 소스 오브 트루스는 [docs/REPO_STRUCTURE.md](docs/REPO_STRUCTURE.md)입니다.
+경로가 꼬였는지 확인할 때는 `npm run audit:filing`을 먼저 실행합니다.
+
 ```text
 EcoReport/
 ├── config/                    # 전략, 관심종목, RSS 피드, 알림 규칙

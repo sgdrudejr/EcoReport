@@ -6,7 +6,7 @@
 
 ```bash
 cd /Users/seo/Documents/Playground/economy-report
-node scripts/validate-stage-contracts.js --date YYYY-MM-DD
+npm run verify -- --date YYYY-MM-DD
 ```
 
 ## Stage 1: Report Extracts
@@ -64,7 +64,7 @@ node scripts/validate-stage-contracts.js --date YYYY-MM-DD
 의미 계약:
 
 - Stage 2는 해석 레이어다.
-- mock은 허용되지만 숨기면 안 된다.
+- mock은 운영 경로에서 허용하지 않는다. 실제 LLM provider가 실패하면 실패로 기록해야 한다.
 - 포트폴리오나 watchlist에 없는 ticker는 "새 후보"로 분리되어야 한다.
 
 ## Stage 3: Quant Scores

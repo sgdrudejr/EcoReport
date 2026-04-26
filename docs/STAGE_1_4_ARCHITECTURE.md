@@ -42,7 +42,7 @@ flowchart TD
     S2 --> S3["Stage 3 quant scores"]
     I --> S3
     S3 --> TS["timeseries.db"]
-    S3 --> C["build-holding-clusters.js"]
+    S3 --> C["Stage 4 concentration tracker"]
     S3 --> S4["Stage 4 execution plan"]
     C --> S4
     S4 --> TS
@@ -227,21 +227,21 @@ flowchart TD
 - `scoreDecomposition` 포함
 - contract metadata 포함
 
-### Holding Clusters
+### Concentration Tracker
 
 스크립트:
 
-- `scripts/fetch-historical-returns.py`
-- `scripts/build-holding-clusters.js`
+- `scripts/build-stage4-execution-plan.js`
 
 출력:
 
-- `data/analysis-state/YYYY-MM-DD/holding-clusters.json`
+- `data/analysis-state/YYYY-MM-DD/stage4-execution-plan.json`
 
 역할:
 
-- 최근 수익률 상관관계 기반 클러스터링
-- 중복 포지션/집중도 경고를 Stage 4와 대시보드에 제공
+- `config/strategy.json`의 `allocationPolicy`를 읽어 위성 섹터/클러스터 집중도를 계산
+- 같은 날 같은 위성 섹터 중복 진입 차단
+- 전력/방산/원자력/조선처럼 겹치는 클러스터의 상한을 Stage 4 검증에 반영
 
 ### Stage 4
 
@@ -261,6 +261,7 @@ flowchart TD
 - staged buy / hold / trim / watch 생성
 - entry guardrail, stop loss note, validation flag 부여
 - cluster warning 반영
+- 20/30/50 allocation policy와 위성 섹터 집중도 guard 반영
 - optional critic review 병합 지원
 - `data/timeseries.db`의 `stage4_plans`, `portfolio_snapshots` 적재
 - contract metadata 포함
@@ -329,7 +330,6 @@ flowchart TD
 
 스크립트:
 
-- `scripts/auto-tune-weights.js`
 - `scripts/auto-tune-challenger.js`
 - `scripts/backtest-challenger.js`
 - `scripts/build-ghost-portfolio.js`
@@ -337,7 +337,6 @@ flowchart TD
 
 출력:
 
-- `config/strategy.json` 갱신
 - `data/feedback/weight-history.jsonl`
 - `data/feedback/challenger-weights.json`
 - `data/feedback/challenger-backtest.json`
@@ -350,14 +349,14 @@ flowchart TD
 - 팩터별 최소 표본 수 조건
 - 1회 최대 변화폭 제한
 - 절대 하한/상한 적용
-- `--dry-run` 지원
+- challenger는 shadow 상태로 저장하고, 실제 전략 반영은 사람이 검토한 뒤 별도 커밋
 
 ## Foundation & Ops 계층
 
 ### Contract / Validation
 
 - `config/stage-contracts.json`
-- `scripts/validate-stage-contracts.js`
+- `scripts/verify-daily-system.js`
 
 역할:
 
