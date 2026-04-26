@@ -254,6 +254,98 @@ function classifyStockeasySmoke(result) {
   );
 }
 
+function checkPathExists(targetPath) {
+  try {
+    fsSync.accessSync(targetPath, fsConstants.F_OK);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function buildRuntimeAssetCheck() {
+  const assets = [
+    path.join(ROOT_DIR, ".env"),
+    path.join(ROOT_DIR, ".venv", "bin", "python"),
+    path.join(ROOT_DIR, "node_modules"),
+    path.join(ROOT_DIR, "open-trading-api"),
+    path.join(ROOT_DIR, "config", "telegram_notify.env"),
+  ];
+  const missing = assets.filter((targetPath) => !checkPathExists(targetPath));
+  return buildCheck(
+    "runtime_assets",
+    "Automation Runtime Assets",
+    missing.length === 0 ? "ok" : "warn",
+    missing.length === 0
+      ? "env / venv / node_modules / open-trading-api / telegram secrets ready"
+      : `missing: ${missing.map((item) => path.relative(ROOT_DIR, item)).join(", ")}`,
+    {
+      missing: missing.map((item) => path.relative(ROOT_DIR, item)),
+    },
+  );
+}
+
+function buildPythonModuleCheck({ key, label, moduleName, successDetail, failureDetail }) {
+  const result = runProcess(getPythonBin(), [
+    "-c",
+    [
+      "import importlib.util, sys",
+      `mod = importlib.util.find_spec(${JSON.stringify(moduleName)})`,
+      "sys.exit(0 if mod else 1)",
+    ].join("; "),
+  ]);
+  return buildCheck(
+    key,
+    label,
+    result.ok ? "ok" : "warn",
+    result.ok ? successDetail : failureDetail,
+  );
+}
+
+function buildTelegramConfigCheck() {
+  const configPath = path.join(ROOT_DIR, "config", "telegram.json");
+  const envFilePath = path.join(ROOT_DIR, "config", "telegram_notify.env");
+  if (!checkPathExists(configPath)) {
+    return buildCheck("telegram_delivery", "Telegram Delivery Config", "warn", "config/telegram.json 누락");
+  }
+  if (!checkPathExists(envFilePath)) {
+    return buildCheck(
+      "telegram_delivery",
+      "Telegram Delivery Config",
+      "warn",
+      "config/telegram_notify.env 누락",
+    );
+  }
+
+  const raw = fsSync.readFileSync(envFilePath, "utf8");
+  const flags = {
+    BOT_TOKEN: false,
+    CHAT_ID: false,
+    TELEGRAM_BOT_TOKEN: false,
+    TELEGRAM_CHAT_ID: false,
+  };
+  for (const line of raw.split(/\r?\n/)) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("#") || !trimmed.includes("=")) continue;
+    const [key, value] = trimmed.replace(/^export\s+/, "").split("=", 2);
+    if (key in flags && value.trim()) {
+      flags[key] = true;
+    }
+  }
+
+  const ready =
+    (flags.BOT_TOKEN && flags.CHAT_ID) ||
+    (flags.TELEGRAM_BOT_TOKEN && flags.TELEGRAM_CHAT_ID);
+  return buildCheck(
+    "telegram_delivery",
+    "Telegram Delivery Config",
+    ready ? "ok" : "warn",
+    ready
+      ? "telegram secrets configured"
+      : "telegram bot token/chat id 누락",
+  );
+}
+
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const outputPath = resolveOutputPath(args);
@@ -298,6 +390,15 @@ async function main() {
         : "google.genai는 있지만 API 키가 없어 mock fallback 예정"
       : "google.genai 패키지가 없어 Stage 2 Gemini는 mock fallback 예정",
   );
+  const fredRequestsCheck = buildPythonModuleCheck({
+    key: "python_fred_requests",
+    label: "FRED Python requests",
+    moduleName: "requests",
+    successDetail: "requests available",
+    failureDetail: "requests 패키지가 없어 FRED 수집이 실패할 수 있습니다.",
+  });
+  const runtimeAssetCheck = buildRuntimeAssetCheck();
+  const telegramConfigCheck = buildTelegramConfigCheck();
 
   const vaultDir = path.resolve(process.env.OBSIDIAN_VAULT_DIR || DEFAULT_VAULT_DIR);
   let vaultCheck;
@@ -345,10 +446,13 @@ async function main() {
   const githubCheck = await checkGithubNetwork();
 
   const checks = [
+    runtimeAssetCheck,
     geminiApiCheck,
+    fredRequestsCheck,
     safariCheck,
     stockeasySmokeCheck,
     pythonStage2Check,
+    telegramConfigCheck,
     ...reportNetworkChecks,
     reportFallbackCheck,
     vaultCheck,
@@ -367,11 +471,14 @@ async function main() {
       safariAutomationAvailable: safariCheck.status === "ok",
       stockeasyCaptureReady: stockeasySmokeCheck.status === "ok",
       stage2GeminiReady: pythonStage2Check.status === "ok",
+      fredPythonReady: fredRequestsCheck.status === "ok",
+      runtimeAssetsReady: runtimeAssetCheck.status === "ok",
       reportNetworkReady,
       reportFallbackReady,
       reportCollectionReady,
       obsidianPublishReady: vaultCheck.status === "ok",
       githubPushReady: githubCheck.status === "ok",
+      telegramDeliveryReady: telegramConfigCheck.status === "ok",
     },
     checks,
   };

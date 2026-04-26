@@ -11,7 +11,7 @@ DEFAULT_BASE_URL = "http://192.168.0.218:8080/v1"
 DEFAULT_MODEL = "Qwen_Qwen3.5-35B-A3B-IQ2_M.gguf"
 GEMINI_BASE_URL = "https://generativelanguage.googleapis.com/v1beta/openai/"
 GEMINI_DEFAULT_MODEL = "gemini-2.5-flash"
-QWEN_BASE_URL = "https://dashscope.aliyuncs.com/compatible-mode/v1"
+QWEN_BASE_URL = "https://dashscope-intl.aliyuncs.com/compatible-mode/v1"
 QWEN_DEFAULT_MODEL = "qwen-max"
 
 

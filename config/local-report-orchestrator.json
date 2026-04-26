@@ -4,7 +4,7 @@
   "detail_level": "standard",
   "provider": "local",
   "gemini_model": "gemini-2.5-flash",
-  "qwen_model": "qwen-max",
+  "qwen_model": "qwen3.5-flash",
   "windows_host": "192.168.0.218",
   "windows_mac": "A0:AD:9F:CD:47:D2",
   "wol_wait_seconds": 60,

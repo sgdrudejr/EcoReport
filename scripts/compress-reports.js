@@ -11,6 +11,12 @@ import { config as loadEnv } from 'dotenv';
 loadEnv();
 
 const DEFAULT_MODEL = process.env.ANTHROPIC_MODEL || 'claude-3-5-haiku-latest';
+const LOCAL_LLM_BASE_URL =
+  process.env.LOCAL_LLM_BASE_URL || process.env.LOCAL_LLM_URL || 'http://192.168.0.218:8080';
+const LOCAL_LLM_MODEL = process.env.LOCAL_LLM_MODEL || 'local';
+const LOCAL_LLM_MAX_TEXT_CHARS = Number.parseInt(process.env.LOCAL_LLM_MAX_CHARS ?? '1500', 10);
+const LOCAL_LLM_CONCURRENCY = Number.parseInt(process.env.LOCAL_LLM_CONCURRENCY ?? '1', 10);
+const LOCAL_LLM_TIMEOUT_MS = Number.parseInt(process.env.LOCAL_LLM_TIMEOUT_MS ?? '120000', 10);
 const MAX_TEXT_CHARS = Number.parseInt(process.env.COMPRESS_REPORT_MAX_CHARS ?? '4000', 10);
 const MAX_RETRIES = 3;
 const CONCURRENCY = 5;
@@ -52,6 +58,68 @@ function isPlaceholder(value) {
 
   const normalized = value.trim().toLowerCase();
   return normalized === 'sk-ant-xxxxx' || normalized === 'xxxxx';
+}
+
+async function callLocalLlm(prompt) {
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), LOCAL_LLM_TIMEOUT_MS);
+
+  let response;
+  try {
+    response = await fetch(`${LOCAL_LLM_BASE_URL}/v1/chat/completions`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      signal: controller.signal,
+      body: JSON.stringify({
+        model: LOCAL_LLM_MODEL,
+        max_tokens: 3000,
+        temperature: 0,
+        // Qwen 계열 로컬 서버에서 reasoning 전용 필드만 내려오는 경우를 방지합니다.
+        chat_template_kwargs: { thinking: false },
+        messages: [{ role: 'user', content: prompt }],
+      }),
+    });
+  } finally {
+    clearTimeout(timer);
+  }
+
+  if (!response.ok) {
+    throw new Error(`Local LLM HTTP ${response.status}: ${await response.text()}`);
+  }
+
+  const data = await response.json();
+  const message = data.choices?.[0]?.message ?? {};
+  const text = message.content || message.reasoning_content || '';
+  if (!text) {
+    throw new Error('Local LLM returned an empty response.');
+  }
+
+  return {
+    text,
+    usage: {
+      input_tokens: data.usage?.prompt_tokens ?? 0,
+      output_tokens: data.usage?.completion_tokens ?? 0,
+    },
+  };
+}
+
+function makeAnthropicCaller(client) {
+  return async (prompt) => {
+    const response = await client.messages.create({
+      model: DEFAULT_MODEL,
+      max_tokens: 1000,
+      temperature: 0,
+      messages: [{ role: 'user', content: prompt }],
+    });
+
+    return {
+      text: extractTextFromBlocks(response.content),
+      usage: {
+        input_tokens: response.usage?.input_tokens ?? 0,
+        output_tokens: response.usage?.output_tokens ?? 0,
+      },
+    };
+  };
 }
 
 function extractTextFromBlocks(blocks) {
@@ -102,9 +170,9 @@ async function readJson(filePath) {
   return JSON.parse(raw);
 }
 
-async function buildPrompt(templatePath, report) {
+async function buildPrompt(templatePath, report, maxChars = MAX_TEXT_CHARS) {
   const template = await fs.readFile(templatePath, 'utf8');
-  const excerpt = (report.extracted_text ?? '').slice(0, MAX_TEXT_CHARS);
+  const excerpt = (report.extracted_text ?? '').slice(0, maxChars);
 
   return [
     template.trim(),
@@ -125,19 +193,12 @@ async function buildPrompt(templatePath, report) {
   ].join('\n');
 }
 
-async function compressOneReport(client, prompt, report) {
+async function compressOneReport(callLlm, prompt, report) {
   let lastError = null;
 
   for (let attempt = 1; attempt <= MAX_RETRIES; attempt += 1) {
     try {
-      const response = await client.messages.create({
-        model: DEFAULT_MODEL,
-        max_tokens: 1000,
-        temperature: 0,
-        messages: [{ role: 'user', content: prompt }],
-      });
-
-      const text = extractTextFromBlocks(response.content);
+      const { text, usage } = await callLlm(prompt);
       const parsed = parseStructuredJson(text);
 
       return {
@@ -150,10 +211,7 @@ async function compressOneReport(client, prompt, report) {
           text_length: report.text_length ?? null,
           ...parsed,
         },
-        usage: {
-          input_tokens: response.usage?.input_tokens ?? 0,
-          output_tokens: response.usage?.output_tokens ?? 0,
-        },
+        usage,
       };
     } catch (error) {
       lastError = error;
@@ -171,14 +229,11 @@ async function compressOneReport(client, prompt, report) {
       source_category: report.category,
       error: lastError instanceof Error ? lastError.message : String(lastError),
     },
-    usage: {
-      input_tokens: 0,
-      output_tokens: 0,
-    },
+    usage: { input_tokens: 0, output_tokens: 0 },
   };
 }
 
-async function runWithConcurrency(items, worker) {
+async function runWithConcurrency(items, worker, concurrency = CONCURRENCY) {
   const results = new Array(items.length);
   let cursor = 0;
 
@@ -191,7 +246,7 @@ async function runWithConcurrency(items, worker) {
     }
   }
 
-  const workers = Array.from({ length: Math.min(CONCURRENCY, items.length) }, () => consume());
+  const workers = Array.from({ length: Math.min(concurrency, items.length) }, () => consume());
   await Promise.all(workers);
   return results;
 }
@@ -199,9 +254,22 @@ async function runWithConcurrency(items, worker) {
 async function main() {
   const args = parseArgs(process.argv.slice(2));
   const apiKey = process.env.ANTHROPIC_API_KEY;
+  let callLlm;
+  let usingLocalLlm = false;
 
   if (isPlaceholder(apiKey)) {
-    throw new Error('ANTHROPIC_API_KEY가 설정되지 않았습니다.');
+    console.log(`⚠️  ANTHROPIC_API_KEY 없음 → 로컬 LLM 사용 (${LOCAL_LLM_BASE_URL})`);
+    callLlm = callLocalLlm;
+    usingLocalLlm = true;
+  } else {
+    const client = new Anthropic({ apiKey });
+    callLlm = makeAnthropicCaller(client);
+  }
+
+  const effectiveMaxTextChars = usingLocalLlm ? LOCAL_LLM_MAX_TEXT_CHARS : MAX_TEXT_CHARS;
+  const effectiveConcurrency = usingLocalLlm ? LOCAL_LLM_CONCURRENCY : CONCURRENCY;
+  if (usingLocalLlm) {
+    console.log(`- 텍스트 한도: ${effectiveMaxTextChars}자 / 동시 처리: ${effectiveConcurrency}건`);
   }
 
   const inputPath = path.join(process.cwd(), 'data', 'reports', args.date, 'index.json');
@@ -224,14 +292,12 @@ async function main() {
     throw new Error(`압축할 리포트가 없습니다: ${inputPath}`);
   }
 
-  const client = new Anthropic({ apiKey });
-
   let totalInputTokens = 0;
   let totalOutputTokens = 0;
 
   const results = await runWithConcurrency(reports, async (report, index) => {
-    const prompt = await buildPrompt(templatePath, report);
-    const result = await compressOneReport(client, prompt, report);
+    const prompt = await buildPrompt(templatePath, report, effectiveMaxTextChars);
+    const result = await compressOneReport(callLlm, prompt, report);
 
     totalInputTokens += result.usage.input_tokens;
     totalOutputTokens += result.usage.output_tokens;
@@ -243,7 +309,7 @@ async function main() {
     );
 
     return result.item;
-  });
+  }, effectiveConcurrency);
 
   await fs.writeFile(outputPath, JSON.stringify(results, null, 2), 'utf8');
 
@@ -254,7 +320,7 @@ async function main() {
   console.log(`- 입력 토큰: ${totalInputTokens.toLocaleString()}`);
   console.log(`- 출력 토큰: ${totalOutputTokens.toLocaleString()}`);
   console.log(`- 예상 비용: $${estimatedCost.toFixed(4)}`);
-  console.log(`- 사용 모델: ${DEFAULT_MODEL}`);
+  console.log(`- 사용 모델: ${usingLocalLlm ? `local (${LOCAL_LLM_BASE_URL})` : DEFAULT_MODEL}`);
 }
 
 main().catch((error) => {

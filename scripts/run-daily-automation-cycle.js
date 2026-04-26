@@ -1188,6 +1188,16 @@ async function main() {
   logger.write(`📁 로그: ${logFile}`);
   logger.write("==================================================");
 
+  await runCommand({
+    id: "preflight_bootstrap_runtime",
+    label: "Preflight bootstrap runtime",
+    command: "node",
+    args: ["scripts/bootstrap-automation-runtime.js"],
+    logger,
+    soft: false,
+    timeoutMs: 120_000,
+  });
+
   const nodeModulesOk = await fileExists(path.join(ROOT_DIR, "node_modules", ".package-lock.json"));
   if (!nodeModulesOk) {
     logger.write("⚠️ node_modules 없음 — npm install 실행");

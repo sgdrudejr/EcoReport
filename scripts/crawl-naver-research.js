@@ -18,7 +18,11 @@ const RETRIES = 3;
 const RETRY_DELAY_MS = 5_000;
 const TRANSIENT_NETWORK_RETRY_DELAY_MS = 15_000;
 const PDF_TEXT_LIMIT = 12_000;
-const MAX_PAGES = 50;
+const MAX_PAGES = (() => {
+  const raw = Number.parseInt(process.env.NAVER_MAX_PAGES ?? '', 10);
+  if (Number.isFinite(raw) && raw > 0) return raw;
+  return 300;
+})();
 const NAVER_FINANCE_BASE = 'https://finance.naver.com/';
 const NAVER_RESEARCH_BASE = 'https://finance.naver.com/research/';
 const NAVER_USER_AGENT =
@@ -464,7 +468,11 @@ async function collectCategoryRows(browserContext, categoryConfig, targetDate, c
 
       console.log(`- ${categoryConfig.category} ${currentPage}페이지: ${pageMatches.length}건 수집`);
 
-      if (hasOlderRows || pageMatches.length === 0) {
+      // 페이지는 최신 -> 과거 순으로 정렬된다.
+      // targetDate보다 더 오래된 날짜가 등장하면 이후 페이지는 전부 더 과거이므로 종료한다.
+      // 단순히 "현재 페이지에 매칭이 없음"만으로는 종료하면 안 된다
+      // (아직 targetDate에 도달하기 전의 최신 구간일 수 있음).
+      if (hasOlderRows) {
         break;
       }
     }
@@ -548,7 +556,11 @@ async function collectCategoryRowsWithoutBrowser(categoryConfig, targetDate, cra
 
     console.log(`- ${categoryConfig.category} ${currentPage}페이지: ${pageMatches.length}건 수집`);
 
-    if (hasOlderRows || pageMatches.length === 0) {
+    // 페이지는 최신 -> 과거 순으로 정렬된다.
+    // targetDate보다 더 오래된 날짜가 등장하면 이후 페이지는 전부 더 과거이므로 종료한다.
+    // 단순히 "현재 페이지에 매칭이 없음"만으로는 종료하면 안 된다
+    // (아직 targetDate에 도달하기 전의 최신 구간일 수 있음).
+    if (hasOlderRows) {
       break;
     }
   }

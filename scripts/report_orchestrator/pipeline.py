@@ -529,23 +529,47 @@ def compact_chunk_summaries_for_merge(chunk_summaries: list[dict[str, Any]], det
     for item in chunk_summaries:
         compacted_item: dict[str, Any] = {
             "chunk_id": item.get("chunk_id", ""),
-            "summary": clip_text(item.get("summary"), 320),
+            "summary": clip_text(item.get("summary"), 180 if detail_level == "standard" else 240),
             "sentiment": item.get("sentiment", "neutral"),
-            "key_points": clipped_string_list(item.get("key_points"), max_items=2, max_chars=150),
+            "key_points": clipped_string_list(
+                item.get("key_points"),
+                max_items=1 if detail_level == "standard" else 2,
+                max_chars=100 if detail_level == "standard" else 120,
+            ),
             "key_metrics": compact_key_metrics_for_prompt(item.get("key_metrics"), max_items=1),
-            "signals": clipped_string_list(item.get("signals"), max_items=2, max_chars=140),
-            "catalysts": clipped_string_list(item.get("catalysts"), max_items=2, max_chars=140),
-            "risks": clipped_string_list(item.get("risks"), max_items=2, max_chars=140),
-            "mentioned_companies": clipped_string_list(item.get("mentioned_companies"), max_items=3, max_chars=60),
-            "mentioned_sectors": clipped_string_list(item.get("mentioned_sectors"), max_items=3, max_chars=60),
+            "signals": clipped_string_list(
+                item.get("signals"),
+                max_items=1 if detail_level == "standard" else 2,
+                max_chars=90 if detail_level == "standard" else 110,
+            ),
+            "catalysts": clipped_string_list(
+                item.get("catalysts"),
+                max_items=1 if detail_level == "standard" else 2,
+                max_chars=90 if detail_level == "standard" else 110,
+            ),
+            "risks": clipped_string_list(
+                item.get("risks"),
+                max_items=1 if detail_level == "standard" else 2,
+                max_chars=90 if detail_level == "standard" else 110,
+            ),
+            "mentioned_companies": clipped_string_list(
+                item.get("mentioned_companies"),
+                max_items=2 if detail_level == "standard" else 3,
+                max_chars=40 if detail_level == "standard" else 50,
+            ),
+            "mentioned_sectors": clipped_string_list(
+                item.get("mentioned_sectors"),
+                max_items=2 if detail_level == "standard" else 3,
+                max_chars=40 if detail_level == "standard" else 50,
+            ),
         }
         if detail_level == "deep":
             compacted_item.update(
                 {
-                    "market_implications": clipped_string_list(item.get("market_implications"), max_items=2, max_chars=140),
-                    "monitoring_points": clipped_string_list(item.get("monitoring_points"), max_items=2, max_chars=140),
+                    "market_implications": clipped_string_list(item.get("market_implications"), max_items=1, max_chars=100),
+                    "monitoring_points": clipped_string_list(item.get("monitoring_points"), max_items=1, max_chars=100),
                     "event_timeline": normalize_event_timeline(item.get("event_timeline"), max_items=1),
-                    "variant_view": clip_text(item.get("variant_view"), 180),
+                    "variant_view": clip_text(item.get("variant_view"), 120),
                 }
             )
         compacted.append(compacted_item)
@@ -590,6 +614,90 @@ def compact_report_summaries_for_final(report_summaries: list[dict[str, Any]], d
                 }
             )
         compacted.append(compacted_item)
+    return compacted
+
+
+def compact_category_views_for_final(
+    category_views: dict[str, dict[str, Any]] | list[dict[str, Any]],
+    detail_level: str,
+) -> list[dict[str, Any]]:
+    if isinstance(category_views, dict):
+        feed = list(category_views.values())
+    else:
+        feed = category_views
+
+    is_deep = detail_level == "deep"
+    compacted: list[dict[str, Any]] = []
+    for item in feed:
+        if not isinstance(item, dict):
+            continue
+        compact_item: dict[str, Any] = {
+            "category": clip_text(item.get("category"), 40),
+            "market_summary": clip_text(item.get("market_summary"), 280 if is_deep else 180),
+            "consensus_view": clipped_string_list(
+                item.get("consensus_view"),
+                max_items=3 if is_deep else 2,
+                max_chars=120 if is_deep else 90,
+            ),
+            "minority_view": clipped_string_list(
+                item.get("minority_view"),
+                max_items=2,
+                max_chars=110 if is_deep else 90,
+            ),
+            "contradictions": clipped_string_list(
+                item.get("contradictions"),
+                max_items=2,
+                max_chars=120 if is_deep else 90,
+            ),
+            "investment_hypothesis": clip_text(item.get("investment_hypothesis"), 220 if is_deep else 160),
+            "cross_signals": clipped_string_list(
+                item.get("cross_signals"),
+                max_items=3 if is_deep else 2,
+                max_chars=120 if is_deep else 90,
+            ),
+            "macro_view": clipped_string_list(
+                item.get("macro_view"),
+                max_items=3 if is_deep else 2,
+                max_chars=120 if is_deep else 90,
+            ),
+            "sector_view": clipped_string_list(
+                item.get("sector_view"),
+                max_items=3 if is_deep else 2,
+                max_chars=120 if is_deep else 90,
+            ),
+            "key_signals": clipped_string_list(
+                item.get("key_signals"),
+                max_items=3 if is_deep else 2,
+                max_chars=120 if is_deep else 90,
+            ),
+            "risks": clipped_string_list(
+                item.get("risks"),
+                max_items=3 if is_deep else 2,
+                max_chars=110 if is_deep else 90,
+            ),
+            "actionable_points": clipped_string_list(
+                item.get("actionable_points"),
+                max_items=3 if is_deep else 2,
+                max_chars=110 if is_deep else 90,
+            ),
+        }
+        company_mentions = item.get("company_mentions")
+        if isinstance(company_mentions, list):
+            compact_item["company_mentions"] = [
+                {
+                    "name": clip_text(company.get("name"), 40),
+                    "ticker": company.get("ticker", ""),
+                    "rating": company.get("rating", "unknown"),
+                    "key_points": clipped_string_list(
+                        company.get("key_points"),
+                        max_items=1,
+                        max_chars=80,
+                    ),
+                }
+                for company in company_mentions[: 3 if is_deep else 2]
+                if isinstance(company, dict) and company.get("name")
+            ]
+        compacted.append(compact_item)
     return compacted
 
 
@@ -2084,7 +2192,11 @@ class ReportOrchestrator:
         write_text(out_path, prompt)
         self.log(f"  📋 딥리서치 프롬프트 생성 → {relative_to_repo(out_path, self.config.repo_root)}")
 
-    def merge_final_market_view(self, report_summaries: list[dict[str, Any]]) -> None:
+    def merge_final_market_view(
+        self,
+        report_summaries: list[dict[str, Any]],
+        category_views: dict[str, dict[str, Any]] | None = None,
+    ) -> None:
         if not report_summaries:
             return
 
@@ -2104,12 +2216,42 @@ class ReportOrchestrator:
         ):
             return
 
+        category_prompt_views = compact_category_views_for_final(category_views or {}, self.config.detail_level)
+        use_category_views = len(category_prompt_views) > 0
+        merge_payload: dict[str, Any] = {
+            "task": "merge_final_market_view",
+            "required_schema": {
+                "market_summary": "",
+                "macro_view": [],
+                "sector_view": [],
+                "company_watchlist": [
+                    {
+                        "name": "",
+                        "ticker": None,
+                        "view": "",
+                        "catalysts": [],
+                        "risks": [],
+                    }
+                ],
+                "key_signals": [],
+                "risks": [],
+                "actionable_points": [],
+            },
+            "detail_level": self.config.detail_level,
+        }
+        if use_category_views:
+            merge_payload["category_views"] = category_prompt_views
+            merge_payload["preferred_source"] = "category_views"
+        else:
+            merge_payload["report_summaries"] = prompt_report_summaries
+            merge_payload["preferred_source"] = "report_summaries"
+
         messages = [
             {
                 "role": "system",
                 "content": (
-                    "너는 여러 개의 report summary JSON을 하나의 투자 인사이트 시장 뷰로 병합하는 분석기다. "
-                    "반드시 JSON 객체만 출력하라. 보고서 원문이 아니라 report summary만 사용하라. "
+                    "너는 여러 개의 report summary JSON 또는 category view JSON을 하나의 투자 인사이트 시장 뷰로 병합하는 분석기다. "
+                    "반드시 JSON 객체만 출력하라. 보고서 원문이 아니라 구조화된 요약 입력만 사용하라. "
                     f"company_watchlist는 최대 {get_detail_limits(self.config.detail_level)['watchlist_max']}개, "
                     f"나머지 리스트 필드는 최대 {get_detail_limits(self.config.detail_level)['final_list_max']}개만 남겨라. "
                     "리포트 간 공통분모, 충돌 포인트, 앞으로 확인할 이벤트 캘린더와 기회 버킷이 있으면 구조적으로 정리하라."
@@ -2117,31 +2259,7 @@ class ReportOrchestrator:
             },
             {
                 "role": "user",
-                "content": json.dumps(
-                    {
-                        "task": "merge_final_market_view",
-                        "required_schema": {
-                            "market_summary": "",
-                            "macro_view": [],
-                            "sector_view": [],
-                            "company_watchlist": [
-                                {
-                                    "name": "",
-                                    "ticker": None,
-                                    "view": "",
-                                    "catalysts": [],
-                                    "risks": [],
-                                }
-                            ],
-                            "key_signals": [],
-                            "risks": [],
-                            "actionable_points": [],
-                        },
-                        "report_summaries": prompt_report_summaries,
-                        "detail_level": self.config.detail_level,
-                    },
-                    ensure_ascii=False,
-                ),
+                "content": json.dumps(merge_payload, ensure_ascii=False),
             },
         ]
         if self.config.is_deep:
@@ -2378,7 +2496,7 @@ class ReportOrchestrator:
 
             # Step 2: 기존 final_market_view 병합 (하위 호환 유지)
             try:
-                self.merge_final_market_view(successful_report_summaries)
+                self.merge_final_market_view(successful_report_summaries, category_views)
             except Exception as error:  # noqa: BLE001
                 self._record_failure(stage="final_merge", report=_make_synthetic_report("final_market_view"), message=str(error))
 

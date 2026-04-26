@@ -27,6 +27,12 @@ const TRANSIENT_ERROR_PATTERNS = [
   /문제가 발생했습니다/i,
   /something went wrong/i,
 ];
+const INVALID_SAVED_OUTPUT_PATTERNS = [
+  /서버\s*용량이\s*부족합니다/i,
+  /나중에\s*다시\s*시도해\s*보세요/i,
+  /capacity\s*issue/i,
+  /server\s*capacity/i,
+];
 const MAX_PAGE_REFRESHES = 3;
 
 function parseRunnerArgs(argv) {
@@ -521,6 +527,9 @@ function looksLikeInvalidSavedOutput(text, promptPreview) {
   const normalizedText = normalizeComparableText(text);
   if (!normalizedText) return true;
   if (isPromptEcho(normalizedText, promptPreview)) return true;
+  if (INVALID_SAVED_OUTPUT_PATTERNS.some((pattern) => pattern.test(normalizedText))) {
+    return true;
+  }
   if (
     normalizedText.includes("익준님, 안녕하세요") ||
     normalizedText.includes("무엇을 도와드릴까요?") ||
