@@ -273,6 +273,52 @@ def format_grouped_contradictions(item: Any) -> list[str]:
     return rows
 
 
+def atom_score(atom: dict[str, Any]) -> float:
+    novelty = atom.get("novelty_score") if isinstance(atom.get("novelty_score"), (int, float)) else 0
+    conviction = atom.get("conviction_score") if isinstance(atom.get("conviction_score"), (int, float)) else 0
+    return novelty * 0.55 + conviction * 0.45
+
+
+def format_atom_line(atom: Any, *, char_limit: int = 260) -> str:
+    if not isinstance(atom, dict):
+        return clip(atom, char_limit)
+    entity = clip(atom.get("entity") or atom.get("title") or atom.get("report_id") or "insight", 80)
+    claim = clip(atom.get("claim") or atom.get("summary") or atom.get("view"), char_limit)
+    score = atom_score(atom)
+    score_text = f" / score {score:.2f}" if score > 0 else ""
+    evidence = atom.get("evidence")
+    evidence_text = ""
+    if isinstance(evidence, list) and evidence:
+        evidence_text = f" (근거: {', '.join(str(value) for value in evidence[:3])})"
+    elif atom.get("report_id"):
+        evidence_text = f" (근거: {atom.get('report_id')})"
+    return f"**{entity}**{score_text}: {claim}{evidence_text}"
+
+
+def build_research_questions(final_report: dict[str, Any], atom_payload: dict[str, Any], *, limit: int = 5) -> list[str]:
+    questions: list[str] = []
+    for group in final_report.get("contradictions") or []:
+        if not isinstance(group, dict):
+            continue
+        category = clip(group.get("category"), 40)
+        for item in (group.get("items") or [])[:2]:
+            if not isinstance(item, dict):
+                continue
+            topic = clip(item.get("topic") or item.get("claim") or "충돌 시각", 90)
+            questions.append(f"{category}: {topic}에서 어느 쪽이 실적/수급 데이터로 확인되는가?")
+            if len(questions) >= limit:
+                return questions
+    for atom in atom_payload.get("new_candidates", [])[:limit]:
+        if not isinstance(atom, dict):
+            continue
+        entity = clip(atom.get("entity") or atom.get("title"), 80)
+        if entity:
+            questions.append(f"{entity}: 모멘텀이 실제 주문/실적/가이던스로 이어지는 첫 확인 지표는 무엇인가?")
+        if len(questions) >= limit:
+            return questions
+    return questions
+
+
 def parse_args(argv: list[str]) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Build full daily report and insight atoms from all report summaries")
     parser.add_argument("--date", default=None, help="대상 날짜 (YYYY-MM-DD). 생략 시 최신 report_summaries 날짜")
@@ -913,8 +959,46 @@ def render_markdown(date: str, final_report: dict[str, Any], category_views: dic
         "## 한 줄 진단",
         f"- {final_report.get('one_line') or final_report.get('market_summary') or 'N/A'}",
         "",
-        "## 오늘의 컨센서스",
+        "## 인사이트 레이더",
+        "",
+        "### 새롭고 강한 신호",
     ]
+    radar_atoms = sorted(
+        [
+            atom
+            for atom in (final_report.get("top_insight_atoms") or atom_payload.get("top_atoms") or [])
+            if isinstance(atom, dict) and atom.get("direction") in {"positive", "mixed", "neutral"}
+        ],
+        key=atom_score,
+        reverse=True,
+    )[:6]
+    if radar_atoms:
+        for atom in radar_atoms:
+            lines.append(f"- {format_atom_line(atom)}")
+    else:
+        lines.append("- 포착된 고신뢰 신규 신호 없음")
+    lines.extend(["", "### 평균에 묻히면 안 되는 리스크"])
+    radar_risks = sorted(
+        [atom for atom in (final_report.get("risk_atoms") or atom_payload.get("risk_atoms") or []) if isinstance(atom, dict)],
+        key=atom_score,
+        reverse=True,
+    )[:5]
+    if radar_risks:
+        for atom in radar_risks:
+            lines.append(f"- {format_atom_line(atom)}")
+    else:
+        lines.append("- 별도 리스크 atom 없음")
+    lines.extend(["", "### 다음 검증 질문"])
+    questions = build_research_questions(final_report, atom_payload)
+    if questions:
+        for question in questions:
+            lines.append(f"- {question}")
+    else:
+        lines.append("- 신규 후보의 실적 연결성과 리스크 현실화 여부를 다음 리포트에서 확인")
+    lines.extend([
+        "",
+        "## 오늘의 컨센서스",
+    ])
     consensus = final_report.get("today_consensus") or final_report.get("consensus") or []
     if isinstance(consensus, list):
         for item in consensus[:10]:
