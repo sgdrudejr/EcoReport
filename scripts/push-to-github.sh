@@ -12,6 +12,41 @@ cd "$REPO_ROOT"
 
 echo "[push-to-github] 시작: $DATE"
 
+require_complete_system_health() {
+  local health_file="$REPO_ROOT/data/analysis-state/$DATE/system-health.json"
+
+  if [[ "${ALLOW_INCOMPLETE_DATA_PUSH:-}" == "1" ]]; then
+    echo "[push-to-github] ALLOW_INCOMPLETE_DATA_PUSH=1 설정으로 system-health gate를 건너뜁니다."
+    return 0
+  fi
+
+  if [[ ! -f "$health_file" ]]; then
+    echo "[push-to-github] 차단: $health_file 없음. verify-daily-system을 먼저 통과해야 합니다." >&2
+    return 1
+  fi
+
+  node - "$health_file" <<'NODE'
+const fs = require("fs");
+const healthPath = process.argv[2];
+const health = JSON.parse(fs.readFileSync(healthPath, "utf8"));
+const status = health.overallStatus ?? health.status ?? "missing";
+
+if (status !== "ok") {
+  console.error(`[push-to-github] 차단: system-health overallStatus=${status}. 완성 데이터(ok)만 data 브랜치에 push합니다.`);
+  const badChecks = (health.checks ?? [])
+    .filter((item) => item.status && item.status !== "ok")
+    .slice(0, 8)
+    .map((item) => `- ${item.status} ${item.key ?? item.label ?? "unknown"}: ${item.detail ?? item.message ?? ""}`);
+  if (badChecks.length) {
+    console.error(badChecks.join("\n"));
+  }
+  process.exit(1);
+}
+NODE
+}
+
+require_complete_system_health
+
 TMP_WORKTREE="$(mktemp -d "${TMPDIR:-/tmp}/ecoreport-data-XXXXXX")"
 FILES_ADDED=0
 
@@ -141,6 +176,8 @@ copy_if_exists "reports/daily/${DATE}-portfolio-coach-prompt.md"
 copy_if_exists "reports/daily/${DATE}-investment-ideas-prompt.md"
 copy_if_exists "reports/daily/${DATE}-*-advisory-prompt.md"
 copy_if_exists "reports/daily/${DATE}-stage4-execution-plan.md"
+copy_if_exists "reports/daily/${DATE}-stage4-execution-plan-table.md"
+copy_if_exists "reports/daily/${DATE}-stage4-execution-plan-telegram.txt"
 copy_if_exists "config/strategy.json"
 
 if [ "$FILES_ADDED" -eq 0 ]; then

@@ -49,7 +49,7 @@ Stage 7 전략 탐색의 기본 provider는 **Qwen API**입니다.
 .venv/bin/python scripts/build-stage2-strategy-qwen.py --date YYYY-MM-DD
 ```
 
-레거시 호환을 위해 아래 파일명도 남아 있습니다.
+레거시 호환을 위해 아래 파일명도 남아 있지만 운영 문서에서는 사용하지 않습니다.
 
 ```bash
 .venv/bin/python scripts/build-stage2-strategy-gemini.py --date YYYY-MM-DD

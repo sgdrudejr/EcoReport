@@ -109,7 +109,7 @@ stage2_run_qwen() {
   local pid=$!
 
   if wait_with_timeout "$pid" "$STAGE2_TIMEOUT_SEC"; then
-    STAGE2_PROVIDER="gemini"
+    STAGE2_PROVIDER="qwen"
     STAGE2_FINAL_STATUS="success"
     rm -f "$err_file"
     return 0
@@ -155,10 +155,11 @@ while [[ $# -gt 0 ]]; do
       shift
       ;;
     --mock-stage2)
-      echo "ERROR: --mock-stage2 is disabled. Stage 2 must use Qwen and fail-fast on errors." >&2
+      echo "ERROR: --mock-stage2 is disabled. Stage 2 must use a real LLM provider and fail-fast on errors." >&2
       exit 2
       ;;
     --gemini-stage2)
+      echo "WARN: --gemini-stage2 is kept as a legacy alias. Running Qwen Stage 2 with mock fallback disabled." >&2
       USE_QWEN_STAGE2=1
       shift
       ;;
@@ -171,6 +172,7 @@ while [[ $# -gt 0 ]]; do
       exit 2
       ;;
     --strict-gemini-stage2)
+      echo "WARN: --strict-gemini-stage2 is kept as a legacy alias. Mock fallback remains disabled." >&2
       shift
       ;;
     --strict-qwen-stage2)

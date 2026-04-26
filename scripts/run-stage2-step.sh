@@ -7,7 +7,6 @@ DATE=""
 RUN_DATE=""
 EFFECTIVE_MARKET_DATE=""
 MODE="auto"
-ALLOW_MOCK_FALLBACK=1
 
 python_bin() {
   if [[ -x "$ROOT_DIR/.venv/bin/python" ]]; then
@@ -36,7 +35,6 @@ while [[ $# -gt 0 ]]; do
       shift 2
       ;;
     --strict)
-      ALLOW_MOCK_FALLBACK=0
       shift
       ;;
     *)
@@ -53,7 +51,6 @@ fi
 cd "$ROOT_DIR"
 
 STAGE2_COMMON_ARGS=(--date "$DATE" --run-date "$RUN_DATE" --effective-market-date "${EFFECTIVE_MARKET_DATE:-$DATE}")
-STAGE2_MOCK_FALLBACK_CMD=(node scripts/build-stage2-strategy-mock.js "${STAGE2_COMMON_ARGS[@]}" --mock-mode fallback --output "data/analysis-state/$DATE/stage2-strategy-options.json")
 STAGE2_LOG="data/analysis-state/$DATE/stage2-run-log.json"
 STAGE2_START=$(date +%s)
 STAGE2_PROVIDER=""
@@ -83,66 +80,35 @@ stage2_write_log() {
 LOGEOF
 }
 
-stage2_mock_fallback() {
-  local reason="$1"
-  echo "!! $reason -> mock fallback"
-  local fb_start=$(date +%s)
-  "${STAGE2_MOCK_FALLBACK_CMD[@]}"
-  stage2_log_attempt "mock" "success" "$(( $(date +%s) - fb_start ))"
-  STAGE2_PROVIDER="mock"
-  STAGE2_FINAL_STATUS="fallback"
-}
-
-stage2_run_gemini() {
+stage2_run_qwen() {
   local t0=$(date +%s)
-  if "$(python_bin)" scripts/build-stage2-strategy-gemini.py "${STAGE2_COMMON_ARGS[@]}" 2>/tmp/stage2-gemini-err.txt; then
-    stage2_log_attempt "gemini" "success" "$(( $(date +%s) - t0 ))"
-    STAGE2_PROVIDER="gemini"
+  if "$(python_bin)" scripts/build-stage2-strategy-qwen.py "${STAGE2_COMMON_ARGS[@]}" 2>/tmp/stage2-qwen-err.txt; then
+    stage2_log_attempt "qwen" "success" "$(( $(date +%s) - t0 ))"
+    STAGE2_PROVIDER="qwen"
     STAGE2_FINAL_STATUS="success"
     return 0
   fi
 
-  stage2_log_attempt "gemini" "failed" "$(( $(date +%s) - t0 ))" "$(cat /tmp/stage2-gemini-err.txt)"
-  return 1
-}
-
-stage2_run_claude() {
-  local t0=$(date +%s)
-  if node scripts/build-stage2-strategy-claude.js "${STAGE2_COMMON_ARGS[@]}" 2>/tmp/stage2-claude-err.txt; then
-    stage2_log_attempt "claude" "success" "$(( $(date +%s) - t0 ))"
-    STAGE2_PROVIDER="claude"
-    STAGE2_FINAL_STATUS="success"
-    return 0
-  fi
-
-  stage2_log_attempt "claude" "failed" "$(( $(date +%s) - t0 ))" "$(cat /tmp/stage2-claude-err.txt)"
+  stage2_log_attempt "qwen" "failed" "$(( $(date +%s) - t0 ))" "$(cat /tmp/stage2-qwen-err.txt)"
   return 1
 }
 
 if [[ "$MODE" == "mock" ]]; then
-  local_start=$(date +%s)
-  node scripts/build-stage2-strategy-mock.js "${STAGE2_COMMON_ARGS[@]}" --mock-mode test
-  stage2_log_attempt "mock" "success" "$(( $(date +%s) - local_start ))"
-  STAGE2_PROVIDER="mock"
-  STAGE2_FINAL_STATUS="explicit_mock"
-elif [[ "$MODE" == "gemini" ]]; then
-  if ! stage2_run_gemini; then
-    [[ "$ALLOW_MOCK_FALLBACK" != "1" ]] && { stage2_write_log; exit 1; }
-    stage2_mock_fallback "Gemini Stage 2 failed"
+  echo "ERROR: --mode mock is disabled. Stage 2 must use a real LLM provider and fail-fast on errors." >&2
+  exit 2
+elif [[ "$MODE" == "gemini" || "$MODE" == "qwen" || "$MODE" == "auto" ]]; then
+  if ! stage2_run_qwen; then
+    STAGE2_PROVIDER="qwen"
+    STAGE2_FINAL_STATUS="failed"
+    stage2_write_log
+    exit 1
   fi
 elif [[ "$MODE" == "claude" ]]; then
-  if ! stage2_run_claude; then
-    [[ "$ALLOW_MOCK_FALLBACK" != "1" ]] && { stage2_write_log; exit 1; }
-    stage2_mock_fallback "Claude Stage 2 failed"
-  fi
+  echo "ERROR: --mode claude is no longer supported." >&2
+  exit 2
 else
-  if stage2_run_gemini; then
-    :
-  elif stage2_run_claude; then
-    :
-  else
-    stage2_mock_fallback "Gemini + Claude failed"
-  fi
+  echo "ERROR: unknown Stage 2 mode: $MODE" >&2
+  exit 2
 fi
 
 stage2_write_log

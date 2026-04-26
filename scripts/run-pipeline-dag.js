@@ -12,7 +12,7 @@ function parseArgs(argv) {
   args.manifest = path.join(ROOT_DIR, "config", "pipeline-manifest.yaml");
   args.report = null;
   args.dryRun = false;
-  args.stage2Mode = "auto";
+  args.stage2Mode = "qwen";
   args.force = false;
 
   for (let index = 0; index < argv.length; index += 1) {

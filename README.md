@@ -133,13 +133,13 @@ flowchart TD
 
     O1 --> D["Stage 7 Prompt<br/>build-stage2-strategy-prompt.js"]
     C1 --> D
-    C1 --> E["Stage 7 Mock<br/>build-stage2-strategy-mock.js"]
+    C1 --> E["Stage 7 Real LLM<br/>build-stage2-strategy-qwen.py"]
     T["Technical Snapshot<br/>data/technical/YYYY-MM-DD.json"] --> D
     T --> E
     P --> D
     P --> E
     G["Daily / Gemini Briefing"] --> D
-    E --> E1["stage2-strategy-options.mock.json"]
+    E --> E1["stage2-strategy-options.json"]
     D --> D1["08-stage2-strategy-prompt.md"]
 
     C1 --> F["Stage 8 Quant<br/>build-stage3-quant-scores.js"]
@@ -400,9 +400,9 @@ Obsidian에서 바로 보려면 publish 결과도 같이 봅니다.
 기본 운영은 이제 **공개 배포보다 로컬 우선**입니다.
 
 - 기본: Mac Mini 로컬 실행 + private access
-- 선택: `data` 브랜치/Vercel 보조 대시보드
+- 선택: 검증 통과 후 `data` 브랜치 보조 대시보드
 
-Vercel preview 실패가 있어도 일일 운영은 막히지 않도록 설계합니다.
+Vercel 배포는 완성 데이터가 안정될 때까지 중단합니다.
 공개 배포가 불안정할 때는 Tailscale 같은 tailnet 기반 접속을 권장합니다.
 
 ### 현재 권장 접속 경로
@@ -652,7 +652,6 @@ GITHUB_TOKEN=...
 출력:
 
 - `knowledge/daily/manual-kit/YYYY-MM-DD/08-stage2-strategy-prompt.md`
-- `data/analysis-state/YYYY-MM-DD/stage2-strategy-options.mock.json`
 - `data/analysis-state/YYYY-MM-DD/stage2-strategy-options.json`
 
 설명:
@@ -829,7 +828,7 @@ EcoReport/
 
 ### 2. Stage 1~4 코드 검증 모드
 
-실제 LLM이 없어도 mock Stage 2로 Stage 3/4를 검증할 수 있습니다.
+Stage 2는 실제 LLM 결과가 있어야 다음 단계로 진행합니다. mock Stage 2는 운영/검증 경로에서 비활성화되어 있습니다.
 
 이 모드가 중요한 이유:
 
@@ -861,7 +860,7 @@ cd /Users/seo/Documents/Playground/economy-report
 npm run stage5:deep-research-prompt -- --date 2026-04-03
 npm run stage5:gemini:run -- --date 2026-04-03
 npm run stage6:rich-briefing -- --date 2026-04-03 --run-date 2026-04-03 --effective-market-date 2026-04-03
-bash scripts/run-strategy-pipeline.sh --date 2026-04-03 --run-date 2026-04-03 --effective-market-date 2026-04-03 --gemini-stage2
+bash scripts/run-strategy-pipeline.sh --date 2026-04-03 --run-date 2026-04-03 --effective-market-date 2026-04-03 --qwen-stage2
 ```
 
 또는 개별 실행:
@@ -945,12 +944,12 @@ bash scripts/open-chatgpt-web-prompt.sh ideas
 
 다음 단계 핵심은 `impact-map.json`입니다.
 
-### 2. Stage 2 Gemini 자동 실행
+### 2. Stage 2 Qwen 자동 실행
 
-`GEMINI_API_KEY`가 `.env`에 있으면 `run-daily-system.sh`가 자동으로 `build-stage2-strategy-gemini.py`를 실행합니다.
-키가 없으면 mock JSON으로 Stage 3/4를 계속 검증합니다.
+`QWEN_API_KEY` 또는 `DASHSCOPE_API_KEY`가 `.env`에 있으면 `run-daily-system.sh`가 `build-stage2-strategy-qwen.py`를 실행합니다.
+키가 없거나 Qwen 호출이 실패하면 mock으로 가지 않고 파이프라인을 중단합니다.
 수동으로 LLM에 묻고 싶다면 `open-chatgpt-web-prompt.sh` 또는 `knowledge/daily/manual-kit/` 프롬프트를 활용합니다.
-Python 가상환경에는 `google-genai`가 설치되어 있어야 하며, 현재 Gemini Python 스크립트는 이 SDK 기준으로 동작합니다. 새 환경이면 `./.venv/bin/pip install google-genai`를 한 번 실행해 주세요.
+Python 가상환경에는 `openai` 패키지가 설치되어 있어야 하며, Qwen 스크립트는 DashScope 호환 OpenAI 클라이언트를 사용합니다.
 
 ### 3. Stage 1 품질 고도화
 
@@ -986,14 +985,14 @@ Python 가상환경에는 `google-genai`가 설치되어 있어야 하며, 현�
 
 ### 6. 외부 공개 배포 안정성
 
-`Vercel`은 현재 보조 채널입니다.
+`Vercel` 배포는 현재 중단 상태입니다.
 
 - 운영 기준은 `localhost:3000`
-- `data` 브랜치와 원격 배포는 참고/보조 용도
+- `data` 브랜치 push는 `system-health`가 `ok`인 완성 데이터일 때만 허용
 - Mac Mini 로컬 배포는 계속 반영
-- `Vercel` 배포는 수동 실행, `repository_dispatch`, 또는 `.vercel-deploy-trigger` Git 신호가 있을 때만 실행
+- `.github/workflows/deploy.yml`은 제거되어 Vercel workflow가 실행되지 않음
 
-실행 방법은 아래 문서를 따릅니다.
+Vercel을 다시 열 때는 아래 문서를 최신 정책에 맞춰 복구한 뒤 workflow를 되살립니다.
 
 - [VERCEL_DEPLOY_RUNBOOK.md](docs/VERCEL_DEPLOY_RUNBOOK.md)
 

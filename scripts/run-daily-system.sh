@@ -14,11 +14,13 @@ SKIP_PUSH=0
 SKIP_VERIFY=0
 SKIP_STRATEGY=0
 SKIP_WIKI=0
+SKIP_TELEGRAM=0
 FORCE_COLLECT=0
-STAGE2_MODE="auto"
+STAGE2_MODE="qwen"
 RUN_GEMINI_BRIEFING="auto"
 SOFT_FAILURE_COUNT=0
 USE_DAG=0
+BASELINE_ONLY=0
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -62,24 +64,32 @@ while [[ $# -gt 0 ]]; do
       SKIP_WIKI=1
       shift
       ;;
+    --skip-telegram)
+      SKIP_TELEGRAM=1
+      shift
+      ;;
     --force-collect)
       FORCE_COLLECT=1
       shift
       ;;
     --gemini-stage2)
-      STAGE2_MODE="gemini"
+      STAGE2_MODE="qwen"
       shift
       ;;
     --claude-stage2)
-      STAGE2_MODE="claude"
-      shift
+      echo "ERROR: --claude-stage2 is no longer supported." >&2
+      exit 2
       ;;
     --mock-stage2)
-      STAGE2_MODE="mock"
-      shift
+      echo "ERROR: --mock-stage2 is disabled. Stage 2 must use a real LLM provider and fail-fast on errors." >&2
+      exit 2
       ;;
     --use-dag)
       USE_DAG=1
+      shift
+      ;;
+    --baseline-only)
+      BASELINE_ONLY=1
       shift
       ;;
     --no-gemini-briefing)
@@ -96,6 +106,14 @@ while [[ $# -gt 0 ]]; do
       ;;
   esac
 done
+
+if [[ "$BASELINE_ONLY" == "1" ]]; then
+  SKIP_STRATEGY=1
+  SKIP_WIKI=1
+  SKIP_PUSH=1
+  SKIP_VERIFY=1
+  RUN_GEMINI_BRIEFING="no"
+fi
 
 if [[ -z "$EFFECTIVE_MARKET_DATE" ]]; then
   RESOLVE_ARGS=()
@@ -314,6 +332,9 @@ log "🚀 EcoReport Daily System 시작 (run: $RUN_DATE / effective: $DATE)"
 log "🧬 run-id: $RUN_ID"
 log "🗓️ 날짜 해석 사유: $RESOLUTION_REASON"
 log "📁 로그: $LOG_FILE"
+if [[ "$BASELINE_ONLY" == "1" ]]; then
+  log "🧩 baseline-only 모드: 수집/텍스트화/RAG까지만 실행하고 전략·위키·push·verify는 건너뜁니다."
+fi
 log "=================================================="
 
 if [[ "$SKIP_COLLECT" == "1" ]]; then
@@ -346,6 +367,11 @@ node scripts/ensure-daily-fallbacks.js \
   --effective-market-date "$DATE" \
   --mode reports \
   --reason "post-collect validation" >>"$LOG_FILE" 2>&1
+
+if [[ "$BASELINE_ONLY" != "1" ]]; then
+  run_step "🪟 Windows 로컬 요약(필수)..." \
+    bash scripts/run-local-report-orchestrator.sh --date "$DATE"
+fi
 
 if ! run_retrying_step "🏦 KIS 포트폴리오 동기화..." 2 node scripts/sync-kis-portfolio.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"; then
   log "⚠️ KIS 포트폴리오 동기화 실패, 기존 latest.json 으로 계속 진행합니다."
@@ -438,16 +464,13 @@ else
   log "🧠 Gemini 브리핑 스킵 (API 키 없음 또는 --no-gemini-briefing)"
 fi
 
-PIPELINE_ARGS=(--date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE")
-if [[ "$STAGE2_MODE" == "gemini" ]]; then
-  PIPELINE_ARGS+=(--gemini-stage2)
-elif [[ "$STAGE2_MODE" == "mock" ]]; then
-  PIPELINE_ARGS+=(--mock-stage2)
-elif [[ "$STAGE2_MODE" == "auto" ]] && has_gemini_key; then
-  PIPELINE_ARGS+=(--gemini-stage2)
-elif [[ "$STAGE2_MODE" == "auto" ]]; then
-  PIPELINE_ARGS+=(--mock-stage2)
-fi
+PIPELINE_ARGS=(
+  --date "$DATE"
+  --run-date "$RUN_DATE"
+  --effective-market-date "$DATE"
+  --qwen-stage2
+  --strict-qwen-stage2
+)
 
 if [[ "$SKIP_STRATEGY" == "1" ]]; then
   log "🧭 전략 파이프라인 건너뜀 (--skip-strategy)"
@@ -458,7 +481,7 @@ else
         --date "$DATE" \
         --run-date "$RUN_DATE" \
         --effective-market-date "$DATE" \
-        --stage2-mode "$STAGE2_MODE"
+        --stage2-mode "qwen"
   else
     run_step "🧭 Stage 1~4 전략 파이프라인..." bash scripts/run-strategy-pipeline.sh "${PIPELINE_ARGS[@]}"
   fi
@@ -471,20 +494,24 @@ else
   run_step "🪄 Obsidian vault 게시..." node scripts/publish-llm-wiki-to-vault.js
 fi
 
-if [[ "$SKIP_PUSH" == "1" ]]; then
-  log "📤 GitHub 동기화 건너뜀 (--skip-push)"
-else
-  run_nonfatal_step "📤 data 브랜치 동기화..." bash scripts/push-to-github.sh "$DATE"
-fi
-
 if [[ "$SKIP_VERIFY" == "1" ]]; then
   log "🩺 시스템 검증 건너뜀 (--skip-verify)"
 else
   run_step "🩺 일일 산출물 검증..." node scripts/verify-daily-system.js --date "$DATE"
 fi
 
-run_nonfatal_step "📨 Telegram 파이프라인 요약 알림..." \
-  node scripts/send-telegram-summary.js --date "$DATE"
+if [[ "$SKIP_PUSH" == "1" ]]; then
+  log "📤 GitHub 동기화 건너뜀 (--skip-push)"
+else
+  run_nonfatal_step "📤 검증 통과 데이터만 data 브랜치 동기화..." bash scripts/push-to-github.sh "$DATE"
+fi
+
+if [[ "$SKIP_TELEGRAM" == "1" ]]; then
+  log "📨 Telegram 알림 건너뜀 (--skip-telegram)"
+else
+  run_nonfatal_step "📨 Telegram 파이프라인 요약 알림..." \
+    node scripts/send-telegram-summary.js --date "$DATE"
+fi
 
 run_nonfatal_step "👻 Ghost Portfolio 스냅샷..." \
   node scripts/build-ghost-portfolio.js --date "$DATE" --run-date "$RUN_DATE" --effective-market-date "$DATE"

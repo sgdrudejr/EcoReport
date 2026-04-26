@@ -19,7 +19,7 @@
 
 - `docs/STAGE_1_4_ARCHITECTURE.md`를 실제 코드 기준 구조로 갱신
 - `Stage 2.5 impact map`, `holding clusters`, `feedback loop`, `auto-tune`까지 아키텍처에 포함
-- Stage 2 기본 경로를 `Gemini -> Claude -> Mock fallback` 체인 기준으로 정리
+- Stage 2 기본 경로를 Qwen 실제 LLM 실행 + fail-fast 기준으로 정리
 
 ### 운영/실험 문서 갱신
 

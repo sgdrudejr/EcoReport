@@ -119,7 +119,6 @@ async function main() {
     parallelRag: path.join(ROOT_DIR, "knowledge", "rag", date, "parallel-manifest.json"),
     stage1: path.join(analysisDir, "stage1-report-extracts-v2.json"),
     stage2: path.join(analysisDir, "stage2-strategy-options.json"),
-    stage2Mock: path.join(analysisDir, "stage2-strategy-options.mock.json"),
     impactMap: path.join(analysisDir, "impact-map.json"),
     stage3: path.join(analysisDir, "stage3-quant-scores.json"),
     stage4: path.join(analysisDir, "stage4-execution-plan.json"),
@@ -181,7 +180,6 @@ async function main() {
     parallelRag,
     stage1,
     stage2,
-    stage2Mock,
     impactMap,
     stage3,
     stage4,
@@ -201,7 +199,6 @@ async function main() {
     readJson(paths.parallelRag, null),
     readJson(paths.stage1, null),
     readJson(paths.stage2, null),
-    readJson(paths.stage2Mock, null),
     readJson(paths.impactMap, null),
     readJson(paths.stage3, null),
     readJson(paths.stage4, null),
@@ -217,15 +214,7 @@ async function main() {
   const ocrCount = Number(textManifest?.ocr_used_count ?? 0);
   const stage1Extracts = Number(stage1?.extracts?.length ?? 0);
   const accountCount = Number(portfolio?.accounts?.length ?? 0);
-  const resolvedStage2 = stage2 ?? stage2Mock;
-  const stage2Mode =
-    resolvedStage2?.source === "mock"
-      ? "mock"
-      : stage2
-        ? "gemini"
-        : stage2Mock
-          ? "mock"
-          : "missing";
+  const stage2Mode = stage2 ? (stage2.provider ?? stage2.source ?? "real_llm") : "missing";
   const normalizedPortfolio = enrichPortfolioWithSecurityCodes(portfolio);
   const unresolvedPortfolioHoldings = (normalizedPortfolio?.accounts ?? []).flatMap((account) =>
     (account.holdings ?? [])
@@ -277,8 +266,8 @@ async function main() {
     {
       key: "stage2",
       label: "Stage 2",
-      path: relative(stage2 ? paths.stage2 : paths.stage2Mock),
-      meta: extractJsonMeta(stage2 ?? stage2Mock),
+      path: relative(paths.stage2),
+      meta: extractJsonMeta(stage2),
     },
     { key: "impact_map", label: "Impact Map", path: relative(paths.impactMap), meta: extractJsonMeta(impactMap) },
     { key: "stage3", label: "Stage 3", path: relative(paths.stage3), meta: extractJsonMeta(stage3) },
@@ -413,13 +402,8 @@ async function main() {
       key: "stage2",
       label: "Stage 2 전략 탐색",
       status: statusFromCondition(stage2Mode !== "missing", "warn"),
-      detail:
-        stage2Mode === "gemini"
-          ? `Gemini 실제 결과 (${stage2.model ?? "unknown"})`
-          : stage2Mode === "mock"
-            ? "mock 결과 사용"
-            : "stage2 결과 없음",
-      path: relative(stage2 ? paths.stage2 : paths.stage2Mock),
+      detail: stage2 ? `실제 LLM 결과 (${stage2.model ?? stage2Mode ?? "unknown"})` : "stage2 결과 없음",
+      path: relative(paths.stage2),
     },
     {
       key: "impact_map",
