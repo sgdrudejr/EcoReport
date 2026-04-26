@@ -38,6 +38,8 @@ const IGNORED_EMPTY_DIR_PATTERNS = [
   /(^|\/)\.next(\/|$)/,
   /(^|\/)dashboard\/node_modules(\/|$)/,
   /(^|\/)\.venv(\/|$)/,
+  /(^|\/)data\/\.stockeasy_session(\/|$)/,
+  /(^|\/)data\/reports(\/|$)/,
 ];
 
 const LEGACY_PATH_PATTERNS = [
