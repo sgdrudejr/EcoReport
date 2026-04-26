@@ -748,7 +748,69 @@ function distributeBudget({
   }).filter((item) => item.suggestedAmount > 0);
 }
 
-function validateExecutionPlan({ account, bucket, stagedBuys, trims, holds, rejectedAlternatives }) {
+function isSatelliteSecurity(code) {
+  const bucket = SECURITIES_BY_CODE[code]?.bucket ?? "";
+  return String(bucket).includes("satellite");
+}
+
+function buildSatelliteExposureTracker(portfolio) {
+  const byCategory = new Map();
+  let totalAssets = 0;
+  for (const account of portfolio.accounts ?? []) {
+    totalAssets += account.cashAvailable ?? 0;
+    for (const holding of account.holdings ?? []) {
+      const value = holding.marketValue ?? 0;
+      totalAssets += value;
+      if (!holding.code || !isSatelliteSecurity(holding.code)) continue;
+      const category = safeCategory(account.key, holding.code);
+      byCategory.set(category, (byCategory.get(category) ?? 0) + value);
+    }
+  }
+  return {
+    totalAssets,
+    byCategory,
+    plannedByCategory: new Map(),
+  };
+}
+
+function satelliteThemeCapCheck({ item, account, strategy, exposureTracker }) {
+  const cap = strategy?.satellite_rules?.max_per_theme_pct;
+  if (typeof cap !== "number" || cap <= 0 || !item.code || !isSatelliteSecurity(item.code)) {
+    return { allowed: true };
+  }
+  const category = safeCategory(account.key, item.code);
+  const totalAssets = exposureTracker?.totalAssets ?? 0;
+  if (totalAssets <= 0) return { allowed: true };
+  const currentValue = exposureTracker.byCategory.get(category) ?? 0;
+  const plannedValue = exposureTracker.plannedByCategory.get(category) ?? 0;
+  const nextValue = currentValue + plannedValue + (item.suggestedAmount ?? 0);
+  const currentPct = currentValue / totalAssets;
+  const nextPct = nextValue / totalAssets;
+  return {
+    allowed: nextPct <= cap,
+    category,
+    cap,
+    currentPct,
+    nextPct,
+    currentValue,
+    nextValue,
+  };
+}
+
+function registerSatelliteBuy({ item, account, exposureTracker }) {
+  if (!item.code || !isSatelliteSecurity(item.code)) return;
+  const category = safeCategory(account.key, item.code);
+  exposureTracker.plannedByCategory.set(
+    category,
+    (exposureTracker.plannedByCategory.get(category) ?? 0) + (item.suggestedAmount ?? 0),
+  );
+}
+
+function pctLabel(value) {
+  return `${roundNumber(value * 100, 1)}%`;
+}
+
+function validateExecutionPlan({ account, bucket, stagedBuys, trims, holds, rejectedAlternatives, strategy, exposureTracker }) {
   const validatorFlags = [];
   const validatedBuys = [];
   const rejected = [...rejectedAlternatives];
@@ -799,7 +861,21 @@ function validateExecutionPlan({ account, bucket, stagedBuys, trims, holds, reje
       continue;
     }
 
+    const themeCap = satelliteThemeCapCheck({ item, account, strategy, exposureTracker });
+    if (!themeCap.allowed) {
+      validatorFlags.push(`satellite_theme_cap:${item.name}`);
+      rejected.push({
+        ...item,
+        rejectionReason:
+          `${themeCap.category} 위성 테마 비중이 이미 ${pctLabel(themeCap.currentPct)}로 ` +
+          `한도 ${pctLabel(themeCap.cap)}를 넘거나 근접해 신규 매수 제외`,
+        themeCap,
+      });
+      continue;
+    }
+
     validatedBuys.push(item);
+    registerSatelliteBuy({ item, account, exposureTracker });
   }
 
   if (validatedBuys.length === 0 && bucket.deployBudget > 0) {
@@ -1062,6 +1138,7 @@ async function main() {
     entryConfig,
   });
   const dailySignals = buildDailySignalCorpus(fullDailyReport, insightAtoms);
+  const satelliteExposureTracker = buildSatelliteExposureTracker(normalizedPortfolio);
 
   const accountPlans = (normalizedPortfolio.accounts ?? []).map((account) => {
     const stage2Action =
@@ -1093,6 +1170,8 @@ async function main() {
       trims: bucket.trim.slice(0, 3),
       holds: bucket.hold.slice(0, 3),
       rejectedAlternatives: stage2CandidateSet.rejected ?? [],
+      strategy,
+      exposureTracker: satelliteExposureTracker,
     });
     const macroCommentary = buildMacroCommentary({
       account,
