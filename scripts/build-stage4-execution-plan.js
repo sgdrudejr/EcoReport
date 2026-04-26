@@ -868,17 +868,22 @@ function buildMacroCommentary({
 async function main() {
   const args = parseDateArgs(process.argv.slice(2));
   const stateDir = path.join(ROOT_DIR, "data", "analysis-state", args.date);
-  const [portfolio, strategy, stage1, stage2, quant, impactMap, technical, market] = await Promise.all([
+  const [portfolio, strategy, stage1, stage2Enriched, stage2Raw, quant, impactMap, technical, market] = await Promise.all([
     readJson(path.join(ROOT_DIR, "data", "portfolio", "latest.json"), { accounts: [] }),
     readJson(path.join(ROOT_DIR, "config", "strategy.json"), { accounts: {} }),
     readJson(path.join(stateDir, "stage1-report-extracts-v2.json"), { extracts: [] }),
+    readJson(path.join(stateDir, "stage2-strategy-options.enriched.json"), null),
     readJson(path.join(stateDir, "stage2-strategy-options.json"), null),
     readJson(path.join(stateDir, "stage3-quant-scores.json"), { holdings: {}, accounts: {}, portfolio: {} }),
     readJson(path.join(stateDir, "impact-map.json"), { reports: [] }),
     readJson(path.join(ROOT_DIR, "data", "technical", `${args.date}.json`), { scores: {}, market_context: {} }),
     readJson(path.join(ROOT_DIR, "data", "market", `${args.date}.json`), { indices: {}, macro: {}, watchlist: {} }),
   ]);
-  const stage2Data = stage2 ?? (await readJson(path.join(stateDir, "stage2-strategy-options.mock.json"), { account_actions: [], strategy_changes: [] }));
+  const stage2 = stage2Enriched ?? stage2Raw;
+  if (!stage2) {
+    throw new Error(`Stage 2 real LLM output missing: ${path.join(stateDir, "stage2-strategy-options.json")}`);
+  }
+  const stage2Data = stage2;
   const normalizedPortfolio = enrichPortfolioWithSecurityCodes(portfolio);
   const technicalMap = technical.scores ?? {};
   const positionSizing = {

@@ -8,7 +8,7 @@
 
 ## Daily
 
-- [2026-04-15](daily/2026-04-15.md)
+- [2026-04-23](daily/2026-04-23.md)
 
 ## Accounts
 
@@ -20,10 +20,12 @@
 
 - [한국항공우주](securities/047810-한국항공우주.md)
 - [현대로템](securities/064350-현대로템.md)
+- [KODEX 골드선물(H)](securities/132030-kodex-골드선물-h.md)
 - [KODEX 구리선물(H)](securities/138910-kodex-구리선물-h.md)
-- [효성중공업](securities/298040-효성중공업.md)
+- [TIGER 미국S&P500](securities/360750-tiger-미국s-and-p500.md)
 - [HANARO 원자력iSelect](securities/434730-hanaro-원자력iselect.md)
 - [PLUS K방산](securities/449450-plus-k방산.md)
+- [KODEX AI전력핵심설비](securities/487240-kodex-ai전력핵심설비.md)
 
 ## Memory
 

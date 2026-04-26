@@ -220,11 +220,11 @@ export async function formatStockeasyForPrompt({
   date,
   portfolio = null,
   watchlist = null,
-  maxSectors = 5,
-  maxThemes = 4,
-  maxLeaders = 6,
-  maxStrategies = 3,
-  maxTimeline = 4,
+  maxSectors = 10,
+  maxThemes = 5,
+  maxLeaders = 50,
+  maxStrategies = 10,
+  maxTimeline = 5,
 } = {}) {
   const snapshot = await loadStockeasySnapshot(date);
   if (!snapshot) {
@@ -245,7 +245,7 @@ export async function formatStockeasyForPrompt({
     .slice(0, maxStrategies)
     .map(formatStrategyPulse);
   const topTimeline = (snapshot.home?.topTimeline ?? []).slice(0, maxTimeline);
-  const etfCandidates = (await deriveStockeasyEtfCandidates(snapshot)).slice(0, 4);
+  const etfCandidates = (await deriveStockeasyEtfCandidates(snapshot)).slice(0, 8);
   const sectorPulse = (snapshot.marketAnalysis?.sectors?.rows ?? []).slice(0, 5);
   const leadingPulse = (snapshot.marketAnalysis?.leadingSectors?.rows ?? []).slice(0, 5);
   const industryReports = (snapshot.stockAnalysis?.reports?.industry?.rows ?? []).slice(0, 5);

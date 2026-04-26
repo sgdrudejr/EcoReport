@@ -305,6 +305,16 @@ async function main() {
     stage1.extracts.filter((item) => item.report_type === "macro"),
     4,
   );
+  // 현재 보유와 무관한 신규 후보 발굴용 extract (비보유 종목 리포트 중 richness 상위)
+  const newCandidateExtracts = selectRichExtracts(
+    stage1.extracts.filter(
+      (item) =>
+        item.related_holdings_in_my_portfolio.length === 0 &&
+        item.portfolio_impacts_candidate.length === 0 &&
+        item.report_type !== "macro",
+    ),
+    6,
+  );
   const technicalSubset = buildTechnicalSubset(portfolio, technical, watchlist);
   const briefingSummary = truncate(briefing, 3600);
   const refinementMaps = refinementMapsRaw.filter((entry) => entry.map);
@@ -365,6 +375,10 @@ async function main() {
     "## 매크로/전략 리포트 연구 노트",
     formatExtractEvidenceBlocks(macroExtracts),
     "",
+    "## 신규 후보 발굴용 리포트 (현재 비보유 종목)",
+    "아래는 현재 포트폴리오에 없지만 리포트 richness가 높은 종목들입니다. 신규 진입 후보 탐색에 활용하세요.",
+    formatExtractEvidenceBlocks(newCandidateExtracts),
+    "",
     "## 기술점수 스냅샷",
     JSON.stringify(
       {
@@ -381,12 +395,18 @@ async function main() {
     "- condition이 있는 주장은 실현 가능성을 HIGH/MEDIUM/LOW로 가늠하고, LOW는 바로 실행보다 risk/watch로 남기세요.",
     "- 직접 언급이 없더라도 보유 종목과 연결되는 2차 효과가 있다면 제시하되, confidence는 보수적으로 유지하세요.",
     "- 각 전략 변화와 후보에는 판단을 뒤집을 수 있는 반전 조건을 한 줄 포함하세요.",
+    "- **필수: candidate_scores에 현재 보유 종목 외 신규 후보를 최소 3개 이상 포함하세요. '신규 후보 발굴용 리포트' 섹션을 적극 참고하고, Deep Research 보강 응답에서 언급된 대안 자산도 포함하세요.**",
+    "- 신규 후보는 기존 보유와 겹치지 않는 섹터·테마에서 최소 1개 이상 발굴하세요.",
     "",
     "## 출력 요구사항",
     "반드시 유효한 JSON으로만 답하세요.",
     "문장은 짧게, 각 문자열은 1~2문장 이내로 유지하세요.",
     "strategy_changes는 최대 4개, candidate_scores는 최대 8개까지만 반환하세요.",
     "buy_candidates / trim_candidates / hold_candidates는 각 계좌당 최대 3개까지만 반환하세요.",
+    "중요: Stage 2는 테마 논리 단계입니다. 이 단계에서 ETF/주식의 숫자 코드(예: 360750, 005930)를 직접 추천하지 마세요.",
+    "candidate_scores.code는 반드시 THEME::<slug> 형식으로 작성하세요. 예: THEME::ai-power-grid, THEME::defense-nuclear.",
+    "account_actions의 buy_candidates / trim_candidates / hold_candidates도 동일하게 THEME::<slug>만 사용하세요.",
+    "실제 ETF 코드 매핑은 Stage 2.5에서 수행됩니다.",
     "refinement map에서 반복 확인이 필요한 토픽은 실제 전략 변화로 연결되는 경우만 반영하고, 근거가 얕으면 watch 또는 보류로 남기세요.",
     "머니토링 시황은 빠른 촉매 신호로만 사용하세요. 리포트·딥리서치와 충돌하면 강화보다 watch 또는 검증 우선으로 낮추세요.",
     "StockEasy는 외부 모멘텀과 전략실 기류를 확인하는 보조 레이어입니다. 내부 논리와 겹치면 설명과 우선순위를 강화하고, 충돌하면 즉시 추격 매수로 번역하지 마세요.",
@@ -415,21 +435,21 @@ async function main() {
             account_key: accountKeyHint,
             bias: "aggressive_add|selective_add|hold|defensive",
             rationale: "계좌 운용 핵심 논리",
-            buy_candidates: ["360750"],
-            trim_candidates: ["132030"],
-            hold_candidates: ["458760"],
+            buy_candidates: ["THEME::ai-power-grid"],
+            trim_candidates: ["THEME::gold-hedge"],
+            hold_candidates: ["THEME::us-core-riskon"],
             reserve_cash_note: "현금 운영 원칙",
           },
         ],
         candidate_scores: [
           {
-            code: "360750",
-            name: "TIGER 미국S&P500",
+            code: "THEME::us-core-riskon",
+            name: "미국 코어 위험선호",
             stance: "buy|hold|trim|watch",
             target_accounts: [accountKeys[0] ?? "ACCOUNT_KEY"],
             horizon: "1m|3m|6m",
             confidence: "HIGH|MEDIUM|LOW",
-            thesis: "핵심 투자 논리",
+            thesis: "테마/논리 핵심",
             risks: ["위험요인"],
             impact_chain: "direct|thematic_2nd_order",
             invalidation_trigger: "이 판단을 뒤집는 조건",

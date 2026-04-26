@@ -42,7 +42,6 @@ export function buildAnalysisPaths(date) {
     fred: path.join(ROOT_DIR, "data", "macro", `fred-${date}.json`),
     stage1: path.join(analysisDir, "stage1-report-extracts-v2.json"),
     stage2: path.join(analysisDir, "stage2-strategy-options.json"),
-    stage2Mock: path.join(analysisDir, "stage2-strategy-options.mock.json"),
     impactMap: path.join(analysisDir, "impact-map.json"),
     marketVoice: path.join(analysisDir, "marketvoice-linked.json"),
     stage3: path.join(analysisDir, "stage3-quant-scores.json"),
@@ -60,17 +59,9 @@ export async function cachedReadText(cache, filePath, fallback = "") {
   return withCache(cache, `text:${filePath}`, async () => readText(filePath, fallback));
 }
 
-export function resolveStage2Selection(stage2Actual, stage2Mock, fallback = DEFAULT_STAGE2_FALLBACK) {
+export function resolveStage2Selection(stage2Actual, _stage2Mock, fallback = DEFAULT_STAGE2_FALLBACK) {
   if (stage2Actual) {
     return { stage2Data: stage2Actual, stage2Mode: "actual" };
-  }
-
-  if (stage2Mock) {
-    const mockMode = String(stage2Mock.mockMode ?? "mock").trim().toLowerCase();
-    return {
-      stage2Data: stage2Mock,
-      stage2Mode: mockMode === "fallback" ? "fallback_mock" : "mock",
-    };
   }
 
   return { stage2Data: fallback, stage2Mode: "missing" };
@@ -138,14 +129,6 @@ export async function loadAnalysisContext(args, options = {}) {
     );
   }
 
-  if (options.stage2Mock) {
-    loaders.push(
-      cachedReadJson(cache, paths.stage2Mock, null).then((value) => {
-        data.stage2Mock = value;
-      }),
-    );
-  }
-
   if (options.impactMap) {
     loaders.push(
       cachedReadJson(cache, paths.impactMap, { reports: [] }).then((value) => {
@@ -209,7 +192,7 @@ export async function loadAnalysisContext(args, options = {}) {
   if (options.stage2Resolved) {
     const resolved = resolveStage2Selection(
       data.stage2 ?? null,
-      data.stage2Mock ?? null,
+      null,
       options.stage2Fallback ?? DEFAULT_STAGE2_FALLBACK,
     );
     data.stage2Data = resolved.stage2Data;

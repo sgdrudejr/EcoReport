@@ -1,8 +1,7 @@
 #!/usr/bin/env node
 
+import fs from "node:fs/promises";
 import path from "node:path";
-
-import fetch from "node-fetch";
 
 import {
   ROOT_DIR,
@@ -15,6 +14,10 @@ function parseArgs(argv) {
   args.dryRun = false;
   args.event = "pipeline-summary";
   args.message = null;
+  args.document = null;
+  args.caption = null;
+  args.followupMessageFile = null;
+  args.followupPreformatted = false;
 
   for (let index = 0; index < argv.length; index += 1) {
     const token = argv[index];
@@ -26,6 +29,17 @@ function parseArgs(argv) {
     } else if (token === "--message" && argv[index + 1]) {
       args.message = argv[index + 1];
       index += 1;
+    } else if (token === "--document" && argv[index + 1]) {
+      args.document = argv[index + 1];
+      index += 1;
+    } else if (token === "--caption" && argv[index + 1]) {
+      args.caption = argv[index + 1];
+      index += 1;
+    } else if (token === "--followup-message-file" && argv[index + 1]) {
+      args.followupMessageFile = argv[index + 1];
+      index += 1;
+    } else if (token === "--followup-preformatted") {
+      args.followupPreformatted = true;
     }
   }
 
@@ -36,6 +50,124 @@ function resolveEnvReference(value) {
   if (typeof value !== "string") return value;
   const match = /^\$([A-Z0-9_]+)$/.exec(value.trim());
   return match ? process.env[match[1]] ?? "" : value;
+}
+
+function resolvePath(value) {
+  if (!value) return null;
+  return path.isAbsolute(value) ? value : path.join(ROOT_DIR, value);
+}
+
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function splitMessageLines(text, maxChars = 3800) {
+  const lines = String(text ?? "").split("\n");
+  const chunks = [];
+  let current = "";
+
+  for (const line of lines) {
+    const candidate = current ? `${current}\n${line}` : line;
+    if (candidate.length <= maxChars) {
+      current = candidate;
+      continue;
+    }
+    if (current) {
+      chunks.push(current);
+    }
+    current = line;
+  }
+
+  if (current) {
+    chunks.push(current);
+  }
+
+  return chunks.length > 0 ? chunks : [""];
+}
+
+async function loadTelegramSecretsFromEnvFile() {
+  const candidates = [
+    path.join(ROOT_DIR, "config", "telegram_notify.env"),
+    path.join(ROOT_DIR, "telegram_notify.env"),
+  ];
+
+  for (const candidate of candidates) {
+    try {
+      const raw = await fs.readFile(candidate, "utf8");
+      const parsed = {};
+      for (const line of raw.split(/\r?\n/)) {
+        const trimmed = line.trim();
+        if (!trimmed || trimmed.startsWith("#")) continue;
+        const normalized = trimmed.startsWith("export ")
+          ? trimmed.slice("export ".length).trim()
+          : trimmed;
+        const index = normalized.indexOf("=");
+        if (index <= 0) continue;
+        const key = normalized.slice(0, index).trim();
+        let value = normalized.slice(index + 1).trim();
+        if (
+          (value.startsWith('"') && value.endsWith('"')) ||
+          (value.startsWith("'") && value.endsWith("'"))
+        ) {
+          value = value.slice(1, -1);
+        }
+        parsed[key] = value;
+      }
+      if (parsed.TELEGRAM_BOT_TOKEN || parsed.TELEGRAM_CHAT_ID) {
+        return parsed;
+      }
+      if (parsed.BOT_TOKEN || parsed.CHAT_ID) {
+        return {
+          TELEGRAM_BOT_TOKEN: parsed.BOT_TOKEN,
+          TELEGRAM_CHAT_ID: parsed.CHAT_ID,
+        };
+      }
+    } catch {
+      // ignore missing env files
+    }
+  }
+
+  return {};
+}
+
+async function sendTelegramMessage({ botToken, chatId, text, parseMode = null }) {
+  const payload = {
+    chat_id: chatId,
+    text,
+    disable_web_page_preview: true,
+  };
+  if (parseMode) {
+    payload.parse_mode = parseMode;
+  }
+
+  const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    const body = await response.text();
+    throw new Error(`Telegram sendMessage 실패 (${response.status}): ${body}`);
+  }
+}
+
+async function sendChunkedTelegramText({ botToken, chatId, text, preformatted = false }) {
+  const chunks = splitMessageLines(text, preformatted ? 3400 : 3800);
+  for (const chunk of chunks) {
+    const payloadText = preformatted ? `<pre>${escapeHtml(chunk)}</pre>` : chunk;
+    await sendTelegramMessage({
+      botToken,
+      chatId,
+      text: payloadText,
+      parseMode: preformatted ? "HTML" : null,
+    });
+  }
 }
 
 function summarizeActions(stage4, stage3) {
@@ -115,8 +247,13 @@ async function main() {
     throw new Error(`telegram 설정이 없습니다: ${configPath}`);
   }
 
-  const botToken = resolveEnvReference(telegramConfig.botToken);
-  const chatId = resolveEnvReference(telegramConfig.chatId);
+  let botToken = resolveEnvReference(telegramConfig.botToken);
+  let chatId = resolveEnvReference(telegramConfig.chatId);
+  if (!botToken || !chatId) {
+    const fileSecrets = await loadTelegramSecretsFromEnvFile();
+    botToken = botToken || fileSecrets.TELEGRAM_BOT_TOKEN || "";
+    chatId = chatId || fileSecrets.TELEGRAM_CHAT_ID || "";
+  }
   const analysisDir = path.join(ROOT_DIR, "data", "analysis-state", args.date);
 
   let message = args.message;
@@ -138,6 +275,12 @@ async function main() {
 
   if (args.dryRun) {
     process.stdout.write(`${message}\n`);
+    if (args.document) {
+      process.stdout.write(`document: ${resolvePath(args.document)}\n`);
+    }
+    if (args.followupMessageFile) {
+      process.stdout.write(`followup: ${resolvePath(args.followupMessageFile)}\n`);
+    }
     return;
   }
 
@@ -145,21 +288,41 @@ async function main() {
     throw new Error("TELEGRAM_BOT_TOKEN 또는 TELEGRAM_CHAT_ID 가 설정되지 않았습니다.");
   }
 
-  const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({
-      chat_id: chatId,
-      text: message,
-      disable_web_page_preview: true,
-    }),
-  });
+  await sendChunkedTelegramText({ botToken, chatId, text: message, preformatted: false });
 
-  if (!response.ok) {
-    const body = await response.text();
-    throw new Error(`Telegram sendMessage 실패 (${response.status}): ${body}`);
+  const resolvedDocumentPath = resolvePath(args.document);
+  if (resolvedDocumentPath) {
+    const documentBuffer = await fs.readFile(resolvedDocumentPath);
+    const form = new FormData();
+    form.append("chat_id", chatId);
+    const caption = String(args.caption ?? "").trim() || `EcoReport ${args.date}`;
+    form.append("caption", caption.slice(0, 1024));
+    form.append(
+      "document",
+      new Blob([documentBuffer]),
+      path.basename(resolvedDocumentPath),
+    );
+
+    const docResponse = await fetch(`https://api.telegram.org/bot${botToken}/sendDocument`, {
+      method: "POST",
+      body: form,
+    });
+
+    if (!docResponse.ok) {
+      const body = await docResponse.text();
+      throw new Error(`Telegram sendDocument 실패 (${docResponse.status}): ${body}`);
+    }
+  }
+
+  const followupPath = resolvePath(args.followupMessageFile);
+  if (followupPath) {
+    const followupText = await fs.readFile(followupPath, "utf8");
+    await sendChunkedTelegramText({
+      botToken,
+      chatId,
+      text: followupText,
+      preformatted: args.followupPreformatted,
+    });
   }
 
   process.stdout.write(`telegram:${args.event}\n`);

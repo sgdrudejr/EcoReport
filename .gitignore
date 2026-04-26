@@ -41,6 +41,7 @@ scripts/__pycache__/
 
 # local machine overrides
 config/local-paths.local.json
+config/telegram_notify.env
 
 # daily generated knowledge / reports (synced via data branch)
 knowledge/daily/*-report-summary-queue.json

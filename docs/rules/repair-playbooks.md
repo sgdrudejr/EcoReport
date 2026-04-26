@@ -39,28 +39,28 @@ node scripts/build-impact-map.js --date YYYY-MM-DD
 
 증상:
 
-- `stage2-strategy-options.json`이 없거나 mock만 존재함
+- `stage2-strategy-options.json`이 없음
 
 먼저 볼 파일:
 
 - `.env`
-- `scripts/build-stage2-strategy-gemini.py`
-- `data/analysis-state/YYYY-MM-DD/stage2-strategy-options.mock.json`
+- `scripts/build-stage2-strategy-qwen.py`
+- `data/analysis-state/YYYY-MM-DD/stage2-run-log.json`
 
 우선 조치:
 
 ```bash
 cd /Users/seo/Documents/Playground/economy-report
-bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD --gemini-stage2
+bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD --qwen-stage2
 ```
 
-계속 mock이어도 되는 경우:
+계속 실패하면 아래 작업도 실제 Stage 2 복구 후 진행합니다.
 
 - 구조 검증
 - Stage 3/4 UI 점검
 - 회귀 테스트
 
-실거래 판단 전에는 mock 여부를 숨기지 않습니다.
+실거래 판단 전에는 mock 산출물을 사용하지 않습니다.
 
 ## Portfolio Snapshot Incomplete
 

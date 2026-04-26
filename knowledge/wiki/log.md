@@ -58,3 +58,24 @@
 - Refreshed security thesis pages for holdings and active candidates.
 - Refreshed operating rules, research backlog, and decision journal memory pages.
 
+## [2026-04-20] compile | Daily pipeline -> persistent wiki
+
+- Built daily decision memo from Stage 1~4 outputs.
+- Refreshed account playbooks from portfolio, strategy, and execution plan.
+- Refreshed security thesis pages for holdings and active candidates.
+- Refreshed operating rules, research backlog, and decision journal memory pages.
+
+## [2026-04-22] compile | Daily pipeline -> persistent wiki
+
+- Built daily decision memo from Stage 1~4 outputs.
+- Refreshed account playbooks from portfolio, strategy, and execution plan.
+- Refreshed security thesis pages for holdings and active candidates.
+- Refreshed operating rules, research backlog, and decision journal memory pages.
+
+## [2026-04-23] compile | Daily pipeline -> persistent wiki
+
+- Built daily decision memo from Stage 1~4 outputs.
+- Refreshed account playbooks from portfolio, strategy, and execution plan.
+- Refreshed security thesis pages for holdings and active candidates.
+- Refreshed operating rules, research backlog, and decision journal memory pages.
+

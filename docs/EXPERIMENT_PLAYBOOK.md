@@ -107,7 +107,7 @@ cd /Users/seo/Documents/Playground/economy-report
 npm run stage1.5:prompt -- --date YYYY-MM-DD
 npm run stage1.5:gemini:run -- --date YYYY-MM-DD --poll-sec 30 --timeout-sec 1800
 npm run stage1.6:briefing -- --date YYYY-MM-DD --run-date YYYY-MM-DD --effective-market-date YYYY-MM-DD
-bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD --run-date YYYY-MM-DD --effective-market-date YYYY-MM-DD --gemini-stage2
+bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD --run-date YYYY-MM-DD --effective-market-date YYYY-MM-DD --qwen-stage2
 ```
 
 성공 기준:

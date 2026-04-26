@@ -102,18 +102,17 @@ cd /Users/seo/Documents/Playground/economy-report
 bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD
 ```
 
-Gemini Stage 2를 실제로 붙이고 싶으면:
+Qwen Stage 2를 실제로 붙이고 싶으면:
 
 ```bash
 cd /Users/seo/Documents/Playground/economy-report
-bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD --gemini-stage2
+bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD --qwen-stage2
 ```
 
 확인 파일:
 
 - `data/analysis-state/YYYY-MM-DD/stage1-report-extracts-v2.json`
 - `knowledge/daily/manual-kit/YYYY-MM-DD/08-stage2-strategy-prompt.md`
-- `data/analysis-state/YYYY-MM-DD/stage2-strategy-options.mock.json`
 - `data/analysis-state/YYYY-MM-DD/stage2-strategy-options.json`
 - `data/analysis-state/YYYY-MM-DD/stage3-quant-scores.json`
 - `data/analysis-state/YYYY-MM-DD/stage4-execution-plan.json`
@@ -128,19 +127,19 @@ cd /Users/seo/Documents/Playground/economy-report
 npm run stage1.5:prompt -- --date YYYY-MM-DD
 npm run stage1.5:gemini:run -- --date YYYY-MM-DD --poll-sec 30 --timeout-sec 1800
 npm run stage1.6:briefing -- --date YYYY-MM-DD --run-date YYYY-MM-DD --effective-market-date YYYY-MM-DD
-bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD --run-date YYYY-MM-DD --effective-market-date YYYY-MM-DD --gemini-stage2
+bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD --run-date YYYY-MM-DD --effective-market-date YYYY-MM-DD --qwen-stage2
 node scripts/build-llm-wiki.js --date YYYY-MM-DD
 npm run stage1.7:map -- --date YYYY-MM-DD
 npm run stage1.7:prompt -- --date YYYY-MM-DD
 # Gemini 웹에 12-stage1-7... 프롬프트 실행 후 13-stage1-7... 응답 저장
 npm run stage1.6:briefing -- --date YYYY-MM-DD --run-date YYYY-MM-DD --effective-market-date YYYY-MM-DD
-bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD --run-date YYYY-MM-DD --effective-market-date YYYY-MM-DD --gemini-stage2
+bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD --run-date YYYY-MM-DD --effective-market-date YYYY-MM-DD --qwen-stage2
 node scripts/build-llm-wiki.js --date YYYY-MM-DD
 npm run stage1.8:map -- --date YYYY-MM-DD
 npm run stage1.8:prompt -- --date YYYY-MM-DD
 # Gemini 웹에 15-stage1-8... 프롬프트 실행 후 16-stage1-8... 응답 저장
 npm run stage1.6:briefing -- --date YYYY-MM-DD --run-date YYYY-MM-DD --effective-market-date YYYY-MM-DD
-bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD --run-date YYYY-MM-DD --effective-market-date YYYY-MM-DD --gemini-stage2
+bash scripts/run-strategy-pipeline.sh --date YYYY-MM-DD --run-date YYYY-MM-DD --effective-market-date YYYY-MM-DD --qwen-stage2
 ```
 
 확인 파일:

@@ -1,9 +1,25 @@
 {
   "version": "1.0",
+  "checkpoint_dir": "data/analysis-state/{{date}}/checkpoints",
+  "checkpoint_pattern": "{{stepId}}-complete.json",
   "steps": [
     {
+      "id": "portfolio_snapshot_sync",
+      "label": "Stage 1 Portfolio Snapshot Sync",
+      "command": "node scripts/sync-kis-portfolio.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
+      "inputs": [],
+      "outputs": [
+        "data/portfolio/latest.json"
+      ],
+      "depends_on": [],
+      "cache_key": "portfolio:{{date}}",
+      "timeout": 300000,
+      "allow_failure": true,
+      "failure_policy": "degrade"
+    },
+    {
       "id": "stage1_extracts",
-      "label": "Stage 1 Extracts",
+      "label": "Stage 2 Report Extracts",
       "command": "node scripts/build-stage1-report-extracts.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
       "inputs": [
         "data/reports/{{date}}/index.json",
@@ -12,30 +28,102 @@
       "outputs": [
         "data/analysis-state/{{date}}/stage1-report-extracts-v2.json"
       ],
-      "depends_on": [],
+      "depends_on": [
+        "portfolio_snapshot_sync"
+      ],
       "cache_key": "stage1:{{date}}",
-      "timeout": 600000
+      "timeout": 600000,
+      "failure_policy": "block"
     },
     {
       "id": "stage1_5_prompt",
-      "label": "Stage 1.5 Deep Research Prompt",
+      "label": "Stage 5 Deep Research Prompt Split",
       "command": "node scripts/build-stage1-5-gemini-deep-research-prompt.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
       "inputs": [
-        "data/analysis-state/{{date}}/stage1-report-extracts-v2.json"
+        "data/analysis-state/{{date}}/stage1-report-extracts-v2.json",
+        "data/analysis-state/{{date}}/stage1-research-agenda.json"
       ],
       "outputs": [
-        "knowledge/daily/{{date}}-gemini-deep-research-prompt.md"
+        "knowledge/daily/manual-kit/{{date}}/07a-stage1-5-macro-prompt.md",
+        "knowledge/daily/manual-kit/{{date}}/07b-stage1-5-sector-prompt.md",
+        "knowledge/daily/manual-kit/{{date}}/07c-stage1-5-newcandidate-prompt.md",
+        "knowledge/daily/manual-kit/{{date}}/07-stage1-5-gemini-deep-research-prompt.md"
+      ],
+      "depends_on": [
+        "stage1_extracts",
+        "stage1_4_agenda"
+      ],
+      "cache_key": "stage1.5:{{date}}",
+      "timeout": 300000,
+      "allow_failure": true,
+      "failure_policy": "degrade"
+    },
+    {
+      "id": "stage1_4_summarize",
+      "label": "Stage 3 Top Report Summary Selection",
+      "command": ".venv/bin/python scripts/collectors/summarize-report-chunks.py --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}} --top-n 30 --concurrency 6",
+      "inputs": [
+        "data/analysis-state/{{date}}/stage1-report-extracts-v2.json",
+        "reports/report_summaries/{{date}}"
+      ],
+      "outputs": [
+        "data/analysis-state/{{date}}/stage1-chunk-summaries.json"
       ],
       "depends_on": [
         "stage1_extracts"
       ],
-      "cache_key": "stage1.5:{{date}}",
+      "cache_key": "stage1.4a:{{date}}",
       "timeout": 300000,
-      "allow_failure": true
+      "allow_failure": true,
+      "failure_policy": "degrade"
+    },
+    {
+      "id": "stage2_enriched_report_index",
+      "label": "Stage 2 Enriched Report Index",
+      "command": "node scripts/build-stage2-enriched-report-index.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
+      "inputs": [
+        "data/analysis-state/{{date}}/stage1-report-extracts-v2.json",
+        "data/analysis-state/{{date}}/stage1-chunk-summaries.json",
+        "reports/report_summaries/{{date}}"
+      ],
+      "outputs": [
+        "data/analysis-state/{{date}}/stage2-enriched-report-index.json"
+      ],
+      "depends_on": [
+        "stage1_extracts",
+        "stage1_4_summarize"
+      ],
+      "cache_key": "stage2-enriched:{{date}}",
+      "timeout": 300000,
+      "allow_failure": true,
+      "failure_policy": "degrade"
+    },
+    {
+      "id": "stage1_4_agenda",
+      "label": "Stage 4 Research Agenda",
+      "command": ".venv/bin/python scripts/build-stage1-4-research-agenda.py --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}} --max-input-summaries 30",
+      "inputs": [
+        "data/analysis-state/{{date}}/stage1-report-extracts-v2.json",
+        "data/analysis-state/{{date}}/stage1-chunk-summaries.json",
+        "data/analysis-state/{{date}}/stage2-enriched-report-index.json",
+        "data/portfolio/latest.json"
+      ],
+      "outputs": [
+        "data/analysis-state/{{date}}/stage1-research-agenda.json"
+      ],
+      "depends_on": [
+        "stage1_extracts",
+        "stage1_4_summarize",
+        "stage2_enriched_report_index"
+      ],
+      "cache_key": "stage1.4b:{{date}}",
+      "timeout": 300000,
+      "allow_failure": true,
+      "failure_policy": "degrade"
     },
     {
       "id": "stage2_prompt",
-      "label": "Stage 2 Strategy Prompt",
+      "label": "Stage 6 Strategy Prompt",
       "command": "node scripts/build-stage2-strategy-prompt.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
       "inputs": [
         "data/analysis-state/{{date}}/stage1-report-extracts-v2.json",
@@ -46,14 +134,14 @@
         "knowledge/daily/manual-kit/{{date}}/08-stage2-strategy-prompt.md"
       ],
       "depends_on": [
-        "stage1_extracts"
+        "stage1_5_prompt"
       ],
       "cache_key": "stage2-prompt:{{date}}",
       "timeout": 300000
     },
     {
       "id": "stage2_strategy",
-      "label": "Stage 2 Strategy",
+      "label": "Stage 7 Strategy Options",
       "command": "bash scripts/run-stage2-step.sh --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}} --mode {{stage2Mode}}",
       "inputs": [
         "knowledge/daily/manual-kit/{{date}}/08-stage2-strategy-prompt.md"
@@ -69,6 +157,45 @@
       "timeout": 900000
     },
     {
+      "id": "kis_etf_ranking",
+      "label": "KIS ETF Ranking",
+      "command": ".venv/bin/python scripts/collectors/fetch-kis-etf-ranking.py --date {{date}} --top-n 80",
+      "inputs": [
+        "data/reference/stockeasy-theme-etf-map.json"
+      ],
+      "outputs": [
+        "data/external/kis-etf/{{date}}/etf-ranking.json"
+      ],
+      "depends_on": [
+        "stage1_extracts"
+      ],
+      "cache_key": "kis-etf:{{date}}",
+      "timeout": 300000,
+      "allow_failure": true
+    },
+    {
+      "id": "stage2_5_etf_candidates",
+      "label": "Stage 8 ETF Candidate Matching",
+      "command": "node scripts/build-stage2-5-etf-candidates.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
+      "inputs": [
+        "data/analysis-state/{{date}}/stage2-strategy-options.json",
+        "data/external/kis-etf/{{date}}/etf-ranking.json",
+        "data/reference/stockeasy-theme-etf-map.json"
+      ],
+      "outputs": [
+        "data/analysis-state/{{date}}/stage2-5-etf-candidates.json",
+        "data/analysis-state/{{date}}/stage2-strategy-options.enriched.json"
+      ],
+      "depends_on": [
+        "stage2_strategy",
+        "kis_etf_ranking"
+      ],
+      "cache_key": "stage2.5:{{date}}",
+      "timeout": 300000,
+      "allow_failure": true,
+      "failure_policy": "degrade"
+    },
+    {
       "id": "technical_refresh_stage2",
       "label": "Stage 2 Candidate Technical Refresh",
       "command": "node scripts/calc-technicals.js --date {{date}} --include-stage2-candidates --merge-existing",
@@ -80,7 +207,7 @@
         "data/technical/{{date}}.json"
       ],
       "depends_on": [
-        "stage2_strategy"
+        "stage2_5_etf_candidates"
       ],
       "cache_key": "technical-refresh:{{date}}",
       "timeout": 300000,
@@ -88,7 +215,7 @@
     },
     {
       "id": "impact_map",
-      "label": "Impact Map",
+      "label": "Stage 9 Impact Map",
       "command": "node scripts/build-impact-map.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
       "inputs": [
         "data/analysis-state/{{date}}/stage1-report-extracts-v2.json",
@@ -99,14 +226,14 @@
       ],
       "depends_on": [
         "stage1_extracts",
-        "stage2_strategy"
+        "stage2_5_etf_candidates"
       ],
       "cache_key": "impact-map:{{date}}",
       "timeout": 300000
     },
     {
       "id": "stage3_quant",
-      "label": "Stage 3 Quant",
+      "label": "Stage 10 Quant Scores",
       "command": "node scripts/build-stage3-quant-scores.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
       "inputs": [
         "data/analysis-state/{{date}}/impact-map.json",
@@ -141,7 +268,7 @@
     },
     {
       "id": "stage4_execution_plan",
-      "label": "Stage 4 Execution Plan",
+      "label": "Stage 11 Execution Plan",
       "command": "node scripts/build-stage4-execution-plan.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
       "inputs": [
         "data/analysis-state/{{date}}/stage3-quant-scores.json",
@@ -156,6 +283,40 @@
       ],
       "cache_key": "stage4:{{date}}",
       "timeout": 300000
+    },
+    {
+      "id": "stage4_execution_plan_table",
+      "label": "Stage 12 Execution Plan Table",
+      "command": "node scripts/export-stage4-execution-plan-table.js --date {{date}} --output reports/daily/{{date}}-stage4-execution-plan-table.md --telegram-output reports/daily/{{date}}-stage4-execution-plan-telegram.txt",
+      "inputs": [
+        "data/analysis-state/{{date}}/stage4-execution-plan.json"
+      ],
+      "outputs": [
+        "reports/daily/{{date}}-stage4-execution-plan-table.md",
+        "reports/daily/{{date}}-stage4-execution-plan-telegram.txt"
+      ],
+      "depends_on": [
+        "stage4_execution_plan"
+      ],
+      "cache_key": "stage4-table:{{date}}",
+      "timeout": 300000,
+      "allow_failure": true
+    },
+    {
+      "id": "stage6_briefing_delta",
+      "label": "Stage 6 Briefing Delta",
+      "command": "node scripts/build-briefing-delta.js --date {{date}}",
+      "inputs": [
+        "knowledge/daily/{{date}}-gemini-briefing-rich.md"
+      ],
+      "outputs": [
+        "knowledge/daily/{{date}}-briefing-delta.md",
+        "data/analysis-state/{{date}}/briefing-delta.json"
+      ],
+      "depends_on": [],
+      "cache_key": "stage6-delta:{{date}}",
+      "timeout": 300000,
+      "allow_failure": true
     },
     {
       "id": "feedback_snapshot",

@@ -54,11 +54,10 @@ node scripts/validate-stage-contracts.js --date YYYY-MM-DD
 출력:
 
 - `data/analysis-state/YYYY-MM-DD/stage2-strategy-options.json`
-- 또는 `data/analysis-state/YYYY-MM-DD/stage2-strategy-options.mock.json`
 
 최소 계약:
 
-- 실제 결과가 없더라도 mock 여부는 명시되어야 한다.
+- 실제 LLM 결과가 없으면 Stage 2는 실패해야 한다.
 - `holdings_bias[]` 항목은 `ticker`, `action`, `conviction`, `rationale`를 가져야 한다.
 - `action`은 `BUY`, `HOLD`, `TRIM`, `WATCH` 중 하나여야 한다.
 

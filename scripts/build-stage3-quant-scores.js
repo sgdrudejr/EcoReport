@@ -1866,7 +1866,6 @@ async function main() {
     technical: true,
     stage1: true,
     stage2: true,
-    stage2Mock: true,
     impactMap: true,
     fred: true,
     stage2Resolved: true,
@@ -1879,7 +1878,11 @@ async function main() {
   const stage1 = data.stage1;
   const impactMap = data.impactMap;
   const fred = data.fred;
-  const stage2Data = data.stage2Data;
+  const stage2Enriched = await readJson(path.join(stateDir, "stage2-strategy-options.enriched.json"), null);
+  const stage2Data = stage2Enriched ?? data.stage2Data;
+  if (!stage2Enriched && data.stage2Mode === "missing") {
+    throw new Error(`Stage 2 real LLM output missing: ${paths.stage2}`);
+  }
   const normalizedPortfolio = enrichPortfolioWithSecurityCodes(portfolio);
   const regime = detectRegime(technical, fred);
   const leadingIndicator = computeLeadingIndicatorScore(fred);

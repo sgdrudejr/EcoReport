@@ -31,7 +31,7 @@ on:
 
 jobs:
   run-cycle:
-    name: Run Analysis, Deploy Local & Push Data
+    name: Run Analysis & Push Complete Data
     runs-on: self-hosted   # Mac Mini self-hosted runner
 
     steps:
@@ -89,9 +89,6 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           FRED_API_KEY:      ${{ secrets.FRED_API_KEY }}
           BOK_API_KEY:       ${{ secrets.BOK_API_KEY }}
-
-      - name: Deploy dashboard locally
-        run: bash scripts/deploy-dashboard-local.sh
 
       - name: Push results to data branch
         run: bash scripts/push-to-github.sh "${{ steps.opts.outputs.value }}"

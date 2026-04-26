@@ -33,6 +33,8 @@ Mac Mini에서 저장된 증권/산업/매크로 PDF를 읽고, Windows PC의 �
 - `reports/report_summaries/YYYY-MM-DD/*.json`
 - `reports/merged/final_market_view.json`
 - `reports/merged/final_market_view.md`
+- `data/analysis-state/YYYY-MM-DD/stage1-4-full-daily-report.json`
+- `data/analysis-state/YYYY-MM-DD/stage1-4-insight-atoms.json`
 - `reports/logs/failed_files.json`
 - `reports/logs/run_stats.json`
 - `reports/logs/startup_sequence.json`
@@ -80,6 +82,25 @@ bash scripts/run-local-report-orchestrator.sh --date 2026-04-15 --detail deep --
 cd /Users/seo/Documents/Playground/economy-report
 .venv/bin/python scripts/test_local_llm_connection.py
 ```
+
+100개 리포트 요약 전체를 사용한 일자 통합 리포트와 insight atom 생성:
+
+```bash
+cd /Users/seo/Documents/Playground/economy-report
+npm run stage1.4:full-report -- --date 2026-04-23
+```
+
+LLM 서버 없이 구조 점검용 산출물만 만들 때:
+
+```bash
+cd /Users/seo/Documents/Playground/economy-report
+npm run stage1.4:full-report -- --date 2026-04-23 --skip-llm
+```
+
+중요:
+
+- `stage1.4:full-report`는 `reports/report_summaries/YYYY-MM-DD/report_*.json` 전체를 읽습니다.
+- 기존 `stage1.4:summarize`의 `top-n` 결과는 Deep Research agenda용 보조 입력이며, 전체 일자 통합 리포트의 기준 데이터가 아닙니다.
 
 ## 설정
 

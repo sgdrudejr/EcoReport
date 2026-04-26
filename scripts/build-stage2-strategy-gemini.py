@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Stage 2 전략 탐색을 Qwen API로 실행해 JSON 결과를 저장한다.
+Legacy compatibility wrapper target for Stage 2 strategy generation.
 
-예시:
-  python3 scripts/build-stage2-strategy-qwen.py --date 2026-04-03
+Canonical script name is `build-stage2-strategy-qwen.py`.
+This file remains for backward compatibility with older automation/docs.
 """
 
 from __future__ import annotations
@@ -25,9 +25,18 @@ from lib.env_loader import load_simple_dotenv
 
 ROOT = Path(os.getenv("ECOREPORT_ROOT") or Path(__file__).resolve().parent.parent)
 DEFAULT_PRIORITY_MODELS = [
-    "qwen-max",
-    "qwen-plus",
-    "qwen-turbo",
+    "qwen3.5-397b-a17b",    # 가장 큰 MoE, 최고 품질
+    "qwen3.5-122b-a10b",    # 대형 MoE
+    "qwen3.5-27b",          # 27B dense
+    "qwen3.6-plus",         # 최신 plus
+    "qwen3.6-plus-2026-04-02",
+    "qwen3.5-35b-a3b",
+    "qwen3.6-flash",
+    "qwen3.6-flash-2026-04-16",
+    "qwen3.5-plus-2026-02-15",
+    "qwen3.5-flash",
+    "qwen3.5-flash-2026-02-23",
+    "qwen3.6-35b-a3b",
 ]
 DEFAULT_MAX_RETRIES = 5
 
@@ -53,7 +62,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument(
         "--temperature",
         type=float,
-        default=0.2,
+        default=0.55,
         help="생성 온도",
     )
     parser.add_argument(
@@ -69,7 +78,9 @@ def load_api_key() -> str:
     env_path = ROOT / ".env"
     if env_path.exists():
         load_simple_dotenv(env_path)
-    api_key = (os.getenv("DASHSCOPE_API_KEY") or os.getenv("QWEN_API_KEY") or "").strip()
+    # Prefer explicit QWEN_API_KEY from project env over any inherited
+    # shell-level DASHSCOPE key to avoid stale global credentials.
+    api_key = (os.getenv("QWEN_API_KEY") or os.getenv("DASHSCOPE_API_KEY") or "").strip()
     if not api_key:
         raise RuntimeError("DASHSCOPE_API_KEY 또는 QWEN_API_KEY가 설정되어 있지 않습니다.")
     return api_key
@@ -84,7 +95,7 @@ def create_client(api_key: str):
     # DashScope 호환 OpenAI 클라이언트
     return OpenAI(
         api_key=api_key,
-        base_url="https://dashscope.aliyuncs.com/compatible-mode/v1",
+        base_url="https://dashscope-intl.aliyuncs.com/compatible-mode/v1",
     )
 
 

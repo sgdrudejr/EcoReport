@@ -122,6 +122,28 @@ flowchart TD
 - 계좌/보유 종목과 연결 가능한 fact anchor 확보
 - `_contract` 메타데이터 포함
 
+### Stage 1.4 Full Daily Report / Insight Atoms
+
+스크립트:
+
+- `scripts/build-stage1-4-full-daily-report.py`
+- `scripts/collectors/summarize-report-chunks.py`
+- `scripts/build-stage1-4-research-agenda.py`
+
+출력:
+
+- `data/analysis-state/YYYY-MM-DD/stage1-4-full-daily-report.json`
+- `data/analysis-state/YYYY-MM-DD/stage1-4-full-daily-report.md`
+- `data/analysis-state/YYYY-MM-DD/stage1-4-insight-atoms.json`
+- `knowledge/daily/YYYY-MM-DD-full-daily-report.md`
+
+역할:
+
+- `reports/report_summaries/YYYY-MM-DD/report_*.json` 전체를 source of truth로 사용합니다.
+- 해당 날짜의 리포트별 요약을 top-N으로 자르지 않고 모두 읽어 카테고리별 통합 리포트와 일자 통합 리포트를 생성합니다.
+- report별 `insight atom`을 병렬로 추출해 신규 후보, 소수 의견, 리스크, 촉매, 포트폴리오 관련 아이디어를 구조화합니다.
+- 기존 `summarize-report-chunks.py`의 top-N 출력은 Deep Research agenda 생성을 위한 보조 입력이며, 일자 통합 리포트의 기준 데이터로 쓰지 않습니다.
+
 ### Stage 1.5 / 1.6
 
 스크립트:
@@ -147,20 +169,17 @@ flowchart TD
 스크립트:
 
 - `scripts/build-stage2-strategy-prompt.js`
-- `scripts/build-stage2-strategy-gemini.py`
-- `scripts/build-stage2-strategy-claude.js`
-- `scripts/build-stage2-strategy-mock.js`
+- `scripts/build-stage2-strategy-qwen.py`
 
 기본 동작:
 
-- `run-strategy-pipeline.sh`는 기본적으로 `Gemini -> Claude -> Mock` 폴백 체인을 사용
-- `--mock-stage2`는 테스트용 고정 mock
-- `--gemini-stage2`, `--claude-stage2`로 우선 공급자 지정 가능
+- `run-strategy-pipeline.sh`는 Qwen Stage 2를 실행하고 실패 시 즉시 중단
+- `--mock-stage2`는 비활성화되어 있으며 운영 데이터 생성에 사용할 수 없음
+- `--gemini-stage2`는 레거시 alias로만 남아 있고 실제로는 Qwen 경로를 사용
 
 출력:
 
 - `data/analysis-state/YYYY-MM-DD/stage2-strategy-options.json`
-- `data/analysis-state/YYYY-MM-DD/stage2-strategy-options.mock.json`
 - `data/analysis-state/YYYY-MM-DD/stage2-run-log.json`
 
 입력 맥락:
