@@ -1,6 +1,6 @@
 {
-  "date": "2026-04-23",
-  "updatedAt": "2026-04-23T15:26:05.475Z",
+  "date": "2026-04-24",
+  "updatedAt": "2026-04-26T04:52:16.826Z",
   "accounts": [
     {
       "portfolioKey": "KIS_MAIN",
@@ -9,8 +9,8 @@
       "authConfigFile": "kis_devlp.yaml",
       "rawPath": "data/portfolio/sources/kis/KIS_MAIN.json",
       "accountNumber": "44367266-01",
-      "holdings": 7,
-      "evaluationAmount": 4971609
+      "holdings": 6,
+      "evaluationAmount": 2606057
     },
     {
       "portfolioKey": "ISA",
@@ -20,7 +20,7 @@
       "rawPath": "data/portfolio/sources/kis/ISA.json",
       "accountNumber": "44370689-01",
       "holdings": 7,
-      "evaluationAmount": 11855691
+      "evaluationAmount": 8676264
     },
     {
       "portfolioKey": "PENSION",
@@ -30,7 +30,7 @@
       "rawPath": "data/portfolio/sources/kis/PENSION.json",
       "accountNumber": "44378641-22",
       "holdings": 5,
-      "evaluationAmount": 8406857
+      "evaluationAmount": 5652742
     }
   ]
 }

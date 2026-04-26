@@ -41,6 +41,8 @@ export function buildAnalysisPaths(date) {
     watchlist: path.join(ROOT_DIR, "config", "watchlist.json"),
     fred: path.join(ROOT_DIR, "data", "macro", `fred-${date}.json`),
     stage1: path.join(analysisDir, "stage1-report-extracts-v2.json"),
+    stage14FullDailyReport: path.join(analysisDir, "stage1-4-full-daily-report.json"),
+    stage14InsightAtoms: path.join(analysisDir, "stage1-4-insight-atoms.json"),
     stage2: path.join(analysisDir, "stage2-strategy-options.json"),
     impactMap: path.join(analysisDir, "impact-map.json"),
     marketVoice: path.join(analysisDir, "marketvoice-linked.json"),
@@ -117,6 +119,22 @@ export async function loadAnalysisContext(args, options = {}) {
     loaders.push(
       cachedReadJson(cache, paths.stage1, { extracts: [] }).then((value) => {
         data.stage1 = value;
+      }),
+    );
+  }
+
+  if (options.stage14FullDailyReport) {
+    loaders.push(
+      cachedReadJson(cache, paths.stage14FullDailyReport, null).then((value) => {
+        data.stage14FullDailyReport = value;
+      }),
+    );
+  }
+
+  if (options.stage14InsightAtoms) {
+    loaders.push(
+      cachedReadJson(cache, paths.stage14InsightAtoms, { atoms: [] }).then((value) => {
+        data.stage14InsightAtoms = value;
       }),
     );
   }

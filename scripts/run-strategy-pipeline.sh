@@ -234,12 +234,10 @@ echo "== Stage 2: report extracts =="
 node scripts/build-stage1-report-extracts.js "${STAGE2_COMMON_ARGS[@]}"
 
 if [[ "$RUN_STAGE1_4" == "1" ]]; then
-  echo "== Stage 3: top report summary selection =="
-  if ! "$(python_bin)" scripts/collectors/summarize-report-chunks.py \
-    "${STAGE2_COMMON_ARGS[@]}" \
-    --top-n "${STAGE1_4_TOP_N:-30}" \
-    --concurrency "${STAGE1_4_CONCURRENCY:-6}"; then
-    echo "WARN: Stage 3(top report selection) 실패. Stage 4에서 extracts 폴백으로 계속 진행합니다." >&2
+  echo "== Stage 3: full daily report + insight atoms =="
+  if ! "$(python_bin)" scripts/build-stage1-4-full-daily-report.py \
+    "${STAGE2_COMMON_ARGS[@]}"; then
+    echo "WARN: Stage 3(full daily report/atoms) 실패. Stage 4에서 extracts 폴백으로 계속 진행합니다." >&2
   fi
 
   echo "== Stage 2: enriched report index =="
@@ -250,7 +248,7 @@ if [[ "$RUN_STAGE1_4" == "1" ]]; then
   echo "== Stage 4: research agenda =="
   if ! "$(python_bin)" scripts/build-stage1-4-research-agenda.py \
     "${STAGE2_COMMON_ARGS[@]}" \
-    --max-input-summaries "${STAGE1_4_MAX_INPUT_SUMMARIES:-30}"; then
+    --max-input-summaries "${STAGE1_4_MAX_INPUT_SUMMARIES:-80}"; then
     echo "WARN: Stage 4(research agenda) 실패. Stage 5는 extracts 추론 폴백으로 계속 진행합니다." >&2
   fi
 fi

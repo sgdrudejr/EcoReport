@@ -205,10 +205,17 @@ def is_hard_quota_error(message: str) -> bool:
     lowered = message.lower()
     return (
         "billing details" in lowered
-        or "free_tier" in lowered
-        or "free tier" in lowered
         or "quota exceeded for metric" in lowered
         or re.search(r"limit:\s*0", lowered) is not None
+    )
+
+
+def is_model_quota_error(message: str) -> bool:
+    lowered = message.lower()
+    return (
+        "allocationquota.freetieronly" in lowered
+        or "free tier" in lowered
+        or "free_tier" in lowered
     )
 
 
@@ -284,11 +291,15 @@ def generate_json_response_with_retry(
 
                 if is_hard_quota_error(message):
                     raise
+                if is_model_quota_error(message):
+                    continue
                 if is_retryable_transient_error(message):
                     continue
                 raise
 
         if attempt < max_retries:
+            if last_error is not None and is_model_quota_error(extract_exception_message(last_error)):
+                raise last_error
             wait_for = sleep_seconds or min(180, 45 * attempt)
             print(
                 f"[stage2-qwen] 일시적 외부 오류로 {wait_for}s 대기 후 재시도 "

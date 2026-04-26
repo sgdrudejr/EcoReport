@@ -254,10 +254,57 @@ function formatExtractEvidenceBlocks(extracts) {
     .join("\n");
 }
 
+function formatFullDailyReportForPrompt(fullDailyReport) {
+  const report = fullDailyReport?.final_report ?? {};
+  const consensus = Array.isArray(report?.cross_category_consensus)
+    ? report.cross_category_consensus.slice(0, 8)
+    : [];
+  const minority = Array.isArray(report?.minority_views)
+    ? report.minority_views.slice(0, 8)
+    : [];
+  const contradictions = Array.isArray(report?.contradictions)
+    ? report.contradictions.slice(0, 8)
+    : [];
+  const candidates = Array.isArray(report?.new_candidate_watchlist)
+    ? report.new_candidate_watchlist.slice(0, 10)
+    : [];
+
+  const lines = [];
+  if (report?.overall_market_view) lines.push(`overall: ${truncate(report.overall_market_view, 320)}`);
+  if (consensus.length) lines.push(`consensus: ${consensus.map((item) => truncate(item, 120)).join(" / ")}`);
+  if (minority.length) lines.push(`minority: ${minority.map((item) => truncate(item, 120)).join(" / ")}`);
+  if (contradictions.length) lines.push(`contradictions: ${contradictions.map((item) => truncate(item, 120)).join(" / ")}`);
+  if (candidates.length) lines.push(`new_candidates: ${candidates.map((item) => truncate(item, 90)).join(" / ")}`);
+
+  return lines.length ? lines.join("\n") : "- Stage 1.4 full daily report 없음";
+}
+
+function formatInsightAtomsForPrompt(atomPayload) {
+  const atoms = Array.isArray(atomPayload?.atoms) ? atomPayload.atoms : [];
+  if (!atoms.length) return "- insight atom 없음";
+
+  const ranked = [...atoms]
+    .sort((left, right) => {
+      const leftScore = Number(left?.conviction_score ?? 0) + Number(left?.novelty_score ?? 0);
+      const rightScore = Number(right?.conviction_score ?? 0) + Number(right?.novelty_score ?? 0);
+      return rightScore - leftScore;
+    })
+    .slice(0, 24);
+
+  return ranked
+    .map((atom) => {
+      const label = atom?.entity || atom?.title || atom?.report_id || "atom";
+      return `- [${atom?.atom_type ?? "atom"}] ${truncate(label, 42)}: ${truncate(atom?.claim ?? "", 180)} (${atom?.direction ?? "neutral"}, ${atom?.horizon ?? "n/a"}, ${atom?.report_id ?? "-"})`;
+    })
+    .join("\n");
+}
+
 async function main() {
   const args = parseDateArgs(process.argv.slice(2));
   const context = await loadAnalysisContext(args, {
     stage1: true,
+    stage14FullDailyReport: true,
+    stage14InsightAtoms: true,
     portfolio: true,
     technical: true,
     watchlist: true,
@@ -285,6 +332,8 @@ async function main() {
     }))),
   ]);
   const stage1 = data.stage1;
+  const fullDailyReport = data.stage14FullDailyReport;
+  const insightAtoms = data.stage14InsightAtoms;
   const portfolio = data.portfolio;
   const technical = data.technical;
   const briefing = data.richBriefing;
@@ -347,6 +396,14 @@ async function main() {
     "",
     "## 시장/섹터 브리핑",
     briefingSummary || "- rich briefing 없음",
+    "",
+    "## Stage 1.4 전체 리포트 통합 관점",
+    "아래는 당일 리포트 전체를 카테고리별로 병합한 결과입니다. 평균적 결론보다 consensus/minority/contradiction을 분리해서 전략화하세요.",
+    formatFullDailyReportForPrompt(fullDailyReport),
+    "",
+    "## Stage 1.4 Insight Atoms",
+    "아래 atom은 개별 리포트 단위에서 보존한 thesis/risk/catalyst/new_candidate입니다. Qwen은 이 atom을 다시 요약하지 말고 전략 후보, 충돌, 반전 조건으로 변환하세요.",
+    formatInsightAtomsForPrompt(insightAtoms),
     "",
     "## 머니토링 실시간 시황 레이어",
     formatMarketVoiceForPrompt(marketVoice, {

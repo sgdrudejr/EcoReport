@@ -232,11 +232,80 @@ def build_fallback_summaries_from_extracts(
     return result
 
 
+def infer_topic_type_from_atom(atom: dict[str, Any]) -> str:
+    atom_type = str(atom.get("atom_type") or "").lower()
+    category = normalize_text(atom.get("category") or "")
+    signal = f"{category} {atom.get('title') or ''} {atom.get('entity') or ''} {atom.get('claim') or ''}".lower()
+
+    if "경제" in category or any(keyword in signal for keyword in ["금리", "환율", "유가", "m2", "연준", "매크로"]):
+        return "macro"
+    if atom_type == "new_candidate":
+        return "new_candidate"
+    if atom_type == "company_view":
+        return "security"
+    return "sector"
+
+
+def build_atom_summary_inputs(
+    state_dir: Path,
+    max_input: int,
+) -> list[dict[str, Any]]:
+    atoms_path = state_dir / "stage1-4-insight-atoms.json"
+    atoms_json = load_json(atoms_path, None)
+    atoms = atoms_json.get("atoms") if isinstance(atoms_json, dict) else None
+    if not isinstance(atoms, list) or not atoms:
+        return []
+
+    rows: list[dict[str, Any]] = []
+    for atom in atoms:
+        if not isinstance(atom, dict):
+            continue
+        report_id = normalize_text(atom.get("report_id") or "")
+        claim = normalize_text(atom.get("claim") or "")
+        if not report_id or not claim:
+            continue
+
+        atom_type = normalize_text(atom.get("atom_type") or "")
+        entity = normalize_text(atom.get("entity") or atom.get("title") or "")
+        topic_type = infer_topic_type_from_atom(atom)
+        score = int(
+            round(
+                float(atom.get("conviction_score") or 0) * 55
+                + float(atom.get("novelty_score") or 0) * 35
+                + (12 if atom_type == "new_candidate" else 0)
+                + (8 if atom_type == "risk" else 0)
+            )
+        )
+
+        rows.append(
+            {
+                "report_id": report_id,
+                "title": atom.get("title") or "",
+                "broker": atom.get("publisher") or "",
+                "sector": atom.get("category") or "",
+                "summary": truncate_text(f"{entity}: {claim}", 260),
+                "priority_score": max(1, min(100, score)),
+                "report_type": atom_type,
+                "themes": [atom.get("category"), atom.get("entity"), atom_type],
+                "related_accounts": atom.get("portfolio_relevance") or [],
+                "inferred_type": topic_type,
+                "label_hint": truncate_text(entity or atom.get("title") or "인사이트 토픽", 34),
+            }
+        )
+
+    rows.sort(key=lambda row: row.get("priority_score", 0), reverse=True)
+    return rows[:max(1, max_input)]
+
+
 def build_summary_inputs(
     state_dir: Path,
     extracts: list[dict[str, Any]],
     max_input: int,
 ) -> tuple[list[dict[str, Any]], str]:
+    atom_rows = build_atom_summary_inputs(state_dir, max_input)
+    if atom_rows:
+        return atom_rows, "stage1_4_insight_atoms"
+
     enriched_path = state_dir / "stage2-enriched-report-index.json"
     enriched_json = load_json(enriched_path, None)
 
