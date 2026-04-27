@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// 2단계: Stage 1 추출물과 포트폴리오/기술점수를 바탕으로 LLM 전략 탐색 프롬프트를 생성합니다.
+// 07. Strategy Options: 구조화 리포트, 포트폴리오, 기술점수를 바탕으로 LLM 전략 탐색 프롬프트를 생성합니다.
 
 import path from "node:path";
 
@@ -276,7 +276,7 @@ function formatFullDailyReportForPrompt(fullDailyReport) {
   if (contradictions.length) lines.push(`contradictions: ${contradictions.map((item) => truncate(item, 120)).join(" / ")}`);
   if (candidates.length) lines.push(`new_candidates: ${candidates.map((item) => truncate(item, 90)).join(" / ")}`);
 
-  return lines.length ? lines.join("\n") : "- Stage 1.4 full daily report 없음";
+  return lines.length ? lines.join("\n") : "- 02. Chunk Summary full daily report 없음";
 }
 
 function formatInsightAtomsForPrompt(atomPayload) {
@@ -383,12 +383,12 @@ async function main() {
   });
 
   const prompt = [
-    "# EcoReport Stage 2 Strategy Exploration",
+    "# EcoReport 07. Strategy Options",
     "",
     `실행일은 ${args.runDate}, 기준 거래일은 ${args.effectiveMarketDate} 입니다.`,
     `오늘 날짜는 ${args.date} 입니다.`,
     "당신은 내 포트폴리오를 실제로 운용하는 전략 탐색 LLM입니다.",
-    "아래 Stage 1 연구 노트, 계좌 상태, 기술점수를 바탕으로 새로운 투자 전략 옵션을 설계하세요.",
+    "아래 03. Report Indexing 연구 노트, 계좌 상태, 기술점수를 바탕으로 새로운 투자 전략 옵션을 설계하세요.",
     "일반론보다 실제 운용 가능한 계좌별 대안을 제시하세요.",
     "",
     "## 내 현재 계좌",
@@ -397,11 +397,11 @@ async function main() {
     "## 시장/섹터 브리핑",
     briefingSummary || "- rich briefing 없음",
     "",
-    "## Stage 1.4 전체 리포트 통합 관점",
+    "## 02. Chunk Summary 전체 리포트 통합 관점",
     "아래는 당일 리포트 전체를 카테고리별로 병합한 결과입니다. 평균적 결론보다 consensus/minority/contradiction을 분리해서 전략화하세요.",
     formatFullDailyReportForPrompt(fullDailyReport),
     "",
-    "## Stage 1.4 Insight Atoms",
+    "## 02. Chunk Summary Insight Atoms",
     "아래 atom은 개별 리포트 단위에서 보존한 thesis/risk/catalyst/new_candidate입니다. Qwen은 이 atom을 다시 요약하지 말고 전략 후보, 충돌, 반전 조건으로 변환하세요.",
     formatInsightAtomsForPrompt(insightAtoms),
     "",
@@ -460,10 +460,10 @@ async function main() {
     "문장은 짧게, 각 문자열은 1~2문장 이내로 유지하세요.",
     "strategy_changes는 최대 4개, candidate_scores는 최대 8개까지만 반환하세요.",
     "buy_candidates / trim_candidates / hold_candidates는 각 계좌당 최대 3개까지만 반환하세요.",
-    "중요: Stage 2는 테마 논리 단계입니다. 이 단계에서 ETF/주식의 숫자 코드(예: 360750, 005930)를 직접 추천하지 마세요.",
+    "중요: 07. Strategy Options는 테마 논리 단계입니다. 이 단계에서 ETF/주식의 숫자 코드(예: 360750, 005930)를 직접 추천하지 마세요.",
     "candidate_scores.code는 반드시 THEME::<slug> 형식으로 작성하세요. 예: THEME::ai-power-grid, THEME::defense-nuclear.",
     "account_actions의 buy_candidates / trim_candidates / hold_candidates도 동일하게 THEME::<slug>만 사용하세요.",
-    "실제 ETF 코드 매핑은 Stage 2.5에서 수행됩니다.",
+    "실제 ETF 코드 매핑은 08. Candidate Matching에서 수행됩니다.",
     "refinement map에서 반복 확인이 필요한 토픽은 실제 전략 변화로 연결되는 경우만 반영하고, 근거가 얕으면 watch 또는 보류로 남기세요.",
     "머니토링 시황은 빠른 촉매 신호로만 사용하세요. 리포트·딥리서치와 충돌하면 강화보다 watch 또는 검증 우선으로 낮추세요.",
     "StockEasy는 외부 모멘텀과 전략실 기류를 확인하는 보조 레이어입니다. 내부 논리와 겹치면 설명과 우선순위를 강화하고, 충돌하면 즉시 추격 매수로 번역하지 마세요.",

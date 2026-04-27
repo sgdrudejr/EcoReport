@@ -785,8 +785,8 @@ export function loadRecommendationBoard(dateHint?: string): RecommendationBoard 
           technicalItem?.signal ? ` · ${technicalItem.signal}` : ""
         }`,
         stage2Candidate
-          ? `Stage 2 ${stage2Candidate.stance ?? "hold"} · ${stage2Candidate.confidence ?? "MEDIUM"}`
-          : "Stage 2 명시 후보는 아니지만 리포트/기술 점수로 선별",
+          ? `07. Strategy Options ${stage2Candidate.stance ?? "hold"} · ${stage2Candidate.confidence ?? "MEDIUM"}`
+          : "07. Strategy Options 명시 후보는 아니지만 리포트/기술 점수로 선별",
       ];
 
       if (targetAccounts.length > 0) {
@@ -804,7 +804,7 @@ export function loadRecommendationBoard(dateHint?: string): RecommendationBoard 
           : []),
       ].slice(0, 2);
       const accountRationale = executionTargets.length > 0
-        ? `Stage 4 실행 계획에서 ${targetAccounts.join(", ")} 계좌 우선 후보로 연결됐습니다.`
+        ? `11. Execution Plan에서 ${targetAccounts.join(", ")} 계좌 우선 후보로 연결됐습니다.`
         : targetAccounts.length > 0
           ? `현재 구조상 ${targetAccounts.join(", ")} 계좌와의 적합도가 높게 평가됩니다.`
           : "직접 연결된 계좌 우선순위는 아직 약해 관찰 후보 성격이 더 강합니다.";

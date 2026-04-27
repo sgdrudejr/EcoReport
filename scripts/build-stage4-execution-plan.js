@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// 4단계: Stage 1~3 데이터를 모두 활용해 계좌별 실행 계획을 생성합니다.
+// 11. Execution Plan: 리포트, 전략 후보, 퀀트 점수를 모두 활용해 계좌별 실행 계획을 생성합니다.
 
 import path from "node:path";
 
@@ -561,7 +561,7 @@ function resolveStage2Candidates(account, stage2Data, bucket) {
       code: item.resolvedCode ?? item.code,
       name: item.name,
       score: null,
-      reason: item.thesis ?? "Stage 2 후보 논리",
+      reason: item.thesis ?? "07. Strategy Options 후보 논리",
       source: "stage2",
       stance,
       confidence: normalizeCandidateConfidence(item.confidence),
@@ -571,7 +571,7 @@ function resolveStage2Candidates(account, stage2Data, bucket) {
     if (!isBuyableStance(stance)) {
       rejected.push({
         ...candidate,
-        rejectionReason: `Stage 2 stance가 ${stance}라 신규 매수 후보에서 제외`,
+        rejectionReason: `07. Strategy Options stance가 ${stance}라 신규 매수 후보에서 제외`,
       });
       continue;
     }
@@ -1040,7 +1040,7 @@ function validateExecutionPlan({ account, bucket, stagedBuys, trims, holds, reje
       validatorFlags.push(`non_buy_stance:${item.name}`);
       rejected.push({
         ...item,
-        rejectionReason: `Stage 2 stance(${item.stance ?? "unknown"})와 매수 액션이 충돌`,
+        rejectionReason: `07. Strategy Options stance(${item.stance ?? "unknown"})와 매수 액션이 충돌`,
       });
       continue;
     }
@@ -1325,7 +1325,7 @@ async function main() {
   ]);
   const stage2 = stage2Enriched ?? stage2Raw;
   if (!stage2) {
-    throw new Error(`Stage 2 real LLM output missing: ${path.join(stateDir, "stage2-strategy-options.json")}`);
+    throw new Error(`07. Strategy Options real LLM output missing: ${path.join(stateDir, "stage2-strategy-options.json")}`);
   }
   const stage2Data = stage2;
   const normalizedPortfolio = enrichPortfolioWithSecurityCodes(portfolio);
@@ -1450,7 +1450,7 @@ async function main() {
     typeof quant.regime?.confidence === "number" ? quant.regime.confidence.toFixed(2) : "N/A";
 
   const markdown = [
-    `# EcoReport Stage 4 Execution Plan (${args.date})`,
+    `# EcoReport 11. Execution Plan (${args.date})`,
     "",
     `- 실행일: ${runMeta.runDate}`,
     `- 기준 거래일: ${runMeta.effectiveMarketDate}`,
@@ -1462,7 +1462,7 @@ async function main() {
     ...accountPlans.flatMap((account) => [
       `## ${account.label} (${account.key})`,
       `- 계좌 총점: ${account.totalScore}점`,
-      `- Stage 2 bias: ${account.stage2Bias}`,
+      `- 07. Strategy Options bias: ${account.stage2Bias}`,
       `- 이번 단계 투입 가능 금액: ${won(account.deployBudget)}${account.plannedDeployBudget !== account.deployBudget ? ` (원안 ${won(account.plannedDeployBudget)})` : ""}`,
       `- 남길 예수금: ${won(account.reserveCash)}`,
       `- 검증 confidence: ${account.validationConfidence ?? 0}`,
@@ -1487,7 +1487,7 @@ async function main() {
       ...(account.holds.length > 0 ? account.holds.map((item) => `- 유지: ${item.name}(${item.code}) / ${item.score}점 / 이유: ${item.reason}`) : ["- 유지 후보 없음"]),
       ...(account.watches.length > 0 ? account.watches.map((item) => `- 관찰: ${item.name}(${item.code}) / ${item.score}점 / 이유: ${item.reason}`) : []),
       "",
-      "### Stage 1 근거",
+      "### 03. Report Indexing 근거",
       ...(account.stage1Drivers.length > 0
         ? account.stage1Drivers.map((item) => `- ${item.id}: ${item.title} / ${item.thesis}`)
         : ["- 직접 관련 리포트 추출 없음"]),

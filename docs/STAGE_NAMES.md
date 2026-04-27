@@ -32,6 +32,19 @@
 | AI 교환 패킷 | `data/analysis-state/YYYY-MM-DD/llm-exchange/*.json` | 리서치, 포트폴리오 액션, 위험 claim 재검토, 출처 감사 맵을 분리 |
 | 품질 감사 | `data/analysis-state/YYYY-MM-DD/data-quality-audit.json` | deterministic check 결과와 risky claim mini prompt 경로 포함 |
 
+### Dashboard API
+
+대시보드/다른 AI가 토큰 효율 JSON만 읽어야 할 때는 아래 endpoint를 씁니다.
+
+- `GET /api/llm-exchange?date=YYYY-MM-DD&packet=manifest`
+- `GET /api/llm-exchange?date=YYYY-MM-DD&packet=research`
+- `GET /api/llm-exchange?date=YYYY-MM-DD&packet=portfolio`
+- `GET /api/llm-exchange?date=YYYY-MM-DD&packet=claim-review`
+- `GET /api/llm-exchange?date=YYYY-MM-DD&packet=source-audit`
+- `GET /api/llm-exchange?date=YYYY-MM-DD&packet=human`
+
+`date`를 생략하면 오늘의 유효 거래일 산출물을 우선 찾고, 없으면 가장 최근 `llm-exchange/manifest.json`이 있는 날짜를 반환합니다.
+
 ## Quality Gate Order
 
 1. 코드로 정합성, 근거, 중복, 날짜, 카테고리를 검사합니다.

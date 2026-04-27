@@ -2,7 +2,7 @@
   "version": "1.0",
   "stages": {
     "stage1": {
-      "label": "Stage 1 Extracts",
+      "label": "03. Report Indexing Extracts",
       "requiredKeys": [
         "date",
         "runDate",
@@ -34,7 +34,7 @@
       ]
     },
     "stage2": {
-      "label": "Stage 2 Strategy",
+      "label": "07. Strategy Options",
       "requiredKeys": [
         "date",
         "runDate",
@@ -51,7 +51,7 @@
       ]
     },
     "stage3": {
-      "label": "Stage 3 Quant",
+      "label": "10. Quant Scoring",
       "requiredKeys": [
         "date",
         "runDate",
@@ -71,7 +71,7 @@
       ]
     },
     "stage4": {
-      "label": "Stage 4 Execution Plan",
+      "label": "11. Execution Plan",
       "requiredKeys": [
         "date",
         "runDate",

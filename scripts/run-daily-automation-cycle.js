@@ -162,17 +162,17 @@ function buildFailureHint(stepId) {
     case "automation_readiness":
       return "Safari 자동화, 리포트 수집 네트워크(Naver/Shinhan), Gemini Python, Obsidian vault 쓰기 권한, GitHub 네트워크 상태를 readiness 리포트에서 먼저 확인하세요.";
     case "baseline_daily_system":
-      return "수집, 시장 데이터, Stage 2 Python 의존성, 또는 기본 파이프라인 로그를 먼저 확인하세요.";
+      return "수집, 시장 데이터, Python 의존성, 또는 기본 파이프라인 로그를 먼저 확인하세요.";
     case "windows_local_summary":
-      return "Windows 로컬 LLM 서버(5070Ti) 상태, Wake-on-LAN, local-report-orchestrator 설정(base_url/model), run_stats 로그를 확인하세요. 이 단계는 권장 경로이며, 실패해도 Stage 3/4 fallback 경로는 계속 진행될 수 있습니다.";
+      return "Windows 로컬 LLM 서버(5070Ti) 상태, Wake-on-LAN, local-report-orchestrator 설정(base_url/model), run_stats 로그를 확인하세요. 이 단계는 권장 경로이며, 실패해도 03~11 fallback 경로는 계속 진행될 수 있습니다.";
     case "stage1_extracts":
-      return "리포트 인덱스, 전문 텍스트, 포트폴리오 스냅샷이 모두 생성됐는지와 Stage 1 추출 로그를 확인하세요.";
+      return "리포트 인덱스, 전문 텍스트, 포트폴리오 스냅샷이 모두 생성됐는지와 03. Report Indexing 추출 로그를 확인하세요.";
     case "stage1_4_summarize":
-      return "reports/report_summaries/<date> 산출물, Stage 1 extracts 우선순위 계산, report_id 매칭, stage1-chunk-summaries.json 저장 경로를 확인하세요.";
+      return "reports/report_summaries/<date> 산출물, 03. Report Indexing extracts 우선순위 계산, report_id 매칭, stage1-chunk-summaries.json 저장 경로를 확인하세요.";
     case "stage2_enriched_report_index":
       return "stage1-report-extracts-v2.json, reports/report_summaries/<date>, stage1-chunk-summaries.json 조인 상태와 report_id 일치 여부를 확인하세요.";
     case "stage1_4_agenda":
-      return "DASHSCOPE_API_KEY(QWEN_API_KEY), stage1-chunk-summaries.json 또는 stage1 extracts 폴백 입력, Qwen JSON 응답 형식을 확인하세요.";
+      return "DASHSCOPE_API_KEY(QWEN_API_KEY), stage1-chunk-summaries.json 또는 03. Report Indexing extracts 폴백 입력, Qwen JSON 응답 형식을 확인하세요.";
     case "stage1_5_prompt_split":
       return "stage1-research-agenda.json 존재 여부와 07a/07b/07c 파일 생성 권한(knowledge/daily/manual-kit/<date>)을 확인하세요.";
     case "stockeasy_capture":
@@ -180,11 +180,11 @@ function buildFailureHint(stepId) {
     case "deep_research_web":
       return "Safari가 잠겨 있지 않은지, Gemini 로그인 상태인지, Deep Research 도구가 노출되는지, 그리고 07a/07b/07c(또는 legacy 07) 프롬프트 파일이 준비됐는지 확인하세요.";
     case "rich_briefing_overlay":
-      return "09-stage1-5 결과 파일과 GEMINI_API_KEY, 그리고 Stage 1 추출물이 모두 있는지 확인하세요.";
+      return "05. Deep Research 결과 파일과 GEMINI_API_KEY, 그리고 03. Report Indexing 추출물이 모두 있는지 확인하세요.";
     case "strategy_refresh":
       return "stage2 raw 응답과 종목 alias 매핑, Qwen JSON 응답 형식을 확인하세요.";
     case "followup_reindex":
-      return "Stage 1 extract, Stage 4 plan, 리포트 전문 텍스트 경로가 모두 살아 있는지 확인하세요.";
+      return "03. Report Indexing extract, 11. Execution Plan, 리포트 전문 텍스트 경로가 모두 살아 있는지 확인하세요.";
     case "followup_prompt":
       return "stage1-followup-research-map.json과 wiki memory 파일이 정상 생성됐는지 확인하세요.";
     case "deep_research_follow_up_web":
@@ -192,7 +192,7 @@ function buildFailureHint(stepId) {
     case "wiki_rebuild_initial":
     case "wiki_rebuild_mid":
     case "wiki_rebuild_final":
-      return "knowledge/wiki 생성 권한, refinement map 산출물, stage4 실행계획 파일을 함께 확인하세요.";
+      return "knowledge/wiki 생성 권한, refinement map 산출물, 11. Execution Plan 파일을 함께 확인하세요.";
     case "round3_reindex":
       return "round 2 위키 메모리와 stage1-final-refinement-map 입력 파일이 정상인지 확인하세요.";
     case "round3_prompt":
@@ -202,24 +202,24 @@ function buildFailureHint(stepId) {
     case "rich_briefing_round3_final":
       return "3차 refinement 응답과 rich briefing 입력 파일이 모두 최신인지 확인하세요.";
     case "strategy_refresh_round3_final":
-      return "Stage 2 prompt에 3차 refinement 결과가 정상 주입됐는지 확인하세요.";
+      return "07. Strategy Options prompt에 3차 refinement 결과가 정상 주입됐는지 확인하세요.";
     case "rich_briefing_final":
       return "follow-up map, follow-up deep research 응답, GEMINI_API_KEY를 함께 확인하세요.";
     case "strategy_refresh_final":
-      return "Stage 2 prompt에 follow-up map/response가 정상 주입됐는지와 Qwen JSON 응답 형식을 확인하세요.";
+      return "07. Strategy Options prompt에 follow-up map/response가 정상 주입됐는지와 Qwen JSON 응답 형식을 확인하세요.";
     case "wiki_publish":
       return "knowledge/wiki 생성 권한과 Obsidian vault 경로를 확인하세요.";
     case "daily_briefing_html":
       return "reports/daily/<date>-briefing.md 파일 존재 여부와 HTML 변환 스크립트 로그를 확인하세요.";
     case "execution_plan_table":
-      return "stage4 실행계획 파일 존재 여부와 텔레그램용 표 export 스크립트 로그를 확인하세요.";
+      return "11. Execution Plan 파일 존재 여부와 텔레그램용 표 export 스크립트 로그를 확인하세요.";
     case "data_quality_audit":
-      return "stage1-4 full report, AI exchange JSON, stage4 실행계획의 날짜/근거/중복/실행 게이트를 확인하세요.";
+      return "02. Chunk Summary full report, AI exchange JSON, 11. Execution Plan의 날짜/근거/중복/실행 게이트를 확인하세요.";
     case "llm_exchange_packets":
     case "llm_exchange_packets_final":
-      return "stage1-4 AI exchange, stage4 실행계획, data-quality-audit 입력을 확인하세요.";
+      return "AI exchange, 11. Execution Plan, data-quality-audit 입력을 확인하세요.";
     case "final_report_html":
-      return "data-quality-audit.json, full daily report Markdown, stage4 실행계획 파일이 모두 있는지 확인하세요.";
+      return "data-quality-audit.json, full daily report Markdown, 11. Execution Plan 파일이 모두 있는지 확인하세요.";
     case "stage6_briefing_delta":
       return "knowledge/daily/<date>-gemini-briefing-rich.md 와 직전 거래일 rich briefing 존재 여부를 확인하세요.";
     case "telegram_completion":
@@ -1472,17 +1472,17 @@ async function main() {
     await appendStep(
       await reuseOrWarnStep({
         id: "stage1_extracts",
-        label: "Stage 2 Report Extracts",
+        label: "03. Report Indexing Extracts",
         artifactPath: artifacts.stage1,
-        successNote: `기존 Stage 1 extracts 재사용: ${artifacts.stage1}`,
-        warnReason: "Stage 1 extracts 산출물을 찾지 못했습니다.",
+        successNote: `기존 03. Report Indexing extracts 재사용: ${artifacts.stage1}`,
+        warnReason: "03. Report Indexing extracts 산출물을 찾지 못했습니다.",
         warnNote: artifacts.stage1,
       }),
     );
     await appendStep(
       await reuseOrWarnStep({
         id: "deep_research_follow_up_web",
-        label: "Stage 11 Gemini Follow-up Web",
+        label: "05. Deep Research Follow-up Web",
         artifactPath: artifacts.deepResearchFollowUpResponse,
         successNote: `기존 2차 Gemini 응답 재사용: ${artifacts.deepResearchFollowUpResponse}`,
         warnReason: "2차 Gemini follow-up 응답이 없습니다.",
@@ -1492,7 +1492,7 @@ async function main() {
     await appendStep(
       await reuseOrWarnStep({
         id: "deep_research_round3_web",
-        label: "Stage 16 Gemini Final Refinement Web",
+        label: "05. Deep Research Final Refinement Web",
         artifactPath: artifacts.round3Response,
         successNote: `기존 3차 Gemini 응답 재사용: ${artifacts.round3Response}`,
         warnReason: "3차 Gemini refinement 응답이 없습니다.",
@@ -1502,7 +1502,7 @@ async function main() {
     await appendStep(
       await reuseOrWarnStep({
         id: "rich_briefing_round3_final",
-        label: "Stage 17 Rich Briefing Final",
+        label: "06. Briefing Synthesis Final",
         artifactPath: artifacts.finalResearchBriefing,
         successNote: `기존 최종 rich briefing 재사용: ${artifacts.finalResearchBriefing}`,
         warnReason: "최종 rich briefing 산출물이 없습니다.",
@@ -1511,7 +1511,7 @@ async function main() {
     );
     const briefingDelta = await runCommand({
       id: "stage6_briefing_delta",
-      label: "Stage 6 Briefing Delta",
+      label: "06. Briefing Delta",
       command: "node",
       args: [
         "scripts/build-briefing-delta.js",
@@ -1526,9 +1526,9 @@ async function main() {
     await appendStep(
       await reuseOrWarnStep({
         id: "strategy_refresh_round3_final",
-        label: "Stage 18 Strategy Refresh Final",
+        label: "07~11. Strategy Refresh Final",
         artifactPath: artifacts.stage4,
-        successNote: `기존 Stage 4 실행계획 재사용: ${artifacts.stage4}`,
+        successNote: `기존 11. Execution Plan 재사용: ${artifacts.stage4}`,
         warnReason: "최종 전략/실행계획 산출물이 없습니다.",
         warnNote: artifacts.stage4,
       }),
@@ -1956,12 +1956,12 @@ async function main() {
   const stage1Extracts = isCheckpointed("stage1_extracts")
     ? checkpointResumeStep({
         id: "stage1_extracts",
-        label: "Stage 2 Report Extracts",
+        label: "03. Report Indexing Extracts",
         artifactPath: artifacts.stage1,
       })
     : await runCommandWithRetry({
         id: "stage1_extracts",
-        label: "Stage 2 Report Extracts",
+        label: "03. Report Indexing Extracts",
         command: "node",
         args: [
           "scripts/build-stage1-report-extracts.js",
@@ -1986,12 +1986,12 @@ async function main() {
   const stage1_4Summarize = isCheckpointed("stage1_4_summarize")
     ? checkpointResumeStep({
         id: "stage1_4_summarize",
-        label: "Stage 3 Top Report Summary Selection",
+        label: "02. Chunk Summary",
         artifactPath: artifacts.stage1ChunkSummaries,
       })
     : await runCommandWithRetry({
         id: "stage1_4_summarize",
-        label: "Stage 3 Top Report Summary Selection",
+        label: "02. Chunk Summary",
         command: "npm",
         args: [
           "run",
@@ -2022,12 +2022,12 @@ async function main() {
   const stage2EnrichedReportIndex = isCheckpointed("stage2_enriched_report_index")
     ? checkpointResumeStep({
         id: "stage2_enriched_report_index",
-        label: "Stage 2 Enriched Report Index",
+        label: "03. Report Indexing",
         artifactPath: artifacts.stage2EnrichedReportIndex,
       })
     : await runCommandWithRetry({
         id: "stage2_enriched_report_index",
-        label: "Stage 2 Enriched Report Index",
+        label: "03. Report Indexing",
         command: "npm",
         args: [
           "run",
@@ -2054,12 +2054,12 @@ async function main() {
   const stage1_4Agenda = isCheckpointed("stage1_4_agenda")
     ? checkpointResumeStep({
         id: "stage1_4_agenda",
-        label: "Stage 4 Research Agenda",
+        label: "04. Research Agenda",
         artifactPath: artifacts.stage1ResearchAgenda,
       })
     : await runCommandWithRetry({
         id: "stage1_4_agenda",
-        label: "Stage 4 Research Agenda",
+        label: "04. Research Agenda",
         command: "npm",
         args: [
           "run",
@@ -2088,12 +2088,12 @@ async function main() {
   const stage1_5PromptSplit = isCheckpointed("stage1_5_prompt_split")
     ? checkpointResumeStep({
         id: "stage1_5_prompt_split",
-        label: "Stage 5 Deep Research Prompt Split",
+        label: "05. Deep Research Prompt Split",
         artifactPath: artifacts.deepResearchPrompt,
       })
     : await runCommandWithRetry({
         id: "stage1_5_prompt_split",
-        label: "Stage 5 Deep Research Prompt Split",
+        label: "05. Deep Research Prompt Split",
         command: "npm",
         args: [
           "run",
@@ -2122,7 +2122,7 @@ async function main() {
     isCheckpointed("deep_research_web")
       ? checkpointResumeStep({
           id: "deep_research_web",
-          label: "Stage 6 Gemini Deep Research Web",
+          label: "05. Deep Research Web",
           artifactPath: artifacts.deepResearchResponse,
         })
       : baseline.status === "ok" &&
@@ -2131,20 +2131,20 @@ async function main() {
         existingDeepResearch
       ? reuseArtifactStep({
           id: "deep_research_web",
-          label: "Stage 6 Gemini Deep Research Web",
+          label: "05. Deep Research Web",
           artifactPath: artifacts.deepResearchResponse,
           note: `same-day Deep Research 응답 재사용: ${artifacts.deepResearchResponse}`,
         })
       : readinessReport?.blockers?.safariAutomationAvailable === false
         ? preflightWarnStep({
             id: "deep_research_web",
-            label: "Stage 6 Gemini Deep Research Web",
+            label: "05. Deep Research Web",
             reason: "Gemini Deep Research Web 사전 차단 (Safari 자동화 unavailable)",
             note: readinessReport.checks.find((item) => item.key === "safari_automation")?.detail,
           })
       : await runCommand({
           id: "deep_research_web",
-          label: "Stage 6 Gemini Deep Research Web",
+          label: "05. Deep Research Web",
           command: "npm",
           args: [
             "run",
@@ -2171,12 +2171,12 @@ async function main() {
   const richBriefing = isCheckpointed("rich_briefing_overlay")
     ? checkpointResumeStep({
         id: "rich_briefing_overlay",
-        label: "Stage 7 Rich Briefing Round 1",
+        label: "06. Briefing Synthesis Round 1",
         artifactPath: artifacts.finalResearchBriefing,
       })
     : await runRichBriefingStep({
         id: "rich_briefing_overlay",
-        label: "Stage 7 Rich Briefing Round 1",
+        label: "06. Briefing Synthesis Round 1",
         command: "npm",
         args: [
           "run",
@@ -2204,12 +2204,12 @@ async function main() {
   const strategyRefresh = isCheckpointed("strategy_refresh")
     ? checkpointResumeStep({
         id: "strategy_refresh",
-        label: "Stage 8 Strategy Refresh Round 1",
+        label: "07~11. Strategy Refresh Round 1",
         artifactPath: artifacts.stage4,
       })
     : await runCommandWithRetry({
         id: "strategy_refresh",
-        label: "Stage 8 Strategy Refresh Round 1",
+        label: "07~11. Strategy Refresh Round 1",
         command: "bash",
         args: [
           "scripts/run-strategy-pipeline.sh",
@@ -2266,12 +2266,12 @@ async function main() {
   const followUpReindex = isCheckpointed("followup_reindex")
     ? checkpointResumeStep({
         id: "followup_reindex",
-        label: "Stage 9 Follow-up Research Map",
+        label: "05. Deep Research Follow-up Map",
         artifactPath: artifacts.followUpMap,
       })
     : await runCommand({
         id: "followup_reindex",
-        label: "Stage 9 Follow-up Research Map",
+        label: "05. Deep Research Follow-up Map",
         command: "node",
         args: [
           "scripts/build-stage1-7-followup-research-map.js",
@@ -2293,12 +2293,12 @@ async function main() {
   const followUpPrompt = isCheckpointed("followup_prompt")
     ? checkpointResumeStep({
         id: "followup_prompt",
-        label: "Stage 10 Gemini Follow-up Prompt",
+        label: "05. Deep Research Follow-up Prompt",
         artifactPath: artifacts.deepResearchFollowUpPrompt,
       })
     : await runCommand({
         id: "followup_prompt",
-        label: "Stage 10 Gemini Follow-up Prompt",
+        label: "05. Deep Research Follow-up Prompt",
         command: "node",
         args: [
           "scripts/build-stage1-7-gemini-follow-up-prompt.js",
@@ -2322,27 +2322,27 @@ async function main() {
     isCheckpointed("deep_research_follow_up_web")
       ? checkpointResumeStep({
           id: "deep_research_follow_up_web",
-          label: "Stage 11 Gemini Follow-up Web",
+          label: "05. Deep Research Follow-up Web",
           artifactPath: artifacts.deepResearchFollowUpResponse,
         })
       : followUpPrompt.status === "ok" &&
         existingFollowUpDeepResearch
       ? reuseArtifactStep({
           id: "deep_research_follow_up_web",
-          label: "Stage 11 Gemini Follow-up Web",
+          label: "05. Deep Research Follow-up Web",
           artifactPath: artifacts.deepResearchFollowUpResponse,
           note: `same-day Deep Research follow-up 응답 재사용: ${artifacts.deepResearchFollowUpResponse}`,
         })
       : readinessReport?.blockers?.safariAutomationAvailable === false
         ? preflightWarnStep({
             id: "deep_research_follow_up_web",
-            label: "Stage 11 Gemini Follow-up Web",
+            label: "05. Deep Research Follow-up Web",
             reason: "Gemini Deep Research Follow-up Web 사전 차단 (Safari 자동화 unavailable)",
             note: readinessReport.checks.find((item) => item.key === "safari_automation")?.detail,
           })
       : await runCommand({
           id: "deep_research_follow_up_web",
-          label: "Stage 11 Gemini Follow-up Web",
+          label: "05. Deep Research Follow-up Web",
           command: "node",
           args: [
             "scripts/run-gemini-deep-research-web.js",
@@ -2367,12 +2367,12 @@ async function main() {
   const richBriefingFinal = isCheckpointed("rich_briefing_final")
     ? checkpointResumeStep({
         id: "rich_briefing_final",
-        label: "Stage 12 Rich Briefing Round 2",
+        label: "06. Briefing Synthesis Round 2",
         artifactPath: artifacts.finalResearchBriefing,
       })
     : await runRichBriefingStep({
         id: "rich_briefing_final",
-        label: "Stage 12 Rich Briefing Round 2",
+        label: "06. Briefing Synthesis Round 2",
         command: "npm",
         args: [
           "run",
@@ -2400,12 +2400,12 @@ async function main() {
   const strategyRefreshFinal = isCheckpointed("strategy_refresh_final")
     ? checkpointResumeStep({
         id: "strategy_refresh_final",
-        label: "Stage 13 Strategy Refresh Round 2",
+        label: "07~11. Strategy Refresh Round 2",
         artifactPath: artifacts.stage4,
       })
     : await runCommandWithRetry({
         id: "strategy_refresh_final",
-        label: "Stage 13 Strategy Refresh Round 2",
+        label: "07~11. Strategy Refresh Round 2",
         command: "bash",
         args: [
           "scripts/run-strategy-pipeline.sh",
@@ -2462,12 +2462,12 @@ async function main() {
   const round3Reindex = isCheckpointed("round3_reindex")
     ? checkpointResumeStep({
         id: "round3_reindex",
-        label: "Stage 14 Final Refinement Map",
+        label: "05. Deep Research Final Refinement Map",
         artifactPath: artifacts.round3Map,
       })
     : await runCommand({
         id: "round3_reindex",
-        label: "Stage 14 Final Refinement Map",
+        label: "05. Deep Research Final Refinement Map",
         command: "node",
         args: [
           "scripts/build-stage1-7-followup-research-map.js",
@@ -2491,12 +2491,12 @@ async function main() {
   const round3Prompt = isCheckpointed("round3_prompt")
     ? checkpointResumeStep({
         id: "round3_prompt",
-        label: "Stage 15 Gemini Final Refinement Prompt",
+        label: "05. Deep Research Final Refinement Prompt",
         artifactPath: artifacts.round3Prompt,
       })
     : await runCommand({
         id: "round3_prompt",
-        label: "Stage 15 Gemini Final Refinement Prompt",
+        label: "05. Deep Research Final Refinement Prompt",
         command: "node",
         args: [
           "scripts/build-stage1-7-gemini-follow-up-prompt.js",
@@ -2524,27 +2524,27 @@ async function main() {
     isCheckpointed("deep_research_round3_web")
       ? checkpointResumeStep({
           id: "deep_research_round3_web",
-          label: "Stage 16 Gemini Final Refinement Web",
+          label: "05. Deep Research Final Refinement Web",
           artifactPath: artifacts.round3Response,
         })
       : round3Prompt.status === "ok" &&
         existingRound3DeepResearch
       ? reuseArtifactStep({
           id: "deep_research_round3_web",
-          label: "Stage 16 Gemini Final Refinement Web",
+          label: "05. Deep Research Final Refinement Web",
           artifactPath: artifacts.round3Response,
           note: `same-day Deep Research round3 응답 재사용: ${artifacts.round3Response}`,
         })
       : readinessReport?.blockers?.safariAutomationAvailable === false
         ? preflightWarnStep({
             id: "deep_research_round3_web",
-            label: "Stage 16 Gemini Final Refinement Web",
+            label: "05. Deep Research Final Refinement Web",
             reason: "Gemini Deep Research Round 3 Web 사전 차단 (Safari 자동화 unavailable)",
             note: readinessReport.checks.find((item) => item.key === "safari_automation")?.detail,
           })
       : await runCommand({
           id: "deep_research_round3_web",
-          label: "Stage 16 Gemini Final Refinement Web",
+          label: "05. Deep Research Final Refinement Web",
           command: "node",
           args: [
             "scripts/run-gemini-deep-research-web.js",
@@ -2569,12 +2569,12 @@ async function main() {
   const richBriefingRound3Final = isCheckpointed("rich_briefing_round3_final")
     ? checkpointResumeStep({
         id: "rich_briefing_round3_final",
-        label: "Stage 17 Rich Briefing Final",
+        label: "06. Briefing Synthesis Final",
         artifactPath: artifacts.finalResearchBriefing,
       })
     : await runRichBriefingStep({
         id: "rich_briefing_round3_final",
-        label: "Stage 17 Rich Briefing Final",
+        label: "06. Briefing Synthesis Final",
         command: "npm",
         args: [
           "run",
@@ -2602,12 +2602,12 @@ async function main() {
   const briefingDelta = isCheckpointed("stage6_briefing_delta")
     ? checkpointResumeStep({
         id: "stage6_briefing_delta",
-        label: "Stage 6 Briefing Delta",
+        label: "06. Briefing Delta",
         artifactPath: artifacts.briefingDeltaMarkdown,
       })
     : await runCommand({
         id: "stage6_briefing_delta",
-        label: "Stage 6 Briefing Delta",
+        label: "06. Briefing Delta",
         command: "node",
         args: [
           "scripts/build-briefing-delta.js",
@@ -2623,12 +2623,12 @@ async function main() {
   const strategyRefreshRound3Final = isCheckpointed("strategy_refresh_round3_final")
     ? checkpointResumeStep({
         id: "strategy_refresh_round3_final",
-        label: "Stage 18 Strategy Refresh Final",
+        label: "07~11. Strategy Refresh Final",
         artifactPath: artifacts.stage4,
       })
     : await runCommand({
         id: "strategy_refresh_round3_final",
-        label: "Stage 18 Strategy Refresh Final",
+        label: "07~11. Strategy Refresh Final",
         command: "bash",
         args: [
           "scripts/run-strategy-pipeline.sh",

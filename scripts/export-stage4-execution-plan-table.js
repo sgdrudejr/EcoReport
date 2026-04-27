@@ -116,7 +116,7 @@ function collectRows(plan) {
 
 function buildMarkdown(stage4) {
   const lines = [
-    `# Stage 4 Execution Plan Table (${stage4.date})`,
+    `# 11. Execution Plan Table (${stage4.date})`,
     "",
     `- portfolioScore: ${stage4.portfolioScore ?? "-"}`,
     `- regime: ${stage4.regime?.name ?? "-"}`,

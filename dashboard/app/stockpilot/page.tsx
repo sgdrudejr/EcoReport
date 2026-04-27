@@ -694,7 +694,7 @@ export default function StockPilotPage() {
               신규 대시보드
             </h1>
             <p className="mt-1.5 text-[13px] leading-[1.7] text-slate-500">
-              {date ? `${date} 기준` : "데이터 없음"} · Stage 3 퀀트 스코어링 + Stage 4 실행 계획
+              {date ? `${date} 기준` : "데이터 없음"} · 10. Quant Scoring + 11. Execution Plan
             </p>
           </div>
 
@@ -896,7 +896,7 @@ export default function StockPilotPage() {
         <section className="section-shell mb-5">
           <div className="section-block" />
           <div className="glass-panel rounded-2xl px-6 py-5">
-            <Kicker>Stage 2 · 매크로 뷰</Kicker>
+            <Kicker>07. Strategy Options · 매크로 뷰</Kicker>
             <SectionTitle>시황 요약</SectionTitle>
             <div className="mt-3 flex flex-wrap items-center gap-3">
               <span className="rounded-full border border-indigo-200 bg-indigo-50 px-3 py-1 text-sm font-semibold text-indigo-700">
@@ -916,7 +916,7 @@ export default function StockPilotPage() {
           <div className="glass-panel rounded-2xl px-6 py-5">
             <div className="mb-4 flex items-center justify-between gap-3">
               <div>
-                <Kicker>Stage 3 · Holdings</Kicker>
+                <Kicker>10. Quant Scoring · Holdings</Kicker>
                 <SectionTitle>보유 종목 퀀트 평가</SectionTitle>
               </div>
               <div className="flex flex-wrap gap-1.5">
@@ -946,7 +946,7 @@ export default function StockPilotPage() {
           <div className="glass-panel rounded-2xl px-6 py-5">
             <div className="mb-4 flex items-center justify-between gap-3">
               <div>
-                <Kicker>Stage 3 · Candidates</Kicker>
+                <Kicker>10. Quant Scoring · Candidates</Kicker>
                 <SectionTitle>신규 후보 종목</SectionTitle>
               </div>
               <div className="flex flex-wrap gap-1.5">
@@ -989,7 +989,7 @@ export default function StockPilotPage() {
           <div className="section-block" />
           <div>
             <div className="mb-3">
-              <Kicker>Stage 4 · Execution</Kicker>
+              <Kicker>11. Execution Plan</Kicker>
               <SectionTitle>계좌별 실행 계획</SectionTitle>
             </div>
             <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -1029,19 +1029,19 @@ export default function StockPilotPage() {
             <SectionTitle>데이터 품질</SectionTitle>
             <div className="mt-4 grid gap-3 md:grid-cols-3">
               <div className="rounded-xl border border-slate-200 bg-white/80 px-4 py-3">
-                <p className="text-[11px] text-slate-400">Stage 1 오염률</p>
+                <p className="text-[11px] text-slate-400">03. Report Indexing 오염률</p>
                 <p className={`mt-1 text-xl font-bold tabular-nums ${(quality.stage1?.contaminationRate ?? 0) > 0.2 ? "text-rose-600" : "text-slate-700"}`}>
                   {pct(quality.stage1?.contaminationRate)}
                 </p>
               </div>
               <div className="rounded-xl border border-slate-200 bg-white/80 px-4 py-3">
-                <p className="text-[11px] text-slate-400">Stage 3 무관 증거 비율</p>
+                <p className="text-[11px] text-slate-400">10. Quant Scoring 무관 증거 비율</p>
                 <p className={`mt-1 text-xl font-bold tabular-nums ${(quality.stage3?.unrelatedEvidenceRatio ?? 0) > 0.3 ? "text-amber-600" : "text-slate-700"}`}>
                   {pct(quality.stage3?.unrelatedEvidenceRatio)}
                 </p>
               </div>
               <div className="rounded-xl border border-slate-200 bg-white/80 px-4 py-3">
-                <p className="text-[11px] text-slate-400">Stage 4 노액션 계좌</p>
+                <p className="text-[11px] text-slate-400">11. Execution Plan 노액션 계좌</p>
                 <p className="mt-1 text-xl font-bold tabular-nums text-slate-700">
                   {quality.stage4?.noActionCount ?? 0}개
                 </p>

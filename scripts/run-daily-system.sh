@@ -81,7 +81,7 @@ while [[ $# -gt 0 ]]; do
       exit 2
       ;;
     --mock-stage2)
-      echo "ERROR: --mock-stage2 is disabled. Stage 2 must use a real LLM provider and fail-fast on errors." >&2
+      echo "ERROR: --mock-stage2 is disabled. 07. Strategy Options must use a real LLM provider and fail-fast on errors." >&2
       exit 2
       ;;
     --use-dag)
@@ -407,7 +407,7 @@ run_nonfatal_step "📣 머니토링 시황 이벤트 수집..." \
     --run-date "$RUN_DATE" \
     --effective-market-date "$DATE"
 
-# FRED API 키가 있으면 거시경제 선행지표 수집 (레짐 감지 + Stage 3 선행지표 스코어에 활용)
+# FRED API 키가 있으면 거시경제 선행지표 수집 (레짐 감지 + 10. Quant Scoring 선행지표 스코어에 활용)
 PYTHON_BIN_DAILY="$(python_bin)"
 if grep -Eq '^FRED_API_KEY=.+$' "$ROOT_DIR/.env" 2>/dev/null || [[ -n "${FRED_API_KEY:-}" ]]; then
   run_nonfatal_step "🌐 FRED 거시경제 데이터 수집..." "$PYTHON_BIN_DAILY" scripts/fetch-fred-macro.py --date "$DATE"
@@ -476,14 +476,14 @@ if [[ "$SKIP_STRATEGY" == "1" ]]; then
   log "🧭 전략 파이프라인 건너뜀 (--skip-strategy)"
 else
   if [[ "$USE_DAG" == "1" ]]; then
-    run_step "🧭 Stage 1~4 DAG 파이프라인..." \
+    run_step "🧭 01~13 Decision/Quality DAG 파이프라인..." \
       node scripts/run-pipeline-dag.js \
         --date "$DATE" \
         --run-date "$RUN_DATE" \
         --effective-market-date "$DATE" \
         --stage2-mode "qwen"
   else
-    run_step "🧭 Stage 1~4 전략 파이프라인..." bash scripts/run-strategy-pipeline.sh "${PIPELINE_ARGS[@]}"
+    run_step "🧭 01~13 Strategy/Quality 파이프라인..." bash scripts/run-strategy-pipeline.sh "${PIPELINE_ARGS[@]}"
   fi
 fi
 

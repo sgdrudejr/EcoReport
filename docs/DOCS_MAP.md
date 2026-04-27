@@ -82,7 +82,7 @@ StockPilot 전용 설계/로드맵 문서는 여기서 시작합니다:
 
 이 문서들이 답하는 것:
 
-- Stage 1.5 / 1.6 실행 순서
+- `05. Deep Research` / `06. Briefing Synthesis` 실행 순서
 - Safari/Gemini 전제 조건
 - 실패 시 어디를 봐야 하는가
 
@@ -146,7 +146,7 @@ StockPilot 전용 설계/로드맵 문서는 여기서 시작합니다:
 
 - raw source를 어떤 공통 모델로 올릴지
 - evidence graph를 어떻게 정의할지
-- Stage 2를 evidence와 policy로 어떻게 분리할지
+- `07. Strategy Options`를 evidence와 policy로 어떻게 분리할지
 - StockPilot v1.0 -> v2.0 로드맵을 어떤 순서로 밟아야 하는지
 - 결정론적 수식 스펙과 데이터 계약의 차이가 어디인지
 
@@ -160,7 +160,7 @@ StockPilot 전용 설계/로드맵 문서는 여기서 시작합니다:
 
 ### 날짜별 산출물
 
-- `data/analysis-state/YYYY-MM-DD/`: Stage 1~4, 검증, 자동화 상태
+- `data/analysis-state/YYYY-MM-DD/`: `03. Report Indexing`~`13. Quality Gates`, 검증, 자동화 상태
 - `data/reports/YYYY-MM-DD/`: 리포트 원본, 메타데이터, 텍스트화 결과
 - `knowledge/daily/`: 일일 브리핑, 리서치 메모, 자동화 요약
 - `reports/daily/`: 최종 브리핑과 실행 계획

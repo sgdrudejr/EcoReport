@@ -143,23 +143,23 @@ EOF
 
 ---
 
-### E. Stage 1~4 재실행
+### E. 01~13 파이프라인 재실행
 
 상세: [`docs/STAGE_1_4_ARCHITECTURE.md`](STAGE_1_4_ARCHITECTURE.md)
 
 ```bash
-# Stage 1: 리포트 수집 + 전문화
+# 01. Report Collection: 리포트 수집 + 전문화
 bash scripts/collect-report-assets.sh --date $DATE
 
-# Stage 2: LLM 분석 (Windows LLM)
+# 02. Chunk Summary: Windows Local LLM 요약
 bash scripts/run-local-report-orchestrator.sh --date $DATE
 
-# Stage 3: RAG + 포트폴리오
+# RAG + 포트폴리오 보조 코퍼스
 node scripts/build-report-rag-corpus.js --date $DATE
 node scripts/build-portfolio-rag-corpus.js --date $DATE
 
-# Stage 4: 인사이트
-.venv/bin/python3 scripts/generate_insights.py --date $DATE ...
+# 03~13. Report Indexing -> Quality Gates
+npm run daily:final-output -- --date $DATE
 ```
 
 ---

@@ -29,7 +29,7 @@ EcoReport가 수집, 텍스트화, 계좌/퀀트 결합, 검증, 기록을 맡�
 - `igzun-daily-report`는 참고 레퍼런스일 뿐, EcoReport 런타임 의존성이 아닙니다.
 - 수집 후에는 반드시 `PDF 전문 텍스트화`를 거칩니다.
 - 리포트 요약을 여러 번 평균내지 않고, 주장/숫자/촉매/리스크/신규 후보를 구조화해 보존합니다.
-- Stage 7 전략 탐색은 Qwen 실제 LLM 결과가 필요하며, mock fallback은 운영 경로에서 금지합니다.
+- `07. Strategy Options`는 Qwen 실제 LLM 결과가 필요하며, mock fallback은 운영 경로에서 금지합니다.
 - Gemini Deep Research는 최종 요약자가 아니라 외부 검색, 반증, 최신 촉매 확인용 보조 레이어입니다.
 - 전략 비중은 `안전자산 20% / 코어 30% / 위성 섹터 50%`를 기본 축으로 보고, 위성 섹터는 카테고리/클러스터 한도로 쏠림을 제어합니다.
 - `system-health`가 `ok`인 완성 데이터만 `data` 브랜치에 push합니다.
@@ -295,8 +295,8 @@ npm run automation:daily -- --date YYYY-MM-DD
 3. 시장 데이터 수집 + 기술 점수 계산
 4. 리포트/포트폴리오/병렬 RAG 재생성
 5. Research agenda + Gemini 외부 검증 프롬프트 생성
-6. Qwen 실제 LLM 기반 Stage 7 전략 탐색
-7. Impact map, Quant scoring, Execution plan 생성
+6. Qwen 실제 LLM 기반 `07. Strategy Options`
+7. `09. Impact Mapping`, `10. Quant Scoring`, `11. Execution Plan` 생성
 8. `knowledge/wiki/` 지속형 투자 위키 갱신
 9. 일일 시스템 검증 리포트 생성
 10. `system-health=ok`일 때만 `data` 브랜치 동기화
@@ -616,10 +616,10 @@ GITHUB_TOKEN=...
 설명:
 
 - 상위 리포트 요약들을 Qwen API가 5~7개 토픽으로 묶고 질문, 키워드, priority를 붙입니다.
-- `stage1-chunk-summaries.json`이 비어 있거나 없으면 Stage 2 extracts에서 폴백합니다.
+- `stage1-chunk-summaries.json`이 비어 있거나 없으면 `03. Report Indexing` extracts에서 폴백합니다.
 - 이 단계의 목적은 대용량 요약이 아니라, **무엇을 더 조사해야 하는지 질문 구조를 만드는 것**입니다.
 
-### Stage 5. Gemini Deep Research Prompt Split
+### 05. Deep Research Prompt Split
 
 입력:
 
@@ -705,20 +705,20 @@ GITHUB_TOKEN=...
 설명:
 
 - 종목, 계좌, 포트폴리오 점수를 계산합니다.
-- 현재 Stage 8은 `교차단면 팩터 점수 + coverage-aware base score - 리스크 패널티 + tax-aware 조정` 구조입니다.
-- BaseScore는 `배분 + 팩터 + 기술 + 리포트 + 레짐 적합도 + Stage 7 점수 + 선행지표`를 coverage-aware 가중치로 합성합니다.
+- 현재 `10. Quant Scoring`은 `교차단면 팩터 점수 + coverage-aware base score - 리스크 패널티 + tax-aware 조정` 구조입니다.
+- BaseScore는 `배분 + 팩터 + 기술 + 리포트 + 레짐 적합도 + 07. Strategy Options 점수 + 선행지표`를 coverage-aware 가중치로 합성합니다.
 - 팩터 점수는 `모멘텀 / 리서치 강도 / 인컴 수익률 / 레짐 적합도`를 Z-score 정규화 후 bounded score로 변환합니다.
 - RiskPenalty는 `데이터 품질 + 집중도 + 축소 공분산 기반 변동성 + 레짐 스트레스 + tail risk`를 별도 감점으로 관리합니다.
 - 계좌별 최종 점수는 예상 인컴 수익률과 계좌 세율 가정을 사용해 tax-aware multiplier로 한 번 더 보정합니다.
 - 대시보드는 이 파일의 `baseScores`, `effectiveWeights`, `riskPenalty`를 읽어 “왜 이 점수인지 / 뭘 하면 점수가 올라가는지”를 설명합니다.
 
-### Stage 9. Execution Plan
+### 11. Execution Plan
 
 입력:
 
-- Stage 2 연구 노트
-- Stage 7 전략 탐색 결과
-- Stage 8 점수
+- `03. Report Indexing` 연구 노트
+- `07. Strategy Options` 전략 탐색 결과
+- `10. Quant Scoring` 점수
 - 포트폴리오 현재 상태
 
 출력:
@@ -761,7 +761,7 @@ EcoReport/
 │   ├── rag/                   # 병렬 RAG 코퍼스
 │   └── weekly/
 ├── reports/
-│   └── daily/                 # stage4 실행계획, briefing
+│   └── daily/                 # 11. Execution Plan, briefing
 └── scripts/                   # 수집/정리/점수/실행 스크립트
 ```
 

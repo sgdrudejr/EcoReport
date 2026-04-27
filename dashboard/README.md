@@ -5,7 +5,7 @@
 ## 역할
 
 - 날짜별 산출물을 서버에서 직접 읽어 UI로 렌더링
-- 일일 Stage 1~4 결과, 피드백, intraday 상태, ghost/backtest 요약을 한 화면에 통합
+- 일일 `03. Report Indexing`~`13. Quality Gates` 결과, 피드백, intraday 상태, ghost/backtest 요약을 한 화면에 통합
 - 메인 운영 화면과 보조 실험 화면을 같은 앱 안에서 유지
 
 ## 실행
@@ -63,6 +63,17 @@ npm run build
 - `app/lib/data-loader.ts`: intraday / ghost / previous stage3 / backtest 로딩
 - `app/api/intraday/route.ts`: 장중 상태 polling endpoint
 - `app/api/trigger/route.ts`: 실험용 trigger endpoint
+- `app/api/llm-exchange/route.ts`: AI-to-AI 교환 패킷 조회 endpoint
+
+### LLM exchange API
+
+AI끼리 넘길 토큰 효율 JSON은 사람용 HTML/Markdown과 분리합니다.
+
+- `/api/llm-exchange?date=YYYY-MM-DD&packet=manifest`
+- `/api/llm-exchange?date=YYYY-MM-DD&packet=research`
+- `/api/llm-exchange?date=YYYY-MM-DD&packet=portfolio`
+- `/api/llm-exchange?date=YYYY-MM-DD&packet=claim-review`
+- `/api/llm-exchange?date=YYYY-MM-DD&packet=source-audit`
 
 ## 데이터 원칙
 

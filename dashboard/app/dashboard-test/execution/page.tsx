@@ -250,7 +250,7 @@ export default function ExecutionDashboardTestPage() {
                 {qualityStatus}
               </p>
               <p className="mt-2 text-sm leading-6 text-slate-600">
-                Stage 4, 브리핑, 외부 시황이 오늘 실행 화면에 얼마나 안정적으로 반영됐는지 함께 보는 카드입니다.
+                11. Execution Plan, 브리핑, 외부 시황이 오늘 실행 화면에 얼마나 안정적으로 반영됐는지 함께 보는 카드입니다.
               </p>
             </div>
             <StatusChip label={qualityStatus} status={qualityStatus} />
@@ -286,7 +286,7 @@ export default function ExecutionDashboardTestPage() {
                 추출 {systemHealth?.counts?.stage1Extracts ?? 0}건
               </span>
               <span className="rounded-full border border-slate-200 bg-white px-2.5 py-1">
-                Stage 2 {stage2Strategy?.source ?? "unknown"}
+                07. Strategy Options {stage2Strategy?.source ?? "unknown"}
               </span>
             </div>
           </div>

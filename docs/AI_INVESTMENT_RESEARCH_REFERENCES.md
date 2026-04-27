@@ -12,6 +12,13 @@ EcoReport는 다른 AI 투자 리서치 제품을 그대로 복제하지 않고,
 | FINRA AI guidance | GenAI를 써도 기존 투자 관련 규칙과 의무는 계속 적용 | 과장 claim, 보장 수익 표현, 근거 약한 액션은 `Quality Gates`에서 보류 |
 | FINRA investor warning | “AI가 보장 수익을 준다”류의 표현은 위험 신호 | `guarantee`, `확실`, `무조건`, `급등`, `폭등` 등은 risky claim으로 격리 |
 
+## EcoReport 업데이트 방향
+
+- Bloomberg/AlphaSense식 `transparent attribution`: 최종 문장에는 사람이 읽는 설명을 남기고, AI 교환 패킷에는 `claim -> evidenceIds -> source_audit_map`만 싣습니다.
+- Fiscal.ai식 `data + AI summary + dashboard`: 사람이 보는 리포트, 계좌 실행 전략, AI 교환 JSON, 품질 경고를 분리하되 같은 날짜 키로 묶습니다.
+- AlphaSense식 `repeatable workflow`: 100개 리포트를 매번 긴 문서로 다시 요약하지 않고, `02. Chunk Summary`와 `03. Report Indexing`에서 atom/claim을 보존한 뒤 작은 질문만 Deep Research로 보냅니다.
+- FINRA식 `risk guardrail`: 확정 수익, 과장 표현, 근거 부족 액션은 `13. Quality Gates`에서 경고/보류 처리하고 `11. Execution Plan` BUY 노출에서 제외합니다.
+
 ## 구현 기준
 
 1. `Human-readable artifacts`

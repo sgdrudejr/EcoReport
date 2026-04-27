@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# EcoReport 1~4단계 전략 파이프라인 실행기
+# EcoReport 01~13 Strategy/Quality pipeline runner
 
 set -euo pipefail
 
@@ -116,9 +116,9 @@ stage2_run_qwen() {
   fi
 
   if [[ ! -s "$err_file" ]]; then
-    printf 'Qwen Stage 7 timed out after %ss\n' "$STAGE2_TIMEOUT_SEC" >"$err_file"
+    printf 'Qwen 07. Strategy Options timed out after %ss\n' "$STAGE2_TIMEOUT_SEC" >"$err_file"
   fi
-  echo "!! Qwen Stage 7 실행 실패 -> $(tr '\n' ' ' <"$err_file" | sed 's/[[:space:]]\+/ /g')" >&2
+  echo "!! Qwen 07. Strategy Options 실행 실패 -> $(tr '\n' ' ' <"$err_file" | sed 's/[[:space:]]\+/ /g')" >&2
   rm -f "$err_file"
   return 1
 }
@@ -126,7 +126,7 @@ stage2_run_qwen() {
 try_stage2_qwen() {
   local preflight_output
   if ! preflight_output="$(stage2_qwen_preflight 2>&1)"; then
-    echo "!! Qwen Stage 7 사전 점검 실패 (${preflight_output})"
+    echo "!! Qwen 07. Strategy Options 사전 점검 실패 (${preflight_output})"
     return 1
   fi
 
@@ -155,11 +155,11 @@ while [[ $# -gt 0 ]]; do
       shift
       ;;
     --mock-stage2)
-      echo "ERROR: --mock-stage2 is disabled. Stage 2 must use a real LLM provider and fail-fast on errors." >&2
+      echo "ERROR: --mock-stage2 is disabled. 07. Strategy Options must use a real LLM provider and fail-fast on errors." >&2
       exit 2
       ;;
     --gemini-stage2)
-      echo "WARN: --gemini-stage2 is kept as a legacy alias. Running Qwen Stage 2 with mock fallback disabled." >&2
+      echo "WARN: --gemini-stage2 is kept as a legacy alias. Running Qwen 07. Strategy Options with mock fallback disabled." >&2
       USE_QWEN_STAGE2=1
       shift
       ;;
@@ -237,26 +237,26 @@ if [[ "$RUN_STAGE1_4" == "1" ]]; then
   echo "== 02. Chunk Summary + Full Daily Report =="
   if ! "$(python_bin)" scripts/build-stage1-4-full-daily-report.py \
     "${STAGE2_COMMON_ARGS[@]}"; then
-    echo "WARN: Stage 3(full daily report/atoms) 실패. Stage 4에서 extracts 폴백으로 계속 진행합니다." >&2
+    echo "WARN: 02. Chunk Summary(full daily report/atoms) 실패. 03. Report Indexing extracts 폴백으로 계속 진행합니다." >&2
   fi
 
   echo "== 03. Report Indexing =="
   if ! node scripts/build-stage2-enriched-report-index.js "${STAGE2_COMMON_ARGS[@]}"; then
-    echo "WARN: Stage 2(enriched report index) 실패. Stage 4/5는 기존 입력으로 계속 진행합니다." >&2
+    echo "WARN: 03. Report Indexing(enriched report index) 실패. 04/05 단계는 기존 입력으로 계속 진행합니다." >&2
   fi
 
   echo "== 04. Research Agenda =="
   if ! "$(python_bin)" scripts/build-stage1-4-research-agenda.py \
     "${STAGE2_COMMON_ARGS[@]}" \
     --max-input-summaries "${STAGE1_4_MAX_INPUT_SUMMARIES:-80}"; then
-    echo "WARN: Stage 4(research agenda) 실패. Stage 5는 extracts 추론 폴백으로 계속 진행합니다." >&2
+    echo "WARN: 04. Research Agenda 실패. 05. Deep Research는 extracts 추론 폴백으로 계속 진행합니다." >&2
   fi
 fi
 
 if [[ "$BUILD_STAGE1_5_PROMPT" == "1" ]]; then
   echo "== 05. Deep Research Prompt =="
   if ! node scripts/build-stage1-5-gemini-deep-research-prompt.js "${STAGE2_COMMON_ARGS[@]}"; then
-    echo "WARN: Stage 5 prompt 생성 실패. Stage 6 이하는 계속 진행합니다." >&2
+    echo "WARN: 05. Deep Research prompt 생성 실패. 06 이후 단계는 계속 진행합니다." >&2
   fi
 fi
 
@@ -266,13 +266,13 @@ node scripts/build-stage2-strategy-prompt.js "${STAGE2_COMMON_ARGS[@]}"
 if [[ "$USE_QWEN_STAGE2" == "1" ]]; then
   echo "== 07. Qwen Strategy Options =="
   if ! try_stage2_qwen; then
-    echo "ERROR: Stage 7(Qwen strategy options) failed. Mock fallback is disabled." >&2
+    echo "ERROR: 07. Strategy Options(Qwen) failed. Mock fallback is disabled." >&2
     exit 1
   fi
 else
   echo "== 07. Strategy Options default provider (Qwen, fail-fast) =="
   if ! try_stage2_qwen; then
-    echo "ERROR: Stage 7(Qwen strategy options) failed. Mock fallback is disabled." >&2
+    echo "ERROR: 07. Strategy Options(Qwen) failed. Mock fallback is disabled." >&2
     exit 1
   fi
 fi
@@ -282,7 +282,7 @@ echo "provider=$STAGE2_PROVIDER / status=$STAGE2_FINAL_STATUS / output=$STAGE2_O
 
 echo "== 08. ETF Ranking =="
 if ! "$(python_bin)" scripts/collectors/fetch-kis-etf-ranking.py --date "$DATE" --top-n 80; then
-  echo "WARN: KIS ETF ranking 수집 실패. 기존/없음 데이터로 Stage 8을 계속 진행합니다." >&2
+  echo "WARN: KIS ETF ranking 수집 실패. 기존/없음 데이터로 08. Candidate Matching을 계속 진행합니다." >&2
 fi
 
 echo "== 08. Candidate Matching =="

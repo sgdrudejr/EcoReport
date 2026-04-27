@@ -385,14 +385,14 @@ async function main() {
     },
     {
       key: "stage1",
-      label: "Stage 1 연구 노트",
+      label: "03. Report Indexing 연구 노트",
       status: statusFromCondition(stage1Extracts > 0, "warn"),
       detail: stage1Extracts > 0 ? `추출 ${stage1Extracts}건` : "stage1 산출물 누락",
       path: relative(paths.stage1),
     },
     {
       key: "stage1_quality",
-      label: "Stage 1 품질",
+      label: "03. Report Indexing 품질",
       status:
         stage1ContaminationRate > 0.35
           ? "error"
@@ -404,7 +404,7 @@ async function main() {
     },
     {
       key: "stage2",
-      label: "Stage 2 전략 탐색",
+      label: "07. Strategy Options",
       status: statusFromCondition(stage2Mode !== "missing", "warn"),
       detail: stage2 ? `실제 LLM 결과 (${stage2.model ?? stage2Mode ?? "unknown"})` : "stage2 결과 없음",
       path: relative(paths.stage2),
@@ -418,21 +418,21 @@ async function main() {
     },
     {
       key: "stage3",
-      label: "Stage 3 퀀트 점수",
+      label: "10. Quant Scoring",
       status: statusFromCondition(Boolean(stage3?.portfolio)),
       detail: stage3?.portfolio ? `포트폴리오 ${stage3.portfolio.totalScore ?? "-"}점` : "stage3 누락",
       path: relative(paths.stage3),
     },
     {
       key: "stage3_quality",
-      label: "Stage 3 관계 품질",
+      label: "10. Quant Scoring 관계 품질",
       status: statusFromCondition(stage3UnrelatedEvidenceRatio <= 0.35, stage3UnrelatedEvidenceRatio > 0.5 ? "error" : "warn"),
       detail: `unrelated ${stage3UnrelatedEvidenceRatio.toFixed(2)} / blocked ${stage3BlockedEvidenceCount}건`,
       path: relative(paths.stage3),
     },
     {
       key: "stage4",
-      label: "Stage 4 실행 계획",
+      label: "11. Execution Plan",
       status: statusFromCondition(Boolean(stage4?.accountPlans?.length)),
       detail:
         stage4?.accountPlans?.length
@@ -442,7 +442,7 @@ async function main() {
     },
     {
       key: "stage4_quality",
-      label: "Stage 4 논리 품질",
+      label: "11. Execution Plan 논리 품질",
       status: statusFromCondition(stage4ActionConflictCount === 0, "error"),
       detail: `conflict ${stage4ActionConflictCount}건 / no_action ${stage4NoActionCount}건 / low_conf_reject ${lowConfidenceActionRejectionCount}건`,
       path: relative(paths.stage4),
@@ -495,7 +495,7 @@ async function main() {
       label: "Deep Research 프롬프트",
       status: statusFromCondition(await fileExists(paths.deepResearchPrompt), "warn"),
       detail: (await fileExists(paths.deepResearchPrompt))
-        ? "Stage 1.5 프롬프트 생성됨"
+        ? "05. Deep Research 프롬프트 생성됨"
         : "Deep Research 프롬프트 없음",
       path: relative(paths.deepResearchPrompt),
     },
@@ -513,8 +513,8 @@ async function main() {
       label: "Deep Research 최종 브리핑",
       status: statusFromCondition(await fileExists(paths.deepResearchFinal), "warn"),
       detail: (await fileExists(paths.deepResearchFinal))
-        ? "Stage 1.6 최종 브리핑 저장됨"
-        : "Stage 1.6 최종 브리핑 없음",
+        ? "06. Briefing Synthesis 최종 브리핑 저장됨"
+        : "06. Briefing Synthesis 최종 브리핑 없음",
       path: relative(paths.deepResearchFinal),
     },
     {
@@ -522,7 +522,7 @@ async function main() {
       label: "Follow-up Research Map",
       status: statusFromCondition(await fileExists(paths.followUpMap), "warn"),
       detail: (await fileExists(paths.followUpMap))
-        ? "Stage 1.7 follow-up reindex map 생성됨"
+        ? "05. Deep Research follow-up reindex map 생성됨"
         : "follow-up reindex map 없음",
       path: relative(paths.followUpMap),
     },
