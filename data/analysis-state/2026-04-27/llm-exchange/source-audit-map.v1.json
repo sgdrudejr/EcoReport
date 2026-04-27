@@ -1,0 +1,1344 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-04-27",
+  "runDate": "2026-04-27",
+  "effectiveMarketDate": "2026-04-27",
+  "runId": "2026-04-27-033354",
+  "contract": "ecoreport.llm.source_audit_map.v1",
+  "audience": "ai_to_ai",
+  "tokenPolicy": {
+    "fullTextExcluded": true,
+    "maxClaimChars": 180,
+    "sourceIdsOnly": true,
+    "approxTokenBudget": 12000
+  },
+  "directives": [
+    "Keep raw text out of the packet; use source ids, titles, broker, category, ticker, and claim links.",
+    "Make one-hop audit possible from every action-facing claim to source ids."
+  ],
+  "sources": [
+    {
+      "id": "report_001",
+      "title": "(매크로 따라잡기) 유동성 재편과 대기성 자금",
+      "broker": "키움증권",
+      "category": "경제분석",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_002",
+      "title": "04/23, Kiwoom Morning Letter",
+      "broker": "키움증권",
+      "category": "경제분석",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_003",
+      "title": "한국 1분기 GDP; IT, 건설이 주도한 서프라이즈",
+      "broker": "신한투자증권",
+      "category": "경제분석",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_004",
+      "title": "데이터센터향 중속엔진 공급계약 확인",
+      "broker": "하나증권",
+      "category": "산업분석",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_005",
+      "title": "밸류에이션 부담 속 종목 선택",
+      "broker": "유진투자증권",
+      "category": "산업분석",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_006",
+      "title": "안녕하세요 데일리에요(로봇/방산/조선)",
+      "broker": "유진투자증권",
+      "category": "산업분석",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_007",
+      "title": "유안타 1Q26 Preview: 컨센 상회 부합 하회 한눈에 보기",
+      "broker": "유안타증권",
+      "category": "산업분석",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_008",
+      "title": "제약/바이오 인싸이트: 1Q26 기술 거래 트렌드. 릴리의 독주, 중국의 약진, 한국의 플랫폼",
+      "broker": "키움증권",
+      "category": "산업분석",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_009",
+      "title": "조선과 AI(Feat. HD 현대중공업의 데이터센터향 엔진 공급)",
+      "broker": "유진투자증권",
+      "category": "산업분석",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_010",
+      "title": "[DS 시황 데일리] 현시점 2026-04-23",
+      "broker": "DS투자증권",
+      "category": "시황정보",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_011",
+      "title": "[DS Defense Daily] 2026-04-23",
+      "broker": "DS투자증권",
+      "category": "시황정보",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_012",
+      "title": "[IBKS Daily] Morning Brief(260423)",
+      "broker": "IBK투자증권",
+      "category": "시황정보",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_013",
+      "title": "[Morning Brief] 중동전쟁 휴전 연장, 미 증시 상승 마감",
+      "broker": "iM증권",
+      "category": "시황정보",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_014",
+      "title": "4/22 KB 리서치 장마감코멘트",
+      "broker": "KB증권",
+      "category": "시황정보",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_015",
+      "title": "4/23 KB 리서치 모닝코멘트",
+      "broker": "KB증권",
+      "category": "시황정보",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_016",
+      "title": "국내 주식 마감 시황 - 격한 조정에도 전고점 지지에 6,500p 근접 (4월 23일)",
+      "broker": "신한투자증권",
+      "category": "시황정보",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_017",
+      "title": "국내주식 마감 시황 (26.04.22) - 협상 안해? 그래도 KOSPI는 엔진 달고 간다",
+      "broker": "유안타증권",
+      "category": "시황정보",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_018",
+      "title": "마켓레이더(4월 23일, 오전)",
+      "broker": "신한투자증권",
+      "category": "시황정보",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_019",
+      "title": "미국 인플레, 안심하긴 이르다",
+      "broker": "메리츠증권",
+      "category": "시황정보",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_020",
+      "title": "Daily Bond Morning Brief(2026.04.23)",
+      "broker": "다올투자증권",
+      "category": "시황정보",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_021",
+      "title": "SK증권 아침에 슥_2026.04.23",
+      "broker": "SK증권",
+      "category": "시황정보",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_022",
+      "title": "SK증권 Global Carbon Market Daily_260423",
+      "broker": "SK증권",
+      "category": "시황정보",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_023",
+      "title": "Yuanta Morning Snapshot (2026.04.23)",
+      "broker": "유안타증권",
+      "category": "시황정보",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_024",
+      "title": "신한 속보; 한화솔루션 유상증자 규모 축소 발표",
+      "broker": "신한투자증권",
+      "category": "신한 속보",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_025",
+      "title": "[AI] 배합사료 제조 및 계란 가공식품 전문기업",
+      "broker": "한국IR협의회",
+      "category": "종목분석",
+      "ticker": "025880",
+      "tickerName": "케이씨피드",
+      "opinion": "없음",
+      "targetPrice": null
+    },
+    {
+      "id": "report_026",
+      "title": "[AI] IT 인프라 구축 및 유지보수 서비스 전문기업",
+      "broker": "한국IR협의회",
+      "category": "종목분석",
+      "ticker": "033230",
+      "tickerName": "인성정보",
+      "opinion": "없음",
+      "targetPrice": null
+    },
+    {
+      "id": "report_027",
+      "title": "1Q26 Conference call",
+      "broker": "SK증권",
+      "category": "종목분석",
+      "ticker": "000660",
+      "tickerName": "SK하이닉스",
+      "opinion": "매수",
+      "targetPrice": 2000000
+    },
+    {
+      "id": "report_028",
+      "title": "1Q26 Re: 든든한 로직스",
+      "broker": "DS투자증권",
+      "category": "종목분석",
+      "ticker": "207940",
+      "tickerName": "삼성바이오로직스",
+      "opinion": "매수",
+      "targetPrice": 2100000
+    },
+    {
+      "id": "report_029",
+      "title": "1Q26 Re: 사업은 여전히 잘 하고 있다",
+      "broker": "하나증권",
+      "category": "종목분석",
+      "ticker": "207940",
+      "tickerName": "삼성바이오로직스",
+      "opinion": "Buy",
+      "targetPrice": 2050000
+    },
+    {
+      "id": "report_030",
+      "title": "1Q26 Review 실망시키지 않는 실적. 기대치 부합.",
+      "broker": "키움증권",
+      "category": "종목분석",
+      "ticker": "207940",
+      "tickerName": "삼성바이오로직스",
+      "opinion": "없음",
+      "targetPrice": null
+    },
+    {
+      "id": "report_031",
+      "title": "26년 기대 이상으로 하드캐리 할 중국법인",
+      "broker": "iM증권",
+      "category": "종목분석",
+      "ticker": "014830",
+      "tickerName": "유니드",
+      "opinion": "Buy",
+      "targetPrice": 110000
+    },
+    {
+      "id": "report_032",
+      "title": "동탄시티병원 스마트 병동 투어 후기: 현장에서 확인한 씨어스의 경쟁력",
+      "broker": "유진투자증권",
+      "category": "종목분석",
+      "ticker": "458870",
+      "tickerName": "씨어스",
+      "opinion": "Buy",
+      "targetPrice": 80000
+    },
+    {
+      "id": "report_033",
+      "title": "반도체, 배터리 부문 호조로 이익 급증 예상",
+      "broker": "유진투자증권",
+      "category": "종목분석",
+      "ticker": "093370",
+      "tickerName": "후성",
+      "opinion": "Buy",
+      "targetPrice": 20000
+    },
+    {
+      "id": "report_034",
+      "title": "반등: 상반기 '루빈', 하반기 '건식 4680'",
+      "broker": "SK증권",
+      "category": "종목분석",
+      "ticker": "336370",
+      "tickerName": "솔루스첨단소재",
+      "opinion": "매수",
+      "targetPrice": 20000
+    },
+    {
+      "id": "report_035",
+      "title": "발전엔진 최대수혜: 저위험, 고마진, 반영구",
+      "broker": "유안타증권",
+      "category": "종목분석",
+      "ticker": "443060",
+      "tickerName": "HD현대마린솔루션",
+      "opinion": "Buy",
+      "targetPrice": 270000
+    },
+    {
+      "id": "report_036",
+      "title": "불확실성 완화 국면",
+      "broker": "IBK투자증권",
+      "category": "종목분석",
+      "ticker": "030200",
+      "tickerName": "KT",
+      "opinion": "매수",
+      "targetPrice": 75000
+    },
+    {
+      "id": "report_037",
+      "title": "소재혁신센터 가동에 따른 소재 사업 매출 원년",
+      "broker": "유진투자증권",
+      "category": "종목분석",
+      "ticker": "059210",
+      "tickerName": "메타바이오메드",
+      "opinion": "없음",
+      "targetPrice": null
+    },
+    {
+      "id": "report_038",
+      "title": "순조로운 출발 예상",
+      "broker": "IBK투자증권",
+      "category": "종목분석",
+      "ticker": "032640",
+      "tickerName": "LG유플러스",
+      "opinion": "매수",
+      "targetPrice": 20000
+    },
+    {
+      "id": "report_039",
+      "title": "숨겨진 ESS·로봇 수혜주",
+      "broker": "SK증권",
+      "category": "종목분석",
+      "ticker": "125210",
+      "tickerName": "아모그린텍",
+      "opinion": "매수",
+      "targetPrice": 24000
+    },
+    {
+      "id": "report_040",
+      "title": "요소 비료 강세와 전후 재건 수요의 반사 수혜",
+      "broker": "하나증권",
+      "category": "종목분석",
+      "ticker": "014830",
+      "tickerName": "유니드",
+      "opinion": "Buy",
+      "targetPrice": 110000
+    },
+    {
+      "id": "report_041",
+      "title": "원엑시아 품고 체질 개선 돌입",
+      "broker": "미래에셋증권",
+      "category": "종목분석",
+      "ticker": "454910",
+      "tickerName": "두산로보틱스",
+      "opinion": "없음",
+      "targetPrice": null
+    },
+    {
+      "id": "report_042",
+      "title": "유상증자 Comment(2): 유상증자 규모 축소와 차세대 기술 주도권 확보 전략",
+      "broker": "한화투자증권",
+      "category": "종목분석",
+      "ticker": "009830",
+      "tickerName": "한화솔루션",
+      "opinion": "없음",
+      "targetPrice": null
+    },
+    {
+      "id": "report_043",
+      "title": "익숙함 속 커져가는 기대감",
+      "broker": "iM증권",
+      "category": "종목분석",
+      "ticker": "207940",
+      "tickerName": "삼성바이오로직스",
+      "opinion": "Buy",
+      "targetPrice": 2200000
+    },
+    {
+      "id": "report_044",
+      "title": "추가 성장 동력 유효",
+      "broker": "IBK투자증권",
+      "category": "종목분석",
+      "ticker": "207940",
+      "tickerName": "삼성바이오로직스",
+      "opinion": "매수",
+      "targetPrice": 2090000
+    },
+    {
+      "id": "report_045",
+      "title": "매파적(Hawkish) 5월을 예고하다",
+      "broker": "iM증권",
+      "category": "채권분석",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_046",
+      "title": "어느 때보다 중요한 소비(소매판매) 지표",
+      "broker": "하나증권",
+      "category": "채권분석",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_047",
+      "title": "Daily Bond Morning Brief(2026.04.23)",
+      "broker": "다올투자증권",
+      "category": "채권분석",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_048",
+      "title": "Eugenes FICC Update",
+      "broker": "유진투자증권",
+      "category": "채권분석",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_049",
+      "title": "KP: 국가부채 우려와 KP 시장이 점검해야 할 신호",
+      "broker": "하나증권",
+      "category": "채권분석",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_050",
+      "title": "WGBI 편입 영향 점검",
+      "broker": "키움증권",
+      "category": "채권분석",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_051",
+      "title": "[미국은 지금] 케빈 워시의 계획(Feat, 청문회)",
+      "broker": "키움증권",
+      "category": "투자전략",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_052",
+      "title": "[EPS LIVE #208] 한국 ROE 24.7%로 미국과 대만 추월",
+      "broker": "한화투자증권",
+      "category": "투자전략",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_053",
+      "title": "[ETF Spot Comment] 국내외 ETF 비대칭 규제 해소로 전술적 투자 수단 확보",
+      "broker": "IBK투자증권",
+      "category": "투자전략",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_054",
+      "title": "[IBKS Daily] Start with IBKS(2026.04.23) 전쟁통에도 실적은 나온다",
+      "broker": "IBK투자증권",
+      "category": "투자전략",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_055",
+      "title": "04/23 달러, 중동발 불안에 상승",
+      "broker": "키움증권",
+      "category": "투자전략",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_056",
+      "title": "04/23, 미 증시, 트럼프 휴전 연장, 기술주 호실적 기대감에 상승 마감",
+      "broker": "키움증권",
+      "category": "투자전략",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_057",
+      "title": "1Q 어닝시즌: AI 혁신과 비용 부담 사이의 업종별 차별화",
+      "broker": "키움증권",
+      "category": "투자전략",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_058",
+      "title": "눈 앞으로 다가온 우주 시대: 위성통신에서 우주 안보까지",
+      "broker": "키움증권",
+      "category": "투자전략",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_059",
+      "title": "대외 변수에도 실적/수주 모멘텀 유효, 코스피 6,400 선 돌파",
+      "broker": "대신증권",
+      "category": "투자전략",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_060",
+      "title": "수급의 정석, 구조와 알파",
+      "broker": "대신증권",
+      "category": "투자전략",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_061",
+      "title": "실적 컨센서스, 너 얼마나 믿을 수 있니?",
+      "broker": "메리츠증권",
+      "category": "투자전략",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_062",
+      "title": "글로벌 전략; Global Portfolio (4월 23일)",
+      "broker": "신한투자증권",
+      "category": "해외 주식",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_063",
+      "title": "보잉(BA.US); 737 MAX 여름 47대 증산 계획",
+      "broker": "신한투자증권",
+      "category": "해외 주식",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_064",
+      "title": "필립모리스; 불 꺼도 1등",
+      "broker": "신한투자증권",
+      "category": "해외 주식",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_065",
+      "title": "Global 헬스케어 Weekly(4월 4주차)",
+      "broker": "신한투자증권",
+      "category": "해외 주식",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_066",
+      "title": "Daily 신한생각(4월 23일)",
+      "broker": "신한투자증권",
+      "category": "Daily 신한생각",
+      "ticker": null,
+      "tickerName": "207940",
+      "opinion": null,
+      "targetPrice": null
+    },
+    {
+      "id": "report_067",
+      "title": "Daily Market Digest (4월 23일)",
+      "broker": "신한투자증권",
+      "category": "Daily 신한생각",
+      "ticker": null,
+      "tickerName": null,
+      "opinion": null,
+      "targetPrice": null
+    }
+  ],
+  "claimEvidenceLinks": [
+    {
+      "id": "claim_001_a12425",
+      "section": "consensus",
+      "evidenceIds": [
+        "report_066",
+        "report_067"
+      ],
+      "qualityStatus": "warn",
+      "flags": [
+        "risky_language"
+      ]
+    },
+    {
+      "id": "claim_002_7cf13b",
+      "section": "consensus",
+      "evidenceIds": [
+        "report_066",
+        "report_067"
+      ],
+      "qualityStatus": "ok",
+      "flags": []
+    },
+    {
+      "id": "claim_003_778259",
+      "section": "consensus",
+      "evidenceIds": [
+        "report_001",
+        "report_002",
+        "report_003"
+      ],
+      "qualityStatus": "warn",
+      "flags": [
+        "risky_language"
+      ]
+    },
+    {
+      "id": "claim_004_b668b4",
+      "section": "consensus",
+      "evidenceIds": [
+        "report_001",
+        "report_002",
+        "report_003"
+      ],
+      "qualityStatus": "ok",
+      "flags": []
+    },
+    {
+      "id": "claim_005_7e2e93",
+      "section": "consensus",
+      "evidenceIds": [
+        "report_004",
+        "report_005",
+        "report_006",
+        "report_007"
+      ],
+      "qualityStatus": "ok",
+      "flags": []
+    },
+    {
+      "id": "claim_006_feaeea",
+      "section": "consensus",
+      "evidenceIds": [
+        "report_004",
+        "report_005",
+        "report_006",
+        "report_007"
+      ],
+      "qualityStatus": "ok",
+      "flags": []
+    },
+    {
+      "id": "claim_007_ed8e6d",
+      "section": "consensus",
+      "evidenceIds": [
+        "report_010",
+        "report_011",
+        "report_012",
+        "report_013"
+      ],
+      "qualityStatus": "ok",
+      "flags": []
+    },
+    {
+      "id": "claim_008_710014",
+      "section": "consensus",
+      "evidenceIds": [
+        "report_010",
+        "report_011",
+        "report_012",
+        "report_013"
+      ],
+      "qualityStatus": "warn",
+      "flags": [
+        "risky_language"
+      ]
+    },
+    {
+      "id": "claim_009_b192ca",
+      "section": "consensus",
+      "evidenceIds": [
+        "report_024"
+      ],
+      "qualityStatus": "warn",
+      "flags": [
+        "thin_evidence"
+      ]
+    },
+    {
+      "id": "claim_010_825bad",
+      "section": "consensus",
+      "evidenceIds": [
+        "report_024"
+      ],
+      "qualityStatus": "warn",
+      "flags": [
+        "thin_evidence"
+      ]
+    },
+    {
+      "id": "claim_011_d6fbd6",
+      "section": "consensus",
+      "evidenceIds": [
+        "report_025",
+        "report_026",
+        "report_027",
+        "report_028"
+      ],
+      "qualityStatus": "ok",
+      "flags": []
+    },
+    {
+      "id": "claim_012_1c1155",
+      "section": "consensus",
+      "evidenceIds": [
+        "report_025",
+        "report_026",
+        "report_027",
+        "report_028"
+      ],
+      "qualityStatus": "ok",
+      "flags": []
+    },
+    {
+      "id": "claim_013_c2b390",
+      "section": "consensus",
+      "evidenceIds": [
+        "report_045",
+        "report_046",
+        "report_047",
+        "report_048"
+      ],
+      "qualityStatus": "ok",
+      "flags": []
+    },
+    {
+      "id": "claim_014_5b80d8",
+      "section": "consensus",
+      "evidenceIds": [
+        "report_045",
+        "report_046",
+        "report_047",
+        "report_048"
+      ],
+      "qualityStatus": "ok",
+      "flags": []
+    },
+    {
+      "id": "claim_015_6d1eae",
+      "section": "consensus",
+      "evidenceIds": [
+        "report_051",
+        "report_052",
+        "report_053",
+        "report_054"
+      ],
+      "qualityStatus": "ok",
+      "flags": []
+    },
+    {
+      "id": "claim_016_e61378",
+      "section": "consensus",
+      "evidenceIds": [
+        "report_051",
+        "report_052",
+        "report_053",
+        "report_054"
+      ],
+      "qualityStatus": "ok",
+      "flags": []
+    },
+    {
+      "id": "claim_017_fde533",
+      "section": "consensus",
+      "evidenceIds": [
+        "report_024"
+      ],
+      "qualityStatus": "warn",
+      "flags": [
+        "thin_evidence"
+      ]
+    },
+    {
+      "id": "claim_018_7b80ad",
+      "section": "consensus",
+      "evidenceIds": [
+        "report_024"
+      ],
+      "qualityStatus": "warn",
+      "flags": [
+        "thin_evidence"
+      ]
+    },
+    {
+      "id": "claim_019_447769",
+      "section": "minority",
+      "evidenceIds": [
+        "report_066",
+        "report_067"
+      ],
+      "qualityStatus": "ok",
+      "flags": []
+    },
+    {
+      "id": "claim_020_25e17c",
+      "section": "minority",
+      "evidenceIds": [
+        "report_066",
+        "report_067"
+      ],
+      "qualityStatus": "ok",
+      "flags": []
+    },
+    {
+      "id": "claim_021_5b2089",
+      "section": "minority",
+      "evidenceIds": [
+        "report_001",
+        "report_002",
+        "report_003"
+      ],
+      "qualityStatus": "ok",
+      "flags": []
+    },
+    {
+      "id": "claim_022_af590a",
+      "section": "minority",
+      "evidenceIds": [
+        "report_001",
+        "report_002",
+        "report_003"
+      ],
+      "qualityStatus": "ok",
+      "flags": []
+    },
+    {
+      "id": "claim_023_87830b",
+      "section": "minority",
+      "evidenceIds": [
+        "report_004",
+        "report_005",
+        "report_006",
+        "report_007"
+      ],
+      "qualityStatus": "ok",
+      "flags": []
+    },
+    {
+      "id": "claim_024_f44882",
+      "section": "minority",
+      "evidenceIds": [
+        "report_004",
+        "report_005",
+        "report_006",
+        "report_007"
+      ],
+      "qualityStatus": "ok",
+      "flags": []
+    },
+    {
+      "id": "claim_025_ad8447",
+      "section": "minority",
+      "evidenceIds": [
+        "report_010",
+        "report_011",
+        "report_012",
+        "report_013"
+      ],
+      "qualityStatus": "ok",
+      "flags": []
+    },
+    {
+      "id": "claim_026_ef6a9e",
+      "section": "minority",
+      "evidenceIds": [
+        "report_010",
+        "report_011",
+        "report_012",
+        "report_013"
+      ],
+      "qualityStatus": "ok",
+      "flags": []
+    },
+    {
+      "id": "claim_027_bcad70",
+      "section": "minority",
+      "evidenceIds": [
+        "report_024"
+      ],
+      "qualityStatus": "warn",
+      "flags": [
+        "thin_evidence"
+      ]
+    },
+    {
+      "id": "claim_028_dfde8c",
+      "section": "minority",
+      "evidenceIds": [
+        "report_024"
+      ],
+      "qualityStatus": "warn",
+      "flags": [
+        "thin_evidence"
+      ]
+    },
+    {
+      "id": "claim_029_e2f34a",
+      "section": "minority",
+      "evidenceIds": [
+        "report_025",
+        "report_026",
+        "report_027",
+        "report_028"
+      ],
+      "qualityStatus": "ok",
+      "flags": []
+    },
+    {
+      "id": "claim_030_a69bd7",
+      "section": "minority",
+      "evidenceIds": [
+        "report_025",
+        "report_026",
+        "report_027",
+        "report_028"
+      ],
+      "qualityStatus": "ok",
+      "flags": []
+    },
+    {
+      "id": "claim_031_585a08",
+      "section": "minority",
+      "evidenceIds": [
+        "report_045",
+        "report_046",
+        "report_047",
+        "report_048"
+      ],
+      "qualityStatus": "ok",
+      "flags": []
+    },
+    {
+      "id": "claim_032_7db1a2",
+      "section": "minority",
+      "evidenceIds": [
+        "report_045",
+        "report_046",
+        "report_047",
+        "report_048"
+      ],
+      "qualityStatus": "ok",
+      "flags": []
+    },
+    {
+      "id": "claim_033_d04496",
+      "section": "minority",
+      "evidenceIds": [
+        "report_051",
+        "report_052",
+        "report_053",
+        "report_054"
+      ],
+      "qualityStatus": "ok",
+      "flags": []
+    },
+    {
+      "id": "claim_034_1d50f9",
+      "section": "minority",
+      "evidenceIds": [
+        "report_051",
+        "report_052",
+        "report_053",
+        "report_054"
+      ],
+      "qualityStatus": "ok",
+      "flags": []
+    },
+    {
+      "id": "claim_035_64fe25",
+      "section": "minority",
+      "evidenceIds": [
+        "report_024"
+      ],
+      "qualityStatus": "warn",
+      "flags": [
+        "thin_evidence"
+      ]
+    },
+    {
+      "id": "claim_036_dbf470",
+      "section": "new_candidates",
+      "evidenceIds": [
+        "report_039"
+      ],
+      "qualityStatus": "warn",
+      "flags": [
+        "thin_evidence"
+      ]
+    },
+    {
+      "id": "claim_037_f46c15",
+      "section": "new_candidates",
+      "evidenceIds": [
+        "report_052"
+      ],
+      "qualityStatus": "warn",
+      "flags": [
+        "thin_evidence"
+      ]
+    },
+    {
+      "id": "claim_038_a94afd",
+      "section": "new_candidates",
+      "evidenceIds": [
+        "report_007"
+      ],
+      "qualityStatus": "hold",
+      "flags": [
+        "thin_evidence",
+        "risky_language"
+      ]
+    },
+    {
+      "id": "claim_039_a332bd",
+      "section": "new_candidates",
+      "evidenceIds": [
+        "report_011"
+      ],
+      "qualityStatus": "warn",
+      "flags": [
+        "thin_evidence"
+      ]
+    },
+    {
+      "id": "claim_040_bd384a",
+      "section": "new_candidates",
+      "evidenceIds": [
+        "report_025"
+      ],
+      "qualityStatus": "warn",
+      "flags": [
+        "thin_evidence"
+      ]
+    },
+    {
+      "id": "claim_041_fb4cfe",
+      "section": "new_candidates",
+      "evidenceIds": [
+        "report_005"
+      ],
+      "qualityStatus": "warn",
+      "flags": [
+        "thin_evidence"
+      ]
+    },
+    {
+      "id": "claim_042_b6da7d",
+      "section": "new_candidates",
+      "evidenceIds": [
+        "report_041"
+      ],
+      "qualityStatus": "warn",
+      "flags": [
+        "thin_evidence"
+      ]
+    },
+    {
+      "id": "claim_043_93a9c4",
+      "section": "new_candidates",
+      "evidenceIds": [
+        "report_063"
+      ],
+      "qualityStatus": "warn",
+      "flags": [
+        "thin_evidence"
+      ]
+    },
+    {
+      "id": "claim_044_df47a2",
+      "section": "new_candidates",
+      "evidenceIds": [
+        "report_006"
+      ],
+      "qualityStatus": "warn",
+      "flags": [
+        "thin_evidence"
+      ]
+    },
+    {
+      "id": "claim_045_cf6860",
+      "section": "new_candidates",
+      "evidenceIds": [
+        "report_052"
+      ],
+      "qualityStatus": "warn",
+      "flags": [
+        "thin_evidence"
+      ]
+    },
+    {
+      "id": "claim_046_b41e8d",
+      "section": "risk_watch",
+      "evidenceIds": [
+        "report_037"
+      ],
+      "qualityStatus": "warn",
+      "flags": [
+        "thin_evidence"
+      ]
+    },
+    {
+      "id": "claim_047_bde803",
+      "section": "risk_watch",
+      "evidenceIds": [
+        "report_037"
+      ],
+      "qualityStatus": "warn",
+      "flags": [
+        "thin_evidence"
+      ]
+    },
+    {
+      "id": "claim_048_9aecee",
+      "section": "risk_watch",
+      "evidenceIds": [
+        "report_013"
+      ],
+      "qualityStatus": "hold",
+      "flags": [
+        "thin_evidence",
+        "risky_language"
+      ]
+    },
+    {
+      "id": "claim_049_916793",
+      "section": "risk_watch",
+      "evidenceIds": [
+        "report_032"
+      ],
+      "qualityStatus": "warn",
+      "flags": [
+        "thin_evidence"
+      ]
+    },
+    {
+      "id": "claim_050_c475ca",
+      "section": "risk_watch",
+      "evidenceIds": [
+        "report_002"
+      ],
+      "qualityStatus": "warn",
+      "flags": [
+        "thin_evidence"
+      ]
+    },
+    {
+      "id": "claim_051_1a7b37",
+      "section": "risk_watch",
+      "evidenceIds": [
+        "report_045"
+      ],
+      "qualityStatus": "warn",
+      "flags": [
+        "thin_evidence"
+      ]
+    },
+    {
+      "id": "claim_052_3c4fa7",
+      "section": "risk_watch",
+      "evidenceIds": [
+        "report_041"
+      ],
+      "qualityStatus": "warn",
+      "flags": [
+        "thin_evidence"
+      ]
+    },
+    {
+      "id": "claim_053_148e4c",
+      "section": "insight_atoms",
+      "evidenceIds": [
+        "report_009"
+      ],
+      "qualityStatus": "warn",
+      "flags": [
+        "thin_evidence"
+      ]
+    },
+    {
+      "id": "claim_054_b095a0",
+      "section": "insight_atoms",
+      "evidenceIds": [
+        "report_039"
+      ],
+      "qualityStatus": "warn",
+      "flags": [
+        "thin_evidence"
+      ]
+    },
+    {
+      "id": "claim_055_739683",
+      "section": "insight_atoms",
+      "evidenceIds": [
+        "report_035"
+      ],
+      "qualityStatus": "warn",
+      "flags": [
+        "thin_evidence"
+      ]
+    },
+    {
+      "id": "claim_056_cbf1e3",
+      "section": "insight_atoms",
+      "evidenceIds": [
+        "report_011"
+      ],
+      "qualityStatus": "warn",
+      "flags": [
+        "thin_evidence"
+      ]
+    },
+    {
+      "id": "claim_057_969e33",
+      "section": "insight_atoms",
+      "evidenceIds": [
+        "report_029"
+      ],
+      "qualityStatus": "warn",
+      "flags": [
+        "thin_evidence"
+      ]
+    }
+  ]
+}

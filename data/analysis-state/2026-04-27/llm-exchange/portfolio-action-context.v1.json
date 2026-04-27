@@ -1,0 +1,283 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-04-27",
+  "runDate": "2026-04-27",
+  "effectiveMarketDate": "2026-04-27",
+  "runId": "2026-04-27-033354",
+  "contract": "ecoreport.llm.portfolio_action_context.v1",
+  "audience": "ai_to_ai",
+  "tokenPolicy": {
+    "fullTextExcluded": true,
+    "maxClaimChars": 180,
+    "sourceIdsOnly": true,
+    "approxTokenBudget": 12000
+  },
+  "guardrails": {
+    "buyVisibility": "validated_only",
+    "noGuaranteedReturns": true,
+    "rejectIfActionEvidenceWeak": true,
+    "noRawPersonalAccountDataInExternalPrompts": true
+  },
+  "benchmarkLenses": [
+    {
+      "key": "portfolio_monitoring",
+      "question": "Which holdings, watchlist names, and candidate sectors changed today versus yesterday?",
+      "requiredArtifacts": [
+        "portfolio_action_context",
+        "briefing_delta",
+        "execution_plan"
+      ]
+    },
+    {
+      "key": "validated_actions",
+      "question": "Which actions survive evidence, category concentration, confidence, and account fit checks?",
+      "requiredArtifacts": [
+        "execution_plan",
+        "data_quality_audit"
+      ]
+    }
+  ],
+  "directives": [
+    "Expose validated buys only; keep rejected candidates visible as research backlog, not recommendations.",
+    "Show account fit, allocation gap, concentration risk, and timing condition separately.",
+    "Treat macro/sector/watchlist monitoring as separate lenses before final action."
+  ],
+  "allocationPolicy": {
+    "safetyTargetPct": 0.2,
+    "coreTargetPct": 0.3,
+    "satelliteTargetPct": 0.5,
+    "satelliteSingleCapPct": null,
+    "clusterCapPct": null
+  },
+  "portfolioState": {
+    "portfolioScore": 41,
+    "regime": "BULL",
+    "emergencyDefense": {
+      "enabled": false,
+      "vix": null,
+      "worstIndexDropPct": 2.33,
+      "triggers": [],
+      "marketDataAvailable": true
+    }
+  },
+  "accounts": [
+    {
+      "accountKey": "ISA",
+      "label": "한투 ISA",
+      "totalScore": 29,
+      "stage2Bias": "selective_add",
+      "deployBudget": 85619,
+      "topGap": {
+        "category": "배당/커버드콜",
+        "targetPct": 0.3,
+        "currentPct": 0,
+        "gapAmount": 2672146
+      },
+      "validationPolicy": {
+        "buyVisibility": "validated_only",
+        "rejectedCandidatesVisibleInDetails": true,
+        "actionEvidenceGate": "code_reason_confidence_gap_context"
+      },
+      "validatorFlags": [
+        "gap_action_mismatch:KODEX AI전력핵심설비",
+        "gap_action_mismatch:TIGER 미국필라델피아AI반도체나스닥",
+        "gap_action_mismatch:ACE AI반도체TOP3+",
+        "no_action_after_validation"
+      ],
+      "validatedBuys": [],
+      "rejectedCandidates": [
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "reason": "부족 자산군(배당/커버드콜)과 실행 후보 카테고리(전력기기)가 달라 제외",
+          "confidence": 0.85
+        },
+        {
+          "code": "497570",
+          "name": "TIGER 미국필라델피아AI반도체나스닥",
+          "reason": "부족 자산군(배당/커버드콜)과 실행 후보 카테고리(AI반도체)가 달라 제외",
+          "confidence": 0.85
+        },
+        {
+          "code": "469150",
+          "name": "ACE AI반도체TOP3+",
+          "reason": "부족 자산군(배당/커버드콜)과 실행 후보 카테고리(AI반도체)가 달라 제외",
+          "confidence": 0.85
+        }
+      ],
+      "holds": [
+        {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "score": 61,
+          "reason": "2026년 4월 27일 코스피가 6,603.91로 사상 최고치를 기록하며 1.9% 올랐습니다. 반도체와 AI 관련주가 강세를 보였고, 외국인 투자자도 순매수로 전환해 투자 심리가 크게 개선됐습니다."
+        }
+      ],
+      "watches": [
+        {
+          "code": "0162Z0",
+          "name": "RISE 삼성전자SK하이닉스채권혼합50",
+          "score": 43,
+          "reason": "현재 점수 43점. 가격/기술 데이터가 부족해 직접 종목 리포트는 약하지만 sk하이닉스, 반도체 신호가 연결됩니다: 중동전쟁 휴전 연장 소식으로 지정학적 리스크가 완화되며 미 증시가 상승 마감하고 국내 코스피가 6,400pt를 돌파했다."
+        },
+        {
+          "code": "069500",
+          "name": "KODEX 200",
+          "score": 46,
+          "reason": "정상회담에서 이어지는 호재들 실적 시즌에 엇갈린 KS·KQ 지난 한국-인도 정상회담 이후 조선·원전 협력 소식에 관련주가 (%) 0.8 1.0 반응한데 이어 간밤 한국-베트남 정상회담에서 나온 소식도 업종 0.5 0.5 상승 재료로 작용했습니다. 전력 인프라 확충 및 신규 원전 협력…"
+        },
+        {
+          "code": "385510",
+          "name": "KODEX 신재생에너지액티브",
+          "score": 49,
+          "reason": "765kV 수주 확대 - 이익 레벨을 결정하는 핵심 변수: 수주 측면에서는 업종 내 가장 강한 흐름이 확인. 2월 약 7,800억원 규모의 765kV 목표주가 4,200,000원 (M) 변압기 수주를 포함해, 1Q26 신규 수주는 2조원을 상회하며 분기 기준 최대치를 기록할 것으로 전…"
+        }
+      ]
+    },
+    {
+      "accountKey": "PENSION",
+      "label": "한투 연금저축",
+      "totalScore": 53,
+      "stage2Bias": "aggressive_add",
+      "deployBudget": 763742,
+      "topGap": {
+        "category": "S&P500",
+        "targetPct": 0.4,
+        "currentPct": 0.22786885587438097,
+        "gapAmount": 991457
+      },
+      "validationPolicy": {
+        "buyVisibility": "validated_only",
+        "rejectedCandidatesVisibleInDetails": true,
+        "actionEvidenceGate": "code_reason_confidence_gap_context"
+      },
+      "validatorFlags": [
+        "gap_action_mismatch:KODEX AI전력핵심설비",
+        "gap_action_mismatch:TIGER 미국필라델피아AI반도체나스닥",
+        "gap_action_mismatch:ACE AI반도체TOP3+",
+        "no_action_after_validation"
+      ],
+      "validatedBuys": [],
+      "rejectedCandidates": [
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "reason": "부족 자산군(S&P500)과 실행 후보 카테고리(전력기기)가 달라 제외",
+          "confidence": 0.85
+        },
+        {
+          "code": "497570",
+          "name": "TIGER 미국필라델피아AI반도체나스닥",
+          "reason": "부족 자산군(S&P500)과 실행 후보 카테고리(AI반도체)가 달라 제외",
+          "confidence": 0.85
+        },
+        {
+          "code": "469150",
+          "name": "ACE AI반도체TOP3+",
+          "reason": "부족 자산군(S&P500)과 실행 후보 카테고리(AI반도체)가 달라 제외",
+          "confidence": 0.85
+        }
+      ],
+      "holds": [
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "score": 60,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는 • 765kV 수주 확대 - 이익 레벨을 결정하는 핵심 변수: 수주 측면에서는 업종 내 가장 강한 흐름이 확인. 2월 약 7,800억원 규모의 765kV 목표주가 4,200,000원 (M) 변압기 수주를 포함해, 1Q26 신규 수주는 2조원을 상회하…"
+        }
+      ],
+      "watches": [
+        {
+          "code": "0162Z0",
+          "name": "RISE 삼성전자SK하이닉스채권혼합50",
+          "score": 43,
+          "reason": "현재 점수 43점. 가격/기술 데이터가 부족해 직접 종목 리포트는 약하지만 sk하이닉스, 반도체 신호가 연결됩니다: 중동전쟁 휴전 연장 소식으로 지정학적 리스크가 완화되며 미 증시가 상승 마감하고 국내 코스피가 6,400pt를 돌파했다."
+        },
+        {
+          "code": "069500",
+          "name": "KODEX 200",
+          "score": 46,
+          "reason": "정상회담에서 이어지는 호재들 실적 시즌에 엇갈린 KS·KQ 지난 한국-인도 정상회담 이후 조선·원전 협력 소식에 관련주가 (%) 0.8 1.0 반응한데 이어 간밤 한국-베트남 정상회담에서 나온 소식도 업종 0.5 0.5 상승 재료로 작용했습니다. 전력 인프라 확충 및 신규 원전 협력…"
+        },
+        {
+          "code": "379810",
+          "name": "KODEX 미국나스닥100",
+          "score": 43,
+          "reason": "현재 점수 43점. 가격/기술 데이터가 부족해 직접 종목 리포트는 약하지만 반도체, ai 인프라 신호가 연결됩니다: 일본 증시 휴전 협상 진전으로 위험 회피 심리 완화되었으나, 반도체·방산·은행 등 실적 모멘텀이 주도할 것으로 전망됨."
+        }
+      ]
+    },
+    {
+      "accountKey": "KIS_MAIN",
+      "label": "한투 일반",
+      "totalScore": 50,
+      "stage2Bias": "defensive",
+      "deployBudget": 124429,
+      "topGap": {
+        "category": "미국인덱스",
+        "targetPct": 0.3,
+        "currentPct": 0,
+        "gapAmount": 1073388
+      },
+      "validationPolicy": {
+        "buyVisibility": "validated_only",
+        "rejectedCandidatesVisibleInDetails": true,
+        "actionEvidenceGate": "code_reason_confidence_gap_context"
+      },
+      "validatorFlags": [
+        "gap_action_mismatch:HANARO 원자력iSelect",
+        "gap_action_mismatch:KODEX AI전력핵심설비",
+        "no_action_after_validation"
+      ],
+      "validatedBuys": [],
+      "rejectedCandidates": [
+        {
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "reason": "부족 자산군(미국인덱스)과 실행 후보 카테고리(원자력)가 달라 제외",
+          "confidence": 0.85
+        },
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "reason": "부족 자산군(미국인덱스)과 실행 후보 카테고리(전력기기)가 달라 제외",
+          "confidence": 0.85
+        }
+      ],
+      "holds": [
+        {
+          "code": "064350",
+          "name": "현대로템",
+          "score": 66,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는 정상회담에서 이어지는 호재들 실적 시즌에 엇갈린 KS·KQ 지난 한국-인도 정상회담 이후 조선·원전 협력 소식에 관련주가 (%) 0.8 1.0 반응한데 이어 간밤 한국-베트남 정상회담에서 나온 소식도 업종 0.5 0.5 상승 재료로 작용했습니다. 전…"
+        },
+        {
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "score": 66,
+          "reason": "207940는 긍정 시각이며 핵심 근거는 결론적으로 전쟁 지속 및 협상 전후 국면에서 단기/초우량물로 대응하고, 명시적 종전 기조가 확인된 이후 듀레이션 확대 및 여전·회사채 투자에 나서도 늦지 않 다는 판단이다. 협상 전까지 전쟁 리스크 장기화 가능성을 염두에 두고 선제적 포지셔닝보…"
+        }
+      ],
+      "watches": [
+        {
+          "code": "007660",
+          "name": "이수페타시스",
+          "score": 43,
+          "reason": "매크로는 부정 시각이며 핵심 근거는 ▶ 중국증시 ▶ 유럽증시 - 정부의 강력한 시장 부양 의지에 상승. 중국 인민은행이 시장의 예상보다 강력 - 에너지 가격 상승에 따른 우려에 하락. 휴전 연장이라는 소식은 있었지만 유 한 유동성 지원 방안을 발표하며 투자심리는 안정화. 유가가 급등세…"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "score": 47,
+          "reason": "765kV 수주 확대 - 이익 레벨을 결정하는 핵심 변수: 수주 측면에서는 업종 내 가장 강한 흐름이 확인. 2월 약 7,800억원 규모의 765kV 목표주가 4,200,000원 (M) 변압기 수주를 포함해, 1Q26 신규 수주는 2조원을 상회하며 분기 기준 최대치를 기록할 것으로 전…"
+        },
+        {
+          "code": "329180",
+          "name": "HD현대중공업",
+          "score": 47,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는 • 765kV 수주 확대 - 이익 레벨을 결정하는 핵심 변수: 수주 측면에서는 업종 내 가장 강한 흐름이 확인. 2월 약 7,800억원 규모의 765kV 목표주가 4,200,000원 (M) 변압기 수주를 포함해, 1Q26 신규 수주는 2조원을 상회하…"
+        }
+      ]
+    }
+  ]
+}

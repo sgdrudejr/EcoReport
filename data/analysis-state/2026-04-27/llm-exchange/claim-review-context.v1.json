@@ -1,0 +1,162 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-04-27",
+  "runDate": "2026-04-27",
+  "effectiveMarketDate": "2026-04-27",
+  "runId": "2026-04-27-033354",
+  "contract": "ecoreport.llm.claim_review_context.v1",
+  "audience": "small_prompt_review",
+  "tokenPolicy": {
+    "fullTextExcluded": true,
+    "maxClaimChars": 180,
+    "sourceIdsOnly": true,
+    "approxTokenBudget": 6000
+  },
+  "allowedDecisions": [
+    "retain",
+    "soften",
+    "hold",
+    "remove"
+  ],
+  "instruction": "전체 리포트를 다시 요약하지 말고 riskyClaims만 근거 ID 기준으로 판정한다.",
+  "benchmarkLenses": [
+    {
+      "key": "red_flags_and_objections",
+      "question": "What would make the top thesis wrong, and which reports disagree?",
+      "requiredArtifacts": [
+        "claim_review_context",
+        "minority_views",
+        "contradictions"
+      ]
+    },
+    {
+      "key": "validated_actions",
+      "question": "Which actions survive evidence, category concentration, confidence, and account fit checks?",
+      "requiredArtifacts": [
+        "execution_plan",
+        "data_quality_audit"
+      ]
+    }
+  ],
+  "directives": [
+    "Review only risky claims, guaranteed-return wording, weak evidence, pump-like language, and hype-only catalysts.",
+    "Allowed decisions are retain, soften, hold, remove.",
+    "Prefer softer claims when the direction is plausible but evidence is thin."
+  ],
+  "riskLanguage": {
+    "blockOrReview": [
+      "guarantee",
+      "guaranteed",
+      "can't lose",
+      "무조건",
+      "반드시",
+      "보장",
+      "확실",
+      "몰빵",
+      "급등",
+      "폭등",
+      "대박",
+      "무위험",
+      "고수익 보장"
+    ],
+    "reviewReasons": [
+      "guaranteed_return_language",
+      "high_pressure_action",
+      "thin_evidence",
+      "single_source_family",
+      "hype_only_ai_claim",
+      "pump_like_language"
+    ]
+  },
+  "riskyClaims": [
+    {
+      "id": "claim_001_a12425",
+      "section": "consensus",
+      "category": "Daily 신한생각",
+      "entity": null,
+      "claim": "일본 증시, 실적 시즌 진입에 따른 반도체/방산/은행 주도 예상",
+      "evidenceIds": [],
+      "quality": {
+        "status": "warn",
+        "severity": "low",
+        "flags": [
+          "risky_language"
+        ],
+        "evidenceCount": 2,
+        "sourceDiversity": 2
+      }
+    },
+    {
+      "id": "claim_003_778259",
+      "section": "consensus",
+      "category": "경제분석",
+      "entity": null,
+      "claim": "2 월 M2 증가율 반등은 자금 성격의 구조적 전환을 확인하는 핵심 지표",
+      "evidenceIds": [],
+      "quality": {
+        "status": "warn",
+        "severity": "low",
+        "flags": [
+          "risky_language"
+        ],
+        "evidenceCount": 3,
+        "sourceDiversity": 3
+      }
+    },
+    {
+      "id": "claim_008_710014",
+      "section": "consensus",
+      "category": "시황정보",
+      "entity": null,
+      "claim": "이란-미국 협상 결렬로 인한 지정학적 불확실성 확대 후 휴전 연장 소식으로 리스크 완화",
+      "evidenceIds": [],
+      "quality": {
+        "status": "warn",
+        "severity": "low",
+        "flags": [
+          "risky_language"
+        ],
+        "evidenceCount": 5,
+        "sourceDiversity": 5
+      }
+    },
+    {
+      "id": "claim_038_a94afd",
+      "section": "new_candidates",
+      "category": "산업분석",
+      "entity": null,
+      "claim": "LNGC 저선가 물량 비중 감소로 영업이익률 개선 예상 / 유조선 운임 급등 및 신조 수주 단가 상승 수혜 / 중동 정세 변화 및 호르무즈 긴장 지속 / 컨테이너 선대 공급 과잉 (2026F +4.6%, 2027F +7.5%)",
+      "evidenceIds": [],
+      "quality": {
+        "status": "hold",
+        "severity": "high",
+        "flags": [
+          "thin_evidence",
+          "risky_language",
+          "hold"
+        ],
+        "evidenceCount": 1,
+        "sourceDiversity": 1
+      }
+    },
+    {
+      "id": "claim_048_9aecee",
+      "section": "risk_watch",
+      "category": "시황정보",
+      "entity": null,
+      "claim": "중동전쟁 휴전 연장 소식으로 지정학적 리스크가 완화되며 미 증시가 상승 마감하고 국내 코스피가 6,400pt를 돌파했다. SK하이닉스와 현대차 등 주요 기업의 1분기 실적 발표 기대감으로 반도체와 전기차 관련주가 강세를 보였으며, 알루미늄 공급 차질 우려로 비철금속 업종이 급등했다.",
+      "evidenceIds": [],
+      "quality": {
+        "status": "hold",
+        "severity": "high",
+        "flags": [
+          "thin_evidence",
+          "risky_language",
+          "hold"
+        ],
+        "evidenceCount": 1,
+        "sourceDiversity": 1
+      }
+    }
+  ]
+}

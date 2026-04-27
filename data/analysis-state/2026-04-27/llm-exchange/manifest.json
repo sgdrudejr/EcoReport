@@ -1,0 +1,218 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-04-27",
+  "runDate": "2026-04-27",
+  "effectiveMarketDate": "2026-04-27",
+  "runId": "2026-04-27-033354",
+  "contract": "ecoreport.llm.exchange_manifest.v1",
+  "audience": "human_manifest",
+  "generatedAt": "2026-04-27T05:11:31.579Z",
+  "tokenPolicy": {
+    "fullTextExcluded": true,
+    "maxClaimChars": 180,
+    "sourceIdsOnly": true,
+    "approxTokenBudget": 5000
+  },
+  "schemaPath": "docs/schemas/llm-exchange.v1.schema.json",
+  "contractConfigPath": "config/llm-exchange-contracts.json",
+  "benchmarkPatternConfigPath": "config/ai-research-benchmark-patterns.json",
+  "guardrails": {
+    "noGuaranteedReturns": true,
+    "validatedBuysOnly": true,
+    "sourceIdsRequiredForClaims": true,
+    "riskyClaimsUseSmallPrompt": true,
+    "humanNarrativeMustShowWarnings": true,
+    "benchmarkPatternConfig": "config/ai-research-benchmark-patterns.json",
+    "noRawPersonalAccountDataInExternalPrompts": true,
+    "repeatableGridBeforeNarrative": true,
+    "redFlagsAndMinorityViewsRequired": true
+  },
+  "packets": [
+    {
+      "key": "research_context",
+      "path": "data/analysis-state/2026-04-27/llm-exchange/research-context.v1.json",
+      "contract": "ecoreport.llm.research_context.v1",
+      "audience": "ai_to_ai",
+      "approxTokens": 7230,
+      "maxApproxTokens": 18000
+    },
+    {
+      "key": "portfolio_action_context",
+      "path": "data/analysis-state/2026-04-27/llm-exchange/portfolio-action-context.v1.json",
+      "contract": "ecoreport.llm.portfolio_action_context.v1",
+      "audience": "ai_to_ai",
+      "approxTokens": 1720,
+      "maxApproxTokens": 12000
+    },
+    {
+      "key": "claim_review_context",
+      "path": "data/analysis-state/2026-04-27/llm-exchange/claim-review-context.v1.json",
+      "contract": "ecoreport.llm.claim_review_context.v1",
+      "audience": "small_prompt_review",
+      "approxTokens": 739,
+      "maxApproxTokens": 6000
+    },
+    {
+      "key": "source_audit_map",
+      "path": "data/analysis-state/2026-04-27/llm-exchange/source-audit-map.v1.json",
+      "contract": "ecoreport.llm.source_audit_map.v1",
+      "audience": "ai_to_ai",
+      "approxTokens": 4803,
+      "maxApproxTokens": 12000
+    },
+    {
+      "key": "human_output_manifest",
+      "path": "data/analysis-state/2026-04-27/llm-exchange/human-output-manifest.v1.json",
+      "contract": "ecoreport.llm.exchange_manifest.v1",
+      "audience": "human_manifest",
+      "approxTokens": 207,
+      "maxApproxTokens": 2000
+    }
+  ],
+  "sourceLearnings": [
+    {
+      "name": "Bloomberg AI",
+      "url": "https://professional.bloomberg.com/solutions/ai",
+      "pattern": "Responses are grounded in trusted data with transparent attribution and source-text access."
+    },
+    {
+      "name": "Fiscal.ai",
+      "url": "https://fiscal.ai/",
+      "pattern": "AI summaries sit beside financial data, KPI data, dashboards, notifications, and click-through auditability."
+    },
+    {
+      "name": "AlphaSense",
+      "url": "https://www.alpha-sense.com/solutions/generative-ai-investment-research",
+      "pattern": "Premium documents, broker reports, news, semantic search, and sentiment are combined for qualitative research."
+    },
+    {
+      "name": "FINRA AI guidance",
+      "url": "https://www.finra.org/rules-guidance/key-topics/artificial-intelligence",
+      "pattern": "Existing securities rules continue to apply when using GenAI and LLMs."
+    },
+    {
+      "name": "Koyfin",
+      "url": "https://www.koyfin.com/",
+      "pattern": "Portfolio, watchlist, macro dashboards, transcripts, ETF/fund coverage, and customizable visuals are one research surface."
+    },
+    {
+      "name": "The Transcript AI",
+      "url": "https://thetranscript.ai/",
+      "pattern": "Earnings intelligence is separated into executive summary, key metrics, management tone, guidance, strategic signals, red flags, Q&A dynamics, and uncertainty-aware ranking."
+    },
+    {
+      "name": "AlphaVistaAI",
+      "url": "https://alphavistaai.com/",
+      "pattern": "Specialist AI agents combine technical, fundamental, sentiment, real-time data, portfolio diversification, and investor-profile insights."
+    },
+    {
+      "name": "Motley Fool investor survey",
+      "url": "https://www.fool.com/research/survey-how-investors-are-using-generative-ai/",
+      "pattern": "Retail investors use GenAI mainly for stock research, market-trend analysis, news/filing summaries, portfolio management, and time savings; accuracy/privacy remain major concerns."
+    }
+  ],
+  "benchmarkPatterns": {
+    "schemaVersion": 1,
+    "sourceNames": [
+      "Bloomberg AI / ASKB",
+      "AlphaSense Generative Search / Generative Grid",
+      "Fiscal.ai",
+      "Koyfin",
+      "The Transcript AI",
+      "AlphaVistaAI",
+      "The Motley Fool investor survey",
+      "FINRA AI / investment fraud guidance"
+    ],
+    "dailyResearchLenses": [
+      {
+        "key": "source_attribution",
+        "question": "Which claims affect action, and can each be traced to source ids without relying on long prose?",
+        "requiredArtifacts": [
+          "source_audit_map",
+          "claim_evidence_links"
+        ]
+      },
+      {
+        "key": "repeatable_grid",
+        "question": "Can today's reports be compared by the same columns: thesis, catalyst, risk, evidence, confidence, portfolio impact?",
+        "requiredArtifacts": [
+          "research_context",
+          "topAtoms",
+          "claims"
+        ]
+      },
+      {
+        "key": "portfolio_monitoring",
+        "question": "Which holdings, watchlist names, and candidate sectors changed today versus yesterday?",
+        "requiredArtifacts": [
+          "portfolio_action_context",
+          "briefing_delta",
+          "execution_plan"
+        ]
+      },
+      {
+        "key": "red_flags_and_objections",
+        "question": "What would make the top thesis wrong, and which reports disagree?",
+        "requiredArtifacts": [
+          "claim_review_context",
+          "minority_views",
+          "contradictions"
+        ]
+      },
+      {
+        "key": "validated_actions",
+        "question": "Which actions survive evidence, category concentration, confidence, and account fit checks?",
+        "requiredArtifacts": [
+          "execution_plan",
+          "data_quality_audit"
+        ]
+      }
+    ],
+    "packetDirectives": {
+      "researchContext": [
+        "Preserve non-consensus claims, minority views, red flags, and uncertainty separately from consensus.",
+        "Represent repeatable review columns as compact arrays rather than narrative paragraphs.",
+        "Never merge multiple brokers into a single claim unless evidenceIds show source diversity."
+      ],
+      "portfolioActionContext": [
+        "Expose validated buys only; keep rejected candidates visible as research backlog, not recommendations.",
+        "Show account fit, allocation gap, concentration risk, and timing condition separately.",
+        "Treat macro/sector/watchlist monitoring as separate lenses before final action."
+      ],
+      "claimReviewContext": [
+        "Review only risky claims, guaranteed-return wording, weak evidence, pump-like language, and hype-only catalysts.",
+        "Allowed decisions are retain, soften, hold, remove.",
+        "Prefer softer claims when the direction is plausible but evidence is thin."
+      ],
+      "sourceAuditMap": [
+        "Keep raw text out of the packet; use source ids, titles, broker, category, ticker, and claim links.",
+        "Make one-hop audit possible from every action-facing claim to source ids."
+      ]
+    },
+    "riskLanguage": {
+      "blockOrReview": [
+        "guarantee",
+        "guaranteed",
+        "can't lose",
+        "무조건",
+        "반드시",
+        "보장",
+        "확실",
+        "몰빵",
+        "급등",
+        "폭등",
+        "대박",
+        "무위험",
+        "고수익 보장"
+      ],
+      "reviewReasons": [
+        "guaranteed_return_language",
+        "high_pressure_action",
+        "thin_evidence",
+        "single_source_family",
+        "hype_only_ai_claim",
+        "pump_like_language"
+      ]
+    }
+  }
+}

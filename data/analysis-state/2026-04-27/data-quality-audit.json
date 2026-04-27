@@ -1,0 +1,247 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-04-27",
+  "runDate": "2026-04-27",
+  "effectiveMarketDate": "2026-04-27",
+  "runId": "2026-04-27-033354",
+  "generatedAt": "2026-04-27T05:11:45.808Z",
+  "overallStatus": "ok",
+  "counts": {
+    "reportIndexCount": 67,
+    "textManifestCount": 0,
+    "sourceReportCount": 67,
+    "claimCount": 57,
+    "riskyClaimCount": 5,
+    "exposedBuyCount": 0
+  },
+  "checks": [
+    {
+      "key": "required_artifacts",
+      "status": "ok",
+      "detail": "필수 산출물 존재",
+      "metric": {
+        "missing": []
+      }
+    },
+    {
+      "key": "human_ai_split",
+      "status": "ok",
+      "detail": "사람용 Markdown, stage1-4-ai-exchange, llm-exchange 패킷이 분리됨"
+    },
+    {
+      "key": "llm_packet_budget",
+      "status": "ok",
+      "detail": "LLM 교환 패킷 5개가 예산 내 생성됨",
+      "metric": {
+        "packetWarnings": []
+      }
+    },
+    {
+      "key": "benchmark_pattern_alignment",
+      "status": "ok",
+      "detail": "AI 리서치 벤치마크 렌즈 5개 반영, source learning 8개",
+      "metric": {
+        "missingBenchmarkLenses": [],
+        "benchmarkSourceCount": 8
+      }
+    },
+    {
+      "key": "metadata_consistency",
+      "status": "ok",
+      "detail": "date=2026-04-27, runDate=2026-04-27, effective=2026-04-27"
+    },
+    {
+      "key": "report_coverage",
+      "status": "ok",
+      "detail": "source_report_count=67, report_index=67, text_manifest=N/A",
+      "metric": {
+        "sourceReportCount": 67,
+        "reportIndexCount": 67,
+        "textManifestCount": 0
+      }
+    },
+    {
+      "key": "duplicate_claims",
+      "status": "ok",
+      "detail": "중복 claim fingerprint 0개 / 총 claim 57개",
+      "metric": {
+        "duplicateCount": 0,
+        "claimCount": 57
+      }
+    },
+    {
+      "key": "evidence_coverage",
+      "status": "ok",
+      "detail": "근거 없음 0개, 근거 2개 미만 29개",
+      "metric": {
+        "noEvidenceCount": 0,
+        "weakEvidenceCount": 29
+      }
+    },
+    {
+      "key": "category_coverage",
+      "status": "ok",
+      "detail": "카테고리 9개, 기타 비중 0%",
+      "metric": {
+        "categoryCount": 9,
+        "miscCount": 0
+      }
+    },
+    {
+      "key": "risky_claims",
+      "status": "ok",
+      "detail": "위험/근거 약한 claim 5개 격리 완료, 실행 전략 노출 차단",
+      "metric": {
+        "riskyClaimCount": 5,
+        "highRiskClaimCount": 2,
+        "quarantined": true
+      }
+    },
+    {
+      "key": "execution_visibility",
+      "status": "ok",
+      "detail": "실행 전략은 검증 통과 BUY만 노출",
+      "metric": {
+        "exposedBuyCount": 0,
+        "invalidVisibleBuyCount": 0
+      }
+    }
+  ],
+  "riskyClaims": [
+    {
+      "id": "claim_001_a12425",
+      "section": "consensus",
+      "category": "Daily 신한생각",
+      "claim": "일본 증시, 실적 시즌 진입에 따른 반도체/방산/은행 주도 예상",
+      "severity": "low",
+      "reasons": [
+        "risky_language"
+      ],
+      "evidenceCount": 2,
+      "sourceDiversity": 2,
+      "reviewPrompt": "근거 ID를 다시 확인하고, 과한 표현을 보류/약화/삭제 중 하나로 판정"
+    },
+    {
+      "id": "claim_003_778259",
+      "section": "consensus",
+      "category": "경제분석",
+      "claim": "2 월 M2 증가율 반등은 자금 성격의 구조적 전환을 확인하는 핵심 지표",
+      "severity": "low",
+      "reasons": [
+        "risky_language"
+      ],
+      "evidenceCount": 3,
+      "sourceDiversity": 3,
+      "reviewPrompt": "근거 ID를 다시 확인하고, 과한 표현을 보류/약화/삭제 중 하나로 판정"
+    },
+    {
+      "id": "claim_008_710014",
+      "section": "consensus",
+      "category": "시황정보",
+      "claim": "이란-미국 협상 결렬로 인한 지정학적 불확실성 확대 후 휴전 연장 소식으로 리스크 완화",
+      "severity": "low",
+      "reasons": [
+        "risky_language"
+      ],
+      "evidenceCount": 5,
+      "sourceDiversity": 5,
+      "reviewPrompt": "근거 ID를 다시 확인하고, 과한 표현을 보류/약화/삭제 중 하나로 판정"
+    },
+    {
+      "id": "claim_038_a94afd",
+      "section": "new_candidates",
+      "category": "산업분석",
+      "claim": "LNGC 저선가 물량 비중 감소로 영업이익률 개선 예상 / 유조선 운임 급등 및 신조 수주 단가 상승 수혜 / 중동 정세 변화 및 호르무즈 긴장 지속 / 컨테이너 선대 공급 과잉 (2026F +4.6%, 2027F +7.5%)",
+      "severity": "high",
+      "reasons": [
+        "thin_evidence",
+        "risky_language",
+        "hold"
+      ],
+      "evidenceCount": 1,
+      "sourceDiversity": 1,
+      "reviewPrompt": "근거 ID를 다시 확인하고, 과한 표현을 보류/약화/삭제 중 하나로 판정"
+    },
+    {
+      "id": "claim_048_9aecee",
+      "section": "risk_watch",
+      "category": "시황정보",
+      "claim": "중동전쟁 휴전 연장 소식으로 지정학적 리스크가 완화되며 미 증시가 상승 마감하고 국내 코스피가 6,400pt를 돌파했다. SK하이닉스와 현대차 등 주요 기업의 1분기 실적 발표 기대감으로 반도체와 전기차 관련주가 강세를 보였으며, 알루미늄 공급 차질 우려로 비철금속 업종이 급등했다.",
+      "severity": "high",
+      "reasons": [
+        "thin_evidence",
+        "risky_language",
+        "hold"
+      ],
+      "evidenceCount": 1,
+      "sourceDiversity": 1,
+      "reviewPrompt": "근거 ID를 다시 확인하고, 과한 표현을 보류/약화/삭제 중 하나로 판정"
+    }
+  ],
+  "aiReviewPromptPath": "knowledge/daily/manual-kit/2026-04-27/17-risky-claim-review-prompt.md",
+  "guardrails": {
+    "executionBuyPolicy": "validated_only",
+    "riskyClaimPolicy": "small_prompt_review_only",
+    "weakEvidencePolicy": "mark_in_report_and_block_direct_action",
+    "duplicatePolicy": "fingerprint_dedupe_before_presentation",
+    "benchmarkPatternPolicy": "source_attribution_repeatable_grid_portfolio_monitoring_red_flags_validated_actions"
+  },
+  "artifacts": {
+    "fullReport": {
+      "path": "data/analysis-state/2026-04-27/stage1-4-full-daily-report.json",
+      "exists": true
+    },
+    "aiExchange": {
+      "path": "data/analysis-state/2026-04-27/stage1-4-ai-exchange.json",
+      "exists": true
+    },
+    "atoms": {
+      "path": "data/analysis-state/2026-04-27/stage1-4-insight-atoms.json",
+      "exists": true
+    },
+    "stage2": {
+      "path": "data/analysis-state/2026-04-27/stage2-strategy-options.json",
+      "exists": true
+    },
+    "stage4": {
+      "path": "data/analysis-state/2026-04-27/stage4-execution-plan.json",
+      "exists": true
+    },
+    "llmExchangeManifest": {
+      "path": "data/analysis-state/2026-04-27/llm-exchange/manifest.json",
+      "exists": true
+    },
+    "llmResearchContext": {
+      "path": "data/analysis-state/2026-04-27/llm-exchange/research-context.v1.json",
+      "exists": true
+    },
+    "llmActionContext": {
+      "path": "data/analysis-state/2026-04-27/llm-exchange/portfolio-action-context.v1.json",
+      "exists": true
+    },
+    "llmClaimReviewContext": {
+      "path": "data/analysis-state/2026-04-27/llm-exchange/claim-review-context.v1.json",
+      "exists": true
+    },
+    "reportIndex": {
+      "path": "data/reports/2026-04-27/index.json",
+      "exists": true
+    },
+    "textManifest": {
+      "path": "data/reports/2026-04-27/text-manifest.json",
+      "exists": true
+    },
+    "humanMarkdown": {
+      "path": "knowledge/daily/2026-04-27-full-daily-report.md",
+      "exists": true
+    },
+    "finalHtml": {
+      "path": "reports/daily/2026-04-27-final.html",
+      "exists": true
+    },
+    "benchmarkPatterns": {
+      "path": "config/ai-research-benchmark-patterns.json",
+      "exists": true
+    }
+  }
+}
