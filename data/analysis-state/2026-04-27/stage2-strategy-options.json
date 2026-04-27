@@ -1,0 +1,204 @@
+{
+  "date": "2026-04-27",
+  "macro_view": {
+    "regime": "BULL",
+    "confidence": "HIGH",
+    "summary": "실적 주도 상승장 지속 중이나 중동 유가 리스크로 변동성 관리 필요. 반도체·AI 인프라 강세 유효하나 RSI 과매수 구간 진입."
+  },
+  "strategy_changes": [
+    {
+      "theme": "AI 전력인프라",
+      "direction": "reinforce",
+      "why_now": "데이터센터 전력 수요 폭증으로 변압기·발전설비 수주 가시화 | 반전 조건: AI 투자 지연 또는 원자재 가격 급등 시 멀티플 축소",
+      "source_reports": [
+        "report_007",
+        "report_057"
+      ],
+      "conflicting_reports": [],
+      "condition_probability": "HIGH"
+    },
+    {
+      "theme": "반도체 슈퍼사이클",
+      "direction": "watch",
+      "why_now": "SK하이닉스 HBM4 공급 병목으로 단기 실적은 견고하나 루빈 플랫폼 지연 리스크 존재 | 반전 조건: 엔비디아 제품 출시 1년 이상 지연 시 밸류에이션 재평가",
+      "source_reports": [
+        "Round3 Deep Research"
+      ],
+      "conflicting_reports": [
+        "report_061"
+      ],
+      "condition_probability": "MEDIUM"
+    },
+    {
+      "theme": "방산·조선",
+      "direction": "reinforce",
+      "why_now": "한화시스템 호주 계약, HD현대중공업 데이터센터 엔진 수주로 실물 경제 수혜 구체화 | 반전 조건: 중동 휴전 협상 결렬 시 유가 급등으로 인플레이션 우려",
+      "source_reports": [
+        "report_009",
+        "report_011"
+      ],
+      "conflicting_reports": [],
+      "condition_probability": "HIGH"
+    },
+    {
+      "theme": "금/원자재 헤지",
+      "direction": "hold",
+      "why_now": "중동 지정학적 리스크로 금 가격 지지력 유지나 달러 강세 국면에서 일시적 조정 가능 | 반전 조건: 휴전 협상 완전 타결 및 유가 배럴당 80 달러 이하 하락 시 헤지 자산 매도",
+      "source_reports": [
+        "report_002",
+        "report_045"
+      ],
+      "conflicting_reports": [],
+      "condition_probability": "MEDIUM"
+    }
+  ],
+  "account_actions": [
+    {
+      "account_key": "ISA",
+      "bias": "selective_add",
+      "rationale": "절세 효과를 활용한 인컴 창출과 방어 자산 유지 우선. AI 전력인프라 비중 확대.",
+      "buy_candidates": [
+        "THEME::ai-power-grid",
+        "THEME::robotics-automation"
+      ],
+      "trim_candidates": [
+        "THEME::gold-hedge"
+      ],
+      "hold_candidates": [
+        "THEME::korea-semiconductor-mixed",
+        "THEME::us-index-core"
+      ],
+      "reserve_cash_note": "약 5% 현금 비중 유지하며 커버드콜 전략 실행"
+    },
+    {
+      "account_key": "PENSION",
+      "bias": "aggressive_add",
+      "rationale": "장기 복리 성장을 위해 미국 코어 인덱스와 AI 테마 비중 보강. 변동성 흡수 능력 강화.",
+      "buy_candidates": [
+        "THEME::us-tech-growth",
+        "THEME::ai-power-grid"
+      ],
+      "trim_candidates": [],
+      "hold_candidates": [
+        "THEME::us-sandp500",
+        "THEME::nasdaq100"
+      ],
+      "reserve_cash_note": "예수금 76 만 원 활용하여 S&P500 추가 매수 진행"
+    },
+    {
+      "account_key": "KIS_MAIN",
+      "bias": "defensive",
+      "rationale": "전술적 테마(방산, 조선, 구리) 보유 추종. 추가 매수는 신중하게 접근.",
+      "buy_candidates": [
+        "THEME::defense-nuclear"
+      ],
+      "trim_candidates": [
+        "THEME::copper-commodity"
+      ],
+      "hold_candidates": [
+        "THEME::shipbuilding-engine",
+        "THEME::korea-defense"
+      ],
+      "reserve_cash_note": "현금 12 만 원은 다음 기회 대비 관망"
+    }
+  ],
+  "candidate_scores": [
+    {
+      "code": "THEME::ai-power-grid",
+      "name": "AI 전력인프라 설비",
+      "stance": "buy",
+      "target_accounts": [
+        "ISA",
+        "PENSION"
+      ],
+      "horizon": "6m",
+      "confidence": "HIGH",
+      "thesis": "데이터센터 전력 수요 폭증으로 변압기·발전설비 수주가 급증하며 실적 가시성이 높음.",
+      "risks": [
+        "원자재 가격 급등",
+        "AI 투자 지연"
+      ],
+      "impact_chain": "direct",
+      "invalidation_trigger": "엔비디아 루빈 플랫폼 출시 2027 년 이후로 지연될 경우"
+    },
+    {
+      "code": "THEME::robotics-automation",
+      "name": "ESS·로봇 수혜주",
+      "stance": "buy",
+      "target_accounts": [
+        "ISA"
+      ],
+      "horizon": "6m",
+      "confidence": "MEDIUM",
+      "thesis": "아모그린텍 등 테슬라 로봇 밸류체인 진입과 일본 통신 ESS 공급 개시로 성장 모멘텀 가속화.",
+      "risks": [
+        "테슬라 생산 일정 지연",
+        "일본 통신사 공급 계약 불이행"
+      ],
+      "impact_chain": "thematic_2nd_order",
+      "invalidation_trigger": "테슬라 옵티머스 양산 목표 2027 년으로 후퇴 시"
+    },
+    {
+      "code": "THEME::defense-nuclear",
+      "name": "방산·원자력 복합",
+      "stance": "buy",
+      "target_accounts": [
+        "KIS_MAIN"
+      ],
+      "horizon": "3m",
+      "confidence": "HIGH",
+      "thesis": "한화시스템 호주 방산 계약 체결과 SMR 표준 설계 계약 연계 수주로 수주 확대 기대.",
+      "risks": [
+        "중동 정세 변화",
+        "공급망 불안정성"
+      ],
+      "impact_chain": "direct",
+      "invalidation_trigger": "호르무즈 해협 해상 봉쇄 장기화 시"
+    },
+    {
+      "code": "THEME::us-tech-growth",
+      "name": "미국 기술주 성장",
+      "stance": "buy",
+      "target_accounts": [
+        "PENSION"
+      ],
+      "horizon": "6m",
+      "confidence": "HIGH",
+      "thesis": "미국 증시 사상 최고치 경신과 AI 관련 기업 호실적 기대감으로 나스닥 중심 성장주 우세.",
+      "risks": [
+        "연준 금리 인상 가능성",
+        "달러 강세 지속"
+      ],
+      "impact_chain": "direct",
+      "invalidation_trigger": "미국 CPI 물가 지표 예상치 상회 시 금리 인하 기대 후퇴"
+    },
+    {
+      "code": "THEME::shipbuilding-engine",
+      "name": "조선·엔진 수혜",
+      "stance": "hold",
+      "target_accounts": [
+        "KIS_MAIN"
+      ],
+      "horizon": "6m",
+      "confidence": "MEDIUM",
+      "thesis": "HD현대중공업 데이터센터 발전용 엔진 수주로 AI 전력 인프라 수혜 구체화.",
+      "risks": [
+        "컨테이너 선대 공급 과잉",
+        "유조선 운임 변동성"
+      ],
+      "impact_chain": "thematic_2nd_order",
+      "invalidation_trigger": "북미 데이터센터 엔진 수주 추가 공시 지연 시"
+    }
+  ],
+  "portfolio_risks": [
+    "중동 휴전 협상 결렬 시 WTI 유가 배럴당 100 달러 돌파로 인플레이션 재부상 우려",
+    "AI 반도체 공급 병목(HBM4 인증 지연) 으로 섹터 밸류에이션 하향 조정 가능성",
+    "한국은행 5 월 금통위 매파적 기조 전환 시 국내 금리 인하 기대 후퇴"
+  ],
+  "runDate": "2026-04-27",
+  "effectiveMarketDate": "2026-04-27",
+  "runId": "2026-04-27-033354",
+  "generatedAt": "2026-04-27T04:33:28.416422Z",
+  "source": "qwen",
+  "model": "qwen3.5-122b-a10b"
+}

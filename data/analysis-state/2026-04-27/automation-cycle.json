@@ -1,0 +1,843 @@
+{
+  "date": "2026-04-27",
+  "runDate": "2026-04-27",
+  "effectiveMarketDate": "2026-04-27",
+  "runId": "2026-04-27-033354",
+  "resolutionReason": "requested",
+  "generatedAt": "2026-04-27T04:34:05.224Z",
+  "overallStatus": "ok",
+  "sameDayStatus": "complete",
+  "logFile": "/Users/seo/Documents/Playground/economy-report/logs/2026-04-27-033354-automation-cycle.log",
+  "checkpointDir": "/Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-27/checkpoints",
+  "systemHealthOverall": "warn",
+  "previousTradingDate": "2026-04-24",
+  "changeSummary": "전일(2026-04-24) 대비, KOSPI +2.32%, 포트폴리오 점수 33→35, 레짐 SIDEWAYS→BULL, 리포트 67→67건, 신규 포커스 TIGER 미국필라델피아AI반도체나스닥·ACE AI반도체TOP3+",
+  "steps": [
+    {
+      "id": "automation_readiness",
+      "label": "Automation Environment Readiness",
+      "status": "ok",
+      "soft": true,
+      "degraded": false,
+      "failurePolicy": "degrade",
+      "failureCategory": "generic",
+      "commandLine": "node scripts/check-automation-readiness.js --date 2026-04-27 --run-date 2026-04-27 --effective-market-date 2026-04-27 --run-id 2026-04-27-033354",
+      "startedAt": "2026-04-27T03:33:54.878Z",
+      "endedAt": "2026-04-27T03:34:17.890Z",
+      "durationMs": 23012,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-27/automation-readiness.json",
+      "debugHint": null
+    },
+    {
+      "id": "stockeasy_capture",
+      "label": "StockEasy Market Capture",
+      "status": "ok",
+      "soft": true,
+      "degraded": false,
+      "failurePolicy": "degrade",
+      "failureCategory": "generic",
+      "commandLine": "npm run external:stockeasy:capture -- --date 2026-04-27",
+      "startedAt": "2026-04-27T03:34:17.892Z",
+      "endedAt": "2026-04-27T03:35:24.746Z",
+      "durationMs": 66854,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "\"leadingSectorCount\": 44,\n  \"themeCount\": 0,\n  \"sectorCount\": 15,\n  \"leaderCount\": 10,\n  \"promisingTop100Count\": 100,\n  \"industryReportCount\": 20,\n  \"strategyCount\": 3\n}",
+      "debugHint": null
+    },
+    {
+      "id": "baseline_daily_system",
+      "label": "Baseline Daily System",
+      "status": "ok",
+      "soft": false,
+      "degraded": false,
+      "failurePolicy": "block",
+      "failureCategory": "generic",
+      "commandLine": "bash scripts/run-daily-system.sh --date 2026-04-27 --run-date 2026-04-27 --effective-market-date 2026-04-27 --run-id 2026-04-27-033354 --qwen-stage2 --strict-qwen-stage2 --baseline-only --skip-telegram",
+      "startedAt": "2026-04-27T03:35:24.752Z",
+      "endedAt": "2026-04-27T03:37:22.141Z",
+      "durationMs": 117389,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "📚 LLM Wiki 단계 건너뜀 (--skip-wiki)\n🩺 시스템 검증 건너뜀 (--skip-verify)\n📤 GitHub 동기화 건너뜀 (--skip-push)\n📨 Telegram 알림 건너뜀 (--skip-telegram)\n👻 Ghost Portfolio 스냅샷...\n==================================================\n✅ EcoReport Daily System 종료 (run: 2026-04-27 / effective: 2026-04-27)\n==================================================",
+      "debugHint": null
+    },
+    {
+      "id": "windows_local_summary",
+      "label": "Windows Local Report Summary (Preferred)",
+      "status": "warn",
+      "soft": true,
+      "degraded": true,
+      "failurePolicy": "degrade",
+      "failureCategory": "windows_local_llm",
+      "commandLine": "bash scripts/run-local-report-orchestrator.sh --date 2026-04-27",
+      "startedAt": "2026-04-27T04:07:34.644Z",
+      "endedAt": "2026-04-27T04:07:47.504Z",
+      "durationMs": 12860,
+      "exitCode": null,
+      "errorMessage": "Windows Local Report Summary (Preferred) 실패 (exit null)",
+      "outputTail": "[51/67] 2026-04-27 report_051 | [미국은 지금] 케빈 워시의 계획(Feat, 청문회)\n[52/67] 2026-04-27 report_052 | [EPS LIVE #208] 한국 ROE 24.7%로 미국과 대만 추월\n[53/67] 2026-04-27 report_053 | [ETF Spot Comment] 국내외 ETF 비대칭 규제 해소로 전술적 투자 수단 확보\n[54/67] 2026-04-27 report_054 | [IBKS Daily] Start with IBKS(2026.04.23) 전쟁통에도 실적은 나온다\n[55/67] 2026-04-27 report_055 | 04/23 달러, 중동발 불안에 상승\n[56/67] 2026-04-27 report_056 | 04/23, 미 증시, 트럼프 휴전 연장, 기술주 호실적 기대감에 상승 마감\n[57/67] 2026-04-27 report_057 | 1Q 어닝시즌: AI 혁신과 비용 부담 사이의 업종별 차별화\n[58/67] 2026-04-27 report_058 | 눈 앞으로 다가온 우주 시대: 위성통신에서 우주 안보까지",
+      "debugHint": "Windows 로컬 LLM 서버(5070Ti) 상태, Wake-on-LAN, local-report-orchestrator 설정(base_url/model), run_stats 로그를 확인하세요. 이 단계는 권장 경로이며, 실패해도 Stage 3/4 fallback 경로는 계속 진행될 수 있습니다."
+    },
+    {
+      "id": "stage1_extracts",
+      "label": "Stage 2 Report Extracts",
+      "status": "ok",
+      "soft": false,
+      "degraded": false,
+      "failurePolicy": "block",
+      "failureCategory": "generic",
+      "commandLine": "node scripts/build-stage1-report-extracts.js --date 2026-04-27 --run-date 2026-04-27 --effective-market-date 2026-04-27 --run-id 2026-04-27-033354",
+      "startedAt": "2026-04-27T04:07:47.505Z",
+      "endedAt": "2026-04-27T04:07:49.328Z",
+      "durationMs": 1823,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-27/stage1-report-extracts-v2.json",
+      "debugHint": null
+    },
+    {
+      "id": "stage1_4_summarize",
+      "label": "Stage 3 Top Report Summary Selection",
+      "status": "ok",
+      "soft": true,
+      "degraded": false,
+      "failurePolicy": "degrade",
+      "failureCategory": "generic",
+      "commandLine": "npm run stage3:top-report-selection -- --date 2026-04-27 --run-date 2026-04-27 --effective-market-date 2026-04-27 --run-id 2026-04-27-033354 --top-n 30 --concurrency 6",
+      "startedAt": "2026-04-27T04:07:49.334Z",
+      "endedAt": "2026-04-27T04:07:49.511Z",
+      "durationMs": 177,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "> ecoreport@1.0.0 stage3:top-report-selection\n> .venv/bin/python scripts/collectors/summarize-report-chunks.py --date 2026-04-27 --run-date 2026-04-27 --effective-market-date 2026-04-27 --run-id 2026-04-27-033354 --top-n 30 --concurrency 6\nsaved: /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-27/stage1-chunk-summaries.json\nselected_reports: 30\nfound_report_summaries: 30\nmissing_report_summaries: 0",
+      "debugHint": null
+    },
+    {
+      "id": "stage2_enriched_report_index",
+      "label": "Stage 2 Enriched Report Index",
+      "status": "ok",
+      "soft": true,
+      "degraded": false,
+      "failurePolicy": "degrade",
+      "failureCategory": "generic",
+      "commandLine": "npm run stage2:enriched-report-index -- --date 2026-04-27 --run-date 2026-04-27 --effective-market-date 2026-04-27 --run-id 2026-04-27-033354",
+      "startedAt": "2026-04-27T04:07:49.512Z",
+      "endedAt": "2026-04-27T04:07:49.709Z",
+      "durationMs": 197,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "> ecoreport@1.0.0 stage2:enriched-report-index\n> node scripts/build-stage2-enriched-report-index.js --date 2026-04-27 --run-date 2026-04-27 --effective-market-date 2026-04-27 --run-id 2026-04-27-033354\nsaved: /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-27/stage2-enriched-report-index.json\nenriched_count: 67\nreport_summaries: 67\nselected_summaries: 30",
+      "debugHint": null
+    },
+    {
+      "id": "stage1_4_agenda",
+      "label": "Stage 4 Research Agenda",
+      "status": "ok",
+      "soft": true,
+      "degraded": false,
+      "failurePolicy": "degrade",
+      "failureCategory": "qwen_api",
+      "commandLine": "npm run stage4:research-agenda -- --date 2026-04-27 --run-date 2026-04-27 --effective-market-date 2026-04-27 --run-id 2026-04-27-033354 --max-input-summaries 30",
+      "startedAt": "2026-04-27T04:07:49.713Z",
+      "endedAt": "2026-04-27T04:08:04.810Z",
+      "durationMs": 15097,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "> ecoreport@1.0.0 stage4:research-agenda\n> .venv/bin/python scripts/build-stage1-4-research-agenda.py --date 2026-04-27 --run-date 2026-04-27 --effective-market-date 2026-04-27 --run-id 2026-04-27-033354 --max-input-summaries 30\nsaved: /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-27/stage1-research-agenda.json\nsource: qwen_api\nmodel: qwen3.5-122b-a10b\ninput_source: stage1_4_insight_atoms\ntopics: 6",
+      "debugHint": null
+    },
+    {
+      "id": "stage1_5_prompt_split",
+      "label": "Stage 5 Deep Research Prompt Split",
+      "status": "ok",
+      "soft": true,
+      "degraded": false,
+      "failurePolicy": "degrade",
+      "failureCategory": "generic",
+      "commandLine": "npm run stage5:deep-research-prompt -- --date 2026-04-27 --run-date 2026-04-27 --effective-market-date 2026-04-27 --run-id 2026-04-27-033354",
+      "startedAt": "2026-04-27T04:08:04.811Z",
+      "endedAt": "2026-04-27T04:08:05.037Z",
+      "durationMs": 226,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "> ecoreport@1.0.0 stage5:deep-research-prompt\n> node scripts/build-stage1-5-gemini-deep-research-prompt.js --date 2026-04-27 --run-date 2026-04-27 --effective-market-date 2026-04-27 --run-id 2026-04-27-033354\ntopic_source: agenda\nagenda_path: /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-27/stage1-research-agenda.json\nsaved: /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-27/07a-stage1-5-macro-prompt.md (part=macro, chars=1922, topics=1, limit=4000)\nsaved: /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-27/07b-stage1-5-sector-prompt.md (part=sector, chars=2750, topics=4, limit=5000)\nsaved: /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-27/07c-stage1-5-newcandidate-prompt.md (part=newcandidate, chars=1927, topics=1, limit=4000)\nlegacy_saved: /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-27/07-stage1-5-gemini-deep-research-prompt.md",
+      "debugHint": null
+    },
+    {
+      "id": "deep_research_web",
+      "label": "Stage 6 Gemini Deep Research Web",
+      "status": "skipped",
+      "soft": true,
+      "degraded": false,
+      "failurePolicy": "degrade",
+      "failureCategory": "gemini_web",
+      "commandLine": "npm run stage5:gemini:run -- --date 2026-04-27 --poll-sec 30 --timeout-sec 1800",
+      "startedAt": "2026-04-27T04:08:05.038Z",
+      "endedAt": "2026-04-27T04:08:05.038Z",
+      "durationMs": 0,
+      "exitCode": null,
+      "errorMessage": null,
+      "outputTail": "",
+      "debugHint": null
+    },
+    {
+      "id": "rich_briefing_overlay",
+      "label": "Stage 7 Rich Briefing Round 1",
+      "status": "ok",
+      "soft": true,
+      "degraded": false,
+      "failurePolicy": "degrade",
+      "failureCategory": "qwen_api",
+      "commandLine": "npm run stage6:rich-briefing -- --date 2026-04-27 --run-date 2026-04-27 --effective-market-date 2026-04-27 --run-id 2026-04-27-033354",
+      "startedAt": "2026-04-27T04:08:05.038Z",
+      "endedAt": "2026-04-27T04:08:52.803Z",
+      "durationMs": 47765,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "> ecoreport@1.0.0 stage6:rich-briefing\n> node scripts/build-stage1-6-rich-briefing.js --date 2026-04-27 --run-date 2026-04-27 --effective-market-date 2026-04-27 --run-id 2026-04-27-033354\n/Users/seo/Documents/Playground/economy-report/knowledge/daily/2026-04-27-gemini-briefing-rich.md | briefing source=qwen / model=qwen3.5-122b-a10b",
+      "debugHint": null
+    },
+    {
+      "id": "strategy_refresh",
+      "label": "Stage 8 Strategy Refresh Round 1",
+      "status": "ok",
+      "soft": true,
+      "degraded": false,
+      "failurePolicy": "degrade",
+      "failureCategory": "generic",
+      "commandLine": "bash scripts/run-strategy-pipeline.sh --date 2026-04-27 --run-date 2026-04-27 --effective-market-date 2026-04-27 --run-id 2026-04-27-033354 --qwen-stage2 --strict-qwen-stage2",
+      "startedAt": "2026-04-27T04:08:52.804Z",
+      "endedAt": "2026-04-27T04:10:27.104Z",
+      "durationMs": 94300,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-27/17-risky-claim-review-prompt.md\n== Feedback Snapshot ==\n/Users/seo/Documents/Playground/economy-report/data/feedback/snapshots/2026-04-27.json\n== Feedback Analysis ==\n/Users/seo/Documents/Playground/economy-report/data/feedback/analysis/2026-04-27-feedback.json\n== Feedback Report ==\n/Users/seo/Documents/Playground/economy-report/reports/feedback-summary.md\nDone.",
+      "debugHint": null
+    },
+    {
+      "id": "wiki_rebuild_initial",
+      "label": "LLM Wiki Rebuild After First Synthesis",
+      "status": "ok",
+      "soft": true,
+      "degraded": false,
+      "failurePolicy": "degrade",
+      "failureCategory": "generic",
+      "commandLine": "node scripts/build-llm-wiki.js --date 2026-04-27 --run-date 2026-04-27 --effective-market-date 2026-04-27 --run-id 2026-04-27-033354",
+      "startedAt": "2026-04-27T04:10:27.107Z",
+      "endedAt": "2026-04-27T04:10:27.308Z",
+      "durationMs": 201,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/Documents/Playground/economy-report/knowledge/wiki",
+      "debugHint": null
+    },
+    {
+      "id": "followup_reindex",
+      "label": "Stage 9 Follow-up Research Map",
+      "status": "ok",
+      "soft": true,
+      "degraded": false,
+      "failurePolicy": "degrade",
+      "failureCategory": "generic",
+      "commandLine": "node scripts/build-stage1-7-followup-research-map.js --date 2026-04-27 --run-date 2026-04-27 --effective-market-date 2026-04-27 --run-id 2026-04-27-033354",
+      "startedAt": "2026-04-27T04:10:27.309Z",
+      "endedAt": "2026-04-27T04:10:28.571Z",
+      "durationMs": 1262,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-27/stage1-followup-research-map.json\n/Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-27/11-stage1-7-followup-research-map.md",
+      "debugHint": null
+    },
+    {
+      "id": "followup_prompt",
+      "label": "Stage 10 Gemini Follow-up Prompt",
+      "status": "ok",
+      "soft": true,
+      "degraded": false,
+      "failurePolicy": "degrade",
+      "failureCategory": "generic",
+      "commandLine": "node scripts/build-stage1-7-gemini-follow-up-prompt.js --date 2026-04-27 --run-date 2026-04-27 --effective-market-date 2026-04-27 --run-id 2026-04-27-033354",
+      "startedAt": "2026-04-27T04:10:28.572Z",
+      "endedAt": "2026-04-27T04:10:28.653Z",
+      "durationMs": 81,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-27/12-stage1-7-gemini-follow-up-prompt.md",
+      "debugHint": null
+    },
+    {
+      "id": "deep_research_follow_up_web",
+      "label": "Stage 11 Gemini Follow-up Web",
+      "status": "ok",
+      "soft": true,
+      "degraded": false,
+      "failurePolicy": "degrade",
+      "failureCategory": "gemini_web",
+      "commandLine": "node scripts/run-gemini-deep-research-web.js --date 2026-04-27 --prompt /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-27/12-stage1-7-gemini-follow-up-prompt.md --output /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-27/13-stage1-7-gemini-follow-up-response.md --poll-sec 30 --timeout-sec 1800",
+      "startedAt": "2026-04-27T04:10:28.654Z",
+      "endedAt": "2026-04-27T04:22:48.093Z",
+      "durationMs": 739439,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "{\"title\":\"2차 심층 분석: 빈틈 메우기 - Google Gemini\",\"messageCount\":3,\"promptSubmitted\":true,\"researchStarted\":true,\"promptInjected\":true,\"pageRefreshCount\":0,\"hasDeepResearchSelected\":true,\"hasResearchStartButton\":false,\"hasStopButton\":true,\"hasPlanGenerating\":false,\"hasReportGenerating\":true,\"hasTransientError\":false,\"composerContainsPrompt\":false,\"bodyBlockCount\":80,\"mainTextBlockCount\":2}\n{\"title\":\"2차 심층 분석: 빈틈 메우기 - Google Gemini\",\"messageCount\":3,\"promptSubmitted\":true,\"researchStarted\":true,\"promptInjected\":true,\"pageRefreshCount\":0,\"hasDeepResearchSelected\":true,\"hasResearchStartButton\":false,\"hasStopButton\":true,\"hasPlanGenerating\":false,\"hasReportGenerating\":true,\"hasTransientError\":false,\"composerContainsPrompt\":false,\"bodyBlockCount\":80,\"mainTextBlockCount\":2}\n{\"title\":\"2차 심층 분석: 빈틈 메우기 - Google Gemini\",\"messageCount\":3,\"promptSubmitted\":true,\"researchStarted\":true,\"promptInjected\":true,\"pageRefreshCount\":0,\"hasDeepResearchSelected\":true,\"hasResearchStartButton\":false,\"hasStopButton\":true,\"hasPlanGenerating\":false,\"hasReportGenerating\":true,\"hasTransientError\":false,\"composerContainsPrompt\":false,\"bodyBlockCount\":80,\"mainTextBlockCount\":2}\n{\"title\":\"2차 심층 분석: 빈틈 메우기 - Google Gemini\",\"messageCount\":3,\"promptSubmitted\":true,\"researchStarted\":true,\"promptInjected\":true,\"pageRefreshCount\":0,\"hasDeepResearchSelected\":true,\"hasResearchStartButton\":false,\"hasStopButton\":true,\"hasPlanGenerating\":false,\"hasReportGenerating\":true,\"hasTransientError\":false,\"composerContainsPrompt\":false,\"bodyBlockCount\":80,\"mainTextBlockCount\":2}\n{\"title\":\"2차 심층 분석: 빈틈 메우기 - Google Gemini\",\"messageCount\":3,\"promptSubmitted\":true,\"researchStarted\":true,\"promptInjected\":true,\"pageRefreshCount\":0,\"hasDeepResearchSelected\":true,\"hasResearchStartButton\":false,\"hasStopButton\":true,\"hasPlanGenerating\":false,\"hasReportGenerating\":true,\"hasTransientError\":false,\"composerContainsPrompt\":false,\"bodyBlockCount\":80,\"mainTextBlockCount\":2}\nclosed: closed-tab\nsaved: /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-27/13-stage1-7-gemini-follow-up-response.md\ncopied_chars: 2200",
+      "debugHint": null
+    },
+    {
+      "id": "rich_briefing_final",
+      "label": "Stage 12 Rich Briefing Round 2",
+      "status": "ok",
+      "soft": true,
+      "degraded": false,
+      "failurePolicy": "degrade",
+      "failureCategory": "qwen_api",
+      "commandLine": "npm run stage6:rich-briefing -- --date 2026-04-27 --run-date 2026-04-27 --effective-market-date 2026-04-27 --run-id 2026-04-27-033354",
+      "startedAt": "2026-04-27T04:22:48.094Z",
+      "endedAt": "2026-04-27T04:23:43.277Z",
+      "durationMs": 55183,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "> ecoreport@1.0.0 stage6:rich-briefing\n> node scripts/build-stage1-6-rich-briefing.js --date 2026-04-27 --run-date 2026-04-27 --effective-market-date 2026-04-27 --run-id 2026-04-27-033354\n/Users/seo/Documents/Playground/economy-report/knowledge/daily/2026-04-27-gemini-briefing-rich.md | briefing source=qwen / model=qwen3.5-122b-a10b",
+      "debugHint": null
+    },
+    {
+      "id": "strategy_refresh_final",
+      "label": "Stage 13 Strategy Refresh Round 2",
+      "status": "ok",
+      "soft": true,
+      "degraded": false,
+      "failurePolicy": "degrade",
+      "failureCategory": "generic",
+      "commandLine": "bash scripts/run-strategy-pipeline.sh --date 2026-04-27 --run-date 2026-04-27 --effective-market-date 2026-04-27 --run-id 2026-04-27-033354 --qwen-stage2 --strict-qwen-stage2",
+      "startedAt": "2026-04-27T04:23:43.278Z",
+      "endedAt": "2026-04-27T04:24:58.416Z",
+      "durationMs": 75138,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-27/17-risky-claim-review-prompt.md\n== Feedback Snapshot ==\n/Users/seo/Documents/Playground/economy-report/data/feedback/snapshots/2026-04-27.json\n== Feedback Analysis ==\n/Users/seo/Documents/Playground/economy-report/data/feedback/analysis/2026-04-27-feedback.json\n== Feedback Report ==\n/Users/seo/Documents/Playground/economy-report/reports/feedback-summary.md\nDone.",
+      "debugHint": null
+    },
+    {
+      "id": "wiki_rebuild_mid",
+      "label": "LLM Wiki Rebuild After Round 2",
+      "status": "ok",
+      "soft": true,
+      "degraded": false,
+      "failurePolicy": "degrade",
+      "failureCategory": "generic",
+      "commandLine": "node scripts/build-llm-wiki.js --date 2026-04-27 --run-date 2026-04-27 --effective-market-date 2026-04-27 --run-id 2026-04-27-033354",
+      "startedAt": "2026-04-27T04:24:58.418Z",
+      "endedAt": "2026-04-27T04:24:58.629Z",
+      "durationMs": 211,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/Documents/Playground/economy-report/knowledge/wiki",
+      "debugHint": null
+    },
+    {
+      "id": "round3_reindex",
+      "label": "Stage 14 Final Refinement Map",
+      "status": "ok",
+      "soft": true,
+      "degraded": false,
+      "failurePolicy": "degrade",
+      "failureCategory": "generic",
+      "commandLine": "node scripts/build-stage1-7-followup-research-map.js --date 2026-04-27 --run-date 2026-04-27 --effective-market-date 2026-04-27 --run-id 2026-04-27-033354 --round 3",
+      "startedAt": "2026-04-27T04:24:58.630Z",
+      "endedAt": "2026-04-27T04:24:59.819Z",
+      "durationMs": 1189,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-27/stage1-final-refinement-map.json\n/Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-27/14-stage1-8-final-refinement-map.md",
+      "debugHint": null
+    },
+    {
+      "id": "round3_prompt",
+      "label": "Stage 15 Gemini Final Refinement Prompt",
+      "status": "ok",
+      "soft": true,
+      "degraded": false,
+      "failurePolicy": "degrade",
+      "failureCategory": "generic",
+      "commandLine": "node scripts/build-stage1-7-gemini-follow-up-prompt.js --date 2026-04-27 --run-date 2026-04-27 --effective-market-date 2026-04-27 --run-id 2026-04-27-033354 --round 3",
+      "startedAt": "2026-04-27T04:24:59.820Z",
+      "endedAt": "2026-04-27T04:24:59.896Z",
+      "durationMs": 76,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-27/15-stage1-8-gemini-final-refinement-prompt.md",
+      "debugHint": null
+    },
+    {
+      "id": "deep_research_round3_web",
+      "label": "Stage 16 Gemini Final Refinement Web",
+      "status": "ok",
+      "soft": true,
+      "degraded": false,
+      "failurePolicy": "degrade",
+      "failureCategory": "gemini_web",
+      "commandLine": "node scripts/run-gemini-deep-research-web.js --date 2026-04-27 --prompt /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-27/15-stage1-8-gemini-final-refinement-prompt.md --output /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-27/16-stage1-8-gemini-final-refinement-response.md --poll-sec 30 --timeout-sec 1800",
+      "startedAt": "2026-04-27T04:24:59.897Z",
+      "endedAt": "2026-04-27T04:31:47.606Z",
+      "durationMs": 407709,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "{\"title\":\"최종 투자 전략 세부화 - Google Gemini\",\"messageCount\":3,\"promptSubmitted\":true,\"researchStarted\":true,\"promptInjected\":true,\"pageRefreshCount\":0,\"hasDeepResearchSelected\":true,\"hasResearchStartButton\":false,\"hasStopButton\":true,\"hasPlanGenerating\":false,\"hasReportGenerating\":true,\"hasTransientError\":false,\"composerContainsPrompt\":false,\"bodyBlockCount\":64,\"mainTextBlockCount\":2}\n{\"title\":\"최종 투자 전략 세부화 - Google Gemini\",\"messageCount\":3,\"promptSubmitted\":true,\"researchStarted\":true,\"promptInjected\":true,\"pageRefreshCount\":0,\"hasDeepResearchSelected\":true,\"hasResearchStartButton\":false,\"hasStopButton\":true,\"hasPlanGenerating\":false,\"hasReportGenerating\":true,\"hasTransientError\":false,\"composerContainsPrompt\":false,\"bodyBlockCount\":69,\"mainTextBlockCount\":2}\n{\"title\":\"최종 투자 전략 세부화 - Google Gemini\",\"messageCount\":3,\"promptSubmitted\":true,\"researchStarted\":true,\"promptInjected\":true,\"pageRefreshCount\":0,\"hasDeepResearchSelected\":true,\"hasResearchStartButton\":false,\"hasStopButton\":true,\"hasPlanGenerating\":false,\"hasReportGenerating\":true,\"hasTransientError\":false,\"composerContainsPrompt\":false,\"bodyBlockCount\":80,\"mainTextBlockCount\":2}\n{\"title\":\"최종 투자 전략 세부화 - Google Gemini\",\"messageCount\":3,\"promptSubmitted\":true,\"researchStarted\":true,\"promptInjected\":true,\"pageRefreshCount\":0,\"hasDeepResearchSelected\":true,\"hasResearchStartButton\":false,\"hasStopButton\":true,\"hasPlanGenerating\":false,\"hasReportGenerating\":true,\"hasTransientError\":false,\"composerContainsPrompt\":false,\"bodyBlockCount\":80,\"mainTextBlockCount\":2}\n{\"title\":\"최종 투자 전략 세부화 - Google Gemini\",\"messageCount\":3,\"promptSubmitted\":true,\"researchStarted\":true,\"promptInjected\":true,\"pageRefreshCount\":0,\"hasDeepResearchSelected\":true,\"hasResearchStartButton\":false,\"hasStopButton\":true,\"hasPlanGenerating\":false,\"hasReportGenerating\":true,\"hasTransientError\":false,\"composerContainsPrompt\":false,\"bodyBlockCount\":80,\"mainTextBlockCount\":2}\nclosed: closed-tab\nsaved: /Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-27/16-stage1-8-gemini-final-refinement-response.md\ncopied_chars: 2200",
+      "debugHint": null
+    },
+    {
+      "id": "rich_briefing_round3_final",
+      "label": "Stage 17 Rich Briefing Final",
+      "status": "ok",
+      "soft": true,
+      "degraded": false,
+      "failurePolicy": "degrade",
+      "failureCategory": "qwen_api",
+      "commandLine": "npm run stage6:rich-briefing -- --date 2026-04-27 --run-date 2026-04-27 --effective-market-date 2026-04-27 --run-id 2026-04-27-033354",
+      "startedAt": "2026-04-27T04:31:47.607Z",
+      "endedAt": "2026-04-27T04:32:45.283Z",
+      "durationMs": 57676,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "> ecoreport@1.0.0 stage6:rich-briefing\n> node scripts/build-stage1-6-rich-briefing.js --date 2026-04-27 --run-date 2026-04-27 --effective-market-date 2026-04-27 --run-id 2026-04-27-033354\n/Users/seo/Documents/Playground/economy-report/knowledge/daily/2026-04-27-gemini-briefing-rich.md | briefing source=qwen / model=qwen3.5-122b-a10b",
+      "debugHint": null
+    },
+    {
+      "id": "stage6_briefing_delta",
+      "label": "Stage 6 Briefing Delta",
+      "status": "ok",
+      "soft": true,
+      "degraded": false,
+      "failurePolicy": "degrade",
+      "failureCategory": "generic",
+      "commandLine": "node scripts/build-briefing-delta.js --date 2026-04-27",
+      "startedAt": "2026-04-27T04:32:45.284Z",
+      "endedAt": "2026-04-27T04:32:45.359Z",
+      "durationMs": 75,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "saved: /Users/seo/Documents/Playground/economy-report/knowledge/daily/2026-04-27-briefing-delta.md\njson: /Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-27/briefing-delta.json\npreviousTradingDate: 2026-04-24",
+      "debugHint": null
+    },
+    {
+      "id": "strategy_refresh_round3_final",
+      "label": "Stage 18 Strategy Refresh Final",
+      "status": "ok",
+      "soft": true,
+      "degraded": false,
+      "failurePolicy": "degrade",
+      "failureCategory": "generic",
+      "commandLine": "bash scripts/run-strategy-pipeline.sh --date 2026-04-27 --run-date 2026-04-27 --effective-market-date 2026-04-27 --run-id 2026-04-27-033354 --qwen-stage2 --strict-qwen-stage2",
+      "startedAt": "2026-04-27T04:32:45.360Z",
+      "endedAt": "2026-04-27T04:34:01.242Z",
+      "durationMs": 75882,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-27/17-risky-claim-review-prompt.md\n== Feedback Snapshot ==\n/Users/seo/Documents/Playground/economy-report/data/feedback/snapshots/2026-04-27.json\n== Feedback Analysis ==\n/Users/seo/Documents/Playground/economy-report/data/feedback/analysis/2026-04-27-feedback.json\n== Feedback Report ==\n/Users/seo/Documents/Playground/economy-report/reports/feedback-summary.md\nDone.",
+      "debugHint": null
+    },
+    {
+      "id": "wiki_rebuild_final",
+      "label": "LLM Wiki Rebuild Final",
+      "status": "ok",
+      "soft": true,
+      "degraded": false,
+      "failurePolicy": "degrade",
+      "failureCategory": "generic",
+      "commandLine": "node scripts/build-llm-wiki.js --date 2026-04-27 --run-date 2026-04-27 --effective-market-date 2026-04-27 --run-id 2026-04-27-033354",
+      "startedAt": "2026-04-27T04:34:01.243Z",
+      "endedAt": "2026-04-27T04:34:01.425Z",
+      "durationMs": 182,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/Documents/Playground/economy-report/knowledge/wiki",
+      "debugHint": null
+    },
+    {
+      "id": "wiki_publish",
+      "label": "LLM Wiki Publish",
+      "status": "ok",
+      "soft": true,
+      "degraded": false,
+      "failurePolicy": "degrade",
+      "failureCategory": "generic",
+      "commandLine": "node scripts/publish-llm-wiki-to-vault.js",
+      "startedAt": "2026-04-27T04:34:01.425Z",
+      "endedAt": "2026-04-27T04:34:01.893Z",
+      "durationMs": 468,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/my-wiki/wiki/ecoreport",
+      "debugHint": null
+    },
+    {
+      "id": "verify_outputs",
+      "label": "Verify Outputs",
+      "status": "ok",
+      "soft": true,
+      "degraded": false,
+      "failurePolicy": "degrade",
+      "failureCategory": "generic",
+      "commandLine": "node scripts/verify-daily-system.js --date 2026-04-27 --run-date 2026-04-27 --effective-market-date 2026-04-27 --run-id 2026-04-27-033354",
+      "startedAt": "2026-04-27T04:34:01.893Z",
+      "endedAt": "2026-04-27T04:34:01.979Z",
+      "durationMs": 86,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-27/system-health.json",
+      "debugHint": null
+    },
+    {
+      "id": "push_data_branch",
+      "label": "Push Data Branch",
+      "status": "warn",
+      "soft": true,
+      "degraded": true,
+      "failurePolicy": "degrade",
+      "failureCategory": "generic",
+      "commandLine": "bash scripts/push-to-github.sh 2026-04-27",
+      "startedAt": "2026-04-27T04:34:01.993Z",
+      "endedAt": "2026-04-27T04:34:02.116Z",
+      "durationMs": 123,
+      "exitCode": 1,
+      "errorMessage": "Push Data Branch 실패 (exit 1)",
+      "outputTail": "[push-to-github] 시작: 2026-04-27\n[push-to-github] 차단: system-health overallStatus=warn. 완성 데이터(ok)만 data 브랜치에 push합니다.\n- warn stage1_quality: contamination 0.00 / weak_claim 0.75\n- warn data_quality: overall warn / risky 30건\n- warn deep_research_response: Deep Research 결과 없음\n- warn security_normalization: portfolio 0건 / stage4 9건 미해결 (한투 ISA:stage2Candidates:TIGER 미국필라델피아AI반도체나스닥, 한투 ISA:stage2Candidates:ACE AI반도체TOP3+, 한투 ISA:stagedBuys:TIGER 미국필라델피아AI반도체나스닥, 한투 ISA:stagedBuys:ACE AI반도체TOP3+ 외 5건)",
+      "debugHint": "Git 인증과 origin/data 브랜치 push 권한을 확인하세요."
+    },
+    {
+      "id": "daily_briefing_html",
+      "label": "Export Daily Briefing HTML",
+      "status": "ok",
+      "soft": true,
+      "degraded": false,
+      "failurePolicy": "degrade",
+      "failureCategory": "generic",
+      "commandLine": "node scripts/export-daily-briefing-html.js --date 2026-04-27 --briefing /Users/seo/Documents/Playground/economy-report/knowledge/daily/2026-04-27-gemini-briefing-rich.md --output /Users/seo/Documents/Playground/economy-report/reports/daily/2026-04-27-briefing.html",
+      "startedAt": "2026-04-27T04:34:02.118Z",
+      "endedAt": "2026-04-27T04:34:02.189Z",
+      "durationMs": 71,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/Documents/Playground/economy-report/reports/daily/2026-04-27-briefing.html",
+      "debugHint": null
+    },
+    {
+      "id": "execution_plan_table",
+      "label": "12. Execution Table",
+      "status": "ok",
+      "soft": true,
+      "degraded": false,
+      "failurePolicy": "degrade",
+      "failureCategory": "generic",
+      "commandLine": "node scripts/export-stage4-execution-plan-table.js --date 2026-04-27 --output /Users/seo/Documents/Playground/economy-report/reports/daily/2026-04-27-stage4-execution-plan-table.md --telegram-output /Users/seo/Documents/Playground/economy-report/reports/daily/2026-04-27-stage4-execution-plan-telegram.txt",
+      "startedAt": "2026-04-27T04:34:02.190Z",
+      "endedAt": "2026-04-27T04:34:02.261Z",
+      "durationMs": 71,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/Documents/Playground/economy-report/reports/daily/2026-04-27-stage4-execution-plan-table.md\n/Users/seo/Documents/Playground/economy-report/reports/daily/2026-04-27-stage4-execution-plan-telegram.txt",
+      "debugHint": null
+    },
+    {
+      "id": "llm_exchange_packets",
+      "label": "13. LLM Exchange Packets",
+      "status": "ok",
+      "soft": true,
+      "degraded": false,
+      "failurePolicy": "degrade",
+      "failureCategory": "generic",
+      "commandLine": "node scripts/build-llm-exchange-packets.js --date 2026-04-27 --run-date 2026-04-27 --effective-market-date 2026-04-27 --run-id 2026-04-27-033354",
+      "startedAt": "2026-04-27T04:34:02.262Z",
+      "endedAt": "2026-04-27T04:34:02.345Z",
+      "durationMs": 83,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-27/llm-exchange/manifest.json",
+      "debugHint": null
+    },
+    {
+      "id": "data_quality_audit",
+      "label": "13. Quality Gates",
+      "status": "ok",
+      "soft": true,
+      "degraded": false,
+      "failurePolicy": "degrade",
+      "failureCategory": "generic",
+      "commandLine": "node scripts/audit-data-quality.js --date 2026-04-27 --run-date 2026-04-27 --effective-market-date 2026-04-27 --run-id 2026-04-27-033354",
+      "startedAt": "2026-04-27T04:34:02.346Z",
+      "endedAt": "2026-04-27T04:34:02.424Z",
+      "durationMs": 78,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-27/data-quality-audit.json\n/Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-27/17-risky-claim-review-prompt.md",
+      "debugHint": null
+    },
+    {
+      "id": "verify_outputs_final",
+      "label": "13. Verify After Quality Gates",
+      "status": "ok",
+      "soft": true,
+      "degraded": false,
+      "failurePolicy": "degrade",
+      "failureCategory": "generic",
+      "commandLine": "node scripts/verify-daily-system.js --date 2026-04-27 --run-date 2026-04-27 --effective-market-date 2026-04-27 --run-id 2026-04-27-033354",
+      "startedAt": "2026-04-27T04:34:02.425Z",
+      "endedAt": "2026-04-27T04:34:02.522Z",
+      "durationMs": 97,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-27/system-health.json",
+      "debugHint": null
+    },
+    {
+      "id": "final_report_html",
+      "label": "12. Final HTML",
+      "status": "ok",
+      "soft": true,
+      "degraded": false,
+      "failurePolicy": "degrade",
+      "failureCategory": "generic",
+      "commandLine": "node scripts/export-final-report-html.js --date 2026-04-27 --output /Users/seo/Documents/Playground/economy-report/reports/daily/2026-04-27-final.html",
+      "startedAt": "2026-04-27T04:34:02.523Z",
+      "endedAt": "2026-04-27T04:34:02.602Z",
+      "durationMs": 79,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "/Users/seo/Documents/Playground/economy-report/reports/daily/2026-04-27-final.html",
+      "debugHint": null
+    },
+    {
+      "id": "telegram_completion",
+      "label": "Telegram Completion Notification",
+      "status": "ok",
+      "soft": true,
+      "degraded": false,
+      "failurePolicy": "degrade",
+      "failureCategory": "generic",
+      "commandLine": "node scripts/send-telegram-summary.js --date 2026-04-27 --event automation-cycle-complete --message \"EcoReport 2026-04-27 자동화 완료\\n- overallStatus: ok\\n- sameDayStatus: complete\\n- systemHealth: warn\\n- changeSummary: 전일(2026-04-24) 대비, KOSPI +2.32%, 포트폴리오 점수 33→35, 레짐 SIDEWAYS→BULL, 리포트 67→67건, 신규 포커스 TIGER 미국필라델피아AI반도체나스닥·ACE AI반도체TOP3+\\n- degradedSteps: 2\\n- completionChecklist:\\n- [OK] Automation Environment Readiness\\n- [OK] StockEasy Market Capture\\n- [OK] Baseline Daily System\\n- [WARN] Windows Local Report Summary (Preferred)\\n- [OK] Stage 2 Report Extracts\\n- [OK] Stage 3 Top Report Summary Selection\\n- [OK] Stage 2 Enriched Report Index\\n- [OK] Stage 4 Research Agenda\\n- [OK] Stage 5 Deep Research Prompt Split\\n- [SKIPPED] Stage 6 Gemini Deep Research Web\\n- [OK] Stage 7 Rich Briefing Round 1\\n- [OK] Stage 8 Strategy Refresh Round 1\\n- [OK] LLM Wiki Rebuild After First Synthesis\\n- [OK] Stage 9 Follow-up Research Map\\n- [OK] Stage 10 Gemini Follow-up Prompt\\n- [OK] Stage 11 Gemini Follow-up Web\\n- [OK] Stage 12 Rich Briefing Round 2\\n- [OK] Stage 13 Strategy Refresh Round 2\\n- [OK] LLM Wiki Rebuild After Round 2\\n- [OK] Stage 14 Final Refinement Map\\n- failedOrWarned:\\n- Windows Local Report Summary (Preferred): Windows Local Report Summary (Preferred) 실패 (exit null)\\n- Push Data Branch: Push Data Branch 실패 (exit 1)\\n- paths:\\n- finalBriefingMd: /Users/seo/Documents/Playground/economy-report/knowledge/daily/2026-04-27-gemini-briefing-rich.md\\n- finalBriefingHtml: /Users/seo/Documents/Playground/economy-report/reports/daily/2026-04-27-briefing.html\\n- briefingDelta: /Users/seo/Documents/Playground/economy-report/knowledge/daily/2026-04-27-briefing-delta.md\\n- executionPlanTable: /Users/seo/Documents/Playground/economy-report/reports/daily/2026-04-27-stage4-execution-plan-table.md\\n- wikiDaily: /Users/seo/Documents/Playground/economy-report/knowledge/wiki/daily/2026-04-27.md\\n- automationMd: /Users/seo/Documents/Playground/economy-report/knowledge/daily/2026-04-27-automation-cycle.md\" --document /Users/seo/Documents/Playground/economy-report/reports/daily/2026-04-27-briefing.html --caption \"EcoReport 2026-04-27 briefing.html\" --followup-message-file /Users/seo/Documents/Playground/economy-report/reports/daily/2026-04-27-stage4-execution-plan-telegram.txt --followup-preformatted",
+      "startedAt": "2026-04-27T04:34:02.604Z",
+      "endedAt": "2026-04-27T04:34:05.223Z",
+      "durationMs": 2619,
+      "exitCode": 0,
+      "errorMessage": null,
+      "outputTail": "telegram:automation-cycle-complete",
+      "debugHint": null
+    }
+  ],
+  "artifacts": {
+    "logFile": {
+      "path": "/Users/seo/Documents/Playground/economy-report/logs/2026-04-27-033354-automation-cycle.log",
+      "exists": true
+    },
+    "automationReadiness": {
+      "path": "/Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-27/automation-readiness.json",
+      "exists": true
+    },
+    "stockeasySnapshot": {
+      "path": "/Users/seo/Documents/Playground/economy-report/data/external/stockeasy/2026-04-27/snapshot.json",
+      "exists": true
+    },
+    "localSummaryChunkDir": {
+      "path": "/Users/seo/Documents/Playground/economy-report/reports/chunk_summaries/2026-04-27",
+      "exists": true
+    },
+    "localSummaryReportDir": {
+      "path": "/Users/seo/Documents/Playground/economy-report/reports/report_summaries/2026-04-27",
+      "exists": true
+    },
+    "localSummaryRunStats": {
+      "path": "/Users/seo/Documents/Playground/economy-report/reports/logs/run_stats.json",
+      "exists": true
+    },
+    "localSummaryFinalView": {
+      "path": "/Users/seo/Documents/Playground/economy-report/reports/merged/final_market_view.json",
+      "exists": true
+    },
+    "chunkIndexStats": {
+      "path": "/Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-27/chunk-index/stats.json",
+      "exists": true
+    },
+    "stage1": {
+      "path": "/Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-27/stage1-report-extracts-v2.json",
+      "exists": true
+    },
+    "stage1ChunkSummaries": {
+      "path": "/Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-27/stage1-chunk-summaries.json",
+      "exists": true
+    },
+    "stage2EnrichedReportIndex": {
+      "path": "/Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-27/stage2-enriched-report-index.json",
+      "exists": true
+    },
+    "fullDailyReport": {
+      "path": "/Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-27/stage1-4-full-daily-report.json",
+      "exists": true
+    },
+    "aiExchange": {
+      "path": "/Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-27/stage1-4-ai-exchange.json",
+      "exists": true
+    },
+    "stage1ResearchAgenda": {
+      "path": "/Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-27/stage1-research-agenda.json",
+      "exists": true
+    },
+    "stage1Shadow": {
+      "path": "/Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-27/stage1-shadow/stage1-shadow-extracts.json",
+      "exists": true
+    },
+    "stage2Shadow": {
+      "path": "/Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-27/stage2-shadow-topic-buckets.json",
+      "exists": true
+    },
+    "stage3Shadow": {
+      "path": "/Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-27/stage3-shadow-final-insights.json",
+      "exists": true
+    },
+    "followUpMap": {
+      "path": "/Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-27/stage1-followup-research-map.json",
+      "exists": true
+    },
+    "followUpMapMarkdown": {
+      "path": "/Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-27/11-stage1-7-followup-research-map.md",
+      "exists": true
+    },
+    "deepResearchPrompt": {
+      "path": "/Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-27/07-stage1-5-gemini-deep-research-prompt.md",
+      "exists": true
+    },
+    "deepResearchPromptMacro": {
+      "path": "/Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-27/07a-stage1-5-macro-prompt.md",
+      "exists": true
+    },
+    "deepResearchPromptSector": {
+      "path": "/Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-27/07b-stage1-5-sector-prompt.md",
+      "exists": true
+    },
+    "deepResearchPromptNewCandidate": {
+      "path": "/Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-27/07c-stage1-5-newcandidate-prompt.md",
+      "exists": true
+    },
+    "deepResearchResponse": {
+      "path": "/Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-27/09-stage1-5-gemini-deep-research-response.md",
+      "exists": false
+    },
+    "deepResearchFollowUpPrompt": {
+      "path": "/Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-27/12-stage1-7-gemini-follow-up-prompt.md",
+      "exists": true
+    },
+    "deepResearchFollowUpResponse": {
+      "path": "/Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-27/13-stage1-7-gemini-follow-up-response.md",
+      "exists": true
+    },
+    "round3Map": {
+      "path": "/Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-27/stage1-final-refinement-map.json",
+      "exists": true
+    },
+    "round3MapMarkdown": {
+      "path": "/Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-27/14-stage1-8-final-refinement-map.md",
+      "exists": true
+    },
+    "round3Prompt": {
+      "path": "/Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-27/15-stage1-8-gemini-final-refinement-prompt.md",
+      "exists": true
+    },
+    "round3Response": {
+      "path": "/Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-27/16-stage1-8-gemini-final-refinement-response.md",
+      "exists": true
+    },
+    "finalResearchBriefing": {
+      "path": "/Users/seo/Documents/Playground/economy-report/knowledge/daily/2026-04-27-gemini-briefing-rich.md",
+      "exists": true
+    },
+    "briefingDeltaMarkdown": {
+      "path": "/Users/seo/Documents/Playground/economy-report/knowledge/daily/2026-04-27-briefing-delta.md",
+      "exists": true
+    },
+    "briefingDeltaJson": {
+      "path": "/Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-27/briefing-delta.json",
+      "exists": true
+    },
+    "finalResearchBriefingArchive": {
+      "path": "/Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-27/10-stage1-6-final-research-briefing.md",
+      "exists": true
+    },
+    "stage2": {
+      "path": "/Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-27/stage2-strategy-options.json",
+      "exists": true
+    },
+    "stage4": {
+      "path": "/Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-27/stage4-execution-plan.json",
+      "exists": true
+    },
+    "llmExchangeManifest": {
+      "path": "/Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-27/llm-exchange/manifest.json",
+      "exists": true
+    },
+    "llmResearchContext": {
+      "path": "/Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-27/llm-exchange/research-context.v1.json",
+      "exists": true
+    },
+    "llmActionContext": {
+      "path": "/Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-27/llm-exchange/portfolio-action-context.v1.json",
+      "exists": true
+    },
+    "dailyBriefing": {
+      "path": "/Users/seo/Documents/Playground/economy-report/reports/daily/2026-04-27-briefing.md",
+      "exists": true
+    },
+    "dailyBriefingHtml": {
+      "path": "/Users/seo/Documents/Playground/economy-report/reports/daily/2026-04-27-briefing.html",
+      "exists": true
+    },
+    "executionPlanTable": {
+      "path": "/Users/seo/Documents/Playground/economy-report/reports/daily/2026-04-27-stage4-execution-plan-table.md",
+      "exists": true
+    },
+    "executionPlanTelegram": {
+      "path": "/Users/seo/Documents/Playground/economy-report/reports/daily/2026-04-27-stage4-execution-plan-telegram.txt",
+      "exists": true
+    },
+    "dataQuality": {
+      "path": "/Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-27/data-quality-audit.json",
+      "exists": true
+    },
+    "riskyClaimReviewPrompt": {
+      "path": "/Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-27/17-risky-claim-review-prompt.md",
+      "exists": true
+    },
+    "finalReportHtml": {
+      "path": "/Users/seo/Documents/Playground/economy-report/reports/daily/2026-04-27-final.html",
+      "exists": true
+    },
+    "wikiDaily": {
+      "path": "/Users/seo/Documents/Playground/economy-report/knowledge/wiki/daily/2026-04-27.md",
+      "exists": true
+    },
+    "wikiOperatingRules": {
+      "path": "/Users/seo/Documents/Playground/economy-report/knowledge/wiki/memory/operating-rules.md",
+      "exists": true
+    },
+    "wikiResearchBacklog": {
+      "path": "/Users/seo/Documents/Playground/economy-report/knowledge/wiki/memory/research-backlog.md",
+      "exists": true
+    },
+    "wikiDecisionJournal": {
+      "path": "/Users/seo/Documents/Playground/economy-report/knowledge/wiki/memory/decision-journal.md",
+      "exists": true
+    },
+    "systemHealth": {
+      "path": "/Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-27/system-health.json",
+      "exists": true
+    },
+    "automationJson": {
+      "path": "/Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-27/automation-cycle.json",
+      "exists": true
+    },
+    "automationMarkdown": {
+      "path": "/Users/seo/Documents/Playground/economy-report/knowledge/daily/2026-04-27-automation-cycle.md",
+      "exists": true
+    }
+  }
+}

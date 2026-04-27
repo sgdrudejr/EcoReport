@@ -1,0 +1,3058 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-04-27",
+  "runDate": "2026-04-27",
+  "effectiveMarketDate": "2026-04-27",
+  "runId": "2026-04-27-033354",
+  "generatedAt": "2026-04-27T03:36:59.268Z",
+  "provenance": {
+    "source": "moneytoring-graphql",
+    "endpoint": "https://api.moneytoring.ai/graphql",
+    "topicLimit": 12,
+    "detailLimit": 8
+  },
+  "summary": {
+    "overview": "머니토링 12건 중 포트폴리오 직결 0건, 계좌 테마 연결 6건, 관심종목 연결 3건, 딥리서치 후보 5건을 추렸습니다.",
+    "directHoldingTopics": 0,
+    "thematicAccountTopics": 6,
+    "watchlistTopics": 3,
+    "highPriorityTopics": 4
+  },
+  "topics": [
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM1ODc5NQ==",
+      "numericId": "1358795",
+      "title": "코스피 6600선 돌파, 반도체·AI주 강세",
+      "summary": "2026년 4월 27일 코스피가 6,603.91로 사상 최고치를 기록하며 1.9% 올랐습니다. 반도체와 AI 관련주가 강세를 보였고, 외국인 투자자도 순매수로 전환해 투자 심리가 크게 개선됐습니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1358795",
+      "displayUpdatedAt": "2026-04-27T03:29:49+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 19,
+      "mainSource": {
+        "type": "TELEGRAM",
+        "name": "텔레그램",
+        "author": "시황맨의 주식이야기"
+      },
+      "uniqueSourceTypeList": [
+        "COMPANY_NEWS",
+        "TELEGRAM",
+        "YOUTUBE"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZToyODc2",
+          "name": "반도체",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 2.4300217628479004
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyNDY1",
+          "name": "AI",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 5.730092525482178
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZTo1MjQz",
+          "name": "인텔",
+          "code": "INTC",
+          "type": "COMPANY",
+          "country": "US",
+          "fluctuationRate": 23.599880203653793
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZTozMzg3",
+          "name": "전력기기",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 7.040286064147949
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyOTA5",
+          "name": "배터리",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -1.631695032119751
+        }
+      ],
+      "sourceInfo": [
+        {
+          "type": "COMPANY_NEWS",
+          "count": 1
+        },
+        {
+          "type": "TELEGRAM",
+          "count": 17
+        },
+        {
+          "type": "YOUTUBE",
+          "count": 1
+        }
+      ],
+      "subTopics": [
+        {
+          "id": "U3ViVG9waWNUeXBlOjE0MzI1MTM=",
+          "title": "코스피 4월 월간 상승률, 역대 두 번째 기록",
+          "summary": "애널리스트들이 이번 주 코스피 등 국내 증시의 주요 변수로 미국 연방공개시장위원회 회의, 대형 기술기업 실적 발표, 중동 지역 정세, 정책 변화 등을 제시했습니다. 2026년 4월 26일, 일본 니케이 225와 한국 코스피 지수가 사상 최고치를 기록했고, 같은 날 호주 S&P/ASX 200 지수는 소폭 하락했습니다. 최근 코스피가 6,600선을 넘어서며 투자 심리가 크게 개선됐고, 거래량과 시가총액도 함께 확대되는 모습이 확인됐습니다. 2026년 4월 27일 오전, 코스피와 코스닥이 각각 1.9%와 1.8% 상승하며 한국 증시 시가총액이 약 3개월 만에 6,000조원을 돌파했고, 반도체와 전력기기, 로봇·자율주행 등 인공지능 밸류체인 관련 종목이 강세를 보였습니다. 외국인 투자자도 현물과 선물 시장에서 순매수로 전환했습니다. 같은 날 코스피 지수는 6,603.91로 마감하며 전일 대비 2% 상승해 사상 최고치를 다시 썼고, 강한 매수세가 확인됐습니다. 2026년 4월 한 달 동안 코스피 지수가 장중 고점 기준으로 31% 오르며 월간 상승률이 1998년 1월 이후 두 번째로 높았고, 월간 20% 이상 상승은 통산 9회로 집계됐습니다.",
+          "updatedAt": "2026-04-27T12:29:49+09:00",
+          "sourceOrigins": [
+            {
+              "title": "코스피 4월 31% 올라 역대 두 번째 기록",
+              "author": "시황맨의 주식이야기",
+              "type": "TELEGRAM",
+              "url": "https://t.me/shmstory/8396"
+            },
+            {
+              "title": "AI 밸류체인과 반도체 강세에 시총 6,000조 돌파",
+              "author": "증권사 애널 크롤러🇰🇷",
+              "type": "TELEGRAM",
+              "url": "https://t.me/AnalystCrawler/583157"
+            },
+            {
+              "title": "AI 밸류체인 강세에 코스피 6,000조원 돌파",
+              "author": "[신한 리서치본부] 주식전략/시황/퀀트",
+              "type": "TELEGRAM",
+              "url": "https://t.me/shStrategy/6238"
+            }
+          ]
+        }
+      ],
+      "signalDirection": "mixed",
+      "signalLabels": [
+        "중동/유가",
+        "AI 인프라/전력"
+      ],
+      "relevanceScore": 100,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [
+          {
+            "accountKey": "ISA",
+            "accountLabel": "한투 ISA",
+            "category": "국내인덱스",
+            "matchReasons": [
+              "코스피",
+              "국내증시"
+            ],
+            "impactDirection": "neutral"
+          },
+          {
+            "accountKey": "ISA",
+            "accountLabel": "한투 ISA",
+            "category": "금",
+            "matchReasons": [
+              "중동/유가"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "ISA",
+            "accountLabel": "한투 ISA",
+            "category": "전력기기",
+            "matchReasons": [
+              "AI 인프라/전력",
+              "전력기기"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "PENSION",
+            "accountLabel": "한투 연금저축",
+            "category": "국내인덱스",
+            "matchReasons": [
+              "코스피",
+              "국내증시"
+            ],
+            "impactDirection": "neutral"
+          },
+          {
+            "accountKey": "PENSION",
+            "accountLabel": "한투 연금저축",
+            "category": "S&P500",
+            "matchReasons": [
+              "중동/유가",
+              "AI 인프라/전력"
+            ],
+            "impactDirection": "negative"
+          },
+          {
+            "accountKey": "PENSION",
+            "accountLabel": "한투 연금저축",
+            "category": "나스닥100",
+            "matchReasons": [
+              "중동/유가",
+              "AI 인프라/전력",
+              "ai"
+            ],
+            "impactDirection": "negative"
+          },
+          {
+            "accountKey": "PENSION",
+            "accountLabel": "한투 연금저축",
+            "category": "전력기기",
+            "matchReasons": [
+              "AI 인프라/전력",
+              "전력기기"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "KIS_MAIN",
+            "accountLabel": "한투 일반",
+            "category": "방산",
+            "matchReasons": [
+              "중동/유가"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "KIS_MAIN",
+            "accountLabel": "한투 일반",
+            "category": "원자력",
+            "matchReasons": [
+              "중동/유가"
+            ],
+            "impactDirection": "positive"
+          }
+        ],
+        "watchlist": []
+      },
+      "portfolioLinkage": "계좌 테마 기준으로는 한투 ISA의 국내인덱스, 한투 ISA의 금, 한투 ISA의 전력기기 판단과 맞물립니다. 핵심 시그널은 중동/유가, AI 인프라/전력입니다.",
+      "deepResearchQuestion": "중동/유가 이슈가 단기 헤드라인인지, 실제 공급 차질과 가격 전이로 이어지는지 확인하세요.",
+      "impactEntries": [
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "ISA",
+            "name": "금"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "COMPANY_NEWS",
+            "TELEGRAM",
+            "YOUTUBE",
+            "중동/유가",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "2026년 4월 27일 코스피가 6,603.91로 사상 최고치를 기록하며 1.9% 올랐습니다. 반도체와 AI 관련주가 강세를 보였고, 외국인 투자자도 순매수로 전환해 투자 심리가 크게 개선됐습니다.",
+              "애널리스트들이 이번 주 코스피 등 국내 증시의 주요 변수로 미국 연방공개시장위원회 회의, 대형 기술기업 실적 발표, 중동 지역 정세, 정책 변화 등을 제시했습니다. 2026년 4월 26일, 일본 니케이 225와 한국 코스피 지수가 사상 최고치를 기록했고, 같은 날 호주 S&P/ASX 200 지수는 소폭 하락했습니다. 최근 코스피가 6,600선을 넘어서며 투자 심리가 크게 개선됐고, 거래량과 시가총액도 함께 확대되는 모습이 확인됐습니다. 2026년 4월 27일 오전, 코스피와 코스닥이 각각 1.9%와 1.8% 상승하며 한국 증시 시가총액이 약 3개월 만에 6,000조원을 돌파했고, 반도체와 전력기기, 로봇·자율주행 등 인공지능 밸류체인 관련 종목이 강세를 보였습니다. 외국인 투자자도 현물과 선물 시장에서 순매수로 전환했습니다. 같은 날 코스피 지수는 6,603.91로 마감하며 전일 대비 2% 상승해 사상 최고치를 다시 썼고, 강한 매수세가 확인됐습니다. 2026년 4월 한 달 동안 코스피 지수가 장중 고점 기준으로 31% 오르며 월간 상승률이 1998년 1월 이후 두 번째로 높았고, 월간 20% 이상 상승은 통산 9회로 집계됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 국내인덱스, 한투 ISA의 금, 한투 ISA의 전력기기 판단과 맞물립니다. 핵심 시그널은 중동/유가, AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 19건",
+              "반도체 +2.43%",
+              "AI +5.73%",
+              "인텔 +23.60%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil",
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "ISA",
+            "name": "전력기기"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.58,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "COMPANY_NEWS",
+            "TELEGRAM",
+            "YOUTUBE",
+            "중동/유가",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "2026년 4월 27일 코스피가 6,603.91로 사상 최고치를 기록하며 1.9% 올랐습니다. 반도체와 AI 관련주가 강세를 보였고, 외국인 투자자도 순매수로 전환해 투자 심리가 크게 개선됐습니다.",
+              "애널리스트들이 이번 주 코스피 등 국내 증시의 주요 변수로 미국 연방공개시장위원회 회의, 대형 기술기업 실적 발표, 중동 지역 정세, 정책 변화 등을 제시했습니다. 2026년 4월 26일, 일본 니케이 225와 한국 코스피 지수가 사상 최고치를 기록했고, 같은 날 호주 S&P/ASX 200 지수는 소폭 하락했습니다. 최근 코스피가 6,600선을 넘어서며 투자 심리가 크게 개선됐고, 거래량과 시가총액도 함께 확대되는 모습이 확인됐습니다. 2026년 4월 27일 오전, 코스피와 코스닥이 각각 1.9%와 1.8% 상승하며 한국 증시 시가총액이 약 3개월 만에 6,000조원을 돌파했고, 반도체와 전력기기, 로봇·자율주행 등 인공지능 밸류체인 관련 종목이 강세를 보였습니다. 외국인 투자자도 현물과 선물 시장에서 순매수로 전환했습니다. 같은 날 코스피 지수는 6,603.91로 마감하며 전일 대비 2% 상승해 사상 최고치를 다시 썼고, 강한 매수세가 확인됐습니다. 2026년 4월 한 달 동안 코스피 지수가 장중 고점 기준으로 31% 오르며 월간 상승률이 1998년 1월 이후 두 번째로 높았고, 월간 20% 이상 상승은 통산 9회로 집계됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 국내인덱스, 한투 ISA의 금, 한투 ISA의 전력기기 판단과 맞물립니다. 핵심 시그널은 중동/유가, AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 19건",
+              "반도체 +2.43%",
+              "AI +5.73%",
+              "인텔 +23.60%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil",
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "S&P500"
+          },
+          "direction": "negative",
+          "strength": 0.68,
+          "confidence": 0.58,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "COMPANY_NEWS",
+            "TELEGRAM",
+            "YOUTUBE",
+            "중동/유가",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "2026년 4월 27일 코스피가 6,603.91로 사상 최고치를 기록하며 1.9% 올랐습니다. 반도체와 AI 관련주가 강세를 보였고, 외국인 투자자도 순매수로 전환해 투자 심리가 크게 개선됐습니다.",
+              "애널리스트들이 이번 주 코스피 등 국내 증시의 주요 변수로 미국 연방공개시장위원회 회의, 대형 기술기업 실적 발표, 중동 지역 정세, 정책 변화 등을 제시했습니다. 2026년 4월 26일, 일본 니케이 225와 한국 코스피 지수가 사상 최고치를 기록했고, 같은 날 호주 S&P/ASX 200 지수는 소폭 하락했습니다. 최근 코스피가 6,600선을 넘어서며 투자 심리가 크게 개선됐고, 거래량과 시가총액도 함께 확대되는 모습이 확인됐습니다. 2026년 4월 27일 오전, 코스피와 코스닥이 각각 1.9%와 1.8% 상승하며 한국 증시 시가총액이 약 3개월 만에 6,000조원을 돌파했고, 반도체와 전력기기, 로봇·자율주행 등 인공지능 밸류체인 관련 종목이 강세를 보였습니다. 외국인 투자자도 현물과 선물 시장에서 순매수로 전환했습니다. 같은 날 코스피 지수는 6,603.91로 마감하며 전일 대비 2% 상승해 사상 최고치를 다시 썼고, 강한 매수세가 확인됐습니다. 2026년 4월 한 달 동안 코스피 지수가 장중 고점 기준으로 31% 오르며 월간 상승률이 1998년 1월 이후 두 번째로 높았고, 월간 20% 이상 상승은 통산 9회로 집계됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 국내인덱스, 한투 ISA의 금, 한투 ISA의 전력기기 판단과 맞물립니다. 핵심 시그널은 중동/유가, AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 19건",
+              "반도체 +2.43%",
+              "AI +5.73%",
+              "인텔 +23.60%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil",
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "나스닥100"
+          },
+          "direction": "negative",
+          "strength": 0.68,
+          "confidence": 0.62,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "COMPANY_NEWS",
+            "TELEGRAM",
+            "YOUTUBE",
+            "중동/유가",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "2026년 4월 27일 코스피가 6,603.91로 사상 최고치를 기록하며 1.9% 올랐습니다. 반도체와 AI 관련주가 강세를 보였고, 외국인 투자자도 순매수로 전환해 투자 심리가 크게 개선됐습니다.",
+              "애널리스트들이 이번 주 코스피 등 국내 증시의 주요 변수로 미국 연방공개시장위원회 회의, 대형 기술기업 실적 발표, 중동 지역 정세, 정책 변화 등을 제시했습니다. 2026년 4월 26일, 일본 니케이 225와 한국 코스피 지수가 사상 최고치를 기록했고, 같은 날 호주 S&P/ASX 200 지수는 소폭 하락했습니다. 최근 코스피가 6,600선을 넘어서며 투자 심리가 크게 개선됐고, 거래량과 시가총액도 함께 확대되는 모습이 확인됐습니다. 2026년 4월 27일 오전, 코스피와 코스닥이 각각 1.9%와 1.8% 상승하며 한국 증시 시가총액이 약 3개월 만에 6,000조원을 돌파했고, 반도체와 전력기기, 로봇·자율주행 등 인공지능 밸류체인 관련 종목이 강세를 보였습니다. 외국인 투자자도 현물과 선물 시장에서 순매수로 전환했습니다. 같은 날 코스피 지수는 6,603.91로 마감하며 전일 대비 2% 상승해 사상 최고치를 다시 썼고, 강한 매수세가 확인됐습니다. 2026년 4월 한 달 동안 코스피 지수가 장중 고점 기준으로 31% 오르며 월간 상승률이 1998년 1월 이후 두 번째로 높았고, 월간 20% 이상 상승은 통산 9회로 집계됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 국내인덱스, 한투 ISA의 금, 한투 ISA의 전력기기 판단과 맞물립니다. 핵심 시그널은 중동/유가, AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 19건",
+              "반도체 +2.43%",
+              "AI +5.73%",
+              "인텔 +23.60%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil",
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "전력기기"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.58,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "COMPANY_NEWS",
+            "TELEGRAM",
+            "YOUTUBE",
+            "중동/유가",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "2026년 4월 27일 코스피가 6,603.91로 사상 최고치를 기록하며 1.9% 올랐습니다. 반도체와 AI 관련주가 강세를 보였고, 외국인 투자자도 순매수로 전환해 투자 심리가 크게 개선됐습니다.",
+              "애널리스트들이 이번 주 코스피 등 국내 증시의 주요 변수로 미국 연방공개시장위원회 회의, 대형 기술기업 실적 발표, 중동 지역 정세, 정책 변화 등을 제시했습니다. 2026년 4월 26일, 일본 니케이 225와 한국 코스피 지수가 사상 최고치를 기록했고, 같은 날 호주 S&P/ASX 200 지수는 소폭 하락했습니다. 최근 코스피가 6,600선을 넘어서며 투자 심리가 크게 개선됐고, 거래량과 시가총액도 함께 확대되는 모습이 확인됐습니다. 2026년 4월 27일 오전, 코스피와 코스닥이 각각 1.9%와 1.8% 상승하며 한국 증시 시가총액이 약 3개월 만에 6,000조원을 돌파했고, 반도체와 전력기기, 로봇·자율주행 등 인공지능 밸류체인 관련 종목이 강세를 보였습니다. 외국인 투자자도 현물과 선물 시장에서 순매수로 전환했습니다. 같은 날 코스피 지수는 6,603.91로 마감하며 전일 대비 2% 상승해 사상 최고치를 다시 썼고, 강한 매수세가 확인됐습니다. 2026년 4월 한 달 동안 코스피 지수가 장중 고점 기준으로 31% 오르며 월간 상승률이 1998년 1월 이후 두 번째로 높았고, 월간 20% 이상 상승은 통산 9회로 집계됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 국내인덱스, 한투 ISA의 금, 한투 ISA의 전력기기 판단과 맞물립니다. 핵심 시그널은 중동/유가, AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 19건",
+              "반도체 +2.43%",
+              "AI +5.73%",
+              "인텔 +23.60%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil",
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "KIS_MAIN",
+            "name": "방산"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "COMPANY_NEWS",
+            "TELEGRAM",
+            "YOUTUBE",
+            "중동/유가",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "2026년 4월 27일 코스피가 6,603.91로 사상 최고치를 기록하며 1.9% 올랐습니다. 반도체와 AI 관련주가 강세를 보였고, 외국인 투자자도 순매수로 전환해 투자 심리가 크게 개선됐습니다.",
+              "애널리스트들이 이번 주 코스피 등 국내 증시의 주요 변수로 미국 연방공개시장위원회 회의, 대형 기술기업 실적 발표, 중동 지역 정세, 정책 변화 등을 제시했습니다. 2026년 4월 26일, 일본 니케이 225와 한국 코스피 지수가 사상 최고치를 기록했고, 같은 날 호주 S&P/ASX 200 지수는 소폭 하락했습니다. 최근 코스피가 6,600선을 넘어서며 투자 심리가 크게 개선됐고, 거래량과 시가총액도 함께 확대되는 모습이 확인됐습니다. 2026년 4월 27일 오전, 코스피와 코스닥이 각각 1.9%와 1.8% 상승하며 한국 증시 시가총액이 약 3개월 만에 6,000조원을 돌파했고, 반도체와 전력기기, 로봇·자율주행 등 인공지능 밸류체인 관련 종목이 강세를 보였습니다. 외국인 투자자도 현물과 선물 시장에서 순매수로 전환했습니다. 같은 날 코스피 지수는 6,603.91로 마감하며 전일 대비 2% 상승해 사상 최고치를 다시 썼고, 강한 매수세가 확인됐습니다. 2026년 4월 한 달 동안 코스피 지수가 장중 고점 기준으로 31% 오르며 월간 상승률이 1998년 1월 이후 두 번째로 높았고, 월간 20% 이상 상승은 통산 9회로 집계됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 국내인덱스, 한투 ISA의 금, 한투 ISA의 전력기기 판단과 맞물립니다. 핵심 시그널은 중동/유가, AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 19건",
+              "반도체 +2.43%",
+              "AI +5.73%",
+              "인텔 +23.60%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil",
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "KIS_MAIN",
+            "name": "원자력"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "COMPANY_NEWS",
+            "TELEGRAM",
+            "YOUTUBE",
+            "중동/유가",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "2026년 4월 27일 코스피가 6,603.91로 사상 최고치를 기록하며 1.9% 올랐습니다. 반도체와 AI 관련주가 강세를 보였고, 외국인 투자자도 순매수로 전환해 투자 심리가 크게 개선됐습니다.",
+              "애널리스트들이 이번 주 코스피 등 국내 증시의 주요 변수로 미국 연방공개시장위원회 회의, 대형 기술기업 실적 발표, 중동 지역 정세, 정책 변화 등을 제시했습니다. 2026년 4월 26일, 일본 니케이 225와 한국 코스피 지수가 사상 최고치를 기록했고, 같은 날 호주 S&P/ASX 200 지수는 소폭 하락했습니다. 최근 코스피가 6,600선을 넘어서며 투자 심리가 크게 개선됐고, 거래량과 시가총액도 함께 확대되는 모습이 확인됐습니다. 2026년 4월 27일 오전, 코스피와 코스닥이 각각 1.9%와 1.8% 상승하며 한국 증시 시가총액이 약 3개월 만에 6,000조원을 돌파했고, 반도체와 전력기기, 로봇·자율주행 등 인공지능 밸류체인 관련 종목이 강세를 보였습니다. 외국인 투자자도 현물과 선물 시장에서 순매수로 전환했습니다. 같은 날 코스피 지수는 6,603.91로 마감하며 전일 대비 2% 상승해 사상 최고치를 다시 썼고, 강한 매수세가 확인됐습니다. 2026년 4월 한 달 동안 코스피 지수가 장중 고점 기준으로 31% 오르며 월간 상승률이 1998년 1월 이후 두 번째로 높았고, 월간 20% 이상 상승은 통산 9회로 집계됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 국내인덱스, 한투 ISA의 금, 한투 ISA의 전력기기 판단과 맞물립니다. 핵심 시그널은 중동/유가, AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 19건",
+              "반도체 +2.43%",
+              "AI +5.73%",
+              "인텔 +23.60%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil",
+            "ai",
+            "power"
+          ]
+        }
+      ]
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM2MTAxMA==",
+      "numericId": "1361010",
+      "title": "곽동신 한미반도체 회장, 자사주 30억 추가 매입",
+      "summary": "곽동신 한미반도체 회장이 최근 30억 원어치 자사주를 추가 매입했습니다. 그는 지난 3년간 총 565억 원 상당 주식을 사들여 회사 경영 안정과 주주 신뢰에 긍정적 영향을 주고 있습니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1361010",
+      "displayUpdatedAt": "2026-04-27T03:22:07+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 1,
+      "mainSource": {
+        "type": "TELEGRAM",
+        "name": "텔레그램",
+        "author": "증권사 애널 크롤러🇰🇷"
+      },
+      "uniqueSourceTypeList": [
+        "TELEGRAM"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZTo4NDk=",
+          "name": "한미반도체",
+          "code": "042700",
+          "type": "COMPANY",
+          "country": "KR",
+          "fluctuationRate": 27.749576988155667
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyNDY1",
+          "name": "AI",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 5.730092525482178
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyNDg0",
+          "name": "HBM",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 4.289662837982178
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyODc2",
+          "name": "반도체",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 2.4300217628479004
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToxODI3OA==",
+          "name": "증권사 애널 채널 크롤러",
+          "code": "텔레그램-2107410272",
+          "type": "INFLUENCER",
+          "country": "EMPTY",
+          "fluctuationRate": null
+        }
+      ],
+      "sourceInfo": [
+        {
+          "type": "TELEGRAM",
+          "count": 1
+        }
+      ],
+      "subTopics": [
+        {
+          "id": "U3ViVG9waWNUeXBlOjE0MzQ4MDY=",
+          "title": "곽동신 회장, 한미반도체 자사주 30억 원 추가 매입",
+          "summary": "곽동신 한미반도체 회장이 최근 30억 원 규모의 자사주를 추가로 매입했습니다. 곽 회장은 지난 3년간 개인 자산을 활용해 총 565억 원 상당의 한미반도체 주식을 취득한 것으로 확인됐습니다. 이번 매입은 반도체 업계 내 한미반도체의 경영 안정성과 주주 신뢰에 긍정적 영향을 줄 것으로 보입니다.",
+          "updatedAt": "2026-04-27T12:22:07+09:00",
+          "sourceOrigins": [
+            {
+              "title": "곽동신 한미반도체 회장, 3년간 565억 자사주 매입",
+              "author": "증권사 애널 크롤러🇰🇷",
+              "type": "TELEGRAM",
+              "url": "https://t.me/AnalystCrawler/583219"
+            }
+          ]
+        }
+      ],
+      "signalDirection": "positive",
+      "signalLabels": [
+        "AI 인프라/전력"
+      ],
+      "relevanceScore": 86,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [
+          {
+            "accountKey": "ISA",
+            "accountLabel": "한투 ISA",
+            "category": "전력기기",
+            "matchReasons": [
+              "AI 인프라/전력"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "PENSION",
+            "accountLabel": "한투 연금저축",
+            "category": "S&P500",
+            "matchReasons": [
+              "AI 인프라/전력"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "PENSION",
+            "accountLabel": "한투 연금저축",
+            "category": "나스닥100",
+            "matchReasons": [
+              "AI 인프라/전력",
+              "ai"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "PENSION",
+            "accountLabel": "한투 연금저축",
+            "category": "전력기기",
+            "matchReasons": [
+              "AI 인프라/전력"
+            ],
+            "impactDirection": "positive"
+          }
+        ],
+        "watchlist": [
+          {
+            "code": "005930",
+            "name": "삼성전자",
+            "accountHint": null,
+            "accountKey": null,
+            "category": "반도체",
+            "matchReasons": [
+              "hbm",
+              "반도체"
+            ]
+          },
+          {
+            "code": "000660",
+            "name": "SK하이닉스",
+            "accountHint": null,
+            "accountKey": null,
+            "category": "반도체",
+            "matchReasons": [
+              "hbm",
+              "반도체"
+            ]
+          }
+        ]
+      },
+      "portfolioLinkage": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+      "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요.",
+      "impactEntries": [
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "ISA",
+            "name": "전력기기"
+          },
+          "direction": "positive",
+          "strength": 0.651,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "곽동신 한미반도체 회장이 최근 30억 원어치 자사주를 추가 매입했습니다. 그는 지난 3년간 총 565억 원 상당 주식을 사들여 회사 경영 안정과 주주 신뢰에 긍정적 영향을 주고 있습니다.",
+              "곽동신 한미반도체 회장이 최근 30억 원 규모의 자사주를 추가로 매입했습니다. 곽 회장은 지난 3년간 개인 자산을 활용해 총 565억 원 상당의 한미반도체 주식을 취득한 것으로 확인됐습니다. 이번 매입은 반도체 업계 내 한미반도체의 경영 안정성과 주주 신뢰에 긍정적 영향을 줄 것으로 보입니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "한미반도체 +27.75%",
+              "AI +5.73%",
+              "HBM +4.29%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "S&P500"
+          },
+          "direction": "positive",
+          "strength": 0.651,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "곽동신 한미반도체 회장이 최근 30억 원어치 자사주를 추가 매입했습니다. 그는 지난 3년간 총 565억 원 상당 주식을 사들여 회사 경영 안정과 주주 신뢰에 긍정적 영향을 주고 있습니다.",
+              "곽동신 한미반도체 회장이 최근 30억 원 규모의 자사주를 추가로 매입했습니다. 곽 회장은 지난 3년간 개인 자산을 활용해 총 565억 원 상당의 한미반도체 주식을 취득한 것으로 확인됐습니다. 이번 매입은 반도체 업계 내 한미반도체의 경영 안정성과 주주 신뢰에 긍정적 영향을 줄 것으로 보입니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "한미반도체 +27.75%",
+              "AI +5.73%",
+              "HBM +4.29%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "나스닥100"
+          },
+          "direction": "positive",
+          "strength": 0.651,
+          "confidence": 0.58,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "곽동신 한미반도체 회장이 최근 30억 원어치 자사주를 추가 매입했습니다. 그는 지난 3년간 총 565억 원 상당 주식을 사들여 회사 경영 안정과 주주 신뢰에 긍정적 영향을 주고 있습니다.",
+              "곽동신 한미반도체 회장이 최근 30억 원 규모의 자사주를 추가로 매입했습니다. 곽 회장은 지난 3년간 개인 자산을 활용해 총 565억 원 상당의 한미반도체 주식을 취득한 것으로 확인됐습니다. 이번 매입은 반도체 업계 내 한미반도체의 경영 안정성과 주주 신뢰에 긍정적 영향을 줄 것으로 보입니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "한미반도체 +27.75%",
+              "AI +5.73%",
+              "HBM +4.29%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "전력기기"
+          },
+          "direction": "positive",
+          "strength": 0.651,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "곽동신 한미반도체 회장이 최근 30억 원어치 자사주를 추가 매입했습니다. 그는 지난 3년간 총 565억 원 상당 주식을 사들여 회사 경영 안정과 주주 신뢰에 긍정적 영향을 주고 있습니다.",
+              "곽동신 한미반도체 회장이 최근 30억 원 규모의 자사주를 추가로 매입했습니다. 곽 회장은 지난 3년간 개인 자산을 활용해 총 565억 원 상당의 한미반도체 주식을 취득한 것으로 확인됐습니다. 이번 매입은 반도체 업계 내 한미반도체의 경영 안정성과 주주 신뢰에 긍정적 영향을 줄 것으로 보입니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "한미반도체 +27.75%",
+              "AI +5.73%",
+              "HBM +4.29%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        }
+      ]
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM2MTAyMw==",
+      "numericId": "1361023",
+      "title": "엔비디아, 단일 이미지 3D 환경 자동 생성 기술 공개",
+      "summary": "엔비디아가 Lyra 2.0을 발표하며 단일 이미지로 3차원 환경을 자동 생성하는 기술을 선보였습니다. 이 기술은 해상도 문제를 개선했고, 로봇과 자율주행 AI 훈련에 활용될 가능성이 큽니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1361023",
+      "displayUpdatedAt": "2026-04-27T03:30:00+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 2,
+      "mainSource": {
+        "type": "TELEGRAM",
+        "name": "텔레그램",
+        "author": "증권사 애널 크롤러🇰🇷"
+      },
+      "uniqueSourceTypeList": [
+        "TELEGRAM"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZToxMjM2OA==",
+          "name": "엔비디아",
+          "code": "NVDA",
+          "type": "COMPANY",
+          "country": "US",
+          "fluctuationRate": 4.322781005810471
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyNDY1",
+          "name": "AI",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 5.730092525482178
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyNzk5",
+          "name": "로봇제조",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 4.976022243499756
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZTozNzM3",
+          "name": "환경산업",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 0.48007965087890625
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZTo0NjkyNzk=",
+          "name": "AI MASTERS",
+          "code": "텔레그램-1856015924",
+          "type": "INFLUENCER",
+          "country": "EMPTY",
+          "fluctuationRate": null
+        }
+      ],
+      "sourceInfo": [
+        {
+          "type": "TELEGRAM",
+          "count": 2
+        }
+      ],
+      "subTopics": [
+        {
+          "id": "U3ViVG9waWNUeXBlOjE0MzQ4MTk=",
+          "title": "엔비디아, Lyra 2.0 공개로 3D 환경 생성 기술 강조",
+          "summary": "엔비디아가 Lyra 2.0을 발표하며, 단일 이미지만으로 탐험 가능한 3차원 환경을 자동으로 생성하는 기술을 공개했습니다. 이 시스템은 기존 해상도 문제를 개선한 것으로 평가받고 있으며, 생성된 3D 공간이 실제 장소와 얼마나 일치하는지가 주요 쟁점으로 떠올랐습니다. Lyra 2.0은 디지털 트윈을 활용해 로봇과 자율주행 분야의 인공지능 훈련 공간으로 활용될 가능성도 제기되고 있습니다. 이번 발표에서는 단일 이미지를 활용해 3D 환경으로 변환하는 기능이 더욱 강조됐습니다.",
+          "updatedAt": "2026-04-27T12:30:00+09:00",
+          "sourceOrigins": [
+            {
+              "title": "엔비디아 Lyra 2.0, 3D 환경 생성 혁신",
+              "author": "증권사 애널 크롤러🇰🇷",
+              "type": "TELEGRAM",
+              "url": "https://t.me/AnalystCrawler/583221"
+            },
+            {
+              "title": "엔비디아 Lyra 2.0, 3D 환경 디지털트윈화 강화",
+              "author": "AI MASTERS",
+              "type": "TELEGRAM",
+              "url": "https://t.me/ai_masters_community/6355"
+            }
+          ]
+        }
+      ],
+      "signalDirection": "positive",
+      "signalLabels": [
+        "AI 인프라/전력"
+      ],
+      "relevanceScore": 79,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [
+          {
+            "accountKey": "ISA",
+            "accountLabel": "한투 ISA",
+            "category": "전력기기",
+            "matchReasons": [
+              "AI 인프라/전력"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "PENSION",
+            "accountLabel": "한투 연금저축",
+            "category": "S&P500",
+            "matchReasons": [
+              "AI 인프라/전력"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "PENSION",
+            "accountLabel": "한투 연금저축",
+            "category": "나스닥100",
+            "matchReasons": [
+              "AI 인프라/전력",
+              "엔비디아",
+              "ai"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "PENSION",
+            "accountLabel": "한투 연금저축",
+            "category": "전력기기",
+            "matchReasons": [
+              "AI 인프라/전력"
+            ],
+            "impactDirection": "positive"
+          }
+        ],
+        "watchlist": [
+          {
+            "code": "133690",
+            "name": "TIGER 미국나스닥100",
+            "accountHint": "PENSION",
+            "accountKey": "PENSION",
+            "category": "나스닥100",
+            "matchReasons": [
+              "엔비디아",
+              "ai"
+            ]
+          }
+        ]
+      },
+      "portfolioLinkage": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+      "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요.",
+      "impactEntries": [
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "ISA",
+            "name": "전력기기"
+          },
+          "direction": "positive",
+          "strength": 0.624,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "엔비디아가 Lyra 2.0을 발표하며 단일 이미지로 3차원 환경을 자동 생성하는 기술을 선보였습니다. 이 기술은 해상도 문제를 개선했고, 로봇과 자율주행 AI 훈련에 활용될 가능성이 큽니다.",
+              "엔비디아가 Lyra 2.0을 발표하며, 단일 이미지만으로 탐험 가능한 3차원 환경을 자동으로 생성하는 기술을 공개했습니다. 이 시스템은 기존 해상도 문제를 개선한 것으로 평가받고 있으며, 생성된 3D 공간이 실제 장소와 얼마나 일치하는지가 주요 쟁점으로 떠올랐습니다. Lyra 2.0은 디지털 트윈을 활용해 로봇과 자율주행 분야의 인공지능 훈련 공간으로 활용될 가능성도 제기되고 있습니다. 이번 발표에서는 단일 이미지를 활용해 3D 환경으로 변환하는 기능이 더욱 강조됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "엔비디아 +4.32%",
+              "AI +5.73%",
+              "로봇제조 +4.98%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "S&P500"
+          },
+          "direction": "positive",
+          "strength": 0.624,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "엔비디아가 Lyra 2.0을 발표하며 단일 이미지로 3차원 환경을 자동 생성하는 기술을 선보였습니다. 이 기술은 해상도 문제를 개선했고, 로봇과 자율주행 AI 훈련에 활용될 가능성이 큽니다.",
+              "엔비디아가 Lyra 2.0을 발표하며, 단일 이미지만으로 탐험 가능한 3차원 환경을 자동으로 생성하는 기술을 공개했습니다. 이 시스템은 기존 해상도 문제를 개선한 것으로 평가받고 있으며, 생성된 3D 공간이 실제 장소와 얼마나 일치하는지가 주요 쟁점으로 떠올랐습니다. Lyra 2.0은 디지털 트윈을 활용해 로봇과 자율주행 분야의 인공지능 훈련 공간으로 활용될 가능성도 제기되고 있습니다. 이번 발표에서는 단일 이미지를 활용해 3D 환경으로 변환하는 기능이 더욱 강조됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "엔비디아 +4.32%",
+              "AI +5.73%",
+              "로봇제조 +4.98%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "나스닥100"
+          },
+          "direction": "positive",
+          "strength": 0.624,
+          "confidence": 0.62,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "엔비디아가 Lyra 2.0을 발표하며 단일 이미지로 3차원 환경을 자동 생성하는 기술을 선보였습니다. 이 기술은 해상도 문제를 개선했고, 로봇과 자율주행 AI 훈련에 활용될 가능성이 큽니다.",
+              "엔비디아가 Lyra 2.0을 발표하며, 단일 이미지만으로 탐험 가능한 3차원 환경을 자동으로 생성하는 기술을 공개했습니다. 이 시스템은 기존 해상도 문제를 개선한 것으로 평가받고 있으며, 생성된 3D 공간이 실제 장소와 얼마나 일치하는지가 주요 쟁점으로 떠올랐습니다. Lyra 2.0은 디지털 트윈을 활용해 로봇과 자율주행 분야의 인공지능 훈련 공간으로 활용될 가능성도 제기되고 있습니다. 이번 발표에서는 단일 이미지를 활용해 3D 환경으로 변환하는 기능이 더욱 강조됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "엔비디아 +4.32%",
+              "AI +5.73%",
+              "로봇제조 +4.98%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "전력기기"
+          },
+          "direction": "positive",
+          "strength": 0.624,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "엔비디아가 Lyra 2.0을 발표하며 단일 이미지로 3차원 환경을 자동 생성하는 기술을 선보였습니다. 이 기술은 해상도 문제를 개선했고, 로봇과 자율주행 AI 훈련에 활용될 가능성이 큽니다.",
+              "엔비디아가 Lyra 2.0을 발표하며, 단일 이미지만으로 탐험 가능한 3차원 환경을 자동으로 생성하는 기술을 공개했습니다. 이 시스템은 기존 해상도 문제를 개선한 것으로 평가받고 있으며, 생성된 3D 공간이 실제 장소와 얼마나 일치하는지가 주요 쟁점으로 떠올랐습니다. Lyra 2.0은 디지털 트윈을 활용해 로봇과 자율주행 분야의 인공지능 훈련 공간으로 활용될 가능성도 제기되고 있습니다. 이번 발표에서는 단일 이미지를 활용해 3D 환경으로 변환하는 기능이 더욱 강조됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "엔비디아 +4.32%",
+              "AI +5.73%",
+              "로봇제조 +4.98%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        }
+      ]
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM2MDU1OA==",
+      "numericId": "1360558",
+      "title": "해시드, 서울서 AI 네이티브 빌더 육성 프로그램 개최",
+      "summary": "글로벌 웹3 벤처캐피털 해시드는 2026년 4월 30일 서울 강남구에서 AI 네이티브 빌더 육성 프로그램 '나이트로 서울 게임 데이'를 개최합니다. 4개 팀이 8주간 연구한 AI 기반 제품을 선보이며 글로벌 진출을 지원합니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1360558",
+      "displayUpdatedAt": "2026-04-27T03:21:00+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 2,
+      "mainSource": {
+        "type": "COMPANY_NEWS",
+        "name": "뉴스",
+        "author": "블루밍비트"
+      },
+      "uniqueSourceTypeList": [
+        "COMPANY_NEWS"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZToyNDY1",
+          "name": "AI",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 5.730092525482178
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZTozMDU5",
+          "name": "솔루션",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 3.2991886138916016
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToxODY5NA==",
+          "name": "서비스",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 2.4859070777893066
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyNjc1",
+          "name": "금융",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 1.3958215713500977
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyOTUy",
+          "name": "블록체인",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 0.939631462097168
+        }
+      ],
+      "sourceInfo": [],
+      "subTopics": [],
+      "signalDirection": "positive",
+      "signalLabels": [
+        "AI 인프라/전력"
+      ],
+      "relevanceScore": 70,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [
+          {
+            "accountKey": "ISA",
+            "accountLabel": "한투 ISA",
+            "category": "전력기기",
+            "matchReasons": [
+              "AI 인프라/전력"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "PENSION",
+            "accountLabel": "한투 연금저축",
+            "category": "S&P500",
+            "matchReasons": [
+              "AI 인프라/전력"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "PENSION",
+            "accountLabel": "한투 연금저축",
+            "category": "나스닥100",
+            "matchReasons": [
+              "AI 인프라/전력",
+              "ai"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "PENSION",
+            "accountLabel": "한투 연금저축",
+            "category": "전력기기",
+            "matchReasons": [
+              "AI 인프라/전력"
+            ],
+            "impactDirection": "positive"
+          }
+        ],
+        "watchlist": []
+      },
+      "portfolioLinkage": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+      "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요.",
+      "impactEntries": [
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "ISA",
+            "name": "전력기기"
+          },
+          "direction": "positive",
+          "strength": 0.589,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "COMPANY_NEWS",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "글로벌 웹3 벤처캐피털 해시드는 2026년 4월 30일 서울 강남구에서 AI 네이티브 빌더 육성 프로그램 '나이트로 서울 게임 데이'를 개최합니다. 4개 팀이 8주간 연구한 AI 기반 제품을 선보이며 글로벌 진출을 지원합니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "AI +5.73%",
+              "솔루션 +3.30%",
+              "서비스 +2.49%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "S&P500"
+          },
+          "direction": "positive",
+          "strength": 0.589,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "COMPANY_NEWS",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "글로벌 웹3 벤처캐피털 해시드는 2026년 4월 30일 서울 강남구에서 AI 네이티브 빌더 육성 프로그램 '나이트로 서울 게임 데이'를 개최합니다. 4개 팀이 8주간 연구한 AI 기반 제품을 선보이며 글로벌 진출을 지원합니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "AI +5.73%",
+              "솔루션 +3.30%",
+              "서비스 +2.49%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "나스닥100"
+          },
+          "direction": "positive",
+          "strength": 0.589,
+          "confidence": 0.58,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "COMPANY_NEWS",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "글로벌 웹3 벤처캐피털 해시드는 2026년 4월 30일 서울 강남구에서 AI 네이티브 빌더 육성 프로그램 '나이트로 서울 게임 데이'를 개최합니다. 4개 팀이 8주간 연구한 AI 기반 제품을 선보이며 글로벌 진출을 지원합니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "AI +5.73%",
+              "솔루션 +3.30%",
+              "서비스 +2.49%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "전력기기"
+          },
+          "direction": "positive",
+          "strength": 0.589,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "COMPANY_NEWS",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "글로벌 웹3 벤처캐피털 해시드는 2026년 4월 30일 서울 강남구에서 AI 네이티브 빌더 육성 프로그램 '나이트로 서울 게임 데이'를 개최합니다. 4개 팀이 8주간 연구한 AI 기반 제품을 선보이며 글로벌 진출을 지원합니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "AI +5.73%",
+              "솔루션 +3.30%",
+              "서비스 +2.49%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        }
+      ]
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM1ODgxNw==",
+      "numericId": "1358817",
+      "title": "2026년 4월 국내 주식시장 주요 종목 주가 급등",
+      "summary": "2026년 4월 27일 유튜브 라이브에서 국내 주식시장 투자 인사이트가 제공됐습니다. 같은 날 SK하이닉스, 삼성전자, 한미반도체 주가가 각각 6.22%, 2.28%, 26.40% 상승하며 투자자 관심이 컸습니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1358817",
+      "displayUpdatedAt": "2026-04-27T03:23:28+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 3,
+      "mainSource": {
+        "type": "TELEGRAM",
+        "name": "텔레그램",
+        "author": "증권사 애널 크롤러🇰🇷"
+      },
+      "uniqueSourceTypeList": [
+        "TELEGRAM"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZTozMg==",
+          "name": "SK하이닉스",
+          "code": "000660",
+          "type": "COMPANY",
+          "country": "KR",
+          "fluctuationRate": 6.30114566284779
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyNTk=",
+          "name": "삼성전자",
+          "code": "005930",
+          "type": "COMPANY",
+          "country": "KR",
+          "fluctuationRate": 2.164009111617312
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyODc2",
+          "name": "반도체",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 2.4300217628479004
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToxMTA0",
+          "name": "LG전자",
+          "code": "066570",
+          "type": "COMPANY",
+          "country": "KR",
+          "fluctuationRate": 0.7843137254901961
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyMzY=",
+          "name": "현대차",
+          "code": "005380",
+          "type": "COMPANY",
+          "country": "KR",
+          "fluctuationRate": 2.923976608187134
+        }
+      ],
+      "sourceInfo": [
+        {
+          "type": "TELEGRAM",
+          "count": 3
+        }
+      ],
+      "subTopics": [
+        {
+          "id": "U3ViVG9waWNUeXBlOjE0MzI1MzY=",
+          "title": "주요 반도체주 강세, 거래대금 대폭 증가",
+          "summary": "2026년 4월 27일 오전 7시에 유튜브 라이브 방송을 통해 국내 주식시장에 대한 실시간 투자 인사이트가 제공됐습니다. 같은 날 코스피 시장에서 SK하이닉스, 삼성전자, 한미반도체 등 주요 반도체 종목이 각각 6.22%, 2.28%, 26.40% 상승하며 강세를 보였고, 거래대금도 각각 3.3조원, 3.0조원, 1.2조원에 달해 투자자들의 높은 관심이 확인됐습니다.",
+          "updatedAt": "2026-04-27T12:23:28+09:00",
+          "sourceOrigins": [
+            {
+              "title": "SK하이닉스·삼성전자·한미반도체 등 주요 종목 강세",
+              "author": "Ghost Research",
+              "type": "TELEGRAM",
+              "url": "https://t.me/ghostresearch/3092"
+            },
+            {
+              "title": "삼성·LG·현대차 등 주요 기업 실적 및 리스크 점검",
+              "author": "슈퍼개미 이세무사TV",
+              "type": "TELEGRAM",
+              "url": "https://t.me/balanceasset/28912"
+            },
+            {
+              "title": "트럼프 해프닝·반도체·HD현대 등 주식 이슈",
+              "author": "증권사 애널 크롤러🇰🇷",
+              "type": "TELEGRAM",
+              "url": "https://t.me/AnalystCrawler/582636"
+            }
+          ]
+        }
+      ],
+      "signalDirection": "positive",
+      "signalLabels": [],
+      "relevanceScore": 56,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [
+          {
+            "accountKey": "ISA",
+            "accountLabel": "한투 ISA",
+            "category": "반도체/채권혼합",
+            "matchReasons": [
+              "삼성전자",
+              "sk하이닉스",
+              "반도체",
+              "SK하이닉스"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "PENSION",
+            "accountLabel": "한투 연금저축",
+            "category": "반도체/채권혼합",
+            "matchReasons": [
+              "삼성전자",
+              "sk하이닉스",
+              "반도체",
+              "SK하이닉스"
+            ],
+            "impactDirection": "positive"
+          }
+        ],
+        "watchlist": [
+          {
+            "code": "005930",
+            "name": "삼성전자",
+            "accountHint": null,
+            "accountKey": null,
+            "category": "반도체",
+            "matchReasons": [
+              "키워드코드:005930",
+              "삼성전자",
+              "반도체"
+            ]
+          },
+          {
+            "code": "000660",
+            "name": "SK하이닉스",
+            "accountHint": null,
+            "accountKey": null,
+            "category": "반도체",
+            "matchReasons": [
+              "키워드코드:000660",
+              "SK하이닉스",
+              "sk하이닉스",
+              "하이닉스",
+              "반도체"
+            ]
+          }
+        ]
+      },
+      "portfolioLinkage": "계좌 테마 기준으로는 한투 ISA의 반도체/채권혼합, 한투 연금저축의 반도체/채권혼합 판단과 맞물립니다.",
+      "deepResearchQuestion": "반도체/채권혼합 테마가 일시 뉴스 플로우인지, 구조적 추세인지 구분하세요.",
+      "impactEntries": [
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "ISA",
+            "name": "반도체/채권혼합"
+          },
+          "direction": "positive",
+          "strength": 0.535,
+          "confidence": 0.66,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "2026년 4월 27일 유튜브 라이브에서 국내 주식시장 투자 인사이트가 제공됐습니다. 같은 날 SK하이닉스, 삼성전자, 한미반도체 주가가 각각 6.22%, 2.28%, 26.40% 상승하며 투자자 관심이 컸습니다.",
+              "2026년 4월 27일 오전 7시에 유튜브 라이브 방송을 통해 국내 주식시장에 대한 실시간 투자 인사이트가 제공됐습니다. 같은 날 코스피 시장에서 SK하이닉스, 삼성전자, 한미반도체 등 주요 반도체 종목이 각각 6.22%, 2.28%, 26.40% 상승하며 강세를 보였고, 거래대금도 각각 3.3조원, 3.0조원, 1.2조원에 달해 투자자들의 높은 관심이 확인됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 반도체/채권혼합, 한투 연금저축의 반도체/채권혼합 판단과 맞물립니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 3건",
+              "SK하이닉스 +6.30%",
+              "삼성전자 +2.16%",
+              "반도체 +2.43%"
+            ]
+          },
+          "riskTags": []
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "반도체/채권혼합"
+          },
+          "direction": "positive",
+          "strength": 0.535,
+          "confidence": 0.66,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "2026년 4월 27일 유튜브 라이브에서 국내 주식시장 투자 인사이트가 제공됐습니다. 같은 날 SK하이닉스, 삼성전자, 한미반도체 주가가 각각 6.22%, 2.28%, 26.40% 상승하며 투자자 관심이 컸습니다.",
+              "2026년 4월 27일 오전 7시에 유튜브 라이브 방송을 통해 국내 주식시장에 대한 실시간 투자 인사이트가 제공됐습니다. 같은 날 코스피 시장에서 SK하이닉스, 삼성전자, 한미반도체 등 주요 반도체 종목이 각각 6.22%, 2.28%, 26.40% 상승하며 강세를 보였고, 거래대금도 각각 3.3조원, 3.0조원, 1.2조원에 달해 투자자들의 높은 관심이 확인됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 반도체/채권혼합, 한투 연금저축의 반도체/채권혼합 판단과 맞물립니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 3건",
+              "SK하이닉스 +6.30%",
+              "삼성전자 +2.16%",
+              "반도체 +2.43%"
+            ]
+          },
+          "riskTags": []
+        }
+      ]
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM2MTAxNQ==",
+      "numericId": "1361015",
+      "title": "한국, 3500억 규모 RE100 생산적 금융 펀드 출범",
+      "summary": "한국 정부가 2026년 약 3500억원 규모의 'RE100 생산적 금융 펀드'를 출범했습니다. 이 펀드는 녹색프리미엄 재원을 활용해 재생에너지 발전사업에 자금을 지원하며, 민간 자산운용사가 운용합니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1361015",
+      "displayUpdatedAt": "2026-04-27T03:19:00+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 1,
+      "mainSource": {
+        "type": "COMPANY_NEWS",
+        "name": "뉴스",
+        "author": "전자신문"
+      },
+      "uniqueSourceTypeList": [
+        "COMPANY_NEWS"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZToyNjc1",
+          "name": "금융",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 1.3958215713500977
+        }
+      ],
+      "sourceInfo": [],
+      "subTopics": [],
+      "signalDirection": "neutral",
+      "signalLabels": [],
+      "relevanceScore": 17,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [
+          {
+            "accountKey": "ISA",
+            "accountLabel": "한투 ISA",
+            "category": "신재생에너지",
+            "matchReasons": [
+              "재생에너지",
+              "에너지"
+            ],
+            "impactDirection": "neutral"
+          }
+        ],
+        "watchlist": []
+      },
+      "portfolioLinkage": "계좌 테마 기준으로는 한투 ISA의 신재생에너지 판단과 맞물립니다.",
+      "deepResearchQuestion": "신재생에너지 테마가 일시 뉴스 플로우인지, 구조적 추세인지 구분하세요.",
+      "impactEntries": []
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM2MTAxNw==",
+      "numericId": "1361017",
+      "title": "CJ프레시웨이·삼성웰스토리 조식서비스 인기",
+      "summary": "CJ프레시웨이와 삼성웰스토리가 강남 고급 아파트에서 조식서비스를 활발히 제공하고 있습니다. 이 서비스는 입주민 만족도를 높이며 2026년 프리미엄 주거 트렌드에 중요한 역할을 하고 있습니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1361017",
+      "displayUpdatedAt": "2026-04-27T03:26:13+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 2,
+      "mainSource": {
+        "type": "COMPANY_NEWS",
+        "name": "뉴스",
+        "author": "서울경제"
+      },
+      "uniqueSourceTypeList": [
+        "COMPANY_NEWS",
+        "TELEGRAM"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZTozNzE1",
+          "name": "호텔",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 1.024329662322998
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToxODY5NA==",
+          "name": "서비스",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 2.4859070777893066
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZTozMDc2",
+          "name": "숙박업",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 0.6215095520019531
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZTo0OQ==",
+          "name": "CJ",
+          "code": "001040",
+          "type": "COMPANY",
+          "country": "KR",
+          "fluctuationRate": 1.146788990825688
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToxODAyMA==",
+          "name": "재간둥이 송선생의 링크수집 창고",
+          "code": "텔레그램-1326994859",
+          "type": "INFLUENCER",
+          "country": "EMPTY",
+          "fluctuationRate": null
+        }
+      ],
+      "sourceInfo": [
+        {
+          "type": "COMPANY_NEWS",
+          "count": 1
+        },
+        {
+          "type": "TELEGRAM",
+          "count": 1
+        }
+      ],
+      "subTopics": [
+        {
+          "id": "U3ViVG9waWNUeXBlOjE0MzQ4MTM=",
+          "title": "강남 아파트 조식서비스, 입주민 만족도 상승",
+          "summary": "CJ프레시웨이와 삼성웰스토리 등 주요 식음 서비스 업체들이 강남지역 고급 아파트 단지에서 커뮤니티 식음 서비스를 활발히 제공하고 있습니다. 최근 조식서비스가 입주민들의 생활 만족도를 높이는 요소로 주목받으며, 이용률이 꾸준히 증가하고 있습니다. 프리미엄 주거 트렌드와 맞물려 조식서비스가 새로운 주거 기준으로 자리잡는 데 영향을 미치고 있습니다.",
+          "updatedAt": "2026-04-27T12:26:13+09:00",
+          "sourceOrigins": [
+            {
+              "title": "강남 아파트 조식서비스, 새로운 주거 기준으로 부상",
+              "author": "재간둥이 송선생",
+              "type": "TELEGRAM",
+              "url": "https://t.me/songjongsik/85282"
+            },
+            {
+              "title": "강남 집주인들도 절레절레…애물단지 ‘조식서비스’였는데 요즘 잘나가네",
+              "author": "서울경제",
+              "type": "COMPANY_NEWS",
+              "url": "https://www.sedaily.com/article/20037522?ref=naver"
+            }
+          ]
+        }
+      ],
+      "signalDirection": "positive",
+      "signalLabels": [],
+      "relevanceScore": 9,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [],
+        "watchlist": []
+      },
+      "portfolioLinkage": "",
+      "deepResearchQuestion": "CJ프레시웨이·삼성웰스토리 조식서비스 인기가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+      "impactEntries": []
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM2MTAxOA==",
+      "numericId": "1361018",
+      "title": "알지노·우리금융 주식 매수세 증가, 현대차 등은 매도 확대",
+      "summary": "알지노와 우리금융그룹 주식이 최근 매수세를 보이고 있습니다. 반면 현대자동차와 미래에셋증권은 매도 거래가 늘었고, 에이비엘도 매수세에 포함됐습니다. 닉스는 매도세가 두드러졌습니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1361018",
+      "displayUpdatedAt": "2026-04-27T03:30:08+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 1,
+      "mainSource": {
+        "type": "TELEGRAM",
+        "name": "텔레그램",
+        "author": "증권사 애널 크롤러🇰🇷"
+      },
+      "uniqueSourceTypeList": [
+        "TELEGRAM"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZToyMzY=",
+          "name": "현대차",
+          "code": "005380",
+          "type": "COMPANY",
+          "country": "KR",
+          "fluctuationRate": 2.923976608187134
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyNjc1",
+          "name": "금융",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 1.3958215713500977
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToxODI3OA==",
+          "name": "증권사 애널 채널 크롤러",
+          "code": "텔레그램-2107410272",
+          "type": "INFLUENCER",
+          "country": "EMPTY",
+          "fluctuationRate": null
+        }
+      ],
+      "sourceInfo": [
+        {
+          "type": "TELEGRAM",
+          "count": 1
+        }
+      ],
+      "subTopics": [
+        {
+          "id": "U3ViVG9waWNUeXBlOjE0MzQ4MTQ=",
+          "title": "알지노·우리금융 주식 매수세, 현대차 등 매도 증가",
+          "summary": "알지노와 우리금융그룹의 주식이 최근 시장에서 매수세를 보이고 있습니다. 반면 현대자동차와 미래에셋증권 등 일부 종목은 매도 거래가 늘어난 것으로 나타났습니다. 에이비엘 역시 매수세에 포함됐으며, 닉스는 매도세가 두드러진 종목으로 확인됐습니다. 이번 동향은 주요 종목별 거래 추이가 뚜렷하게 구분된 점이 특징입니다.",
+          "updatedAt": "2026-04-27T12:30:08+09:00",
+          "sourceOrigins": [
+            {
+              "title": "알지노·울금융 매수세, 현대차·미래에셋 매도 증가",
+              "author": "증권사 애널 크롤러🇰🇷",
+              "type": "TELEGRAM",
+              "url": "https://t.me/AnalystCrawler/583222"
+            }
+          ]
+        }
+      ],
+      "signalDirection": "positive",
+      "signalLabels": [],
+      "relevanceScore": 7,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [],
+        "watchlist": []
+      },
+      "portfolioLinkage": "",
+      "deepResearchQuestion": "알지노·우리금융 주식 매수세 증가, 현대차 등은 매도 확대가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+      "impactEntries": []
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM2MTAyNQ==",
+      "numericId": "1361025",
+      "title": "BYD, 구체 판매량 불투명 속 전기차 시장 주목",
+      "summary": "중국 전기차 제조사 BYD가 최근 판매 실적을 공개했어요. 전기차 시장에서 BYD의 입지와 성장세에 관심이 커지고 있지만, 구체적인 판매량이나 기간은 알려지지 않았습니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1361025",
+      "displayUpdatedAt": "2026-04-27T03:32:42+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 1,
+      "mainSource": {
+        "type": "TELEGRAM",
+        "name": "텔레그램",
+        "author": "중국주식반점(饭店)"
+      },
+      "uniqueSourceTypeList": [
+        "TELEGRAM"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZTo0NjIxMzk=",
+          "name": "중국주식반점(饭店)",
+          "code": "텔레그램-2363912296",
+          "type": "INFLUENCER",
+          "country": "EMPTY",
+          "fluctuationRate": null
+        }
+      ],
+      "sourceInfo": [
+        {
+          "type": "TELEGRAM",
+          "count": 1
+        }
+      ],
+      "subTopics": [
+        {
+          "id": "U3ViVG9waWNUeXBlOjE0MzQ4MjE=",
+          "title": "BYD 전기차 판매 실적 언론 보도",
+          "summary": "중국 전기차 제조사 BYD의 최근 판매 실적이 언론을 통해 공개됐습니다. 이번 보도는 BYD가 전기차 시장에서 차지하는 입지와 성장세에 대한 관심이 높아지는 가운데 전해졌습니다. 다만 구체적인 판매량이나 기간 등 수치는 기사에 포함되지 않았습니다.",
+          "updatedAt": "2026-04-27T12:32:42+09:00",
+          "sourceOrigins": [
+            {
+              "title": "BYD 판매량 소식 전달",
+              "author": "중국주식반점(饭店)",
+              "type": "TELEGRAM",
+              "url": "https://t.me/chinastockrestaurant8/9282"
+            }
+          ]
+        }
+      ],
+      "signalDirection": "neutral",
+      "signalLabels": [],
+      "relevanceScore": 3,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [],
+        "watchlist": []
+      },
+      "portfolioLinkage": "",
+      "deepResearchQuestion": "BYD, 구체 판매량 불투명 속 전기차 시장 주목가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+      "impactEntries": []
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM2MTAxNg==",
+      "numericId": "1361016",
+      "title": "산림청, 2027년 목재펠릿 보일러 보조금 접수 시작",
+      "summary": "산림청이 2027년도 목재펠릿 보일러와 난로 보급 지원사업 1차 신청을 2026년 5월 11일까지 받습니다. 주택용은 70%, 사회복지시설용은 100% 보조금이 지원되며 5년간 의무 사용해야 합니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1361016",
+      "displayUpdatedAt": "2026-04-27T03:23:00+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 1,
+      "mainSource": {
+        "type": "COMPANY_NEWS",
+        "name": "뉴스",
+        "author": "데일리안"
+      },
+      "uniqueSourceTypeList": [
+        "COMPANY_NEWS"
+      ],
+      "keywordList": [],
+      "sourceInfo": [
+        {
+          "type": "COMPANY_NEWS",
+          "count": 1
+        }
+      ],
+      "subTopics": [
+        {
+          "id": "U3ViVG9waWNUeXBlOjE0MzQ4MTI=",
+          "title": "산림청, 2027년 목재펠릿 보일러 지원사업 신청 접수",
+          "summary": "산림청이 2027년도 목재펠릿 보일러와 난로 보급 지원사업의 1차 신청을 2026년 5월 11일까지 접수합니다. 주택용은 제품 가격의 70%, 사회복지시설용은 100%까지 보조금이 지원되며, 선정 시 5년간 의무 사용 조건이 적용됩니다. 신청은 관할 행정복지센터에서 가능합니다.",
+          "updatedAt": "2026-04-27T12:23:00+09:00",
+          "sourceOrigins": [
+            {
+              "title": "산림청, 목재펠릿 보일러·난로 보급 지원…5월 11일까지 신청",
+              "author": "데일리안",
+              "type": "COMPANY_NEWS",
+              "url": "https://www.dailian.co.kr/news/view/1638277/?sc=Naver"
+            }
+          ]
+        }
+      ],
+      "signalDirection": "neutral",
+      "signalLabels": [],
+      "relevanceScore": 3,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [],
+        "watchlist": []
+      },
+      "portfolioLinkage": "",
+      "deepResearchQuestion": "산림청, 2027년 목재펠릿 보일러 보조금 접수 시작가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+      "impactEntries": []
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM2MTAxMQ==",
+      "numericId": "1361011",
+      "title": "피델리티, SNT홀딩스 주식 9.13% 보유 유지",
+      "summary": "피델리티 매니지먼트 앤드 리서치 컴퍼니가 2026년 4월 SNT홀딩스 주식 1,487,999주(9.13%)를 보유 중입니다. 보유 주식은 279주 줄었으며, 단순 투자 목적이라 경영권 영향은 없다고 밝혔습니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1361011",
+      "displayUpdatedAt": "2026-04-27T03:21:03+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 1,
+      "mainSource": {
+        "type": "DISCLOSURE",
+        "name": "공시",
+        "author": "공시"
+      },
+      "uniqueSourceTypeList": [
+        "DISCLOSURE"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZTo3NTM=",
+          "name": "SNT홀딩스",
+          "code": "036530",
+          "type": "COMPANY",
+          "country": "KR",
+          "fluctuationRate": -0.7836990595611284
+        }
+      ],
+      "sourceInfo": [],
+      "subTopics": [],
+      "signalDirection": "neutral",
+      "signalLabels": [],
+      "relevanceScore": 3,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [],
+        "watchlist": []
+      },
+      "portfolioLinkage": "",
+      "deepResearchQuestion": "피델리티, SNT홀딩스 주식 9.13% 보유 유지가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+      "impactEntries": []
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM2MTAxMw==",
+      "numericId": "1361013",
+      "title": "2030년까지 친환경농업 재배면적 두 배 확대 논의",
+      "summary": "대통령직속 농어업 농어촌특별위원회가 2026년 4월 24일 친환경농업TF 첫 회의를 열어 2030년까지 친환경농업 재배면적을 두 배로 늘리는 방안을 논의했습니다. 탄소중립 정책과 지원책도 함께 검토했습니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1361013",
+      "displayUpdatedAt": "2026-04-27T03:21:00+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 1,
+      "mainSource": {
+        "type": "COMPANY_NEWS",
+        "name": "뉴스",
+        "author": "데일리안"
+      },
+      "uniqueSourceTypeList": [
+        "COMPANY_NEWS"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZTozNTM1",
+          "name": "친환경",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 0.41495561599731445
+        }
+      ],
+      "sourceInfo": [],
+      "subTopics": [],
+      "signalDirection": "neutral",
+      "signalLabels": [],
+      "relevanceScore": 3,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [],
+        "watchlist": []
+      },
+      "portfolioLinkage": "",
+      "deepResearchQuestion": "2030년까지 친환경농업 재배면적 두 배 확대 논의가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+      "impactEntries": []
+    }
+  ],
+  "accountDigests": [
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "topTopics": [
+        {
+          "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM1ODc5NQ==",
+          "title": "코스피 6600선 돌파, 반도체·AI주 강세",
+          "topicUrl": "https://www.moneytoring.ai/mv/1358795",
+          "relevanceScore": 100,
+          "signalDirection": "mixed",
+          "portfolioLinkage": "계좌 테마 기준으로는 한투 ISA의 국내인덱스, 한투 ISA의 금, 한투 ISA의 전력기기 판단과 맞물립니다. 핵심 시그널은 중동/유가, AI 인프라/전력입니다.",
+          "matchedNames": [],
+          "matchedCategories": [
+            "국내인덱스",
+            "금",
+            "전력기기"
+          ],
+          "sourceCount": 19,
+          "updatedAt": "2026-04-27T03:29:49+00:00"
+        },
+        {
+          "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM2MTAxMA==",
+          "title": "곽동신 한미반도체 회장, 자사주 30억 추가 매입",
+          "topicUrl": "https://www.moneytoring.ai/mv/1361010",
+          "relevanceScore": 86,
+          "signalDirection": "positive",
+          "portfolioLinkage": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "matchedNames": [],
+          "matchedCategories": [
+            "전력기기"
+          ],
+          "sourceCount": 1,
+          "updatedAt": "2026-04-27T03:22:07+00:00"
+        },
+        {
+          "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM2MTAyMw==",
+          "title": "엔비디아, 단일 이미지 3D 환경 자동 생성 기술 공개",
+          "topicUrl": "https://www.moneytoring.ai/mv/1361023",
+          "relevanceScore": 79,
+          "signalDirection": "positive",
+          "portfolioLinkage": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "matchedNames": [],
+          "matchedCategories": [
+            "전력기기"
+          ],
+          "sourceCount": 2,
+          "updatedAt": "2026-04-27T03:30:00+00:00"
+        },
+        {
+          "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM2MDU1OA==",
+          "title": "해시드, 서울서 AI 네이티브 빌더 육성 프로그램 개최",
+          "topicUrl": "https://www.moneytoring.ai/mv/1360558",
+          "relevanceScore": 70,
+          "signalDirection": "positive",
+          "portfolioLinkage": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "matchedNames": [],
+          "matchedCategories": [
+            "전력기기"
+          ],
+          "sourceCount": 2,
+          "updatedAt": "2026-04-27T03:21:00+00:00"
+        }
+      ]
+    },
+    {
+      "accountKey": "PENSION",
+      "accountLabel": "한투 연금저축",
+      "topTopics": [
+        {
+          "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM1ODc5NQ==",
+          "title": "코스피 6600선 돌파, 반도체·AI주 강세",
+          "topicUrl": "https://www.moneytoring.ai/mv/1358795",
+          "relevanceScore": 100,
+          "signalDirection": "mixed",
+          "portfolioLinkage": "계좌 테마 기준으로는 한투 ISA의 국내인덱스, 한투 ISA의 금, 한투 ISA의 전력기기 판단과 맞물립니다. 핵심 시그널은 중동/유가, AI 인프라/전력입니다.",
+          "matchedNames": [],
+          "matchedCategories": [
+            "국내인덱스",
+            "S&P500",
+            "나스닥100",
+            "전력기기"
+          ],
+          "sourceCount": 19,
+          "updatedAt": "2026-04-27T03:29:49+00:00"
+        },
+        {
+          "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM2MTAxMA==",
+          "title": "곽동신 한미반도체 회장, 자사주 30억 추가 매입",
+          "topicUrl": "https://www.moneytoring.ai/mv/1361010",
+          "relevanceScore": 86,
+          "signalDirection": "positive",
+          "portfolioLinkage": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "matchedNames": [],
+          "matchedCategories": [
+            "S&P500",
+            "나스닥100",
+            "전력기기"
+          ],
+          "sourceCount": 1,
+          "updatedAt": "2026-04-27T03:22:07+00:00"
+        },
+        {
+          "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM2MTAyMw==",
+          "title": "엔비디아, 단일 이미지 3D 환경 자동 생성 기술 공개",
+          "topicUrl": "https://www.moneytoring.ai/mv/1361023",
+          "relevanceScore": 79,
+          "signalDirection": "positive",
+          "portfolioLinkage": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "matchedNames": [],
+          "matchedCategories": [
+            "S&P500",
+            "나스닥100",
+            "전력기기"
+          ],
+          "sourceCount": 2,
+          "updatedAt": "2026-04-27T03:30:00+00:00"
+        },
+        {
+          "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM2MDU1OA==",
+          "title": "해시드, 서울서 AI 네이티브 빌더 육성 프로그램 개최",
+          "topicUrl": "https://www.moneytoring.ai/mv/1360558",
+          "relevanceScore": 70,
+          "signalDirection": "positive",
+          "portfolioLinkage": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "matchedNames": [],
+          "matchedCategories": [
+            "S&P500",
+            "나스닥100",
+            "전력기기"
+          ],
+          "sourceCount": 2,
+          "updatedAt": "2026-04-27T03:21:00+00:00"
+        }
+      ]
+    },
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "topTopics": [
+        {
+          "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM1ODc5NQ==",
+          "title": "코스피 6600선 돌파, 반도체·AI주 강세",
+          "topicUrl": "https://www.moneytoring.ai/mv/1358795",
+          "relevanceScore": 100,
+          "signalDirection": "mixed",
+          "portfolioLinkage": "계좌 테마 기준으로는 한투 ISA의 국내인덱스, 한투 ISA의 금, 한투 ISA의 전력기기 판단과 맞물립니다. 핵심 시그널은 중동/유가, AI 인프라/전력입니다.",
+          "matchedNames": [],
+          "matchedCategories": [
+            "방산",
+            "원자력"
+          ],
+          "sourceCount": 19,
+          "updatedAt": "2026-04-27T03:29:49+00:00"
+        }
+      ]
+    }
+  ],
+  "deepResearchCandidates": [
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM1ODc5NQ==",
+      "title": "코스피 6600선 돌파, 반도체·AI주 강세",
+      "topicUrl": "https://www.moneytoring.ai/mv/1358795",
+      "relevanceScore": 100,
+      "reason": "계좌 테마 기준으로는 한투 ISA의 국내인덱스, 한투 ISA의 금, 한투 ISA의 전력기기 판단과 맞물립니다. 핵심 시그널은 중동/유가, AI 인프라/전력입니다.",
+      "question": "중동/유가 이슈가 단기 헤드라인인지, 실제 공급 차질과 가격 전이로 이어지는지 확인하세요."
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM2MTAxMA==",
+      "title": "곽동신 한미반도체 회장, 자사주 30억 추가 매입",
+      "topicUrl": "https://www.moneytoring.ai/mv/1361010",
+      "relevanceScore": 86,
+      "reason": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+      "question": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요."
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM2MTAyMw==",
+      "title": "엔비디아, 단일 이미지 3D 환경 자동 생성 기술 공개",
+      "topicUrl": "https://www.moneytoring.ai/mv/1361023",
+      "relevanceScore": 79,
+      "reason": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+      "question": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요."
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM2MDU1OA==",
+      "title": "해시드, 서울서 AI 네이티브 빌더 육성 프로그램 개최",
+      "topicUrl": "https://www.moneytoring.ai/mv/1360558",
+      "relevanceScore": 70,
+      "reason": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+      "question": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요."
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM1ODgxNw==",
+      "title": "2026년 4월 국내 주식시장 주요 종목 주가 급등",
+      "topicUrl": "https://www.moneytoring.ai/mv/1358817",
+      "relevanceScore": 56,
+      "reason": "계좌 테마 기준으로는 한투 ISA의 반도체/채권혼합, 한투 연금저축의 반도체/채권혼합 판단과 맞물립니다.",
+      "question": "반도체/채권혼합 테마가 일시 뉴스 플로우인지, 구조적 추세인지 구분하세요."
+    }
+  ],
+  "impactReports": [
+    {
+      "reportId": "marketvoice_1358795",
+      "title": "코스피 6600선 돌파, 반도체·AI주 강세",
+      "broker": "시황맨의 주식이야기",
+      "source": "moneytoring",
+      "publishedDate": "2026-04-27T03:29:49+00:00",
+      "reportMeta": {
+        "report_type": "marketvoice",
+        "sector": "중동/유가",
+        "themes": [
+          "중동/유가",
+          "AI 인프라/전력"
+        ],
+        "key_numbers": [
+          "원문 19건",
+          "인용 0건"
+        ]
+      },
+      "impacts": [
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "ISA",
+            "name": "금"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "COMPANY_NEWS",
+            "TELEGRAM",
+            "YOUTUBE",
+            "중동/유가",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "2026년 4월 27일 코스피가 6,603.91로 사상 최고치를 기록하며 1.9% 올랐습니다. 반도체와 AI 관련주가 강세를 보였고, 외국인 투자자도 순매수로 전환해 투자 심리가 크게 개선됐습니다.",
+              "애널리스트들이 이번 주 코스피 등 국내 증시의 주요 변수로 미국 연방공개시장위원회 회의, 대형 기술기업 실적 발표, 중동 지역 정세, 정책 변화 등을 제시했습니다. 2026년 4월 26일, 일본 니케이 225와 한국 코스피 지수가 사상 최고치를 기록했고, 같은 날 호주 S&P/ASX 200 지수는 소폭 하락했습니다. 최근 코스피가 6,600선을 넘어서며 투자 심리가 크게 개선됐고, 거래량과 시가총액도 함께 확대되는 모습이 확인됐습니다. 2026년 4월 27일 오전, 코스피와 코스닥이 각각 1.9%와 1.8% 상승하며 한국 증시 시가총액이 약 3개월 만에 6,000조원을 돌파했고, 반도체와 전력기기, 로봇·자율주행 등 인공지능 밸류체인 관련 종목이 강세를 보였습니다. 외국인 투자자도 현물과 선물 시장에서 순매수로 전환했습니다. 같은 날 코스피 지수는 6,603.91로 마감하며 전일 대비 2% 상승해 사상 최고치를 다시 썼고, 강한 매수세가 확인됐습니다. 2026년 4월 한 달 동안 코스피 지수가 장중 고점 기준으로 31% 오르며 월간 상승률이 1998년 1월 이후 두 번째로 높았고, 월간 20% 이상 상승은 통산 9회로 집계됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 국내인덱스, 한투 ISA의 금, 한투 ISA의 전력기기 판단과 맞물립니다. 핵심 시그널은 중동/유가, AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 19건",
+              "반도체 +2.43%",
+              "AI +5.73%",
+              "인텔 +23.60%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil",
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "ISA",
+            "name": "전력기기"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.58,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "COMPANY_NEWS",
+            "TELEGRAM",
+            "YOUTUBE",
+            "중동/유가",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "2026년 4월 27일 코스피가 6,603.91로 사상 최고치를 기록하며 1.9% 올랐습니다. 반도체와 AI 관련주가 강세를 보였고, 외국인 투자자도 순매수로 전환해 투자 심리가 크게 개선됐습니다.",
+              "애널리스트들이 이번 주 코스피 등 국내 증시의 주요 변수로 미국 연방공개시장위원회 회의, 대형 기술기업 실적 발표, 중동 지역 정세, 정책 변화 등을 제시했습니다. 2026년 4월 26일, 일본 니케이 225와 한국 코스피 지수가 사상 최고치를 기록했고, 같은 날 호주 S&P/ASX 200 지수는 소폭 하락했습니다. 최근 코스피가 6,600선을 넘어서며 투자 심리가 크게 개선됐고, 거래량과 시가총액도 함께 확대되는 모습이 확인됐습니다. 2026년 4월 27일 오전, 코스피와 코스닥이 각각 1.9%와 1.8% 상승하며 한국 증시 시가총액이 약 3개월 만에 6,000조원을 돌파했고, 반도체와 전력기기, 로봇·자율주행 등 인공지능 밸류체인 관련 종목이 강세를 보였습니다. 외국인 투자자도 현물과 선물 시장에서 순매수로 전환했습니다. 같은 날 코스피 지수는 6,603.91로 마감하며 전일 대비 2% 상승해 사상 최고치를 다시 썼고, 강한 매수세가 확인됐습니다. 2026년 4월 한 달 동안 코스피 지수가 장중 고점 기준으로 31% 오르며 월간 상승률이 1998년 1월 이후 두 번째로 높았고, 월간 20% 이상 상승은 통산 9회로 집계됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 국내인덱스, 한투 ISA의 금, 한투 ISA의 전력기기 판단과 맞물립니다. 핵심 시그널은 중동/유가, AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 19건",
+              "반도체 +2.43%",
+              "AI +5.73%",
+              "인텔 +23.60%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil",
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "S&P500"
+          },
+          "direction": "negative",
+          "strength": 0.68,
+          "confidence": 0.58,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "COMPANY_NEWS",
+            "TELEGRAM",
+            "YOUTUBE",
+            "중동/유가",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "2026년 4월 27일 코스피가 6,603.91로 사상 최고치를 기록하며 1.9% 올랐습니다. 반도체와 AI 관련주가 강세를 보였고, 외국인 투자자도 순매수로 전환해 투자 심리가 크게 개선됐습니다.",
+              "애널리스트들이 이번 주 코스피 등 국내 증시의 주요 변수로 미국 연방공개시장위원회 회의, 대형 기술기업 실적 발표, 중동 지역 정세, 정책 변화 등을 제시했습니다. 2026년 4월 26일, 일본 니케이 225와 한국 코스피 지수가 사상 최고치를 기록했고, 같은 날 호주 S&P/ASX 200 지수는 소폭 하락했습니다. 최근 코스피가 6,600선을 넘어서며 투자 심리가 크게 개선됐고, 거래량과 시가총액도 함께 확대되는 모습이 확인됐습니다. 2026년 4월 27일 오전, 코스피와 코스닥이 각각 1.9%와 1.8% 상승하며 한국 증시 시가총액이 약 3개월 만에 6,000조원을 돌파했고, 반도체와 전력기기, 로봇·자율주행 등 인공지능 밸류체인 관련 종목이 강세를 보였습니다. 외국인 투자자도 현물과 선물 시장에서 순매수로 전환했습니다. 같은 날 코스피 지수는 6,603.91로 마감하며 전일 대비 2% 상승해 사상 최고치를 다시 썼고, 강한 매수세가 확인됐습니다. 2026년 4월 한 달 동안 코스피 지수가 장중 고점 기준으로 31% 오르며 월간 상승률이 1998년 1월 이후 두 번째로 높았고, 월간 20% 이상 상승은 통산 9회로 집계됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 국내인덱스, 한투 ISA의 금, 한투 ISA의 전력기기 판단과 맞물립니다. 핵심 시그널은 중동/유가, AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 19건",
+              "반도체 +2.43%",
+              "AI +5.73%",
+              "인텔 +23.60%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil",
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "나스닥100"
+          },
+          "direction": "negative",
+          "strength": 0.68,
+          "confidence": 0.62,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "COMPANY_NEWS",
+            "TELEGRAM",
+            "YOUTUBE",
+            "중동/유가",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "2026년 4월 27일 코스피가 6,603.91로 사상 최고치를 기록하며 1.9% 올랐습니다. 반도체와 AI 관련주가 강세를 보였고, 외국인 투자자도 순매수로 전환해 투자 심리가 크게 개선됐습니다.",
+              "애널리스트들이 이번 주 코스피 등 국내 증시의 주요 변수로 미국 연방공개시장위원회 회의, 대형 기술기업 실적 발표, 중동 지역 정세, 정책 변화 등을 제시했습니다. 2026년 4월 26일, 일본 니케이 225와 한국 코스피 지수가 사상 최고치를 기록했고, 같은 날 호주 S&P/ASX 200 지수는 소폭 하락했습니다. 최근 코스피가 6,600선을 넘어서며 투자 심리가 크게 개선됐고, 거래량과 시가총액도 함께 확대되는 모습이 확인됐습니다. 2026년 4월 27일 오전, 코스피와 코스닥이 각각 1.9%와 1.8% 상승하며 한국 증시 시가총액이 약 3개월 만에 6,000조원을 돌파했고, 반도체와 전력기기, 로봇·자율주행 등 인공지능 밸류체인 관련 종목이 강세를 보였습니다. 외국인 투자자도 현물과 선물 시장에서 순매수로 전환했습니다. 같은 날 코스피 지수는 6,603.91로 마감하며 전일 대비 2% 상승해 사상 최고치를 다시 썼고, 강한 매수세가 확인됐습니다. 2026년 4월 한 달 동안 코스피 지수가 장중 고점 기준으로 31% 오르며 월간 상승률이 1998년 1월 이후 두 번째로 높았고, 월간 20% 이상 상승은 통산 9회로 집계됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 국내인덱스, 한투 ISA의 금, 한투 ISA의 전력기기 판단과 맞물립니다. 핵심 시그널은 중동/유가, AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 19건",
+              "반도체 +2.43%",
+              "AI +5.73%",
+              "인텔 +23.60%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil",
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "전력기기"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.58,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "COMPANY_NEWS",
+            "TELEGRAM",
+            "YOUTUBE",
+            "중동/유가",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "2026년 4월 27일 코스피가 6,603.91로 사상 최고치를 기록하며 1.9% 올랐습니다. 반도체와 AI 관련주가 강세를 보였고, 외국인 투자자도 순매수로 전환해 투자 심리가 크게 개선됐습니다.",
+              "애널리스트들이 이번 주 코스피 등 국내 증시의 주요 변수로 미국 연방공개시장위원회 회의, 대형 기술기업 실적 발표, 중동 지역 정세, 정책 변화 등을 제시했습니다. 2026년 4월 26일, 일본 니케이 225와 한국 코스피 지수가 사상 최고치를 기록했고, 같은 날 호주 S&P/ASX 200 지수는 소폭 하락했습니다. 최근 코스피가 6,600선을 넘어서며 투자 심리가 크게 개선됐고, 거래량과 시가총액도 함께 확대되는 모습이 확인됐습니다. 2026년 4월 27일 오전, 코스피와 코스닥이 각각 1.9%와 1.8% 상승하며 한국 증시 시가총액이 약 3개월 만에 6,000조원을 돌파했고, 반도체와 전력기기, 로봇·자율주행 등 인공지능 밸류체인 관련 종목이 강세를 보였습니다. 외국인 투자자도 현물과 선물 시장에서 순매수로 전환했습니다. 같은 날 코스피 지수는 6,603.91로 마감하며 전일 대비 2% 상승해 사상 최고치를 다시 썼고, 강한 매수세가 확인됐습니다. 2026년 4월 한 달 동안 코스피 지수가 장중 고점 기준으로 31% 오르며 월간 상승률이 1998년 1월 이후 두 번째로 높았고, 월간 20% 이상 상승은 통산 9회로 집계됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 국내인덱스, 한투 ISA의 금, 한투 ISA의 전력기기 판단과 맞물립니다. 핵심 시그널은 중동/유가, AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 19건",
+              "반도체 +2.43%",
+              "AI +5.73%",
+              "인텔 +23.60%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil",
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "KIS_MAIN",
+            "name": "방산"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "COMPANY_NEWS",
+            "TELEGRAM",
+            "YOUTUBE",
+            "중동/유가",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "2026년 4월 27일 코스피가 6,603.91로 사상 최고치를 기록하며 1.9% 올랐습니다. 반도체와 AI 관련주가 강세를 보였고, 외국인 투자자도 순매수로 전환해 투자 심리가 크게 개선됐습니다.",
+              "애널리스트들이 이번 주 코스피 등 국내 증시의 주요 변수로 미국 연방공개시장위원회 회의, 대형 기술기업 실적 발표, 중동 지역 정세, 정책 변화 등을 제시했습니다. 2026년 4월 26일, 일본 니케이 225와 한국 코스피 지수가 사상 최고치를 기록했고, 같은 날 호주 S&P/ASX 200 지수는 소폭 하락했습니다. 최근 코스피가 6,600선을 넘어서며 투자 심리가 크게 개선됐고, 거래량과 시가총액도 함께 확대되는 모습이 확인됐습니다. 2026년 4월 27일 오전, 코스피와 코스닥이 각각 1.9%와 1.8% 상승하며 한국 증시 시가총액이 약 3개월 만에 6,000조원을 돌파했고, 반도체와 전력기기, 로봇·자율주행 등 인공지능 밸류체인 관련 종목이 강세를 보였습니다. 외국인 투자자도 현물과 선물 시장에서 순매수로 전환했습니다. 같은 날 코스피 지수는 6,603.91로 마감하며 전일 대비 2% 상승해 사상 최고치를 다시 썼고, 강한 매수세가 확인됐습니다. 2026년 4월 한 달 동안 코스피 지수가 장중 고점 기준으로 31% 오르며 월간 상승률이 1998년 1월 이후 두 번째로 높았고, 월간 20% 이상 상승은 통산 9회로 집계됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 국내인덱스, 한투 ISA의 금, 한투 ISA의 전력기기 판단과 맞물립니다. 핵심 시그널은 중동/유가, AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 19건",
+              "반도체 +2.43%",
+              "AI +5.73%",
+              "인텔 +23.60%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil",
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "KIS_MAIN",
+            "name": "원자력"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "COMPANY_NEWS",
+            "TELEGRAM",
+            "YOUTUBE",
+            "중동/유가",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "2026년 4월 27일 코스피가 6,603.91로 사상 최고치를 기록하며 1.9% 올랐습니다. 반도체와 AI 관련주가 강세를 보였고, 외국인 투자자도 순매수로 전환해 투자 심리가 크게 개선됐습니다.",
+              "애널리스트들이 이번 주 코스피 등 국내 증시의 주요 변수로 미국 연방공개시장위원회 회의, 대형 기술기업 실적 발표, 중동 지역 정세, 정책 변화 등을 제시했습니다. 2026년 4월 26일, 일본 니케이 225와 한국 코스피 지수가 사상 최고치를 기록했고, 같은 날 호주 S&P/ASX 200 지수는 소폭 하락했습니다. 최근 코스피가 6,600선을 넘어서며 투자 심리가 크게 개선됐고, 거래량과 시가총액도 함께 확대되는 모습이 확인됐습니다. 2026년 4월 27일 오전, 코스피와 코스닥이 각각 1.9%와 1.8% 상승하며 한국 증시 시가총액이 약 3개월 만에 6,000조원을 돌파했고, 반도체와 전력기기, 로봇·자율주행 등 인공지능 밸류체인 관련 종목이 강세를 보였습니다. 외국인 투자자도 현물과 선물 시장에서 순매수로 전환했습니다. 같은 날 코스피 지수는 6,603.91로 마감하며 전일 대비 2% 상승해 사상 최고치를 다시 썼고, 강한 매수세가 확인됐습니다. 2026년 4월 한 달 동안 코스피 지수가 장중 고점 기준으로 31% 오르며 월간 상승률이 1998년 1월 이후 두 번째로 높았고, 월간 20% 이상 상승은 통산 9회로 집계됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 국내인덱스, 한투 ISA의 금, 한투 ISA의 전력기기 판단과 맞물립니다. 핵심 시그널은 중동/유가, AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 19건",
+              "반도체 +2.43%",
+              "AI +5.73%",
+              "인텔 +23.60%"
+            ]
+          },
+          "riskTags": [
+            "geopolitics",
+            "oil",
+            "ai",
+            "power"
+          ]
+        }
+      ]
+    },
+    {
+      "reportId": "marketvoice_1361010",
+      "title": "곽동신 한미반도체 회장, 자사주 30억 추가 매입",
+      "broker": "증권사 애널 크롤러🇰🇷",
+      "source": "moneytoring",
+      "publishedDate": "2026-04-27T03:22:07+00:00",
+      "reportMeta": {
+        "report_type": "marketvoice",
+        "sector": "AI 인프라/전력",
+        "themes": [
+          "AI 인프라/전력"
+        ],
+        "key_numbers": [
+          "원문 1건",
+          "인용 0건"
+        ]
+      },
+      "impacts": [
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "ISA",
+            "name": "전력기기"
+          },
+          "direction": "positive",
+          "strength": 0.651,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "곽동신 한미반도체 회장이 최근 30억 원어치 자사주를 추가 매입했습니다. 그는 지난 3년간 총 565억 원 상당 주식을 사들여 회사 경영 안정과 주주 신뢰에 긍정적 영향을 주고 있습니다.",
+              "곽동신 한미반도체 회장이 최근 30억 원 규모의 자사주를 추가로 매입했습니다. 곽 회장은 지난 3년간 개인 자산을 활용해 총 565억 원 상당의 한미반도체 주식을 취득한 것으로 확인됐습니다. 이번 매입은 반도체 업계 내 한미반도체의 경영 안정성과 주주 신뢰에 긍정적 영향을 줄 것으로 보입니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "한미반도체 +27.75%",
+              "AI +5.73%",
+              "HBM +4.29%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "S&P500"
+          },
+          "direction": "positive",
+          "strength": 0.651,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "곽동신 한미반도체 회장이 최근 30억 원어치 자사주를 추가 매입했습니다. 그는 지난 3년간 총 565억 원 상당 주식을 사들여 회사 경영 안정과 주주 신뢰에 긍정적 영향을 주고 있습니다.",
+              "곽동신 한미반도체 회장이 최근 30억 원 규모의 자사주를 추가로 매입했습니다. 곽 회장은 지난 3년간 개인 자산을 활용해 총 565억 원 상당의 한미반도체 주식을 취득한 것으로 확인됐습니다. 이번 매입은 반도체 업계 내 한미반도체의 경영 안정성과 주주 신뢰에 긍정적 영향을 줄 것으로 보입니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "한미반도체 +27.75%",
+              "AI +5.73%",
+              "HBM +4.29%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "나스닥100"
+          },
+          "direction": "positive",
+          "strength": 0.651,
+          "confidence": 0.58,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "곽동신 한미반도체 회장이 최근 30억 원어치 자사주를 추가 매입했습니다. 그는 지난 3년간 총 565억 원 상당 주식을 사들여 회사 경영 안정과 주주 신뢰에 긍정적 영향을 주고 있습니다.",
+              "곽동신 한미반도체 회장이 최근 30억 원 규모의 자사주를 추가로 매입했습니다. 곽 회장은 지난 3년간 개인 자산을 활용해 총 565억 원 상당의 한미반도체 주식을 취득한 것으로 확인됐습니다. 이번 매입은 반도체 업계 내 한미반도체의 경영 안정성과 주주 신뢰에 긍정적 영향을 줄 것으로 보입니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "한미반도체 +27.75%",
+              "AI +5.73%",
+              "HBM +4.29%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "전력기기"
+          },
+          "direction": "positive",
+          "strength": 0.651,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "곽동신 한미반도체 회장이 최근 30억 원어치 자사주를 추가 매입했습니다. 그는 지난 3년간 총 565억 원 상당 주식을 사들여 회사 경영 안정과 주주 신뢰에 긍정적 영향을 주고 있습니다.",
+              "곽동신 한미반도체 회장이 최근 30억 원 규모의 자사주를 추가로 매입했습니다. 곽 회장은 지난 3년간 개인 자산을 활용해 총 565억 원 상당의 한미반도체 주식을 취득한 것으로 확인됐습니다. 이번 매입은 반도체 업계 내 한미반도체의 경영 안정성과 주주 신뢰에 긍정적 영향을 줄 것으로 보입니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "한미반도체 +27.75%",
+              "AI +5.73%",
+              "HBM +4.29%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        }
+      ]
+    },
+    {
+      "reportId": "marketvoice_1361023",
+      "title": "엔비디아, 단일 이미지 3D 환경 자동 생성 기술 공개",
+      "broker": "증권사 애널 크롤러🇰🇷",
+      "source": "moneytoring",
+      "publishedDate": "2026-04-27T03:30:00+00:00",
+      "reportMeta": {
+        "report_type": "marketvoice",
+        "sector": "AI 인프라/전력",
+        "themes": [
+          "AI 인프라/전력"
+        ],
+        "key_numbers": [
+          "원문 2건",
+          "인용 0건"
+        ]
+      },
+      "impacts": [
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "ISA",
+            "name": "전력기기"
+          },
+          "direction": "positive",
+          "strength": 0.624,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "엔비디아가 Lyra 2.0을 발표하며 단일 이미지로 3차원 환경을 자동 생성하는 기술을 선보였습니다. 이 기술은 해상도 문제를 개선했고, 로봇과 자율주행 AI 훈련에 활용될 가능성이 큽니다.",
+              "엔비디아가 Lyra 2.0을 발표하며, 단일 이미지만으로 탐험 가능한 3차원 환경을 자동으로 생성하는 기술을 공개했습니다. 이 시스템은 기존 해상도 문제를 개선한 것으로 평가받고 있으며, 생성된 3D 공간이 실제 장소와 얼마나 일치하는지가 주요 쟁점으로 떠올랐습니다. Lyra 2.0은 디지털 트윈을 활용해 로봇과 자율주행 분야의 인공지능 훈련 공간으로 활용될 가능성도 제기되고 있습니다. 이번 발표에서는 단일 이미지를 활용해 3D 환경으로 변환하는 기능이 더욱 강조됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "엔비디아 +4.32%",
+              "AI +5.73%",
+              "로봇제조 +4.98%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "S&P500"
+          },
+          "direction": "positive",
+          "strength": 0.624,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "엔비디아가 Lyra 2.0을 발표하며 단일 이미지로 3차원 환경을 자동 생성하는 기술을 선보였습니다. 이 기술은 해상도 문제를 개선했고, 로봇과 자율주행 AI 훈련에 활용될 가능성이 큽니다.",
+              "엔비디아가 Lyra 2.0을 발표하며, 단일 이미지만으로 탐험 가능한 3차원 환경을 자동으로 생성하는 기술을 공개했습니다. 이 시스템은 기존 해상도 문제를 개선한 것으로 평가받고 있으며, 생성된 3D 공간이 실제 장소와 얼마나 일치하는지가 주요 쟁점으로 떠올랐습니다. Lyra 2.0은 디지털 트윈을 활용해 로봇과 자율주행 분야의 인공지능 훈련 공간으로 활용될 가능성도 제기되고 있습니다. 이번 발표에서는 단일 이미지를 활용해 3D 환경으로 변환하는 기능이 더욱 강조됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "엔비디아 +4.32%",
+              "AI +5.73%",
+              "로봇제조 +4.98%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "나스닥100"
+          },
+          "direction": "positive",
+          "strength": 0.624,
+          "confidence": 0.62,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "엔비디아가 Lyra 2.0을 발표하며 단일 이미지로 3차원 환경을 자동 생성하는 기술을 선보였습니다. 이 기술은 해상도 문제를 개선했고, 로봇과 자율주행 AI 훈련에 활용될 가능성이 큽니다.",
+              "엔비디아가 Lyra 2.0을 발표하며, 단일 이미지만으로 탐험 가능한 3차원 환경을 자동으로 생성하는 기술을 공개했습니다. 이 시스템은 기존 해상도 문제를 개선한 것으로 평가받고 있으며, 생성된 3D 공간이 실제 장소와 얼마나 일치하는지가 주요 쟁점으로 떠올랐습니다. Lyra 2.0은 디지털 트윈을 활용해 로봇과 자율주행 분야의 인공지능 훈련 공간으로 활용될 가능성도 제기되고 있습니다. 이번 발표에서는 단일 이미지를 활용해 3D 환경으로 변환하는 기능이 더욱 강조됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "엔비디아 +4.32%",
+              "AI +5.73%",
+              "로봇제조 +4.98%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "전력기기"
+          },
+          "direction": "positive",
+          "strength": 0.624,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "엔비디아가 Lyra 2.0을 발표하며 단일 이미지로 3차원 환경을 자동 생성하는 기술을 선보였습니다. 이 기술은 해상도 문제를 개선했고, 로봇과 자율주행 AI 훈련에 활용될 가능성이 큽니다.",
+              "엔비디아가 Lyra 2.0을 발표하며, 단일 이미지만으로 탐험 가능한 3차원 환경을 자동으로 생성하는 기술을 공개했습니다. 이 시스템은 기존 해상도 문제를 개선한 것으로 평가받고 있으며, 생성된 3D 공간이 실제 장소와 얼마나 일치하는지가 주요 쟁점으로 떠올랐습니다. Lyra 2.0은 디지털 트윈을 활용해 로봇과 자율주행 분야의 인공지능 훈련 공간으로 활용될 가능성도 제기되고 있습니다. 이번 발표에서는 단일 이미지를 활용해 3D 환경으로 변환하는 기능이 더욱 강조됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "엔비디아 +4.32%",
+              "AI +5.73%",
+              "로봇제조 +4.98%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        }
+      ]
+    },
+    {
+      "reportId": "marketvoice_1360558",
+      "title": "해시드, 서울서 AI 네이티브 빌더 육성 프로그램 개최",
+      "broker": "블루밍비트",
+      "source": "moneytoring",
+      "publishedDate": "2026-04-27T03:21:00+00:00",
+      "reportMeta": {
+        "report_type": "marketvoice",
+        "sector": "AI 인프라/전력",
+        "themes": [
+          "AI 인프라/전력"
+        ],
+        "key_numbers": [
+          "원문 2건",
+          "인용 0건"
+        ]
+      },
+      "impacts": [
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "ISA",
+            "name": "전력기기"
+          },
+          "direction": "positive",
+          "strength": 0.589,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "COMPANY_NEWS",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "글로벌 웹3 벤처캐피털 해시드는 2026년 4월 30일 서울 강남구에서 AI 네이티브 빌더 육성 프로그램 '나이트로 서울 게임 데이'를 개최합니다. 4개 팀이 8주간 연구한 AI 기반 제품을 선보이며 글로벌 진출을 지원합니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "AI +5.73%",
+              "솔루션 +3.30%",
+              "서비스 +2.49%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "S&P500"
+          },
+          "direction": "positive",
+          "strength": 0.589,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "COMPANY_NEWS",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "글로벌 웹3 벤처캐피털 해시드는 2026년 4월 30일 서울 강남구에서 AI 네이티브 빌더 육성 프로그램 '나이트로 서울 게임 데이'를 개최합니다. 4개 팀이 8주간 연구한 AI 기반 제품을 선보이며 글로벌 진출을 지원합니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "AI +5.73%",
+              "솔루션 +3.30%",
+              "서비스 +2.49%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "나스닥100"
+          },
+          "direction": "positive",
+          "strength": 0.589,
+          "confidence": 0.58,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "COMPANY_NEWS",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "글로벌 웹3 벤처캐피털 해시드는 2026년 4월 30일 서울 강남구에서 AI 네이티브 빌더 육성 프로그램 '나이트로 서울 게임 데이'를 개최합니다. 4개 팀이 8주간 연구한 AI 기반 제품을 선보이며 글로벌 진출을 지원합니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "AI +5.73%",
+              "솔루션 +3.30%",
+              "서비스 +2.49%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "전력기기"
+          },
+          "direction": "positive",
+          "strength": 0.589,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "COMPANY_NEWS",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "글로벌 웹3 벤처캐피털 해시드는 2026년 4월 30일 서울 강남구에서 AI 네이티브 빌더 육성 프로그램 '나이트로 서울 게임 데이'를 개최합니다. 4개 팀이 8주간 연구한 AI 기반 제품을 선보이며 글로벌 진출을 지원합니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "AI +5.73%",
+              "솔루션 +3.30%",
+              "서비스 +2.49%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        }
+      ]
+    },
+    {
+      "reportId": "marketvoice_1358817",
+      "title": "2026년 4월 국내 주식시장 주요 종목 주가 급등",
+      "broker": "증권사 애널 크롤러🇰🇷",
+      "source": "moneytoring",
+      "publishedDate": "2026-04-27T03:23:28+00:00",
+      "reportMeta": {
+        "report_type": "marketvoice",
+        "sector": "시황",
+        "themes": [],
+        "key_numbers": [
+          "원문 3건",
+          "인용 0건"
+        ]
+      },
+      "impacts": [
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "ISA",
+            "name": "반도체/채권혼합"
+          },
+          "direction": "positive",
+          "strength": 0.535,
+          "confidence": 0.66,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "2026년 4월 27일 유튜브 라이브에서 국내 주식시장 투자 인사이트가 제공됐습니다. 같은 날 SK하이닉스, 삼성전자, 한미반도체 주가가 각각 6.22%, 2.28%, 26.40% 상승하며 투자자 관심이 컸습니다.",
+              "2026년 4월 27일 오전 7시에 유튜브 라이브 방송을 통해 국내 주식시장에 대한 실시간 투자 인사이트가 제공됐습니다. 같은 날 코스피 시장에서 SK하이닉스, 삼성전자, 한미반도체 등 주요 반도체 종목이 각각 6.22%, 2.28%, 26.40% 상승하며 강세를 보였고, 거래대금도 각각 3.3조원, 3.0조원, 1.2조원에 달해 투자자들의 높은 관심이 확인됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 반도체/채권혼합, 한투 연금저축의 반도체/채권혼합 판단과 맞물립니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 3건",
+              "SK하이닉스 +6.30%",
+              "삼성전자 +2.16%",
+              "반도체 +2.43%"
+            ]
+          },
+          "riskTags": []
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "반도체/채권혼합"
+          },
+          "direction": "positive",
+          "strength": 0.535,
+          "confidence": 0.66,
+          "horizon": "1w",
+          "decayHalfLifeDays": 7,
+          "channels": [
+            "TELEGRAM"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "2026년 4월 27일 유튜브 라이브에서 국내 주식시장 투자 인사이트가 제공됐습니다. 같은 날 SK하이닉스, 삼성전자, 한미반도체 주가가 각각 6.22%, 2.28%, 26.40% 상승하며 투자자 관심이 컸습니다.",
+              "2026년 4월 27일 오전 7시에 유튜브 라이브 방송을 통해 국내 주식시장에 대한 실시간 투자 인사이트가 제공됐습니다. 같은 날 코스피 시장에서 SK하이닉스, 삼성전자, 한미반도체 등 주요 반도체 종목이 각각 6.22%, 2.28%, 26.40% 상승하며 강세를 보였고, 거래대금도 각각 3.3조원, 3.0조원, 1.2조원에 달해 투자자들의 높은 관심이 확인됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 반도체/채권혼합, 한투 연금저축의 반도체/채권혼합 판단과 맞물립니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 3건",
+              "SK하이닉스 +6.30%",
+              "삼성전자 +2.16%",
+              "반도체 +2.43%"
+            ]
+          },
+          "riskTags": []
+        }
+      ]
+    }
+  ]
+}

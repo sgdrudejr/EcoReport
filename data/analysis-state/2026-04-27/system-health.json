@@ -1,0 +1,355 @@
+{
+  "date": "2026-04-27",
+  "runDate": "2026-04-27",
+  "effectiveMarketDate": "2026-04-27",
+  "runId": "2026-04-27-033354",
+  "generatedAt": "2026-04-27T05:11:51.518Z",
+  "overallStatus": "ok",
+  "counts": {
+    "accounts": 3,
+    "reports": 67,
+    "extractedReports": 67,
+    "ocrUsedReports": 1,
+    "stage1Extracts": 67,
+    "unresolvedPortfolioHoldings": 0,
+    "unresolvedStage4Mentions": 0
+  },
+  "artifacts": [
+    {
+      "key": "stage1",
+      "label": "03. Report Extraction",
+      "path": "data/analysis-state/2026-04-27/stage1-report-extracts-v2.json",
+      "meta": {
+        "runId": "2026-04-27-033354",
+        "runDate": "2026-04-27",
+        "effectiveMarketDate": "2026-04-27",
+        "generatedAt": "2026-04-27T05:11:18.907Z"
+      }
+    },
+    {
+      "key": "stage2",
+      "label": "07. Strategy Options",
+      "path": "data/analysis-state/2026-04-27/stage2-strategy-options.json",
+      "meta": {
+        "runId": "2026-04-27-033354",
+        "runDate": "2026-04-27",
+        "effectiveMarketDate": "2026-04-27",
+        "generatedAt": "2026-04-27T04:33:28.416422Z"
+      }
+    },
+    {
+      "key": "impact_map",
+      "label": "09. Impact Mapping",
+      "path": "data/analysis-state/2026-04-27/impact-map.json",
+      "meta": {
+        "runId": "2026-04-27-033354",
+        "runDate": "2026-04-27",
+        "effectiveMarketDate": "2026-04-27",
+        "generatedAt": "2026-04-27T04:33:49.920Z"
+      }
+    },
+    {
+      "key": "stage3",
+      "label": "10. Quant Scoring",
+      "path": "data/analysis-state/2026-04-27/stage3-quant-scores.json",
+      "meta": {
+        "runId": "2026-04-27-033354",
+        "runDate": "2026-04-27",
+        "effectiveMarketDate": "2026-04-27",
+        "generatedAt": "2026-04-27T05:11:31.127Z"
+      }
+    },
+    {
+      "key": "stage4",
+      "label": "11. Execution Plan",
+      "path": "data/analysis-state/2026-04-27/stage4-execution-plan.json",
+      "meta": {
+        "runId": "2026-04-27-033354",
+        "runDate": "2026-04-27",
+        "effectiveMarketDate": "2026-04-27",
+        "generatedAt": "2026-04-27T05:11:31.235Z"
+      }
+    },
+    {
+      "key": "data_quality",
+      "label": "13. Quality Gates",
+      "path": "data/analysis-state/2026-04-27/data-quality-audit.json",
+      "meta": {
+        "runId": "2026-04-27-033354",
+        "runDate": "2026-04-27",
+        "effectiveMarketDate": "2026-04-27",
+        "generatedAt": "2026-04-27T05:11:45.808Z"
+      }
+    },
+    {
+      "key": "refinement_round2",
+      "label": "Refinement Round 2",
+      "path": "data/analysis-state/2026-04-27/stage1-followup-research-map.json",
+      "meta": {
+        "runId": "2026-04-27-033354",
+        "runDate": "2026-04-27",
+        "effectiveMarketDate": "2026-04-27",
+        "generatedAt": "2026-04-27T04:10:27.373Z"
+      }
+    },
+    {
+      "key": "refinement_round3",
+      "label": "Refinement Round 3",
+      "path": "data/analysis-state/2026-04-27/stage1-final-refinement-map.json",
+      "meta": {
+        "runId": "2026-04-27-033354",
+        "runDate": "2026-04-27",
+        "effectiveMarketDate": "2026-04-27",
+        "generatedAt": "2026-04-27T04:24:58.695Z"
+      }
+    },
+    {
+      "key": "briefing",
+      "label": "Briefing",
+      "path": "reports/daily/2026-04-27-briefing.md",
+      "meta": {
+        "runId": "2026-04-27-033354",
+        "runDate": "2026-04-27",
+        "effectiveMarketDate": "2026-04-27",
+        "generatedAt": "2026-04-27T05:11:31.235Z"
+      }
+    },
+    {
+      "key": "wiki_daily",
+      "label": "LLM Wiki Daily",
+      "path": "knowledge/wiki/daily/2026-04-27.md",
+      "meta": {
+        "runId": "2026-04-27-033354",
+        "runDate": "2026-04-27",
+        "effectiveMarketDate": "2026-04-27",
+        "generatedAt": "2026-04-27T05:11:39.556Z"
+      }
+    }
+  ],
+  "checks": [
+    {
+      "key": "portfolio_snapshot",
+      "label": "포트폴리오 스냅샷",
+      "status": "ok",
+      "detail": "계좌 3개",
+      "path": "data/portfolio/latest.json"
+    },
+    {
+      "key": "report_index",
+      "label": "리포트 인덱스",
+      "status": "ok",
+      "detail": "리포트 67건",
+      "path": "data/reports/2026-04-27/index.json"
+    },
+    {
+      "key": "textification",
+      "label": "전문 텍스트화",
+      "status": "ok",
+      "detail": "성공 67/67 · OCR 1건",
+      "path": "data/reports/2026-04-27/text-manifest.json"
+    },
+    {
+      "key": "market_snapshot",
+      "label": "시장 데이터",
+      "status": "ok",
+      "detail": "market 스냅샷 생성됨",
+      "path": "data/market/2026-04-27.json"
+    },
+    {
+      "key": "technical_snapshot",
+      "label": "기술 점수",
+      "status": "ok",
+      "detail": "종목 15개",
+      "path": "data/technical/2026-04-27.json"
+    },
+    {
+      "key": "rag_pipeline",
+      "label": "RAG 코퍼스",
+      "status": "ok",
+      "detail": "리포트 527 / 포트폴리오 25 / 병렬 552",
+      "path": "knowledge/rag/2026-04-27/parallel-manifest.json"
+    },
+    {
+      "key": "stage1",
+      "label": "03. Report Indexing 연구 노트",
+      "status": "ok",
+      "detail": "추출 67건",
+      "path": "data/analysis-state/2026-04-27/stage1-report-extracts-v2.json"
+    },
+    {
+      "key": "stage1_quality",
+      "label": "03. Report Indexing 품질",
+      "status": "ok",
+      "detail": "contamination 0.00 / weak_claim 0.44",
+      "path": "data/analysis-state/2026-04-27/stage1-report-extracts-v2.json"
+    },
+    {
+      "key": "stage2",
+      "label": "07. Strategy Options",
+      "status": "ok",
+      "detail": "실제 LLM 결과 (qwen3.5-122b-a10b)",
+      "path": "data/analysis-state/2026-04-27/stage2-strategy-options.json"
+    },
+    {
+      "key": "impact_map",
+      "label": "Impact Map",
+      "status": "ok",
+      "detail": "리포트 72건",
+      "path": "data/analysis-state/2026-04-27/impact-map.json"
+    },
+    {
+      "key": "stage3",
+      "label": "10. Quant Scoring",
+      "status": "ok",
+      "detail": "포트폴리오 41점",
+      "path": "data/analysis-state/2026-04-27/stage3-quant-scores.json"
+    },
+    {
+      "key": "stage3_quality",
+      "label": "10. Quant Scoring 관계 품질",
+      "status": "ok",
+      "detail": "unrelated 0.23 / blocked 32건",
+      "path": "data/analysis-state/2026-04-27/stage3-quant-scores.json"
+    },
+    {
+      "key": "stage4",
+      "label": "11. Execution Plan",
+      "status": "ok",
+      "detail": "계좌 계획 3개",
+      "path": "data/analysis-state/2026-04-27/stage4-execution-plan.json"
+    },
+    {
+      "key": "stage4_quality",
+      "label": "11. Execution Plan 논리 품질",
+      "status": "ok",
+      "detail": "conflict 0건 / no_action 3건 / low_conf_reject 0건",
+      "path": "data/analysis-state/2026-04-27/stage4-execution-plan.json"
+    },
+    {
+      "key": "data_quality",
+      "label": "13. Quality Gates",
+      "status": "ok",
+      "detail": "overall ok / risky 5건",
+      "path": "data/analysis-state/2026-04-27/data-quality-audit.json"
+    },
+    {
+      "key": "briefing",
+      "label": "일일 브리핑",
+      "status": "ok",
+      "detail": "briefing.md 생성됨",
+      "path": "reports/daily/2026-04-27-briefing.md"
+    },
+    {
+      "key": "llm_wiki_daily",
+      "label": "LLM Wiki Daily",
+      "status": "ok",
+      "detail": "daily wiki 생성됨",
+      "path": "knowledge/wiki/daily/2026-04-27.md"
+    },
+    {
+      "key": "gemini_briefing",
+      "label": "경제 리포트 브리핑",
+      "status": "ok",
+      "detail": "rich Gemini 브리핑 생성됨",
+      "path": "knowledge/daily/2026-04-27-gemini-briefing-rich.md"
+    },
+    {
+      "key": "deep_research_prompt",
+      "label": "Deep Research 프롬프트",
+      "status": "ok",
+      "detail": "05. Deep Research 프롬프트 생성됨",
+      "path": "knowledge/daily/manual-kit/2026-04-27/07-stage1-5-gemini-deep-research-prompt.md"
+    },
+    {
+      "key": "deep_research_response",
+      "label": "Deep Research 결과",
+      "status": "ok",
+      "detail": "2차 Deep Research 결과를 대표 응답으로 사용",
+      "path": "knowledge/daily/manual-kit/2026-04-27/13-stage1-7-gemini-follow-up-response.md"
+    },
+    {
+      "key": "deep_research_final",
+      "label": "Deep Research 최종 브리핑",
+      "status": "ok",
+      "detail": "06. Briefing Synthesis 최종 브리핑 저장됨",
+      "path": "knowledge/daily/manual-kit/2026-04-27/10-stage1-6-final-research-briefing.md"
+    },
+    {
+      "key": "followup_research_map",
+      "label": "Follow-up Research Map",
+      "status": "ok",
+      "detail": "05. Deep Research follow-up reindex map 생성됨",
+      "path": "data/analysis-state/2026-04-27/stage1-followup-research-map.json"
+    },
+    {
+      "key": "followup_deep_research_prompt",
+      "label": "Follow-up Deep Research 프롬프트",
+      "status": "ok",
+      "detail": "2차 Deep Research 프롬프트 생성됨",
+      "path": "knowledge/daily/manual-kit/2026-04-27/12-stage1-7-gemini-follow-up-prompt.md"
+    },
+    {
+      "key": "followup_deep_research_response",
+      "label": "Follow-up Deep Research 결과",
+      "status": "ok",
+      "detail": "2차 Deep Research 결과 저장됨",
+      "path": "knowledge/daily/manual-kit/2026-04-27/13-stage1-7-gemini-follow-up-response.md"
+    },
+    {
+      "key": "round3_research_map",
+      "label": "Round 3 Refinement Map",
+      "status": "ok",
+      "detail": "3차 refinement map 생성됨",
+      "path": "data/analysis-state/2026-04-27/stage1-final-refinement-map.json"
+    },
+    {
+      "key": "round3_deep_research_prompt",
+      "label": "Round 3 Deep Research 프롬프트",
+      "status": "ok",
+      "detail": "3차 Deep Research 프롬프트 생성됨",
+      "path": "knowledge/daily/manual-kit/2026-04-27/15-stage1-8-gemini-final-refinement-prompt.md"
+    },
+    {
+      "key": "round3_deep_research_response",
+      "label": "Round 3 Deep Research 결과",
+      "status": "ok",
+      "detail": "3차 Deep Research 결과 저장됨",
+      "path": "knowledge/daily/manual-kit/2026-04-27/16-stage1-8-gemini-final-refinement-response.md"
+    },
+    {
+      "key": "freshness_run_id",
+      "label": "Freshness / Run ID",
+      "status": "ok",
+      "detail": "run-id 2026-04-27-033354 일치",
+      "path": "data/analysis-state/2026-04-27/stage4-execution-plan.json"
+    },
+    {
+      "key": "security_normalization",
+      "label": "종목 코드 정규화",
+      "status": "ok",
+      "detail": "포트폴리오/실행계획 종목 코드 해석 완료",
+      "path": "data/portfolio/latest.json"
+    },
+    {
+      "key": "fallback_recovery",
+      "label": "Fallback Recovery",
+      "status": "ok",
+      "detail": "추가 복구 fallback 없음",
+      "path": "data/analysis-state/2026-04-27/fallback-summary.json"
+    },
+    {
+      "key": "fallback_checklist",
+      "label": "Fallback Checklist",
+      "status": "ok",
+      "detail": "실패 폴백 체크리스트 준비됨",
+      "path": "docs/FAILURE_FALLBACK_CHECKLIST.md"
+    },
+    {
+      "key": "wiki_memory",
+      "label": "LLM Wiki Memory",
+      "status": "ok",
+      "detail": "operating rules / research backlog / decision journal 생성됨",
+      "path": "knowledge/wiki/memory/decision-journal.md"
+    }
+  ]
+}
