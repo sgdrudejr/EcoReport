@@ -291,11 +291,11 @@ def structured_claim_item(item: Any, *, char_limit: int = 300) -> dict[str, Any]
         claim = item.get("claim") or item.get("summary") or item.get("view") or item.get("name") or item.get("topic")
         if not claim:
             return None
-        evidence = item.get("evidence_report_ids") or item.get("evidence") or []
+        evidence = normalize_evidence_list(item)
         return {
             "claim": clip(claim, char_limit),
             "why_it_matters": clip(item.get("why_it_matters"), 180) if item.get("why_it_matters") else None,
-            "evidence_report_ids": evidence[:5] if isinstance(evidence, list) else [],
+            "evidence_report_ids": evidence[:5],
             "fingerprint": claim_fingerprint(claim),
         }
     text = clip(item, char_limit)
@@ -315,6 +315,25 @@ def flatten_group_items(group: Any) -> tuple[str | None, list[Any]]:
     return None, [group]
 
 
+def source_report_ids_for_category(category: str | None, category_views: dict[str, dict[str, Any]]) -> list[str]:
+    view = category_views.get(category or "", {})
+    source_reports = view.get("source_reports") if isinstance(view, dict) else []
+    result: list[str] = []
+    seen: set[str] = set()
+    for item in source_reports if isinstance(source_reports, list) else []:
+        if isinstance(item, dict):
+            report_id = compact(item.get("report_id") or item.get("id"))
+        else:
+            report_id = compact(item)
+        if not report_id or report_id in seen:
+            continue
+        seen.add(report_id)
+        result.append(report_id)
+        if len(result) >= 5:
+            break
+    return result
+
+
 def build_claim_groups(
     raw_groups: Any,
     category_views: dict[str, dict[str, Any]],
@@ -329,12 +348,16 @@ def build_claim_groups(
     global_seen: set[str] = set()
     for raw_group in raw_groups:
         category, items = flatten_group_items(raw_group)
+        view = category_views.get(category or "", {})
+        fallback_evidence = source_report_ids_for_category(category, category_views)
         local_seen: set[str] = set()
         claims: list[dict[str, Any]] = []
         for item in items:
             structured = structured_claim_item(item, char_limit=char_limit)
             if not structured:
                 continue
+            if not structured.get("evidence_report_ids") and fallback_evidence:
+                structured["evidence_report_ids"] = fallback_evidence[:5]
             key = structured.get("fingerprint") or claim_fingerprint(structured.get("claim"))
             if not key or key in local_seen or key in global_seen:
                 continue
@@ -345,7 +368,6 @@ def build_claim_groups(
                 break
         if not claims:
             continue
-        view = category_views.get(category or "", {})
         groups.append(
             {
                 "category": category or "통합",
@@ -378,12 +400,12 @@ def structured_contradiction_item(item: Any, *, char_limit: int = 180) -> dict[s
     side_b = item.get("side_b") or item.get("bear_case") or item.get("negative_view") or ""
     if not topic and not side_a and not side_b:
         return None
-    evidence = item.get("evidence_report_ids") or item.get("evidence") or []
+    evidence = normalize_evidence_list(item)
     return {
         "topic": clip(topic, 100),
         "side_a": clip(side_a, char_limit),
         "side_b": clip(side_b, char_limit),
-        "evidence_report_ids": evidence[:5] if isinstance(evidence, list) else [],
+        "evidence_report_ids": evidence[:5],
         "fingerprint": claim_fingerprint(f"{topic} {side_a} {side_b}"),
     }
 
@@ -401,11 +423,15 @@ def build_contradiction_groups(
     global_seen: set[str] = set()
     for raw_group in raw_groups:
         category, items = flatten_group_items(raw_group)
+        view = category_views.get(category or "", {})
+        fallback_evidence = source_report_ids_for_category(category, category_views)
         rows: list[dict[str, Any]] = []
         for item in items:
             structured = structured_contradiction_item(item)
             if not structured:
                 continue
+            if not structured.get("evidence_report_ids") and fallback_evidence:
+                structured["evidence_report_ids"] = fallback_evidence[:5]
             key = structured.get("fingerprint") or claim_fingerprint(structured.get("topic"))
             if not key or key in global_seen:
                 continue
@@ -415,7 +441,6 @@ def build_contradiction_groups(
                 break
         if not rows:
             continue
-        view = category_views.get(category or "", {})
         groups.append(
             {
                 "category": category or "통합",
@@ -437,7 +462,17 @@ def atom_score(atom: dict[str, Any]) -> float:
 
 def normalize_evidence_list(value: Any) -> list[str]:
     if isinstance(value, dict):
-        value = value.get("evidence_report_ids") or value.get("evidence") or value.get("report_id") or []
+        value = (
+            value.get("evidence_report_ids")
+            or value.get("evidenceIds")
+            or value.get("evidence_ids")
+            or value.get("source_report_ids")
+            or value.get("sourceReports")
+            or value.get("report_ids")
+            or value.get("evidence")
+            or value.get("report_id")
+            or []
+        )
     if isinstance(value, str):
         value = [value]
     if not isinstance(value, list):
@@ -526,22 +561,6 @@ def add_quality_claim(rows: list[dict[str, Any]], seen: set[str], *, section: st
     fingerprint = claim_fingerprint(claim)
     claim_id = f"claim_{len(rows) + 1:03d}_{stable_hash(section + fingerprint, 6)}"
     if fingerprint in seen:
-        rows.append(
-            {
-                "id": claim_id,
-                "section": section,
-                "category": category,
-                "entity": entity,
-                "claim": claim,
-                "fingerprint": fingerprint,
-                "evidence": evidence,
-                "evidenceCount": len(evidence),
-                "sourceDiversity": len({evidence_source_family(value) for value in evidence}),
-                "status": "duplicate",
-                "severity": "low",
-                "flags": ["duplicate_claim"],
-            }
-        )
         return
     seen.add(fingerprint)
     rows.append(

@@ -46,7 +46,16 @@ async function fileExists(filePath) {
 
 function normalizeEvidence(value) {
   if (value && typeof value === "object" && !Array.isArray(value)) {
-    value = value.evidence_report_ids ?? value.evidence ?? value.report_id ?? [];
+    value =
+      value.evidence_report_ids ??
+      value.evidenceIds ??
+      value.evidence_ids ??
+      value.source_report_ids ??
+      value.sourceReports ??
+      value.report_ids ??
+      value.evidence ??
+      value.report_id ??
+      [];
   }
   if (typeof value === "string") value = [value];
   if (!Array.isArray(value)) return [];
@@ -463,21 +472,28 @@ async function main() {
     { categoryCount: categories.size, miscCount },
   );
 
-  const riskyClaims = findRiskyClaims(claims);
-  addCheck(
-    checks,
-    "risky_claims",
-    riskyClaims.some((item) => item.severity === "high") ? "warn" : "ok",
-    riskyClaims.length ? `위험/근거 약한 claim ${riskyClaims.length}개를 mini prompt로 격리` : "위험 claim 없음",
-    { riskyClaimCount: riskyClaims.length },
-  );
-
   const accountPlans = asArray(stage4?.accountPlans);
   const exposedBuys = accountPlans.flatMap((plan) => asArray(plan.stagedBuys));
   const invalidVisibleBuys = exposedBuys.filter((item) => item.validationStatus && item.validationStatus !== "validated");
   const validationPolicyOk = accountPlans.every(
     (plan) => plan.validationPolicy?.buyVisibility === "validated_only" || exposedBuys.length === 0,
   );
+
+  const riskyClaims = findRiskyClaims(claims);
+  const highRiskClaimCount = riskyClaims.filter((item) => item.severity === "high").length;
+  const riskyClaimsQuarantined = invalidVisibleBuys.length === 0 && validationPolicyOk;
+  addCheck(
+    checks,
+    "risky_claims",
+    highRiskClaimCount > 0 && !riskyClaimsQuarantined ? "warn" : "ok",
+    riskyClaims.length
+      ? riskyClaimsQuarantined
+        ? `위험/근거 약한 claim ${riskyClaims.length}개 격리 완료, 실행 전략 노출 차단`
+        : `위험/근거 약한 claim ${riskyClaims.length}개를 mini prompt로 격리`
+      : "위험 claim 없음",
+    { riskyClaimCount: riskyClaims.length, highRiskClaimCount, quarantined: riskyClaimsQuarantined },
+  );
+
   addCheck(
     checks,
     "execution_visibility",

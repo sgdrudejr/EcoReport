@@ -334,6 +334,18 @@ async function main() {
     freshnessDetail = details.join(" / ");
   }
 
+  const deepResearchResponseExists = await fileExists(paths.deepResearchResponse);
+  const followUpResponseExists = await fileExists(paths.deepResearchFollowUpResponse);
+  const round3ResponseExists = await fileExists(paths.round3Response);
+  const anyDeepResearchResponseExists = deepResearchResponseExists || followUpResponseExists || round3ResponseExists;
+  const availableDeepResearchResponsePath = deepResearchResponseExists
+    ? paths.deepResearchResponse
+    : followUpResponseExists
+      ? paths.deepResearchFollowUpResponse
+      : round3ResponseExists
+        ? paths.round3Response
+        : paths.deepResearchResponse;
+
   const checks = [
     {
       key: "portfolio_snapshot",
@@ -502,11 +514,15 @@ async function main() {
     {
       key: "deep_research_response",
       label: "Deep Research 결과",
-      status: statusFromCondition(await fileExists(paths.deepResearchResponse), "warn"),
-      detail: (await fileExists(paths.deepResearchResponse))
-        ? "Gemini Deep Research 결과 저장됨"
+      status: statusFromCondition(anyDeepResearchResponseExists, "warn"),
+      detail: anyDeepResearchResponseExists
+        ? deepResearchResponseExists
+          ? "Gemini Deep Research 결과 저장됨"
+          : followUpResponseExists
+            ? "2차 Deep Research 결과를 대표 응답으로 사용"
+            : "3차 Deep Research 결과를 대표 응답으로 사용"
         : "Deep Research 결과 없음",
-      path: relative(paths.deepResearchResponse),
+      path: relative(availableDeepResearchResponsePath),
     },
     {
       key: "deep_research_final",

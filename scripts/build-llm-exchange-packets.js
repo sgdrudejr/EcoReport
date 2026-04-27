@@ -29,7 +29,16 @@ function truncate(value, limit = MAX_CLAIM_CHARS) {
 
 function normalizeEvidence(value) {
   if (value && typeof value === "object" && !Array.isArray(value)) {
-    value = value.evidence_report_ids ?? value.evidence ?? value.report_id ?? [];
+    value =
+      value.evidence_report_ids ??
+      value.evidenceIds ??
+      value.evidence_ids ??
+      value.source_report_ids ??
+      value.sourceReports ??
+      value.report_ids ??
+      value.evidence ??
+      value.report_id ??
+      [];
   }
   if (typeof value === "string") value = [value];
   if (!Array.isArray(value)) return [];

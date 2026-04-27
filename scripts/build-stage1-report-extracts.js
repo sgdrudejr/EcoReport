@@ -110,8 +110,18 @@ function classifyParagraph(paragraph) {
     (count, keyword) => count + (normalized.includes(normalizeText(keyword)) ? 1 : 0),
     0,
   );
+  const concreteClaimSignal =
+    percentCount >= 1 ||
+    numericChunkCount >= 2 ||
+    /실적|수주|가이던스|컨센서스|영업이익|매출|eps|per|pbr|m2|gdp|증가율|가격|운임|마진|점유율|순매수|금리|유가|환율/i.test(
+      paragraph,
+    );
   if (claimHits >= 2 && paragraph.length >= 70) {
     return { kind: "investment_claim", confidence: clamp(0.62 + claimHits * 0.08, 0, 0.95) };
+  }
+
+  if (claimHits >= 1 && paragraph.length >= 70 && concreteClaimSignal) {
+    return { kind: "investment_claim", confidence: 0.66 };
   }
 
   if (claimHits >= 1 || paragraph.length >= 120) {

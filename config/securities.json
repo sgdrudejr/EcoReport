@@ -1,6 +1,6 @@
 {
   "version": "1.2",
-  "last_updated": "2026-04-08",
+  "last_updated": "2026-04-27",
   "_comment": "Single Source of Truth for all security metadata. Edit here — pipeline-utils.js auto-generates CATEGORY_BY_CODE, HOLDING_TOPIC_HINTS, PREFERRED_LABEL_BY_CATEGORY from this file.",
   "securities": [
     {
@@ -121,6 +121,30 @@
       "thematic_triggers": {
         "sectors": ["금"],
         "themes": ["금/원자재"]
+      }
+    },
+    {
+      "code": "411060",
+      "name": "ACE KRX금현물",
+      "type": "etf",
+      "bucket": "core_etf",
+      "asset_class": "commodity",
+      "region": "KR",
+      "categories": {
+        "default": "금",
+        "ISA": "금",
+        "PENSION": "금",
+        "KIS_MAIN": "금"
+      },
+      "keywords": {
+        "topic_hints": ["gold", "금", "krx금현물", "금현물", "안전자산"],
+        "aliases": ["ace krx금현물", "ace krx 금현물", "krx금현물", "krx 금현물", "금현물 etf"],
+        "macro": ["gold", "금가격", "금 현물", "귀금속", "원자재"],
+        "theme": ["금", "gold", "금현물", "안전자산"]
+      },
+      "thematic_triggers": {
+        "sectors": ["금"],
+        "themes": ["금/원자재", "안전자산"]
       }
     },
     {
@@ -260,6 +284,67 @@
       "thematic_triggers": {
         "sectors": ["반도체"],
         "themes": ["HBM/메모리", "금리/매크로"]
+      }
+    },
+    {
+      "code": "497570",
+      "name": "TIGER 미국필라델피아AI반도체나스닥",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "asset_class": "equity",
+      "region": "US",
+      "categories": {
+        "default": "AI반도체",
+        "ISA": "AI반도체",
+        "PENSION": "AI반도체",
+        "KIS_MAIN": "AI반도체"
+      },
+      "keywords": {
+        "topic_hints": ["ai반도체", "필라델피아 반도체", "phlx", "미국 반도체", "나스닥 반도체"],
+        "aliases": [
+          "tiger 미국필라델피아ai반도체나스닥",
+          "미국필라델피아ai반도체나스닥",
+          "tiger 미국필라델피아반도체나스닥",
+          "미국필라델피아반도체나스닥",
+          "phlx us ai semiconductor"
+        ],
+        "macro": ["미국 반도체", "AI 반도체", "나스닥", "필라델피아 반도체"],
+        "theme": ["AI반도체", "미국 반도체", "필라델피아 반도체", "AI 인프라"]
+      },
+      "thematic_triggers": {
+        "sectors": ["반도체"],
+        "themes": ["AI 반도체", "AI 인프라", "미국 기술주"]
+      }
+    },
+    {
+      "code": "469150",
+      "name": "ACE AI반도체TOP3+",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "asset_class": "equity",
+      "region": "KR",
+      "categories": {
+        "default": "AI반도체",
+        "ISA": "AI반도체",
+        "PENSION": "AI반도체",
+        "KIS_MAIN": "AI반도체"
+      },
+      "keywords": {
+        "topic_hints": ["ai반도체", "hbm", "반도체 top3", "삼성전자", "sk하이닉스", "한미반도체"],
+        "aliases": [
+          "ace ai반도체top3+",
+          "ace ai반도체 top3+",
+          "ai반도체top3+",
+          "ace ai반도체포커스",
+          "ace ai 반도체 포커스",
+          "한국투자aceai반도체top3+"
+        ],
+        "macro": ["국내 반도체", "AI 반도체", "HBM"],
+        "theme": ["AI반도체", "HBM", "삼성전자", "SK하이닉스", "한미반도체"]
+      },
+      "thematic_triggers": {
+        "sectors": ["반도체"],
+        "themes": ["HBM/메모리", "AI 반도체", "국내 반도체"]
       }
     },
     {
