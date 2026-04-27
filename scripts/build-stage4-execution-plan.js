@@ -972,6 +972,37 @@ function satelliteCapRejectionMessage(capCheck) {
   );
 }
 
+function actionEvidenceGate({ item, bucket }) {
+  const reason = compactText(item.reason);
+  const confidence = normalizeCandidateConfidence(item.confidence);
+  const evidenceParts = [
+    item.source,
+    item.reason,
+    item.entryCondition,
+    ...(Array.isArray(item.evidence) ? item.evidence : []),
+  ].filter((value) => compactText(value).length > 0);
+  const flags = [];
+  if (!item.code) flags.push("missing_code");
+  if (reason.length < 18) flags.push("thin_action_reason");
+  if (confidence < 0.45) flags.push("low_candidate_confidence");
+  if (!bucket.topGap?.category && !bucket.candidateFromGap) flags.push("missing_gap_context");
+  if (!evidenceParts.length) flags.push("missing_action_evidence");
+
+  const blocking =
+    flags.includes("missing_code") ||
+    (flags.includes("low_candidate_confidence") && flags.includes("thin_action_reason")) ||
+    (flags.includes("thin_action_reason") && flags.includes("missing_gap_context")) ||
+    flags.includes("missing_action_evidence");
+
+  return {
+    allowed: !blocking,
+    flags,
+    confidence,
+    evidenceCount: evidenceParts.length,
+    policy: "validated_only",
+  };
+}
+
 function validateExecutionPlan({ account, bucket, stagedBuys, trims, holds, rejectedAlternatives, strategy, exposureTracker }) {
   const validatorFlags = [];
   const validatedBuys = [];
@@ -1023,6 +1054,17 @@ function validateExecutionPlan({ account, bucket, stagedBuys, trims, holds, reje
       continue;
     }
 
+    const evidenceGate = actionEvidenceGate({ item, bucket });
+    if (!evidenceGate.allowed) {
+      validatorFlags.push(`action_evidence_gate:${item.name}`);
+      rejected.push({
+        ...item,
+        rejectionReason: `실행 근거 검증 미통과(${evidenceGate.flags.join(", ")})`,
+        actionEvidenceGate: evidenceGate,
+      });
+      continue;
+    }
+
     const satelliteCap = satelliteAllocationCapCheck({ item, account, strategy, exposureTracker });
     if (!satelliteCap.allowed) {
       validatorFlags.push(`${satelliteCap.reasonType ?? "satellite_cap"}:${item.name}`);
@@ -1034,7 +1076,11 @@ function validateExecutionPlan({ account, bucket, stagedBuys, trims, holds, reje
       continue;
     }
 
-    validatedBuys.push(item);
+    validatedBuys.push({
+      ...item,
+      validationStatus: "validated",
+      actionEvidenceGate: evidenceGate,
+    });
     registerSatelliteBuy({ item, account, strategy, exposureTracker });
   }
 
@@ -1359,6 +1405,11 @@ async function main() {
       rejectedAlternatives: validation.rejectedAlternatives,
       noAction: validation.noAction,
       noActionReason: validation.noActionReason,
+      validationPolicy: {
+        buyVisibility: "validated_only",
+        rejectedCandidatesVisibleInDetails: true,
+        actionEvidenceGate: "code_reason_confidence_gap_context",
+      },
       validatorFlags: validation.validatorFlags,
       validationConfidence: validation.confidence,
       validationEvidence: validation.topEvidence,
@@ -1414,7 +1465,8 @@ async function main() {
       `- Stage 2 bias: ${account.stage2Bias}`,
       `- 이번 단계 투입 가능 금액: ${won(account.deployBudget)}${account.plannedDeployBudget !== account.deployBudget ? ` (원안 ${won(account.plannedDeployBudget)})` : ""}`,
       `- 남길 예수금: ${won(account.reserveCash)}`,
-      `- 검증 confidence: ${account.confidence ?? 0}`,
+      `- 검증 confidence: ${account.validationConfidence ?? 0}`,
+      `- 실행 노출 정책: ${account.validationPolicy?.buyVisibility ?? "validated_only"}`,
       `- validator flags: ${account.validatorFlags?.join(", ") || "없음"}`,
       `- 가장 부족한 자산군: ${account.topGap ? `${account.topGap.category} / ${won(Math.max(account.topGap.gapAmount, 0))}` : "없음"}`,
       `- 우선 보강 후보: ${account.candidateFromGap ?? "없음"}`,

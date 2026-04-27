@@ -63,14 +63,18 @@ printf 'date=%s run_date=%s effective_market_date=%s run_id=%s\n' "$DATE" "$RUN_
 node scripts/build-stage3-quant-scores.js "${COMMON_ARGS[@]}"
 node scripts/build-stage4-execution-plan.js "${COMMON_ARGS[@]}"
 node scripts/export-stage4-execution-plan-table.js "${COMMON_ARGS[@]}"
-node scripts/export-final-report-html.js "${COMMON_ARGS[@]}"
+node scripts/audit-data-quality.js "${COMMON_ARGS[@]}"
 
 if [[ "$SKIP_VERIFY" -eq 0 ]]; then
   node scripts/verify-daily-system.js "${COMMON_ARGS[@]}"
 fi
 
+node scripts/export-final-report-html.js "${COMMON_ARGS[@]}"
+
 printf '== Final outputs ==\n'
 printf '경제 리포트 HTML: %s\n' "$ROOT_DIR/reports/daily/$DATE-final.html"
 printf '경제 리포트 Markdown: %s\n' "$ROOT_DIR/knowledge/daily/$DATE-full-daily-report.md"
+printf 'AI 교환 JSON: %s\n' "$ROOT_DIR/data/analysis-state/$DATE/stage1-4-ai-exchange.json"
+printf '품질 감사 JSON: %s\n' "$ROOT_DIR/data/analysis-state/$DATE/data-quality-audit.json"
 printf '실행 전략 Markdown: %s\n' "$ROOT_DIR/reports/daily/$DATE-stage4-execution-plan.md"
 printf '실행 전략 Table: %s\n' "$ROOT_DIR/reports/daily/$DATE-stage4-execution-plan-table.md"

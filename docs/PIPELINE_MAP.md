@@ -30,18 +30,19 @@ flowchart TD
     C2 --> C3["Gemini Deep Research 실행"]
     C3 --> C4["딥리서치 결과 저장"]
 
-    A1 --> D["4. Stage 1~4 의사결정 파이프라인"]
+    A1 --> D["4. 03~11 의사결정 파이프라인"]
     A2 --> D
     A4 --> D
     C4 --> D
 
-    D --> D1["Stage 1<br/>리포트 핵심 주장 구조화"]
-    D1 --> D2["Stage 2<br/>전략 후보 생성"]
-    D2 --> D3["Stage 2.5<br/>리포트 영향도 맵 작성"]
-    D3 --> D4["Stage 3<br/>계좌/종목 점수 계산"]
-    D4 --> D5["Stage 4<br/>실행안 생성"]
+    D --> D1["03. Report Indexing<br/>리포트 핵심 주장 구조화"]
+    D1 --> D2["07. Strategy Options<br/>전략 후보 생성"]
+    D2 --> D3["09. Impact Mapping<br/>리포트 영향도 맵 작성"]
+    D3 --> D4["10. Quant Scoring<br/>계좌/종목 점수 계산"]
+    D4 --> D5["11. Execution Plan<br/>실행안 생성"]
 
-    D5 --> E["5. 결과물 생성"]
+    D5 --> QG["13. Quality Gates<br/>정합성/근거/중복/날짜/카테고리 검사"]
+    QG --> E["5. 결과물 생성"]
     E --> E1["오늘의 브리핑"]
     E --> E2["계좌별 실행 계획"]
     E --> E3["추천 / 보류 / 감축안"]
@@ -94,15 +95,16 @@ PDF를 그대로 LLM에 넣지 않고, 읽기 쉬운 구조로 쪼갭니다.
 
 이 단계는 "시장 맥락을 더 풍부하게 읽는 과정"입니다.
 
-### 4) Stage 1~4 의사결정 파이프라인
+### 4) 03~11 의사결정 파이프라인
 
 EcoReport의 핵심 엔진입니다.
 
-- Stage 1: 리포트에서 핵심 주장과 사실을 구조화
-- Stage 2: 전략 후보 생성
-- Stage 2.5: 어떤 리포트가 어떤 종목/계좌에 영향을 주는지 맵핑
-- Stage 3: 종목/계좌 점수 계산
-- Stage 4: 실제 행동 계획 생성
+- 03. Report Indexing: 리포트에서 핵심 주장과 사실을 구조화
+- 07. Strategy Options: 전략 후보 생성
+- 09. Impact Mapping: 어떤 리포트가 어떤 종목/계좌에 영향을 주는지 맵핑
+- 10. Quant Scoring: 종목/계좌 점수 계산
+- 11. Execution Plan: 실제 행동 계획 생성
+- 13. Quality Gates: 근거/중복/날짜/카테고리와 위험 claim을 검사하고 BUY 노출을 제한
 
 즉, "읽은 내용을 실제 투자 판단 구조로 번역"하는 단계입니다.
 
@@ -165,7 +167,7 @@ flowchart LR
 | 로컬 orchestrator 결과 | `reports/report_summaries/YYYY-MM-DD/*`, `reports/merged/final_market_view.md` |
 | 브리핑 | `knowledge/daily/YYYY-MM-DD-briefing.md` |
 | 딥리서치 | `knowledge/daily/YYYY-MM-DD-deepresearch.md` |
-| Stage 1~4 | `data/analysis-state/YYYY-MM-DD/*` |
+| 03~13 decision/quality artifacts | `data/analysis-state/YYYY-MM-DD/*` |
 | 실행 계획 | `reports/daily/YYYY-MM-DD-stage4-execution-plan.md` |
 | 피드백 | `data/feedback/*` |
 | 대시보드 / 위키 | `dashboard/`, `knowledge/wiki/` |

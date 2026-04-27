@@ -55,19 +55,23 @@ npm run daily:final-output -- --date YYYY-MM-DD --run-date YYYY-MM-DD --effectiv
 
 ## Stage Map
 
-| Stage | 목적 | 대표 명령 | 대표 산출물 |
+정식 단계명은 `docs/STAGE_NAMES.md`와 `config/stage-names.json`을 기준으로 합니다. 기존 `stage1.4:*` 명령은 호환 alias일 뿐, 운영 문서와 로그에서는 아래 이름을 씁니다.
+
+| Step | 목적 | 대표 명령 | 대표 산출물 |
 |---|---|---|---|
-| 0 | 런타임/키/로그 준비 | `npm run automation:bootstrap` | `logs/`, runtime 상태 |
-| 1 | 계좌/리포트/시장 데이터 수집 | `bash scripts/run-daily-system.sh --date YYYY-MM-DD --baseline-only` | `data/reports/`, `data/portfolio/latest.json`, `data/market/` |
-| 1.4 | 100개 리포트에서 희소 신호 구조화 | `npm run stage1.4:full-report -- --date YYYY-MM-DD` | `full-daily-report.json/md`, `insight-atoms.json` |
-| 1.5 | Gemini Deep Research 질문 생성 | `npm run stage1.5:prompt -- --date YYYY-MM-DD` | `manual-kit/07*.md` |
-| 1.6 | 외부 리서치 결과를 rich briefing으로 병합 | `npm run stage1.6:briefing -- --date YYYY-MM-DD` | `gemini-briefing-rich.md` |
-| 2 | 실제 LLM 전략 후보 생성 | `npm run stage2:qwen -- --date YYYY-MM-DD` | `stage2-strategy-options.json` |
-| 2.5 | ETF/신규 후보 연결 | `npm run stage2.5:etf -- --date YYYY-MM-DD` | `stage2-5-etf-candidates.json` |
-| 3 | 계좌/종목 점수와 리스크 계산 | `npm run stage3:quant -- --date YYYY-MM-DD` | `stage3-quant-scores.json` |
-| 4 | 계좌별 실행 전략 생성 | `npm run stage4:plan -- --date YYYY-MM-DD` | `stage4-execution-plan.json/md` |
-| 5 | 읽을 수 있는 최종 HTML 생성 | `npm run stage16:final-html -- --date YYYY-MM-DD` | `reports/daily/YYYY-MM-DD-final.html` |
-| 6 | 일일 산출물 검증 | `npm run verify -- --date YYYY-MM-DD` | `system-health.json/md` |
+| 01. Report Collection | 계좌/리포트/시장 데이터 수집 | `npm run step01:report-collection -- --date YYYY-MM-DD` | `data/reports/`, `data/portfolio/latest.json`, `data/market/` |
+| 02. Chunk Summary | 100개 리포트에서 희소 신호와 청크 요약 구조화 | `npm run step02:chunk-summary -- --date YYYY-MM-DD` | `reports/report_summaries/`, `stage1-chunk-summaries.json` |
+| 03. Report Indexing | 리포트 메타와 계좌 관련성 인덱싱 | `npm run step03:report-indexing -- --date YYYY-MM-DD` | `stage1-report-extracts-v2.json`, `stage2-enriched-report-index.json` |
+| 04. Research Agenda | 리서치 질문 설계 | `npm run step04:research-agenda -- --date YYYY-MM-DD` | `stage1-research-agenda.json` |
+| 05. Deep Research | Gemini Deep Research 질문 생성 | `npm run step05:deep-research-prompt -- --date YYYY-MM-DD` | `manual-kit/07*.md` |
+| 06. Briefing Synthesis | 외부 리서치 결과를 rich briefing으로 병합 | `npm run step06:briefing-synthesis -- --date YYYY-MM-DD` | `gemini-briefing-rich.md` |
+| 07. Strategy Options | 실제 LLM 전략 후보 생성 | `npm run step07:strategy-options -- --date YYYY-MM-DD` | `stage2-strategy-options.json` |
+| 08. Candidate Matching | ETF/신규 후보 연결 | `npm run step08:candidate-matching -- --date YYYY-MM-DD` | `stage2-5-etf-candidates.json` |
+| 09. Impact Mapping | 리포트-계좌 영향 연결 | `npm run step09:impact-mapping -- --date YYYY-MM-DD` | `impact-map.json` |
+| 10. Quant Scoring | 계좌/종목 점수와 리스크 계산 | `npm run step10:quant-scoring -- --date YYYY-MM-DD` | `stage3-quant-scores.json` |
+| 11. Execution Plan | 검증 통과 후보만 실행 전략으로 노출 | `npm run step11:execution-plan -- --date YYYY-MM-DD` | `stage4-execution-plan.json/md` |
+| 12. Final Outputs | 읽을 수 있는 경제 리포트와 실행 전략 생성 | `npm run step12:final-outputs -- --date YYYY-MM-DD` | `reports/daily/YYYY-MM-DD-final.html` |
+| 13. Quality Gates | 정합성/근거/중복/날짜/카테고리/위험 claim 검사 | `npm run step13:quality-gates -- --date YYYY-MM-DD` | `data-quality-audit.json`, `17-risky-claim-review-prompt.md` |
 
 ## 최종 출력물 계약
 
@@ -77,6 +81,8 @@ EcoReport의 하루 산출물은 항상 두 종류로 나눕니다.
 |---|---|---|
 | 읽을 수 있는 경제 리포트 | `reports/daily/YYYY-MM-DD-final.html`, `knowledge/daily/YYYY-MM-DD-full-daily-report.md` | 오늘의 컨센서스, 소수 의견, 충돌 지점, 신규 후보, 리스크를 구조화해 보여줌 |
 | 실행 전략 | `reports/daily/YYYY-MM-DD-stage4-execution-plan.md`, `reports/daily/YYYY-MM-DD-stage4-execution-plan-table.md` | 계좌별 매수/보류/감축/no_action과 금액, 근거, 검증 플래그를 보여줌 |
+
+최종 HTML에는 `data-quality-audit.json`의 경고/보류/근거 약함 표시가 같이 들어갑니다. BUY 후보는 `validated_only` 정책을 통과한 것만 보이고, 탈락 후보는 rejected alternatives에만 남깁니다.
 
 ## 배분 정책
 
@@ -88,7 +94,7 @@ EcoReport의 하루 산출물은 항상 두 종류로 나눕니다.
 | core | 30% | S&P500, 나스닥100, 미국인덱스, 국내인덱스, 배당/커버드콜 |
 | satellite | 50% | 전력기기, 방산, 원자력, 조선, 신재생에너지, 반도체/PCB |
 
-Stage 4는 이 정책을 이용해 아래를 검증합니다.
+`11. Execution Plan`은 이 정책을 이용해 아래를 검증합니다.
 
 - 같은 위성 섹터는 하루에 신규 진입 1개만 허용
 - 단일 위성 섹터는 전체 포트폴리오의 12.5%를 넘지 않게 관리
@@ -131,7 +137,7 @@ EcoReport 작업을 Codex에서 이어갈 때는 `ecoreport-manual-research` 스
 
 - 100개 리포트의 평균 요약보다 신규 주장, 반대 근거, 신규 후보를 보존
 - Gemini Deep Research는 최종 결론자가 아니라 외부 검증/반론/최신 촉매 확인 레이어로 사용
-- Stage 4 실행 전략은 `allocationPolicy`의 20/30/50 정책을 통과한 후보만 보여줌
+- `11. Execution Plan` 실행 전략은 `allocationPolicy`의 20/30/50 정책을 통과한 후보만 보여줌
 
 ## Daily Checklist
 

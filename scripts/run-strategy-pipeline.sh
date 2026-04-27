@@ -225,27 +225,27 @@ cd "$ROOT_DIR"
 echo "== Run Metadata =="
 echo "run_id=$RUN_ID / run_date=$RUN_DATE / effective_market_date=$DATE"
 
-echo "== Stage 1: portfolio snapshot =="
+echo "== 01. Portfolio Sync =="
 if ! node scripts/sync-kis-portfolio.js "${STAGE2_COMMON_ARGS[@]}"; then
   echo "WARN: 포트폴리오 스냅샷 동기화 실패. 기존 data/portfolio/latest.json으로 계속 진행합니다." >&2
 fi
 
-echo "== Stage 2: report extracts =="
+echo "== 03. Report Extraction =="
 node scripts/build-stage1-report-extracts.js "${STAGE2_COMMON_ARGS[@]}"
 
 if [[ "$RUN_STAGE1_4" == "1" ]]; then
-  echo "== Stage 3: full daily report + insight atoms =="
+  echo "== 02. Chunk Summary + Full Daily Report =="
   if ! "$(python_bin)" scripts/build-stage1-4-full-daily-report.py \
     "${STAGE2_COMMON_ARGS[@]}"; then
     echo "WARN: Stage 3(full daily report/atoms) 실패. Stage 4에서 extracts 폴백으로 계속 진행합니다." >&2
   fi
 
-  echo "== Stage 2: enriched report index =="
+  echo "== 03. Report Indexing =="
   if ! node scripts/build-stage2-enriched-report-index.js "${STAGE2_COMMON_ARGS[@]}"; then
     echo "WARN: Stage 2(enriched report index) 실패. Stage 4/5는 기존 입력으로 계속 진행합니다." >&2
   fi
 
-  echo "== Stage 4: research agenda =="
+  echo "== 04. Research Agenda =="
   if ! "$(python_bin)" scripts/build-stage1-4-research-agenda.py \
     "${STAGE2_COMMON_ARGS[@]}" \
     --max-input-summaries "${STAGE1_4_MAX_INPUT_SUMMARIES:-80}"; then
@@ -254,59 +254,62 @@ if [[ "$RUN_STAGE1_4" == "1" ]]; then
 fi
 
 if [[ "$BUILD_STAGE1_5_PROMPT" == "1" ]]; then
-  echo "== Stage 5: deep research prompts (07a/07b/07c + legacy 07) =="
+  echo "== 05. Deep Research Prompt =="
   if ! node scripts/build-stage1-5-gemini-deep-research-prompt.js "${STAGE2_COMMON_ARGS[@]}"; then
     echo "WARN: Stage 5 prompt 생성 실패. Stage 6 이하는 계속 진행합니다." >&2
   fi
 fi
 
-echo "== Stage 6: strategy prompt =="
+echo "== 07. Strategy Prompt =="
 node scripts/build-stage2-strategy-prompt.js "${STAGE2_COMMON_ARGS[@]}"
 
 if [[ "$USE_QWEN_STAGE2" == "1" ]]; then
-  echo "== Stage 7: Qwen strategy options =="
+  echo "== 07. Qwen Strategy Options =="
   if ! try_stage2_qwen; then
     echo "ERROR: Stage 7(Qwen strategy options) failed. Mock fallback is disabled." >&2
     exit 1
   fi
 else
-  echo "== Stage 7: default provider (Qwen, fail-fast) =="
+  echo "== 07. Strategy Options default provider (Qwen, fail-fast) =="
   if ! try_stage2_qwen; then
     echo "ERROR: Stage 7(Qwen strategy options) failed. Mock fallback is disabled." >&2
     exit 1
   fi
 fi
 
-echo "== Stage 7 result =="
+echo "== 07. Strategy Options result =="
 echo "provider=$STAGE2_PROVIDER / status=$STAGE2_FINAL_STATUS / output=$STAGE2_OUTPUT"
 
-echo "== External: KIS ETF ranking =="
+echo "== 08. ETF Ranking =="
 if ! "$(python_bin)" scripts/collectors/fetch-kis-etf-ranking.py --date "$DATE" --top-n 80; then
   echo "WARN: KIS ETF ranking 수집 실패. 기존/없음 데이터로 Stage 8을 계속 진행합니다." >&2
 fi
 
-echo "== Stage 8: ETF candidate matching =="
+echo "== 08. Candidate Matching =="
 node scripts/build-stage2-5-etf-candidates.js "${STAGE2_COMMON_ARGS[@]}"
 
-echo "== Stage 9: impact map =="
+echo "== 09. Impact Mapping =="
 node scripts/build-impact-map.js "${STAGE2_COMMON_ARGS[@]}"
 
-echo "== Shadow pipeline: Stage 0~3 =="
+echo "== Shadow Pipeline: 00~03 =="
 bash scripts/shadow/run-shadow-pipeline.sh "${STAGE2_COMMON_ARGS[@]}"
 
-echo "== Stage 10: quant scores =="
+echo "== 10. Quant Scoring =="
 node scripts/build-stage3-quant-scores.js "${STAGE2_COMMON_ARGS[@]}"
 
-echo "== Stage 11: execution plan =="
+echo "== 11. Execution Plan =="
 node scripts/build-stage4-execution-plan.js "${STAGE2_COMMON_ARGS[@]}"
 
-echo "== Stage 12: feedback snapshot =="
+echo "== 13. Quality Gates =="
+node scripts/audit-data-quality.js "${STAGE2_COMMON_ARGS[@]}"
+
+echo "== Feedback Snapshot =="
 node scripts/build-feedback-snapshot.js "${STAGE2_COMMON_ARGS[@]}"
 
-echo "== Stage 13: feedback analysis =="
+echo "== Feedback Analysis =="
 node scripts/build-feedback-analysis.js "${STAGE2_COMMON_ARGS[@]}"
 
-echo "== Stage 14: feedback report =="
+echo "== Feedback Report =="
 node scripts/build-feedback-report.js --date "$DATE"
 
 echo "Done."

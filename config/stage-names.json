@@ -1,0 +1,148 @@
+{
+  "schemaVersion": 1,
+  "namingPolicy": "Use `NN. English Step Name` in logs, docs, manifests, and dashboards. Legacy script names may remain as aliases only.",
+  "stages": [
+    {
+      "number": "01",
+      "key": "report_collection",
+      "name": "Report Collection",
+      "korean": "리포트 수집",
+      "primaryCommand": "npm run step01:report-collection -- --date YYYY-MM-DD",
+      "primaryOutputs": [
+        "data/reports/YYYY-MM-DD/index.json",
+        "data/reports/YYYY-MM-DD/text-manifest.json",
+        "data/portfolio/latest.json",
+        "data/market/YYYY-MM-DD.json"
+      ]
+    },
+    {
+      "number": "02",
+      "key": "chunk_summary",
+      "name": "Chunk Summary",
+      "korean": "청크 요약",
+      "primaryCommand": "npm run step02:chunk-summary -- --date YYYY-MM-DD",
+      "primaryOutputs": [
+        "data/analysis-state/YYYY-MM-DD/stage1-chunk-summaries.json",
+        "reports/report_summaries/YYYY-MM-DD/"
+      ]
+    },
+    {
+      "number": "03",
+      "key": "report_indexing",
+      "name": "Report Indexing",
+      "korean": "리포트 인덱싱",
+      "primaryCommand": "npm run step03:report-indexing -- --date YYYY-MM-DD",
+      "primaryOutputs": [
+        "data/analysis-state/YYYY-MM-DD/stage1-report-extracts-v2.json",
+        "data/analysis-state/YYYY-MM-DD/stage2-enriched-report-index.json"
+      ]
+    },
+    {
+      "number": "04",
+      "key": "research_agenda",
+      "name": "Research Agenda",
+      "korean": "리서치 질문 설계",
+      "primaryCommand": "npm run step04:research-agenda -- --date YYYY-MM-DD",
+      "primaryOutputs": [
+        "data/analysis-state/YYYY-MM-DD/stage1-research-agenda.json"
+      ]
+    },
+    {
+      "number": "05",
+      "key": "deep_research",
+      "name": "Deep Research",
+      "korean": "외부 검증 리서치",
+      "primaryCommand": "npm run step05:deep-research-prompt -- --date YYYY-MM-DD",
+      "primaryOutputs": [
+        "knowledge/daily/manual-kit/YYYY-MM-DD/07a-stage1-5-macro-prompt.md",
+        "knowledge/daily/manual-kit/YYYY-MM-DD/07b-stage1-5-sector-prompt.md",
+        "knowledge/daily/manual-kit/YYYY-MM-DD/07c-stage1-5-newcandidate-prompt.md"
+      ]
+    },
+    {
+      "number": "06",
+      "key": "briefing_synthesis",
+      "name": "Briefing Synthesis",
+      "korean": "브리핑 병합",
+      "primaryCommand": "npm run step06:briefing-synthesis -- --date YYYY-MM-DD",
+      "primaryOutputs": [
+        "knowledge/daily/YYYY-MM-DD-gemini-briefing-rich.md",
+        "data/analysis-state/YYYY-MM-DD/briefing-delta.json"
+      ]
+    },
+    {
+      "number": "07",
+      "key": "strategy_options",
+      "name": "Strategy Options",
+      "korean": "전략 후보 생성",
+      "primaryCommand": "npm run step07:strategy-options -- --date YYYY-MM-DD",
+      "primaryOutputs": [
+        "data/analysis-state/YYYY-MM-DD/stage2-strategy-options.json"
+      ]
+    },
+    {
+      "number": "08",
+      "key": "candidate_matching",
+      "name": "Candidate Matching",
+      "korean": "ETF/종목 후보 매칭",
+      "primaryCommand": "npm run step08:candidate-matching -- --date YYYY-MM-DD",
+      "primaryOutputs": [
+        "data/analysis-state/YYYY-MM-DD/stage2-5-etf-candidates.json",
+        "data/analysis-state/YYYY-MM-DD/stage2-strategy-options.enriched.json"
+      ]
+    },
+    {
+      "number": "09",
+      "key": "impact_mapping",
+      "name": "Impact Mapping",
+      "korean": "리포트-계좌 영향 연결",
+      "primaryCommand": "npm run step09:impact-mapping -- --date YYYY-MM-DD",
+      "primaryOutputs": [
+        "data/analysis-state/YYYY-MM-DD/impact-map.json"
+      ]
+    },
+    {
+      "number": "10",
+      "key": "quant_scoring",
+      "name": "Quant Scoring",
+      "korean": "퀀트 점수화",
+      "primaryCommand": "npm run step10:quant-scoring -- --date YYYY-MM-DD",
+      "primaryOutputs": [
+        "data/analysis-state/YYYY-MM-DD/stage3-quant-scores.json"
+      ]
+    },
+    {
+      "number": "11",
+      "key": "execution_plan",
+      "name": "Execution Plan",
+      "korean": "실행 전략",
+      "primaryCommand": "npm run step11:execution-plan -- --date YYYY-MM-DD",
+      "primaryOutputs": [
+        "data/analysis-state/YYYY-MM-DD/stage4-execution-plan.json",
+        "reports/daily/YYYY-MM-DD-stage4-execution-plan.md"
+      ]
+    },
+    {
+      "number": "12",
+      "key": "final_outputs",
+      "name": "Final Outputs",
+      "korean": "최종 산출물",
+      "primaryCommand": "npm run step12:final-outputs -- --date YYYY-MM-DD",
+      "primaryOutputs": [
+        "reports/daily/YYYY-MM-DD-final.html",
+        "reports/daily/YYYY-MM-DD-stage4-execution-plan-table.md"
+      ]
+    },
+    {
+      "number": "13",
+      "key": "quality_gates",
+      "name": "Quality Gates",
+      "korean": "품질 검증",
+      "primaryCommand": "npm run step13:quality-gates -- --date YYYY-MM-DD",
+      "primaryOutputs": [
+        "data/analysis-state/YYYY-MM-DD/data-quality-audit.json",
+        "knowledge/daily/manual-kit/YYYY-MM-DD/17-risky-claim-review-prompt.md"
+      ]
+    }
+  ]
+}

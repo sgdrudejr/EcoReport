@@ -5,7 +5,7 @@
   "steps": [
     {
       "id": "portfolio_snapshot_sync",
-      "label": "Stage 1 Portfolio Snapshot Sync",
+      "label": "01. Portfolio Sync",
       "command": "node scripts/sync-kis-portfolio.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
       "inputs": [],
       "outputs": [
@@ -19,7 +19,7 @@
     },
     {
       "id": "stage1_extracts",
-      "label": "Stage 2 Report Extracts",
+      "label": "03. Report Extraction",
       "command": "node scripts/build-stage1-report-extracts.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
       "inputs": [
         "data/reports/{{date}}/index.json",
@@ -37,7 +37,7 @@
     },
     {
       "id": "stage1_5_prompt",
-      "label": "Stage 5 Deep Research Prompt Split",
+      "label": "05. Deep Research Prompt",
       "command": "node scripts/build-stage1-5-gemini-deep-research-prompt.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
       "inputs": [
         "data/analysis-state/{{date}}/stage1-report-extracts-v2.json",
@@ -60,7 +60,7 @@
     },
     {
       "id": "stage1_4_summarize",
-      "label": "Stage 3 Top Report Summary Selection",
+      "label": "02. Chunk Summary",
       "command": ".venv/bin/python scripts/collectors/summarize-report-chunks.py --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}} --top-n 30 --concurrency 6",
       "inputs": [
         "data/analysis-state/{{date}}/stage1-report-extracts-v2.json",
@@ -79,7 +79,7 @@
     },
     {
       "id": "stage2_enriched_report_index",
-      "label": "Stage 2 Enriched Report Index",
+      "label": "03. Report Indexing",
       "command": "node scripts/build-stage2-enriched-report-index.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
       "inputs": [
         "data/analysis-state/{{date}}/stage1-report-extracts-v2.json",
@@ -100,7 +100,7 @@
     },
     {
       "id": "stage1_4_agenda",
-      "label": "Stage 4 Research Agenda",
+      "label": "04. Research Agenda",
       "command": ".venv/bin/python scripts/build-stage1-4-research-agenda.py --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}} --max-input-summaries 30",
       "inputs": [
         "data/analysis-state/{{date}}/stage1-report-extracts-v2.json",
@@ -123,7 +123,7 @@
     },
     {
       "id": "stage2_prompt",
-      "label": "Stage 6 Strategy Prompt",
+      "label": "07. Strategy Prompt",
       "command": "node scripts/build-stage2-strategy-prompt.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
       "inputs": [
         "data/analysis-state/{{date}}/stage1-report-extracts-v2.json",
@@ -141,7 +141,7 @@
     },
     {
       "id": "stage2_strategy",
-      "label": "Stage 7 Strategy Options",
+      "label": "07. Strategy Options",
       "command": "bash scripts/run-stage2-step.sh --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}} --mode {{stage2Mode}}",
       "inputs": [
         "knowledge/daily/manual-kit/{{date}}/08-stage2-strategy-prompt.md"
@@ -158,7 +158,7 @@
     },
     {
       "id": "kis_etf_ranking",
-      "label": "KIS ETF Ranking",
+      "label": "08. ETF Ranking",
       "command": ".venv/bin/python scripts/collectors/fetch-kis-etf-ranking.py --date {{date}} --top-n 80",
       "inputs": [
         "data/reference/stockeasy-theme-etf-map.json"
@@ -175,7 +175,7 @@
     },
     {
       "id": "stage2_5_etf_candidates",
-      "label": "Stage 8 ETF Candidate Matching",
+      "label": "08. Candidate Matching",
       "command": "node scripts/build-stage2-5-etf-candidates.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
       "inputs": [
         "data/analysis-state/{{date}}/stage2-strategy-options.json",
@@ -197,7 +197,7 @@
     },
     {
       "id": "technical_refresh_stage2",
-      "label": "Stage 2 Candidate Technical Refresh",
+      "label": "10. Technical Refresh",
       "command": "node scripts/calc-technicals.js --date {{date}} --include-stage2-candidates --merge-existing",
       "inputs": [
         "data/analysis-state/{{date}}/stage2-strategy-options.json",
@@ -215,7 +215,7 @@
     },
     {
       "id": "impact_map",
-      "label": "Stage 9 Impact Map",
+      "label": "09. Impact Mapping",
       "command": "node scripts/build-impact-map.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
       "inputs": [
         "data/analysis-state/{{date}}/stage1-report-extracts-v2.json",
@@ -233,7 +233,7 @@
     },
     {
       "id": "stage3_quant",
-      "label": "Stage 10 Quant Scores",
+      "label": "10. Quant Scoring",
       "command": "node scripts/build-stage3-quant-scores.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
       "inputs": [
         "data/analysis-state/{{date}}/impact-map.json",
@@ -251,7 +251,7 @@
     },
     {
       "id": "stage4_execution_plan",
-      "label": "Stage 11 Execution Plan",
+      "label": "11. Execution Plan",
       "command": "node scripts/build-stage4-execution-plan.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
       "inputs": [
         "data/analysis-state/{{date}}/stage3-quant-scores.json"
@@ -267,7 +267,7 @@
     },
     {
       "id": "stage4_execution_plan_table",
-      "label": "Stage 12 Execution Plan Table",
+      "label": "12. Execution Table",
       "command": "node scripts/export-stage4-execution-plan-table.js --date {{date}} --output reports/daily/{{date}}-stage4-execution-plan-table.md --telegram-output reports/daily/{{date}}-stage4-execution-plan-telegram.txt",
       "inputs": [
         "data/analysis-state/{{date}}/stage4-execution-plan.json"
@@ -284,8 +284,31 @@
       "allow_failure": true
     },
     {
+      "id": "data_quality_audit",
+      "label": "13. Quality Gates",
+      "command": "node scripts/audit-data-quality.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
+      "inputs": [
+        "data/analysis-state/{{date}}/stage1-4-full-daily-report.json",
+        "data/analysis-state/{{date}}/stage1-4-ai-exchange.json",
+        "data/analysis-state/{{date}}/stage4-execution-plan.json"
+      ],
+      "outputs": [
+        "data/analysis-state/{{date}}/data-quality-audit.json",
+        "knowledge/daily/{{date}}-data-quality-audit.md",
+        "knowledge/daily/manual-kit/{{date}}/17-risky-claim-review-prompt.md"
+      ],
+      "depends_on": [
+        "stage4_execution_plan",
+        "stage4_execution_plan_table"
+      ],
+      "cache_key": "data-quality:{{date}}",
+      "timeout": 300000,
+      "allow_failure": false,
+      "failure_policy": "block"
+    },
+    {
       "id": "stage6_briefing_delta",
-      "label": "Stage 6 Briefing Delta",
+      "label": "06. Briefing Delta",
       "command": "node scripts/build-briefing-delta.js --date {{date}}",
       "inputs": [
         "knowledge/daily/{{date}}-gemini-briefing-rich.md"
@@ -301,7 +324,7 @@
     },
     {
       "id": "feedback_snapshot",
-      "label": "Feedback Snapshot",
+      "label": "13. Feedback Snapshot",
       "command": "node scripts/build-feedback-snapshot.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
       "inputs": [
         "data/analysis-state/{{date}}/stage3-quant-scores.json",

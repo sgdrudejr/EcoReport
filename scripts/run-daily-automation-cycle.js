@@ -121,6 +121,8 @@ function buildSameDayStatus(steps, artifacts) {
     "stage2",
     "stage4",
     "dailyBriefing",
+    "dataQuality",
+    "finalReportHtml",
     "wikiDaily",
     "systemHealth",
   ];
@@ -210,11 +212,16 @@ function buildFailureHint(stepId) {
       return "reports/daily/<date>-briefing.md 파일 존재 여부와 HTML 변환 스크립트 로그를 확인하세요.";
     case "execution_plan_table":
       return "stage4 실행계획 파일 존재 여부와 텔레그램용 표 export 스크립트 로그를 확인하세요.";
+    case "data_quality_audit":
+      return "stage1-4 full report, AI exchange JSON, stage4 실행계획의 날짜/근거/중복/실행 게이트를 확인하세요.";
+    case "final_report_html":
+      return "data-quality-audit.json, full daily report Markdown, stage4 실행계획 파일이 모두 있는지 확인하세요.";
     case "stage6_briefing_delta":
       return "knowledge/daily/<date>-gemini-briefing-rich.md 와 직전 거래일 rich briefing 존재 여부를 확인하세요.";
     case "telegram_completion":
       return "TELEGRAM_BOT_TOKEN/TELEGRAM_CHAT_ID 설정과 Telegram Bot 권한(채팅 참여/전송 권한)을 확인하세요.";
     case "verify_outputs":
+    case "verify_outputs_final":
       return "system-health 리포트의 warn/error 체크를 기준으로 빠진 산출물을 확인하세요.";
     case "push_data_branch":
       return "Git 인증과 origin/data 브랜치 push 권한을 확인하세요.";
@@ -350,6 +357,7 @@ function getStepArtifactPaths(stepId, artifacts) {
     case "stage6_briefing_delta":
       return [artifacts.briefingDeltaMarkdown, artifacts.briefingDeltaJson];
     case "verify_outputs":
+    case "verify_outputs_final":
       return [artifacts.systemHealth];
     case "push_data_branch":
       return [artifacts.automationJson];
@@ -357,6 +365,10 @@ function getStepArtifactPaths(stepId, artifacts) {
       return [artifacts.dailyBriefingHtml];
     case "execution_plan_table":
       return [artifacts.executionPlanTable, artifacts.executionPlanTelegram];
+    case "data_quality_audit":
+      return [artifacts.dataQuality, artifacts.riskyClaimReviewPrompt];
+    case "final_report_html":
+      return [artifacts.finalReportHtml];
     case "telegram_completion":
       return [artifacts.executionPlanTelegram];
     default:
@@ -802,6 +814,8 @@ function buildArtifactMap(date, logFile) {
       date,
       "stage2-enriched-report-index.json",
     ),
+    fullDailyReport: path.join(ROOT_DIR, "data", "analysis-state", date, "stage1-4-full-daily-report.json"),
+    aiExchange: path.join(ROOT_DIR, "data", "analysis-state", date, "stage1-4-ai-exchange.json"),
     stage1ResearchAgenda: path.join(
       ROOT_DIR,
       "data",
@@ -889,6 +903,16 @@ function buildArtifactMap(date, logFile) {
     dailyBriefingHtml: path.join(ROOT_DIR, "reports", "daily", `${date}-briefing.html`),
     executionPlanTable: path.join(ROOT_DIR, "reports", "daily", `${date}-stage4-execution-plan-table.md`),
     executionPlanTelegram: path.join(ROOT_DIR, "reports", "daily", `${date}-stage4-execution-plan-telegram.txt`),
+    dataQuality: path.join(ROOT_DIR, "data", "analysis-state", date, "data-quality-audit.json"),
+    riskyClaimReviewPrompt: path.join(
+      ROOT_DIR,
+      "knowledge",
+      "daily",
+      "manual-kit",
+      date,
+      "17-risky-claim-review-prompt.md",
+    ),
+    finalReportHtml: path.join(ROOT_DIR, "reports", "daily", `${date}-final.html`),
     wikiDaily: path.join(ROOT_DIR, "knowledge", "wiki", "daily", `${date}.md`),
     wikiOperatingRules: path.join(ROOT_DIR, "knowledge", "wiki", "memory", "operating-rules.md"),
     wikiResearchBacklog: path.join(ROOT_DIR, "knowledge", "wiki", "memory", "research-backlog.md"),
@@ -1597,7 +1621,7 @@ async function main() {
 
     const executionPlanTable = await runCommand({
       id: "execution_plan_table",
-      label: "Stage 19 Execution Plan Table",
+      label: "12. Execution Table",
       command: "node",
       args: [
         "scripts/export-stage4-execution-plan-table.js",
@@ -1613,6 +1637,65 @@ async function main() {
       skip: !(await fileExists(artifacts.stage4)),
     });
     await appendStep(executionPlanTable);
+
+    const dataQualityAudit = await runCommand({
+      id: "data_quality_audit",
+      label: "13. Quality Gates",
+      command: "node",
+      args: [
+        "scripts/audit-data-quality.js",
+        "--date",
+        date,
+        "--run-date",
+        runDate,
+        "--effective-market-date",
+        date,
+        "--run-id",
+        runId,
+      ],
+      logger,
+      soft: true,
+      skip: !(await fileExists(artifacts.stage4)),
+    });
+    await appendStep(dataQualityAudit);
+
+    const finalVerify = await runCommand({
+      id: "verify_outputs_final",
+      label: "13. Verify After Quality Gates",
+      command: "node",
+      args: [
+        "scripts/verify-daily-system.js",
+        "--date",
+        date,
+        "--run-date",
+        runDate,
+        "--effective-market-date",
+        date,
+        "--run-id",
+        runId,
+      ],
+      logger,
+      soft: true,
+      skip: false,
+    });
+    await appendStep(finalVerify);
+
+    const finalReportHtml = await runCommand({
+      id: "final_report_html",
+      label: "12. Final HTML",
+      command: "node",
+      args: [
+        "scripts/export-final-report-html.js",
+        "--date",
+        date,
+        "--output",
+        artifacts.finalReportHtml,
+      ],
+      logger,
+      soft: true,
+      skip: !(await fileExists(artifacts.stage4)),
+    });
+    await appendStep(finalReportHtml);
 
     systemHealth = await readJson(artifacts.systemHealth, null);
     artifactStatus = await buildArtifactStatus(artifacts);
@@ -2691,12 +2774,12 @@ async function main() {
   const executionPlanTable = isCheckpointed("execution_plan_table")
     ? checkpointResumeStep({
         id: "execution_plan_table",
-        label: "Stage 19 Execution Plan Table",
+        label: "12. Execution Table",
         artifactPath: artifacts.executionPlanTable,
       })
     : await runCommand({
         id: "execution_plan_table",
-        label: "Stage 19 Execution Plan Table",
+        label: "12. Execution Table",
         command: "node",
         args: [
           "scripts/export-stage4-execution-plan-table.js",
@@ -2712,6 +2795,83 @@ async function main() {
         skip: !(await fileExists(artifacts.stage4)),
       });
   await appendStep(executionPlanTable);
+
+  const dataQualityAudit = isCheckpointed("data_quality_audit")
+    ? checkpointResumeStep({
+        id: "data_quality_audit",
+        label: "13. Quality Gates",
+        artifactPath: artifacts.dataQuality,
+      })
+    : await runCommand({
+        id: "data_quality_audit",
+        label: "13. Quality Gates",
+        command: "node",
+        args: [
+          "scripts/audit-data-quality.js",
+          "--date",
+          date,
+          "--run-date",
+          runDate,
+          "--effective-market-date",
+          date,
+          "--run-id",
+          runId,
+        ],
+        logger,
+        soft: true,
+        skip: !(await fileExists(artifacts.stage4)),
+      });
+  await appendStep(dataQualityAudit);
+
+  const finalVerify = isCheckpointed("verify_outputs_final")
+    ? checkpointResumeStep({
+        id: "verify_outputs_final",
+        label: "13. Verify After Quality Gates",
+        artifactPath: artifacts.systemHealth,
+      })
+    : await runCommand({
+        id: "verify_outputs_final",
+        label: "13. Verify After Quality Gates",
+        command: "node",
+        args: [
+          "scripts/verify-daily-system.js",
+          "--date",
+          date,
+          "--run-date",
+          runDate,
+          "--effective-market-date",
+          date,
+          "--run-id",
+          runId,
+        ],
+        logger,
+        soft: true,
+        skip: false,
+      });
+  await appendStep(finalVerify);
+
+  const finalReportHtml = isCheckpointed("final_report_html")
+    ? checkpointResumeStep({
+        id: "final_report_html",
+        label: "12. Final HTML",
+        artifactPath: artifacts.finalReportHtml,
+      })
+    : await runCommand({
+        id: "final_report_html",
+        label: "12. Final HTML",
+        command: "node",
+        args: [
+          "scripts/export-final-report-html.js",
+          "--date",
+          date,
+          "--output",
+          artifacts.finalReportHtml,
+        ],
+        logger,
+        soft: true,
+        skip: !(await fileExists(artifacts.stage4)),
+      });
+  await appendStep(finalReportHtml);
 
   summary.generatedAt = new Date().toISOString();
   summary.overallStatus = computeOverallStatus(steps);

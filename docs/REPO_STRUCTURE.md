@@ -73,20 +73,28 @@ economy-report/
 | `npm run daily:final-output` | 기존 산출물로 경제 리포트/실행 전략만 재생성 |
 | `npm run daily:quality` | quality-gated daily runner |
 | `npm run verify` | 일일 산출물 검증 |
+| `npm run audit:data` | 정합성/근거/중복/날짜/카테고리/위험 claim 감사 |
 | `npm run audit:filing` | 파일/경로/자동화 설정 감사 |
 
-### Stage Scripts
+### Step Scripts
 
-| Stage | 주요 파일 |
+정식 단계명은 [STAGE_NAMES.md](STAGE_NAMES.md)를 기준으로 합니다. 기존 `Stage 1.4` 이름은 호환 alias입니다.
+
+| Step | 주요 파일 |
 |---|---|
-| Stage 1 | `build-report-chunk-index.js`, `build-stage1-report-extracts.js`, `build-stage2-enriched-report-index.js` |
-| Stage 1.4 | `collectors/summarize-report-chunks.py`, `build-stage1-4-research-agenda.py`, `build-stage1-4-full-daily-report.py` |
-| Stage 1.5~1.8 | `build-stage1-5-gemini-deep-research-prompt.js`, `run-gemini-deep-research-web.js`, `build-stage1-6-rich-briefing.js`, follow-up/refinement scripts |
-| Stage 2 | `build-stage2-strategy-prompt.js`, `build-stage2-strategy-qwen.py`, `build-stage2-strategy-gemini.py`, `build-stage2-strategy-claude.js` |
-| Stage 2.5 | `build-stage2-5-etf-candidates.js`, `build-impact-map.js` |
-| Stage 3 | `build-stage3-quant-scores.js` |
-| Stage 4 | `build-stage4-execution-plan.js`, `export-stage4-execution-plan-table.js` |
-| Final View | `export-final-report-html.js` |
+| 01. Report Collection | `collect-report-assets.sh`, `sync-kis-portfolio.js`, market collectors |
+| 02. Chunk Summary | `collectors/summarize-report-chunks.py`, `build-stage1-4-full-daily-report.py` |
+| 03. Report Indexing | `build-report-chunk-index.js`, `build-stage1-report-extracts.js`, `build-stage2-enriched-report-index.js` |
+| 04. Research Agenda | `build-stage1-4-research-agenda.py` |
+| 05. Deep Research | `build-stage1-5-gemini-deep-research-prompt.js`, `run-gemini-deep-research-web.js` |
+| 06. Briefing Synthesis | `build-stage1-6-rich-briefing.js`, `build-briefing-delta.js` |
+| 07. Strategy Options | `build-stage2-strategy-prompt.js`, `build-stage2-strategy-qwen.py`, `build-stage2-strategy-gemini.py`, `build-stage2-strategy-claude.js` |
+| 08. Candidate Matching | `build-stage2-5-etf-candidates.js` |
+| 09. Impact Mapping | `build-impact-map.js` |
+| 10. Quant Scoring | `build-stage3-quant-scores.js` |
+| 11. Execution Plan | `build-stage4-execution-plan.js`, `export-stage4-execution-plan-table.js` |
+| 12. Final Outputs | `export-final-report-html.js`, `run-final-output-cycle.sh` |
+| 13. Quality Gates | `audit-data-quality.js`, `verify-daily-system.js` |
 
 ### Supporting Scripts
 
@@ -107,7 +115,7 @@ economy-report/
 | `data/portfolio/sources/kis/` | tracked | KIS 원천 스냅샷 일부 |
 | `data/feedback/` | tracked | 피드백 분석, challenger 결과 |
 | `data/external/kis-etf/` | tracked | KIS ETF 후보 보조 데이터 |
-| `data/analysis-state/` | ignored | 날짜별 Stage 1~4 실행 산출물 |
+| `data/analysis-state/` | ignored | 날짜별 01~13 실행 산출물과 품질 게이트 |
 | `data/reports/` | ignored | PDF, 텍스트, RAG, 수집 manifest |
 | `data/market/`, `data/technical/` | ignored | 날짜별 시장/기술 데이터 |
 | `data/stockeasy/` | ignored | StockEasy raw capture |

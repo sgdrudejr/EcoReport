@@ -80,13 +80,24 @@
     .health { display: inline-block; border-radius: 999px; padding: 4px 10px; font-size: 0.82rem; font-weight: 800; margin-bottom: 8px; }
     .health.ok { color: var(--teal); background: var(--green-bg); }
     .health.warn { color: var(--amber); background: var(--amber-bg); }
+    .health.error { color: var(--rose); background: var(--rose-bg); }
+    .quality-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 12px 0 18px; }
+    .quality-item { border: 1px solid var(--line); border-radius: 8px; padding: 12px; min-width: 0; }
+    .quality-item strong { display: block; margin-bottom: 4px; }
+    .quality-item span, .muted { color: var(--muted); font-size: 0.92rem; }
+    .quality-item.warn { background: var(--amber-bg); }
+    .quality-item.error { background: var(--rose-bg); }
+    .risk-list { display: grid; gap: 10px; }
+    .risk-item { border-left: 4px solid var(--amber); background: #fffaf0; padding: 10px 12px; border-radius: 0 8px 8px 0; }
+    .risk-item p { margin: 5px 0; }
+    .risk-item small { color: var(--muted); }
     .file-list { display: grid; gap: 6px; color: var(--muted); font-size: 0.92rem; }
     footer { color: var(--muted); font-size: 0.86rem; margin-top: 22px; }
     @media (max-width: 900px) {
       .layout { grid-template-columns: 1fr; padding: 16px; }
       nav { position: static; display: flex; flex-wrap: wrap; gap: 4px; }
       nav a { padding: 7px 9px; }
-      .metrics, .account-metrics, .split { grid-template-columns: 1fr; }
+      .metrics, .account-metrics, .split, .quality-grid { grid-template-columns: 1fr; }
       .hero-inner { padding: 28px 16px 18px; }
       .band { padding: 16px; }
     }
@@ -117,6 +128,7 @@
       <a href="#summary">요약</a>
       <a href="#execution">실행 전략</a>
       <a href="#economy">경제 리포트</a>
+      <a href="#quality">품질 경고</a>
       <a href="#health">검증 상태</a>
       <a href="#files">원본 파일</a>
     </nav>
@@ -274,6 +286,19 @@
   </div>
 </details>
 <details class="report-section" open>
+  <summary>품질 경고</summary>
+  <div class="markdown-body">
+    <ul>
+    <li>아래 주장은 근거가 얇거나 표현이 강해 다음 재검토 프롬프트에서 우선 확인합니다.</li>
+    <li>[warn] 반도체 섹터는 실적 턴어라운드와 AI 인프라 수요로 인해 가장 강력한 모멘텀을 보이며, 밸류에이션 재평가 단계에 진입함. (근거: report_066, report_067)</li>
+    <li>[warn] 중동 정세 완화 (휴전 협상/연장) 로 인한 위험 자산 선호 심리 확대가 방산 및 조선 섹터의 수주 호재와 결합되어 상승세를 주도함. (근거: report_066, report_067)</li>
+    <li>[warn] 대기성 자금의 유동성 재편과 개인 투자자 매수세가 시장 심리 개선과 지수 상승을 주도하고 있다. (근거: report_001, report_002)</li>
+    <li>[warn] AI 데이터센터 전력 수요 급증은 조선 및 엔진 섹터 (HD 현대중공업) 에게 대형 가스터빈 대체 수단으로서의 중속엔진 수요를 창출하는 강력한 성장 동력이다. (근거: report_004, report_009)</li>
+    <li>[warn] 조선업은 고선가 수주 물량 전환 (High-Value Order Book) 과 중동 정세로 인한 유조선 운임 상승 (BDI 강세) 으로 영업이익률 개선이 확실시된다. (근거: report_007, report_006)</li>
+    </ul>
+  </div>
+</details>
+<details class="report-section" open>
   <summary>인사이트 레이더</summary>
   <div class="markdown-body">
     <h3>새롭고 강한 신호</h3>
@@ -303,7 +328,7 @@
     </ul>
   </div>
 </details>
-<details class="report-section" open>
+<details class="report-section">
   <summary>오늘의 컨센서스</summary>
   <div class="markdown-body">
     <h3>Daily 신한생각 (2건)</h3>
@@ -591,11 +616,30 @@
   </div>
 </details>
       </section>
+      <section id="quality" class="band">
+        <h2>품질 경고</h2>
+        <span class="health warn">WARN</span>
+<p>실행 후보 노출 정책: <strong>validated_only</strong>. 위험 claim은 전체 재요약 없이 작은 프롬프트로만 재검토합니다.</p>
+<div class="quality-grid"><div class="quality-item warn"><strong>duplicate_claims</strong><span>중복 claim fingerprint 15개 / 총 claim 83개</span></div><div class="quality-item warn"><strong>risky_claims</strong><span>위험/근거 약한 claim 21개를 mini prompt로 격리</span></div></div>
+<h3>경고/보류/근거 약함 Claim</h3>
+<div class="risk-list">
+<div class="risk-item"><strong>[low] claim_001_169584</strong><p>반도체 섹터는 실적 턴어라운드와 AI 인프라 수요로 인해 가장 강력한 모멘텀을 보이며, 밸류에이션 재평가 단계에 진입함.</p><small>risky_language</small></div>
+<div class="risk-item"><strong>[low] claim_002_704092</strong><p>중동 정세 완화 (휴전 협상/연장) 로 인한 위험 자산 선호 심리 확대가 방산 및 조선 섹터의 수주 호재와 결합되어 상승세를 주도함.</p><small>risky_language</small></div>
+<div class="risk-item"><strong>[low] claim_004_07cddd</strong><p>대기성 자금의 유동성 재편과 개인 투자자 매수세가 시장 심리 개선과 지수 상승을 주도하고 있다.</p><small>risky_language</small></div>
+<div class="risk-item"><strong>[low] claim_005_4076e3</strong><p>AI 데이터센터 전력 수요 급증은 조선 및 엔진 섹터 (HD 현대중공업) 에게 대형 가스터빈 대체 수단으로서의 중속엔진 수요를 창출하는 강력한 성장 동력이다.</p><small>risky_language</small></div>
+<div class="risk-item"><strong>[low] claim_006_da1d9c</strong><p>조선업은 고선가 수주 물량 전환 (High-Value Order Book) 과 중동 정세로 인한 유조선 운임 상승 (BDI 강세) 으로 영업이익률 개선이 확실시된다.</p><small>risky_language</small></div>
+<div class="risk-item"><strong>[high] claim_010_89cb6f</strong><p>비대면/비대면 치료제 및 헬스케어 섹터 (일라이 릴리, 바이오텍) 는 임상 데이터와 심혈관 효과 입증으로 강력한 성장 모멘텀을 보임.</p><small>thin_evidence, risky_language, hold</small></div>
+<div class="risk-item"><strong>[low] claim_015_67dec8</strong><p>반도체 업종 (특히 AI 데이터센터 관련) 이 현재 시장의 가장 강력한 성장 동력이며, SK하이닉스와 삼성전자의 실적 모멘텀이 지속될 것이다.</p><small>single_source_family, risky_language</small></div>
+<div class="risk-item"><strong>[low] claim_017_256f2f</strong><p>전통 산업 (항공, 담배) 에서도 구조적 개선 (흑자 전환, Smoke-Free 전환) 이 실적 상회로 이어지고 있음.</p><small>risky_language</small></div>
+</div>
+<p class="muted">Mini review prompt: knowledge/daily/manual-kit/2026-04-24/17-risky-claim-review-prompt.md</p>
+      </section>
       <section id="health" class="band">
         <h2>검증 상태</h2>
         <span class="health warn">WARN</span>
 <ul>
 <li><strong>stage1_quality</strong>: contamination 0.00 / weak_claim 0.75</li>
+<li><strong>data_quality</strong>: overall warn / risky 21건</li>
 <li><strong>llm_wiki_daily</strong>: daily wiki 누락</li>
 <li><strong>followup_research_map</strong>: follow-up reindex map 없음</li>
 <li><strong>followup_deep_research_prompt</strong>: 2차 Deep Research 프롬프트 없음</li>
@@ -609,9 +653,11 @@
         <h2>원본 파일</h2>
         <div class="file-list">
           <div>경제 리포트: knowledge/daily/2026-04-24-full-daily-report.md</div>
+          <div>AI 교환 JSON: data/analysis-state/2026-04-24/stage1-4-ai-exchange.json</div>
+          <div>품질 감사: data/analysis-state/2026-04-24/data-quality-audit.json</div>
           <div>실행 전략: reports/daily/2026-04-24-stage4-execution-plan.md</div>
           <div>실행 전략 표: reports/daily/2026-04-24-stage4-execution-plan-table.md</div>
-          <div>HTML 생성 시각: 2026-04-26T15:56:30.365Z</div>
+          <div>HTML 생성 시각: 2026-04-26T16:43:37.638Z</div>
         </div>
       </section>
       <footer>EcoReport static HTML. No external assets, no API calls.</footer>
