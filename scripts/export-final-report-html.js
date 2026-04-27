@@ -294,10 +294,17 @@ function renderDataQuality(dataQuality) {
   }
   const status = dataQuality.overallStatus ?? "warn";
   const checks = (dataQuality.checks ?? []).filter((item) => item.status !== "ok");
+  const benchmarkCheck = (dataQuality.checks ?? []).find((item) => item.key === "benchmark_pattern_alignment");
   const riskyClaims = dataQuality.riskyClaims ?? [];
   return [
     `<span class="health ${escapeHtml(status === "ok" ? "ok" : status === "error" ? "error" : "warn")}">${escapeHtml(status.toUpperCase())}</span>`,
     `<p>실행 후보 노출 정책: <strong>${escapeHtml(dataQuality.guardrails?.executionBuyPolicy ?? "validated_only")}</strong>. 위험 claim은 전체 재요약 없이 작은 프롬프트로만 재검토합니다.</p>`,
+    benchmarkCheck
+      ? [
+          '<h3>AI 리서치 벤치마크 적용</h3>',
+          `<div class="quality-grid"><div class="quality-item ${escapeHtml(benchmarkCheck.status)}"><strong>${escapeHtml(benchmarkCheck.key)}</strong><span>${escapeHtml(benchmarkCheck.detail ?? benchmarkCheck.status)}</span></div></div>`,
+        ].join("\n")
+      : "",
     checks.length
       ? `<div class="quality-grid">${checks
           .map(
@@ -424,6 +431,7 @@ function buildHtml({ date, dailyMarkdown, fullReport, stage4, systemHealth, data
     .quality-item span, .muted { color: var(--muted); font-size: 0.92rem; }
     .quality-item.warn { background: var(--amber-bg); }
     .quality-item.error { background: var(--rose-bg); }
+    .quality-item.ok { background: var(--green-bg); }
     .risk-list { display: grid; gap: 10px; }
     .risk-item { border-left: 4px solid var(--amber); background: #fffaf0; padding: 10px 12px; border-radius: 0 8px 8px 0; }
     .risk-item p { margin: 5px 0; }
