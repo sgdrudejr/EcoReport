@@ -100,6 +100,7 @@
     "portfolio:rag": "node scripts/build-portfolio-rag-corpus.js",
     "parallel:rag": "node scripts/build-parallel-rag-corpus.js",
     "parallel:search": "node scripts/search-parallel-rag.js",
+    "llm:exchange": "node scripts/build-llm-exchange-packets.js",
     "fetch:rss": "node scripts/fetch-rss-news.js",
     "fetch:twitter": "node scripts/fetch-twitter.js",
     "fetch:market": "node scripts/fetch-market-data.js",

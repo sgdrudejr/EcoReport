@@ -299,6 +299,10 @@ async function main() {
     atoms: path.join(stateDir, "stage1-4-insight-atoms.json"),
     stage2: path.join(stateDir, "stage2-strategy-options.json"),
     stage4: path.join(stateDir, "stage4-execution-plan.json"),
+    llmExchangeManifest: path.join(stateDir, "llm-exchange", "manifest.json"),
+    llmResearchContext: path.join(stateDir, "llm-exchange", "research-context.v1.json"),
+    llmActionContext: path.join(stateDir, "llm-exchange", "portfolio-action-context.v1.json"),
+    llmClaimReviewContext: path.join(stateDir, "llm-exchange", "claim-review-context.v1.json"),
     reportIndex: path.join(ROOT_DIR, "data", "reports", args.date, "index.json"),
     textManifest: path.join(ROOT_DIR, "data", "reports", args.date, "text-manifest.json"),
     humanMarkdown: path.join(ROOT_DIR, "knowledge", "daily", `${args.date}-full-daily-report.md`),
@@ -311,6 +315,7 @@ async function main() {
     atomPayload,
     stage2,
     stage4,
+    llmExchangeManifest,
     reportIndex,
     textManifest,
     humanMarkdown,
@@ -320,6 +325,7 @@ async function main() {
     readJson(paths.atoms, null),
     readJson(paths.stage2, null),
     readJson(paths.stage4, null),
+    readJson(paths.llmExchangeManifest, null),
     readJson(paths.reportIndex, null),
     readJson(paths.textManifest, null),
     readText(paths.humanMarkdown, ""),
@@ -345,13 +351,29 @@ async function main() {
   addCheck(
     checks,
     "human_ai_split",
-    artifactExistence.aiExchange && humanMarkdown.trim().length > 0 ? "ok" : "warn",
-    artifactExistence.aiExchange
-      ? "사람용 Markdown과 AI 교환용 압축 JSON이 분리됨"
-      : "AI 교환용 stage1-4-ai-exchange.json이 아직 없음",
+    artifactExistence.aiExchange && artifactExistence.llmExchangeManifest && humanMarkdown.trim().length > 0 ? "ok" : "warn",
+    artifactExistence.aiExchange && artifactExistence.llmExchangeManifest
+      ? "사람용 Markdown, stage1-4-ai-exchange, llm-exchange 패킷이 분리됨"
+      : "AI 교환용 stage1-4-ai-exchange.json 또는 llm-exchange/manifest.json이 아직 없음",
   );
 
-  const metadataRows = [fullReport, aiExchange, stage4].filter(Boolean);
+  const packetWarnings = (llmExchangeManifest?.packets ?? []).filter((item) => {
+    if (typeof item.approxTokens !== "number" || typeof item.maxApproxTokens !== "number") return false;
+    return item.approxTokens > item.maxApproxTokens;
+  });
+  addCheck(
+    checks,
+    "llm_packet_budget",
+    packetWarnings.length ? "warn" : artifactExistence.llmExchangeManifest ? "ok" : "warn",
+    artifactExistence.llmExchangeManifest
+      ? packetWarnings.length
+        ? `토큰 예산 초과 패킷: ${packetWarnings.map((item) => item.key).join(", ")}`
+        : `LLM 교환 패킷 ${llmExchangeManifest?.packets?.length ?? 0}개가 예산 내 생성됨`
+      : "LLM 교환 패킷 manifest 누락",
+    { packetWarnings },
+  );
+
+  const metadataRows = [fullReport, aiExchange, stage4, llmExchangeManifest].filter(Boolean);
   const dateSet = new Set(metadataRows.map((item) => item.date).filter(Boolean));
   const runDateSet = new Set(metadataRows.map((item) => item.runDate).filter(Boolean));
   const effectiveSet = new Set(metadataRows.map((item) => item.effectiveMarketDate).filter(Boolean));

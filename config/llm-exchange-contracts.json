@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Separate human-readable EcoReport outputs from token-efficient AI-to-AI exchange packets.",
+  "sourceLearnings": [
+    {
+      "name": "Bloomberg AI",
+      "url": "https://professional.bloomberg.com/solutions/ai",
+      "pattern": "Responses are grounded in trusted data with transparent attribution and source-text access."
+    },
+    {
+      "name": "Fiscal.ai",
+      "url": "https://fiscal.ai/",
+      "pattern": "AI summaries sit beside financial data, KPI data, dashboards, notifications, and click-through auditability."
+    },
+    {
+      "name": "AlphaSense",
+      "url": "https://www.alpha-sense.com/solutions/generative-ai-investment-research",
+      "pattern": "Premium documents, broker reports, news, semantic search, and sentiment are combined for qualitative research."
+    },
+    {
+      "name": "FINRA AI guidance",
+      "url": "https://www.finra.org/rules-guidance/key-topics/artificial-intelligence",
+      "pattern": "Existing securities rules continue to apply when using GenAI and LLMs."
+    }
+  ],
+  "humanArtifacts": [
+    {
+      "kind": "readable_report",
+      "path": "reports/daily/{{date}}-final.html",
+      "audience": "human",
+      "contains": ["narrative", "quality_warnings", "execution_summary", "source_file_links"]
+    },
+    {
+      "kind": "execution_strategy",
+      "path": "reports/daily/{{date}}-stage4-execution-plan-table.md",
+      "audience": "human",
+      "contains": ["account_actions", "validated_buys_only", "rejected_alternatives"]
+    }
+  ],
+  "aiPackets": [
+    {
+      "kind": "research_context",
+      "path": "data/analysis-state/{{date}}/llm-exchange/research-context.v1.json",
+      "audience": "ai_to_ai",
+      "maxApproxTokens": 18000,
+      "contains": ["claim_ids", "short_claims", "evidence_ids", "quality_flags", "next_questions"],
+      "excludes": ["long_markdown", "raw_pdf_text", "full_html"]
+    },
+    {
+      "kind": "portfolio_action_context",
+      "path": "data/analysis-state/{{date}}/llm-exchange/portfolio-action-context.v1.json",
+      "audience": "ai_to_ai",
+      "maxApproxTokens": 12000,
+      "contains": ["account_scores", "top_gaps", "validated_buys", "rejected_candidates", "allocation_policy"],
+      "excludes": ["full_holdings_history", "long_narrative"]
+    },
+    {
+      "kind": "claim_review_context",
+      "path": "data/analysis-state/{{date}}/llm-exchange/claim-review-context.v1.json",
+      "audience": "small_prompt_review",
+      "maxApproxTokens": 6000,
+      "contains": ["risky_claims_only", "review_task", "allowed_decisions"],
+      "excludes": ["non_risky_claims", "full_report"]
+    },
+    {
+      "kind": "source_audit_map",
+      "path": "data/analysis-state/{{date}}/llm-exchange/source-audit-map.v1.json",
+      "audience": "ai_to_ai",
+      "maxApproxTokens": 12000,
+      "contains": ["report_id", "title", "broker", "category", "claim_evidence_links"],
+      "excludes": ["raw_text"]
+    }
+  ],
+  "guardrails": {
+    "noGuaranteedReturns": true,
+    "validatedBuysOnly": true,
+    "sourceIdsRequiredForClaims": true,
+    "riskyClaimsUseSmallPrompt": true,
+    "humanNarrativeMustShowWarnings": true
+  }
+}

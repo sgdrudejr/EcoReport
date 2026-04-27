@@ -121,6 +121,7 @@ function buildSameDayStatus(steps, artifacts) {
     "stage2",
     "stage4",
     "dailyBriefing",
+    "llmExchangeManifest",
     "dataQuality",
     "finalReportHtml",
     "wikiDaily",
@@ -214,6 +215,9 @@ function buildFailureHint(stepId) {
       return "stage4 실행계획 파일 존재 여부와 텔레그램용 표 export 스크립트 로그를 확인하세요.";
     case "data_quality_audit":
       return "stage1-4 full report, AI exchange JSON, stage4 실행계획의 날짜/근거/중복/실행 게이트를 확인하세요.";
+    case "llm_exchange_packets":
+    case "llm_exchange_packets_final":
+      return "stage1-4 AI exchange, stage4 실행계획, data-quality-audit 입력을 확인하세요.";
     case "final_report_html":
       return "data-quality-audit.json, full daily report Markdown, stage4 실행계획 파일이 모두 있는지 확인하세요.";
     case "stage6_briefing_delta":
@@ -367,6 +371,9 @@ function getStepArtifactPaths(stepId, artifacts) {
       return [artifacts.executionPlanTable, artifacts.executionPlanTelegram];
     case "data_quality_audit":
       return [artifacts.dataQuality, artifacts.riskyClaimReviewPrompt];
+    case "llm_exchange_packets":
+    case "llm_exchange_packets_final":
+      return [artifacts.llmExchangeManifest, artifacts.llmResearchContext, artifacts.llmActionContext];
     case "final_report_html":
       return [artifacts.finalReportHtml];
     case "telegram_completion":
@@ -899,6 +906,9 @@ function buildArtifactMap(date, logFile) {
     ),
     stage2: path.join(ROOT_DIR, "data", "analysis-state", date, "stage2-strategy-options.json"),
     stage4: path.join(ROOT_DIR, "data", "analysis-state", date, "stage4-execution-plan.json"),
+    llmExchangeManifest: path.join(ROOT_DIR, "data", "analysis-state", date, "llm-exchange", "manifest.json"),
+    llmResearchContext: path.join(ROOT_DIR, "data", "analysis-state", date, "llm-exchange", "research-context.v1.json"),
+    llmActionContext: path.join(ROOT_DIR, "data", "analysis-state", date, "llm-exchange", "portfolio-action-context.v1.json"),
     dailyBriefing: path.join(ROOT_DIR, "reports", "daily", `${date}-briefing.md`),
     dailyBriefingHtml: path.join(ROOT_DIR, "reports", "daily", `${date}-briefing.html`),
     executionPlanTable: path.join(ROOT_DIR, "reports", "daily", `${date}-stage4-execution-plan-table.md`),
@@ -1638,6 +1648,27 @@ async function main() {
     });
     await appendStep(executionPlanTable);
 
+    const llmExchangePackets = await runCommand({
+      id: "llm_exchange_packets",
+      label: "13. LLM Exchange Packets",
+      command: "node",
+      args: [
+        "scripts/build-llm-exchange-packets.js",
+        "--date",
+        date,
+        "--run-date",
+        runDate,
+        "--effective-market-date",
+        date,
+        "--run-id",
+        runId,
+      ],
+      logger,
+      soft: true,
+      skip: !(await fileExists(artifacts.stage4)),
+    });
+    await appendStep(llmExchangePackets);
+
     const dataQualityAudit = await runCommand({
       id: "data_quality_audit",
       label: "13. Quality Gates",
@@ -1658,6 +1689,27 @@ async function main() {
       skip: !(await fileExists(artifacts.stage4)),
     });
     await appendStep(dataQualityAudit);
+
+    const llmExchangePacketsFinal = await runCommand({
+      id: "llm_exchange_packets_final",
+      label: "13. LLM Exchange Packets Final",
+      command: "node",
+      args: [
+        "scripts/build-llm-exchange-packets.js",
+        "--date",
+        date,
+        "--run-date",
+        runDate,
+        "--effective-market-date",
+        date,
+        "--run-id",
+        runId,
+      ],
+      logger,
+      soft: true,
+      skip: !(await fileExists(artifacts.dataQuality)),
+    });
+    await appendStep(llmExchangePacketsFinal);
 
     const finalVerify = await runCommand({
       id: "verify_outputs_final",
@@ -2796,6 +2848,33 @@ async function main() {
       });
   await appendStep(executionPlanTable);
 
+  const llmExchangePackets = isCheckpointed("llm_exchange_packets")
+    ? checkpointResumeStep({
+        id: "llm_exchange_packets",
+        label: "13. LLM Exchange Packets",
+        artifactPath: artifacts.llmExchangeManifest,
+      })
+    : await runCommand({
+        id: "llm_exchange_packets",
+        label: "13. LLM Exchange Packets",
+        command: "node",
+        args: [
+          "scripts/build-llm-exchange-packets.js",
+          "--date",
+          date,
+          "--run-date",
+          runDate,
+          "--effective-market-date",
+          date,
+          "--run-id",
+          runId,
+        ],
+        logger,
+        soft: true,
+        skip: !(await fileExists(artifacts.stage4)),
+      });
+  await appendStep(llmExchangePackets);
+
   const dataQualityAudit = isCheckpointed("data_quality_audit")
     ? checkpointResumeStep({
         id: "data_quality_audit",
@@ -2822,6 +2901,33 @@ async function main() {
         skip: !(await fileExists(artifacts.stage4)),
       });
   await appendStep(dataQualityAudit);
+
+  const llmExchangePacketsFinal = isCheckpointed("llm_exchange_packets_final")
+    ? checkpointResumeStep({
+        id: "llm_exchange_packets_final",
+        label: "13. LLM Exchange Packets Final",
+        artifactPath: artifacts.llmExchangeManifest,
+      })
+    : await runCommand({
+        id: "llm_exchange_packets_final",
+        label: "13. LLM Exchange Packets Final",
+        command: "node",
+        args: [
+          "scripts/build-llm-exchange-packets.js",
+          "--date",
+          date,
+          "--run-date",
+          runDate,
+          "--effective-market-date",
+          date,
+          "--run-id",
+          runId,
+        ],
+        logger,
+        soft: true,
+        skip: !(await fileExists(artifacts.dataQuality)),
+      });
+  await appendStep(llmExchangePacketsFinal);
 
   const finalVerify = isCheckpointed("verify_outputs_final")
     ? checkpointResumeStep({
