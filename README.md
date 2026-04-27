@@ -183,6 +183,7 @@ flowchart TD
 별도 아키텍처 문서:
 
 - 단계 이름 기준: [docs/STAGE_NAMES.md](docs/STAGE_NAMES.md)
+- AI 리서치 제품 참고 패턴: [docs/AI_INVESTMENT_RESEARCH_REFERENCES.md](docs/AI_INVESTMENT_RESEARCH_REFERENCES.md)
 
 - [PIPELINE_MAP.md](docs/PIPELINE_MAP.md)
 - [DOCS_MAP.md](docs/DOCS_MAP.md)

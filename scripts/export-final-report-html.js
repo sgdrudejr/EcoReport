@@ -510,6 +510,7 @@ function buildHtml({ date, dailyMarkdown, fullReport, stage4, systemHealth, data
         <div class="file-list">
           <div>경제 리포트: knowledge/daily/${escapeHtml(date)}-full-daily-report.md</div>
           <div>AI 교환 JSON: data/analysis-state/${escapeHtml(date)}/stage1-4-ai-exchange.json</div>
+          <div>AI 교환 패킷: data/analysis-state/${escapeHtml(date)}/llm-exchange/manifest.json</div>
           <div>품질 감사: data/analysis-state/${escapeHtml(date)}/data-quality-audit.json</div>
           <div>실행 전략: reports/daily/${escapeHtml(date)}-stage4-execution-plan.md</div>
           <div>실행 전략 표: reports/daily/${escapeHtml(date)}-stage4-execution-plan-table.md</div>

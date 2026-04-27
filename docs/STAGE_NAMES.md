@@ -29,6 +29,7 @@
 | 사람이 읽는 경제 리포트 | `knowledge/daily/YYYY-MM-DD-full-daily-report.md`, `reports/daily/YYYY-MM-DD-final.html` | 문맥, 경고, 보류, 근거 약함 표시를 포함 |
 | 실행 전략 | `reports/daily/YYYY-MM-DD-stage4-execution-plan-table.md`, `stage4-execution-plan.json` | 검증 통과 BUY만 노출하고 거절 후보는 상세에 격리 |
 | AI 교환 JSON | `data/analysis-state/YYYY-MM-DD/stage1-4-ai-exchange.json` | 긴 본문 제외, claim ID/짧은 주장/근거 ID/품질 플래그만 포함 |
+| AI 교환 패킷 | `data/analysis-state/YYYY-MM-DD/llm-exchange/*.json` | 리서치, 포트폴리오 액션, 위험 claim 재검토, 출처 감사 맵을 분리 |
 | 품질 감사 | `data/analysis-state/YYYY-MM-DD/data-quality-audit.json` | deterministic check 결과와 risky claim mini prompt 경로 포함 |
 
 ## Quality Gate Order

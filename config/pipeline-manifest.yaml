@@ -284,6 +284,31 @@
       "allow_failure": true
     },
     {
+      "id": "llm_exchange_packets",
+      "label": "13. LLM Exchange Packets",
+      "command": "node scripts/build-llm-exchange-packets.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
+      "inputs": [
+        "data/analysis-state/{{date}}/stage1-4-full-daily-report.json",
+        "data/analysis-state/{{date}}/stage1-4-ai-exchange.json",
+        "data/analysis-state/{{date}}/stage4-execution-plan.json"
+      ],
+      "outputs": [
+        "data/analysis-state/{{date}}/llm-exchange/manifest.json",
+        "data/analysis-state/{{date}}/llm-exchange/research-context.v1.json",
+        "data/analysis-state/{{date}}/llm-exchange/portfolio-action-context.v1.json",
+        "data/analysis-state/{{date}}/llm-exchange/claim-review-context.v1.json",
+        "data/analysis-state/{{date}}/llm-exchange/source-audit-map.v1.json"
+      ],
+      "depends_on": [
+        "stage4_execution_plan",
+        "stage4_execution_plan_table"
+      ],
+      "cache_key": "llm-exchange:{{date}}",
+      "timeout": 300000,
+      "allow_failure": false,
+      "failure_policy": "block"
+    },
+    {
       "id": "data_quality_audit",
       "label": "13. Quality Gates",
       "command": "node scripts/audit-data-quality.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
@@ -299,9 +324,31 @@
       ],
       "depends_on": [
         "stage4_execution_plan",
-        "stage4_execution_plan_table"
+        "stage4_execution_plan_table",
+        "llm_exchange_packets"
       ],
       "cache_key": "data-quality:{{date}}",
+      "timeout": 300000,
+      "allow_failure": false,
+      "failure_policy": "block"
+    },
+    {
+      "id": "llm_exchange_packets_final",
+      "label": "13. LLM Exchange Packets Final",
+      "command": "node scripts/build-llm-exchange-packets.js --date {{date}} --run-date {{runDate}} --effective-market-date {{effectiveMarketDate}}",
+      "inputs": [
+        "data/analysis-state/{{date}}/data-quality-audit.json",
+        "data/analysis-state/{{date}}/stage1-4-full-daily-report.json",
+        "data/analysis-state/{{date}}/stage4-execution-plan.json"
+      ],
+      "outputs": [
+        "data/analysis-state/{{date}}/llm-exchange/manifest.json",
+        "data/analysis-state/{{date}}/llm-exchange/claim-review-context.v1.json"
+      ],
+      "depends_on": [
+        "data_quality_audit"
+      ],
+      "cache_key": "llm-exchange-final:{{date}}",
       "timeout": 300000,
       "allow_failure": false,
       "failure_policy": "block"
