@@ -21,6 +21,26 @@
       "name": "FINRA AI guidance",
       "url": "https://www.finra.org/rules-guidance/key-topics/artificial-intelligence",
       "pattern": "Existing securities rules continue to apply when using GenAI and LLMs."
+    },
+    {
+      "name": "Koyfin",
+      "url": "https://www.koyfin.com/",
+      "pattern": "Portfolio, watchlist, macro dashboards, transcripts, ETF/fund coverage, and customizable visuals are one research surface."
+    },
+    {
+      "name": "The Transcript AI",
+      "url": "https://thetranscript.ai/",
+      "pattern": "Earnings intelligence is separated into executive summary, key metrics, management tone, guidance, strategic signals, red flags, Q&A dynamics, and uncertainty-aware ranking."
+    },
+    {
+      "name": "AlphaVistaAI",
+      "url": "https://alphavistaai.com/",
+      "pattern": "Specialist AI agents combine technical, fundamental, sentiment, real-time data, portfolio diversification, and investor-profile insights."
+    },
+    {
+      "name": "Motley Fool investor survey",
+      "url": "https://www.fool.com/research/survey-how-investors-are-using-generative-ai/",
+      "pattern": "Retail investors use GenAI mainly for stock research, market-trend analysis, news/filing summaries, portfolio management, and time savings; accuracy/privacy remain major concerns."
     }
   ],
   "humanArtifacts": [
@@ -76,6 +96,10 @@
     "validatedBuysOnly": true,
     "sourceIdsRequiredForClaims": true,
     "riskyClaimsUseSmallPrompt": true,
-    "humanNarrativeMustShowWarnings": true
+    "humanNarrativeMustShowWarnings": true,
+    "benchmarkPatternConfig": "config/ai-research-benchmark-patterns.json",
+    "noRawPersonalAccountDataInExternalPrompts": true,
+    "repeatableGridBeforeNarrative": true,
+    "redFlagsAndMinorityViewsRequired": true
   }
 }

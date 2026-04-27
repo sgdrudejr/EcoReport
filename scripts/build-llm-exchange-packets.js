@@ -181,6 +181,20 @@ function allocationPolicy(strategy) {
   };
 }
 
+function compactBenchmarkPatterns(benchmark) {
+  return {
+    schemaVersion: benchmark?.schemaVersion ?? null,
+    sourceNames: (benchmark?.sources ?? []).map((item) => item.name).filter(Boolean),
+    dailyResearchLenses: (benchmark?.dailyResearchLenses ?? []).map((item) => ({
+      key: item.key,
+      question: item.question,
+      requiredArtifacts: item.requiredArtifacts ?? [],
+    })),
+    packetDirectives: benchmark?.packetDirectives ?? {},
+    riskLanguage: benchmark?.riskLanguage ?? {},
+  };
+}
+
 function humanOutputManifest({ args, runMeta, dataQuality }) {
   const date = args.date;
   return {
@@ -247,6 +261,7 @@ async function main() {
     quant,
     dataQuality,
     reportIndex,
+    benchmark,
   ] = await Promise.all([
     readJson(path.join(ROOT_DIR, "config", "llm-exchange-contracts.json"), {}),
     readJson(path.join(ROOT_DIR, "config", "strategy.json"), {}),
@@ -257,6 +272,7 @@ async function main() {
     readJson(path.join(stateDir, "stage3-quant-scores.json"), null),
     readJson(path.join(stateDir, "data-quality-audit.json"), null),
     readJson(path.join(ROOT_DIR, "data", "reports", args.date, "index.json"), []),
+    readJson(path.join(ROOT_DIR, "config", "ai-research-benchmark-patterns.json"), {}),
   ]);
 
   const claims = collectClaims({ aiExchange, fullReport });
@@ -286,6 +302,7 @@ async function main() {
     effectiveMarketDate: runMeta.effectiveMarketDate,
     runId: runMeta.runId,
   };
+  const benchmarkPatterns = compactBenchmarkPatterns(benchmark);
 
   const researchContext = {
     ...baseMeta,
@@ -310,6 +327,10 @@ async function main() {
     claims: claims.slice(0, 80),
     topAtoms: atoms,
     riskyClaimIds: riskyClaims.map((item) => item.id),
+    benchmarkLenses: benchmarkPatterns.dailyResearchLenses.filter((item) =>
+      ["source_attribution", "repeatable_grid", "red_flags_and_objections"].includes(item.key),
+    ),
+    directives: benchmarkPatterns.packetDirectives.researchContext ?? [],
     nextQuestions:
       fullReport?.final_report?.presentation?.sections?.insight_radar?.questions?.slice(0, 8) ?? [],
   };
@@ -328,7 +349,12 @@ async function main() {
       buyVisibility: "validated_only",
       noGuaranteedReturns: true,
       rejectIfActionEvidenceWeak: true,
+      noRawPersonalAccountDataInExternalPrompts: true,
     },
+    benchmarkLenses: benchmarkPatterns.dailyResearchLenses.filter((item) =>
+      ["portfolio_monitoring", "validated_actions"].includes(item.key),
+    ),
+    directives: benchmarkPatterns.packetDirectives.portfolioActionContext ?? [],
     allocationPolicy: allocationPolicy(strategy),
     portfolioState: {
       portfolioScore: stage4?.portfolioScore ?? quant?.portfolio?.totalScore ?? null,
@@ -350,6 +376,11 @@ async function main() {
     },
     allowedDecisions: ["retain", "soften", "hold", "remove"],
     instruction: "전체 리포트를 다시 요약하지 말고 riskyClaims만 근거 ID 기준으로 판정한다.",
+    benchmarkLenses: benchmarkPatterns.dailyResearchLenses.filter((item) =>
+      ["red_flags_and_objections", "validated_actions"].includes(item.key),
+    ),
+    directives: benchmarkPatterns.packetDirectives.claimReviewContext ?? [],
+    riskLanguage: benchmarkPatterns.riskLanguage,
     riskyClaims,
   };
 
@@ -363,6 +394,7 @@ async function main() {
       sourceIdsOnly: true,
       approxTokenBudget: 12000,
     },
+    directives: benchmarkPatterns.packetDirectives.sourceAuditMap ?? [],
     sources,
     claimEvidenceLinks: claims.slice(0, 120).map((item) => ({
       id: item.id,
@@ -399,6 +431,7 @@ async function main() {
     },
     schemaPath: "docs/schemas/llm-exchange.v1.schema.json",
     contractConfigPath: "config/llm-exchange-contracts.json",
+    benchmarkPatternConfigPath: "config/ai-research-benchmark-patterns.json",
     guardrails: contracts.guardrails ?? {},
     packets: packets.map((packet) => ({
       key: packet.key,
@@ -412,6 +445,7 @@ async function main() {
         null,
     })),
     sourceLearnings: contracts.sourceLearnings ?? [],
+    benchmarkPatterns,
   };
   await writeJson(packetPaths.manifest, manifest);
   process.stdout.write(`${packetPaths.manifest}\n`);

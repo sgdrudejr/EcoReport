@@ -31,6 +31,7 @@ EcoReport가 수집, 텍스트화, 계좌/퀀트 결합, 검증, 기록을 맡�
 - 리포트 요약을 여러 번 평균내지 않고, 주장/숫자/촉매/리스크/신규 후보를 구조화해 보존합니다.
 - `07. Strategy Options`는 Qwen 실제 LLM 결과가 필요하며, mock fallback은 운영 경로에서 금지합니다.
 - Gemini Deep Research는 최종 요약자가 아니라 외부 검색, 반증, 최신 촉매 확인용 보조 레이어입니다.
+- Bloomberg, AlphaSense, Fiscal.ai, Koyfin, The Transcript AI, AlphaVistaAI, FINRA 경고에서 공통으로 보이는 원칙은 `config/ai-research-benchmark-patterns.json`에 고정하고, LLM 교환 패킷과 품질 감사가 이를 검사합니다.
 - 전략 비중은 `안전자산 20% / 코어 30% / 위성 섹터 50%`를 기본 축으로 보고, 위성 섹터는 카테고리/클러스터 한도로 쏠림을 제어합니다.
 - `system-health`가 `ok`인 완성 데이터만 `data` 브랜치에 push합니다.
 - Vercel 배포는 완성 데이터가 안정될 때까지 중단합니다.

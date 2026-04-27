@@ -17,7 +17,7 @@ import {
 } from "./lib/pipeline-utils.js";
 
 const RISKY_CLAIM_RE =
-  /(확실|필연|무조건|반드시|최선|몰빵|급등|폭등|구조적|강력|대세|주도|보장|will|must|guarantee|guaranteed)/i;
+  /(확실|필연|무조건|반드시|최선|몰빵|급등|폭등|구조적|강력|대세|주도|보장|무위험|대박|고수익\s*보장|will|must|guarantee|guaranteed|can't lose)/i;
 
 function compactText(value) {
   return String(value ?? "")
@@ -307,6 +307,7 @@ async function main() {
     textManifest: path.join(ROOT_DIR, "data", "reports", args.date, "text-manifest.json"),
     humanMarkdown: path.join(ROOT_DIR, "knowledge", "daily", `${args.date}-full-daily-report.md`),
     finalHtml: path.join(ROOT_DIR, "reports", "daily", `${args.date}-final.html`),
+    benchmarkPatterns: path.join(ROOT_DIR, "config", "ai-research-benchmark-patterns.json"),
   };
 
   const [
@@ -319,6 +320,7 @@ async function main() {
     reportIndex,
     textManifest,
     humanMarkdown,
+    benchmarkPatterns,
   ] = await Promise.all([
     readJson(paths.fullReport, null),
     readJson(paths.aiExchange, null),
@@ -329,6 +331,7 @@ async function main() {
     readJson(paths.reportIndex, null),
     readJson(paths.textManifest, null),
     readText(paths.humanMarkdown, ""),
+    readJson(paths.benchmarkPatterns, null),
   ]);
 
   const checks = [];
@@ -371,6 +374,32 @@ async function main() {
         : `LLM 교환 패킷 ${llmExchangeManifest?.packets?.length ?? 0}개가 예산 내 생성됨`
       : "LLM 교환 패킷 manifest 누락",
     { packetWarnings },
+  );
+
+  const benchmarkPatternNames = new Set((llmExchangeManifest?.benchmarkPatterns?.sourceNames ?? []).filter(Boolean));
+  const requiredBenchmarkLenses = ["source_attribution", "repeatable_grid", "portfolio_monitoring", "red_flags_and_objections", "validated_actions"];
+  const packetLensKeys = new Set(
+    [
+      ...(llmExchangeManifest?.benchmarkPatterns?.dailyResearchLenses ?? []),
+      ...(benchmarkPatterns?.dailyResearchLenses ?? []),
+    ]
+      .map((item) => item?.key)
+      .filter(Boolean),
+  );
+  const missingBenchmarkLenses = requiredBenchmarkLenses.filter((key) => !packetLensKeys.has(key));
+  addCheck(
+    checks,
+    "benchmark_pattern_alignment",
+    benchmarkPatterns && missingBenchmarkLenses.length === 0 ? "ok" : "warn",
+    benchmarkPatterns
+      ? missingBenchmarkLenses.length
+        ? `벤치마크 리서치 렌즈 누락: ${missingBenchmarkLenses.join(", ")}`
+        : `AI 리서치 벤치마크 렌즈 ${packetLensKeys.size}개 반영, source learning ${benchmarkPatternNames.size || (benchmarkPatterns.sources ?? []).length}개`
+      : "AI 리서치 벤치마크 설정 누락",
+    {
+      missingBenchmarkLenses,
+      benchmarkSourceCount: benchmarkPatternNames.size || (benchmarkPatterns?.sources ?? []).length || 0,
+    },
   );
 
   const metadataRows = [fullReport, aiExchange, stage4, llmExchangeManifest].filter(Boolean);
@@ -486,6 +515,7 @@ async function main() {
       riskyClaimPolicy: "small_prompt_review_only",
       weakEvidencePolicy: "mark_in_report_and_block_direct_action",
       duplicatePolicy: "fingerprint_dedupe_before_presentation",
+      benchmarkPatternPolicy: "source_attribution_repeatable_grid_portfolio_monitoring_red_flags_validated_actions",
     },
     artifacts: Object.fromEntries(
       Object.entries(paths).map(([key, filePath]) => [

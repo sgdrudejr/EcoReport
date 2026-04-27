@@ -157,6 +157,7 @@ StockPilot 전용 설계/로드맵 문서는 여기서 시작합니다:
 - `scripts/`: 파이프라인과 자동화 실행
 - `dashboard/`: 로컬 대시보드 UI
 - `prompts/`: LLM 프롬프트 템플릿
+- `config/ai-research-benchmark-patterns.json`: AI 투자 리서치 제품 벤치마크에서 가져온 EcoReport 리서치 렌즈와 guardrail
 
 ### 날짜별 산출물
 

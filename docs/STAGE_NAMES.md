@@ -31,6 +31,7 @@
 | AI 교환 JSON | `data/analysis-state/YYYY-MM-DD/stage1-4-ai-exchange.json` | 긴 본문 제외, claim ID/짧은 주장/근거 ID/품질 플래그만 포함 |
 | AI 교환 패킷 | `data/analysis-state/YYYY-MM-DD/llm-exchange/*.json` | 리서치, 포트폴리오 액션, 위험 claim 재검토, 출처 감사 맵을 분리 |
 | 품질 감사 | `data/analysis-state/YYYY-MM-DD/data-quality-audit.json` | deterministic check 결과와 risky claim mini prompt 경로 포함 |
+| AI 리서치 벤치마크 | `config/ai-research-benchmark-patterns.json` | 다른 AI 리서치 제품에서 가져온 출처 감사, 반복 grid, 포트폴리오 모니터링, red flag, validated action 원칙 |
 
 ### Dashboard API
 
@@ -51,3 +52,4 @@
 2. 위험 claim만 `17-risky-claim-review-prompt.md`에 모읍니다.
 3. 최종 리포트 HTML에 경고, 보류, 근거 약함 상태를 표시합니다.
 4. 실행 전략은 `validated_only` 정책을 통과한 후보만 BUY로 노출합니다.
+5. AI 리서치 벤치마크 렌즈(`source_attribution`, `repeatable_grid`, `portfolio_monitoring`, `red_flags_and_objections`, `validated_actions`)가 누락되지 않았는지 검사합니다.
