@@ -1,0 +1,396 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-04-30",
+  "runDate": "2026-04-30",
+  "effectiveMarketDate": "2026-04-30",
+  "runId": "2026-04-30-021135",
+  "generatedAt": "2026-04-30T04:02:17.694Z",
+  "overallStatus": "ok",
+  "counts": {
+    "reportIndexCount": 116,
+    "textManifestCount": 0,
+    "sourceReportCount": 116,
+    "claimCount": 66,
+    "riskyClaimCount": 15,
+    "exposedBuyCount": 2
+  },
+  "checks": [
+    {
+      "key": "required_artifacts",
+      "status": "ok",
+      "detail": "필수 산출물 존재",
+      "metric": {
+        "missing": []
+      }
+    },
+    {
+      "key": "human_ai_split",
+      "status": "ok",
+      "detail": "사람용 Markdown, stage1-4-ai-exchange, llm-exchange 패킷이 분리됨"
+    },
+    {
+      "key": "llm_packet_budget",
+      "status": "ok",
+      "detail": "LLM 교환 패킷 5개가 예산 내 생성됨",
+      "metric": {
+        "packetWarnings": []
+      }
+    },
+    {
+      "key": "benchmark_pattern_alignment",
+      "status": "ok",
+      "detail": "AI 리서치 벤치마크 렌즈 5개 반영, source learning 8개",
+      "metric": {
+        "missingBenchmarkLenses": [],
+        "benchmarkSourceCount": 8
+      }
+    },
+    {
+      "key": "metadata_consistency",
+      "status": "ok",
+      "detail": "date=2026-04-30, runDate=2026-04-30, effective=2026-04-30"
+    },
+    {
+      "key": "report_coverage",
+      "status": "ok",
+      "detail": "source_report_count=116, report_index=116, text_manifest=N/A",
+      "metric": {
+        "sourceReportCount": 116,
+        "reportIndexCount": 116,
+        "textManifestCount": 0
+      }
+    },
+    {
+      "key": "duplicate_claims",
+      "status": "ok",
+      "detail": "중복 claim fingerprint 0개 / 총 claim 66개",
+      "metric": {
+        "duplicateCount": 0,
+        "claimCount": 66
+      }
+    },
+    {
+      "key": "evidence_coverage",
+      "status": "ok",
+      "detail": "근거 없음 0개, 근거 2개 미만 45개",
+      "metric": {
+        "noEvidenceCount": 0,
+        "weakEvidenceCount": 45
+      }
+    },
+    {
+      "key": "category_coverage",
+      "status": "ok",
+      "detail": "카테고리 9개, 기타 비중 0%",
+      "metric": {
+        "categoryCount": 9,
+        "miscCount": 0
+      }
+    },
+    {
+      "key": "risky_claims",
+      "status": "ok",
+      "detail": "위험/근거 약한 claim 15개 격리 완료, 실행 전략 노출 차단",
+      "metric": {
+        "riskyClaimCount": 15,
+        "highRiskClaimCount": 9,
+        "quarantined": true
+      }
+    },
+    {
+      "key": "execution_visibility",
+      "status": "ok",
+      "detail": "실행 전략은 검증 통과 BUY만 노출",
+      "metric": {
+        "exposedBuyCount": 2,
+        "invalidVisibleBuyCount": 0
+      }
+    }
+  ],
+  "riskyClaims": [
+    {
+      "id": "claim_001_ab918b",
+      "section": "consensus",
+      "category": "Daily 신한생각",
+      "claim": "반도체 업종의 이익 상향이 KOSPI 상승 모멘텀을 주도하며, 기술적 과열 (RSI 70.9) 에도 상승 지속 가능성 있음",
+      "severity": "high",
+      "reasons": [
+        "thin_evidence",
+        "risky_language",
+        "hold"
+      ],
+      "evidenceCount": 1,
+      "sourceDiversity": 1,
+      "reviewPrompt": "근거 ID를 다시 확인하고, 과한 표현을 보류/약화/삭제 중 하나로 판정"
+    },
+    {
+      "id": "claim_003_44782c",
+      "section": "consensus",
+      "category": "경제분석",
+      "claim": "기관 매수세는 지수 상승을 주도하고 있으나, 외국인 매도 및 미국 빅테크 실적 우려로 인해 기술주 밸류체인 조정 불가피",
+      "severity": "high",
+      "reasons": [
+        "thin_evidence",
+        "risky_language",
+        "hold"
+      ],
+      "evidenceCount": 1,
+      "sourceDiversity": 1,
+      "reviewPrompt": "근거 ID를 다시 확인하고, 과한 표현을 보류/약화/삭제 중 하나로 판정"
+    },
+    {
+      "id": "claim_004_370c89",
+      "section": "consensus",
+      "category": "경제분석",
+      "claim": "중국의 기술 도약과 고금리 장기화가 글로벌 자동차 및 반도체 산업의 구조적 재편을 가속화할 것",
+      "severity": "high",
+      "reasons": [
+        "thin_evidence",
+        "risky_language",
+        "hold"
+      ],
+      "evidenceCount": 1,
+      "sourceDiversity": 1,
+      "reviewPrompt": "근거 ID를 다시 확인하고, 과한 표현을 보류/약화/삭제 중 하나로 판정"
+    },
+    {
+      "id": "claim_006_00ce00",
+      "section": "consensus",
+      "category": "산업분석",
+      "claim": "정부 주도 정책 (친환경 에너지, 실손보험 개혁, K-ICS) 이 관련 산업의 구조적 전환을 가속화하고 있다.",
+      "severity": "low",
+      "reasons": [
+        "single_source_family",
+        "risky_language"
+      ],
+      "evidenceCount": 2,
+      "sourceDiversity": 1,
+      "reviewPrompt": "근거 ID를 다시 확인하고, 과한 표현을 보류/약화/삭제 중 하나로 판정"
+    },
+    {
+      "id": "claim_020_f34baa",
+      "section": "minority",
+      "category": "산업분석",
+      "claim": "게임 및 일부 보험/통신 섹터는 규제 심의 결과와 BSR(브랜드 성장률) 둔화, IoT 회선 감소로 인해 단기적 실적 하방 압력이 구조적 성장 모멘텀보다 우세할 수 있다.",
+      "severity": "low",
+      "reasons": [
+        "single_source_family",
+        "risky_language"
+      ],
+      "evidenceCount": 2,
+      "sourceDiversity": 1,
+      "reviewPrompt": "근거 ID를 다시 확인하고, 과한 표현을 보류/약화/삭제 중 하나로 판정"
+    },
+    {
+      "id": "claim_021_a66457",
+      "section": "minority",
+      "category": "산업분석",
+      "claim": "AI 모델 개발 비용 대비 수익성 불확실성과 CSM(-) 조정 지속 가능성은 성장 모멘텀의 질적 저하를 시사한다.",
+      "severity": "low",
+      "reasons": [
+        "single_source_family",
+        "risky_language"
+      ],
+      "evidenceCount": 2,
+      "sourceDiversity": 1,
+      "reviewPrompt": "근거 ID를 다시 확인하고, 과한 표현을 보류/약화/삭제 중 하나로 판정"
+    },
+    {
+      "id": "claim_023_46cfd1",
+      "section": "minority",
+      "category": "시황정보",
+      "claim": "탄소배출권 시장이 유가 상승과 동조화되며 국내 KOC/i-KOC 가격 차이 확대는 구조적 기회",
+      "severity": "high",
+      "reasons": [
+        "thin_evidence",
+        "risky_language",
+        "hold"
+      ],
+      "evidenceCount": 1,
+      "sourceDiversity": 1,
+      "reviewPrompt": "근거 ID를 다시 확인하고, 과한 표현을 보류/약화/삭제 중 하나로 판정"
+    },
+    {
+      "id": "claim_025_b4f9cd",
+      "section": "minority",
+      "category": "종목분석",
+      "claim": "대우건설 및 한화솔루션은 실적 상회에도 불구하고 선행 주가 반영 또는 수익성 전환 지속성 불확실성으로 인해 매수 타이밍을 신중히 고려해야 함.",
+      "severity": "low",
+      "reasons": [
+        "single_source_family",
+        "risky_language"
+      ],
+      "evidenceCount": 3,
+      "sourceDiversity": 1,
+      "reviewPrompt": "근거 ID를 다시 확인하고, 과한 표현을 보류/약화/삭제 중 하나로 판정"
+    },
+    {
+      "id": "claim_028_b2edad",
+      "section": "minority",
+      "category": "투자전략",
+      "claim": "UAE 의 OPEC 탈퇴로 인해 중장기적으로 유가 하방 압력 (재정균형 유가 $49.9/bbl) 이 발생하여 에너지 섹터의 구조적 약세가 예상됨.",
+      "severity": "high",
+      "reasons": [
+        "thin_evidence",
+        "risky_language",
+        "hold"
+      ],
+      "evidenceCount": 1,
+      "sourceDiversity": 1,
+      "reviewPrompt": "근거 ID를 다시 확인하고, 과한 표현을 보류/약화/삭제 중 하나로 판정"
+    },
+    {
+      "id": "claim_030_e98084",
+      "section": "contradictions",
+      "category": "Daily 신한생각",
+      "claim": "시장 상단 확장 변수: A) 반도체 이익 상향이 지수 상승을 주도함 / B) 비반도체 업종 확산이 없으면 상승 모멘텀이 제한될 수 있음",
+      "severity": "high",
+      "reasons": [
+        "thin_evidence",
+        "risky_language",
+        "hold"
+      ],
+      "evidenceCount": 1,
+      "sourceDiversity": 1,
+      "reviewPrompt": "근거 ID를 다시 확인하고, 과한 표현을 보류/약화/삭제 중 하나로 판정"
+    },
+    {
+      "id": "claim_039_cbeeb3",
+      "section": "contradictions",
+      "category": "채권분석",
+      "claim": "BOJ 의 정책 방향성과 금리 인상 시점: A) 6 월 회의에서 추가 금리 인상 가능성이 높아짐 (물가 상방 리스크 및 위원 내 의견 불일치) / B) 4 월 회의에서 금리 동결이 확정되었으며, 6 월 이후 추가 인상 여부는 불확실하나 매파적 해석이 지배적임",
+      "severity": "low",
+      "reasons": [
+        "risky_language"
+      ],
+      "evidenceCount": 2,
+      "sourceDiversity": 2,
+      "reviewPrompt": "근거 ID를 다시 확인하고, 과한 표현을 보류/약화/삭제 중 하나로 판정"
+    },
+    {
+      "id": "claim_041_d50214",
+      "section": "contradictions",
+      "category": "투자전략",
+      "claim": "유가 전망 및 에너지 섹터 대응: A) 중동 지정학적 리스크 (호르무즈 해협 봉쇄 등) 로 인해 유가 급등 및 공급 차질 우려가 우세하여 에너지 섹터 수혜 예상 / B) UAE 의 OPEC 탈퇴 및 재정균형 유가 하락으로 인해 중장기 유가 하방 압력이 우세하여 에너지 섹터 약세 예상",
+      "severity": "low",
+      "reasons": [
+        "single_source_family",
+        "risky_language"
+      ],
+      "evidenceCount": 2,
+      "sourceDiversity": 1,
+      "reviewPrompt": "근거 ID를 다시 확인하고, 과한 표현을 보류/약화/삭제 중 하나로 판정"
+    },
+    {
+      "id": "claim_044_2c2043",
+      "section": "new_candidates",
+      "category": "신한 속보",
+      "claim": "2026 년 1 분기 조정 EBIT 43 억달러 (+22%) 달성 / 조정 EPS 3.70 달러 (+33.1%) 로 가이던스 상향 / 2026 년 10 억~15 억달러 규모의 EV 구조조정 후 손익 개선 / 관세 환급금 수령 시점 불확실성",
+      "severity": "high",
+      "reasons": [
+        "thin_evidence",
+        "risky_language",
+        "hold"
+      ],
+      "evidenceCount": 1,
+      "sourceDiversity": 1,
+      "reviewPrompt": "근거 ID를 다시 확인하고, 과한 표현을 보류/약화/삭제 중 하나로 판정"
+    },
+    {
+      "id": "claim_050_ed67ed",
+      "section": "new_candidates",
+      "category": "산업분석",
+      "claim": "2026~2028 년 총주주환원율 50% 유지로 업종 내 최고 배당 성장성 확보 / 2026 년 1 분기 실적은 컨센서스 부합 및 흑전 전환 예상 / 강력한 주주환원 정책 / 특별배당 지연 가능성 (FCF 및 배당정책 연동 구조)",
+      "severity": "high",
+      "reasons": [
+        "thin_evidence",
+        "risky_language",
+        "hold"
+      ],
+      "evidenceCount": 1,
+      "sourceDiversity": 1,
+      "reviewPrompt": "근거 ID를 다시 확인하고, 과한 표현을 보류/약화/삭제 중 하나로 판정"
+    },
+    {
+      "id": "claim_051_6b0304",
+      "section": "new_candidates",
+      "category": "종목분석",
+      "claim": "2025 년 매출 340 억 원 (+29.1%) 성장 / 영업손실 -99 억 원으로 적자 폭 축소 / 정부 디지털 전환 정책 확대 / 영업손실 지속 및 수익성 전환 불확실성",
+      "severity": "high",
+      "reasons": [
+        "thin_evidence",
+        "risky_language",
+        "hold"
+      ],
+      "evidenceCount": 1,
+      "sourceDiversity": 1,
+      "reviewPrompt": "근거 ID를 다시 확인하고, 과한 표현을 보류/약화/삭제 중 하나로 판정"
+    }
+  ],
+  "aiReviewPromptPath": "knowledge/daily/manual-kit/2026-04-30/17-risky-claim-review-prompt.md",
+  "guardrails": {
+    "executionBuyPolicy": "validated_only",
+    "riskyClaimPolicy": "small_prompt_review_only",
+    "weakEvidencePolicy": "mark_in_report_and_block_direct_action",
+    "duplicatePolicy": "fingerprint_dedupe_before_presentation",
+    "benchmarkPatternPolicy": "source_attribution_repeatable_grid_portfolio_monitoring_red_flags_validated_actions"
+  },
+  "artifacts": {
+    "fullReport": {
+      "path": "data/analysis-state/2026-04-30/stage1-4-full-daily-report.json",
+      "exists": true
+    },
+    "aiExchange": {
+      "path": "data/analysis-state/2026-04-30/stage1-4-ai-exchange.json",
+      "exists": true
+    },
+    "atoms": {
+      "path": "data/analysis-state/2026-04-30/stage1-4-insight-atoms.json",
+      "exists": true
+    },
+    "stage2": {
+      "path": "data/analysis-state/2026-04-30/stage2-strategy-options.json",
+      "exists": true
+    },
+    "stage4": {
+      "path": "data/analysis-state/2026-04-30/stage4-execution-plan.json",
+      "exists": true
+    },
+    "llmExchangeManifest": {
+      "path": "data/analysis-state/2026-04-30/llm-exchange/manifest.json",
+      "exists": true
+    },
+    "llmResearchContext": {
+      "path": "data/analysis-state/2026-04-30/llm-exchange/research-context.v1.json",
+      "exists": true
+    },
+    "llmActionContext": {
+      "path": "data/analysis-state/2026-04-30/llm-exchange/portfolio-action-context.v1.json",
+      "exists": true
+    },
+    "llmClaimReviewContext": {
+      "path": "data/analysis-state/2026-04-30/llm-exchange/claim-review-context.v1.json",
+      "exists": true
+    },
+    "reportIndex": {
+      "path": "data/reports/2026-04-30/index.json",
+      "exists": true
+    },
+    "textManifest": {
+      "path": "data/reports/2026-04-30/text-manifest.json",
+      "exists": true
+    },
+    "humanMarkdown": {
+      "path": "knowledge/daily/2026-04-30-full-daily-report.md",
+      "exists": true
+    },
+    "finalHtml": {
+      "path": "reports/daily/2026-04-30-final.html",
+      "exists": true
+    },
+    "benchmarkPatterns": {
+      "path": "config/ai-research-benchmark-patterns.json",
+      "exists": true
+    }
+  }
+}

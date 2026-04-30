@@ -1,0 +1,16 @@
+{
+  "date": "2026-04-30",
+  "generated_at": "2026-04-30T02:15:11.511Z",
+  "total_chunks": 763,
+  "report_chunks": 732,
+  "portfolio_chunks": 31,
+  "output_files": {
+    "merged_markdown": "knowledge/rag/2026-04-30/parallel-corpus.md",
+    "chunks_jsonl": "knowledge/rag/2026-04-30/parallel-chunks.jsonl",
+    "sqlite_db": "knowledge/rag/2026-04-30/parallel-rag.db"
+  },
+  "source_type_counts": {
+    "portfolio": 31,
+    "report": 732
+  }
+}

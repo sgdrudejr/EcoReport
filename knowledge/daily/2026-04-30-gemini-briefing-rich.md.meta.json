@@ -1,0 +1,49 @@
+{
+  "generated_at": "2026-04-30T03:59:17.065Z",
+  "generatedAt": "2026-04-30T03:59:17.065Z",
+  "run_id": "2026-04-30-021135",
+  "runId": "2026-04-30-021135",
+  "run_date": "2026-04-30",
+  "runDate": "2026-04-30",
+  "effective_market_date": "2026-04-30",
+  "effectiveMarketDate": "2026-04-30",
+  "date": "2026-04-30",
+  "model": "qwen3.5-122b-a10b",
+  "requested_model": "qwen3.5-397b-a17b",
+  "source": "qwen",
+  "deep_research_available": true,
+  "workflow": "stage1 + primary deep research + multi-round refinement -> rich briefing",
+  "stage1_report_count": 116,
+  "selected_extract_budget": 18,
+  "coverage_summary_report_count": 116,
+  "coverage_summary_entry_count": 116,
+  "coverage_theme_count": 7,
+  "highlight_extract_count": 9,
+  "highlight_report_count": 9,
+  "selected_extract_count": 9,
+  "selected_chunk_count": 9,
+  "used_chunk_count": 9,
+  "selected_report_count": 9,
+  "covered_report_count": 116,
+  "briefing_candidate_count": 116,
+  "merged_text_char_length": 57366,
+  "source_paths": {
+    "stage1": "/Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-30/stage1-report-extracts-v2.json",
+    "portfolio": "/Users/seo/Documents/Playground/economy-report/data/portfolio/latest.json",
+    "technical": "/Users/seo/Documents/Playground/economy-report/data/technical/2026-04-30.json",
+    "prior_briefing": "/Users/seo/Documents/Playground/economy-report/reports/daily/2026-04-30-briefing.md",
+    "deep_research": "/Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-30/09-stage1-5-gemini-deep-research-response.md",
+    "refinement_maps": [
+      "/Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-30/stage1-followup-research-map.json",
+      "/Users/seo/Documents/Playground/economy-report/data/analysis-state/2026-04-30/stage1-final-refinement-map.json"
+    ],
+    "refinement_responses": [
+      "/Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-30/13-stage1-7-gemini-follow-up-response.md",
+      "/Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-30/16-stage1-8-gemini-final-refinement-response.md"
+    ],
+    "archive_output": "/Users/seo/Documents/Playground/economy-report/knowledge/daily/manual-kit/2026-04-30/10-stage1-6-final-research-briefing.md"
+  },
+  "prompt_char_length": 57366,
+  "deep_research_char_length": 12009,
+  "prior_briefing_char_length": 2093
+}

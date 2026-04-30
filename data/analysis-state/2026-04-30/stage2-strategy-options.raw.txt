@@ -1,0 +1,248 @@
+{
+  "date": "2026-04-30",
+  "macro_view": {
+    "regime": "HIGH_VOL",
+    "confidence": "MEDIUM",
+    "summary": "반도체 모멘텀 정점과 중동 지정학적 리스크 공존, 연준 리더십 전환기로 레짐 불확실성 확대"
+  },
+  "strategy_changes": [
+    {
+      "theme": "AI 전력인프라",
+      "direction": "reduce",
+      "why_now": "RSI 85.5 과매도 구간으로 단기 조정 위험 | 반전 조건: HBM4 수율 85% 달성 뉴스로 모멘텀 재부상",
+      "source_reports": [
+        "report_076",
+        "report_091"
+      ],
+      "conflicting_reports": [
+        "report_064"
+      ],
+      "condition_probability": "MEDIUM"
+    },
+    {
+      "theme": "금/방산 헤지",
+      "direction": "reinforce",
+      "why_now": "중동 분쟁 확전 시 유가 $110 돌파 가능성 | 반전 조건: 호르무즈 해협 통행료 제재 구체화 지연",
+      "source_reports": [
+        "report_001",
+        "report_103"
+      ],
+      "conflicting_reports": [],
+      "condition_probability": "HIGH"
+    },
+    {
+      "theme": "미국 코어 인덱스",
+      "direction": "hold",
+      "why_now": "워시 의장 취임 후 AI 생산성 논리 유효하나 RSI 79+ 과열 | 반전 조건: 실업률 4.5% 상회하며 경기 둔화 신호",
+      "source_reports": [
+        "report_096",
+        "report_105"
+      ],
+      "conflicting_reports": [
+        "report_107"
+      ],
+      "condition_probability": "HIGH"
+    },
+    {
+      "theme": "국내 배당/밸류업",
+      "direction": "watch",
+      "why_now": "ISA 절세 효과 극대화 필요하나 현금 부족 | 반전 조건: 입금 시 TIGER 미국배당다우존스 우선 매수",
+      "source_reports": [
+        "report_012"
+      ],
+      "conflicting_reports": [],
+      "condition_probability": "LOW"
+    }
+  ],
+  "account_actions": [
+    {
+      "account_key": "ISA",
+      "bias": "defensive",
+      "rationale": "변동성 완충형 인컴 자산 강화, 과열 테마 축소",
+      "buy_candidates": [
+        "THEME::gold-hedge",
+        "THEME::korea-dividend"
+      ],
+      "trim_candidates": [
+        "THEME::ai-power-grid"
+      ],
+      "hold_candidates": [
+        "THEME::semiconductor-mixed"
+      ],
+      "reserve_cash_note": "현금 1 만 원으로 소량 진입 또는 다음 입금 시 즉시 집행"
+    },
+    {
+      "account_key": "PENSION",
+      "bias": "selective_add",
+      "rationale": "미국 코어 유지하되 금 헤지 비중 보강",
+      "buy_candidates": [
+        "THEME::gold-hedge",
+        "THEME::us-core-riskon"
+      ],
+      "trim_candidates": [],
+      "hold_candidates": [
+        "THEME::ai-semiconductor"
+      ],
+      "reserve_cash_note": "연금 저축 계좌 특성상 현금 확보 후 순차 매수"
+    },
+    {
+      "account_key": "KIS_MAIN",
+      "bias": "aggressive_add",
+      "rationale": "유가 상승 시 구리 선물 수익률 모니터링, 방산 유지",
+      "buy_candidates": [
+        "THEME::commodities-copper",
+        "THEME::defense-nuclear"
+      ],
+      "trim_candidates": [],
+      "hold_candidates": [
+        "THEME::korea-defense"
+      ],
+      "reserve_cash_note": "가용 현금 67 만 원 활용 분산 투자"
+    }
+  ],
+  "candidate_scores": [
+    {
+      "code": "THEME::us-core-riskon",
+      "name": "미국 코어 위험선호",
+      "stance": "hold",
+      "target_accounts": [
+        "PENSION"
+      ],
+      "horizon": "6m",
+      "confidence": "HIGH",
+      "thesis": "S&P500/나스닥 장기 복리 성장 핵심자산, 워시 의장 AI 생산성 논리 지지",
+      "risks": [
+        "기술주 쏠림 심화 변동성 확대",
+        "경기 침체 징후 포착 시 방어력 약화"
+      ],
+      "impact_chain": "direct",
+      "invalidation_trigger": "실업률 4.5% 상회 및 소비자 신뢰지수 급락"
+    },
+    {
+      "code": "THEME::ai-power-grid",
+      "name": "AI 전력인프라",
+      "stance": "trim",
+      "target_accounts": [
+        "ISA",
+        "PENSION"
+      ],
+      "horizon": "1m",
+      "confidence": "MEDIUM",
+      "thesis": "데이터센터 전력 수요 확실하나 RSI 85+ 기술적 과매도 신호 명확",
+      "risks": [
+        "단기 차익 실현 매물 출회",
+        "미국 내 규제 강화 밸류에이션 부담"
+      ],
+      "impact_chain": "thematic_2nd_order",
+      "invalidation_trigger": "HBM4 양산 수율 85% 달성 뉴스 발표"
+    },
+    {
+      "code": "THEME::gold-hedge",
+      "name": "금 헤지 자산",
+      "stance": "buy",
+      "target_accounts": [
+        "ISA",
+        "PENSION"
+      ],
+      "horizon": "3m",
+      "confidence": "HIGH",
+      "thesis": "중동 분쟁 확전 시 안전자산 수요, RSI 39 과매도 구간",
+      "risks": [
+        "달러 강세 지속 시 추가 조정",
+        "선물 롤오버 비용 장기 보유 손실"
+      ],
+      "impact_chain": "direct",
+      "invalidation_trigger": "WTI 유가 $80 이하로 급락 및 호르무즈 해협 개방"
+    },
+    {
+      "code": "THEME::defense-nuclear",
+      "name": "방산 원자력",
+      "stance": "buy",
+      "target_accounts": [
+        "KIS_MAIN"
+      ],
+      "horizon": "3m",
+      "confidence": "MEDIUM",
+      "thesis": "지정학적 리스크 헤지, 폴란드 양산 계약 체결 가시화",
+      "risks": [
+        "수주 물량 지연 고정비 부담",
+        "특수선 해양 부문 적자 확대 가능성"
+      ],
+      "impact_chain": "thematic_2nd_order",
+      "invalidation_trigger": "중동 휴전 협상 타결로 방산 모멘텀 약화"
+    },
+    {
+      "code": "THEME::semiconductor-mixed",
+      "name": "반도체 채권혼합",
+      "stance": "hold",
+      "target_accounts": [
+        "ISA",
+        "PENSION"
+      ],
+      "horizon": "6m",
+      "confidence": "HIGH",
+      "thesis": "삼성전자/SK하이닉스 업사이드와 채권 안정성 동시 향유",
+      "risks": [
+        "HBM4 수율 경쟁 주도권 상실",
+        "반도체 업황 정점 접근 변동성 증가"
+      ],
+      "impact_chain": "direct",
+      "invalidation_trigger": "메모리 가격 상승 폭 재확인 실패"
+    },
+    {
+      "code": "THEME::korea-dividend",
+      "name": "국내 배당 가치업",
+      "stance": "watch",
+      "target_accounts": [
+        "ISA"
+      ],
+      "horizon": "3m",
+      "confidence": "LOW",
+      "thesis": "ISA 절세 효과 극대화, 국내 우량 배당주 중심 재분배",
+      "risks": [
+        "신규 진입 현금 부족",
+        "시장 구조 변화 배당 매력 하락"
+      ],
+      "impact_chain": "thematic_2nd_order",
+      "invalidation_trigger": "ISA 입금 계획 지연 또는 취소"
+    },
+    {
+      "code": "THEME::commodities-copper",
+      "name": "구리 원자재",
+      "stance": "buy",
+      "target_accounts": [
+        "KIS_MAIN"
+      ],
+      "horizon": "3m",
+      "confidence": "MEDIUM",
+      "thesis": "유가 상승 시 구리 선물 수익률 모니터링, 인플레이션 헤지",
+      "risks": [
+        "중국 경기 둔화 수요 감소",
+        "원자재 가격 변동성 확대"
+      ],
+      "impact_chain": "thematic_2nd_order",
+      "invalidation_trigger": "WTI 유가 $100 상회 지속 실패"
+    },
+    {
+      "code": "THEME::korea-defense",
+      "name": "한국 방산",
+      "stance": "hold",
+      "target_accounts": [
+        "KIS_MAIN"
+      ],
+      "horizon": "6m",
+      "confidence": "HIGH",
+      "thesis": "현대로템 HD현대중공업 등 방산 수주 파이프라인 구체화",
+      "risks": [
+        "수주 지연 초기 비용 반영 일시적 둔화",
+        "국제 관계 변화 수출 리스크"
+      ],
+      "impact_chain": "direct",
+      "invalidation_trigger": "폴란드 현지 양산 계약 체결 지연"
+    }
+  ],
+  "portfolio_risks": [
+    "중동 분쟁 확전 유가 $110 돌파 스태그플레이션 우려",
+    "반도체 섹터 쏠림 기술적 과열 RSI 85+ 조정 압력"
+  ]
+}

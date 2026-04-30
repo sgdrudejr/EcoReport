@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EcoReport 2026-04-30 Final</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f6f7f9;
+      --surface: #ffffff;
+      --line: #d9e0e8;
+      --ink: #111827;
+      --muted: #5b6778;
+      --teal: #0f766e;
+      --blue: #2563eb;
+      --amber: #b45309;
+      --rose: #be123c;
+      --green-bg: #e9f7f3;
+      --blue-bg: #eef4ff;
+      --amber-bg: #fff7e8;
+      --rose-bg: #fff1f2;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--bg); color: var(--ink); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.62; }
+    a { color: var(--blue); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .hero { background: var(--surface); border-bottom: 1px solid var(--line); }
+    .hero-inner { max-width: 1180px; margin: 0 auto; padding: 34px 24px 22px; }
+    .kicker { color: var(--teal); font-size: 0.82rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+    h1 { margin: 8px 0 10px; font-size: clamp(2rem, 4vw, 3.4rem); line-height: 1.08; letter-spacing: 0; }
+    .lead { max-width: 860px; color: var(--muted); font-size: 1.04rem; margin: 0; }
+    .layout { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 22px; padding: 22px 24px 44px; }
+    nav { position: sticky; top: 16px; align-self: start; background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 12px; }
+    nav a { display: block; padding: 9px 10px; border-radius: 6px; color: var(--ink); font-size: 0.94rem; }
+    nav a:hover { background: #eef2f6; text-decoration: none; }
+    main { min-width: 0; }
+    .band { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 22px; margin-bottom: 18px; }
+    h2 { margin: 0 0 14px; font-size: 1.45rem; line-height: 1.2; letter-spacing: 0; }
+    h3 { margin: 0 0 8px; font-size: 1.08rem; line-height: 1.25; letter-spacing: 0; }
+    .metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 18px; }
+    .metric { border: 1px solid var(--line); border-radius: 8px; padding: 14px; min-width: 0; }
+    .metric span, .account-metrics span { display: block; color: var(--muted); font-size: 0.78rem; margin-bottom: 4px; }
+    .metric strong, .account-metrics strong { display: block; font-size: 1.08rem; line-height: 1.2; overflow-wrap: anywhere; }
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .insight-list { display: grid; gap: 10px; }
+    .insight-item { border-left: 4px solid var(--teal); background: #fbfcfd; padding: 12px 13px; border-radius: 0 8px 8px 0; }
+    .insight-item p { margin: 6px 0; color: #263241; font-size: 0.94rem; }
+    .insight-item small { color: var(--muted); }
+    .insight-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; }
+    .insight-head span { color: var(--teal); font-weight: 800; font-size: 0.86rem; }
+    .account-card { border: 1px solid var(--line); border-radius: 8px; padding: 16px; margin: 12px 0; background: #fff; }
+    .account-head { display: flex; justify-content: space-between; gap: 18px; align-items: start; margin-bottom: 12px; }
+    .account-head p { margin: 0; color: var(--muted); font-size: 0.94rem; }
+    .account-head h3 span { color: var(--muted); font-size: 0.82rem; font-weight: 600; }
+    .account-head > strong { font-size: 1.35rem; color: var(--teal); white-space: nowrap; }
+    .account-metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin: 12px 0 14px; }
+    .account-metrics div { border: 1px solid var(--line); border-radius: 8px; padding: 10px; min-width: 0; }
+    .table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: 8px; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.92rem; background: #fff; }
+    th, td { text-align: left; vertical-align: top; padding: 10px 11px; border-bottom: 1px solid var(--line); }
+    th { background: #f1f4f7; color: #334155; font-size: 0.78rem; text-transform: uppercase; }
+    tr:last-child td { border-bottom: 0; }
+    .badge { display: inline-block; min-width: 58px; text-align: center; border-radius: 999px; padding: 3px 8px; font-size: 0.75rem; font-weight: 800; }
+    .buy { color: var(--teal); background: var(--green-bg); }
+    .hold { color: var(--blue); background: var(--blue-bg); }
+    .watch { color: var(--amber); background: var(--amber-bg); }
+    .trim { color: var(--rose); background: var(--rose-bg); }
+    .none { color: var(--muted); background: #eef2f6; }
+    .detail-box, .report-section { border: 1px solid var(--line); border-radius: 8px; padding: 0; margin-top: 12px; background: #fff; }
+    summary { cursor: pointer; font-weight: 800; padding: 13px 14px; }
+    .detail-box > p, .detail-box > ul { margin: 0 14px 14px; }
+    .markdown-body { padding: 0 16px 16px; }
+    .markdown-body h1 { font-size: 1.7rem; }
+    .markdown-body h2 { margin-top: 1.2em; }
+    .markdown-body h3 { margin-top: 1em; color: #1f2937; }
+    .markdown-body p, .markdown-body li { overflow-wrap: anywhere; }
+    .markdown-body ul { padding-left: 1.1rem; }
+    .health { display: inline-block; border-radius: 999px; padding: 4px 10px; font-size: 0.82rem; font-weight: 800; margin-bottom: 8px; }
+    .health.ok { color: var(--teal); background: var(--green-bg); }
+    .health.warn { color: var(--amber); background: var(--amber-bg); }
+    .health.error { color: var(--rose); background: var(--rose-bg); }
+    .quality-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin: 12px 0 18px; }
+    .quality-item { border: 1px solid var(--line); border-radius: 8px; padding: 12px; min-width: 0; }
+    .quality-item strong { display: block; margin-bottom: 4px; }
+    .quality-item span, .muted { color: var(--muted); font-size: 0.92rem; }
+    .quality-item.warn { background: var(--amber-bg); }
+    .quality-item.error { background: var(--rose-bg); }
+    .quality-item.ok { background: var(--green-bg); }
+    .risk-list { display: grid; gap: 10px; }
+    .risk-item { border-left: 4px solid var(--amber); background: #fffaf0; padding: 10px 12px; border-radius: 0 8px 8px 0; }
+    .risk-item p { margin: 5px 0; }
+    .risk-item small { color: var(--muted); }
+    .file-list { display: grid; gap: 6px; color: var(--muted); font-size: 0.92rem; }
+    footer { color: var(--muted); font-size: 0.86rem; margin-top: 22px; }
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; padding: 16px; }
+      nav { position: static; display: flex; flex-wrap: wrap; gap: 4px; }
+      nav a { padding: 7px 9px; }
+      .metrics, .account-metrics, .split, .quality-grid { grid-template-columns: 1fr; }
+      .hero-inner { padding: 28px 16px 18px; }
+      .band { padding: 16px; }
+    }
+    @media print {
+      body { background: #fff; }
+      nav { display: none; }
+      .layout { display: block; padding: 0; max-width: none; }
+      .band, .account-card, .hero { border-color: #cbd5e1; break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="kicker">EcoReport Final Web View</div>
+      <h1>2026-04-30 최종 경제 리포트 & 실행 전략</h1>
+      <p class="lead">5 월 KOSPI 는 반도체 업종의 EPS 급증 (컨센서스 306 조원, +53.7%) 에 힘입어 6,200~7,500p 로 전망되며, 연간 6,000~8,600p 로 상향 조정됨. 다만 금리 인하 기대 후퇴로 인한 할인율 부담과 비반도체 업종의 실적 확산 지연이 상단 확장 변수로 작용함. / 코스피가 사상 최고치를 경신했으나 외국인 매도 지속과 미국 빅테크 실적 우려로 기술주 약세가 공존하는 양극화 장세. 기관 매수세는 지수를 방어하고 있으나, 거시적 리스크 (고금리, 지정학적 불안) 로 인해 산업별 편차가 심화될 것으로 전망됨. / AI 인프라, 친환경 에너지, 고령화 사회 대응 등 구조적 성장 모멘텀이 우세하나, 게임/은행/보...</p>
+      <div class="metrics">
+        <div class="metric"><span>분석 리포트</span><strong>113건</strong></div>
+        <div class="metric"><span>시장 분위기</span><strong>bullish</strong></div>
+        <div class="metric"><span>포트폴리오 점수</span><strong>37점</strong></div>
+        <div class="metric"><span>레짐</span><strong>BULL</strong></div>
+      </div>
+    </div>
+  </header>
+  <div class="layout">
+    <nav aria-label="페이지 이동">
+      <a href="#summary">요약</a>
+      <a href="#execution">실행 전략</a>
+      <a href="#economy">경제 리포트</a>
+      <a href="#quality">품질 경고</a>
+      <a href="#health">검증 상태</a>
+      <a href="#files">원본 파일</a>
+    </nav>
+    <main>
+      <section id="summary" class="band">
+        <h2>요약</h2>
+        <div class="split">
+          <div>
+            <h3>새롭고 강한 신호</h3>
+            <div class="insight-list">
+              <article class="insight-item">
+  <div class="insight-head"><strong>AIDC 온사이트 발전용 제품 공급 확대</strong><span>0.68</span></div>
+  <p>HD현대일렉트릭이 AIDC 온사이트 발전기 및 배전기기 공급을 확대하며 중동·유럽 초고압 수주 호조로 목표주가 150 만 원 (+23%) 상향. 1Q26 영업이익 2,583 억 원 달성하고 2Q26부터 매출 성장 재개 전망.</p>
+  <small>근거: report_091</small>
+</article>
+<article class="insight-item">
+  <div class="insight-head"><strong>건축부문 실적 서프라이즈</strong><span>0.61</span></div>
+  <p>대우건설 1분기 영업이익이 컨센서스 대비 100% 상회하며 건축부문 마진 턴어라운드를 기록함. 체코 원전 수주 기대감으로 목표주가를 49,000원으로 상향하며 매수 유지.</p>
+  <small>근거: report_044</small>
+</article>
+<article class="insight-item">
+  <div class="insight-head"><strong>이제 막 좋아지기 시작</strong><span>0.61</span></div>
+  <p>미래에셋증권은 삼성SDI의 목표주가를 100 만원으로 67% 상향 조정하며 매수를 유지했다. ESS, EV, 소형배터리 실적 성장 국면 진입과 SDC 지분 매각 기대, 북미·유럽 수주 호조로 2026 년 영업이익 흑자 전환이 예상되며 2027~2028 년 성장 가속화가 전망된다.</p>
+  <small>근거: report_075</small>
+</article>
+<article class="insight-item">
+  <div class="insight-head"><strong>HD 현대일렉트릭</strong><span>0.61</span></div>
+  <p>1 분기 영업이익 2,583 억원으로 시장 예상치 소폭 하회 / 신규수주 18 억 달러로 전 분기 최대 기록 / 2026 년 하이퍼스케일러향 배전기기 수주 레퍼런스 확보 / 중동향 프로젝트 납기 지연으로 실적 하회 가능성</p>
+  <small>근거: report_076</small>
+</article>
+            </div>
+          </div>
+          <div>
+            <h3>평균에 묻히면 안 되는 리스크</h3>
+            <div class="insight-list">
+              <article class="insight-item">
+  <div class="insight-head"><strong>듀켐바이오</strong><span>0.59</span></div>
+  <p>FDG 가 매출의 57.1% 를 차지하며 핵심 수익원을 확보했다. / 2025 년 매출 385 억 원, 영업이익 74 억 원을 기록했으나 순이익은 감소했다. / 전립선암 진단제 (FACBC) 등 신규 진단제 승인 및 상용화가 예상된다. / FDG 등 특정 제품군 매출 비중 과다로 인한 수요 변동성 리스크가 존재한다.</p>
+  <small>근거: report_030</small>
+</article>
+<article class="insight-item">
+  <div class="insight-head"><strong>세나테크놀로지</strong><span>0.56</span></div>
+  <p>1Q26 매출 438 억원, 영업이익 38 억원으로 전년 대비 감소 / 2Q26부터 모터사이클 수요 회복 및 신규사업 확대로 실적 개선 예상 / 2026 년 투르드 프랑스 공식 후원 및 사이클링 제품 출시 / 신규사업 초기 시장 진입 실패 또는 마케팅 지연 가능성</p>
+  <small>근거: report_032</small>
+</article>
+<article class="insight-item">
+  <div class="insight-head"><strong>공급력 확대 기세를 꺾는 원자재가 상승 부담</strong><span>0.56</span></div>
+  <p>금호타이어는 1분기 재고 소진으로 턴어라운드에 성공했으나, 중동 사태로 인한 유가 및 원자재 가격 상승으로 하반기 재료비율이 10~12%p 증가할 것으로 예상되어 목표주기와 실적 추정치가 하향 조정됨.</p>
+  <small>근거: report_048</small>
+</article>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="execution" class="band">
+        <h2>실행 전략</h2>
+        <p>계좌별 투입 가능 금액, 부족 자산군, 액션 후보와 검증 플래그를 한 번에 볼 수 있게 정리했습니다. BUY는 실행 후보, HOLD는 유지, WATCH는 추가 확인이 필요한 관찰 후보입니다.</p>
+        <section class="account-card">
+  <div class="account-head">
+    <div><h3>한투 ISA <span>ISA</span></h3><p>한투 ISA은 오늘은 no_action으로 유지합니다. 전략-실행 검증 후 통과한 매수 후보가 없어 no_action으로 유지</p></div>
+    <strong>27점</strong>
+  </div>
+  <div class="account-metrics">
+    <div><span>투입 가능</span><strong>19,382원</strong></div>
+    <div><span>남길 예수금</span><strong>0원</strong></div>
+    <div><span>부족 자산군</span><strong>배당/커버드콜</strong></div>
+    <div><span>우선 후보</span><strong>TIGER 미국배당+7%프리미엄다우존스</strong></div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>액션</th><th>종목</th><th>금액</th><th>긴급도</th><th>핵심 근거</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge hold">HOLD</span></td><td>RISE 삼성전자SK하이닉스채권혼합50</td><td>-</td><td>hold</td><td>웰타워 프리미엄을 (WELL) 뒷받침하는 성장 김다은  미국 최대 시니어하우징 리츠로 하이엔드 자산 중심의 포트폴리오 보유 daeun.kim@daishin.com  공급부족 장기화 속 점유율·임대료·마진 동반 개선 구간 지속 전망  대규모 투자는 주당 FFO으로 연결되며 성장 가시성 강화 투자의견 N.A (톰슨로</td></tr>
+        <tr><td><span class="badge hold">HOLD</span></td><td>KODEX 골드선물(H)</td><td>-</td><td>hold</td><td>웰타워 프리미엄을 (WELL) 뒷받침하는 성장 김다은  미국 최대 시니어하우징 리츠로 하이엔드 자산 중심의 포트폴리오 보유 daeun.kim@daishin.com  공급부족 장기화 속 점유율·임대료·마진 동반 개선 구간 지속 전망  대규모 투자는 주당 FFO으로 연결되며 성장 가시성 강화 투자의견 N.A (톰슨로</td></tr>
+        <tr><td><span class="badge hold">HOLD</span></td><td>ACE KRX금현물</td><td>-</td><td>hold</td><td>웰타워 프리미엄을 (WELL) 뒷받침하는 성장 김다은  미국 최대 시니어하우징 리츠로 하이엔드 자산 중심의 포트폴리오 보유 daeun.kim@daishin.com  공급부족 장기화 속 점유율·임대료·마진 동반 개선 구간 지속 전망  대규모 투자는 주당 FFO으로 연결되며 성장 가시성 강화 투자의견 N.A (톰슨로</td></tr>
+        <tr><td><span class="badge watch">WATCH</span></td><td>KODEX 200</td><td>-</td><td>watch</td><td>매크로는 부정 시각이며 핵심 근거는 증시 Comment (전일 아시아 증시) 증시 Comment (미국 &amp; 유럽) Midnight News ▶ 한국증시 ▶ 미국증시 ▶ ECB 1년 CPI 기대 4.0% (예상 2.8%) - 철강과 화학 섹터 강세에 상승.</td></tr>
+        <tr><td><span class="badge watch">WATCH</span></td><td>PLUS 고배당주</td><td>-</td><td>watch</td><td>현재 점수 43점. 가격/기술 데이터가 부족해 직접 연결 리포트가 부족해 기타 노출은 관찰로 유지합니다. 신규 매수 전 가격 데이터와 후속 리포트 확인이 필요합니다.</td></tr>
+        <tr><td><span class="badge watch">WATCH</span></td><td>KODEX 신재생에너지액티브</td><td>-</td><td>watch</td><td>비반도체 전체 합산 반도체와 비반도체는 밸류에이션 처리를 구분해야 한다. 반도체는 실적 서프라이 영업이익은 최근 소폭 즈와 빠른 이익 리비전으로 ROE 개선이 확인되는 영역이다. ROE-PBR 정상화 하향 조정된 바 있어 를 전체 또는 상당 부분 인정할 수 있다. 반면 비반도체는 가격 반등이 있었더라 ROE 개선에 따른</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <details class="detail-box">
+    <summary>검증 플래그와 제외 후보</summary>
+    <p><strong>validator:</strong> action_evidence_gate:TIGER 미국배당+7%프리미엄다우존스, no_action_after_validation</p>
+    <ul><li>KODEX AI전력핵심설비 - 07. Strategy Options stance가 trim라 신규 매수 후보에서 제외</li><li>TIGER 미국필라델피아AI반도체나스닥 - 07. Strategy Options stance가 hold라 신규 매수 후보에서 제외</li><li>TIGER 글로벌AI전력인프라액티브 - 07. Strategy Options stance가 trim라 신규 매수 후보에서 제외</li><li>KODEX 미국AI전력핵심인프라 - 07. Strategy Options stance가 trim라 신규 매수 후보에서 제외</li><li>TIGER 미국배당+7%프리미엄다우존스 - 실행 근거 검증 미통과(missing_code)</li></ul>
+  </details>
+</section>
+<section class="account-card">
+  <div class="account-head">
+    <div><h3>한투 연금저축 <span>PENSION</span></h3><p>한투 연금저축은 금을 우선 보강하고, TIME 글로벌AI인공지능액티브를 중심으로 12,997원 한도에서 분할 접근하는 편이 좋습니다.</p></div>
+    <strong>46점</strong>
+  </div>
+  <div class="account-metrics">
+    <div><span>투입 가능</span><strong>12,997원</strong></div>
+    <div><span>남길 예수금</span><strong>0원</strong></div>
+    <div><span>부족 자산군</span><strong>금</strong></div>
+    <div><span>우선 후보</span><strong>TIME 글로벌AI인공지능액티브</strong></div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>액션</th><th>종목</th><th>금액</th><th>긴급도</th><th>핵심 근거</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge buy">BUY</span></td><td>TIME 글로벌AI인공지능액티브</td><td>12,997원</td><td>next_tranche</td><td>미국 코어 인덱스 신호와 ETF 키워드가 일치하며 당일 등락률 +2.60% 흐름이 동행합니다.</td></tr>
+        <tr><td><span class="badge trim">TRIM</span></td><td>TIGER 미국배당다우존스</td><td>-</td><td>trim</td><td>웰타워 프리미엄을 (WELL) 뒷받침하는 성장 김다은  미국 최대 시니어하우징 리츠로 하이엔드 자산 중심의 포트폴리오 보유 daeun.kim@daishin.com  공급부족 장기화 속 점유율·임대료·마진 동반 개선 구간 지속 전망  대규모 투자는 주당 FFO으로 연결되며 성장 가시성 강화 투자의견 N.A (톰슨로</td></tr>
+        <tr><td><span class="badge hold">HOLD</span></td><td>RISE 삼성전자SK하이닉스채권혼합50</td><td>-</td><td>hold</td><td>웰타워 프리미엄을 (WELL) 뒷받침하는 성장 김다은  미국 최대 시니어하우징 리츠로 하이엔드 자산 중심의 포트폴리오 보유 daeun.kim@daishin.com  공급부족 장기화 속 점유율·임대료·마진 동반 개선 구간 지속 전망  대규모 투자는 주당 FFO으로 연결되며 성장 가시성 강화 투자의견 N.A (톰슨로</td></tr>
+        <tr><td><span class="badge hold">HOLD</span></td><td>TIGER 미국S&amp;P500</td><td>-</td><td>hold</td><td>매크로는 긍정 시각이며 핵심 근거는 웰타워 프리미엄을 (WELL) 뒷받침하는 성장 김다은  미국 최대 시니어하우징 리츠로 하이엔드 자산 중심의 포트폴리오 보유 daeun.kim@daishin.com  공급부족 장기화 속 점유율·임대료·마진 동반 개선 구간 지속 전망  대규모 투자는 주당 FFO으로 연결되며 성장</td></tr>
+        <tr><td><span class="badge watch">WATCH</span></td><td>KODEX 200</td><td>-</td><td>watch</td><td>매크로는 부정 시각이며 핵심 근거는 증시 Comment (전일 아시아 증시) 증시 Comment (미국 &amp; 유럽) Midnight News ▶ 한국증시 ▶ 미국증시 ▶ ECB 1년 CPI 기대 4.0% (예상 2.8%) - 철강과 화학 섹터 강세에 상승.</td></tr>
+        <tr><td><span class="badge watch">WATCH</span></td><td>KODEX 미국나스닥100</td><td>-</td><td>watch</td><td>현재 점수 43점. 가격/기술 데이터가 부족해 직접 종목 리포트는 약하지만 기술주, 미국 빅테크, 빅테크 신호가 연결됩니다: 기관 매수세는 지수 상승을 주도하고 있으나, 외국인 매도 및 미국 빅테크 실적 우려로 인해 기술주 밸류체인 조정 불가피</td></tr>
+        <tr><td><span class="badge watch">WATCH</span></td><td>ACE AI반도체TOP3+</td><td>-</td><td>watch</td><td>현재 점수 43점. 가격/기술 데이터가 부족해 직접 종목 리포트는 약하지만 삼성전자, 반도체 신호가 연결됩니다: 삼성전자와 SK 하이닉스를 중심으로 반도체 업종은 밸류에이션 모순 (저평가 착시) 이 발생하며, 이는 주가 상승을 견인함</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <details class="detail-box">
+    <summary>검증 플래그와 제외 후보</summary>
+    <p><strong>validator:</strong> 없음</p>
+    <ul><li>TIGER 미국필라델피아AI반도체나스닥 - 07. Strategy Options stance가 hold라 신규 매수 후보에서 제외</li><li>TIGER 미국필라델피아반도체나스닥 - 07. Strategy Options stance가 hold라 신규 매수 후보에서 제외</li><li>TIGER 글로벌AI전력인프라액티브 - 07. Strategy Options stance가 trim라 신규 매수 후보에서 제외</li><li>KODEX 미국AI전력핵심인프라 - 07. Strategy Options stance가 trim라 신규 매수 후보에서 제외</li></ul>
+  </details>
+</section>
+<section class="account-card">
+  <div class="account-head">
+    <div><h3>한투 일반 <span>KIS_MAIN</span></h3><p>한투 일반은 미국인덱스을 우선 보강하고, TIME 글로벌AI인공지능액티브를 중심으로 673,319원 한도에서 분할 접근하는 편이 좋습니다.</p></div>
+    <strong>48점</strong>
+  </div>
+  <div class="account-metrics">
+    <div><span>투입 가능</span><strong>673,319원</strong></div>
+    <div><span>남길 예수금</span><strong>0원</strong></div>
+    <div><span>부족 자산군</span><strong>미국인덱스</strong></div>
+    <div><span>우선 후보</span><strong>TIME 글로벌AI인공지능액티브</strong></div>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>액션</th><th>종목</th><th>금액</th><th>긴급도</th><th>핵심 근거</th></tr></thead>
+      <tbody>
+        <tr><td><span class="badge buy">BUY</span></td><td>TIME 글로벌AI인공지능액티브</td><td>673,319원</td><td>next_tranche</td><td>미국 코어 인덱스 신호와 ETF 키워드가 일치하며 당일 등락률 +2.60% 흐름이 동행합니다.</td></tr>
+        <tr><td><span class="badge hold">HOLD</span></td><td>현대로템</td><td>-</td><td>hold</td><td>현대로템는 중립 시각이며 핵심 근거는 현대로템 실적 추이 및 전망 (K-IFRS 연결 기준) (십억원) 1Q25 2Q25 3Q25 4Q25 1Q26P 2Q26F 3Q26F 4Q26F 2025 2026F 2027F</td></tr>
+        <tr><td><span class="badge hold">HOLD</span></td><td>KODEX 구리선물(H)</td><td>-</td><td>hold</td><td>웰타워 프리미엄을 (WELL) 뒷받침하는 성장 김다은  미국 최대 시니어하우징 리츠로 하이엔드 자산 중심의 포트폴리오 보유 daeun.kim@daishin.com  공급부족 장기화 속 점유율·임대료·마진 동반 개선 구간 지속 전망  대규모 투자는 주당 FFO으로 연결되며 성장 가시성 강화 투자의견 N.A (톰슨로</td></tr>
+        <tr><td><span class="badge hold">HOLD</span></td><td>HANARO 원자력iSelect</td><td>-</td><td>hold</td><td>020000는 긍정 시각이며 핵심 근거는 비반도체 전체 합산 반도체와 비반도체는 밸류에이션 처리를 구분해야 한다.</td></tr>
+        <tr><td><span class="badge watch">WATCH</span></td><td>HD현대중공업</td><td>-</td><td>watch</td><td>매크로는 긍정 시각이며 핵심 근거는 [공작기계 수주 또 역대 최고 갱신] [이라크 총리 지명 + 폴란드 현지 양산 + 루마니아] [IMO MEPC 84 개막]  일본의 3월 공작기계 수주액이 전년비 28% 증가한  이라크 총리 지명으로 이라크 전차 사업 재가동 기  넷제로 프레임워크의 구체화를 논의하는 IMO</td></tr>
+        <tr><td><span class="badge watch">WATCH</span></td><td>ACE AI반도체TOP3+</td><td>-</td><td>watch</td><td>현재 점수 43점. 가격/기술 데이터가 부족해 직접 종목 리포트는 약하지만 삼성전자, 반도체 신호가 연결됩니다: 삼성전자와 SK 하이닉스를 중심으로 반도체 업종은 밸류에이션 모순 (저평가 착시) 이 발생하며, 이는 주가 상승을 견인함</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <details class="detail-box">
+    <summary>검증 플래그와 제외 후보</summary>
+    <p><strong>validator:</strong> 없음</p>
+    <ul><li>TIGER 글로벌AI전력인프라액티브 - 07. Strategy Options stance가 trim라 신규 매수 후보에서 제외</li><li>KODEX 미국AI전력핵심인프라 - 07. Strategy Options stance가 trim라 신규 매수 후보에서 제외</li><li>TIGER 미국필라델피아AI반도체나스닥 - 07. Strategy Options stance가 hold라 신규 매수 후보에서 제외</li><li>TIGER 미국필라델피아반도체나스닥 - 07. Strategy Options stance가 hold라 신규 매수 후보에서 제외</li></ul>
+  </details>
+</section>
+      </section>
+      <section id="economy" class="band">
+        <h2>읽을 수 있는 경제 리포트</h2>
+        <p>아래 섹션은 70개 리포트를 통합한 본문입니다. 처음 세 섹션은 펼쳐두고, 나머지는 필요할 때 열어볼 수 있게 접었습니다.</p>
+        <details class="report-section" open>
+  <summary>한 줄 진단</summary>
+  <div class="markdown-body">
+    <ul>
+    <li>5 월 KOSPI 는 반도체 업종의 EPS 급증 (컨센서스 306 조원, +53.7%) 에 힘입어 6,200~7,500p 로 전망되며, 연간 6,000~8,600p 로 상향 조정됨. 다만 금리 인하 기대 후퇴로 인한 할인율 부담과 비반도체 업종의 실적 확산 지연이 상단 확장 변수로 작용함. / 코스피가 사상 최고치를 경신했으나 외국인 매도 지속과 미국 빅테크 실적 우려로 기술주 약세가 공존하는 양극화 장세. 기관 매수세는 지수를 방어하고 있으나, 거시적 리스크 (고금리, 지정학적 불안) 로 인해 산업별 편차가 심화될 것으로 전망됨. / AI 인프라, 친환경 에너지, 고령화 사회 대응 등 구조적 성장 모멘텀이 우세하나, 게임/은행/보험/통신 등 특정 섹터의 규제 리스크, 금리 변동성, 실적 하방 압력으로 인해 '선택과 집중'이 필수적인 구간임. 전반적으로 중장기적 성장성은 입증되나 단기 밸류에이션과 실적 변동성 간의 괴리가 존재함. / 국내 증시 (KOSPI) 는 실적 호조와 외국인…</li>
+    </ul>
+  </div>
+</details>
+<details class="report-section" open>
+  <summary>품질 경고</summary>
+  <div class="markdown-body">
+    <ul>
+    <li>아래 주장은 근거가 얇거나 표현이 강해 다음 재검토 프롬프트에서 우선 확인합니다.</li>
+    <li>[hold] 반도체 업종의 이익 상향이 KOSPI 상승 모멘텀을 주도하며, 기술적 과열 (RSI 70.9) 에도 상승 지속 가능성 있음 (근거: report_116)</li>
+    <li>[hold] 기관 매수세는 지수 상승을 주도하고 있으나, 외국인 매도 및 미국 빅테크 실적 우려로 인해 기술주 밸류체인 조정 불가피 (근거: report_001)</li>
+    <li>[hold] 중국의 기술 도약과 고금리 장기화가 글로벌 자동차 및 반도체 산업의 구조적 재편을 가속화할 것 (근거: report_001)</li>
+    <li>[warn] 정부 주도 정책 (친환경 에너지, 실손보험 개혁, K-ICS) 이 관련 산업의 구조적 전환을 가속화하고 있다. (근거: industry_batch_1, industry_batch_2)</li>
+    <li>[warn] 게임 및 일부 보험/통신 섹터는 규제 심의 결과와 BSR(브랜드 성장률) 둔화, IoT 회선 감소로 인해 단기적 실적 하방 압력이 구조적 성장 모멘텀보다 우세할 수 있다. (근거: industry_batch_1, industry_batch_2)</li>
+    </ul>
+  </div>
+</details>
+<details class="report-section" open>
+  <summary>인사이트 레이더</summary>
+  <div class="markdown-body">
+    <h3>새롭고 강한 신호</h3>
+    <ul>
+    <li><strong>AIDC 온사이트 발전용 제품 공급 확대</strong> / score 0.68: HD현대일렉트릭이 AIDC 온사이트 발전기 및 배전기기 공급을 확대하며 중동·유럽 초고압 수주 호조로 목표주가 150 만 원 (+23%) 상향. 1Q26 영업이익 2,583 억 원 달성하고 2Q26부터 매출 성장 재개 전망. (근거: report_091)</li>
+    <li><strong>건축부문 실적 서프라이즈</strong> / score 0.61: 대우건설 1분기 영업이익이 컨센서스 대비 100% 상회하며 건축부문 마진 턴어라운드를 기록함. 체코 원전 수주 기대감으로 목표주가를 49,000원으로 상향하며 매수 유지. (근거: report_044)</li>
+    <li><strong>이제 막 좋아지기 시작</strong> / score 0.61: 미래에셋증권은 삼성SDI의 목표주가를 100 만원으로 67% 상향 조정하며 매수를 유지했다. ESS, EV, 소형배터리 실적 성장 국면 진입과 SDC 지분 매각 기대, 북미·유럽 수주 호조로 2026 년 영업이익 흑자 전환이 예상되며 2027~2028 년 성장 가속화가 전망된다. (근거: report_075)</li>
+    <li><strong>HD 현대일렉트릭</strong> / score 0.61: 1 분기 영업이익 2,583 억원으로 시장 예상치 소폭 하회 / 신규수주 18 억 달러로 전 분기 최대 기록 / 2026 년 하이퍼스케일러향 배전기기 수주 레퍼런스 확보 / 중동향 프로젝트 납기 지연으로 실적 하회 가능성 (근거: report_076)</li>
+    <li><strong>수주는 강했다</strong> / score 0.60: 1 분기 영업이익은 시장 기대치에 미치지 못했으나, 북미 전력기기 시장 호황으로 신규 수주 18 억 달러를 기록하며 연간 목표 달성. 수주잔고 확대와 데이터센터 수요 증가로 중장기 성장성이 입증되어 목표주가를 150 만원으로 상향 조정함. (근거: report_064)</li>
+    <li><strong>이젠 전 사업부문이 AI 인프라 구축에 동원</strong> / score 0.60: HD 현대일렉트릭은 1 분기 실적은 시장 예상치 소폭 미달이었으나, 신규수주 18 억 달러와 북미 매출 비중 확대, 마진 개선 기대감으로 목표주가를 150 만 원으로 상향하며 투자의견 BUY 를 유지함. (근거: report_076)</li>
+    </ul>
+    <h3>평균에 묻히면 안 되는 리스크</h3>
+    <ul>
+    <li><strong>듀켐바이오</strong> / score 0.59: FDG 가 매출의 57.1% 를 차지하며 핵심 수익원을 확보했다. / 2025 년 매출 385 억 원, 영업이익 74 억 원을 기록했으나 순이익은 감소했다. / 전립선암 진단제 (FACBC) 등 신규 진단제 승인 및 상용화가 예상된다. / FDG 등 특정 제품군 매출 비중 과다로 인한 수요 변동성 리스크가 존재한다. (근거: report_030)</li>
+    <li><strong>세나테크놀로지</strong> / score 0.56: 1Q26 매출 438 억원, 영업이익 38 억원으로 전년 대비 감소 / 2Q26부터 모터사이클 수요 회복 및 신규사업 확대로 실적 개선 예상 / 2026 년 투르드 프랑스 공식 후원 및 사이클링 제품 출시 / 신규사업 초기 시장 진입 실패 또는 마케팅 지연 가능성 (근거: report_032)</li>
+    <li><strong>공급력 확대 기세를 꺾는 원자재가 상승 부담</strong> / score 0.56: 금호타이어는 1분기 재고 소진으로 턴어라운드에 성공했으나, 중동 사태로 인한 유가 및 원자재 가격 상승으로 하반기 재료비율이 10~12%p 증가할 것으로 예상되어 목표주기와 실적 추정치가 하향 조정됨. (근거: report_048)</li>
+    </ul>
+    <h3>다음 검증 질문</h3>
+    <ul>
+    <li>Daily 신한생각: 반도체 업종의 밸류에이션에서 어느 쪽이 실적/수급 데이터로 확인되는가?</li>
+    <li>Daily 신한생각: 시장 상단 확장 변수에서 어느 쪽이 실적/수급 데이터로 확인되는가?</li>
+    <li>경제분석: 기술주 밸류체인 전망에서 어느 쪽이 실적/수급 데이터로 확인되는가?</li>
+    <li>경제분석: 자동차 산업 전망에서 어느 쪽이 실적/수급 데이터로 확인되는가?</li>
+    <li>산업분석: 통신업의 성장 동력에서 어느 쪽이 실적/수급 데이터로 확인되는가?</li>
+    </ul>
+  </div>
+</details>
+<details class="report-section">
+  <summary>오늘의 컨센서스</summary>
+  <div class="markdown-body">
+    <h3>Daily 신한생각 (1건)</h3>
+    <ul>
+    <li>요약: 5 월 KOSPI 는 반도체 업종의 EPS 급증 (컨센서스 306 조원, +53.7%) 에 힘입어 6,200~7,500p 로 전망되며, 연간 6,000~8,600p 로 상향 조정됨. 다만 금리 인하 기대 후퇴로 인한 할인율 부담과 비반도체 업종의 실적 확산 지연이 상단 확장 변수로 작용함.</li>
+    <li>핵심 1: 반도체 업종의 이익 상향이 KOSPI 상승 모멘텀을 주도하며, 기술적 과열 (RSI 70.9) 에도 상승 지속 가능성 있음 (근거: report_116)</li>
+    <li>핵심 2: 삼성전자와 SK 하이닉스를 중심으로 반도체 업종은 밸류에이션 모순 (저평가 착시) 이 발생하며, 이는 주가 상승을 견인함 (근거: report_116)</li>
+    <li>보조 신호: 반도체 업종 이익 상향이 지속되며 시장 상승 모멘텀 주도 / KOSPI RSI 70.9 로 과열권 진입했으나 강세장 내 추가 상승 가능성</li>
+    </ul>
+    <h3>경제분석 (1건)</h3>
+    <ul>
+    <li>요약: 코스피가 사상 최고치를 경신했으나 외국인 매도 지속과 미국 빅테크 실적 우려로 기술주 약세가 공존하는 양극화 장세. 기관 매수세는 지수를 방어하고 있으나, 거시적 리스크 (고금리, 지정학적 불안) 로 인해 산업별 편차가 심화될 것으로 전망됨.</li>
+    <li>핵심 1: 기관 매수세는 지수 상승을 주도하고 있으나, 외국인 매도 및 미국 빅테크 실적 우려로 인해 기술주 밸류체인 조정 불가피 (근거: report_001)</li>
+    <li>핵심 2: 중국의 기술 도약과 고금리 장기화가 글로벌 자동차 및 반도체 산업의 구조적 재편을 가속화할 것 (근거: report_001)</li>
+    <li>보조 신호: 기관 매수세에 의한 지수 방어 및 상승 모멘텀 / 금융지주 실적 호조와 자산건전성 악화의 양극화</li>
+    </ul>
+    <h3>산업분석 (14건)</h3>
+    <ul>
+    <li>요약: AI 인프라, 친환경 에너지, 고령화 사회 대응 등 구조적 성장 모멘텀이 우세하나, 게임/은행/보험/통신 등 특정 섹터의 규제 리스크, 금리 변동성, 실적 하방 압력으로 인해 '선택과 집중'이 필수적인 구간임. 전반적으로 중장기적 성장성은 입증되나 단기 밸류에이션과 실적 변동성 간의 괴리가 존재함.</li>
+    <li>핵심 1: AI 인프라 및 데이터센터 수요 확대로 반도체, 통신, 에너지 섹터의 펀더멘탈이 견고해지고 있으며, 이는 중장기 성장의 핵심 동력이다. (근거: industry_batch_1, industry_batch_2)</li>
+    <li>핵심 2: 정부 주도 정책 (친환경 에너지, 실손보험 개혁, K-ICS) 이 관련 산업의 구조적 전환을 가속화하고 있다. (근거: industry_batch_1, industry_batch_2)</li>
+    <li>보조 신호: NVDA 시가총액 5,264 억 달러로 시장 지배력 확인 / 2026 년 4 월 15 일 발표된 '열에너지 혁신전략' 및 보조금 확대</li>
+    </ul>
+    <h3>시황정보 (12건)</h3>
+    <ul>
+    <li>요약: 국내 증시 (KOSPI) 는 실적 호조와 외국인/기관 매수세로 6,700pt 부근 사상 최고치 경신 모멘텀을 형성했으나, 미국 증시는 오픈AI 성장성 우려, 금리 인하 기대감 약화, 빅테크 실적 경계감으로 기술주 중심의 조정과 혼조세를 보임. 지정학적 리스크 (중동 정세) 로 유가 상승과 에너지/방산 섹터는 강세를 보였으나, AI 섹터는 밸류에이션 재평가 압력으로 국내와 해외 간 섹터 분리…</li>
+    <li>핵심 1: 국내 증시는 실적 호조와 기관/외국인 매수세로 상승 모멘텀이 우세하며 6,700pt 저항선 돌파가 핵심 변수 (근거: report_017, report_021, report_025)</li>
+    <li>핵심 2: 미국 증시는 오픈AI 매출 목표 미달 및 데이터센터 투자 회수 우려로 AI 섹터 밸류에이션 조정 압력 지속 (근거: report_018, report_020, report_025)</li>
+    <li>보조 신호: KOSPI 6,700pt 저항선 돌파 여부 / 오픈AI 및 빅테크 실적 발표 결과</li>
+    </ul>
+    <h3>신한 속보 (1건)</h3>
+    <ul>
+    <li>요약: GM 은 2026 년 1 분기 관세 환급과 비용 절감으로 조정 EBIT 마진과 EPS 가 크게 개선되며 가이던스를 상향함. EV 전략을 선택적 전동화로 전환해 손실 축소와 FCF 방어에 집중하고 소프트웨어 수익 모델이 실적 견인.</li>
+    <li>핵심 1: GM 은 2026 년 1 분기 관세 환급과 비용 절감으로 조정 EBIT 마진과 EPS 가 크게 개선될 것으로 전망되며, 이는 가이던스 상향으로 이어질 것이다. (근거: report_028)</li>
+    <li>핵심 2: GM 은 EV 전략을 선택적 전동화로 전환하여 손실 축소와 FCF 방어에 집중하고 있으며, 소프트웨어 수익 모델이 실적을 견인할 것이다. (근거: report_028)</li>
+    <li>보조 신호: EV 손실 축소 및 FCF 방어 능력에 대한 시장 재평가 기대 / 소프트웨어 수익 모델의 실적 기여도 확대</li>
+    </ul>
+    <h3>종목분석 (66건)</h3>
+    <ul>
+    <li>요약: 5 건의 리포트를 종합할 때, 건설/플랜트, 전력기기, 반도체, 배터리 섹터에서 1Q26 실적 턴어라운드와 수주 모멘텀이 지배적입니다. 특히 AI 데이터센터 확대로 인한 전력 수요 폭발과 원전/SMR 수주 호조가 구조적 강세 모멘텀으로 작용하고 있습니다. 다만, 일부 기업 (삼성 SDI, KG 모빌리티, 한화솔루션) 에서는 고밸류에이션, 지역적 리스크, 또는 실적 선반영 우려로 인해 선택적…</li>
+    <li>핵심 1: 건설 및 플랜트 섹터 (현대건설, 대우건설, HD 현대일렉트릭) 는 원전 및 AI 인프라 수주로 인해 실적 턴어라운드 및 마진 개선이 지속될 것으로 전망됨. (근거: company_batch_1, company_batch_2, company_batch_3, company_batch_4)</li>
+    <li>핵심 2: 전력기기 및 반도체 섹터는 AI 데이터센터 확대로 인한 수요 폭발과 공급 부족으로 밸류에이션 재평가 모멘텀이 우세함. (근거: company_batch_2, company_batch_3, company_batch_4, company_batch_5)</li>
+    <li>보조 신호: HD 현대일렉트릭: 데이터센터용 선박엔진 수주 및 회전기기 수주 급증 (report_036, report_040) / 삼성 SDI: 1 분기 영업이익 -1,556 억원 (컨센서스 상회) 및 4 분기 흑자전환 가시성 (report_033)</li>
+    </ul>
+    <h3>채권분석 (5건)</h3>
+    <ul>
+    <li>요약: 글로벌 채권 시장은 BOJ 의 매파적 해석 (report_095, report_099) 과 국제유가 급등에 따른 인플레이션 우려로 금리 상승 압력을 받고 있으며, 국내 국채 수익률 상승세는 신용 스프레드 확대를 유발하고 있습니다 (report_098). 특히 제이알글로벌리츠의 신용 위기 (report_097) 는 저등급 채권 시장의 유동성 위축과 신용 위험 프리미엄 상승을 가속화하고 있습니…</li>
+    <li>핵심 1: 글로벌 및 국내 채권 시장의 금리 상승 압력이 지속되며, 이는 BOJ 의 매파적 해석과 유가 상승에 기인한다. (근거: report_095, report_098, report_099)</li>
+    <li>핵심 2: 국내 국채 수익률 상승세는 신용 스프레드 확대를 유발하여 저등급 채권 시장의 유동성을 악화시킬 것이다. (근거: report_097, report_098)</li>
+    <li>보조 신호: BOJ 6 월 회의 전후로 금리 인상 기대감 확대 및 위원 발언 모니터링 (report_095) / FOMC 성명서 내 '양방향 조정' 키워드 및 파월 의장 톤앤매너 확인 (report_096)</li>
+    </ul>
+    <h3>투자전략 (12건)</h3>
+    <ul>
+    <li>요약: 한국 증시는 반도체 중심의 상승세와 AI Capex 모멘텀 지속으로 강세를 보였으나, UAE 의 OPEC 탈퇴 발표와 중동 지정학적 리스크로 인해 유가 변동성과 인플레이션 재점화 우려가 공존합니다. 반도체 쏠림 현상이 고점에 도달함에 따라 섹터 간 순환매가 예상되나, 중동 분쟁 확산 가능성은 시장 심리를 위축시키는 변수로 작용하고 있습니다.</li>
+    <li>핵심 1: 중동 지정학적 리스크 (UAE 의 OPEC 탈퇴, 호르무즈 해협) 로 인한 유가 변동성 확대 및 인플레이션 재점화 우려가 존재함. (근거: strategy_batch_1, strategy_batch_2)</li>
+    <li>핵심 2: 반도체 쏠림 현상이 고점에 근접하여 섹터 간 순환매 (에너지, 건설, 로봇, 방산) 가 도래할 것으로 전망됨. (근거: strategy_batch_1)</li>
+    <li>보조 신호: 업종 쏠림 지표 (HHI) 가 역사적 고점에 근접하여 피크아웃 신호 (strategy_batch_1) / 주식형 펀드 순유입이 AI/반도체로 집중되며 조선, 2 차전지 로테이션 병행 (strategy_batch_1)</li>
+    </ul>
+  </div>
+</details>
+<details class="report-section">
+  <summary>소수 의견 / 비컨센서스</summary>
+  <div class="markdown-body">
+    <h3>Daily 신한생각 (1건)</h3>
+    <ul>
+    <li>요약: 5 월 KOSPI 는 반도체 업종의 EPS 급증 (컨센서스 306 조원, +53.7%) 에 힘입어 6,200~7,500p 로 전망되며, 연간 6,000~8,600p 로 상향 조정됨. 다만 금리 인하 기대 후퇴로 인한 할인율 부담과 비반도체 업종의 실적 확산 지연이 상단 확장 변수로 작용함.</li>
+    <li>핵심 1: 비반도체 업종의 영업이익 리비전 플러스 전환이 지연될 경우, 반도체 중심의 상승 모멘텀이 한계에 부딪힐 수 있음 - 의미: 현재 시장 상승이 반도체 1 개 섹터에 집중되어 있어, 섹터 확산이 동반되지 않으면 지수 상단 확장이 제한될 위험이 존재함 (근거: report_116)</li>
+    <li>핵심 2: 금리 인하 기대 후퇴 (일본 금리 동결 등) 로 인한 국채 금리 상승 압력이 반도체 이익 상향을 상쇄할 가능성 있음 - 의미: 할인율 부담이 지속될 경우, 고성장 기대가 주가에 선반영된 상태에서의 추가 상승 모멘텀이 약화될 수 있음 (근거: report_116)</li>
+    <li>보조 신호: 반도체 업종 이익 상향이 지속되며 시장 상승 모멘텀 주도 / KOSPI RSI 70.9 로 과열권 진입했으나 강세장 내 추가 상승 가능성</li>
+    </ul>
+    <h3>경제분석 (1건)</h3>
+    <ul>
+    <li>요약: 코스피가 사상 최고치를 경신했으나 외국인 매도 지속과 미국 빅테크 실적 우려로 기술주 약세가 공존하는 양극화 장세. 기관 매수세는 지수를 방어하고 있으나, 거시적 리스크 (고금리, 지정학적 불안) 로 인해 산업별 편차가 심화될 것으로 전망됨.</li>
+    <li>핵심 1: SK에코플랜트 및 HD현대일렉트릭과 같은 친환경/에너지 효율 관련주는 산업별 양극화 속에서 상대적으로 호재로 작용할 수 있음 - 의미: 전통적 기술주 약세와 자동차 수출 리스크 속에서 대체 성장 동력을 찾는 전략적 포트폴리오 구성이 가능함 (근거: report_001)</li>
+    <li>보조 신호: 기관 매수세에 의한 지수 방어 및 상승 모멘텀 / 금융지주 실적 호조와 자산건전성 악화의 양극화</li>
+    </ul>
+    <h3>산업분석 (14건)</h3>
+    <ul>
+    <li>요약: AI 인프라, 친환경 에너지, 고령화 사회 대응 등 구조적 성장 모멘텀이 우세하나, 게임/은행/보험/통신 등 특정 섹터의 규제 리스크, 금리 변동성, 실적 하방 압력으로 인해 '선택과 집중'이 필수적인 구간임. 전반적으로 중장기적 성장성은 입증되나 단기 밸류에이션과 실적 변동성 간의 괴리가 존재함.</li>
+    <li>핵심 1: 게임 및 일부 보험/통신 섹터는 규제 심의 결과와 BSR(브랜드 성장률) 둔화, IoT 회선 감소로 인해 단기적 실적 하방 압력이 구조적 성장 모멘텀보다 우세할 수 있다. - 의미: 단기 밸류에이션 부담이 확대되어 포트폴리오의 방어적 자산 배분이 필요할 수 있음. (근거: industry_batch_1, industry_batch_2)</li>
+    <li>핵심 2: AI 모델 개발 비용 대비 수익성 불확실성과 CSM(-) 조정 지속 가능성은 성장 모멘텀의 질적 저하를 시사한다. - 의미: 투자 심리 위축 및 섹터 내 양극화 심화 가능성. (근거: industry_batch_1, industry_batch_2)</li>
+    <li>보조 신호: NVDA 시가총액 5,264 억 달러로 시장 지배력 확인 / 2026 년 4 월 15 일 발표된 '열에너지 혁신전략' 및 보조금 확대</li>
+    </ul>
+    <h3>시황정보 (12건)</h3>
+    <ul>
+    <li>요약: 국내 증시 (KOSPI) 는 실적 호조와 외국인/기관 매수세로 6,700pt 부근 사상 최고치 경신 모멘텀을 형성했으나, 미국 증시는 오픈AI 성장성 우려, 금리 인하 기대감 약화, 빅테크 실적 경계감으로 기술주 중심의 조정과 혼조세를 보임. 지정학적 리스크 (중동 정세) 로 유가 상승과 에너지/방산 섹터는 강세를 보였으나, AI 섹터는 밸류에이션 재평가 압력으로 국내와 해외 간 섹터 분리…</li>
+    <li>핵심 1: 미국 증시 하락에도 불구하고 국내 증시는 AI 인프라 호재로 기술주 약세를 상쇄하고 상승세 지속 - 의미: 국내 AI 섹터가 글로벌 밸류에이션 조정과 무관한 독자적 모멘텀 (실적/계약) 을 가짐을 시사 (근거: report_021, report_023)</li>
+    <li>핵심 2: 탄소배출권 시장이 유가 상승과 동조화되며 국내 KOC/i-KOC 가격 차이 확대는 구조적 기회 - 의미: 에너지-탄소 동조화 현상이 단순 원유 가격 상승을 넘어 탄소 시장 구조 변화로 이어질 가능성 (근거: report_026)</li>
+    <li>보조 신호: KOSPI 6,700pt 저항선 돌파 여부 / 오픈AI 및 빅테크 실적 발표 결과</li>
+    </ul>
+    <h3>종목분석 (66건)</h3>
+    <ul>
+    <li>요약: 5 건의 리포트를 종합할 때, 건설/플랜트, 전력기기, 반도체, 배터리 섹터에서 1Q26 실적 턴어라운드와 수주 모멘텀이 지배적입니다. 특히 AI 데이터센터 확대로 인한 전력 수요 폭발과 원전/SMR 수주 호조가 구조적 강세 모멘텀으로 작용하고 있습니다. 다만, 일부 기업 (삼성 SDI, KG 모빌리티, 한화솔루션) 에서는 고밸류에이션, 지역적 리스크, 또는 실적 선반영 우려로 인해 선택적…</li>
+    <li>핵심 1: 삼성 SDI 및 KG 모빌리티는 실적 호조에도 불구하고 유럽/동유럽 수요 둔화, 원자재비 상승, 또는 주가 선반영으로 인해 단기 중립 또는 하방 리스크가 존재함. - 의미: 강세 모멘텀에도 불구하고 특정 대형주에서 하방 압력이 발생하면 섹터 전체의 밸류에이션 재평가 속도가 둔화될 수 있음. (근거: company_batch_2, company_batch_4, company_batch_5)</li>
+    <li>핵심 2: 대우건설 및 한화솔루션은 실적 상회에도 불구하고 선행 주가 반영 또는 수익성 전환 지속성 불확실성으로 인해 매수 타이밍을 신중히 고려해야 함. - 의미: 실적 턴어라운드 모멘텀이 이미 주가에 선반영되어 있을 경우, 추가 상승 모멘텀이 제한될 수 있음. (근거: company_batch_1, company_batch_3, company_batch_5)</li>
+    <li>보조 신호: HD 현대일렉트릭: 데이터센터용 선박엔진 수주 및 회전기기 수주 급증 (report_036, report_040) / 삼성 SDI: 1 분기 영업이익 -1,556 억원 (컨센서스 상회) 및 4 분기 흑자전환 가시성 (report_033)</li>
+    </ul>
+    <h3>채권분석 (5건)</h3>
+    <ul>
+    <li>요약: 글로벌 채권 시장은 BOJ 의 매파적 해석 (report_095, report_099) 과 국제유가 급등에 따른 인플레이션 우려로 금리 상승 압력을 받고 있으며, 국내 국채 수익률 상승세는 신용 스프레드 확대를 유발하고 있습니다 (report_098). 특히 제이알글로벌리츠의 신용 위기 (report_097) 는 저등급 채권 시장의 유동성 위축과 신용 위험 프리미엄 상승을 가속화하고 있습니…</li>
+    <li>핵심 1: FOMC 는 9 월 이후 근원 물가 둔화 시 1 회 인하가 가능할 수 있으나, 성명서 내 '양방향 조정' 표현이 이를 무효화할 수 있다. - 의미: 단순 동결 시나리오가 아니라 성명서의 톤앤매너에 따라 금리 하방 기대감이 급격히 소멸될 수 있어, 시장이 '하방 기대'에 베팅하고 있다면 큰 손실이 발생할 수 있다. (근거: report_096)</li>
+    <li>핵심 2: 제이알글로벌리츠의 신용위험은 리츠 섹터 전체의 등급 하향과 부동산 개발 섹터의 연쇄 부실로 확대될 수 있다. - 의미: 해외 대주단의 담보권 행사 여부가 회수율을 결정하는 핵심 변수로 작용하며, 이는 국내 무담보 채권자뿐만 아니라 관련 섹터의 신용 스프레드 확대를 구조적으로 악화시킬 수 있다. (근거: report_097)</li>
+    <li>보조 신호: BOJ 6 월 회의 전후로 금리 인상 기대감 확대 및 위원 발언 모니터링 (report_095) / FOMC 성명서 내 '양방향 조정' 키워드 및 파월 의장 톤앤매너 확인 (report_096)</li>
+    </ul>
+    <h3>투자전략 (12건)</h3>
+    <ul>
+    <li>요약: 한국 증시는 반도체 중심의 상승세와 AI Capex 모멘텀 지속으로 강세를 보였으나, UAE 의 OPEC 탈퇴 발표와 중동 지정학적 리스크로 인해 유가 변동성과 인플레이션 재점화 우려가 공존합니다. 반도체 쏠림 현상이 고점에 도달함에 따라 섹터 간 순환매가 예상되나, 중동 분쟁 확산 가능성은 시장 심리를 위축시키는 변수로 작용하고 있습니다.</li>
+    <li>핵심 1: UAE 의 OPEC 탈퇴로 인해 중장기적으로 유가 하방 압력 (재정균형 유가 $49.9/bbl) 이 발생하여 에너지 섹터의 구조적 약세가 예상됨. - 의미: 단기 공급 차질 우려와 달리 중장기 유가 하락은 에너지 기업들의 밸류에이션을 하방으로 견인할 수 있으며, 이는 포트폴리오의 에너지 노출 축소 필요성을 시사함. (근거: strategy_batch_2)</li>
+    <li>보조 신호: 업종 쏠림 지표 (HHI) 가 역사적 고점에 근접하여 피크아웃 신호 (strategy_batch_1) / 주식형 펀드 순유입이 AI/반도체로 집중되며 조선, 2 차전지 로테이션 병행 (strategy_batch_1)</li>
+    </ul>
+  </div>
+</details>
+<details class="report-section">
+  <summary>충돌하는 시각</summary>
+  <div class="markdown-body">
+    <h3>Daily 신한생각 (1건)</h3>
+    <ul>
+    <li>배경: 5 월 KOSPI 는 반도체 업종의 EPS 급증 (컨센서스 306 조원, +53.7%) 에 힘입어 6,200~7,500p 로 전망되며, 연간 6,000~8,600p 로 상향 조정됨. 다만 금리 인하 기대 후퇴로 인한 할인율 부담과 비반도체 업종의 실적 확산 지연이 상단 확장 변수로 작용함.</li>
+    <li><strong>반도체 업종의 밸류에이션</strong>: A) EPS 급증으로 인해 저평가 착시가 발생하며 매력적임 / B) P/B 부담 및 금리 민감도 상승으로 인해 밸류에이션 부담이 존재함 (근거: report_116)</li>
+    <li><strong>시장 상단 확장 변수</strong>: A) 반도체 이익 상향이 지수 상승을 주도함 / B) 비반도체 업종 확산이 없으면 상승 모멘텀이 제한될 수 있음 (근거: report_116)</li>
+    </ul>
+    <h3>경제분석 (1건)</h3>
+    <ul>
+    <li>배경: 코스피가 사상 최고치를 경신했으나 외국인 매도 지속과 미국 빅테크 실적 우려로 기술주 약세가 공존하는 양극화 장세. 기관 매수세는 지수를 방어하고 있으나, 거시적 리스크 (고금리, 지정학적 불안) 로 인해 산업별 편차가 심화될 것으로 전망됨.</li>
+    <li><strong>기술주 밸류체인 전망</strong>: A) AI 투자 사이클 둔화 및 빅테크 실적 우려로 인한 밸류체인 조정 필요 / B) 반도체 섹터 변동성 주의는 있으나, SK에코플랜트 등 에너지 효율 관련주는 수급 불균형 호재로 긍정적 (근거: report_001)</li>
+    <li><strong>자동차 산업 전망</strong>: A) 중국 기술 도약과 미국 규제 강화로 수출 리스크 존재 / B) 산업 구조 재편에 따른 기회 요인이 존재하나, 단기적 타격 가능성은 높음 (근거: report_001)</li>
+    </ul>
+    <h3>산업분석 (14건)</h3>
+    <ul>
+    <li>배경: AI 인프라, 친환경 에너지, 고령화 사회 대응 등 구조적 성장 모멘텀이 우세하나, 게임/은행/보험/통신 등 특정 섹터의 규제 리스크, 금리 변동성, 실적 하방 압력으로 인해 '선택과 집중'이 필수적인 구간임. 전반적으로 중장기적 성장성은 입증되나 단기 밸류에이션과 실적 변동성 간의 괴리가 존재함.</li>
+    <li><strong>통신업의 성장 동력</strong>: A) AI 데이터센터 수요 증가로 영업이익 급증 및 해외 진출 성공 예상 (성장 모멘텀) / B) 국내 IoT 회선 감소로 저수익 상품 비중 확대 및 테크 쏠림 지속 (리스크) (근거: industry_batch_2)</li>
+    <li><strong>보험업의 밸류에이션</strong>: A) CSM(-) 조정 완화 및 배당 정책 강화로 밸류에이션 재평가 (긍정) / B) 계리적 가정 변경 반복으로 CSM(-) 조정폭 확대 및 가이드라인 적용 시 리스크 (부정) (근거: industry_batch_2)</li>
+    </ul>
+    <h3>시황정보 (12건)</h3>
+    <ul>
+    <li>배경: 국내 증시 (KOSPI) 는 실적 호조와 외국인/기관 매수세로 6,700pt 부근 사상 최고치 경신 모멘텀을 형성했으나, 미국 증시는 오픈AI 성장성 우려, 금리 인하 기대감 약화, 빅테크 실적 경계감으로 기술주 중심의 조정과 혼조세를 보임. 지정학적 리스크 (중동 정세) 로 유가 상승과 에너지/방산 섹터는 강세를 보였…</li>
+    <li><strong>AI 섹터 전망</strong>: A) 오픈AI 실적 부진과 밸류에이션 우려로 글로벌 기술주 약세 지속 / B) 국내 AI 인프라 섹터는 호실적과 계약 체결로 매수 우위 지속 (근거: report_018, report_020, report_021, report_023)</li>
+    <li><strong>KOSPI 상승 지속성</strong>: A) 6,700pt 돌파 후 기술적 과매수 및 대외 리스크로 조정 압력 발생 / B) 외국인 매수세와 실적 호조로 6,700pt 돌파 임박 및 상승 모멘텀 형성 (근거: report_022, report_025, report_021)</li>
+    </ul>
+    <h3>종목분석 (66건)</h3>
+    <ul>
+    <li>배경: 5 건의 리포트를 종합할 때, 건설/플랜트, 전력기기, 반도체, 배터리 섹터에서 1Q26 실적 턴어라운드와 수주 모멘텀이 지배적입니다. 특히 AI 데이터센터 확대로 인한 전력 수요 폭발과 원전/SMR 수주 호조가 구조적 강세 모멘텀으로 작용하고 있습니다. 다만, 일부 기업 (삼성 SDI, KG 모빌리티, 한화솔루션) 에…</li>
+    <li><strong>삼성 SDI 투자 의견</strong>: A) 1 분기 실적 상회 및 4 분기 흑자전환 가시성으로 매수 기회 (Target: 80~84 만 원) / B) 고밸류에이션 (P/E 30 배 이상) 및 유럽 EV 수요 둔화 우려로 주가 조정 리스크 존재 (근거: company_batch_2, company_batch_4)</li>
+    <li><strong>대우건설 투자 의견</strong>: A) 체코 원전 수주 및 실적 상회로 성장성 입증 / B) 선행 주가에 기대감 선반영으로 추가 상승 제한 및 단기 매도/중립 고려 (근거: company_batch_2, company_batch_3)</li>
+    </ul>
+    <h3>채권분석 (5건)</h3>
+    <ul>
+    <li>배경: 글로벌 채권 시장은 BOJ 의 매파적 해석 (report_095, report_099) 과 국제유가 급등에 따른 인플레이션 우려로 금리 상승 압력을 받고 있으며, 국내 국채 수익률 상승세는 신용 스프레드 확대를 유발하고 있습니다 (report_098). 특히 제이알글로벌리츠의 신용 위기 (report_097) 는 저등급…</li>
+    <li><strong>BOJ 의 정책 방향성과 금리 인상 시점</strong>: A) 6 월 회의에서 추가 금리 인상 가능성이 높아짐 (물가 상방 리스크 및 위원 내 의견 불일치) / B) 4 월 회의에서 금리 동결이 확정되었으며, 6 월 이후 추가 인상 여부는 불확실하나 매파적 해석이 지배적임 (근거: report_095, report_099)</li>
+    <li><strong>FOMC 의 금리 전망</strong>: A) 4 월 기준금리 동결이 99.5% 반영되며, 9 월 이후 근원 물가 둔화 시 인하 전망 / B) 성명서 내 '양방향 조정' 표현이 포함될 경우 금리 상방 신호로 작용하여 인하 기대감 박살 (근거: report_096, report_099)</li>
+    </ul>
+    <h3>투자전략 (12건)</h3>
+    <ul>
+    <li>배경: 한국 증시는 반도체 중심의 상승세와 AI Capex 모멘텀 지속으로 강세를 보였으나, UAE 의 OPEC 탈퇴 발표와 중동 지정학적 리스크로 인해 유가 변동성과 인플레이션 재점화 우려가 공존합니다. 반도체 쏠림 현상이 고점에 도달함에 따라 섹터 간 순환매가 예상되나, 중동 분쟁 확산 가능성은 시장 심리를 위축시키는 변수…</li>
+    <li><strong>유가 전망 및 에너지 섹터 대응</strong>: A) 중동 지정학적 리스크 (호르무즈 해협 봉쇄 등) 로 인해 유가 급등 및 공급 차질 우려가 우세하여 에너지 섹터 수혜 예상 / B) UAE 의 OPEC 탈퇴 및 재정균형 유가 하락으로 인해 중장기 유가 하방 압력이 우세하여 에너지 섹터 약세 예상 (근거: strategy_batch_1, strategy_batch_2)</li>
+    </ul>
+  </div>
+</details>
+<details class="report-section">
+  <summary>신규 후보 / 종목 아이디어</summary>
+  <div class="markdown-body">
+    <ul>
+    <li><strong>HD 현대일렉트릭</strong>: 1 분기 영업이익 2,583 억원으로 시장 예상치 소폭 하회 / 신규수주 18 억 달러로 전 분기 최대 기록 / 2026 년 하이퍼스케일러향 배전기기 수주 레퍼런스 확보 / 중동향 프로젝트 납기 지연으로 실적 하회 가능성</li>
+    <li><strong>SKT</strong>: 2025 년 2 분기 이후 6 개월 만에 현금배당 재개 (주당 830 원) / 2026 년 영업이익 1 조 8 천억 원 전망으로 전년 대비 71.6% 증가 / 연간 배당 복원 및 2026 년 영업이익 1 조 8 천억 원 달성 / 국내 IoT 회선 수 감소로 인한 저수익 상품 비중 확대</li>
+    <li><strong>General Motors</strong>: 2026 년 1 분기 조정 EBIT 43 억달러 (+22%) 달성 / 조정 EPS 3.70 달러 (+33.1%) 로 가이던스 상향 / 2026 년 10 억~15 억달러 규모의 EV 구조조정 후 손익 개선 / 관세 환급금 수령 시점 불확실성</li>
+    <li><strong>한화오션</strong>: 1 분기 영업이익 4,411 억원으로 컨센서스 대비 18% 상회 / 상선 부문 영업이익 5,201 억원으로 전년 동기 대비 115% 증가 / 2026 년 연간 고가 선박 매출 비중 확대 (2024 년 수주 40%, 2025 년 수주 30%) / 특수선 및 해양 부문의 수주 지연으로 고정비 부담 지속 시 적자 확대 가능성</li>
+    <li><strong>코카콜라</strong>: 1Q26 영업이익 43.6 억 달러 (+19%) 로 컨센서스 상회 / 2026 년 EPS 가이던스 +8~9% 상향 유지 / 2026 년 EPS +8~9% 성장 기대 / 아시아·태평양 지역 원가 부담</li>
+    <li><strong>HD 현대일렉트릭</strong>: 1 분기 영업이익 2,583 억원으로 전년비 18.4% 성장 / 영업이익률 24.9% 달성으로 사상 최고치 기록 / 미국 데이터센터 전력공급 수요 급증 / 미국 관세 부과로 인한 약 260 억원 비용 증가 우려</li>
+    <li><strong>한화엔진</strong>: 1Q26 영업이익률 14.9%로 전 분기 대비 2.0%p 상승 / 데이터센터용 엔진 수주 문의 증가 / 데이터센터용 엔진 실계약 체결 및 수주 확정 / 데이터센터용 엔진 수주 지연 또는 계약 불발</li>
+    <li><strong>두산로보틱스</strong>: 1Q 매출 190% 급증 but 121 억 적자 / AI 및 휴머노이드 부품 수요로 수주 호조 / 실적 발표 및 AI 협력 발표 / 지속적 적자 및 흑자 전환 지연</li>
+    <li><strong>삼성생명</strong>: 2026~2028 년 총주주환원율 50% 유지로 업종 내 최고 배당 성장성 확보 / 2026 년 1 분기 실적은 컨센서스 부합 및 흑전 전환 예상 / 강력한 주주환원 정책 / 특별배당 지연 가능성 (FCF 및 배당정책 연동 구조)</li>
+    <li><strong>코난테크놀로지</strong>: 2025 년 매출 340 억 원 (+29.1%) 성장 / 영업손실 -99 억 원으로 적자 폭 축소 / 정부 디지털 전환 정책 확대 / 영업손실 지속 및 수익성 전환 불확실성</li>
+    </ul>
+  </div>
+</details>
+<details class="report-section">
+  <summary>리스크 Watch</summary>
+  <div class="markdown-body">
+    <ul>
+    <li><strong>듀켐바이오</strong>: FDG 가 매출의 57.1% 를 차지하며 핵심 수익원을 확보했다. / 2025 년 매출 385 억 원, 영업이익 74 억 원을 기록했으나 순이익은 감소했다. / 전립선암 진단제 (FACBC) 등 신규 진단제 승인 및 상용화가 예상된다. / FDG 등 특정 제품군 매출 비중 과다로 인한 수요 변동성 리스크가 존재한다.</li>
+    <li><strong>세나테크놀로지</strong>: 1Q26 매출 438 억원, 영업이익 38 억원으로 전년 대비 감소 / 2Q26부터 모터사이클 수요 회복 및 신규사업 확대로 실적 개선 예상 / 2026 년 투르드 프랑스 공식 후원 및 사이클링 제품 출시 / 신규사업 초기 시장 진입 실패 또는 마케팅 지연 가능성</li>
+    <li><strong>공급력 확대 기세를 꺾는 원자재가 상승 부담</strong>: 금호타이어는 1분기 재고 소진으로 턴어라운드에 성공했으나, 중동 사태로 인한 유가 및 원자재 가격 상승으로 하반기 재료비율이 10~12%p 증가할 것으로 예상되어 목표주기와 실적 추정치가 하향 조정됨.</li>
+    </ul>
+  </div>
+</details>
+<details class="report-section">
+  <summary>카테고리별 통합</summary>
+  <div class="markdown-body">
+    <h3>Daily 신한생각 (1건)</h3>
+    <ul>
+    <li>5 월 KOSPI 는 반도체 업종의 EPS 급증 (컨센서스 306 조원, +53.7%) 에 힘입어 6,200~7,500p 로 전망되며, 연간 6,000~8,600p 로 상향 조정됨. 다만 금리 인하 기대 후퇴로 인한 할인율 부담과 비반도체 업종의 실적 확산 지연이 상단 확장 변수로 작용함.</li>
+    <li>반도체 업종 이익 상향이 지속되며 시장 상승 모멘텀 주도</li>
+    <li>KOSPI RSI 70.9 로 과열권 진입했으나 강세장 내 추가 상승 가능성</li>
+    <li>비반도체 영업이익 리비전 플러스 전환이 지수 상단 확장 핵심</li>
+    </ul>
+    <h3>경제분석 (1건)</h3>
+    <ul>
+    <li>코스피가 사상 최고치를 경신했으나 외국인 매도 지속과 미국 빅테크 실적 우려로 기술주 약세가 공존하는 양극화 장세. 기관 매수세는 지수를 방어하고 있으나, 거시적 리스크 (고금리, 지정학적 불안) 로 인해 산업별 편차가 심화될 것으로 전망됨.</li>
+    <li>기관 매수세에 의한 지수 방어 및 상승 모멘텀</li>
+    <li>금융지주 실적 호조와 자산건전성 악화의 양극화</li>
+    <li>중국의 기술 도약에 따른 글로벌 자동차 산업 구조 재편</li>
+    </ul>
+    <h3>산업분석 (14건)</h3>
+    <ul>
+    <li>AI 인프라, 친환경 에너지, 고령화 사회 대응 등 구조적 성장 모멘텀이 우세하나, 게임/은행/보험/통신 등 특정 섹터의 규제 리스크, 금리 변동성, 실적 하방 압력으로 인해 '선택과 집중'이 필수적인 구간임. 전반적으로 중장기적 성장성은 입증되나 단기 밸류에이션과 실적 변동성 간의 괴리가 존재함.</li>
+    <li>NVDA 시가총액 5,264 억 달러로 시장 지배력 확인</li>
+    <li>2026 년 4 월 15 일 발표된 '열에너지 혁신전략' 및 보조금 확대</li>
+    <li>미국 시니어 하우징 재고 증가율 1% 미만으로 공급 부족 심화</li>
+    <li>보험: 2026 년 1 분기 실적 흑전 전환 및 CSM (-) 조정 흐름 완화</li>
+    <li>통신: SKT 의 2026 년 영업이익 1 조 8 천억 원 달성 및 AI 데이터센터 해외 진출</li>
+    </ul>
+    <h3>시황정보 (12건)</h3>
+    <ul>
+    <li>국내 증시 (KOSPI) 는 실적 호조와 외국인/기관 매수세로 6,700pt 부근 사상 최고치 경신 모멘텀을 형성했으나, 미국 증시는 오픈AI 성장성 우려, 금리 인하 기대감 약화, 빅테크 실적 경계감으로 기술주 중심의 조정과 혼조세를 보임. 지정학적 리스크 (중동 정세) 로 유가 상승과 에너지/방산 섹터는 강세를 보였으나, AI 섹터는 밸류에이션 재평가 압력으로 국내와 해외 간 섹터 분리가 뚜렷함.</li>
+    <li>KOSPI 6,700pt 저항선 돌파 여부</li>
+    <li>오픈AI 및 빅테크 실적 발표 결과</li>
+    <li>FOMC 의사결정 및 금리 인하 기대감 변화</li>
+    <li>중동 정세 (이란-이스라엘) 의 전쟁 조율 또는 갈등 심화</li>
+    <li>외국인 및 기관 매수세 지속 여부</li>
+    </ul>
+    <h3>신한 속보 (1건)</h3>
+    <ul>
+    <li>GM 은 2026 년 1 분기 관세 환급과 비용 절감으로 조정 EBIT 마진과 EPS 가 크게 개선되며 가이던스를 상향함. EV 전략을 선택적 전동화로 전환해 손실 축소와 FCF 방어에 집중하고 소프트웨어 수익 모델이 실적 견인.</li>
+    <li>EV 손실 축소 및 FCF 방어 능력에 대한 시장 재평가 기대</li>
+    <li>소프트웨어 수익 모델의 실적 기여도 확대</li>
+    <li>비용 절감 효과 지속</li>
+    </ul>
+    <h3>종목분석 (66건)</h3>
+    <ul>
+    <li>5 건의 리포트를 종합할 때, 건설/플랜트, 전력기기, 반도체, 배터리 섹터에서 1Q26 실적 턴어라운드와 수주 모멘텀이 지배적입니다. 특히 AI 데이터센터 확대로 인한 전력 수요 폭발과 원전/SMR 수주 호조가 구조적 강세 모멘텀으로 작용하고 있습니다. 다만, 일부 기업 (삼성 SDI, KG 모빌리티, 한화솔루션) 에서는 고밸류에이션, 지역적 리스크, 또는 실적 선반영 우려로 인해 선택적 접근이 필요하다는 중립적 시각이 공존합니다.</li>
+    <li>HD 현대일렉트릭: 데이터센터용 선박엔진 수주 및 회전기기 수주 급증 (report_036, report_040)</li>
+    <li>삼성 SDI: 1 분기 영업이익 -1,556 억원 (컨센서스 상회) 및 4 분기 흑자전환 가시성 (report_033)</li>
+    <li>SK 하이닉스: 1 분기 영업이익 37.6 조원 (전분기 대비 96% 증가) 및 ADR 승인 기대 (report_034)</li>
+    <li>대우건설: 1 분기 영업이익 2,556 억원 (컨센서스 대비 100% 상회) 및 체코 원전 수주 (report_035)</li>
+    <li>현대건설: 1Q26 영업이익 컨센서스 8% 상회 및 미국 Matador 프로젝트 FEED 계약 (report_036, report_037)</li>
+    </ul>
+    <h3>채권분석 (5건)</h3>
+    <ul>
+    <li>글로벌 채권 시장은 BOJ 의 매파적 해석 (report_095, report_099) 과 국제유가 급등에 따른 인플레이션 우려로 금리 상승 압력을 받고 있으며, 국내 국채 수익률 상승세는 신용 스프레드 확대를 유발하고 있습니다 (report_098). 특히 제이알글로벌리츠의 신용 위기 (report_097) 는 저등급 채권 시장의 유동성 위축과 신용 위험 프리미엄 상승을 가속화하고 있습니다. FOMC 는 동결이 유력하나 '양방향 조정' 표현 여부에 따라 금리 상방 신호로 작용할 수 있어 불확실성이 존재합니다 (report_096).</li>
+    <li>BOJ 6 월 회의 전후로 금리 인상 기대감 확대 및 위원 발언 모니터링 (report_095)</li>
+    <li>FOMC 성명서 내 '양방향 조정' 키워드 및 파월 의장 톤앤매너 확인 (report_096)</li>
+    <li>제이알글로벌리츠 해외 대주단의 담보권 행사 여부 및 국내 무담보 채권자 회수율 확인 (report_097)</li>
+    <li>국내 국채 수익률 상승세 지속 및 외국인 국채선물 누적순매도 규모 (report_098, report_099)</li>
+    <li>국제유가 급등과 미국 국채 수익률 변동성 (report_099)</li>
+    </ul>
+    <h3>투자전략 (12건)</h3>
+    <ul>
+    <li>한국 증시는 반도체 중심의 상승세와 AI Capex 모멘텀 지속으로 강세를 보였으나, UAE 의 OPEC 탈퇴 발표와 중동 지정학적 리스크로 인해 유가 변동성과 인플레이션 재점화 우려가 공존합니다. 반도체 쏠림 현상이 고점에 도달함에 따라 섹터 간 순환매가 예상되나, 중동 분쟁 확산 가능성은 시장 심리를 위축시키는 변수로 작용하고 있습니다.</li>
+    <li>업종 쏠림 지표 (HHI) 가 역사적 고점에 근접하여 피크아웃 신호 (strategy_batch_1)</li>
+    <li>주식형 펀드 순유입이 AI/반도체로 집중되며 조선, 2 차전지 로테이션 병행 (strategy_batch_1)</li>
+    <li>엔비디아 실적 발표 전후 1~2 거래일 내 시장 방향성 재설정 필요 (strategy_batch_1)</li>
+    <li>UAE 의 OPEC 탈퇴 발표 (산유국 협력 약화의 결정적 신호) 및 재정균형 유가 $49.9/bbl (strategy_batch_2)</li>
+    <li>호르무즈 해협 봉쇄 가능성 (단기 유가 하방 제한 변수) (strategy_batch_2)</li>
+    </ul>
+    <h3>해외 주식 (1건)</h3>
+    <ul>
+    <li>GM 은 2026 년 1 분기 관세 환급과 비용 절감으로 조정 EBIT 마진과 EPS 가 크게 개선되며 가이던스를 상향함. EV 전략을 선택적 전동화로 전환해 손실 축소와 FCF 방어에 집중하고 소프트웨어 수익 모델이 실적 견인.</li>
+    <li>EV 손실 축소 및 FCF 방어 능력에 대한 시장 재평가 기대</li>
+    <li>소프트웨어 수익 모델의 실적 기여도 확대</li>
+    <li>비용 절감 효과 지속</li>
+    </ul>
+  </div>
+</details>
+      </section>
+      <section id="quality" class="band">
+        <h2>품질 경고</h2>
+        <span class="health ok">OK</span>
+<p>실행 후보 노출 정책: <strong>validated_only</strong>. 위험 claim은 전체 재요약 없이 작은 프롬프트로만 재검토합니다.</p>
+<h3>AI 리서치 벤치마크 적용</h3>
+<div class="quality-grid"><div class="quality-item ok"><strong>benchmark_pattern_alignment</strong><span>AI 리서치 벤치마크 렌즈 5개 반영, source learning 8개</span></div></div>
+<p>품질 게이트 경고 없음</p>
+<h3>경고/보류/근거 약함 Claim</h3>
+<div class="risk-list">
+<div class="risk-item"><strong>[high] claim_001_ab918b</strong><p>반도체 업종의 이익 상향이 KOSPI 상승 모멘텀을 주도하며, 기술적 과열 (RSI 70.9) 에도 상승 지속 가능성 있음</p><small>thin_evidence, risky_language, hold</small></div>
+<div class="risk-item"><strong>[high] claim_003_44782c</strong><p>기관 매수세는 지수 상승을 주도하고 있으나, 외국인 매도 및 미국 빅테크 실적 우려로 인해 기술주 밸류체인 조정 불가피</p><small>thin_evidence, risky_language, hold</small></div>
+<div class="risk-item"><strong>[high] claim_004_370c89</strong><p>중국의 기술 도약과 고금리 장기화가 글로벌 자동차 및 반도체 산업의 구조적 재편을 가속화할 것</p><small>thin_evidence, risky_language, hold</small></div>
+<div class="risk-item"><strong>[low] claim_006_00ce00</strong><p>정부 주도 정책 (친환경 에너지, 실손보험 개혁, K-ICS) 이 관련 산업의 구조적 전환을 가속화하고 있다.</p><small>single_source_family, risky_language</small></div>
+<div class="risk-item"><strong>[low] claim_020_f34baa</strong><p>게임 및 일부 보험/통신 섹터는 규제 심의 결과와 BSR(브랜드 성장률) 둔화, IoT 회선 감소로 인해 단기적 실적 하방 압력이 구조적 성장 모멘텀보다 우세할 수 있다.</p><small>single_source_family, risky_language</small></div>
+<div class="risk-item"><strong>[low] claim_021_a66457</strong><p>AI 모델 개발 비용 대비 수익성 불확실성과 CSM(-) 조정 지속 가능성은 성장 모멘텀의 질적 저하를 시사한다.</p><small>single_source_family, risky_language</small></div>
+<div class="risk-item"><strong>[high] claim_023_46cfd1</strong><p>탄소배출권 시장이 유가 상승과 동조화되며 국내 KOC/i-KOC 가격 차이 확대는 구조적 기회</p><small>thin_evidence, risky_language, hold</small></div>
+<div class="risk-item"><strong>[low] claim_025_b4f9cd</strong><p>대우건설 및 한화솔루션은 실적 상회에도 불구하고 선행 주가 반영 또는 수익성 전환 지속성 불확실성으로 인해 매수 타이밍을 신중히 고려해야 함.</p><small>single_source_family, risky_language</small></div>
+</div>
+<p class="muted">Mini review prompt: knowledge/daily/manual-kit/2026-04-30/17-risky-claim-review-prompt.md</p>
+      </section>
+      <section id="health" class="band">
+        <h2>검증 상태</h2>
+        <span class="health warn">WARN</span>
+<ul>
+<li><strong>freshness_run_id</strong>: stage4보다 오래된 downstream: LLM Wiki Daily</li>
+<li><strong>security_normalization</strong>: portfolio 0건 / stage4 5건 미해결 (한투 ISA:watches:PLUS 고배당주, 한투 연금저축:stage2Candidates:TIME 글로벌AI인공지능액티브, 한투 연금저축:stagedBuys:TIME 글로벌AI인공지능액티브, 한투 일반:stage2Candidates:TIME 글로벌AI인공지능액티브 외 1건)</li>
+</ul>
+      </section>
+      <section id="files" class="band">
+        <h2>원본 파일</h2>
+        <div class="file-list">
+          <div>경제 리포트: knowledge/daily/2026-04-30-full-daily-report.md</div>
+          <div>AI 교환 JSON: data/analysis-state/2026-04-30/stage1-4-ai-exchange.json</div>
+          <div>AI 교환 패킷: data/analysis-state/2026-04-30/llm-exchange/manifest.json</div>
+          <div>품질 감사: data/analysis-state/2026-04-30/data-quality-audit.json</div>
+          <div>실행 전략: reports/daily/2026-04-30-stage4-execution-plan.md</div>
+          <div>실행 전략 표: reports/daily/2026-04-30-stage4-execution-plan-table.md</div>
+          <div>HTML 생성 시각: 2026-04-30T04:02:17.954Z</div>
+        </div>
+      </section>
+      <footer>EcoReport static HTML. No external assets, no API calls.</footer>
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,2436 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-04-30",
+  "runDate": "2026-04-30",
+  "effectiveMarketDate": "2026-04-30",
+  "runId": "2026-04-30-021135",
+  "generatedAt": "2026-04-30T02:14:48.147Z",
+  "provenance": {
+    "source": "moneytoring-graphql",
+    "endpoint": "https://api.moneytoring.ai/graphql",
+    "topicLimit": 12,
+    "detailLimit": 8
+  },
+  "summary": {
+    "overview": "머니토링 12건 중 포트폴리오 직결 0건, 계좌 테마 연결 4건, 관심종목 연결 1건, 딥리서치 후보 3건을 추렸습니다.",
+    "directHoldingTopics": 0,
+    "thematicAccountTopics": 4,
+    "watchlistTopics": 1,
+    "highPriorityTopics": 2
+  },
+  "topics": [
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM4MDM0MQ==",
+      "numericId": "1380341",
+      "title": "텔레모아 2026년 4월 투자 인기글 TOP10 공개",
+      "summary": "텔레모아가 2026년 4월 30일 투자 브리핑 인기 게시글 TOP10을 공개했습니다. 한화 기계·우주·방산·조선 관련 글이 열람율 197.78%로 1위를 차지했고, AI와 미국 전력망, 한화의 캐나다 잠수함 수주전 등 다양한 산업 이슈가 포함됐습니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1380341",
+      "displayUpdatedAt": "2026-04-30T02:13:21+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 3,
+      "mainSource": {
+        "type": "TELEGRAM",
+        "name": "텔레그램",
+        "author": "텔레모아-공식채널📈"
+      },
+      "uniqueSourceTypeList": [
+        "TELEGRAM"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZTo2OQ==",
+          "name": "대한전선",
+          "code": "001440",
+          "type": "COMPANY",
+          "country": "KR",
+          "fluctuationRate": 13.4765625
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToxMDI1MA==",
+          "name": "아마존닷컴",
+          "code": "AMZN",
+          "type": "COMPANY",
+          "country": "US",
+          "fluctuationRate": 1.2860993453985492
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyNjg1",
+          "name": "기계",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 1.3488292694091797
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyODk5",
+          "name": "방산",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 0.7534623146057129
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZTozNDMx",
+          "name": "조선",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 0.46187639236450195
+        }
+      ],
+      "sourceInfo": [
+        {
+          "type": "TELEGRAM",
+          "count": 3
+        }
+      ],
+      "subTopics": [
+        {
+          "id": "U3ViVG9waWNUeXBlOjE0NTQ3MTc=",
+          "title": "텔레모아 4월 30일 투자 브리핑 인기 게시글 공개",
+          "summary": "텔레모아가 2026년 4월 30일 오전 9시 기준으로 투자 브리핑 인기 게시글 TOP10을 공개했습니다. 한화 기계·우주·방산·조선 관련 게시글이 열람율 197.78%로 1위를 차지했고, 애브비, DS투자증권, 유진 IT·자동차·미디어·게임·소비재 등 다양한 분야의 게시글이 상위권에 올랐습니다. 이번에는 AI가 미국 전력망에 미치는 영향, 한화의 캐나다 잠수함 수주전 참여, 2분기 HBM4E 샘플 공급 등 다양한 산업 이슈가 상위 게시글에 포함됐으며, 각 게시글의 열람율과 주요 내용이 안내됐습니다.",
+          "updatedAt": "2026-04-30T11:13:21+09:00",
+          "sourceOrigins": [
+            {
+              "title": "AI, 한화, HBM4E 등 투자 인기 이슈 전달",
+              "author": "텔레모아-공식채널📈",
+              "type": "TELEGRAM",
+              "url": "https://t.me/primestocknote/40295"
+            },
+            {
+              "title": "한화, 교보, DS투자증권 등 실시간 인기 소식",
+              "author": "텔레모아-공식채널📈",
+              "type": "TELEGRAM",
+              "url": "https://t.me/primestocknote/40294"
+            },
+            {
+              "title": "한화, 애브비, DS투자증권 등 인기 게시글 현황",
+              "author": "텔레모아-공식채널📈",
+              "type": "TELEGRAM",
+              "url": "https://t.me/primestocknote/40292"
+            }
+          ]
+        }
+      ],
+      "signalDirection": "positive",
+      "signalLabels": [
+        "AI 인프라/전력",
+        "방산/국방"
+      ],
+      "relevanceScore": 100,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [
+          {
+            "accountKey": "ISA",
+            "accountLabel": "한투 ISA",
+            "category": "전력기기",
+            "matchReasons": [
+              "AI 인프라/전력"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "PENSION",
+            "accountLabel": "한투 연금저축",
+            "category": "S&P500",
+            "matchReasons": [
+              "AI 인프라/전력"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "PENSION",
+            "accountLabel": "한투 연금저축",
+            "category": "나스닥100",
+            "matchReasons": [
+              "AI 인프라/전력",
+              "ai"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "PENSION",
+            "accountLabel": "한투 연금저축",
+            "category": "AI반도체",
+            "matchReasons": [
+              "hbm",
+              "HBM"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "KIS_MAIN",
+            "accountLabel": "한투 일반",
+            "category": "방산",
+            "matchReasons": [
+              "방산/국방"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "KIS_MAIN",
+            "accountLabel": "한투 일반",
+            "category": "AI반도체",
+            "matchReasons": [
+              "hbm",
+              "HBM"
+            ],
+            "impactDirection": "positive"
+          }
+        ],
+        "watchlist": []
+      },
+      "portfolioLinkage": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력, 방산/국방입니다.",
+      "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요.",
+      "impactEntries": [
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "ISA",
+            "name": "전력기기"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력",
+            "방산/국방"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "텔레모아가 2026년 4월 30일 투자 브리핑 인기 게시글 TOP10을 공개했습니다. 한화 기계·우주·방산·조선 관련 글이 열람율 197.78%로 1위를 차지했고, AI와 미국 전력망, 한화의 캐나다 잠수함 수주전 등 다양한 산업 이슈가 포함됐습니다.",
+              "텔레모아가 2026년 4월 30일 오전 9시 기준으로 투자 브리핑 인기 게시글 TOP10을 공개했습니다. 한화 기계·우주·방산·조선 관련 게시글이 열람율 197.78%로 1위를 차지했고, 애브비, DS투자증권, 유진 IT·자동차·미디어·게임·소비재 등 다양한 분야의 게시글이 상위권에 올랐습니다. 이번에는 AI가 미국 전력망에 미치는 영향, 한화의 캐나다 잠수함 수주전 참여, 2분기 HBM4E 샘플 공급 등 다양한 산업 이슈가 상위 게시글에 포함됐으며, 각 게시글의 열람율과 주요 내용이 안내됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력, 방산/국방입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 3건",
+              "대한전선 +13.48%",
+              "아마존닷컴 +1.29%",
+              "기계 +1.35%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power",
+            "defense"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "S&P500"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력",
+            "방산/국방"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "텔레모아가 2026년 4월 30일 투자 브리핑 인기 게시글 TOP10을 공개했습니다. 한화 기계·우주·방산·조선 관련 글이 열람율 197.78%로 1위를 차지했고, AI와 미국 전력망, 한화의 캐나다 잠수함 수주전 등 다양한 산업 이슈가 포함됐습니다.",
+              "텔레모아가 2026년 4월 30일 오전 9시 기준으로 투자 브리핑 인기 게시글 TOP10을 공개했습니다. 한화 기계·우주·방산·조선 관련 게시글이 열람율 197.78%로 1위를 차지했고, 애브비, DS투자증권, 유진 IT·자동차·미디어·게임·소비재 등 다양한 분야의 게시글이 상위권에 올랐습니다. 이번에는 AI가 미국 전력망에 미치는 영향, 한화의 캐나다 잠수함 수주전 참여, 2분기 HBM4E 샘플 공급 등 다양한 산업 이슈가 상위 게시글에 포함됐으며, 각 게시글의 열람율과 주요 내용이 안내됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력, 방산/국방입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 3건",
+              "대한전선 +13.48%",
+              "아마존닷컴 +1.29%",
+              "기계 +1.35%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power",
+            "defense"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "나스닥100"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.58,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력",
+            "방산/국방"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "텔레모아가 2026년 4월 30일 투자 브리핑 인기 게시글 TOP10을 공개했습니다. 한화 기계·우주·방산·조선 관련 글이 열람율 197.78%로 1위를 차지했고, AI와 미국 전력망, 한화의 캐나다 잠수함 수주전 등 다양한 산업 이슈가 포함됐습니다.",
+              "텔레모아가 2026년 4월 30일 오전 9시 기준으로 투자 브리핑 인기 게시글 TOP10을 공개했습니다. 한화 기계·우주·방산·조선 관련 게시글이 열람율 197.78%로 1위를 차지했고, 애브비, DS투자증권, 유진 IT·자동차·미디어·게임·소비재 등 다양한 분야의 게시글이 상위권에 올랐습니다. 이번에는 AI가 미국 전력망에 미치는 영향, 한화의 캐나다 잠수함 수주전 참여, 2분기 HBM4E 샘플 공급 등 다양한 산업 이슈가 상위 게시글에 포함됐으며, 각 게시글의 열람율과 주요 내용이 안내됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력, 방산/국방입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 3건",
+              "대한전선 +13.48%",
+              "아마존닷컴 +1.29%",
+              "기계 +1.35%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power",
+            "defense"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "AI반도체"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.58,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력",
+            "방산/국방"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "텔레모아가 2026년 4월 30일 투자 브리핑 인기 게시글 TOP10을 공개했습니다. 한화 기계·우주·방산·조선 관련 글이 열람율 197.78%로 1위를 차지했고, AI와 미국 전력망, 한화의 캐나다 잠수함 수주전 등 다양한 산업 이슈가 포함됐습니다.",
+              "텔레모아가 2026년 4월 30일 오전 9시 기준으로 투자 브리핑 인기 게시글 TOP10을 공개했습니다. 한화 기계·우주·방산·조선 관련 게시글이 열람율 197.78%로 1위를 차지했고, 애브비, DS투자증권, 유진 IT·자동차·미디어·게임·소비재 등 다양한 분야의 게시글이 상위권에 올랐습니다. 이번에는 AI가 미국 전력망에 미치는 영향, 한화의 캐나다 잠수함 수주전 참여, 2분기 HBM4E 샘플 공급 등 다양한 산업 이슈가 상위 게시글에 포함됐으며, 각 게시글의 열람율과 주요 내용이 안내됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력, 방산/국방입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 3건",
+              "대한전선 +13.48%",
+              "아마존닷컴 +1.29%",
+              "기계 +1.35%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power",
+            "defense"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "KIS_MAIN",
+            "name": "방산"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력",
+            "방산/국방"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "텔레모아가 2026년 4월 30일 투자 브리핑 인기 게시글 TOP10을 공개했습니다. 한화 기계·우주·방산·조선 관련 글이 열람율 197.78%로 1위를 차지했고, AI와 미국 전력망, 한화의 캐나다 잠수함 수주전 등 다양한 산업 이슈가 포함됐습니다.",
+              "텔레모아가 2026년 4월 30일 오전 9시 기준으로 투자 브리핑 인기 게시글 TOP10을 공개했습니다. 한화 기계·우주·방산·조선 관련 게시글이 열람율 197.78%로 1위를 차지했고, 애브비, DS투자증권, 유진 IT·자동차·미디어·게임·소비재 등 다양한 분야의 게시글이 상위권에 올랐습니다. 이번에는 AI가 미국 전력망에 미치는 영향, 한화의 캐나다 잠수함 수주전 참여, 2분기 HBM4E 샘플 공급 등 다양한 산업 이슈가 상위 게시글에 포함됐으며, 각 게시글의 열람율과 주요 내용이 안내됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력, 방산/국방입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 3건",
+              "대한전선 +13.48%",
+              "아마존닷컴 +1.29%",
+              "기계 +1.35%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power",
+            "defense"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "KIS_MAIN",
+            "name": "AI반도체"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.58,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력",
+            "방산/국방"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "텔레모아가 2026년 4월 30일 투자 브리핑 인기 게시글 TOP10을 공개했습니다. 한화 기계·우주·방산·조선 관련 글이 열람율 197.78%로 1위를 차지했고, AI와 미국 전력망, 한화의 캐나다 잠수함 수주전 등 다양한 산업 이슈가 포함됐습니다.",
+              "텔레모아가 2026년 4월 30일 오전 9시 기준으로 투자 브리핑 인기 게시글 TOP10을 공개했습니다. 한화 기계·우주·방산·조선 관련 게시글이 열람율 197.78%로 1위를 차지했고, 애브비, DS투자증권, 유진 IT·자동차·미디어·게임·소비재 등 다양한 분야의 게시글이 상위권에 올랐습니다. 이번에는 AI가 미국 전력망에 미치는 영향, 한화의 캐나다 잠수함 수주전 참여, 2분기 HBM4E 샘플 공급 등 다양한 산업 이슈가 상위 게시글에 포함됐으며, 각 게시글의 열람율과 주요 내용이 안내됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력, 방산/국방입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 3건",
+              "대한전선 +13.48%",
+              "아마존닷컴 +1.29%",
+              "기계 +1.35%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power",
+            "defense"
+          ]
+        }
+      ]
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM4MTM2MQ==",
+      "numericId": "1381361",
+      "title": "삼성전자 2026년 3분기부터 HBM4 매출 절반 돌파 전망",
+      "summary": "삼성전자는 2026년 3분기부터 HBM4 제품이 전체 고대역폭 메모리 매출의 절반 이상을 차지할 것으로 예상했습니다. 이는 인공지능과 고성능 컴퓨팅 시장에서 HBM4 수요가 빠르게 늘고 있음을 뜻합니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1381361",
+      "displayUpdatedAt": "2026-04-30T02:01:26+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 1,
+      "mainSource": {
+        "type": "TELEGRAM",
+        "name": "텔레그램",
+        "author": "레드버드 기업분석"
+      },
+      "uniqueSourceTypeList": [
+        "TELEGRAM"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZToyNDg0",
+          "name": "HBM",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 0.9782552719116211
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZTozNzg3",
+          "name": "레드버드 기업분석",
+          "code": "텔레그램-1974102584",
+          "type": "INFLUENCER",
+          "country": "EMPTY",
+          "fluctuationRate": null
+        }
+      ],
+      "sourceInfo": [],
+      "subTopics": [],
+      "signalDirection": "neutral",
+      "signalLabels": [
+        "AI 인프라/전력"
+      ],
+      "relevanceScore": 96,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [
+          {
+            "accountKey": "ISA",
+            "accountLabel": "한투 ISA",
+            "category": "전력기기",
+            "matchReasons": [
+              "AI 인프라/전력"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "PENSION",
+            "accountLabel": "한투 연금저축",
+            "category": "S&P500",
+            "matchReasons": [
+              "AI 인프라/전력"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "PENSION",
+            "accountLabel": "한투 연금저축",
+            "category": "나스닥100",
+            "matchReasons": [
+              "AI 인프라/전력"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "PENSION",
+            "accountLabel": "한투 연금저축",
+            "category": "AI반도체",
+            "matchReasons": [
+              "hbm",
+              "삼성전자",
+              "HBM"
+            ],
+            "impactDirection": "neutral"
+          },
+          {
+            "accountKey": "KIS_MAIN",
+            "accountLabel": "한투 일반",
+            "category": "AI반도체",
+            "matchReasons": [
+              "hbm",
+              "삼성전자",
+              "HBM"
+            ],
+            "impactDirection": "neutral"
+          }
+        ],
+        "watchlist": [
+          {
+            "code": "005930",
+            "name": "삼성전자",
+            "accountHint": null,
+            "accountKey": null,
+            "category": "반도체",
+            "matchReasons": [
+              "삼성전자",
+              "hbm",
+              "메모리"
+            ]
+          },
+          {
+            "code": "000660",
+            "name": "SK하이닉스",
+            "accountHint": null,
+            "accountKey": null,
+            "category": "반도체",
+            "matchReasons": [
+              "hbm",
+              "메모리"
+            ]
+          }
+        ]
+      },
+      "portfolioLinkage": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+      "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요.",
+      "impactEntries": [
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "ISA",
+            "name": "전력기기"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "삼성전자는 2026년 3분기부터 HBM4 제품이 전체 고대역폭 메모리 매출의 절반 이상을 차지할 것으로 예상했습니다. 이는 인공지능과 고성능 컴퓨팅 시장에서 HBM4 수요가 빠르게 늘고 있음을 뜻합니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "HBM +0.98%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "S&P500"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "삼성전자는 2026년 3분기부터 HBM4 제품이 전체 고대역폭 메모리 매출의 절반 이상을 차지할 것으로 예상했습니다. 이는 인공지능과 고성능 컴퓨팅 시장에서 HBM4 수요가 빠르게 늘고 있음을 뜻합니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "HBM +0.98%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "나스닥100"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "삼성전자는 2026년 3분기부터 HBM4 제품이 전체 고대역폭 메모리 매출의 절반 이상을 차지할 것으로 예상했습니다. 이는 인공지능과 고성능 컴퓨팅 시장에서 HBM4 수요가 빠르게 늘고 있음을 뜻합니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "HBM +0.98%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        }
+      ]
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM4MTIwNg==",
+      "numericId": "1381206",
+      "title": "영국, 유해 콘텐츠 규제에 경영진 책임 강화 검토",
+      "summary": "영국 정부가 온라인 유해 콘텐츠 규제를 위해 기업 경영진의 개인 책임 강화 법안을 논의 중입니다. Meta는 책임 범위 현실성을 강조하며, 규제가 타국 검열 강화로 이어질 수 있어 신중한 입법을 촉구했습니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1381206",
+      "displayUpdatedAt": "2026-04-30T02:03:09+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 2,
+      "mainSource": {
+        "type": "TELEGRAM",
+        "name": "텔레그램",
+        "author": "매시 트레이딩 - 매크로, 시황으로 드리블"
+      },
+      "uniqueSourceTypeList": [
+        "TELEGRAM"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZToyNDY1",
+          "name": "AI",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 0.1826763153076172
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZTo0MTI5",
+          "name": "메타 플랫폼스(페이스북)",
+          "code": "META",
+          "type": "COMPANY",
+          "country": "US",
+          "fluctuationRate": -0.3306819197426084
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZTozMjk5",
+          "name": "은행및여신업",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -0.24593472480773926
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZTozMzY4",
+          "name": "재난",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -0.2835273742675781
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZTozNzk3",
+          "name": "매시 트레이딩 - 매크로, 시황으로 드리블",
+          "code": "텔레그램-2120583396",
+          "type": "INFLUENCER",
+          "country": "EMPTY",
+          "fluctuationRate": null
+        }
+      ],
+      "sourceInfo": [
+        {
+          "type": "TELEGRAM",
+          "count": 2
+        }
+      ],
+      "subTopics": [
+        {
+          "id": "U3ViVG9waWNUeXBlOjE0NTU3NjI=",
+          "title": "Meta, 영국 온라인 규제 법안에 신중한 입장 표명",
+          "summary": "Meta Platforms가 영국 정부의 온라인 유해 콘텐츠 규제 법안에 대해 경영진 형사책임 조항이 반복적·시스템적 불이행에 한정된 합리적 설계일 수 있다고 평가하며, 기존 논의와는 달리 책임 적용 범위의 현실성을 강조했습니다. 또한 민주국가의 규제가 타국의 검열 논리 강화로 이어질 수 있음을 경고하고, 입법 과정에서 신중한 접근을 촉구했습니다.",
+          "updatedAt": "2026-04-30T11:03:09+09:00",
+          "sourceOrigins": [
+            {
+              "title": "Meta, AI로 허위정보 대응 강화 및 규제 논의 강조",
+              "author": "매시 트레이딩 - 매크로, 시황으로 드리블",
+              "type": "TELEGRAM",
+              "url": "https://t.me/massitrading/112403"
+            }
+          ]
+        },
+        {
+          "id": "U3ViVG9waWNUeXBlOjE0NTU2MDk=",
+          "title": "영국, 온라인 유해 콘텐츠 대응 경영진 책임 논의",
+          "summary": "영국 정부가 온라인 유해 콘텐츠 확산에 대응하기 위해 기업 경영진의 개인 책임 강화 법안을 논의하고 있습니다. 구금 위협의 실효성에 대한 논쟁이 이어지는 가운데, 대형 플랫폼의 구조적 문제 해결을 위해 유럽연합 디지털서비스법 방식의 독립 기술감사와 투명성 강화 방안이 대안으로 제시됐습니다. 허위정보 차단의 운영비용과 사용자 경험의 균형, 그리고 조직문화에 따른 플랫폼별 대응 차이도 함께 부각되고 있습니다.",
+          "updatedAt": "2026-04-30T10:32:59+09:00",
+          "sourceOrigins": [
+            {
+              "title": "영국 경영진 처벌 논란과 EU DSA식 기술감사 대안",
+              "author": "매시 트레이딩 - 매크로, 시황으로 드리블",
+              "type": "TELEGRAM",
+              "url": "https://t.me/massitrading/112395"
+            }
+          ]
+        }
+      ],
+      "signalDirection": "positive",
+      "signalLabels": [
+        "AI 인프라/전력"
+      ],
+      "relevanceScore": 56,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [
+          {
+            "accountKey": "ISA",
+            "accountLabel": "한투 ISA",
+            "category": "전력기기",
+            "matchReasons": [
+              "AI 인프라/전력"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "PENSION",
+            "accountLabel": "한투 연금저축",
+            "category": "S&P500",
+            "matchReasons": [
+              "AI 인프라/전력"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "PENSION",
+            "accountLabel": "한투 연금저축",
+            "category": "나스닥100",
+            "matchReasons": [
+              "AI 인프라/전력",
+              "ai"
+            ],
+            "impactDirection": "positive"
+          }
+        ],
+        "watchlist": []
+      },
+      "portfolioLinkage": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+      "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요.",
+      "impactEntries": [
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "ISA",
+            "name": "전력기기"
+          },
+          "direction": "positive",
+          "strength": 0.535,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "영국 정부가 온라인 유해 콘텐츠 규제를 위해 기업 경영진의 개인 책임 강화 법안을 논의 중입니다. Meta는 책임 범위 현실성을 강조하며, 규제가 타국 검열 강화로 이어질 수 있어 신중한 입법을 촉구했습니다.",
+              "Meta Platforms가 영국 정부의 온라인 유해 콘텐츠 규제 법안에 대해 경영진 형사책임 조항이 반복적·시스템적 불이행에 한정된 합리적 설계일 수 있다고 평가하며, 기존 논의와는 달리 책임 적용 범위의 현실성을 강조했습니다. 또한 민주국가의 규제가 타국의 검열 논리 강화로 이어질 수 있음을 경고하고, 입법 과정에서 신중한 접근을 촉구했습니다.",
+              "영국 정부가 온라인 유해 콘텐츠 확산에 대응하기 위해 기업 경영진의 개인 책임 강화 법안을 논의하고 있습니다. 구금 위협의 실효성에 대한 논쟁이 이어지는 가운데, 대형 플랫폼의 구조적 문제 해결을 위해 유럽연합 디지털서비스법 방식의 독립 기술감사와 투명성 강화 방안이 대안으로 제시됐습니다. 허위정보 차단의 운영비용과 사용자 경험의 균형, 그리고 조직문화에 따른 플랫폼별 대응 차이도 함께 부각되고 있습니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "AI +0.18%",
+              "메타 플랫폼스(페이스북) -0.33%",
+              "은행및여신업 -0.25%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "S&P500"
+          },
+          "direction": "positive",
+          "strength": 0.535,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "영국 정부가 온라인 유해 콘텐츠 규제를 위해 기업 경영진의 개인 책임 강화 법안을 논의 중입니다. Meta는 책임 범위 현실성을 강조하며, 규제가 타국 검열 강화로 이어질 수 있어 신중한 입법을 촉구했습니다.",
+              "Meta Platforms가 영국 정부의 온라인 유해 콘텐츠 규제 법안에 대해 경영진 형사책임 조항이 반복적·시스템적 불이행에 한정된 합리적 설계일 수 있다고 평가하며, 기존 논의와는 달리 책임 적용 범위의 현실성을 강조했습니다. 또한 민주국가의 규제가 타국의 검열 논리 강화로 이어질 수 있음을 경고하고, 입법 과정에서 신중한 접근을 촉구했습니다.",
+              "영국 정부가 온라인 유해 콘텐츠 확산에 대응하기 위해 기업 경영진의 개인 책임 강화 법안을 논의하고 있습니다. 구금 위협의 실효성에 대한 논쟁이 이어지는 가운데, 대형 플랫폼의 구조적 문제 해결을 위해 유럽연합 디지털서비스법 방식의 독립 기술감사와 투명성 강화 방안이 대안으로 제시됐습니다. 허위정보 차단의 운영비용과 사용자 경험의 균형, 그리고 조직문화에 따른 플랫폼별 대응 차이도 함께 부각되고 있습니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "AI +0.18%",
+              "메타 플랫폼스(페이스북) -0.33%",
+              "은행및여신업 -0.25%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "나스닥100"
+          },
+          "direction": "positive",
+          "strength": 0.535,
+          "confidence": 0.58,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "영국 정부가 온라인 유해 콘텐츠 규제를 위해 기업 경영진의 개인 책임 강화 법안을 논의 중입니다. Meta는 책임 범위 현실성을 강조하며, 규제가 타국 검열 강화로 이어질 수 있어 신중한 입법을 촉구했습니다.",
+              "Meta Platforms가 영국 정부의 온라인 유해 콘텐츠 규제 법안에 대해 경영진 형사책임 조항이 반복적·시스템적 불이행에 한정된 합리적 설계일 수 있다고 평가하며, 기존 논의와는 달리 책임 적용 범위의 현실성을 강조했습니다. 또한 민주국가의 규제가 타국의 검열 논리 강화로 이어질 수 있음을 경고하고, 입법 과정에서 신중한 접근을 촉구했습니다.",
+              "영국 정부가 온라인 유해 콘텐츠 확산에 대응하기 위해 기업 경영진의 개인 책임 강화 법안을 논의하고 있습니다. 구금 위협의 실효성에 대한 논쟁이 이어지는 가운데, 대형 플랫폼의 구조적 문제 해결을 위해 유럽연합 디지털서비스법 방식의 독립 기술감사와 투명성 강화 방안이 대안으로 제시됐습니다. 허위정보 차단의 운영비용과 사용자 경험의 균형, 그리고 조직문화에 따른 플랫폼별 대응 차이도 함께 부각되고 있습니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "AI +0.18%",
+              "메타 플랫폼스(페이스북) -0.33%",
+              "은행및여신업 -0.25%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        }
+      ]
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM4MTM0OQ==",
+      "numericId": "1381349",
+      "title": "미국 의원, AI 민주주의 위험에 규제 촉구",
+      "summary": "미국 연방 하원의원 테드 러스가 인공지능이 사회 발전에 기여하지만 민주주의에 위험을 줄 수 있다며 규제 필요성을 강조했습니다. 그는 선거와 여론 형성에서 AI 리스크 완화 방안도 제안했습니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1381349",
+      "displayUpdatedAt": "2026-04-30T02:03:10+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 1,
+      "mainSource": {
+        "type": "TELEGRAM",
+        "name": "텔레그램",
+        "author": "매시 트레이딩 - 매크로, 시황으로 드리블"
+      },
+      "uniqueSourceTypeList": [
+        "TELEGRAM"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZToyNDY1",
+          "name": "AI",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 0.1826763153076172
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyODkz",
+          "name": "발전",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 0.9369134902954102
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZTozNzk3",
+          "name": "매시 트레이딩 - 매크로, 시황으로 드리블",
+          "code": "텔레그램-2120583396",
+          "type": "INFLUENCER",
+          "country": "EMPTY",
+          "fluctuationRate": null
+        }
+      ],
+      "sourceInfo": [
+        {
+          "type": "TELEGRAM",
+          "count": 1
+        }
+      ],
+      "subTopics": [
+        {
+          "id": "U3ViVG9waWNUeXBlOjE0NTU3NTg=",
+          "title": "테드 러스 의원, AI 규제 필요성 강조",
+          "summary": "미국 캘리포니아 지역구의 연방 하원의원 테드 러스가 인공지능이 사회 발전에 기여하는 동시에 민주주의에 미칠 위험성이 크다고 지적하며, 규제의 필요성을 강조했습니다. 그는 AI의 이익을 극대화하는 정책과 함께, 선거와 여론 형성 과정에서 발생할 수 있는 리스크를 완화하는 방안이 필요하다고 밝혔습니다. 소셜미디어가 제도 신뢰를 약화시킨 사례를 언급하며, AI의 잠재적 영향에 대한 신중한 접근을 촉구했습니다.",
+          "updatedAt": "2026-04-30T11:03:10+09:00",
+          "sourceOrigins": [
+            {
+              "title": "미 의원 테드 러스, AI 이익과 리스크 병행 강조",
+              "author": "매시 트레이딩 - 매크로, 시황으로 드리블",
+              "type": "TELEGRAM",
+              "url": "https://t.me/massitrading/112404"
+            }
+          ]
+        }
+      ],
+      "signalDirection": "neutral",
+      "signalLabels": [
+        "AI 인프라/전력"
+      ],
+      "relevanceScore": 50,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [
+          {
+            "accountKey": "ISA",
+            "accountLabel": "한투 ISA",
+            "category": "전력기기",
+            "matchReasons": [
+              "AI 인프라/전력"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "PENSION",
+            "accountLabel": "한투 연금저축",
+            "category": "S&P500",
+            "matchReasons": [
+              "AI 인프라/전력"
+            ],
+            "impactDirection": "positive"
+          },
+          {
+            "accountKey": "PENSION",
+            "accountLabel": "한투 연금저축",
+            "category": "나스닥100",
+            "matchReasons": [
+              "AI 인프라/전력",
+              "ai"
+            ],
+            "impactDirection": "positive"
+          }
+        ],
+        "watchlist": []
+      },
+      "portfolioLinkage": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+      "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요.",
+      "impactEntries": [
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "ISA",
+            "name": "전력기기"
+          },
+          "direction": "positive",
+          "strength": 0.512,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "미국 연방 하원의원 테드 러스가 인공지능이 사회 발전에 기여하지만 민주주의에 위험을 줄 수 있다며 규제 필요성을 강조했습니다. 그는 선거와 여론 형성에서 AI 리스크 완화 방안도 제안했습니다.",
+              "미국 캘리포니아 지역구의 연방 하원의원 테드 러스가 인공지능이 사회 발전에 기여하는 동시에 민주주의에 미칠 위험성이 크다고 지적하며, 규제의 필요성을 강조했습니다. 그는 AI의 이익을 극대화하는 정책과 함께, 선거와 여론 형성 과정에서 발생할 수 있는 리스크를 완화하는 방안이 필요하다고 밝혔습니다. 소셜미디어가 제도 신뢰를 약화시킨 사례를 언급하며, AI의 잠재적 영향에 대한 신중한 접근을 촉구했습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "AI +0.18%",
+              "발전 +0.94%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "S&P500"
+          },
+          "direction": "positive",
+          "strength": 0.512,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "미국 연방 하원의원 테드 러스가 인공지능이 사회 발전에 기여하지만 민주주의에 위험을 줄 수 있다며 규제 필요성을 강조했습니다. 그는 선거와 여론 형성에서 AI 리스크 완화 방안도 제안했습니다.",
+              "미국 캘리포니아 지역구의 연방 하원의원 테드 러스가 인공지능이 사회 발전에 기여하는 동시에 민주주의에 미칠 위험성이 크다고 지적하며, 규제의 필요성을 강조했습니다. 그는 AI의 이익을 극대화하는 정책과 함께, 선거와 여론 형성 과정에서 발생할 수 있는 리스크를 완화하는 방안이 필요하다고 밝혔습니다. 소셜미디어가 제도 신뢰를 약화시킨 사례를 언급하며, AI의 잠재적 영향에 대한 신중한 접근을 촉구했습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "AI +0.18%",
+              "발전 +0.94%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "나스닥100"
+          },
+          "direction": "positive",
+          "strength": 0.512,
+          "confidence": 0.58,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "미국 연방 하원의원 테드 러스가 인공지능이 사회 발전에 기여하지만 민주주의에 위험을 줄 수 있다며 규제 필요성을 강조했습니다. 그는 선거와 여론 형성에서 AI 리스크 완화 방안도 제안했습니다.",
+              "미국 캘리포니아 지역구의 연방 하원의원 테드 러스가 인공지능이 사회 발전에 기여하는 동시에 민주주의에 미칠 위험성이 크다고 지적하며, 규제의 필요성을 강조했습니다. 그는 AI의 이익을 극대화하는 정책과 함께, 선거와 여론 형성 과정에서 발생할 수 있는 리스크를 완화하는 방안이 필요하다고 밝혔습니다. 소셜미디어가 제도 신뢰를 약화시킨 사례를 언급하며, AI의 잠재적 영향에 대한 신중한 접근을 촉구했습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "AI +0.18%",
+              "발전 +0.94%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        }
+      ]
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM4MTIzNA==",
+      "numericId": "1381234",
+      "title": "중국 4월 제조업 PMI 50.3으로 회복세 지속",
+      "summary": "중국 국가통계국이 2026년 4월 제조업 구매관리자지수(PMI)를 50.3으로 발표하며 예상치를 웃돌았습니다. 생산과 신규 수출 주문이 모두 기준선을 넘으며 제조업이 호조를 보였고, 생산지수는 올해 최고 수준입니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1381234",
+      "displayUpdatedAt": "2026-04-30T02:02:25+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 7,
+      "mainSource": {
+        "type": "TELEGRAM",
+        "name": "텔레그램",
+        "author": "증권사 애널 크롤러🇰🇷"
+      },
+      "uniqueSourceTypeList": [
+        "TELEGRAM"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZToxODY5NA==",
+          "name": "서비스",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 0.86517333984375
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToxODI3OA==",
+          "name": "증권사 애널 채널 크롤러",
+          "code": "텔레그램-2107410272",
+          "type": "INFLUENCER",
+          "country": "EMPTY",
+          "fluctuationRate": null
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZTozODAw",
+          "name": "[메리츠 중국 최설화]",
+          "code": "텔레그램-1363248717",
+          "type": "INFLUENCER",
+          "country": "EMPTY",
+          "fluctuationRate": null
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZTozNzYy",
+          "name": "하나증권 리서치 중국/신흥국 전략 김경환",
+          "code": "텔레그램-1306052516",
+          "type": "INFLUENCER",
+          "country": "EMPTY",
+          "fluctuationRate": null
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToxNzk5Ng==",
+          "name": "급등일보 미국주식🇺🇸기술주/성장주 투자아이디어 발굴",
+          "code": "텔레그램-1586367974",
+          "type": "INFLUENCER",
+          "country": "EMPTY",
+          "fluctuationRate": null
+        }
+      ],
+      "sourceInfo": [],
+      "subTopics": [],
+      "signalDirection": "neutral",
+      "signalLabels": [],
+      "relevanceScore": 9,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [],
+        "watchlist": []
+      },
+      "portfolioLinkage": "",
+      "deepResearchQuestion": "중국 4월 제조업 PMI 50.3으로 회복세 지속가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+      "impactEntries": []
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM4MTM1Mw==",
+      "numericId": "1381353",
+      "title": "미국 금융기관, 마이애미 행사서 디지털 자산 진출 가속",
+      "summary": "JP모건과 모건스탠리 등 미국 주요 금융기관들이 2026년 5월 '컨센서스 마이애미 2026' 행사에 스폰서로 참여하며 디지털 자산 시장 진출을 본격화하고 있습니다. 이 행사에는 1만5000명 이상이 참석하며, 기관 투자자 비중이 약 35%로 늘어 약 10조 달러 규모 자산이 모일 예정입니다. 정책 책임자들도 처음 참석해 디지털 자산 제도화 논의가 활발해지고 있습니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1381353",
+      "displayUpdatedAt": "2026-04-30T02:03:57+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 2,
+      "mainSource": {
+        "type": "COMPANY_NEWS",
+        "name": "뉴스",
+        "author": "토큰포스트"
+      },
+      "uniqueSourceTypeList": [
+        "COMPANY_NEWS"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZTo1NzE1",
+          "name": "코인베이스 글로벌",
+          "code": "COIN",
+          "type": "COMPANY",
+          "country": "US",
+          "fluctuationRate": -6.373003606388463
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyNTYz",
+          "name": "가상화폐",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 4.271864891052246
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyNjc1",
+          "name": "금융",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -0.7432222366333008
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToxNzczOA==",
+          "name": "스테이블코인",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 0.38018226623535156
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyOTUy",
+          "name": "블록체인",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -0.28465986251831055
+        }
+      ],
+      "sourceInfo": [
+        {
+          "type": "COMPANY_NEWS",
+          "count": 2
+        }
+      ],
+      "subTopics": [
+        {
+          "id": "U3ViVG9waWNUeXBlOjE0NTU3NjM=",
+          "title": "미국 금융기관, 컨센서스 2026 행사 스폰서 참여",
+          "summary": "JP모건과 모건스탠리 등 미국 주요 금융기관들이 2026년 5월 열리는 '컨센서스 마이애미 2026' 행사에 스폰서로 참여하며 디지털 자산 시장 진출을 본격화하고 있습니다. 이번 행사에는 1만5000명 이상이 참석하며, 기관 투자자 비중이 약 35%로 늘어나 약 10조 달러 규모의 자산이 집결될 예정입니다. 정책 책임자들이 처음으로 참석해 디지털 자산 제도화 논의가 가속화되고 있습니다.",
+          "updatedAt": "2026-04-30T11:03:57+09:00",
+          "sourceOrigins": [
+            {
+              "title": "JP모건·모건스탠리도 스폰서로…컨센서스서 드러난 전통금융의 크립토 진입",
+              "author": "토큰포스트",
+              "type": "COMPANY_NEWS",
+              "url": "https://www.tokenpost.kr/news/cryptocurrency/354864"
+            },
+            {
+              "title": "JP모건·모건스탠리도 스폰서로…컨센서스서 드러난 전통금융의 크립토 진입",
+              "author": "토큰포스트",
+              "type": "COMPANY_NEWS",
+              "url": "https://www.tokenpost.kr/news/cryptocurrency/354863"
+            }
+          ]
+        }
+      ],
+      "signalDirection": "neutral",
+      "signalLabels": [],
+      "relevanceScore": 5,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [],
+        "watchlist": []
+      },
+      "portfolioLinkage": "",
+      "deepResearchQuestion": "미국 금융기관, 마이애미 행사서 디지털 자산 진출 가속가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+      "impactEntries": []
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM4MTIwOA==",
+      "numericId": "1381208",
+      "title": "Poppy, 미국서 인지도 50% 목표로 리브랜딩 추진",
+      "summary": "음료 브랜드 Poppy가 미국 내 인지도 50% 이상과 97% 가구 침투율 목표로 리브랜딩 전략을 발표했습니다. 알루미늄 캔 가격 급등과 공급망 문제에 대응해 2,000만 달러 추가 비용을 부담하며, Pepsi와 유통 파트너십을 맺어 전국 유통 효율을 높이고 있습니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1381208",
+      "displayUpdatedAt": "2026-04-30T02:02:40+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 2,
+      "mainSource": {
+        "type": "TELEGRAM",
+        "name": "텔레그램",
+        "author": "매시 트레이딩 - 매크로, 시황으로 드리블"
+      },
+      "uniqueSourceTypeList": [
+        "TELEGRAM"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZTozMzAw",
+          "name": "음료",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -0.23261308670043945
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZTo0OTU2MzE=",
+          "name": "식품음료",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 0.3322601318359375
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToxMjUwMQ==",
+          "name": "H&R 블록",
+          "code": "HRB",
+          "type": "COMPANY",
+          "country": "US",
+          "fluctuationRate": -0.25388765471279545
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToxODY5NA==",
+          "name": "서비스",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": 0.86517333984375
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyNTU0",
+          "name": "가구",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -0.37488341331481934
+        }
+      ],
+      "sourceInfo": [],
+      "subTopics": [],
+      "signalDirection": "neutral",
+      "signalLabels": [],
+      "relevanceScore": 5,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [],
+        "watchlist": []
+      },
+      "portfolioLinkage": "",
+      "deepResearchQuestion": "Poppy, 미국서 인지도 50% 목표로 리브랜딩 추진가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+      "impactEntries": []
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM4MTM4NA==",
+      "numericId": "1381384",
+      "title": "GS글로벌, 2026년 1분기 GS엔텍 거래액 20% 이상 하향 수정",
+      "summary": "GS글로벌이 2026년 1분기 GS엔텍과의 거래 금액을 기존 예상보다 20% 이상 줄어든 실제 금액으로 수정해 공시했습니다. 거래는 수의계약 방식이며, 매출과 매입 모두 0.01% 수준입니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1381384",
+      "displayUpdatedAt": "2026-04-30T02:05:08+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 1,
+      "mainSource": {
+        "type": "DISCLOSURE",
+        "name": "공시",
+        "author": "공시"
+      },
+      "uniqueSourceTypeList": [
+        "DISCLOSURE"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZTo1OQ==",
+          "name": "GS글로벌",
+          "code": "001250",
+          "type": "COMPANY",
+          "country": "KR",
+          "fluctuationRate": -2.029520295202952
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZTozNTA5",
+          "name": "철강",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -1.9702613353729248
+        }
+      ],
+      "sourceInfo": [
+        {
+          "type": "DISCLOSURE",
+          "count": 1
+        }
+      ],
+      "subTopics": [
+        {
+          "id": "U3ViVG9waWNUeXBlOjE0NTU3OTc=",
+          "title": "GS글로벌, 2026년 1분기 GS엔텍 거래금액 변경 공시",
+          "summary": "GS글로벌이 2026년 1월 1일부터 3월 31일까지 GS엔텍과의 상품 및 용역 거래 내역을 기존 예상보다 20% 이상 줄어든 실제 금액으로 변경해 공시했습니다. 철강제품 등 매출은 1억 4,300만 원, 화공기기 등 매입은 8,300만 원으로 모두 수의계약 방식이었으며, 해당 거래금액은 2025년 별도 재무제표 기준 직전사업연도 매출액의 0.01% 수준입니다.",
+          "updatedAt": "2026-04-30T11:05:08+09:00",
+          "sourceOrigins": [
+            {
+              "title": "동일인등출자계열회사와의상품ㆍ용역거래변경",
+              "author": "공시",
+              "type": "DISCLOSURE",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260430000401"
+            }
+          ]
+        }
+      ],
+      "signalDirection": "neutral",
+      "signalLabels": [],
+      "relevanceScore": 3,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [],
+        "watchlist": []
+      },
+      "portfolioLinkage": "",
+      "deepResearchQuestion": "GS글로벌, 2026년 1분기 GS엔텍 거래액 20% 이상 하향 수정가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+      "impactEntries": []
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM4MTM3NQ==",
+      "numericId": "1381375",
+      "title": "삼성전기, 신기술 투자에 297억원 출자",
+      "summary": "삼성전기는 2026년 4월 29일 SVIC 79호 신기술사업투자조합에 297억원을 출자하기로 했습니다. 차세대 기술 선점을 위해 유망 업체와 협력 기회를 확보하는 목적입니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1381375",
+      "displayUpdatedAt": "2026-04-30T02:04:08+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 1,
+      "mainSource": {
+        "type": "DISCLOSURE",
+        "name": "공시",
+        "author": "공시"
+      },
+      "uniqueSourceTypeList": [
+        "DISCLOSURE"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZTozNDQ=",
+          "name": "삼성전기",
+          "code": "009150",
+          "type": "COMPANY",
+          "country": "KR",
+          "fluctuationRate": 4.2321644498186215
+        }
+      ],
+      "sourceInfo": [
+        {
+          "type": "DISCLOSURE",
+          "count": 1
+        }
+      ],
+      "subTopics": [
+        {
+          "id": "U3ViVG9waWNUeXBlOjE0NTU3ODY=",
+          "title": "삼성전기, SVIC 79호 신기술조합에 297억원 출자 결정",
+          "summary": "삼성전기는 2026년 4월 29일 이사회에서 SVIC 79호 신기술사업투자조합에 297억원을 출자하기로 의결했습니다. 이번 투자는 차세대 기술 선점을 위한 유망 업체와의 협력 기회 확보를 목적으로 하며, 삼성벤처투자가 결성하는 조합에 대한 투자입니다. 최초 출자금은 2026년 2분기 중 납입될 예정이며, 이후 추가 투자와 비용 발생 시 수시납입 방식으로 진행됩니다.",
+          "updatedAt": "2026-04-30T11:04:08+09:00",
+          "sourceOrigins": [
+            {
+              "title": "특수관계인에대한출자",
+              "author": "공시",
+              "type": "DISCLOSURE",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260430000395"
+            }
+          ]
+        }
+      ],
+      "signalDirection": "neutral",
+      "signalLabels": [],
+      "relevanceScore": 3,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [],
+        "watchlist": []
+      },
+      "portfolioLinkage": "",
+      "deepResearchQuestion": "삼성전기, 신기술 투자에 297억원 출자가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+      "impactEntries": []
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM4MTM1MQ==",
+      "numericId": "1381351",
+      "title": "더블유씨피, 1분기 실적 5월 11일 발표 예정",
+      "summary": "더블유씨피가 2026년 1분기 경영 실적을 5월 11일에 공식 발표할 예정입니다. 다만, 외부감사 검토 결과에 따라 수치가 바뀔 수 있고, 공시 일정도 변경될 수 있어 투자자분들은 참고해 주시기 바랍니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1381351",
+      "displayUpdatedAt": "2026-04-30T02:03:06+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 1,
+      "mainSource": {
+        "type": "DISCLOSURE",
+        "name": "공시",
+        "author": "공시"
+      },
+      "uniqueSourceTypeList": [
+        "DISCLOSURE"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZToyMzI1",
+          "name": "더블유씨피",
+          "code": "393890",
+          "type": "COMPANY",
+          "country": "KR",
+          "fluctuationRate": -2.663438256658596
+        }
+      ],
+      "sourceInfo": [
+        {
+          "type": "DISCLOSURE",
+          "count": 1
+        }
+      ],
+      "subTopics": [
+        {
+          "id": "U3ViVG9waWNUeXBlOjE0NTU3NjA=",
+          "title": "더블유씨피, 2026년 1분기 잠정 실적 공시 예고",
+          "summary": "더블유씨피가 2026년 1월 1일부터 3월 31일까지의 경영 실적을 반영한 2026년 1분기 연결재무제표 기준 잠정 영업실적을 2026년 5월 11일에 공식 공시할 예정입니다. 이번 실적 수치는 외부감사인의 검토 결과에 따라 변동될 수 있으며, 회사 사정에 따라 공시 일정이 변경될 가능성도 있어 투자자들은 확정치가 아님을 유의해야 합니다.",
+          "updatedAt": "2026-04-30T11:03:06+09:00",
+          "sourceOrigins": [
+            {
+              "title": "결산실적공시예고",
+              "author": "공시",
+              "type": "DISCLOSURE",
+              "url": "https://dart.fss.or.kr/dsaf001/main.do?rcpNo=20260430900318"
+            }
+          ]
+        }
+      ],
+      "signalDirection": "neutral",
+      "signalLabels": [],
+      "relevanceScore": 3,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [],
+        "watchlist": []
+      },
+      "portfolioLinkage": "",
+      "deepResearchQuestion": "더블유씨피, 1분기 실적 5월 11일 발표 예정가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+      "impactEntries": []
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM4MTM0OA==",
+      "numericId": "1381348",
+      "title": "중국 정부, 내수 활성화로 경제 회복 추진",
+      "summary": "중국 정부가 내수 시장 활성화를 위해 소비 진작과 경제 회복을 목표로 한 다양한 지원 정책을 추진하고 있습니다. 이 정책들은 소매업과 서비스업 등 주요 산업에 적용돼 경제에 긍정적 영향을 줄 것으로 보입니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1381348",
+      "displayUpdatedAt": "2026-04-30T02:03:06+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 1,
+      "mainSource": {
+        "type": "TELEGRAM",
+        "name": "텔레그램",
+        "author": "증권사 애널 크롤러🇰🇷"
+      },
+      "uniqueSourceTypeList": [
+        "TELEGRAM"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZToxODI3OA==",
+          "name": "증권사 애널 채널 크롤러",
+          "code": "텔레그램-2107410272",
+          "type": "INFLUENCER",
+          "country": "EMPTY",
+          "fluctuationRate": null
+        }
+      ],
+      "sourceInfo": [
+        {
+          "type": "TELEGRAM",
+          "count": 1
+        }
+      ],
+      "subTopics": [
+        {
+          "id": "U3ViVG9waWNUeXBlOjE0NTU3NTc=",
+          "title": "중국 정부, 내수 활성화 위한 지원 정책 추진",
+          "summary": "중국 정부가 내수 시장을 활성화하기 위해 다양한 지원 정책을 추진하고 있습니다. 최근 중국에서는 소비 진작과 경제 회복을 목표로 한 내수 부양책이 논의되고 있으며, 이 정책들은 소매업과 서비스업 등 주요 산업 전반에 적용될 예정입니다. 이러한 조치는 중국 경제 전반에 긍정적인 영향을 줄 것으로 기대됩니다.",
+          "updatedAt": "2026-04-30T11:03:06+09:00",
+          "sourceOrigins": [
+            {
+              "title": "중국 내수 부양 지원 소식 전해",
+              "author": "증권사 애널 크롤러🇰🇷",
+              "type": "TELEGRAM",
+              "url": "https://t.me/AnalystCrawler/587470"
+            }
+          ]
+        }
+      ],
+      "signalDirection": "neutral",
+      "signalLabels": [],
+      "relevanceScore": 3,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [],
+        "watchlist": []
+      },
+      "portfolioLinkage": "",
+      "deepResearchQuestion": "중국 정부, 내수 활성화로 경제 회복 추진가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+      "impactEntries": []
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM4MTM1MA==",
+      "numericId": "1381350",
+      "title": "유디엠텍, 베트남 BHflex에 모바일 분석시스템 공급",
+      "summary": "유디엠텍이 베트남 BHflex vina와 모바일라인 통합분석시스템 구축 계약을 체결했습니다. 계약금액은 약 6억5,202만 원이며, 2025년 11월부터 2026년 5월까지 진행됩니다.",
+      "topicUrl": "https://www.moneytoring.ai/mv/1381350",
+      "displayUpdatedAt": "2026-04-30T02:02:07+00:00",
+      "quoteCount": 0,
+      "topicDocumentSize": 1,
+      "mainSource": {
+        "type": "DISCLOSURE",
+        "name": "공시",
+        "author": "공시"
+      },
+      "uniqueSourceTypeList": [
+        "DISCLOSURE"
+      ],
+      "keywordList": [
+        {
+          "id": "S2V5d29yZFYyVHlwZTo0MDM1",
+          "name": "유디엠텍",
+          "code": "389680",
+          "type": "COMPANY",
+          "country": "KR",
+          "fluctuationRate": 0
+        },
+        {
+          "id": "S2V5d29yZFYyVHlwZToyNDgy",
+          "name": "FPCB",
+          "code": "",
+          "type": "THEME",
+          "country": "EMPTY",
+          "fluctuationRate": -0.6807863712310791
+        }
+      ],
+      "sourceInfo": [],
+      "subTopics": [],
+      "signalDirection": "neutral",
+      "signalLabels": [],
+      "relevanceScore": 3,
+      "portfolioMatches": {
+        "directHoldings": [],
+        "thematicAccounts": [],
+        "watchlist": []
+      },
+      "portfolioLinkage": "",
+      "deepResearchQuestion": "유디엠텍, 베트남 BHflex에 모바일 분석시스템 공급가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+      "impactEntries": []
+    }
+  ],
+  "accountDigests": [
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "topTopics": [
+        {
+          "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM4MDM0MQ==",
+          "title": "텔레모아 2026년 4월 투자 인기글 TOP10 공개",
+          "topicUrl": "https://www.moneytoring.ai/mv/1380341",
+          "relevanceScore": 100,
+          "signalDirection": "positive",
+          "portfolioLinkage": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력, 방산/국방입니다.",
+          "matchedNames": [],
+          "matchedCategories": [
+            "전력기기"
+          ],
+          "sourceCount": 3,
+          "updatedAt": "2026-04-30T02:13:21+00:00"
+        },
+        {
+          "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM4MTM2MQ==",
+          "title": "삼성전자 2026년 3분기부터 HBM4 매출 절반 돌파 전망",
+          "topicUrl": "https://www.moneytoring.ai/mv/1381361",
+          "relevanceScore": 96,
+          "signalDirection": "neutral",
+          "portfolioLinkage": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "matchedNames": [],
+          "matchedCategories": [
+            "전력기기"
+          ],
+          "sourceCount": 1,
+          "updatedAt": "2026-04-30T02:01:26+00:00"
+        },
+        {
+          "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM4MTIwNg==",
+          "title": "영국, 유해 콘텐츠 규제에 경영진 책임 강화 검토",
+          "topicUrl": "https://www.moneytoring.ai/mv/1381206",
+          "relevanceScore": 56,
+          "signalDirection": "positive",
+          "portfolioLinkage": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "matchedNames": [],
+          "matchedCategories": [
+            "전력기기"
+          ],
+          "sourceCount": 2,
+          "updatedAt": "2026-04-30T02:03:09+00:00"
+        },
+        {
+          "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM4MTM0OQ==",
+          "title": "미국 의원, AI 민주주의 위험에 규제 촉구",
+          "topicUrl": "https://www.moneytoring.ai/mv/1381349",
+          "relevanceScore": 50,
+          "signalDirection": "neutral",
+          "portfolioLinkage": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "matchedNames": [],
+          "matchedCategories": [
+            "전력기기"
+          ],
+          "sourceCount": 1,
+          "updatedAt": "2026-04-30T02:03:10+00:00"
+        }
+      ]
+    },
+    {
+      "accountKey": "PENSION",
+      "accountLabel": "한투 연금저축",
+      "topTopics": [
+        {
+          "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM4MDM0MQ==",
+          "title": "텔레모아 2026년 4월 투자 인기글 TOP10 공개",
+          "topicUrl": "https://www.moneytoring.ai/mv/1380341",
+          "relevanceScore": 100,
+          "signalDirection": "positive",
+          "portfolioLinkage": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력, 방산/국방입니다.",
+          "matchedNames": [],
+          "matchedCategories": [
+            "S&P500",
+            "나스닥100",
+            "AI반도체"
+          ],
+          "sourceCount": 3,
+          "updatedAt": "2026-04-30T02:13:21+00:00"
+        },
+        {
+          "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM4MTM2MQ==",
+          "title": "삼성전자 2026년 3분기부터 HBM4 매출 절반 돌파 전망",
+          "topicUrl": "https://www.moneytoring.ai/mv/1381361",
+          "relevanceScore": 96,
+          "signalDirection": "neutral",
+          "portfolioLinkage": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "matchedNames": [],
+          "matchedCategories": [
+            "S&P500",
+            "나스닥100",
+            "AI반도체"
+          ],
+          "sourceCount": 1,
+          "updatedAt": "2026-04-30T02:01:26+00:00"
+        },
+        {
+          "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM4MTIwNg==",
+          "title": "영국, 유해 콘텐츠 규제에 경영진 책임 강화 검토",
+          "topicUrl": "https://www.moneytoring.ai/mv/1381206",
+          "relevanceScore": 56,
+          "signalDirection": "positive",
+          "portfolioLinkage": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "matchedNames": [],
+          "matchedCategories": [
+            "S&P500",
+            "나스닥100"
+          ],
+          "sourceCount": 2,
+          "updatedAt": "2026-04-30T02:03:09+00:00"
+        },
+        {
+          "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM4MTM0OQ==",
+          "title": "미국 의원, AI 민주주의 위험에 규제 촉구",
+          "topicUrl": "https://www.moneytoring.ai/mv/1381349",
+          "relevanceScore": 50,
+          "signalDirection": "neutral",
+          "portfolioLinkage": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "matchedNames": [],
+          "matchedCategories": [
+            "S&P500",
+            "나스닥100"
+          ],
+          "sourceCount": 1,
+          "updatedAt": "2026-04-30T02:03:10+00:00"
+        }
+      ]
+    },
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "topTopics": [
+        {
+          "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM4MDM0MQ==",
+          "title": "텔레모아 2026년 4월 투자 인기글 TOP10 공개",
+          "topicUrl": "https://www.moneytoring.ai/mv/1380341",
+          "relevanceScore": 100,
+          "signalDirection": "positive",
+          "portfolioLinkage": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력, 방산/국방입니다.",
+          "matchedNames": [],
+          "matchedCategories": [
+            "방산",
+            "AI반도체"
+          ],
+          "sourceCount": 3,
+          "updatedAt": "2026-04-30T02:13:21+00:00"
+        },
+        {
+          "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM4MTM2MQ==",
+          "title": "삼성전자 2026년 3분기부터 HBM4 매출 절반 돌파 전망",
+          "topicUrl": "https://www.moneytoring.ai/mv/1381361",
+          "relevanceScore": 96,
+          "signalDirection": "neutral",
+          "portfolioLinkage": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "matchedNames": [],
+          "matchedCategories": [
+            "AI반도체"
+          ],
+          "sourceCount": 1,
+          "updatedAt": "2026-04-30T02:01:26+00:00"
+        }
+      ]
+    }
+  ],
+  "deepResearchCandidates": [
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM4MDM0MQ==",
+      "title": "텔레모아 2026년 4월 투자 인기글 TOP10 공개",
+      "topicUrl": "https://www.moneytoring.ai/mv/1380341",
+      "relevanceScore": 100,
+      "reason": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력, 방산/국방입니다.",
+      "question": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요."
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM4MTM2MQ==",
+      "title": "삼성전자 2026년 3분기부터 HBM4 매출 절반 돌파 전망",
+      "topicUrl": "https://www.moneytoring.ai/mv/1381361",
+      "relevanceScore": 96,
+      "reason": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+      "question": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요."
+    },
+    {
+      "topicId": "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTM4MTIwNg==",
+      "title": "영국, 유해 콘텐츠 규제에 경영진 책임 강화 검토",
+      "topicUrl": "https://www.moneytoring.ai/mv/1381206",
+      "relevanceScore": 56,
+      "reason": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+      "question": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요."
+    }
+  ],
+  "impactReports": [
+    {
+      "reportId": "marketvoice_1380341",
+      "title": "텔레모아 2026년 4월 투자 인기글 TOP10 공개",
+      "broker": "텔레모아-공식채널📈",
+      "source": "moneytoring",
+      "publishedDate": "2026-04-30T02:13:21+00:00",
+      "reportMeta": {
+        "report_type": "marketvoice",
+        "sector": "AI 인프라/전력",
+        "themes": [
+          "AI 인프라/전력",
+          "방산/국방"
+        ],
+        "key_numbers": [
+          "원문 3건",
+          "인용 0건"
+        ]
+      },
+      "impacts": [
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "ISA",
+            "name": "전력기기"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력",
+            "방산/국방"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "텔레모아가 2026년 4월 30일 투자 브리핑 인기 게시글 TOP10을 공개했습니다. 한화 기계·우주·방산·조선 관련 글이 열람율 197.78%로 1위를 차지했고, AI와 미국 전력망, 한화의 캐나다 잠수함 수주전 등 다양한 산업 이슈가 포함됐습니다.",
+              "텔레모아가 2026년 4월 30일 오전 9시 기준으로 투자 브리핑 인기 게시글 TOP10을 공개했습니다. 한화 기계·우주·방산·조선 관련 게시글이 열람율 197.78%로 1위를 차지했고, 애브비, DS투자증권, 유진 IT·자동차·미디어·게임·소비재 등 다양한 분야의 게시글이 상위권에 올랐습니다. 이번에는 AI가 미국 전력망에 미치는 영향, 한화의 캐나다 잠수함 수주전 참여, 2분기 HBM4E 샘플 공급 등 다양한 산업 이슈가 상위 게시글에 포함됐으며, 각 게시글의 열람율과 주요 내용이 안내됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력, 방산/국방입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 3건",
+              "대한전선 +13.48%",
+              "아마존닷컴 +1.29%",
+              "기계 +1.35%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power",
+            "defense"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "S&P500"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력",
+            "방산/국방"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "텔레모아가 2026년 4월 30일 투자 브리핑 인기 게시글 TOP10을 공개했습니다. 한화 기계·우주·방산·조선 관련 글이 열람율 197.78%로 1위를 차지했고, AI와 미국 전력망, 한화의 캐나다 잠수함 수주전 등 다양한 산업 이슈가 포함됐습니다.",
+              "텔레모아가 2026년 4월 30일 오전 9시 기준으로 투자 브리핑 인기 게시글 TOP10을 공개했습니다. 한화 기계·우주·방산·조선 관련 게시글이 열람율 197.78%로 1위를 차지했고, 애브비, DS투자증권, 유진 IT·자동차·미디어·게임·소비재 등 다양한 분야의 게시글이 상위권에 올랐습니다. 이번에는 AI가 미국 전력망에 미치는 영향, 한화의 캐나다 잠수함 수주전 참여, 2분기 HBM4E 샘플 공급 등 다양한 산업 이슈가 상위 게시글에 포함됐으며, 각 게시글의 열람율과 주요 내용이 안내됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력, 방산/국방입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 3건",
+              "대한전선 +13.48%",
+              "아마존닷컴 +1.29%",
+              "기계 +1.35%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power",
+            "defense"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "나스닥100"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.58,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력",
+            "방산/국방"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "텔레모아가 2026년 4월 30일 투자 브리핑 인기 게시글 TOP10을 공개했습니다. 한화 기계·우주·방산·조선 관련 글이 열람율 197.78%로 1위를 차지했고, AI와 미국 전력망, 한화의 캐나다 잠수함 수주전 등 다양한 산업 이슈가 포함됐습니다.",
+              "텔레모아가 2026년 4월 30일 오전 9시 기준으로 투자 브리핑 인기 게시글 TOP10을 공개했습니다. 한화 기계·우주·방산·조선 관련 게시글이 열람율 197.78%로 1위를 차지했고, 애브비, DS투자증권, 유진 IT·자동차·미디어·게임·소비재 등 다양한 분야의 게시글이 상위권에 올랐습니다. 이번에는 AI가 미국 전력망에 미치는 영향, 한화의 캐나다 잠수함 수주전 참여, 2분기 HBM4E 샘플 공급 등 다양한 산업 이슈가 상위 게시글에 포함됐으며, 각 게시글의 열람율과 주요 내용이 안내됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력, 방산/국방입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 3건",
+              "대한전선 +13.48%",
+              "아마존닷컴 +1.29%",
+              "기계 +1.35%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power",
+            "defense"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "AI반도체"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.58,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력",
+            "방산/국방"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "텔레모아가 2026년 4월 30일 투자 브리핑 인기 게시글 TOP10을 공개했습니다. 한화 기계·우주·방산·조선 관련 글이 열람율 197.78%로 1위를 차지했고, AI와 미국 전력망, 한화의 캐나다 잠수함 수주전 등 다양한 산업 이슈가 포함됐습니다.",
+              "텔레모아가 2026년 4월 30일 오전 9시 기준으로 투자 브리핑 인기 게시글 TOP10을 공개했습니다. 한화 기계·우주·방산·조선 관련 게시글이 열람율 197.78%로 1위를 차지했고, 애브비, DS투자증권, 유진 IT·자동차·미디어·게임·소비재 등 다양한 분야의 게시글이 상위권에 올랐습니다. 이번에는 AI가 미국 전력망에 미치는 영향, 한화의 캐나다 잠수함 수주전 참여, 2분기 HBM4E 샘플 공급 등 다양한 산업 이슈가 상위 게시글에 포함됐으며, 각 게시글의 열람율과 주요 내용이 안내됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력, 방산/국방입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 3건",
+              "대한전선 +13.48%",
+              "아마존닷컴 +1.29%",
+              "기계 +1.35%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power",
+            "defense"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "KIS_MAIN",
+            "name": "방산"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력",
+            "방산/국방"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "텔레모아가 2026년 4월 30일 투자 브리핑 인기 게시글 TOP10을 공개했습니다. 한화 기계·우주·방산·조선 관련 글이 열람율 197.78%로 1위를 차지했고, AI와 미국 전력망, 한화의 캐나다 잠수함 수주전 등 다양한 산업 이슈가 포함됐습니다.",
+              "텔레모아가 2026년 4월 30일 오전 9시 기준으로 투자 브리핑 인기 게시글 TOP10을 공개했습니다. 한화 기계·우주·방산·조선 관련 게시글이 열람율 197.78%로 1위를 차지했고, 애브비, DS투자증권, 유진 IT·자동차·미디어·게임·소비재 등 다양한 분야의 게시글이 상위권에 올랐습니다. 이번에는 AI가 미국 전력망에 미치는 영향, 한화의 캐나다 잠수함 수주전 참여, 2분기 HBM4E 샘플 공급 등 다양한 산업 이슈가 상위 게시글에 포함됐으며, 각 게시글의 열람율과 주요 내용이 안내됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력, 방산/국방입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 3건",
+              "대한전선 +13.48%",
+              "아마존닷컴 +1.29%",
+              "기계 +1.35%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power",
+            "defense"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "KIS_MAIN",
+            "name": "AI반도체"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.58,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력",
+            "방산/국방"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "텔레모아가 2026년 4월 30일 투자 브리핑 인기 게시글 TOP10을 공개했습니다. 한화 기계·우주·방산·조선 관련 글이 열람율 197.78%로 1위를 차지했고, AI와 미국 전력망, 한화의 캐나다 잠수함 수주전 등 다양한 산업 이슈가 포함됐습니다.",
+              "텔레모아가 2026년 4월 30일 오전 9시 기준으로 투자 브리핑 인기 게시글 TOP10을 공개했습니다. 한화 기계·우주·방산·조선 관련 게시글이 열람율 197.78%로 1위를 차지했고, 애브비, DS투자증권, 유진 IT·자동차·미디어·게임·소비재 등 다양한 분야의 게시글이 상위권에 올랐습니다. 이번에는 AI가 미국 전력망에 미치는 영향, 한화의 캐나다 잠수함 수주전 참여, 2분기 HBM4E 샘플 공급 등 다양한 산업 이슈가 상위 게시글에 포함됐으며, 각 게시글의 열람율과 주요 내용이 안내됐습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력, 방산/국방입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 3건",
+              "대한전선 +13.48%",
+              "아마존닷컴 +1.29%",
+              "기계 +1.35%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power",
+            "defense"
+          ]
+        }
+      ]
+    },
+    {
+      "reportId": "marketvoice_1381361",
+      "title": "삼성전자 2026년 3분기부터 HBM4 매출 절반 돌파 전망",
+      "broker": "레드버드 기업분석",
+      "source": "moneytoring",
+      "publishedDate": "2026-04-30T02:01:26+00:00",
+      "reportMeta": {
+        "report_type": "marketvoice",
+        "sector": "AI 인프라/전력",
+        "themes": [
+          "AI 인프라/전력"
+        ],
+        "key_numbers": [
+          "원문 1건",
+          "인용 0건"
+        ]
+      },
+      "impacts": [
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "ISA",
+            "name": "전력기기"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "삼성전자는 2026년 3분기부터 HBM4 제품이 전체 고대역폭 메모리 매출의 절반 이상을 차지할 것으로 예상했습니다. 이는 인공지능과 고성능 컴퓨팅 시장에서 HBM4 수요가 빠르게 늘고 있음을 뜻합니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "HBM +0.98%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "S&P500"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "삼성전자는 2026년 3분기부터 HBM4 제품이 전체 고대역폭 메모리 매출의 절반 이상을 차지할 것으로 예상했습니다. 이는 인공지능과 고성능 컴퓨팅 시장에서 HBM4 수요가 빠르게 늘고 있음을 뜻합니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "HBM +0.98%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "나스닥100"
+          },
+          "direction": "positive",
+          "strength": 0.68,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "삼성전자는 2026년 3분기부터 HBM4 제품이 전체 고대역폭 메모리 매출의 절반 이상을 차지할 것으로 예상했습니다. 이는 인공지능과 고성능 컴퓨팅 시장에서 HBM4 수요가 빠르게 늘고 있음을 뜻합니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "HBM +0.98%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        }
+      ]
+    },
+    {
+      "reportId": "marketvoice_1381206",
+      "title": "영국, 유해 콘텐츠 규제에 경영진 책임 강화 검토",
+      "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
+      "source": "moneytoring",
+      "publishedDate": "2026-04-30T02:03:09+00:00",
+      "reportMeta": {
+        "report_type": "marketvoice",
+        "sector": "AI 인프라/전력",
+        "themes": [
+          "AI 인프라/전력"
+        ],
+        "key_numbers": [
+          "원문 2건",
+          "인용 0건"
+        ]
+      },
+      "impacts": [
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "ISA",
+            "name": "전력기기"
+          },
+          "direction": "positive",
+          "strength": 0.535,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "영국 정부가 온라인 유해 콘텐츠 규제를 위해 기업 경영진의 개인 책임 강화 법안을 논의 중입니다. Meta는 책임 범위 현실성을 강조하며, 규제가 타국 검열 강화로 이어질 수 있어 신중한 입법을 촉구했습니다.",
+              "Meta Platforms가 영국 정부의 온라인 유해 콘텐츠 규제 법안에 대해 경영진 형사책임 조항이 반복적·시스템적 불이행에 한정된 합리적 설계일 수 있다고 평가하며, 기존 논의와는 달리 책임 적용 범위의 현실성을 강조했습니다. 또한 민주국가의 규제가 타국의 검열 논리 강화로 이어질 수 있음을 경고하고, 입법 과정에서 신중한 접근을 촉구했습니다.",
+              "영국 정부가 온라인 유해 콘텐츠 확산에 대응하기 위해 기업 경영진의 개인 책임 강화 법안을 논의하고 있습니다. 구금 위협의 실효성에 대한 논쟁이 이어지는 가운데, 대형 플랫폼의 구조적 문제 해결을 위해 유럽연합 디지털서비스법 방식의 독립 기술감사와 투명성 강화 방안이 대안으로 제시됐습니다. 허위정보 차단의 운영비용과 사용자 경험의 균형, 그리고 조직문화에 따른 플랫폼별 대응 차이도 함께 부각되고 있습니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "AI +0.18%",
+              "메타 플랫폼스(페이스북) -0.33%",
+              "은행및여신업 -0.25%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "S&P500"
+          },
+          "direction": "positive",
+          "strength": 0.535,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "영국 정부가 온라인 유해 콘텐츠 규제를 위해 기업 경영진의 개인 책임 강화 법안을 논의 중입니다. Meta는 책임 범위 현실성을 강조하며, 규제가 타국 검열 강화로 이어질 수 있어 신중한 입법을 촉구했습니다.",
+              "Meta Platforms가 영국 정부의 온라인 유해 콘텐츠 규제 법안에 대해 경영진 형사책임 조항이 반복적·시스템적 불이행에 한정된 합리적 설계일 수 있다고 평가하며, 기존 논의와는 달리 책임 적용 범위의 현실성을 강조했습니다. 또한 민주국가의 규제가 타국의 검열 논리 강화로 이어질 수 있음을 경고하고, 입법 과정에서 신중한 접근을 촉구했습니다.",
+              "영국 정부가 온라인 유해 콘텐츠 확산에 대응하기 위해 기업 경영진의 개인 책임 강화 법안을 논의하고 있습니다. 구금 위협의 실효성에 대한 논쟁이 이어지는 가운데, 대형 플랫폼의 구조적 문제 해결을 위해 유럽연합 디지털서비스법 방식의 독립 기술감사와 투명성 강화 방안이 대안으로 제시됐습니다. 허위정보 차단의 운영비용과 사용자 경험의 균형, 그리고 조직문화에 따른 플랫폼별 대응 차이도 함께 부각되고 있습니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "AI +0.18%",
+              "메타 플랫폼스(페이스북) -0.33%",
+              "은행및여신업 -0.25%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "나스닥100"
+          },
+          "direction": "positive",
+          "strength": 0.535,
+          "confidence": 0.58,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "영국 정부가 온라인 유해 콘텐츠 규제를 위해 기업 경영진의 개인 책임 강화 법안을 논의 중입니다. Meta는 책임 범위 현실성을 강조하며, 규제가 타국 검열 강화로 이어질 수 있어 신중한 입법을 촉구했습니다.",
+              "Meta Platforms가 영국 정부의 온라인 유해 콘텐츠 규제 법안에 대해 경영진 형사책임 조항이 반복적·시스템적 불이행에 한정된 합리적 설계일 수 있다고 평가하며, 기존 논의와는 달리 책임 적용 범위의 현실성을 강조했습니다. 또한 민주국가의 규제가 타국의 검열 논리 강화로 이어질 수 있음을 경고하고, 입법 과정에서 신중한 접근을 촉구했습니다.",
+              "영국 정부가 온라인 유해 콘텐츠 확산에 대응하기 위해 기업 경영진의 개인 책임 강화 법안을 논의하고 있습니다. 구금 위협의 실효성에 대한 논쟁이 이어지는 가운데, 대형 플랫폼의 구조적 문제 해결을 위해 유럽연합 디지털서비스법 방식의 독립 기술감사와 투명성 강화 방안이 대안으로 제시됐습니다. 허위정보 차단의 운영비용과 사용자 경험의 균형, 그리고 조직문화에 따른 플랫폼별 대응 차이도 함께 부각되고 있습니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 2건",
+              "AI +0.18%",
+              "메타 플랫폼스(페이스북) -0.33%",
+              "은행및여신업 -0.25%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        }
+      ]
+    },
+    {
+      "reportId": "marketvoice_1381349",
+      "title": "미국 의원, AI 민주주의 위험에 규제 촉구",
+      "broker": "매시 트레이딩 - 매크로, 시황으로 드리블",
+      "source": "moneytoring",
+      "publishedDate": "2026-04-30T02:03:10+00:00",
+      "reportMeta": {
+        "report_type": "marketvoice",
+        "sector": "AI 인프라/전력",
+        "themes": [
+          "AI 인프라/전력"
+        ],
+        "key_numbers": [
+          "원문 1건",
+          "인용 0건"
+        ]
+      },
+      "impacts": [
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "ISA",
+            "name": "전력기기"
+          },
+          "direction": "positive",
+          "strength": 0.512,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "미국 연방 하원의원 테드 러스가 인공지능이 사회 발전에 기여하지만 민주주의에 위험을 줄 수 있다며 규제 필요성을 강조했습니다. 그는 선거와 여론 형성에서 AI 리스크 완화 방안도 제안했습니다.",
+              "미국 캘리포니아 지역구의 연방 하원의원 테드 러스가 인공지능이 사회 발전에 기여하는 동시에 민주주의에 미칠 위험성이 크다고 지적하며, 규제의 필요성을 강조했습니다. 그는 AI의 이익을 극대화하는 정책과 함께, 선거와 여론 형성 과정에서 발생할 수 있는 리스크를 완화하는 방안이 필요하다고 밝혔습니다. 소셜미디어가 제도 신뢰를 약화시킨 사례를 언급하며, AI의 잠재적 영향에 대한 신중한 접근을 촉구했습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "AI +0.18%",
+              "발전 +0.94%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "S&P500"
+          },
+          "direction": "positive",
+          "strength": 0.512,
+          "confidence": 0.54,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "미국 연방 하원의원 테드 러스가 인공지능이 사회 발전에 기여하지만 민주주의에 위험을 줄 수 있다며 규제 필요성을 강조했습니다. 그는 선거와 여론 형성에서 AI 리스크 완화 방안도 제안했습니다.",
+              "미국 캘리포니아 지역구의 연방 하원의원 테드 러스가 인공지능이 사회 발전에 기여하는 동시에 민주주의에 미칠 위험성이 크다고 지적하며, 규제의 필요성을 강조했습니다. 그는 AI의 이익을 극대화하는 정책과 함께, 선거와 여론 형성 과정에서 발생할 수 있는 리스크를 완화하는 방안이 필요하다고 밝혔습니다. 소셜미디어가 제도 신뢰를 약화시킨 사례를 언급하며, AI의 잠재적 영향에 대한 신중한 접근을 촉구했습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "AI +0.18%",
+              "발전 +0.94%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        },
+        {
+          "target": {
+            "type": "category",
+            "accountKey": "PENSION",
+            "name": "나스닥100"
+          },
+          "direction": "positive",
+          "strength": 0.512,
+          "confidence": 0.58,
+          "horizon": "1m",
+          "decayHalfLifeDays": 14,
+          "channels": [
+            "TELEGRAM",
+            "AI 인프라/전력"
+          ],
+          "regimeAssumptions": [],
+          "evidence": {
+            "snippets": [
+              "미국 연방 하원의원 테드 러스가 인공지능이 사회 발전에 기여하지만 민주주의에 위험을 줄 수 있다며 규제 필요성을 강조했습니다. 그는 선거와 여론 형성에서 AI 리스크 완화 방안도 제안했습니다.",
+              "미국 캘리포니아 지역구의 연방 하원의원 테드 러스가 인공지능이 사회 발전에 기여하는 동시에 민주주의에 미칠 위험성이 크다고 지적하며, 규제의 필요성을 강조했습니다. 그는 AI의 이익을 극대화하는 정책과 함께, 선거와 여론 형성 과정에서 발생할 수 있는 리스크를 완화하는 방안이 필요하다고 밝혔습니다. 소셜미디어가 제도 신뢰를 약화시킨 사례를 언급하며, AI의 잠재적 영향에 대한 신중한 접근을 촉구했습니다.",
+              "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다."
+            ],
+            "numbers": [
+              "인용 0건",
+              "원문 1건",
+              "AI +0.18%",
+              "발전 +0.94%"
+            ]
+          },
+          "riskTags": [
+            "ai",
+            "power"
+          ]
+        }
+      ]
+    }
+  ]
+}

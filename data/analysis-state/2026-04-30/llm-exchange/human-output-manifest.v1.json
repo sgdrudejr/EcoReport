@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "contract": "ecoreport.llm.exchange_manifest.v1",
+  "audience": "human_manifest",
+  "date": "2026-04-30",
+  "runDate": "2026-04-30",
+  "effectiveMarketDate": "2026-04-30",
+  "runId": "2026-04-30-021135",
+  "tokenPolicy": {
+    "fullTextExcluded": true,
+    "maxClaimChars": 180,
+    "sourceIdsOnly": true,
+    "approxTokenBudget": 2000
+  },
+  "outputs": [
+    {
+      "kind": "readable_report",
+      "path": "reports/daily/2026-04-30-final.html",
+      "purpose": "사람이 읽는 경제 리포트와 실행 전략 통합 화면"
+    },
+    {
+      "kind": "readable_report_markdown",
+      "path": "knowledge/daily/2026-04-30-full-daily-report.md",
+      "purpose": "사람이 읽는 경제 리포트 원문"
+    },
+    {
+      "kind": "execution_strategy",
+      "path": "reports/daily/2026-04-30-stage4-execution-plan-table.md",
+      "purpose": "계좌별 실행 전략 표"
+    },
+    {
+      "kind": "quality_audit",
+      "path": "data/analysis-state/2026-04-30/data-quality-audit.json",
+      "purpose": "정합성, 근거, 중복, 날짜, 카테고리, 위험 claim 검사",
+      "overallStatus": "ok"
+    }
+  ]
+}

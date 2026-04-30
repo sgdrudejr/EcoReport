@@ -1,0 +1,344 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-04-30",
+  "runDate": "2026-04-30",
+  "effectiveMarketDate": "2026-04-30",
+  "runId": "2026-04-30-021135",
+  "contract": "ecoreport.llm.portfolio_action_context.v1",
+  "audience": "ai_to_ai",
+  "tokenPolicy": {
+    "fullTextExcluded": true,
+    "maxClaimChars": 180,
+    "sourceIdsOnly": true,
+    "approxTokenBudget": 12000
+  },
+  "guardrails": {
+    "buyVisibility": "validated_only",
+    "noGuaranteedReturns": true,
+    "rejectIfActionEvidenceWeak": true,
+    "noRawPersonalAccountDataInExternalPrompts": true
+  },
+  "benchmarkLenses": [
+    {
+      "key": "portfolio_monitoring",
+      "question": "Which holdings, watchlist names, and candidate sectors changed today versus yesterday?",
+      "requiredArtifacts": [
+        "portfolio_action_context",
+        "briefing_delta",
+        "execution_plan"
+      ]
+    },
+    {
+      "key": "validated_actions",
+      "question": "Which actions survive evidence, category concentration, confidence, and account fit checks?",
+      "requiredArtifacts": [
+        "execution_plan",
+        "data_quality_audit"
+      ]
+    }
+  ],
+  "directives": [
+    "Expose validated buys only; keep rejected candidates visible as research backlog, not recommendations.",
+    "Show account fit, allocation gap, concentration risk, and timing condition separately.",
+    "Treat macro/sector/watchlist monitoring as separate lenses before final action."
+  ],
+  "allocationPolicy": {
+    "safetyTargetPct": 0.2,
+    "coreTargetPct": 0.3,
+    "satelliteTargetPct": 0.5,
+    "satelliteSingleCapPct": null,
+    "clusterCapPct": null
+  },
+  "portfolioState": {
+    "portfolioScore": 37,
+    "regime": "BULL",
+    "emergencyDefense": {
+      "enabled": false,
+      "vix": null,
+      "worstIndexDropPct": 0.39,
+      "triggers": [],
+      "marketDataAvailable": true
+    }
+  },
+  "accounts": [
+    {
+      "accountKey": "ISA",
+      "label": "한투 ISA",
+      "totalScore": 27,
+      "stage2Bias": "defensive",
+      "deployBudget": 19382,
+      "topGap": {
+        "category": "배당/커버드콜",
+        "targetPct": 0.3,
+        "currentPct": 0,
+        "gapAmount": 2896058
+      },
+      "validationPolicy": {
+        "buyVisibility": "validated_only",
+        "rejectedCandidatesVisibleInDetails": true,
+        "actionEvidenceGate": "code_reason_confidence_gap_context"
+      },
+      "validatorFlags": [
+        "action_evidence_gate:TIGER 미국배당+7%프리미엄다우존스",
+        "no_action_after_validation"
+      ],
+      "validatedBuys": [],
+      "rejectedCandidates": [
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "reason": "07. Strategy Options stance가 trim라 신규 매수 후보에서 제외",
+          "confidence": 0.85
+        },
+        {
+          "code": "497570",
+          "name": "TIGER 미국필라델피아AI반도체나스닥",
+          "reason": "07. Strategy Options stance가 hold라 신규 매수 후보에서 제외",
+          "confidence": 0.85
+        },
+        {
+          "code": "491010",
+          "name": "TIGER 글로벌AI전력인프라액티브",
+          "reason": "07. Strategy Options stance가 trim라 신규 매수 후보에서 제외",
+          "confidence": 0.85
+        },
+        {
+          "code": "487230",
+          "name": "KODEX 미국AI전력핵심인프라",
+          "reason": "07. Strategy Options stance가 trim라 신규 매수 후보에서 제외",
+          "confidence": 0.85
+        },
+        {
+          "code": null,
+          "name": "TIGER 미국배당+7%프리미엄다우존스",
+          "reason": "실행 근거 검증 미통과(missing_code)",
+          "confidence": null
+        }
+      ],
+      "holds": [
+        {
+          "code": "0162Z0",
+          "name": "RISE 삼성전자SK하이닉스채권혼합50",
+          "score": 50,
+          "reason": "웰타워 프리미엄을 (WELL) 뒷받침하는 성장 김다은  미국 최대 시니어하우징 리츠로 하이엔드 자산 중심의 포트폴리오 보유 daeun.kim@daishin.com  공급부족 장기화 속 점유율·임대료·마진 동반 개선 구간 지속 전망  대규모 투자는 주당 FFO으로 연결되며 성장 가…"
+        },
+        {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "score": 65,
+          "reason": "웰타워 프리미엄을 (WELL) 뒷받침하는 성장 김다은  미국 최대 시니어하우징 리츠로 하이엔드 자산 중심의 포트폴리오 보유 daeun.kim@daishin.com  공급부족 장기화 속 점유율·임대료·마진 동반 개선 구간 지속 전망  대규모 투자는 주당 FFO으로 연결되며 성장 가…"
+        },
+        {
+          "code": "411060",
+          "name": "ACE KRX금현물",
+          "score": 53,
+          "reason": "웰타워 프리미엄을 (WELL) 뒷받침하는 성장 김다은  미국 최대 시니어하우징 리츠로 하이엔드 자산 중심의 포트폴리오 보유 daeun.kim@daishin.com  공급부족 장기화 속 점유율·임대료·마진 동반 개선 구간 지속 전망  대규모 투자는 주당 FFO으로 연결되며 성장 가…"
+        }
+      ],
+      "watches": [
+        {
+          "code": "069500",
+          "name": "KODEX 200",
+          "score": 40,
+          "reason": "매크로는 부정 시각이며 핵심 근거는 증시 Comment (전일 아시아 증시) 증시 Comment (미국 & 유럽) Midnight News ▶ 한국증시 ▶ 미국증시 ▶ ECB 1년 CPI 기대 4.0% (예상 2.8%) - 철강과 화학 섹터 강세에 상승."
+        },
+        {
+          "code": "161510",
+          "name": "PLUS 고배당주",
+          "score": 43,
+          "reason": "현재 점수 43점. 가격/기술 데이터가 부족해 직접 연결 리포트가 부족해 기타 노출은 관찰로 유지합니다. 신규 매수 전 가격 데이터와 후속 리포트 확인이 필요합니다."
+        },
+        {
+          "code": "385510",
+          "name": "KODEX 신재생에너지액티브",
+          "score": 49,
+          "reason": "비반도체 전체 합산 반도체와 비반도체는 밸류에이션 처리를 구분해야 한다. 반도체는 실적 서프라이 영업이익은 최근 소폭 즈와 빠른 이익 리비전으로 ROE 개선이 확인되는 영역이다. ROE-PBR 정상화 하향 조정된 바 있어 를 전체 또는 상당 부분 인정할 수 있다. 반면 비반도체는 가격…"
+        }
+      ]
+    },
+    {
+      "accountKey": "PENSION",
+      "label": "한투 연금저축",
+      "totalScore": 46,
+      "stage2Bias": "selective_add",
+      "deployBudget": 12997,
+      "topGap": {
+        "category": "금",
+        "targetPct": 0.15,
+        "currentPct": 0,
+        "gapAmount": 918869
+      },
+      "validationPolicy": {
+        "buyVisibility": "validated_only",
+        "rejectedCandidatesVisibleInDetails": true,
+        "actionEvidenceGate": "code_reason_confidence_gap_context"
+      },
+      "validatorFlags": [],
+      "validatedBuys": [
+        {
+          "code": "456600",
+          "name": "TIME 글로벌AI인공지능액티브",
+          "suggestedAmount": 12997,
+          "entryCondition": "technical_fallback",
+          "urgency": "next_tranche",
+          "reason": "미국 코어 인덱스 신호와 ETF 키워드가 일치하며 당일 등락률 +2.60% 흐름이 동행합니다.",
+          "confidence": 0.6,
+          "validationStatus": "validated",
+          "gateFlags": []
+        }
+      ],
+      "rejectedCandidates": [
+        {
+          "code": "497570",
+          "name": "TIGER 미국필라델피아AI반도체나스닥",
+          "reason": "07. Strategy Options stance가 hold라 신규 매수 후보에서 제외",
+          "confidence": 0.85
+        },
+        {
+          "code": "497570",
+          "name": "TIGER 미국필라델피아반도체나스닥",
+          "reason": "07. Strategy Options stance가 hold라 신규 매수 후보에서 제외",
+          "confidence": 0.85
+        },
+        {
+          "code": "491010",
+          "name": "TIGER 글로벌AI전력인프라액티브",
+          "reason": "07. Strategy Options stance가 trim라 신규 매수 후보에서 제외",
+          "confidence": 0.85
+        },
+        {
+          "code": "487230",
+          "name": "KODEX 미국AI전력핵심인프라",
+          "reason": "07. Strategy Options stance가 trim라 신규 매수 후보에서 제외",
+          "confidence": 0.85
+        }
+      ],
+      "holds": [
+        {
+          "code": "0162Z0",
+          "name": "RISE 삼성전자SK하이닉스채권혼합50",
+          "score": 50,
+          "reason": "웰타워 프리미엄을 (WELL) 뒷받침하는 성장 김다은  미국 최대 시니어하우징 리츠로 하이엔드 자산 중심의 포트폴리오 보유 daeun.kim@daishin.com  공급부족 장기화 속 점유율·임대료·마진 동반 개선 구간 지속 전망  대규모 투자는 주당 FFO으로 연결되며 성장 가…"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "score": 60,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는 웰타워 프리미엄을 (WELL) 뒷받침하는 성장 김다은  미국 최대 시니어하우징 리츠로 하이엔드 자산 중심의 포트폴리오 보유 daeun.kim@daishin.com  공급부족 장기화 속 점유율·임대료·마진 동반 개선 구간 지속 전망  대규모 투자…"
+        }
+      ],
+      "watches": [
+        {
+          "code": "069500",
+          "name": "KODEX 200",
+          "score": 40,
+          "reason": "매크로는 부정 시각이며 핵심 근거는 증시 Comment (전일 아시아 증시) 증시 Comment (미국 & 유럽) Midnight News ▶ 한국증시 ▶ 미국증시 ▶ ECB 1년 CPI 기대 4.0% (예상 2.8%) - 철강과 화학 섹터 강세에 상승."
+        },
+        {
+          "code": "379810",
+          "name": "KODEX 미국나스닥100",
+          "score": 43,
+          "reason": "현재 점수 43점. 가격/기술 데이터가 부족해 직접 종목 리포트는 약하지만 기술주, 미국 빅테크, 빅테크 신호가 연결됩니다: 기관 매수세는 지수 상승을 주도하고 있으나, 외국인 매도 및 미국 빅테크 실적 우려로 인해 기술주 밸류체인 조정 불가피"
+        },
+        {
+          "code": "469150",
+          "name": "ACE AI반도체TOP3+",
+          "score": 43,
+          "reason": "현재 점수 43점. 가격/기술 데이터가 부족해 직접 종목 리포트는 약하지만 삼성전자, 반도체 신호가 연결됩니다: 삼성전자와 SK 하이닉스를 중심으로 반도체 업종은 밸류에이션 모순 (저평가 착시) 이 발생하며, 이는 주가 상승을 견인함"
+        }
+      ]
+    },
+    {
+      "accountKey": "KIS_MAIN",
+      "label": "한투 일반",
+      "totalScore": 48,
+      "stage2Bias": "aggressive_add",
+      "deployBudget": 673319,
+      "topGap": {
+        "category": "미국인덱스",
+        "targetPct": 0.3,
+        "currentPct": 0,
+        "gapAmount": 1071382
+      },
+      "validationPolicy": {
+        "buyVisibility": "validated_only",
+        "rejectedCandidatesVisibleInDetails": true,
+        "actionEvidenceGate": "code_reason_confidence_gap_context"
+      },
+      "validatorFlags": [],
+      "validatedBuys": [
+        {
+          "code": "456600",
+          "name": "TIME 글로벌AI인공지능액티브",
+          "suggestedAmount": 673319,
+          "entryCondition": "technical_fallback",
+          "urgency": "next_tranche",
+          "reason": "미국 코어 인덱스 신호와 ETF 키워드가 일치하며 당일 등락률 +2.60% 흐름이 동행합니다.",
+          "confidence": 0.6,
+          "validationStatus": "validated",
+          "gateFlags": []
+        }
+      ],
+      "rejectedCandidates": [
+        {
+          "code": "491010",
+          "name": "TIGER 글로벌AI전력인프라액티브",
+          "reason": "07. Strategy Options stance가 trim라 신규 매수 후보에서 제외",
+          "confidence": 0.85
+        },
+        {
+          "code": "487230",
+          "name": "KODEX 미국AI전력핵심인프라",
+          "reason": "07. Strategy Options stance가 trim라 신규 매수 후보에서 제외",
+          "confidence": 0.85
+        },
+        {
+          "code": "497570",
+          "name": "TIGER 미국필라델피아AI반도체나스닥",
+          "reason": "07. Strategy Options stance가 hold라 신규 매수 후보에서 제외",
+          "confidence": 0.85
+        },
+        {
+          "code": "497570",
+          "name": "TIGER 미국필라델피아반도체나스닥",
+          "reason": "07. Strategy Options stance가 hold라 신규 매수 후보에서 제외",
+          "confidence": 0.85
+        }
+      ],
+      "holds": [
+        {
+          "code": "064350",
+          "name": "현대로템",
+          "score": 65,
+          "reason": "현대로템는 중립 시각이며 핵심 근거는 현대로템 실적 추이 및 전망 (K-IFRS 연결 기준) (십억원) 1Q25 2Q25 3Q25 4Q25 1Q26P 2Q26F 3Q26F 4Q26F 2025 2026F 2027F"
+        },
+        {
+          "code": "138910",
+          "name": "KODEX 구리선물(H)",
+          "score": 53,
+          "reason": "웰타워 프리미엄을 (WELL) 뒷받침하는 성장 김다은  미국 최대 시니어하우징 리츠로 하이엔드 자산 중심의 포트폴리오 보유 daeun.kim@daishin.com  공급부족 장기화 속 점유율·임대료·마진 동반 개선 구간 지속 전망  대규모 투자는 주당 FFO으로 연결되며 성장 가…"
+        },
+        {
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "score": 66,
+          "reason": "020000는 긍정 시각이며 핵심 근거는 비반도체 전체 합산 반도체와 비반도체는 밸류에이션 처리를 구분해야 한다."
+        }
+      ],
+      "watches": [
+        {
+          "code": "329180",
+          "name": "HD현대중공업",
+          "score": 42,
+          "reason": "매크로는 긍정 시각이며 핵심 근거는 [공작기계 수주 또 역대 최고 갱신] [이라크 총리 지명 + 폴란드 현지 양산 + 루마니아] [IMO MEPC 84 개막]  일본의 3월 공작기계 수주액이 전년비 28% 증가한  이라크 총리 지명으로 이라크 전차 사업 재가동 기  넷제로 프레임…"
+        },
+        {
+          "code": "469150",
+          "name": "ACE AI반도체TOP3+",
+          "score": 43,
+          "reason": "현재 점수 43점. 가격/기술 데이터가 부족해 직접 종목 리포트는 약하지만 삼성전자, 반도체 신호가 연결됩니다: 삼성전자와 SK 하이닉스를 중심으로 반도체 업종은 밸류에이션 모순 (저평가 착시) 이 발생하며, 이는 주가 상승을 견인함"
+        }
+      ]
+    }
+  ]
+}

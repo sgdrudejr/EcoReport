@@ -1,0 +1,30 @@
+EcoReport 2026-04-30 실행계획 표
+레짐: BULL | 점수: 37
+
+[한투 ISA]
+액션 | 종목 | 금액 | 긴급도
+HOLD | RISE 삼성전자SK하이닉스... | - | hold
+HOLD | KODEX 골드선물(H) | - | hold
+HOLD | ACE KRX금현물 | - | hold
+WATCH | KODEX 200 | - | watch
+WATCH | PLUS 고배당주 | - | watch
+WATCH | KODEX 신재생에너지액티브 | - | watch
+
+[한투 연금저축]
+액션 | 종목 | 금액 | 긴급도
+BUY | TIME 글로벌AI인공지능액티브 | 12,997원 | next_tranche
+TRIM | TIGER 미국배당다우존스 | - | trim
+HOLD | RISE 삼성전자SK하이닉스... | - | hold
+HOLD | TIGER 미국S&P500 | - | hold
+WATCH | KODEX 200 | - | watch
+WATCH | KODEX 미국나스닥100 | - | watch
+WATCH | ACE AI반도체TOP3+ | - | watch
+
+[한투 일반]
+액션 | 종목 | 금액 | 긴급도
+BUY | TIME 글로벌AI인공지능액티브 | 673,319원 | next_tranche
+HOLD | 현대로템 | - | hold
+HOLD | KODEX 구리선물(H) | - | hold
+HOLD | HANARO 원자력iSelect | - | hold
+WATCH | HD현대중공업 | - | watch
+WATCH | ACE AI반도체TOP3+ | - | watch
