@@ -1,0 +1,119 @@
+{
+  "id": "stock-pulse:0162Z0",
+  "code": "0162Z0",
+  "name": "RISE 삼성전자SK하이닉스채권혼합50",
+  "category": "반도체/채권혼합",
+  "type": "etf",
+  "verdict": "익절감시",
+  "urgency": "중간",
+  "pulseScore": 63,
+  "oneLine": "익절감시: 20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+  "doNow": "20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+  "doNot": "급등 구간 추격매수 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "PENSION",
+      "accountLabel": "한투 연금저축",
+      "marketValue": 1618800,
+      "profitRate": 18.75,
+      "decision": "보유유지"
+    },
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "marketValue": 1349000,
+      "profitRate": 20.44,
+      "decision": "보유유지"
+    }
+  ],
+  "position": {
+    "marketValue": 2967800,
+    "purchaseValue": 0,
+    "profitLoss": 484600,
+    "profitRate": 19.52,
+    "quantity": 220
+  },
+  "market": {
+    "price": 13205,
+    "previousClose": 13430,
+    "changePct": -1.68,
+    "volume": 23604928,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 67,
+    "signal": "BUY",
+    "reason": "주가가 20일선 위에서 유지 중, MACD 모멘텀이 우호적, RSI 기준 단기 과열 구간",
+    "rsi": 78.23,
+    "ma20": 11642.75,
+    "ma60": 0,
+    "recentHighDistancePct": -3.33,
+    "rsVsBenchmark": 0,
+    "alerts": [
+      "RSI 과매수 구간 진입"
+    ]
+  },
+  "fundamental": {
+    "score": 88,
+    "label": "수급강함",
+    "metrics": null,
+    "etf": {
+      "rank": null,
+      "navGapPct": null,
+      "concentrationTop5Pct": 0,
+      "topHoldings": []
+    }
+  },
+  "alerts": [
+    {
+      "severity": "medium",
+      "label": "과열주의",
+      "detail": "RSI 78.23로 추격매수보다 보호 판단이 우선입니다.",
+      "tone": "amber"
+    },
+    {
+      "severity": "low",
+      "label": "AI언급",
+      "detail": "보유유지: 미확인수치: 매력 66 점 / 수급 강함 but RSI 78 과열",
+      "tone": "blue"
+    }
+  ],
+  "quickFactors": [
+    "등락 -1.68%",
+    "RSI 78.23",
+    "거래량 0배",
+    "손익 19.52%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [
+    {
+      "bucket": "todayDo",
+      "action": "보유유지",
+      "reason": "미확인수치: 매력 66 점 / 수급 강함 but RSI 78 과열",
+      "trigger": "HBM/메모리 모멘텀 약화 시 감량"
+    }
+  ],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "ETF_COMPOSITION_MISSING",
+    "ETF_NAV_MISSING"
+  ],
+  "riskFlags": [
+    "RSI_OVERHEAT:78.23"
+  ],
+  "sourceSupport": {
+    "reports": 0.542,
+    "stockeasy": 0,
+    "marketvoice": 0,
+    "technical": 0.19,
+    "kisEtf": 0,
+    "news": 0,
+    "macro": 0,
+    "llm": 0
+  }
+}

@@ -1,0 +1,276 @@
+{
+  "date": "2026-05-06",
+  "bundleId": "normalized:kis_etf:2026-05-06",
+  "source": "kis_etf",
+  "sourceType": "etf_market_ranking",
+  "generatedAt": "2026-05-06T08:08:13.480Z",
+  "runId": "2026-05-06-045622",
+  "qualitySummary": {
+    "status": "ok",
+    "flags": [
+      "low_theme_mapping"
+    ]
+  },
+  "observations": [
+    {
+      "observationId": "normalized:kis_etf:2026-05-06:security:243880:1",
+      "entityType": "security",
+      "entityId": "security:243880",
+      "entityName": "TIGER 200IT레버리지",
+      "accountKey": null,
+      "securityCode": "243880",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 1,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 1",
+          "text": "",
+          "value": 15.81,
+          "refPath": "data/external/kis-etf/2026-05-06/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": null,
+          "value": null,
+          "refPath": "data/external/kis-etf/2026-05-06/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:243880"
+      ],
+      "metadata": {
+        "rank": 1,
+        "price": 446100,
+        "changePct": 15.81,
+        "nav": null,
+        "navChangePct": null,
+        "volume": 250474,
+        "collectionMode": "kis_fluctuation_fallback",
+        "capturedAt": "2026-05-06T05:58:21.880310Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-06:security:488080:2",
+      "entityType": "security",
+      "entityId": "security:488080",
+      "entityName": "TIGER 반도체TOP10레버리지",
+      "accountKey": null,
+      "securityCode": "488080",
+      "category": "ETF",
+      "themes": [
+        "반도체",
+        "반도체",
+        "HBM",
+        "메모리",
+        "소부장"
+      ],
+      "direction": "positive",
+      "strength": 0.99375,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 2",
+          "text": "TIGER 반도체TOP10레버리지의 핵심 노출(반도체)을 테마 번역 후보로 사용합니다.",
+          "value": 15.28,
+          "refPath": "data/external/kis-etf/2026-05-06/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": null,
+          "value": null,
+          "refPath": "data/external/kis-etf/2026-05-06/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:488080"
+      ],
+      "metadata": {
+        "rank": 2,
+        "price": 75500,
+        "changePct": 15.28,
+        "nav": null,
+        "navChangePct": null,
+        "volume": 4685565,
+        "collectionMode": "kis_fluctuation_fallback",
+        "capturedAt": "2026-05-06T05:58:21.880310Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-06:security:q700028:3",
+      "entityType": "security",
+      "entityId": "security:q700028",
+      "entityName": "하나 레버리지 반도체 ETN",
+      "accountKey": null,
+      "securityCode": "Q700028",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.9875,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 3",
+          "text": "",
+          "value": 14.42,
+          "refPath": "data/external/kis-etf/2026-05-06/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": null,
+          "value": null,
+          "refPath": "data/external/kis-etf/2026-05-06/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:Q700028"
+      ],
+      "metadata": {
+        "rank": 3,
+        "price": 293035,
+        "changePct": 14.42,
+        "nav": null,
+        "navChangePct": null,
+        "volume": 40592,
+        "collectionMode": "kis_fluctuation_fallback",
+        "capturedAt": "2026-05-06T05:58:21.880310Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-06:security:494310:4",
+      "entityType": "security",
+      "entityId": "security:494310",
+      "entityName": "KODEX 반도체레버리지",
+      "accountKey": null,
+      "securityCode": "494310",
+      "category": "ETF",
+      "themes": [
+        "반도체",
+        "반도체",
+        "HBM",
+        "메모리",
+        "소부장"
+      ],
+      "direction": "positive",
+      "strength": 0.98125,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 4",
+          "text": "KODEX 반도체레버리지의 핵심 노출(반도체)을 테마 번역 후보로 사용합니다.",
+          "value": 13.59,
+          "refPath": "data/external/kis-etf/2026-05-06/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": null,
+          "value": null,
+          "refPath": "data/external/kis-etf/2026-05-06/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:494310"
+      ],
+      "metadata": {
+        "rank": 4,
+        "price": 126195,
+        "changePct": 13.59,
+        "nav": null,
+        "navChangePct": null,
+        "volume": 4787432,
+        "collectionMode": "kis_fluctuation_fallback",
+        "capturedAt": "2026-05-06T05:58:21.880310Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-06:security:q760013:5",
+      "entityType": "security",
+      "entityId": "security:q760013",
+      "entityName": "키움 레버리지 반도체TOP10 ETN",
+      "accountKey": null,
+      "securityCode": "Q760013",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.8995833333333333,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 5",
+          "text": "",
+          "value": 10.19,
+          "refPath": "data/external/kis-etf/2026-05-06/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": null,
+          "value": null,
+          "refPath": "data/external/kis-etf/2026-05-06/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:Q760013"
+      ],
+      "metadata": {
+        "rank": 5,
+        "price": 178500,
+        "changePct": 10.19,
+        "nav": null,
+        "navChangePct": null,
+        "volume": 9409,
+        "collectionMode": "kis_fluctuation_fallback",
+        "capturedAt": "2026-05-06T05:58:21.880310Z"
+      }
+    }
+  ]
+}

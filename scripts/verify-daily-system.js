@@ -32,6 +32,14 @@ async function fileExists(filePath) {
   }
 }
 
+async function readFirstExistingJson(paths) {
+  for (const filePath of paths) {
+    const payload = await readJson(filePath, null);
+    if (payload) return payload;
+  }
+  return null;
+}
+
 function relative(filePath) {
   if (!filePath) return "(missing)";
   return path.relative(ROOT_DIR, filePath);
@@ -114,14 +122,31 @@ async function main() {
     textManifest: path.join(reportDir, "text-manifest.json"),
     market: path.join(ROOT_DIR, "data", "market", `${date}.json`),
     technical: path.join(ROOT_DIR, "data", "technical", `${date}.json`),
+    normalizedReports: path.join(ROOT_DIR, "data", "normalized", date, "reports.normalized.json"),
+    normalizedStockeasy: path.join(ROOT_DIR, "data", "normalized", date, "stockeasy.normalized.json"),
+    normalizedMarketVoice: path.join(ROOT_DIR, "data", "normalized", date, "marketvoice.normalized.json"),
+    normalizedTechnical: path.join(ROOT_DIR, "data", "normalized", date, "technical.normalized.json"),
+    normalizedKisEtf: path.join(ROOT_DIR, "data", "normalized", date, "kis_etf.normalized.json"),
+    normalizedNews: path.join(ROOT_DIR, "data", "normalized", date, "news.normalized.json"),
+    decisionFeatures: path.join(ROOT_DIR, "data", "features", date, "decision-features.json"),
+    sourceConsensus: path.join(ROOT_DIR, "data", "features", date, "cross-source-consensus.json"),
+    sourceConsensusSupplement: path.join(ROOT_DIR, "reports", "daily", `${date}-source-consensus-supplement.md`),
+    sourceDivergence: path.join(ROOT_DIR, "data", "features", date, "source-divergence.json"),
     reportRag: path.join(reportDir, "rag", "chunk-manifest.json"),
     portfolioRag: path.join(ROOT_DIR, "data", "portfolio", "rag", date, "chunk-manifest.json"),
     parallelRag: path.join(ROOT_DIR, "knowledge", "rag", date, "parallel-manifest.json"),
     stage1: path.join(analysisDir, "stage1-report-extracts-v2.json"),
     stage2: path.join(analysisDir, "stage2-strategy-options.json"),
     impactMap: path.join(analysisDir, "impact-map.json"),
+    marketVoice: path.join(analysisDir, "marketvoice-linked.json"),
     stage3: path.join(analysisDir, "stage3-quant-scores.json"),
     stage4: path.join(analysisDir, "stage4-execution-plan.json"),
+    holdingCards: path.join(analysisDir, "holding-decision-cards.json"),
+    dashboardView: path.join(ROOT_DIR, "data", "dashboard", `${date}-dashboard-view.json`),
+    qwenAccountStrategy: path.join(analysisDir, "qwen-account-strategy.json"),
+    qwenAccountStrategyTest: path.join(analysisDir, "qwen-account-strategy-test.json"),
+    stockPulse: path.join(ROOT_DIR, "data", "stock-pulse", date, "stock-pulse.json"),
+    rotationWatch: path.join(analysisDir, "rotation-watch.json"),
     dailyQuality: path.join(analysisDir, "daily-quality.json"),
     briefing: path.join(ROOT_DIR, "reports", "daily", `${date}-briefing.md`),
     executionMd: path.join(ROOT_DIR, "reports", "daily", `${date}-stage4-execution-plan.md`),
@@ -176,14 +201,30 @@ async function main() {
     textManifest,
     market,
     technical,
+    normalizedReports,
+    normalizedStockeasy,
+    normalizedMarketVoice,
+    normalizedTechnical,
+    normalizedKisEtf,
+    normalizedNews,
+    decisionFeatures,
+    sourceConsensus,
+    sourceConsensusSupplementText,
+    sourceDivergence,
     reportRag,
     portfolioRag,
     parallelRag,
     stage1,
     stage2,
     impactMap,
+    marketVoice,
     stage3,
     stage4,
+    holdingCards,
+    dashboardView,
+    qwenAccountStrategy,
+    stockPulse,
+    rotationWatch,
     briefingText,
     wikiDailyText,
     dataQuality,
@@ -196,14 +237,30 @@ async function main() {
     readJson(paths.textManifest, null),
     readJson(paths.market, null),
     readJson(paths.technical, null),
+    readJson(paths.normalizedReports, null),
+    readJson(paths.normalizedStockeasy, null),
+    readJson(paths.normalizedMarketVoice, null),
+    readJson(paths.normalizedTechnical, null),
+    readJson(paths.normalizedKisEtf, null),
+    readJson(paths.normalizedNews, null),
+    readJson(paths.decisionFeatures, null),
+    readJson(paths.sourceConsensus, null),
+    readText(paths.sourceConsensusSupplement, ""),
+    readJson(paths.sourceDivergence, null),
     readJson(paths.reportRag, null),
     readJson(paths.portfolioRag, null),
     readJson(paths.parallelRag, null),
     readJson(paths.stage1, null),
     readJson(paths.stage2, null),
     readJson(paths.impactMap, null),
+    readJson(paths.marketVoice, null),
     readJson(paths.stage3, null),
     readJson(paths.stage4, null),
+    readJson(paths.holdingCards, null),
+    readJson(paths.dashboardView, null),
+    readFirstExistingJson([paths.qwenAccountStrategy, paths.qwenAccountStrategyTest]),
+    readJson(paths.stockPulse, null),
+    readJson(paths.rotationWatch, null),
     readText(paths.briefing, ""),
     readText(paths.wikiDaily, ""),
     readJson(paths.dataQuality, null),
@@ -263,6 +320,40 @@ async function main() {
       ).length,
     0,
   );
+  const technicalCoverageFallback = technical?.coverage?.fallback ?? [];
+  const technicalCoverageFailed = technical?.coverage?.failed ?? [];
+  const technicalCoverageWarnCount = technicalCoverageFallback.length + technicalCoverageFailed.length;
+  const normalizedBundles = [
+    { key: "reports", payload: normalizedReports },
+    { key: "stockeasy", payload: normalizedStockeasy },
+    { key: "marketvoice", payload: normalizedMarketVoice },
+    { key: "technical", payload: normalizedTechnical },
+    { key: "kis_etf", payload: normalizedKisEtf },
+    { key: "news", payload: normalizedNews },
+  ].filter((item) => (item.payload?.observations?.length ?? 0) > 0);
+  const alignedThemeCount = sourceConsensus?.consensus?.topAlignedThemes?.length ?? 0;
+  const alignedSecurityCount = sourceConsensus?.consensus?.topAlignedSecurities?.length ?? 0;
+  const sourceConflictCount = sourceDivergence?.divergence?.sourceConflicts?.length ?? 0;
+  const holdingDataNeeds = (holdingCards?.cards ?? []).filter((card) => card?.decisionBucket === "WATCH_DATA");
+  const offReportCards = (holdingCards?.cards ?? []).filter((card) => card?.decisionBucket === "WATCH_OFF_REPORT");
+  const offReportWithoutExternal = offReportCards.filter((card) => !card?.externalCoverage?.available);
+  const qwenAccountStrategyStatus = qwenAccountStrategy?.status ?? "missing";
+  const qwenAccountStrategyOk = qwenAccountStrategyStatus === "ok";
+  const qwenAccountStrategyUsedWeb = Boolean(qwenAccountStrategy?.webSearch);
+  const stockPulseStatus = stockPulse?.status ?? "missing";
+  const stockPulseItems = stockPulse?.counts?.activeHoldings ?? stockPulse?.items?.length ?? 0;
+  const stockPulseMissingSourceKeys = Object.entries(stockPulse?.sourceStatus ?? {})
+    .filter(([, status]) => status !== "ok" && status !== "not_configured")
+    .map(([key]) => key);
+  const rotationWatchStatus = rotationWatch?.status ?? "missing";
+  const rotationWatchDates = rotationWatch?.includedDates?.length ?? 0;
+  const rotationWatchMode = rotationWatch?.marketTrend?.mode ?? rotationWatch?.summary?.mode ?? "unknown";
+  const rotationWatchDeliberations = rotationWatch?.sectorDeliberations?.length ?? 0;
+  const rotationWatchTargets = rotationWatch?.rotationTargets?.watch?.length ?? 0;
+  const rotationTransitionTriggers = rotationWatch?.transitionTriggerBoard?.rows?.length ?? 0;
+  const dashboardHasAccountStrategy = Boolean(dashboardView?.accountStrategy);
+  const dashboardHasStockPulse = Boolean(dashboardView?.stockPulse);
+  const dashboardHasRotationWatch = Boolean(dashboardView?.rotationWatch);
 
   const artifactMetas = [
     { key: "stage1", label: "03. Report Extraction", path: relative(paths.stage1), meta: extractJsonMeta(stage1) },
@@ -275,6 +366,15 @@ async function main() {
     { key: "impact_map", label: "09. Impact Mapping", path: relative(paths.impactMap), meta: extractJsonMeta(impactMap) },
     { key: "stage3", label: "10. Quant Scoring", path: relative(paths.stage3), meta: extractJsonMeta(stage3) },
     { key: "stage4", label: "11. Execution Plan", path: relative(paths.stage4), meta: extractJsonMeta(stage4) },
+    { key: "dashboard_view", label: "12.2 Dashboard View", path: relative(paths.dashboardView), meta: extractJsonMeta(dashboardView) },
+    {
+      key: "qwen_account_strategy",
+      label: "12.5 Qwen Account Strategy",
+      path: relative(paths.qwenAccountStrategy),
+      meta: extractJsonMeta(qwenAccountStrategy),
+    },
+    { key: "stock_pulse", label: "12.6 Stock Pulse", path: relative(paths.stockPulse), meta: extractJsonMeta(stockPulse) },
+    { key: "rotation_watch", label: "12.7 Rotation Watch", path: relative(paths.rotationWatch), meta: extractJsonMeta(rotationWatch) },
     { key: "data_quality", label: "13. Quality Gates", path: relative(paths.dataQuality), meta: extractJsonMeta(dataQuality) },
     {
       key: "refinement_round2",
@@ -345,6 +445,25 @@ async function main() {
       : round3ResponseExists
         ? paths.round3Response
         : paths.deepResearchResponse;
+  const portfolioHoldingKeys = (normalizedPortfolio.accounts ?? []).flatMap((account) =>
+    (account.holdings ?? []).map((holding) => ({
+      key: `${account.key}:${holding.code ?? holding.name ?? "UNKNOWN"}`,
+      label: `${account.label ?? account.key}:${holding.name ?? holding.code ?? "UNKNOWN"}`,
+    })),
+  );
+  const stage4ReviewedKeys = new Set(
+    (stage4?.accountPlans ?? []).flatMap((plan) =>
+      ["stagedBuys", "trims", "holds", "watches"].flatMap((bucket) =>
+        (plan?.[bucket] ?? []).map((item) => {
+          const code = resolveSecurityCodeFromCandidates(item.code, item.name) ?? item.code ?? item.name ?? "UNKNOWN";
+          return `${plan.key}:${code}`;
+        }),
+      ),
+    ),
+  );
+  const missingStage4ReviewedHoldings = portfolioHoldingKeys.filter(
+    (holding) => !stage4ReviewedKeys.has(holding.key),
+  );
 
   const checks = [
     {
@@ -383,6 +502,18 @@ async function main() {
       label: "기술 점수",
       status: statusFromCondition(Boolean(technical?.scores)),
       detail: technical?.scores ? `종목 ${Object.keys(technical.scores).length}개` : "technical 스냅샷 누락",
+      path: relative(paths.technical),
+    },
+    {
+      key: "technical_data_repair",
+      label: "기술지표 자료보강",
+      status: statusFromCondition(technicalCoverageWarnCount === 0, "warn"),
+      detail:
+        technicalCoverageWarnCount === 0
+          ? `자동 보강 성공 ${technical?.coverage?.refreshed?.length ?? Object.keys(technical?.scores ?? {}).length}개`
+          : `fallback ${technicalCoverageFallback.length}개 / failed ${technicalCoverageFailed.length}개: ${summarizeItems(
+              [...technicalCoverageFailed, ...technicalCoverageFallback].map((item) => item.name ?? item.code ?? "UNKNOWN"),
+            )}`,
       path: relative(paths.technical),
     },
     {
@@ -429,6 +560,33 @@ async function main() {
       path: relative(paths.impactMap),
     },
     {
+      key: "marketvoice_external_feed",
+      label: "외부 시황 수집",
+      status: statusFromCondition((marketVoice?.topics?.length ?? 0) > 0, "warn"),
+      detail:
+        (marketVoice?.topics?.length ?? 0) > 0
+          ? `외부 이슈 ${marketVoice.topics.length}건 / impact ${marketVoice.impactReports?.length ?? 0}건`
+          : "marketvoice-linked 외부 이슈 없음",
+      path: relative(paths.marketVoice),
+    },
+    {
+      key: "cross_source_consensus",
+      label: "교차소스 합의도",
+      status: statusFromCondition(normalizedBundles.length >= 2 && Boolean(decisionFeatures), "warn"),
+      detail:
+        normalizedBundles.length >= 2 && decisionFeatures
+          ? `소스 ${normalizedBundles.map((item) => item.key).join("+")} / 테마합의 ${alignedThemeCount}건 / 종목합의 ${alignedSecurityCount}건 / 충돌 ${sourceConflictCount}건`
+          : `정규화 소스 ${normalizedBundles.length}개 / decision-features ${decisionFeatures ? "있음" : "누락"}`,
+      path: relative(paths.decisionFeatures),
+    },
+    {
+      key: "source_consensus_supplement",
+      label: "새 보강 소스 리포트",
+      status: statusFromCondition(sourceConsensusSupplementText.trim().length > 0, "warn"),
+      detail: sourceConsensusSupplementText.trim().length > 0 ? "보완 리포트 생성됨" : "보완 리포트 누락",
+      path: relative(paths.sourceConsensusSupplement),
+    },
+    {
       key: "stage3",
       label: "10. Quant Scoring",
       status: statusFromCondition(Boolean(stage3?.portfolio)),
@@ -451,6 +609,81 @@ async function main() {
           ? `계좌 계획 ${stage4.accountPlans.length}개`
           : "stage4 누락",
       path: relative(paths.stage4),
+    },
+    {
+      key: "stage4_holding_coverage",
+      label: "11. Execution Plan 전 보유종목 커버리지",
+      status: statusFromCondition(missingStage4ReviewedHoldings.length === 0, "error"),
+      detail:
+        missingStage4ReviewedHoldings.length === 0
+          ? `보유 ${portfolioHoldingKeys.length}개 전부 검수 표기`
+          : `누락 ${missingStage4ReviewedHoldings.length}개: ${missingStage4ReviewedHoldings.map((item) => item.label).join(", ")}`,
+      path: relative(paths.stage4),
+    },
+    {
+      key: "holding_decision_data_needs",
+      label: "보유종목 자료보강 잔여",
+      status: statusFromCondition(holdingDataNeeds.length === 0, "warn"),
+      detail:
+        holdingDataNeeds.length === 0
+          ? "자료보강 판정 0건"
+          : `자료보강 ${holdingDataNeeds.length}건: ${summarizeItems(
+              holdingDataNeeds.map((card) => `${card.accountKey ?? "-"}:${card.name ?? card.code ?? "UNKNOWN"}`),
+            )}`,
+      path: relative(paths.holdingCards),
+    },
+    {
+      key: "off_report_external_enrichment",
+      label: "리포트밖 외부보강",
+      status: statusFromCondition(offReportWithoutExternal.length === 0, "warn"),
+      detail:
+        offReportCards.length === 0
+          ? "리포트밖 판정 0건"
+          : offReportWithoutExternal.length === 0
+            ? `리포트밖 ${offReportCards.length}건 모두 외부근거 연결`
+            : `외부근거 미연결 ${offReportWithoutExternal.length}/${offReportCards.length}건: ${summarizeItems(
+                offReportWithoutExternal.map((card) => `${card.accountKey ?? "-"}:${card.name ?? card.code ?? "UNKNOWN"}`),
+              )}`,
+      path: relative(paths.holdingCards),
+    },
+    {
+      key: "dashboard_view",
+      label: "판단 Cockpit JSON",
+      status: statusFromCondition(Boolean(dashboardView?.meta?.date), "warn"),
+      detail: dashboardView?.meta?.date
+        ? `dashboard 생성 / accountStrategy ${dashboardHasAccountStrategy ? "연결" : "누락"} / stockPulse ${dashboardHasStockPulse ? "연결" : "누락"} / rotationWatch ${dashboardHasRotationWatch ? "연결" : "누락"}`
+        : "dashboard-view 누락",
+      path: relative(paths.dashboardView),
+    },
+    {
+      key: "qwen_account_strategy",
+      label: "Qwen 계좌 피드백",
+      status: statusFromCondition(qwenAccountStrategyOk && qwenAccountStrategyUsedWeb, "warn"),
+      detail:
+        qwenAccountStrategyStatus === "missing"
+          ? "qwen-account-strategy.json 누락"
+          : `status ${qwenAccountStrategyStatus} / webSearch ${qwenAccountStrategyUsedWeb ? "on" : "off"} / model ${qwenAccountStrategy?.model ?? qwenAccountStrategy?.requestedModel ?? "-"}`,
+      path: relative(paths.qwenAccountStrategy),
+    },
+    {
+      key: "stock_pulse",
+      label: "개별주 속보판",
+      status: statusFromCondition(stockPulseStatus === "ok" && stockPulseItems > 0, "warn"),
+      detail:
+        stockPulseStatus === "missing"
+          ? "stock-pulse.json 누락"
+          : `status ${stockPulseStatus} / 보유 ${stockPulseItems}개 / 고긴급 ${stockPulse?.counts?.highUrgency ?? 0}개 / 소스누락 ${stockPulseMissingSourceKeys.join(", ") || "없음"}`,
+      path: relative(paths.stockPulse),
+    },
+    {
+      key: "rotation_watch",
+      label: "3주 로테이션 감지판",
+      status: statusFromCondition(rotationWatchStatus === "ok" && rotationWatchDates >= 2, "warn"),
+      detail:
+        rotationWatchStatus === "missing"
+          ? "rotation-watch.json 누락"
+          : `status ${rotationWatchStatus} / ${rotationWatchDates}일 관측 / 모드 ${rotationWatchMode} / 섹터질문 ${rotationWatchDeliberations}개 / 전환후보 ${rotationWatchTargets}개 / 전환트리거 ${rotationTransitionTriggers}개`,
+      path: relative(paths.rotationWatch),
     },
     {
       key: "stage4_quality",
@@ -669,6 +902,12 @@ async function main() {
       stage1Extracts,
       unresolvedPortfolioHoldings: unresolvedPortfolioHoldings.length,
       unresolvedStage4Mentions: unresolvedStage4Mentions.length,
+      stockPulseItems,
+      stockPulseHighUrgency: stockPulse?.counts?.highUrgency ?? 0,
+      rotationWatchDates,
+      rotationWatchDeliberations,
+      rotationWatchTargets,
+      rotationTransitionTriggers,
     },
     artifacts: artifactMetas,
     checks,

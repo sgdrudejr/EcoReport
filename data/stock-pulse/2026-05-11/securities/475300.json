@@ -1,0 +1,73 @@
+{
+  "id": "stock-pulse:475300",
+  "code": "475300",
+  "name": "SOL 반도체전공정",
+  "category": "반도체",
+  "type": "etf",
+  "verdict": "보유유지",
+  "urgency": "낮음",
+  "pulseScore": 43,
+  "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNot": "같은 테마 중복 확대 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "marketValue": 2192190,
+      "profitRate": 13.53,
+      "decision": null
+    }
+  ],
+  "position": {
+    "marketValue": 2192190,
+    "purchaseValue": 1930820,
+    "profitLoss": 261370,
+    "profitRate": 13.54,
+    "quantity": 91
+  },
+  "market": {
+    "price": 22580,
+    "previousClose": 22585,
+    "changePct": 0,
+    "volume": 248673,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 95,
+    "signal": "STRONG_BUY",
+    "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+    "rsi": 69.6,
+    "ma20": 20466.5,
+    "ma60": 18560.25,
+    "recentHighDistancePct": -1.33,
+    "rsVsBenchmark": -6.46,
+    "alerts": []
+  },
+  "fundamental": {
+    "score": 20,
+    "label": "수집필요",
+    "metrics": null,
+    "etf": null
+  },
+  "alerts": [],
+  "quickFactors": [
+    "등락 0%",
+    "RSI 69.6",
+    "거래량 0배",
+    "손익 13.54%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "NAVER_FETCH_FAILED"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {}
+}

@@ -1,0 +1,120 @@
+{
+  "id": "stock-pulse:449450",
+  "code": "449450",
+  "name": "PLUS K방산",
+  "category": "방산",
+  "type": "etf",
+  "verdict": "보유유지",
+  "urgency": "낮음",
+  "pulseScore": 50,
+  "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNot": "같은 테마 중복 확대 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "marketValue": 733800,
+      "profitRate": -6.56,
+      "decision": "보유유지"
+    }
+  ],
+  "position": {
+    "marketValue": 733800,
+    "purchaseValue": 0,
+    "profitLoss": -51560,
+    "profitRate": -6.56,
+    "quantity": 10
+  },
+  "market": {
+    "price": 73370,
+    "previousClose": 75600,
+    "changePct": -2.95,
+    "volume": 534694,
+    "volumeRatio": 0.47,
+    "nav": 73323.01,
+    "navGapPct": 0.064,
+    "rank": 0
+  },
+  "technical": {
+    "score": 42,
+    "signal": "HOLD",
+    "reason": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화",
+    "rsi": 40.9,
+    "ma20": 78870.75,
+    "ma60": 74153.3333,
+    "recentHighDistancePct": -11.34,
+    "rsVsBenchmark": -38.82,
+    "alerts": [
+      "데드크로스(5일/20일) 발생",
+      "볼린저밴드 하단 이탈"
+    ]
+  },
+  "fundamental": {
+    "score": 75,
+    "label": "수급강함",
+    "metrics": null,
+    "etf": {
+      "rank": null,
+      "navGapPct": 0.064,
+      "concentrationTop5Pct": 83.61,
+      "topHoldings": [
+        {
+          "code": "012450",
+          "name": "한화에어로스페이스",
+          "weightPct": 19.42,
+          "changePct": -0.76
+        },
+        {
+          "code": "064350",
+          "name": "현대로템",
+          "weightPct": 16.75,
+          "changePct": -5.11
+        },
+        {
+          "code": "047810",
+          "name": "한국항공우주",
+          "weightPct": 16.51,
+          "changePct": -2.91
+        },
+        {
+          "code": "079550",
+          "name": "LIG디펜스앤에어로스페이스",
+          "weightPct": 15.92,
+          "changePct": -3
+        },
+        {
+          "code": "042660",
+          "name": "한화오션",
+          "weightPct": 15.01,
+          "changePct": -2.93
+        }
+      ]
+    }
+  },
+  "alerts": [],
+  "quickFactors": [
+    "등락 -2.95%",
+    "RSI 40.9",
+    "거래량 0.47배",
+    "손익 -6.56%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {
+    "reports": 0.396,
+    "stockeasy": 0,
+    "marketvoice": 0,
+    "technical": 0,
+    "kisEtf": 0,
+    "news": 0,
+    "macro": 0,
+    "llm": 0
+  }
+}

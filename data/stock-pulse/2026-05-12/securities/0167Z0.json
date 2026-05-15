@@ -1,0 +1,93 @@
+{
+  "id": "stock-pulse:0167Z0",
+  "code": "0167Z0",
+  "name": "KODEX 미국우주항공",
+  "category": "기타",
+  "type": "unknown",
+  "verdict": "자료보강",
+  "urgency": "중간",
+  "pulseScore": 39,
+  "oneLine": "자료보강: 공시, 뉴스, 직접 리포트가 보강되기 전까지 결론 강도를 낮춥니다.",
+  "doNow": "공시, 뉴스, 직접 리포트가 보강되기 전까지 결론 강도를 낮춥니다.",
+  "doNot": "근거 부족 상태의 신규매수 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "marketValue": 153595,
+      "profitRate": 5.49,
+      "decision": "외부관찰"
+    }
+  ],
+  "position": {
+    "marketValue": 153595,
+    "purchaseValue": 0,
+    "profitLoss": 7995,
+    "profitRate": 5.49,
+    "quantity": 13
+  },
+  "market": {
+    "price": 11660,
+    "previousClose": 11335,
+    "changePct": 2.87,
+    "volume": 7647892,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 71,
+    "signal": "BUY",
+    "reason": "주가가 20일선 위에서 유지 중, MACD 모멘텀이 우호적, RSI는 중립 범위",
+    "rsi": 62.09,
+    "ma20": 10718,
+    "ma60": 0,
+    "recentHighDistancePct": -1.69,
+    "rsVsBenchmark": 0,
+    "alerts": [
+      "MACD 시그널 상향 돌파"
+    ]
+  },
+  "fundamental": {
+    "score": 20,
+    "label": "수집필요",
+    "metrics": null,
+    "etf": null
+  },
+  "alerts": [
+    {
+      "severity": "medium",
+      "label": "근거보강",
+      "detail": "OFF_REPORT_HOLDING",
+      "tone": "amber"
+    }
+  ],
+  "quickFactors": [
+    "등락 2.87%",
+    "RSI 62.09",
+    "거래량 0배",
+    "손익 5.49%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "SECURITY_TYPE_UNKNOWN"
+  ],
+  "riskFlags": [
+    "OFF_REPORT_HOLDING"
+  ],
+  "sourceSupport": {
+    "reports": 0,
+    "stockeasy": 0,
+    "marketvoice": 0,
+    "technical": 0.193,
+    "kisEtf": 0,
+    "news": 0,
+    "macro": 0,
+    "llm": 0
+  }
+}

@@ -1,0 +1,4130 @@
+{
+  "date": "2026-05-08",
+  "bundleId": "normalized:kis_etf:2026-05-08",
+  "source": "kis_etf",
+  "sourceType": "etf_market_ranking",
+  "generatedAt": "2026-05-10T01:02:59.744Z",
+  "runId": "2026-05-08-070312",
+  "qualitySummary": {
+    "status": "ok",
+    "flags": [
+      "nav_gap",
+      "low_theme_mapping"
+    ]
+  },
+  "observations": [
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:418670:1",
+      "entityType": "security",
+      "entityId": "security:418670",
+      "entityName": "TIGER 글로벌AI사이버보안",
+      "accountKey": null,
+      "securityCode": "418670",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.8200000000000001,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "nav_gap",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 1",
+          "text": "",
+          "value": 7.68,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=13460 / nav=13097.62",
+          "value": 0.027668,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:418670"
+      ],
+      "metadata": {
+        "rank": 1,
+        "price": 13460,
+        "changePct": 7.68,
+        "nav": 13097.62,
+        "navChangePct": 6.02,
+        "volume": 162209,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:445290:2",
+      "entityType": "security",
+      "entityId": "security:445290",
+      "entityName": "KODEX 로봇액티브",
+      "accountKey": null,
+      "securityCode": "445290",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.7641666666666667,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 2",
+          "text": "",
+          "value": 6.49,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=38700 / nav=38569.76",
+          "value": 0.003377,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:445290"
+      ],
+      "metadata": {
+        "rank": 2,
+        "price": 38700,
+        "changePct": 6.49,
+        "nav": 38569.76,
+        "navChangePct": 6.03,
+        "volume": 4731694,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:466930:3",
+      "entityType": "security",
+      "entityId": "security:466930",
+      "entityName": "SOL 자동차TOP3플러스",
+      "accountKey": null,
+      "securityCode": "466930",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.7424999999999999,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 3",
+          "text": "",
+          "value": 6.12,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=27555 / nav=27507.89",
+          "value": 0.001713,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:466930"
+      ],
+      "metadata": {
+        "rank": 3,
+        "price": 27555,
+        "changePct": 6.12,
+        "nav": 27507.89,
+        "navChangePct": 5.7,
+        "volume": 2223436,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:091180:4",
+      "entityType": "security",
+      "entityId": "security:091180",
+      "entityName": "KODEX 자동차",
+      "accountKey": null,
+      "securityCode": "091180",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.7195833333333334,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 4",
+          "text": "",
+          "value": 5.72,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=35565 / nav=35513.77",
+          "value": 0.001443,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:091180"
+      ],
+      "metadata": {
+        "rank": 4,
+        "price": 35565,
+        "changePct": 5.72,
+        "nav": 35513.77,
+        "navChangePct": 5.63,
+        "volume": 6651079,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:138540:5",
+      "entityType": "security",
+      "entityId": "security:138540",
+      "entityName": "TIGER 현대차그룹플러스",
+      "accountKey": null,
+      "securityCode": "138540",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.7016666666666667,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 5",
+          "text": "",
+          "value": 5.44,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=67430 / nav=67479.32",
+          "value": -0.000731,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:138540"
+      ],
+      "metadata": {
+        "rank": 5,
+        "price": 67430,
+        "changePct": 5.44,
+        "nav": 67479.32,
+        "navChangePct": 5.32,
+        "volume": 3409027,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:481180:6",
+      "entityType": "security",
+      "entityId": "security:481180",
+      "entityName": "SOL 미국AI소프트웨어",
+      "accountKey": null,
+      "securityCode": "481180",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.7670833333333333,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 6",
+          "text": "",
+          "value": 4.82,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=13050 / nav=13281.2",
+          "value": -0.017408,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:481180"
+      ],
+      "metadata": {
+        "rank": 6,
+        "price": 13050,
+        "changePct": 4.82,
+        "nav": 13281.2,
+        "navChangePct": 7.16,
+        "volume": 388414,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:157490:7",
+      "entityType": "security",
+      "entityId": "security:157490",
+      "entityName": "TIGER 소프트웨어",
+      "accountKey": null,
+      "securityCode": "157490",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.5929166666666666,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 7",
+          "text": "",
+          "value": 3.13,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=9385 / nav=9352.3",
+          "value": 0.003496,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:157490"
+      ],
+      "metadata": {
+        "rank": 7,
+        "price": 9385,
+        "changePct": 3.13,
+        "nav": 9352.3,
+        "navChangePct": 2.9,
+        "volume": 483277,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:418660:8",
+      "entityType": "security",
+      "entityId": "security:418660",
+      "entityName": "TIGER 미국나스닥100레버리지(합성)",
+      "accountKey": null,
+      "securityCode": "418660",
+      "category": "ETF",
+      "themes": [
+        "미국기술주",
+        "나스닥",
+        "미국 기술주",
+        "빅테크"
+      ],
+      "direction": "positive",
+      "strength": 0.5866666666666667,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 8",
+          "text": "TIGER 미국나스닥100레버리지(합성)의 핵심 노출(미국기술주)을 테마 번역 후보로 사용합니다.",
+          "value": 3.13,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=44345 / nav=43848.23",
+          "value": 0.011329,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:418660"
+      ],
+      "metadata": {
+        "rank": 8,
+        "price": 44345,
+        "changePct": 3.13,
+        "nav": 43848.23,
+        "navChangePct": 1.84,
+        "volume": 185857,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:469160:9",
+      "entityType": "security",
+      "entityId": "security:469160",
+      "entityName": "ACE 일본반도체",
+      "accountKey": null,
+      "securityCode": "469160",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.9445833333333333,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 9",
+          "text": "",
+          "value": 2.88,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=26995 / nav=27369.9",
+          "value": -0.013698,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:469160"
+      ],
+      "metadata": {
+        "rank": 9,
+        "price": 26995,
+        "changePct": 2.88,
+        "nav": 27369.9,
+        "navChangePct": 11.87,
+        "volume": 138440,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:494310:10",
+      "entityType": "security",
+      "entityId": "security:494310",
+      "entityName": "KODEX 반도체레버리지",
+      "accountKey": null,
+      "securityCode": "494310",
+      "category": "ETF",
+      "themes": [
+        "반도체",
+        "반도체",
+        "HBM",
+        "메모리",
+        "소부장"
+      ],
+      "direction": "positive",
+      "strength": 0.5608333333333333,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 10",
+          "text": "KODEX 반도체레버리지의 핵심 노출(반도체)을 테마 번역 후보로 사용합니다.",
+          "value": 2.81,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=134450 / nav=134226.02",
+          "value": 0.001669,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:494310"
+      ],
+      "metadata": {
+        "rank": 10,
+        "price": 134450,
+        "changePct": 2.81,
+        "nav": 134226.02,
+        "navChangePct": 1.57,
+        "volume": 3885521,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:421320:11",
+      "entityType": "security",
+      "entityId": "security:421320",
+      "entityName": "PLUS 우주항공&UAM",
+      "accountKey": null,
+      "securityCode": "421320",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.5408333333333333,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 11",
+          "text": "",
+          "value": 2.47,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=46650 / nav=46747.7",
+          "value": -0.00209,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:421320"
+      ],
+      "metadata": {
+        "rank": 11,
+        "price": 46650,
+        "changePct": 2.47,
+        "nav": 46747.7,
+        "navChangePct": 2.48,
+        "volume": 929430,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:228790:12",
+      "entityType": "security",
+      "entityId": "security:228790",
+      "entityName": "TIGER 화장품",
+      "accountKey": null,
+      "securityCode": "228790",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.5333333333333333,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 12",
+          "text": "",
+          "value": 2.45,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=3980 / nav=3975.89",
+          "value": 0.001034,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:228790"
+      ],
+      "metadata": {
+        "rank": 12,
+        "price": 3980,
+        "changePct": 2.45,
+        "nav": 3975.89,
+        "navChangePct": 2.08,
+        "volume": 5611165,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:483280:13",
+      "entityType": "security",
+      "entityId": "security:483280",
+      "entityName": "KODEX 미국AI테크TOP10타겟커버드콜",
+      "accountKey": null,
+      "securityCode": "483280",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.5166666666666666,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 13",
+          "text": "",
+          "value": 2.2,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=13265 / nav=13229.08",
+          "value": 0.002715,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:483280"
+      ],
+      "metadata": {
+        "rank": 13,
+        "price": 13265,
+        "changePct": 2.2,
+        "nav": 13229.08,
+        "navChangePct": 1.44,
+        "volume": 857414,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:493810:14",
+      "entityType": "security",
+      "entityId": "security:493810",
+      "entityName": "TIGER 미국AI빅테크10타겟데일리커버드콜",
+      "accountKey": null,
+      "securityCode": "493810",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.5104166666666667,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 14",
+          "text": "",
+          "value": 2.2,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=12790 / nav=12715.37",
+          "value": 0.005869,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:493810"
+      ],
+      "metadata": {
+        "rank": 14,
+        "price": 12790,
+        "changePct": 2.2,
+        "nav": 12715.37,
+        "navChangePct": 1.29,
+        "volume": 406414,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:140710:15",
+      "entityType": "security",
+      "entityId": "security:140710",
+      "entityName": "KODEX 운송",
+      "accountKey": null,
+      "securityCode": "140710",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.5183333333333333,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 15",
+          "text": "",
+          "value": 2.14,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=7160 / nav=7168.55",
+          "value": -0.001193,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:140710"
+      ],
+      "metadata": {
+        "rank": 15,
+        "price": 7160,
+        "changePct": 2.14,
+        "nav": 7168.55,
+        "navChangePct": 2.54,
+        "volume": 350592,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:481190:16",
+      "entityType": "security",
+      "entityId": "security:481190",
+      "entityName": "SOL 미국테크TOP10",
+      "accountKey": null,
+      "securityCode": "481190",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.49291666666666667,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 16",
+          "text": "",
+          "value": 2.08,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=18160 / nav=18059.13",
+          "value": 0.005586,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:481190"
+      ],
+      "metadata": {
+        "rank": 16,
+        "price": 18160,
+        "changePct": 2.08,
+        "nav": 18059.13,
+        "navChangePct": 1.42,
+        "volume": 410297,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:381170:17",
+      "entityType": "security",
+      "entityId": "security:381170",
+      "entityName": "TIGER 미국테크TOP10 INDXX",
+      "accountKey": null,
+      "securityCode": "381170",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.48291666666666666,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 17",
+          "text": "",
+          "value": 1.99,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=33500 / nav=33335.68",
+          "value": 0.004929,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:381170"
+      ],
+      "metadata": {
+        "rank": 17,
+        "price": 33500,
+        "changePct": 1.99,
+        "nav": 33335.68,
+        "navChangePct": 1.41,
+        "volume": 1254721,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:473460:18",
+      "entityType": "security",
+      "entityId": "security:473460",
+      "entityName": "KODEX 미국서학개미",
+      "accountKey": null,
+      "securityCode": "473460",
+      "category": "ETF",
+      "themes": [
+        "기타",
+        "시장 대표",
+        "테마 분산"
+      ],
+      "direction": "positive",
+      "strength": 0.47291666666666665,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 18",
+          "text": "KODEX 미국서학개미의 핵심 노출(기타)을 테마 번역 후보로 사용합니다.",
+          "value": 1.9,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=25805 / nav=25671.8",
+          "value": 0.005189,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:473460"
+      ],
+      "metadata": {
+        "rank": 18,
+        "price": 25805,
+        "changePct": 1.9,
+        "nav": 25671.8,
+        "navChangePct": 0.67,
+        "volume": 195430,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:315960:19",
+      "entityType": "security",
+      "entityId": "security:315960",
+      "entityName": "RISE 대형고배당10TR",
+      "accountKey": null,
+      "securityCode": "315960",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.465,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 19",
+          "text": "",
+          "value": 1.86,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=82605 / nav=82502.51",
+          "value": 0.001242,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:315960"
+      ],
+      "metadata": {
+        "rank": 19,
+        "price": 82605,
+        "changePct": 1.86,
+        "nav": 82502.51,
+        "navChangePct": 1.51,
+        "volume": 296463,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:410870:20",
+      "entityType": "security",
+      "entityId": "security:410870",
+      "entityName": "TIME K컬처액티브",
+      "accountKey": null,
+      "securityCode": "410870",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.4583333333333333,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 20",
+          "text": "",
+          "value": 1.85,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=11550 / nav=11574.72",
+          "value": -0.002136,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:410870"
+      ],
+      "metadata": {
+        "rank": 20,
+        "price": 11550,
+        "changePct": 1.85,
+        "nav": 11574.72,
+        "navChangePct": 1.81,
+        "volume": 2154132,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:490090:21",
+      "entityType": "security",
+      "entityId": "security:490090",
+      "entityName": "TIGER 미국AI빅테크10",
+      "accountKey": null,
+      "securityCode": "490090",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.45208333333333334,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 21",
+          "text": "",
+          "value": 1.85,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=16790 / nav=16707.95",
+          "value": 0.004911,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:490090"
+      ],
+      "metadata": {
+        "rank": 21,
+        "price": 16790,
+        "changePct": 1.85,
+        "nav": 16707.95,
+        "navChangePct": 1.24,
+        "volume": 526659,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:483330:22",
+      "entityType": "security",
+      "entityId": "security:483330",
+      "entityName": "ACE 마이크로소프트밸류체인액티브",
+      "accountKey": null,
+      "securityCode": "483330",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.45375000000000004,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 22",
+          "text": "",
+          "value": 1.79,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=14515 / nav=14618.23",
+          "value": -0.007062,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:483330"
+      ],
+      "metadata": {
+        "rank": 22,
+        "price": 14515,
+        "changePct": 1.79,
+        "nav": 14618.23,
+        "navChangePct": 2.04,
+        "volume": 158056,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:465580:23",
+      "entityType": "security",
+      "entityId": "security:465580",
+      "entityName": "ACE 미국빅테크TOP7 Plus",
+      "accountKey": null,
+      "securityCode": "465580",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.43666666666666665,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 23",
+          "text": "",
+          "value": 1.78,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=25220 / nav=25065.96",
+          "value": 0.006145,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:465580"
+      ],
+      "metadata": {
+        "rank": 23,
+        "price": 25220,
+        "changePct": 1.78,
+        "nav": 25065.96,
+        "navChangePct": 1.07,
+        "volume": 1125930,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:474220:24",
+      "entityType": "security",
+      "entityId": "security:474220",
+      "entityName": "TIGER 미국테크TOP10타겟커버드콜",
+      "accountKey": null,
+      "securityCode": "474220",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.43,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 24",
+          "text": "",
+          "value": 1.77,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=16385 / nav=16331.73",
+          "value": 0.003262,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:474220"
+      ],
+      "metadata": {
+        "rank": 24,
+        "price": 16385,
+        "changePct": 1.77,
+        "nav": 16331.73,
+        "navChangePct": 1.49,
+        "volume": 292565,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:491820:25",
+      "entityType": "security",
+      "entityId": "security:491820",
+      "entityName": "HANARO 전력설비투자",
+      "accountKey": null,
+      "securityCode": "491820",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.45625,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 25",
+          "text": "",
+          "value": 1.76,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=75595 / nav=75336.84",
+          "value": 0.003427,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:491820"
+      ],
+      "metadata": {
+        "rank": 25,
+        "price": 75595,
+        "changePct": 1.76,
+        "nav": 75336.84,
+        "navChangePct": 2.55,
+        "volume": 392030,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:495330:26",
+      "entityType": "security",
+      "entityId": "security:495330",
+      "entityName": "1Q 코리아밸류업",
+      "accountKey": null,
+      "securityCode": "495330",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.41541666666666666,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 26",
+          "text": "",
+          "value": 1.72,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=34345 / nav=34160.46",
+          "value": 0.005402,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:495330"
+      ],
+      "metadata": {
+        "rank": 26,
+        "price": 34345,
+        "changePct": 1.72,
+        "nav": 34160.46,
+        "navChangePct": 0.93,
+        "volume": 139743,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:476800:27",
+      "entityType": "security",
+      "entityId": "security:476800",
+      "entityName": "KODEX 한국부동산리츠인프라",
+      "accountKey": null,
+      "securityCode": "476800",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.4033333333333334,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 27",
+          "text": "",
+          "value": 1.58,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=4815 / nav=4812.03",
+          "value": 0.000617,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:476800"
+      ],
+      "metadata": {
+        "rank": 27,
+        "price": 4815,
+        "changePct": 1.58,
+        "nav": 4812.03,
+        "navChangePct": 1.28,
+        "volume": 1527664,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:133690:28",
+      "entityType": "security",
+      "entityId": "security:133690",
+      "entityName": "TIGER 미국나스닥100",
+      "accountKey": null,
+      "securityCode": "133690",
+      "category": "ETF",
+      "themes": [
+        "나스닥",
+        "nasdaq",
+        "기술주",
+        "나스닥",
+        "nasdaq",
+        "기술주",
+        "미국 빅테크"
+      ],
+      "direction": "positive",
+      "strength": 0.3958333333333333,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 28",
+          "text": "",
+          "value": 1.55,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=186940 / nav=185812.59",
+          "value": 0.006067,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:133690"
+      ],
+      "metadata": {
+        "rank": 28,
+        "price": 186940,
+        "changePct": 1.55,
+        "nav": 185812.59,
+        "navChangePct": 0.92,
+        "volume": 678078,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:367380:29",
+      "entityType": "security",
+      "entityId": "security:367380",
+      "entityName": "ACE 미국나스닥100",
+      "accountKey": null,
+      "securityCode": "367380",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.38958333333333334,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 29",
+          "text": "",
+          "value": 1.55,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=32145 / nav=31946.32",
+          "value": 0.006219,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:367380"
+      ],
+      "metadata": {
+        "rank": 29,
+        "price": 32145,
+        "changePct": 1.55,
+        "nav": 31946.32,
+        "navChangePct": 0.92,
+        "volume": 500956,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:368590:30",
+      "entityType": "security",
+      "entityId": "security:368590",
+      "entityName": "RISE 미국나스닥100",
+      "accountKey": null,
+      "securityCode": "368590",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.38249999999999995,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 30",
+          "text": "",
+          "value": 1.53,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=31160 / nav=30969.61",
+          "value": 0.006148,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:368590"
+      ],
+      "metadata": {
+        "rank": 30,
+        "price": 31160,
+        "changePct": 1.53,
+        "nav": 30969.61,
+        "navChangePct": 0.92,
+        "volume": 295595,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:494300:31",
+      "entityType": "security",
+      "entityId": "security:494300",
+      "entityName": "KODEX 미국나스닥100데일리커버드콜OTM",
+      "accountKey": null,
+      "securityCode": "494300",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.37583333333333335,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 31",
+          "text": "",
+          "value": 1.52,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=10385 / nav=10406.99",
+          "value": -0.002113,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:494300"
+      ],
+      "metadata": {
+        "rank": 31,
+        "price": 10385,
+        "changePct": 1.52,
+        "nav": 10406.99,
+        "navChangePct": 1.07,
+        "volume": 2368462,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:138910:32",
+      "entityType": "security",
+      "entityId": "security:138910",
+      "entityName": "KODEX 구리선물(H)",
+      "accountKey": null,
+      "securityCode": "138910",
+      "category": "ETF",
+      "themes": [
+        "구리",
+        "원자재",
+        "산업금속",
+        "구리",
+        "copper",
+        "구리선물",
+        "원자재"
+      ],
+      "direction": "positive",
+      "strength": 0.38375000000000004,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 32",
+          "text": "",
+          "value": 1.51,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=9725 / nav=9750.71",
+          "value": -0.002637,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:138910"
+      ],
+      "metadata": {
+        "rank": 32,
+        "price": 9725,
+        "changePct": 1.51,
+        "nav": 9750.71,
+        "navChangePct": 1.86,
+        "volume": 172574,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:446770:33",
+      "entityType": "security",
+      "entityId": "security:446770",
+      "entityName": "ACE 글로벌반도체TOP4 Plus",
+      "accountKey": null,
+      "securityCode": "446770",
+      "category": "ETF",
+      "themes": [
+        "반도체",
+        "반도체",
+        "HBM",
+        "메모리",
+        "소부장"
+      ],
+      "direction": "positive",
+      "strength": 0.3595833333333333,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 33",
+          "text": "ACE 글로벌반도체TOP4 Plus의 핵심 노출(반도체)을 테마 번역 후보로 사용합니다.",
+          "value": 1.43,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=79000 / nav=78536.66",
+          "value": 0.0059,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:446770"
+      ],
+      "metadata": {
+        "rank": 33,
+        "price": 79000,
+        "changePct": 1.43,
+        "nav": 78536.66,
+        "navChangePct": 0.93,
+        "volume": 485760,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:447770:34",
+      "entityType": "security",
+      "entityId": "security:447770",
+      "entityName": "TIGER 테슬라채권혼합Fn",
+      "accountKey": null,
+      "securityCode": "447770",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.3516666666666667,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 34",
+          "text": "",
+          "value": 1.39,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=14620 / nav=14646.59",
+          "value": -0.001815,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:447770"
+      ],
+      "metadata": {
+        "rank": 34,
+        "price": 14620,
+        "changePct": 1.39,
+        "nav": 14646.59,
+        "navChangePct": 1.25,
+        "volume": 532642,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:491620:35",
+      "entityType": "security",
+      "entityId": "security:491620",
+      "entityName": "RISE 미국테크100데일리고정커버드콜",
+      "accountKey": null,
+      "securityCode": "491620",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.3445833333333333,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 35",
+          "text": "",
+          "value": 1.37,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=11460 / nav=11413.44",
+          "value": 0.004079,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:491620"
+      ],
+      "metadata": {
+        "rank": 35,
+        "price": 11460,
+        "changePct": 1.37,
+        "nav": 11413.44,
+        "navChangePct": 0.96,
+        "volume": 769231,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:465350:36",
+      "entityType": "security",
+      "entityId": "security:465350",
+      "entityName": "RISE 2차전지TOP10인버스(합성)",
+      "accountKey": null,
+      "securityCode": "465350",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.3720833333333333,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "nav_gap",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 36",
+          "text": "",
+          "value": 1.37,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=12620 / nav=12949.59",
+          "value": -0.025452,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:465350"
+      ],
+      "metadata": {
+        "rank": 36,
+        "price": 12620,
+        "changePct": 1.37,
+        "nav": 12949.59,
+        "navChangePct": 2.18,
+        "volume": 154426,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:329200:37",
+      "entityType": "security",
+      "entityId": "security:329200",
+      "entityName": "TIGER 리츠부동산인프라",
+      "accountKey": null,
+      "securityCode": "329200",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.3504166666666667,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 37",
+          "text": "",
+          "value": 1.34,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=4530 / nav=4542.47",
+          "value": -0.002745,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:329200"
+      ],
+      "metadata": {
+        "rank": 37,
+        "price": 4530,
+        "changePct": 1.34,
+        "nav": 4542.47,
+        "navChangePct": 1.81,
+        "volume": 7324695,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:438100:38",
+      "entityType": "security",
+      "entityId": "security:438100",
+      "entityName": "ACE 미국나스닥100미국채혼합50액티브",
+      "accountKey": null,
+      "securityCode": "438100",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.3233333333333333,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 38",
+          "text": "",
+          "value": 1.31,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=15865 / nav=15856.83",
+          "value": 0.000515,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:438100"
+      ],
+      "metadata": {
+        "rank": 38,
+        "price": 15865,
+        "changePct": 1.31,
+        "nav": 15856.83,
+        "navChangePct": 1.21,
+        "volume": 580664,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:292150:39",
+      "entityType": "security",
+      "entityId": "security:292150",
+      "entityName": "TIGER 코리아TOP10",
+      "accountKey": null,
+      "securityCode": "292150",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.31666666666666665,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 39",
+          "text": "",
+          "value": 1.3,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=40390 / nav=40140.93",
+          "value": 0.006205,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:292150"
+      ],
+      "metadata": {
+        "rank": 39,
+        "price": 40390,
+        "changePct": 1.3,
+        "nav": 40140.93,
+        "navChangePct": 0.79,
+        "volume": 3837869,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:457480:40",
+      "entityType": "security",
+      "entityId": "security:457480",
+      "entityName": "ACE 테슬라밸류체인액티브",
+      "accountKey": null,
+      "securityCode": "457480",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.31,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 40",
+          "text": "",
+          "value": 1.29,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=24655 / nav=24624.24",
+          "value": 0.001249,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:457480"
+      ],
+      "metadata": {
+        "rank": 40,
+        "price": 24655,
+        "changePct": 1.29,
+        "nav": 24624.24,
+        "navChangePct": 0.29,
+        "volume": 1244678,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:483290:41",
+      "entityType": "security",
+      "entityId": "security:483290",
+      "entityName": "KODEX 미국배당다우존스타겟커버드콜",
+      "accountKey": null,
+      "securityCode": "483290",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.3025,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 41",
+          "text": "",
+          "value": 1.26,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=10460 / nav=10464.75",
+          "value": -0.000454,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:483290"
+      ],
+      "metadata": {
+        "rank": 41,
+        "price": 10460,
+        "changePct": 1.26,
+        "nav": 10464.75,
+        "navChangePct": 0.8,
+        "volume": 192396,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:473590:42",
+      "entityType": "security",
+      "entityId": "security:473590",
+      "entityName": "ACE 미국주식베스트셀러",
+      "accountKey": null,
+      "securityCode": "473590",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.29583333333333334,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 42",
+          "text": "",
+          "value": 1.25,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=23410 / nav=23314.34",
+          "value": 0.004103,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:473590"
+      ],
+      "metadata": {
+        "rank": 42,
+        "price": 23410,
+        "changePct": 1.25,
+        "nav": 23314.34,
+        "navChangePct": 0.32,
+        "volume": 132911,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:482730:43",
+      "entityType": "security",
+      "entityId": "security:482730",
+      "entityName": "TIGER 미국S&P500타겟데일리커버드콜",
+      "accountKey": null,
+      "securityCode": "482730",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.28875,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 43",
+          "text": "",
+          "value": 1.23,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=12350 / nav=12356.56",
+          "value": -0.000531,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:482730"
+      ],
+      "metadata": {
+        "rank": 43,
+        "price": 12350,
+        "changePct": 1.23,
+        "nav": 12356.56,
+        "navChangePct": 0.71,
+        "volume": 961220,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:480030:44",
+      "entityType": "security",
+      "entityId": "security:480030",
+      "entityName": "ACE 미국500데일리타겟커버드콜(합성)",
+      "accountKey": null,
+      "securityCode": "480030",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.28250000000000003,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 44",
+          "text": "",
+          "value": 1.23,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=11110 / nav=11067.34",
+          "value": 0.003855,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:480030"
+      ],
+      "metadata": {
+        "rank": 44,
+        "price": 11110,
+        "changePct": 1.23,
+        "nav": 11067.34,
+        "navChangePct": 0.61,
+        "volume": 271682,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:290130:45",
+      "entityType": "security",
+      "entityId": "security:290130",
+      "entityName": "RISE ESG사회책임투자",
+      "accountKey": null,
+      "securityCode": "290130",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.27291666666666664,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 45",
+          "text": "",
+          "value": 1.15,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=49315 / nav=49203.3",
+          "value": 0.00227,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:290130"
+      ],
+      "metadata": {
+        "rank": 45,
+        "price": 49315,
+        "changePct": 1.15,
+        "nav": 49203.3,
+        "navChangePct": 0.39,
+        "volume": 897711,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:456880:46",
+      "entityType": "security",
+      "entityId": "security:456880",
+      "entityName": "ACE 미국달러SOFR금리(합성)",
+      "accountKey": null,
+      "securityCode": "456880",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.26666666666666666,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 46",
+          "text": "",
+          "value": 1.15,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=12780 / nav=12767.13",
+          "value": 0.001008,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:456880"
+      ],
+      "metadata": {
+        "rank": 46,
+        "price": 12780,
+        "changePct": 1.15,
+        "nav": 12767.13,
+        "navChangePct": 1.06,
+        "volume": 131293,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:091160:47",
+      "entityType": "security",
+      "entityId": "security:091160",
+      "entityName": "KODEX 반도체",
+      "accountKey": null,
+      "securityCode": "091160",
+      "category": "ETF",
+      "themes": [
+        "반도체",
+        "반도체",
+        "HBM",
+        "메모리",
+        "소부장"
+      ],
+      "direction": "positive",
+      "strength": 0.26,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 47",
+          "text": "KODEX 반도체의 핵심 노출(반도체)을 테마 번역 후보로 사용합니다.",
+          "value": 1.14,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=143715 / nav=143514.81",
+          "value": 0.001395,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:091160"
+      ],
+      "metadata": {
+        "rank": 47,
+        "price": 143715,
+        "changePct": 1.14,
+        "nav": 143514.81,
+        "navChangePct": 0.91,
+        "volume": 4615482,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:091230:48",
+      "entityType": "security",
+      "entityId": "security:091230",
+      "entityName": "TIGER 반도체",
+      "accountKey": null,
+      "securityCode": "091230",
+      "category": "ETF",
+      "themes": [
+        "반도체",
+        "반도체",
+        "HBM",
+        "메모리",
+        "소부장"
+      ],
+      "direction": "positive",
+      "strength": 0.25375,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 48",
+          "text": "TIGER 반도체의 핵심 노출(반도체)을 테마 번역 후보로 사용합니다.",
+          "value": 1.14,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=151655 / nav=150097.95",
+          "value": 0.010374,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:091230"
+      ],
+      "metadata": {
+        "rank": 48,
+        "price": 151655,
+        "changePct": 1.14,
+        "nav": 150097.95,
+        "navChangePct": 0.9,
+        "volume": 1033005,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:473640:49",
+      "entityType": "security",
+      "entityId": "security:473640",
+      "entityName": "HANARO 글로벌금채굴기업",
+      "accountKey": null,
+      "securityCode": "473640",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.2520833333333333,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 49",
+          "text": "",
+          "value": 1.1,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=35250 / nav=35355.34",
+          "value": -0.002979,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:473640"
+      ],
+      "metadata": {
+        "rank": 49,
+        "price": 35250,
+        "changePct": 1.1,
+        "nav": 35355.34,
+        "navChangePct": 1.25,
+        "volume": 465592,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:480020:50",
+      "entityType": "security",
+      "entityId": "security:480020",
+      "entityName": "ACE 미국빅테크7+데일리타겟커버드콜(합성)",
+      "accountKey": null,
+      "securityCode": "480020",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.23958333333333331,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 50",
+          "text": "",
+          "value": 1.1,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=13290 / nav=13230.56",
+          "value": 0.004493,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:480020"
+      ],
+      "metadata": {
+        "rank": 50,
+        "price": 13290,
+        "changePct": 1.1,
+        "nav": 13230.56,
+        "navChangePct": 0.94,
+        "volume": 129567,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:379780:51",
+      "entityType": "security",
+      "entityId": "security:379780",
+      "entityName": "RISE 미국S&P500",
+      "accountKey": null,
+      "securityCode": "379780",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.2325,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 51",
+          "text": "",
+          "value": 1.08,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=23455 / nav=23343.58",
+          "value": 0.004773,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:379780"
+      ],
+      "metadata": {
+        "rank": 51,
+        "price": 23455,
+        "changePct": 1.08,
+        "nav": 23343.58,
+        "navChangePct": 0.66,
+        "volume": 297087,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:475080:52",
+      "entityType": "security",
+      "entityId": "security:475080",
+      "entityName": "KODEX 테슬라커버드콜채권혼합액티브",
+      "accountKey": null,
+      "securityCode": "475080",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.23208333333333336,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 52",
+          "text": "",
+          "value": 1.07,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=8520 / nav=8580.08",
+          "value": -0.007002,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:475080"
+      ],
+      "metadata": {
+        "rank": 52,
+        "price": 8520,
+        "changePct": 1.07,
+        "nav": 8580.08,
+        "navChangePct": 1.22,
+        "volume": 468454,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:160580:53",
+      "entityType": "security",
+      "entityId": "security:160580",
+      "entityName": "TIGER 구리실물",
+      "accountKey": null,
+      "securityCode": "160580",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.22,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 53",
+          "text": "",
+          "value": 1.07,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=16115 / nav=16114.95",
+          "value": 0.000003,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:160580"
+      ],
+      "metadata": {
+        "rank": 53,
+        "price": 16115,
+        "changePct": 1.07,
+        "nav": 16114.95,
+        "navChangePct": 0.85,
+        "volume": 266586,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:462900:54",
+      "entityType": "security",
+      "entityId": "security:462900",
+      "entityName": "KoAct 바이오헬스케어액티브",
+      "accountKey": null,
+      "securityCode": "462900",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.22,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 54",
+          "text": "",
+          "value": 1.05,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=20300 / nav=20297.66",
+          "value": 0.000115,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:462900"
+      ],
+      "metadata": {
+        "rank": 54,
+        "price": 20300,
+        "changePct": 1.05,
+        "nav": 20297.66,
+        "navChangePct": 1.22,
+        "volume": 1593384,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:455030:55",
+      "entityType": "security",
+      "entityId": "security:455030",
+      "entityName": "KODEX 미국달러SOFR금리액티브(합성)",
+      "accountKey": null,
+      "securityCode": "455030",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.22,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 55",
+          "text": "",
+          "value": 1.04,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=12625 / nav=12636.78",
+          "value": -0.000932,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:455030"
+      ],
+      "metadata": {
+        "rank": 55,
+        "price": 12625,
+        "changePct": 1.04,
+        "nav": 12636.78,
+        "navChangePct": 1.16,
+        "volume": 160765,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:433330:56",
+      "entityType": "security",
+      "entityId": "security:433330",
+      "entityName": "SOL 미국S&P500",
+      "accountKey": null,
+      "securityCode": "433330",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.22,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 56",
+          "text": "",
+          "value": 1.04,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=22415 / nav=22331.61",
+          "value": 0.003734,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:433330"
+      ],
+      "metadata": {
+        "rank": 56,
+        "price": 22415,
+        "changePct": 1.04,
+        "nav": 22331.61,
+        "navChangePct": 0.66,
+        "volume": 151778,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:329750:57",
+      "entityType": "security",
+      "entityId": "security:329750",
+      "entityName": "TIGER 미국달러단기채권액티브",
+      "accountKey": null,
+      "securityCode": "329750",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.22,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 57",
+          "text": "",
+          "value": 1.03,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=13760 / nav=13772.88",
+          "value": -0.000935,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:329750"
+      ],
+      "metadata": {
+        "rank": 57,
+        "price": 13760,
+        "changePct": 1.03,
+        "nav": 13772.88,
+        "navChangePct": 1.13,
+        "volume": 457473,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:360750:58",
+      "entityType": "security",
+      "entityId": "security:360750",
+      "entityName": "TIGER 미국S&P500",
+      "accountKey": null,
+      "securityCode": "360750",
+      "category": "ETF",
+      "themes": [
+        "금융",
+        "소비재",
+        "위험 선호",
+        "미국 대형주",
+        "코어",
+        "지수",
+        "s&p500",
+        "sp500",
+        "미국",
+        "대형주"
+      ],
+      "direction": "positive",
+      "strength": 0.22,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 58",
+          "text": "위험 선호 회복 구간에서 코어 노출을 늘릴 때 기준 ETF로 사용합니다.",
+          "value": 1.02,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=26820 / nav=26717.91",
+          "value": 0.003821,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:360750"
+      ],
+      "metadata": {
+        "rank": 58,
+        "price": 26820,
+        "changePct": 1.02,
+        "nav": 26717.91,
+        "navChangePct": 0.66,
+        "volume": 14153690,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:411060:59",
+      "entityType": "security",
+      "entityId": "security:411060",
+      "entityName": "ACE KRX금현물",
+      "accountKey": null,
+      "securityCode": "411060",
+      "category": "ETF",
+      "themes": [
+        "금",
+        "gold",
+        "금현물",
+        "안전자산",
+        "gold",
+        "금",
+        "krx금현물",
+        "금현물",
+        "안전자산"
+      ],
+      "direction": "positive",
+      "strength": 0.22,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 59",
+          "text": "",
+          "value": 0.99,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=31150 / nav=31169.12",
+          "value": -0.000613,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:411060"
+      ],
+      "metadata": {
+        "rank": 59,
+        "price": 31150,
+        "changePct": 0.99,
+        "nav": 31169.12,
+        "navChangePct": 1.18,
+        "volume": 1643393,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:217770:60",
+      "entityType": "security",
+      "entityId": "security:217770",
+      "entityName": "TIGER 원유선물인버스(H)",
+      "accountKey": null,
+      "securityCode": "217770",
+      "category": "ETF",
+      "themes": [
+        "원자재",
+        "원유",
+        "원자재",
+        "에너지",
+        "구리"
+      ],
+      "direction": "positive",
+      "strength": 0.22,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 60",
+          "text": "TIGER 원유선물인버스(H)의 핵심 노출(원자재)을 테마 번역 후보로 사용합니다.",
+          "value": 0.99,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=1330 / nav=1323.83",
+          "value": 0.004661,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:217770"
+      ],
+      "metadata": {
+        "rank": 60,
+        "price": 1330,
+        "changePct": 0.99,
+        "nav": 1323.83,
+        "navChangePct": -0.15,
+        "volume": 1581184,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:453810:61",
+      "entityType": "security",
+      "entityId": "security:453810",
+      "entityName": "KODEX 인도Nifty50",
+      "accountKey": null,
+      "securityCode": "453810",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.22,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 61",
+          "text": "",
+          "value": 0.99,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=12720 / nav=12738.32",
+          "value": -0.001438,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:453810"
+      ],
+      "metadata": {
+        "rank": 61,
+        "price": 12720,
+        "changePct": 0.99,
+        "nav": 12738.32,
+        "navChangePct": 0.73,
+        "volume": 224171,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:495850:62",
+      "entityType": "security",
+      "entityId": "security:495850",
+      "entityName": "KODEX 코리아밸류업",
+      "accountKey": null,
+      "securityCode": "495850",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.22,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 62",
+          "text": "",
+          "value": 0.97,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=34375 / nav=34296.42",
+          "value": 0.002291,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:495850"
+      ],
+      "metadata": {
+        "rank": 62,
+        "price": 34375,
+        "changePct": 0.97,
+        "nav": 34296.42,
+        "navChangePct": 0.93,
+        "volume": 747559,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:307520:63",
+      "entityType": "security",
+      "entityId": "security:307520",
+      "entityName": "TIGER 지주회사",
+      "accountKey": null,
+      "securityCode": "307520",
+      "category": "ETF",
+      "themes": [
+        "기타",
+        "시장 대표",
+        "테마 분산"
+      ],
+      "direction": "positive",
+      "strength": 0.22,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 63",
+          "text": "TIGER 지주회사의 핵심 노출(기타)을 테마 번역 후보로 사용합니다.",
+          "value": 0.96,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=26825 / nav=26732.21",
+          "value": 0.003471,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:307520"
+      ],
+      "metadata": {
+        "rank": 63,
+        "price": 26825,
+        "changePct": 0.96,
+        "nav": 26732.21,
+        "navChangePct": 0.6,
+        "volume": 451983,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:472170:64",
+      "entityType": "security",
+      "entityId": "security:472170",
+      "entityName": "TIGER 미국테크TOP10채권혼합",
+      "accountKey": null,
+      "securityCode": "472170",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.22,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 64",
+          "text": "",
+          "value": 0.94,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=14470 / nav=14460.06",
+          "value": 0.000687,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:472170"
+      ],
+      "metadata": {
+        "rank": 64,
+        "price": 14470,
+        "changePct": 0.94,
+        "nav": 14460.06,
+        "navChangePct": 0.73,
+        "volume": 299557,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:458760:65",
+      "entityType": "security",
+      "entityId": "security:458760",
+      "entityName": "TIGER 미국배당다우존스타겟커버드콜2호",
+      "accountKey": null,
+      "securityCode": "458760",
+      "category": "ETF",
+      "themes": [
+        "배당",
+        "커버드콜",
+        "다우",
+        "프리미엄",
+        "배당",
+        "커버드콜",
+        "미국배당",
+        "다우존스",
+        "인컴"
+      ],
+      "direction": "positive",
+      "strength": 0.22,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 65",
+          "text": "",
+          "value": 0.91,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=11050 / nav=11063.37",
+          "value": -0.001208,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:458760"
+      ],
+      "metadata": {
+        "rank": 65,
+        "price": 11050,
+        "changePct": 0.91,
+        "nav": 11063.37,
+        "navChangePct": 0.75,
+        "volume": 505365,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:496080:66",
+      "entityType": "security",
+      "entityId": "security:496080",
+      "entityName": "TIGER 코리아밸류업",
+      "accountKey": null,
+      "securityCode": "496080",
+      "category": "ETF",
+      "themes": [
+        "밸류업",
+        "주주환원",
+        "국내 인덱스",
+        "밸류업",
+        "주주환원",
+        "저pbr",
+        "국내지수",
+        "기업가치 제고"
+      ],
+      "direction": "positive",
+      "strength": 0.22,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 66",
+          "text": "",
+          "value": 0.9,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=34360 / nav=34294.93",
+          "value": 0.001897,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:496080"
+      ],
+      "metadata": {
+        "rank": 66,
+        "price": 34360,
+        "changePct": 0.9,
+        "nav": 34294.93,
+        "navChangePct": 0.92,
+        "volume": 649697,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:441800:67",
+      "entityType": "security",
+      "entityId": "security:441800",
+      "entityName": "TIME Korea플러스배당액티브",
+      "accountKey": null,
+      "securityCode": "441800",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.22,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 67",
+          "text": "",
+          "value": 0.89,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=34960 / nav=34849.46",
+          "value": 0.003172,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:441800"
+      ],
+      "metadata": {
+        "rank": 67,
+        "price": 34960,
+        "changePct": 0.89,
+        "nav": 34849.46,
+        "navChangePct": 0.34,
+        "volume": 493661,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:441680:68",
+      "entityType": "security",
+      "entityId": "security:441680",
+      "entityName": "TIGER 미국나스닥100커버드콜(합성)",
+      "accountKey": null,
+      "securityCode": "441680",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.22,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 68",
+          "text": "",
+          "value": 0.89,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=11350 / nav=11419.87",
+          "value": -0.006118,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:441680"
+      ],
+      "metadata": {
+        "rank": 68,
+        "price": 11350,
+        "changePct": 0.89,
+        "nav": 11419.87,
+        "navChangePct": 1.07,
+        "volume": 270385,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:453870:69",
+      "entityType": "security",
+      "entityId": "security:453870",
+      "entityName": "TIGER 인도니프티50",
+      "accountKey": null,
+      "securityCode": "453870",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.22,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 69",
+          "text": "",
+          "value": 0.89,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=12510 / nav=12550.59",
+          "value": -0.003234,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:453870"
+      ],
+      "metadata": {
+        "rank": 69,
+        "price": 12510,
+        "changePct": 0.89,
+        "nav": 12550.59,
+        "navChangePct": 0.73,
+        "volume": 177121,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:490490:70",
+      "entityType": "security",
+      "entityId": "security:490490",
+      "entityName": "SOL 미국배당미국채혼합50",
+      "accountKey": null,
+      "securityCode": "490490",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.22,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 70",
+          "text": "",
+          "value": 0.88,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=11415 / nav=11427.25",
+          "value": -0.001072,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:490490"
+      ],
+      "metadata": {
+        "rank": 70,
+        "price": 11415,
+        "changePct": 0.88,
+        "nav": 11427.25,
+        "navChangePct": 0.78,
+        "volume": 483458,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:495050:71",
+      "entityType": "security",
+      "entityId": "security:495050",
+      "entityName": "RISE 코리아밸류업",
+      "accountKey": null,
+      "securityCode": "495050",
+      "category": "ETF",
+      "themes": [
+        "기타",
+        "시장 대표",
+        "테마 분산"
+      ],
+      "direction": "positive",
+      "strength": 0.22,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 71",
+          "text": "RISE 코리아밸류업의 핵심 노출(기타)을 테마 번역 후보로 사용합니다.",
+          "value": 0.86,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=34505 / nav=34460.17",
+          "value": 0.001301,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:495050"
+      ],
+      "metadata": {
+        "rank": 71,
+        "price": 34505,
+        "changePct": 0.86,
+        "nav": 34460.17,
+        "navChangePct": 0.92,
+        "volume": 2865686,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:388420:72",
+      "entityType": "security",
+      "entityId": "security:388420",
+      "entityName": "RISE 비메모리반도체액티브",
+      "accountKey": null,
+      "securityCode": "388420",
+      "category": "ETF",
+      "themes": [
+        "반도체",
+        "반도체",
+        "HBM",
+        "메모리",
+        "소부장"
+      ],
+      "direction": "positive",
+      "strength": 0.22,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 72",
+          "text": "RISE 비메모리반도체액티브의 핵심 노출(반도체)을 테마 번역 후보로 사용합니다.",
+          "value": 0.84,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=32380 / nav=32376.46",
+          "value": 0.000109,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:388420"
+      ],
+      "metadata": {
+        "rank": 72,
+        "price": 32380,
+        "changePct": 0.84,
+        "nav": 32376.46,
+        "navChangePct": 0.61,
+        "volume": 496854,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:435420:73",
+      "entityType": "security",
+      "entityId": "security:435420",
+      "entityName": "TIGER 미국나스닥100채권혼합50",
+      "accountKey": null,
+      "securityCode": "435420",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.22,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 73",
+          "text": "",
+          "value": 0.84,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=14345 / nav=14283.6",
+          "value": 0.004299,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:435420"
+      ],
+      "metadata": {
+        "rank": 73,
+        "price": 14345,
+        "changePct": 0.84,
+        "nav": 14283.6,
+        "navChangePct": 0.48,
+        "volume": 371570,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:497570:74",
+      "entityType": "security",
+      "entityId": "security:497570",
+      "entityName": "TIGER 미국필라델피아AI반도체나스닥",
+      "accountKey": null,
+      "securityCode": "497570",
+      "category": "ETF",
+      "themes": [
+        "반도체",
+        "AI/인프라",
+        "미국기술주",
+        "반도체",
+        "HBM",
+        "메모리",
+        "소부장",
+        "AI",
+        "데이터센터",
+        "클라우드"
+      ],
+      "direction": "positive",
+      "strength": 0.22,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 74",
+          "text": "TIGER 미국필라델피아AI반도체나스닥의 핵심 노출(반도체, AI/인프라)을 테마 번역 후보로 사용합니다.",
+          "value": 0.81,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=21850 / nav=21560.74",
+          "value": 0.013416,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:497570"
+      ],
+      "metadata": {
+        "rank": 74,
+        "price": 21850,
+        "changePct": 0.81,
+        "nav": 21560.74,
+        "navChangePct": -0.91,
+        "volume": 806646,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:409820:75",
+      "entityType": "security",
+      "entityId": "security:409820",
+      "entityName": "KODEX 미국나스닥100레버리지(합성 H)",
+      "accountKey": null,
+      "securityCode": "409820",
+      "category": "ETF",
+      "themes": [
+        "미국기술주",
+        "나스닥",
+        "미국 기술주",
+        "빅테크"
+      ],
+      "direction": "positive",
+      "strength": 0.22,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 75",
+          "text": "KODEX 미국나스닥100레버리지(합성 H)의 핵심 노출(미국기술주)을 테마 번역 후보로 사용합니다.",
+          "value": 0.8,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=19555 / nav=19369.69",
+          "value": 0.009567,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:409820"
+      ],
+      "metadata": {
+        "rank": 75,
+        "price": 19555,
+        "changePct": 0.8,
+        "nav": 19369.69,
+        "navChangePct": -0.25,
+        "volume": 156360,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:472160:76",
+      "entityType": "security",
+      "entityId": "security:472160",
+      "entityName": "TIGER 미국테크TOP10 INDXX(H)",
+      "accountKey": null,
+      "securityCode": "472160",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.22,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 76",
+          "text": "",
+          "value": 0.78,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=19295 / nav=19207.55",
+          "value": 0.004553,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:472160"
+      ],
+      "metadata": {
+        "rank": 76,
+        "price": 19295,
+        "changePct": 0.78,
+        "nav": 19207.55,
+        "navChangePct": 0.37,
+        "volume": 659968,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:495230:77",
+      "entityType": "security",
+      "entityId": "security:495230",
+      "entityName": "KoAct 코리아밸류업액티브",
+      "accountKey": null,
+      "securityCode": "495230",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.22,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 77",
+          "text": "",
+          "value": 0.75,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=34835 / nav=34727.72",
+          "value": 0.003089,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:495230"
+      ],
+      "metadata": {
+        "rank": 77,
+        "price": 34835,
+        "changePct": 0.75,
+        "nav": 34727.72,
+        "navChangePct": 0.73,
+        "volume": 325817,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:495060:78",
+      "entityType": "security",
+      "entityId": "security:495060",
+      "entityName": "TIME 코리아밸류업액티브",
+      "accountKey": null,
+      "securityCode": "495060",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.22,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 78",
+          "text": "",
+          "value": 0.73,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=32400 / nav=32280.36",
+          "value": 0.003706,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:495060"
+      ],
+      "metadata": {
+        "rank": 78,
+        "price": 32400,
+        "changePct": 0.73,
+        "nav": 32280.36,
+        "navChangePct": 0.41,
+        "volume": 229870,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:476750:79",
+      "entityType": "security",
+      "entityId": "security:476750",
+      "entityName": "ACE 미국30년국채엔화노출액티브(H)",
+      "accountKey": null,
+      "securityCode": "476750",
+      "category": "ETF",
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.22,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_theme_mapping"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 79",
+          "text": "",
+          "value": 0.72,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=8430 / nav=8426.95",
+          "value": 0.000362,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:476750"
+      ],
+      "metadata": {
+        "rank": 79,
+        "price": 8430,
+        "changePct": 0.72,
+        "nav": 8426.95,
+        "navChangePct": 0.44,
+        "volume": 189714,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    },
+    {
+      "observationId": "normalized:kis_etf:2026-05-08:security:233740:80",
+      "entityType": "security",
+      "entityId": "security:233740",
+      "entityName": "KODEX 코스닥150레버리지",
+      "accountKey": null,
+      "securityCode": "233740",
+      "category": "ETF",
+      "themes": [
+        "국내성장주",
+        "코스닥",
+        "성장주",
+        "테크"
+      ],
+      "direction": "positive",
+      "strength": 0.22,
+      "confidence": 0.72,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived"
+      ],
+      "evidence": [
+        {
+          "kind": "table_row",
+          "title": "KIS ETF rank 80",
+          "text": "KODEX 코스닥150레버리지의 핵심 노출(국내성장주)을 테마 번역 후보로 사용합니다.",
+          "value": 0.71,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "nav_gap",
+          "text": "price=17005 / nav=17032.81",
+          "value": -0.001633,
+          "refPath": "data/external/kis-etf/2026-05-08/etf-ranking.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "kis_etf:233740"
+      ],
+      "metadata": {
+        "rank": 80,
+        "price": 17005,
+        "changePct": 0.71,
+        "nav": 17032.81,
+        "navChangePct": 0.47,
+        "volume": 31854875,
+        "collectionMode": "kis_etfetn_quote",
+        "capturedAt": "2026-05-08T08:00:53.577432Z"
+      }
+    }
+  ]
+}

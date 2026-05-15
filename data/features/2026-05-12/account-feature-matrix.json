@@ -1,0 +1,75 @@
+{
+  "date": "2026-05-12",
+  "generatedAt": "2026-05-12T05:44:05.647Z",
+  "accountFeatures": [
+    {
+      "accountKey": "ISA",
+      "netScore": 0.0418,
+      "support": {
+        "reports": 0.5418,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "topSupportingThemes": [
+        "HBM/메모리",
+        "AI 인프라",
+        "전력 인프라",
+        "방산",
+        "금/원자재"
+      ],
+      "topRisks": []
+    },
+    {
+      "accountKey": "PENSION",
+      "netScore": 0.1078,
+      "support": {
+        "reports": 0.5418,
+        "stockeasy": 0,
+        "marketvoice": 0.33929999999999993,
+        "technical": 0.19040000000000004,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "topSupportingThemes": [
+        "HBM/메모리",
+        "AI 인프라",
+        "전력 인프라",
+        "방산",
+        "금/원자재"
+      ],
+      "topRisks": [
+        "ai",
+        "power"
+      ]
+    },
+    {
+      "accountKey": "KIS_MAIN",
+      "netScore": 0.1573,
+      "support": {
+        "reports": 0.5418,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "topSupportingThemes": [
+        "AI 인프라",
+        "금/원자재",
+        "전력 인프라",
+        "원자력",
+        "HBM/메모리"
+      ],
+      "topRisks": []
+    }
+  ]
+}

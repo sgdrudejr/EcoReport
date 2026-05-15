@@ -1,0 +1,143 @@
+{
+  "id": "stock-pulse:469150",
+  "code": "469150",
+  "name": "ACE AI반도체TOP3+",
+  "category": "AI반도체",
+  "type": "etf",
+  "verdict": "익절감시",
+  "urgency": "높음",
+  "pulseScore": 51,
+  "oneLine": "익절감시: 20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+  "doNow": "20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+  "doNot": "급등 구간 추격매수 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "PENSION",
+      "accountLabel": "한투 연금저축",
+      "marketValue": 819600,
+      "profitRate": 14.11,
+      "decision": "외부관찰"
+    },
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "marketValue": 341500,
+      "profitRate": 14.64,
+      "decision": "외부관찰"
+    }
+  ],
+  "position": {
+    "marketValue": 1161100,
+    "purchaseValue": 0,
+    "profitLoss": 145020,
+    "profitRate": 14.27,
+    "quantity": 17
+  },
+  "market": {
+    "price": 68300,
+    "previousClose": 68000,
+    "changePct": 0.44,
+    "volume": 1596996,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 85,
+    "signal": "STRONG_BUY",
+    "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+    "rsi": 83.17,
+    "ma20": 55841,
+    "ma60": 47942.9167,
+    "recentHighDistancePct": -0.16,
+    "rsVsBenchmark": 40.42,
+    "alerts": [
+      "RSI 과매수 구간 진입"
+    ]
+  },
+  "fundamental": {
+    "score": 71,
+    "label": "수급양호",
+    "metrics": null,
+    "etf": {
+      "rank": null,
+      "navGapPct": null,
+      "concentrationTop5Pct": 80.04,
+      "topHoldings": [
+        {
+          "code": "000660",
+          "name": "SK하이닉스",
+          "weightPct": 30.63,
+          "changePct": 1.93
+        },
+        {
+          "code": "005930",
+          "name": "삼성전자",
+          "weightPct": 24.14,
+          "changePct": -1.1
+        },
+        {
+          "code": "042700",
+          "name": "한미반도체",
+          "weightPct": 20.79,
+          "changePct": -0.76
+        },
+        {
+          "code": "009150",
+          "name": "삼성전기",
+          "weightPct": 2.27,
+          "changePct": -0.33
+        },
+        {
+          "code": "222800",
+          "name": "심텍",
+          "weightPct": 2.21,
+          "changePct": 8.73
+        }
+      ]
+    }
+  },
+  "alerts": [
+    {
+      "severity": "high",
+      "label": "과열",
+      "detail": "RSI 83.17 과열권입니다.",
+      "tone": "red"
+    },
+    {
+      "severity": "medium",
+      "label": "근거보강",
+      "detail": "NO_CLEAN_REPORT_LINK",
+      "tone": "amber"
+    }
+  ],
+  "quickFactors": [
+    "등락 0.44%",
+    "RSI 83.17",
+    "거래량 0배",
+    "손익 14.27%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "ETF_NAV_MISSING"
+  ],
+  "riskFlags": [
+    "RSI_OVERHEAT:83.17",
+    "NO_CLEAN_REPORT_LINK"
+  ],
+  "sourceSupport": {
+    "reports": 0.464,
+    "stockeasy": 0,
+    "marketvoice": 0,
+    "technical": 0,
+    "kisEtf": 0,
+    "news": 0,
+    "macro": 0,
+    "llm": 0
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "id": "stock-pulse:385510",
+  "code": "385510",
+  "name": "KODEX 신재생에너지액티브",
+  "category": "신재생에너지",
+  "type": "etf",
+  "verdict": "익절감시",
+  "urgency": "중간",
+  "pulseScore": 55,
+  "oneLine": "익절감시: 20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+  "doNow": "20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+  "doNot": "급등 구간 추격매수 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "marketValue": 770120,
+      "profitRate": 13.43,
+      "decision": null
+    }
+  ],
+  "position": {
+    "marketValue": 770120,
+    "purchaseValue": 678925,
+    "profitLoss": 91195,
+    "profitRate": 13.43,
+    "quantity": 13
+  },
+  "market": {
+    "price": 59245,
+    "previousClose": 61465,
+    "changePct": -3.61,
+    "volume": 287935,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 95,
+    "signal": "STRONG_BUY",
+    "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+    "rsi": 73.59,
+    "ma20": 51970.5,
+    "ma60": 44368.0833,
+    "recentHighDistancePct": -3.93,
+    "rsVsBenchmark": 32.21,
+    "alerts": [
+      "RSI 과매수 구간 진입"
+    ]
+  },
+  "fundamental": {
+    "score": 70,
+    "label": "수급양호",
+    "metrics": null,
+    "etf": {
+      "rank": null,
+      "navGapPct": null,
+      "concentrationTop5Pct": 31.99,
+      "topHoldings": [
+        {
+          "code": "010060",
+          "name": "OCI홀딩스",
+          "weightPct": 7.54,
+          "changePct": -4.44
+        },
+        {
+          "code": "006400",
+          "name": "삼성SDI",
+          "weightPct": 6.38,
+          "changePct": -2.58
+        },
+        {
+          "code": "126340",
+          "name": "비나텍",
+          "weightPct": 6.2,
+          "changePct": -5.68
+        },
+        {
+          "code": "322000",
+          "name": "HD현대에너지솔루션",
+          "weightPct": 6.13,
+          "changePct": -6.79
+        },
+        {
+          "code": "010120",
+          "name": "LS ELECTRIC",
+          "weightPct": 5.74,
+          "changePct": -4.91
+        }
+      ]
+    }
+  },
+  "alerts": [
+    {
+      "severity": "medium",
+      "label": "과열주의",
+      "detail": "RSI 73.59로 추격매수보다 보호 판단이 우선입니다.",
+      "tone": "amber"
+    }
+  ],
+  "quickFactors": [
+    "등락 -3.61%",
+    "RSI 73.59",
+    "거래량 0배",
+    "손익 13.43%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "ETF_NAV_MISSING"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {}
+}

@@ -1,0 +1,113 @@
+{
+  "id": "stock-pulse:360750",
+  "code": "360750",
+  "name": "TIGER 미국S&P500",
+  "category": "미국인덱스",
+  "type": "etf",
+  "verdict": "추격금지",
+  "urgency": "중간",
+  "pulseScore": 59,
+  "oneLine": "추격금지: 좋아 보여도 오늘은 추가매수보다 보유분 보호와 눌림 대기가 우선입니다.",
+  "doNow": "좋아 보여도 오늘은 추가매수보다 보유분 보호와 눌림 대기가 우선입니다.",
+  "doNot": "급등 구간 추격매수 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "marketValue": 2252880,
+      "profitRate": 1.96,
+      "decision": "매수제외"
+    },
+    {
+      "accountKey": "PENSION",
+      "accountLabel": "한투 연금저축",
+      "marketValue": 2252880,
+      "profitRate": 2.5,
+      "decision": "매수제외"
+    },
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "marketValue": 2252880,
+      "profitRate": 1.96,
+      "decision": "매수제외"
+    }
+  ],
+  "position": {
+    "marketValue": 6758640,
+    "purchaseValue": 0,
+    "profitLoss": 55160,
+    "profitRate": 2.14,
+    "quantity": 84
+  },
+  "market": {
+    "price": 26820,
+    "previousClose": 26550,
+    "changePct": 1.02,
+    "volume": 14153690,
+    "volumeRatio": 0.16,
+    "nav": 26717.91,
+    "navGapPct": 0.382,
+    "rank": 58
+  },
+  "technical": {
+    "score": 85,
+    "signal": "STRONG_BUY",
+    "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+    "rsi": 81.51,
+    "ma20": 25949.25,
+    "ma60": 25089.25,
+    "recentHighDistancePct": -0.54,
+    "rsVsBenchmark": -43.56,
+    "alerts": [
+      "RSI 과매수 구간 진입"
+    ]
+  },
+  "fundamental": {
+    "score": 72,
+    "label": "수급양호",
+    "metrics": null,
+    "etf": {
+      "rank": 58,
+      "navGapPct": 0.382,
+      "concentrationTop5Pct": 0,
+      "topHoldings": []
+    }
+  },
+  "alerts": [
+    {
+      "severity": "medium",
+      "label": "과열주의",
+      "detail": "RSI 81.51로 추격매수보다 보호 판단이 우선입니다.",
+      "tone": "amber"
+    }
+  ],
+  "quickFactors": [
+    "등락 1.02%",
+    "RSI 81.51",
+    "거래량 0.16배",
+    "손익 2.14%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "ETF_COMPOSITION_MISSING"
+  ],
+  "riskFlags": [
+    "RSI_OVERHEAT:81.51",
+    "BLOCKED_BY_STAGE4_VALIDATION"
+  ],
+  "sourceSupport": {
+    "reports": 0.464,
+    "stockeasy": 0,
+    "marketvoice": 0,
+    "technical": 0,
+    "kisEtf": 0.158,
+    "news": 0,
+    "macro": 0,
+    "llm": 0
+  }
+}

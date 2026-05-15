@@ -1,0 +1,126 @@
+{
+  "id": "stock-pulse:069500",
+  "code": "069500",
+  "name": "KODEX 200",
+  "category": "국내인덱스",
+  "type": "etf",
+  "verdict": "익절감시",
+  "urgency": "중간",
+  "pulseScore": 51,
+  "oneLine": "익절감시: 20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+  "doNow": "20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+  "doNot": "급등 구간 추격매수 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "marketValue": 2358720,
+      "profitRate": 15.45,
+      "decision": null
+    },
+    {
+      "accountKey": "PENSION",
+      "accountLabel": "한투 연금저축",
+      "marketValue": 1123150,
+      "profitRate": 13.28,
+      "decision": null
+    }
+  ],
+  "position": {
+    "marketValue": 3481870,
+    "purchaseValue": 3034395,
+    "profitLoss": 447475,
+    "profitRate": 14.75,
+    "quantity": 31
+  },
+  "market": {
+    "price": 112375,
+    "previousClose": 113270,
+    "changePct": -0.79,
+    "volume": 9141541,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 80,
+    "signal": "STRONG_BUY",
+    "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+    "rsi": 77.59,
+    "ma20": 97120.25,
+    "ma60": 87689.0833,
+    "recentHighDistancePct": -3.4,
+    "rsVsBenchmark": 5.61,
+    "alerts": [
+      "RSI 과매수 구간 진입",
+      "볼린저밴드 상단 이탈"
+    ]
+  },
+  "fundamental": {
+    "score": 77,
+    "label": "수급강함",
+    "metrics": null,
+    "etf": {
+      "rank": null,
+      "navGapPct": null,
+      "concentrationTop5Pct": 62.32,
+      "topHoldings": [
+        {
+          "code": "005930",
+          "name": "삼성전자",
+          "weightPct": 32.78,
+          "changePct": -1.13
+        },
+        {
+          "code": "000660",
+          "name": "SK하이닉스",
+          "weightPct": 23.44,
+          "changePct": -1.31
+        },
+        {
+          "code": "402340",
+          "name": "SK스퀘어",
+          "weightPct": 2.66,
+          "changePct": -2.57
+        },
+        {
+          "code": "005380",
+          "name": "현대차",
+          "weightPct": 1.98,
+          "changePct": 3.27
+        },
+        {
+          "code": "034020",
+          "name": "두산에너빌리티",
+          "weightPct": 1.46,
+          "changePct": 6.3
+        }
+      ]
+    }
+  },
+  "alerts": [
+    {
+      "severity": "medium",
+      "label": "과열주의",
+      "detail": "RSI 77.59로 추격매수보다 보호 판단이 우선입니다.",
+      "tone": "amber"
+    }
+  ],
+  "quickFactors": [
+    "등락 -0.79%",
+    "RSI 77.59",
+    "거래량 0배",
+    "손익 14.75%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "ETF_NAV_MISSING"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {}
+}

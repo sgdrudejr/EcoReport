@@ -1,0 +1,71 @@
+{
+  "id": "stock-pulse:068270",
+  "code": "068270",
+  "name": "셀트리온",
+  "category": "기타",
+  "type": "unknown",
+  "verdict": "보유유지",
+  "urgency": "낮음",
+  "pulseScore": 6,
+  "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNot": "같은 테마 중복 확대 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "marketValue": 582900,
+      "profitRate": -0.1,
+      "decision": null
+    }
+  ],
+  "position": {
+    "marketValue": 582900,
+    "purchaseValue": 583500,
+    "profitLoss": -600,
+    "profitRate": -0.1,
+    "quantity": 3
+  },
+  "market": {
+    "price": null,
+    "previousClose": null,
+    "changePct": 0,
+    "volume": null,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 0,
+    "signal": null,
+    "reason": "",
+    "rsi": null,
+    "ma20": null,
+    "ma60": null,
+    "recentHighDistancePct": null,
+    "rsVsBenchmark": null,
+    "alerts": []
+  },
+  "fundamental": {
+    "score": 20,
+    "label": "수집필요",
+    "metrics": null,
+    "etf": null
+  },
+  "alerts": [],
+  "quickFactors": [
+    "등락 0%",
+    "손익 -0.1%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "NAVER_FETCH_FAILED"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {}
+}

@@ -1,0 +1,223 @@
+{
+  "date": "2026-05-06",
+  "generatedAt": "2026-05-06T08:08:13.618Z",
+  "divergence": {
+    "sourceConflicts": [
+      {
+        "entityType": "security",
+        "entityId": "411060",
+        "directions": [
+          "positive",
+          "negative",
+          "neutral"
+        ],
+        "sources": [
+          "reports",
+          "technical"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "379810",
+        "directions": [
+          "positive",
+          "negative",
+          "neutral"
+        ],
+        "sources": [
+          "reports",
+          "technical"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "138910",
+        "directions": [
+          "positive",
+          "negative",
+          "neutral"
+        ],
+        "sources": [
+          "reports",
+          "technical"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "329180",
+        "directions": [
+          "positive",
+          "neutral",
+          "negative"
+        ],
+        "sources": [
+          "reports",
+          "technical"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "385510",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "reports",
+          "technical"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "487240",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "reports",
+          "technical"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "360750",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "reports",
+          "technical"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "034020",
+        "directions": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "sources": [
+          "reports",
+          "technical"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "AI 인프라",
+        "directions": [
+          "positive",
+          "neutral",
+          "negative"
+        ],
+        "sources": [
+          "reports"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "금/원자재",
+        "directions": [
+          "positive",
+          "neutral",
+          "negative"
+        ],
+        "sources": [
+          "reports"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "금리/매크로",
+        "directions": [
+          "positive",
+          "neutral",
+          "negative"
+        ],
+        "sources": [
+          "reports"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "전력 인프라",
+        "directions": [
+          "neutral",
+          "negative",
+          "positive"
+        ],
+        "sources": [
+          "reports",
+          "technical"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "방산",
+        "directions": [
+          "neutral",
+          "positive",
+          "negative"
+        ],
+        "sources": [
+          "reports",
+          "technical"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "배당/커버드콜",
+        "directions": [
+          "positive",
+          "negative",
+          "neutral"
+        ],
+        "sources": [
+          "technical"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "배당",
+        "directions": [
+          "positive",
+          "negative"
+        ],
+        "sources": [
+          "technical"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "군수",
+        "directions": [
+          "positive",
+          "neutral",
+          "negative"
+        ],
+        "sources": [
+          "technical"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "시황",
+        "directions": [
+          "neutral",
+          "negative",
+          "positive",
+          "mixed"
+        ],
+        "sources": [
+          "news"
+        ]
+      }
+    ],
+    "policyConflicts": []
+  }
+}

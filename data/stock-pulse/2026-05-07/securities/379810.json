@@ -1,0 +1,88 @@
+{
+  "id": "stock-pulse:379810",
+  "code": "379810",
+  "name": "KODEX 미국나스닥100",
+  "category": "나스닥100",
+  "type": "etf",
+  "verdict": "보유유지",
+  "urgency": "높음",
+  "pulseScore": 47,
+  "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNot": "같은 테마 중복 확대 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "PENSION",
+      "accountLabel": "한투 연금저축",
+      "marketValue": 823650,
+      "profitRate": 4.97,
+      "decision": null
+    }
+  ],
+  "position": {
+    "marketValue": 823650,
+    "purchaseValue": 784650,
+    "profitLoss": 39000,
+    "profitRate": 4.97,
+    "quantity": 30
+  },
+  "market": {
+    "price": 27455,
+    "previousClose": 27210,
+    "changePct": 0.9,
+    "volume": 1186830,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 85,
+    "signal": "STRONG_BUY",
+    "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+    "rsi": 85.68,
+    "ma20": 25982.75,
+    "ma60": 24699.3333,
+    "recentHighDistancePct": -0.02,
+    "rsVsBenchmark": -27.53,
+    "alerts": [
+      "RSI 과매수 구간 진입"
+    ]
+  },
+  "fundamental": {
+    "score": 76,
+    "label": "수급강함",
+    "metrics": null,
+    "etf": {
+      "rank": null,
+      "navGapPct": null,
+      "concentrationTop5Pct": 0,
+      "topHoldings": []
+    }
+  },
+  "alerts": [
+    {
+      "severity": "high",
+      "label": "과열",
+      "detail": "RSI 85.68 과열권입니다.",
+      "tone": "red"
+    }
+  ],
+  "quickFactors": [
+    "등락 0.9%",
+    "RSI 85.68",
+    "거래량 0배",
+    "손익 4.97%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "ETF_COMPOSITION_MISSING",
+    "ETF_NAV_MISSING"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {}
+}

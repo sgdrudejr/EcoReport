@@ -1,0 +1,119 @@
+{
+  "id": "stock-pulse:498400",
+  "code": "498400",
+  "name": "KODEX 200타겟위클리커버드콜",
+  "category": "배당/커버드콜",
+  "type": "etf",
+  "verdict": "보유유지",
+  "urgency": "중간",
+  "pulseScore": 51,
+  "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNot": "같은 테마 중복 확대 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "marketValue": 226700,
+      "profitRate": 11.51,
+      "decision": null
+    }
+  ],
+  "position": {
+    "marketValue": 226700,
+    "purchaseValue": 203300,
+    "profitLoss": 23400,
+    "profitRate": 11.51,
+    "quantity": 10
+  },
+  "market": {
+    "price": 22685,
+    "previousClose": 22825,
+    "changePct": -0.61,
+    "volume": 5686804,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 80,
+    "signal": "STRONG_BUY",
+    "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+    "rsi": 78.5,
+    "ma20": 19825.5,
+    "ma60": 18242.0833,
+    "recentHighDistancePct": -3.66,
+    "rsVsBenchmark": -4.37,
+    "alerts": [
+      "RSI 과매수 구간 진입",
+      "볼린저밴드 상단 이탈"
+    ]
+  },
+  "fundamental": {
+    "score": 77,
+    "label": "수급강함",
+    "metrics": null,
+    "etf": {
+      "rank": null,
+      "navGapPct": null,
+      "concentrationTop5Pct": 66.48,
+      "topHoldings": [
+        {
+          "code": "005930",
+          "name": "삼성전자",
+          "weightPct": 27.99,
+          "changePct": -1.13
+        },
+        {
+          "code": "000660",
+          "name": "SK하이닉스",
+          "weightPct": 20,
+          "changePct": -1.31
+        },
+        {
+          "code": "069500",
+          "name": "KODEX 200",
+          "weightPct": 14.54,
+          "changePct": -0.79
+        },
+        {
+          "code": "402340",
+          "name": "SK스퀘어",
+          "weightPct": 2.26,
+          "changePct": -2.57
+        },
+        {
+          "code": "005380",
+          "name": "현대차",
+          "weightPct": 1.69,
+          "changePct": 3.27
+        }
+      ]
+    }
+  },
+  "alerts": [
+    {
+      "severity": "medium",
+      "label": "과열주의",
+      "detail": "RSI 78.5로 추격매수보다 보호 판단이 우선입니다.",
+      "tone": "amber"
+    }
+  ],
+  "quickFactors": [
+    "등락 -0.61%",
+    "RSI 78.5",
+    "거래량 0배",
+    "손익 11.51%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "ETF_NAV_MISSING"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {}
+}

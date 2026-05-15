@@ -33,6 +33,8 @@ function emptySupportVector() {
     stockeasy: 0,
     marketvoice: 0,
     technical: 0,
+    kis_etf: 0,
+    news: 0,
     macro: 0,
     llm: 0,
   };
@@ -68,6 +70,9 @@ async function main() {
     readJson(normalizedOutputPath(args.date, "reports"), null),
     readJson(normalizedOutputPath(args.date, "stockeasy"), null),
     readJson(normalizedOutputPath(args.date, "marketvoice"), null),
+    readJson(normalizedOutputPath(args.date, "technical"), null),
+    readJson(normalizedOutputPath(args.date, "kis_etf"), null),
+    readJson(normalizedOutputPath(args.date, "news"), null),
   ])).filter(Boolean);
   const strategy = await readJson(path.join(process.cwd(), "config", "strategy.json"), { accounts: {} });
 

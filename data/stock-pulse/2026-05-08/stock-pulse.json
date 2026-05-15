@@ -1,0 +1,1559 @@
+{
+  "date": "2026-05-08",
+  "runDate": "2026-05-10",
+  "effectiveMarketDate": "2026-05-08",
+  "runId": "2026-05-08-070312",
+  "generatedAt": "2026-05-10T01:05:21.538Z",
+  "status": "ok",
+  "sourceStatus": {
+    "portfolio": "ok",
+    "technical": "ok",
+    "fundamentals": "ok",
+    "news": "ok",
+    "dart": "not_configured",
+    "qwen": "ok"
+  },
+  "counts": {
+    "activeHoldings": 13,
+    "highUrgency": 3,
+    "mediumUrgency": 7,
+    "missingNews": 13,
+    "missingDart": 13
+  },
+  "summary": {
+    "headline": "과열·급등·기술약화 종목을 먼저 확인해야 합니다.",
+    "nextAction": "DART 공시와 종목 직접 뉴스 수집을 붙이면 장중 속보판 정확도가 올라갑니다."
+  },
+  "items": [
+    {
+      "id": "stock-pulse:469150",
+      "code": "469150",
+      "name": "ACE AI반도체TOP3+",
+      "category": "AI반도체",
+      "type": "etf",
+      "verdict": "익절감시",
+      "urgency": "높음",
+      "pulseScore": 51,
+      "oneLine": "익절감시: 20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+      "doNow": "20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+      "doNot": "급등 구간 추격매수 금지",
+      "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+      "accounts": [
+        {
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축",
+          "marketValue": 819600,
+          "profitRate": 14.11,
+          "decision": "외부관찰"
+        },
+        {
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반",
+          "marketValue": 341500,
+          "profitRate": 14.64,
+          "decision": "외부관찰"
+        }
+      ],
+      "position": {
+        "marketValue": 1161100,
+        "purchaseValue": 0,
+        "profitLoss": 145020,
+        "profitRate": 14.27,
+        "quantity": 17
+      },
+      "market": {
+        "price": 68300,
+        "previousClose": 68000,
+        "changePct": 0.44,
+        "volume": 1596996,
+        "volumeRatio": 0,
+        "nav": 0,
+        "navGapPct": 0,
+        "rank": 0
+      },
+      "technical": {
+        "score": 85,
+        "signal": "STRONG_BUY",
+        "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+        "rsi": 83.17,
+        "ma20": 55841,
+        "ma60": 47942.9167,
+        "recentHighDistancePct": -0.16,
+        "rsVsBenchmark": 40.42,
+        "alerts": [
+          "RSI 과매수 구간 진입"
+        ]
+      },
+      "fundamental": {
+        "score": 71,
+        "label": "수급양호",
+        "metrics": null,
+        "etf": {
+          "rank": null,
+          "navGapPct": null,
+          "concentrationTop5Pct": 80.04,
+          "topHoldings": [
+            {
+              "code": "000660",
+              "name": "SK하이닉스",
+              "weightPct": 30.63,
+              "changePct": 1.93
+            },
+            {
+              "code": "005930",
+              "name": "삼성전자",
+              "weightPct": 24.14,
+              "changePct": -1.1
+            },
+            {
+              "code": "042700",
+              "name": "한미반도체",
+              "weightPct": 20.79,
+              "changePct": -0.76
+            },
+            {
+              "code": "009150",
+              "name": "삼성전기",
+              "weightPct": 2.27,
+              "changePct": -0.33
+            },
+            {
+              "code": "222800",
+              "name": "심텍",
+              "weightPct": 2.21,
+              "changePct": 8.73
+            }
+          ]
+        }
+      },
+      "alerts": [
+        {
+          "severity": "high",
+          "label": "과열",
+          "detail": "RSI 83.17 과열권입니다.",
+          "tone": "red"
+        },
+        {
+          "severity": "medium",
+          "label": "근거보강",
+          "detail": "NO_CLEAN_REPORT_LINK",
+          "tone": "amber"
+        }
+      ],
+      "quickFactors": [
+        "등락 0.44%",
+        "RSI 83.17",
+        "거래량 0배",
+        "손익 14.27%"
+      ],
+      "newsHits": [],
+      "strategyMentions": [],
+      "missingSources": [
+        "뉴스미수집",
+        "DART미연결",
+        "ETF_NAV_MISSING"
+      ],
+      "riskFlags": [
+        "RSI_OVERHEAT:83.17",
+        "NO_CLEAN_REPORT_LINK"
+      ],
+      "sourceSupport": {
+        "reports": 0.464,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kisEtf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      }
+    },
+    {
+      "id": "stock-pulse:379810",
+      "code": "379810",
+      "name": "KODEX 미국나스닥100",
+      "category": "나스닥100",
+      "type": "etf",
+      "verdict": "자료보강",
+      "urgency": "높음",
+      "pulseScore": 38,
+      "oneLine": "자료보강: 공시, 뉴스, 직접 리포트가 보강되기 전까지 결론 강도를 낮춥니다.",
+      "doNow": "공시, 뉴스, 직접 리포트가 보강되기 전까지 결론 강도를 낮춥니다.",
+      "doNot": "근거 부족 상태의 신규매수 금지",
+      "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+      "accounts": [
+        {
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축",
+          "marketValue": 839250,
+          "profitRate": 6.95,
+          "decision": "외부관찰"
+        }
+      ],
+      "position": {
+        "marketValue": 839250,
+        "purchaseValue": 0,
+        "profitLoss": 54600,
+        "profitRate": 6.95,
+        "quantity": 30
+      },
+      "market": {
+        "price": 27975,
+        "previousClose": 27560,
+        "changePct": 1.51,
+        "volume": 8550,
+        "volumeRatio": 0,
+        "nav": 0,
+        "navGapPct": 0,
+        "rank": 0
+      },
+      "technical": {
+        "score": 85,
+        "signal": "STRONG_BUY",
+        "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+        "rsi": 88.35,
+        "ma20": 26165.25,
+        "ma60": 24762.8333,
+        "recentHighDistancePct": 0,
+        "rsVsBenchmark": -36.86,
+        "alerts": [
+          "RSI 과매수 구간 진입"
+        ]
+      },
+      "fundamental": {
+        "score": 35,
+        "label": "수급주의",
+        "metrics": null,
+        "etf": {
+          "rank": null,
+          "navGapPct": null,
+          "concentrationTop5Pct": 0,
+          "topHoldings": []
+        }
+      },
+      "alerts": [
+        {
+          "severity": "high",
+          "label": "과열",
+          "detail": "RSI 88.35 과열권입니다.",
+          "tone": "red"
+        },
+        {
+          "severity": "medium",
+          "label": "근거보강",
+          "detail": "NO_CLEAN_REPORT_LINK",
+          "tone": "amber"
+        }
+      ],
+      "quickFactors": [
+        "등락 1.51%",
+        "RSI 88.35",
+        "거래량 0배",
+        "손익 6.95%"
+      ],
+      "newsHits": [],
+      "strategyMentions": [],
+      "missingSources": [
+        "뉴스미수집",
+        "DART미연결",
+        "ETF_COMPOSITION_MISSING",
+        "ETF_NAV_MISSING"
+      ],
+      "riskFlags": [
+        "RSI_OVERHEAT:88.35",
+        "NO_CLEAN_REPORT_LINK"
+      ],
+      "sourceSupport": {
+        "reports": 0.464,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kisEtf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      }
+    },
+    {
+      "id": "stock-pulse:487240",
+      "code": "487240",
+      "name": "KODEX AI전력핵심설비",
+      "category": "전력기기",
+      "type": "etf",
+      "verdict": "익절감시",
+      "urgency": "높음",
+      "pulseScore": 61,
+      "oneLine": "익절감시: 20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+      "doNow": "20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+      "doNot": "급등 구간 추격매수 금지",
+      "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+      "accounts": [
+        {
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA",
+          "marketValue": 191055,
+          "profitRate": 59.45,
+          "decision": "수익보호"
+        }
+      ],
+      "position": {
+        "marketValue": 191055,
+        "purchaseValue": 0,
+        "profitLoss": 71235,
+        "profitRate": 59.45,
+        "quantity": 3
+      },
+      "market": {
+        "price": 62020,
+        "previousClose": 62285,
+        "changePct": -0.43,
+        "volume": 4780896,
+        "volumeRatio": 0.63,
+        "nav": 61977.36,
+        "navGapPct": 0.069,
+        "rank": 0
+      },
+      "technical": {
+        "score": 85,
+        "signal": "STRONG_BUY",
+        "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+        "rsi": 90.84,
+        "ma20": 45392.25,
+        "ma60": 36144.1667,
+        "recentHighDistancePct": -4.04,
+        "rsVsBenchmark": 95.74,
+        "alerts": [
+          "RSI 과매수 구간 진입"
+        ]
+      },
+      "fundamental": {
+        "score": 80,
+        "label": "수급강함",
+        "metrics": null,
+        "etf": {
+          "rank": null,
+          "navGapPct": 0.069,
+          "concentrationTop5Pct": 77.83,
+          "topHoldings": [
+            {
+              "code": "010120",
+              "name": "LS ELECTRIC",
+              "weightPct": 24.01,
+              "changePct": -1.73
+            },
+            {
+              "code": "298040",
+              "name": "효성중공업",
+              "weightPct": 16.94,
+              "changePct": -4.41
+            },
+            {
+              "code": "006260",
+              "name": "LS",
+              "weightPct": 13.05,
+              "changePct": 7.1
+            },
+            {
+              "code": "267260",
+              "name": "HD현대일렉트릭",
+              "weightPct": 12.65,
+              "changePct": -1.2
+            },
+            {
+              "code": "001440",
+              "name": "대한전선",
+              "weightPct": 11.18,
+              "changePct": 12.79
+            }
+          ]
+        }
+      },
+      "alerts": [
+        {
+          "severity": "high",
+          "label": "과열",
+          "detail": "RSI 90.84 과열권입니다.",
+          "tone": "red"
+        }
+      ],
+      "quickFactors": [
+        "등락 -0.43%",
+        "RSI 90.84",
+        "거래량 0.63배",
+        "손익 59.45%"
+      ],
+      "newsHits": [],
+      "strategyMentions": [],
+      "missingSources": [
+        "뉴스미수집",
+        "DART미연결"
+      ],
+      "riskFlags": [
+        "RSI_OVERHEAT:90.84"
+      ],
+      "sourceSupport": {
+        "reports": 0.464,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kisEtf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      }
+    },
+    {
+      "id": "stock-pulse:360750",
+      "code": "360750",
+      "name": "TIGER 미국S&P500",
+      "category": "미국인덱스",
+      "type": "etf",
+      "verdict": "추격금지",
+      "urgency": "중간",
+      "pulseScore": 59,
+      "oneLine": "추격금지: 좋아 보여도 오늘은 추가매수보다 보유분 보호와 눌림 대기가 우선입니다.",
+      "doNow": "좋아 보여도 오늘은 추가매수보다 보유분 보호와 눌림 대기가 우선입니다.",
+      "doNot": "급등 구간 추격매수 금지",
+      "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+      "accounts": [
+        {
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA",
+          "marketValue": 2252880,
+          "profitRate": 1.96,
+          "decision": "매수제외"
+        },
+        {
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축",
+          "marketValue": 2252880,
+          "profitRate": 2.5,
+          "decision": "매수제외"
+        },
+        {
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반",
+          "marketValue": 2252880,
+          "profitRate": 1.96,
+          "decision": "매수제외"
+        }
+      ],
+      "position": {
+        "marketValue": 6758640,
+        "purchaseValue": 0,
+        "profitLoss": 55160,
+        "profitRate": 2.14,
+        "quantity": 84
+      },
+      "market": {
+        "price": 26820,
+        "previousClose": 26550,
+        "changePct": 1.02,
+        "volume": 14153690,
+        "volumeRatio": 0.16,
+        "nav": 26717.91,
+        "navGapPct": 0.382,
+        "rank": 58
+      },
+      "technical": {
+        "score": 85,
+        "signal": "STRONG_BUY",
+        "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+        "rsi": 81.51,
+        "ma20": 25949.25,
+        "ma60": 25089.25,
+        "recentHighDistancePct": -0.54,
+        "rsVsBenchmark": -43.56,
+        "alerts": [
+          "RSI 과매수 구간 진입"
+        ]
+      },
+      "fundamental": {
+        "score": 72,
+        "label": "수급양호",
+        "metrics": null,
+        "etf": {
+          "rank": 58,
+          "navGapPct": 0.382,
+          "concentrationTop5Pct": 0,
+          "topHoldings": []
+        }
+      },
+      "alerts": [
+        {
+          "severity": "medium",
+          "label": "과열주의",
+          "detail": "RSI 81.51로 추격매수보다 보호 판단이 우선입니다.",
+          "tone": "amber"
+        }
+      ],
+      "quickFactors": [
+        "등락 1.02%",
+        "RSI 81.51",
+        "거래량 0.16배",
+        "손익 2.14%"
+      ],
+      "newsHits": [],
+      "strategyMentions": [],
+      "missingSources": [
+        "뉴스미수집",
+        "DART미연결",
+        "ETF_COMPOSITION_MISSING"
+      ],
+      "riskFlags": [
+        "RSI_OVERHEAT:81.51",
+        "BLOCKED_BY_STAGE4_VALIDATION"
+      ],
+      "sourceSupport": {
+        "reports": 0.464,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kisEtf": 0.158,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      }
+    },
+    {
+      "id": "stock-pulse:0162Z0",
+      "code": "0162Z0",
+      "name": "RISE 삼성전자SK하이닉스채권혼합50",
+      "category": "반도체/채권혼합",
+      "type": "etf",
+      "verdict": "익절감시",
+      "urgency": "중간",
+      "pulseScore": 54,
+      "oneLine": "익절감시: 20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+      "doNow": "20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+      "doNot": "급등 구간 추격매수 금지",
+      "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+      "accounts": [
+        {
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA",
+          "marketValue": 1288500,
+          "profitRate": 15.04,
+          "decision": "외부관찰"
+        },
+        {
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축",
+          "marketValue": 1546200,
+          "profitRate": 13.42,
+          "decision": "외부관찰"
+        }
+      ],
+      "position": {
+        "marketValue": 2834700,
+        "purchaseValue": 0,
+        "profitLoss": 351500,
+        "profitRate": 14.16,
+        "quantity": 220
+      },
+      "market": {
+        "price": 12885,
+        "previousClose": 12840,
+        "changePct": 0.35,
+        "volume": 12541910,
+        "volumeRatio": 0,
+        "nav": 0,
+        "navGapPct": 0,
+        "rank": 0
+      },
+      "technical": {
+        "score": 62,
+        "signal": "BUY",
+        "reason": "주가가 20일선 위에서 유지 중, MACD 모멘텀이 우호적, RSI 기준 단기 과열 구간",
+        "rsi": 80.87,
+        "ma20": 11359.75,
+        "ma60": 0,
+        "recentHighDistancePct": 0,
+        "rsVsBenchmark": 0,
+        "alerts": [
+          "RSI 과매수 구간 진입",
+          "볼린저밴드 상단 이탈"
+        ]
+      },
+      "fundamental": {
+        "score": 88,
+        "label": "수급강함",
+        "metrics": null,
+        "etf": {
+          "rank": null,
+          "navGapPct": null,
+          "concentrationTop5Pct": 0,
+          "topHoldings": []
+        }
+      },
+      "alerts": [
+        {
+          "severity": "medium",
+          "label": "과열주의",
+          "detail": "RSI 80.87로 추격매수보다 보호 판단이 우선입니다.",
+          "tone": "amber"
+        },
+        {
+          "severity": "medium",
+          "label": "근거보강",
+          "detail": "NO_CLEAN_REPORT_LINK",
+          "tone": "amber"
+        }
+      ],
+      "quickFactors": [
+        "등락 0.35%",
+        "RSI 80.87",
+        "거래량 0배",
+        "손익 14.16%"
+      ],
+      "newsHits": [],
+      "strategyMentions": [],
+      "missingSources": [
+        "뉴스미수집",
+        "DART미연결",
+        "ETF_COMPOSITION_MISSING",
+        "ETF_NAV_MISSING"
+      ],
+      "riskFlags": [
+        "RSI_OVERHEAT:80.87",
+        "BOLLINGER_ABOVE_UPPER",
+        "NO_CLEAN_REPORT_LINK"
+      ],
+      "sourceSupport": {
+        "reports": 0.464,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.14,
+        "kisEtf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      }
+    },
+    {
+      "id": "stock-pulse:411060",
+      "code": "411060",
+      "name": "ACE KRX금현물",
+      "category": "금",
+      "type": "etf",
+      "verdict": "자료보강",
+      "urgency": "중간",
+      "pulseScore": 33,
+      "oneLine": "자료보강: 공시, 뉴스, 직접 리포트가 보강되기 전까지 결론 강도를 낮춥니다.",
+      "doNow": "공시, 뉴스, 직접 리포트가 보강되기 전까지 결론 강도를 낮춥니다.",
+      "doNot": "근거 부족 상태의 신규매수 금지",
+      "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+      "accounts": [
+        {
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA",
+          "marketValue": 2149350,
+          "profitRate": 0.29,
+          "decision": "외부관찰"
+        }
+      ],
+      "position": {
+        "marketValue": 2149350,
+        "purchaseValue": 0,
+        "profitLoss": 6285,
+        "profitRate": 0.29,
+        "quantity": 69
+      },
+      "market": {
+        "price": 31150,
+        "previousClose": 30845,
+        "changePct": 0.99,
+        "volume": 1643393,
+        "volumeRatio": 0,
+        "nav": 31169.12,
+        "navGapPct": -0.061,
+        "rank": 59
+      },
+      "technical": {
+        "score": 24,
+        "signal": "REDUCE",
+        "reason": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 둔화",
+        "rsi": 49.5,
+        "ma20": 31177.75,
+        "ma60": 32109.5833,
+        "recentHighDistancePct": -3.2,
+        "rsVsBenchmark": -50.68,
+        "alerts": []
+      },
+      "fundamental": {
+        "score": 72,
+        "label": "수급양호",
+        "metrics": null,
+        "etf": {
+          "rank": 59,
+          "navGapPct": -0.061,
+          "concentrationTop5Pct": 0,
+          "topHoldings": []
+        }
+      },
+      "alerts": [
+        {
+          "severity": "medium",
+          "label": "기술약화",
+          "detail": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 둔화",
+          "tone": "amber"
+        },
+        {
+          "severity": "medium",
+          "label": "근거보강",
+          "detail": "NO_CLEAN_REPORT_LINK",
+          "tone": "amber"
+        }
+      ],
+      "quickFactors": [
+        "등락 0.99%",
+        "RSI 49.5",
+        "거래량 0배",
+        "손익 0.29%"
+      ],
+      "newsHits": [],
+      "strategyMentions": [],
+      "missingSources": [
+        "뉴스미수집",
+        "DART미연결",
+        "ETF_COMPOSITION_MISSING"
+      ],
+      "riskFlags": [
+        "NO_CLEAN_REPORT_LINK"
+      ],
+      "sourceSupport": {
+        "reports": 0.464,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.395,
+        "kisEtf": 0.158,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      }
+    },
+    {
+      "id": "stock-pulse:012450",
+      "code": "012450",
+      "name": "한화에어로스페이스",
+      "category": "방산",
+      "type": "stock",
+      "verdict": "손절감시",
+      "urgency": "중간",
+      "pulseScore": 47,
+      "oneLine": "손절감시: 손실 확대 원인을 확인하고 20일선 회복 실패 시 감량 기준을 먼저 봅니다.",
+      "doNow": "손실 확대 원인을 확인하고 20일선 회복 실패 시 감량 기준을 먼저 봅니다.",
+      "doNot": "손절 기준 없이 물타기 금지",
+      "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+      "accounts": [
+        {
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반",
+          "marketValue": 1307000,
+          "profitRate": -11.56,
+          "decision": "감량검토"
+        }
+      ],
+      "position": {
+        "marketValue": 1307000,
+        "purchaseValue": 0,
+        "profitLoss": -171000,
+        "profitRate": -11.56,
+        "quantity": 1
+      },
+      "market": {
+        "price": 1307000,
+        "previousClose": 1317000,
+        "changePct": -0.76,
+        "volume": 240532,
+        "volumeRatio": 0,
+        "nav": 0,
+        "navGapPct": 0,
+        "rank": 0
+      },
+      "technical": {
+        "score": 46,
+        "signal": "HOLD",
+        "reason": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화",
+        "rsi": 39.5,
+        "ma20": 1439500,
+        "ma60": 1365250,
+        "recentHighDistancePct": -16.75,
+        "rsVsBenchmark": -46,
+        "alerts": [
+          "볼린저밴드 하단 이탈"
+        ]
+      },
+      "fundamental": {
+        "score": 58,
+        "label": "기본보통",
+        "metrics": {
+          "per": 45.74,
+          "pbr": 6.94,
+          "eps": 28573,
+          "estimatedPer": 31,
+          "estimatedEps": 41905,
+          "dividendYield": 0.54,
+          "operatingMargin": 11.57,
+          "operatingMarginEstimate": 14.17,
+          "roe": 19.14,
+          "roeEstimate": 20.34,
+          "annualEps": 28573,
+          "previousAnnualEps": 46183,
+          "estimatedAnnualEps": 41905,
+          "epsGrowthPct": -38.13,
+          "estimatedEpsGrowthPct": 46.66
+        },
+        "etf": null
+      },
+      "alerts": [
+        {
+          "severity": "low",
+          "label": "AI언급",
+          "detail": "감량검토: 손절조건 발동 (-11.6%), 방산 클러스터 과집중 리스크",
+          "tone": "blue"
+        }
+      ],
+      "quickFactors": [
+        "등락 -0.76%",
+        "RSI 39.5",
+        "거래량 0배",
+        "손익 -11.56%"
+      ],
+      "newsHits": [],
+      "strategyMentions": [
+        {
+          "bucket": "todayDo",
+          "action": "감량검토",
+          "reason": "손절조건 발동 (-11.6%), 방산 클러스터 과집중 리스크",
+          "trigger": "추가 하락 시 즉시 감량 검토"
+        },
+        {
+          "bucket": "sellWatch",
+          "action": "손절감시",
+          "reason": "손절조건 발동, -11.6% 손익",
+          "trigger": "추가 하락 시 즉시 감량/매도"
+        }
+      ],
+      "missingSources": [
+        "뉴스미수집",
+        "DART미연결"
+      ],
+      "riskFlags": [
+        "STOP_LOSS_TRIGGERED"
+      ],
+      "sourceSupport": {
+        "reports": 0.542,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kisEtf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      }
+    },
+    {
+      "id": "stock-pulse:385510",
+      "code": "385510",
+      "name": "KODEX 신재생에너지액티브",
+      "category": "신재생에너지",
+      "type": "etf",
+      "verdict": "익절감시",
+      "urgency": "중간",
+      "pulseScore": 58,
+      "oneLine": "익절감시: 20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+      "doNow": "20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+      "doNot": "급등 구간 추격매수 금지",
+      "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+      "accounts": [
+        {
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA",
+          "marketValue": 774540,
+          "profitRate": 14.08,
+          "decision": "보유유지"
+        }
+      ],
+      "position": {
+        "marketValue": 774540,
+        "purchaseValue": 0,
+        "profitLoss": 95615,
+        "profitRate": 14.08,
+        "quantity": 13
+      },
+      "market": {
+        "price": 59580,
+        "previousClose": 60425,
+        "changePct": -1.4,
+        "volume": 396,
+        "volumeRatio": 0,
+        "nav": 0,
+        "navGapPct": 0,
+        "rank": 0
+      },
+      "technical": {
+        "score": 85,
+        "signal": "STRONG_BUY",
+        "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+        "rsi": 75.63,
+        "ma20": 52810.75,
+        "ma60": 44785.3333,
+        "recentHighDistancePct": -3.07,
+        "rsVsBenchmark": 31.73,
+        "alerts": [
+          "RSI 과매수 구간 진입"
+        ]
+      },
+      "fundamental": {
+        "score": 57,
+        "label": "수급보통",
+        "metrics": null,
+        "etf": {
+          "rank": null,
+          "navGapPct": null,
+          "concentrationTop5Pct": 32.65,
+          "topHoldings": [
+            {
+              "code": "010060",
+              "name": "OCI홀딩스",
+              "weightPct": 8.46,
+              "changePct": -2.9
+            },
+            {
+              "code": "006400",
+              "name": "삼성SDI",
+              "weightPct": 6.39,
+              "changePct": -2.31
+            },
+            {
+              "code": "062040",
+              "name": "산일전기",
+              "weightPct": 6.09,
+              "changePct": 2.64
+            },
+            {
+              "code": "010120",
+              "name": "LS ELECTRIC",
+              "weightPct": 5.87,
+              "changePct": -1.73
+            },
+            {
+              "code": "322000",
+              "name": "HD현대에너지솔루션",
+              "weightPct": 5.84,
+              "changePct": -1.89
+            }
+          ]
+        }
+      },
+      "alerts": [
+        {
+          "severity": "medium",
+          "label": "과열주의",
+          "detail": "RSI 75.63로 추격매수보다 보호 판단이 우선입니다.",
+          "tone": "amber"
+        }
+      ],
+      "quickFactors": [
+        "등락 -1.4%",
+        "RSI 75.63",
+        "거래량 0배",
+        "손익 14.08%"
+      ],
+      "newsHits": [],
+      "strategyMentions": [],
+      "missingSources": [
+        "뉴스미수집",
+        "DART미연결",
+        "ETF_NAV_MISSING"
+      ],
+      "riskFlags": [
+        "RSI_OVERHEAT:75.63"
+      ],
+      "sourceSupport": {
+        "reports": 0.464,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kisEtf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      }
+    },
+    {
+      "id": "stock-pulse:161510",
+      "code": "161510",
+      "name": "PLUS 고배당주",
+      "category": "배당/커버드콜",
+      "type": "etf",
+      "verdict": "자료보강",
+      "urgency": "중간",
+      "pulseScore": 64,
+      "oneLine": "자료보강: 공시, 뉴스, 직접 리포트가 보강되기 전까지 결론 강도를 낮춥니다.",
+      "doNow": "공시, 뉴스, 직접 리포트가 보강되기 전까지 결론 강도를 낮춥니다.",
+      "doNot": "근거 부족 상태의 신규매수 금지",
+      "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+      "accounts": [
+        {
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA",
+          "marketValue": 610280,
+          "profitRate": 1.92,
+          "decision": "외부관찰"
+        }
+      ],
+      "position": {
+        "marketValue": 610280,
+        "purchaseValue": 0,
+        "profitLoss": 11500,
+        "profitRate": 1.92,
+        "quantity": 22
+      },
+      "market": {
+        "price": 27740,
+        "previousClose": 27705,
+        "changePct": 0.13,
+        "volume": 885,
+        "volumeRatio": 0,
+        "nav": 0,
+        "navGapPct": 0,
+        "rank": 0
+      },
+      "technical": {
+        "score": 100,
+        "signal": "STRONG_BUY",
+        "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+        "rsi": 60.06,
+        "ma20": 27300.75,
+        "ma60": 26750.3333,
+        "recentHighDistancePct": -1.19,
+        "rsVsBenchmark": -34.09,
+        "alerts": []
+      },
+      "fundamental": {
+        "score": 57,
+        "label": "수급보통",
+        "metrics": null,
+        "etf": {
+          "rank": null,
+          "navGapPct": null,
+          "concentrationTop5Pct": 29.81,
+          "topHoldings": [
+            {
+              "code": "005380",
+              "name": "현대차",
+              "weightPct": 8.01,
+              "changePct": 7.17
+            },
+            {
+              "code": "005940",
+              "name": "NH투자증권",
+              "weightPct": 6.11,
+              "changePct": -2.92
+            },
+            {
+              "code": "000270",
+              "name": "기아",
+              "weightPct": 5.5,
+              "changePct": 4.38
+            },
+            {
+              "code": "016360",
+              "name": "삼성증권",
+              "weightPct": 5.36,
+              "changePct": -5.51
+            },
+            {
+              "code": "005830",
+              "name": "DB손해보험",
+              "weightPct": 4.83,
+              "changePct": -0.24
+            }
+          ]
+        }
+      },
+      "alerts": [
+        {
+          "severity": "medium",
+          "label": "근거보강",
+          "detail": "NO_CLEAN_REPORT_LINK",
+          "tone": "amber"
+        }
+      ],
+      "quickFactors": [
+        "등락 0.13%",
+        "RSI 60.06",
+        "거래량 0배",
+        "손익 1.92%"
+      ],
+      "newsHits": [],
+      "strategyMentions": [],
+      "missingSources": [
+        "뉴스미수집",
+        "DART미연결",
+        "ETF_NAV_MISSING"
+      ],
+      "riskFlags": [
+        "NO_CLEAN_REPORT_LINK"
+      ],
+      "sourceSupport": {
+        "reports": 0.464,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kisEtf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      }
+    },
+    {
+      "id": "stock-pulse:064350",
+      "code": "064350",
+      "name": "현대로템",
+      "category": "방산",
+      "type": "stock",
+      "verdict": "손절감시",
+      "urgency": "중간",
+      "pulseScore": 59,
+      "oneLine": "손절감시: 손실 확대 원인을 확인하고 20일선 회복 실패 시 감량 기준을 먼저 봅니다.",
+      "doNow": "손실 확대 원인을 확인하고 20일선 회복 실패 시 감량 기준을 먼저 봅니다.",
+      "doNot": "손절 기준 없이 물타기 금지",
+      "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+      "accounts": [
+        {
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반",
+          "marketValue": 223000,
+          "profitRate": 7.21,
+          "decision": "감량검토"
+        }
+      ],
+      "position": {
+        "marketValue": 223000,
+        "purchaseValue": 0,
+        "profitLoss": 15000,
+        "profitRate": 7.21,
+        "quantity": 1
+      },
+      "market": {
+        "price": 225000,
+        "previousClose": 235000,
+        "changePct": -4.26,
+        "volume": 596816,
+        "volumeRatio": 0.57,
+        "nav": 0,
+        "navGapPct": 0,
+        "rank": 0
+      },
+      "technical": {
+        "score": 64,
+        "signal": "BUY",
+        "reason": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화",
+        "rsi": 47.42,
+        "ma20": 230775,
+        "ma60": 212688.3333,
+        "recentHighDistancePct": -20.21,
+        "rsVsBenchmark": -47.52,
+        "alerts": [
+          "MACD 시그널 하향 이탈"
+        ]
+      },
+      "fundamental": {
+        "score": 71,
+        "label": "기본양호",
+        "metrics": {
+          "per": 31.61,
+          "pbr": 7.9,
+          "eps": 7055,
+          "estimatedPer": 27,
+          "estimatedEps": 8405,
+          "dividendYield": 0.27,
+          "operatingMargin": 17.22,
+          "operatingMarginEstimate": 16.75,
+          "roe": 30.05,
+          "roeEstimate": 26.17,
+          "annualEps": 7055,
+          "previousAnnualEps": 3728,
+          "estimatedAnnualEps": 8405,
+          "epsGrowthPct": 89.24,
+          "estimatedEpsGrowthPct": 19.14
+        },
+        "etf": null
+      },
+      "alerts": [
+        {
+          "severity": "low",
+          "label": "AI언급",
+          "detail": "손절감시: 손절조건 발동, 방산 클러스터 과집중",
+          "tone": "blue"
+        }
+      ],
+      "quickFactors": [
+        "등락 -4.26%",
+        "RSI 47.42",
+        "거래량 0.57배",
+        "손익 7.21%"
+      ],
+      "newsHits": [],
+      "strategyMentions": [
+        {
+          "bucket": "sellWatch",
+          "action": "손절감시",
+          "reason": "손절조건 발동, 방산 클러스터 과집중",
+          "trigger": "추가 하락 시 즉시 감량"
+        }
+      ],
+      "missingSources": [
+        "뉴스미수집",
+        "DART미연결"
+      ],
+      "riskFlags": [
+        "STOP_LOSS_TRIGGERED"
+      ],
+      "sourceSupport": {
+        "reports": 0.396,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.213,
+        "kisEtf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      }
+    },
+    {
+      "id": "stock-pulse:475300",
+      "code": "475300",
+      "name": "SOL 반도체전공정",
+      "category": "반도체",
+      "type": "etf",
+      "verdict": "보유유지",
+      "urgency": "낮음",
+      "pulseScore": 72,
+      "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+      "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+      "doNot": "같은 테마 중복 확대 금지",
+      "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+      "accounts": [
+        {
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA",
+          "marketValue": 2054780,
+          "profitRate": 6.42,
+          "decision": "보유유지"
+        }
+      ],
+      "position": {
+        "marketValue": 2054780,
+        "purchaseValue": 0,
+        "profitLoss": 123960,
+        "profitRate": 6.42,
+        "quantity": 91
+      },
+      "market": {
+        "price": 22580,
+        "previousClose": 22585,
+        "changePct": -0.02,
+        "volume": 248673,
+        "volumeRatio": 0,
+        "nav": 0,
+        "navGapPct": 0,
+        "rank": 0
+      },
+      "technical": {
+        "score": 95,
+        "signal": "STRONG_BUY",
+        "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+        "rsi": 69.6,
+        "ma20": 20466.5,
+        "ma60": 18560.25,
+        "recentHighDistancePct": -1.33,
+        "rsVsBenchmark": -6.46,
+        "alerts": []
+      },
+      "fundamental": {
+        "score": 70,
+        "label": "수급양호",
+        "metrics": null,
+        "etf": {
+          "rank": null,
+          "navGapPct": null,
+          "concentrationTop5Pct": 67.03,
+          "topHoldings": [
+            {
+              "code": "036930",
+              "name": "주성엔지니어링",
+              "weightPct": 19.43,
+              "changePct": 2.81
+            },
+            {
+              "code": "240810",
+              "name": "원익IPS",
+              "weightPct": 17.68,
+              "changePct": 0
+            },
+            {
+              "code": "403870",
+              "name": "HPSP",
+              "weightPct": 10.88,
+              "changePct": -1.46
+            },
+            {
+              "code": "014680",
+              "name": "한솔케미칼",
+              "weightPct": 10.53,
+              "changePct": -0.87
+            },
+            {
+              "code": "084370",
+              "name": "유진테크",
+              "weightPct": 8.51,
+              "changePct": 1.16
+            }
+          ]
+        }
+      },
+      "alerts": [],
+      "quickFactors": [
+        "등락 -0.02%",
+        "RSI 69.6",
+        "거래량 0배",
+        "손익 6.42%"
+      ],
+      "newsHits": [],
+      "strategyMentions": [],
+      "missingSources": [
+        "뉴스미수집",
+        "DART미연결",
+        "ETF_NAV_MISSING"
+      ],
+      "riskFlags": [],
+      "sourceSupport": {
+        "reports": 0.318,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kisEtf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      }
+    },
+    {
+      "id": "stock-pulse:449450",
+      "code": "449450",
+      "name": "PLUS K방산",
+      "category": "방산",
+      "type": "etf",
+      "verdict": "보유유지",
+      "urgency": "낮음",
+      "pulseScore": 50,
+      "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+      "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+      "doNot": "같은 테마 중복 확대 금지",
+      "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+      "accounts": [
+        {
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반",
+          "marketValue": 733800,
+          "profitRate": -6.56,
+          "decision": "보유유지"
+        }
+      ],
+      "position": {
+        "marketValue": 733800,
+        "purchaseValue": 0,
+        "profitLoss": -51560,
+        "profitRate": -6.56,
+        "quantity": 10
+      },
+      "market": {
+        "price": 73370,
+        "previousClose": 75600,
+        "changePct": -2.95,
+        "volume": 534694,
+        "volumeRatio": 0.47,
+        "nav": 73323.01,
+        "navGapPct": 0.064,
+        "rank": 0
+      },
+      "technical": {
+        "score": 42,
+        "signal": "HOLD",
+        "reason": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화",
+        "rsi": 40.9,
+        "ma20": 78870.75,
+        "ma60": 74153.3333,
+        "recentHighDistancePct": -11.34,
+        "rsVsBenchmark": -38.82,
+        "alerts": [
+          "데드크로스(5일/20일) 발생",
+          "볼린저밴드 하단 이탈"
+        ]
+      },
+      "fundamental": {
+        "score": 75,
+        "label": "수급강함",
+        "metrics": null,
+        "etf": {
+          "rank": null,
+          "navGapPct": 0.064,
+          "concentrationTop5Pct": 83.61,
+          "topHoldings": [
+            {
+              "code": "012450",
+              "name": "한화에어로스페이스",
+              "weightPct": 19.42,
+              "changePct": -0.76
+            },
+            {
+              "code": "064350",
+              "name": "현대로템",
+              "weightPct": 16.75,
+              "changePct": -5.11
+            },
+            {
+              "code": "047810",
+              "name": "한국항공우주",
+              "weightPct": 16.51,
+              "changePct": -2.91
+            },
+            {
+              "code": "079550",
+              "name": "LIG디펜스앤에어로스페이스",
+              "weightPct": 15.92,
+              "changePct": -3
+            },
+            {
+              "code": "042660",
+              "name": "한화오션",
+              "weightPct": 15.01,
+              "changePct": -2.93
+            }
+          ]
+        }
+      },
+      "alerts": [],
+      "quickFactors": [
+        "등락 -2.95%",
+        "RSI 40.9",
+        "거래량 0.47배",
+        "손익 -6.56%"
+      ],
+      "newsHits": [],
+      "strategyMentions": [],
+      "missingSources": [
+        "뉴스미수집",
+        "DART미연결"
+      ],
+      "riskFlags": [],
+      "sourceSupport": {
+        "reports": 0.396,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kisEtf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      }
+    },
+    {
+      "id": "stock-pulse:138910",
+      "code": "138910",
+      "name": "KODEX 구리선물(H)",
+      "category": "기타",
+      "type": "etf",
+      "verdict": "보유유지",
+      "urgency": "낮음",
+      "pulseScore": 66,
+      "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+      "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+      "doNot": "같은 테마 중복 확대 금지",
+      "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+      "accounts": [
+        {
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반",
+          "marketValue": 291750,
+          "profitRate": 10.95,
+          "decision": "보유유지"
+        }
+      ],
+      "position": {
+        "marketValue": 291750,
+        "purchaseValue": 0,
+        "profitLoss": 28800,
+        "profitRate": 10.95,
+        "quantity": 30
+      },
+      "market": {
+        "price": 9725,
+        "previousClose": 9580,
+        "changePct": 1.51,
+        "volume": 172574,
+        "volumeRatio": 0,
+        "nav": 9750.71,
+        "navGapPct": -0.264,
+        "rank": 32
+      },
+      "technical": {
+        "score": 90,
+        "signal": "STRONG_BUY",
+        "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+        "rsi": 67.01,
+        "ma20": 9373.5,
+        "ma60": 9123.4167,
+        "recentHighDistancePct": -0.51,
+        "rsVsBenchmark": -41.66,
+        "alerts": [
+          "MACD 시그널 상향 돌파"
+        ]
+      },
+      "fundamental": {
+        "score": 58,
+        "label": "수급보통",
+        "metrics": null,
+        "etf": {
+          "rank": 32,
+          "navGapPct": -0.264,
+          "concentrationTop5Pct": 0,
+          "topHoldings": []
+        }
+      },
+      "alerts": [],
+      "quickFactors": [
+        "등락 1.51%",
+        "RSI 67.01",
+        "거래량 0배",
+        "손익 10.95%"
+      ],
+      "newsHits": [],
+      "strategyMentions": [],
+      "missingSources": [
+        "뉴스미수집",
+        "DART미연결",
+        "ETF_COMPOSITION_MISSING"
+      ],
+      "riskFlags": [],
+      "sourceSupport": {
+        "reports": 0.464,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kisEtf": 0.276,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      }
+    }
+  ],
+  "artifacts": {
+    "stockPulse": "data/stock-pulse/2026-05-08/stock-pulse.json",
+    "perSecurityDir": "data/stock-pulse/2026-05-08/securities"
+  }
+}

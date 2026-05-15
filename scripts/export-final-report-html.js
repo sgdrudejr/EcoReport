@@ -197,28 +197,130 @@ function renderInsightItem(item) {
   ].join("\n");
 }
 
-function renderActionRows(plan) {
+function cardLookupKey(accountKey, item, sourceAction = null) {
+  const id = item?.code ?? item?.name ?? "-";
+  return `${accountKey}:${id}${sourceAction ? `:${sourceAction}` : ""}`;
+}
+
+const DECISION_LABELS = {
+  BUY_NOW: "즉시매수",
+  CONDITIONAL_BUY: "조건매수",
+  BLOCKED_BUY: "매수제외",
+  HOLD_KEEP: "보유유지",
+  HOLD_PROTECT: "수익보호",
+  TRIM_REVIEW: "감량검토",
+  WATCH_ADD: "추가관찰",
+  WATCH_OFF_REPORT: "리포트밖",
+  WATCH_TRIM: "감량관찰",
+  WATCH_RISK: "위험관찰",
+  WATCH_DATA: "자료보강",
+  BUY: "매수후보",
+  TRIM: "감량검토",
+  HOLD: "보유",
+  WATCH: "관찰",
+  NO_ACTION: "실행없음",
+};
+
+function decisionLabel(card, fallback) {
+  if (card?.decisionBucket === "WATCH_OFF_REPORT" && card?.externalCoverage?.available) {
+    return card.decisionLabel ?? "외부관찰";
+  }
+  return DECISION_LABELS[card?.decisionBucket] ?? DECISION_LABELS[fallback] ?? card?.decisionLabel ?? fallback ?? "-";
+}
+
+function buildHoldingCardIndex(holdingCards) {
+  const index = new Map();
+  for (const card of holdingCards?.cards ?? []) {
+    const item = { code: card.code, name: card.name };
+    index.set(cardLookupKey(card.accountKey, item, card.sourceAction), card);
+    if (!index.has(cardLookupKey(card.accountKey, item))) {
+      index.set(cardLookupKey(card.accountKey, item), card);
+    }
+  }
+  return index;
+}
+
+function findHoldingCard(cardIndex, plan, item, sourceAction) {
+  return cardIndex.get(cardLookupKey(plan.key, item, sourceAction)) ?? cardIndex.get(cardLookupKey(plan.key, item)) ?? null;
+}
+
+function cardPrimaryReason(card, fallback) {
+  if (card?.decisionBucket === "HOLD_KEEP") {
+    return card.thesis ?? card?.holdingRole?.keepRule ?? fallback ?? "-";
+  }
+  return (
+    card?.addConditions?.[0] ??
+    card?.trimConditions?.[0] ??
+    card?.holdingRole?.keepRule ??
+    card?.blockedBuyReason ??
+    card?.thesis ??
+    fallback ??
+    "-"
+  );
+}
+
+function renderActionRows(plan, cardIndex = new Map()) {
   const rows = [];
   for (const item of plan.stagedBuys ?? []) {
-    rows.push({ action: "BUY", tone: "buy", name: item.name, amount: item.suggestedAmount, urgency: item.urgency, reason: item.reason });
+    const card = findHoldingCard(cardIndex, plan, item, "BUY");
+    const action = card?.decisionBucket ?? "BUY";
+    rows.push({
+      action,
+      actionLabel: decisionLabel(card, "BUY"),
+      tone: decisionTone(action),
+      name: item.name,
+      amount: item.suggestedAmount,
+      urgency: card?.reportCoverage?.statusLabel ?? item.urgency,
+      reason: cardPrimaryReason(card, item.reason),
+    });
   }
   for (const item of plan.trims ?? []) {
-    rows.push({ action: "TRIM", tone: "trim", name: item.name, amount: null, urgency: "trim", reason: item.reason });
+    const card = findHoldingCard(cardIndex, plan, item, "TRIM");
+    const action = card?.decisionBucket ?? "TRIM";
+    rows.push({
+      action,
+      actionLabel: decisionLabel(card, "TRIM"),
+      tone: decisionTone(action),
+      name: item.name,
+      amount: null,
+      urgency: card?.reportCoverage?.statusLabel ?? "trim",
+      reason: cardPrimaryReason(card, item.reason),
+    });
   }
   for (const item of plan.holds ?? []) {
-    rows.push({ action: "HOLD", tone: "hold", name: item.name, amount: null, urgency: "hold", reason: item.reason });
+    const card = findHoldingCard(cardIndex, plan, item, "HOLD");
+    const action = card?.decisionBucket ?? "HOLD";
+    rows.push({
+      action,
+      actionLabel: decisionLabel(card, "HOLD"),
+      tone: decisionTone(action),
+      name: item.name,
+      amount: null,
+      urgency: card?.reportCoverage?.statusLabel ?? "hold",
+      reason: cardPrimaryReason(card, item.reason),
+    });
   }
   for (const item of plan.watches ?? []) {
-    rows.push({ action: "WATCH", tone: "watch", name: item.name, amount: null, urgency: "watch", reason: item.reason });
+    const card = findHoldingCard(cardIndex, plan, item, "WATCH");
+    const action = card?.decisionBucket ?? "WATCH";
+    rows.push({
+      action,
+      actionLabel: decisionLabel(card, "WATCH"),
+      tone: decisionTone(action),
+      name: item.name,
+      amount: null,
+      urgency: card?.reportCoverage?.statusLabel ?? "watch",
+      reason: cardPrimaryReason(card, item.reason),
+    });
   }
   if (!rows.length) {
-    rows.push({ action: "NO_ACTION", tone: "none", name: "-", amount: null, urgency: "-", reason: plan.noActionReason ?? "실행 계획 없음" });
+    rows.push({ action: "NO_ACTION", actionLabel: DECISION_LABELS.NO_ACTION, tone: "none", name: "-", amount: null, urgency: "-", reason: plan.noActionReason ?? "실행 계획 없음" });
   }
   return rows;
 }
 
-function renderAccountPlan(plan) {
-  const actionRows = renderActionRows(plan);
+function renderAccountPlan(plan, cardIndex = new Map()) {
+  const actionRows = renderActionRows(plan, cardIndex);
   const topBuy = (plan.stagedBuys ?? [])[0];
   const flags = plan.validatorFlags?.length ? plan.validatorFlags.join(", ") : "없음";
   return [
@@ -235,10 +337,10 @@ function renderAccountPlan(plan) {
     "  </div>",
     '  <div class="table-wrap">',
     "    <table>",
-    "      <thead><tr><th>액션</th><th>종목</th><th>금액</th><th>긴급도</th><th>핵심 근거</th></tr></thead>",
+    "      <thead><tr><th>판정</th><th>종목</th><th>금액</th><th>상태</th><th>핵심 근거</th></tr></thead>",
     "      <tbody>",
     ...actionRows.map((row) =>
-      `        <tr><td><span class="badge ${row.tone}">${escapeHtml(row.action)}</span></td><td>${escapeHtml(row.name ?? "-")}</td><td>${formatAmount(row.amount)}</td><td>${escapeHtml(row.urgency ?? "-")}</td><td>${escapeHtml(row.reason ?? "-")}</td></tr>`,
+      `        <tr><td><span class="badge ${row.tone}">${escapeHtml(row.actionLabel ?? row.action)}</span></td><td>${escapeHtml(row.name ?? "-")}</td><td>${formatAmount(row.amount)}</td><td>${escapeHtml(row.urgency ?? "-")}</td><td>${escapeHtml(row.reason ?? "-")}</td></tr>`,
     ),
     "      </tbody>",
     "    </table>",
@@ -328,7 +430,242 @@ function renderDataQuality(dataQuality) {
   ].join("\n");
 }
 
-function buildHtml({ date, dailyMarkdown, fullReport, stage4, systemHealth, dataQuality }) {
+function decisionTone(bucket) {
+  if (["BUY_NOW", "CONDITIONAL_BUY", "WATCH_ADD"].includes(bucket)) return "buy";
+  if (["TRIM_REVIEW", "WATCH_TRIM", "WATCH_RISK", "HOLD_PROTECT"].includes(bucket)) return "trim";
+  if (["BLOCKED_BUY", "WATCH_DATA", "WATCH_OFF_REPORT"].includes(bucket)) return "watch";
+  if (bucket === "HOLD_KEEP") return "hold";
+  return "none";
+}
+
+function renderHoldingDecisionCards(holdingCards) {
+  if (!holdingCards?.cards?.length) {
+    return '<p class="muted">보유종목 판단 카드가 아직 생성되지 않았습니다. `npm run stage4.5:holding-cards -- --date <date>`를 실행하면 이 섹션이 채워집니다.</p>';
+  }
+  const summary = holdingCards.summary ?? {};
+  const counts = summary.counts ?? {};
+  const cards = holdingCards.cards ?? [];
+  const priorityCards = [
+    ...cards.filter((card) => ["BUY_NOW", "CONDITIONAL_BUY", "WATCH_ADD"].includes(card.decisionBucket)),
+    ...cards.filter((card) => ["TRIM_REVIEW", "HOLD_PROTECT", "WATCH_TRIM", "WATCH_RISK"].includes(card.decisionBucket)),
+    ...cards.filter((card) => card.decisionBucket === "WATCH_OFF_REPORT"),
+    ...cards.filter((card) => card.decisionBucket === "BLOCKED_BUY"),
+    ...cards.filter((card) => card.decisionBucket === "WATCH_DATA"),
+    ...cards.filter((card) => card.decisionBucket === "HOLD_KEEP"),
+  ].slice(0, 18);
+  const blocked = cards.filter((card) => card.decisionBucket === "BLOCKED_BUY").slice(0, 6);
+  const offReport = cards.filter((card) => card.decisionBucket === "WATCH_OFF_REPORT").slice(0, 8);
+
+  return [
+    '<div class="decision-summary">',
+    `  <div><span>즉시 실행</span><strong>${escapeHtml(String(counts.immediateBuy ?? 0))}</strong></div>`,
+    `  <div><span>조건부 매수</span><strong>${escapeHtml(String(counts.conditionalBuy ?? 0))}</strong></div>`,
+    `  <div><span>차단된 매수</span><strong>${escapeHtml(String(counts.blockedBuy ?? 0))}</strong></div>`,
+    `  <div><span>감량/보호</span><strong>${escapeHtml(String(counts.trimOrProtect ?? 0))}</strong></div>`,
+    `  <div><span>리포트 밖 보유</span><strong>${escapeHtml(String(counts.offReportHoldings ?? 0))}</strong></div>`,
+    `  <div><span>데이터 보강</span><strong>${escapeHtml(String(counts.dataNeeds ?? 0))}</strong></div>`,
+    "</div>",
+    '<div class="table-wrap">',
+    "  <table>",
+    "    <thead><tr><th>계좌</th><th>판정</th><th>종목</th><th>점수</th><th>조건</th><th>다음 점검</th></tr></thead>",
+    "    <tbody>",
+    ...priorityCards.map((card) => {
+      const condition =
+        card.addConditions?.[0] ??
+        card.trimConditions?.[0] ??
+        card.holdingRole?.keepRule ??
+        card.blockedBuyReason ??
+        card.thesis ??
+        "-";
+      return `      <tr><td>${escapeHtml(card.accountLabel)}</td><td><span class="badge ${decisionTone(card.decisionBucket)}">${escapeHtml(decisionLabel(card, card.decisionBucket))}</span></td><td>${escapeHtml(card.name)}</td><td>${escapeHtml(card.score ?? "-")}</td><td>${escapeHtml(truncate(condition, 120))}</td><td>${escapeHtml(card.nextReview ?? "-")}</td></tr>`;
+    }),
+    "    </tbody>",
+    "  </table>",
+    "</div>",
+    offReport.length
+      ? [
+          '<details class="detail-box" open>',
+          "  <summary>리포트 밖 보유종목의 계좌 역할</summary>",
+          "  <ul>",
+          ...offReport.map((card) => {
+            const notes = card.holdingRole?.evidenceNotes?.slice(0, 3).join(" / ") || card.thesis || "-";
+            return `<li><strong>${escapeHtml(card.accountLabel)} / ${escapeHtml(card.name)}</strong>: ${escapeHtml(card.holdingRole?.role ?? "보유 역할 미정")}<br><small>${escapeHtml(truncate(notes, 180))}</small></li>`;
+          }),
+          "  </ul>",
+          "</details>",
+        ].join("\n")
+      : "",
+    blocked.length
+      ? [
+          '<details class="detail-box" open>',
+          "  <summary>차단된 매수 후보와 해제 조건</summary>",
+          "  <ul>",
+          ...blocked.map(
+            (card) =>
+              `<li><strong>${escapeHtml(card.accountLabel)} / ${escapeHtml(card.name)}</strong>: ${escapeHtml(card.blockedBuyReason ?? "차단 사유 없음")}</li>`,
+          ),
+          "  </ul>",
+          "</details>",
+        ].join("\n")
+      : "",
+  ].join("\n");
+}
+
+function renderRotationWatch(rotationWatch) {
+  if (!rotationWatch) {
+    return '<p class="muted">3주 로테이션 감지판이 아직 생성되지 않았습니다. `npm run features:rotation-watch -- --date <date>`를 실행하면 이 섹션이 채워집니다.</p>';
+  }
+  const marketTrend = rotationWatch.marketTrend ?? {};
+  const implications = rotationWatch.portfolioImplications ?? {};
+  const rotationTargets = rotationWatch.rotationTargets ?? {};
+  const transitionTriggerBoard = rotationWatch.transitionTriggerBoard ?? {};
+  const sectorRotation = rotationWatch.sectorRotation ?? [];
+  const sectorDeliberations = rotationWatch.sectorDeliberations ?? [];
+  const sectorUniverse = rotationWatch.stockeasySectorUniverse ?? [];
+  const topThemes = rotationWatch.themeRotation ?? [];
+  const reduceFirst = implications.reduceFirst ?? [];
+  const scenarios = rotationWatch.scenarioPlaybook ?? [];
+  return [
+    '<div class="decision-summary">',
+    `  <div><span>시장 모드</span><strong>${escapeHtml(rotationWatch.summary?.mode ?? marketTrend.mode ?? "-")}</strong></div>`,
+    `  <div><span>대응</span><strong>${escapeHtml(rotationWatch.summary?.stance ?? implications.stance ?? "-")}</strong></div>`,
+    `  <div><span>관측일</span><strong>${escapeHtml(String(rotationWatch.includedDates?.length ?? 0))}</strong></div>`,
+    `  <div><span>현재 RSI</span><strong>${escapeHtml(String(marketTrend.currentRsi ?? "-"))}</strong></div>`,
+    "</div>",
+    `<p>${escapeHtml(rotationWatch.summary?.headline ?? "로테이션 감지판 요약 없음")}</p>`,
+    rotationTargets.watch?.length
+      ? [
+          '<h3>앞으로 유심히 볼 섹터</h3>',
+          `<p><strong>${escapeHtml(rotationTargets.summary?.answer ?? "-")}</strong></p>`,
+          `<p>${escapeHtml(rotationTargets.summary?.switchRule ?? "-")}</p>`,
+          '<div class="table-wrap">',
+          "  <table>",
+          "    <thead><tr><th>우선</th><th>섹터</th><th>지금 행동</th><th>현재판정</th><th>교차검증</th><th>전환 조건</th><th>무효 조건</th></tr></thead>",
+          "    <tbody>",
+          ...rotationTargets.watch.slice(0, 6).map(
+            (item) =>
+              `      <tr><td>${escapeHtml(item.priority ?? "-")}</td><td>${escapeHtml(item.sector ?? "-")}</td><td><span class="badge ${item.tone === "green" ? "buy" : item.tone === "red" ? "trim" : item.tone === "amber" ? "watch" : "none"}">${escapeHtml(item.action ?? "-")}</span></td><td>${escapeHtml(item.verdict ?? "-")}</td><td>${escapeHtml(`${item.sourceConsensus?.label ?? "-"} / ${truncate(item.sourceConsensus?.supportSummary ?? item.sourceConsensus?.detail ?? "-", 80)}`)}</td><td>${escapeHtml(truncate(item.switchWhen ?? "-", 150))}</td><td>${escapeHtml(truncate(item.invalidation ?? "-", 120))}</td></tr>`,
+          ),
+          "    </tbody>",
+          "  </table>",
+          "</div>",
+        ].join("\n")
+      : "",
+    transitionTriggerBoard.rows?.length
+      ? [
+          '<h3>전환 트리거 보드</h3>',
+          `<p>${escapeHtml(transitionTriggerBoard.summary ?? "차트/뉴스/교차소스 트리거를 확인합니다.")}</p>`,
+          '<div class="table-wrap">',
+          "  <table>",
+          "    <thead><tr><th>트리거</th><th>섹터</th><th>현재판정</th><th>차트</th><th>뉴스</th><th>들어갈 조건</th><th>막는 조건</th></tr></thead>",
+          "    <tbody>",
+          ...transitionTriggerBoard.rows.slice(0, 8).map(
+            (item) =>
+              `      <tr><td><span class="badge ${item.tone === "green" ? "buy" : item.tone === "red" ? "trim" : item.tone === "amber" ? "watch" : "none"}">${escapeHtml(item.label ?? "-")}</span></td><td>${escapeHtml(item.sector ?? "-")}</td><td>${escapeHtml(item.verdict ?? "-")}</td><td>${escapeHtml(`${item.chart?.label ?? "-"} / ${truncate(item.chart?.detail ?? "-", 80)}`)}</td><td>${escapeHtml(`${item.news?.label ?? "-"} / ${truncate(item.news?.headlines?.[0]?.title ?? item.news?.detail ?? "-", 80)}`)}</td><td>${escapeHtml(truncate((item.entryChecklist ?? []).slice(0, 3).join(" / ") || "-", 130))}</td><td>${escapeHtml(truncate((item.exitChecklist ?? []).slice(0, 3).join(" / ") || "-", 130))}</td></tr>`,
+          ),
+          "    </tbody>",
+          "  </table>",
+          "</div>",
+        ].join("\n")
+      : "",
+    rotationTargets.excluded?.length
+      ? [
+          '<details class="detail-box" open>',
+          "  <summary>지금 전환 제외</summary>",
+          "  <ul>",
+          ...rotationTargets.excluded.slice(0, 6).map(
+            (item) => `<li><strong>${escapeHtml(item.sector ?? "-")}</strong>: ${escapeHtml(item.verdict ?? "-")} / ${escapeHtml(item.invalidation ?? "-")}</li>`,
+          ),
+          "  </ul>",
+          "</details>",
+        ].join("\n")
+      : "",
+    sectorRotation.length
+      ? [
+          '<h3>신규·강화 섹터 후보</h3>',
+          '<div class="table-wrap">',
+          "  <table>",
+          "    <thead><tr><th>상태</th><th>섹터</th><th>하위테마</th><th>변화</th><th>판단</th></tr></thead>",
+          "    <tbody>",
+          ...sectorRotation.slice(0, 7).map(
+            (item) =>
+              `      <tr><td><span class="badge ${item.tone === "red" ? "trim" : item.tone === "green" ? "buy" : item.tone === "amber" ? "watch" : "none"}">${escapeHtml(item.status ?? "-")}</span></td><td>${escapeHtml(item.sector ?? "-")}</td><td>${escapeHtml((item.themes ?? []).map((theme) => theme.theme).slice(0, 3).join(", ") || "-")}</td><td>${escapeHtml(String(item.momentum ?? "-"))}</td><td>${escapeHtml(truncate(item.note ?? "-", 120))}</td></tr>`,
+          ),
+          "    </tbody>",
+          "  </table>",
+          "</div>",
+        ].join("\n")
+      : "",
+    sectorDeliberations.length
+      ? [
+          '<h3>섹터 자기질문</h3>',
+          '<div class="table-wrap">',
+          "  <table>",
+          "    <thead><tr><th>판정</th><th>섹터</th><th>질문</th><th>교차검증</th><th>상승 근거</th><th>하방 의심</th><th>결론</th></tr></thead>",
+          "    <tbody>",
+          ...sectorDeliberations.slice(0, 8).map(
+            (item) =>
+              `      <tr><td><span class="badge ${item.tone === "red" ? "trim" : item.tone === "green" ? "buy" : item.tone === "amber" ? "watch" : "none"}">${escapeHtml(item.verdict ?? "-")}</span></td><td>${escapeHtml(item.sector ?? "-")}</td><td>${escapeHtml(truncate(item.question ?? "-", 90))}</td><td>${escapeHtml(`${item.sourceConsensus?.label ?? "-"} / ${truncate(item.sourceConsensus?.supportSummary ?? item.sourceConsensus?.detail ?? "-", 80)}`)}</td><td>${escapeHtml(truncate(item.bullCase?.[0] ?? "-", 120))}</td><td>${escapeHtml(truncate(item.bearCase?.[0] ?? "-", 120))}</td><td>${escapeHtml(truncate(item.finalAnswer ?? "-", 130))}</td></tr>`,
+          ),
+          "    </tbody>",
+          "  </table>",
+          "</div>",
+        ].join("\n")
+      : "",
+    sectorUniverse.length
+        ? [
+          '<details class="detail-box" open>',
+          "  <summary>StockEasy 베이스 레이더</summary>",
+          "  <ul>",
+          ...sectorUniverse.slice(0, 12).map(
+            (item) =>
+              `<li><strong>${escapeHtml(item.sector ?? "-")}</strong>: 등락 ${escapeHtml(String(item.changePct ?? "-"))}% / 신호 ${escapeHtml(String(item.signal ?? "-"))} / RS ${escapeHtml(String(item.rsScore ?? "-"))}<br><small>${escapeHtml((item.leaders ?? []).map((leader) => leader.name).slice(0, 3).join(" · ") || "대표 종목 확인 필요")}</small></li>`,
+          ),
+          "  </ul>",
+          "</details>",
+        ].join("\n")
+      : "",
+    '<div class="table-wrap">',
+    "  <table>",
+    "    <thead><tr><th>상태</th><th>섹터</th><th>테마</th><th>최근점수</th><th>변화</th><th>액션</th><th>이유</th></tr></thead>",
+    "    <tbody>",
+    ...topThemes.slice(0, 8).map(
+      (item) =>
+        `      <tr><td><span class="badge ${item.tone === "red" ? "trim" : item.tone === "green" ? "buy" : item.tone === "amber" ? "watch" : "none"}">${escapeHtml(item.status ?? "-")}</span></td><td>${escapeHtml(item.sector ?? "-")}</td><td>${escapeHtml(item.theme ?? "-")}</td><td>${escapeHtml(String(item.recentScore ?? "-"))}</td><td>${escapeHtml(String(item.momentum ?? "-"))}</td><td>${escapeHtml(item.action ?? "-")}</td><td>${escapeHtml(truncate(item.reason ?? "-", 120))}</td></tr>`,
+    ),
+    "    </tbody>",
+    "  </table>",
+    "</div>",
+    reduceFirst.length
+      ? [
+          '<details class="detail-box" open>',
+          "  <summary>먼저 보호/감량 감시할 보유</summary>",
+          "  <ul>",
+          ...reduceFirst.slice(0, 8).map(
+            (item) =>
+              `<li><strong>${escapeHtml(item.name ?? "-")}</strong>: ${escapeHtml(item.verdict ?? "-")} / RSI ${escapeHtml(String(item.rsi ?? "-"))} / 손익 ${escapeHtml(String(item.profitRate ?? "-"))}%<br><small>${escapeHtml(truncate(item.trigger ?? "-", 160))}</small></li>`,
+          ),
+          "  </ul>",
+          "</details>",
+        ].join("\n")
+      : "",
+    scenarios.length
+      ? [
+          '<details class="detail-box" open>',
+          "  <summary>시나리오별 행동</summary>",
+          "  <ul>",
+          ...scenarios.slice(0, 4).map(
+            (item) =>
+              `<li><strong>${escapeHtml(item.scenario ?? "-")}</strong>: ${escapeHtml(truncate(item.action ?? "-", 160))}<br><small>트리거: ${escapeHtml(truncate(item.trigger ?? "-", 160))}</small></li>`,
+          ),
+          "  </ul>",
+          "</details>",
+        ].join("\n")
+      : "",
+  ].join("\n");
+}
+
+function buildHtml({ date, dailyMarkdown, fullReport, stage4, systemHealth, dataQuality, holdingCards, rotationWatch }) {
   const finalReport = fullReport?.final_report ?? {};
   const presentationSections = finalReport.presentation?.sections ?? {};
   const insightRadar = presentationSections.insight_radar ?? {};
@@ -339,6 +676,7 @@ function buildHtml({ date, dailyMarkdown, fullReport, stage4, systemHealth, data
   const riskAtoms = [...(insightRadar.risks ?? finalReport.risk_atoms ?? [])].sort((left, right) => atomScore(right) - atomScore(left)).slice(0, 3);
   const accountPlans = stage4?.accountPlans ?? [];
   const buyCount = accountPlans.reduce((sum, plan) => sum + (plan.stagedBuys?.length ?? 0), 0);
+  const holdingCardIndex = buildHoldingCardIndex(holdingCards);
   const reportCount = finalReport.report_count ?? fullReport?.source_report_count ?? "-";
   const generatedAt = new Date().toISOString();
 
@@ -432,6 +770,10 @@ function buildHtml({ date, dailyMarkdown, fullReport, stage4, systemHealth, data
     .quality-item.warn { background: var(--amber-bg); }
     .quality-item.error { background: var(--rose-bg); }
     .quality-item.ok { background: var(--green-bg); }
+    .decision-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 10px; margin-bottom: 14px; }
+    .decision-summary div { border: 1px solid var(--line); border-radius: 8px; padding: 12px; min-width: 0; }
+    .decision-summary span { display: block; color: var(--muted); font-size: 0.78rem; margin-bottom: 4px; }
+    .decision-summary strong { display: block; font-size: 1.25rem; color: var(--ink); }
     .risk-list { display: grid; gap: 10px; }
     .risk-item { border-left: 4px solid var(--amber); background: #fffaf0; padding: 10px 12px; border-radius: 0 8px 8px 0; }
     .risk-item p { margin: 5px 0; }
@@ -442,7 +784,7 @@ function buildHtml({ date, dailyMarkdown, fullReport, stage4, systemHealth, data
       .layout { grid-template-columns: 1fr; padding: 16px; }
       nav { position: static; display: flex; flex-wrap: wrap; gap: 4px; }
       nav a { padding: 7px 9px; }
-      .metrics, .account-metrics, .split, .quality-grid { grid-template-columns: 1fr; }
+      .metrics, .account-metrics, .split, .quality-grid, .decision-summary { grid-template-columns: 1fr; }
       .hero-inner { padding: 28px 16px 18px; }
       .band { padding: 16px; }
     }
@@ -471,6 +813,8 @@ function buildHtml({ date, dailyMarkdown, fullReport, stage4, systemHealth, data
   <div class="layout">
     <nav aria-label="페이지 이동">
       <a href="#summary">요약</a>
+      <a href="#rotation">로테이션</a>
+      <a href="#decision-cards">판단 카드</a>
       <a href="#execution">실행 전략</a>
       <a href="#economy">경제 리포트</a>
       <a href="#quality">품질 경고</a>
@@ -495,10 +839,20 @@ function buildHtml({ date, dailyMarkdown, fullReport, stage4, systemHealth, data
           </div>
         </div>
       </section>
+      <section id="rotation" class="band">
+        <h2>3주 로테이션 감지판</h2>
+        <p>최근 2~3주 동안 시장 국면, 주도 테마, 과열·감량 후보가 어떻게 바뀌었는지 별도로 추적합니다.</p>
+        ${renderRotationWatch(rotationWatch)}
+      </section>
+      <section id="decision-cards" class="band">
+        <h2>오늘의 판단 카드</h2>
+        <p>AI 스택 병목, 과열 신호, 차단 사유, 추가매수/감량 조건을 종목별로 다시 압축한 주문 전 체크리스트입니다.</p>
+        ${renderHoldingDecisionCards(holdingCards)}
+      </section>
       <section id="execution" class="band">
         <h2>실행 전략</h2>
-        <p>계좌별 투입 가능 금액, 부족 자산군, 액션 후보와 검증 플래그를 한 번에 볼 수 있게 정리했습니다. BUY는 실행 후보, HOLD는 유지, WATCH는 추가 확인이 필요한 관찰 후보입니다.</p>
-        ${accountPlans.map(renderAccountPlan).join("\n")}
+        <p>계좌별 투입 가능 금액, 부족 자산군, 판정 후보와 검증 플래그를 한 번에 볼 수 있게 정리했습니다. 매수 후보, 보유 유지, 관찰, 매수 제외를 한국어 판정으로 표시합니다.</p>
+        ${accountPlans.map((plan) => renderAccountPlan(plan, holdingCardIndex)).join("\n")}
       </section>
       <section id="economy" class="band">
         <h2>읽을 수 있는 경제 리포트</h2>
@@ -522,6 +876,7 @@ function buildHtml({ date, dailyMarkdown, fullReport, stage4, systemHealth, data
           <div>품질 감사: data/analysis-state/${escapeHtml(date)}/data-quality-audit.json</div>
           <div>실행 전략: reports/daily/${escapeHtml(date)}-stage4-execution-plan.md</div>
           <div>실행 전략 표: reports/daily/${escapeHtml(date)}-stage4-execution-plan-table.md</div>
+          <div>보유 판단 카드: reports/daily/${escapeHtml(date)}-holding-decision-cards.md</div>
           <div>HTML 생성 시각: ${escapeHtml(generatedAt)}</div>
         </div>
       </section>
@@ -538,16 +893,20 @@ async function main() {
   const dailyMarkdownPath = path.join(ROOT_DIR, "knowledge", "daily", `${args.date}-full-daily-report.md`);
   const fullReportPath = path.join(ROOT_DIR, "data", "analysis-state", args.date, "stage1-4-full-daily-report.json");
   const stage4Path = path.join(ROOT_DIR, "data", "analysis-state", args.date, "stage4-execution-plan.json");
+  const holdingCardsPath = path.join(ROOT_DIR, "data", "analysis-state", args.date, "holding-decision-cards.json");
   const systemHealthPath = path.join(ROOT_DIR, "data", "analysis-state", args.date, "system-health.json");
   const dataQualityPath = path.join(ROOT_DIR, "data", "analysis-state", args.date, "data-quality-audit.json");
+  const rotationWatchPath = path.join(ROOT_DIR, "data", "analysis-state", args.date, "rotation-watch.json");
   const outputPath = args.output ?? path.join(ROOT_DIR, "reports", "daily", `${args.date}-final.html`);
 
-  const [dailyMarkdown, fullReport, stage4, systemHealth, dataQuality] = await Promise.all([
+  const [dailyMarkdown, fullReport, stage4, holdingCards, systemHealth, dataQuality, rotationWatch] = await Promise.all([
     readText(dailyMarkdownPath, ""),
     readJson(fullReportPath, null),
     readJson(stage4Path, null),
+    readJson(holdingCardsPath, null),
     readJson(systemHealthPath, null),
     readJson(dataQualityPath, null),
+    readJson(rotationWatchPath, null),
   ]);
 
   if (!dailyMarkdown.trim()) {
@@ -557,7 +916,7 @@ async function main() {
     throw new Error(`Stage 4 실행 전략 JSON을 찾을 수 없습니다: ${stage4Path}`);
   }
 
-  await writeText(outputPath, buildHtml({ date: args.date, dailyMarkdown, fullReport, stage4, systemHealth, dataQuality }));
+  await writeText(outputPath, buildHtml({ date: args.date, dailyMarkdown, fullReport, stage4, holdingCards, systemHealth, dataQuality, rotationWatch }));
   process.stdout.write(`${outputPath}\n`);
 }
 

@@ -1,0 +1,138 @@
+{
+  "id": "stock-pulse:475300",
+  "code": "475300",
+  "name": "SOL 반도체전공정",
+  "category": "반도체",
+  "type": "etf",
+  "verdict": "보유유지",
+  "urgency": "높음",
+  "pulseScore": 65,
+  "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNot": "같은 테마 중복 확대 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "marketValue": 2434640,
+      "profitRate": 8.5,
+      "decision": "보유유지"
+    }
+  ],
+  "position": {
+    "marketValue": 2434640,
+    "purchaseValue": 0,
+    "profitLoss": 190780,
+    "profitRate": 8.5,
+    "quantity": 104
+  },
+  "market": {
+    "price": 22510,
+    "previousClose": 23965,
+    "changePct": -6.07,
+    "volume": 688304,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 100,
+    "signal": "STRONG_BUY",
+    "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+    "rsi": 62.1,
+    "ma20": 21005.25,
+    "ma60": 18779.1667,
+    "recentHighDistancePct": -8.68,
+    "rsVsBenchmark": -5.38,
+    "alerts": []
+  },
+  "fundamental": {
+    "score": 70,
+    "label": "수급양호",
+    "metrics": null,
+    "etf": {
+      "rank": null,
+      "navGapPct": null,
+      "concentrationTop5Pct": 67.75,
+      "topHoldings": [
+        {
+          "code": "036930",
+          "name": "주성엔지니어링",
+          "weightPct": 21.62,
+          "changePct": -7.63
+        },
+        {
+          "code": "240810",
+          "name": "원익IPS",
+          "weightPct": 17.77,
+          "changePct": -11.02
+        },
+        {
+          "code": "403870",
+          "name": "HPSP",
+          "weightPct": 10.55,
+          "changePct": -6.77
+        },
+        {
+          "code": "014680",
+          "name": "한솔케미칼",
+          "weightPct": 9.69,
+          "changePct": 4.12
+        },
+        {
+          "code": "084370",
+          "name": "유진테크",
+          "weightPct": 8.12,
+          "changePct": -14.37
+        }
+      ]
+    }
+  },
+  "alerts": [
+    {
+      "severity": "high",
+      "label": "급락",
+      "detail": "당일 -6.07% 하락으로 원인 확인이 필요합니다.",
+      "tone": "red"
+    },
+    {
+      "severity": "low",
+      "label": "AI언급",
+      "detail": "보유유지: 매력 72점 / HBM 모멘텀 유지 중",
+      "tone": "blue"
+    }
+  ],
+  "quickFactors": [
+    "등락 -6.07%",
+    "RSI 62.1",
+    "거래량 0배",
+    "손익 8.5%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [
+    {
+      "bucket": "todayDo",
+      "action": "보유유지",
+      "reason": "매력 72점 / HBM 모멘텀 유지 중",
+      "trigger": "메모리 업황 지표 둔화 시 감량 검토"
+    }
+  ],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "ETF_NAV_MISSING"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {
+    "reports": 0.464,
+    "stockeasy": 0,
+    "marketvoice": 0,
+    "technical": 0.76,
+    "kisEtf": 0,
+    "news": 0,
+    "macro": 0,
+    "llm": 0
+  }
+}

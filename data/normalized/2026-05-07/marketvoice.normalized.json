@@ -1,0 +1,616 @@
+{
+  "date": "2026-05-07",
+  "bundleId": "normalized:marketvoice:2026-05-07",
+  "source": "marketvoice",
+  "sourceType": "event_feed",
+  "generatedAt": "2026-05-08T07:01:45.410Z",
+  "runId": "2026-05-08-053754",
+  "qualitySummary": {
+    "status": "ok",
+    "flags": [
+      "low_coverage"
+    ]
+  },
+  "observations": [
+    {
+      "observationId": "normalized:marketvoice:2026-05-07:topic:1424994",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1424994",
+      "entityName": "삼성전자 노조, 성과급 상한 폐지와 15% 지급 요구하며 총파업 예고",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [],
+      "direction": "neutral",
+      "strength": 0.82,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "삼성전자 노조, 성과급 상한 폐지와 15% 지급 요구하며 총파업 예고",
+          "text": "삼성전자 노동조합이 2026년 5월 21일 총파업을 예고하며 성과급 상한 폐지와 영업이익 15% 지급을 요구했습니다. 고용노동부는 노사 대화를 촉구하며 임금교섭 지원에 나섰습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1424994"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "계좌 테마 기준으로는 한투 ISA의 반도체/채권혼합, 한투 연금저축의 반도체/채권혼합, 한투 연금저축의 AI반도체 판단과 맞물립니다.",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQyNDk5NA=="
+      ],
+      "metadata": {
+        "signalLabels": [],
+        "mainSource": {
+          "type": "COMPANY_NEWS",
+          "name": "뉴스",
+          "author": "중앙일보"
+        },
+        "deepResearchQuestion": "반도체/채권혼합 테마가 일시 뉴스 플로우인지, 구조적 추세인지 구분하세요.",
+        "topicEntityId": "macro_event:1424994"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-07:topic:1417598",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1417598",
+      "entityName": "그래피, 인수 검토 중이나 구체적 확정은 없어",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.35,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "그래피, 인수 검토 중이나 구체적 확정은 없어",
+          "text": "그래피가 2026년 5월 8일 한국거래소의 타법인 인수설 조회공시에 대해, 인수 포함 다양한 방안을 검토 중이나 구체적 확정은 없다고 밝혔습니다. 사업 경쟁력 강화를 위한 검토이며, 결정 시 1개월 내 추가 공시할 예정입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1417598"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQxNzU5OA=="
+      ],
+      "metadata": {
+        "signalLabels": [],
+        "mainSource": {
+          "type": "DISCLOSURE",
+          "name": "공시",
+          "author": "공시"
+        },
+        "deepResearchQuestion": "그래피, 인수 검토 중이나 구체적 확정은 없어가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+        "topicEntityId": "macro_event:1417598"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-07:topic:1425518",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1425518",
+      "entityName": "루닛 김기환 전무, 유·무상증자로 주식 확대",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [],
+      "direction": "mixed",
+      "strength": 0.35,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "루닛 김기환 전무, 유·무상증자로 주식 확대",
+          "text": "루닛의 김기환 전무이사가 2026년 5월 8일 유상증자와 무상증자를 통해 보유 주식을 266,780주로 늘렸습니다. 주식 수는 증가했지만 소유비율은 0.08%포인트 줄었습니다. 같은 날 다른 임원도 주식을 늘렸습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1425518"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQyNTUxOA=="
+      ],
+      "metadata": {
+        "signalLabels": [],
+        "mainSource": {
+          "type": "DISCLOSURE",
+          "name": "공시",
+          "author": "공시"
+        },
+        "deepResearchQuestion": "루닛 김기환 전무, 유·무상증자로 주식 확대가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+        "topicEntityId": "macro_event:1425518"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-07:topic:1425543",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1425543",
+      "entityName": "삼익THK 임원 김종수, 장내매수로 지분 확대",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.35,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "삼익THK 임원 김종수, 장내매수로 지분 확대",
+          "text": "삼익THK 임원 김종수가 2026년 5월 장내매수로 2,000주를 추가 취득해 최대주주 등 소유주식이 0.01% 늘었습니다. 최대주주 진영환은 7.10%, 일본 법인 THK는 33.82%를 보유 중입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1425543"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQyNTU0Mw=="
+      ],
+      "metadata": {
+        "signalLabels": [],
+        "mainSource": {
+          "type": "DISCLOSURE",
+          "name": "공시",
+          "author": "공시"
+        },
+        "deepResearchQuestion": "삼익THK 임원 김종수, 장내매수로 지분 확대가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+        "topicEntityId": "macro_event:1425543"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-07:topic:1425527",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1425527",
+      "entityName": "위즈코프, 5대1 주식병합으로 주식 수 대폭 감소",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [],
+      "direction": "negative",
+      "strength": 0.35,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "위즈코프, 5대1 주식병합으로 주식 수 대폭 감소",
+          "text": "위즈코프는 2026년 5월 8일 기준 정승환 대표이사의 보통주 보유 주식 수가 5대 1 주식병합으로 12,195,871주에서 2,439,174주로 줄었다고 밝혔습니다. 매매 등 다른 변동은 없다고 확인했습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1425527"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQyNTUyNw=="
+      ],
+      "metadata": {
+        "signalLabels": [],
+        "mainSource": {
+          "type": "DISCLOSURE",
+          "name": "공시",
+          "author": "공시"
+        },
+        "deepResearchQuestion": "위즈코프, 5대1 주식병합으로 주식 수 대폭 감소가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+        "topicEntityId": "macro_event:1425527"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-07:topic:1425522",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1425522",
+      "entityName": "퀄리타스반도체 최광천 전무, 보유주식 9.32%로 감소",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [],
+      "direction": "negative",
+      "strength": 0.35,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "퀄리타스반도체 최광천 전무, 보유주식 9.32%로 감소",
+          "text": "퀄리타스반도체 최광천 전무가 2026년 5월 6~7일 보통주 54,575주를 매도해 보유 주식이 9.77%에서 9.32%로 줄었습니다. 주당 거래 가격은 25,632원과 27,388원이었습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1425522"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQyNTUyMg=="
+      ],
+      "metadata": {
+        "signalLabels": [],
+        "mainSource": {
+          "type": "DISCLOSURE",
+          "name": "공시",
+          "author": "공시"
+        },
+        "deepResearchQuestion": "퀄리타스반도체 최광천 전무, 보유주식 9.32%로 감소가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+        "topicEntityId": "macro_event:1425522"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-07:topic:1425538",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1425538",
+      "entityName": "한승홀딩스, BYC 주식 4,627주 매수해 최대주주 지위 강화",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [],
+      "direction": "neutral",
+      "strength": 0.35,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "한승홀딩스, BYC 주식 4,627주 매수해 최대주주 지위 강화",
+          "text": "BYC의 계열사 한승홀딩스가 2026년 4월 29일부터 5월 8일까지 종류주식 4,627주를 매수해 보유 주식이 40,764주로 늘었습니다. 최대주주 소유 주식은 전체 발행주식의 55.20%입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1425538"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQyNTUzOA=="
+      ],
+      "metadata": {
+        "signalLabels": [],
+        "mainSource": {
+          "type": "DISCLOSURE",
+          "name": "공시",
+          "author": "공시"
+        },
+        "deepResearchQuestion": "한승홀딩스, BYC 주식 4,627주 매수해 최대주주 지위 강화가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+        "topicEntityId": "macro_event:1425538"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-07:topic:1425516",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1425516",
+      "entityName": "큐로홀딩스, 크레오에스지 33억 연대보증 결정",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [],
+      "direction": "neutral",
+      "strength": 0.35,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "큐로홀딩스, 크레오에스지 33억 연대보증 결정",
+          "text": "큐로홀딩스가 2026년 5월 8일 이사회에서 계열사 크레오에스지의 전환사채에 대해 33억원 연대보증을 결정했습니다. 보증금액은 자기자본의 15.16%이며, 보증기간은 2026년 5월 18일부터 2029년 5월 18일까지입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1425516"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQyNTUxNg=="
+      ],
+      "metadata": {
+        "signalLabels": [],
+        "mainSource": {
+          "type": "DISCLOSURE",
+          "name": "공시",
+          "author": "공시"
+        },
+        "deepResearchQuestion": "큐로홀딩스, 크레오에스지 33억 연대보증 결정가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+        "topicEntityId": "macro_event:1425516"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-07:topic:1425513",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1425513",
+      "entityName": "패왕차희 밀크티 700잔 주문 대기 장기화",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [],
+      "direction": "neutral",
+      "strength": 0.35,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "패왕차희 밀크티 700잔 주문 대기 장기화",
+          "text": "패왕차희 밀크티 매장에 2026년 5월 8일 기준 700잔의 주문이 대기 중입니다. 매장 앞에 많은 고객이 줄을 서서 기다리고 있어 대기 시간이 길어질 것으로 보입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1425513"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQyNTUxMw=="
+      ],
+      "metadata": {
+        "signalLabels": [],
+        "mainSource": {
+          "type": "TELEGRAM",
+          "name": "텔레그램",
+          "author": "증권사 애널 크롤러🇰🇷"
+        },
+        "deepResearchQuestion": "패왕차희 밀크티 700잔 주문 대기 장기화가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+        "topicEntityId": "macro_event:1425513"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-07:topic:1425514",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1425514",
+      "entityName": "파인디앤씨, 4월 주식병합 후 주식 수 대폭 축소",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [],
+      "direction": "neutral",
+      "strength": 0.35,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "파인디앤씨, 4월 주식병합 후 주식 수 대폭 축소",
+          "text": "파인디앤씨가 2026년 4월 15일 주식병합을 실시해 김종찬 대표이사의 보유 주식이 25,000주에서 5,000주로 줄었고, 발행주식총수도 53,008,319주에서 10,601,663주로 변경됐습니다. 회사는 임원 및 주요주주 주식 변동 내역을 보고했습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1425514"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQyNTUxNA=="
+      ],
+      "metadata": {
+        "signalLabels": [],
+        "mainSource": {
+          "type": "DISCLOSURE",
+          "name": "공시",
+          "author": "공시"
+        },
+        "deepResearchQuestion": "파인디앤씨, 4월 주식병합 후 주식 수 대폭 축소가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+        "topicEntityId": "macro_event:1425514"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-07:topic:1425511",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1425511",
+      "entityName": "상지건설, 운영자금 187억 원 마련 위해 220만 주 유상증자",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [],
+      "direction": "neutral",
+      "strength": 0.35,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "상지건설, 운영자금 187억 원 마련 위해 220만 주 유상증자",
+          "text": "상지건설이 2026년 5월 8일 보통주 220만 주를 주주우선공모로 발행하는 유상증자를 결정했습니다. 187억 원가량 운영자금 조달을 목표로 하며, 신주배정 기준일은 6월 19일입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1425511"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQyNTUxMQ=="
+      ],
+      "metadata": {
+        "signalLabels": [],
+        "mainSource": {
+          "type": "DISCLOSURE",
+          "name": "공시",
+          "author": "공시"
+        },
+        "deepResearchQuestion": "상지건설, 운영자금 187억 원 마련 위해 220만 주 유상증자가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+        "topicEntityId": "macro_event:1425511"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-07:topic:1425536",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1425536",
+      "entityName": "LG그룹, 2025년 차입금 46% 급증하며 재무 부담 심화",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [],
+      "direction": "neutral",
+      "strength": 0.35,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "LG그룹, 2025년 차입금 46% 급증하며 재무 부담 심화",
+          "text": "LG그룹은 2025년 말 총차입금이 68조5659억원으로 2021년보다 46.38% 늘었어요. 석유화학과 배터리 투자에 56조원을 썼지만 현금창출력이 줄어 차입금 의존도가 커졌습니다. 재무 부담이 계속되고 있습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1425536"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQyNTUzNg=="
+      ],
+      "metadata": {
+        "signalLabels": [],
+        "mainSource": {
+          "type": "COMPANY_NEWS",
+          "name": "뉴스",
+          "author": "블로터"
+        },
+        "deepResearchQuestion": "LG그룹, 2025년 차입금 46% 급증하며 재무 부담 심화가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+        "topicEntityId": "macro_event:1425536"
+      }
+    }
+  ]
+}

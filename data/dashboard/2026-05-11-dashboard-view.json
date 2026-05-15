@@ -1,0 +1,3146 @@
+{
+  "meta": {
+    "date": "2026-05-11",
+    "runDate": "2026-05-11",
+    "effectiveMarketDate": "2026-05-11",
+    "runId": "2026-05-11-010132",
+    "generatedAt": "2026-05-11T01:09:46.991Z",
+    "sourceGeneratedAt": {
+      "systemHealth": "2026-05-11T01:09:41.016Z",
+      "holdingCards": null,
+      "decisionFeatures": null,
+      "supplement": null
+    },
+    "version": "dashboard-view.v1.8"
+  },
+  "health": {
+    "overallStatus": "error",
+    "checks": [
+      {
+        "key": "portfolio_snapshot",
+        "label": "포트폴리오 스냅샷",
+        "status": "ok",
+        "detail": "계좌 3개",
+        "path": "data/portfolio/latest.json"
+      },
+      {
+        "key": "report_index",
+        "label": "리포트 인덱스",
+        "status": "ok",
+        "detail": "리포트 45건",
+        "path": "data/reports/2026-05-11/index.json"
+      },
+      {
+        "key": "textification",
+        "label": "전문 텍스트화",
+        "status": "ok",
+        "detail": "성공 45/45 · OCR 0건",
+        "path": "data/reports/2026-05-11/text-manifest.json"
+      },
+      {
+        "key": "market_snapshot",
+        "label": "시장 데이터",
+        "status": "ok",
+        "detail": "market 스냅샷 생성됨",
+        "path": "data/market/2026-05-11.json"
+      },
+      {
+        "key": "technical_snapshot",
+        "label": "기술 점수",
+        "status": "ok",
+        "detail": "종목 24개",
+        "path": "data/technical/2026-05-11.json"
+      },
+      {
+        "key": "technical_data_repair",
+        "label": "기술지표 자료보강",
+        "status": "warn",
+        "detail": "fallback 24개 / failed 0개: TIGER 미국S&P500, TIGER 미국나스닥100, TIGER 미국배당+7%프리미엄다우존스, KODEX 골드선물(H) 외 20건",
+        "path": "data/technical/2026-05-11.json"
+      },
+      {
+        "key": "rag_pipeline",
+        "label": "RAG 코퍼스",
+        "status": "ok",
+        "detail": "리포트 437 / 포트폴리오 21 / 병렬 458",
+        "path": "knowledge/rag/2026-05-11/parallel-manifest.json"
+      },
+      {
+        "key": "stage1",
+        "label": "03. Report Indexing 연구 노트",
+        "status": "ok",
+        "detail": "추출 45건",
+        "path": "data/analysis-state/2026-05-11/stage1-report-extracts-v2.json"
+      },
+      {
+        "key": "stage1_quality",
+        "label": "03. Report Indexing 품질",
+        "status": "ok",
+        "detail": "contamination 0.00 / weak_claim 0.39",
+        "path": "data/analysis-state/2026-05-11/stage1-report-extracts-v2.json"
+      },
+      {
+        "key": "stage2",
+        "label": "07. Strategy Options",
+        "status": "warn",
+        "detail": "stage2 결과 없음",
+        "path": "data/analysis-state/2026-05-11/stage2-strategy-options.json"
+      },
+      {
+        "key": "impact_map",
+        "label": "Impact Map",
+        "status": "warn",
+        "detail": "impact-map 누락",
+        "path": "data/analysis-state/2026-05-11/impact-map.json"
+      },
+      {
+        "key": "marketvoice_external_feed",
+        "label": "외부 시황 수집",
+        "status": "ok",
+        "detail": "외부 이슈 12건 / impact 2건",
+        "path": "data/analysis-state/2026-05-11/marketvoice-linked.json"
+      },
+      {
+        "key": "cross_source_consensus",
+        "label": "교차소스 합의도",
+        "status": "warn",
+        "detail": "정규화 소스 0개 / decision-features 누락",
+        "path": "data/features/2026-05-11/decision-features.json"
+      },
+      {
+        "key": "source_consensus_supplement",
+        "label": "새 보강 소스 리포트",
+        "status": "warn",
+        "detail": "보완 리포트 누락",
+        "path": "reports/daily/2026-05-11-source-consensus-supplement.md"
+      },
+      {
+        "key": "stage3",
+        "label": "10. Quant Scoring",
+        "status": "error",
+        "detail": "stage3 누락",
+        "path": "data/analysis-state/2026-05-11/stage3-quant-scores.json"
+      },
+      {
+        "key": "stage3_quality",
+        "label": "10. Quant Scoring 관계 품질",
+        "status": "ok",
+        "detail": "unrelated 0.00 / blocked 0건",
+        "path": "data/analysis-state/2026-05-11/stage3-quant-scores.json"
+      },
+      {
+        "key": "stage4",
+        "label": "11. Execution Plan",
+        "status": "error",
+        "detail": "stage4 누락",
+        "path": "data/analysis-state/2026-05-11/stage4-execution-plan.json"
+      },
+      {
+        "key": "stage4_holding_coverage",
+        "label": "11. Execution Plan 전 보유종목 커버리지",
+        "status": "error",
+        "detail": "누락 16개: 한투 ISA:RISE 삼성전자SK하이닉스채권혼합50, 한투 ISA:LG씨엔에스, 한투 ISA:셀트리온, 한투 ISA:PLUS 고배당주, 한투 ISA:KODEX 신재생에너지액티브, 한투 ISA:ACE KRX금현물, 한투 ISA:SOL 반도체전공정, 한투 연금저축:RISE …",
+        "path": "data/analysis-state/2026-05-11/stage4-execution-plan.json"
+      },
+      {
+        "key": "holding_decision_data_needs",
+        "label": "보유종목 자료보강 잔여",
+        "status": "ok",
+        "detail": "자료보강 판정 0건",
+        "path": "data/analysis-state/2026-05-11/holding-decision-cards.json"
+      },
+      {
+        "key": "off_report_external_enrichment",
+        "label": "리포트밖 외부보강",
+        "status": "ok",
+        "detail": "리포트밖 판정 0건",
+        "path": "data/analysis-state/2026-05-11/holding-decision-cards.json"
+      },
+      {
+        "key": "dashboard_view",
+        "label": "판단 Cockpit JSON",
+        "status": "ok",
+        "detail": "dashboard 생성 / accountStrategy 연결 / stockPulse 연결 / rotationWatch 누락",
+        "path": "data/dashboard/2026-05-11-dashboard-view.json"
+      },
+      {
+        "key": "qwen_account_strategy",
+        "label": "Qwen 계좌 피드백",
+        "status": "warn",
+        "detail": "status failed / webSearch on / model qwen3.5-plus",
+        "path": "data/analysis-state/2026-05-11/qwen-account-strategy.json"
+      },
+      {
+        "key": "stock_pulse",
+        "label": "개별주 속보판",
+        "status": "ok",
+        "detail": "status ok / 보유 14개 / 고긴급 3개 / 소스누락 news",
+        "path": "data/stock-pulse/2026-05-11/stock-pulse.json"
+      },
+      {
+        "key": "rotation_watch",
+        "label": "3주 로테이션 감지판",
+        "status": "warn",
+        "detail": "rotation-watch.json 누락",
+        "path": "data/analysis-state/2026-05-11/rotation-watch.json"
+      },
+      {
+        "key": "stage4_quality",
+        "label": "11. Execution Plan 논리 품질",
+        "status": "ok",
+        "detail": "conflict 0건 / no_action 0건 / low_conf_reject 0건",
+        "path": "data/analysis-state/2026-05-11/stage4-execution-plan.json"
+      },
+      {
+        "key": "data_quality",
+        "label": "13. Quality Gates",
+        "status": "warn",
+        "detail": "data-quality-audit.json 누락",
+        "path": "data/analysis-state/2026-05-11/data-quality-audit.json"
+      },
+      {
+        "key": "briefing",
+        "label": "일일 브리핑",
+        "status": "error",
+        "detail": "briefing.md 누락",
+        "path": "reports/daily/2026-05-11-briefing.md"
+      },
+      {
+        "key": "llm_wiki_daily",
+        "label": "LLM Wiki Daily",
+        "status": "warn",
+        "detail": "daily wiki 누락",
+        "path": "knowledge/wiki/daily/2026-05-11.md"
+      },
+      {
+        "key": "gemini_briefing",
+        "label": "경제 리포트 브리핑",
+        "status": "ok",
+        "detail": "rich Gemini 브리핑 생성됨",
+        "path": "knowledge/daily/2026-05-11-gemini-briefing-rich.md"
+      },
+      {
+        "key": "deep_research_prompt",
+        "label": "Deep Research 프롬프트",
+        "status": "ok",
+        "detail": "05. Deep Research 프롬프트 생성됨",
+        "path": "knowledge/daily/manual-kit/2026-05-11/07-stage1-5-gemini-deep-research-prompt.md"
+      },
+      {
+        "key": "deep_research_response",
+        "label": "Deep Research 결과",
+        "status": "warn",
+        "detail": "Deep Research 결과 없음",
+        "path": "knowledge/daily/manual-kit/2026-05-11/09-stage1-5-gemini-deep-research-response.md"
+      },
+      {
+        "key": "deep_research_final",
+        "label": "Deep Research 최종 브리핑",
+        "status": "ok",
+        "detail": "06. Briefing Synthesis 최종 브리핑 저장됨",
+        "path": "knowledge/daily/manual-kit/2026-05-11/10-stage1-6-final-research-briefing.md"
+      },
+      {
+        "key": "followup_research_map",
+        "label": "Follow-up Research Map",
+        "status": "warn",
+        "detail": "follow-up reindex map 없음",
+        "path": "data/analysis-state/2026-05-11/stage1-followup-research-map.json"
+      },
+      {
+        "key": "followup_deep_research_prompt",
+        "label": "Follow-up Deep Research 프롬프트",
+        "status": "warn",
+        "detail": "2차 Deep Research 프롬프트 없음",
+        "path": "knowledge/daily/manual-kit/2026-05-11/12-stage1-7-gemini-follow-up-prompt.md"
+      },
+      {
+        "key": "followup_deep_research_response",
+        "label": "Follow-up Deep Research 결과",
+        "status": "warn",
+        "detail": "2차 Deep Research 결과 없음",
+        "path": "knowledge/daily/manual-kit/2026-05-11/13-stage1-7-gemini-follow-up-response.md"
+      },
+      {
+        "key": "round3_research_map",
+        "label": "Round 3 Refinement Map",
+        "status": "warn",
+        "detail": "3차 refinement map 없음",
+        "path": "data/analysis-state/2026-05-11/stage1-final-refinement-map.json"
+      },
+      {
+        "key": "round3_deep_research_prompt",
+        "label": "Round 3 Deep Research 프롬프트",
+        "status": "warn",
+        "detail": "3차 Deep Research 프롬프트 없음",
+        "path": "knowledge/daily/manual-kit/2026-05-11/15-stage1-8-gemini-final-refinement-prompt.md"
+      },
+      {
+        "key": "round3_deep_research_response",
+        "label": "Round 3 Deep Research 결과",
+        "status": "warn",
+        "detail": "3차 Deep Research 결과 없음",
+        "path": "knowledge/daily/manual-kit/2026-05-11/16-stage1-8-gemini-final-refinement-response.md"
+      },
+      {
+        "key": "freshness_run_id",
+        "label": "Freshness / Run ID",
+        "status": "warn",
+        "detail": "optional run-id 혼재: 2026-05-11-010132, 2026-05-11-010001",
+        "path": "data/analysis-state/2026-05-11/stage4-execution-plan.json"
+      },
+      {
+        "key": "security_normalization",
+        "label": "종목 코드 정규화",
+        "status": "ok",
+        "detail": "포트폴리오/실행계획 종목 코드 해석 완료",
+        "path": "data/portfolio/latest.json"
+      },
+      {
+        "key": "fallback_recovery",
+        "label": "Fallback Recovery",
+        "status": "warn",
+        "detail": "market:2026-05-08 기준 복구",
+        "path": "data/analysis-state/2026-05-11/fallback-summary.json"
+      },
+      {
+        "key": "fallback_checklist",
+        "label": "Fallback Checklist",
+        "status": "ok",
+        "detail": "실패 폴백 체크리스트 준비됨",
+        "path": "docs/FAILURE_FALLBACK_CHECKLIST.md"
+      },
+      {
+        "key": "wiki_memory",
+        "label": "LLM Wiki Memory",
+        "status": "ok",
+        "detail": "operating rules / research backlog / decision journal 생성됨",
+        "path": "knowledge/wiki/memory/decision-journal.md"
+      }
+    ],
+    "warnings": [
+      {
+        "key": "technical_data_repair",
+        "label": "기술지표 자료보강",
+        "status": "warn",
+        "detail": "fallback 24개 / failed 0개: TIGER 미국S&P500, TIGER 미국나스닥100, TIGER 미국배당+7%프리미엄다우존스, KODEX 골드선물(H) 외 20건",
+        "path": "data/technical/2026-05-11.json"
+      },
+      {
+        "key": "stage2",
+        "label": "07. Strategy Options",
+        "status": "warn",
+        "detail": "stage2 결과 없음",
+        "path": "data/analysis-state/2026-05-11/stage2-strategy-options.json"
+      },
+      {
+        "key": "impact_map",
+        "label": "Impact Map",
+        "status": "warn",
+        "detail": "impact-map 누락",
+        "path": "data/analysis-state/2026-05-11/impact-map.json"
+      },
+      {
+        "key": "cross_source_consensus",
+        "label": "교차소스 합의도",
+        "status": "warn",
+        "detail": "정규화 소스 0개 / decision-features 누락",
+        "path": "data/features/2026-05-11/decision-features.json"
+      },
+      {
+        "key": "source_consensus_supplement",
+        "label": "새 보강 소스 리포트",
+        "status": "warn",
+        "detail": "보완 리포트 누락",
+        "path": "reports/daily/2026-05-11-source-consensus-supplement.md"
+      },
+      {
+        "key": "qwen_account_strategy",
+        "label": "Qwen 계좌 피드백",
+        "status": "warn",
+        "detail": "status failed / webSearch on / model qwen3.5-plus",
+        "path": "data/analysis-state/2026-05-11/qwen-account-strategy.json"
+      },
+      {
+        "key": "rotation_watch",
+        "label": "3주 로테이션 감지판",
+        "status": "warn",
+        "detail": "rotation-watch.json 누락",
+        "path": "data/analysis-state/2026-05-11/rotation-watch.json"
+      },
+      {
+        "key": "data_quality",
+        "label": "13. Quality Gates",
+        "status": "warn",
+        "detail": "data-quality-audit.json 누락",
+        "path": "data/analysis-state/2026-05-11/data-quality-audit.json"
+      },
+      {
+        "key": "llm_wiki_daily",
+        "label": "LLM Wiki Daily",
+        "status": "warn",
+        "detail": "daily wiki 누락",
+        "path": "knowledge/wiki/daily/2026-05-11.md"
+      },
+      {
+        "key": "deep_research_response",
+        "label": "Deep Research 결과",
+        "status": "warn",
+        "detail": "Deep Research 결과 없음",
+        "path": "knowledge/daily/manual-kit/2026-05-11/09-stage1-5-gemini-deep-research-response.md"
+      },
+      {
+        "key": "followup_research_map",
+        "label": "Follow-up Research Map",
+        "status": "warn",
+        "detail": "follow-up reindex map 없음",
+        "path": "data/analysis-state/2026-05-11/stage1-followup-research-map.json"
+      },
+      {
+        "key": "followup_deep_research_prompt",
+        "label": "Follow-up Deep Research 프롬프트",
+        "status": "warn",
+        "detail": "2차 Deep Research 프롬프트 없음",
+        "path": "knowledge/daily/manual-kit/2026-05-11/12-stage1-7-gemini-follow-up-prompt.md"
+      },
+      {
+        "key": "followup_deep_research_response",
+        "label": "Follow-up Deep Research 결과",
+        "status": "warn",
+        "detail": "2차 Deep Research 결과 없음",
+        "path": "knowledge/daily/manual-kit/2026-05-11/13-stage1-7-gemini-follow-up-response.md"
+      },
+      {
+        "key": "round3_research_map",
+        "label": "Round 3 Refinement Map",
+        "status": "warn",
+        "detail": "3차 refinement map 없음",
+        "path": "data/analysis-state/2026-05-11/stage1-final-refinement-map.json"
+      },
+      {
+        "key": "round3_deep_research_prompt",
+        "label": "Round 3 Deep Research 프롬프트",
+        "status": "warn",
+        "detail": "3차 Deep Research 프롬프트 없음",
+        "path": "knowledge/daily/manual-kit/2026-05-11/15-stage1-8-gemini-final-refinement-prompt.md"
+      },
+      {
+        "key": "round3_deep_research_response",
+        "label": "Round 3 Deep Research 결과",
+        "status": "warn",
+        "detail": "3차 Deep Research 결과 없음",
+        "path": "knowledge/daily/manual-kit/2026-05-11/16-stage1-8-gemini-final-refinement-response.md"
+      },
+      {
+        "key": "freshness_run_id",
+        "label": "Freshness / Run ID",
+        "status": "warn",
+        "detail": "optional run-id 혼재: 2026-05-11-010132, 2026-05-11-010001",
+        "path": "data/analysis-state/2026-05-11/stage4-execution-plan.json"
+      },
+      {
+        "key": "fallback_recovery",
+        "label": "Fallback Recovery",
+        "status": "warn",
+        "detail": "market:2026-05-08 기준 복구",
+        "path": "data/analysis-state/2026-05-11/fallback-summary.json"
+      }
+    ],
+    "blockers": [
+      {
+        "key": "stage3",
+        "label": "10. Quant Scoring",
+        "status": "error",
+        "detail": "stage3 누락",
+        "path": "data/analysis-state/2026-05-11/stage3-quant-scores.json"
+      },
+      {
+        "key": "stage4",
+        "label": "11. Execution Plan",
+        "status": "error",
+        "detail": "stage4 누락",
+        "path": "data/analysis-state/2026-05-11/stage4-execution-plan.json"
+      },
+      {
+        "key": "stage4_holding_coverage",
+        "label": "11. Execution Plan 전 보유종목 커버리지",
+        "status": "error",
+        "detail": "누락 16개: 한투 ISA:RISE 삼성전자SK하이닉스채권혼합50, 한투 ISA:LG씨엔에스, 한투 ISA:셀트리온, 한투 ISA:PLUS 고배당주, 한투 ISA:KODEX 신재생에너지액티브, 한투 ISA:ACE KRX금현물, 한투 ISA:SOL 반도체전공정, 한투 연금저축:RISE …",
+        "path": "data/analysis-state/2026-05-11/stage4-execution-plan.json"
+      },
+      {
+        "key": "briefing",
+        "label": "일일 브리핑",
+        "status": "error",
+        "detail": "briefing.md 누락",
+        "path": "reports/daily/2026-05-11-briefing.md"
+      }
+    ],
+    "counts": {
+      "accounts": 3,
+      "reports": 45,
+      "extractedReports": 45,
+      "ocrUsedReports": 0,
+      "stage1Extracts": 45,
+      "unresolvedPortfolioHoldings": 0,
+      "unresolvedStage4Mentions": 0,
+      "stockPulseItems": 14,
+      "stockPulseHighUrgency": 3,
+      "rotationWatchDates": 0,
+      "rotationWatchDeliberations": 0,
+      "rotationWatchTargets": 0,
+      "rotationTransitionTriggers": 0
+    }
+  },
+  "sourceCoverage": {
+    "reports": 0,
+    "stockeasy": 0,
+    "marketvoice": 0,
+    "technical": 0,
+    "kisEtf": 0,
+    "news": 0,
+    "fundamentals": 39,
+    "activeSources": [
+      "fundamentals"
+    ]
+  },
+  "portfolio": {
+    "score": 0,
+    "regime": null,
+    "attractiveness": {
+      "average": 0,
+      "highCount": 0,
+      "conditionalCount": 0,
+      "cautionCount": 0
+    },
+    "accounts": [
+      {
+        "accountKey": "ISA",
+        "accountLabel": "한투 ISA",
+        "totalValue": 8291020,
+        "cash": 0,
+        "holdingCount": 7,
+        "stage4Score": 0,
+        "deployBudget": 0,
+        "noAction": false,
+        "noActionReason": "",
+        "support": {
+          "reports": 0,
+          "stockeasy": 0,
+          "marketvoice": 0,
+          "technical": 0,
+          "kisEtf": 0,
+          "news": 0,
+          "macro": 0,
+          "llm": 0
+        },
+        "topThemes": [],
+        "topRisks": []
+      },
+      {
+        "accountKey": "PENSION",
+        "accountLabel": "한투 연금저축",
+        "totalValue": 5568780,
+        "cash": 0,
+        "holdingCount": 4,
+        "stage4Score": 0,
+        "deployBudget": 0,
+        "noAction": false,
+        "noActionReason": "",
+        "support": {
+          "reports": 0,
+          "stockeasy": 0,
+          "marketvoice": 0,
+          "technical": 0,
+          "kisEtf": 0,
+          "news": 0,
+          "macro": 0,
+          "llm": 0
+        },
+        "topThemes": [],
+        "topRisks": []
+      },
+      {
+        "accountKey": "KIS_MAIN",
+        "accountLabel": "한투 일반",
+        "totalValue": 2970900,
+        "cash": 0,
+        "holdingCount": 5,
+        "stage4Score": 0,
+        "deployBudget": 0,
+        "noAction": false,
+        "noActionReason": "",
+        "support": {
+          "reports": 0,
+          "stockeasy": 0,
+          "marketvoice": 0,
+          "technical": 0,
+          "kisEtf": 0,
+          "news": 0,
+          "macro": 0,
+          "llm": 0
+        },
+        "topThemes": [],
+        "topRisks": []
+      }
+    ]
+  },
+  "actionBoard": {
+    "immediateBuys": [],
+    "conditionalBuys": [],
+    "blockedBuys": [],
+    "trimOrProtect": [],
+    "watch": [],
+    "holds": []
+  },
+  "newEvidence": {
+    "reinforcedThemes": [],
+    "reinforcedSecurities": [],
+    "newWatchCandidates": [],
+    "conflicts": []
+  },
+  "decisionBrief": {
+    "stance": "관찰우선",
+    "headline": "오늘은 조건 확인이 먼저입니다.",
+    "counts": {
+      "do": 0,
+      "wait": 0,
+      "avoid": 0,
+      "buy": 0,
+      "protect": 0
+    },
+    "lanes": {
+      "do": [],
+      "wait": [],
+      "avoid": []
+    },
+    "actionQueue": [],
+    "layerImplications": [
+      {
+        "layer": "시황",
+        "verdict": "확인",
+        "soWhat": "시장 체력이 약하면 신규매수보다 현금/방어 비중을 우선합니다.",
+        "action": "조건대기"
+      },
+      {
+        "layer": "테마",
+        "verdict": "테마확인",
+        "soWhat": "테마만으로는 매수하지 않습니다.",
+        "action": "종목검증"
+      },
+      {
+        "layer": "섹터",
+        "verdict": "AI반도체",
+        "soWhat": "AI반도체 노출은 보유 0개라 추가 전 과집중을 확인합니다.",
+        "action": "비중확인"
+      },
+      {
+        "layer": "ETF",
+        "verdict": "RISE 삼성전자SK하이닉스채권혼합50",
+        "soWhat": "RISE 삼성전자SK하이닉스채권혼합50은 수집필요이지만 NAV/구성/과열 조건을 통과해야 합니다.",
+        "action": "자료보강"
+      },
+      {
+        "layer": "종목",
+        "verdict": "한화에어로스페이스",
+        "soWhat": "한화에어로스페이스은 수집필요이라 보유 논리는 보되 가격 규칙을 우선합니다.",
+        "action": "규칙우선"
+      }
+    ]
+  },
+  "sellBrief": {
+    "headline": "지금 전량매도 신호는 없고, 일부 익절/손절 조건만 감시합니다.",
+    "counts": {
+      "sellNow": 0,
+      "trim": 0,
+      "stop": 0,
+      "watch": 0,
+      "hold": 0
+    },
+    "lanes": {
+      "sellNow": [],
+      "trim": [],
+      "stop": [],
+      "watch": [],
+      "hold": []
+    },
+    "queue": []
+  },
+  "qwenCoach": null,
+  "accountStrategy": {
+    "status": "failed",
+    "headline": "Qwen 계좌전략 생성 실패",
+    "stance": "",
+    "provider": "qwen",
+    "model": "qwen3.5-plus",
+    "requestedModel": null,
+    "webSearch": true,
+    "searchStrategy": "turbo",
+    "forcedSearch": true,
+    "generatedAt": "2026-05-11T01:09:41.567794+00:00",
+    "confidence": null,
+    "artifact": "data/analysis-state/2026-05-11/qwen-account-strategy.json",
+    "todayDo": [],
+    "todayDoNot": [],
+    "sellWatch": [],
+    "buyWatch": [],
+    "sectorView": [],
+    "weeklyChecklist": [],
+    "missingData": [],
+    "riskWarnings": [],
+    "validationWarnings": [],
+    "error": "Qwen 호출 실패: Connection error."
+  },
+  "stockPulse": {
+    "status": "ok",
+    "generatedAt": "2026-05-11T01:09:46.910Z",
+    "sourceStatus": {
+      "portfolio": "ok",
+      "technical": "ok",
+      "fundamentals": "ok",
+      "news": "missing",
+      "dart": "not_configured",
+      "qwen": "ok"
+    },
+    "counts": {
+      "activeHoldings": 14,
+      "highUrgency": 2,
+      "mediumUrgency": 4,
+      "missingNews": 14,
+      "missingDart": 14
+    },
+    "summary": {
+      "headline": "과열·급등·기술약화 종목을 먼저 확인해야 합니다.",
+      "nextAction": "DART 공시와 종목 직접 뉴스 수집을 붙이면 장중 속보판 정확도가 올라갑니다."
+    },
+    "items": [
+      {
+        "id": "stock-pulse:469150",
+        "code": "469150",
+        "name": "ACE AI반도체TOP3+",
+        "category": "AI반도체",
+        "type": "etf",
+        "verdict": "익절감시",
+        "urgency": "높음",
+        "pulseScore": 29,
+        "oneLine": "익절감시: 20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+        "doNow": "20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+        "doNot": "급등 구간 추격매수 금지",
+        "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+        "accounts": [
+          {
+            "accountKey": "PENSION",
+            "accountLabel": "한투 연금저축",
+            "marketValue": 857940,
+            "profitRate": 19.45,
+            "decision": null
+          },
+          {
+            "accountKey": "KIS_MAIN",
+            "accountLabel": "한투 일반",
+            "marketValue": 357600,
+            "profitRate": 20.05,
+            "decision": null
+          }
+        ],
+        "position": {
+          "marketValue": 1215540,
+          "profitLoss": 199460,
+          "profitRate": 19.63
+        },
+        "market": {
+          "price": 68300,
+          "changePct": 0,
+          "volume": 1596996,
+          "volumeRatio": 0,
+          "navGapPct": 0,
+          "rank": 0
+        },
+        "technical": {
+          "score": 85,
+          "signal": "STRONG_BUY",
+          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+          "rsi": 83.17,
+          "ma20": 55841,
+          "ma60": 47942.9167,
+          "recentHighDistancePct": -0.16,
+          "rsVsBenchmark": 40.42,
+          "alerts": [
+            "RSI 과매수 구간 진입"
+          ]
+        },
+        "fundamental": {
+          "score": 20,
+          "label": "수집필요",
+          "metrics": null,
+          "etf": null
+        },
+        "alerts": [
+          {
+            "severity": "high",
+            "label": "과열",
+            "detail": "RSI 83.17 과열권입니다.",
+            "tone": "red"
+          }
+        ],
+        "quickFactors": [
+          "등락 0%",
+          "RSI 83.17",
+          "거래량 0배",
+          "손익 19.63%"
+        ],
+        "newsHits": [],
+        "strategyMentions": [],
+        "missingSources": [
+          "뉴스미수집",
+          "DART미연결",
+          "NAVER_FETCH_FAILED"
+        ],
+        "riskFlags": []
+      },
+      {
+        "id": "stock-pulse:379810",
+        "code": "379810",
+        "name": "KODEX 미국나스닥100",
+        "category": "나스닥100",
+        "type": "etf",
+        "verdict": "보유유지",
+        "urgency": "높음",
+        "pulseScore": 29,
+        "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+        "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+        "doNot": "같은 테마 중복 확대 금지",
+        "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+        "accounts": [
+          {
+            "accountKey": "PENSION",
+            "accountLabel": "한투 연금저축",
+            "marketValue": 852300,
+            "profitRate": 8.62,
+            "decision": null
+          }
+        ],
+        "position": {
+          "marketValue": 852300,
+          "profitLoss": 67650,
+          "profitRate": 8.62
+        },
+        "market": {
+          "price": 27975,
+          "changePct": 0,
+          "volume": 8550,
+          "volumeRatio": 0,
+          "navGapPct": 0,
+          "rank": 0
+        },
+        "technical": {
+          "score": 85,
+          "signal": "STRONG_BUY",
+          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+          "rsi": 88.35,
+          "ma20": 26165.25,
+          "ma60": 24762.8333,
+          "recentHighDistancePct": 0,
+          "rsVsBenchmark": -36.86,
+          "alerts": [
+            "RSI 과매수 구간 진입"
+          ]
+        },
+        "fundamental": {
+          "score": 20,
+          "label": "수집필요",
+          "metrics": null,
+          "etf": null
+        },
+        "alerts": [
+          {
+            "severity": "high",
+            "label": "과열",
+            "detail": "RSI 88.35 과열권입니다.",
+            "tone": "red"
+          }
+        ],
+        "quickFactors": [
+          "등락 0%",
+          "RSI 88.35",
+          "거래량 0배",
+          "손익 8.62%"
+        ],
+        "newsHits": [],
+        "strategyMentions": [],
+        "missingSources": [
+          "뉴스미수집",
+          "DART미연결",
+          "NAVER_FETCH_FAILED"
+        ],
+        "riskFlags": []
+      },
+      {
+        "id": "stock-pulse:0162Z0",
+        "code": "0162Z0",
+        "name": "RISE 삼성전자SK하이닉스채권혼합50",
+        "category": "반도체/채권혼합",
+        "type": "etf",
+        "verdict": "익절감시",
+        "urgency": "중간",
+        "pulseScore": 26,
+        "oneLine": "익절감시: 20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+        "doNow": "20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+        "doNot": "급등 구간 추격매수 금지",
+        "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+        "accounts": [
+          {
+            "accountKey": "ISA",
+            "accountLabel": "한투 ISA",
+            "marketValue": 1334000,
+            "profitRate": 19.1,
+            "decision": null
+          },
+          {
+            "accountKey": "PENSION",
+            "accountLabel": "한투 연금저축",
+            "marketValue": 1600200,
+            "profitRate": 17.38,
+            "decision": null
+          }
+        ],
+        "position": {
+          "marketValue": 2934200,
+          "profitLoss": 451000,
+          "profitRate": 18.16
+        },
+        "market": {
+          "price": 12885,
+          "changePct": 0,
+          "volume": 12541910,
+          "volumeRatio": 0,
+          "navGapPct": 0,
+          "rank": 0
+        },
+        "technical": {
+          "score": 62,
+          "signal": "BUY",
+          "reason": "주가가 20일선 위에서 유지 중, MACD 모멘텀이 우호적, RSI 기준 단기 과열 구간",
+          "rsi": 80.87,
+          "ma20": 11359.75,
+          "ma60": 0,
+          "recentHighDistancePct": 0,
+          "rsVsBenchmark": 0,
+          "alerts": [
+            "RSI 과매수 구간 진입",
+            "볼린저밴드 상단 이탈"
+          ]
+        },
+        "fundamental": {
+          "score": 20,
+          "label": "수집필요",
+          "metrics": null,
+          "etf": null
+        },
+        "alerts": [
+          {
+            "severity": "medium",
+            "label": "과열주의",
+            "detail": "RSI 80.87로 추격매수보다 보호 판단이 우선입니다.",
+            "tone": "amber"
+          }
+        ],
+        "quickFactors": [
+          "등락 0%",
+          "RSI 80.87",
+          "거래량 0배",
+          "손익 18.16%"
+        ],
+        "newsHits": [],
+        "strategyMentions": [],
+        "missingSources": [
+          "뉴스미수집",
+          "DART미연결",
+          "NAVER_FETCH_FAILED"
+        ],
+        "riskFlags": []
+      },
+      {
+        "id": "stock-pulse:360750",
+        "code": "360750",
+        "name": "TIGER 미국S&P500",
+        "category": "S&P500",
+        "type": "etf",
+        "verdict": "보유유지",
+        "urgency": "중간",
+        "pulseScore": 35,
+        "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+        "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+        "doNot": "같은 테마 중복 확대 금지",
+        "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+        "accounts": [
+          {
+            "accountKey": "PENSION",
+            "accountLabel": "한투 연금저축",
+            "marketValue": 2258340,
+            "profitRate": 2.75,
+            "decision": null
+          }
+        ],
+        "position": {
+          "marketValue": 2258340,
+          "profitLoss": 60620,
+          "profitRate": 2.76
+        },
+        "market": {
+          "price": 26675,
+          "changePct": 0.47,
+          "volume": 2323910,
+          "volumeRatio": 0.16,
+          "navGapPct": 0.16,
+          "rank": 0
+        },
+        "technical": {
+          "score": 85,
+          "signal": "STRONG_BUY",
+          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+          "rsi": 81.51,
+          "ma20": 25949.25,
+          "ma60": 25089.25,
+          "recentHighDistancePct": -0.54,
+          "rsVsBenchmark": -43.56,
+          "alerts": [
+            "RSI 과매수 구간 진입"
+          ]
+        },
+        "fundamental": {
+          "score": 20,
+          "label": "수집필요",
+          "metrics": null,
+          "etf": null
+        },
+        "alerts": [
+          {
+            "severity": "medium",
+            "label": "과열주의",
+            "detail": "RSI 81.51로 추격매수보다 보호 판단이 우선입니다.",
+            "tone": "amber"
+          }
+        ],
+        "quickFactors": [
+          "등락 0.47%",
+          "RSI 81.51",
+          "거래량 0.16배",
+          "손익 2.76%"
+        ],
+        "newsHits": [],
+        "strategyMentions": [],
+        "missingSources": [
+          "뉴스미수집",
+          "DART미연결",
+          "NAVER_FETCH_FAILED"
+        ],
+        "riskFlags": []
+      },
+      {
+        "id": "stock-pulse:411060",
+        "code": "411060",
+        "name": "ACE KRX금현물",
+        "category": "금",
+        "type": "etf",
+        "verdict": "손절감시",
+        "urgency": "중간",
+        "pulseScore": 12,
+        "oneLine": "손절감시: 손실 확대 원인을 확인하고 20일선 회복 실패 시 감량 기준을 먼저 봅니다.",
+        "doNow": "손실 확대 원인을 확인하고 20일선 회복 실패 시 감량 기준을 먼저 봅니다.",
+        "doNot": "손절 기준 없이 물타기 금지",
+        "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+        "accounts": [
+          {
+            "accountKey": "ISA",
+            "accountLabel": "한투 ISA",
+            "marketValue": 2117265,
+            "profitRate": -1.2,
+            "decision": null
+          }
+        ],
+        "position": {
+          "marketValue": 2117265,
+          "profitLoss": -25800,
+          "profitRate": -1.2
+        },
+        "market": {
+          "price": 31150,
+          "changePct": 0,
+          "volume": 1640763,
+          "volumeRatio": 0,
+          "navGapPct": 0,
+          "rank": 0
+        },
+        "technical": {
+          "score": 24,
+          "signal": "REDUCE",
+          "reason": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 둔화",
+          "rsi": 49.5,
+          "ma20": 31177.75,
+          "ma60": 32109.5833,
+          "recentHighDistancePct": -3.2,
+          "rsVsBenchmark": -50.68,
+          "alerts": []
+        },
+        "fundamental": {
+          "score": 20,
+          "label": "수집필요",
+          "metrics": null,
+          "etf": null
+        },
+        "alerts": [
+          {
+            "severity": "medium",
+            "label": "기술약화",
+            "detail": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 둔화",
+            "tone": "amber"
+          }
+        ],
+        "quickFactors": [
+          "등락 0%",
+          "RSI 49.5",
+          "거래량 0배",
+          "손익 -1.2%"
+        ],
+        "newsHits": [],
+        "strategyMentions": [],
+        "missingSources": [
+          "뉴스미수집",
+          "DART미연결",
+          "NAVER_FETCH_FAILED"
+        ],
+        "riskFlags": []
+      },
+      {
+        "id": "stock-pulse:385510",
+        "code": "385510",
+        "name": "KODEX 신재생에너지액티브",
+        "category": "신재생에너지",
+        "type": "etf",
+        "verdict": "보유유지",
+        "urgency": "중간",
+        "pulseScore": 35,
+        "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+        "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+        "doNot": "같은 테마 중복 확대 금지",
+        "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+        "accounts": [
+          {
+            "accountKey": "ISA",
+            "accountLabel": "한투 ISA",
+            "marketValue": 760175,
+            "profitRate": 11.96,
+            "decision": null
+          }
+        ],
+        "position": {
+          "marketValue": 760175,
+          "profitLoss": 81250,
+          "profitRate": 11.97
+        },
+        "market": {
+          "price": 59580,
+          "changePct": 0,
+          "volume": 396,
+          "volumeRatio": 0,
+          "navGapPct": 0,
+          "rank": 0
+        },
+        "technical": {
+          "score": 85,
+          "signal": "STRONG_BUY",
+          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+          "rsi": 75.63,
+          "ma20": 52810.75,
+          "ma60": 44785.3333,
+          "recentHighDistancePct": -3.07,
+          "rsVsBenchmark": 31.73,
+          "alerts": [
+            "RSI 과매수 구간 진입"
+          ]
+        },
+        "fundamental": {
+          "score": 20,
+          "label": "수집필요",
+          "metrics": null,
+          "etf": null
+        },
+        "alerts": [
+          {
+            "severity": "medium",
+            "label": "과열주의",
+            "detail": "RSI 75.63로 추격매수보다 보호 판단이 우선입니다.",
+            "tone": "amber"
+          }
+        ],
+        "quickFactors": [
+          "등락 0%",
+          "RSI 75.63",
+          "거래량 0배",
+          "손익 11.97%"
+        ],
+        "newsHits": [],
+        "strategyMentions": [],
+        "missingSources": [
+          "뉴스미수집",
+          "DART미연결",
+          "NAVER_FETCH_FAILED"
+        ],
+        "riskFlags": []
+      },
+      {
+        "id": "stock-pulse:475300",
+        "code": "475300",
+        "name": "SOL 반도체전공정",
+        "category": "반도체",
+        "type": "etf",
+        "verdict": "보유유지",
+        "urgency": "낮음",
+        "pulseScore": 43,
+        "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+        "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+        "doNot": "같은 테마 중복 확대 금지",
+        "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+        "accounts": [
+          {
+            "accountKey": "ISA",
+            "accountLabel": "한투 ISA",
+            "marketValue": 2192190,
+            "profitRate": 13.53,
+            "decision": null
+          }
+        ],
+        "position": {
+          "marketValue": 2192190,
+          "profitLoss": 261370,
+          "profitRate": 13.54
+        },
+        "market": {
+          "price": 22580,
+          "changePct": 0,
+          "volume": 248673,
+          "volumeRatio": 0,
+          "navGapPct": 0,
+          "rank": 0
+        },
+        "technical": {
+          "score": 95,
+          "signal": "STRONG_BUY",
+          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+          "rsi": 69.6,
+          "ma20": 20466.5,
+          "ma60": 18560.25,
+          "recentHighDistancePct": -1.33,
+          "rsVsBenchmark": -6.46,
+          "alerts": []
+        },
+        "fundamental": {
+          "score": 20,
+          "label": "수집필요",
+          "metrics": null,
+          "etf": null
+        },
+        "alerts": [],
+        "quickFactors": [
+          "등락 0%",
+          "RSI 69.6",
+          "거래량 0배",
+          "손익 13.54%"
+        ],
+        "newsHits": [],
+        "strategyMentions": [],
+        "missingSources": [
+          "뉴스미수집",
+          "DART미연결",
+          "NAVER_FETCH_FAILED"
+        ],
+        "riskFlags": []
+      },
+      {
+        "id": "stock-pulse:012450",
+        "code": "012450",
+        "name": "한화에어로스페이스",
+        "category": "방산",
+        "type": "stock",
+        "verdict": "보유유지",
+        "urgency": "낮음",
+        "pulseScore": 24,
+        "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+        "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+        "doNot": "같은 테마 중복 확대 금지",
+        "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+        "accounts": [
+          {
+            "accountKey": "KIS_MAIN",
+            "accountLabel": "한투 일반",
+            "marketValue": 1348000,
+            "profitRate": -8.79,
+            "decision": null
+          }
+        ],
+        "position": {
+          "marketValue": 1348000,
+          "profitLoss": -130000,
+          "profitRate": -8.8
+        },
+        "market": {
+          "price": 1307000,
+          "changePct": 0,
+          "volume": 324641,
+          "volumeRatio": 0,
+          "navGapPct": 0,
+          "rank": 0
+        },
+        "technical": {
+          "score": 46,
+          "signal": "HOLD",
+          "reason": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화",
+          "rsi": 39.5,
+          "ma20": 1439500,
+          "ma60": 1365250,
+          "recentHighDistancePct": -16.75,
+          "rsVsBenchmark": -46,
+          "alerts": [
+            "볼린저밴드 하단 이탈"
+          ]
+        },
+        "fundamental": {
+          "score": 20,
+          "label": "수집필요",
+          "metrics": null,
+          "etf": null
+        },
+        "alerts": [],
+        "quickFactors": [
+          "등락 0%",
+          "RSI 39.5",
+          "거래량 0배",
+          "손익 -8.8%"
+        ],
+        "newsHits": [],
+        "strategyMentions": [],
+        "missingSources": [
+          "뉴스미수집",
+          "DART미연결",
+          "NAVER_FETCH_FAILED"
+        ],
+        "riskFlags": []
+      },
+      {
+        "id": "stock-pulse:449450",
+        "code": "449450",
+        "name": "PLUS K방산",
+        "category": "방산",
+        "type": "etf",
+        "verdict": "보유유지",
+        "urgency": "낮음",
+        "pulseScore": 22,
+        "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+        "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+        "doNot": "같은 테마 중복 확대 금지",
+        "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+        "accounts": [
+          {
+            "accountKey": "KIS_MAIN",
+            "accountLabel": "한투 일반",
+            "marketValue": 749700,
+            "profitRate": -4.54,
+            "decision": null
+          }
+        ],
+        "position": {
+          "marketValue": 749700,
+          "profitLoss": -35660,
+          "profitRate": -4.54
+        },
+        "market": {
+          "price": 73370,
+          "changePct": -2.95,
+          "volume": 534694,
+          "volumeRatio": 0.47,
+          "navGapPct": 0.064,
+          "rank": 0
+        },
+        "technical": {
+          "score": 42,
+          "signal": "HOLD",
+          "reason": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화",
+          "rsi": 40.9,
+          "ma20": 78870.75,
+          "ma60": 74153.3333,
+          "recentHighDistancePct": -11.34,
+          "rsVsBenchmark": -38.82,
+          "alerts": [
+            "데드크로스(5일/20일) 발생",
+            "볼린저밴드 하단 이탈"
+          ]
+        },
+        "fundamental": {
+          "score": 20,
+          "label": "수집필요",
+          "metrics": null,
+          "etf": null
+        },
+        "alerts": [],
+        "quickFactors": [
+          "등락 -2.95%",
+          "RSI 40.9",
+          "거래량 0.47배",
+          "손익 -4.54%"
+        ],
+        "newsHits": [],
+        "strategyMentions": [],
+        "missingSources": [
+          "뉴스미수집",
+          "DART미연결",
+          "NAVER_FETCH_FAILED"
+        ],
+        "riskFlags": []
+      },
+      {
+        "id": "stock-pulse:064400",
+        "code": "064400",
+        "name": "LG씨엔에스",
+        "category": "기타",
+        "type": "unknown",
+        "verdict": "보유유지",
+        "urgency": "낮음",
+        "pulseScore": 6,
+        "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+        "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+        "doNot": "같은 테마 중복 확대 금지",
+        "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+        "accounts": [
+          {
+            "accountKey": "ISA",
+            "accountLabel": "한투 ISA",
+            "marketValue": 693000,
+            "profitRate": 0.14,
+            "decision": null
+          }
+        ],
+        "position": {
+          "marketValue": 693000,
+          "profitLoss": 1000,
+          "profitRate": 0.14
+        },
+        "market": {
+          "price": 0,
+          "changePct": 0,
+          "volume": 0,
+          "volumeRatio": 0,
+          "navGapPct": 0,
+          "rank": 0
+        },
+        "technical": {
+          "score": 0,
+          "signal": null,
+          "reason": "",
+          "rsi": 0,
+          "ma20": 0,
+          "ma60": 0,
+          "recentHighDistancePct": 0,
+          "rsVsBenchmark": 0,
+          "alerts": []
+        },
+        "fundamental": {
+          "score": 20,
+          "label": "수집필요",
+          "metrics": null,
+          "etf": null
+        },
+        "alerts": [],
+        "quickFactors": [
+          "등락 0%",
+          "손익 0.14%"
+        ],
+        "newsHits": [],
+        "strategyMentions": [],
+        "missingSources": [
+          "뉴스미수집",
+          "DART미연결",
+          "NAVER_FETCH_FAILED"
+        ],
+        "riskFlags": []
+      },
+      {
+        "id": "stock-pulse:161510",
+        "code": "161510",
+        "name": "PLUS 고배당주",
+        "category": "배당/커버드콜",
+        "type": "etf",
+        "verdict": "보유유지",
+        "urgency": "낮음",
+        "pulseScore": 44,
+        "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+        "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+        "doNot": "같은 테마 중복 확대 금지",
+        "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+        "accounts": [
+          {
+            "accountKey": "ISA",
+            "accountLabel": "한투 ISA",
+            "marketValue": 611490,
+            "profitRate": 2.12,
+            "decision": null
+          }
+        ],
+        "position": {
+          "marketValue": 611490,
+          "profitLoss": 12710,
+          "profitRate": 2.12
+        },
+        "market": {
+          "price": 27740,
+          "changePct": 0,
+          "volume": 885,
+          "volumeRatio": 0,
+          "navGapPct": 0,
+          "rank": 0
+        },
+        "technical": {
+          "score": 100,
+          "signal": "STRONG_BUY",
+          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+          "rsi": 60.06,
+          "ma20": 27300.75,
+          "ma60": 26750.3333,
+          "recentHighDistancePct": -1.19,
+          "rsVsBenchmark": -34.09,
+          "alerts": []
+        },
+        "fundamental": {
+          "score": 20,
+          "label": "수집필요",
+          "metrics": null,
+          "etf": null
+        },
+        "alerts": [],
+        "quickFactors": [
+          "등락 0%",
+          "RSI 60.06",
+          "거래량 0배",
+          "손익 2.12%"
+        ],
+        "newsHits": [],
+        "strategyMentions": [],
+        "missingSources": [
+          "뉴스미수집",
+          "DART미연결",
+          "NAVER_FETCH_FAILED"
+        ],
+        "riskFlags": []
+      },
+      {
+        "id": "stock-pulse:068270",
+        "code": "068270",
+        "name": "셀트리온",
+        "category": "기타",
+        "type": "unknown",
+        "verdict": "보유유지",
+        "urgency": "낮음",
+        "pulseScore": 6,
+        "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+        "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+        "doNot": "같은 테마 중복 확대 금지",
+        "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+        "accounts": [
+          {
+            "accountKey": "ISA",
+            "accountLabel": "한투 ISA",
+            "marketValue": 582900,
+            "profitRate": -0.1,
+            "decision": null
+          }
+        ],
+        "position": {
+          "marketValue": 582900,
+          "profitLoss": -600,
+          "profitRate": -0.1
+        },
+        "market": {
+          "price": 0,
+          "changePct": 0,
+          "volume": 0,
+          "volumeRatio": 0,
+          "navGapPct": 0,
+          "rank": 0
+        },
+        "technical": {
+          "score": 0,
+          "signal": null,
+          "reason": "",
+          "rsi": 0,
+          "ma20": 0,
+          "ma60": 0,
+          "recentHighDistancePct": 0,
+          "rsVsBenchmark": 0,
+          "alerts": []
+        },
+        "fundamental": {
+          "score": 20,
+          "label": "수집필요",
+          "metrics": null,
+          "etf": null
+        },
+        "alerts": [],
+        "quickFactors": [
+          "등락 0%",
+          "손익 -0.1%"
+        ],
+        "newsHits": [],
+        "strategyMentions": [],
+        "missingSources": [
+          "뉴스미수집",
+          "DART미연결",
+          "NAVER_FETCH_FAILED"
+        ],
+        "riskFlags": []
+      },
+      {
+        "id": "stock-pulse:138910",
+        "code": "138910",
+        "name": "KODEX 구리선물(H)",
+        "category": "기타",
+        "type": "etf",
+        "verdict": "보유유지",
+        "urgency": "낮음",
+        "pulseScore": 41,
+        "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+        "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+        "doNot": "같은 테마 중복 확대 금지",
+        "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+        "accounts": [
+          {
+            "accountKey": "KIS_MAIN",
+            "accountLabel": "한투 일반",
+            "marketValue": 293100,
+            "profitRate": 11.46,
+            "decision": null
+          }
+        ],
+        "position": {
+          "marketValue": 293100,
+          "profitLoss": 30150,
+          "profitRate": 11.47
+        },
+        "market": {
+          "price": 9725,
+          "changePct": 0,
+          "volume": 172331,
+          "volumeRatio": 0,
+          "navGapPct": 0,
+          "rank": 0
+        },
+        "technical": {
+          "score": 90,
+          "signal": "STRONG_BUY",
+          "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+          "rsi": 67.01,
+          "ma20": 9373.5,
+          "ma60": 9123.4167,
+          "recentHighDistancePct": -0.51,
+          "rsVsBenchmark": -41.66,
+          "alerts": [
+            "MACD 시그널 상향 돌파"
+          ]
+        },
+        "fundamental": {
+          "score": 20,
+          "label": "수집필요",
+          "metrics": null,
+          "etf": null
+        },
+        "alerts": [],
+        "quickFactors": [
+          "등락 0%",
+          "RSI 67.01",
+          "거래량 0배",
+          "손익 11.47%"
+        ],
+        "newsHits": [],
+        "strategyMentions": [],
+        "missingSources": [
+          "뉴스미수집",
+          "DART미연결",
+          "NAVER_FETCH_FAILED"
+        ],
+        "riskFlags": []
+      },
+      {
+        "id": "stock-pulse:064350",
+        "code": "064350",
+        "name": "현대로템",
+        "category": "방산",
+        "type": "stock",
+        "verdict": "보유유지",
+        "urgency": "낮음",
+        "pulseScore": 31,
+        "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+        "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+        "doNot": "같은 테마 중복 확대 금지",
+        "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+        "accounts": [
+          {
+            "accountKey": "KIS_MAIN",
+            "accountLabel": "한투 일반",
+            "marketValue": 222500,
+            "profitRate": 6.97,
+            "decision": null
+          }
+        ],
+        "position": {
+          "marketValue": 222500,
+          "profitLoss": 14500,
+          "profitRate": 6.97
+        },
+        "market": {
+          "price": 225000,
+          "changePct": -4.26,
+          "volume": 596816,
+          "volumeRatio": 0.57,
+          "navGapPct": 0,
+          "rank": 0
+        },
+        "technical": {
+          "score": 64,
+          "signal": "BUY",
+          "reason": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화",
+          "rsi": 47.42,
+          "ma20": 230775,
+          "ma60": 212688.3333,
+          "recentHighDistancePct": -20.21,
+          "rsVsBenchmark": -47.52,
+          "alerts": [
+            "MACD 시그널 하향 이탈"
+          ]
+        },
+        "fundamental": {
+          "score": 20,
+          "label": "수집필요",
+          "metrics": null,
+          "etf": null
+        },
+        "alerts": [],
+        "quickFactors": [
+          "등락 -4.26%",
+          "RSI 47.42",
+          "거래량 0.57배",
+          "손익 6.97%"
+        ],
+        "newsHits": [],
+        "strategyMentions": [],
+        "missingSources": [
+          "뉴스미수집",
+          "DART미연결",
+          "NAVER_FETCH_FAILED"
+        ],
+        "riskFlags": []
+      }
+    ],
+    "artifacts": {
+      "stockPulse": "data/stock-pulse/2026-05-11/stock-pulse.json",
+      "perSecurityDir": "data/stock-pulse/2026-05-11/securities"
+    }
+  },
+  "rotationWatch": null,
+  "stockeasyPulse": null,
+  "analysisLayers": {
+    "market": {
+      "date": "2026-05-11",
+      "collectedAt": "2026-05-08T01:02:25.361Z",
+      "regime": null,
+      "portfolioScore": 0,
+      "indices": [
+        {
+          "key": "KOSPI",
+          "name": "코스피",
+          "close": 7424.52,
+          "changePct": -0.87,
+          "source": "naver",
+          "tradedAt": "2026-05-08T10:02:00+09:00"
+        },
+        {
+          "key": "^SPX",
+          "name": "SP500",
+          "close": 7337.1,
+          "changePct": 0,
+          "source": "stooq",
+          "tradedAt": "20260507T230000"
+        },
+        {
+          "key": "^NDQ",
+          "name": "NASDAQ",
+          "close": 25806.2,
+          "changePct": 0,
+          "source": "stooq",
+          "tradedAt": "20260507T230000"
+        }
+      ],
+      "macro": [
+        {
+          "key": "GC.F",
+          "name": "GOLD",
+          "close": 4721.01,
+          "changePct": 0,
+          "source": "stooq",
+          "tradedAt": "20260508T030240"
+        },
+        {
+          "key": "USDKRW",
+          "name": "USDKRW",
+          "close": 1463.56,
+          "changePct": 0,
+          "source": "stooq",
+          "tradedAt": "20260508T030204"
+        },
+        {
+          "key": "CL.F",
+          "name": "WTI",
+          "close": 96.18,
+          "changePct": 0,
+          "source": "stooq",
+          "tradedAt": "20260508T030242"
+        }
+      ]
+    },
+    "themes": [],
+    "sectors": [
+      {
+        "id": "sector:AI반도체",
+        "category": "AI반도체",
+        "holdingCount": 0,
+        "stockCount": 0,
+        "etfCount": 3,
+        "marketValue": 0,
+        "attractivenessSum": 0,
+        "attractivenessCount": 0,
+        "topSecurities": [
+          {
+            "code": "469150",
+            "name": "ACE AI반도체TOP3+",
+            "score": 20,
+            "held": false
+          },
+          {
+            "code": "456600",
+            "name": "TIME 글로벌AI인공지능액티브",
+            "score": 20,
+            "held": false
+          },
+          {
+            "code": "497570",
+            "name": "TIGER 미국필라델피아AI반도체나스닥",
+            "score": 20,
+            "held": false
+          }
+        ],
+        "averageAttractiveness": 0
+      },
+      {
+        "id": "sector:국내대형주",
+        "category": "국내대형주",
+        "holdingCount": 0,
+        "stockCount": 0,
+        "etfCount": 1,
+        "marketValue": 0,
+        "attractivenessSum": 0,
+        "attractivenessCount": 0,
+        "topSecurities": [
+          {
+            "code": "2921050",
+            "name": "TIGER 코리아TOP10",
+            "score": 20,
+            "held": false
+          }
+        ],
+        "averageAttractiveness": 0
+      },
+      {
+        "id": "sector:국내인덱스",
+        "category": "국내인덱스",
+        "holdingCount": 0,
+        "stockCount": 0,
+        "etfCount": 2,
+        "marketValue": 0,
+        "attractivenessSum": 0,
+        "attractivenessCount": 0,
+        "topSecurities": [
+          {
+            "code": "069500",
+            "name": "KODEX 200",
+            "score": 20,
+            "held": false
+          },
+          {
+            "code": "496080",
+            "name": "TIGER 코리아밸류업",
+            "score": 20,
+            "held": false
+          }
+        ],
+        "averageAttractiveness": 0
+      },
+      {
+        "id": "sector:금",
+        "category": "금",
+        "holdingCount": 0,
+        "stockCount": 0,
+        "etfCount": 2,
+        "marketValue": 0,
+        "attractivenessSum": 0,
+        "attractivenessCount": 0,
+        "topSecurities": [
+          {
+            "code": "411060",
+            "name": "ACE KRX금현물",
+            "score": 20,
+            "held": false
+          },
+          {
+            "code": "132030",
+            "name": "KODEX 골드선물(H)",
+            "score": 20,
+            "held": false
+          }
+        ],
+        "averageAttractiveness": 0
+      },
+      {
+        "id": "sector:기타",
+        "category": "기타",
+        "holdingCount": 0,
+        "stockCount": 0,
+        "etfCount": 3,
+        "marketValue": 0,
+        "attractivenessSum": 0,
+        "attractivenessCount": 0,
+        "topSecurities": [
+          {
+            "code": "138910",
+            "name": "KODEX 구리선물(H)",
+            "score": 20,
+            "held": false
+          },
+          {
+            "code": "251350",
+            "name": "KODEX MSCI선진국",
+            "score": 20,
+            "held": false
+          },
+          {
+            "code": "396500",
+            "name": "TIGER 반도체TOP10",
+            "score": 20,
+            "held": false
+          }
+        ],
+        "averageAttractiveness": 0
+      },
+      {
+        "id": "sector:나스닥100",
+        "category": "나스닥100",
+        "holdingCount": 0,
+        "stockCount": 0,
+        "etfCount": 2,
+        "marketValue": 0,
+        "attractivenessSum": 0,
+        "attractivenessCount": 0,
+        "topSecurities": [
+          {
+            "code": "379810",
+            "name": "KODEX 미국나스닥100",
+            "score": 20,
+            "held": false
+          },
+          {
+            "code": "133690",
+            "name": "TIGER 미국나스닥100",
+            "score": 20,
+            "held": false
+          }
+        ],
+        "averageAttractiveness": 0
+      },
+      {
+        "id": "sector:미국인덱스",
+        "category": "미국인덱스",
+        "holdingCount": 0,
+        "stockCount": 0,
+        "etfCount": 1,
+        "marketValue": 0,
+        "attractivenessSum": 0,
+        "attractivenessCount": 0,
+        "topSecurities": [
+          {
+            "code": "360750",
+            "name": "TIGER 미국S&P500",
+            "score": 20,
+            "held": false
+          }
+        ],
+        "averageAttractiveness": 0
+      },
+      {
+        "id": "sector:미분류",
+        "category": "미분류",
+        "holdingCount": 0,
+        "stockCount": 0,
+        "etfCount": 0,
+        "marketValue": 0,
+        "attractivenessSum": 0,
+        "attractivenessCount": 0,
+        "topSecurities": [
+          {
+            "code": "064400",
+            "name": "LG씨엔에스",
+            "score": 20,
+            "held": false
+          },
+          {
+            "code": "068270",
+            "name": "셀트리온",
+            "score": 20,
+            "held": false
+          }
+        ],
+        "averageAttractiveness": 0
+      },
+      {
+        "id": "sector:반도체",
+        "category": "반도체",
+        "holdingCount": 0,
+        "stockCount": 2,
+        "etfCount": 1,
+        "marketValue": 0,
+        "attractivenessSum": 0,
+        "attractivenessCount": 0,
+        "topSecurities": [
+          {
+            "code": "475300",
+            "name": "SOL 반도체전공정",
+            "score": 20,
+            "held": false
+          },
+          {
+            "code": "000660",
+            "name": "SK하이닉스",
+            "score": 20,
+            "held": false
+          },
+          {
+            "code": "005930",
+            "name": "삼성전자",
+            "score": 20,
+            "held": false
+          }
+        ],
+        "averageAttractiveness": 0
+      },
+      {
+        "id": "sector:반도체/PCB",
+        "category": "반도체/PCB",
+        "holdingCount": 0,
+        "stockCount": 1,
+        "etfCount": 0,
+        "marketValue": 0,
+        "attractivenessSum": 0,
+        "attractivenessCount": 0,
+        "topSecurities": [
+          {
+            "code": "007660",
+            "name": "이수페타시스",
+            "score": 20,
+            "held": false
+          }
+        ],
+        "averageAttractiveness": 0
+      },
+      {
+        "id": "sector:반도체/채권혼합",
+        "category": "반도체/채권혼합",
+        "holdingCount": 0,
+        "stockCount": 0,
+        "etfCount": 1,
+        "marketValue": 0,
+        "attractivenessSum": 0,
+        "attractivenessCount": 0,
+        "topSecurities": [
+          {
+            "code": "0162Z0",
+            "name": "RISE 삼성전자SK하이닉스채권혼합50",
+            "score": 20,
+            "held": false
+          }
+        ],
+        "averageAttractiveness": 0
+      },
+      {
+        "id": "sector:방산",
+        "category": "방산",
+        "holdingCount": 0,
+        "stockCount": 3,
+        "etfCount": 1,
+        "marketValue": 0,
+        "attractivenessSum": 0,
+        "attractivenessCount": 0,
+        "topSecurities": [
+          {
+            "code": "449450",
+            "name": "PLUS K방산",
+            "score": 20,
+            "held": false
+          },
+          {
+            "code": "012450",
+            "name": "한화에어로스페이스",
+            "score": 20,
+            "held": false
+          },
+          {
+            "code": "064350",
+            "name": "현대로템",
+            "score": 20,
+            "held": false
+          },
+          {
+            "code": "047810",
+            "name": "한국항공우주",
+            "score": 20,
+            "held": false
+          }
+        ],
+        "averageAttractiveness": 0
+      },
+      {
+        "id": "sector:배당/커버드콜",
+        "category": "배당/커버드콜",
+        "holdingCount": 0,
+        "stockCount": 0,
+        "etfCount": 3,
+        "marketValue": 0,
+        "attractivenessSum": 0,
+        "attractivenessCount": 0,
+        "topSecurities": [
+          {
+            "code": "161510",
+            "name": "PLUS 고배당주",
+            "score": 20,
+            "held": false
+          },
+          {
+            "code": "458760",
+            "name": "TIGER 미국배당+7%프리미엄다우존스",
+            "score": 20,
+            "held": false
+          },
+          {
+            "code": "498400",
+            "name": "KODEX 200타겟위클리커버드콜",
+            "score": 20,
+            "held": false
+          }
+        ],
+        "averageAttractiveness": 0
+      },
+      {
+        "id": "sector:신재생에너지",
+        "category": "신재생에너지",
+        "holdingCount": 0,
+        "stockCount": 0,
+        "etfCount": 1,
+        "marketValue": 0,
+        "attractivenessSum": 0,
+        "attractivenessCount": 0,
+        "topSecurities": [
+          {
+            "code": "385510",
+            "name": "KODEX 신재생에너지액티브",
+            "score": 20,
+            "held": false
+          }
+        ],
+        "averageAttractiveness": 0
+      }
+    ],
+    "etfs": [
+      {
+        "code": "0162Z0",
+        "name": "RISE 삼성전자SK하이닉스채권혼합50",
+        "category": "반도체/채권혼합",
+        "held": false,
+        "accounts": [],
+        "decisionLabel": null,
+        "attractiveness": null,
+        "score": {
+          "overall": 20,
+          "label": "수집필요",
+          "confidence": 0
+        },
+        "market": {
+          "price": null,
+          "changePct": null,
+          "volume": null,
+          "marketCap": null,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null,
+          "rank": null,
+          "source": {
+            "market": null,
+            "etfRanking": null
+          }
+        },
+        "metrics": null,
+        "etf": null,
+        "dataNeeds": [
+          "NAVER_FETCH_FAILED"
+        ]
+      },
+      {
+        "code": "138910",
+        "name": "KODEX 구리선물(H)",
+        "category": "기타",
+        "held": false,
+        "accounts": [],
+        "decisionLabel": null,
+        "attractiveness": null,
+        "score": {
+          "overall": 20,
+          "label": "수집필요",
+          "confidence": 0
+        },
+        "market": {
+          "price": null,
+          "changePct": null,
+          "volume": null,
+          "marketCap": null,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null,
+          "rank": null,
+          "source": {
+            "market": null,
+            "etfRanking": null
+          }
+        },
+        "metrics": null,
+        "etf": null,
+        "dataNeeds": [
+          "NAVER_FETCH_FAILED"
+        ]
+      },
+      {
+        "code": "161510",
+        "name": "PLUS 고배당주",
+        "category": "배당/커버드콜",
+        "held": false,
+        "accounts": [],
+        "decisionLabel": null,
+        "attractiveness": null,
+        "score": {
+          "overall": 20,
+          "label": "수집필요",
+          "confidence": 0
+        },
+        "market": {
+          "price": null,
+          "changePct": null,
+          "volume": null,
+          "marketCap": null,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null,
+          "rank": null,
+          "source": {
+            "market": null,
+            "etfRanking": null
+          }
+        },
+        "metrics": null,
+        "etf": null,
+        "dataNeeds": [
+          "NAVER_FETCH_FAILED"
+        ]
+      },
+      {
+        "code": "360750",
+        "name": "TIGER 미국S&P500",
+        "category": "미국인덱스",
+        "held": false,
+        "accounts": [],
+        "decisionLabel": null,
+        "attractiveness": null,
+        "score": {
+          "overall": 20,
+          "label": "수집필요",
+          "confidence": 0
+        },
+        "market": {
+          "price": 26675,
+          "changePct": 0.47,
+          "volume": 2323910,
+          "marketCap": null,
+          "nav": 26632.44,
+          "navGapPct": 0.16,
+          "navChangePct": null,
+          "rank": null,
+          "source": {
+            "market": "naver",
+            "etfRanking": null
+          }
+        },
+        "metrics": null,
+        "etf": null,
+        "dataNeeds": [
+          "NAVER_FETCH_FAILED"
+        ]
+      },
+      {
+        "code": "379810",
+        "name": "KODEX 미국나스닥100",
+        "category": "나스닥100",
+        "held": false,
+        "accounts": [],
+        "decisionLabel": null,
+        "attractiveness": null,
+        "score": {
+          "overall": 20,
+          "label": "수집필요",
+          "confidence": 0
+        },
+        "market": {
+          "price": null,
+          "changePct": null,
+          "volume": null,
+          "marketCap": null,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null,
+          "rank": null,
+          "source": {
+            "market": null,
+            "etfRanking": null
+          }
+        },
+        "metrics": null,
+        "etf": null,
+        "dataNeeds": [
+          "NAVER_FETCH_FAILED"
+        ]
+      },
+      {
+        "code": "385510",
+        "name": "KODEX 신재생에너지액티브",
+        "category": "신재생에너지",
+        "held": false,
+        "accounts": [],
+        "decisionLabel": null,
+        "attractiveness": null,
+        "score": {
+          "overall": 20,
+          "label": "수집필요",
+          "confidence": 0
+        },
+        "market": {
+          "price": null,
+          "changePct": null,
+          "volume": null,
+          "marketCap": null,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null,
+          "rank": null,
+          "source": {
+            "market": null,
+            "etfRanking": null
+          }
+        },
+        "metrics": null,
+        "etf": null,
+        "dataNeeds": [
+          "NAVER_FETCH_FAILED"
+        ]
+      },
+      {
+        "code": "411060",
+        "name": "ACE KRX금현물",
+        "category": "금",
+        "held": false,
+        "accounts": [],
+        "decisionLabel": null,
+        "attractiveness": null,
+        "score": {
+          "overall": 20,
+          "label": "수집필요",
+          "confidence": 0
+        },
+        "market": {
+          "price": null,
+          "changePct": null,
+          "volume": null,
+          "marketCap": null,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null,
+          "rank": null,
+          "source": {
+            "market": null,
+            "etfRanking": null
+          }
+        },
+        "metrics": null,
+        "etf": null,
+        "dataNeeds": [
+          "NAVER_FETCH_FAILED"
+        ]
+      },
+      {
+        "code": "449450",
+        "name": "PLUS K방산",
+        "category": "방산",
+        "held": false,
+        "accounts": [],
+        "decisionLabel": null,
+        "attractiveness": null,
+        "score": {
+          "overall": 20,
+          "label": "수집필요",
+          "confidence": 0
+        },
+        "market": {
+          "price": 73370,
+          "changePct": -2.95,
+          "volume": 534694,
+          "marketCap": null,
+          "nav": 73323.01,
+          "navGapPct": 0.064,
+          "navChangePct": null,
+          "rank": null,
+          "source": {
+            "market": "naver",
+            "etfRanking": null
+          }
+        },
+        "metrics": null,
+        "etf": null,
+        "dataNeeds": [
+          "NAVER_FETCH_FAILED"
+        ]
+      },
+      {
+        "code": "469150",
+        "name": "ACE AI반도체TOP3+",
+        "category": "AI반도체",
+        "held": false,
+        "accounts": [],
+        "decisionLabel": null,
+        "attractiveness": null,
+        "score": {
+          "overall": 20,
+          "label": "수집필요",
+          "confidence": 0
+        },
+        "market": {
+          "price": null,
+          "changePct": null,
+          "volume": null,
+          "marketCap": null,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null,
+          "rank": null,
+          "source": {
+            "market": null,
+            "etfRanking": null
+          }
+        },
+        "metrics": null,
+        "etf": null,
+        "dataNeeds": [
+          "NAVER_FETCH_FAILED"
+        ]
+      },
+      {
+        "code": "475300",
+        "name": "SOL 반도체전공정",
+        "category": "반도체",
+        "held": false,
+        "accounts": [],
+        "decisionLabel": null,
+        "attractiveness": null,
+        "score": {
+          "overall": 20,
+          "label": "수집필요",
+          "confidence": 0
+        },
+        "market": {
+          "price": null,
+          "changePct": null,
+          "volume": null,
+          "marketCap": null,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null,
+          "rank": null,
+          "source": {
+            "market": null,
+            "etfRanking": null
+          }
+        },
+        "metrics": null,
+        "etf": null,
+        "dataNeeds": [
+          "NAVER_FETCH_FAILED"
+        ]
+      },
+      {
+        "code": "069500",
+        "name": "KODEX 200",
+        "category": "국내인덱스",
+        "held": false,
+        "accounts": [],
+        "decisionLabel": null,
+        "attractiveness": null,
+        "score": {
+          "overall": 20,
+          "label": "수집필요",
+          "confidence": 0
+        },
+        "market": {
+          "price": null,
+          "changePct": null,
+          "volume": null,
+          "marketCap": null,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null,
+          "rank": null,
+          "source": {
+            "market": null,
+            "etfRanking": null
+          }
+        },
+        "metrics": null,
+        "etf": null,
+        "dataNeeds": [
+          "NAVER_FETCH_FAILED"
+        ]
+      },
+      {
+        "code": "132030",
+        "name": "KODEX 골드선물(H)",
+        "category": "금",
+        "held": false,
+        "accounts": [],
+        "decisionLabel": null,
+        "attractiveness": null,
+        "score": {
+          "overall": 20,
+          "label": "수집필요",
+          "confidence": 0
+        },
+        "market": {
+          "price": 26710,
+          "changePct": -0.07,
+          "volume": 38000,
+          "marketCap": null,
+          "nav": 26715.18,
+          "navGapPct": -0.019,
+          "navChangePct": null,
+          "rank": null,
+          "source": {
+            "market": "naver",
+            "etfRanking": null
+          }
+        },
+        "metrics": null,
+        "etf": null,
+        "dataNeeds": [
+          "NAVER_FETCH_FAILED"
+        ]
+      },
+      {
+        "code": "133690",
+        "name": "TIGER 미국나스닥100",
+        "category": "나스닥100",
+        "held": false,
+        "accounts": [],
+        "decisionLabel": null,
+        "attractiveness": null,
+        "score": {
+          "overall": 20,
+          "label": "수집필요",
+          "confidence": 0
+        },
+        "market": {
+          "price": 185680,
+          "changePct": 0.87,
+          "volume": 200131,
+          "marketCap": null,
+          "nav": 185218.17,
+          "navGapPct": 0.249,
+          "navChangePct": null,
+          "rank": null,
+          "source": {
+            "market": "naver",
+            "etfRanking": null
+          }
+        },
+        "metrics": null,
+        "etf": null,
+        "dataNeeds": [
+          "NAVER_FETCH_FAILED"
+        ]
+      },
+      {
+        "code": "251350",
+        "name": "KODEX MSCI선진국",
+        "category": "기타",
+        "held": false,
+        "accounts": [],
+        "decisionLabel": null,
+        "attractiveness": null,
+        "score": {
+          "overall": 20,
+          "label": "수집필요",
+          "confidence": 0
+        },
+        "market": {
+          "price": null,
+          "changePct": null,
+          "volume": null,
+          "marketCap": null,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null,
+          "rank": null,
+          "source": {
+            "market": null,
+            "etfRanking": null
+          }
+        },
+        "metrics": null,
+        "etf": null,
+        "dataNeeds": [
+          "NAVER_FETCH_FAILED"
+        ]
+      },
+      {
+        "code": "2921050",
+        "name": "TIGER 코리아TOP10",
+        "category": "국내대형주",
+        "held": false,
+        "accounts": [],
+        "decisionLabel": null,
+        "attractiveness": null,
+        "score": {
+          "overall": 20,
+          "label": "수집필요",
+          "confidence": 0
+        },
+        "market": {
+          "price": null,
+          "changePct": null,
+          "volume": null,
+          "marketCap": null,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null,
+          "rank": null,
+          "source": {
+            "market": null,
+            "etfRanking": null
+          }
+        },
+        "metrics": null,
+        "etf": null,
+        "dataNeeds": [
+          "NAVER_CODE_UNSUPPORTED"
+        ]
+      },
+      {
+        "code": "396500",
+        "name": "TIGER 반도체TOP10",
+        "category": "기타",
+        "held": false,
+        "accounts": [],
+        "decisionLabel": null,
+        "attractiveness": null,
+        "score": {
+          "overall": 20,
+          "label": "수집필요",
+          "confidence": 0
+        },
+        "market": {
+          "price": null,
+          "changePct": null,
+          "volume": null,
+          "marketCap": null,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null,
+          "rank": null,
+          "source": {
+            "market": null,
+            "etfRanking": null
+          }
+        },
+        "metrics": null,
+        "etf": null,
+        "dataNeeds": [
+          "NAVER_FETCH_FAILED"
+        ]
+      },
+      {
+        "code": "423160",
+        "name": "KODEX KOFR금리액티브",
+        "category": "현금파킹",
+        "held": false,
+        "accounts": [],
+        "decisionLabel": null,
+        "attractiveness": null,
+        "score": {
+          "overall": 20,
+          "label": "수집필요",
+          "confidence": 0
+        },
+        "market": {
+          "price": 110717,
+          "changePct": 0.02,
+          "volume": 80621,
+          "marketCap": null,
+          "nav": 110689.69,
+          "navGapPct": 0.025,
+          "navChangePct": null,
+          "rank": null,
+          "source": {
+            "market": "naver",
+            "etfRanking": null
+          }
+        },
+        "metrics": null,
+        "etf": null,
+        "dataNeeds": [
+          "NAVER_FETCH_FAILED"
+        ]
+      },
+      {
+        "code": "434730",
+        "name": "HANARO 원자력iSelect",
+        "category": "원자력",
+        "held": false,
+        "accounts": [],
+        "decisionLabel": null,
+        "attractiveness": null,
+        "score": {
+          "overall": 20,
+          "label": "수집필요",
+          "confidence": 0
+        },
+        "market": {
+          "price": 93095,
+          "changePct": -2.91,
+          "volume": 574835,
+          "marketCap": null,
+          "nav": 93025.82,
+          "navGapPct": 0.074,
+          "navChangePct": null,
+          "rank": null,
+          "source": {
+            "market": "naver",
+            "etfRanking": null
+          }
+        },
+        "metrics": null,
+        "etf": null,
+        "dataNeeds": [
+          "NAVER_FETCH_FAILED"
+        ]
+      }
+    ],
+    "stocks": [
+      {
+        "code": "012450",
+        "name": "한화에어로스페이스",
+        "category": "방산",
+        "held": false,
+        "accounts": [],
+        "decisionLabel": null,
+        "attractiveness": null,
+        "score": {
+          "overall": 20,
+          "label": "수집필요",
+          "confidence": 0
+        },
+        "market": {
+          "price": null,
+          "changePct": null,
+          "volume": null,
+          "marketCap": null,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null,
+          "rank": null,
+          "source": {
+            "market": null,
+            "etfRanking": null
+          }
+        },
+        "metrics": null,
+        "etf": null,
+        "dataNeeds": [
+          "NAVER_FETCH_FAILED"
+        ]
+      },
+      {
+        "code": "064350",
+        "name": "현대로템",
+        "category": "방산",
+        "held": false,
+        "accounts": [],
+        "decisionLabel": null,
+        "attractiveness": null,
+        "score": {
+          "overall": 20,
+          "label": "수집필요",
+          "confidence": 0
+        },
+        "market": {
+          "price": 225000,
+          "changePct": -4.26,
+          "volume": 596816,
+          "marketCap": 24557015925000,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null,
+          "rank": null,
+          "source": {
+            "market": "naver",
+            "etfRanking": null
+          }
+        },
+        "metrics": null,
+        "etf": null,
+        "dataNeeds": [
+          "NAVER_FETCH_FAILED"
+        ]
+      },
+      {
+        "code": "000660",
+        "name": "SK하이닉스",
+        "category": "반도체",
+        "held": false,
+        "accounts": [],
+        "decisionLabel": null,
+        "attractiveness": null,
+        "score": {
+          "overall": 20,
+          "label": "수집필요",
+          "confidence": 0
+        },
+        "market": {
+          "price": 1651000,
+          "changePct": -0.18,
+          "volume": 2301252,
+          "marketCap": 1176671604615000,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null,
+          "rank": null,
+          "source": {
+            "market": "naver",
+            "etfRanking": null
+          }
+        },
+        "metrics": null,
+        "etf": null,
+        "dataNeeds": [
+          "NAVER_FETCH_FAILED"
+        ]
+      },
+      {
+        "code": "005930",
+        "name": "삼성전자",
+        "category": "반도체",
+        "held": false,
+        "accounts": [],
+        "decisionLabel": null,
+        "attractiveness": null,
+        "score": {
+          "overall": 20,
+          "label": "수집필요",
+          "confidence": 0
+        },
+        "market": {
+          "price": 267000,
+          "changePct": -1.66,
+          "volume": 15333706,
+          "marketCap": 1560956388336000,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null,
+          "rank": null,
+          "source": {
+            "market": "naver",
+            "etfRanking": null
+          }
+        },
+        "metrics": null,
+        "etf": null,
+        "dataNeeds": [
+          "NAVER_FETCH_FAILED"
+        ]
+      },
+      {
+        "code": "007660",
+        "name": "이수페타시스",
+        "category": "반도체/PCB",
+        "held": false,
+        "accounts": [],
+        "decisionLabel": null,
+        "attractiveness": null,
+        "score": {
+          "overall": 20,
+          "label": "수집필요",
+          "confidence": 0
+        },
+        "market": {
+          "price": null,
+          "changePct": null,
+          "volume": null,
+          "marketCap": null,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null,
+          "rank": null,
+          "source": {
+            "market": null,
+            "etfRanking": null
+          }
+        },
+        "metrics": null,
+        "etf": null,
+        "dataNeeds": [
+          "NAVER_FETCH_FAILED"
+        ]
+      },
+      {
+        "code": "010120",
+        "name": "LS일렉트릭",
+        "category": "전력기기",
+        "held": false,
+        "accounts": [],
+        "decisionLabel": null,
+        "attractiveness": null,
+        "score": {
+          "overall": 20,
+          "label": "수집필요",
+          "confidence": 0
+        },
+        "market": {
+          "price": 315000,
+          "changePct": -1.1,
+          "volume": 859948,
+          "marketCap": 47250000000000,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null,
+          "rank": null,
+          "source": {
+            "market": "naver",
+            "etfRanking": null
+          }
+        },
+        "metrics": null,
+        "etf": null,
+        "dataNeeds": [
+          "NAVER_FETCH_FAILED"
+        ]
+      },
+      {
+        "code": "034020",
+        "name": "두산에너빌리티",
+        "category": "원자력",
+        "held": false,
+        "accounts": [],
+        "decisionLabel": null,
+        "attractiveness": null,
+        "score": {
+          "overall": 20,
+          "label": "수집필요",
+          "confidence": 0
+        },
+        "market": {
+          "price": null,
+          "changePct": null,
+          "volume": null,
+          "marketCap": null,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null,
+          "rank": null,
+          "source": {
+            "market": null,
+            "etfRanking": null
+          }
+        },
+        "metrics": null,
+        "etf": null,
+        "dataNeeds": [
+          "NAVER_FETCH_FAILED"
+        ]
+      },
+      {
+        "code": "047810",
+        "name": "한국항공우주",
+        "category": "방산",
+        "held": false,
+        "accounts": [],
+        "decisionLabel": null,
+        "attractiveness": null,
+        "score": {
+          "overall": 20,
+          "label": "수집필요",
+          "confidence": 0
+        },
+        "market": {
+          "price": 168200,
+          "changePct": -2.1,
+          "volume": 409234,
+          "marketCap": 16395312997400,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null,
+          "rank": null,
+          "source": {
+            "market": "naver",
+            "etfRanking": null
+          }
+        },
+        "metrics": null,
+        "etf": null,
+        "dataNeeds": [
+          "NAVER_FETCH_FAILED"
+        ]
+      },
+      {
+        "code": "267260",
+        "name": "HD현대일렉트릭",
+        "category": "전력기기",
+        "held": false,
+        "accounts": [],
+        "decisionLabel": null,
+        "attractiveness": null,
+        "score": {
+          "overall": 20,
+          "label": "수집필요",
+          "confidence": 0
+        },
+        "market": {
+          "price": 1396000,
+          "changePct": -1.69,
+          "volume": 85379,
+          "marketCap": 50321800460000,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null,
+          "rank": null,
+          "source": {
+            "market": "naver",
+            "etfRanking": null
+          }
+        },
+        "metrics": null,
+        "etf": null,
+        "dataNeeds": [
+          "NAVER_FETCH_FAILED"
+        ]
+      },
+      {
+        "code": "298040",
+        "name": "효성중공업",
+        "category": "전력기기",
+        "held": false,
+        "accounts": [],
+        "decisionLabel": null,
+        "attractiveness": null,
+        "score": {
+          "overall": 20,
+          "label": "수집필요",
+          "confidence": 0
+        },
+        "market": {
+          "price": 4444000,
+          "changePct": -3.41,
+          "volume": 28435,
+          "marketCap": 41438291312000,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null,
+          "rank": null,
+          "source": {
+            "market": "naver",
+            "etfRanking": null
+          }
+        },
+        "metrics": null,
+        "etf": null,
+        "dataNeeds": [
+          "NAVER_FETCH_FAILED"
+        ]
+      },
+      {
+        "code": "329180",
+        "name": "HD현대중공업",
+        "category": "조선",
+        "held": false,
+        "accounts": [],
+        "decisionLabel": null,
+        "attractiveness": null,
+        "score": {
+          "overall": 20,
+          "label": "수집필요",
+          "confidence": 0
+        },
+        "market": {
+          "price": null,
+          "changePct": null,
+          "volume": null,
+          "marketCap": null,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null,
+          "rank": null,
+          "source": {
+            "market": null,
+            "etfRanking": null
+          }
+        },
+        "metrics": null,
+        "etf": null,
+        "dataNeeds": [
+          "NAVER_FETCH_FAILED"
+        ]
+      }
+    ]
+  },
+  "holdings": [],
+  "attractivenessRanking": [],
+  "themes": [],
+  "conflicts": [],
+  "evidenceIndex": {},
+  "artifacts": {
+    "dashboardView": "data/dashboard/2026-05-11-dashboard-view.json",
+    "finalHtml": "reports/daily/2026-05-11-final.html",
+    "executionPlanTable": "reports/daily/2026-05-11-stage4-execution-plan-table.md",
+    "sourceSupplement": "reports/daily/2026-05-11-source-consensus-supplement.md",
+    "fundamentals": "data/fundamentals/2026-05-11/security-fundamentals.json",
+    "stockeasySnapshot": "data/external/stockeasy/2026-05-11/snapshot.json",
+    "qwenCoach": "data/analysis-state/2026-05-11/qwen-cockpit-coach.json",
+    "accountStrategy": "data/analysis-state/2026-05-11/qwen-account-strategy.json",
+    "stockPulse": "data/stock-pulse/2026-05-11/stock-pulse.json",
+    "rotationWatch": "data/analysis-state/2026-05-11/rotation-watch.json"
+  }
+}

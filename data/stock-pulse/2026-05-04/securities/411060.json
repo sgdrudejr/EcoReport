@@ -1,0 +1,116 @@
+{
+  "id": "stock-pulse:411060",
+  "code": "411060",
+  "name": "ACE KRX금현물",
+  "category": "금",
+  "type": "etf",
+  "verdict": "손절감시",
+  "urgency": "중간",
+  "pulseScore": 33,
+  "oneLine": "손절감시: 손실 확대 원인을 확인하고 20일선 회복 실패 시 감량 기준을 먼저 봅니다.",
+  "doNow": "손실 확대 원인을 확인하고 20일선 회복 실패 시 감량 기준을 먼저 봅니다.",
+  "doNot": "손절 기준 없이 물타기 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "marketValue": 2096220,
+      "profitRate": -2.18,
+      "decision": "외부관찰"
+    }
+  ],
+  "position": {
+    "marketValue": 2096220,
+    "purchaseValue": 0,
+    "profitLoss": -46845,
+    "profitRate": -2.18,
+    "quantity": 69
+  },
+  "market": {
+    "price": 30255,
+    "previousClose": 30340,
+    "changePct": -0.28,
+    "volume": 1846545,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 23,
+    "signal": "REDUCE",
+    "reason": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 둔화",
+    "rsi": 35.76,
+    "ma20": 31315.75,
+    "ma60": 32247.5833,
+    "recentHighDistancePct": -5.98,
+    "rsVsBenchmark": -48.48,
+    "alerts": []
+  },
+  "fundamental": {
+    "score": 76,
+    "label": "수급강함",
+    "metrics": null,
+    "etf": {
+      "rank": null,
+      "navGapPct": null,
+      "concentrationTop5Pct": 0,
+      "topHoldings": []
+    }
+  },
+  "alerts": [
+    {
+      "severity": "medium",
+      "label": "기술약화",
+      "detail": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 둔화",
+      "tone": "amber"
+    },
+    {
+      "severity": "medium",
+      "label": "근거보강",
+      "detail": "NO_CLEAN_REPORT_LINK",
+      "tone": "amber"
+    },
+    {
+      "severity": "low",
+      "label": "AI언급",
+      "detail": "손절감시: 수익률 -2.2% / 매력 41 점 / 근거부족",
+      "tone": "blue"
+    }
+  ],
+  "quickFactors": [
+    "등락 -0.28%",
+    "RSI 35.76",
+    "거래량 0배",
+    "손익 -2.18%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [
+    {
+      "bucket": "todayDo",
+      "action": "손절감시",
+      "reason": "수익률 -2.2% / 매력 41 점 / 근거부족",
+      "trigger": "실질금리 상승 지속 시 손절 기준 확인"
+    }
+  ],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "ETF_COMPOSITION_MISSING",
+    "ETF_NAV_MISSING"
+  ],
+  "riskFlags": [
+    "NO_CLEAN_REPORT_LINK"
+  ],
+  "sourceSupport": {
+    "reports": 0.464,
+    "stockeasy": 0,
+    "marketvoice": 0,
+    "technical": 0.41,
+    "kisEtf": 0,
+    "news": 0,
+    "macro": 0,
+    "llm": 0
+  }
+}

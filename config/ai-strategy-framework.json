@@ -1,0 +1,315 @@
+{
+  "version": "2026-05-ai-stack-v1",
+  "description": "AI theme strategy lenses used by EcoReport Stage 4.5 decision cards.",
+  "thresholds": {
+    "overheatRsi": 75,
+    "watchAddMinScore": 47,
+    "watchRiskMaxScore": 44,
+    "dayChangeOverheatPct": 0.05,
+    "shortRunOverheatPct": 0.12,
+    "profitProtectFromEntryPct": 0.2,
+    "drawdownTrimFromRecentHighPct": -0.12
+  },
+  "decisionBuckets": {
+    "BUY_NOW": "즉시매수",
+    "CONDITIONAL_BUY": "조건매수",
+    "BLOCKED_BUY": "매수제외",
+    "HOLD_KEEP": "보유유지",
+    "HOLD_PROTECT": "수익보호",
+    "TRIM_REVIEW": "감량검토",
+    "WATCH_ADD": "추가관찰",
+    "WATCH_OFF_REPORT": "리포트밖",
+    "WATCH_TRIM": "감량관찰",
+    "WATCH_RISK": "위험관찰",
+    "WATCH_DATA": "자료보강"
+  },
+  "offReportHoldingPolicy": {
+    "description": "Rules for holdings that exist in the account but have no clean direct report link today. These cards should explain portfolio role, keep/add/trim rules, and the next evidence to collect instead of answering only with 'data gap'.",
+    "default": {
+      "role": "분류 미확정 보유 자산",
+      "keepRule": "종목 코드, 카테고리, 가격 데이터가 보강될 때까지 신규 매수보다 보유 목적 확인을 우선합니다.",
+      "addRule": "직접 리포트, 가격 추세, 계좌 목표 비중이 같은 방향으로 확인될 때만 소액 분할 추가를 검토합니다.",
+      "trimRule": "역할이 설명되지 않거나 손절/비중/기회비용 조건이 겹치면 감량 후보로 올립니다.",
+      "invalidation": ["계좌 안에서 맡은 역할을 설명할 수 없을 때", "동일 클러스터 비중이 목표보다 과도할 때"],
+      "reviewChecklist": ["종목명/코드 정규화", "직접 리포트 또는 동종 산업 리포트", "현재가, 평균단가, RSI/이평선"]
+    },
+    "categoryPlaybooks": {
+      "배당/커버드콜": {
+        "role": "현금흐름과 변동성 완충",
+        "keepRule": "오늘 리포트 공백이 있어도 계좌 변동성 완충과 인컴 역할이 유지되면 보유 근거가 남습니다.",
+        "addRule": "분배금/배당 지속성, 기초지수 과열 완화, 계좌 방어자산 목표 비중 부족이 동시에 맞을 때만 추가합니다.",
+        "trimRule": "위험자산 신호가 개선되고 방어/인컴 비중이 목표를 넘으면 일부 감량해 성장 자산으로 이동합니다.",
+        "invalidation": ["분배금 재원이 약해지거나 NAV 훼손이 반복될 때", "커버드콜 비용이 상승장 참여를 과하게 제한할 때"],
+        "reviewChecklist": ["분배금 추이", "기초지수 상승 참여율", "계좌 내 방어자산 비중"]
+      },
+      "금": {
+        "role": "위험 이벤트와 원화/달러 변동성 헤지",
+        "keepRule": "안전자산 역할이므로 리포트에 없다는 이유만으로 감량하지 않고 포트폴리오 변동성 완충 여부를 봅니다.",
+        "addRule": "실질금리 하락, 달러 약세, 지정학 리스크 확대, 계좌 목표 비중 부족이 겹칠 때만 보강합니다.",
+        "trimRule": "위험자산 회복과 실질금리 상승이 같이 나오고 목표 비중을 넘으면 일부 이익 실현을 검토합니다.",
+        "invalidation": ["실질금리 상승이 지속되고 안전자산 수요가 약해질 때", "계좌 방어자산 비중이 목표를 초과할 때"],
+        "reviewChecklist": ["실질금리/달러", "금 가격 20일선", "계좌 내 헤지 비중"]
+      },
+      "국내인덱스": {
+        "role": "국내 주식 베타와 코어 익스포저",
+        "keepRule": "종목 리포트 직접 연결이 없어도 한국 주식 전체 익스포저 역할이므로 계좌의 코어 비중으로 판단합니다.",
+        "addRule": "국내 지수 추세 회복, 반도체/비반도체 확산, 목표 비중 부족이 함께 확인될 때 분할 추가합니다.",
+        "trimRule": "국내 베타가 목표를 넘거나 시장 폭이 좁아지고 하락 추세가 재개되면 감량을 검토합니다.",
+        "invalidation": ["KOSPI 상승이 소수 대형주에만 의존하고 계좌 분산 효과가 약해질 때", "국내 주식 목표 비중을 초과할 때"],
+        "reviewChecklist": ["KOSPI 20/60일선", "반도체 vs 비반도체 확산", "계좌 국내주식 비중"]
+      },
+      "S&P500": {
+        "role": "미국 대형주 코어",
+        "keepRule": "오늘 개별 리포트가 없어도 장기 코어 자산으로 보고, 계좌 목표 비중과 과열 여부로 판단합니다.",
+        "addRule": "미국 코어 비중이 부족하고 지수 과열이 완화됐을 때 정해진 분할 일정으로만 추가합니다.",
+        "trimRule": "목표 비중을 크게 넘거나 빅테크 집중/환율 리스크가 커지면 신규 매수 중단 또는 일부 감량을 검토합니다.",
+        "invalidation": ["미국 코어 비중이 목표를 초과할 때", "지수 과열과 환율 부담이 동시에 커질 때"],
+        "reviewChecklist": ["S&P500 추세", "달러/원", "미국 코어 목표 비중"]
+      },
+      "나스닥100": {
+        "role": "미국 빅테크/AI 성장 코어",
+        "keepRule": "직접 리포트가 없으면 AI CAPEX와 수익화가 실제 지수 이익으로 연결되는지를 중심으로 봅니다.",
+        "addRule": "AI CAPEX 기대가 매출/마진으로 확인되고 지수 과열이 완화될 때만 분할 추가합니다.",
+        "trimRule": "AI 소프트웨어 수익화 의심, 금리 상승, 빅테크 과집중이 겹치면 추가매수 중단 또는 감량을 검토합니다.",
+        "invalidation": ["AI CAPEX가 현금흐름 개선보다 비용 부담으로 해석될 때", "나스닥 비중이 계좌 성장자산 한도를 넘을 때"],
+        "reviewChecklist": ["빅테크 실적", "AI CAPEX-매출 전환", "나스닥 RSI/20일선"]
+      },
+      "미국인덱스": {
+        "role": "미국 주식 코어",
+        "keepRule": "종목 리포트 직접 근거보다 계좌의 장기 코어 비중과 분할매수 규칙을 우선합니다.",
+        "addRule": "목표 비중 갭이 있고 지수 과열이 완화됐을 때만 계획된 금액으로 추가합니다.",
+        "trimRule": "미국 코어 비중이 목표를 넘고 환율/밸류에이션 부담이 동시에 커지면 감량을 검토합니다.",
+        "invalidation": ["미국 코어 목표 비중을 이미 채웠을 때", "환율과 지수 과열이 동시에 불리할 때"],
+        "reviewChecklist": ["미국 지수 추세", "달러/원", "계좌 목표 비중 갭"]
+      },
+      "반도체/채권혼합": {
+        "role": "반도체 성장 노출과 채권 완충의 혼합",
+        "keepRule": "직접 리포트가 없거나 약해도 삼성전자/SK하이닉스 노출과 방어 완충을 함께 봅니다.",
+        "addRule": "HBM/메모리 신호가 유지되고 채권 완충 역할이 필요한 계좌에서만 추가합니다.",
+        "trimRule": "반도체 신호가 약해지고 채권 완충보다 기회비용이 커지면 감량을 검토합니다.",
+        "invalidation": ["HBM/메모리 모멘텀이 약해질 때", "혼합형 구조가 순수 반도체/순수 방어 자산보다 열위일 때"],
+        "reviewChecklist": ["삼성전자/SK하이닉스 추세", "HBM/DRAM 가격 신호", "채권 완충 효과"]
+      },
+      "AI반도체": {
+        "role": "AI 반도체 핵심 위성",
+        "keepRule": "리포트 공백 시 HBM/패키징/메모리 병목이 유지되는지를 중심으로 보유 이유를 재확인합니다.",
+        "addRule": "직접 리포트 또는 업황 지표가 개선되고 가격 과열이 꺼질 때만 조정 매수합니다.",
+        "trimRule": "같은 반도체 클러스터 비중이 높거나 HBM 기대가 가격에 과반영되면 일부 감량을 검토합니다.",
+        "invalidation": ["HBM 가격/계약 물량이 둔화될 때", "반도체 클러스터 집중도가 목표를 넘을 때"],
+        "reviewChecklist": ["HBM/메모리 리포트", "반도체 ETF RSI", "계좌 반도체 클러스터 비중"]
+      },
+      "반도체": {
+        "role": "국내 반도체 사이클 위성",
+        "keepRule": "개별 리포트가 없을 때는 업황, 수출, HBM/전공정 투자 사이클로 판단합니다.",
+        "addRule": "업황 개선과 가격 조정이 같이 나올 때만 추가하고, 같은 클러스터 과집중은 피합니다.",
+        "trimRule": "반도체 비중이 높고 업황 지표가 둔화되면 신규 매수 중단 또는 일부 감량을 검토합니다.",
+        "invalidation": ["메모리/장비 업황 지표가 둔화될 때", "계좌 반도체 비중이 목표를 초과할 때"],
+        "reviewChecklist": ["반도체 수출/업황", "주요 편입종목 추세", "클러스터 비중"]
+      },
+      "신재생에너지": {
+        "role": "정책/전력전환 위성",
+        "keepRule": "오늘 리포트가 없으면 정책 모멘텀과 전력망 투자 연결성을 중심으로 보유 이유를 확인합니다.",
+        "addRule": "정책/수주/전력망 투자 근거가 새로 확인되고 가격 추세가 회복될 때만 추가합니다.",
+        "trimRule": "정책 지연, 금리 부담, 실적 부진이 겹치면 위성 비중을 줄입니다.",
+        "invalidation": ["정책 지원이나 프로젝트 일정이 지연될 때", "신재생 클러스터가 목표보다 커질 때"],
+        "reviewChecklist": ["정책 뉴스", "전력망 투자 연결성", "ETF 가격 추세"]
+      },
+      "구리": {
+        "role": "전기화/AI 전력망 원자재 위성",
+        "keepRule": "구리는 직접 리포트보다 AI 전력망, 전기화, 중국 수요, 달러 방향을 함께 봅니다.",
+        "addRule": "구리 가격 추세와 전력망/전기화 수요 근거가 동시에 개선될 때만 추가합니다.",
+        "trimRule": "중국 수요 둔화, 달러 강세, 원자재 과열이 겹치면 감량을 검토합니다.",
+        "invalidation": ["구리 수요 전망이 약해질 때", "원자재 위성 비중이 목표를 초과할 때"],
+        "reviewChecklist": ["구리 선물 추세", "중국 제조/전력망 수요", "달러 방향"]
+      },
+      "원자력": {
+        "role": "AI 전력/전력공급 위성",
+        "keepRule": "리포트 공백 시 전력 수요, 정책, 수주 가시성으로 보유 이유를 확인합니다.",
+        "addRule": "원전/SMR/전력수요 근거가 새로 확인되고 가격 과열이 완화될 때만 추가합니다.",
+        "trimRule": "정책 지연, 수주 공백, 가격 과열이 겹치면 일부 감량을 검토합니다.",
+        "invalidation": ["원전 정책 또는 수주 일정이 지연될 때", "AI 전력 thesis와 직접 연결되지 않을 때"],
+        "reviewChecklist": ["원전 정책/수주", "전력수요 리포트", "가격 과열 여부"]
+      },
+      "방산": {
+        "role": "지정학/수주 모멘텀 위성",
+        "keepRule": "리포트에 없더라도 수주잔고, 국방예산, 지정학 리스크가 유지되면 보유 논리가 남습니다.",
+        "addRule": "신규 수주/정책 이벤트가 확인되고 방산 클러스터 비중이 한도 안일 때만 추가합니다.",
+        "trimRule": "수주 공백, 예산 지연, 방산 클러스터 과집중, 급등 과열이 겹치면 감량을 검토합니다.",
+        "invalidation": ["수주 모멘텀이 약해질 때", "방산 클러스터가 목표 비중을 넘을 때"],
+        "reviewChecklist": ["수주/국방예산", "동일 클러스터 비중", "가격 과열 여부"]
+      },
+      "조선": {
+        "role": "조선 슈퍼사이클/방산 해양 위성",
+        "keepRule": "리포트 공백 시 선가, 수주잔고, 환율, 방산 해양 모멘텀으로 보유 근거를 확인합니다.",
+        "addRule": "수주/선가/실적 가시성이 강화되고 가격 과열이 완화될 때만 추가합니다.",
+        "trimRule": "수주 피크아웃, 원가 부담, 급등 과열이 겹치면 일부 감량을 검토합니다.",
+        "invalidation": ["선가 또는 수주 모멘텀이 둔화될 때", "조선/방산 위성 비중이 목표를 넘을 때"],
+        "reviewChecklist": ["선가/수주잔고", "환율/원가", "가격 과열 여부"]
+      }
+    }
+  },
+  "aiStack": [
+    {
+      "key": "AI_POWER_GRID",
+      "label": "AI 전력망/전력기기",
+      "categories": ["전력기기", "전력 인프라", "원자력", "신재생에너지"],
+      "keywords": ["ai 전력", "전력", "전력기기", "변압", "송전", "배전", "전력망", "grid", "power", "데이터센터 전력", "전력 인프라"],
+      "invalidation": [
+        "북미/글로벌 데이터센터 전력 프로젝트 지연 또는 취소가 확인될 때",
+        "변압기/전력기기 신규수주와 리드타임 개선 논리가 꺾일 때",
+        "단기 RSI 과열이 풀리기 전에 추격매수 유인이 커질 때"
+      ],
+      "addCondition": "AI 전력 thesis는 유지하되 RSI 65 이하, 20일선 근처, 또는 당일 급등 진정 후 분할 접근"
+    },
+    {
+      "key": "DATA_CENTER_INFRA",
+      "label": "데이터센터 인프라",
+      "categories": ["데이터센터", "미국인덱스", "나스닥100"],
+      "keywords": ["데이터센터", "data center", "hyperscaler", "capex", "냉각", "cooling", "ups", "서버", "accelerated server"],
+      "invalidation": [
+        "하이퍼스케일러 CAPEX 증가율은 높지만 cloud revenue/backlog 전환이 둔화될 때",
+        "전력/인허가 병목으로 프로젝트가 지연되어 매출 인식이 밀릴 때"
+      ],
+      "addCondition": "CAPEX가 매출/백로그/현금흐름으로 전환되는 증거가 유지될 때만 비중 확대"
+    },
+    {
+      "key": "HBM_MEMORY",
+      "label": "HBM/메모리 병목",
+      "categories": ["AI반도체", "반도체", "반도체/PCB", "반도체/채권혼합"],
+      "keywords": ["hbm", "hbm3", "hbm4", "메모리", "dram", "sk하이닉스", "삼성전자", "마이크론", "memory"],
+      "invalidation": [
+        "HBM 가격 또는 계약 물량이 예상보다 빨리 둔화될 때",
+        "범용 메모리 공급 부족이 수요 파괴 또는 고객 재고 조정으로 바뀔 때"
+      ],
+      "addCondition": "HBM/DRAM 계약가, 고객 예약 물량, 패키징 병목이 유지될 때 조정 매수"
+    },
+    {
+      "key": "ADVANCED_PACKAGING",
+      "label": "첨단 패키징/장비",
+      "categories": ["AI반도체", "반도체/PCB"],
+      "keywords": ["패키징", "advanced packaging", "cowos", "gaa", "euv", "eda", "소부장", "장비", "packaging"],
+      "invalidation": [
+        "패키징/EDA/공정 승인 병목이 완화되어 가격 결정력이 낮아질 때",
+        "수출통제 또는 고객 인증 지연으로 출하가 밀릴 때"
+      ],
+      "addCondition": "HBM과 로직을 잇는 패키징 리드타임/수주가 유지되는 종목 우선"
+    },
+    {
+      "key": "AI_SOFTWARE_MONETIZATION",
+      "label": "AI 소프트웨어 수익화",
+      "categories": ["소프트웨어", "나스닥100", "미국인덱스"],
+      "keywords": ["software", "saas", "소프트웨어", "ai 매출", "arr", "roi", "monetization", "사용량 과금", "seat"],
+      "invalidation": [
+        "AI 기능이 ARR/NRR/마진 개선으로 연결되지 않고 비용만 늘어날 때",
+        "좌석형 SaaS 모델이 headcount 축소와 AI 대체 압력에 노출될 때"
+      ],
+      "addCondition": "AI 언급보다 실제 AI 매출, 고객 유지율, 사용량 과금, 마진 개선이 확인될 때만 확대"
+    },
+    {
+      "key": "DEFENSE_GEOPOLITICS",
+      "label": "방산/지정학",
+      "categories": ["방산", "조선", "원자력"],
+      "keywords": ["방산", "국방", "방위", "무기", "군수", "지정학", "nato", "수주", "안보"],
+      "invalidation": [
+        "수주 모멘텀 또는 정책 예산이 약해질 때",
+        "동일 방산 클러스터 비중이 전략 한도를 넘어설 때"
+      ],
+      "addCondition": "수주/정책 모멘텀은 유지하되 동일 클러스터 과집중을 피해서 추가"
+    },
+    {
+      "key": "ENERGY_OIL",
+      "label": "에너지/유가",
+      "categories": ["원유", "에너지", "구리", "금"],
+      "keywords": ["유가", "원유", "wti", "중동", "호르무즈", "에너지", "가스", "전기화"],
+      "invalidation": [
+        "유가 상승이 수요 둔화와 마진 압박으로 바뀔 때",
+        "지정학 프리미엄이 빠르게 해소될 때"
+      ],
+      "addCondition": "에너지 가격 상승이 실적 또는 헤지 역할로 연결될 때만 보강"
+    },
+    {
+      "key": "CORE_INDEX",
+      "label": "코어 인덱스",
+      "categories": ["S&P500", "나스닥100", "미국인덱스", "국내인덱스", "국내대형주"],
+      "keywords": ["s&p500", "나스닥", "인덱스", "코어", "미국인덱스", "국내인덱스"],
+      "invalidation": [
+        "코어 지수가 과열이고 현금 투입 일정이 앞당겨졌을 때",
+        "목표 비중 대비 이미 충분히 채워졌을 때"
+      ],
+      "addCondition": "목표 비중 갭과 분할매수 일정이 함께 맞을 때 보강"
+    },
+    {
+      "key": "SAFETY_HEDGE",
+      "label": "안전자산/헤지",
+      "categories": ["금", "현금파킹", "단기채", "채권", "배당/커버드콜"],
+      "keywords": ["금", "현금", "채권", "커버드콜", "배당", "hedge", "safe", "방어"],
+      "invalidation": [
+        "방어자산이 목표 비중을 초과하고 위험자산 신호가 개선될 때",
+        "인컴/방어 역할보다 기회비용이 커질 때"
+      ],
+      "addCondition": "포트폴리오 변동성 완충 또는 계좌별 목표 비중 갭이 있을 때만 추가"
+    }
+  ],
+  "sourceReferences": [
+    {
+      "key": "IEA_ENERGY_AI_2025",
+      "label": "IEA Energy and AI",
+      "url": "https://www.iea.org/reports/energy-and-ai/energy-demand-from-ai",
+      "use": "데이터센터 전력 수요, 전력 병목, accelerated server 전력 소비"
+    },
+    {
+      "key": "IEA_KEY_QUESTIONS_2026",
+      "label": "IEA Key Questions on Energy and AI",
+      "url": "https://www.iea.org/reports/key-questions-on-energy-and-ai",
+      "use": "AI와 에너지 섹터의 정책/전력 수요 프레임"
+    },
+    {
+      "key": "UPTIME_GIANT_DC_2026",
+      "label": "Uptime Institute Giant Data Center Analysis 2026",
+      "url": "https://intelligence.uptimeinstitute.com/sites/default/files/2026-01/UI%20Field%20report%20194_Giant%20data%20center%20power%20plans%20reach%20extreme%20levels.pdf",
+      "use": "100MW+ 데이터센터 계획, 지연/취소/전력 확보 리스크"
+    },
+    {
+      "key": "DELOITTE_SEMI_2026",
+      "label": "Deloitte 2026 Semiconductor Industry Outlook",
+      "url": "https://www.deloitte.com/us/en/insights/industry/technology/technology-media-telecom-outlooks/semiconductor-industry-outlook.html",
+      "use": "HBM, DDR, 패키징 병목과 공급망 리스크"
+    },
+    {
+      "key": "KPMG_SEMI_2026",
+      "label": "KPMG Global Semiconductor Industry Outlook 2026",
+      "url": "https://kpmg.com/us/en/articles/2026/global-semiconductor-industry-outlook-2026.html",
+      "use": "반도체 업계 성장 전망과 운영/지정학 리스크"
+    },
+    {
+      "key": "ALLIANZ_AI_CAPEX_2026",
+      "label": "Allianz AI Capex Cycle",
+      "url": "https://www.allianz.com/en/economic_research/insights/publications/specials_fmo/260325_ai-capex-cycle.html",
+      "use": "CAPEX-수익화, 현금흐름 가시성, 소프트웨어 리스크"
+    },
+    {
+      "key": "DCD_MOODYS_HYPERSCALER_CAPEX_2026",
+      "label": "DCD/Moody's Hyperscaler Capex",
+      "url": "https://www.datacenterdynamics.com/en/news/us-hyperscaler-capex-to-top-700bn-in-2026-investors-fear-overbuild-and-weak-returns-moodys/",
+      "use": "하이퍼스케일러 CAPEX, overbuild/weak return/credit risk"
+    },
+    {
+      "key": "SPGLOBAL_AI_FUNDING_2026",
+      "label": "S&P Global Generative AI Funding 2026",
+      "url": "https://www.spglobal.com/market-intelligence/en/news-insights/research/2026/02/generative-ai-funding-a-sober-retrospective-and-the-trends-shaping-2026",
+      "use": "AI 인프라 우위, 소프트웨어 수익화 검증, 선별 장세"
+    },
+    {
+      "key": "MT_POWER_ETF_2026",
+      "label": "머니투데이 AI 전력기기 ETF",
+      "url": "https://www.mt.co.kr/stock/2026/03/10/2026030920014015353",
+      "use": "국내 전력기기 ETF 구성과 변압기/전력망 수혜"
+    },
+    {
+      "key": "FN_ETF_SQUARE_20260503",
+      "label": "파이낸셜뉴스 ETF 스퀘어 2026-05-03",
+      "url": "https://www.fnnews.com/news/202605031839003078",
+      "use": "KODEX AI전력핵심설비 등 단기 급등/차익실현 경고"
+    }
+  ]
+}

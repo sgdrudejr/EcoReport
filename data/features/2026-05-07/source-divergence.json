@@ -1,0 +1,519 @@
+{
+  "date": "2026-05-07",
+  "generatedAt": "2026-05-08T07:01:45.683Z",
+  "divergence": {
+    "sourceConflicts": [
+      {
+        "entityType": "security",
+        "entityId": "0162Z0",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "reports",
+          "technical"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "161510",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "reports",
+          "technical"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "475300",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "reports",
+          "technical"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "385510",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "reports",
+          "technical"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "487240",
+        "directions": [
+          "positive",
+          "neutral",
+          "negative"
+        ],
+        "sources": [
+          "reports",
+          "technical",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "360750",
+        "directions": [
+          "positive",
+          "neutral",
+          "negative"
+        ],
+        "sources": [
+          "reports",
+          "technical",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "379810",
+        "directions": [
+          "positive",
+          "neutral",
+          "negative"
+        ],
+        "sources": [
+          "reports",
+          "technical",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "411060",
+        "directions": [
+          "positive",
+          "neutral",
+          "negative"
+        ],
+        "sources": [
+          "reports",
+          "technical",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "138910",
+        "directions": [
+          "positive",
+          "neutral",
+          "negative"
+        ],
+        "sources": [
+          "reports",
+          "technical",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "469150",
+        "directions": [
+          "positive",
+          "negative",
+          "neutral"
+        ],
+        "sources": [
+          "reports",
+          "technical"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "449450",
+        "directions": [
+          "positive",
+          "neutral",
+          "negative"
+        ],
+        "sources": [
+          "reports",
+          "technical"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "458760",
+        "directions": [
+          "negative",
+          "positive"
+        ],
+        "sources": [
+          "technical",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "AI 인프라",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "reports",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "전력 인프라",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "reports",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "방산",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "reports",
+          "stockeasy",
+          "technical"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "금/원자재",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "reports"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "금리/매크로",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "reports"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "원자력",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "reports",
+          "technical"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "HBM/메모리",
+        "directions": [
+          "positive",
+          "negative",
+          "neutral"
+        ],
+        "sources": [
+          "reports"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "금융",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "stockeasy",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "반도체",
+        "directions": [
+          "positive",
+          "negative",
+          "neutral"
+        ],
+        "sources": [
+          "stockeasy",
+          "technical",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "인프라",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "stockeasy",
+          "technical",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "기계",
+        "directions": [
+          "positive",
+          "negative"
+        ],
+        "sources": [
+          "stockeasy",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "전력/에너지",
+        "directions": [
+          "positive",
+          "negative"
+        ],
+        "sources": [
+          "stockeasy",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "화학/소재",
+        "directions": [
+          "neutral",
+          "negative",
+          "positive"
+        ],
+        "sources": [
+          "stockeasy"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "IT/플랫폼",
+        "directions": [
+          "positive",
+          "negative"
+        ],
+        "sources": [
+          "stockeasy"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "금",
+        "directions": [
+          "neutral",
+          "negative",
+          "positive"
+        ],
+        "sources": [
+          "technical",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "gold",
+        "directions": [
+          "neutral",
+          "negative",
+          "positive"
+        ],
+        "sources": [
+          "technical",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "안전자산",
+        "directions": [
+          "neutral",
+          "negative",
+          "positive"
+        ],
+        "sources": [
+          "technical",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "배당/커버드콜",
+        "directions": [
+          "positive",
+          "negative"
+        ],
+        "sources": [
+          "technical"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "배당",
+        "directions": [
+          "positive",
+          "negative"
+        ],
+        "sources": [
+          "technical",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "금현물",
+        "directions": [
+          "negative",
+          "positive"
+        ],
+        "sources": [
+          "technical",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "krx금현물",
+        "directions": [
+          "negative",
+          "positive"
+        ],
+        "sources": [
+          "technical",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "커버드콜",
+        "directions": [
+          "negative",
+          "positive"
+        ],
+        "sources": [
+          "technical",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "다우",
+        "directions": [
+          "negative",
+          "positive"
+        ],
+        "sources": [
+          "technical",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "프리미엄",
+        "directions": [
+          "negative",
+          "positive"
+        ],
+        "sources": [
+          "technical",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "미국배당",
+        "directions": [
+          "negative",
+          "positive"
+        ],
+        "sources": [
+          "technical",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "시황",
+        "directions": [
+          "neutral",
+          "positive",
+          "negative",
+          "mixed"
+        ],
+        "sources": [
+          "news"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "132030",
+        "directions": [
+          "neutral",
+          "positive",
+          "negative",
+          "mixed"
+        ],
+        "sources": [
+          "news"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "411060",
+        "directions": [
+          "neutral",
+          "positive",
+          "negative",
+          "mixed"
+        ],
+        "sources": [
+          "news"
+        ]
+      }
+    ],
+    "policyConflicts": []
+  }
+}

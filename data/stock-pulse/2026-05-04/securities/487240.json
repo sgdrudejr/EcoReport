@@ -1,0 +1,165 @@
+{
+  "id": "stock-pulse:487240",
+  "code": "487240",
+  "name": "KODEX AI전력핵심설비",
+  "category": "전력기기",
+  "type": "etf",
+  "verdict": "추격금지",
+  "urgency": "높음",
+  "pulseScore": 47,
+  "oneLine": "추격금지: 좋아 보여도 오늘은 추가매수보다 보유분 보호와 눌림 대기가 우선입니다.",
+  "doNow": "좋아 보여도 오늘은 추가매수보다 보유분 보호와 눌림 대기가 우선입니다.",
+  "doNot": "급등 구간 추격매수 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "marketValue": 284925,
+      "profitRate": 42.67,
+      "decision": "수익보호"
+    },
+    {
+      "accountKey": "PENSION",
+      "accountLabel": "한투 연금저축",
+      "marketValue": 284925,
+      "profitRate": 40.34,
+      "decision": "매수제외"
+    },
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "marketValue": 284925,
+      "profitRate": 40.34,
+      "decision": "매수제외"
+    }
+  ],
+  "position": {
+    "marketValue": 854775,
+    "purchaseValue": 0,
+    "profitLoss": 85225,
+    "profitRate": 41.12,
+    "quantity": 5
+  },
+  "market": {
+    "price": 56870,
+    "previousClose": 52820,
+    "changePct": 7.67,
+    "volume": 7061944,
+    "volumeRatio": 0.41,
+    "nav": 56865.36,
+    "navGapPct": 0.008,
+    "rank": 4
+  },
+  "technical": {
+    "score": 80,
+    "signal": "STRONG_BUY",
+    "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+    "rsi": 88.82,
+    "ma20": 40784.25,
+    "ma60": 34437,
+    "recentHighDistancePct": -3.95,
+    "rsVsBenchmark": 75.3,
+    "alerts": [
+      "RSI 과매수 구간 진입",
+      "볼린저밴드 상단 이탈"
+    ]
+  },
+  "fundamental": {
+    "score": 85,
+    "label": "수급강함",
+    "metrics": null,
+    "etf": {
+      "rank": 4,
+      "navGapPct": 0.008,
+      "concentrationTop5Pct": 78.66,
+      "topHoldings": [
+        {
+          "code": "010120",
+          "name": "LS ELECTRIC",
+          "weightPct": 24.58,
+          "changePct": 5.76
+        },
+        {
+          "code": "298040",
+          "name": "효성중공업",
+          "weightPct": 17.75,
+          "changePct": 8.08
+        },
+        {
+          "code": "006260",
+          "name": "LS",
+          "weightPct": 13.33,
+          "changePct": 12.36
+        },
+        {
+          "code": "267260",
+          "name": "HD현대일렉트릭",
+          "weightPct": 12.77,
+          "changePct": 3.75
+        },
+        {
+          "code": "001440",
+          "name": "대한전선",
+          "weightPct": 10.23,
+          "changePct": 7.82
+        }
+      ]
+    }
+  },
+  "alerts": [
+    {
+      "severity": "high",
+      "label": "과열",
+      "detail": "RSI 88.82 과열권입니다.",
+      "tone": "red"
+    },
+    {
+      "severity": "high",
+      "label": "급등",
+      "detail": "당일 7.67% 상승으로 눌림 확인 전 매수 위험이 큽니다.",
+      "tone": "red"
+    },
+    {
+      "severity": "low",
+      "label": "AI언급",
+      "detail": "감량검토: RSI 88.82 과열 + 상단돌파 + 당일 7.67% 급등, 수익률 +40% 구간",
+      "tone": "blue"
+    }
+  ],
+  "quickFactors": [
+    "등락 7.67%",
+    "RSI 88.82",
+    "거래량 0.41배",
+    "손익 41.12%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [
+    {
+      "bucket": "todayDo",
+      "action": "감량검토",
+      "reason": "RSI 88.82 과열 + 상단돌파 + 당일 7.67% 급등, 수익률 +40% 구간",
+      "trigger": "20 일선 이탈 또는 RSI 하락 반전 시 일부 익절"
+    }
+  ],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결"
+  ],
+  "riskFlags": [
+    "RSI_OVERHEAT:88.82",
+    "BOLLINGER_ABOVE_UPPER",
+    "DAY_SURGE:6.1%",
+    "BLOCKED_BY_STAGE4_VALIDATION"
+  ],
+  "sourceSupport": {
+    "reports": 0.464,
+    "stockeasy": 0,
+    "marketvoice": 0,
+    "technical": 0,
+    "kisEtf": 0.583,
+    "news": 0,
+    "macro": 0,
+    "llm": 0
+  }
+}

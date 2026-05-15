@@ -1,0 +1,120 @@
+{
+  "id": "stock-pulse:385510",
+  "code": "385510",
+  "name": "KODEX 신재생에너지액티브",
+  "category": "신재생에너지",
+  "type": "etf",
+  "verdict": "보유유지",
+  "urgency": "낮음",
+  "pulseScore": 66,
+  "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNot": "같은 테마 중복 확대 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "marketValue": 746135,
+      "profitRate": 9.89,
+      "decision": "보유유지"
+    }
+  ],
+  "position": {
+    "marketValue": 746135,
+    "purchaseValue": 0,
+    "profitLoss": 67210,
+    "profitRate": 9.89,
+    "quantity": 13
+  },
+  "market": {
+    "price": 55880,
+    "previousClose": 58500,
+    "changePct": -4.48,
+    "volume": 550664,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 81,
+    "signal": "STRONG_BUY",
+    "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 둔화",
+    "rsi": 59.57,
+    "ma20": 54072.75,
+    "ma60": 45470.9167,
+    "recentHighDistancePct": -9.09,
+    "rsVsBenchmark": 10,
+    "alerts": [
+      "MACD 시그널 하향 이탈"
+    ]
+  },
+  "fundamental": {
+    "score": 70,
+    "label": "수급양호",
+    "metrics": null,
+    "etf": {
+      "rank": null,
+      "navGapPct": null,
+      "concentrationTop5Pct": 32.84,
+      "topHoldings": [
+        {
+          "code": "010060",
+          "name": "OCI홀딩스",
+          "weightPct": 8.65,
+          "changePct": 2.5
+        },
+        {
+          "code": "006400",
+          "name": "삼성SDI",
+          "weightPct": 6.57,
+          "changePct": -9.21
+        },
+        {
+          "code": "062040",
+          "name": "산일전기",
+          "weightPct": 6.07,
+          "changePct": -5.71
+        },
+        {
+          "code": "010120",
+          "name": "LS ELECTRIC",
+          "weightPct": 5.81,
+          "changePct": -6.58
+        },
+        {
+          "code": "322000",
+          "name": "HD현대에너지솔루션",
+          "weightPct": 5.74,
+          "changePct": 7.14
+        }
+      ]
+    }
+  },
+  "alerts": [],
+  "quickFactors": [
+    "등락 -4.48%",
+    "RSI 59.57",
+    "거래량 0배",
+    "손익 9.89%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "ETF_NAV_MISSING"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {
+    "reports": 0.542,
+    "stockeasy": 0,
+    "marketvoice": 0,
+    "technical": 0,
+    "kisEtf": 0,
+    "news": 0,
+    "macro": 0,
+    "llm": 0
+  }
+}

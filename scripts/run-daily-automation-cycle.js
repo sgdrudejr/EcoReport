@@ -119,8 +119,28 @@ function buildSameDayStatus(steps, artifacts) {
     "stage3Shadow",
     "finalResearchBriefing",
     "stage2",
+    "marketVoice",
+    "impactMap",
+    "technicalSnapshot",
+    "normalizedTechnical",
+    "normalizedKisEtf",
+    "decisionFeatures",
+    "sourceConsensus",
+    "sourceConsensusSupplement",
     "stage4",
+    "holdingDecisionCardsJson",
+    "holdingDecisionCardsMarkdown",
+    "fundamentalSnapshot",
+    "dashboardView",
+    "qwenAccountStrategy",
+    "stockPulse",
+    "rotationWatch",
+    "stockpilotProof",
+    "stockpilotProofIndependent",
+    "holdingFeedbackJson",
+    "holdingFeedbackMarkdown",
     "dailyBriefing",
+    "executionPlanTable",
     "llmExchangeManifest",
     "dataQuality",
     "finalReportHtml",
@@ -183,6 +203,12 @@ function buildFailureHint(stepId) {
       return "05. Deep Research 결과 파일과 GEMINI_API_KEY, 그리고 03. Report Indexing 추출물이 모두 있는지 확인하세요.";
     case "strategy_refresh":
       return "stage2 raw 응답과 종목 alias 매핑, Qwen JSON 응답 형식을 확인하세요.";
+    case "marketvoice_external_enrichment":
+      return "머니토링 GraphQL 응답, MarketVoice 토픽 연결, 그리고 data/analysis-state/<date>/marketvoice-linked.json 생성 여부를 확인하세요.";
+    case "technical_repair":
+      return "KOSCOM/네이버 가격 응답과 data/technical/<date>.json coverage.fallback/failed 목록을 확인하세요.";
+    case "qwen_cockpit_coach":
+      return "QWEN_API_KEY/DASHSCOPE_API_KEY, DashScope 모델 접근권한, 그리고 data/dashboard/<date>-dashboard-view.json 생성 여부를 확인하세요.";
     case "followup_reindex":
       return "03. Report Indexing extract, 11. Execution Plan, 리포트 전문 텍스트 경로가 모두 살아 있는지 확인하세요.";
     case "followup_prompt":
@@ -222,6 +248,8 @@ function buildFailureHint(stepId) {
       return "data-quality-audit.json, full daily report Markdown, 11. Execution Plan 파일이 모두 있는지 확인하세요.";
     case "stage6_briefing_delta":
       return "knowledge/daily/<date>-gemini-briefing-rich.md 와 직전 거래일 rich briefing 존재 여부를 확인하세요.";
+    case "rotation_watch":
+      return "최근 2~3주 stage2/stage4/briefing-delta/stock-pulse 산출물과 data/analysis-state/<date>/rotation-watch.json 생성 여부를 확인하세요.";
     case "telegram_completion":
       return "TELEGRAM_BOT_TOKEN/TELEGRAM_CHAT_ID 설정과 Telegram Bot 권한(채팅 참여/전송 권한)을 확인하세요.";
     case "verify_outputs":
@@ -340,7 +368,19 @@ function getStepArtifactPaths(stepId, artifacts) {
     case "strategy_refresh":
     case "strategy_refresh_final":
     case "strategy_refresh_round3_final":
-      return [artifacts.stage2, artifacts.stage4];
+      return [
+        artifacts.stage2,
+        artifacts.marketVoice,
+        artifacts.impactMap,
+        artifacts.technicalSnapshot,
+        artifacts.normalizedTechnical,
+        artifacts.normalizedKisEtf,
+        artifacts.decisionFeatures,
+        artifacts.sourceConsensus,
+        artifacts.sourceConsensusSupplement,
+        artifacts.sourceDivergence,
+        artifacts.stage4,
+      ];
     case "wiki_rebuild_initial":
     case "wiki_rebuild_mid":
     case "wiki_rebuild_final":
@@ -367,6 +407,35 @@ function getStepArtifactPaths(stepId, artifacts) {
       return [artifacts.automationJson];
     case "daily_briefing_html":
       return [artifacts.dailyBriefingHtml];
+    case "holding_decision_cards":
+      return [
+        artifacts.holdingDecisionCardsJson,
+        artifacts.holdingDecisionCardsMarkdown,
+        artifacts.offReportExternalNews,
+      ];
+    case "fundamental_snapshot":
+      return [artifacts.fundamentalSnapshot];
+    case "dashboard_view":
+    case "dashboard_view_qwen_refresh":
+    case "dashboard_view_stock_pulse_refresh":
+      return [artifacts.dashboardView];
+    case "qwen_cockpit_coach":
+      return [artifacts.qwenCockpitCoach];
+    case "qwen_account_strategy":
+      return [artifacts.qwenAccountStrategy];
+    case "stock_pulse":
+      return [artifacts.stockPulse];
+    case "rotation_watch":
+      return [artifacts.rotationWatch, artifacts.rotationWatchMarkdown];
+    case "stockpilot_proof":
+      return [
+        artifacts.stockpilotProof,
+        artifacts.stockpilotProofIndependent,
+        artifacts.stockpilotProofMarkdown,
+        artifacts.stockpilotProofIndependentMarkdown,
+      ];
+    case "holding_feedback":
+      return [artifacts.holdingFeedbackJson, artifacts.holdingFeedbackMarkdown];
     case "execution_plan_table":
       return [artifacts.executionPlanTable, artifacts.executionPlanTelegram];
     case "data_quality_audit":
@@ -905,7 +974,49 @@ function buildArtifactMap(date, logFile) {
       "10-stage1-6-final-research-briefing.md",
     ),
     stage2: path.join(ROOT_DIR, "data", "analysis-state", date, "stage2-strategy-options.json"),
+    marketVoice: path.join(ROOT_DIR, "data", "analysis-state", date, "marketvoice-linked.json"),
+    marketVoiceMarkdown: path.join(ROOT_DIR, "knowledge", "daily", `${date}-marketvoice.md`),
+    impactMap: path.join(ROOT_DIR, "data", "analysis-state", date, "impact-map.json"),
+    impactMapMarkdown: path.join(ROOT_DIR, "data", "analysis-state", date, "impact-map.md"),
+    technicalSnapshot: path.join(ROOT_DIR, "data", "technical", `${date}.json`),
+    normalizedReports: path.join(ROOT_DIR, "data", "normalized", date, "reports.normalized.json"),
+    normalizedStockeasy: path.join(ROOT_DIR, "data", "normalized", date, "stockeasy.normalized.json"),
+    normalizedMarketVoice: path.join(ROOT_DIR, "data", "normalized", date, "marketvoice.normalized.json"),
+    normalizedTechnical: path.join(ROOT_DIR, "data", "normalized", date, "technical.normalized.json"),
+    normalizedKisEtf: path.join(ROOT_DIR, "data", "normalized", date, "kis_etf.normalized.json"),
+    normalizedNews: path.join(ROOT_DIR, "data", "normalized", date, "news.normalized.json"),
+    decisionFeatures: path.join(ROOT_DIR, "data", "features", date, "decision-features.json"),
+    sourceConsensus: path.join(ROOT_DIR, "data", "features", date, "cross-source-consensus.json"),
+    sourceConsensusSupplement: path.join(ROOT_DIR, "reports", "daily", `${date}-source-consensus-supplement.md`),
+    sourceDivergence: path.join(ROOT_DIR, "data", "features", date, "source-divergence.json"),
     stage4: path.join(ROOT_DIR, "data", "analysis-state", date, "stage4-execution-plan.json"),
+    offReportExternalNews: path.join(ROOT_DIR, "data", "analysis-state", date, "off-report-external-news.json"),
+    fundamentalSnapshot: path.join(ROOT_DIR, "data", "fundamentals", date, "security-fundamentals.json"),
+    holdingDecisionCardsJson: path.join(ROOT_DIR, "data", "analysis-state", date, "holding-decision-cards.json"),
+    holdingDecisionCardsMarkdown: path.join(ROOT_DIR, "reports", "daily", `${date}-holding-decision-cards.md`),
+    qwenCockpitCoach: path.join(ROOT_DIR, "data", "analysis-state", date, "qwen-cockpit-coach.json"),
+    qwenAccountStrategy: path.join(ROOT_DIR, "data", "analysis-state", date, "qwen-account-strategy.json"),
+    stockPulse: path.join(ROOT_DIR, "data", "stock-pulse", date, "stock-pulse.json"),
+    rotationWatch: path.join(ROOT_DIR, "data", "analysis-state", date, "rotation-watch.json"),
+    rotationWatchMarkdown: path.join(ROOT_DIR, "reports", "daily", `${date}-rotation-watch.md`),
+    dashboardView: path.join(ROOT_DIR, "data", "dashboard", `${date}-dashboard-view.json`),
+    stockpilotProof: path.join(ROOT_DIR, "data", "stockpilot-proof", date, "account-direction-proof.json"),
+    stockpilotProofIndependent: path.join(
+      ROOT_DIR,
+      "data",
+      "stockpilot-proof",
+      date,
+      "account-direction-proof-independent.json",
+    ),
+    stockpilotProofMarkdown: path.join(ROOT_DIR, "reports", "daily", `${date}-stockpilot-proof.md`),
+    stockpilotProofIndependentMarkdown: path.join(
+      ROOT_DIR,
+      "reports",
+      "daily",
+      `${date}-stockpilot-proof-independent.md`,
+    ),
+    holdingFeedbackJson: path.join(ROOT_DIR, "data", "holding-feedback", date, "holding-feedback.json"),
+    holdingFeedbackMarkdown: path.join(ROOT_DIR, "reports", "daily", `${date}-holding-feedback.md`),
     llmExchangeManifest: path.join(ROOT_DIR, "data", "analysis-state", date, "llm-exchange", "manifest.json"),
     llmResearchContext: path.join(ROOT_DIR, "data", "analysis-state", date, "llm-exchange", "research-context.v1.json"),
     llmActionContext: path.join(ROOT_DIR, "data", "analysis-state", date, "llm-exchange", "portfolio-action-context.v1.json"),
@@ -1120,6 +1231,14 @@ function buildTelegramCompletionMessage(summary) {
   lines.push(`- finalBriefingHtml: ${artifact.dailyBriefingHtml?.path ?? "N/A"}`);
   lines.push(`- briefingDelta: ${artifact.briefingDeltaMarkdown?.path ?? "N/A"}`);
   lines.push(`- executionPlanTable: ${artifact.executionPlanTable?.path ?? "N/A"}`);
+  lines.push(`- holdingDecisionCards: ${artifact.holdingDecisionCardsMarkdown?.path ?? "N/A"}`);
+  lines.push(`- qwenAccountStrategy: ${artifact.qwenAccountStrategy?.path ?? "N/A"}`);
+  lines.push(`- stockPulse: ${artifact.stockPulse?.path ?? "N/A"}`);
+  lines.push(`- rotationWatch: ${artifact.rotationWatch?.path ?? "N/A"}`);
+  lines.push(`- stockpilotProof: ${artifact.stockpilotProof?.path ?? "N/A"}`);
+  lines.push(`- stockpilotProofIndependent: ${artifact.stockpilotProofIndependent?.path ?? "N/A"}`);
+  lines.push(`- holdingFeedback: ${artifact.holdingFeedbackMarkdown?.path ?? "N/A"}`);
+  lines.push(`- dashboardView: ${artifact.dashboardView?.path ?? "N/A"}`);
   lines.push(`- wikiDaily: ${artifact.wikiDaily?.path ?? "N/A"}`);
   lines.push(`- automationMd: ${artifact.automationMarkdown?.path ?? "N/A"}`);
 
@@ -1628,6 +1747,278 @@ async function main() {
       skip: !(await fileExists(briefingSource)),
     });
     await appendStep(dailyBriefingHtml);
+
+    const rssNewsBroadScan = await runCommand({
+      id: "rss_news_broad_scan",
+      label: "12.0 RSS News Broad Scan",
+      command: "node",
+      args: ["scripts/fetch-rss-news.js", "--date", date],
+      logger,
+      soft: true,
+      skip: false,
+    });
+    await appendStep(rssNewsBroadScan);
+
+    const sourceConsensusRefresh = await runCommand({
+      id: "source_consensus_refresh",
+      label: "12.0 Cross-source Decision Features Refresh",
+      command: "npm",
+      args: [
+        "run",
+        "features:consensus",
+        "--",
+        "--date",
+        date,
+        "--run-date",
+        runDate,
+        "--effective-market-date",
+        date,
+        "--run-id",
+        runId,
+      ],
+      logger,
+      soft: true,
+      skip: !(await fileExists(artifacts.stage4)),
+    });
+    await appendStep(sourceConsensusRefresh);
+
+    const holdingDecisionCards = await runCommand({
+      id: "holding_decision_cards",
+      label: "12. Holding Decision Cards",
+      command: "node",
+      args: [
+        "scripts/build-holding-decision-cards.js",
+        "--date",
+        date,
+        "--run-date",
+        runDate,
+        "--effective-market-date",
+        date,
+        "--run-id",
+        runId,
+      ],
+      logger,
+      soft: true,
+      skip: !(await fileExists(artifacts.stage4)),
+    });
+    await appendStep(holdingDecisionCards);
+
+    const fundamentalSnapshot = await runCommand({
+      id: "fundamental_snapshot",
+      label: "12.1 Fundamentals / ETF Snapshot",
+      command: "node",
+      args: [
+        "scripts/collect-fundamental-snapshot.js",
+        "--date",
+        date,
+        "--run-date",
+        runDate,
+        "--effective-market-date",
+        date,
+        "--run-id",
+        runId,
+      ],
+      logger,
+      soft: true,
+    });
+    await appendStep(fundamentalSnapshot);
+
+    const dashboardView = await runCommand({
+      id: "dashboard_view",
+      label: "12.2 Dashboard View",
+      command: "node",
+      args: [
+        "scripts/build-dashboard-view.js",
+        "--date",
+        date,
+        "--run-date",
+        runDate,
+        "--effective-market-date",
+        date,
+        "--run-id",
+        runId,
+      ],
+      logger,
+      soft: true,
+      skip: !(await fileExists(artifacts.holdingDecisionCardsJson)),
+    });
+    await appendStep(dashboardView);
+
+    const qwenCockpitCoach = await runCommand({
+      id: "qwen_cockpit_coach",
+      label: "12.3 Qwen Cockpit Coach",
+      command: "npm",
+      args: [
+        "run",
+        "qwen:cockpit-coach",
+        "--",
+        "--date",
+        date,
+        "--run-date",
+        runDate,
+        "--effective-market-date",
+        date,
+        "--run-id",
+        runId,
+        "--web-search",
+        "--forced-search",
+        "--search-strategy",
+        "turbo",
+      ],
+      logger,
+      soft: true,
+      skip: dashboardView.status !== "ok",
+    });
+    await appendStep(qwenCockpitCoach);
+
+    const dashboardViewQwenRefresh = await runCommand({
+      id: "dashboard_view_qwen_refresh",
+      label: "12.4 Dashboard View Qwen Refresh",
+      command: "node",
+      args: [
+        "scripts/build-dashboard-view.js",
+        "--date",
+        date,
+        "--run-date",
+        runDate,
+        "--effective-market-date",
+        date,
+        "--run-id",
+        runId,
+      ],
+      logger,
+      soft: true,
+      skip: qwenCockpitCoach.status === "skipped",
+    });
+    await appendStep(dashboardViewQwenRefresh);
+
+    const qwenAccountStrategy = await runCommand({
+      id: "qwen_account_strategy",
+      label: "12.5 Qwen Account Strategy",
+      command: "npm",
+      args: [
+        "run",
+        "qwen:account-strategy",
+        "--",
+        "--date",
+        date,
+        "--run-date",
+        runDate,
+        "--effective-market-date",
+        date,
+        "--run-id",
+        runId,
+        "--web-search",
+        "--forced-search",
+        "--search-strategy",
+        "turbo",
+      ],
+      logger,
+      soft: true,
+      skip: !(await fileExists(artifacts.dashboardView)),
+    });
+    await appendStep(qwenAccountStrategy);
+
+    const stockPulse = await runCommand({
+      id: "stock_pulse",
+      label: "12.6 Stock Pulse",
+      command: "node",
+      args: [
+        "scripts/build-stock-pulse.js",
+        "--date",
+        date,
+        "--run-date",
+        runDate,
+        "--effective-market-date",
+        date,
+        "--run-id",
+        runId,
+      ],
+      logger,
+      soft: true,
+      skip: !(await fileExists(artifacts.dashboardView)),
+    });
+    await appendStep(stockPulse);
+
+    const rotationWatch = await runCommand({
+      id: "rotation_watch",
+      label: "12.7 Rotation Watch",
+      command: "node",
+      args: [
+        "scripts/build-rotation-watch.js",
+        "--date",
+        date,
+        "--run-date",
+        runDate,
+        "--effective-market-date",
+        date,
+        "--run-id",
+        runId,
+      ],
+      logger,
+      soft: true,
+      skip: !(await fileExists(artifacts.stage4)),
+    });
+    await appendStep(rotationWatch);
+
+    const dashboardViewStockPulseRefresh = await runCommand({
+      id: "dashboard_view_stock_pulse_refresh",
+      label: "12.8 Dashboard View Account / Stock Pulse / Rotation Refresh",
+      command: "node",
+      args: [
+        "scripts/build-dashboard-view.js",
+        "--date",
+        date,
+        "--run-date",
+        runDate,
+        "--effective-market-date",
+        date,
+        "--run-id",
+        runId,
+      ],
+      logger,
+      soft: true,
+      skip: qwenAccountStrategy.status === "skipped" && stockPulse.status === "skipped" && rotationWatch.status === "skipped",
+    });
+    await appendStep(dashboardViewStockPulseRefresh);
+
+    const stockpilotProof = await runCommand({
+      id: "stockpilot_proof",
+      label: "12.9 StockPilot Proof / Independent Failover",
+      command: "bash",
+      args: [
+        "-lc",
+        [
+          `node scripts/build-stockpilot-proof.js --date ${date}`,
+          `node scripts/build-stockpilot-proof.js --date ${date} --ignore-stockeasy`,
+        ].join(" && "),
+      ],
+      logger,
+      soft: true,
+      skip: dashboardViewStockPulseRefresh.status === "skipped" && !(await fileExists(artifacts.dashboardView)),
+    });
+    await appendStep(stockpilotProof);
+
+    const holdingFeedback = await runCommand({
+      id: "holding_feedback",
+      label: "12.10 Holding Feedback",
+      command: "node",
+      args: [
+        "scripts/build-holding-feedback.js",
+        "--date",
+        date,
+        "--run-date",
+        runDate,
+        "--effective-market-date",
+        date,
+        "--run-id",
+        runId,
+      ],
+      logger,
+      soft: true,
+      skip: stockpilotProof.status === "skipped" && !(await fileExists(artifacts.holdingDecisionCardsJson)),
+    });
+    await appendStep(holdingFeedback);
 
     const executionPlanTable = await runCommand({
       id: "execution_plan_table",
@@ -2822,6 +3213,356 @@ async function main() {
         skip: !(await fileExists(artifacts.dailyBriefing)),
       });
   await appendStep(dailyBriefingHtml);
+
+  const rssNewsBroadScan = isCheckpointed("rss_news_broad_scan")
+    ? checkpointResumeStep({
+        id: "rss_news_broad_scan",
+        label: "12.0 RSS News Broad Scan",
+        artifactPath: path.join(ROOT_DIR, "data", "news", `${date}.json`),
+      })
+    : await runCommand({
+        id: "rss_news_broad_scan",
+        label: "12.0 RSS News Broad Scan",
+        command: "node",
+        args: ["scripts/fetch-rss-news.js", "--date", date],
+        logger,
+        soft: true,
+        skip: false,
+      });
+  await appendStep(rssNewsBroadScan);
+
+  const sourceConsensusRefresh = isCheckpointed("source_consensus_refresh")
+    ? checkpointResumeStep({
+        id: "source_consensus_refresh",
+        label: "12.0 Cross-source Decision Features Refresh",
+        artifactPath: artifacts.decisionFeatures,
+      })
+    : await runCommand({
+        id: "source_consensus_refresh",
+        label: "12.0 Cross-source Decision Features Refresh",
+        command: "npm",
+        args: [
+          "run",
+          "features:consensus",
+          "--",
+          "--date",
+          date,
+          "--run-date",
+          runDate,
+          "--effective-market-date",
+          date,
+          "--run-id",
+          runId,
+        ],
+        logger,
+        soft: true,
+        skip: !(await fileExists(artifacts.stage4)),
+      });
+  await appendStep(sourceConsensusRefresh);
+
+  const holdingDecisionCards = isCheckpointed("holding_decision_cards")
+    ? checkpointResumeStep({
+        id: "holding_decision_cards",
+        label: "12. Holding Decision Cards",
+        artifactPath: artifacts.holdingDecisionCardsMarkdown,
+      })
+    : await runCommand({
+        id: "holding_decision_cards",
+        label: "12. Holding Decision Cards",
+        command: "node",
+        args: [
+          "scripts/build-holding-decision-cards.js",
+          "--date",
+          date,
+          "--run-date",
+          runDate,
+          "--effective-market-date",
+          date,
+          "--run-id",
+          runId,
+        ],
+        logger,
+        soft: true,
+        skip: !(await fileExists(artifacts.stage4)),
+      });
+  await appendStep(holdingDecisionCards);
+
+  const fundamentalSnapshot = isCheckpointed("fundamental_snapshot")
+    ? checkpointResumeStep({
+        id: "fundamental_snapshot",
+        label: "12.1 Fundamentals / ETF Snapshot",
+        artifactPath: artifacts.fundamentalSnapshot,
+      })
+    : await runCommand({
+        id: "fundamental_snapshot",
+        label: "12.1 Fundamentals / ETF Snapshot",
+        command: "node",
+        args: [
+          "scripts/collect-fundamental-snapshot.js",
+          "--date",
+          date,
+          "--run-date",
+          runDate,
+          "--effective-market-date",
+          date,
+          "--run-id",
+          runId,
+        ],
+        logger,
+        soft: true,
+      });
+  await appendStep(fundamentalSnapshot);
+
+  const dashboardView = isCheckpointed("dashboard_view")
+    ? checkpointResumeStep({
+        id: "dashboard_view",
+        label: "12.2 Dashboard View",
+        artifactPath: artifacts.dashboardView,
+      })
+    : await runCommand({
+        id: "dashboard_view",
+        label: "12.2 Dashboard View",
+        command: "node",
+        args: [
+          "scripts/build-dashboard-view.js",
+          "--date",
+          date,
+          "--run-date",
+          runDate,
+          "--effective-market-date",
+          date,
+          "--run-id",
+          runId,
+        ],
+        logger,
+        soft: true,
+        skip: !(await fileExists(artifacts.holdingDecisionCardsJson)),
+      });
+  await appendStep(dashboardView);
+
+  const qwenCockpitCoach = isCheckpointed("qwen_cockpit_coach")
+    ? checkpointResumeStep({
+        id: "qwen_cockpit_coach",
+        label: "12.3 Qwen Cockpit Coach",
+        artifactPath: artifacts.qwenCockpitCoach,
+      })
+    : await runCommand({
+        id: "qwen_cockpit_coach",
+        label: "12.3 Qwen Cockpit Coach",
+        command: "npm",
+        args: [
+          "run",
+          "qwen:cockpit-coach",
+          "--",
+          "--date",
+          date,
+          "--run-date",
+          runDate,
+          "--effective-market-date",
+          date,
+          "--run-id",
+          runId,
+          "--web-search",
+          "--forced-search",
+          "--search-strategy",
+          "turbo",
+        ],
+        logger,
+        soft: true,
+        skip: dashboardView.status !== "ok",
+      });
+  await appendStep(qwenCockpitCoach);
+
+  const dashboardViewQwenRefresh = isCheckpointed("dashboard_view_qwen_refresh")
+    ? checkpointResumeStep({
+        id: "dashboard_view_qwen_refresh",
+        label: "12.4 Dashboard View Qwen Refresh",
+        artifactPath: artifacts.dashboardView,
+      })
+    : await runCommand({
+        id: "dashboard_view_qwen_refresh",
+        label: "12.4 Dashboard View Qwen Refresh",
+        command: "node",
+        args: [
+          "scripts/build-dashboard-view.js",
+          "--date",
+          date,
+          "--run-date",
+          runDate,
+          "--effective-market-date",
+          date,
+          "--run-id",
+          runId,
+        ],
+        logger,
+        soft: true,
+        skip: qwenCockpitCoach.status === "skipped",
+      });
+  await appendStep(dashboardViewQwenRefresh);
+
+  const qwenAccountStrategy = isCheckpointed("qwen_account_strategy")
+    ? checkpointResumeStep({
+        id: "qwen_account_strategy",
+        label: "12.5 Qwen Account Strategy",
+        artifactPath: artifacts.qwenAccountStrategy,
+      })
+    : await runCommand({
+        id: "qwen_account_strategy",
+        label: "12.5 Qwen Account Strategy",
+        command: "npm",
+        args: [
+          "run",
+          "qwen:account-strategy",
+          "--",
+          "--date",
+          date,
+          "--run-date",
+          runDate,
+          "--effective-market-date",
+          date,
+          "--run-id",
+          runId,
+          "--web-search",
+          "--forced-search",
+          "--search-strategy",
+          "turbo",
+        ],
+        logger,
+        soft: true,
+        skip: !(await fileExists(artifacts.dashboardView)),
+      });
+  await appendStep(qwenAccountStrategy);
+
+  const stockPulse = isCheckpointed("stock_pulse")
+    ? checkpointResumeStep({
+        id: "stock_pulse",
+        label: "12.6 Stock Pulse",
+        artifactPath: artifacts.stockPulse,
+      })
+    : await runCommand({
+        id: "stock_pulse",
+        label: "12.6 Stock Pulse",
+        command: "node",
+        args: [
+          "scripts/build-stock-pulse.js",
+          "--date",
+          date,
+          "--run-date",
+          runDate,
+          "--effective-market-date",
+          date,
+          "--run-id",
+          runId,
+        ],
+        logger,
+        soft: true,
+        skip: !(await fileExists(artifacts.dashboardView)),
+      });
+  await appendStep(stockPulse);
+
+  const rotationWatch = isCheckpointed("rotation_watch")
+    ? checkpointResumeStep({
+        id: "rotation_watch",
+        label: "12.7 Rotation Watch",
+        artifactPath: artifacts.rotationWatch,
+      })
+    : await runCommand({
+        id: "rotation_watch",
+        label: "12.7 Rotation Watch",
+        command: "node",
+        args: [
+          "scripts/build-rotation-watch.js",
+          "--date",
+          date,
+          "--run-date",
+          runDate,
+          "--effective-market-date",
+          date,
+          "--run-id",
+          runId,
+        ],
+        logger,
+        soft: true,
+        skip: !(await fileExists(artifacts.stage4)),
+      });
+  await appendStep(rotationWatch);
+
+  const dashboardViewStockPulseRefresh = isCheckpointed("dashboard_view_stock_pulse_refresh")
+    ? checkpointResumeStep({
+        id: "dashboard_view_stock_pulse_refresh",
+        label: "12.8 Dashboard View Account / Stock Pulse / Rotation Refresh",
+        artifactPath: artifacts.dashboardView,
+      })
+    : await runCommand({
+        id: "dashboard_view_stock_pulse_refresh",
+        label: "12.8 Dashboard View Account / Stock Pulse / Rotation Refresh",
+        command: "node",
+        args: [
+          "scripts/build-dashboard-view.js",
+          "--date",
+          date,
+          "--run-date",
+          runDate,
+          "--effective-market-date",
+          date,
+          "--run-id",
+          runId,
+        ],
+        logger,
+        soft: true,
+        skip: qwenAccountStrategy.status === "skipped" && stockPulse.status === "skipped" && rotationWatch.status === "skipped",
+      });
+  await appendStep(dashboardViewStockPulseRefresh);
+
+  const stockpilotProof = isCheckpointed("stockpilot_proof")
+    ? checkpointResumeStep({
+        id: "stockpilot_proof",
+        label: "12.9 StockPilot Proof / Independent Failover",
+        artifactPath: artifacts.stockpilotProof,
+      })
+    : await runCommand({
+        id: "stockpilot_proof",
+        label: "12.9 StockPilot Proof / Independent Failover",
+        command: "bash",
+        args: [
+          "-lc",
+          [
+            `node scripts/build-stockpilot-proof.js --date ${date}`,
+            `node scripts/build-stockpilot-proof.js --date ${date} --ignore-stockeasy`,
+          ].join(" && "),
+        ],
+        logger,
+        soft: true,
+        skip: dashboardViewStockPulseRefresh.status === "skipped" && !(await fileExists(artifacts.dashboardView)),
+      });
+  await appendStep(stockpilotProof);
+
+  const holdingFeedback = isCheckpointed("holding_feedback")
+    ? checkpointResumeStep({
+        id: "holding_feedback",
+        label: "12.10 Holding Feedback",
+        artifactPath: artifacts.holdingFeedbackJson,
+      })
+    : await runCommand({
+        id: "holding_feedback",
+        label: "12.10 Holding Feedback",
+        command: "node",
+        args: [
+          "scripts/build-holding-feedback.js",
+          "--date",
+          date,
+          "--run-date",
+          runDate,
+          "--effective-market-date",
+          date,
+          "--run-id",
+          runId,
+        ],
+        logger,
+        soft: true,
+        skip: stockpilotProof.status === "skipped" && !(await fileExists(artifacts.holdingDecisionCardsJson)),
+      });
+  await appendStep(holdingFeedback);
 
   const executionPlanTable = isCheckpointed("execution_plan_table")
     ? checkpointResumeStep({

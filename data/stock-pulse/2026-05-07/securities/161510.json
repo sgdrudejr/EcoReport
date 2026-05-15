@@ -1,0 +1,111 @@
+{
+  "id": "stock-pulse:161510",
+  "code": "161510",
+  "name": "PLUS 고배당주",
+  "category": "배당/커버드콜",
+  "type": "etf",
+  "verdict": "보유유지",
+  "urgency": "낮음",
+  "pulseScore": 51,
+  "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNot": "같은 테마 중복 확대 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "marketValue": 605550,
+      "profitRate": 1.13,
+      "decision": null
+    }
+  ],
+  "position": {
+    "marketValue": 605550,
+    "purchaseValue": 598780,
+    "profitLoss": 6770,
+    "profitRate": 1.13,
+    "quantity": 22
+  },
+  "market": {
+    "price": 27525,
+    "previousClose": 27710,
+    "changePct": -0.67,
+    "volume": 973453,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 76,
+    "signal": "BUY",
+    "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 둔화",
+    "rsi": 56.47,
+    "ma20": 27211.25,
+    "ma60": 26700.8333,
+    "recentHighDistancePct": -2.12,
+    "rsVsBenchmark": -26.49,
+    "alerts": [
+      "MACD 시그널 하향 이탈"
+    ]
+  },
+  "fundamental": {
+    "score": 70,
+    "label": "수급양호",
+    "metrics": null,
+    "etf": {
+      "rank": null,
+      "navGapPct": null,
+      "concentrationTop5Pct": 29.51,
+      "topHoldings": [
+        {
+          "code": "005380",
+          "name": "현대차",
+          "weightPct": 7.22,
+          "changePct": 3.27
+        },
+        {
+          "code": "005940",
+          "name": "NH투자증권",
+          "weightPct": 6.45,
+          "changePct": -5.07
+        },
+        {
+          "code": "016360",
+          "name": "삼성증권",
+          "weightPct": 5.87,
+          "changePct": -3.95
+        },
+        {
+          "code": "000270",
+          "name": "기아",
+          "weightPct": 5.19,
+          "changePct": 2.52
+        },
+        {
+          "code": "005830",
+          "name": "DB손해보험",
+          "weightPct": 4.78,
+          "changePct": -0.31
+        }
+      ]
+    }
+  },
+  "alerts": [],
+  "quickFactors": [
+    "등락 -0.67%",
+    "RSI 56.47",
+    "거래량 0배",
+    "손익 1.13%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "ETF_NAV_MISSING"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {}
+}

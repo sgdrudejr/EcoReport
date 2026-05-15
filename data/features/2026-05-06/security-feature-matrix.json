@@ -1,0 +1,628 @@
+{
+  "date": "2026-05-06",
+  "generatedAt": "2026-05-06T08:08:13.618Z",
+  "securityFeatures": [
+    {
+      "code": "0162Z0",
+      "name": "RISE 삼성전자SK하이닉스채권혼합50",
+      "netScore": 0.2416,
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.14,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2,
+      "candidateAccounts": [
+        "PENSION"
+      ]
+    },
+    {
+      "code": "161510",
+      "name": "PLUS 고배당주",
+      "netScore": 0.3331,
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2,
+      "candidateAccounts": [
+        "ISA"
+      ]
+    },
+    {
+      "code": "411060",
+      "name": "ACE KRX금현물",
+      "netScore": 0.1035,
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.41040000000000004,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2,
+      "candidateAccounts": [
+        "ISA"
+      ]
+    },
+    {
+      "code": "475300",
+      "name": "SOL 반도체전공정",
+      "netScore": 0.2717,
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2,
+      "candidateAccounts": [
+        "ISA"
+      ]
+    },
+    {
+      "code": "379810",
+      "name": "KODEX 미국나스닥100",
+      "netScore": 0.2112,
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3496,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2,
+      "candidateAccounts": [
+        "PENSION"
+      ]
+    },
+    {
+      "code": "138910",
+      "name": "KODEX 구리선물(H)",
+      "netScore": 0.2042,
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3952,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2,
+      "candidateAccounts": [
+        "KIS_MAIN"
+      ]
+    },
+    {
+      "code": "329180",
+      "name": "HD현대중공업",
+      "netScore": 0.2102,
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.6536,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2,
+      "candidateAccounts": [
+        "KIS_MAIN"
+      ]
+    },
+    {
+      "code": "385510",
+      "name": "KODEX 신재생에너지액티브",
+      "netScore": 0.0929,
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2,
+      "candidateAccounts": [
+        "ISA"
+      ]
+    },
+    {
+      "code": "487240",
+      "name": "KODEX AI전력핵심설비",
+      "netScore": 0.1327,
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2,
+      "candidateAccounts": [
+        "ISA"
+      ]
+    },
+    {
+      "code": "360750",
+      "name": "TIGER 미국S&P500",
+      "netScore": 0.1552,
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2,
+      "candidateAccounts": [
+        "PENSION"
+      ]
+    },
+    {
+      "code": "034020",
+      "name": "두산에너빌리티",
+      "netScore": 0.0292,
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2,
+      "candidateAccounts": [
+        "KIS_MAIN"
+      ]
+    },
+    {
+      "code": "012450",
+      "name": "한화에어로스페이스",
+      "netScore": 0.2945,
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2,
+      "candidateAccounts": [
+        "KIS_MAIN"
+      ]
+    },
+    {
+      "code": "064350",
+      "name": "현대로템",
+      "netScore": 0.1956,
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 3,
+      "candidateAccounts": [
+        "KIS_MAIN"
+      ]
+    },
+    {
+      "code": "449450",
+      "name": "PLUS K방산",
+      "netScore": 0.3926,
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3952,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2,
+      "candidateAccounts": [
+        "KIS_MAIN"
+      ]
+    },
+    {
+      "code": "069500",
+      "name": "KODEX 200",
+      "netScore": 0.1564,
+      "support": {
+        "reports": 0.3128,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2,
+      "candidateAccounts": [
+        "PENSION"
+      ]
+    },
+    {
+      "code": "469150",
+      "name": "ACE AI반도체TOP3+",
+      "netScore": 0.1943,
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2,
+      "candidateAccounts": [
+        "KIS_MAIN"
+      ]
+    },
+    {
+      "code": "132030",
+      "name": "KODEX 골드선물(H)",
+      "netScore": -0.3192,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3192,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": [
+        "ISA"
+      ]
+    },
+    {
+      "code": "133690",
+      "name": "TIGER 미국나스닥100",
+      "netScore": 0.3496,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3496,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": [
+        "PENSION"
+      ]
+    },
+    {
+      "code": "267260",
+      "name": "HD현대일렉트릭",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "298040",
+      "name": "효성중공업",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "423160",
+      "name": "KODEX KOFR금리액티브(합성)",
+      "netScore": -0.3648,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3648,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "434730",
+      "name": "HANARO 원자력iSelect",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": [
+        "KIS_MAIN"
+      ]
+    },
+    {
+      "code": "458760",
+      "name": "TIGER 미국배당다우존스타겟커버드콜2호",
+      "netScore": -0.3952,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3952,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": [
+        "ISA"
+      ]
+    },
+    {
+      "code": "496080",
+      "name": "TIGER 코리아밸류업",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": [
+        "ISA"
+      ]
+    },
+    {
+      "code": "498400",
+      "name": "KODEX 200타겟위클리커버드콜",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": [
+        "ISA"
+      ]
+    },
+    {
+      "code": "005930",
+      "name": "삼성전자",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "000660",
+      "name": "SK하이닉스",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "010120",
+      "name": "LS ELECTRIC",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "047810",
+      "name": "한국항공우주",
+      "netScore": -0.19,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.19,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "243880",
+      "name": "TIGER 200IT레버리지",
+      "netScore": 0.72,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.72,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "488080",
+      "name": "TIGER 반도체TOP10레버리지",
+      "netScore": 0.7155,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.7155,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "Q700028",
+      "name": "하나 레버리지 반도체 ETN",
+      "netScore": 0.711,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.711,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "494310",
+      "name": "KODEX 반도체레버리지",
+      "netScore": 0.7065,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.7064999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "Q760013",
+      "name": "키움 레버리지 반도체TOP10 ETN",
+      "netScore": 0.6477,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.6476999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    }
+  ]
+}

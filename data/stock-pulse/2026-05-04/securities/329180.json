@@ -1,0 +1,106 @@
+{
+  "id": "stock-pulse:329180",
+  "code": "329180",
+  "name": "HD현대중공업",
+  "category": "조선",
+  "type": "stock",
+  "verdict": "익절감시",
+  "urgency": "중간",
+  "pulseScore": 64,
+  "oneLine": "익절감시: 20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+  "doNow": "20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+  "doNot": "급등 구간 추격매수 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "marketValue": 696000,
+      "profitRate": 12.8,
+      "decision": "보유유지"
+    }
+  ],
+  "position": {
+    "marketValue": 696000,
+    "purchaseValue": 0,
+    "profitLoss": 79000,
+    "profitRate": 12.8,
+    "quantity": 1
+  },
+  "market": {
+    "price": 680000,
+    "previousClose": 685000,
+    "changePct": -0.73,
+    "volume": 426534,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 83,
+    "signal": "STRONG_BUY",
+    "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+    "rsi": 73.3,
+    "ma20": 562150,
+    "ma60": 554541.6667,
+    "recentHighDistancePct": -4.23,
+    "rsVsBenchmark": -18.12,
+    "alerts": [
+      "RSI 과매수 구간 진입"
+    ]
+  },
+  "fundamental": {
+    "score": 69,
+    "label": "기본양호",
+    "metrics": {
+      "per": 43.31,
+      "pbr": 7.64,
+      "eps": 15702,
+      "estimatedPer": 27,
+      "estimatedEps": 25535,
+      "dividendYield": 0.83,
+      "operatingMargin": 11.59,
+      "operatingMarginEstimate": 14.4,
+      "roe": 18.82,
+      "roeEstimate": 25.56,
+      "annualEps": 15702,
+      "previousAnnualEps": 7001,
+      "estimatedAnnualEps": 25535,
+      "epsGrowthPct": 124.28,
+      "estimatedEpsGrowthPct": 62.62
+    },
+    "etf": null
+  },
+  "alerts": [
+    {
+      "severity": "medium",
+      "label": "과열주의",
+      "detail": "RSI 73.3로 추격매수보다 보호 판단이 우선입니다.",
+      "tone": "amber"
+    }
+  ],
+  "quickFactors": [
+    "등락 -0.73%",
+    "RSI 73.3",
+    "거래량 0배",
+    "손익 12.8%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {
+    "reports": 0.464,
+    "stockeasy": 0,
+    "marketvoice": 0.587,
+    "technical": 0,
+    "kisEtf": 0,
+    "news": 0,
+    "macro": 0,
+    "llm": 0
+  }
+}

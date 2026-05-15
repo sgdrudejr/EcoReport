@@ -1,0 +1,102 @@
+{
+  "id": "stock-pulse:196170",
+  "code": "196170",
+  "name": "알테오젠",
+  "category": "기타",
+  "type": "unknown",
+  "verdict": "익절감시",
+  "urgency": "중간",
+  "pulseScore": 13,
+  "oneLine": "익절감시: 20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+  "doNow": "20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+  "doNot": "급등 구간 추격매수 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "marketValue": 340000,
+      "profitRate": 4.93,
+      "decision": "감량검토"
+    }
+  ],
+  "position": {
+    "marketValue": 340000,
+    "purchaseValue": 0,
+    "profitLoss": 16000,
+    "profitRate": 4.93,
+    "quantity": 1
+  },
+  "market": {
+    "price": 342500,
+    "previousClose": 325000,
+    "changePct": 5.38,
+    "volume": 583645,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 12,
+    "signal": "SELL",
+    "reason": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 둔화",
+    "rsi": 42.74,
+    "ma20": 362325,
+    "ma60": 368291.6667,
+    "recentHighDistancePct": -12.07,
+    "rsVsBenchmark": -54.03,
+    "alerts": []
+  },
+  "fundamental": {
+    "score": 20,
+    "label": "수집필요",
+    "metrics": null,
+    "etf": null
+  },
+  "alerts": [
+    {
+      "severity": "medium",
+      "label": "기술약화",
+      "detail": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 둔화",
+      "tone": "amber"
+    },
+    {
+      "severity": "low",
+      "label": "AI언급",
+      "detail": "감량검토: 고점 대비 -12.1% 하락, 수익 보호선 점검 필요",
+      "tone": "blue"
+    }
+  ],
+  "quickFactors": [
+    "등락 5.38%",
+    "RSI 42.74",
+    "거래량 0배",
+    "손익 4.93%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [
+    {
+      "bucket": "todayDo",
+      "action": "감량검토",
+      "reason": "고점 대비 -12.1% 하락, 수익 보호선 점검 필요",
+      "trigger": "손절 조건 발동 시 즉시 감량"
+    }
+  ],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "SECURITY_TYPE_UNKNOWN"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {
+    "reports": 0.318,
+    "stockeasy": 0,
+    "marketvoice": 0,
+    "technical": 0.578,
+    "kisEtf": 0,
+    "news": 0,
+    "macro": 0,
+    "llm": 0
+  }
+}

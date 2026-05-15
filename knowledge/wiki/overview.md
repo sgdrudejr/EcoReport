@@ -1,12 +1,12 @@
 ---
 title: EcoReport LLM Wiki Overview
 type: overview
-updated: 2026-04-23
-source_date: 2026-04-23
-run_date: 2026-04-24
-effective_market_date: 2026-04-23
-run_id: 2026-04-24-150218
-generated_at: 2026-04-23T15:26:11.067Z
+updated: 2026-05-08
+source_date: 2026-05-08
+run_date: 2026-05-10
+effective_market_date: 2026-05-08
+run_id: N/A
+generated_at: 2026-05-10T01:08:22.238Z
 ---
 
 # EcoReport LLM Wiki
@@ -40,16 +40,16 @@ generated_at: 2026-04-23T15:26:11.067Z
 
 ## Recent Daily Pages
 
+- [2026-05-08](daily/2026-05-08.md)
+- [2026-05-07](daily/2026-05-07.md)
+- [2026-05-06](daily/2026-05-06.md)
+- [2026-05-04](daily/2026-05-04.md)
+- [2026-04-30](daily/2026-04-30.md)
+- [2026-04-29](daily/2026-04-29.md)
+- [2026-04-28](daily/2026-04-28.md)
+- [2026-04-27](daily/2026-04-27.md)
 - [2026-04-23](daily/2026-04-23.md)
 - [2026-04-22](daily/2026-04-22.md)
-- [2026-04-20](daily/2026-04-20.md)
-- [2026-04-15](daily/2026-04-15.md)
-- [2026-04-14](daily/2026-04-14.md)
-- [2026-04-13](daily/2026-04-13.md)
-- [2026-04-10](daily/2026-04-10.md)
-- [2026-04-09](daily/2026-04-09.md)
-- [2026-04-08](daily/2026-04-08.md)
-- [2026-04-07](daily/2026-04-07.md)
 
 ## Related Docs
 

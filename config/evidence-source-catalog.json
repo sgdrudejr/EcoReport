@@ -1,0 +1,167 @@
+{
+  "schemaVersion": 1,
+  "purpose": "EcoReport 매수/매도 판단 근거를 독립 소스별로 분리하고, 교차 검증 가능한 데이터 수집 우선순위를 관리한다.",
+  "principles": [
+    "공식 API 또는 안정적인 공개 산출물을 우선한다.",
+    "웹 캡처/비공식 엔드포인트는 보조 근거로만 쓰고, stale/partial 플래그를 남긴다.",
+    "액션에 영향을 주는 주장은 최소 2개 소스 또는 1개 공식 소스와 내부 포트폴리오/기술지표로 확인한다.",
+    "개인 계좌 데이터는 외부 API 질의에 직접 보내지 않고 종목코드/키워드 중심으로 최소화한다."
+  ],
+  "integratedSources": [
+    {
+      "id": "reports",
+      "label": "증권사 리포트",
+      "role": "핵심 투자 아이디어와 목표/리스크 추출",
+      "currentArtifacts": ["data/analysis-state/<date>/stage1-report-extracts-v2.json"],
+      "normalizedArtifact": "data/normalized/<date>/reports.normalized.json"
+    },
+    {
+      "id": "stockeasy",
+      "label": "StockEasy",
+      "role": "시장신호, 섹터 강도, 테마보드, 전략룸 보조 판단",
+      "currentArtifacts": ["data/external/stockeasy/<date>/snapshot.json"],
+      "normalizedArtifact": "data/normalized/<date>/stockeasy.normalized.json"
+    },
+    {
+      "id": "marketvoice",
+      "label": "Moneytoring MarketVoice",
+      "role": "뉴스/공시/IR/텔레그램 기반 실시간 이벤트와 포트폴리오 연결",
+      "currentArtifacts": ["data/analysis-state/<date>/marketvoice-linked.json"],
+      "normalizedArtifact": "data/normalized/<date>/marketvoice.normalized.json"
+    },
+    {
+      "id": "technical",
+      "label": "Naver/KOSCOM 기반 기술지표",
+      "role": "진입 타이밍, 과열/눌림, 추세 확인",
+      "currentArtifacts": ["data/technical/<date>.json"]
+    },
+    {
+      "id": "kis_etf",
+      "label": "KIS ETF 랭킹",
+      "role": "ETF 후보/순위/거래 가능성 보조 판단",
+      "currentArtifacts": ["data/external/kis-etf/<date>/etf-ranking.json"]
+    },
+    {
+      "id": "rss_news",
+      "label": "RSS 뉴스",
+      "role": "거시/섹터 이벤트 보조 탐지",
+      "currentArtifacts": ["data/news/<date>.json"]
+    }
+  ],
+  "nextPrioritySources": [
+    {
+      "id": "opendart",
+      "label": "OpenDART",
+      "url": "https://opendart.fss.or.kr/",
+      "role": "국내 보유종목 공시, 재무제표, 주요사항보고서, 지분공시 검증",
+      "requiresKey": true,
+      "priority": "P0",
+      "collectorIdea": "보유종목 코드→고유번호 매핑 후 최근 공시/재무 핵심계정/주요사항보고서를 종목별 evidence로 저장"
+    },
+    {
+      "id": "krx_openapi",
+      "label": "KRX OPEN API",
+      "url": "https://openapi.krx.co.kr/",
+      "role": "거래소 공식 시장통계, ETP, 공매도/수급/시장 품질 검증",
+      "requiresKey": true,
+      "priority": "P0",
+      "collectorIdea": "보유종목/ETF의 거래대금, 투자자 수급, 괴리율, 시장별 통계를 action gate에 연결"
+    },
+    {
+      "id": "kis_developers",
+      "label": "KIS Developers",
+      "url": "https://apiportal.koreainvestment.com/",
+      "role": "국내주식 현재가/기간별시세/ETF NAV/구성종목/계좌와 주문 가능성 검증",
+      "requiresKey": true,
+      "priority": "P0",
+      "collectorIdea": "현재 포트폴리오 종목의 공식 증권사 시세·NAV·주문 가능 데이터를 Naver 기술지표와 교차 확인"
+    },
+    {
+      "id": "naver_search_news",
+      "label": "Naver Search News API",
+      "url": "https://developers.naver.com/docs/serviceapi/search/news/news.md",
+      "role": "국내 종목별 최신 뉴스 보강, Google News RSS 대체/교차 검증",
+      "requiresKey": true,
+      "priority": "P1",
+      "collectorIdea": "리포트밖 보유종목과 WATCH_DATA 종목만 질의해 기사 중복/신뢰도/날짜를 저장"
+    },
+    {
+      "id": "ecos",
+      "label": "한국은행 ECOS",
+      "url": "https://ecos.bok.or.kr/api/",
+      "role": "한국 금리, 환율, 통화, 경기/물가 거시 지표 검증",
+      "requiresKey": true,
+      "priority": "P1",
+      "collectorIdea": "KRW 금리/환율/물가 지표를 FRED와 분리해 한국 계좌/ETF 판단에 반영"
+    },
+    {
+      "id": "sec_edgar",
+      "label": "SEC EDGAR APIs",
+      "url": "https://www.sec.gov/search-filings/edgar-application-programming-interfaces",
+      "role": "미국 ETF/미국 주식 공시와 XBRL 재무 검증",
+      "requiresKey": false,
+      "priority": "P1",
+      "collectorIdea": "미국 ETF/개별주 관련 10-K/10-Q/8-K/6-K, company facts를 장기 근거로 저장"
+    },
+    {
+      "id": "etfcheck",
+      "label": "ETF CHECK",
+      "url": "https://www.etfcheck.co.kr/",
+      "role": "국내외 ETF/ETN 분배율, 괴리율, 구성종목, 자금흐름 보조 확인",
+      "requiresKey": false,
+      "priority": "P2",
+      "collectorIdea": "공식 API가 없으면 UI 캡처/수동 확인용 보조 소스로만 사용"
+    },
+    {
+      "id": "hankyung_consensus",
+      "label": "한경 컨센서스",
+      "url": "https://markets.hankyung.com/consensus",
+      "role": "컨센서스/리포트 커버리지 보강",
+      "requiresKey": false,
+      "priority": "P2",
+      "collectorIdea": "기존 리포트 수집 누락 종목의 커버리지 탐색 보조"
+    },
+    {
+      "id": "irgo",
+      "label": "IRGO",
+      "url": "https://m.irgo.co.kr/",
+      "role": "기업 IR 자료, 설명회, 주주 커뮤니케이션 보강",
+      "requiresKey": false,
+      "priority": "P2",
+      "collectorIdea": "보유종목 IR 자료/일정이 있을 때 공시보다 부드러운 정성 근거로 연결"
+    },
+    {
+      "id": "alpha_vantage",
+      "label": "Alpha Vantage",
+      "url": "https://www.alphavantage.co/documentation/",
+      "role": "글로벌 시세/기술지표/뉴스 감성 보조",
+      "requiresKey": true,
+      "priority": "P3",
+      "collectorIdea": "무료 한도 내에서 미국 ETF/대형주만 보조 검증"
+    },
+    {
+      "id": "finnhub",
+      "label": "Finnhub",
+      "url": "https://finnhub.io/docs/api",
+      "role": "미국 주식 뉴스, 기본 재무, 애널리스트/기업 데이터 보조",
+      "requiresKey": true,
+      "priority": "P3",
+      "collectorIdea": "미국 종목 후보의 fundamentals/news 보조 소스로 선택 적용"
+    },
+    {
+      "id": "financial_modeling_prep",
+      "label": "Financial Modeling Prep",
+      "url": "https://site.financialmodelingprep.com/developer/docs",
+      "role": "미국 ETF holdings/fundamental 보강",
+      "requiresKey": true,
+      "priority": "P3",
+      "collectorIdea": "미국 ETF 구성종목과 sector/country exposure가 필요할 때 선택 적용"
+    }
+  ],
+  "dailyOutputs": [
+    "data/normalized/<date>/*.normalized.json",
+    "data/features/<date>/decision-features.json",
+    "data/features/<date>/cross-source-consensus.json",
+    "data/features/<date>/source-divergence.json"
+  ]
+}

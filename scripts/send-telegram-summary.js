@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import fs from "node:fs/promises";
+import os from "node:os";
 import path from "node:path";
 
 import {
@@ -55,6 +56,14 @@ function resolveEnvReference(value) {
 function resolvePath(value) {
   if (!value) return null;
   return path.isAbsolute(value) ? value : path.join(ROOT_DIR, value);
+}
+
+async function readFirstExistingJson(paths) {
+  for (const filePath of paths) {
+    const payload = await readJson(filePath, null);
+    if (payload) return payload;
+  }
+  return null;
 }
 
 function escapeHtml(value) {
@@ -210,7 +219,55 @@ function summarizeActions(stage4, stage3) {
     .slice(0, 3);
 }
 
-function buildPipelineSummaryMessage(date, stage3, stage4) {
+function compactText(value, maxLength = 120) {
+  const text = String(value ?? "").replace(/\s+/g, " ").trim();
+  if (text.length <= maxLength) return text;
+  return `${text.slice(0, maxLength - 1)}…`;
+}
+
+function summarizeStrategyItem(item) {
+  if (typeof item === "string") return compactText(item, 110);
+  const name = item?.name ?? item?.title ?? item?.sector ?? item?.theme ?? item?.code ?? "항목";
+  const action = item?.action ?? item?.stance ?? item?.decision ?? item?.verdict ?? "";
+  const reason = item?.reason ?? item?.why ?? item?.note ?? item?.trigger ?? "";
+  return compactText([name, action, reason].filter(Boolean).join(" / "), 110);
+}
+
+function appendTopList(lines, label, items, limit = 3) {
+  const rows = Array.isArray(items) ? items.slice(0, limit).map(summarizeStrategyItem).filter(Boolean) : [];
+  lines.push(`${label}: ${rows.length > 0 ? rows.join(" | ") : "없음"}`);
+}
+
+function firstLanIpv4() {
+  for (const entries of Object.values(os.networkInterfaces())) {
+    for (const item of entries ?? []) {
+      if (item.family === "IPv4" && !item.internal && item.address) {
+        return item.address;
+      }
+    }
+  }
+  return null;
+}
+
+function buildLocalAccessBlock(date) {
+  const lanIp = firstLanIpv4();
+  const lines = [
+    "",
+    "로컬 접속:",
+    "- Cockpit(Mac): http://127.0.0.1:3000/cockpit",
+    "- Cockpit(Mac): http://localhost:3000/cockpit",
+    "- 종목 피드백(Mac): http://127.0.0.1:3000/holding-feedback",
+  ];
+  if (lanIp) {
+    lines.push(`- Cockpit(같은 Wi-Fi): http://${lanIp}:3000/cockpit`);
+  }
+  lines.push(`- 리포트 페이지: http://127.0.0.1:3000/reports/${date}-briefing`);
+  lines.push(`- HTML 파일: reports/daily/${date}-final.html`);
+  lines.push("주의: Mac mini/로컬 dev server가 켜져 있어야 접속됩니다.");
+  return lines.join("\n");
+}
+
+function buildPipelineSummaryMessage(date, stage3, stage4, accountStrategy = null, stockPulse = null, options = {}) {
   const regimeLine = stage4?.regime?.name ?? stage3?.regime?.name ?? "N/A";
   const portfolioScore = stage4?.portfolioScore ?? stage3?.portfolio?.totalScore ?? "N/A";
   const actions = summarizeActions(stage4, stage3);
@@ -235,7 +292,80 @@ function buildPipelineSummaryMessage(date, stage3, stage4) {
     }
   }
 
+  if (accountStrategy) {
+    lines.push("");
+    lines.push(
+      `계좌 피드백(Qwen): status ${accountStrategy.status ?? "unknown"} / webSearch ${accountStrategy.webSearch ? "on" : "off"} / model ${accountStrategy.model ?? accountStrategy.requestedModel ?? "-"}`,
+    );
+    if (accountStrategy.headline) {
+      lines.push(`핵심: ${compactText(accountStrategy.headline, 140)}`);
+    }
+    appendTopList(lines, "오늘 할 일", accountStrategy.todayDo);
+    appendTopList(lines, "매도 감시", accountStrategy.sellWatch);
+    appendTopList(lines, "매수 감시", accountStrategy.buyWatch);
+  }
+
+  if (stockPulse) {
+    const counts = stockPulse.counts ?? {};
+    lines.push("");
+    lines.push(
+      `개별주 속보판: 보유 ${counts.activeHoldings ?? stockPulse.items?.length ?? 0}개 / 고긴급 ${counts.highUrgency ?? 0}개 / 중긴급 ${counts.mediumUrgency ?? 0}개`,
+    );
+    const urgentItems = (stockPulse.items ?? [])
+      .filter((item) => item.urgency === "높음")
+      .slice(0, 3)
+      .map((item) =>
+        compactText(
+          `${item.name ?? item.code}${item.code ? `(${item.code})` : ""} / ${item.verdict ?? "-"} / ${item.quickFactors?.join(", ") ?? ""}`,
+          120,
+        ),
+      );
+    lines.push(`먼저 볼 종목: ${urgentItems.length > 0 ? urgentItems.join(" | ") : "없음"}`);
+  }
+
+  if (options.includeLocalAccess !== false) {
+    lines.push(buildLocalAccessBlock(date));
+  }
   return lines.join("\n");
+}
+
+async function appendAccountFeedbackDigest(date, message) {
+  const analysisDir = path.join(ROOT_DIR, "data", "analysis-state", date);
+  const [accountStrategy, stockPulse, holdingFeedback] = await Promise.all([
+    readFirstExistingJson([
+      path.join(analysisDir, "qwen-account-strategy.json"),
+      path.join(analysisDir, "qwen-account-strategy-test.json"),
+    ]),
+    readJson(path.join(ROOT_DIR, "data", "stock-pulse", date, "stock-pulse.json"), null),
+    readJson(path.join(ROOT_DIR, "data", "holding-feedback", date, "holding-feedback.json"), null),
+  ]);
+
+  if (!accountStrategy && !stockPulse && !holdingFeedback) return `${message}${buildLocalAccessBlock(date)}`;
+  const digest = buildPipelineSummaryMessage(date, null, null, accountStrategy, stockPulse, { includeLocalAccess: false })
+    .split("\n")
+    .filter((line) => !line.startsWith("EcoReport ") && !line.startsWith("포트폴리오 점수") && !line.startsWith("레짐") && !line.startsWith("Top 3 액션") && !line.startsWith("- 즉시"))
+    .join("\n")
+    .trim();
+  const urgentHoldingLines = (holdingFeedback?.cards ?? [])
+    .filter((card) => card?.recommendation?.urgency === "high")
+    .slice(0, 3)
+    .map((card) =>
+      compactText(
+        `${card.name ?? card.code}${card.code ? `(${card.code})` : ""} / ${card.recommendation?.label ?? "-"} / ${card.recommendation?.action ?? "-"}`,
+        130,
+      ),
+    );
+  const holdingDigest = holdingFeedback
+    ? [
+        `보유종목 피드백: 총 ${holdingFeedback.summary?.totalHoldings ?? holdingFeedback.cards?.length ?? 0}개 / 긴급 ${holdingFeedback.summary?.highUrgency ?? 0}개`,
+        `먼저 볼 보유종목: ${urgentHoldingLines.length > 0 ? urgentHoldingLines.join(" | ") : "없음"}`,
+      ].join("\n")
+    : "";
+
+  const accessBlock = buildLocalAccessBlock(date);
+  const mergedDigest = [digest, holdingDigest].filter(Boolean).join("\n\n");
+  if (!mergedDigest) return `${message}${accessBlock}`;
+  return `${message}\n\n${mergedDigest}${accessBlock}`;
 }
 
 async function main() {
@@ -258,9 +388,14 @@ async function main() {
 
   let message = args.message;
   if (!message) {
-    const [stage3, stage4] = await Promise.all([
+    const [stage3, stage4, accountStrategy, stockPulse] = await Promise.all([
       readJson(path.join(analysisDir, "stage3-quant-scores.json"), null),
       readJson(path.join(analysisDir, "stage4-execution-plan.json"), null),
+      readFirstExistingJson([
+        path.join(analysisDir, "qwen-account-strategy.json"),
+        path.join(analysisDir, "qwen-account-strategy-test.json"),
+      ]),
+      readJson(path.join(ROOT_DIR, "data", "stock-pulse", args.date, "stock-pulse.json"), null),
     ]);
 
     if (!stage3 || !stage4) {
@@ -269,8 +404,10 @@ async function main() {
 
     message =
       args.event === "pipeline-summary"
-        ? buildPipelineSummaryMessage(args.date, stage3, stage4)
+        ? buildPipelineSummaryMessage(args.date, stage3, stage4, accountStrategy, stockPulse)
         : `EcoReport ${args.date}\n${args.event}\n${args.message ?? "메시지 없음"}`;
+  } else if (args.event === "automation-cycle-complete") {
+    message = await appendAccountFeedbackDigest(args.date, message);
   }
 
   if (args.dryRun) {

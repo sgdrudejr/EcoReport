@@ -1,0 +1,117 @@
+{
+  "id": "stock-pulse:449450",
+  "code": "449450",
+  "name": "PLUS K방산",
+  "category": "방산",
+  "type": "etf",
+  "verdict": "보유유지",
+  "urgency": "낮음",
+  "pulseScore": 67,
+  "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNot": "같은 테마 중복 확대 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "marketValue": 803050,
+      "profitRate": 2.25,
+      "decision": "보유유지"
+    }
+  ],
+  "position": {
+    "marketValue": 803050,
+    "purchaseValue": 0,
+    "profitLoss": 17690,
+    "profitRate": 2.25,
+    "quantity": 10
+  },
+  "market": {
+    "price": 80245,
+    "previousClose": 79405,
+    "changePct": 1.06,
+    "volume": 202512,
+    "volumeRatio": 0.19,
+    "nav": 80350.23,
+    "navGapPct": -0.131,
+    "rank": 0
+  },
+  "technical": {
+    "score": 76,
+    "signal": "BUY",
+    "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 둔화",
+    "rsi": 61.02,
+    "ma20": 78866.75,
+    "ma60": 73771.9167,
+    "recentHighDistancePct": -3.03,
+    "rsVsBenchmark": -15.3,
+    "alerts": []
+  },
+  "fundamental": {
+    "score": 75,
+    "label": "수급강함",
+    "metrics": null,
+    "etf": {
+      "rank": null,
+      "navGapPct": -0.131,
+      "concentrationTop5Pct": 84.63,
+      "topHoldings": [
+        {
+          "code": "012450",
+          "name": "한화에어로스페이스",
+          "weightPct": 19.55,
+          "changePct": 3.39
+        },
+        {
+          "code": "064350",
+          "name": "현대로템",
+          "weightPct": 18.14,
+          "changePct": 0.19
+        },
+        {
+          "code": "079550",
+          "name": "LIG디펜스앤에어로스페이스",
+          "weightPct": 16.73,
+          "changePct": 4.46
+        },
+        {
+          "code": "047810",
+          "name": "한국항공우주",
+          "weightPct": 16,
+          "changePct": 6.51
+        },
+        {
+          "code": "042660",
+          "name": "한화오션",
+          "weightPct": 14.21,
+          "changePct": 0.91
+        }
+      ]
+    }
+  },
+  "alerts": [],
+  "quickFactors": [
+    "등락 1.06%",
+    "RSI 61.02",
+    "거래량 0.19배",
+    "손익 2.25%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {
+    "reports": 0.464,
+    "stockeasy": 0,
+    "marketvoice": 0,
+    "technical": 0.395,
+    "kisEtf": 0,
+    "news": 0,
+    "macro": 0,
+    "llm": 0
+  }
+}

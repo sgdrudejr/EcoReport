@@ -1,0 +1,100 @@
+{
+  "id": "stock-pulse:138910",
+  "code": "138910",
+  "name": "KODEX 구리선물(H)",
+  "category": "기타",
+  "type": "etf",
+  "verdict": "익절감시",
+  "urgency": "중간",
+  "pulseScore": 63,
+  "oneLine": "익절감시: 20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+  "doNow": "20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+  "doNot": "급등 구간 추격매수 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "marketValue": 301500,
+      "profitRate": 14.66,
+      "decision": "보유유지"
+    }
+  ],
+  "position": {
+    "marketValue": 301500,
+    "purchaseValue": 0,
+    "profitLoss": 38550,
+    "profitRate": 14.66,
+    "quantity": 30
+  },
+  "market": {
+    "price": 10065,
+    "previousClose": 9780,
+    "changePct": 2.91,
+    "volume": 388076,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 90,
+    "signal": "STRONG_BUY",
+    "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+    "rsi": 74.14,
+    "ma20": 9465.25,
+    "ma60": 9147,
+    "recentHighDistancePct": -0.1,
+    "rsVsBenchmark": -35.46,
+    "alerts": [
+      "RSI 과매수 구간 진입",
+      "볼린저밴드 상단 이탈"
+    ]
+  },
+  "fundamental": {
+    "score": 62,
+    "label": "수급양호",
+    "metrics": null,
+    "etf": {
+      "rank": null,
+      "navGapPct": null,
+      "concentrationTop5Pct": 0,
+      "topHoldings": []
+    }
+  },
+  "alerts": [
+    {
+      "severity": "medium",
+      "label": "과열주의",
+      "detail": "RSI 74.14로 추격매수보다 보호 판단이 우선입니다.",
+      "tone": "amber"
+    }
+  ],
+  "quickFactors": [
+    "등락 2.91%",
+    "RSI 74.14",
+    "거래량 0배",
+    "손익 14.66%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "ETF_COMPOSITION_MISSING",
+    "ETF_NAV_MISSING"
+  ],
+  "riskFlags": [
+    "BOLLINGER_ABOVE_UPPER"
+  ],
+  "sourceSupport": {
+    "reports": 0.542,
+    "stockeasy": 0,
+    "marketvoice": 0,
+    "technical": 0,
+    "kisEtf": 0,
+    "news": 0,
+    "macro": 0,
+    "llm": 0
+  }
+}

@@ -1,0 +1,104 @@
+{
+  "id": "stock-pulse:0162Z0",
+  "code": "0162Z0",
+  "name": "RISE 삼성전자SK하이닉스채권혼합50",
+  "category": "반도체/채권혼합",
+  "type": "etf",
+  "verdict": "보유유지",
+  "urgency": "중간",
+  "pulseScore": 68,
+  "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNot": "같은 테마 중복 확대 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "marketValue": 1164000,
+      "profitRate": 3.92,
+      "decision": "보유유지"
+    },
+    {
+      "accountKey": "PENSION",
+      "accountLabel": "한투 연금저축",
+      "marketValue": 1396800,
+      "profitRate": 2.46,
+      "decision": "보유유지"
+    }
+  ],
+  "position": {
+    "marketValue": 2560800,
+    "purchaseValue": 0,
+    "profitLoss": 77600,
+    "profitRate": 3.12,
+    "quantity": 220
+  },
+  "market": {
+    "price": 11900,
+    "previousClose": 11400,
+    "changePct": 4.39,
+    "volume": 8829658,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 77,
+    "signal": "BUY",
+    "reason": "주가가 20일선 위에서 유지 중, MACD 모멘텀이 우호적, RSI 기준 단기 과열 구간",
+    "rsi": 71.92,
+    "ma20": 10976.5,
+    "ma60": 0,
+    "recentHighDistancePct": 0,
+    "rsVsBenchmark": 0,
+    "alerts": [
+      "RSI 과매수 구간 진입"
+    ]
+  },
+  "fundamental": {
+    "score": 88,
+    "label": "수급강함",
+    "metrics": null,
+    "etf": {
+      "rank": null,
+      "navGapPct": null,
+      "concentrationTop5Pct": 0,
+      "topHoldings": []
+    }
+  },
+  "alerts": [
+    {
+      "severity": "medium",
+      "label": "과열주의",
+      "detail": "RSI 71.92로 추격매수보다 보호 판단이 우선입니다.",
+      "tone": "amber"
+    }
+  ],
+  "quickFactors": [
+    "등락 4.39%",
+    "RSI 71.92",
+    "거래량 0배",
+    "손익 3.12%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "ETF_COMPOSITION_MISSING",
+    "ETF_NAV_MISSING"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {
+    "reports": 0.464,
+    "stockeasy": 0,
+    "marketvoice": 0,
+    "technical": 0.302,
+    "kisEtf": 0,
+    "news": 0,
+    "macro": 0,
+    "llm": 0
+  }
+}

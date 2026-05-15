@@ -1,0 +1,95 @@
+{
+  "id": "stock-pulse:012450",
+  "code": "012450",
+  "name": "한화에어로스페이스",
+  "category": "방산",
+  "type": "stock",
+  "verdict": "손절감시",
+  "urgency": "중간",
+  "pulseScore": 28,
+  "oneLine": "손절감시: 손실 확대 원인을 확인하고 20일선 회복 실패 시 감량 기준을 먼저 봅니다.",
+  "doNow": "손실 확대 원인을 확인하고 20일선 회복 실패 시 감량 기준을 먼저 봅니다.",
+  "doNot": "손절 기준 없이 물타기 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "marketValue": 1374000,
+      "profitRate": -7.03,
+      "decision": null
+    }
+  ],
+  "position": {
+    "marketValue": 1374000,
+    "purchaseValue": 1478000,
+    "profitLoss": -104000,
+    "profitRate": -7.04,
+    "quantity": 1
+  },
+  "market": {
+    "price": 1373000,
+    "previousClose": 1433000,
+    "changePct": -4.19,
+    "volume": 71621,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 38,
+    "signal": "REDUCE",
+    "reason": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화",
+    "rsi": 44.91,
+    "ma20": 1451250,
+    "ma60": 1364883.3333,
+    "recentHighDistancePct": -12.42,
+    "rsVsBenchmark": -33.81,
+    "alerts": []
+  },
+  "fundamental": {
+    "score": 55,
+    "label": "기본보통",
+    "metrics": {
+      "per": 48.05,
+      "pbr": 7.29,
+      "eps": 28573,
+      "estimatedPer": 33,
+      "estimatedEps": 41905,
+      "dividendYield": 0.51,
+      "operatingMargin": 11.57,
+      "operatingMarginEstimate": 14.17,
+      "roe": 19.14,
+      "roeEstimate": 20.34,
+      "annualEps": 28573,
+      "previousAnnualEps": 46183,
+      "estimatedAnnualEps": 41905,
+      "epsGrowthPct": -38.13,
+      "estimatedEpsGrowthPct": 46.66
+    },
+    "etf": null
+  },
+  "alerts": [
+    {
+      "severity": "medium",
+      "label": "기술약화",
+      "detail": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화",
+      "tone": "amber"
+    }
+  ],
+  "quickFactors": [
+    "등락 -4.19%",
+    "RSI 44.91",
+    "거래량 0배",
+    "손익 -7.04%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {}
+}

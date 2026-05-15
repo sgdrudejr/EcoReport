@@ -1,0 +1,6491 @@
+{
+  "date": "2026-05-04",
+  "generatedAt": "2026-05-05T01:03:53.249Z",
+  "accountFeatures": [
+    {
+      "accountKey": "ISA",
+      "netScore": 0.1905,
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0.39092,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "topSupportingThemes": [
+        "AI 인프라",
+        "금/원자재",
+        "금리/매크로",
+        "전력 인프라",
+        "방산"
+      ],
+      "topRisks": [
+        "geopolitics",
+        "oil",
+        "rates",
+        "fx"
+      ]
+    },
+    {
+      "accountKey": "PENSION",
+      "netScore": 0.1102,
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0.39092,
+        "technical": 0.3496,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "topSupportingThemes": [
+        "AI 인프라",
+        "금/원자재",
+        "금리/매크로",
+        "전력 인프라",
+        "방산"
+      ],
+      "topRisks": [
+        "geopolitics",
+        "oil",
+        "rates",
+        "fx"
+      ]
+    },
+    {
+      "accountKey": "KIS_MAIN",
+      "netScore": 0.2212,
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0.58692,
+        "technical": 0.3952,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "topSupportingThemes": [
+        "AI 인프라",
+        "금/원자재",
+        "금리/매크로",
+        "전력 인프라",
+        "방산"
+      ],
+      "topRisks": [
+        "geopolitics",
+        "oil",
+        "rates",
+        "fx",
+        "defense"
+      ]
+    }
+  ],
+  "securityFeatures": [
+    {
+      "code": "0162Z0",
+      "name": "RISE 삼성전자SK하이닉스채권혼합50",
+      "netScore": 0.2648,
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.30240000000000006,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2,
+      "candidateAccounts": [
+        "PENSION"
+      ]
+    },
+    {
+      "code": "161510",
+      "name": "PLUS 고배당주",
+      "netScore": 0.3331,
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2,
+      "candidateAccounts": [
+        "ISA"
+      ]
+    },
+    {
+      "code": "411060",
+      "name": "ACE KRX금현물",
+      "netScore": 0.1035,
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.41040000000000004,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2,
+      "candidateAccounts": [
+        "ISA"
+      ]
+    },
+    {
+      "code": "475300",
+      "name": "SOL 반도체전공정",
+      "netScore": 0.4617,
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2,
+      "candidateAccounts": [
+        "ISA"
+      ]
+    },
+    {
+      "code": "379810",
+      "name": "KODEX 미국나스닥100",
+      "netScore": 0.2112,
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3496,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2,
+      "candidateAccounts": [
+        "PENSION"
+      ]
+    },
+    {
+      "code": "138910",
+      "name": "KODEX 구리선물(H)",
+      "netScore": 0.1548,
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2,
+      "candidateAccounts": [
+        "KIS_MAIN"
+      ]
+    },
+    {
+      "code": "329180",
+      "name": "HD현대중공업",
+      "netScore": 0.1825,
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0.58692,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 3,
+      "candidateAccounts": [
+        "KIS_MAIN"
+      ]
+    },
+    {
+      "code": "385510",
+      "name": "KODEX 신재생에너지액티브",
+      "netScore": 0.1038,
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.15839999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 3,
+      "candidateAccounts": [
+        "ISA"
+      ]
+    },
+    {
+      "code": "487240",
+      "name": "KODEX AI전력핵심설비",
+      "netScore": 0.189,
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5832,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 3,
+      "candidateAccounts": [
+        "ISA"
+      ]
+    },
+    {
+      "code": "360750",
+      "name": "TIGER 미국S&P500",
+      "netScore": 0.1552,
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2,
+      "candidateAccounts": [
+        "PENSION"
+      ]
+    },
+    {
+      "code": "012450",
+      "name": "한화에어로스페이스",
+      "netScore": 0.3013,
+      "support": {
+        "reports": 0.3956,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.19,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2,
+      "candidateAccounts": [
+        "KIS_MAIN"
+      ]
+    },
+    {
+      "code": "064350",
+      "name": "현대로템",
+      "netScore": 0.2609,
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2,
+      "candidateAccounts": [
+        "KIS_MAIN"
+      ]
+    },
+    {
+      "code": "449450",
+      "name": "PLUS K방산",
+      "netScore": 0.3926,
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3952,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2,
+      "candidateAccounts": [
+        "KIS_MAIN"
+      ]
+    },
+    {
+      "code": "069500",
+      "name": "KODEX 200",
+      "netScore": 0.1668,
+      "support": {
+        "reports": 0.3128,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.18749999999999997,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 3,
+      "candidateAccounts": [
+        "PENSION"
+      ]
+    },
+    {
+      "code": "469150",
+      "name": "ACE AI반도체TOP3+",
+      "netScore": 0.2032,
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.23879999999999998,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 3,
+      "candidateAccounts": [
+        "KIS_MAIN"
+      ]
+    },
+    {
+      "code": "001510",
+      "name": "SK증권",
+      "netScore": -0.7326,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7524,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "017900",
+      "name": "광전자",
+      "netScore": 0.7326,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7524,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "047040",
+      "name": "대우건설",
+      "netScore": -0.7326,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7524,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "322000",
+      "name": "HD현대에너지솔루션",
+      "netScore": -0.7326,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7524,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "010170",
+      "name": "대한광통신",
+      "netScore": 0.7326,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7524,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "027360",
+      "name": "아주IB투자",
+      "netScore": -0.7326,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7524,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "036170",
+      "name": "에이치엠넥스",
+      "netScore": 0.7326,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7524,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "040160",
+      "name": "누리플렉스",
+      "netScore": 0.7326,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7524,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "043260",
+      "name": "성호전자",
+      "netScore": 0.7326,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7524,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "046970",
+      "name": "우리로",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "049630",
+      "name": "재영솔루텍",
+      "netScore": -0.7524,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7524,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "327260",
+      "name": "RF머트리얼즈",
+      "netScore": 0.7524,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7524,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "006340",
+      "name": "대원전선",
+      "netScore": 0.7448,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7448,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "100790",
+      "name": "미래에셋벤처투자",
+      "netScore": -0.7448,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7448,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "009150",
+      "name": "삼성전기",
+      "netScore": 0.7448,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7448,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "010060",
+      "name": "OCI홀딩스",
+      "netScore": -0.7448,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7448,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "036930",
+      "name": "주성엔지니어링",
+      "netScore": -0.7448,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7448,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "355150",
+      "name": "코스텍시스",
+      "netScore": -0.7448,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7448,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "038500",
+      "name": "삼표시멘트",
+      "netScore": -0.7448,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7448,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "440110",
+      "name": "파두",
+      "netScore": 0.7448,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7448,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "069540",
+      "name": "빛과전자",
+      "netScore": 0.7448,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7448,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "032820",
+      "name": "우리기술",
+      "netScore": -0.7448,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7448,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "000650",
+      "name": "천일고속",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "010820",
+      "name": "퍼스텍",
+      "netScore": -0.7372,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7372,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "475150",
+      "name": "SK이터닉스",
+      "netScore": -0.7372,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7372,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "092190",
+      "name": "서울바이오시스",
+      "netScore": 0.7372,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7372,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "082920",
+      "name": "비츠로셀",
+      "netScore": -0.7372,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7372,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "064850",
+      "name": "에프앤가이드",
+      "netScore": 0.7372,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7372,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "000500",
+      "name": "가온전선",
+      "netScore": 0.7372,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7372,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "010120",
+      "name": "LS ELECTRIC",
+      "netScore": 0.3686,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7372,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2,
+      "candidateAccounts": []
+    },
+    {
+      "code": "290550",
+      "name": "디케이티",
+      "netScore": 0.7372,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7372,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "046120",
+      "name": "오르비텍",
+      "netScore": 0.7372,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7372,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "033160",
+      "name": "엠케이전자",
+      "netScore": 0.7372,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7372,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "417840",
+      "name": "저스템",
+      "netScore": 0.7372,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7372,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "353200",
+      "name": "대덕전자",
+      "netScore": 0.7372,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7372,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "218410",
+      "name": "RFHIC",
+      "netScore": 0.7372,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7372,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "126340",
+      "name": "비나텍",
+      "netScore": -0.7372,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7372,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "089890",
+      "name": "코세스",
+      "netScore": 0.7372,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7372,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "007810",
+      "name": "코리아써키트",
+      "netScore": 0.7372,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7372,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "030530",
+      "name": "원익홀딩스",
+      "netScore": 0.7372,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7372,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "138080",
+      "name": "오이솔루션",
+      "netScore": 0.7296,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7296,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "005090",
+      "name": "SGC에너지",
+      "netScore": -0.7296,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7296,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "382800",
+      "name": "지앤비에스 에코",
+      "netScore": 0.7296,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7296,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "011070",
+      "name": "LG이노텍",
+      "netScore": 0.7296,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7296,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "077360",
+      "name": "덕산하이메탈",
+      "netScore": 0.7296,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7296,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "131970",
+      "name": "두산테스나",
+      "netScore": 0.7296,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7296,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "001440",
+      "name": "대한전선",
+      "netScore": 0.7296,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7296,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "042700",
+      "name": "한미반도체",
+      "netScore": 0.7296,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7296,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "095340",
+      "name": "ISC",
+      "netScore": -0.7296,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7296,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "006800",
+      "name": "미래에셋증권",
+      "netScore": 0.7296,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7296,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "089970",
+      "name": "브이엠",
+      "netScore": 0.7296,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7296,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "347700",
+      "name": "스피어",
+      "netScore": -0.7296,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7296,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "000150",
+      "name": "두산",
+      "netScore": 0.7296,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7296,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "298040",
+      "name": "효성중공업",
+      "netScore": 0.3648,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7296,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2,
+      "candidateAccounts": []
+    },
+    {
+      "code": "000660",
+      "name": "SK하이닉스",
+      "netScore": 0.3648,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7296,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2,
+      "candidateAccounts": []
+    },
+    {
+      "code": "138360",
+      "name": "앤로보틱스",
+      "netScore": -0.7296,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7296,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "124500",
+      "name": "아이티센글로벌",
+      "netScore": 0.7296,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7296,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "108490",
+      "name": "로보티즈",
+      "netScore": 0.7296,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7296,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "058610",
+      "name": "에스피지",
+      "netScore": 0.7296,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7296,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "319400",
+      "name": "현대무벡스",
+      "netScore": 0.7296,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7296,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "033790",
+      "name": "피노",
+      "netScore": 0.722,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.722,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "006110",
+      "name": "삼아알미늄",
+      "netScore": -0.722,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.722,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "125210",
+      "name": "아모그린텍",
+      "netScore": 0.722,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.722,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "011930",
+      "name": "신성이엔지",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "402490",
+      "name": "그린리소스",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "019210",
+      "name": "와이지-원",
+      "netScore": 0.722,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.722,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "131290",
+      "name": "티에스이",
+      "netScore": -0.722,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.722,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "160980",
+      "name": "싸이맥스",
+      "netScore": 0.722,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.722,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "330860",
+      "name": "네패스아크",
+      "netScore": -0.722,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.722,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "033240",
+      "name": "자화전자",
+      "netScore": -0.722,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.722,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "420770",
+      "name": "기가비스",
+      "netScore": 0.722,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.722,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "062040",
+      "name": "산일전기",
+      "netScore": 0.722,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.722,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "103590",
+      "name": "일진전기",
+      "netScore": 0.722,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.722,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "033640",
+      "name": "네패스",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "080580",
+      "name": "오킨스전자",
+      "netScore": 0.722,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.722,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "098120",
+      "name": "마이크로컨텍솔",
+      "netScore": 0.722,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.722,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "319660",
+      "name": "피에스케이",
+      "netScore": 0.722,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.722,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "222800",
+      "name": "심텍",
+      "netScore": 0.722,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.722,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "295310",
+      "name": "에이치브이엠",
+      "netScore": -0.722,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.722,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "097230",
+      "name": "HJ중공업",
+      "netScore": -0.722,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.722,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "092220",
+      "name": "KEC",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "046890",
+      "name": "서울반도체",
+      "netScore": 0.7144,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7143999999999999,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "393890",
+      "name": "더블유씨피",
+      "netScore": 0.7144,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7143999999999999,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "452280",
+      "name": "한선엔지니어링",
+      "netScore": -0.7144,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7143999999999999,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "229640",
+      "name": "LS에코에너지",
+      "netScore": -0.7144,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7143999999999999,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "001820",
+      "name": "삼화콘덴서",
+      "netScore": 0.7144,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7143999999999999,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "006260",
+      "name": "LS",
+      "netScore": 0.7144,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7143999999999999,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "417200",
+      "name": "LS머트리얼즈",
+      "netScore": 0.7144,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7143999999999999,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "053610",
+      "name": "프로텍",
+      "netScore": 0.7144,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7143999999999999,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "425420",
+      "name": "티에프이",
+      "netScore": 0.7144,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7143999999999999,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "170920",
+      "name": "엘티씨",
+      "netScore": 0.7144,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7143999999999999,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "044490",
+      "name": "태웅",
+      "netScore": 0.7144,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7143999999999999,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "356860",
+      "name": "티엘비",
+      "netScore": 0.7144,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7143999999999999,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "034020",
+      "name": "두산에너빌리티",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2,
+      "candidateAccounts": [
+        "KIS_MAIN"
+      ]
+    },
+    {
+      "code": "001430",
+      "name": "세아베스틸지주",
+      "netScore": -0.7144,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7143999999999999,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "090710",
+      "name": "휴림로봇",
+      "netScore": -0.7144,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7143999999999999,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "456040",
+      "name": "OCI",
+      "netScore": -0.7068,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7068000000000001,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "375500",
+      "name": "DL이앤씨",
+      "netScore": -0.7068,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7068000000000001,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "050890",
+      "name": "쏠리드",
+      "netScore": 0.7068,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7068000000000001,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "052710",
+      "name": "아모텍",
+      "netScore": 0.7068,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7068000000000001,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "132030",
+      "name": "KODEX 골드선물(H)",
+      "netScore": -0.3344,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.33440000000000003,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": [
+        "ISA"
+      ]
+    },
+    {
+      "code": "133690",
+      "name": "TIGER 미국나스닥100",
+      "netScore": 0.3496,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3496,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": [
+        "PENSION"
+      ]
+    },
+    {
+      "code": "267260",
+      "name": "HD현대일렉트릭",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "423160",
+      "name": "KODEX KOFR금리액티브(합성)",
+      "netScore": -0.3648,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3648,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "434730",
+      "name": "HANARO 원자력iSelect",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": [
+        "KIS_MAIN"
+      ]
+    },
+    {
+      "code": "458760",
+      "name": "TIGER 미국배당다우존스타겟커버드콜2호",
+      "netScore": 0.304,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.30400000000000005,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": [
+        "ISA"
+      ]
+    },
+    {
+      "code": "496080",
+      "name": "TIGER 코리아밸류업",
+      "netScore": 0.109,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.21809999999999996,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2,
+      "candidateAccounts": [
+        "ISA"
+      ]
+    },
+    {
+      "code": "498400",
+      "name": "KODEX 200타겟위클리커버드콜",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": [
+        "ISA"
+      ]
+    },
+    {
+      "code": "005930",
+      "name": "삼성전자",
+      "netScore": 0.76,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "047810",
+      "name": "한국항공우주",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "243880",
+      "name": "TIGER 200IT레버리지",
+      "netScore": 0.6957,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.6957,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "412570",
+      "name": "TIGER 2차전지TOP10레버리지",
+      "netScore": 0.6141,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.6141,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "462330",
+      "name": "KODEX 2차전지산업레버리지",
+      "netScore": 0.6132,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.6132,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "494220",
+      "name": "UNICORN SK하이닉스밸류체인액티브",
+      "netScore": 0.5655,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5655,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "491820",
+      "name": "HANARO 전력설비투자",
+      "netScore": 0.5694,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5693999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "271050",
+      "name": "KODEX WTI원유선물인버스(H)",
+      "netScore": 0.5436,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5436,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "455860",
+      "name": "SOL 2차전지소부장Fn",
+      "netScore": 0.5262,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5262,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "217770",
+      "name": "TIGER 원유선물인버스(H)",
+      "netScore": 0.5211,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5211,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "423920",
+      "name": "TIGER 미국필라델피아반도체레버리지(합성)",
+      "netScore": 0.5133,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5133,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "494310",
+      "name": "KODEX 반도체레버리지",
+      "netScore": 0.5079,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5078999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "461950",
+      "name": "KODEX 2차전지핵심소재10",
+      "netScore": 0.5124,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5124,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "152500",
+      "name": "ACE 레버리지",
+      "netScore": 0.4911,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.49110000000000004,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "462010",
+      "name": "TIGER 2차전지소재Fn",
+      "netScore": 0.4845,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.48449999999999993,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "267770",
+      "name": "TIGER 200선물레버리지",
+      "netScore": 0.4791,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.47909999999999997,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "122630",
+      "name": "KODEX 레버리지",
+      "netScore": 0.4764,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.47639999999999993,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "123320",
+      "name": "TIGER 레버리지",
+      "netScore": 0.4722,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.47219999999999995,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "491010",
+      "name": "TIGER 글로벌AI전력인프라액티브",
+      "netScore": 0.4614,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.46140000000000003,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "471040",
+      "name": "KoAct 글로벌AI&로봇액티브",
+      "netScore": 0.4563,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.4563,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "488080",
+      "name": "TIGER 반도체TOP10레버리지",
+      "netScore": 0.4623,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.4623,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "487230",
+      "name": "KODEX 미국AI전력핵심인프라",
+      "netScore": 0.4449,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.44489999999999996,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "456600",
+      "name": "TIME 글로벌AI인공지능액티브",
+      "netScore": 0.4314,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.43140000000000006,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "466810",
+      "name": "BNK 2차전지양극재",
+      "netScore": 0.4263,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.42629999999999996,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "426030",
+      "name": "TIME 미국나스닥100액티브",
+      "netScore": 0.4164,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.4164,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "422420",
+      "name": "RISE 2차전지액티브",
+      "netScore": 0.4098,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.40979999999999994,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "139260",
+      "name": "TIGER 200 IT",
+      "netScore": 0.4179,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.4179,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "483340",
+      "name": "ACE 구글밸류체인액티브",
+      "netScore": 0.4032,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.4032,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "469170",
+      "name": "ACE 포스코그룹포커스",
+      "netScore": 0.3813,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.3813,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "409820",
+      "name": "KODEX 미국나스닥100레버리지(합성 H)",
+      "netScore": 0.3753,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.37529999999999997,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "498270",
+      "name": "KIWOOM 미국양자컴퓨팅",
+      "netScore": 0.3693,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.3693,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "474590",
+      "name": "WON 반도체밸류체인액티브",
+      "netScore": 0.3561,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.3561,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "465330",
+      "name": "RISE 2차전지TOP10",
+      "netScore": 0.3507,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.35069999999999996,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "442580",
+      "name": "PLUS 글로벌HBM반도체",
+      "netScore": 0.3456,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.34559999999999996,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "457480",
+      "name": "ACE 테슬라밸류체인액티브",
+      "netScore": 0.3384,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.33840000000000003,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "305540",
+      "name": "TIGER 2차전지테마",
+      "netScore": 0.3513,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.3513,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "388420",
+      "name": "RISE 비메모리반도체액티브",
+      "netScore": 0.3246,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.32459999999999994,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "367760",
+      "name": "RISE 네트워크인프라",
+      "netScore": 0.3291,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.32910000000000006,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "364980",
+      "name": "TIGER 2차전지TOP10",
+      "netScore": 0.3177,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.3177,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "364990",
+      "name": "TIGER 게임TOP10",
+      "netScore": 0.3093,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.30929999999999996,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "233160",
+      "name": "TIGER 코스닥150 레버리지",
+      "netScore": 0.3117,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.3117,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "305720",
+      "name": "KODEX 2차전지산업",
+      "netScore": 0.3105,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.3105,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "307520",
+      "name": "TIGER 지주회사",
+      "netScore": 0.2934,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.2934,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "471780",
+      "name": "TIGER 코리아테크액티브",
+      "netScore": 0.2925,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.2925,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "473590",
+      "name": "ACE 미국주식베스트셀러",
+      "netScore": 0.2838,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.2838,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "144600",
+      "name": "KODEX 은선물(H)",
+      "netScore": 0.3177,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.31770000000000004,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "233740",
+      "name": "KODEX 코스닥150레버리지",
+      "netScore": 0.2856,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.28559999999999997,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "395270",
+      "name": "HANARO Fn K-반도체",
+      "netScore": 0.2763,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.2763,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "157500",
+      "name": "TIGER 증권",
+      "netScore": 0.2574,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.25739999999999996,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "290130",
+      "name": "RISE ESG사회책임투자",
+      "netScore": 0.2652,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.2652,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "479620",
+      "name": "SOL 미국AI반도체칩메이커",
+      "netScore": 0.2436,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.24359999999999998,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "102970",
+      "name": "KODEX 증권",
+      "netScore": 0.2358,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.2358,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "385720",
+      "name": "TIME 코스피액티브",
+      "netScore": 0.2463,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.2463,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "381180",
+      "name": "TIGER 미국필라델피아반도체나스닥",
+      "netScore": 0.2178,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.2178,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "315960",
+      "name": "RISE 대형고배당10TR",
+      "netScore": 0.2205,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.2205,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "421320",
+      "name": "PLUS 우주항공&UAM",
+      "netScore": 0.2019,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.20189999999999997,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "237350",
+      "name": "KODEX 코스피100",
+      "netScore": 0.2061,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.2061,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "091160",
+      "name": "KODEX 반도체",
+      "netScore": 0.2022,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.20220000000000002,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "418660",
+      "name": "TIGER 미국나스닥100레버리지(합성)",
+      "netScore": 0.1869,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.18689999999999996,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "444200",
+      "name": "SOL 코리아메가테크액티브",
+      "netScore": 0.189,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.18900000000000003,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "494890",
+      "name": "KODEX 200액티브",
+      "netScore": 0.1806,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.1806,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "495230",
+      "name": "KoAct 코리아밸류업액티브",
+      "netScore": 0.1866,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.1866,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "451060",
+      "name": "1Q 200액티브",
+      "netScore": 0.1698,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.16979999999999998,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "102110",
+      "name": "TIGER 200",
+      "netScore": 0.1674,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.1674,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "441800",
+      "name": "TIME Korea플러스배당액티브",
+      "netScore": 0.1584,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.15839999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "278530",
+      "name": "KODEX 200TR",
+      "netScore": 0.1584,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.15839999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "105190",
+      "name": "ACE 200",
+      "netScore": 0.1584,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.15839999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "091230",
+      "name": "TIGER 반도체",
+      "netScore": 0.1584,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.15839999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "069660",
+      "name": "KIWOOM 200",
+      "netScore": 0.1584,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.15839999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "148020",
+      "name": "RISE 200",
+      "netScore": 0.1584,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.15839999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "495850",
+      "name": "KODEX 코리아밸류업",
+      "netScore": 0.1584,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.15839999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "495050",
+      "name": "RISE 코리아밸류업",
+      "netScore": 0.1584,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.15839999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "226490",
+      "name": "KODEX 코스피",
+      "netScore": 0.1584,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.15839999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "396500",
+      "name": "TIGER 반도체TOP10",
+      "netScore": 0.1584,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.15839999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "473460",
+      "name": "KODEX 미국서학개미",
+      "netScore": 0.1584,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.15839999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "300950",
+      "name": "KODEX 게임산업",
+      "netScore": 0.1584,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.15839999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    },
+    {
+      "code": "395160",
+      "name": "KODEX AI반도체",
+      "netScore": 0.1584,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.15839999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1,
+      "candidateAccounts": []
+    }
+  ],
+  "themeFeatures": [
+    {
+      "theme": "AI 인프라",
+      "netScore": 0.2417,
+      "support": {
+        "reports": 0.6880000000000001,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5832,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "금/원자재",
+      "netScore": 0.2568,
+      "support": {
+        "reports": 0.6880000000000001,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "금리/매크로",
+      "netScore": 0.2745,
+      "support": {
+        "reports": 0.6880000000000001,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "전력 인프라",
+      "netScore": 0.2221,
+      "support": {
+        "reports": 0.6880000000000001,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5832,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 3
+    },
+    {
+      "theme": "방산",
+      "netScore": 0.2603,
+      "support": {
+        "reports": 0.6880000000000001,
+        "stockeasy": 0.7372,
+        "marketvoice": 0,
+        "technical": 0.3952,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 3
+    },
+    {
+      "theme": "HBM/메모리",
+      "netScore": 0.3413,
+      "support": {
+        "reports": 0.6880000000000001,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "원자력",
+      "netScore": 0.2244,
+      "support": {
+        "reports": 0.49879999999999997,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "금융",
+      "netScore": -0.2063,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7524,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "반도체",
+      "netScore": 0.4039,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7524,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0.5078999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 3
+    },
+    {
+      "theme": "인프라",
+      "netScore": 0.1197,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7524,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5832,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 3
+    },
+    {
+      "theme": "전력/에너지",
+      "netScore": 0.2184,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7524,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5832,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "기계",
+      "netScore": 0.3741,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7524,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5832,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "소비재",
+      "netScore": 0.2244,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.44880000000000003,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "2차전지",
+      "netScore": 0.4263,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7372,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.6141,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "IT/플랫폼",
+      "netScore": 0.3706,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7372,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "화학/소재",
+      "netScore": -0.4066,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.722,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "지주사",
+      "netScore": 0.6392,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.6392,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "자동차",
+      "netScore": 0.5236,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.5236000000000001,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "조선/해운",
+      "netScore": 0.4964,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.4964,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "K-컬처",
+      "netScore": 0.4624,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.4624000000000001,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "바이오",
+      "netScore": 0.3944,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.39440000000000003,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "중동/유가",
+      "netScore": 0.0115,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0.5336,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "금리/환율",
+      "netScore": -0.0169,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0.5336,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "방산/국방",
+      "netScore": 0.4159,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0.58692,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "금",
+      "netScore": -0.2738,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.41040000000000004,
+        "kis_etf": 0.31770000000000004,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "gold",
+      "netScore": -0.3724,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.41040000000000004,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "안전자산",
+      "netScore": -0.1424,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.41040000000000004,
+        "kis_etf": 0.31770000000000004,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "귀금속",
+      "netScore": -0.3344,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.33440000000000003,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "인플레이션 헤지",
+      "netScore": -0.3344,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.33440000000000003,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "나스닥100",
+      "netScore": 0.3496,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3496,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "나스닥",
+      "netScore": 0.3112,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3496,
+        "kis_etf": 0.37529999999999997,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "nasdaq",
+      "netScore": 0.3496,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3496,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "기술주",
+      "netScore": 0.3496,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3496,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "미국 빅테크",
+      "netScore": 0.3496,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3496,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "기타",
+      "netScore": 0.3204,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5655,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "구리",
+      "netScore": 0.2662,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5436,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "원자재",
+      "netScore": 0.3496,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5436,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "산업금속",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "copper",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "구리선물",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "배당/커버드콜",
+      "netScore": 0.3547,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "배당",
+      "netScore": 0.532,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "고배당",
+      "netScore": 0.76,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "인컴",
+      "netScore": 0.76,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "방어",
+      "netScore": 0.76,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "전력기기",
+      "netScore": 0.053,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5832,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "변압기",
+      "netScore": 0.1831,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5832,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "송배전",
+      "netScore": 0.2662,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.46140000000000003,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "hd현대일렉트릭",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "현대일렉트릭",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "초전도",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "효성중공업",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "효성",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "조선",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "엔진",
+      "netScore": 0.095,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.19,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "데이터센터",
+      "netScore": 0.3042,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5832,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "hd현대중공업",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "현대중공업",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "S&P500",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "s&p500",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "sp500",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "미국",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "대형주",
+      "netScore": 0.0625,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.18749999999999997,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "지수",
+      "netScore": 0.2072,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.47909999999999997,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "s&p 500",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "신재생에너지",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "신재생",
+      "netScore": 0.0528,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.15839999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "재생에너지",
+      "netScore": 0.0528,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.15839999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "태양광",
+      "netScore": 0.0792,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.15839999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "풍력",
+      "netScore": 0.0792,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.15839999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "전력",
+      "netScore": 0.2007,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5832,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "금현물",
+      "netScore": -0.4104,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.41040000000000004,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "krx금현물",
+      "netScore": -0.4104,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.41040000000000004,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "현금파킹",
+      "netScore": -0.3648,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3648,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "KOFR",
+      "netScore": -0.3648,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3648,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "단기금리",
+      "netScore": -0.3648,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3648,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "현금",
+      "netScore": -0.3648,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3648,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "파킹",
+      "netScore": -0.3648,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3648,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "kofr",
+      "netScore": -0.3648,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3648,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "금리",
+      "netScore": -0.3648,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3648,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "단기채",
+      "netScore": -0.3648,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3648,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "원전",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "SMR",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "핵",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "smr",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "국방",
+      "netScore": 0.3952,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3952,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "무기",
+      "netScore": 0.3952,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3952,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "군수",
+      "netScore": 0.1463,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3952,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "미사일",
+      "netScore": 0.3952,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3952,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "커버드콜",
+      "netScore": 0.152,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.30400000000000005,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "다우",
+      "netScore": 0.304,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.30400000000000005,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "프리미엄",
+      "netScore": 0.304,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.30400000000000005,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "미국배당",
+      "netScore": 0.304,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.30400000000000005,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "AI반도체",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "HBM",
+      "netScore": 0.2551,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5078999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "삼성전자",
+      "netScore": 0.3412,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "SK하이닉스",
+      "netScore": 0.1512,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.30240000000000006,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "한미반도체",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "ai반도체",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "hbm",
+      "netScore": 0.2296,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0.15839999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "전공정",
+      "netScore": 0.76,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "소부장",
+      "netScore": 0.3524,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0.5078999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "장비",
+      "netScore": 0.76,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "반도체 전공정",
+      "netScore": 0.76,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "변압",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "국내인덱스",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "밸류업",
+      "netScore": 0.109,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.21809999999999996,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "주주환원",
+      "netScore": 0.109,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.21809999999999996,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "국내 인덱스",
+      "netScore": 0.0727,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.21809999999999996,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "저pbr",
+      "netScore": 0.109,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.21809999999999996,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "국내지수",
+      "netScore": 0.2547,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.47909999999999997,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "분배금",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "변동성 완충",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "위클리커버드콜",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "코스피200",
+      "netScore": 0.1788,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.47909999999999997,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "메모리",
+      "netScore": 0.2759,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0.5078999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "파운드리",
+      "netScore": 0.76,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "삼성",
+      "netScore": 0.76,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "갤럭시",
+      "netScore": 0.76,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "dram",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "낸드",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "sk하이닉스",
+      "netScore": 0.1512,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.30240000000000006,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "하이닉스",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "수배전",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "ls일렉트릭",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "ls electric",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "전차",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "현대로템",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "로템",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "k2전차",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "항공",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "우주",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "한국항공우주",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "kai",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "반도체/채권혼합",
+      "netScore": 0.3024,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.30240000000000006,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "채권혼합",
+      "netScore": 0.3024,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.30240000000000006,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "국내 대형주",
+      "netScore": 0.0937,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.18749999999999997,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "kospi200",
+      "netScore": 0.0937,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.18749999999999997,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "국내 지수",
+      "netScore": 0.0937,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.18749999999999997,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "항공우주",
+      "netScore": 0.19,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.19,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "한화에어로스페이스",
+      "netScore": 0.19,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.19,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "한화에어로",
+      "netScore": 0.19,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.19,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "가스터빈",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "두산에너빌리티",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "두산중공업",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "배터리",
+      "netScore": 0.449,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.6141,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "전기차",
+      "netScore": 0.449,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.6141,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "소재",
+      "netScore": 0.449,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.6141,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "전선",
+      "netScore": 0.5832,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5832,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "시장 대표",
+      "netScore": 0.356,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5655,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "테마 분산",
+      "netScore": 0.356,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5655,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "원유",
+      "netScore": 0.5323,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5436,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "에너지",
+      "netScore": 0.5323,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5436,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "국내 주식",
+      "netScore": 0.3518,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.47909999999999997,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "AI/인프라",
+      "netScore": 0.3379,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.46140000000000003,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "AI",
+      "netScore": 0.3513,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.46140000000000003,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "클라우드",
+      "netScore": 0.3513,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.46140000000000003,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "로봇",
+      "netScore": 0.3379,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.46140000000000003,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "인공지능",
+      "netScore": 0.4314,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.43140000000000006,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "미국기술주",
+      "netScore": 0.26,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.37529999999999997,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "미국 기술주",
+      "netScore": 0.26,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.37529999999999997,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "빅테크",
+      "netScore": 0.26,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.37529999999999997,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "인터넷/콘텐츠",
+      "netScore": 0.2338,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.30929999999999996,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "인터넷",
+      "netScore": 0.2338,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.30929999999999996,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "콘텐츠",
+      "netScore": 0.2338,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.30929999999999996,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "플랫폼",
+      "netScore": 0.2338,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.30929999999999996,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "게임",
+      "netScore": 0.2338,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.30929999999999996,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "국내성장주",
+      "netScore": 0.2986,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.3117,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "코스닥",
+      "netScore": 0.2986,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.3117,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "성장주",
+      "netScore": 0.2986,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.3117,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "테크",
+      "netScore": 0.2986,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.3117,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "골드",
+      "netScore": 0.3177,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.31770000000000004,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "헤지",
+      "netScore": 0.3177,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.31770000000000004,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "기업가치 제고",
+      "netScore": 0.2181,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.21809999999999996,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    }
+  ],
+  "consensus": {
+    "topAlignedThemes": [
+      "2차전지",
+      "반도체",
+      "기계",
+      "소부장",
+      "원자재",
+      "기타",
+      "나스닥",
+      "데이터센터",
+      "메모리",
+      "구리"
+    ],
+    "topAlignedSecurities": [
+      "475300",
+      "449450",
+      "010120",
+      "298040",
+      "000660",
+      "161510",
+      "012450",
+      "0162Z0",
+      "064350",
+      "379810"
+    ]
+  },
+  "divergence": {
+    "sourceConflicts": [
+      {
+        "entityType": "security",
+        "entityId": "411060",
+        "directions": [
+          "positive",
+          "negative",
+          "neutral"
+        ],
+        "sources": [
+          "reports",
+          "technical"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "379810",
+        "directions": [
+          "positive",
+          "negative",
+          "neutral"
+        ],
+        "sources": [
+          "reports",
+          "technical"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "138910",
+        "directions": [
+          "positive",
+          "negative",
+          "neutral"
+        ],
+        "sources": [
+          "reports",
+          "technical"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "329180",
+        "directions": [
+          "positive",
+          "neutral",
+          "negative"
+        ],
+        "sources": [
+          "reports",
+          "marketvoice",
+          "technical"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "385510",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "reports",
+          "technical",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "487240",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "reports",
+          "technical",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "360750",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "reports",
+          "technical"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "AI 인프라",
+        "directions": [
+          "positive",
+          "neutral",
+          "negative"
+        ],
+        "sources": [
+          "reports",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "금/원자재",
+        "directions": [
+          "positive",
+          "neutral",
+          "negative"
+        ],
+        "sources": [
+          "reports"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "금리/매크로",
+        "directions": [
+          "positive",
+          "neutral",
+          "negative"
+        ],
+        "sources": [
+          "reports"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "전력 인프라",
+        "directions": [
+          "neutral",
+          "negative",
+          "positive"
+        ],
+        "sources": [
+          "reports",
+          "technical",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "방산",
+        "directions": [
+          "neutral",
+          "positive",
+          "negative"
+        ],
+        "sources": [
+          "reports",
+          "stockeasy",
+          "technical"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "금융",
+        "directions": [
+          "negative",
+          "positive"
+        ],
+        "sources": [
+          "stockeasy"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "반도체",
+        "directions": [
+          "positive",
+          "negative",
+          "neutral"
+        ],
+        "sources": [
+          "stockeasy",
+          "technical",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "인프라",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "stockeasy",
+          "technical",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "전력/에너지",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "stockeasy",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "기계",
+        "directions": [
+          "positive",
+          "negative"
+        ],
+        "sources": [
+          "stockeasy",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "2차전지",
+        "directions": [
+          "negative",
+          "positive"
+        ],
+        "sources": [
+          "stockeasy",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "IT/플랫폼",
+        "directions": [
+          "positive",
+          "negative"
+        ],
+        "sources": [
+          "stockeasy"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "화학/소재",
+        "directions": [
+          "negative",
+          "positive"
+        ],
+        "sources": [
+          "stockeasy"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "중동/유가",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "marketvoice"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "금리/환율",
+        "directions": [
+          "negative",
+          "positive"
+        ],
+        "sources": [
+          "marketvoice"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "금",
+        "directions": [
+          "negative",
+          "positive"
+        ],
+        "sources": [
+          "technical",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "안전자산",
+        "directions": [
+          "negative",
+          "positive"
+        ],
+        "sources": [
+          "technical",
+          "kis_etf"
+        ]
+      }
+    ],
+    "policyConflicts": []
+  },
+  "quality": {
+    "overallStatus": "warn",
+    "flags": [
+      "stale",
+      "partial",
+      "low_coverage",
+      "short_history",
+      "low_theme_mapping"
+    ]
+  }
+}

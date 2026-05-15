@@ -1,0 +1,1742 @@
+{
+  "date": "2026-05-13",
+  "runDate": "2026-05-13",
+  "effectiveMarketDate": "2026-05-13",
+  "runId": "2026-05-13-010148",
+  "generatedAt": "2026-05-13T01:10:36.058Z",
+  "source": {
+    "stockFundamentals": "Naver Finance item main page",
+    "etfComposition": "Naver Finance ETF composition table",
+    "etfFlowProxy": "KIS ETF ranking + market watchlist volume/NAV",
+    "sourceUrls": [
+      "https://finance.naver.com/",
+      "data/external/kis-etf/2026-05-13/etf-ranking.json",
+      "data/market/2026-05-13.json"
+    ]
+  },
+  "collection": {
+    "candidateCount": 42,
+    "fetchedCount": 41,
+    "stockCount": 11,
+    "etfCount": 26,
+    "maxEtfRanking": 18,
+    "concurrency": 4
+  },
+  "coverage": {
+    "withScores": 0,
+    "withStockMetrics": 0,
+    "withEtfComposition": 0,
+    "missingDataNeeds": 42,
+    "errors": 41
+  },
+  "securities": [
+    {
+      "code": "0162Z0",
+      "name": "RISE 삼성전자SK하이닉스채권혼합50",
+      "type": "etf",
+      "bucket": "core_etf",
+      "category": "반도체/채권혼합",
+      "sourceCandidates": [
+        "security-master",
+        "portfolio:ISA",
+        "portfolio:PENSION"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=0162Z0"
+      },
+      "market": {
+        "price": null,
+        "changePct": null,
+        "volume": null,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "138910",
+      "name": "KODEX 구리선물(H)",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "category": "기타",
+      "sourceCandidates": [
+        "security-master",
+        "portfolio:KIS_MAIN"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=138910"
+      },
+      "market": {
+        "price": null,
+        "changePct": null,
+        "volume": null,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "161510",
+      "name": "PLUS 고배당주",
+      "type": "etf",
+      "bucket": "core_etf",
+      "category": "배당/커버드콜",
+      "sourceCandidates": [
+        "security-master",
+        "portfolio:ISA"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=161510"
+      },
+      "market": {
+        "price": null,
+        "changePct": null,
+        "volume": null,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "360750",
+      "name": "TIGER 미국S&P500",
+      "type": "etf",
+      "bucket": "core_etf",
+      "category": "미국인덱스",
+      "sourceCandidates": [
+        "security-master",
+        "portfolio:PENSION",
+        "market-watchlist"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=360750"
+      },
+      "market": {
+        "price": 27215,
+        "changePct": 0.87,
+        "volume": 2453319,
+        "marketCap": null,
+        "nav": 27233.91,
+        "navGapPct": -0.069,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": "naver",
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "379810",
+      "name": "KODEX 미국나스닥100",
+      "type": "etf",
+      "bucket": "core_etf",
+      "category": "나스닥100",
+      "sourceCandidates": [
+        "security-master",
+        "portfolio:PENSION"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=379810"
+      },
+      "market": {
+        "price": null,
+        "changePct": null,
+        "volume": null,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "385510",
+      "name": "KODEX 신재생에너지액티브",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "category": "신재생에너지",
+      "sourceCandidates": [
+        "security-master",
+        "portfolio:ISA"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=385510"
+      },
+      "market": {
+        "price": null,
+        "changePct": null,
+        "volume": null,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "411060",
+      "name": "ACE KRX금현물",
+      "type": "etf",
+      "bucket": "core_etf",
+      "category": "금",
+      "sourceCandidates": [
+        "security-master",
+        "portfolio:ISA",
+        "portfolio:PENSION"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=411060"
+      },
+      "market": {
+        "price": null,
+        "changePct": null,
+        "volume": null,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "469150",
+      "name": "ACE AI반도체TOP3+",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "category": "AI반도체",
+      "sourceCandidates": [
+        "security-master",
+        "portfolio:PENSION",
+        "portfolio:KIS_MAIN"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=469150"
+      },
+      "market": {
+        "price": null,
+        "changePct": null,
+        "volume": null,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "475300",
+      "name": "SOL 반도체전공정",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "category": "반도체",
+      "sourceCandidates": [
+        "security-master",
+        "portfolio:ISA"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=475300"
+      },
+      "market": {
+        "price": null,
+        "changePct": null,
+        "volume": null,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "0167Z0",
+      "name": "KODEX 미국우주항공",
+      "type": "unknown",
+      "bucket": null,
+      "category": null,
+      "sourceCandidates": [
+        "portfolio:KIS_MAIN"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=0167Z0"
+      },
+      "market": {
+        "price": null,
+        "changePct": null,
+        "volume": null,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "064400",
+      "name": "LG씨엔에스",
+      "type": "unknown",
+      "bucket": null,
+      "category": null,
+      "sourceCandidates": [
+        "portfolio:ISA",
+        "portfolio:KIS_MAIN"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=064400"
+      },
+      "market": {
+        "price": null,
+        "changePct": null,
+        "volume": null,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "068270",
+      "name": "셀트리온",
+      "type": "unknown",
+      "bucket": null,
+      "category": null,
+      "sourceCandidates": [
+        "portfolio:ISA",
+        "portfolio:KIS_MAIN"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=068270"
+      },
+      "market": {
+        "price": null,
+        "changePct": null,
+        "volume": null,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "099320",
+      "name": "쎄트렉아이",
+      "type": "unknown",
+      "bucket": null,
+      "category": null,
+      "sourceCandidates": [
+        "portfolio:ISA",
+        "portfolio:KIS_MAIN"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=099320"
+      },
+      "market": {
+        "price": null,
+        "changePct": null,
+        "volume": null,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "196170",
+      "name": "알테오젠",
+      "type": "unknown",
+      "bucket": null,
+      "category": null,
+      "sourceCandidates": [
+        "portfolio:ISA"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=196170"
+      },
+      "market": {
+        "price": null,
+        "changePct": null,
+        "volume": null,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "069500",
+      "name": "KODEX 200",
+      "type": "etf",
+      "bucket": "core_etf",
+      "category": "국내인덱스",
+      "sourceCandidates": [
+        "security-master"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=069500"
+      },
+      "market": {
+        "price": null,
+        "changePct": null,
+        "volume": null,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "132030",
+      "name": "KODEX 골드선물(H)",
+      "type": "etf",
+      "bucket": "core_etf",
+      "category": "금",
+      "sourceCandidates": [
+        "security-master",
+        "market-watchlist"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=132030"
+      },
+      "market": {
+        "price": 26950,
+        "changePct": 1.83,
+        "volume": 59044,
+        "marketCap": null,
+        "nav": 26969.08,
+        "navGapPct": -0.071,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": "naver",
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "133690",
+      "name": "TIGER 미국나스닥100",
+      "type": "etf",
+      "bucket": "core_etf",
+      "category": "나스닥100",
+      "sourceCandidates": [
+        "security-master",
+        "market-watchlist"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=133690"
+      },
+      "market": {
+        "price": 192175,
+        "changePct": 0.81,
+        "volume": 217507,
+        "marketCap": null,
+        "nav": 192428.89,
+        "navGapPct": -0.132,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": "naver",
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "251350",
+      "name": "KODEX MSCI선진국",
+      "type": "etf",
+      "bucket": "core_etf",
+      "category": "기타",
+      "sourceCandidates": [
+        "security-master"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=251350"
+      },
+      "market": {
+        "price": null,
+        "changePct": null,
+        "volume": null,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "2921050",
+      "name": "TIGER 코리아TOP10",
+      "type": "etf",
+      "bucket": "core_etf",
+      "category": "국내대형주",
+      "sourceCandidates": [
+        "security-master"
+      ],
+      "sourceUrls": {
+        "naver": null
+      },
+      "market": {
+        "price": null,
+        "changePct": null,
+        "volume": null,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_CODE_UNSUPPORTED"
+      ],
+      "errors": []
+    },
+    {
+      "code": "396500",
+      "name": "TIGER 반도체TOP10",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "category": "기타",
+      "sourceCandidates": [
+        "security-master"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=396500"
+      },
+      "market": {
+        "price": null,
+        "changePct": null,
+        "volume": null,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "423160",
+      "name": "KODEX KOFR금리액티브",
+      "type": "etf",
+      "bucket": "core_etf",
+      "category": "현금파킹",
+      "sourceCandidates": [
+        "security-master",
+        "market-watchlist"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=423160"
+      },
+      "market": {
+        "price": 110730,
+        "changePct": 0,
+        "volume": 63168,
+        "marketCap": null,
+        "nav": 110717.56,
+        "navGapPct": 0.011,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": "naver",
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "434730",
+      "name": "HANARO 원자력iSelect",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "category": "원자력",
+      "sourceCandidates": [
+        "security-master",
+        "market-watchlist"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=434730"
+      },
+      "market": {
+        "price": 90450,
+        "changePct": -1.15,
+        "volume": 265677,
+        "marketCap": null,
+        "nav": 90506.94,
+        "navGapPct": -0.063,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": "naver",
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "449450",
+      "name": "PLUS K방산",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "category": "방산",
+      "sourceCandidates": [
+        "security-master",
+        "market-watchlist"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=449450"
+      },
+      "market": {
+        "price": 73510,
+        "changePct": -1,
+        "volume": 462971,
+        "marketCap": null,
+        "nav": 73580.96,
+        "navGapPct": -0.096,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": "naver",
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "456600",
+      "name": "TIME 글로벌AI인공지능액티브",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "category": "AI반도체",
+      "sourceCandidates": [
+        "security-master"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=456600"
+      },
+      "market": {
+        "price": null,
+        "changePct": null,
+        "volume": null,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "458760",
+      "name": "TIGER 미국배당+7%프리미엄다우존스",
+      "type": "etf",
+      "bucket": "core_etf",
+      "category": "배당/커버드콜",
+      "sourceCandidates": [
+        "security-master",
+        "market-watchlist"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=458760"
+      },
+      "market": {
+        "price": 11150,
+        "changePct": 0.81,
+        "volume": 290505,
+        "marketCap": null,
+        "nav": 11215.1,
+        "navGapPct": -0.58,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": "naver",
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "487230",
+      "name": "KODEX 미국AI전력핵심인프라",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "category": "전력기기",
+      "sourceCandidates": [
+        "security-master"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=487230"
+      },
+      "market": {
+        "price": null,
+        "changePct": null,
+        "volume": null,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "487240",
+      "name": "KODEX AI전력핵심설비",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "category": "전력기기",
+      "sourceCandidates": [
+        "security-master",
+        "market-watchlist"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=487240"
+      },
+      "market": {
+        "price": 61025,
+        "changePct": -2.98,
+        "volume": 5409706,
+        "marketCap": null,
+        "nav": 61053.29,
+        "navGapPct": -0.046,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": "naver",
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "491010",
+      "name": "TIGER 글로벌AI전력인프라액티브",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "category": "전력기기",
+      "sourceCandidates": [
+        "security-master"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=491010"
+      },
+      "market": {
+        "price": null,
+        "changePct": null,
+        "volume": null,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "496080",
+      "name": "TIGER 코리아밸류업",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "category": "국내인덱스",
+      "sourceCandidates": [
+        "security-master"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=496080"
+      },
+      "market": {
+        "price": null,
+        "changePct": null,
+        "volume": null,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "497570",
+      "name": "TIGER 미국필라델피아AI반도체나스닥",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "category": "AI반도체",
+      "sourceCandidates": [
+        "security-master"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=497570"
+      },
+      "market": {
+        "price": null,
+        "changePct": null,
+        "volume": null,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "498400",
+      "name": "KODEX 200타겟위클리커버드콜",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "category": "배당/커버드콜",
+      "sourceCandidates": [
+        "security-master"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=498400"
+      },
+      "market": {
+        "price": null,
+        "changePct": null,
+        "volume": null,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "000660",
+      "name": "SK하이닉스",
+      "type": "stock",
+      "bucket": "individual_stock",
+      "category": "반도체",
+      "sourceCandidates": [
+        "security-master",
+        "market-watchlist"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=000660"
+      },
+      "market": {
+        "price": 1934000,
+        "changePct": 2.71,
+        "volume": 4203273,
+        "marketCap": 1378366373910000,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": "naver",
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "005930",
+      "name": "삼성전자",
+      "type": "stock",
+      "bucket": "individual_stock",
+      "category": "반도체",
+      "sourceCandidates": [
+        "security-master",
+        "market-watchlist"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=005930"
+      },
+      "market": {
+        "price": 286500,
+        "changePct": 0.35,
+        "volume": 20034357,
+        "marketCap": 1674958821192000,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": "naver",
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "007660",
+      "name": "이수페타시스",
+      "type": "stock",
+      "bucket": "individual_stock",
+      "category": "반도체/PCB",
+      "sourceCandidates": [
+        "security-master"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=007660"
+      },
+      "market": {
+        "price": null,
+        "changePct": null,
+        "volume": null,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "010120",
+      "name": "LS일렉트릭",
+      "type": "stock",
+      "bucket": "individual_stock",
+      "category": "전력기기",
+      "sourceCandidates": [
+        "security-master",
+        "market-watchlist"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=010120"
+      },
+      "market": {
+        "price": 294750,
+        "changePct": -2.96,
+        "volume": 1385577,
+        "marketCap": 44212500000000,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": "naver",
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "012450",
+      "name": "한화에어로스페이스",
+      "type": "stock",
+      "bucket": "individual_stock",
+      "category": "방산",
+      "sourceCandidates": [
+        "security-master"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=012450"
+      },
+      "market": {
+        "price": null,
+        "changePct": null,
+        "volume": null,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "034020",
+      "name": "두산에너빌리티",
+      "type": "stock",
+      "bucket": "individual_stock",
+      "category": "원자력",
+      "sourceCandidates": [
+        "security-master"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=034020"
+      },
+      "market": {
+        "price": null,
+        "changePct": null,
+        "volume": null,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "047810",
+      "name": "한국항공우주",
+      "type": "stock",
+      "bucket": "individual_stock",
+      "category": "방산",
+      "sourceCandidates": [
+        "security-master",
+        "market-watchlist"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=047810"
+      },
+      "market": {
+        "price": 168000,
+        "changePct": -0.88,
+        "volume": 312166,
+        "marketCap": 16375817976000,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": "naver",
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "064350",
+      "name": "현대로템",
+      "type": "stock",
+      "bucket": "individual_stock",
+      "category": "방산",
+      "sourceCandidates": [
+        "security-master",
+        "market-watchlist"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=064350"
+      },
+      "market": {
+        "price": 221000,
+        "changePct": 0.46,
+        "volume": 330967,
+        "marketCap": 24120446753000,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": "naver",
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "267260",
+      "name": "HD현대일렉트릭",
+      "type": "stock",
+      "bucket": "individual_stock",
+      "category": "전력기기",
+      "sourceCandidates": [
+        "security-master",
+        "market-watchlist"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=267260"
+      },
+      "market": {
+        "price": 1347000,
+        "changePct": -1.03,
+        "volume": 81898,
+        "marketCap": 48555490845000,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": "naver",
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "298040",
+      "name": "효성중공업",
+      "type": "stock",
+      "bucket": "individual_stock",
+      "category": "전력기기",
+      "sourceCandidates": [
+        "security-master",
+        "market-watchlist"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=298040"
+      },
+      "market": {
+        "price": 4214000,
+        "changePct": -2.68,
+        "volume": 33773,
+        "marketCap": 39293645272000,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": "naver",
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    },
+    {
+      "code": "329180",
+      "name": "HD현대중공업",
+      "type": "stock",
+      "bucket": "individual_stock",
+      "category": "조선",
+      "sourceCandidates": [
+        "security-master"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=329180"
+      },
+      "market": {
+        "price": null,
+        "changePct": null,
+        "volume": null,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_FETCH_FAILED"
+      ],
+      "errors": [
+        "fetch failed"
+      ]
+    }
+  ]
+}

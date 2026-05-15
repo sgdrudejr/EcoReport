@@ -1,0 +1,121 @@
+{
+  "id": "stock-pulse:012450",
+  "code": "012450",
+  "name": "한화에어로스페이스",
+  "category": "방산",
+  "type": "stock",
+  "verdict": "손절감시",
+  "urgency": "중간",
+  "pulseScore": 47,
+  "oneLine": "손절감시: 손실 확대 원인을 확인하고 20일선 회복 실패 시 감량 기준을 먼저 봅니다.",
+  "doNow": "손실 확대 원인을 확인하고 20일선 회복 실패 시 감량 기준을 먼저 봅니다.",
+  "doNot": "손절 기준 없이 물타기 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "marketValue": 1307000,
+      "profitRate": -11.56,
+      "decision": "감량검토"
+    }
+  ],
+  "position": {
+    "marketValue": 1307000,
+    "purchaseValue": 0,
+    "profitLoss": -171000,
+    "profitRate": -11.56,
+    "quantity": 1
+  },
+  "market": {
+    "price": 1307000,
+    "previousClose": 1317000,
+    "changePct": -0.76,
+    "volume": 240532,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 46,
+    "signal": "HOLD",
+    "reason": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화",
+    "rsi": 39.5,
+    "ma20": 1439500,
+    "ma60": 1365250,
+    "recentHighDistancePct": -16.75,
+    "rsVsBenchmark": -46,
+    "alerts": [
+      "볼린저밴드 하단 이탈"
+    ]
+  },
+  "fundamental": {
+    "score": 58,
+    "label": "기본보통",
+    "metrics": {
+      "per": 45.74,
+      "pbr": 6.94,
+      "eps": 28573,
+      "estimatedPer": 31,
+      "estimatedEps": 41905,
+      "dividendYield": 0.54,
+      "operatingMargin": 11.57,
+      "operatingMarginEstimate": 14.17,
+      "roe": 19.14,
+      "roeEstimate": 20.34,
+      "annualEps": 28573,
+      "previousAnnualEps": 46183,
+      "estimatedAnnualEps": 41905,
+      "epsGrowthPct": -38.13,
+      "estimatedEpsGrowthPct": 46.66
+    },
+    "etf": null
+  },
+  "alerts": [
+    {
+      "severity": "low",
+      "label": "AI언급",
+      "detail": "감량검토: 손절조건 발동 (-11.6%), 방산 클러스터 과집중 리스크",
+      "tone": "blue"
+    }
+  ],
+  "quickFactors": [
+    "등락 -0.76%",
+    "RSI 39.5",
+    "거래량 0배",
+    "손익 -11.56%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [
+    {
+      "bucket": "todayDo",
+      "action": "감량검토",
+      "reason": "손절조건 발동 (-11.6%), 방산 클러스터 과집중 리스크",
+      "trigger": "추가 하락 시 즉시 감량 검토"
+    },
+    {
+      "bucket": "sellWatch",
+      "action": "손절감시",
+      "reason": "손절조건 발동, -11.6% 손익",
+      "trigger": "추가 하락 시 즉시 감량/매도"
+    }
+  ],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결"
+  ],
+  "riskFlags": [
+    "STOP_LOSS_TRIGGERED"
+  ],
+  "sourceSupport": {
+    "reports": 0.542,
+    "stockeasy": 0,
+    "marketvoice": 0,
+    "technical": 0,
+    "kisEtf": 0,
+    "news": 0,
+    "macro": 0,
+    "llm": 0
+  }
+}

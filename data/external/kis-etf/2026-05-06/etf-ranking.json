@@ -1,0 +1,99 @@
+{
+  "source": "kis",
+  "collectionMode": "kis_fluctuation_fallback",
+  "date": "2026-05-06",
+  "capturedAt": "2026-05-06T05:58:21.880310Z",
+  "topN": 80,
+  "scanMultiplier": 3,
+  "etfs": [
+    {
+      "code": "243880",
+      "name": "TIGER 200IT레버리지",
+      "price": 446100.0,
+      "changePct": 15.81,
+      "changeAmt": 60900.0,
+      "volume": 250474.0,
+      "highPrice": 500000.0,
+      "lowPrice": 20975.0,
+      "periodChangePct": 0.0,
+      "rank": 1,
+      "sectors": [],
+      "keywords": [],
+      "rationale": ""
+    },
+    {
+      "code": "488080",
+      "name": "TIGER 반도체TOP10레버리지",
+      "price": 75500.0,
+      "changePct": 15.28,
+      "changeAmt": 10010.0,
+      "volume": 4685565.0,
+      "highPrice": 75500.0,
+      "lowPrice": 4260.0,
+      "periodChangePct": 0.0,
+      "rank": 2,
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "반도체",
+        "HBM",
+        "메모리",
+        "소부장"
+      ],
+      "rationale": "TIGER 반도체TOP10레버리지의 핵심 노출(반도체)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "Q700028",
+      "name": "하나 레버리지 반도체 ETN",
+      "price": 293035.0,
+      "changePct": 14.42,
+      "changeAmt": 36920.0,
+      "volume": 40592.0,
+      "highPrice": 293395.0,
+      "lowPrice": 17275.0,
+      "periodChangePct": 0.0,
+      "rank": 3,
+      "sectors": [],
+      "keywords": [],
+      "rationale": ""
+    },
+    {
+      "code": "494310",
+      "name": "KODEX 반도체레버리지",
+      "price": 126195.0,
+      "changePct": 13.59,
+      "changeAmt": 15100.0,
+      "volume": 4787432.0,
+      "highPrice": 126660.0,
+      "lowPrice": 7685.0,
+      "periodChangePct": 0.0,
+      "rank": 4,
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "반도체",
+        "HBM",
+        "메모리",
+        "소부장"
+      ],
+      "rationale": "KODEX 반도체레버리지의 핵심 노출(반도체)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "Q760013",
+      "name": "키움 레버리지 반도체TOP10 ETN",
+      "price": 178500.0,
+      "changePct": 10.19,
+      "changeAmt": 16500.0,
+      "volume": 9409.0,
+      "highPrice": 250000.0,
+      "lowPrice": 10045.0,
+      "periodChangePct": 0.0,
+      "rank": 5,
+      "sectors": [],
+      "keywords": [],
+      "rationale": ""
+    }
+  ]
+}

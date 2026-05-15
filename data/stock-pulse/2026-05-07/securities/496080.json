@@ -1,0 +1,119 @@
+{
+  "id": "stock-pulse:496080",
+  "code": "496080",
+  "name": "TIGER 코리아밸류업",
+  "category": "국내인덱스",
+  "type": "etf",
+  "verdict": "보유유지",
+  "urgency": "중간",
+  "pulseScore": 47,
+  "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNot": "같은 테마 중복 확대 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "marketValue": 561680,
+      "profitRate": 10.98,
+      "decision": null
+    }
+  ],
+  "position": {
+    "marketValue": 561680,
+    "purchaseValue": 506065,
+    "profitLoss": 55615,
+    "profitRate": 10.99,
+    "quantity": 17
+  },
+  "market": {
+    "price": 33035,
+    "previousClose": 33430,
+    "changePct": -1.18,
+    "volume": 669551,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 80,
+    "signal": "STRONG_BUY",
+    "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+    "rsi": 77.12,
+    "ma20": 28695.25,
+    "ma60": 25986.4167,
+    "recentHighDistancePct": -3.72,
+    "rsVsBenchmark": 3.81,
+    "alerts": [
+      "RSI 과매수 구간 진입",
+      "볼린저밴드 상단 이탈"
+    ]
+  },
+  "fundamental": {
+    "score": 64,
+    "label": "수급양호",
+    "metrics": null,
+    "etf": {
+      "rank": null,
+      "navGapPct": null,
+      "concentrationTop5Pct": 66.68,
+      "topHoldings": [
+        {
+          "code": "000660",
+          "name": "SK하이닉스",
+          "weightPct": 36.29,
+          "changePct": -1.31
+        },
+        {
+          "code": "005930",
+          "name": "삼성전자",
+          "weightPct": 20.87,
+          "changePct": -1.13
+        },
+        {
+          "code": "005380",
+          "name": "현대차",
+          "weightPct": 4.14,
+          "changePct": 3.27
+        },
+        {
+          "code": "105560",
+          "name": "KB금융",
+          "weightPct": 2.81,
+          "changePct": 0.82
+        },
+        {
+          "code": "012450",
+          "name": "한화에어로스페이스",
+          "weightPct": 2.57,
+          "changePct": -4.19
+        }
+      ]
+    }
+  },
+  "alerts": [
+    {
+      "severity": "medium",
+      "label": "과열주의",
+      "detail": "RSI 77.12로 추격매수보다 보호 판단이 우선입니다.",
+      "tone": "amber"
+    }
+  ],
+  "quickFactors": [
+    "등락 -1.18%",
+    "RSI 77.12",
+    "거래량 0배",
+    "손익 10.99%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "ETF_NAV_MISSING"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {}
+}

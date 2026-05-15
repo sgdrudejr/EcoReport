@@ -1,0 +1,76 @@
+{
+  "id": "stock-pulse:449450",
+  "code": "449450",
+  "name": "PLUS K방산",
+  "category": "방산",
+  "type": "etf",
+  "verdict": "보유유지",
+  "urgency": "낮음",
+  "pulseScore": 22,
+  "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNot": "같은 테마 중복 확대 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "marketValue": 749700,
+      "profitRate": -4.54,
+      "decision": null
+    }
+  ],
+  "position": {
+    "marketValue": 749700,
+    "purchaseValue": 785360,
+    "profitLoss": -35660,
+    "profitRate": -4.54,
+    "quantity": 10
+  },
+  "market": {
+    "price": 73370,
+    "previousClose": 75600,
+    "changePct": -2.95,
+    "volume": 534694,
+    "volumeRatio": 0.47,
+    "nav": 73323.01,
+    "navGapPct": 0.064,
+    "rank": 0
+  },
+  "technical": {
+    "score": 42,
+    "signal": "HOLD",
+    "reason": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화",
+    "rsi": 40.9,
+    "ma20": 78870.75,
+    "ma60": 74153.3333,
+    "recentHighDistancePct": -11.34,
+    "rsVsBenchmark": -38.82,
+    "alerts": [
+      "데드크로스(5일/20일) 발생",
+      "볼린저밴드 하단 이탈"
+    ]
+  },
+  "fundamental": {
+    "score": 20,
+    "label": "수집필요",
+    "metrics": null,
+    "etf": null
+  },
+  "alerts": [],
+  "quickFactors": [
+    "등락 -2.95%",
+    "RSI 40.9",
+    "거래량 0.47배",
+    "손익 -4.54%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "NAVER_FETCH_FAILED"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {}
+}

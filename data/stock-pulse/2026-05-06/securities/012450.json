@@ -1,0 +1,97 @@
+{
+  "id": "stock-pulse:012450",
+  "code": "012450",
+  "name": "한화에어로스페이스",
+  "category": "방산",
+  "type": "stock",
+  "verdict": "보유유지",
+  "urgency": "낮음",
+  "pulseScore": 45,
+  "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNot": "같은 테마 중복 확대 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "marketValue": 1447000,
+      "profitRate": -2.09,
+      "decision": "보유유지"
+    }
+  ],
+  "position": {
+    "marketValue": 1447000,
+    "purchaseValue": 0,
+    "profitLoss": -31000,
+    "profitRate": -2.09,
+    "quantity": 1
+  },
+  "market": {
+    "price": 1446000,
+    "previousClose": 1465000,
+    "changePct": -1.3,
+    "volume": 146373,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 43,
+    "signal": "HOLD",
+    "reason": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화",
+    "rsi": 52.2,
+    "ma20": 1460000,
+    "ma60": 1364250,
+    "recentHighDistancePct": -7.9,
+    "rsVsBenchmark": -30.75,
+    "alerts": []
+  },
+  "fundamental": {
+    "score": 55,
+    "label": "기본보통",
+    "metrics": {
+      "per": 50.61,
+      "pbr": 7.68,
+      "eps": 28573,
+      "estimatedPer": 35,
+      "estimatedEps": 41659,
+      "dividendYield": 0.48,
+      "operatingMargin": 11.57,
+      "operatingMarginEstimate": 14.12,
+      "roe": 19.14,
+      "roeEstimate": 20.23,
+      "annualEps": 28573,
+      "previousAnnualEps": 46183,
+      "estimatedAnnualEps": 41659,
+      "epsGrowthPct": -38.13,
+      "estimatedEpsGrowthPct": 45.8
+    },
+    "etf": null
+  },
+  "alerts": [],
+  "quickFactors": [
+    "등락 -1.3%",
+    "RSI 52.2",
+    "거래량 0배",
+    "손익 -2.09%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {
+    "reports": 0.464,
+    "stockeasy": 0,
+    "marketvoice": 0,
+    "technical": 0,
+    "kisEtf": 0,
+    "news": 0,
+    "macro": 0,
+    "llm": 0
+  }
+}

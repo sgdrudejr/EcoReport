@@ -1,0 +1,1527 @@
+{
+  "date": "2026-05-06",
+  "bundleId": "normalized:marketvoice:2026-05-06",
+  "source": "marketvoice",
+  "sourceType": "event_feed",
+  "generatedAt": "2026-05-06T08:08:13.339Z",
+  "runId": "2026-05-06-045622",
+  "qualitySummary": {
+    "status": "ok",
+    "flags": [
+      "low_coverage"
+    ]
+  },
+  "observations": [
+    {
+      "observationId": "normalized:marketvoice:2026-05-06:topic:1408994",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1408994",
+      "entityName": "마이크론, AI 메모리 수요에 5개 공장 동시 건설",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 1,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "마이크론, AI 메모리 수요에 5개 공장 동시 건설",
+          "text": "마이크론 테크놀로지는 2026년 5월 AI 메모리 수요 급증에 대응해 전 세계 5개 반도체 공장을 동시에 건설 중입니다. 생산 한계와 공급 부족 우려가 커지며 AI 산업 변화의 규모가 과소평가되고 있다고 밝혔습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1408994"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQwODk5NA=="
+      ],
+      "metadata": {
+        "signalLabels": [
+          "AI 인프라/전력"
+        ],
+        "mainSource": {
+          "type": "TELEGRAM",
+          "name": "텔레그램",
+          "author": "증권사 애널 크롤러🇰🇷"
+        },
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요.",
+        "topicEntityId": "macro_event:1408994"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-06:impact:1408994:category:전력기기:1",
+      "entityType": "category",
+      "entityId": "category:isa_전력기기",
+      "entityName": "전력기기",
+      "accountKey": "ISA",
+      "securityCode": null,
+      "category": "전력기기",
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 0.68,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1m",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "마이크론, AI 메모리 수요에 5개 공장 동시 건설",
+          "text": "마이크론 테크놀로지는 2026년 5월 AI 메모리 수요 급증에 대응해 전 세계 5개 반도체 공장을 동시에 건설 중입니다. 생산 한계와 공급 부족 우려가 커지며 AI 산업 변화의 규모가 과소평가되고 있다고 밝혔습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1408994"
+        },
+        {
+          "kind": "snippet",
+          "title": "마이크론, AI 메모리 수요에 5개 공장 동시 건설",
+          "text": "마이크론 테크놀로지는 인공지능 메모리 수요 급증에 대응하기 위해 전 세계 5개 반도체 공장을 동시에 건설 중이라고 2026년 5월에 밝혔습니다. 회사는 현재 생산 능력이 이미 한계에 도달했으며, 공장 증설도 단기간에 이뤄지기 어려워 공급 부족 현상이 구조적으로 지속될 수 있음을 시사했습니다. 시장에서는 AI가 촉발할 산업 구조 변화의 규모를 충분히 인식하지 못하고 있다는 평가도 나왔습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1408994"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "ai, power",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQwODk5NA=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1408994",
+        "topicTitle": "마이크론, AI 메모리 수요에 5개 공장 동시 건설",
+        "channels": [
+          "TELEGRAM",
+          "AI 인프라/전력"
+        ],
+        "riskTags": [
+          "ai",
+          "power"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-06:impact:1408994:category:s_p500:2",
+      "entityType": "category",
+      "entityId": "category:pension_sandp500",
+      "entityName": "S&P500",
+      "accountKey": "PENSION",
+      "securityCode": null,
+      "category": "S&P500",
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 0.68,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1m",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "마이크론, AI 메모리 수요에 5개 공장 동시 건설",
+          "text": "마이크론 테크놀로지는 2026년 5월 AI 메모리 수요 급증에 대응해 전 세계 5개 반도체 공장을 동시에 건설 중입니다. 생산 한계와 공급 부족 우려가 커지며 AI 산업 변화의 규모가 과소평가되고 있다고 밝혔습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1408994"
+        },
+        {
+          "kind": "snippet",
+          "title": "마이크론, AI 메모리 수요에 5개 공장 동시 건설",
+          "text": "마이크론 테크놀로지는 인공지능 메모리 수요 급증에 대응하기 위해 전 세계 5개 반도체 공장을 동시에 건설 중이라고 2026년 5월에 밝혔습니다. 회사는 현재 생산 능력이 이미 한계에 도달했으며, 공장 증설도 단기간에 이뤄지기 어려워 공급 부족 현상이 구조적으로 지속될 수 있음을 시사했습니다. 시장에서는 AI가 촉발할 산업 구조 변화의 규모를 충분히 인식하지 못하고 있다는 평가도 나왔습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1408994"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "ai, power",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQwODk5NA=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1408994",
+        "topicTitle": "마이크론, AI 메모리 수요에 5개 공장 동시 건설",
+        "channels": [
+          "TELEGRAM",
+          "AI 인프라/전력"
+        ],
+        "riskTags": [
+          "ai",
+          "power"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-06:impact:1408994:category:나스닥100:3",
+      "entityType": "category",
+      "entityId": "category:pension_나스닥100",
+      "entityName": "나스닥100",
+      "accountKey": "PENSION",
+      "securityCode": null,
+      "category": "나스닥100",
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 0.68,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1m",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "마이크론, AI 메모리 수요에 5개 공장 동시 건설",
+          "text": "마이크론 테크놀로지는 2026년 5월 AI 메모리 수요 급증에 대응해 전 세계 5개 반도체 공장을 동시에 건설 중입니다. 생산 한계와 공급 부족 우려가 커지며 AI 산업 변화의 규모가 과소평가되고 있다고 밝혔습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1408994"
+        },
+        {
+          "kind": "snippet",
+          "title": "마이크론, AI 메모리 수요에 5개 공장 동시 건설",
+          "text": "마이크론 테크놀로지는 인공지능 메모리 수요 급증에 대응하기 위해 전 세계 5개 반도체 공장을 동시에 건설 중이라고 2026년 5월에 밝혔습니다. 회사는 현재 생산 능력이 이미 한계에 도달했으며, 공장 증설도 단기간에 이뤄지기 어려워 공급 부족 현상이 구조적으로 지속될 수 있음을 시사했습니다. 시장에서는 AI가 촉발할 산업 구조 변화의 규모를 충분히 인식하지 못하고 있다는 평가도 나왔습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1408994"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "ai, power",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQwODk5NA=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1408994",
+        "topicTitle": "마이크론, AI 메모리 수요에 5개 공장 동시 건설",
+        "channels": [
+          "TELEGRAM",
+          "AI 인프라/전력"
+        ],
+        "riskTags": [
+          "ai",
+          "power"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-06:impact:1408994:category:ai반도체:4",
+      "entityType": "category",
+      "entityId": "category:pension_ai반도체",
+      "entityName": "AI반도체",
+      "accountKey": "PENSION",
+      "securityCode": null,
+      "category": "AI반도체",
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 0.68,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1m",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "마이크론, AI 메모리 수요에 5개 공장 동시 건설",
+          "text": "마이크론 테크놀로지는 2026년 5월 AI 메모리 수요 급증에 대응해 전 세계 5개 반도체 공장을 동시에 건설 중입니다. 생산 한계와 공급 부족 우려가 커지며 AI 산업 변화의 규모가 과소평가되고 있다고 밝혔습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1408994"
+        },
+        {
+          "kind": "snippet",
+          "title": "마이크론, AI 메모리 수요에 5개 공장 동시 건설",
+          "text": "마이크론 테크놀로지는 인공지능 메모리 수요 급증에 대응하기 위해 전 세계 5개 반도체 공장을 동시에 건설 중이라고 2026년 5월에 밝혔습니다. 회사는 현재 생산 능력이 이미 한계에 도달했으며, 공장 증설도 단기간에 이뤄지기 어려워 공급 부족 현상이 구조적으로 지속될 수 있음을 시사했습니다. 시장에서는 AI가 촉발할 산업 구조 변화의 규모를 충분히 인식하지 못하고 있다는 평가도 나왔습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1408994"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "ai, power",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQwODk5NA=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1408994",
+        "topicTitle": "마이크론, AI 메모리 수요에 5개 공장 동시 건설",
+        "channels": [
+          "TELEGRAM",
+          "AI 인프라/전력"
+        ],
+        "riskTags": [
+          "ai",
+          "power"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-06:impact:1408994:category:ai반도체:5",
+      "entityType": "category",
+      "entityId": "category:kis_main_ai반도체",
+      "entityName": "AI반도체",
+      "accountKey": "KIS_MAIN",
+      "securityCode": null,
+      "category": "AI반도체",
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 0.68,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1m",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "마이크론, AI 메모리 수요에 5개 공장 동시 건설",
+          "text": "마이크론 테크놀로지는 2026년 5월 AI 메모리 수요 급증에 대응해 전 세계 5개 반도체 공장을 동시에 건설 중입니다. 생산 한계와 공급 부족 우려가 커지며 AI 산업 변화의 규모가 과소평가되고 있다고 밝혔습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1408994"
+        },
+        {
+          "kind": "snippet",
+          "title": "마이크론, AI 메모리 수요에 5개 공장 동시 건설",
+          "text": "마이크론 테크놀로지는 인공지능 메모리 수요 급증에 대응하기 위해 전 세계 5개 반도체 공장을 동시에 건설 중이라고 2026년 5월에 밝혔습니다. 회사는 현재 생산 능력이 이미 한계에 도달했으며, 공장 증설도 단기간에 이뤄지기 어려워 공급 부족 현상이 구조적으로 지속될 수 있음을 시사했습니다. 시장에서는 AI가 촉발할 산업 구조 변화의 규모를 충분히 인식하지 못하고 있다는 평가도 나왔습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1408994"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "ai, power",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQwODk5NA=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1408994",
+        "topicTitle": "마이크론, AI 메모리 수요에 5개 공장 동시 건설",
+        "channels": [
+          "TELEGRAM",
+          "AI 인프라/전력"
+        ],
+        "riskTags": [
+          "ai",
+          "power"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-06:topic:1409325",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1409325",
+      "entityName": "인피니언, 2026년 매출 전망 상향 및 생산 증설 착수",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 0.82,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "인피니언, 2026년 매출 전망 상향 및 생산 증설 착수",
+          "text": "인피니언 테크놀로지스가 2026년 매출 전망을 올리고, 독일 드레스덴 공장 생산능력 증설을 7월 2일부터 시작합니다. AI 제품 가격 인상과 원자재 비용 상승도 반영했으며, 5억 유로 추가 투자를 집행합니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1409325"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQwOTMyNQ=="
+      ],
+      "metadata": {
+        "signalLabels": [
+          "AI 인프라/전력"
+        ],
+        "mainSource": {
+          "type": "TELEGRAM",
+          "name": "텔레그램",
+          "author": "매시 트레이딩 - 매크로, 시황으로 드리블"
+        },
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요.",
+        "topicEntityId": "macro_event:1409325"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-06:impact:1409325:category:전력기기:1",
+      "entityType": "category",
+      "entityId": "category:isa_전력기기",
+      "entityName": "전력기기",
+      "accountKey": "ISA",
+      "securityCode": null,
+      "category": "전력기기",
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 0.635,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1m",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "인피니언, 2026년 매출 전망 상향 및 생산 증설 착수",
+          "text": "인피니언 테크놀로지스가 2026년 매출 전망을 올리고, 독일 드레스덴 공장 생산능력 증설을 7월 2일부터 시작합니다. AI 제품 가격 인상과 원자재 비용 상승도 반영했으며, 5억 유로 추가 투자를 집행합니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1409325"
+        },
+        {
+          "kind": "snippet",
+          "title": "인피니언, 2026년 매출 전망 상향 및 생산 증설 착수",
+          "text": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1409325"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "ai, power",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQwOTMyNQ=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1409325",
+        "topicTitle": "인피니언, 2026년 매출 전망 상향 및 생산 증설 착수",
+        "channels": [
+          "TELEGRAM",
+          "AI 인프라/전력"
+        ],
+        "riskTags": [
+          "ai",
+          "power"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-06:impact:1409325:category:s_p500:2",
+      "entityType": "category",
+      "entityId": "category:pension_sandp500",
+      "entityName": "S&P500",
+      "accountKey": "PENSION",
+      "securityCode": null,
+      "category": "S&P500",
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 0.635,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1m",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "인피니언, 2026년 매출 전망 상향 및 생산 증설 착수",
+          "text": "인피니언 테크놀로지스가 2026년 매출 전망을 올리고, 독일 드레스덴 공장 생산능력 증설을 7월 2일부터 시작합니다. AI 제품 가격 인상과 원자재 비용 상승도 반영했으며, 5억 유로 추가 투자를 집행합니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1409325"
+        },
+        {
+          "kind": "snippet",
+          "title": "인피니언, 2026년 매출 전망 상향 및 생산 증설 착수",
+          "text": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1409325"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "ai, power",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQwOTMyNQ=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1409325",
+        "topicTitle": "인피니언, 2026년 매출 전망 상향 및 생산 증설 착수",
+        "channels": [
+          "TELEGRAM",
+          "AI 인프라/전력"
+        ],
+        "riskTags": [
+          "ai",
+          "power"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-06:impact:1409325:category:나스닥100:3",
+      "entityType": "category",
+      "entityId": "category:pension_나스닥100",
+      "entityName": "나스닥100",
+      "accountKey": "PENSION",
+      "securityCode": null,
+      "category": "나스닥100",
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 0.635,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1m",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "인피니언, 2026년 매출 전망 상향 및 생산 증설 착수",
+          "text": "인피니언 테크놀로지스가 2026년 매출 전망을 올리고, 독일 드레스덴 공장 생산능력 증설을 7월 2일부터 시작합니다. AI 제품 가격 인상과 원자재 비용 상승도 반영했으며, 5억 유로 추가 투자를 집행합니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1409325"
+        },
+        {
+          "kind": "snippet",
+          "title": "인피니언, 2026년 매출 전망 상향 및 생산 증설 착수",
+          "text": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1409325"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "ai, power",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQwOTMyNQ=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1409325",
+        "topicTitle": "인피니언, 2026년 매출 전망 상향 및 생산 증설 착수",
+        "channels": [
+          "TELEGRAM",
+          "AI 인프라/전력"
+        ],
+        "riskTags": [
+          "ai",
+          "power"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-06:impact:1409325:category:ai반도체:4",
+      "entityType": "category",
+      "entityId": "category:pension_ai반도체",
+      "entityName": "AI반도체",
+      "accountKey": "PENSION",
+      "securityCode": null,
+      "category": "AI반도체",
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 0.635,
+      "confidence": 0.62,
+      "freshnessDays": 0,
+      "horizon": "1m",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "인피니언, 2026년 매출 전망 상향 및 생산 증설 착수",
+          "text": "인피니언 테크놀로지스가 2026년 매출 전망을 올리고, 독일 드레스덴 공장 생산능력 증설을 7월 2일부터 시작합니다. AI 제품 가격 인상과 원자재 비용 상승도 반영했으며, 5억 유로 추가 투자를 집행합니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1409325"
+        },
+        {
+          "kind": "snippet",
+          "title": "인피니언, 2026년 매출 전망 상향 및 생산 증설 착수",
+          "text": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1409325"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "ai, power",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQwOTMyNQ=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1409325",
+        "topicTitle": "인피니언, 2026년 매출 전망 상향 및 생산 증설 착수",
+        "channels": [
+          "TELEGRAM",
+          "AI 인프라/전력"
+        ],
+        "riskTags": [
+          "ai",
+          "power"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-06:impact:1409325:category:ai반도체:5",
+      "entityType": "category",
+      "entityId": "category:kis_main_ai반도체",
+      "entityName": "AI반도체",
+      "accountKey": "KIS_MAIN",
+      "securityCode": null,
+      "category": "AI반도체",
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 0.635,
+      "confidence": 0.62,
+      "freshnessDays": 0,
+      "horizon": "1m",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "인피니언, 2026년 매출 전망 상향 및 생산 증설 착수",
+          "text": "인피니언 테크놀로지스가 2026년 매출 전망을 올리고, 독일 드레스덴 공장 생산능력 증설을 7월 2일부터 시작합니다. AI 제품 가격 인상과 원자재 비용 상승도 반영했으며, 5억 유로 추가 투자를 집행합니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1409325"
+        },
+        {
+          "kind": "snippet",
+          "title": "인피니언, 2026년 매출 전망 상향 및 생산 증설 착수",
+          "text": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1409325"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "ai, power",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQwOTMyNQ=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1409325",
+        "topicTitle": "인피니언, 2026년 매출 전망 상향 및 생산 증설 착수",
+        "channels": [
+          "TELEGRAM",
+          "AI 인프라/전력"
+        ],
+        "riskTags": [
+          "ai",
+          "power"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-06:topic:1409339",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1409339",
+      "entityName": "경북대, 491억 국비로 대구 AI 신약개발 인프라 구축",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 0.54,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "경북대, 491억 국비로 대구 AI 신약개발 인프라 구축",
+          "text": "경북대학교 컨소시엄이 과학기술정보통신부 AIx바이오 혁신연구거점 사업에 선정되어 2026년부터 2030년까지 대구에 491억 원 국비로 AI 신약개발 생태계와 인프라를 구축합니다. 융합인재 양성과 지역 산업체 AI 교육도 추진합니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1409339"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQwOTMzOQ=="
+      ],
+      "metadata": {
+        "signalLabels": [
+          "AI 인프라/전력"
+        ],
+        "mainSource": {
+          "type": "COMPANY_NEWS",
+          "name": "뉴스",
+          "author": "연합뉴스"
+        },
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요.",
+        "topicEntityId": "macro_event:1409339"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-06:impact:1409339:category:전력기기:1",
+      "entityType": "category",
+      "entityId": "category:isa_전력기기",
+      "entityName": "전력기기",
+      "accountKey": "ISA",
+      "securityCode": null,
+      "category": "전력기기",
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 0.528,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1m",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "경북대, 491억 국비로 대구 AI 신약개발 인프라 구축",
+          "text": "경북대학교 컨소시엄이 과학기술정보통신부 AIx바이오 혁신연구거점 사업에 선정되어 2026년부터 2030년까지 대구에 491억 원 국비로 AI 신약개발 생태계와 인프라를 구축합니다. 융합인재 양성과 지역 산업체 AI 교육도 추진합니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1409339"
+        },
+        {
+          "kind": "snippet",
+          "title": "경북대, 491억 국비로 대구 AI 신약개발 인프라 구축",
+          "text": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1409339"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "ai, power",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQwOTMzOQ=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1409339",
+        "topicTitle": "경북대, 491억 국비로 대구 AI 신약개발 인프라 구축",
+        "channels": [
+          "COMPANY_NEWS",
+          "AI 인프라/전력"
+        ],
+        "riskTags": [
+          "ai",
+          "power"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-06:impact:1409339:category:s_p500:2",
+      "entityType": "category",
+      "entityId": "category:pension_sandp500",
+      "entityName": "S&P500",
+      "accountKey": "PENSION",
+      "securityCode": null,
+      "category": "S&P500",
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 0.528,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1m",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "경북대, 491억 국비로 대구 AI 신약개발 인프라 구축",
+          "text": "경북대학교 컨소시엄이 과학기술정보통신부 AIx바이오 혁신연구거점 사업에 선정되어 2026년부터 2030년까지 대구에 491억 원 국비로 AI 신약개발 생태계와 인프라를 구축합니다. 융합인재 양성과 지역 산업체 AI 교육도 추진합니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1409339"
+        },
+        {
+          "kind": "snippet",
+          "title": "경북대, 491억 국비로 대구 AI 신약개발 인프라 구축",
+          "text": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1409339"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "ai, power",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQwOTMzOQ=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1409339",
+        "topicTitle": "경북대, 491억 국비로 대구 AI 신약개발 인프라 구축",
+        "channels": [
+          "COMPANY_NEWS",
+          "AI 인프라/전력"
+        ],
+        "riskTags": [
+          "ai",
+          "power"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-06:impact:1409339:category:나스닥100:3",
+      "entityType": "category",
+      "entityId": "category:pension_나스닥100",
+      "entityName": "나스닥100",
+      "accountKey": "PENSION",
+      "securityCode": null,
+      "category": "나스닥100",
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 0.528,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1m",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "경북대, 491억 국비로 대구 AI 신약개발 인프라 구축",
+          "text": "경북대학교 컨소시엄이 과학기술정보통신부 AIx바이오 혁신연구거점 사업에 선정되어 2026년부터 2030년까지 대구에 491억 원 국비로 AI 신약개발 생태계와 인프라를 구축합니다. 융합인재 양성과 지역 산업체 AI 교육도 추진합니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1409339"
+        },
+        {
+          "kind": "snippet",
+          "title": "경북대, 491억 국비로 대구 AI 신약개발 인프라 구축",
+          "text": "계좌 테마 기준으로는 한투 ISA의 전력기기, 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1409339"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "ai, power",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQwOTMzOQ=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1409339",
+        "topicTitle": "경북대, 491억 국비로 대구 AI 신약개발 인프라 구축",
+        "channels": [
+          "COMPANY_NEWS",
+          "AI 인프라/전력"
+        ],
+        "riskTags": [
+          "ai",
+          "power"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-06:topic:1409300",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1409300",
+      "entityName": "신한글로벌액티브리츠 5월 21일 주총 개최",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [
+        "배당/인컴"
+      ],
+      "direction": "positive",
+      "strength": 0.35,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "신한글로벌액티브리츠 5월 21일 주총 개최",
+          "text": "신한글로벌액티브리츠가 2026년 5월 21일 서울에서 정기주주총회를 열기로 했습니다. 주요 안건은 재무제표 승인, 현금배당, 사업계획 및 이사·감사 보수 승인이며, 전자위임장과 전자투표도 권유됩니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1409300"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "계좌 테마 기준으로는 한투 ISA의 배당/커버드콜 판단과 맞물립니다. 핵심 시그널은 배당/인컴입니다.",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQwOTMwMA=="
+      ],
+      "metadata": {
+        "signalLabels": [
+          "배당/인컴"
+        ],
+        "mainSource": {
+          "type": "DISCLOSURE",
+          "name": "공시",
+          "author": "공시"
+        },
+        "deepResearchQuestion": "배당/커버드콜 테마가 일시 뉴스 플로우인지, 구조적 추세인지 구분하세요.",
+        "topicEntityId": "macro_event:1409300"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-06:impact:1409300:category:배당_커버드콜:1",
+      "entityType": "category",
+      "entityId": "category:isa_배당_커버드콜",
+      "entityName": "배당/커버드콜",
+      "accountKey": "ISA",
+      "securityCode": null,
+      "category": "배당/커버드콜",
+      "themes": [
+        "배당/인컴"
+      ],
+      "direction": "positive",
+      "strength": 0.432,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1m",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "신한글로벌액티브리츠 5월 21일 주총 개최",
+          "text": "신한글로벌액티브리츠가 2026년 5월 21일 서울에서 정기주주총회를 열기로 했습니다. 주요 안건은 재무제표 승인, 현금배당, 사업계획 및 이사·감사 보수 승인이며, 전자위임장과 전자투표도 권유됩니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1409300"
+        },
+        {
+          "kind": "snippet",
+          "title": "신한글로벌액티브리츠 5월 21일 주총 개최",
+          "text": "신한글로벌액티브리츠가 2026년 5월 6일 이사회 결의를 통해 2026년 5월 21일 서울 영등포구 한국리츠협회 회의실에서 정기주주총회를 열기로 공식 결정했습니다. 이번 주주총회에서는 제7기 재무제표 승인, 현금배당 결의, 제8기 사업계획 및 이사·감사 보수 승인 등이 주요 안건으로 다뤄지며, 의결권 기준일은 2026년 2월 28일로 확정됐습니다. 새롭게 확인된 내용으로는 전자위임장과 전자투표 등 다양한 의결권 대리행사 방법이 권유됐다는 점이 추가됐습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1409300"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "income",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQwOTMwMA=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1409300",
+        "topicTitle": "신한글로벌액티브리츠 5월 21일 주총 개최",
+        "channels": [
+          "DISCLOSURE",
+          "배당/인컴"
+        ],
+        "riskTags": [
+          "income"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "배당/커버드콜 테마가 일시 뉴스 플로우인지, 구조적 추세인지 구분하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-06:topic:1406314",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1406314",
+      "entityName": "온세미 CEO, 반도체 업황 저점 넘어 회복 신호",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [],
+      "direction": "positive",
+      "strength": 0.35,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "온세미 CEO, 반도체 업황 저점 넘어 회복 신호",
+          "text": "미국 반도체 기업 온세미의 CEO 하산 엘 코리는 2026년 1분기 실적 발표에서 반도체 업황이 저점을 지나 회복 단계에 접어들었다고 밝혔습니다. 다만, 마진 확장 폭은 제한적이라는 평가도 나왔습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1406314"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQwNjMxNA=="
+      ],
+      "metadata": {
+        "signalLabels": [],
+        "mainSource": {
+          "type": "TELEGRAM",
+          "name": "텔레그램",
+          "author": "주식소리통 NEO by Bilanx Research"
+        },
+        "deepResearchQuestion": "온세미 CEO, 반도체 업황 저점 넘어 회복 신호가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+        "topicEntityId": "macro_event:1406314"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-06:topic:1409285",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1409285",
+      "entityName": "노보 노디스크, 미국 GLP-1 시장 빠른 점유율 확대",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [],
+      "direction": "neutral",
+      "strength": 0.35,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "노보 노디스크, 미국 GLP-1 시장 빠른 점유율 확대",
+          "text": "덴마크 제약사 노보 노디스크가 2026년 미국 시장에 웨고비 알약을 출시하며 GLP-1 제품 중 가장 빠르게 시장 점유율을 확대하고 있습니다. 1분기 총이익률은 85.9%로 예상치를 뛰어넘었습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1409285"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQwOTI4NQ=="
+      ],
+      "metadata": {
+        "signalLabels": [],
+        "mainSource": {
+          "type": "TELEGRAM",
+          "name": "텔레그램",
+          "author": "선수촌"
+        },
+        "deepResearchQuestion": "노보 노디스크, 미국 GLP-1 시장 빠른 점유율 확대가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+        "topicEntityId": "macro_event:1409285"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-06:topic:1409334",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1409334",
+      "entityName": "오스테오닉, 6월 임시주총서 정관·임원보수 안건 처리",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [],
+      "direction": "neutral",
+      "strength": 0.35,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "오스테오닉, 6월 임시주총서 정관·임원보수 안건 처리",
+          "text": "오스테오닉이 2026년 6월 26일 서울 본사에서 임시주주총회를 열기로 했습니다. 정관 변경과 이사 보수한도 승인, 임원보수지급규정 제정 등 3건의 안건을 다룰 예정입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1409334"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQwOTMzNA=="
+      ],
+      "metadata": {
+        "signalLabels": [],
+        "mainSource": {
+          "type": "DISCLOSURE",
+          "name": "공시",
+          "author": "공시"
+        },
+        "deepResearchQuestion": "오스테오닉, 6월 임시주총서 정관·임원보수 안건 처리가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+        "topicEntityId": "macro_event:1409334"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-06:topic:1409296",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1409296",
+      "entityName": "유한양행 임원 5월 초 자사주 추가 매입",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [],
+      "direction": "neutral",
+      "strength": 0.35,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "유한양행 임원 5월 초 자사주 추가 매입",
+          "text": "유한양행 IR팀 유재천 부사장이 2026년 5월 6일 자사 주식 300주를 추가 매수해 보유 주식이 1,848주로 늘었습니다. 홍승훈 상무도 5월 4일 130주를 매수해 총 3,139주를 보유하게 됐습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1409296"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQwOTI5Ng=="
+      ],
+      "metadata": {
+        "signalLabels": [],
+        "mainSource": {
+          "type": "DISCLOSURE",
+          "name": "공시",
+          "author": "공시"
+        },
+        "deepResearchQuestion": "유한양행 임원 5월 초 자사주 추가 매입가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+        "topicEntityId": "macro_event:1409296"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-06:topic:1409089",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1409089",
+      "entityName": "LG전자, 1,100억원 규모 자사주 취득 및 소각 결정",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [],
+      "direction": "neutral",
+      "strength": 0.35,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "LG전자, 1,100억원 규모 자사주 취득 및 소각 결정",
+          "text": "LG전자는 2026년 2월부터 5월까지 1,000억원 규모의 자기주식 취득 신탁계약을 통해 보통주와 우선주를 매입했고, 5월 6일에는 100억원 추가 계약을 체결했습니다. 취득 주식은 소각할 예정입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1409089"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQwOTA4OQ=="
+      ],
+      "metadata": {
+        "signalLabels": [],
+        "mainSource": {
+          "type": "DISCLOSURE",
+          "name": "공시",
+          "author": "공시"
+        },
+        "deepResearchQuestion": "LG전자, 1,100억원 규모 자사주 취득 및 소각 결정가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+        "topicEntityId": "macro_event:1409089"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-06:topic:1409317",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1409317",
+      "entityName": "LS, LS전선 희토류 자석 공장 투자 아직 확정 아냐",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [],
+      "direction": "neutral",
+      "strength": 0.35,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "LS, LS전선 희토류 자석 공장 투자 아직 확정 아냐",
+          "text": "LS가 자회사 LS전선의 희토류 영구자석 공장 건설 관련 보도에 대해 아직 투자가 확정된 것은 아니라고 해명했습니다. 구체적 결정 시 추가 공시할 예정이며, 2026년 8월 5일까지 재공시할 계획입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1409317"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQwOTMxNw=="
+      ],
+      "metadata": {
+        "signalLabels": [],
+        "mainSource": {
+          "type": "DISCLOSURE",
+          "name": "공시",
+          "author": "공시"
+        },
+        "deepResearchQuestion": "LS, LS전선 희토류 자석 공장 투자 아직 확정 아냐가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+        "topicEntityId": "macro_event:1409317"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-06:topic:1409342",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1409342",
+      "entityName": "포스코스틸리온 천시열 대표 10대 1 주식분할",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [],
+      "direction": "neutral",
+      "strength": 0.35,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "포스코스틸리온 천시열 대표 10대 1 주식분할",
+          "text": "포스코스틸리온 천시열 대표이사는 2026년 4월 10일 10대 1 주식분할로 보유 주식 수가 2,166주에서 21,660주로 늘었으나 지분율 0.04%는 변동이 없다고 보고했습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1409342"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQwOTM0Mg=="
+      ],
+      "metadata": {
+        "signalLabels": [],
+        "mainSource": {
+          "type": "DISCLOSURE",
+          "name": "공시",
+          "author": "공시"
+        },
+        "deepResearchQuestion": "포스코스틸리온 천시열 대표 10대 1 주식분할가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+        "topicEntityId": "macro_event:1409342"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-06:topic:1409331",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1409331",
+      "entityName": "나우케어, 리포좀 기술 적용 멀티비타민 출시",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [],
+      "direction": "neutral",
+      "strength": 0.35,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "나우케어, 리포좀 기술 적용 멀티비타민 출시",
+          "text": "나우케어가 2026년 5월 6일 리포좀 기술을 적용한 '멀티비타민미네랄 맥스'를 출시했습니다. 이 제품은 다양한 필수 영양소를 하루 1정으로 간편하게 섭취할 수 있도록 설계됐으며, 영양소 손실을 줄이고 흡수율을 높였습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1409331"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQwOTMzMQ=="
+      ],
+      "metadata": {
+        "signalLabels": [],
+        "mainSource": {
+          "type": "COMPANY_NEWS",
+          "name": "뉴스",
+          "author": "이데일리"
+        },
+        "deepResearchQuestion": "나우케어, 리포좀 기술 적용 멀티비타민 출시가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+        "topicEntityId": "macro_event:1409331"
+      }
+    }
+  ]
+}

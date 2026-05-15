@@ -1,0 +1,129 @@
+{
+  "id": "stock-pulse:385510",
+  "code": "385510",
+  "name": "KODEX 신재생에너지액티브",
+  "category": "신재생에너지",
+  "type": "etf",
+  "verdict": "익절감시",
+  "urgency": "중간",
+  "pulseScore": 58,
+  "oneLine": "익절감시: 20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+  "doNow": "20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+  "doNot": "급등 구간 추격매수 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "marketValue": 774540,
+      "profitRate": 14.08,
+      "decision": "보유유지"
+    }
+  ],
+  "position": {
+    "marketValue": 774540,
+    "purchaseValue": 0,
+    "profitLoss": 95615,
+    "profitRate": 14.08,
+    "quantity": 13
+  },
+  "market": {
+    "price": 59580,
+    "previousClose": 60425,
+    "changePct": -1.4,
+    "volume": 396,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 85,
+    "signal": "STRONG_BUY",
+    "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+    "rsi": 75.63,
+    "ma20": 52810.75,
+    "ma60": 44785.3333,
+    "recentHighDistancePct": -3.07,
+    "rsVsBenchmark": 31.73,
+    "alerts": [
+      "RSI 과매수 구간 진입"
+    ]
+  },
+  "fundamental": {
+    "score": 57,
+    "label": "수급보통",
+    "metrics": null,
+    "etf": {
+      "rank": null,
+      "navGapPct": null,
+      "concentrationTop5Pct": 32.65,
+      "topHoldings": [
+        {
+          "code": "010060",
+          "name": "OCI홀딩스",
+          "weightPct": 8.46,
+          "changePct": -2.9
+        },
+        {
+          "code": "006400",
+          "name": "삼성SDI",
+          "weightPct": 6.39,
+          "changePct": -2.31
+        },
+        {
+          "code": "062040",
+          "name": "산일전기",
+          "weightPct": 6.09,
+          "changePct": 2.64
+        },
+        {
+          "code": "010120",
+          "name": "LS ELECTRIC",
+          "weightPct": 5.87,
+          "changePct": -1.73
+        },
+        {
+          "code": "322000",
+          "name": "HD현대에너지솔루션",
+          "weightPct": 5.84,
+          "changePct": -1.89
+        }
+      ]
+    }
+  },
+  "alerts": [
+    {
+      "severity": "medium",
+      "label": "과열주의",
+      "detail": "RSI 75.63로 추격매수보다 보호 판단이 우선입니다.",
+      "tone": "amber"
+    }
+  ],
+  "quickFactors": [
+    "등락 -1.4%",
+    "RSI 75.63",
+    "거래량 0배",
+    "손익 14.08%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "ETF_NAV_MISSING"
+  ],
+  "riskFlags": [
+    "RSI_OVERHEAT:75.63"
+  ],
+  "sourceSupport": {
+    "reports": 0.464,
+    "stockeasy": 0,
+    "marketvoice": 0,
+    "technical": 0,
+    "kisEtf": 0,
+    "news": 0,
+    "macro": 0,
+    "llm": 0
+  }
+}

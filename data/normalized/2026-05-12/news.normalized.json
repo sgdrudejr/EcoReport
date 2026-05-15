@@ -1,0 +1,3692 @@
+{
+  "date": "2026-05-12",
+  "bundleId": "normalized:news:2026-05-12",
+  "source": "news",
+  "sourceType": "rss_news",
+  "generatedAt": "2026-05-12T05:44:05.577Z",
+  "runId": "ecoreport-final-2026-05-12-20260512144324",
+  "qualitySummary": {
+    "status": "ok",
+    "flags": [
+      "macro_only",
+      "unclear_direction"
+    ]
+  },
+  "observations": [
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_068:1",
+      "entityType": "macro_event",
+      "entityId": "macro_event:외국인_몰려오고_명품_미식도_통했다_신세계_1분기_사상_최대_실적",
+      "entityName": "외국인 몰려오고 명품·미식도 통했다…신세계, 1분기 ‘사상 최대 실적’",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "positive",
+      "strength": 0.3609375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "외국인 몰려오고 명품·미식도 통했다…신세계, 1분기 ‘사상 최대 실적’",
+          "text": "총매출 3조2144억·영업익 1978억원 전년동기 대비 각각 11.7%, 49.5% 증가신세계가 고물가·고환율 등 대내외 불확실성 속에서도 백화점 본업 경쟁력과 자회사 체질 개선 ..",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.mk.co.kr/news/business/12044638"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/business/12044638"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_069:2",
+      "entityType": "macro_event",
+      "entityId": "macro_event:lg유플러스_통화_에이전트_익시오_첫_수출길_열었다",
+      "entityName": "LG유플러스, 통화 에이전트 ‘익시오’ 첫 수출길 열었다",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "neutral",
+      "strength": 0.3546875,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "LG유플러스, 통화 에이전트 ‘익시오’ 첫 수출길 열었다",
+          "text": "말레이시아 통신사 맥시스와 서비스형 SW 형태 공급 합의 홍범식 “글로벌 AX 속도 낼 것”LG유플러스가 자체 개발한 인공지능(AI) 통화 비서 ‘익시오’를 앞세워 글로벌 AI 소..",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.mk.co.kr/news/it/12044634"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/it/12044634"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_070:3",
+      "entityType": "macro_event",
+      "entityId": "macro_event:콜마비앤에이치_1분기_영업이익_103억원_작년보다_2_9배_늘어",
+      "entityName": "콜마비앤에이치 1분기 영업이익 103억원···작년보다 2.9배 늘어",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "neutral",
+      "strength": 0.359375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "콜마비앤에이치 1분기 영업이익 103억원···작년보다 2.9배 늘어",
+          "text": "설비가동률 제고 등 원가구조 개선 효과건강기능식품 제조자개발생산(ODM)기업 콜마비앤에이치가 올해 1분기 연결기준 매출은 1369억원, 영업이익은 103억원으로 잠정 집계했다고 1..",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.mk.co.kr/news/economy/12044626"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/economy/12044626"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_071:4",
+      "entityType": "macro_event",
+      "entityId": "macro_event:구글_해커들_ai로_제로데이_공격_시도",
+      "entityName": "구글 “해커들, AI로 제로데이 공격 시도”",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "negative",
+      "strength": 0.34921875,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "구글 “해커들, AI로 제로데이 공격 시도”",
+          "text": "중국·북한 연계 조직 AI 활용 정황 포착 ‘대규모 취약점 악용’ 공격 사전차단 주장 앤스로픽·오픈AI도 사이버 보안 우려 확산구글이 인공지능(AI)을 이용해 대규모 해킹 공격을 ..",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.mk.co.kr/news/it/12044624"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/it/12044624"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_072:5",
+      "entityType": "macro_event",
+      "entityId": "macro_event:보험_갈아타기_권유_주의하세요_금감원_소비자_경보_발령",
+      "entityName": "“보험 갈아타기 권유 주의하세요”…금감원, 소비자 경보 발령",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황",
+        "132030",
+        "411060"
+      ],
+      "direction": "neutral",
+      "strength": 0.35625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "“보험 갈아타기 권유 주의하세요”…금감원, 소비자 경보 발령",
+          "text": "7월부터 GA에 1200%룰 적용 그전에 설계사 유치 경쟁과열 실적 달성 위해 갈아타기 권유 “부당승환시 금전적 손실 발생”금융감독원이 보험설계사가 실적 달성을 위해 보험계약 갈아..",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.mk.co.kr/news/economy/12044622"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/economy/12044622"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_073:6",
+      "entityType": "macro_event",
+      "entityId": "macro_event:게임_데이터센터_성장으로_매출_두_자릿수_성장한_nhn",
+      "entityName": "게임·데이터센터 성장으로 매출 두 자릿수 성장한 NHN",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "mixed",
+      "strength": 0.353125,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "게임·데이터센터 성장으로 매출 두 자릿수 성장한 NHN",
+          "text": "GPU 투자로 영업이익은 감소 클라우드 사업도 가속화 계획NHN이 게임·결제·클라우드 사업 성장에 힘입어 올 1분기 두 자릿수 매출 성장을 기록했다. 다만 인공지능(AI)·클라우..",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.mk.co.kr/news/business/12044617"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/business/12044617"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_074:7",
+      "entityType": "macro_event",
+      "entityId": "macro_event:엄청_큰_배도_보고_축구선수랑_하이파이브_했어요_병마_이겨낸_아이들_행복여행",
+      "entityName": "“엄청 큰 배도 보고 축구선수랑 하이파이브 했어요”…병마 이겨낸 아이들 행복여행",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "neutral",
+      "strength": 0.36484375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "“엄청 큰 배도 보고 축구선수랑 하이파이브 했어요”…병마 이겨낸 아이들 행복여행",
+          "text": "서울아산병원 ‘아워 히어로즈’ 행사 환아 가족 40여명 1박2일 울산 초청 HD현대중공업 투어·축구경기 관람“엄청 큰 배도 보고 축구 선수들이랑 손도 잡아봤어요! 진짜 신기해요! ..",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.mk.co.kr/news/it/12044612"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/it/12044612"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_075:8",
+      "entityType": "macro_event",
+      "entityId": "macro_event:이원진_삼성_tv_제조_넘어_ai_풀스택으로_혁신",
+      "entityName": "이원진 “삼성 TV, 제조 넘어 AI 풀스택으로 혁신”",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "neutral",
+      "strength": 0.35390625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "이원진 “삼성 TV, 제조 넘어 AI 풀스택으로 혁신”",
+          "text": "AI 풀스택 전환 강조 “사업 방식 완전히 바꿔야”최근 삼성전자 TV 사업 수장을 새로 맡은 이원진 영상디스플레이(VD)사업부장이 인공지능(AI) 전환기를 맞아 TV 사업의 근본적..",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.mk.co.kr/news/business/12044598"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/business/12044598"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_076:9",
+      "entityType": "macro_event",
+      "entityId": "macro_event:취임_100일_장민영_기업은행장_현행_대출금리_체계_개편_검토",
+      "entityName": "취임 100일 장민영 기업은행장 “현행 대출금리 체계 개편 검토”",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황",
+        "132030",
+        "411060"
+      ],
+      "direction": "positive",
+      "strength": 0.35859375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "취임 100일 장민영 기업은행장 “현행 대출금리 체계 개편 검토”",
+          "text": "“생산·포용금융 확대, AI 속도” 배드뱅크 상록수 지분 매각키로 ‘코스닥 붐업 데이’ 동시에 열려IBK기업은행이 신용등급에 따른 현행 대출금리 산정 체계 개편을 검토하고 소액대출..",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.mk.co.kr/news/economy/12044589"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/economy/12044589"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_087:10",
+      "entityType": "macro_event",
+      "entityId": "macro_event:cnbc_s_the_china_connection_newsletter_trump_and_xi_face_a_test_over_ai_control",
+      "entityName": "CNBC's The China Connection newsletter: Trump and Xi face a test over AI control",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.4171875,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "CNBC's The China Connection newsletter: Trump and Xi face a test over AI control",
+          "text": "The stakes for AI security have risen sharply in the runup to the first trip to China by a sitting U.S. president in nearly a decade.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.cnbc.com/2026/05/11/trump-and-xi-face-a-test-over-ai-control.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/11/trump-and-xi-face-a-test-over-ai-control.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_077:11",
+      "entityType": "macro_event",
+      "entityId": "macro_event:경찰_근로자_두_명_손가락_절단_삼립_시화공장_압수수색",
+      "entityName": "경찰, ‘근로자 두 명 손가락 절단’ 삼립 시화공장 압수수색",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "neutral",
+      "strength": 0.35625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "경찰, ‘근로자 두 명 손가락 절단’ 삼립 시화공장 압수수색",
+          "text": "지난달 상미당홀딩스(구 SPC그룹) 관계사인 삼립의 시화공장에서 발생한 근로자 손가락 절단 사고를 수사 중인 경찰이 강제수사에 나섰다. 경기 시흥경찰서는 12일 시흥시 소재 삼립 ..",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.mk.co.kr/news/society/12044574"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/society/12044574"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_086:12",
+      "entityType": "macro_event",
+      "entityId": "macro_event:asia_s_trillion_dollar_titans_are_powering_and_distorting_its_fastest_growing_stock_markets",
+      "entityName": "Asia's trillion-dollar titans are powering — and distorting — its fastest growing stock markets",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.48828125,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Asia's trillion-dollar titans are powering — and distorting — its fastest growing stock markets",
+          "text": "Taiwan's Taiex and South Korea's Kospi stock markets have been seeing record breaking rallies. The stunning surge leaves experts wondering if this growth hinges largely on a few AI-linked semiconductor giants.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.cnbc.com/2026/05/12/tsmc-samsung-sk-hynixs-south-korea-taiwan-stocks-ai-chipmakers-concentration-risk.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/12/tsmc-samsung-sk-hynixs-south-korea-taiwan-stocks-ai-chipmakers-concentration-risk.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_078:13",
+      "entityType": "macro_event",
+      "entityId": "macro_event:이_대통령_쓴소리에_금융사_상록수_보유_채권_줄줄이_매각",
+      "entityName": "이 대통령 쓴소리에…금융사, 상록수 보유 채권 줄줄이 매각",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황",
+        "132030",
+        "411060"
+      ],
+      "direction": "neutral",
+      "strength": 0.35546875,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "이 대통령 쓴소리에…금융사, 상록수 보유 채권 줄줄이 매각",
+          "text": "신한카드와 하나은행이 민간부실채권 처리회사 ‘상록수제일차유동화전문유한회사(상록수)’가 보유한 장기 연체채권 중 각각 보유 중인 지분을 한국자산관리공사(캠코)의 새도약기금에 매각한다..",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.mk.co.kr/news/economy/12044572"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/economy/12044572"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_088:14",
+      "entityType": "macro_event",
+      "entityId": "macro_event:why_joining_the_family_business_was_james_reed_s_hardest_decision_and_why_it_paid_off",
+      "entityName": "Why joining the family business was James Reed’s hardest decision — and why it paid off",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.4765625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Why joining the family business was James Reed’s hardest decision — and why it paid off",
+          "text": "James Reed reflects on the decision that defined his career — taking the risk of joining the family business. The Reed CEO discusses failure, purpose and why standing still is the worst decision of all.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.cnbc.com/video/2026/05/12/reed-ceo-james-reed-executive-decisions-with-steve-sedgwick.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/video/2026/05/12/reed-ceo-james-reed-executive-decisions-with-steve-sedgwick.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_079:15",
+      "entityType": "macro_event",
+      "entityId": "macro_event:효성굿스프링스_전력_효율_높인_펌프_솔루션_공개_기계설비전시회_참가",
+      "entityName": "효성굿스프링스, 전력 효율 높인 펌프 솔루션 공개…기계설비전시회 참가",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "neutral",
+      "strength": 0.36015625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "효성굿스프링스, 전력 효율 높인 펌프 솔루션 공개…기계설비전시회 참가",
+          "text": "13~15일 HVAC KOREA 2026서 첫 선 데이터센터·건물 설비용 등 종합 솔루션도 전시효성굿스프링스가 전력 사용량을 3.2% 절감한 고효율 펌프 솔루션을 처음으로 선보인다..",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.mk.co.kr/news/business/12044553"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/business/12044553"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_080:16",
+      "entityType": "macro_event",
+      "entityId": "macro_event:차_세워두고_내렸는데_낚시_왔다가_차량에_깔린_70대_결국_숨져",
+      "entityName": "“차 세워두고 내렸는데”…낚시 왔다가 차량에 깔린 70대 결국 숨져",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황",
+        "132030",
+        "411060"
+      ],
+      "direction": "neutral",
+      "strength": 0.359375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "“차 세워두고 내렸는데”…낚시 왔다가 차량에 깔린 70대 결국 숨져",
+          "text": "경기 파주시에서 70대 남성이 자신이 세운 차량에 깔려 숨지는 사고가 발생해 경찰이 조사에 나섰다. 12일 파주경찰서에 따르면 전날 오후 3시 30분께 파주시 맥금동 공릉천 인근 ..",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.mk.co.kr/news/society/12044551"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/society/12044551"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_081:17",
+      "entityType": "macro_event",
+      "entityId": "macro_event:올해_81_뛴_코스피_8000피_향해_가는데_28_오른_코스닥_3천스닥_시험대",
+      "entityName": "올해 81% 뛴 코스피 8000피 향해 가는데…28% 오른 코스닥, ‘3천스닥’ 시험대",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "neutral",
+      "strength": 0.36796875,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "올해 81% 뛴 코스피 8000피 향해 가는데…28% 오른 코스닥, ‘3천스닥’ 시험대",
+          "text": "최근 국내 증시가 열렸다 하면 연일 사상 최고치를 갈아치우고 있는 가운데 코스피와 코스닥의 상승률 차이에는 격차가 벌어지고 있다. 올해 들어 코스피는 80%이상 상승한 반면, 코스..",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.mk.co.kr/news/stock/12044550"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/stock/12044550"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_082:18",
+      "entityType": "macro_event",
+      "entityId": "macro_event:스토킹_신고했지만_영장_기각_뒤_전_연인_찾아간_50대_자해_후_숨져",
+      "entityName": "“스토킹 신고했지만”…영장 기각 뒤 전 연인 찾아간 50대, 자해 후 숨져",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "neutral",
+      "strength": 0.3625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "“스토킹 신고했지만”…영장 기각 뒤 전 연인 찾아간 50대, 자해 후 숨져",
+          "text": "스토킹 범죄로 체포됐다가 법원의 구속영장 기각으로 풀려난 50대 남성이 전 연인을 찾아가 흉기 난동을 벌인 뒤 스스로 목숨을 끊는 사건이 발생했다. 12일 경기 안산상록경찰서에 따..",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.mk.co.kr/news/society/12044545"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/society/12044545"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_083:19",
+      "entityType": "macro_event",
+      "entityId": "macro_event:업비트_코인_10종목_중_9은_상승세_분위기_좋아진_코인시장_매일코인",
+      "entityName": "업비트 코인, 10종목 중 9은 상승세…분위기 좋아진 코인시장[매일코인]",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "positive",
+      "strength": 0.36171875,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "업비트 코인, 10종목 중 9은 상승세…분위기 좋아진 코인시장[매일코인]",
+          "text": "인공지능(AI) 열풍에 힘입어 국내외 증시를 포함해 위험자산이 전반적으로 강세를 보이면서 가상자산시장도 반등세를 보였다. 비트코인이 1억2000만원선을 회복하며 회복세를 이어가면서..",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.mk.co.kr/news/stock/12044542"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/stock/12044542"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_084:20",
+      "entityType": "macro_event",
+      "entityId": "macro_event:디캠프_한국무라타전자_일본_대기업과_협업할_딥테크_스타트업_모집",
+      "entityName": "디캠프-한국무라타전자, 일본 대기업과 협업할 딥테크 스타트업 모집",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황",
+        "133690",
+        "360750",
+        "379810",
+        "396500",
+        "456600",
+        "469150",
+        "475300"
+      ],
+      "direction": "neutral",
+      "strength": 0.35859375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "디캠프-한국무라타전자, 일본 대기업과 협업할 딥테크 스타트업 모집",
+          "text": "모빌리티·반도체 등 스타트업 대상 기술 검증·이전 등 후속 협력 지원디캠프가 글로벌 전자부품 기업 무라타 제작소의 한국법인 한국무라타전자와 함께 글로벌 오픈이노베이션(OI) 프로그..",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.mk.co.kr/news/it/12044520"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/it/12044520"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_085:21",
+      "entityType": "macro_event",
+      "entityId": "macro_event:trump_puts_taiwan_arms_sales_hong_kong_jailed_activist_lai_on_agenda_ahead_of_meeting_with_xi",
+      "entityName": "Trump puts Taiwan arms sales, Hong Kong jailed activist Lai on agenda ahead of meeting with Xi",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.446875,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Trump puts Taiwan arms sales, Hong Kong jailed activist Lai on agenda ahead of meeting with Xi",
+          "text": "Trump said Monday that U.S. arms sales to Taiwan and the imprisonment of Hong Kong media tycoon Jimmy Lai would be among the issues at the summit in Beijing.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.cnbc.com/2026/05/12/trump-xi-china-summit-taiwan-arms-sale-jimmy-lai-.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/12/trump-xi-china-summit-taiwan-arms-sale-jimmy-lai-.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_001:22",
+      "entityType": "macro_event",
+      "entityId": "macro_event:수수료_올리고_판매_늘리고_etf_덕에_4대_자산관리_수익_쑥",
+      "entityName": "수수료 올리고 판매 늘리고…ETF 덕에 4대銀 자산관리 수익 ‘쑥’",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "neutral",
+      "strength": 0.359375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "수수료 올리고 판매 늘리고…ETF 덕에 4대銀 자산관리 수익 ‘쑥’",
+          "text": "주식 활황에 ETF 판매 늘어상장지수펀드(ETF) 투자 열풍에 힘입어 4대은행의 자산관리 수수료 수익이 올해 1분기 전년 동기 대비 50% 넘게 늘어난 것으로 나타났다. 자산관리 ..",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.mk.co.kr/news/economy/12044376"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/economy/12044376"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_002:23",
+      "entityType": "macro_event",
+      "entityId": "macro_event:트럼프_언론_이란전_보도에_반역_격노_기자_대상_소환장_발부",
+      "entityName": "트럼프, 美언론 이란전 보도에 ‘반역’ 격노…기자 대상 소환장 발부",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "neutral",
+      "strength": 0.359375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "트럼프, 美언론 이란전 보도에 ‘반역’ 격노…기자 대상 소환장 발부",
+          "text": "도널드 트럼프 미국 대통령이 이란 전쟁 관련 보도를 한 일부 언론을 향해 ‘반역’이라고 규정하며 강한 불만을 드러낸 것으로 전해졌다. 월스트리트저널(WSJ)은 11일(현지시간) 행..",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.mk.co.kr/news/world/12044373"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/world/12044373"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_003:24",
+      "entityType": "macro_event",
+      "entityId": "macro_event:신한카드_카드대란_때_부실채권_새도약기금에_넘기겠다",
+      "entityName": "신한카드 “카드대란 때 부실채권, 새도약기금에 넘기겠다”",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황",
+        "132030",
+        "411060"
+      ],
+      "direction": "neutral",
+      "strength": 0.3546875,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "신한카드 “카드대란 때 부실채권, 새도약기금에 넘기겠다”",
+          "text": "카드대란 피해 차주 재기 지원 결단신한카드는 민간 부실채권 처리회사 ‘상록수제일차유동화전문유한회사(상록수)’가 보유한 장기연체채권 중 신한카드 지분에 해당하는 채권 전액을 한국자산..",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.mk.co.kr/news/economy/12044371"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/economy/12044371"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_004:25",
+      "entityType": "macro_event",
+      "entityId": "macro_event:mk시그널_아파치_매도신호_포착_수익률_45_6_달성",
+      "entityName": "[MK시그널] 아파치 매도신호 포착, 수익률 45.6% 달성",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "neutral",
+      "strength": 0.35625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "[MK시그널] 아파치 매도신호 포착, 수익률 45.6% 달성",
+          "text": "안녕하세요. 미국 주식 핫 이슈 종목을 분석해드리는 AI 기자 ‘MK시그널’입니다. 11일, 아파치(APA)가 MK시그널에서 매도 신호가 포착돼 수익률 45.68% 달성했습니다. ..",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.mk.co.kr/news/stock/12044367"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/stock/12044367"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_005:26",
+      "entityType": "macro_event",
+      "entityId": "macro_event:스팀_위시리스트_500만_넘은_서브노티카_2_사전_다운로드_개시",
+      "entityName": "스팀 위시리스트 500만 넘은 서브노티카 2, 사전 다운로드 개시",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "neutral",
+      "strength": 0.35859375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "스팀 위시리스트 500만 넘은 서브노티카 2, 사전 다운로드 개시",
+          "text": "12일 사전 판매시작 직후 스팀 최고 매출 게임 등극크래프톤은 자사의 크리에이티브 스튜디오 언노운 월즈가 개발한 ‘서브노티카 2(Subnautica 2)’의 스팀 사전 판매 및 다..",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.mk.co.kr/news/it/12044360"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/it/12044360"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_006:27",
+      "entityType": "macro_event",
+      "entityId": "macro_event:리플_프라임_브로커리지_키운다_뉴버거에서_2억달러_조달",
+      "entityName": "리플, 프라임 브로커리지 키운다…뉴버거에서 2억달러 조달",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황",
+        "132030",
+        "411060"
+      ],
+      "direction": "positive",
+      "strength": 0.353125,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "리플, 프라임 브로커리지 키운다…뉴버거에서 2억달러 조달",
+          "text": "뉴버거버만서 2억달러 규모 부채 조달 “주식·코인, 단일 신용공여 확대” 히든로드 인수 후 매출 3배 늘어블록체인 기반 결제·송금 네트워크 기업 리플(Ripple)이 자사의 프..",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.mk.co.kr/news/stock/12044346"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/stock/12044346"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_007:28",
+      "entityType": "macro_event",
+      "entityId": "macro_event:바이오_부진_식품_해외사_성장_cj제일제당_1분기_영업익_26",
+      "entityName": "“바이오 부진, 식품 해외사 성장”…CJ제일제당, 1분기 영업익 26%↓",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "negative",
+      "strength": 0.36171875,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "“바이오 부진, 식품 해외사 성장”…CJ제일제당, 1분기 영업익 26%↓",
+          "text": "1분기 매출 4조271억 4.3% 상승 영업이익 1485억원…전년比 26%↓ “K-푸드 영토 확장, 바이오 개선할 것”CJ제일제당은 올해 1분기 매출이 4조271억원, 영업이익은 ..",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.mk.co.kr/news/economy/12044341"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/economy/12044341"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_008:29",
+      "entityType": "macro_event",
+      "entityId": "macro_event:삼성sds_범정부_ai_협업_설루션_선정에_8_대_급등",
+      "entityName": "삼성SDS, 범정부 AI 협업 설루션 선정에 8%대 급등",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "neutral",
+      "strength": 0.3546875,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "삼성SDS, 범정부 AI 협업 설루션 선정에 8%대 급등",
+          "text": "삼성에스디에스가 범정부 지능형 업무관리 플랫폼인 ‘온AI’의 모바일 업무환경 구축을 지원한다는 소식에 12일 장 초반 급등하고 있다. 12일 오전 9시 27분 현재 삼성에스디에스는..",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.mk.co.kr/news/stock/12044338"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/stock/12044338"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_062:30",
+      "entityType": "macro_event",
+      "entityId": "macro_event:kaltura_forecasts_2026_adjusted_ebitda_of_13_8m_15_2m_as_it_raises_revenue_outlook_following_pathfactory_close",
+      "entityName": "Kaltura forecasts 2026 adjusted EBITDA of $13.8M-$15.2M as it raises revenue outlook following PathFactory close",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "기술",
+      "themes": [
+        "기술"
+      ],
+      "direction": "neutral",
+      "strength": 0.33828125,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Kaltura forecasts 2026 adjusted EBITDA of $13.8M-$15.2M as it raises revenue outlook following PathFactory close",
+          "text": "",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://seekingalpha.com/news/4590945-kaltura-forecasts-2026-adjusted-ebitda-of-13_8m-15_2m-as-it-raises-revenue-outlook-following?source=feed_sector_information_technology"
+        }
+      ],
+      "derivedFrom": [
+        "https://seekingalpha.com/news/4590945-kaltura-forecasts-2026-adjusted-ebitda-of-13_8m-15_2m-as-it-raises-revenue-outlook-following?source=feed_sector_information_technology"
+      ],
+      "metadata": {
+        "source": "Seeking Alpha Tech",
+        "category": "기술",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_009:31",
+      "entityType": "macro_event",
+      "entityId": "macro_event:mk시그널_심텍홀딩스_자회사_심텍_실적_턴어라운드_및_ai_기판_수요_폭증_등에_주가_상승세_mk시그널_추천_후_상승률_23_82",
+      "entityName": "[MK시그널] 심텍홀딩스, 자회사 심텍 실적 턴어라운드 및 AI 기판 수요 폭증 등에 주가 상승세... MK시그널 추천 후 상승률 23.82%",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "neutral",
+      "strength": 0.3921875,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "[MK시그널] 심텍홀딩스, 자회사 심텍 실적 턴어라운드 및 AI 기판 수요 폭증 등에 주가 상승세... MK시그널 추천 후 상승률 23.82%",
+          "text": "5월 12일 심텍홀딩스(036710)가 상승 중이다. 전 거래일 심텍홀딩스 주가는 종가기준 5,790원 상승으로 마감했다. 현재는 5,840원으로 (9시 14분 기준) 전일 종가 ..",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.mk.co.kr/news/stock/12044332"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/stock/12044332"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_010:32",
+      "entityType": "macro_event",
+      "entityId": "macro_event:a16z_서클의_새_블록체인_아크_에_7500만달러_베팅_비자_페이팔_넘보는_스테이블코인",
+      "entityName": "a16z, 서클의 새 블록체인 ‘아크’에 7500만달러 베팅…“비자·페이팔 넘보는 스테이블코인”",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "neutral",
+      "strength": 0.3703125,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "a16z, 서클의 새 블록체인 ‘아크’에 7500만달러 베팅…“비자·페이팔 넘보는 스테이블코인”",
+          "text": "a16z, ARC 토큰에 7500만달러 투자 기업용 통제·프라이버시 기능 탑재 골드만삭스·비자 등 200여곳 우군 확보 결제부터 회계까지 1초 내 정산 완료글로벌 벤처캐피털(V..",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.mk.co.kr/news/stock/12044331"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/stock/12044331"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_011:33",
+      "entityType": "macro_event",
+      "entityId": "macro_event:박왕열에_마약_공급한_청담사장_정체는_최병민_경찰_신상공개",
+      "entityName": "박왕열에 마약 공급한 ‘청담사장’ 정체는 최병민…경찰 신상공개",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "neutral",
+      "strength": 0.35703125,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "박왕열에 마약 공급한 ‘청담사장’ 정체는 최병민…경찰 신상공개",
+          "text": "시가 380억 마약류 국내반입·유통 혐의박왕열(전세계)에게 마약을 공급한 윗선으로 지목된 이른바 ‘청담사장’의 신상이 공개됐다. 경기남부경찰청은 12일 대규모 마약 밀반입·유통 혐..",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.mk.co.kr/news/society/12044327"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/society/12044327"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_012:34",
+      "entityType": "macro_event",
+      "entityId": "macro_event:mk_골든크로스_돌파종목_에이치브이엠_295310_and_펩트론_087010",
+      "entityName": "[MK 골든크로스 돌파종목 : 에이치브이엠(295310) & 펩트론(087010)]",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "neutral",
+      "strength": 0.36640625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "[MK 골든크로스 돌파종목 : 에이치브이엠(295310) & 펩트론(087010)]",
+          "text": "안녕하세요. 국내 핫 이슈 종목을 분석해드리는 AI 기자 ‘MK시그널’ 입니다. MK시그널이 오늘 분석한 핫 이슈 골든크로스 종목은 에이치브이엠 & 펩트론 입니다. - 에이치브이엠..",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.mk.co.kr/news/stock/12044326"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/stock/12044326"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_013:35",
+      "entityType": "macro_event",
+      "entityId": "macro_event:주변_시세_90_이하_lh_이달_수도권에_든든전세주택_1200가구_공급",
+      "entityName": "“주변 시세 90% 이하”…LH, 이달 수도권에 든든전세주택 1200가구 공급",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "neutral",
+      "strength": 0.3640625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "“주변 시세 90% 이하”…LH, 이달 수도권에 든든전세주택 1200가구 공급",
+          "text": "서울 103가구·인천 72가구·경기 1078가구 중산층 대상 역세권 입지한국토지주택공사(LH)가 이달 수도권에 중산층을 대산으로 한 든든전세주택 1253가구를 공급한다. 12일 L..",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.mk.co.kr/news/realestate/12044322"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/realestate/12044322"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_020:36",
+      "entityType": "macro_event",
+      "entityId": "macro_event:oil_prices_extend_gains_as_trump_comments_diminish_hopes_for_a_u_s_iran_peace_deal",
+      "entityName": "Oil prices extend gains as Trump comments diminish hopes for a U.S.-Iran peace deal",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.4390625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Oil prices extend gains as Trump comments diminish hopes for a U.S.-Iran peace deal",
+          "text": "Oil prices rose Tuesday amid concerns over a prolonged Middle East conflict after President Trump's comments that the ceasefire with Iran is on \"life support\"",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.cnbc.com/2026/05/12/oil-prices-today-brent-wti-trump-iran-war-hormuz.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/12/oil-prices-today-brent-wti-trump-iran-war-hormuz.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_063:37",
+      "entityType": "macro_event",
+      "entityId": "macro_event:cleanspark_outlines_14_18_month_delivery_timeline_for_ai_data_centers_as_it_markets_1_8_gw_contracted_capacity",
+      "entityName": "Cleanspark outlines 14–18-month delivery timeline for ai data centers as it markets 1.8 gw contracted capacity",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "기술",
+      "themes": [
+        "기술"
+      ],
+      "direction": "neutral",
+      "strength": 0.33671875,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Cleanspark outlines 14–18-month delivery timeline for ai data centers as it markets 1.8 gw contracted capacity",
+          "text": "",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://seekingalpha.com/news/4590943-cleanspark-outlines-14-18-month-delivery-timeline-for-ai-data-centers-as-it-markets-1_8-gw?source=feed_sector_information_technology"
+        }
+      ],
+      "derivedFrom": [
+        "https://seekingalpha.com/news/4590943-cleanspark-outlines-14-18-month-delivery-timeline-for-ai-data-centers-as-it-markets-1_8-gw?source=feed_sector_information_technology"
+      ],
+      "metadata": {
+        "source": "Seeking Alpha Tech",
+        "category": "기술",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_014:38",
+      "entityType": "macro_event",
+      "entityId": "macro_event:사상_최강의_기술_사이클_골드만도_깜짝_놀란_한국_ai_수출",
+      "entityName": "“사상 최강의 기술 사이클”…골드만도 깜짝 놀란 한국 AI 수출",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황",
+        "132030",
+        "133690",
+        "360750",
+        "379810",
+        "396500",
+        "411060",
+        "456600"
+      ],
+      "direction": "positive",
+      "strength": 0.3578125,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "“사상 최강의 기술 사이클”…골드만도 깜짝 놀란 한국 AI 수출",
+          "text": "골드만삭스 이코노미스트 분석 “AI 주도 흑자, GDP 10% 웃돌듯” 한국, 올 하반기 0.5%p 금리인상인공지능(AI)의 호황에 따라 한국과 대만의 반도체 수출이 급증하고 경상..",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.mk.co.kr/news/world/12044258"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/world/12044258"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_015:39",
+      "entityType": "macro_event",
+      "entityId": "macro_event:속보_코스피_장중_7900선_첫_돌파_7953",
+      "entityName": "[속보] 코스피, 장중 7900선 첫 돌파…7953",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황",
+        "133690",
+        "360750",
+        "379810",
+        "396500",
+        "456600",
+        "469150",
+        "475300"
+      ],
+      "direction": "neutral",
+      "strength": 0.35234375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "[속보] 코스피, 장중 7900선 첫 돌파…7953",
+          "text": "중동 긴장 재고조에도 불구하고 반도체주 상승 등에 힘입어 코스피가 12일 7900선을 넘기며 상승 출발했다. 이날 오전 9시 6분 현재 코스피는 전일 대비 132.24포인트(1.6..",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.mk.co.kr/news/stock/12044256"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/stock/12044256"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_016:40",
+      "entityType": "macro_event",
+      "entityId": "macro_event:kgm_황기영_대표_동탑산업훈장_수출_수익성_성장_이끈_공로",
+      "entityName": "KGM 황기영 대표, ‘동탑산업훈장’…“수출·수익성 성장 이끈 공로”",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "positive",
+      "strength": 0.36015625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "KGM 황기영 대표, ‘동탑산업훈장’…“수출·수익성 성장 이끈 공로”",
+          "text": "KG모빌리티(KGM) 황기영 대표이사가 자동차 산업 발전에 기여한 공로로 동탑산업훈장을 받았다. 수출 확대와 수익성 개선을 동시에 이끌며 KG그룹 편입 이후 체질 개선 성과를 낸 ..",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.mk.co.kr/news/business/12044255"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/business/12044255"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_021:41",
+      "entityType": "macro_event",
+      "entityId": "macro_event:asia_markets_rise_as_investors_brush_off_trump_s_ceasefire_warning",
+      "entityName": "Asia markets rise as investors brush off Trump’s ceasefire warning",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.38203125,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Asia markets rise as investors brush off Trump’s ceasefire warning",
+          "text": "Asia-Pacific markets rise as investors shrugged off fresh doubts over the fragile U.S.-Iran ceasefire.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.cnbc.com/2026/05/12/asia-markets-today-live-updates-kospi-hang-seng-index-nikkei-225-sensex-csi-300.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/12/asia-markets-today-live-updates-kospi-hang-seng-index-nikkei-225-sensex-csi-300.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_018:42",
+      "entityType": "macro_event",
+      "entityId": "macro_event:stock_futures_are_little_changed_as_traders_await_inflation_reading_monitor_iran_war_developments_live_updates",
+      "entityName": "Stock futures are little changed as traders await inflation reading, monitor Iran war developments: Live updates",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.41640625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Stock futures are little changed as traders await inflation reading, monitor Iran war developments: Live updates",
+          "text": "Economists polled by Dow Jones are calling for headline CPI to have gained 3.7% from a year earlier.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.cnbc.com/2026/05/11/stock-market-today-live-updates.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/11/stock-market-today-live-updates.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_064:43",
+      "entityType": "macro_event",
+      "entityId": "macro_event:mara_outlines_plan_to_start_200_mw_long_ridge_ai_build_in_h1_2027_with_initial_capacity_in_mid_2028",
+      "entityName": "MARA outlines plan to start 200 MW Long Ridge AI build in H1 2027, with initial capacity in mid-2028",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "기술",
+      "themes": [
+        "기술"
+      ],
+      "direction": "neutral",
+      "strength": 0.32890625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "MARA outlines plan to start 200 MW Long Ridge AI build in H1 2027, with initial capacity in mid-2028",
+          "text": "",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://seekingalpha.com/news/4590938-mara-outlines-plan-to-start-200-mw-long-ridge-ai-build-in-h1-2027-with-initial-capacity-in?source=feed_sector_information_technology"
+        }
+      ],
+      "derivedFrom": [
+        "https://seekingalpha.com/news/4590938-mara-outlines-plan-to-start-200-mw-long-ridge-ai-build-in-h1-2027-with-initial-capacity-in?source=feed_sector_information_technology"
+      ],
+      "metadata": {
+        "source": "Seeking Alpha Tech",
+        "category": "기술",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_019:44",
+      "entityType": "macro_event",
+      "entityId": "macro_event:openai_trial_nadella_says_musk_never_raised_concerns_to_him_about_microsoft_investment",
+      "entityName": "OpenAI trial: Nadella says Musk never raised concerns to him about Microsoft investment",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.3734375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "OpenAI trial: Nadella says Musk never raised concerns to him about Microsoft investment",
+          "text": "Elon Musk named Microsoft as a defendant in his lawsuit against OpenAI",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.cnbc.com/2026/05/11/microsoft-ceo-satya-nadella-musk-altman-trial.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/11/microsoft-ceo-satya-nadella-musk-altman-trial.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_028:45",
+      "entityType": "macro_event",
+      "entityId": "macro_event:tuesday_s_big_stock_stories_what_s_likely_to_move_the_market_in_the_next_trading_session",
+      "entityName": "Tuesday's big stock stories: What’s likely to move the market in the next trading session",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.42109375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Tuesday's big stock stories: What’s likely to move the market in the next trading session",
+          "text": "Investors looked past another setback in the Middle East on Monday, as the S&P 500 ticked higher for its first close above 7,400.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.cnbc.com/2026/05/11/tuesdays-big-stock-stories-whats-likely-to-move-the-market.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/11/tuesdays-big-stock-stories-whats-likely-to-move-the-market.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_017:46",
+      "entityType": "macro_event",
+      "entityId": "macro_event:시사금융용어_켄타우로스형_인재",
+      "entityName": "[시사금융용어] 켄타우로스형 인재",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황",
+        "132030",
+        "411060"
+      ],
+      "direction": "neutral",
+      "strength": 0.49921875,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "[시사금융용어] 켄타우로스형 인재",
+          "text": "◆켄타우로스형 인재란 인공지능(AI)의 생산성과 인간의 통찰력을 갖춘 인적 자원을 뜻한다.켄타우로스는 하체는 말, 상체는 인간인 그리스 신화 속 존재다. 인간처럼 사고하면서도 AI라는 말에 올라탄 인재가 중요해졌다고 김난도 서울대 교수가 주장하면서 퍼진 게 켄타우로스형 인재다.인간이 장점을 가진 창의성·윤리·공감·통찰과 AI가 잘하는 대규모 데이터 처리·연산·정확성 등이 서로 보완하면서 시너지를 발휘해야 한다는 주장이다.금융·투자 분야에서는 펀드매니저가 거시적 통찰과 고객 관계를 담당하고, AI가 알고리즘 트레이딩을 실행하는 모델이",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4414210"
+        }
+      ],
+      "derivedFrom": [
+        "https://news.einfomax.co.kr/news/articleView.html?idxno=4414210"
+      ],
+      "metadata": {
+        "source": "연합인포맥스",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_065:47",
+      "entityType": "macro_event",
+      "entityId": "macro_event:monday_com_forecasts_1_466b_1_475b_2026_revenue_as_it_shifts_to_consumption_based_ai_credits",
+      "entityName": "Monday.com forecasts $1.466B-$1.475B 2026 revenue as it shifts to consumption-based AI credits",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "기술",
+      "themes": [
+        "기술"
+      ],
+      "direction": "neutral",
+      "strength": 0.32421875,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Monday.com forecasts $1.466B-$1.475B 2026 revenue as it shifts to consumption-based AI credits",
+          "text": "",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://seekingalpha.com/news/4590915-monday-com-forecasts-1_466b-1_475b-2026-revenue-as-it-shifts-to-consumption-based-ai-credits?source=feed_sector_information_technology"
+        }
+      ],
+      "derivedFrom": [
+        "https://seekingalpha.com/news/4590915-monday-com-forecasts-1_466b-1_475b-2026-revenue-as-it-shifts-to-consumption-based-ai-credits?source=feed_sector_information_technology"
+      ],
+      "metadata": {
+        "source": "Seeking Alpha Tech",
+        "category": "기술",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_031:48",
+      "entityType": "macro_event",
+      "entityId": "macro_event:cnbc_points_pro_i_have_300_000_points_but_don_t_travel_much_anymore_what_should_i_do_with_my_amex_platinum",
+      "entityName": "CNBC Points Pro: I have 300,000 points but don’t travel much anymore. What should I do with my Amex Platinum?",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.4203125,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "CNBC Points Pro: I have 300,000 points but don’t travel much anymore. What should I do with my Amex Platinum?",
+          "text": "Points expert Jason Stauffer explains why downgrading your Amex Platinum Card may be better than closing it.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.cnbc.com/select/what-should-i-do-with-my-amex-platinum-card/"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/select/what-should-i-do-with-my-amex-platinum-card/"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_066:49",
+      "entityType": "macro_event",
+      "entityId": "macro_event:gitlab_to_cut_workforce_as_it_restructures_operations_around_ai",
+      "entityName": "GitLab to cut workforce as it restructures operations around AI",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "기술",
+      "themes": [
+        "기술"
+      ],
+      "direction": "neutral",
+      "strength": 0.3,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "GitLab to cut workforce as it restructures operations around AI",
+          "text": "",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://seekingalpha.com/news/4590877-gilab-to-cut-workforce-as-it-restructures-operations-around-ai?source=feed_sector_information_technology"
+        }
+      ],
+      "derivedFrom": [
+        "https://seekingalpha.com/news/4590877-gilab-to-cut-workforce-as-it-restructures-operations-around-ai?source=feed_sector_information_technology"
+      ],
+      "metadata": {
+        "source": "Seeking Alpha Tech",
+        "category": "기술",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_051:50",
+      "entityType": "macro_event",
+      "entityId": "macro_event:world_markets_watchlist_may_11_2026",
+      "entityName": "World Markets Watchlist: May 11, 2026",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "ETF",
+      "themes": [
+        "ETF"
+      ],
+      "direction": "neutral",
+      "strength": 0.59296875,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "World Markets Watchlist: May 11, 2026",
+          "text": "Our global markets watchlist tracks nine prominent indexes from economies around the world. The list includes the S&P 500 from the United States, TSX from Canada, the FTSE 100 from England, the DAXK from Germany, the CAC 40 from France, the Nikkei 225 from Japan, the Shanghai from China, the Hang Seng from Hong Kong, [...] The post World Markets Watchlist: May 11, 2026 appeared first on ETF Trends.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.etftrends.com/china-insights-content-hub/world-markets-watchlist-may-11-2026/"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.etftrends.com/china-insights-content-hub/world-markets-watchlist-may-11-2026/"
+      ],
+      "metadata": {
+        "source": "ETF Trends",
+        "category": "ETF",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_023:51",
+      "entityType": "macro_event",
+      "entityId": "macro_event:google_says_it_likely_thwarted_effort_by_hacker_group_to_use_ai_for_mass_exploitation_event",
+      "entityName": "Google says it likely thwarted effort by hacker group to use AI for 'mass exploitation event'",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.42734375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Google says it likely thwarted effort by hacker group to use AI for 'mass exploitation event'",
+          "text": "Hackers are rapidly adopting AI to find previously unknown software flaws even without the help of Anthropic's powerful Mythos model.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.cnbc.com/2026/05/11/google-thwarts-effort-hacker-group-use-ai-mass-exploitation-event.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/11/google-thwarts-effort-hacker-group-use-ai-mass-exploitation-event.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_052:52",
+      "entityType": "macro_event",
+      "entityId": "macro_event:weekly_economic_snapshot_resilience_in_the_labor_market",
+      "entityName": "Weekly Economic Snapshot: Resilience in the Labor Market",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "ETF",
+      "themes": [
+        "ETF"
+      ],
+      "direction": "neutral",
+      "strength": 0.625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Weekly Economic Snapshot: Resilience in the Labor Market",
+          "text": "The U.S. labor market demonstrated remarkable endurance in April, with job gains outpacing expectations and private sector expansion reaching its strongest point in over a year. This resilience has resonated through financial markets, propelling the S&P 500 to its sixth consecutive weekly gain and a fresh record high. As the Federal Reserve maintains a steady [...] The post Weekly Economic Snapshot: Resilience in the Labor Market appeared first on ETF Trends.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.etftrends.com/weekly-economic-snapshot-resilience-labor-market/"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.etftrends.com/weekly-economic-snapshot-resilience-labor-market/"
+      ],
+      "metadata": {
+        "source": "ETF Trends",
+        "category": "ETF",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_032:53",
+      "entityType": "macro_event",
+      "entityId": "macro_event:strategy_just_hit_a_new_high_for_the_year_should_you_buy_the_comeback_in_bitcoin_stocks",
+      "entityName": "Strategy just hit a new high for the year. Should you buy the comeback in bitcoin stocks?",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.3875,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Strategy just hit a new high for the year. Should you buy the comeback in bitcoin stocks?",
+          "text": "Katie Stockton of Fairlead Strategies breaks down the charts on this crypto-tied name.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.cnbc.com/2026/05/11/strategy-just-hit-a-new-high-for-the-year-should-you-buy-the-comeback-in-bitcoin-stocks.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/11/strategy-just-hit-a-new-high-for-the-year-should-you-buy-the-comeback-in-bitcoin-stocks.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_053:54",
+      "entityType": "macro_event",
+      "entityId": "macro_event:the_529_evolution_from_college_savings_to_versatile_financial_tool",
+      "entityName": "The 529 Evolution: From College Savings to Versatile Financial Tool",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "ETF",
+      "themes": [
+        "ETF"
+      ],
+      "direction": "neutral",
+      "strength": 0.625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "The 529 Evolution: From College Savings to Versatile Financial Tool",
+          "text": "For many years, the 529 plan was a straightforward investment vehicle. Parents saved for college, children used the funds for tuition, and penalties were incurred for any remaining funds. However, the 529 and its cousin, the ABLE (529A) account, have become versatile financial tools almost halfway through 2026. Key Takeaways: Total assets in education and [...] The post The 529 Evolution: From College Savings to Versatile Financial Tool appeared first on ETF Trends.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.etftrends.com/529-evolution-from-college-savings-to-versatile-financial-tool/"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.etftrends.com/529-evolution-from-college-savings-to-versatile-financial-tool/"
+      ],
+      "metadata": {
+        "source": "ETF Trends",
+        "category": "ETF",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_033:55",
+      "entityType": "macro_event",
+      "entityId": "macro_event:april_home_sales_disappoint_as_higher_mortgage_rates_weigh_on_buyers",
+      "entityName": "April home sales disappoint as higher mortgage rates weigh on buyers",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.4140625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "April home sales disappoint as higher mortgage rates weigh on buyers",
+          "text": "Home sales barely moved in April, as mortgage rates shot higher the month before and uncertainty over the war with Iran weighed on consumers.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.cnbc.com/2026/05/11/april-home-sales-disappoint-higher-mortgage-rates.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/11/april-home-sales-disappoint-higher-mortgage-rates.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_024:56",
+      "entityType": "macro_event",
+      "entityId": "macro_event:openai_revenue_chief_dresser_says_enterprise_ai_adoption_is_at_a_tipping_point",
+      "entityName": "OpenAI revenue chief Dresser says enterprise AI adoption is 'at a tipping point'",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.4234375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "OpenAI revenue chief Dresser says enterprise AI adoption is 'at a tipping point'",
+          "text": "The OpenAI Development Company is a partnership with 19 investment and consultancy firms and is majority-owned and controlled by the startup.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.cnbc.com/2026/05/11/open-ai-dresser-enterprise-business.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/11/open-ai-dresser-enterprise-business.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_067:57",
+      "entityType": "macro_event",
+      "entityId": "macro_event:micron_can_move_higher_but_get_exposure_through_dram_etf",
+      "entityName": "Micron Can Move Higher, But Get Exposure Through DRAM ETF",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "기술",
+      "themes": [
+        "기술"
+      ],
+      "direction": "neutral",
+      "strength": 0.2953125,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Micron Can Move Higher, But Get Exposure Through DRAM ETF",
+          "text": "",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://seekingalpha.com/article/4902610-micron-can-move-higher-but-get-exposure-through-dram-etf?source=feed_sector_information_technology"
+        }
+      ],
+      "derivedFrom": [
+        "https://seekingalpha.com/article/4902610-micron-can-move-higher-but-get-exposure-through-dram-etf?source=feed_sector_information_technology"
+      ],
+      "metadata": {
+        "source": "Seeking Alpha Tech",
+        "category": "기술",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_026:58",
+      "entityType": "macro_event",
+      "entityId": "macro_event:parabolic_ai_rally_has_bulls_eyeing_a_comeback_for_this_one_time_meme_metal_trade",
+      "entityName": "Parabolic AI rally has bulls eyeing a comeback for this one-time meme metal trade",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.359375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Parabolic AI rally has bulls eyeing a comeback for this one-time meme metal trade",
+          "text": "Silver prices surged 7% Monday to the highest since March.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.cnbc.com/2026/05/11/parabolic-ai-rally-has-bulls-eyeing-a-comeback-for-this-one-time-meme-metal-trade.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/11/parabolic-ai-rally-has-bulls-eyeing-a-comeback-for-this-one-time-meme-metal-trade.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_025:59",
+      "entityType": "macro_event",
+      "entityId": "macro_event:trump_congressional_republicans_float_suspending_federal_gas_tax_amid_iran_war",
+      "entityName": "Trump, congressional Republicans float suspending federal gas tax amid Iran war",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.4171875,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Trump, congressional Republicans float suspending federal gas tax amid Iran war",
+          "text": "Voters are souring on Trump's economy ahead of the 2026 midterm elections, and high gas prices are only adding to consumer discontent.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.cnbc.com/2026/05/11/trump-congress-gop-gas-tax-iran-war.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/11/trump-congress-gop-gas-tax-iran-war.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_030:60",
+      "entityType": "macro_event",
+      "entityId": "macro_event:a_beat_and_raise_is_key_for_qnity_plus_high_stakes_for_ceos_on_trump_china_trip",
+      "entityName": "A beat-and-raise is key for Qnity — plus, high stakes for CEOs on Trump China trip",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.41875,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "A beat-and-raise is key for Qnity — plus, high stakes for CEOs on Trump China trip",
+          "text": "Every weekday, the Investing Club releases the Homestretch; an actionable afternoon update just in time for the last hour of trading.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.cnbc.com/2026/05/11/a-beat-and-raise-is-key-for-qnity-plus-ceos-on-trump-china-trip.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/11/a-beat-and-raise-is-key-for-qnity-plus-ceos-on-trump-china-trip.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_029:61",
+      "entityType": "macro_event",
+      "entityId": "macro_event:saudi_aramco_ceo_says_oil_market_won_t_normalize_until_2027_if_hormuz_disruption_persists",
+      "entityName": "Saudi Aramco CEO says oil market won't normalize until 2027 if Hormuz disruption persists",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.41015625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Saudi Aramco CEO says oil market won't normalize until 2027 if Hormuz disruption persists",
+          "text": "Oil inventories are rapidly drawing down as the Strait of Hormuz remains closed, Saudi Aramco CEO Amin Nasser said.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.cnbc.com/2026/05/11/saudi-aramco-oil-iran-war-strait-hormuz.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/11/saudi-aramco-oil-iran-war-strait-hormuz.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_034:62",
+      "entityType": "macro_event",
+      "entityId": "macro_event:netflix_sued_by_texas_for_allegedly_spying_on_children_addicting_users",
+      "entityName": "Netflix sued by Texas for allegedly spying on children, addicting users",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.44453125,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Netflix sued by Texas for allegedly spying on children, addicting users",
+          "text": "Texas Attorney General Ken Paxton accused Netflix of spying on children and other consumers by collecting their data without consent, and designing its platform to be addictive.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.cnbc.com/2026/05/11/netflix-sued-by-texas-for-allegedly-spying-on-children-addicting-users.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/11/netflix-sued-by-texas-for-allegedly-spying-on-children-addicting-users.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_054:63",
+      "entityType": "macro_event",
+      "entityId": "macro_event:micron_stock_feels_unstoppable_and_that_s_good_for_this_etf",
+      "entityName": "Micron Stock Feels Unstoppable and That’s Good for This ETF",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "ETF",
+      "themes": [
+        "ETF"
+      ],
+      "direction": "neutral",
+      "strength": 0.625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Micron Stock Feels Unstoppable and That’s Good for This ETF",
+          "text": "Micron (MU) sits at the epicenter of the dynamic random access memory (DRAM) trade – one of the quintessential artificial intelligence (AI) bottlenecks. As a result, the stock has become a freight train. The shares are up 75% year-to-date. At its current pace, Micron could graduate to the $1 trillion club from its current market [...] The post Micron Stock Feels Unstoppable and That’s Good for This ETF appeared first on ETF Trends.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.etftrends.com/leveraged-inverse-content-hub/micron-stock-feels-unstoppable-good-etf/"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.etftrends.com/leveraged-inverse-content-hub/micron-stock-feels-unstoppable-good-etf/"
+      ],
+      "metadata": {
+        "source": "ETF Trends",
+        "category": "ETF",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_022:64",
+      "entityType": "macro_event",
+      "entityId": "macro_event:trump_invites_elon_musk_tim_cook_larry_fink_and_other_ceos_to_join_china_trip_for_xi_summit",
+      "entityName": "Trump invites Elon Musk, Tim Cook, Larry Fink and other CEOs to join China trip for Xi summit",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.44453125,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Trump invites Elon Musk, Tim Cook, Larry Fink and other CEOs to join China trip for Xi summit",
+          "text": "Trump invited Tesla's Elon Musk, Apple's Tim Cook and Blackrock's Larry Fink to join his China trip for talks with Xi Jinping on trade, AI and geopolitics.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.cnbc.com/2026/05/11/trump-ceos-elon-musk-tim-cook-larry-fink-xi-china-summit.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/11/trump-ceos-elon-musk-tim-cook-larry-fink-xi-china-summit.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_055:65",
+      "entityType": "macro_event",
+      "entityId": "macro_event:rocket_labs_rklb_surge_boosts_space_etf_ufo",
+      "entityName": "Rocket Labs (RKLB) Surge Boosts Space ETF UFO",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "ETF",
+      "themes": [
+        "ETF"
+      ],
+      "direction": "neutral",
+      "strength": 0.61484375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Rocket Labs (RKLB) Surge Boosts Space ETF UFO",
+          "text": "Aerospace firm Rocket Labs (RKLB) rocketed up 34% on Friday, notching its best day ever. The firm’s massive burst in performance follows its report of strong earnings numbers, topping Q1 revenue estimates. It also announced its largest ever deal, securing a $190 million pact with the U.S. Department of War. That has proven to be [...] The post Rocket Labs (RKLB) Surge Boosts Space ETF UFO appeared first on ETF Trends.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.etftrends.com/thematic-investing-content-hub/rocket-labs-rklb-surge-boosts-space-etf-ufo/"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.etftrends.com/thematic-investing-content-hub/rocket-labs-rklb-surge-boosts-space-etf-ufo/"
+      ],
+      "metadata": {
+        "source": "ETF Trends",
+        "category": "ETF",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_056:66",
+      "entityType": "macro_event",
+      "entityId": "macro_event:powerhouse_ai_etf_dram_hits_6_5_billion_at_record_pace",
+      "entityName": "Powerhouse AI ETF DRAM Hits $6.5 Billion at Record Pace",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "ETF",
+      "themes": [
+        "ETF"
+      ],
+      "direction": "neutral",
+      "strength": 0.625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Powerhouse AI ETF DRAM Hits $6.5 Billion at Record Pace",
+          "text": "Generally speaking, investors and advisors take notice when an ETF with an interesting approach hits a key AUM milestone. As is the case with the Roundhill Memory ETF (DRAM). The fund keeps hitting milestone after milestone after milestone — all within less than two months of it being online. Key Takeaways: Despite being on the [...] The post Powerhouse AI ETF DRAM Hits $6.5 Billion at Record Pace appeared first on ETF Trends.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.etftrends.com/thematic-investing-content-hub/powerhouse-ai-etf-dram-hits-6-5-billion-at-record-pace/"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.etftrends.com/thematic-investing-content-hub/powerhouse-ai-etf-dram-hits-6-5-billion-at-record-pace/"
+      ],
+      "metadata": {
+        "source": "ETF Trends",
+        "category": "ETF",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_057:67",
+      "entityType": "macro_event",
+      "entityId": "macro_event:paltry_sandp_500_yield_makes_this_etf_appealing",
+      "entityName": "Paltry S&P 500 Yield Makes This ETF Appealing",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "ETF",
+      "themes": [
+        "ETF"
+      ],
+      "direction": "neutral",
+      "strength": 0.59921875,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Paltry S&P 500 Yield Makes This ETF Appealing",
+          "text": "The largest S&P 500 ETF yields a scant 1.06%. That confirms something some income investors may not want to be reminded of: The dividend yield on the benchmark domestic equity index hovers around multi-decade lows. By some estimate, the S&P 500 is as low as its been in 50 years. That’s a compelling reason for [...] The post Paltry S&P 500 Yield Makes This ETF Appealing appeared first on ETF Trends.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.etftrends.com/monthly-income-content-hub/paltry-sp-500-yield-makes-this-etf-appealing/"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.etftrends.com/monthly-income-content-hub/paltry-sp-500-yield-makes-this-etf-appealing/"
+      ],
+      "metadata": {
+        "source": "ETF Trends",
+        "category": "ETF",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_037:68",
+      "entityType": "macro_event",
+      "entityId": "macro_event:hassett_says_ai_isn_t_costing_anybody_their_job_right_now_but_tech_layoffs_keep_coming",
+      "entityName": "Hassett says AI isn't costing anybody their job right now — but tech layoffs keep coming",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.4078125,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Hassett says AI isn't costing anybody their job right now — but tech layoffs keep coming",
+          "text": "Tech companies have continued to announce layoffs tied to AI, including recent cuts from Amazon, Meta and Oracle.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.cnbc.com/2026/05/11/trump-white-house-hassett-ai-jobs.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/11/trump-white-house-hassett-ai-jobs.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_027:69",
+      "entityType": "macro_event",
+      "entityId": "macro_event:michael_burry_is_not_a_believer_for_any_stocks_going_parabolic_reduce_positions_almost_entirely",
+      "entityName": "Michael Burry is not a believer: 'For any stocks going parabolic reduce positions almost entirely'",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.44921875,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Michael Burry is not a believer: 'For any stocks going parabolic reduce positions almost entirely'",
+          "text": "Michael Burry said investors should \"reject greed\" as enthusiasm around artificial intelligence and momentum-driven trades pushes valuations sharply higher.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.cnbc.com/2026/05/11/michael-burry-is-not-a-believer-for-any-stocks-going-parabolic-reduce-positions-almost-entirely.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/11/michael-burry-is-not-a-believer-for-any-stocks-going-parabolic-reduce-positions-almost-entirely.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_089:70",
+      "entityType": "macro_event",
+      "entityId": "macro_event:uk_should_commit_to_rejoin_the_eu_london_mayor_tells_cnbc",
+      "entityName": "UK should commit to rejoin the EU, London mayor tells CNBC",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.4015625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "UK should commit to rejoin the EU, London mayor tells CNBC",
+          "text": "London mayor Sadiq Khan said that Prime Minister Keir Starmer should commit to rejoining the European Union and be \"bigger and bolder.\"",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.cnbc.com/2026/05/11/sadiq-khan-uk-rejoin-eu-labour-starmer.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/11/sadiq-khan-uk-rejoin-eu-labour-starmer.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_058:71",
+      "entityType": "macro_event",
+      "entityId": "macro_event:bitcoin_dominance_rises_but_it_s_not_all_bad_for_altcoins",
+      "entityName": "Bitcoin Dominance Rises, But It’s Not All Bad for Altcoins",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "ETF",
+      "themes": [
+        "ETF"
+      ],
+      "direction": "neutral",
+      "strength": 0.625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Bitcoin Dominance Rises, But It’s Not All Bad for Altcoins",
+          "text": "Bitcoin moved above $80,000 and held those levels for a few days. With this, the popular gauge of the largest digital currency’s reached 61.3% — the highest reading in more than six months. On the surface, elevated Bitcoin dominance signals cryptocurrency market participants are favoring that asset over its peers, but that doesn’t necessarily mean [...] The post Bitcoin Dominance Rises, But It’s Not All Bad for Altcoins appeared first on ETF Trends.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.etftrends.com/coinshares-content-hub/bitcoin-dominance-rises-bad-altcoins/"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.etftrends.com/coinshares-content-hub/bitcoin-dominance-rises-bad-altcoins/"
+      ],
+      "metadata": {
+        "source": "ETF Trends",
+        "category": "ETF",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_059:72",
+      "entityType": "macro_event",
+      "entityId": "macro_event:clive_davis_reflects_on_career_with_son_at_musq_summit",
+      "entityName": "Clive Davis Reflects on Career With Son at MUSQ Summit",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "ETF",
+      "themes": [
+        "ETF"
+      ],
+      "direction": "neutral",
+      "strength": 0.62421875,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Clive Davis Reflects on Career With Son at MUSQ Summit",
+          "text": "Clive Davis watched a video montage of his six-decade career flicker across the screen at Virgin Hotels New York on Friday. The packed room fell silent as images of Janis Joplin, Whitney Houston, and Bruce Springsteen filled the frame. Then his son Fred walked on stage, and the conversation that followed was unlike any the [...] The post Clive Davis Reflects on Career With Son at MUSQ Summit appeared first on ETF Trends.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.etftrends.com/thematic-investing-content-hub/clive-davis-reflects-career-son-musq-summit/"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.etftrends.com/thematic-investing-content-hub/clive-davis-reflects-career-son-musq-summit/"
+      ],
+      "metadata": {
+        "source": "ETF Trends",
+        "category": "ETF",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_036:73",
+      "entityType": "macro_event",
+      "entityId": "macro_event:cerebras_bumps_up_ipo_range_as_it_looks_to_raise_up_to_4_8_billion",
+      "entityName": "Cerebras bumps up IPO range as it looks to raise up to $4.8 billion",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.3953125,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Cerebras bumps up IPO range as it looks to raise up to $4.8 billion",
+          "text": "Elon Musk was open to having OpenAI merge with Cerebras. Now Cerebras is looking at going public as soon as this week.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.cnbc.com/2026/05/11/cerebras-raises-ipo-range.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/11/cerebras-raises-ipo-range.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_038:74",
+      "entityType": "macro_event",
+      "entityId": "macro_event:christine_lagarde_stablecoins_and_the_future_of_money_separating_functions_from_instruments",
+      "entityName": "Christine Lagarde: Stablecoins and the future of money - separating functions from instruments",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "중앙은행",
+      "themes": [
+        "중앙은행"
+      ],
+      "direction": "neutral",
+      "strength": 0.43359375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Christine Lagarde: Stablecoins and the future of money - separating functions from instruments",
+          "text": "Speech by Ms Christine Lagarde, President of the European Central Bank, at the Bank of Spain LatAm Economic Forum, Roda de Bará, 8 May 2026.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.bis.org/review/r260511d.htm"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.bis.org/review/r260511d.htm"
+      ],
+      "metadata": {
+        "source": "BIS Speeches",
+        "category": "중앙은행",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_039:75",
+      "entityType": "macro_event",
+      "entityId": "macro_event:jos_luis_escriv_capital_flows_exchange_rates_and_geopolitics_the_value_of_trust_in_a_changing_global_order",
+      "entityName": "José Luis Escrivá: Capital flows, exchange rates, and geopolitics - the value of trust in a changing global order",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "중앙은행",
+      "themes": [
+        "중앙은행"
+      ],
+      "direction": "neutral",
+      "strength": 0.43515625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "José Luis Escrivá: Capital flows, exchange rates, and geopolitics - the value of trust in a changing global order",
+          "text": "Speech by Mr José Luis Escrivá, Governor of the Bank of Spain, at the Spain LatAm Economic Forum, Roda de Bará, 9 May 2026.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.bis.org/review/r260511m.htm"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.bis.org/review/r260511m.htm"
+      ],
+      "metadata": {
+        "source": "BIS Speeches",
+        "category": "중앙은행",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_040:76",
+      "entityType": "macro_event",
+      "entityId": "macro_event:philip_r_lane_climate_change_and_monetary_policy",
+      "entityName": "Philip R Lane: Climate change and monetary policy",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "중앙은행",
+      "themes": [
+        "중앙은행"
+      ],
+      "direction": "neutral",
+      "strength": 0.5203125,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Philip R Lane: Climate change and monetary policy",
+          "text": "Keynote speech by Philip R. Lane, Member of the Executive Board of the ECB, at the Climate, Nature and Monetary Policy Conference, jointly organised by the ECB, the Centre for Economic Transition Expertise (CETEx) and the Frankfurt School of Finance and Management, Frankfurt am Main, 5 May 2026.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.bis.org/review/r260507c.htm"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.bis.org/review/r260507c.htm"
+      ],
+      "metadata": {
+        "source": "BIS Speeches",
+        "category": "중앙은행",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_035:77",
+      "entityType": "macro_event",
+      "entityId": "macro_event:the_haters_will_hate_dan_ives_predicts_nasdaq_30_000_as_ai_rally_expands",
+      "entityName": "‘The haters will hate’: Dan Ives predicts Nasdaq 30,000 as AI rally expands",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.3734375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "‘The haters will hate’: Dan Ives predicts Nasdaq 30,000 as AI rally expands",
+          "text": "A solid tech earnings season has seen investor jitters earlier this year evaporate",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.cnbc.com/2026/05/11/the-haters-will-hate-dan-ives-predicts-nasdaq-rally.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/11/the-haters-will-hate-dan-ives-predicts-nasdaq-rally.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_041:78",
+      "entityType": "macro_event",
+      "entityId": "macro_event:p_nandalal_weerasinghe_poverty_and_development_in_times_of_crisis",
+      "entityName": "P Nandalal Weerasinghe: Poverty and development in times of crisis",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "중앙은행",
+      "themes": [
+        "중앙은행"
+      ],
+      "direction": "neutral",
+      "strength": 0.50859375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "P Nandalal Weerasinghe: Poverty and development in times of crisis",
+          "text": "Keynote speech by Dr Chandranath Amarasekara, Deputy Governor of the Central Bank of Sri Lanka, at the International Conference on \"Poverty and development in times of crisis\", at the 25th Anniversary of the Centre for Poverty Analysis (CEPA), Colombo, 7 May 2026.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.bis.org/review/r260507h.htm"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.bis.org/review/r260507h.htm"
+      ],
+      "metadata": {
+        "source": "BIS Speeches",
+        "category": "중앙은행",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_042:79",
+      "entityType": "macro_event",
+      "entityId": "macro_event:joachim_nagel_structural_challenges_for_the_german_economy",
+      "entityName": "Joachim Nagel: Structural challenges for the German economy",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "중앙은행",
+      "themes": [
+        "중앙은행"
+      ],
+      "direction": "neutral",
+      "strength": 0.38984375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Joachim Nagel: Structural challenges for the German economy",
+          "text": "Speech by Dr Joachim Nagel, President of the Deutsche Bundesbank, at the 79th Monetary Workshop, Darmstadt, 8 May 2025.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.bis.org/review/r260511e.htm"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.bis.org/review/r260511e.htm"
+      ],
+      "metadata": {
+        "source": "BIS Speeches",
+        "category": "중앙은행",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_043:80",
+      "entityType": "macro_event",
+      "entityId": "macro_event:piero_cipollone_the_new_energy_shock_economic_scenarios_and_policy_implications",
+      "entityName": "Piero Cipollone: The new energy shock - economic scenarios and policy implications",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "중앙은행",
+      "themes": [
+        "중앙은행"
+      ],
+      "direction": "neutral",
+      "strength": 0.44140625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Piero Cipollone: The new energy shock - economic scenarios and policy implications",
+          "text": "Keynote speech by Mr Piero Cipollone, Member of the Executive Board of the European Central Bank, at the 2026 Sustainable Development Festival, Milan, 6 May 2026.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.bis.org/review/r260507e.htm"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.bis.org/review/r260507e.htm"
+      ],
+      "metadata": {
+        "source": "BIS Speeches",
+        "category": "중앙은행",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_044:81",
+      "entityType": "macro_event",
+      "entityId": "macro_event:luis_de_guindos_deepening_financial_integration_to_support_europe_s_prosperity",
+      "entityName": "Luis de Guindos: Deepening financial integration to support Europe's prosperity",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "중앙은행",
+      "themes": [
+        "중앙은행"
+      ],
+      "direction": "neutral",
+      "strength": 0.49453125,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Luis de Guindos: Deepening financial integration to support Europe's prosperity",
+          "text": "Keynote speech by Mr Luis de Guindos, Vice-President of the European Central Bank, at the joint conference of the European Commission and the European Central Bank \"European Financial Integration 2026\", Frankfurt am Main, 7 May 2026.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.bis.org/review/r260507d.htm"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.bis.org/review/r260507d.htm"
+      ],
+      "metadata": {
+        "source": "BIS Speeches",
+        "category": "중앙은행",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_045:82",
+      "entityType": "macro_event",
+      "entityId": "macro_event:michael_atingi_ego_launch_of_centenary_bank_s_custodial_services",
+      "entityName": "Michael Atingi-Ego: Launch of Centenary Bank's Custodial Services",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "중앙은행",
+      "themes": [
+        "중앙은행"
+      ],
+      "direction": "neutral",
+      "strength": 0.41015625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Michael Atingi-Ego: Launch of Centenary Bank's Custodial Services",
+          "text": "Speech by Mr Michael Atingi-Ego, Governor of the Bank of Uganda, at the launch of Centenary Bank's Custodial Services, Kampala, 5 May 2026.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.bis.org/review/r260507j.htm"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.bis.org/review/r260507j.htm"
+      ],
+      "metadata": {
+        "source": "BIS Speeches",
+        "category": "중앙은행",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_046:83",
+      "entityType": "macro_event",
+      "entityId": "macro_event:fran_ois_villeroy_de_galhau_a_long_view_on_monetary_policy_three_clarifications_prompted_by_three_challenges",
+      "entityName": "François Villeroy de Galhau: A long view on monetary policy - three clarifications prompted by three challenges",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "중앙은행",
+      "themes": [
+        "중앙은행"
+      ],
+      "direction": "neutral",
+      "strength": 0.4640625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "François Villeroy de Galhau: A long view on monetary policy - three clarifications prompted by three challenges",
+          "text": "Speech by Mr François Villeroy de Galhau, Governor of the Bank of France, at the GIC (Global Interdependence Center)/Bank of France Conference, Paris, 7 May 2026.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.bis.org/review/r260507g.htm"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.bis.org/review/r260507g.htm"
+      ],
+      "metadata": {
+        "source": "BIS Speeches",
+        "category": "중앙은행",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_047:84",
+      "entityType": "macro_event",
+      "entityId": "macro_event:ida_wolden_bache_policy_rate_raised_to_4_25_percent",
+      "entityName": "Ida Wolden Bache: Policy rate raised to 4.25 percent",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "중앙은행",
+      "themes": [
+        "중앙은행"
+      ],
+      "direction": "neutral",
+      "strength": 0.43984375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Ida Wolden Bache: Policy rate raised to 4.25 percent",
+          "text": "Introductory statement by Ms Ida Wolden Bache, Governor of Norges Bank (Central Bank of Norway), at the press conference following Norway's announcement of the policy rate, Oslo, 7 May 2026.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.bis.org/review/r260507f.htm"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.bis.org/review/r260507f.htm"
+      ],
+      "metadata": {
+        "source": "BIS Speeches",
+        "category": "중앙은행",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_060:85",
+      "entityType": "macro_event",
+      "entityId": "macro_event:partnerships_positive_sentiment_boost_u_s_nuclear",
+      "entityName": "Partnerships, Positive Sentiment Boost U.S. Nuclear",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "ETF",
+      "themes": [
+        "ETF"
+      ],
+      "direction": "neutral",
+      "strength": 0.625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Partnerships, Positive Sentiment Boost U.S. Nuclear",
+          "text": "The nuclear industry has seen a recent flurry of announcements, headlined by two major industry partnerships to rapidly deploy new reactors. These exciting developments come against the backdrop of a new national poll showing increased positive sentiment towards nuclear energy. This all adds to the positive tailwinds for nuclear development in the U.S. Brookfield Asset [...] The post Partnerships, Positive Sentiment Boost U.S. Nuclear appeared first on ETF Trends.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.etftrends.com/nuclear-energy-content-hub/partnerships-positive-sentiment-boost-u-s-nuclear/"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.etftrends.com/nuclear-energy-content-hub/partnerships-positive-sentiment-boost-u-s-nuclear/"
+      ],
+      "metadata": {
+        "source": "ETF Trends",
+        "category": "ETF",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_061:86",
+      "entityType": "macro_event",
+      "entityId": "macro_event:t_rowe_price_crosses_25_billion_a_new_chapter_for_an_active_powerhouse",
+      "entityName": "T. Rowe Price Crosses $25 Billion: A New Chapter for an Active Powerhouse",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "ETF",
+      "themes": [
+        "ETF"
+      ],
+      "direction": "neutral",
+      "strength": 0.625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "T. Rowe Price Crosses $25 Billion: A New Chapter for an Active Powerhouse",
+          "text": "In my former life as a mutual fund analyst, T. Rowe Price was always a staple of my research. Back then, the focus was on their fundamentally focused active mutual fund lineup. However, in the last 15 years, the investment world — and my own research focus — has moved toward ETFs. I watched with [...] The post T. Rowe Price Crosses $25 Billion: A New Chapter for an Active Powerhouse appeared first on ETF Trends.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.etftrends.com/active-etf-content-hub/t-rowe-price-crosses-25-billion-new-chapter-for-active-powerhouse/"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.etftrends.com/active-etf-content-hub/t-rowe-price-crosses-25-billion-new-chapter-for-active-powerhouse/"
+      ],
+      "metadata": {
+        "source": "ETF Trends",
+        "category": "ETF",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_048:87",
+      "entityType": "macro_event",
+      "entityId": "macro_event:christine_lagarde_climate_nature_and_monetary_policy",
+      "entityName": "Christine Lagarde: Climate, nature and monetary policy",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "중앙은행",
+      "themes": [
+        "중앙은행"
+      ],
+      "direction": "neutral",
+      "strength": 0.53203125,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Christine Lagarde: Climate, nature and monetary policy",
+          "text": "Introductory remarks by Ms Christine Lagarde, President of the European Central Bank, at the Climate, Nature and Monetary Policy Conference, jointly organised by the ECB, the Centre for Economic Transition Expertise (CETEx) and the Frankfurt School of Finance and Management, Frankfurt am Main, 5 May 2026.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.bis.org/review/r260507b.htm"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.bis.org/review/r260507b.htm"
+      ],
+      "metadata": {
+        "source": "BIS Speeches",
+        "category": "중앙은행",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_049:88",
+      "entityType": "macro_event",
+      "entityId": "macro_event:claudia_buch_the_prudential_regulation_of_banks_practical_implications_for_european_supervision",
+      "entityName": "Claudia Buch: \"The prudential regulation of banks\" - practical implications for European supervision",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "중앙은행",
+      "themes": [
+        "중앙은행"
+      ],
+      "direction": "neutral",
+      "strength": 0.475,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Claudia Buch: \"The prudential regulation of banks\" - practical implications for European supervision",
+          "text": "Remarks by Prof Claudia Buch, Chair of the Supervisory Board of the European Central Bank, at the conference \"Dewatripont Fest\", roundtable on \"Banking and finance\", Brussels, 6 May 2026.",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.bis.org/review/r260507a.htm"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.bis.org/review/r260507a.htm"
+      ],
+      "metadata": {
+        "source": "BIS Speeches",
+        "category": "중앙은행",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-12:article:news_050:89",
+      "entityType": "macro_event",
+      "entityId": "macro_event:luis_de_guindos_interview_with_financial_times",
+      "entityName": "Luis de Guindos: Interview with Financial Times",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "중앙은행",
+      "themes": [
+        "중앙은행"
+      ],
+      "direction": "neutral",
+      "strength": 0.2875,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Luis de Guindos: Interview with Financial Times",
+          "text": "",
+          "value": null,
+          "refPath": "data/news/2026-05-12.json",
+          "url": "https://www.ecb.europa.eu//press/inter/date/2026/html/ecb.in260511~3fa2df2fa9.en.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.ecb.europa.eu//press/inter/date/2026/html/ecb.in260511~3fa2df2fa9.en.html"
+      ],
+      "metadata": {
+        "source": "ECB Press Releases",
+        "category": "중앙은행",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    }
+  ]
+}

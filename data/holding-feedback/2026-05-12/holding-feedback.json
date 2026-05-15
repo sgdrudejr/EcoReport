@@ -1,0 +1,1189 @@
+{
+  "version": "0.1.0",
+  "date": "2026-05-12",
+  "runDate": "2026-05-12",
+  "effectiveMarketDate": "2026-05-12",
+  "runId": "2026-05-12-010005",
+  "generatedAt": "2026-05-12T01:15:02.809Z",
+  "summary": {
+    "totalHoldings": 20,
+    "highUrgency": 0,
+    "mediumUrgency": 0,
+    "lowUrgency": 20,
+    "byLabel": {
+      "보유유지": 20
+    },
+    "byAccount": {
+      "한투 ISA": 9,
+      "한투 연금저축": 5,
+      "한투 일반": 6
+    }
+  },
+  "cards": [
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "code": "475300",
+      "name": "SOL 반도체전공정",
+      "question": "SOL 반도체전공정 (475300) : 평단 21,576원인데 손절? 관망? 추매?",
+      "recommendation": {
+        "label": "보유유지",
+        "action": "관망 / 조건 충족 시 분할",
+        "urgency": "low",
+        "tone": "green",
+        "oneLine": "현재 카드 기준으로는 보유 명분이 유지됩니다. 급한 매도보다 정해둔 추가/감량 조건을 기다립니다."
+      },
+      "position": {
+        "quantity": 104,
+        "avgPrice": 21575.5769,
+        "currentPrice": 23410,
+        "marketValue": 2434640,
+        "accountWeightPct": 25.5,
+        "profitRatePct": 8.5,
+        "profitLoss": 190780
+      },
+      "decision": {
+        "bucket": "DATA_GAP",
+        "label": "보유유지",
+        "score": null,
+        "sourceAction": null
+      },
+      "technical": {
+        "rsi": null,
+        "bollingerPosition": null,
+        "atrPct": null,
+        "recentHigh": null,
+        "drawdownFromEntryPct": null,
+        "drawdownFromRecentHighPct": null,
+        "stopLossTriggered": false,
+        "fallback": false
+      },
+      "levels": {
+        "support1": 22380,
+        "support2": 21537,
+        "resistance1": 24346,
+        "resistance2": 25320,
+        "method": "ATR/평단/최근고점 기반 내부 추정"
+      },
+      "bullCase": [],
+      "bearCase": [],
+      "executionRules": [
+        "22,380원 이탈 전까지 보유 유지",
+        "24,346원 돌파 시 추세 강화 여부 확인",
+        "추가매수는 기존 계획의 조건과 계좌 비중 한도 안에서만 실행"
+      ],
+      "watchList": [],
+      "sourceRefs": {
+        "holdingDecisionCards": "data/analysis-state/2026-05-12/holding-decision-cards.json",
+        "portfolio": "data/portfolio/latest.json"
+      }
+    },
+    {
+      "accountKey": "PENSION",
+      "accountLabel": "한투 연금저축",
+      "code": "360750",
+      "name": "TIGER 미국S&P500",
+      "question": "TIGER 미국S&P500 (360750) : 평단 26,163원인데 손절? 관망? 추매?",
+      "recommendation": {
+        "label": "보유유지",
+        "action": "관망 / 조건 충족 시 분할",
+        "urgency": "low",
+        "tone": "green",
+        "oneLine": "현재 카드 기준으로는 보유 명분이 유지됩니다. 급한 매도보다 정해둔 추가/감량 조건을 기다립니다."
+      },
+      "position": {
+        "quantity": 84,
+        "avgPrice": 26163.3333,
+        "currentPrice": 27225,
+        "marketValue": 2286900,
+        "accountWeightPct": 33.6,
+        "profitRatePct": 4.05,
+        "profitLoss": 89180
+      },
+      "decision": {
+        "bucket": "DATA_GAP",
+        "label": "보유유지",
+        "score": null,
+        "sourceAction": null
+      },
+      "technical": {
+        "rsi": null,
+        "bollingerPosition": null,
+        "atrPct": null,
+        "recentHigh": null,
+        "drawdownFromEntryPct": null,
+        "drawdownFromRecentHighPct": null,
+        "stopLossTriggered": false,
+        "fallback": false
+      },
+      "levels": {
+        "support1": 26027,
+        "support2": 25047,
+        "resistance1": 28314,
+        "resistance2": 29447,
+        "method": "ATR/평단/최근고점 기반 내부 추정"
+      },
+      "bullCase": [],
+      "bearCase": [],
+      "executionRules": [
+        "26,027원 이탈 전까지 보유 유지",
+        "28,314원 돌파 시 추세 강화 여부 확인",
+        "추가매수는 기존 계획의 조건과 계좌 비중 한도 안에서만 실행"
+      ],
+      "watchList": [],
+      "sourceRefs": {
+        "holdingDecisionCards": "data/analysis-state/2026-05-12/holding-decision-cards.json",
+        "portfolio": "data/portfolio/latest.json"
+      }
+    },
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "code": "411060",
+      "name": "ACE KRX금현물",
+      "question": "ACE KRX금현물 (411060) : 평단 31,059원인데 손절? 관망? 추매?",
+      "recommendation": {
+        "label": "보유유지",
+        "action": "관망 / 조건 충족 시 분할",
+        "urgency": "low",
+        "tone": "green",
+        "oneLine": "현재 카드 기준으로는 보유 명분이 유지됩니다. 급한 매도보다 정해둔 추가/감량 조건을 기다립니다."
+      },
+      "position": {
+        "quantity": 69,
+        "avgPrice": 31058.913,
+        "currentPrice": 31300,
+        "marketValue": 2159700,
+        "accountWeightPct": 22.6,
+        "profitRatePct": 0.77,
+        "profitLoss": 16635
+      },
+      "decision": {
+        "bucket": "DATA_GAP",
+        "label": "보유유지",
+        "score": null,
+        "sourceAction": null
+      },
+      "technical": {
+        "rsi": null,
+        "bollingerPosition": null,
+        "atrPct": null,
+        "recentHigh": null,
+        "drawdownFromEntryPct": null,
+        "drawdownFromRecentHighPct": null,
+        "stopLossTriggered": false,
+        "fallback": false
+      },
+      "levels": {
+        "support1": 29923,
+        "support2": 28796,
+        "resistance1": 32552,
+        "resistance2": 33854,
+        "method": "ATR/평단/최근고점 기반 내부 추정"
+      },
+      "bullCase": [],
+      "bearCase": [],
+      "executionRules": [
+        "29,923원 이탈 전까지 보유 유지",
+        "32,552원 돌파 시 추세 강화 여부 확인",
+        "추가매수는 기존 계획의 조건과 계좌 비중 한도 안에서만 실행"
+      ],
+      "watchList": [],
+      "sourceRefs": {
+        "holdingDecisionCards": "data/analysis-state/2026-05-12/holding-decision-cards.json",
+        "portfolio": "data/portfolio/latest.json"
+      }
+    },
+    {
+      "accountKey": "PENSION",
+      "accountLabel": "한투 연금저축",
+      "code": "379810",
+      "name": "KODEX 미국나스닥100",
+      "question": "KODEX 미국나스닥100 (379810) : 평단 27,330원인데 손절? 관망? 추매?",
+      "recommendation": {
+        "label": "보유유지",
+        "action": "관망 / 조건 충족 시 분할",
+        "urgency": "low",
+        "tone": "green",
+        "oneLine": "현재 카드 기준으로는 보유 명분이 유지됩니다. 급한 매도보다 정해둔 추가/감량 조건을 기다립니다."
+      },
+      "position": {
+        "quantity": 60,
+        "avgPrice": 27330,
+        "currentPrice": 28765,
+        "marketValue": 1725900,
+        "accountWeightPct": 25.3,
+        "profitRatePct": 5.25,
+        "profitLoss": 86100
+      },
+      "decision": {
+        "bucket": "DATA_GAP",
+        "label": "보유유지",
+        "score": null,
+        "sourceAction": null
+      },
+      "technical": {
+        "rsi": null,
+        "bollingerPosition": null,
+        "atrPct": null,
+        "recentHigh": null,
+        "drawdownFromEntryPct": null,
+        "drawdownFromRecentHighPct": null,
+        "stopLossTriggered": false,
+        "fallback": false
+      },
+      "levels": {
+        "support1": 27499,
+        "support2": 26464,
+        "resistance1": 29916,
+        "resistance2": 31112,
+        "method": "ATR/평단/최근고점 기반 내부 추정"
+      },
+      "bullCase": [],
+      "bearCase": [],
+      "executionRules": [
+        "27,499원 이탈 전까지 보유 유지",
+        "29,916원 돌파 시 추세 강화 여부 확인",
+        "추가매수는 기존 계획의 조건과 계좌 비중 한도 안에서만 실행"
+      ],
+      "watchList": [],
+      "sourceRefs": {
+        "holdingDecisionCards": "data/analysis-state/2026-05-12/holding-decision-cards.json",
+        "portfolio": "data/portfolio/latest.json"
+      }
+    },
+    {
+      "accountKey": "PENSION",
+      "accountLabel": "한투 연금저축",
+      "code": "0162Z0",
+      "name": "RISE 삼성전자SK하이닉스채권혼합50",
+      "question": "RISE 삼성전자SK하이닉스채권혼합50 (0162Z0) : 평단 11,360원인데 손절? 관망? 추매?",
+      "recommendation": {
+        "label": "보유유지",
+        "action": "관망 / 조건 충족 시 분할",
+        "urgency": "low",
+        "tone": "green",
+        "oneLine": "현재 카드 기준으로는 보유 명분이 유지됩니다. 급한 매도보다 정해둔 추가/감량 조건을 기다립니다."
+      },
+      "position": {
+        "quantity": 120,
+        "avgPrice": 11360,
+        "currentPrice": 13490,
+        "marketValue": 1618800,
+        "accountWeightPct": 23.8,
+        "profitRatePct": 18.75,
+        "profitLoss": 255600
+      },
+      "decision": {
+        "bucket": "DATA_GAP",
+        "label": "보유유지",
+        "score": null,
+        "sourceAction": null
+      },
+      "technical": {
+        "rsi": null,
+        "bollingerPosition": null,
+        "atrPct": null,
+        "recentHigh": null,
+        "drawdownFromEntryPct": null,
+        "drawdownFromRecentHighPct": null,
+        "stopLossTriggered": false,
+        "fallback": false
+      },
+      "levels": {
+        "support1": 12896,
+        "support2": 12411,
+        "resistance1": 14030,
+        "resistance2": 14591,
+        "method": "ATR/평단/최근고점 기반 내부 추정"
+      },
+      "bullCase": [],
+      "bearCase": [],
+      "executionRules": [
+        "12,896원 이탈 전까지 보유 유지",
+        "14,030원 돌파 시 추세 강화 여부 확인",
+        "추가매수는 기존 계획의 조건과 계좌 비중 한도 안에서만 실행"
+      ],
+      "watchList": [],
+      "sourceRefs": {
+        "holdingDecisionCards": "data/analysis-state/2026-05-12/holding-decision-cards.json",
+        "portfolio": "data/portfolio/latest.json"
+      }
+    },
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "code": "0162Z0",
+      "name": "RISE 삼성전자SK하이닉스채권혼합50",
+      "question": "RISE 삼성전자SK하이닉스채권혼합50 (0162Z0) : 평단 11,200원인데 손절? 관망? 추매?",
+      "recommendation": {
+        "label": "보유유지",
+        "action": "관망 / 조건 충족 시 분할",
+        "urgency": "low",
+        "tone": "green",
+        "oneLine": "현재 카드 기준으로는 보유 명분이 유지됩니다. 급한 매도보다 정해둔 추가/감량 조건을 기다립니다."
+      },
+      "position": {
+        "quantity": 100,
+        "avgPrice": 11200,
+        "currentPrice": 13490,
+        "marketValue": 1349000,
+        "accountWeightPct": 14.1,
+        "profitRatePct": 20.44,
+        "profitLoss": 229000
+      },
+      "decision": {
+        "bucket": "DATA_GAP",
+        "label": "보유유지",
+        "score": null,
+        "sourceAction": null
+      },
+      "technical": {
+        "rsi": null,
+        "bollingerPosition": null,
+        "atrPct": null,
+        "recentHigh": null,
+        "drawdownFromEntryPct": null,
+        "drawdownFromRecentHighPct": null,
+        "stopLossTriggered": false,
+        "fallback": false
+      },
+      "levels": {
+        "support1": 12896,
+        "support2": 12411,
+        "resistance1": 14030,
+        "resistance2": 14591,
+        "method": "ATR/평단/최근고점 기반 내부 추정"
+      },
+      "bullCase": [],
+      "bearCase": [],
+      "executionRules": [
+        "12,896원 이탈 전까지 보유 유지",
+        "14,030원 돌파 시 추세 강화 여부 확인",
+        "추가매수는 기존 계획의 조건과 계좌 비중 한도 안에서만 실행"
+      ],
+      "watchList": [],
+      "sourceRefs": {
+        "holdingDecisionCards": "data/analysis-state/2026-05-12/holding-decision-cards.json",
+        "portfolio": "data/portfolio/latest.json"
+      }
+    },
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "code": "012450",
+      "name": "한화에어로스페이스",
+      "question": "한화에어로스페이스 (012450) : 평단 1,478,000원인데 손절? 관망? 추매?",
+      "recommendation": {
+        "label": "보유유지",
+        "action": "관망 / 조건 충족 시 분할",
+        "urgency": "low",
+        "tone": "green",
+        "oneLine": "현재 카드 기준으로는 보유 명분이 유지됩니다. 급한 매도보다 정해둔 추가/감량 조건을 기다립니다."
+      },
+      "position": {
+        "quantity": 1,
+        "avgPrice": 1478000,
+        "currentPrice": 1296000,
+        "marketValue": 1296000,
+        "accountWeightPct": 42.2,
+        "profitRatePct": -12.31,
+        "profitLoss": -182000
+      },
+      "decision": {
+        "bucket": "DATA_GAP",
+        "label": "보유유지",
+        "score": null,
+        "sourceAction": null
+      },
+      "technical": {
+        "rsi": null,
+        "bollingerPosition": null,
+        "atrPct": null,
+        "recentHigh": null,
+        "drawdownFromEntryPct": null,
+        "drawdownFromRecentHighPct": null,
+        "stopLossTriggered": false,
+        "fallback": false
+      },
+      "levels": {
+        "support1": 1238976,
+        "support2": 1192320,
+        "resistance1": 1478000,
+        "resistance2": 1537120,
+        "method": "ATR/평단/최근고점 기반 내부 추정"
+      },
+      "bullCase": [],
+      "bearCase": [],
+      "executionRules": [
+        "1,238,976원 이탈 전까지 보유 유지",
+        "1,478,000원 돌파 시 추세 강화 여부 확인",
+        "추가매수는 기존 계획의 조건과 계좌 비중 한도 안에서만 실행"
+      ],
+      "watchList": [],
+      "sourceRefs": {
+        "holdingDecisionCards": "data/analysis-state/2026-05-12/holding-decision-cards.json",
+        "portfolio": "data/portfolio/latest.json"
+      }
+    },
+    {
+      "accountKey": "PENSION",
+      "accountLabel": "한투 연금저축",
+      "code": "469150",
+      "name": "ACE AI반도체TOP3+",
+      "question": "ACE AI반도체TOP3+ (469150) : 평단 59,850원인데 손절? 관망? 추매?",
+      "recommendation": {
+        "label": "보유유지",
+        "action": "관망 / 조건 충족 시 분할",
+        "urgency": "low",
+        "tone": "green",
+        "oneLine": "현재 카드 기준으로는 보유 명분이 유지됩니다. 급한 매도보다 정해둔 추가/감량 조건을 기다립니다."
+      },
+      "position": {
+        "quantity": 12,
+        "avgPrice": 59850.4167,
+        "currentPrice": 72875,
+        "marketValue": 874500,
+        "accountWeightPct": 12.8,
+        "profitRatePct": 21.76,
+        "profitLoss": 156295
+      },
+      "decision": {
+        "bucket": "DATA_GAP",
+        "label": "보유유지",
+        "score": null,
+        "sourceAction": null
+      },
+      "technical": {
+        "rsi": null,
+        "bollingerPosition": null,
+        "atrPct": null,
+        "recentHigh": null,
+        "drawdownFromEntryPct": null,
+        "drawdownFromRecentHighPct": null,
+        "stopLossTriggered": false,
+        "fallback": false
+      },
+      "levels": {
+        "support1": 69669,
+        "support2": 67045,
+        "resistance1": 75790,
+        "resistance2": 78822,
+        "method": "ATR/평단/최근고점 기반 내부 추정"
+      },
+      "bullCase": [],
+      "bearCase": [],
+      "executionRules": [
+        "69,669원 이탈 전까지 보유 유지",
+        "75,790원 돌파 시 추세 강화 여부 확인",
+        "추가매수는 기존 계획의 조건과 계좌 비중 한도 안에서만 실행"
+      ],
+      "watchList": [],
+      "sourceRefs": {
+        "holdingDecisionCards": "data/analysis-state/2026-05-12/holding-decision-cards.json",
+        "portfolio": "data/portfolio/latest.json"
+      }
+    },
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "code": "385510",
+      "name": "KODEX 신재생에너지액티브",
+      "question": "KODEX 신재생에너지액티브 (385510) : 평단 52,225원인데 손절? 관망? 추매?",
+      "recommendation": {
+        "label": "보유유지",
+        "action": "관망 / 조건 충족 시 분할",
+        "urgency": "low",
+        "tone": "green",
+        "oneLine": "현재 카드 기준으로는 보유 명분이 유지됩니다. 급한 매도보다 정해둔 추가/감량 조건을 기다립니다."
+      },
+      "position": {
+        "quantity": 13,
+        "avgPrice": 52225,
+        "currentPrice": 57395,
+        "marketValue": 746135,
+        "accountWeightPct": 7.8,
+        "profitRatePct": 9.89,
+        "profitLoss": 67210
+      },
+      "decision": {
+        "bucket": "DATA_GAP",
+        "label": "보유유지",
+        "score": null,
+        "sourceAction": null
+      },
+      "technical": {
+        "rsi": null,
+        "bollingerPosition": null,
+        "atrPct": null,
+        "recentHigh": null,
+        "drawdownFromEntryPct": null,
+        "drawdownFromRecentHighPct": null,
+        "stopLossTriggered": false,
+        "fallback": false
+      },
+      "levels": {
+        "support1": 54870,
+        "support2": 52803,
+        "resistance1": 59691,
+        "resistance2": 62078,
+        "method": "ATR/평단/최근고점 기반 내부 추정"
+      },
+      "bullCase": [],
+      "bearCase": [],
+      "executionRules": [
+        "54,870원 이탈 전까지 보유 유지",
+        "59,691원 돌파 시 추세 강화 여부 확인",
+        "추가매수는 기존 계획의 조건과 계좌 비중 한도 안에서만 실행"
+      ],
+      "watchList": [],
+      "sourceRefs": {
+        "holdingDecisionCards": "data/analysis-state/2026-05-12/holding-decision-cards.json",
+        "portfolio": "data/portfolio/latest.json"
+      }
+    },
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "code": "064400",
+      "name": "LG씨엔에스",
+      "question": "LG씨엔에스 (064400) : 평단 69,200원인데 손절? 관망? 추매?",
+      "recommendation": {
+        "label": "보유유지",
+        "action": "관망 / 조건 충족 시 분할",
+        "urgency": "low",
+        "tone": "green",
+        "oneLine": "현재 카드 기준으로는 보유 명분이 유지됩니다. 급한 매도보다 정해둔 추가/감량 조건을 기다립니다."
+      },
+      "position": {
+        "quantity": 10,
+        "avgPrice": 69200,
+        "currentPrice": 74300,
+        "marketValue": 743000,
+        "accountWeightPct": 7.8,
+        "profitRatePct": 7.36,
+        "profitLoss": 51000
+      },
+      "decision": {
+        "bucket": "DATA_GAP",
+        "label": "보유유지",
+        "score": null,
+        "sourceAction": null
+      },
+      "technical": {
+        "rsi": null,
+        "bollingerPosition": null,
+        "atrPct": null,
+        "recentHigh": null,
+        "drawdownFromEntryPct": null,
+        "drawdownFromRecentHighPct": null,
+        "stopLossTriggered": false,
+        "fallback": false
+      },
+      "levels": {
+        "support1": 71031,
+        "support2": 68356,
+        "resistance1": 77272,
+        "resistance2": 80363,
+        "method": "ATR/평단/최근고점 기반 내부 추정"
+      },
+      "bullCase": [],
+      "bearCase": [],
+      "executionRules": [
+        "71,031원 이탈 전까지 보유 유지",
+        "77,272원 돌파 시 추세 강화 여부 확인",
+        "추가매수는 기존 계획의 조건과 계좌 비중 한도 안에서만 실행"
+      ],
+      "watchList": [],
+      "sourceRefs": {
+        "holdingDecisionCards": "data/analysis-state/2026-05-12/holding-decision-cards.json",
+        "portfolio": "data/portfolio/latest.json"
+      }
+    },
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "code": "449450",
+      "name": "PLUS K방산",
+      "question": "PLUS K방산 (449450) : 평단 78,536원인데 손절? 관망? 추매?",
+      "recommendation": {
+        "label": "보유유지",
+        "action": "관망 / 조건 충족 시 분할",
+        "urgency": "low",
+        "tone": "green",
+        "oneLine": "현재 카드 기준으로는 보유 명분이 유지됩니다. 급한 매도보다 정해둔 추가/감량 조건을 기다립니다."
+      },
+      "position": {
+        "quantity": 10,
+        "avgPrice": 78536,
+        "currentPrice": 72945,
+        "marketValue": 729450,
+        "accountWeightPct": 23.8,
+        "profitRatePct": -7.11,
+        "profitLoss": -55910
+      },
+      "decision": {
+        "bucket": "DATA_GAP",
+        "label": "보유유지",
+        "score": null,
+        "sourceAction": null
+      },
+      "technical": {
+        "rsi": null,
+        "bollingerPosition": null,
+        "atrPct": null,
+        "recentHigh": null,
+        "drawdownFromEntryPct": null,
+        "drawdownFromRecentHighPct": null,
+        "stopLossTriggered": false,
+        "fallback": false
+      },
+      "levels": {
+        "support1": 69735,
+        "support2": 67109,
+        "resistance1": 78536,
+        "resistance2": 81677,
+        "method": "ATR/평단/최근고점 기반 내부 추정"
+      },
+      "bullCase": [],
+      "bearCase": [],
+      "executionRules": [
+        "69,735원 이탈 전까지 보유 유지",
+        "78,536원 돌파 시 추세 강화 여부 확인",
+        "추가매수는 기존 계획의 조건과 계좌 비중 한도 안에서만 실행"
+      ],
+      "watchList": [],
+      "sourceRefs": {
+        "holdingDecisionCards": "data/analysis-state/2026-05-12/holding-decision-cards.json",
+        "portfolio": "data/portfolio/latest.json"
+      }
+    },
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "code": "161510",
+      "name": "PLUS 고배당주",
+      "question": "PLUS 고배당주 (161510) : 평단 27,217원인데 손절? 관망? 추매?",
+      "recommendation": {
+        "label": "보유유지",
+        "action": "관망 / 조건 충족 시 분할",
+        "urgency": "low",
+        "tone": "green",
+        "oneLine": "현재 카드 기준으로는 보유 명분이 유지됩니다. 급한 매도보다 정해둔 추가/감량 조건을 기다립니다."
+      },
+      "position": {
+        "quantity": 22,
+        "avgPrice": 27217.2727,
+        "currentPrice": 27755,
+        "marketValue": 610610,
+        "accountWeightPct": 6.4,
+        "profitRatePct": 1.97,
+        "profitLoss": 11830
+      },
+      "decision": {
+        "bucket": "DATA_GAP",
+        "label": "보유유지",
+        "score": null,
+        "sourceAction": null
+      },
+      "technical": {
+        "rsi": null,
+        "bollingerPosition": null,
+        "atrPct": null,
+        "recentHigh": null,
+        "drawdownFromEntryPct": null,
+        "drawdownFromRecentHighPct": null,
+        "stopLossTriggered": false,
+        "fallback": false
+      },
+      "levels": {
+        "support1": 26534,
+        "support2": 25535,
+        "resistance1": 28865,
+        "resistance2": 30020,
+        "method": "ATR/평단/최근고점 기반 내부 추정"
+      },
+      "bullCase": [],
+      "bearCase": [],
+      "executionRules": [
+        "26,534원 이탈 전까지 보유 유지",
+        "28,865원 돌파 시 추세 강화 여부 확인",
+        "추가매수는 기존 계획의 조건과 계좌 비중 한도 안에서만 실행"
+      ],
+      "watchList": [],
+      "sourceRefs": {
+        "holdingDecisionCards": "data/analysis-state/2026-05-12/holding-decision-cards.json",
+        "portfolio": "data/portfolio/latest.json"
+      }
+    },
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "code": "068270",
+      "name": "셀트리온",
+      "question": "셀트리온 (068270) : 평단 194,500원인데 손절? 관망? 추매?",
+      "recommendation": {
+        "label": "보유유지",
+        "action": "관망 / 조건 충족 시 분할",
+        "urgency": "low",
+        "tone": "green",
+        "oneLine": "현재 카드 기준으로는 보유 명분이 유지됩니다. 급한 매도보다 정해둔 추가/감량 조건을 기다립니다."
+      },
+      "position": {
+        "quantity": 3,
+        "avgPrice": 194500,
+        "currentPrice": 195000,
+        "marketValue": 585000,
+        "accountWeightPct": 6.1,
+        "profitRatePct": 0.25,
+        "profitLoss": 1500
+      },
+      "decision": {
+        "bucket": "DATA_GAP",
+        "label": "보유유지",
+        "score": null,
+        "sourceAction": null
+      },
+      "technical": {
+        "rsi": null,
+        "bollingerPosition": null,
+        "atrPct": null,
+        "recentHigh": null,
+        "drawdownFromEntryPct": null,
+        "drawdownFromRecentHighPct": null,
+        "stopLossTriggered": false,
+        "fallback": false
+      },
+      "levels": {
+        "support1": 186420,
+        "support2": 179400,
+        "resistance1": 202800,
+        "resistance2": 210912,
+        "method": "ATR/평단/최근고점 기반 내부 추정"
+      },
+      "bullCase": [],
+      "bearCase": [],
+      "executionRules": [
+        "186,420원 이탈 전까지 보유 유지",
+        "202,800원 돌파 시 추세 강화 여부 확인",
+        "추가매수는 기존 계획의 조건과 계좌 비중 한도 안에서만 실행"
+      ],
+      "watchList": [],
+      "sourceRefs": {
+        "holdingDecisionCards": "data/analysis-state/2026-05-12/holding-decision-cards.json",
+        "portfolio": "data/portfolio/latest.json"
+      }
+    },
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "code": "099320",
+      "name": "쎄트렉아이",
+      "question": "쎄트렉아이 (099320) : 평단 181,467원인데 손절? 관망? 추매?",
+      "recommendation": {
+        "label": "보유유지",
+        "action": "관망 / 조건 충족 시 분할",
+        "urgency": "low",
+        "tone": "green",
+        "oneLine": "현재 카드 기준으로는 보유 명분이 유지됩니다. 급한 매도보다 정해둔 추가/감량 조건을 기다립니다."
+      },
+      "position": {
+        "quantity": 3,
+        "avgPrice": 181466.6667,
+        "currentPrice": 174600,
+        "marketValue": 523800,
+        "accountWeightPct": 5.5,
+        "profitRatePct": -3.78,
+        "profitLoss": -20600
+      },
+      "decision": {
+        "bucket": "DATA_GAP",
+        "label": "보유유지",
+        "score": null,
+        "sourceAction": null
+      },
+      "technical": {
+        "rsi": null,
+        "bollingerPosition": null,
+        "atrPct": null,
+        "recentHigh": null,
+        "drawdownFromEntryPct": null,
+        "drawdownFromRecentHighPct": null,
+        "stopLossTriggered": false,
+        "fallback": false
+      },
+      "levels": {
+        "support1": 166918,
+        "support2": 160632,
+        "resistance1": 181467,
+        "resistance2": 188725,
+        "method": "ATR/평단/최근고점 기반 내부 추정"
+      },
+      "bullCase": [],
+      "bearCase": [],
+      "executionRules": [
+        "166,918원 이탈 전까지 보유 유지",
+        "181,467원 돌파 시 추세 강화 여부 확인",
+        "추가매수는 기존 계획의 조건과 계좌 비중 한도 안에서만 실행"
+      ],
+      "watchList": [],
+      "sourceRefs": {
+        "holdingDecisionCards": "data/analysis-state/2026-05-12/holding-decision-cards.json",
+        "portfolio": "data/portfolio/latest.json"
+      }
+    },
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "code": "469150",
+      "name": "ACE AI반도체TOP3+",
+      "question": "ACE AI반도체TOP3+ (469150) : 평단 59,575원인데 손절? 관망? 추매?",
+      "recommendation": {
+        "label": "보유유지",
+        "action": "관망 / 조건 충족 시 분할",
+        "urgency": "low",
+        "tone": "green",
+        "oneLine": "현재 카드 기준으로는 보유 명분이 유지됩니다. 급한 매도보다 정해둔 추가/감량 조건을 기다립니다."
+      },
+      "position": {
+        "quantity": 5,
+        "avgPrice": 59575,
+        "currentPrice": 72880,
+        "marketValue": 364400,
+        "accountWeightPct": 11.9,
+        "profitRatePct": 22.33,
+        "profitLoss": 66525
+      },
+      "decision": {
+        "bucket": "DATA_GAP",
+        "label": "보유유지",
+        "score": null,
+        "sourceAction": null
+      },
+      "technical": {
+        "rsi": null,
+        "bollingerPosition": null,
+        "atrPct": null,
+        "recentHigh": null,
+        "drawdownFromEntryPct": null,
+        "drawdownFromRecentHighPct": null,
+        "stopLossTriggered": false,
+        "fallback": false
+      },
+      "levels": {
+        "support1": 69673,
+        "support2": 67050,
+        "resistance1": 75795,
+        "resistance2": 78827,
+        "method": "ATR/평단/최근고점 기반 내부 추정"
+      },
+      "bullCase": [],
+      "bearCase": [],
+      "executionRules": [
+        "69,673원 이탈 전까지 보유 유지",
+        "75,795원 돌파 시 추세 강화 여부 확인",
+        "추가매수는 기존 계획의 조건과 계좌 비중 한도 안에서만 실행"
+      ],
+      "watchList": [],
+      "sourceRefs": {
+        "holdingDecisionCards": "data/analysis-state/2026-05-12/holding-decision-cards.json",
+        "portfolio": "data/portfolio/latest.json"
+      }
+    },
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "code": "196170",
+      "name": "알테오젠",
+      "question": "알테오젠 (196170) : 평단 324,000원인데 손절? 관망? 추매?",
+      "recommendation": {
+        "label": "보유유지",
+        "action": "관망 / 조건 충족 시 분할",
+        "urgency": "low",
+        "tone": "green",
+        "oneLine": "현재 카드 기준으로는 보유 명분이 유지됩니다. 급한 매도보다 정해둔 추가/감량 조건을 기다립니다."
+      },
+      "position": {
+        "quantity": 1,
+        "avgPrice": 324000,
+        "currentPrice": 340000,
+        "marketValue": 340000,
+        "accountWeightPct": 3.6,
+        "profitRatePct": 4.93,
+        "profitLoss": 16000
+      },
+      "decision": {
+        "bucket": "DATA_GAP",
+        "label": "보유유지",
+        "score": null,
+        "sourceAction": null
+      },
+      "technical": {
+        "rsi": null,
+        "bollingerPosition": null,
+        "atrPct": null,
+        "recentHigh": null,
+        "drawdownFromEntryPct": null,
+        "drawdownFromRecentHighPct": null,
+        "stopLossTriggered": false,
+        "fallback": false
+      },
+      "levels": {
+        "support1": 325040,
+        "support2": 312800,
+        "resistance1": 353600,
+        "resistance2": 367744,
+        "method": "ATR/평단/최근고점 기반 내부 추정"
+      },
+      "bullCase": [],
+      "bearCase": [],
+      "executionRules": [
+        "325,040원 이탈 전까지 보유 유지",
+        "353,600원 돌파 시 추세 강화 여부 확인",
+        "추가매수는 기존 계획의 조건과 계좌 비중 한도 안에서만 실행"
+      ],
+      "watchList": [],
+      "sourceRefs": {
+        "holdingDecisionCards": "data/analysis-state/2026-05-12/holding-decision-cards.json",
+        "portfolio": "data/portfolio/latest.json"
+      }
+    },
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "code": "138910",
+      "name": "KODEX 구리선물(H)",
+      "question": "KODEX 구리선물(H) (138910) : 평단 8,765원인데 손절? 관망? 추매?",
+      "recommendation": {
+        "label": "보유유지",
+        "action": "관망 / 조건 충족 시 분할",
+        "urgency": "low",
+        "tone": "green",
+        "oneLine": "현재 카드 기준으로는 보유 명분이 유지됩니다. 급한 매도보다 정해둔 추가/감량 조건을 기다립니다."
+      },
+      "position": {
+        "quantity": 30,
+        "avgPrice": 8765,
+        "currentPrice": 10050,
+        "marketValue": 301500,
+        "accountWeightPct": 9.8,
+        "profitRatePct": 14.66,
+        "profitLoss": 38550
+      },
+      "decision": {
+        "bucket": "DATA_GAP",
+        "label": "보유유지",
+        "score": null,
+        "sourceAction": null
+      },
+      "technical": {
+        "rsi": null,
+        "bollingerPosition": null,
+        "atrPct": null,
+        "recentHigh": null,
+        "drawdownFromEntryPct": null,
+        "drawdownFromRecentHighPct": null,
+        "stopLossTriggered": false,
+        "fallback": false
+      },
+      "levels": {
+        "support1": 9608,
+        "support2": 9246,
+        "resistance1": 10452,
+        "resistance2": 10870,
+        "method": "ATR/평단/최근고점 기반 내부 추정"
+      },
+      "bullCase": [],
+      "bearCase": [],
+      "executionRules": [
+        "9,608원 이탈 전까지 보유 유지",
+        "10,452원 돌파 시 추세 강화 여부 확인",
+        "추가매수는 기존 계획의 조건과 계좌 비중 한도 안에서만 실행"
+      ],
+      "watchList": [],
+      "sourceRefs": {
+        "holdingDecisionCards": "data/analysis-state/2026-05-12/holding-decision-cards.json",
+        "portfolio": "data/portfolio/latest.json"
+      }
+    },
+    {
+      "accountKey": "PENSION",
+      "accountLabel": "한투 연금저축",
+      "code": "411060",
+      "name": "ACE KRX금현물",
+      "question": "ACE KRX금현물 (411060) : 평단 30,710원인데 손절? 관망? 추매?",
+      "recommendation": {
+        "label": "보유유지",
+        "action": "관망 / 조건 충족 시 분할",
+        "urgency": "low",
+        "tone": "green",
+        "oneLine": "현재 카드 기준으로는 보유 명분이 유지됩니다. 급한 매도보다 정해둔 추가/감량 조건을 기다립니다."
+      },
+      "position": {
+        "quantity": 9,
+        "avgPrice": 30710,
+        "currentPrice": 31300,
+        "marketValue": 281700,
+        "accountWeightPct": 4.1,
+        "profitRatePct": 1.92,
+        "profitLoss": 5310
+      },
+      "decision": {
+        "bucket": "DATA_GAP",
+        "label": "보유유지",
+        "score": null,
+        "sourceAction": null
+      },
+      "technical": {
+        "rsi": null,
+        "bollingerPosition": null,
+        "atrPct": null,
+        "recentHigh": null,
+        "drawdownFromEntryPct": null,
+        "drawdownFromRecentHighPct": null,
+        "stopLossTriggered": false,
+        "fallback": false
+      },
+      "levels": {
+        "support1": 29923,
+        "support2": 28796,
+        "resistance1": 32552,
+        "resistance2": 33854,
+        "method": "ATR/평단/최근고점 기반 내부 추정"
+      },
+      "bullCase": [],
+      "bearCase": [],
+      "executionRules": [
+        "29,923원 이탈 전까지 보유 유지",
+        "32,552원 돌파 시 추세 강화 여부 확인",
+        "추가매수는 기존 계획의 조건과 계좌 비중 한도 안에서만 실행"
+      ],
+      "watchList": [],
+      "sourceRefs": {
+        "holdingDecisionCards": "data/analysis-state/2026-05-12/holding-decision-cards.json",
+        "portfolio": "data/portfolio/latest.json"
+      }
+    },
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "code": "064350",
+      "name": "현대로템",
+      "question": "현대로템 (064350) : 평단 208,000원인데 손절? 관망? 추매?",
+      "recommendation": {
+        "label": "보유유지",
+        "action": "관망 / 조건 충족 시 분할",
+        "urgency": "low",
+        "tone": "green",
+        "oneLine": "현재 카드 기준으로는 보유 명분이 유지됩니다. 급한 매도보다 정해둔 추가/감량 조건을 기다립니다."
+      },
+      "position": {
+        "quantity": 1,
+        "avgPrice": 208000,
+        "currentPrice": 218250,
+        "marketValue": 218250,
+        "accountWeightPct": 7.1,
+        "profitRatePct": 4.92,
+        "profitLoss": 10250
+      },
+      "decision": {
+        "bucket": "DATA_GAP",
+        "label": "보유유지",
+        "score": null,
+        "sourceAction": null
+      },
+      "technical": {
+        "rsi": null,
+        "bollingerPosition": null,
+        "atrPct": null,
+        "recentHigh": null,
+        "drawdownFromEntryPct": null,
+        "drawdownFromRecentHighPct": null,
+        "stopLossTriggered": false,
+        "fallback": false
+      },
+      "levels": {
+        "support1": 208647,
+        "support2": 200790,
+        "resistance1": 226980,
+        "resistance2": 236059,
+        "method": "ATR/평단/최근고점 기반 내부 추정"
+      },
+      "bullCase": [],
+      "bearCase": [],
+      "executionRules": [
+        "208,647원 이탈 전까지 보유 유지",
+        "226,980원 돌파 시 추세 강화 여부 확인",
+        "추가매수는 기존 계획의 조건과 계좌 비중 한도 안에서만 실행"
+      ],
+      "watchList": [],
+      "sourceRefs": {
+        "holdingDecisionCards": "data/analysis-state/2026-05-12/holding-decision-cards.json",
+        "portfolio": "data/portfolio/latest.json"
+      }
+    },
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "code": "0167Z0",
+      "name": "KODEX 미국우주항공",
+      "question": "KODEX 미국우주항공 (0167Z0) : 평단 11,200원인데 손절? 관망? 추매?",
+      "recommendation": {
+        "label": "보유유지",
+        "action": "관망 / 조건 충족 시 분할",
+        "urgency": "low",
+        "tone": "green",
+        "oneLine": "현재 카드 기준으로는 보유 명분이 유지됩니다. 급한 매도보다 정해둔 추가/감량 조건을 기다립니다."
+      },
+      "position": {
+        "quantity": 13,
+        "avgPrice": 11200,
+        "currentPrice": 11815,
+        "marketValue": 153595,
+        "accountWeightPct": 5,
+        "profitRatePct": 5.49,
+        "profitLoss": 7995
+      },
+      "decision": {
+        "bucket": "DATA_GAP",
+        "label": "보유유지",
+        "score": null,
+        "sourceAction": null
+      },
+      "technical": {
+        "rsi": null,
+        "bollingerPosition": null,
+        "atrPct": null,
+        "recentHigh": null,
+        "drawdownFromEntryPct": null,
+        "drawdownFromRecentHighPct": null,
+        "stopLossTriggered": false,
+        "fallback": false
+      },
+      "levels": {
+        "support1": 11295,
+        "support2": 10870,
+        "resistance1": 12288,
+        "resistance2": 12779,
+        "method": "ATR/평단/최근고점 기반 내부 추정"
+      },
+      "bullCase": [],
+      "bearCase": [],
+      "executionRules": [
+        "11,295원 이탈 전까지 보유 유지",
+        "12,288원 돌파 시 추세 강화 여부 확인",
+        "추가매수는 기존 계획의 조건과 계좌 비중 한도 안에서만 실행"
+      ],
+      "watchList": [],
+      "sourceRefs": {
+        "holdingDecisionCards": "data/analysis-state/2026-05-12/holding-decision-cards.json",
+        "portfolio": "data/portfolio/latest.json"
+      }
+    }
+  ],
+  "artifacts": {
+    "json": "data/holding-feedback/2026-05-12/holding-feedback.json",
+    "latestJson": "data/holding-feedback/latest-holding-feedback.json",
+    "markdown": "reports/daily/2026-05-12-holding-feedback.md"
+  }
+}

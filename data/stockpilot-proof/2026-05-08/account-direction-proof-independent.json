@@ -1,0 +1,1357 @@
+{
+  "version": "stockpilot-proof.v0.2",
+  "date": "2026-05-08",
+  "generatedAt": "2026-05-09T01:00:02.135Z",
+  "summary": {
+    "proofScore": 50,
+    "tone": "amber",
+    "verdict": "보류 검증",
+    "direction": "보유 수익 보호와 신규매수 차단 조건 검증",
+    "accountCount": 3,
+    "strongAccountCount": 0,
+    "weakAccountCount": 0
+  },
+  "market": {
+    "stance": "보호우선",
+    "mode": "과열상승",
+    "headline": "상승장은 유지되지만 과열과 매크로 트리거가 커져 추격보다 보호·로테이션 감시가 우선입니다.",
+    "nextAction": "고RSI 수익권 보유를 먼저 보호하고, 새 섹터는 후보화만 합니다.",
+    "externalSignal": {
+      "short": null,
+      "long": null,
+      "kospi": null,
+      "kosdaq": null,
+      "strategyBias": null,
+      "riskOnCount": 0,
+      "source": "disabled"
+    },
+    "internalSignal": {
+      "source": "ecoreport",
+      "topThemeSupport": 1.63,
+      "riskOn": true
+    }
+  },
+  "radar": {
+    "label": "ecoreport_independent",
+    "stockeasyDependent": false,
+    "sourceCounts": {
+      "decision_features": 14,
+      "technical": 3,
+      "rotation_watch": 2
+    },
+    "items": [
+      {
+        "sector": "배당/커버드콜",
+        "score": 100,
+        "rsScore": 76,
+        "label": "STRONG_BUY",
+        "action": "기술확인",
+        "changePct": null,
+        "aliases": [
+          "배당/커버드콜",
+          "배당",
+          "커버드콜",
+          "인컴",
+          "방어",
+          "배당/커버드콜 배당/커버드콜 배당 고배당 인컴 방어 고배당 배당 인컴 PLUS 고배당주"
+        ],
+        "leaders": [
+          {
+            "name": "PLUS 고배당주",
+            "score": 100
+          }
+        ],
+        "matchedEtfs": [
+          {
+            "code": "161510",
+            "name": "PLUS 고배당주",
+            "held": true,
+            "score": 100,
+            "reasons": [
+              "배당/커버드콜",
+              "배당",
+              "고배당",
+              "인컴",
+              "방어"
+            ]
+          }
+        ],
+        "sources": [
+          "decision_features",
+          "technical"
+        ]
+      },
+      {
+        "sector": "인컴/방어",
+        "score": 100,
+        "rsScore": 92,
+        "label": "상승확인",
+        "action": "조건대기",
+        "changePct": null,
+        "aliases": [
+          "인컴/방어",
+          "배당",
+          "커버드콜",
+          "인컴",
+          "방어"
+        ],
+        "leaders": [],
+        "matchedEtfs": [
+          {
+            "code": "161510",
+            "name": "PLUS 고배당주",
+            "held": true,
+            "score": 100,
+            "reasons": [
+              "인컴/방어"
+            ]
+          }
+        ],
+        "sources": [
+          "rotation_watch"
+        ]
+      },
+      {
+        "sector": "화학/소재",
+        "score": 100,
+        "rsScore": 57,
+        "label": "단일근거",
+        "action": "후보화",
+        "changePct": null,
+        "aliases": [
+          "화학/소재",
+          "2차전지",
+          "배터리",
+          "양극재",
+          "소재"
+        ],
+        "leaders": [],
+        "matchedEtfs": [],
+        "sources": [
+          "decision_features"
+        ]
+      },
+      {
+        "sector": "소비재",
+        "score": 100,
+        "rsScore": 69,
+        "label": "교차근거",
+        "action": "후보화",
+        "changePct": null,
+        "aliases": [
+          "소비재"
+        ],
+        "leaders": [],
+        "matchedEtfs": [],
+        "sources": [
+          "decision_features"
+        ]
+      },
+      {
+        "sector": "IT/플랫폼",
+        "score": 100,
+        "rsScore": 57,
+        "label": "단일근거",
+        "action": "후보화",
+        "changePct": null,
+        "aliases": [
+          "IT/플랫폼"
+        ],
+        "leaders": [],
+        "matchedEtfs": [],
+        "sources": [
+          "decision_features"
+        ]
+      },
+      {
+        "sector": "지주사",
+        "score": 100,
+        "rsScore": 57,
+        "label": "단일근거",
+        "action": "후보화",
+        "changePct": null,
+        "aliases": [
+          "지주사"
+        ],
+        "leaders": [],
+        "matchedEtfs": [],
+        "sources": [
+          "decision_features"
+        ]
+      },
+      {
+        "sector": "자동차",
+        "score": 100,
+        "rsScore": 57,
+        "label": "단일근거",
+        "action": "후보화",
+        "changePct": null,
+        "aliases": [
+          "자동차",
+          "전기차",
+          "모빌리티",
+          "전장"
+        ],
+        "leaders": [],
+        "matchedEtfs": [],
+        "sources": [
+          "decision_features"
+        ]
+      },
+      {
+        "sector": "조선/해운",
+        "score": 100,
+        "rsScore": 57,
+        "label": "단일근거",
+        "action": "후보화",
+        "changePct": null,
+        "aliases": [
+          "조선/해운"
+        ],
+        "leaders": [],
+        "matchedEtfs": [],
+        "sources": [
+          "decision_features"
+        ]
+      },
+      {
+        "sector": "K-컬처",
+        "score": 100,
+        "rsScore": 57,
+        "label": "단일근거",
+        "action": "후보화",
+        "changePct": null,
+        "aliases": [
+          "K-컬처"
+        ],
+        "leaders": [],
+        "matchedEtfs": [],
+        "sources": [
+          "decision_features"
+        ]
+      },
+      {
+        "sector": "고배당",
+        "score": 100,
+        "rsScore": 57,
+        "label": "단일근거",
+        "action": "후보화",
+        "changePct": null,
+        "aliases": [
+          "고배당",
+          "배당",
+          "커버드콜",
+          "인컴",
+          "방어"
+        ],
+        "leaders": [],
+        "matchedEtfs": [],
+        "sources": [
+          "decision_features"
+        ]
+      },
+      {
+        "sector": "인컴",
+        "score": 100,
+        "rsScore": 69,
+        "label": "교차근거",
+        "action": "후보화",
+        "changePct": null,
+        "aliases": [
+          "인컴",
+          "배당",
+          "커버드콜",
+          "방어"
+        ],
+        "leaders": [],
+        "matchedEtfs": [],
+        "sources": [
+          "decision_features"
+        ]
+      },
+      {
+        "sector": "방어",
+        "score": 100,
+        "rsScore": 57,
+        "label": "단일근거",
+        "action": "후보화",
+        "changePct": null,
+        "aliases": [
+          "방어",
+          "배당",
+          "커버드콜",
+          "인컴"
+        ],
+        "leaders": [],
+        "matchedEtfs": [],
+        "sources": [
+          "decision_features"
+        ]
+      },
+      {
+        "sector": "기계",
+        "score": 99,
+        "rsScore": 57,
+        "label": "단일근거",
+        "action": "후보화",
+        "changePct": null,
+        "aliases": [
+          "기계"
+        ],
+        "leaders": [],
+        "matchedEtfs": [],
+        "sources": [
+          "decision_features"
+        ]
+      },
+      {
+        "sector": "반도체",
+        "score": 95,
+        "rsScore": 81,
+        "label": "STRONG_BUY",
+        "action": "기술확인",
+        "changePct": null,
+        "aliases": [
+          "반도체",
+          "HBM",
+          "메모리",
+          "AI반도체",
+          "전공정",
+          "후공정",
+          "소부장",
+          "반도체 반도체 반도체 전공정 소부장 장비 반도체 전공정 전공정 소부장 SOL 반도체전공정",
+          "반도체 반도체 반도체 메모리 hbm 파운드리 삼성전자 삼성 갤럭시 삼성전자",
+          "반도체 반도체 반도체 hbm dram 낸드 메모리 sk하이닉스 하이닉스 SK하이닉스"
+        ],
+        "leaders": [
+          {
+            "name": "SOL 반도체전공정",
+            "score": 95
+          },
+          {
+            "name": "삼성전자",
+            "score": 90
+          },
+          {
+            "name": "SK하이닉스",
+            "score": 80
+          }
+        ],
+        "matchedEtfs": [
+          {
+            "code": "475300",
+            "name": "SOL 반도체전공정",
+            "held": true,
+            "score": 95,
+            "reasons": [
+              "반도체"
+            ]
+          },
+          {
+            "code": "469150",
+            "name": "ACE AI반도체TOP3+",
+            "held": true,
+            "score": 85,
+            "reasons": [
+              "반도체"
+            ]
+          },
+          {
+            "code": "0162Z0",
+            "name": "RISE 삼성전자SK하이닉스채권혼합50",
+            "held": true,
+            "score": 62,
+            "reasons": [
+              "반도체"
+            ]
+          },
+          {
+            "code": "475300",
+            "name": "SOL 반도체전공정",
+            "held": true,
+            "score": 95,
+            "reasons": [
+              "반도체",
+              "반도체",
+              "전공정",
+              "소부장",
+              "장비"
+            ]
+          },
+          {
+            "code": "005930",
+            "name": "삼성전자",
+            "held": false,
+            "score": 90,
+            "reasons": [
+              "반도체",
+              "반도체",
+              "메모리",
+              "hbm",
+              "파운드리"
+            ]
+          },
+          {
+            "code": "000660",
+            "name": "SK하이닉스",
+            "held": false,
+            "score": 80,
+            "reasons": [
+              "반도체",
+              "반도체",
+              "hbm",
+              "dram",
+              "낸드"
+            ]
+          }
+        ],
+        "sources": [
+          "rotation_watch",
+          "decision_features",
+          "technical"
+        ]
+      },
+      {
+        "sector": "방산",
+        "score": 95,
+        "rsScore": 81,
+        "label": "교차근거",
+        "action": "후보화",
+        "changePct": null,
+        "aliases": [
+          "방산",
+          "우주항공",
+          "국방",
+          "방위산업",
+          "K방산"
+        ],
+        "leaders": [],
+        "matchedEtfs": [],
+        "sources": [
+          "decision_features"
+        ]
+      },
+      {
+        "sector": "원자력",
+        "score": 95,
+        "rsScore": 76,
+        "label": "STRONG_BUY",
+        "action": "기술확인",
+        "changePct": -0.0291,
+        "aliases": [
+          "원자력 원자력 원자력 원전 SMR 핵 원자력 원전 smr HANARO 원자력iSelect",
+          "원자력",
+          "SMR",
+          "소형모듈원자로"
+        ],
+        "leaders": [
+          {
+            "name": "HANARO 원자력iSelect",
+            "score": 95
+          }
+        ],
+        "matchedEtfs": [
+          {
+            "code": "434730",
+            "name": "HANARO 원자력iSelect",
+            "held": false,
+            "score": 95,
+            "reasons": [
+              "원자력",
+              "원자력",
+              "원전",
+              "SMR",
+              "핵"
+            ]
+          }
+        ],
+        "sources": [
+          "technical"
+        ]
+      }
+    ]
+  },
+  "stockeasySectors": [
+    {
+      "sector": "배당/커버드콜",
+      "score": 100,
+      "rsScore": 76,
+      "label": "STRONG_BUY",
+      "action": "기술확인",
+      "changePct": null,
+      "aliases": [
+        "배당/커버드콜",
+        "배당",
+        "커버드콜",
+        "인컴",
+        "방어",
+        "배당/커버드콜 배당/커버드콜 배당 고배당 인컴 방어 고배당 배당 인컴 PLUS 고배당주"
+      ],
+      "leaders": [
+        {
+          "name": "PLUS 고배당주",
+          "score": 100
+        }
+      ],
+      "matchedEtfs": [
+        {
+          "code": "161510",
+          "name": "PLUS 고배당주",
+          "held": true,
+          "score": 100,
+          "reasons": [
+            "배당/커버드콜",
+            "배당",
+            "고배당",
+            "인컴",
+            "방어"
+          ]
+        }
+      ],
+      "sources": [
+        "decision_features",
+        "technical"
+      ]
+    },
+    {
+      "sector": "인컴/방어",
+      "score": 100,
+      "rsScore": 92,
+      "label": "상승확인",
+      "action": "조건대기",
+      "changePct": null,
+      "aliases": [
+        "인컴/방어",
+        "배당",
+        "커버드콜",
+        "인컴",
+        "방어"
+      ],
+      "leaders": [],
+      "matchedEtfs": [
+        {
+          "code": "161510",
+          "name": "PLUS 고배당주",
+          "held": true,
+          "score": 100,
+          "reasons": [
+            "인컴/방어"
+          ]
+        }
+      ],
+      "sources": [
+        "rotation_watch"
+      ]
+    },
+    {
+      "sector": "화학/소재",
+      "score": 100,
+      "rsScore": 57,
+      "label": "단일근거",
+      "action": "후보화",
+      "changePct": null,
+      "aliases": [
+        "화학/소재",
+        "2차전지",
+        "배터리",
+        "양극재",
+        "소재"
+      ],
+      "leaders": [],
+      "matchedEtfs": [],
+      "sources": [
+        "decision_features"
+      ]
+    },
+    {
+      "sector": "소비재",
+      "score": 100,
+      "rsScore": 69,
+      "label": "교차근거",
+      "action": "후보화",
+      "changePct": null,
+      "aliases": [
+        "소비재"
+      ],
+      "leaders": [],
+      "matchedEtfs": [],
+      "sources": [
+        "decision_features"
+      ]
+    },
+    {
+      "sector": "IT/플랫폼",
+      "score": 100,
+      "rsScore": 57,
+      "label": "단일근거",
+      "action": "후보화",
+      "changePct": null,
+      "aliases": [
+        "IT/플랫폼"
+      ],
+      "leaders": [],
+      "matchedEtfs": [],
+      "sources": [
+        "decision_features"
+      ]
+    },
+    {
+      "sector": "지주사",
+      "score": 100,
+      "rsScore": 57,
+      "label": "단일근거",
+      "action": "후보화",
+      "changePct": null,
+      "aliases": [
+        "지주사"
+      ],
+      "leaders": [],
+      "matchedEtfs": [],
+      "sources": [
+        "decision_features"
+      ]
+    },
+    {
+      "sector": "자동차",
+      "score": 100,
+      "rsScore": 57,
+      "label": "단일근거",
+      "action": "후보화",
+      "changePct": null,
+      "aliases": [
+        "자동차",
+        "전기차",
+        "모빌리티",
+        "전장"
+      ],
+      "leaders": [],
+      "matchedEtfs": [],
+      "sources": [
+        "decision_features"
+      ]
+    },
+    {
+      "sector": "조선/해운",
+      "score": 100,
+      "rsScore": 57,
+      "label": "단일근거",
+      "action": "후보화",
+      "changePct": null,
+      "aliases": [
+        "조선/해운"
+      ],
+      "leaders": [],
+      "matchedEtfs": [],
+      "sources": [
+        "decision_features"
+      ]
+    },
+    {
+      "sector": "K-컬처",
+      "score": 100,
+      "rsScore": 57,
+      "label": "단일근거",
+      "action": "후보화",
+      "changePct": null,
+      "aliases": [
+        "K-컬처"
+      ],
+      "leaders": [],
+      "matchedEtfs": [],
+      "sources": [
+        "decision_features"
+      ]
+    },
+    {
+      "sector": "고배당",
+      "score": 100,
+      "rsScore": 57,
+      "label": "단일근거",
+      "action": "후보화",
+      "changePct": null,
+      "aliases": [
+        "고배당",
+        "배당",
+        "커버드콜",
+        "인컴",
+        "방어"
+      ],
+      "leaders": [],
+      "matchedEtfs": [],
+      "sources": [
+        "decision_features"
+      ]
+    },
+    {
+      "sector": "인컴",
+      "score": 100,
+      "rsScore": 69,
+      "label": "교차근거",
+      "action": "후보화",
+      "changePct": null,
+      "aliases": [
+        "인컴",
+        "배당",
+        "커버드콜",
+        "방어"
+      ],
+      "leaders": [],
+      "matchedEtfs": [],
+      "sources": [
+        "decision_features"
+      ]
+    },
+    {
+      "sector": "방어",
+      "score": 100,
+      "rsScore": 57,
+      "label": "단일근거",
+      "action": "후보화",
+      "changePct": null,
+      "aliases": [
+        "방어",
+        "배당",
+        "커버드콜",
+        "인컴"
+      ],
+      "leaders": [],
+      "matchedEtfs": [],
+      "sources": [
+        "decision_features"
+      ]
+    },
+    {
+      "sector": "기계",
+      "score": 99,
+      "rsScore": 57,
+      "label": "단일근거",
+      "action": "후보화",
+      "changePct": null,
+      "aliases": [
+        "기계"
+      ],
+      "leaders": [],
+      "matchedEtfs": [],
+      "sources": [
+        "decision_features"
+      ]
+    },
+    {
+      "sector": "반도체",
+      "score": 95,
+      "rsScore": 81,
+      "label": "STRONG_BUY",
+      "action": "기술확인",
+      "changePct": null,
+      "aliases": [
+        "반도체",
+        "HBM",
+        "메모리",
+        "AI반도체",
+        "전공정",
+        "후공정",
+        "소부장",
+        "반도체 반도체 반도체 전공정 소부장 장비 반도체 전공정 전공정 소부장 SOL 반도체전공정",
+        "반도체 반도체 반도체 메모리 hbm 파운드리 삼성전자 삼성 갤럭시 삼성전자",
+        "반도체 반도체 반도체 hbm dram 낸드 메모리 sk하이닉스 하이닉스 SK하이닉스"
+      ],
+      "leaders": [
+        {
+          "name": "SOL 반도체전공정",
+          "score": 95
+        },
+        {
+          "name": "삼성전자",
+          "score": 90
+        },
+        {
+          "name": "SK하이닉스",
+          "score": 80
+        }
+      ],
+      "matchedEtfs": [
+        {
+          "code": "475300",
+          "name": "SOL 반도체전공정",
+          "held": true,
+          "score": 95,
+          "reasons": [
+            "반도체"
+          ]
+        },
+        {
+          "code": "469150",
+          "name": "ACE AI반도체TOP3+",
+          "held": true,
+          "score": 85,
+          "reasons": [
+            "반도체"
+          ]
+        },
+        {
+          "code": "0162Z0",
+          "name": "RISE 삼성전자SK하이닉스채권혼합50",
+          "held": true,
+          "score": 62,
+          "reasons": [
+            "반도체"
+          ]
+        },
+        {
+          "code": "475300",
+          "name": "SOL 반도체전공정",
+          "held": true,
+          "score": 95,
+          "reasons": [
+            "반도체",
+            "반도체",
+            "전공정",
+            "소부장",
+            "장비"
+          ]
+        },
+        {
+          "code": "005930",
+          "name": "삼성전자",
+          "held": false,
+          "score": 90,
+          "reasons": [
+            "반도체",
+            "반도체",
+            "메모리",
+            "hbm",
+            "파운드리"
+          ]
+        },
+        {
+          "code": "000660",
+          "name": "SK하이닉스",
+          "held": false,
+          "score": 80,
+          "reasons": [
+            "반도체",
+            "반도체",
+            "hbm",
+            "dram",
+            "낸드"
+          ]
+        }
+      ],
+      "sources": [
+        "rotation_watch",
+        "decision_features",
+        "technical"
+      ]
+    },
+    {
+      "sector": "방산",
+      "score": 95,
+      "rsScore": 81,
+      "label": "교차근거",
+      "action": "후보화",
+      "changePct": null,
+      "aliases": [
+        "방산",
+        "우주항공",
+        "국방",
+        "방위산업",
+        "K방산"
+      ],
+      "leaders": [],
+      "matchedEtfs": [],
+      "sources": [
+        "decision_features"
+      ]
+    },
+    {
+      "sector": "원자력",
+      "score": 95,
+      "rsScore": 76,
+      "label": "STRONG_BUY",
+      "action": "기술확인",
+      "changePct": -0.0291,
+      "aliases": [
+        "원자력 원자력 원자력 원전 SMR 핵 원자력 원전 smr HANARO 원자력iSelect",
+        "원자력",
+        "SMR",
+        "소형모듈원자로"
+      ],
+      "leaders": [
+        {
+          "name": "HANARO 원자력iSelect",
+          "score": 95
+        }
+      ],
+      "matchedEtfs": [
+        {
+          "code": "434730",
+          "name": "HANARO 원자력iSelect",
+          "held": false,
+          "score": 95,
+          "reasons": [
+            "원자력",
+            "원자력",
+            "원전",
+            "SMR",
+            "핵"
+          ]
+        }
+      ],
+      "sources": [
+        "technical"
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "totalValue": 7068505,
+      "cash": 0,
+      "stage4Score": 44,
+      "deployBudget": 46264,
+      "proofScore": 50,
+      "tone": "amber",
+      "verdict": "보류 검증",
+      "buckets": {
+        "HOLD_PROTECT": 1,
+        "BLOCKED_BUY": 5,
+        "WATCH_OFF_REPORT": 3,
+        "HOLD_KEEP": 2
+      },
+      "matchedExposure": 3953560,
+      "matchedExposurePct": 55.9,
+      "topThemes": [
+        "금/원자재",
+        "금리/매크로",
+        "HBM/메모리",
+        "AI 인프라",
+        "전력 인프라"
+      ],
+      "topRisks": [
+        "rates",
+        "fx",
+        "income"
+      ],
+      "proof": [
+        "자체 레이더와 겹치는 노출 395만원 (55.9%)",
+        "Stage4 계좌 점수 44 / 실행 예산 5만원",
+        "수익보호·감량검토 1건이 있어 신규확대보다 방어 검증 우선",
+        "매수제외 5건: 방향은 맞아도 가격·근거·검증 조건이 아직 미통과"
+      ],
+      "topMatches": [
+        {
+          "code": "475300",
+          "name": "SOL 반도체전공정",
+          "category": "반도체",
+          "marketValue": 2054780,
+          "profitRate": 6.42,
+          "decision": "보유유지",
+          "sector": "반도체",
+          "sectorScore": 95
+        },
+        {
+          "code": "0162Z0",
+          "name": "RISE 삼성전자SK하이닉스채권혼합50",
+          "category": "반도체/채권혼합",
+          "marketValue": 1288500,
+          "profitRate": 15.04,
+          "decision": "외부관찰",
+          "sector": "반도체",
+          "sectorScore": 95
+        },
+        {
+          "code": "161510",
+          "name": "PLUS 고배당주",
+          "category": "배당/커버드콜",
+          "marketValue": 610280,
+          "profitRate": 1.92,
+          "decision": "외부관찰",
+          "sector": "배당/커버드콜",
+          "sectorScore": 100
+        }
+      ],
+      "redFlags": [
+        {
+          "code": "487240",
+          "name": "KODEX AI전력핵심설비",
+          "decision": "수익보호",
+          "flags": [
+            "RSI_OVERHEAT:90.84"
+          ],
+          "reason": "강한 수익 구간: 20일선 이탈 또는 RSI 하락 반전 시 일부 이익 실현 검토"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "decision": "매수제외",
+          "flags": [
+            "RSI_OVERHEAT:81.51",
+            "BLOCKED_BY_STAGE4_VALIDATION"
+          ],
+          "reason": "차단 해제 조건: 07. Strategy Options stance가 watch라 신규 매수 후보에서 제외"
+        },
+        {
+          "code": "494310",
+          "name": "KODEX 반도체레버리지",
+          "decision": "매수제외",
+          "flags": [
+            "TECHNICAL_DATA_GAP",
+            "OFF_REPORT_HOLDING",
+            "BLOCKED_BY_STAGE4_VALIDATION"
+          ],
+          "reason": "차단 해제 조건: 07. Strategy Options stance가 hold라 신규 매수 후보에서 제외"
+        },
+        {
+          "code": "491010",
+          "name": "TIGER 글로벌AI전력인프라액티브",
+          "decision": "매수제외",
+          "flags": [
+            "TECHNICAL_DATA_GAP",
+            "OFF_REPORT_HOLDING",
+            "BLOCKED_BY_STAGE4_VALIDATION"
+          ],
+          "reason": "차단 해제 조건: 07. Strategy Options stance가 trim라 신규 매수 후보에서 제외"
+        },
+        {
+          "code": "487230",
+          "name": "KODEX 미국AI전력핵심인프라",
+          "decision": "매수제외",
+          "flags": [
+            "TECHNICAL_DATA_GAP",
+            "OFF_REPORT_HOLDING",
+            "BLOCKED_BY_STAGE4_VALIDATION"
+          ],
+          "reason": "차단 해제 조건: 07. Strategy Options stance가 trim라 신규 매수 후보에서 제외"
+        },
+        {
+          "code": null,
+          "name": "TIGER 미국S&P500",
+          "decision": "매수제외",
+          "flags": [
+            "MISSING_SECURITY_CODE",
+            "TECHNICAL_DATA_GAP",
+            "OFF_REPORT_HOLDING"
+          ],
+          "reason": "차단 해제 조건: 실행 근거 검증 미통과(missing_code)"
+        },
+        {
+          "code": "161510",
+          "name": "PLUS 고배당주",
+          "decision": "외부관찰",
+          "flags": [
+            "NO_CLEAN_REPORT_LINK"
+          ],
+          "reason": "위험자산 신호가 개선되고 방어/인컴 비중이 목표를 넘으면 일부 감량해 성장 자산으로 이동합니다."
+        }
+      ]
+    },
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "totalValue": 2897050,
+      "cash": 0,
+      "stage4Score": 29,
+      "deployBudget": 66337,
+      "proofScore": 49,
+      "tone": "amber",
+      "verdict": "보류 검증",
+      "buckets": {
+        "TRIM_REVIEW": 2,
+        "BLOCKED_BUY": 6,
+        "WATCH_OFF_REPORT": 1,
+        "HOLD_KEEP": 2
+      },
+      "matchedExposure": 2605300,
+      "matchedExposurePct": 89.9,
+      "topThemes": [
+        "HBM/메모리",
+        "AI 인프라",
+        "금/원자재",
+        "금리/매크로",
+        "전력 인프라"
+      ],
+      "topRisks": [],
+      "proof": [
+        "자체 레이더와 겹치는 노출 261만원 (89.9%)",
+        "Stage4 계좌 점수 29 / 실행 예산 7만원",
+        "수익보호·감량검토 2건이 있어 신규확대보다 방어 검증 우선",
+        "매수제외 6건: 방향은 맞아도 가격·근거·검증 조건이 아직 미통과"
+      ],
+      "topMatches": [
+        {
+          "code": "012450",
+          "name": "한화에어로스페이스",
+          "category": "방산",
+          "marketValue": 1307000,
+          "profitRate": -11.56,
+          "decision": "감량검토",
+          "sector": "방산",
+          "sectorScore": 95
+        },
+        {
+          "code": "449450",
+          "name": "PLUS K방산",
+          "category": "방산",
+          "marketValue": 733800,
+          "profitRate": -6.56,
+          "decision": "보유유지",
+          "sector": "방산",
+          "sectorScore": 95
+        },
+        {
+          "code": "469150",
+          "name": "ACE AI반도체TOP3+",
+          "category": "AI반도체",
+          "marketValue": 341500,
+          "profitRate": 14.64,
+          "decision": "외부관찰",
+          "sector": "반도체",
+          "sectorScore": 95
+        },
+        {
+          "code": "064350",
+          "name": "현대로템",
+          "category": "방산",
+          "marketValue": 223000,
+          "profitRate": 7.21,
+          "decision": "감량검토",
+          "sector": "방산",
+          "sectorScore": 95
+        }
+      ],
+      "redFlags": [
+        {
+          "code": "012450",
+          "name": "한화에어로스페이스",
+          "decision": "감량검토",
+          "flags": [
+            "STOP_LOSS_TRIGGERED"
+          ],
+          "reason": "손절 조건 발동: 즉시 감량/매도 검토"
+        },
+        {
+          "code": "064350",
+          "name": "현대로템",
+          "decision": "감량검토",
+          "flags": [
+            "STOP_LOSS_TRIGGERED"
+          ],
+          "reason": "손절 조건 발동: 즉시 감량/매도 검토"
+        },
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "decision": "매수제외",
+          "flags": [
+            "RSI_OVERHEAT:81.51",
+            "BLOCKED_BY_STAGE4_VALIDATION"
+          ],
+          "reason": "차단 해제 조건: 07. Strategy Options stance가 watch라 신규 매수 후보에서 제외"
+        },
+        {
+          "code": "494310",
+          "name": "KODEX 반도체레버리지",
+          "decision": "매수제외",
+          "flags": [
+            "TECHNICAL_DATA_GAP",
+            "OFF_REPORT_HOLDING",
+            "BLOCKED_BY_STAGE4_VALIDATION"
+          ],
+          "reason": "차단 해제 조건: 07. Strategy Options stance가 hold라 신규 매수 후보에서 제외"
+        },
+        {
+          "code": "133690",
+          "name": "TIGER 미국나스닥100레버리지(합성)",
+          "decision": "매수제외",
+          "flags": [
+            "TECHNICAL_DATA_GAP",
+            "OFF_REPORT_HOLDING",
+            "BLOCKED_BY_STAGE4_VALIDATION"
+          ],
+          "reason": "차단 해제 조건: 07. Strategy Options stance가 hold라 신규 매수 후보에서 제외"
+        },
+        {
+          "code": "491010",
+          "name": "TIGER 글로벌AI전력인프라액티브",
+          "decision": "매수제외",
+          "flags": [
+            "TECHNICAL_DATA_GAP",
+            "OFF_REPORT_HOLDING",
+            "BLOCKED_BY_STAGE4_VALIDATION"
+          ],
+          "reason": "차단 해제 조건: 07. Strategy Options stance가 trim라 신규 매수 후보에서 제외"
+        },
+        {
+          "code": "487230",
+          "name": "KODEX 미국AI전력핵심인프라",
+          "decision": "매수제외",
+          "flags": [
+            "TECHNICAL_DATA_GAP",
+            "OFF_REPORT_HOLDING",
+            "BLOCKED_BY_STAGE4_VALIDATION"
+          ],
+          "reason": "차단 해제 조건: 07. Strategy Options stance가 trim라 신규 매수 후보에서 제외"
+        }
+      ]
+    },
+    {
+      "accountKey": "PENSION",
+      "accountLabel": "한투 연금저축",
+      "totalValue": 5457930,
+      "cash": 0,
+      "stage4Score": 59,
+      "deployBudget": 26317,
+      "proofScore": 51,
+      "tone": "amber",
+      "verdict": "보류 검증",
+      "buckets": {
+        "BLOCKED_BUY": 6,
+        "WATCH_OFF_REPORT": 3
+      },
+      "matchedExposure": 2365800,
+      "matchedExposurePct": 43.3,
+      "topThemes": [
+        "금/원자재",
+        "금리/매크로",
+        "HBM/메모리",
+        "AI 인프라",
+        "전력 인프라"
+      ],
+      "topRisks": [
+        "rates",
+        "fx"
+      ],
+      "proof": [
+        "자체 레이더와 겹치는 노출 237만원 (43.3%)",
+        "Stage4 계좌 점수 59 / 실행 예산 3만원",
+        "보호/감량 플래그가 낮아 방향성 검증 부담이 작음",
+        "매수제외 6건: 방향은 맞아도 가격·근거·검증 조건이 아직 미통과"
+      ],
+      "topMatches": [
+        {
+          "code": "0162Z0",
+          "name": "RISE 삼성전자SK하이닉스채권혼합50",
+          "category": "반도체/채권혼합",
+          "marketValue": 1546200,
+          "profitRate": 13.42,
+          "decision": "외부관찰",
+          "sector": "반도체",
+          "sectorScore": 95
+        },
+        {
+          "code": "469150",
+          "name": "ACE AI반도체TOP3+",
+          "category": "AI반도체",
+          "marketValue": 819600,
+          "profitRate": 14.11,
+          "decision": "외부관찰",
+          "sector": "반도체",
+          "sectorScore": 95
+        }
+      ],
+      "redFlags": [
+        {
+          "code": "360750",
+          "name": "TIGER 미국S&P500",
+          "decision": "매수제외",
+          "flags": [
+            "RSI_OVERHEAT:81.51",
+            "BLOCKED_BY_STAGE4_VALIDATION"
+          ],
+          "reason": "차단 해제 조건: 07. Strategy Options stance가 watch라 신규 매수 후보에서 제외"
+        },
+        {
+          "code": "132030",
+          "name": "KODEX 골드선물(H)",
+          "decision": "매수제외",
+          "flags": [
+            "TECHNICAL_DATA_GAP",
+            "OFF_REPORT_HOLDING",
+            "BLOCKED_BY_STAGE4_VALIDATION"
+          ],
+          "reason": "차단 해제 조건: 07. Strategy Options stance가 trim라 신규 매수 후보에서 제외"
+        },
+        {
+          "code": "494310",
+          "name": "KODEX 반도체레버리지",
+          "decision": "매수제외",
+          "flags": [
+            "TECHNICAL_DATA_GAP",
+            "OFF_REPORT_HOLDING",
+            "BLOCKED_BY_STAGE4_VALIDATION"
+          ],
+          "reason": "차단 해제 조건: 07. Strategy Options stance가 hold라 신규 매수 후보에서 제외"
+        },
+        {
+          "code": "133690",
+          "name": "TIGER 미국나스닥100레버리지(합성)",
+          "decision": "매수제외",
+          "flags": [
+            "TECHNICAL_DATA_GAP",
+            "OFF_REPORT_HOLDING",
+            "BLOCKED_BY_STAGE4_VALIDATION"
+          ],
+          "reason": "차단 해제 조건: 07. Strategy Options stance가 hold라 신규 매수 후보에서 제외"
+        },
+        {
+          "code": "491010",
+          "name": "TIGER 글로벌AI전력인프라액티브",
+          "decision": "매수제외",
+          "flags": [
+            "TECHNICAL_DATA_GAP",
+            "OFF_REPORT_HOLDING",
+            "BLOCKED_BY_STAGE4_VALIDATION"
+          ],
+          "reason": "차단 해제 조건: 07. Strategy Options stance가 trim라 신규 매수 후보에서 제외"
+        },
+        {
+          "code": null,
+          "name": "ACE KRX금현물",
+          "decision": "매수제외",
+          "flags": [
+            "MISSING_SECURITY_CODE",
+            "TECHNICAL_DATA_GAP",
+            "OFF_REPORT_HOLDING"
+          ],
+          "reason": "차단 해제 조건: 실행 근거 검증 미통과(missing_code)"
+        },
+        {
+          "code": "469150",
+          "name": "ACE AI반도체TOP3+",
+          "decision": "외부관찰",
+          "flags": [
+            "RSI_OVERHEAT:83.17",
+            "NO_CLEAN_REPORT_LINK"
+          ],
+          "reason": "같은 반도체 클러스터 비중이 높거나 HBM 기대가 가격에 과반영되면 일부 감량을 검토합니다."
+        }
+      ]
+    }
+  ],
+  "sourceStatus": {
+    "dashboardView": true,
+    "portfolioAccounts": 3,
+    "stockeasySnapshot": false,
+    "stockeasyOptional": true,
+    "independentMode": true,
+    "stage4AccountPlans": 3,
+    "rotationWatch": true,
+    "stockPulse": true,
+    "decisionFeatures": true,
+    "normalizedKisEtf": 80,
+    "normalizedTechnical": 24
+  },
+  "artifacts": {
+    "dashboardView": "data/dashboard/2026-05-08-dashboard-view.json",
+    "stockeasySnapshot": "data/external/stockeasy/2026-05-08/snapshot.json",
+    "decisionFeatures": "data/features/2026-05-08/decision-features.json",
+    "normalizedKisEtf": "data/normalized/2026-05-08/kis_etf.normalized.json",
+    "normalizedTechnical": "data/normalized/2026-05-08/technical.normalized.json",
+    "portfolio": "data/portfolio/latest.json",
+    "stage4": "data/analysis-state/2026-05-08/stage4-execution-plan.json",
+    "rotationWatch": "data/analysis-state/2026-05-08/rotation-watch.json",
+    "stockPulse": "data/stock-pulse/2026-05-08/stock-pulse.json"
+  },
+  "disclaimer": "Independent account-direction proof built from owned/public observations. StockEasy is optional; private APIs, protected UI, and protected content are not required."
+}

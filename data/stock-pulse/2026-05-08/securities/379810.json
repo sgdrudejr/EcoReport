@@ -1,0 +1,106 @@
+{
+  "id": "stock-pulse:379810",
+  "code": "379810",
+  "name": "KODEX 미국나스닥100",
+  "category": "나스닥100",
+  "type": "etf",
+  "verdict": "자료보강",
+  "urgency": "높음",
+  "pulseScore": 38,
+  "oneLine": "자료보강: 공시, 뉴스, 직접 리포트가 보강되기 전까지 결론 강도를 낮춥니다.",
+  "doNow": "공시, 뉴스, 직접 리포트가 보강되기 전까지 결론 강도를 낮춥니다.",
+  "doNot": "근거 부족 상태의 신규매수 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "PENSION",
+      "accountLabel": "한투 연금저축",
+      "marketValue": 839250,
+      "profitRate": 6.95,
+      "decision": "외부관찰"
+    }
+  ],
+  "position": {
+    "marketValue": 839250,
+    "purchaseValue": 0,
+    "profitLoss": 54600,
+    "profitRate": 6.95,
+    "quantity": 30
+  },
+  "market": {
+    "price": 27975,
+    "previousClose": 27560,
+    "changePct": 1.51,
+    "volume": 8550,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 85,
+    "signal": "STRONG_BUY",
+    "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+    "rsi": 88.35,
+    "ma20": 26165.25,
+    "ma60": 24762.8333,
+    "recentHighDistancePct": 0,
+    "rsVsBenchmark": -36.86,
+    "alerts": [
+      "RSI 과매수 구간 진입"
+    ]
+  },
+  "fundamental": {
+    "score": 35,
+    "label": "수급주의",
+    "metrics": null,
+    "etf": {
+      "rank": null,
+      "navGapPct": null,
+      "concentrationTop5Pct": 0,
+      "topHoldings": []
+    }
+  },
+  "alerts": [
+    {
+      "severity": "high",
+      "label": "과열",
+      "detail": "RSI 88.35 과열권입니다.",
+      "tone": "red"
+    },
+    {
+      "severity": "medium",
+      "label": "근거보강",
+      "detail": "NO_CLEAN_REPORT_LINK",
+      "tone": "amber"
+    }
+  ],
+  "quickFactors": [
+    "등락 1.51%",
+    "RSI 88.35",
+    "거래량 0배",
+    "손익 6.95%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "ETF_COMPOSITION_MISSING",
+    "ETF_NAV_MISSING"
+  ],
+  "riskFlags": [
+    "RSI_OVERHEAT:88.35",
+    "NO_CLEAN_REPORT_LINK"
+  ],
+  "sourceSupport": {
+    "reports": 0.464,
+    "stockeasy": 0,
+    "marketvoice": 0,
+    "technical": 0,
+    "kisEtf": 0,
+    "news": 0,
+    "macro": 0,
+    "llm": 0
+  }
+}

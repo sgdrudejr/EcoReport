@@ -1,0 +1,750 @@
+{
+  "date": "2026-05-12",
+  "bundleId": "normalized:marketvoice:2026-05-12",
+  "source": "marketvoice",
+  "sourceType": "event_feed",
+  "generatedAt": "2026-05-12T05:44:05.378Z",
+  "runId": "ecoreport-final-2026-05-12-20260512144324",
+  "qualitySummary": {
+    "status": "ok",
+    "flags": [
+      "low_coverage"
+    ]
+  },
+  "observations": [
+    {
+      "observationId": "normalized:marketvoice:2026-05-12:topic:1444152",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1444152",
+      "entityName": "이억원 위원장, AI 반도체에 50조 원 투자 계획 발표",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "neutral",
+      "strength": 0.69,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "이억원 위원장, AI 반도체에 50조 원 투자 계획 발표",
+          "text": "이억원 금융위원장은 2026년 5월 퓨리오사AI를 방문해 AI 반도체 산업 현황을 점검하고, 향후 5년간 50조 원 이상 투자 계획과 2026년 AI 분야에 2조 원 집중 지원을 밝혔습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1444152"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "계좌 테마 기준으로는 한투 연금저축의 S&P500, 한투 연금저축의 나스닥100, 한투 연금저축의 AI반도체 판단과 맞물립니다. 핵심 시그널은 AI 인프라/전력입니다.",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQ0NDE1Mg=="
+      ],
+      "metadata": {
+        "signalLabels": [
+          "AI 인프라/전력"
+        ],
+        "mainSource": {
+          "type": "COMPANY_NEWS",
+          "name": "뉴스",
+          "author": "아시아경제"
+        },
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요.",
+        "topicEntityId": "macro_event:1444152"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-12:impact:1444152:category:s_p500:1",
+      "entityType": "category",
+      "entityId": "category:pension_sandp500",
+      "entityName": "S&P500",
+      "accountKey": "PENSION",
+      "securityCode": null,
+      "category": "S&P500",
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 0.585,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1m",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "이억원 위원장, AI 반도체에 50조 원 투자 계획 발표",
+          "text": "이억원 금융위원장은 2026년 5월 퓨리오사AI를 방문해 AI 반도체 산업 현황을 점검하고, 향후 5년간 50조 원 이상 투자 계획과 2026년 AI 분야에 2조 원 집중 지원을 밝혔습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1444152"
+        },
+        {
+          "kind": "snippet",
+          "title": "이억원 위원장, AI 반도체에 50조 원 투자 계획 발표",
+          "text": "이억원 금융위원장은 2026년 5월 퓨리오사AI를 방문해 국내 AI 반도체 산업 현황을 점검하고, 국민성장펀드의 AI 분야 지원 확대 방안을 논의했습니다. 이번 현장에서 향후 5년간 AI와 반도체 분야에 50조 원 이상을 투자할 계획임을 직접 밝혔으며, 2026년에는 AI 분야에 2조 원이 집중 지원되고 총 8조 4,000억 원의 자금이 승인된 사실도 새롭게 확인됐습니다. 이번 투자 계획은 인공지능 반도체 산업의 경쟁력 강화를 목표로 정부 차원의 지원 의지가 강조됐습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1444152"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "ai, power",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQ0NDE1Mg=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1444152",
+        "topicTitle": "이억원 위원장, AI 반도체에 50조 원 투자 계획 발표",
+        "channels": [
+          "COMPANY_NEWS",
+          "TELEGRAM",
+          "AI 인프라/전력"
+        ],
+        "riskTags": [
+          "ai",
+          "power"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-12:impact:1444152:category:나스닥100:2",
+      "entityType": "category",
+      "entityId": "category:pension_나스닥100",
+      "entityName": "나스닥100",
+      "accountKey": "PENSION",
+      "securityCode": null,
+      "category": "나스닥100",
+      "themes": [
+        "AI 인프라/전력"
+      ],
+      "direction": "positive",
+      "strength": 0.585,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1m",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "이억원 위원장, AI 반도체에 50조 원 투자 계획 발표",
+          "text": "이억원 금융위원장은 2026년 5월 퓨리오사AI를 방문해 AI 반도체 산업 현황을 점검하고, 향후 5년간 50조 원 이상 투자 계획과 2026년 AI 분야에 2조 원 집중 지원을 밝혔습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1444152"
+        },
+        {
+          "kind": "snippet",
+          "title": "이억원 위원장, AI 반도체에 50조 원 투자 계획 발표",
+          "text": "이억원 금융위원장은 2026년 5월 퓨리오사AI를 방문해 국내 AI 반도체 산업 현황을 점검하고, 국민성장펀드의 AI 분야 지원 확대 방안을 논의했습니다. 이번 현장에서 향후 5년간 AI와 반도체 분야에 50조 원 이상을 투자할 계획임을 직접 밝혔으며, 2026년에는 AI 분야에 2조 원이 집중 지원되고 총 8조 4,000억 원의 자금이 승인된 사실도 새롭게 확인됐습니다. 이번 투자 계획은 인공지능 반도체 산업의 경쟁력 강화를 목표로 정부 차원의 지원 의지가 강조됐습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1444152"
+        },
+        {
+          "kind": "derived_note",
+          "title": "risk_tags",
+          "text": "ai, power",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQ0NDE1Mg=="
+      ],
+      "metadata": {
+        "topicEntityId": "macro_event:1444152",
+        "topicTitle": "이억원 위원장, AI 반도체에 50조 원 투자 계획 발표",
+        "channels": [
+          "COMPANY_NEWS",
+          "TELEGRAM",
+          "AI 인프라/전력"
+        ],
+        "riskTags": [
+          "ai",
+          "power"
+        ],
+        "regimeAssumptions": [],
+        "deepResearchQuestion": "AI 인프라 뉴스가 실제 수주·실적과 ETF 편입 종목 모멘텀으로 이어지는지 검증하세요."
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-12:topic:1444082",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1444082",
+      "entityName": "항서제약·브리스톨, 13개 초기 공동 연구 협력",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [],
+      "direction": "neutral",
+      "strength": 0.35,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "항서제약·브리스톨, 13개 초기 공동 연구 협력",
+          "text": "중국 항서제약과 미국 브리스톨 마이어스 스퀴브가 2026년 5월에 13개 초기 단계 공동 연구를 위해 전략적 협력과 라이선스 계약을 맺었어요. 브리스톨은 항서제약에 최대 9억5000만 달러를 지급합니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1444082"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQ0NDA4Mg=="
+      ],
+      "metadata": {
+        "signalLabels": [],
+        "mainSource": {
+          "type": "TELEGRAM",
+          "name": "텔레그램",
+          "author": "중국주식반점(饭店)"
+        },
+        "deepResearchQuestion": "항서제약·브리스톨, 13개 초기 공동 연구 협력가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+        "topicEntityId": "macro_event:1444082"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-12:topic:1444148",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1444148",
+      "entityName": "한솔아이원스, 자기주식 소각으로 주식매수선택권 조정",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [],
+      "direction": "neutral",
+      "strength": 0.35,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "한솔아이원스, 자기주식 소각으로 주식매수선택권 조정",
+          "text": "한솔아이원스가 2026년 5월 자기주식 소각에 따라 임직원 주식매수선택권 수량을 31,941주로 줄이고 행사가격은 8,140원으로 올렸습니다. 이창욱 이사에게는 25,410주가 부여됐고 행사기간도 확정됐습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1444148"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQ0NDE0OA=="
+      ],
+      "metadata": {
+        "signalLabels": [],
+        "mainSource": {
+          "type": "DISCLOSURE",
+          "name": "공시",
+          "author": "공시"
+        },
+        "deepResearchQuestion": "한솔아이원스, 자기주식 소각으로 주식매수선택권 조정가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+        "topicEntityId": "macro_event:1444148"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-12:topic:1444185",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1444185",
+      "entityName": "진인혜 상무, CAR-T 치료제 소통 강화 역할",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [],
+      "direction": "neutral",
+      "strength": 0.35,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "진인혜 상무, CAR-T 치료제 소통 강화 역할",
+          "text": "진인혜 베리스모테라퓨틱스 상무가 2026년 5월 12일 서울 HLB포럼에서 CAR-T 치료제 관련 메시지를 국내 취재진에게 전달하며 소통에 주력했습니다. 그는 2023년부터 쌓은 경험을 바탕으로 가교 역할을 맡았습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1444185"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQ0NDE4NQ=="
+      ],
+      "metadata": {
+        "signalLabels": [],
+        "mainSource": {
+          "type": "TELEGRAM",
+          "name": "텔레그램",
+          "author": "증권사 애널 크롤러🇰🇷"
+        },
+        "deepResearchQuestion": "진인혜 상무, CAR-T 치료제 소통 강화 역할가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+        "topicEntityId": "macro_event:1444185"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-12:topic:1444186",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1444186",
+      "entityName": "2026년 한국 10대 기업 이익 집중도 급증",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [],
+      "direction": "neutral",
+      "strength": 0.35,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "2026년 한국 10대 기업 이익 집중도 급증",
+          "text": "2026년 5월 기준, 한국 상위 10대 기업이 전체 기업 이익의 34%를 차지해 이익 집중도가 높아지고 있습니다. 이로 인해 이들 기업의 시장 내 영향력이 더욱 커지고 있는 상황입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1444186"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQ0NDE4Ng=="
+      ],
+      "metadata": {
+        "signalLabels": [],
+        "mainSource": {
+          "type": "TELEGRAM",
+          "name": "텔레그램",
+          "author": "Ghost Research"
+        },
+        "deepResearchQuestion": "2026년 한국 10대 기업 이익 집중도 급증가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+        "topicEntityId": "macro_event:1444186"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-12:topic:1444183",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1444183",
+      "entityName": "시프트업 게임 유료 콘텐츠 불만에 무상 확대 요구",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [],
+      "direction": "neutral",
+      "strength": 0.35,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "시프트업 게임 유료 콘텐츠 불만에 무상 확대 요구",
+          "text": "시프트업 게임 이용자들이 2026년 5월에 유료 콘텐츠에 불만을 표하며 무상 제공 확대를 요구하고 있습니다. 이 목소리는 시프트업의 게임 운영 정책에 변화를 줄 가능성이 있습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1444183"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQ0NDE4Mw=="
+      ],
+      "metadata": {
+        "signalLabels": [],
+        "mainSource": {
+          "type": "TELEGRAM",
+          "name": "텔레그램",
+          "author": "Pluto Research"
+        },
+        "deepResearchQuestion": "시프트업 게임 유료 콘텐츠 불만에 무상 확대 요구가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+        "topicEntityId": "macro_event:1444183"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-12:topic:1444181",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1444181",
+      "entityName": "아이디어 논의만, 실행 계획은 미확정",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [],
+      "direction": "neutral",
+      "strength": 0.35,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "아이디어 논의만, 실행 계획은 미확정",
+          "text": "한 언론 보도에서 자극적인 제목과 달리 본문은 구체적 실행 계획 없이 아이디어 수준 논의만 다뤄졌습니다. 제목과 내용 사이 괴리가 있어 실행 계획이 확정되지 않았음을 알렸습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1444181"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQ0NDE4MQ=="
+      ],
+      "metadata": {
+        "signalLabels": [],
+        "mainSource": {
+          "type": "TELEGRAM",
+          "name": "텔레그램",
+          "author": "Pluto Research"
+        },
+        "deepResearchQuestion": "아이디어 논의만, 실행 계획은 미확정가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+        "topicEntityId": "macro_event:1444181"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-12:topic:1444182",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1444182",
+      "entityName": "2026년 소득 증가 시 부채 상환 우선 권고",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [],
+      "direction": "neutral",
+      "strength": 0.35,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "2026년 소득 증가 시 부채 상환 우선 권고",
+          "text": "경제 전문가들이 2026년 소득이 크게 늘어난 경우 기존 부채 상환을 우선할 것을 권고했습니다. 추가 투자보다 채무를 줄이는 것이 장기 재정 안정에 더 도움이 된다고 강조했습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1444182"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQ0NDE4Mg=="
+      ],
+      "metadata": {
+        "signalLabels": [],
+        "mainSource": {
+          "type": "TELEGRAM",
+          "name": "텔레그램",
+          "author": "MZ타뇽 긴축모드 ON"
+        },
+        "deepResearchQuestion": "2026년 소득 증가 시 부채 상환 우선 권고가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+        "topicEntityId": "macro_event:1444182"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-12:topic:1444175",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1444175",
+      "entityName": "지케이에셋, 엠디바이스 주식 보유 현황 정정",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [],
+      "direction": "neutral",
+      "strength": 0.35,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "지케이에셋, 엠디바이스 주식 보유 현황 정정",
+          "text": "지케이에셋과 특별관계자가 엠디바이스 주식 보유 현황을 정정해, 보유 주식 수를 1,123,353주(9.916%), 의결권 주식 수를 512,000주(4.778%)로 수정했습니다. 주요주주는 단순투자 목적임을 밝혔습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1444175"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQ0NDE3NQ=="
+      ],
+      "metadata": {
+        "signalLabels": [],
+        "mainSource": {
+          "type": "DISCLOSURE",
+          "name": "공시",
+          "author": "공시"
+        },
+        "deepResearchQuestion": "지케이에셋, 엠디바이스 주식 보유 현황 정정가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+        "topicEntityId": "macro_event:1444175"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-12:topic:1444169",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1444169",
+      "entityName": "김용범 실장 발언에 숨은 의도 의문 제기",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [],
+      "direction": "neutral",
+      "strength": 0.35,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "김용범 실장 발언에 숨은 의도 의문 제기",
+          "text": "김용범 실장의 최근 발언과 결정에 대해 일부에서 숨겨진 의도가 있는 것 아니냐는 의문이 제기됐습니다. 이에 당혹감을 표하는 반응도 나오며 다양한 해석과 논의가 이어지고 있습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1444169"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQ0NDE2OQ=="
+      ],
+      "metadata": {
+        "signalLabels": [],
+        "mainSource": {
+          "type": "TELEGRAM",
+          "name": "텔레그램",
+          "author": "이교수 Memo"
+        },
+        "deepResearchQuestion": "김용범 실장 발언에 숨은 의도 의문 제기가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+        "topicEntityId": "macro_event:1444169"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-12:topic:1444172",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1444172",
+      "entityName": "금호건설, 5월 여의도서 기관투자자 설명회 개최",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [],
+      "direction": "neutral",
+      "strength": 0.35,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "금호건설, 5월 여의도서 기관투자자 설명회 개최",
+          "text": "금호건설이 2026년 5월 15일, 18일, 19일에 여의도 등에서 국내외 주요 기관투자자를 대상으로 기업설명회를 개최합니다. 이번 설명회는 1분기 경영실적 발표와 투자자 미팅을 위해 마련됐습니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1444172"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQ0NDE3Mg=="
+      ],
+      "metadata": {
+        "signalLabels": [],
+        "mainSource": {
+          "type": "DISCLOSURE",
+          "name": "공시",
+          "author": "공시"
+        },
+        "deepResearchQuestion": "금호건설, 5월 여의도서 기관투자자 설명회 개최가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+        "topicEntityId": "macro_event:1444172"
+      }
+    },
+    {
+      "observationId": "normalized:marketvoice:2026-05-12:topic:1444154",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1444154",
+      "entityName": "KB스타리츠, 2025년 8월~2026년 1월 적정 의견 속 손실 기록",
+      "accountKey": null,
+      "securityCode": null,
+      "category": null,
+      "themes": [],
+      "direction": "neutral",
+      "strength": 0.35,
+      "confidence": 0.58,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "low_coverage"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "KB스타리츠, 2025년 8월~2026년 1월 적정 의견 속 손실 기록",
+          "text": "KB스타리츠가 2026년 5월 12일 감사보고서를 정정 제출하며 2025년 8월부터 2026년 1월까지 연결재무제표에 대해 적정 의견을 받았다고 밝혔습니다. 영업손실과 순손실이 발생했으며, 파생상품 평가손실 등이 손실 원인입니다.",
+          "value": null,
+          "refPath": null,
+          "url": "https://www.moneytoring.ai/mv/1444154"
+        },
+        {
+          "kind": "derived_note",
+          "title": "portfolio_linkage",
+          "text": "",
+          "value": null,
+          "refPath": null,
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "TWFya2V0Vm9pY2VUb3BpY1R5cGU6MTQ0NDE1NA=="
+      ],
+      "metadata": {
+        "signalLabels": [],
+        "mainSource": {
+          "type": "DISCLOSURE",
+          "name": "공시",
+          "author": "공시"
+        },
+        "deepResearchQuestion": "KB스타리츠, 2025년 8월~2026년 1월 적정 의견 속 손실 기록가 리포트와 같은 방향인지, 반대로 앞서가는 신호인지 확인하세요.",
+        "topicEntityId": "macro_event:1444154"
+      }
+    }
+  ]
+}

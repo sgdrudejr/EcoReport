@@ -1,0 +1,104 @@
+{
+  "id": "stock-pulse:411060",
+  "code": "411060",
+  "name": "ACE KRX금현물",
+  "category": "금",
+  "type": "etf",
+  "verdict": "자료보강",
+  "urgency": "중간",
+  "pulseScore": 48,
+  "oneLine": "자료보강: 공시, 뉴스, 직접 리포트가 보강되기 전까지 결론 강도를 낮춥니다.",
+  "doNow": "공시, 뉴스, 직접 리포트가 보강되기 전까지 결론 강도를 낮춥니다.",
+  "doNot": "근거 부족 상태의 신규매수 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "marketValue": 2159700,
+      "profitRate": 0.77,
+      "decision": "외부관찰"
+    },
+    {
+      "accountKey": "PENSION",
+      "accountLabel": "한투 연금저축",
+      "marketValue": 281700,
+      "profitRate": 1.92,
+      "decision": "외부관찰"
+    }
+  ],
+  "position": {
+    "marketValue": 2441400,
+    "purchaseValue": 0,
+    "profitLoss": 21945,
+    "profitRate": 0.9,
+    "quantity": 78
+  },
+  "market": {
+    "price": 31105,
+    "previousClose": 30615,
+    "changePct": 1.6,
+    "volume": 2632396,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 48,
+    "signal": "HOLD",
+    "reason": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 우호적",
+    "rsi": 49.53,
+    "ma20": 31106,
+    "ma60": 32040.0833,
+    "recentHighDistancePct": -3.34,
+    "rsVsBenchmark": -49.67,
+    "alerts": []
+  },
+  "fundamental": {
+    "score": 76,
+    "label": "수급강함",
+    "metrics": null,
+    "etf": {
+      "rank": null,
+      "navGapPct": null,
+      "concentrationTop5Pct": 0,
+      "topHoldings": []
+    }
+  },
+  "alerts": [
+    {
+      "severity": "medium",
+      "label": "근거보강",
+      "detail": "NO_CLEAN_REPORT_LINK",
+      "tone": "amber"
+    }
+  ],
+  "quickFactors": [
+    "등락 1.6%",
+    "RSI 49.53",
+    "거래량 0배",
+    "손익 0.9%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "ETF_COMPOSITION_MISSING",
+    "ETF_NAV_MISSING"
+  ],
+  "riskFlags": [
+    "NO_CLEAN_REPORT_LINK"
+  ],
+  "sourceSupport": {
+    "reports": 0.542,
+    "stockeasy": 0,
+    "marketvoice": 0,
+    "technical": 0,
+    "kisEtf": 0,
+    "news": 0,
+    "macro": 0,
+    "llm": 0
+  }
+}

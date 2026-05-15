@@ -1,0 +1,115 @@
+{
+  "id": "stock-pulse:064350",
+  "code": "064350",
+  "name": "현대로템",
+  "category": "방산",
+  "type": "stock",
+  "verdict": "손절감시",
+  "urgency": "중간",
+  "pulseScore": 52,
+  "oneLine": "손절감시: 손실 확대 원인을 확인하고 20일선 회복 실패 시 감량 기준을 먼저 봅니다.",
+  "doNow": "손실 확대 원인을 확인하고 20일선 회복 실패 시 감량 기준을 먼저 봅니다.",
+  "doNot": "손절 기준 없이 물타기 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "marketValue": 218250,
+      "profitRate": 4.92,
+      "decision": "감량검토"
+    }
+  ],
+  "position": {
+    "marketValue": 218250,
+    "purchaseValue": 0,
+    "profitLoss": 10250,
+    "profitRate": 4.92,
+    "quantity": 1
+  },
+  "market": {
+    "price": 221000,
+    "previousClose": 219500,
+    "changePct": 0.46,
+    "volume": 330967,
+    "volumeRatio": 0.33,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 47,
+    "signal": "HOLD",
+    "reason": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화",
+    "rsi": 42.93,
+    "ma20": 231725,
+    "ma60": 212971.6667,
+    "recentHighDistancePct": -21.63,
+    "rsVsBenchmark": -47.74,
+    "alerts": [
+      "데드크로스(5일/20일) 발생"
+    ]
+  },
+  "fundamental": {
+    "score": 71,
+    "label": "기본양호",
+    "metrics": {
+      "per": 30.12,
+      "pbr": 7.53,
+      "eps": 7055,
+      "estimatedPer": 25,
+      "estimatedEps": 8405,
+      "dividendYield": 0.28,
+      "operatingMargin": 17.22,
+      "operatingMarginEstimate": 16.75,
+      "roe": 30.05,
+      "roeEstimate": 26.17,
+      "annualEps": 7055,
+      "previousAnnualEps": 3728,
+      "estimatedAnnualEps": 8405,
+      "epsGrowthPct": 89.24,
+      "estimatedEpsGrowthPct": 19.14
+    },
+    "etf": null
+  },
+  "alerts": [
+    {
+      "severity": "low",
+      "label": "AI언급",
+      "detail": "손절감시: 손절 조건 발동 / 고점 대비 -21.6%",
+      "tone": "blue"
+    }
+  ],
+  "quickFactors": [
+    "등락 0.46%",
+    "RSI 42.93",
+    "거래량 0.33배",
+    "손익 4.92%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [
+    {
+      "bucket": "sellWatch",
+      "action": "손절감시",
+      "reason": "손절 조건 발동 / 고점 대비 -21.6%",
+      "trigger": "손절 라인 이탈 시 즉시 감량/매도"
+    }
+  ],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결"
+  ],
+  "riskFlags": [
+    "STOP_LOSS_TRIGGERED"
+  ],
+  "sourceSupport": {
+    "reports": 0.542,
+    "stockeasy": 0,
+    "marketvoice": 0,
+    "technical": 0,
+    "kisEtf": 0,
+    "news": 0,
+    "macro": 0,
+    "llm": 0
+  }
+}

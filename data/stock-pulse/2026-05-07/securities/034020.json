@@ -1,0 +1,103 @@
+{
+  "id": "stock-pulse:034020",
+  "code": "034020",
+  "name": "두산에너빌리티",
+  "category": "원자력",
+  "type": "stock",
+  "verdict": "보유유지",
+  "urgency": "높음",
+  "pulseScore": 31,
+  "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNot": "같은 테마 중복 확대 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "marketValue": 405000,
+      "profitRate": 6.29,
+      "decision": null
+    }
+  ],
+  "position": {
+    "marketValue": 405000,
+    "purchaseValue": 381000,
+    "profitLoss": 24000,
+    "profitRate": 6.3,
+    "quantity": 3
+  },
+  "market": {
+    "price": 135000,
+    "previousClose": 127000,
+    "changePct": 6.3,
+    "volume": 4973031,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 85,
+    "signal": "STRONG_BUY",
+    "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+    "rsi": 75.33,
+    "ma20": 115880,
+    "ma60": 104511.6667,
+    "recentHighDistancePct": -3.59,
+    "rsVsBenchmark": 8.55,
+    "alerts": [
+      "RSI 과매수 구간 진입"
+    ]
+  },
+  "fundamental": {
+    "score": 40,
+    "label": "기본주의",
+    "metrics": {
+      "per": 1022.73,
+      "pbr": 11.11,
+      "eps": 132,
+      "estimatedPer": 291,
+      "estimatedEps": 464,
+      "dividendYield": null,
+      "operatingMargin": 4.47,
+      "operatingMarginEstimate": 6.21,
+      "roe": 1.11,
+      "roeEstimate": 3.73,
+      "annualEps": 132,
+      "previousAnnualEps": 174,
+      "estimatedAnnualEps": 464,
+      "epsGrowthPct": -24.14,
+      "estimatedEpsGrowthPct": 251.52
+    },
+    "etf": null
+  },
+  "alerts": [
+    {
+      "severity": "medium",
+      "label": "과열주의",
+      "detail": "RSI 75.33로 추격매수보다 보호 판단이 우선입니다.",
+      "tone": "amber"
+    },
+    {
+      "severity": "high",
+      "label": "급등",
+      "detail": "당일 6.3% 상승으로 눌림 확인 전 매수 위험이 큽니다.",
+      "tone": "red"
+    }
+  ],
+  "quickFactors": [
+    "등락 6.3%",
+    "RSI 75.33",
+    "거래량 0배",
+    "손익 6.3%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {}
+}

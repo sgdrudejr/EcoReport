@@ -1,0 +1,91 @@
+{
+  "id": "stock-pulse:064400",
+  "code": "064400",
+  "name": "LG씨엔에스",
+  "category": "기타",
+  "type": "unknown",
+  "verdict": "자료보강",
+  "urgency": "중간",
+  "pulseScore": 50,
+  "oneLine": "자료보강: 공시, 뉴스, 직접 리포트가 보강되기 전까지 결론 강도를 낮춥니다.",
+  "doNow": "공시, 뉴스, 직접 리포트가 보강되기 전까지 결론 강도를 낮춥니다.",
+  "doNot": "근거 부족 상태의 신규매수 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "marketValue": 743000,
+      "profitRate": 7.36,
+      "decision": "외부관찰"
+    }
+  ],
+  "position": {
+    "marketValue": 743000,
+    "purchaseValue": 0,
+    "profitLoss": 51000,
+    "profitRate": 7.36,
+    "quantity": 10
+  },
+  "market": {
+    "price": 71900,
+    "previousClose": 70500,
+    "changePct": 1.99,
+    "volume": 3355060,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 100,
+    "signal": "STRONG_BUY",
+    "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+    "rsi": 64.94,
+    "ma20": 66850,
+    "ma60": 65671.6667,
+    "recentHighDistancePct": -6.5,
+    "rsVsBenchmark": -40.46,
+    "alerts": []
+  },
+  "fundamental": {
+    "score": 20,
+    "label": "수집필요",
+    "metrics": null,
+    "etf": null
+  },
+  "alerts": [
+    {
+      "severity": "medium",
+      "label": "근거보강",
+      "detail": "OFF_REPORT_HOLDING",
+      "tone": "amber"
+    }
+  ],
+  "quickFactors": [
+    "등락 1.99%",
+    "RSI 64.94",
+    "거래량 0배",
+    "손익 7.36%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "SECURITY_TYPE_UNKNOWN"
+  ],
+  "riskFlags": [
+    "OFF_REPORT_HOLDING"
+  ],
+  "sourceSupport": {
+    "reports": 0,
+    "stockeasy": 0,
+    "marketvoice": 0,
+    "technical": 0,
+    "kisEtf": 0,
+    "news": 0,
+    "macro": 0,
+    "llm": 0
+  }
+}

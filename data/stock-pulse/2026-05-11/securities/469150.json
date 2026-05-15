@@ -1,0 +1,89 @@
+{
+  "id": "stock-pulse:469150",
+  "code": "469150",
+  "name": "ACE AI반도체TOP3+",
+  "category": "AI반도체",
+  "type": "etf",
+  "verdict": "익절감시",
+  "urgency": "높음",
+  "pulseScore": 29,
+  "oneLine": "익절감시: 20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+  "doNow": "20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+  "doNot": "급등 구간 추격매수 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "PENSION",
+      "accountLabel": "한투 연금저축",
+      "marketValue": 857940,
+      "profitRate": 19.45,
+      "decision": null
+    },
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "marketValue": 357600,
+      "profitRate": 20.05,
+      "decision": null
+    }
+  ],
+  "position": {
+    "marketValue": 1215540,
+    "purchaseValue": 1016080,
+    "profitLoss": 199460,
+    "profitRate": 19.63,
+    "quantity": 17
+  },
+  "market": {
+    "price": 68300,
+    "previousClose": 68000,
+    "changePct": 0,
+    "volume": 1596996,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 85,
+    "signal": "STRONG_BUY",
+    "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+    "rsi": 83.17,
+    "ma20": 55841,
+    "ma60": 47942.9167,
+    "recentHighDistancePct": -0.16,
+    "rsVsBenchmark": 40.42,
+    "alerts": [
+      "RSI 과매수 구간 진입"
+    ]
+  },
+  "fundamental": {
+    "score": 20,
+    "label": "수집필요",
+    "metrics": null,
+    "etf": null
+  },
+  "alerts": [
+    {
+      "severity": "high",
+      "label": "과열",
+      "detail": "RSI 83.17 과열권입니다.",
+      "tone": "red"
+    }
+  ],
+  "quickFactors": [
+    "등락 0%",
+    "RSI 83.17",
+    "거래량 0배",
+    "손익 19.63%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "NAVER_FETCH_FAILED"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {}
+}

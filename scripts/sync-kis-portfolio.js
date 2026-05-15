@@ -13,6 +13,7 @@ import {
   writeJson,
 } from "./lib/pipeline-utils.js";
 import { loadLocalPaths, resolveLocalPath } from "./lib/local-paths.js";
+import { buildTradingViewWatchlistArtifacts } from "./lib/tradingview-watchlist.js";
 
 const DEFAULT_SYNC_CONFIG = {
   sources: [
@@ -29,9 +30,27 @@ const DEFAULT_SYNC_CONFIG = {
     },
   ],
 };
+const DEFAULT_ORDER_LOOKBACK_DAYS = 90;
 
 function compactDate(date) {
   return String(date ?? "").replace(/-/g, "");
+}
+
+function shiftDate(date, days) {
+  const parsed = new Date(`${date}T00:00:00Z`);
+  if (Number.isNaN(parsed.getTime())) return date;
+  parsed.setUTCDate(parsed.getUTCDate() + days);
+  return parsed.toISOString().slice(0, 10);
+}
+
+function resolveOrderHistoryStart(source, date) {
+  const explicit = toText(source.orderHistoryStart ?? process.env.KIS_ORDER_HISTORY_START);
+  if (explicit) return explicit;
+
+  const lookbackDays = toNumber(source.orderHistoryLookbackDays ?? process.env.KIS_ORDER_HISTORY_LOOKBACK_DAYS);
+  const boundedLookbackDays =
+    lookbackDays != null && lookbackDays > 0 ? Math.min(Math.floor(lookbackDays), 90) : DEFAULT_ORDER_LOOKBACK_DAYS;
+  return shiftDate(date, -(boundedLookbackDays - 1));
 }
 
 function toNumber(value) {
@@ -69,6 +88,82 @@ function firstRecord(records) {
   return Array.isArray(records) && records.length > 0 ? records[0] : {};
 }
 
+function firstNumber(...values) {
+  for (const value of values) {
+    const parsed = toNumber(value);
+    if (parsed != null) return parsed;
+  }
+  return null;
+}
+
+function buildCashBreakdown(raw) {
+  const summary = firstRecord(raw.balance?.summary);
+  const realizedSummary = firstRecord(raw.realized?.summary);
+  const orderableSummary = firstRecord(raw.orderable?.summary ?? raw.orderable?.rows);
+
+  const nonReceivableBuyAmount = firstNumber(orderableSummary.nrcvb_buy_amt);
+  const orderableCash = firstNumber(orderableSummary.ord_psbl_cash);
+  const maxBuyAmount = firstNumber(orderableSummary.max_buy_amt);
+  const reusableAmount = firstNumber(orderableSummary.ruse_psbl_amt);
+  const depositCash = firstNumber(summary.dnca_tot_amt, realizedSummary.dnca_tot_amt);
+  const nextSettlementCash = firstNumber(
+    summary.nxdy_excc_amt,
+    realizedSummary.nxdy_excc_amt,
+  );
+  const previousReceivableSettlementCash = firstNumber(
+    summary.prvs_rcdl_excc_amt,
+    realizedSummary.prvs_rcdl_excc_amt,
+  );
+  const todaySellAmount = firstNumber(summary.thdt_sll_amt, realizedSummary.thdt_sll_amt);
+  const todayBuyAmount = firstNumber(summary.thdt_buy_amt, realizedSummary.thdt_buy_amt);
+  const cmaEvaluationAmount = firstNumber(
+    orderableSummary.cma_evlu_amt,
+    orderableSummary.cma_evlu_amt_icld_amt,
+    summary.cma_evlu_amt,
+    realizedSummary.cma_evlu_amt,
+  );
+  const buyableCash = firstNumber(
+    nonReceivableBuyAmount,
+    orderableCash,
+    maxBuyAmount,
+    depositCash,
+  );
+
+  return {
+    source: depositCash != null
+      ? "kis_inquire_balance.dnca_tot_amt"
+      : orderableCash != null
+        ? "kis_inquire_psbl_order.ord_psbl_cash"
+        : nonReceivableBuyAmount != null
+          ? "kis_inquire_psbl_order.nrcvb_buy_amt"
+          : maxBuyAmount != null
+            ? "kis_inquire_psbl_order.max_buy_amt"
+            : "none",
+    buyableSource: nonReceivableBuyAmount != null
+      ? "kis_inquire_psbl_order.nrcvb_buy_amt"
+      : orderableCash != null
+        ? "kis_inquire_psbl_order.ord_psbl_cash"
+        : maxBuyAmount != null
+          ? "kis_inquire_psbl_order.max_buy_amt"
+          : depositCash != null
+            ? "kis_inquire_balance.dnca_tot_amt"
+            : "none",
+    buyableCash,
+    nonReceivableBuyAmount,
+    orderableCash,
+    maxBuyAmount,
+    reusableAmount,
+    depositCash,
+    nextSettlementCash,
+    previousReceivableSettlementCash,
+    todaySellAmount,
+    todayBuyAmount,
+    cmaEvaluationAmount,
+    orderableError: toText(raw.orderable?.error),
+    orderableQuery: raw.orderable_query ?? null,
+  };
+}
+
 function resolveOpenTradingApiPaths() {
   const localPaths = loadLocalPaths();
   const root =
@@ -86,6 +181,7 @@ function resolveOpenTradingApiPaths() {
     "domestic_stock",
     "readonly_account_snapshot.py",
   );
+  const orderableScript = path.join(ROOT_DIR, "scripts", "fetch-kis-orderable-snapshot.py");
 
   if (!fs.existsSync(root)) {
     throw new Error(`open-trading-api 경로를 찾을 수 없습니다: ${root}`);
@@ -96,8 +192,11 @@ function resolveOpenTradingApiPaths() {
   if (!fs.existsSync(python)) {
     throw new Error(`open-trading-api Python 환경을 찾을 수 없습니다: ${python}`);
   }
+  if (!fs.existsSync(orderableScript)) {
+    throw new Error(`KIS 주문가능금액 보강 스크립트를 찾을 수 없습니다: ${orderableScript}`);
+  }
 
-  return { root, python, script };
+  return { root, python, script, orderableScript };
 }
 
 function resolveKisConfigRoot() {
@@ -175,14 +274,19 @@ function prepareSourceAuthRuntime(source, context) {
 }
 
 function buildCommandArgs({ scriptPath, source, rawPath, date }) {
+  const orderHistoryStart = resolveOrderHistoryStart(source, date);
   const args = [
     scriptPath,
     "--env",
     source.env ?? "real",
     "--start",
-    compactDate(date),
+    compactDate(orderHistoryStart),
     "--end",
     compactDate(date),
+    "--side",
+    "buy",
+    "--filled",
+    "filled",
     "--json-out",
     rawPath,
     "--quiet",
@@ -252,13 +356,12 @@ function buildPortfolioAccount(raw, source) {
     0,
   );
 
-  const cashAvailable =
-    toNumber(summary.dnca_tot_amt) ??
-    toNumber(realizedSummary.dnca_tot_amt) ??
-    0;
+  const cashBreakdown = buildCashBreakdown(raw);
+  const cashAvailable = cashBreakdown.depositCash ?? 0;
   const settlementCash =
-    toNumber(realizedSummary.nxdy_excc_amt) ??
-    toNumber(summary.nass_amt) ??
+    cashBreakdown.nextSettlementCash ??
+    cashBreakdown.previousReceivableSettlementCash ??
+    cashBreakdown.depositCash ??
     cashAvailable;
   const evaluationAmount =
     toNumber(summary.tot_evlu_amt) ??
@@ -281,13 +384,18 @@ function buildPortfolioAccount(raw, source) {
     accountNumber: raw.account?.formatted ?? null,
     evaluationAmount,
     cashAvailable,
+    buyableCash: cashBreakdown.buyableCash,
+    depositCash: cashBreakdown.depositCash,
+    orderableCash: cashBreakdown.orderableCash,
     settlementCash,
+    cashBreakdown,
     principal,
     profitLoss,
     profitRate,
     screenshots: [],
     incomplete: false,
     holdings,
+    raw,
   };
 }
 
@@ -348,6 +456,35 @@ async function runSourceSync(source, context) {
       .trim();
     throw new Error(
       `KIS 동기화 실패 (${source.portfolioKey}): ${stderr || `exit ${result.status}`}`,
+    );
+  }
+
+  const orderableResult = spawnSync(
+    context.openApi.python,
+    [
+      context.openApi.orderableScript,
+      "--env",
+      source.env ?? "real",
+      "--json-path",
+      rawPath,
+    ],
+    {
+      cwd: context.openApi.root,
+      encoding: "utf8",
+      env: {
+        ...process.env,
+        HOME: authRuntime.runtimeHome,
+      },
+    },
+  );
+
+  if (orderableResult.status !== 0) {
+    const stderr = [orderableResult.stdout, orderableResult.stderr]
+      .filter(Boolean)
+      .join("\n")
+      .trim();
+    throw new Error(
+      `KIS 주문가능금액 조회 실패 (${source.portfolioKey}): ${stderr || `exit ${orderableResult.status}`}`,
     );
   }
 
@@ -468,6 +605,21 @@ async function main() {
       evaluationAmount: item.account.evaluationAmount ?? null,
     })),
   });
+
+  try {
+    const tradingView = await buildTradingViewWatchlistArtifacts({
+      date: args.date,
+      portfolio: nextSnapshot,
+    });
+    console.log(
+      `Updated TradingView watchlist (${tradingView.symbolCount} full, ${tradingView.basicSymbolCount} basic): ${path.relative(ROOT_DIR, tradingView.latestTxtPath)}`,
+    );
+    console.log(
+      `Updated TradingView avg-price/buy-marker Pine script (${tradingView.averagePriceSymbolCount} holdings, ${tradingView.buyMarkerEventCount} buy markers): ${path.relative(ROOT_DIR, tradingView.latestAvgPricePinePath)}`,
+    );
+  } catch (error) {
+    console.warn(`TradingView watchlist export skipped: ${error.message}`);
+  }
 
   console.log(`Synced ${synced.length} KIS account(s) into data/portfolio/latest.json`);
 }

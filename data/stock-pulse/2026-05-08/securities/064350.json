@@ -1,0 +1,115 @@
+{
+  "id": "stock-pulse:064350",
+  "code": "064350",
+  "name": "현대로템",
+  "category": "방산",
+  "type": "stock",
+  "verdict": "손절감시",
+  "urgency": "중간",
+  "pulseScore": 59,
+  "oneLine": "손절감시: 손실 확대 원인을 확인하고 20일선 회복 실패 시 감량 기준을 먼저 봅니다.",
+  "doNow": "손실 확대 원인을 확인하고 20일선 회복 실패 시 감량 기준을 먼저 봅니다.",
+  "doNot": "손절 기준 없이 물타기 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "marketValue": 223000,
+      "profitRate": 7.21,
+      "decision": "감량검토"
+    }
+  ],
+  "position": {
+    "marketValue": 223000,
+    "purchaseValue": 0,
+    "profitLoss": 15000,
+    "profitRate": 7.21,
+    "quantity": 1
+  },
+  "market": {
+    "price": 225000,
+    "previousClose": 235000,
+    "changePct": -4.26,
+    "volume": 596816,
+    "volumeRatio": 0.57,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 64,
+    "signal": "BUY",
+    "reason": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화",
+    "rsi": 47.42,
+    "ma20": 230775,
+    "ma60": 212688.3333,
+    "recentHighDistancePct": -20.21,
+    "rsVsBenchmark": -47.52,
+    "alerts": [
+      "MACD 시그널 하향 이탈"
+    ]
+  },
+  "fundamental": {
+    "score": 71,
+    "label": "기본양호",
+    "metrics": {
+      "per": 31.61,
+      "pbr": 7.9,
+      "eps": 7055,
+      "estimatedPer": 27,
+      "estimatedEps": 8405,
+      "dividendYield": 0.27,
+      "operatingMargin": 17.22,
+      "operatingMarginEstimate": 16.75,
+      "roe": 30.05,
+      "roeEstimate": 26.17,
+      "annualEps": 7055,
+      "previousAnnualEps": 3728,
+      "estimatedAnnualEps": 8405,
+      "epsGrowthPct": 89.24,
+      "estimatedEpsGrowthPct": 19.14
+    },
+    "etf": null
+  },
+  "alerts": [
+    {
+      "severity": "low",
+      "label": "AI언급",
+      "detail": "손절감시: 손절조건 발동, 방산 클러스터 과집중",
+      "tone": "blue"
+    }
+  ],
+  "quickFactors": [
+    "등락 -4.26%",
+    "RSI 47.42",
+    "거래량 0.57배",
+    "손익 7.21%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [
+    {
+      "bucket": "sellWatch",
+      "action": "손절감시",
+      "reason": "손절조건 발동, 방산 클러스터 과집중",
+      "trigger": "추가 하락 시 즉시 감량"
+    }
+  ],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결"
+  ],
+  "riskFlags": [
+    "STOP_LOSS_TRIGGERED"
+  ],
+  "sourceSupport": {
+    "reports": 0.396,
+    "stockeasy": 0,
+    "marketvoice": 0,
+    "technical": 0.213,
+    "kisEtf": 0,
+    "news": 0,
+    "macro": 0,
+    "llm": 0
+  }
+}

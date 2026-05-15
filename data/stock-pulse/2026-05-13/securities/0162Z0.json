@@ -1,0 +1,89 @@
+{
+  "id": "stock-pulse:0162Z0",
+  "code": "0162Z0",
+  "name": "RISE 삼성전자SK하이닉스채권혼합50",
+  "category": "반도체/채권혼합",
+  "type": "etf",
+  "verdict": "익절감시",
+  "urgency": "중간",
+  "pulseScore": 28,
+  "oneLine": "익절감시: 20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+  "doNow": "20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+  "doNot": "급등 구간 추격매수 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "marketValue": 1325500,
+      "profitRate": 18.34,
+      "decision": null
+    },
+    {
+      "accountKey": "PENSION",
+      "accountLabel": "한투 연금저축",
+      "marketValue": 1590600,
+      "profitRate": 16.68,
+      "decision": null
+    }
+  ],
+  "position": {
+    "marketValue": 2916100,
+    "purchaseValue": 2483200,
+    "profitLoss": 432900,
+    "profitRate": 17.43,
+    "quantity": 220
+  },
+  "market": {
+    "price": 13210,
+    "previousClose": 13430,
+    "changePct": 0,
+    "volume": 23556823,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 67,
+    "signal": "BUY",
+    "reason": "주가가 20일선 위에서 유지 중, MACD 모멘텀이 우호적, RSI 기준 단기 과열 구간",
+    "rsi": 78.23,
+    "ma20": 11642.75,
+    "ma60": 0,
+    "recentHighDistancePct": -3.33,
+    "rsVsBenchmark": 0,
+    "alerts": [
+      "RSI 과매수 구간 진입"
+    ]
+  },
+  "fundamental": {
+    "score": 20,
+    "label": "수집필요",
+    "metrics": null,
+    "etf": null
+  },
+  "alerts": [
+    {
+      "severity": "medium",
+      "label": "과열주의",
+      "detail": "RSI 78.23로 추격매수보다 보호 판단이 우선입니다.",
+      "tone": "amber"
+    }
+  ],
+  "quickFactors": [
+    "등락 0%",
+    "RSI 78.23",
+    "거래량 0배",
+    "손익 17.43%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "NAVER_FETCH_FAILED"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {}
+}

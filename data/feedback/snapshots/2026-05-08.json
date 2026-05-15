@@ -1,0 +1,451 @@
+{
+  "date": "2026-05-08",
+  "runDate": "2026-05-08",
+  "effectiveMarketDate": "2026-05-08",
+  "runId": "2026-05-08-070312",
+  "generatedAt": "2026-05-08T08:01:29.910Z",
+  "regime": "BULL",
+  "regimeConfidence": 0.68,
+  "portfolioScore": 46,
+  "marketClose": 7424.52,
+  "positions": [
+    {
+      "code": "0162Z0",
+      "name": "RISE 삼성전자SK하이닉스채권혼합50",
+      "accountKey": "ISA",
+      "category": "반도체/채권혼합",
+      "marketValue": 1288500,
+      "actionScore": 59,
+      "signal": "HOLD",
+      "conviction": "MEDIUM",
+      "factorScore": 50,
+      "techScore": 62,
+      "reportScore": null,
+      "reportImpactCount": 0,
+      "reportSources": [],
+      "scoreDecomposition": null,
+      "factors": {
+        "momentum": 0.3622,
+        "research": -0.0797,
+        "income": -0.3933,
+        "macroFit": -0.1998
+      },
+      "closePrice": 12885,
+      "rsi": 80.87
+    },
+    {
+      "code": "161510",
+      "name": "PLUS 고배당주",
+      "accountKey": "ISA",
+      "category": "배당/커버드콜",
+      "marketValue": 610280,
+      "actionScore": 60,
+      "signal": "HOLD",
+      "conviction": "LOW",
+      "factorScore": 60,
+      "techScore": 100,
+      "reportScore": null,
+      "reportImpactCount": 0,
+      "reportSources": [],
+      "scoreDecomposition": null,
+      "factors": {
+        "momentum": -0.4502,
+        "research": -0.0797,
+        "income": 3.5,
+        "macroFit": 1.9143
+      },
+      "closePrice": 27740,
+      "rsi": 60.06
+    },
+    {
+      "code": "385510",
+      "name": "KODEX 신재생에너지액티브",
+      "accountKey": "ISA",
+      "category": "신재생에너지",
+      "marketValue": 774540,
+      "actionScore": 62,
+      "signal": "HOLD",
+      "conviction": "MEDIUM",
+      "factorScore": 51,
+      "techScore": 85,
+      "reportScore": 37,
+      "reportImpactCount": 2,
+      "reportSources": [
+        "iM증권",
+        "strategy:iM증권",
+        "IBK투자증권",
+        "macro:IBK투자증권"
+      ],
+      "scoreDecomposition": null,
+      "factors": {
+        "momentum": 0.9756,
+        "research": -0.7881,
+        "income": -0.3933,
+        "macroFit": 0.0916
+      },
+      "closePrice": 59580,
+      "rsi": 75.63
+    },
+    {
+      "code": "411060",
+      "name": "ACE KRX금현물",
+      "accountKey": "ISA",
+      "category": "금",
+      "marketValue": 2149350,
+      "actionScore": 58,
+      "signal": "HOLD",
+      "conviction": "LOW",
+      "factorScore": 44,
+      "techScore": 24,
+      "reportScore": null,
+      "reportImpactCount": 0,
+      "reportSources": [],
+      "scoreDecomposition": null,
+      "factors": {
+        "momentum": -1.4278,
+        "research": -0.0797,
+        "income": -0.3933,
+        "macroFit": 0.7535
+      },
+      "closePrice": 31150,
+      "rsi": 49.5
+    },
+    {
+      "code": "475300",
+      "name": "SOL 반도체전공정",
+      "accountKey": "ISA",
+      "category": "반도체",
+      "marketValue": 2054780,
+      "actionScore": 66,
+      "signal": "HOLD",
+      "conviction": "MEDIUM",
+      "factorScore": 52,
+      "techScore": 95,
+      "reportScore": 58,
+      "reportImpactCount": 2,
+      "reportSources": [
+        "IBK투자증권",
+        "industry:IBK투자증권",
+        "키움증권",
+        "macro:키움증권"
+      ],
+      "scoreDecomposition": null,
+      "factors": {
+        "momentum": 0.5467,
+        "research": 0.3542,
+        "income": -0.3933,
+        "macroFit": -0.6342
+      },
+      "closePrice": 22580,
+      "rsi": 69.6
+    },
+    {
+      "code": "487240",
+      "name": "KODEX AI전력핵심설비",
+      "accountKey": "ISA",
+      "category": "전력기기",
+      "marketValue": 191055,
+      "actionScore": 65,
+      "signal": "HOLD",
+      "conviction": "MEDIUM",
+      "factorScore": 54,
+      "techScore": 85,
+      "reportScore": 44,
+      "reportImpactCount": 4,
+      "reportSources": [
+        "IBK투자증권",
+        "industry:IBK투자증권",
+        "iM증권",
+        "strategy:iM증권",
+        "키움증권",
+        "strategy:키움증권"
+      ],
+      "scoreDecomposition": null,
+      "factors": {
+        "momentum": 1.232,
+        "research": -0.615,
+        "income": -0.1686,
+        "macroFit": 0.4223
+      },
+      "closePrice": 62020,
+      "rsi": 90.84
+    },
+    {
+      "code": "0162Z0",
+      "name": "RISE 삼성전자SK하이닉스채권혼합50",
+      "accountKey": "PENSION",
+      "category": "반도체/채권혼합",
+      "marketValue": 1546200,
+      "actionScore": 59,
+      "signal": "HOLD",
+      "conviction": "MEDIUM",
+      "factorScore": 48,
+      "techScore": 62,
+      "reportScore": null,
+      "reportImpactCount": 0,
+      "reportSources": [],
+      "scoreDecomposition": null,
+      "factors": {
+        "momentum": 0.3622,
+        "research": -0.0797,
+        "income": -0.3933,
+        "macroFit": -0.8492
+      },
+      "closePrice": 12885,
+      "rsi": 80.87
+    },
+    {
+      "code": "360750",
+      "name": "TIGER 미국S&P500",
+      "accountKey": "PENSION",
+      "category": "S&P500",
+      "marketValue": 2252880,
+      "actionScore": 55,
+      "signal": "WATCH",
+      "conviction": "MEDIUM",
+      "factorScore": 52,
+      "techScore": 85,
+      "reportScore": 44,
+      "reportImpactCount": 5,
+      "reportSources": [
+        "iM증권",
+        "strategy:iM증권",
+        "키움증권",
+        "strategy:키움증권",
+        "IBK투자증권",
+        "industry:IBK투자증권",
+        "증권사 애널 크롤러🇰🇷",
+        "marketvoice:증권사 애널 크롤러🇰🇷"
+      ],
+      "scoreDecomposition": null,
+      "factors": {
+        "momentum": -0.054,
+        "research": -0.4213,
+        "income": 0.3371,
+        "macroFit": 1.1078
+      },
+      "closePrice": 26675,
+      "rsi": 81.51
+    },
+    {
+      "code": "379810",
+      "name": "KODEX 미국나스닥100",
+      "accountKey": "PENSION",
+      "category": "나스닥100",
+      "marketValue": 839250,
+      "actionScore": 62,
+      "signal": "HOLD",
+      "conviction": "MEDIUM",
+      "factorScore": 56,
+      "techScore": 85,
+      "reportScore": null,
+      "reportImpactCount": 0,
+      "reportSources": [],
+      "scoreDecomposition": null,
+      "factors": {
+        "momentum": 0.508,
+        "research": -0.0797,
+        "income": -0.0562,
+        "macroFit": 1.399
+      },
+      "closePrice": 27975,
+      "rsi": 88.35
+    },
+    {
+      "code": "469150",
+      "name": "ACE AI반도체TOP3+",
+      "accountKey": "PENSION",
+      "category": "AI반도체",
+      "marketValue": 819600,
+      "actionScore": 67,
+      "signal": "HOLD",
+      "conviction": "MEDIUM",
+      "factorScore": 54,
+      "techScore": 85,
+      "reportScore": null,
+      "reportImpactCount": 0,
+      "reportSources": [],
+      "scoreDecomposition": null,
+      "factors": {
+        "momentum": 1.1379,
+        "research": -0.0797,
+        "income": -0.3933,
+        "macroFit": -0.2008
+      },
+      "closePrice": 68300,
+      "rsi": 83.17
+    },
+    {
+      "code": "012450",
+      "name": "한화에어로스페이스",
+      "accountKey": "KIS_MAIN",
+      "category": "방산",
+      "marketValue": 1307000,
+      "actionScore": 35,
+      "signal": "REDUCE",
+      "conviction": "HIGH",
+      "factorScore": 51,
+      "techScore": 46,
+      "reportScore": 93,
+      "reportImpactCount": 1,
+      "reportSources": [
+        "iM증권",
+        "stock:iM증권"
+      ],
+      "scoreDecomposition": null,
+      "factors": {
+        "momentum": -1.9818,
+        "research": 3.4598,
+        "income": -0.1686,
+        "macroFit": -1.3141
+      },
+      "closePrice": 1307000,
+      "rsi": 39.5
+    },
+    {
+      "code": "064350",
+      "name": "현대로템",
+      "accountKey": "KIS_MAIN",
+      "category": "방산",
+      "marketValue": 223000,
+      "actionScore": 35,
+      "signal": "REDUCE",
+      "conviction": "LOW",
+      "factorScore": 41,
+      "techScore": 64,
+      "reportScore": 43,
+      "reportImpactCount": 1,
+      "reportSources": [
+        "키움증권",
+        "strategy:키움증권"
+      ],
+      "scoreDecomposition": null,
+      "factors": {
+        "momentum": -0.6907,
+        "research": -0.485,
+        "income": -0.1686,
+        "macroFit": -1.3141
+      },
+      "closePrice": 225000,
+      "rsi": 47.42
+    },
+    {
+      "code": "138910",
+      "name": "KODEX 구리선물(H)",
+      "accountKey": "KIS_MAIN",
+      "category": "기타",
+      "marketValue": 291750,
+      "actionScore": 53,
+      "signal": "WATCH",
+      "conviction": "MEDIUM",
+      "factorScore": 45,
+      "techScore": 90,
+      "reportScore": 43,
+      "reportImpactCount": 4,
+      "reportSources": [
+        "KB증권",
+        "strategy:KB증권",
+        "iM증권",
+        "strategy:iM증권",
+        "키움증권",
+        "strategy:키움증권"
+      ],
+      "scoreDecomposition": null,
+      "factors": {
+        "momentum": -0.607,
+        "research": -0.4615,
+        "income": -0.3933,
+        "macroFit": 0.1052
+      },
+      "closePrice": 9725,
+      "rsi": 67.01
+    },
+    {
+      "code": "449450",
+      "name": "PLUS K방산",
+      "accountKey": "KIS_MAIN",
+      "category": "방산",
+      "marketValue": 733800,
+      "actionScore": 65,
+      "signal": "HOLD",
+      "conviction": "LOW",
+      "factorScore": 39,
+      "techScore": 42,
+      "reportScore": 43,
+      "reportImpactCount": 1,
+      "reportSources": [
+        "키움증권",
+        "strategy:키움증권"
+      ],
+      "scoreDecomposition": null,
+      "factors": {
+        "momentum": -1.0509,
+        "research": -0.485,
+        "income": -0.1686,
+        "macroFit": -1.3141
+      },
+      "closePrice": 73370,
+      "rsi": 40.9
+    },
+    {
+      "code": "469150",
+      "name": "ACE AI반도체TOP3+",
+      "accountKey": "KIS_MAIN",
+      "category": "AI반도체",
+      "marketValue": 341500,
+      "actionScore": 67,
+      "signal": "HOLD",
+      "conviction": "MEDIUM",
+      "factorScore": 55,
+      "techScore": 85,
+      "reportScore": null,
+      "reportImpactCount": 0,
+      "reportSources": [],
+      "scoreDecomposition": null,
+      "factors": {
+        "momentum": 1.1379,
+        "research": -0.0797,
+        "income": -0.3933,
+        "macroFit": 0.0326
+      },
+      "closePrice": 68300,
+      "rsi": 83.17
+    }
+  ],
+  "accountSummaries": [
+    {
+      "key": "ISA",
+      "totalScore": 44,
+      "stage2Bias": "defensive",
+      "deployBudget": 46264,
+      "buysCount": 0,
+      "holdsCount": 6,
+      "trimsCount": 0,
+      "watchesCount": 0,
+      "scoreDecomposition": null
+    },
+    {
+      "key": "PENSION",
+      "totalScore": 59,
+      "stage2Bias": "selective_add",
+      "deployBudget": 26317,
+      "buysCount": 0,
+      "holdsCount": 4,
+      "trimsCount": 0,
+      "watchesCount": 0,
+      "scoreDecomposition": null
+    },
+    {
+      "key": "KIS_MAIN",
+      "totalScore": 29,
+      "stage2Bias": "aggressive_add",
+      "deployBudget": 66337,
+      "buysCount": 0,
+      "holdsCount": 3,
+      "trimsCount": 2,
+      "watchesCount": 0,
+      "scoreDecomposition": null
+    }
+  ],
+  "stage2Source": null
+}

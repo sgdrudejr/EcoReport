@@ -288,8 +288,24 @@ fi
 echo "== 08. Candidate Matching =="
 node scripts/build-stage2-5-etf-candidates.js "${STAGE2_COMMON_ARGS[@]}"
 
-echo "== 09. Impact Mapping =="
+echo "== 09a. MarketVoice External Enrichment =="
+if ! node scripts/collect-marketvoice-news.js "${STAGE2_COMMON_ARGS[@]}"; then
+  echo "WARN: 머니토링/MarketVoice 외부 이슈 수집 실패. 기존/없음 데이터로 09. Impact Mapping을 계속 진행합니다." >&2
+fi
+
+echo "== 09b. Impact Mapping =="
 node scripts/build-impact-map.js "${STAGE2_COMMON_ARGS[@]}"
+
+echo "== 09c. Technical Repair =="
+node scripts/calc-technicals.js --date "$DATE"
+
+echo "== 09d. RSS News Broad Scan =="
+if ! node scripts/fetch-rss-news.js --date "$DATE"; then
+  echo "WARN: RSS 뉴스 수집 실패. 리포트/MarketVoice/KIS ETF/기술지표만으로 교차소스 합의도를 계산합니다." >&2
+fi
+
+echo "== 09e. Cross-source Decision Features =="
+npm run features:consensus -- "${STAGE2_COMMON_ARGS[@]}"
 
 echo "== Shadow Pipeline: 00~03 =="
 bash scripts/shadow/run-shadow-pipeline.sh "${STAGE2_COMMON_ARGS[@]}"

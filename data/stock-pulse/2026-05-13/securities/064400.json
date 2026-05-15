@@ -1,0 +1,80 @@
+{
+  "id": "stock-pulse:064400",
+  "code": "064400",
+  "name": "LG씨엔에스",
+  "category": "기타",
+  "type": "unknown",
+  "verdict": "보유유지",
+  "urgency": "낮음",
+  "pulseScore": 44,
+  "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNot": "같은 테마 중복 확대 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "marketValue": 726000,
+      "profitRate": 4.91,
+      "decision": null
+    },
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "marketValue": 508200,
+      "profitRate": -0.54,
+      "decision": null
+    }
+  ],
+  "position": {
+    "marketValue": 1234200,
+    "purchaseValue": 1203000,
+    "profitLoss": 31200,
+    "profitRate": 2.59,
+    "quantity": 17
+  },
+  "market": {
+    "price": 71900,
+    "previousClose": 70500,
+    "changePct": 0,
+    "volume": 6601390,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 100,
+    "signal": "STRONG_BUY",
+    "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+    "rsi": 64.94,
+    "ma20": 66850,
+    "ma60": 65671.6667,
+    "recentHighDistancePct": -6.5,
+    "rsVsBenchmark": -40.46,
+    "alerts": []
+  },
+  "fundamental": {
+    "score": 20,
+    "label": "수집필요",
+    "metrics": null,
+    "etf": null
+  },
+  "alerts": [],
+  "quickFactors": [
+    "등락 0%",
+    "RSI 64.94",
+    "거래량 0배",
+    "손익 2.59%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "NAVER_FETCH_FAILED"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {}
+}

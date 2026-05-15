@@ -1,0 +1,102 @@
+{
+  "id": "stock-pulse:411060",
+  "code": "411060",
+  "name": "ACE KRX금현물",
+  "category": "금",
+  "type": "etf",
+  "verdict": "자료보강",
+  "urgency": "중간",
+  "pulseScore": 33,
+  "oneLine": "자료보강: 공시, 뉴스, 직접 리포트가 보강되기 전까지 결론 강도를 낮춥니다.",
+  "doNow": "공시, 뉴스, 직접 리포트가 보강되기 전까지 결론 강도를 낮춥니다.",
+  "doNot": "근거 부족 상태의 신규매수 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "marketValue": 2149350,
+      "profitRate": 0.29,
+      "decision": "외부관찰"
+    }
+  ],
+  "position": {
+    "marketValue": 2149350,
+    "purchaseValue": 0,
+    "profitLoss": 6285,
+    "profitRate": 0.29,
+    "quantity": 69
+  },
+  "market": {
+    "price": 31150,
+    "previousClose": 30845,
+    "changePct": 0.99,
+    "volume": 1643393,
+    "volumeRatio": 0,
+    "nav": 31169.12,
+    "navGapPct": -0.061,
+    "rank": 59
+  },
+  "technical": {
+    "score": 24,
+    "signal": "REDUCE",
+    "reason": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 둔화",
+    "rsi": 49.5,
+    "ma20": 31177.75,
+    "ma60": 32109.5833,
+    "recentHighDistancePct": -3.2,
+    "rsVsBenchmark": -50.68,
+    "alerts": []
+  },
+  "fundamental": {
+    "score": 72,
+    "label": "수급양호",
+    "metrics": null,
+    "etf": {
+      "rank": 59,
+      "navGapPct": -0.061,
+      "concentrationTop5Pct": 0,
+      "topHoldings": []
+    }
+  },
+  "alerts": [
+    {
+      "severity": "medium",
+      "label": "기술약화",
+      "detail": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 둔화",
+      "tone": "amber"
+    },
+    {
+      "severity": "medium",
+      "label": "근거보강",
+      "detail": "NO_CLEAN_REPORT_LINK",
+      "tone": "amber"
+    }
+  ],
+  "quickFactors": [
+    "등락 0.99%",
+    "RSI 49.5",
+    "거래량 0배",
+    "손익 0.29%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "ETF_COMPOSITION_MISSING"
+  ],
+  "riskFlags": [
+    "NO_CLEAN_REPORT_LINK"
+  ],
+  "sourceSupport": {
+    "reports": 0.464,
+    "stockeasy": 0,
+    "marketvoice": 0,
+    "technical": 0.395,
+    "kisEtf": 0.158,
+    "news": 0,
+    "macro": 0,
+    "llm": 0
+  }
+}

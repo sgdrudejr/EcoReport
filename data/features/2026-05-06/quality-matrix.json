@@ -1,0 +1,14 @@
+{
+  "date": "2026-05-06",
+  "generatedAt": "2026-05-06T08:08:13.618Z",
+  "quality": {
+    "overallStatus": "ok",
+    "flags": [
+      "low_coverage",
+      "short_history",
+      "low_theme_mapping",
+      "macro_only",
+      "unclear_direction"
+    ]
+  }
+}

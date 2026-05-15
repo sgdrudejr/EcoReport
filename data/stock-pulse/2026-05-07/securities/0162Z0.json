@@ -1,0 +1,96 @@
+{
+  "id": "stock-pulse:0162Z0",
+  "code": "0162Z0",
+  "name": "RISE 삼성전자SK하이닉스채권혼합50",
+  "category": "반도체/채권혼합",
+  "type": "etf",
+  "verdict": "보유유지",
+  "urgency": "중간",
+  "pulseScore": 48,
+  "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNot": "같은 테마 중복 확대 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "marketValue": 1256500,
+      "profitRate": 12.18,
+      "decision": null
+    },
+    {
+      "accountKey": "PENSION",
+      "accountLabel": "한투 연금저축",
+      "marketValue": 1507800,
+      "profitRate": 10.6,
+      "decision": null
+    }
+  ],
+  "position": {
+    "marketValue": 2764300,
+    "purchaseValue": 2483200,
+    "profitLoss": 281100,
+    "profitRate": 11.32,
+    "quantity": 220
+  },
+  "market": {
+    "price": 12565,
+    "previousClose": 12655,
+    "changePct": -0.71,
+    "volume": 9068784,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 62,
+    "signal": "BUY",
+    "reason": "주가가 20일선 위에서 유지 중, MACD 모멘텀이 우호적, RSI 기준 단기 과열 구간",
+    "rsi": 76.38,
+    "ma20": 11234,
+    "ma60": 0,
+    "recentHighDistancePct": -2.33,
+    "rsVsBenchmark": 0,
+    "alerts": [
+      "RSI 과매수 구간 진입",
+      "볼린저밴드 상단 이탈"
+    ]
+  },
+  "fundamental": {
+    "score": 88,
+    "label": "수급강함",
+    "metrics": null,
+    "etf": {
+      "rank": null,
+      "navGapPct": null,
+      "concentrationTop5Pct": 0,
+      "topHoldings": []
+    }
+  },
+  "alerts": [
+    {
+      "severity": "medium",
+      "label": "과열주의",
+      "detail": "RSI 76.38로 추격매수보다 보호 판단이 우선입니다.",
+      "tone": "amber"
+    }
+  ],
+  "quickFactors": [
+    "등락 -0.71%",
+    "RSI 76.38",
+    "거래량 0배",
+    "손익 11.32%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "ETF_COMPOSITION_MISSING",
+    "ETF_NAV_MISSING"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {}
+}

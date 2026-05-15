@@ -1,6 +1,6 @@
 {
   "version": "1.2",
-  "last_updated": "2026-04-27",
+  "last_updated": "2026-04-30",
   "_comment": "Single Source of Truth for all security metadata. Edit here — pipeline-utils.js auto-generates CATEGORY_BY_CODE, HOLDING_TOPIC_HINTS, PREFERRED_LABEL_BY_CATEGORY from this file.",
   "securities": [
     {
@@ -94,6 +94,34 @@
         ],
         "macro": ["배당", "인컴", "커버드콜", "다우존스"],
         "theme": ["배당", "커버드콜", "다우", "프리미엄"]
+      },
+      "thematic_triggers": {
+        "sectors": [],
+        "themes": ["금리/매크로"]
+      }
+    },
+    {
+      "code": "161510",
+      "name": "PLUS 고배당주",
+      "type": "etf",
+      "bucket": "core_etf",
+      "asset_class": "equity",
+      "region": "KR",
+      "categories": {
+        "default": "배당/커버드콜",
+        "ISA": "배당/커버드콜"
+      },
+      "keywords": {
+        "topic_hints": ["고배당", "배당", "인컴", "저변동성", "국내 배당주"],
+        "aliases": [
+          "plus 고배당주",
+          "plus고배당주",
+          "고배당주",
+          "plus high dividend",
+          "arirang 고배당주"
+        ],
+        "macro": ["배당", "인컴", "고배당", "금리"],
+        "theme": ["배당", "고배당", "인컴", "방어"]
       },
       "thematic_triggers": {
         "sectors": [],
@@ -227,6 +255,35 @@
       "thematic_triggers": {
         "sectors": ["전력기기"],
         "themes": ["전력 인프라", "AI 인프라", "데이터센터 전력"]
+      }
+    },
+    {
+      "code": "456600",
+      "name": "TIME 글로벌AI인공지능액티브",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "asset_class": "equity",
+      "region": "GLOBAL",
+      "categories": {
+        "default": "AI반도체",
+        "PENSION": "AI반도체",
+        "KIS_MAIN": "AI반도체"
+      },
+      "keywords": {
+        "topic_hints": ["ai", "인공지능", "글로벌 ai", "데이터센터", "클라우드", "로봇"],
+        "aliases": [
+          "time 글로벌ai인공지능액티브",
+          "time 글로벌 ai 인공지능 액티브",
+          "글로벌ai인공지능액티브",
+          "글로벌 ai 인공지능 액티브",
+          "time global ai active"
+        ],
+        "macro": ["AI", "인공지능", "미국 기술주", "글로벌 기술주"],
+        "theme": ["AI", "인공지능", "AI 인프라", "데이터센터", "클라우드", "로봇"]
+      },
+      "thematic_triggers": {
+        "sectors": ["반도체", "전력기기"],
+        "themes": ["AI 인프라", "AI 반도체", "미국 기술주"]
       }
     },
     {
@@ -371,6 +428,33 @@
       }
     },
     {
+      "code": "498400",
+      "name": "KODEX 200타겟위클리커버드콜",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "asset_class": "equity",
+      "region": "KR",
+      "categories": {
+        "default": "배당/커버드콜",
+        "ISA": "배당/커버드콜"
+      },
+      "keywords": {
+        "topic_hints": ["커버드콜", "위클리커버드콜", "코스피200", "인컴", "분배금"],
+        "aliases": [
+          "kodex 200타겟위클리커버드콜",
+          "kodex 200 타겟 위클리 커버드콜",
+          "200타겟위클리커버드콜",
+          "코덱스 200타겟위클리커버드콜"
+        ],
+        "macro": ["코스피200", "국내증시", "커버드콜", "인컴"],
+        "theme": ["커버드콜", "분배금", "국내 인덱스", "변동성 완충"]
+      },
+      "thematic_triggers": {
+        "sectors": ["국내지수"],
+        "themes": ["배당/인컴", "커버드콜", "국내 인덱스"]
+      }
+    },
+    {
       "code": "385510",
       "name": "KODEX 신재생에너지액티브",
       "type": "etf",
@@ -412,6 +496,50 @@
       "thematic_triggers": {
         "sectors": ["방산"],
         "themes": ["방산"]
+      }
+    },
+    {
+      "code": "475300",
+      "name": "SOL 반도체전공정",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "asset_class": "equity",
+      "region": "KR",
+      "categories": {
+        "default": "반도체",
+        "ISA": "반도체"
+      },
+      "keywords": {
+        "topic_hints": ["반도체 전공정", "전공정", "소부장", "반도체 장비", "반도체 소재"],
+        "aliases": ["sol 반도체전공정", "sol 반도체 전공정", "반도체전공정 etf"],
+        "macro": ["반도체", "소부장", "전공정"],
+        "theme": ["반도체", "전공정", "소부장", "장비"]
+      },
+      "thematic_triggers": {
+        "sectors": ["반도체"],
+        "themes": ["AI 반도체", "반도체 소부장", "전공정"]
+      }
+    },
+    {
+      "code": "496080",
+      "name": "TIGER 코리아밸류업",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "asset_class": "equity",
+      "region": "KR",
+      "categories": {
+        "default": "국내인덱스",
+        "ISA": "국내인덱스"
+      },
+      "keywords": {
+        "topic_hints": ["밸류업", "주주환원", "저pbr", "국내지수", "기업가치 제고"],
+        "aliases": ["tiger 코리아밸류업", "tiger 코리아 밸류업", "코리아밸류업 etf"],
+        "macro": ["밸류업", "주주환원", "국내증시"],
+        "theme": ["밸류업", "주주환원", "국내 인덱스"]
+      },
+      "thematic_triggers": {
+        "sectors": ["국내지수"],
+        "themes": ["밸류업", "주주환원", "국내 인덱스"]
       }
     },
     {
@@ -649,6 +777,50 @@
       "thematic_triggers": {
         "sectors": ["조선", "전력기기"],
         "themes": ["전력 인프라", "AI 인프라"]
+      }
+    },
+    {
+      "code": "012450",
+      "name": "한화에어로스페이스",
+      "type": "stock",
+      "bucket": "individual_stock",
+      "asset_class": "equity",
+      "region": "KR",
+      "categories": {
+        "default": "방산",
+        "KIS_MAIN": "방산"
+      },
+      "keywords": {
+        "topic_hints": ["한화에어로스페이스", "한화에어로", "방산", "항공우주", "엔진"],
+        "aliases": ["한화에어로스페이스", "한화에어로"],
+        "macro": [],
+        "theme": ["방산", "항공우주", "엔진", "군수"]
+      },
+      "thematic_triggers": {
+        "sectors": ["방산"],
+        "themes": ["방산", "항공우주"]
+      }
+    },
+    {
+      "code": "034020",
+      "name": "두산에너빌리티",
+      "type": "stock",
+      "bucket": "individual_stock",
+      "asset_class": "equity",
+      "region": "KR",
+      "categories": {
+        "default": "원자력",
+        "KIS_MAIN": "원자력"
+      },
+      "keywords": {
+        "topic_hints": ["두산에너빌리티", "두산중공업", "원전", "원자력", "smr", "가스터빈"],
+        "aliases": ["두산에너빌리티", "두산중공업"],
+        "macro": [],
+        "theme": ["원자력", "원전", "SMR", "전력", "가스터빈"]
+      },
+      "thematic_triggers": {
+        "sectors": ["원자력", "전력 인프라"],
+        "themes": ["원자력", "AI 전력", "전력 인프라"]
       }
     },
     {

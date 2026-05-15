@@ -1,0 +1,83 @@
+{
+  "id": "stock-pulse:379810",
+  "code": "379810",
+  "name": "KODEX 미국나스닥100",
+  "category": "나스닥100",
+  "type": "etf",
+  "verdict": "보유유지",
+  "urgency": "높음",
+  "pulseScore": 27,
+  "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNot": "같은 테마 중복 확대 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "PENSION",
+      "accountLabel": "한투 연금저축",
+      "marketValue": 1731900,
+      "profitRate": 5.61,
+      "decision": null
+    }
+  ],
+  "position": {
+    "marketValue": 1731900,
+    "purchaseValue": 1639800,
+    "profitLoss": 92100,
+    "profitRate": 5.62,
+    "quantity": 60
+  },
+  "market": {
+    "price": 28735,
+    "previousClose": 28535,
+    "changePct": 0,
+    "volume": 4942336,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 80,
+    "signal": "STRONG_BUY",
+    "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+    "rsi": 91.02,
+    "ma20": 26570.25,
+    "ma60": 24914.3333,
+    "recentHighDistancePct": -0.23,
+    "rsVsBenchmark": -22.93,
+    "alerts": [
+      "RSI 과매수 구간 진입",
+      "볼린저밴드 상단 이탈"
+    ]
+  },
+  "fundamental": {
+    "score": 20,
+    "label": "수집필요",
+    "metrics": null,
+    "etf": null
+  },
+  "alerts": [
+    {
+      "severity": "high",
+      "label": "과열",
+      "detail": "RSI 91.02 과열권입니다.",
+      "tone": "red"
+    }
+  ],
+  "quickFactors": [
+    "등락 0%",
+    "RSI 91.02",
+    "거래량 0배",
+    "손익 5.62%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "NAVER_FETCH_FAILED"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {}
+}

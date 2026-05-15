@@ -1,0 +1,118 @@
+{
+  "id": "stock-pulse:475300",
+  "code": "475300",
+  "name": "SOL 반도체전공정",
+  "category": "반도체",
+  "type": "etf",
+  "verdict": "보유유지",
+  "urgency": "낮음",
+  "pulseScore": 72,
+  "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNot": "같은 테마 중복 확대 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "marketValue": 1992900,
+      "profitRate": 3.21,
+      "decision": "보유유지"
+    }
+  ],
+  "position": {
+    "marketValue": 1992900,
+    "purchaseValue": 0,
+    "profitLoss": 62080,
+    "profitRate": 3.21,
+    "quantity": 91
+  },
+  "market": {
+    "price": 21935,
+    "previousClose": 21590,
+    "changePct": 1.6,
+    "volume": 572260,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 95,
+    "signal": "STRONG_BUY",
+    "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+    "rsi": 66.57,
+    "ma20": 19937.75,
+    "ma60": 18345.25,
+    "recentHighDistancePct": -2.23,
+    "rsVsBenchmark": -7.45,
+    "alerts": []
+  },
+  "fundamental": {
+    "score": 70,
+    "label": "수급양호",
+    "metrics": null,
+    "etf": {
+      "rank": null,
+      "navGapPct": null,
+      "concentrationTop5Pct": 66.65,
+      "topHoldings": [
+        {
+          "code": "036930",
+          "name": "주성엔지니어링",
+          "weightPct": 18.52,
+          "changePct": -0.47
+        },
+        {
+          "code": "240810",
+          "name": "원익IPS",
+          "weightPct": 17.04,
+          "changePct": 2.69
+        },
+        {
+          "code": "403870",
+          "name": "HPSP",
+          "weightPct": 11.48,
+          "changePct": 2.94
+        },
+        {
+          "code": "014680",
+          "name": "한솔케미칼",
+          "weightPct": 11.03,
+          "changePct": 1.57
+        },
+        {
+          "code": "005290",
+          "name": "동진쎄미켐",
+          "weightPct": 8.58,
+          "changePct": -0.17
+        }
+      ]
+    }
+  },
+  "alerts": [],
+  "quickFactors": [
+    "등락 1.6%",
+    "RSI 66.57",
+    "거래량 0배",
+    "손익 3.21%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "ETF_NAV_MISSING"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {
+    "reports": 0.464,
+    "stockeasy": 0,
+    "marketvoice": 0,
+    "technical": 0,
+    "kisEtf": 0,
+    "news": 0,
+    "macro": 0,
+    "llm": 0
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "version": "stockpilot-proof.v0.2",
+  "date": "2026-05-13",
+  "generatedAt": "2026-05-13T01:10:41.983Z",
+  "summary": {
+    "proofScore": 0,
+    "tone": "red",
+    "verdict": "방향성 반박",
+    "direction": "중립 관찰과 계좌별 근거 보강",
+    "accountCount": 0,
+    "strongAccountCount": 0,
+    "weakAccountCount": 0
+  },
+  "market": {
+    "stance": "",
+    "mode": null,
+    "headline": "Qwen 계좌전략 생성 실패",
+    "nextAction": "계좌별 실행 조건을 먼저 확인합니다.",
+    "externalSignal": {
+      "short": null,
+      "long": null,
+      "kospi": null,
+      "kosdaq": null,
+      "strategyBias": null,
+      "riskOnCount": 0,
+      "source": "disabled"
+    },
+    "internalSignal": {
+      "source": "ecoreport",
+      "topThemeSupport": 0,
+      "riskOn": false
+    }
+  },
+  "radar": {
+    "label": "ecoreport_independent",
+    "stockeasyDependent": false,
+    "sourceCounts": {},
+    "items": []
+  },
+  "stockeasySectors": [],
+  "accounts": [],
+  "sourceStatus": {
+    "dashboardView": true,
+    "portfolioAccounts": 3,
+    "stockeasySnapshot": false,
+    "stockeasyOptional": true,
+    "independentMode": true,
+    "stage4AccountPlans": 0,
+    "rotationWatch": false,
+    "stockPulse": true,
+    "decisionFeatures": false,
+    "normalizedKisEtf": 0,
+    "normalizedTechnical": 0
+  },
+  "artifacts": {
+    "dashboardView": "data/dashboard/2026-05-13-dashboard-view.json",
+    "stockeasySnapshot": "data/external/stockeasy/2026-05-13/snapshot.json",
+    "decisionFeatures": "data/features/2026-05-13/decision-features.json",
+    "normalizedKisEtf": "data/normalized/2026-05-13/kis_etf.normalized.json",
+    "normalizedTechnical": "data/normalized/2026-05-13/technical.normalized.json",
+    "portfolio": "data/portfolio/latest.json",
+    "stage4": "data/analysis-state/2026-05-13/stage4-execution-plan.json",
+    "rotationWatch": "data/analysis-state/2026-05-13/rotation-watch.json",
+    "stockPulse": "data/stock-pulse/2026-05-13/stock-pulse.json"
+  },
+  "disclaimer": "Independent account-direction proof built from owned/public observations. StockEasy is optional; private APIs, protected UI, and protected content are not required."
+}

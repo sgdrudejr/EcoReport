@@ -1,0 +1,95 @@
+{
+  "id": "stock-pulse:064350",
+  "code": "064350",
+  "name": "현대로템",
+  "category": "방산",
+  "type": "stock",
+  "verdict": "보유유지",
+  "urgency": "높음",
+  "pulseScore": 51,
+  "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNot": "같은 테마 중복 확대 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "marketValue": 238000,
+      "profitRate": 14.42,
+      "decision": null
+    }
+  ],
+  "position": {
+    "marketValue": 238000,
+    "purchaseValue": 208000,
+    "profitLoss": 30000,
+    "profitRate": 14.42,
+    "quantity": 1
+  },
+  "market": {
+    "price": 240000,
+    "previousClose": 262000,
+    "changePct": -8.4,
+    "volume": 950770,
+    "volumeRatio": 0.98,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 100,
+    "signal": "STRONG_BUY",
+    "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+    "rsi": 55.01,
+    "ma20": 230150,
+    "ma60": 212488.3333,
+    "recentHighDistancePct": -14.89,
+    "rsVsBenchmark": -35.89,
+    "alerts": []
+  },
+  "fundamental": {
+    "score": 71,
+    "label": "기본양호",
+    "metrics": {
+      "per": 33.73,
+      "pbr": 8.44,
+      "eps": 7055,
+      "estimatedPer": 28,
+      "estimatedEps": 8381,
+      "dividendYield": 0.25,
+      "operatingMargin": 17.22,
+      "operatingMarginEstimate": 16.72,
+      "roe": 30.05,
+      "roeEstimate": 26.11,
+      "annualEps": 7055,
+      "previousAnnualEps": 3728,
+      "estimatedAnnualEps": 8381,
+      "epsGrowthPct": 89.24,
+      "estimatedEpsGrowthPct": 18.8
+    },
+    "etf": null
+  },
+  "alerts": [
+    {
+      "severity": "high",
+      "label": "급락",
+      "detail": "당일 -8.4% 하락으로 원인 확인이 필요합니다.",
+      "tone": "red"
+    }
+  ],
+  "quickFactors": [
+    "등락 -8.4%",
+    "RSI 55.01",
+    "거래량 0.98배",
+    "손익 14.42%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {}
+}

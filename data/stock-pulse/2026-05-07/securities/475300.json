@@ -1,0 +1,109 @@
+{
+  "id": "stock-pulse:475300",
+  "code": "475300",
+  "name": "SOL 반도체전공정",
+  "category": "반도체",
+  "type": "etf",
+  "verdict": "보유유지",
+  "urgency": "낮음",
+  "pulseScore": 59,
+  "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNot": "같은 테마 중복 확대 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "marketValue": 1994265,
+      "profitRate": 3.28,
+      "decision": null
+    }
+  ],
+  "position": {
+    "marketValue": 1994265,
+    "purchaseValue": 1930820,
+    "profitLoss": 63445,
+    "profitRate": 3.29,
+    "quantity": 91
+  },
+  "market": {
+    "price": 21915,
+    "previousClose": 22115,
+    "changePct": -0.9,
+    "volume": 310758,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 95,
+    "signal": "STRONG_BUY",
+    "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+    "rsi": 65.46,
+    "ma20": 20209.25,
+    "ma60": 18436.4167,
+    "recentHighDistancePct": -2.3,
+    "rsVsBenchmark": -11.84,
+    "alerts": []
+  },
+  "fundamental": {
+    "score": 70,
+    "label": "수급양호",
+    "metrics": null,
+    "etf": {
+      "rank": null,
+      "navGapPct": null,
+      "concentrationTop5Pct": 66.7,
+      "topHoldings": [
+        {
+          "code": "036930",
+          "name": "주성엔지니어링",
+          "weightPct": 18.19,
+          "changePct": -1.33
+        },
+        {
+          "code": "240810",
+          "name": "원익IPS",
+          "weightPct": 17.49,
+          "changePct": -1.32
+        },
+        {
+          "code": "403870",
+          "name": "HPSP",
+          "weightPct": 11.64,
+          "changePct": -4.59
+        },
+        {
+          "code": "014680",
+          "name": "한솔케미칼",
+          "weightPct": 10.99,
+          "changePct": -2.39
+        },
+        {
+          "code": "005290",
+          "name": "동진쎄미켐",
+          "weightPct": 8.39,
+          "changePct": -3.05
+        }
+      ]
+    }
+  },
+  "alerts": [],
+  "quickFactors": [
+    "등락 -0.9%",
+    "RSI 65.46",
+    "거래량 0배",
+    "손익 3.29%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "ETF_NAV_MISSING"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {}
+}

@@ -1,0 +1,117 @@
+{
+  "id": "stock-pulse:099320",
+  "code": "099320",
+  "name": "쎄트렉아이",
+  "category": "기타",
+  "type": "unknown",
+  "verdict": "손절감시",
+  "urgency": "높음",
+  "pulseScore": 2,
+  "oneLine": "손절감시: 손실 확대 원인을 확인하고 20일선 회복 실패 시 감량 기준을 먼저 봅니다.",
+  "doNow": "손실 확대 원인을 확인하고 20일선 회복 실패 시 감량 기준을 먼저 봅니다.",
+  "doNot": "손절 기준 없이 물타기 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "marketValue": 523800,
+      "profitRate": -3.78,
+      "decision": "감량검토"
+    }
+  ],
+  "position": {
+    "marketValue": 523800,
+    "purchaseValue": 0,
+    "profitLoss": -20600,
+    "profitRate": -3.78,
+    "quantity": 3
+  },
+  "market": {
+    "price": 161400,
+    "previousClose": 179000,
+    "changePct": -9.83,
+    "volume": 203657,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 24,
+    "signal": "REDUCE",
+    "reason": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 둔화",
+    "rsi": 44.13,
+    "ma20": 175130,
+    "ma60": 177710,
+    "recentHighDistancePct": -17.15,
+    "rsVsBenchmark": -65.13,
+    "alerts": []
+  },
+  "fundamental": {
+    "score": 20,
+    "label": "수집필요",
+    "metrics": null,
+    "etf": null
+  },
+  "alerts": [
+    {
+      "severity": "high",
+      "label": "급락",
+      "detail": "당일 -9.83% 하락으로 원인 확인이 필요합니다.",
+      "tone": "red"
+    },
+    {
+      "severity": "medium",
+      "label": "기술약화",
+      "detail": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 둔화",
+      "tone": "amber"
+    },
+    {
+      "severity": "medium",
+      "label": "근거보강",
+      "detail": "OFF_REPORT_HOLDING",
+      "tone": "amber"
+    },
+    {
+      "severity": "low",
+      "label": "AI언급",
+      "detail": "손절감시: 손절 조건 발동 / 손익 -3.8% / 매력 24 점",
+      "tone": "blue"
+    }
+  ],
+  "quickFactors": [
+    "등락 -9.83%",
+    "RSI 44.13",
+    "거래량 0배",
+    "손익 -3.78%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [
+    {
+      "bucket": "sellWatch",
+      "action": "손절감시",
+      "reason": "손절 조건 발동 / 손익 -3.8% / 매력 24 점",
+      "trigger": "손절 라인 이탈 시 즉시 감량/매도"
+    }
+  ],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "SECURITY_TYPE_UNKNOWN"
+  ],
+  "riskFlags": [
+    "STOP_LOSS_TRIGGERED",
+    "OFF_REPORT_HOLDING"
+  ],
+  "sourceSupport": {
+    "reports": 0,
+    "stockeasy": 0,
+    "marketvoice": 0,
+    "technical": 0.395,
+    "kisEtf": 0,
+    "news": 0,
+    "macro": 0,
+    "llm": 0
+  }
+}

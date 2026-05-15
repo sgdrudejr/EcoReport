@@ -1,0 +1,125 @@
+{
+  "id": "stock-pulse:064350",
+  "code": "064350",
+  "name": "현대로템",
+  "category": "방산",
+  "type": "stock",
+  "verdict": "익절감시",
+  "urgency": "중간",
+  "pulseScore": 69,
+  "oneLine": "익절감시: 20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+  "doNow": "20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+  "doNot": "급등 구간 추격매수 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "marketValue": 263000,
+      "profitRate": 26.44,
+      "decision": "보유유지"
+    }
+  ],
+  "position": {
+    "marketValue": 263000,
+    "purchaseValue": 0,
+    "profitLoss": 55000,
+    "profitRate": 26.44,
+    "quantity": 1
+  },
+  "market": {
+    "price": 264000,
+    "previousClose": 269000,
+    "changePct": -1.86,
+    "volume": 1142934,
+    "volumeRatio": 1.17,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 99,
+    "signal": "STRONG_BUY",
+    "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+    "rsi": 71.94,
+    "ma20": 228850,
+    "ma60": 212346.6667,
+    "recentHighDistancePct": -6.38,
+    "rsVsBenchmark": -25.43,
+    "alerts": [
+      "RSI 과매수 구간 진입"
+    ]
+  },
+  "fundamental": {
+    "score": 69,
+    "label": "기본양호",
+    "metrics": {
+      "per": 37.35,
+      "pbr": 9.34,
+      "eps": 7055,
+      "estimatedPer": 31,
+      "estimatedEps": 8381,
+      "dividendYield": 0.23,
+      "operatingMargin": 17.22,
+      "operatingMarginEstimate": 16.72,
+      "roe": 30.05,
+      "roeEstimate": 26.11,
+      "annualEps": 7055,
+      "previousAnnualEps": 3728,
+      "estimatedAnnualEps": 8381,
+      "epsGrowthPct": 89.24,
+      "estimatedEpsGrowthPct": 18.8
+    },
+    "etf": null
+  },
+  "alerts": [
+    {
+      "severity": "medium",
+      "label": "과열주의",
+      "detail": "RSI 71.94로 추격매수보다 보호 판단이 우선입니다.",
+      "tone": "amber"
+    },
+    {
+      "severity": "low",
+      "label": "AI언급",
+      "detail": "보유유지: 수주 모멘텀 유지 중이지만 동일 섹터 과집중 리스크",
+      "tone": "blue"
+    }
+  ],
+  "quickFactors": [
+    "등락 -1.86%",
+    "RSI 71.94",
+    "거래량 1.17배",
+    "손익 26.44%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [
+    {
+      "bucket": "todayDo",
+      "action": "보유유지",
+      "reason": "수주 모멘텀 유지 중이지만 동일 섹터 과집중 리스크",
+      "trigger": "수주 공백 또는 모멘텀 둔화 시 감량 검토"
+    },
+    {
+      "bucket": "sellWatch",
+      "action": "보유유지",
+      "reason": "수익률 +26.4%, 매력도 68 점, 수주 모멘텀 양호",
+      "trigger": "수주 모멘텀 둔화 시 감량 검토"
+    }
+  ],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {
+    "reports": 0.464,
+    "stockeasy": 0,
+    "marketvoice": 0,
+    "technical": 0,
+    "kisEtf": 0,
+    "news": 0,
+    "macro": 0,
+    "llm": 0
+  }
+}

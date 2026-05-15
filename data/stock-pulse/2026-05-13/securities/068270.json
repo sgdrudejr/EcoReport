@@ -1,0 +1,87 @@
+{
+  "id": "stock-pulse:068270",
+  "code": "068270",
+  "name": "셀트리온",
+  "category": "기타",
+  "type": "unknown",
+  "verdict": "손절감시",
+  "urgency": "중간",
+  "pulseScore": 12,
+  "oneLine": "손절감시: 손실 확대 원인을 확인하고 20일선 회복 실패 시 감량 기준을 먼저 봅니다.",
+  "doNow": "손실 확대 원인을 확인하고 20일선 회복 실패 시 감량 기준을 먼저 봅니다.",
+  "doNot": "손절 기준 없이 물타기 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "marketValue": 569250,
+      "profitRate": -2.44,
+      "decision": null
+    },
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "marketValue": 759000,
+      "profitRate": -0.49,
+      "decision": null
+    }
+  ],
+  "position": {
+    "marketValue": 1328250,
+    "purchaseValue": 1346300,
+    "profitLoss": -18050,
+    "profitRate": -1.34,
+    "quantity": 7
+  },
+  "market": {
+    "price": 192700,
+    "previousClose": 191300,
+    "changePct": 0,
+    "volume": 1648264,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 24,
+    "signal": "REDUCE",
+    "reason": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 둔화",
+    "rsi": 41.62,
+    "ma20": 201660,
+    "ma60": 209431.6667,
+    "recentHighDistancePct": -9.1,
+    "rsVsBenchmark": -50.9,
+    "alerts": []
+  },
+  "fundamental": {
+    "score": 20,
+    "label": "수집필요",
+    "metrics": null,
+    "etf": null
+  },
+  "alerts": [
+    {
+      "severity": "medium",
+      "label": "기술약화",
+      "detail": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 둔화",
+      "tone": "amber"
+    }
+  ],
+  "quickFactors": [
+    "등락 0%",
+    "RSI 41.62",
+    "거래량 0배",
+    "손익 -1.34%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "NAVER_FETCH_FAILED"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {}
+}

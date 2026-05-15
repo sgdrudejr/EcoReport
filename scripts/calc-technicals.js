@@ -126,12 +126,70 @@ async function loadWatchlist() {
   return readJson(path.join(process.cwd(), 'config', 'watchlist.json'));
 }
 
+async function loadPortfolioLatest() {
+  try {
+    return await readJson(path.join(process.cwd(), 'data', 'portfolio', 'latest.json'));
+  } catch {
+    return { accounts: [] };
+  }
+}
+
 function flattenWatchlist(watchlist) {
   return [
     ...(watchlist.core_etf ?? []).map((item) => ({ ...item, bucket: 'core_etf', type: 'etf' })),
     ...(watchlist.satellite_etf ?? []).map((item) => ({ ...item, bucket: 'satellite_etf', type: 'etf' })),
     ...(watchlist.individual_stocks ?? []).map((item) => ({ ...item, bucket: 'individual_stocks', type: 'stock' })),
   ];
+}
+
+function inferPortfolioHoldingType(holding) {
+  const name = String(holding?.name ?? '');
+  if (/(ETF|ETN|KODEX|TIGER|ACE|RISE|PLUS|SOL|HANARO|KBSTAR|KOSEF)/i.test(name)) {
+    return 'etf';
+  }
+  return 'stock';
+}
+
+function mergePortfolioUniverse(watchlistItems, portfolio) {
+  const byCode = new Map();
+
+  for (const item of watchlistItems) {
+    if (!item?.code) {
+      continue;
+    }
+
+    byCode.set(String(item.code), {
+      ...item,
+      code: String(item.code),
+      accountKeys: [],
+      inPortfolio: false,
+      sources: ['watchlist'],
+    });
+  }
+
+  for (const account of portfolio?.accounts ?? []) {
+    for (const holding of account.holdings ?? []) {
+      if (!holding?.code) {
+        continue;
+      }
+
+      const code = String(holding.code);
+      const existing = byCode.get(code);
+      byCode.set(code, {
+        ...(existing ?? {}),
+        code,
+        name: existing?.name ?? holding.name ?? code,
+        bucket: existing?.bucket ?? 'portfolio_holding',
+        type: existing?.type ?? inferPortfolioHoldingType(holding),
+        account: existing?.account ?? account.key ?? null,
+        accountKeys: [...new Set([...(existing?.accountKeys ?? []), account.key].filter(Boolean))],
+        inPortfolio: true,
+        sources: [...new Set([...(existing?.sources ?? []), 'portfolio'])],
+      });
+    }
+  }
+
+  return [...byCode.values()];
 }
 
 async function loadMarketSnapshot(date) {
@@ -1242,14 +1300,31 @@ async function main() {
     loadMarketSnapshot(args.date),
     loadPreviousTechnicalSnapshot(args.date),
   ]);
-  const watchlist = await loadWatchlist();
-  const items = flattenWatchlist(watchlist);
+  const [watchlist, portfolio] = await Promise.all([
+    loadWatchlist(),
+    loadPortfolioLatest(),
+  ]);
+  const watchlistItems = flattenWatchlist(watchlist);
+  const items = mergePortfolioUniverse(watchlistItems, portfolio);
 
   const output = {
     date: args.date,
     generated_at: new Date().toISOString(),
+    universe: {
+      watchlist_count: watchlistItems.length,
+      portfolio_holding_count: (portfolio.accounts ?? []).reduce(
+        (sum, account) => sum + (account.holdings ?? []).filter((holding) => holding?.code).length,
+        0,
+      ),
+      unique_security_count: items.length,
+    },
     market_context: {},
     scores: {},
+    coverage: {
+      refreshed: [],
+      fallback: [],
+      failed: [],
+    },
   };
   let kospiHistory = [];
   let kosdaqHistory = [];
@@ -1312,10 +1387,18 @@ async function main() {
         code: item.code,
         name: snapshot?.name ?? item.name,
         account: item.account ?? null,
+        account_keys: item.accountKeys ?? [],
+        in_portfolio: Boolean(item.inPortfolio),
+        sources: item.sources ?? [],
         bucket: item.bucket,
         type: item.type,
         ...indicators,
       };
+      output.coverage.refreshed.push({
+        code: item.code,
+        name: snapshot?.name ?? item.name,
+        history_points: history.length,
+      });
 
       console.log(`- ${item.name} 기술적 분석 완료`);
       await sleep(REQUEST_DELAY_MS);
@@ -1337,6 +1420,18 @@ async function main() {
             reason: message,
           },
         };
+        output.coverage.fallback.push({
+          code: item.code,
+          name: item.name,
+          recovered_from_date: priorTechnical.date,
+          reason: message,
+        });
+      } else {
+        output.coverage.failed.push({
+          code: item.code,
+          name: item.name,
+          reason: message,
+        });
       }
     }
   }

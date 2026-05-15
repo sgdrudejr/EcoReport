@@ -1,0 +1,115 @@
+{
+  "id": "stock-pulse:012450",
+  "code": "012450",
+  "name": "한화에어로스페이스",
+  "category": "방산",
+  "type": "stock",
+  "verdict": "익절감시",
+  "urgency": "중간",
+  "pulseScore": 47,
+  "oneLine": "익절감시: 20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+  "doNow": "20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+  "doNot": "급등 구간 추격매수 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "marketValue": 1296000,
+      "profitRate": -12.31,
+      "decision": "감량검토"
+    }
+  ],
+  "position": {
+    "marketValue": 1296000,
+    "purchaseValue": 0,
+    "profitLoss": -182000,
+    "profitRate": -12.31,
+    "quantity": 1
+  },
+  "market": {
+    "price": 1275000,
+    "previousClose": 1315000,
+    "changePct": -3.04,
+    "volume": 193563,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 46,
+    "signal": "HOLD",
+    "reason": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화",
+    "rsi": 37.26,
+    "ma20": 1421100,
+    "ma60": 1368850,
+    "recentHighDistancePct": -18.79,
+    "rsVsBenchmark": -44.44,
+    "alerts": [
+      "볼린저밴드 하단 이탈"
+    ]
+  },
+  "fundamental": {
+    "score": 58,
+    "label": "기본보통",
+    "metrics": {
+      "per": 44.62,
+      "pbr": 6.77,
+      "eps": 28573,
+      "estimatedPer": 31,
+      "estimatedEps": 40829,
+      "dividendYield": 0.55,
+      "operatingMargin": 11.57,
+      "operatingMarginEstimate": 14.04,
+      "roe": 19.14,
+      "roeEstimate": 19.88,
+      "annualEps": 28573,
+      "previousAnnualEps": 46183,
+      "estimatedAnnualEps": 40829,
+      "epsGrowthPct": -38.13,
+      "estimatedEpsGrowthPct": 42.89
+    },
+    "etf": null
+  },
+  "alerts": [
+    {
+      "severity": "low",
+      "label": "AI언급",
+      "detail": "감량검토: 손절 조건 발동, 손익 -12.3% / 방산 비중 과다",
+      "tone": "blue"
+    }
+  ],
+  "quickFactors": [
+    "등락 -3.04%",
+    "RSI 37.26",
+    "거래량 0배",
+    "손익 -12.31%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [
+    {
+      "bucket": "todayDo",
+      "action": "감량검토",
+      "reason": "손절 조건 발동, 손익 -12.3% / 방산 비중 과다",
+      "trigger": "손절 라인 이탈 시 감량/매도"
+    }
+  ],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결"
+  ],
+  "riskFlags": [
+    "STOP_LOSS_TRIGGERED"
+  ],
+  "sourceSupport": {
+    "reports": 0.542,
+    "stockeasy": 0,
+    "marketvoice": 0,
+    "technical": 0,
+    "kisEtf": 0,
+    "news": 0,
+    "macro": 0,
+    "llm": 0
+  }
+}

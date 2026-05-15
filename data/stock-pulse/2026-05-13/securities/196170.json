@@ -1,0 +1,80 @@
+{
+  "id": "stock-pulse:196170",
+  "code": "196170",
+  "name": "알테오젠",
+  "category": "기타",
+  "type": "unknown",
+  "verdict": "감량검토",
+  "urgency": "중간",
+  "pulseScore": 7,
+  "oneLine": "감량검토: 기술 약화가 이어지면 비중 축소 후보로 올려둡니다.",
+  "doNow": "기술 약화가 이어지면 비중 축소 후보로 올려둡니다.",
+  "doNot": "같은 테마 중복 확대 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "marketValue": 328500,
+      "profitRate": 1.38,
+      "decision": null
+    }
+  ],
+  "position": {
+    "marketValue": 328500,
+    "purchaseValue": 324000,
+    "profitLoss": 4500,
+    "profitRate": 1.39,
+    "quantity": 1
+  },
+  "market": {
+    "price": 342500,
+    "previousClose": 325000,
+    "changePct": 0,
+    "volume": 1043124,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 12,
+    "signal": "SELL",
+    "reason": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 둔화",
+    "rsi": 42.74,
+    "ma20": 362325,
+    "ma60": 368291.6667,
+    "recentHighDistancePct": -12.07,
+    "rsVsBenchmark": -54.03,
+    "alerts": []
+  },
+  "fundamental": {
+    "score": 20,
+    "label": "수집필요",
+    "metrics": null,
+    "etf": null
+  },
+  "alerts": [
+    {
+      "severity": "medium",
+      "label": "기술약화",
+      "detail": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 둔화",
+      "tone": "amber"
+    }
+  ],
+  "quickFactors": [
+    "등락 0%",
+    "RSI 42.74",
+    "거래량 0배",
+    "손익 1.39%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "NAVER_FETCH_FAILED"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {}
+}

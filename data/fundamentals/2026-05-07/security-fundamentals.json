@@ -1,0 +1,3242 @@
+{
+  "date": "2026-05-07",
+  "runDate": "2026-05-07",
+  "effectiveMarketDate": "2026-05-07",
+  "runId": "2026-05-07-010001",
+  "generatedAt": "2026-05-07T01:08:20.248Z",
+  "source": {
+    "stockFundamentals": "Naver Finance item main page",
+    "etfComposition": "Naver Finance ETF composition table",
+    "etfFlowProxy": "KIS ETF ranking + market watchlist volume/NAV",
+    "sourceUrls": [
+      "https://finance.naver.com/",
+      "data/external/kis-etf/2026-05-07/etf-ranking.json",
+      "data/market/2026-05-07.json"
+    ]
+  },
+  "collection": {
+    "candidateCount": 37,
+    "fetchedCount": 36,
+    "stockCount": 11,
+    "etfCount": 26,
+    "maxEtfRanking": 18,
+    "concurrency": 4
+  },
+  "coverage": {
+    "withScores": 36,
+    "withStockMetrics": 11,
+    "withEtfComposition": 11,
+    "missingDataNeeds": 32,
+    "errors": 0
+  },
+  "securities": [
+    {
+      "code": "0162Z0",
+      "name": "RISE 삼성전자SK하이닉스채권혼합50",
+      "type": "etf",
+      "bucket": "core_etf",
+      "category": "반도체/채권혼합",
+      "sourceCandidates": [
+        "security-master",
+        "portfolio:ISA",
+        "portfolio:PENSION"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=0162Z0"
+      },
+      "market": {
+        "price": 12565,
+        "changePct": -0.71,
+        "volume": 9068784,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": {
+        "ranking": {
+          "rank": null,
+          "changePct": -0.71,
+          "volume": 9068784,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null
+        },
+        "sectors": [],
+        "keywords": [],
+        "rationale": "",
+        "holdings": [],
+        "topHoldingWeightPct": null,
+        "concentrationTop5Pct": 0,
+        "flowProxy": {
+          "label": "거래량/NAV괴리/랭킹",
+          "rank": null,
+          "volume": 9068784,
+          "navGapPct": null
+        }
+      },
+      "score": {
+        "overall": 88,
+        "flow": 88,
+        "composition": null,
+        "confidence": 0.25,
+        "label": "수급강함"
+      },
+      "dataNeeds": [
+        "ETF_COMPOSITION_MISSING",
+        "ETF_NAV_MISSING"
+      ],
+      "errors": []
+    },
+    {
+      "code": "069500",
+      "name": "KODEX 200",
+      "type": "etf",
+      "bucket": "core_etf",
+      "category": "국내인덱스",
+      "sourceCandidates": [
+        "security-master",
+        "portfolio:ISA",
+        "portfolio:PENSION"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=069500"
+      },
+      "market": {
+        "price": 112375,
+        "changePct": -0.79,
+        "volume": 9141541,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": {
+        "ranking": {
+          "rank": null,
+          "changePct": -0.79,
+          "volume": 9141541,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null
+        },
+        "sectors": [],
+        "keywords": [],
+        "rationale": "",
+        "holdings": [
+          {
+            "code": "005930",
+            "name": "삼성전자",
+            "shares": 7022,
+            "weightPct": 32.78,
+            "price": 263000,
+            "changeAmount": 3000,
+            "changePct": -1.13
+          },
+          {
+            "code": "000660",
+            "name": "SK하이닉스",
+            "shares": 834,
+            "weightPct": 23.44,
+            "price": 1580000,
+            "changeAmount": 21000,
+            "changePct": -1.31
+          },
+          {
+            "code": "402340",
+            "name": "SK스퀘어",
+            "shares": 139,
+            "weightPct": 2.66,
+            "price": 1061000,
+            "changeAmount": 28000,
+            "changePct": -2.57
+          },
+          {
+            "code": "005380",
+            "name": "현대차",
+            "shares": 205,
+            "weightPct": 1.98,
+            "price": 568000,
+            "changeAmount": 18000,
+            "changePct": 3.27
+          },
+          {
+            "code": "034020",
+            "name": "두산에너빌리티",
+            "shares": 653,
+            "weightPct": 1.46,
+            "price": 135000,
+            "changeAmount": 8000,
+            "changePct": 6.3
+          },
+          {
+            "code": "009150",
+            "name": "삼성전기",
+            "shares": 84,
+            "weightPct": 1.34,
+            "price": 887000,
+            "changeAmount": 25000,
+            "changePct": -2.74
+          },
+          {
+            "code": "105560",
+            "name": "KB금융",
+            "shares": 482,
+            "weightPct": 1.34,
+            "price": 160200,
+            "changeAmount": 1300,
+            "changePct": 0.82
+          },
+          {
+            "code": "012450",
+            "name": "한화에어로스페이스",
+            "shares": 49,
+            "weightPct": 1.23,
+            "price": 1373000,
+            "changeAmount": 60000,
+            "changePct": -4.19
+          },
+          {
+            "code": "006400",
+            "name": "삼성SDI",
+            "shares": 92,
+            "weightPct": 1.13,
+            "price": 680000,
+            "changeAmount": 18000,
+            "changePct": -2.58
+          },
+          {
+            "code": "055550",
+            "name": "신한지주",
+            "shares": 621,
+            "weightPct": 1.06,
+            "price": 98600,
+            "changeAmount": 1300,
+            "changePct": 1.34
+          }
+        ],
+        "topHoldingWeightPct": 32.78,
+        "concentrationTop5Pct": 62.32,
+        "flowProxy": {
+          "label": "거래량/NAV괴리/랭킹",
+          "rank": null,
+          "volume": 9141541,
+          "navGapPct": null
+        }
+      },
+      "score": {
+        "overall": 77,
+        "flow": 88,
+        "composition": 66,
+        "confidence": 0.5,
+        "label": "수급강함"
+      },
+      "dataNeeds": [
+        "ETF_NAV_MISSING"
+      ],
+      "errors": []
+    },
+    {
+      "code": "138910",
+      "name": "KODEX 구리선물(H)",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "category": "기타",
+      "sourceCandidates": [
+        "security-master",
+        "portfolio:KIS_MAIN"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=138910"
+      },
+      "market": {
+        "price": 9570,
+        "changePct": 1.38,
+        "volume": 73325,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": {
+        "ranking": {
+          "rank": null,
+          "changePct": 1.38,
+          "volume": 73325,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null
+        },
+        "sectors": [],
+        "keywords": [],
+        "rationale": "",
+        "holdings": [],
+        "topHoldingWeightPct": null,
+        "concentrationTop5Pct": 0,
+        "flowProxy": {
+          "label": "거래량/NAV괴리/랭킹",
+          "rank": null,
+          "volume": 73325,
+          "navGapPct": null
+        }
+      },
+      "score": {
+        "overall": 48,
+        "flow": 48,
+        "composition": null,
+        "confidence": 0.25,
+        "label": "수급보통"
+      },
+      "dataNeeds": [
+        "ETF_COMPOSITION_MISSING",
+        "ETF_NAV_MISSING"
+      ],
+      "errors": []
+    },
+    {
+      "code": "161510",
+      "name": "PLUS 고배당주",
+      "type": "etf",
+      "bucket": "core_etf",
+      "category": "배당/커버드콜",
+      "sourceCandidates": [
+        "security-master",
+        "portfolio:ISA"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=161510"
+      },
+      "market": {
+        "price": 27525,
+        "changePct": -0.67,
+        "volume": 973453,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": {
+        "ranking": {
+          "rank": null,
+          "changePct": -0.67,
+          "volume": 973453,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null
+        },
+        "sectors": [],
+        "keywords": [],
+        "rationale": "",
+        "holdings": [
+          {
+            "code": "005380",
+            "name": "현대차",
+            "shares": 109,
+            "weightPct": 7.22,
+            "price": 568000,
+            "changeAmount": 18000,
+            "changePct": 3.27
+          },
+          {
+            "code": "005940",
+            "name": "NH투자증권",
+            "shares": 1393,
+            "weightPct": 6.45,
+            "price": 36500,
+            "changeAmount": 1950,
+            "changePct": -5.07
+          },
+          {
+            "code": "016360",
+            "name": "삼성증권",
+            "shares": 326,
+            "weightPct": 5.87,
+            "price": 143600,
+            "changeAmount": 5900,
+            "changePct": -3.95
+          },
+          {
+            "code": "000270",
+            "name": "기아",
+            "shares": 279,
+            "weightPct": 5.19,
+            "price": 158500,
+            "changeAmount": 3900,
+            "changePct": 2.52
+          },
+          {
+            "code": "005830",
+            "name": "DB손해보험",
+            "shares": 245,
+            "weightPct": 4.78,
+            "price": 161500,
+            "changeAmount": 500,
+            "changePct": -0.31
+          },
+          {
+            "code": "316140",
+            "name": "우리금융지주",
+            "shares": 1130,
+            "weightPct": 4.44,
+            "price": 32800,
+            "changeAmount": 200,
+            "changePct": 0.61
+          },
+          {
+            "code": "001120",
+            "name": "LX인터내셔널",
+            "shares": 727,
+            "weightPct": 4.36,
+            "price": 49000,
+            "changeAmount": 850,
+            "changePct": -1.71
+          },
+          {
+            "code": "017800",
+            "name": "현대엘리베이터",
+            "shares": 364,
+            "weightPct": 4.25,
+            "price": 99000,
+            "changeAmount": 2000,
+            "changePct": 2.06
+          },
+          {
+            "code": "071050",
+            "name": "한국금융지주",
+            "shares": 121,
+            "weightPct": 4.25,
+            "price": 274000,
+            "changeAmount": 17500,
+            "changePct": -6
+          },
+          {
+            "code": "024110",
+            "name": "기업은행",
+            "shares": 1563,
+            "weightPct": 4.07,
+            "price": 21650,
+            "changeAmount": 50,
+            "changePct": 0.23
+          }
+        ],
+        "topHoldingWeightPct": 7.22,
+        "concentrationTop5Pct": 29.51,
+        "flowProxy": {
+          "label": "거래량/NAV괴리/랭킹",
+          "rank": null,
+          "volume": 973453,
+          "navGapPct": null
+        }
+      },
+      "score": {
+        "overall": 70,
+        "flow": 62,
+        "composition": 78,
+        "confidence": 0.5,
+        "label": "수급양호"
+      },
+      "dataNeeds": [
+        "ETF_NAV_MISSING"
+      ],
+      "errors": []
+    },
+    {
+      "code": "360750",
+      "name": "TIGER 미국S&P500",
+      "type": "etf",
+      "bucket": "core_etf",
+      "category": "미국인덱스",
+      "sourceCandidates": [
+        "security-master",
+        "portfolio:PENSION",
+        "market-watchlist"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=360750"
+      },
+      "market": {
+        "price": 26470,
+        "changePct": 0.7,
+        "volume": 4883607,
+        "marketCap": null,
+        "nav": 26499.5,
+        "navGapPct": -0.111,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": "naver",
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": {
+        "ranking": {
+          "rank": null,
+          "changePct": 0.7,
+          "volume": 4883607,
+          "nav": 26499.5,
+          "navGapPct": -0.111,
+          "navChangePct": null
+        },
+        "sectors": [],
+        "keywords": [],
+        "rationale": "",
+        "holdings": [],
+        "topHoldingWeightPct": null,
+        "concentrationTop5Pct": 0,
+        "flowProxy": {
+          "label": "거래량/NAV괴리/랭킹",
+          "rank": null,
+          "volume": 4883607,
+          "navGapPct": -0.111
+        }
+      },
+      "score": {
+        "overall": 81,
+        "flow": 81,
+        "composition": null,
+        "confidence": 0.5,
+        "label": "수급강함"
+      },
+      "dataNeeds": [
+        "ETF_COMPOSITION_MISSING"
+      ],
+      "errors": []
+    },
+    {
+      "code": "379810",
+      "name": "KODEX 미국나스닥100",
+      "type": "etf",
+      "bucket": "core_etf",
+      "category": "나스닥100",
+      "sourceCandidates": [
+        "security-master",
+        "portfolio:PENSION"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=379810"
+      },
+      "market": {
+        "price": 27455,
+        "changePct": 0.9,
+        "volume": 1186830,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": {
+        "ranking": {
+          "rank": null,
+          "changePct": 0.9,
+          "volume": 1186830,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null
+        },
+        "sectors": [],
+        "keywords": [],
+        "rationale": "",
+        "holdings": [],
+        "topHoldingWeightPct": null,
+        "concentrationTop5Pct": 0,
+        "flowProxy": {
+          "label": "거래량/NAV괴리/랭킹",
+          "rank": null,
+          "volume": 1186830,
+          "navGapPct": null
+        }
+      },
+      "score": {
+        "overall": 76,
+        "flow": 76,
+        "composition": null,
+        "confidence": 0.25,
+        "label": "수급강함"
+      },
+      "dataNeeds": [
+        "ETF_COMPOSITION_MISSING",
+        "ETF_NAV_MISSING"
+      ],
+      "errors": []
+    },
+    {
+      "code": "385510",
+      "name": "KODEX 신재생에너지액티브",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "category": "신재생에너지",
+      "sourceCandidates": [
+        "security-master",
+        "portfolio:ISA"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=385510"
+      },
+      "market": {
+        "price": 59245,
+        "changePct": -3.61,
+        "volume": 287935,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": {
+        "ranking": {
+          "rank": null,
+          "changePct": -3.61,
+          "volume": 287935,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null
+        },
+        "sectors": [],
+        "keywords": [],
+        "rationale": "",
+        "holdings": [
+          {
+            "code": "010060",
+            "name": "OCI홀딩스",
+            "shares": 684,
+            "weightPct": 7.54,
+            "price": 322500,
+            "changeAmount": 15000,
+            "changePct": -4.44
+          },
+          {
+            "code": "006400",
+            "name": "삼성SDI",
+            "shares": 280,
+            "weightPct": 6.38,
+            "price": 680000,
+            "changeAmount": 18000,
+            "changePct": -2.58
+          },
+          {
+            "code": "126340",
+            "name": "비나텍",
+            "shares": 981,
+            "weightPct": 6.2,
+            "price": 182600,
+            "changeAmount": 11000,
+            "changePct": -5.68
+          },
+          {
+            "code": "322000",
+            "name": "HD현대에너지솔루션",
+            "shares": 879,
+            "weightPct": 6.13,
+            "price": 199000,
+            "changeAmount": 14500,
+            "changePct": -6.79
+          },
+          {
+            "code": "010120",
+            "name": "LS ELECTRIC",
+            "shares": 557,
+            "weightPct": 5.74,
+            "price": 300000,
+            "changeAmount": 15500,
+            "changePct": -4.91
+          },
+          {
+            "code": "062040",
+            "name": "산일전기",
+            "shares": 546,
+            "weightPct": 5.69,
+            "price": 317000,
+            "changeAmount": 2500,
+            "changePct": -0.78
+          },
+          {
+            "code": "298040",
+            "name": "효성중공업",
+            "shares": 32,
+            "weightPct": 4.8,
+            "price": 4457000,
+            "changeAmount": 140000,
+            "changePct": -3.05
+          },
+          {
+            "code": "112610",
+            "name": "씨에스윈드",
+            "shares": 2085,
+            "weightPct": 4.55,
+            "price": 62800,
+            "changeAmount": 4100,
+            "changePct": -6.13
+          },
+          {
+            "code": "100090",
+            "name": "SK오션플랜트",
+            "shares": 5027,
+            "weightPct": 3.8,
+            "price": 22050,
+            "changeAmount": 1100,
+            "changePct": -4.75
+          },
+          {
+            "code": "103590",
+            "name": "일진전기",
+            "shares": 709,
+            "weightPct": 3.29,
+            "price": 140200,
+            "changeAmount": 2000,
+            "changePct": -1.41
+          }
+        ],
+        "topHoldingWeightPct": 7.54,
+        "concentrationTop5Pct": 31.99,
+        "flowProxy": {
+          "label": "거래량/NAV괴리/랭킹",
+          "rank": null,
+          "volume": 287935,
+          "navGapPct": null
+        }
+      },
+      "score": {
+        "overall": 70,
+        "flow": 62,
+        "composition": 78,
+        "confidence": 0.5,
+        "label": "수급양호"
+      },
+      "dataNeeds": [
+        "ETF_NAV_MISSING"
+      ],
+      "errors": []
+    },
+    {
+      "code": "411060",
+      "name": "ACE KRX금현물",
+      "type": "etf",
+      "bucket": "core_etf",
+      "category": "금",
+      "sourceCandidates": [
+        "security-master",
+        "portfolio:ISA"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=411060"
+      },
+      "market": {
+        "price": 30395,
+        "changePct": 0.95,
+        "volume": 732291,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": {
+        "ranking": {
+          "rank": null,
+          "changePct": 0.95,
+          "volume": 732291,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null
+        },
+        "sectors": [],
+        "keywords": [],
+        "rationale": "",
+        "holdings": [],
+        "topHoldingWeightPct": null,
+        "concentrationTop5Pct": 0,
+        "flowProxy": {
+          "label": "거래량/NAV괴리/랭킹",
+          "rank": null,
+          "volume": 732291,
+          "navGapPct": null
+        }
+      },
+      "score": {
+        "overall": 62,
+        "flow": 62,
+        "composition": null,
+        "confidence": 0.25,
+        "label": "수급양호"
+      },
+      "dataNeeds": [
+        "ETF_COMPOSITION_MISSING",
+        "ETF_NAV_MISSING"
+      ],
+      "errors": []
+    },
+    {
+      "code": "449450",
+      "name": "PLUS K방산",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "category": "방산",
+      "sourceCandidates": [
+        "security-master",
+        "portfolio:KIS_MAIN",
+        "market-watchlist"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=449450"
+      },
+      "market": {
+        "price": 77035,
+        "changePct": -4.67,
+        "volume": 531736,
+        "marketCap": null,
+        "nav": 77100.23,
+        "navGapPct": -0.085,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": "naver",
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": {
+        "ranking": {
+          "rank": null,
+          "changePct": -4.67,
+          "volume": 531736,
+          "nav": 77100.23,
+          "navGapPct": -0.085,
+          "navChangePct": null
+        },
+        "sectors": [],
+        "keywords": [],
+        "rationale": "",
+        "holdings": [
+          {
+            "code": "012450",
+            "name": "한화에어로스페이스",
+            "shares": 218,
+            "weightPct": 19.4,
+            "price": 1373000,
+            "changeAmount": 60000,
+            "changePct": -4.19
+          },
+          {
+            "code": "064350",
+            "name": "현대로템",
+            "shares": 1102,
+            "weightPct": 17.93,
+            "price": 238000,
+            "changeAmount": 24000,
+            "changePct": -9.16
+          },
+          {
+            "code": "079550",
+            "name": "LIG디펜스앤에어로스페이스",
+            "shares": 278,
+            "weightPct": 16.9,
+            "price": 955000,
+            "changeAmount": 24000,
+            "changePct": -2.45
+          },
+          {
+            "code": "047810",
+            "name": "한국항공우주",
+            "shares": 1452,
+            "weightPct": 15.93,
+            "price": 170300,
+            "changeAmount": 6300,
+            "changePct": -3.57
+          },
+          {
+            "code": "042660",
+            "name": "한화오션",
+            "shares": 1746,
+            "weightPct": 14.12,
+            "price": 127600,
+            "changeAmount": 2600,
+            "changePct": -2
+          },
+          {
+            "code": "272210",
+            "name": "한화시스템",
+            "shares": 1485,
+            "weightPct": 11.27,
+            "price": 117400,
+            "changeAmount": 4800,
+            "changePct": -3.93
+          },
+          {
+            "code": "103140",
+            "name": "풍산",
+            "shares": 360,
+            "weightPct": 2.22,
+            "price": 96200,
+            "changeAmount": 3100,
+            "changePct": -3.12
+          },
+          {
+            "code": "077970",
+            "name": "STX엔진",
+            "shares": 316,
+            "weightPct": 1.13,
+            "price": 56100,
+            "changeAmount": 1700,
+            "changePct": -2.94
+          },
+          {
+            "code": "003570",
+            "name": "SNT다이내믹스",
+            "shares": 151,
+            "weightPct": 0.52,
+            "price": 53700,
+            "changeAmount": 2100,
+            "changePct": -3.76
+          },
+          {
+            "code": "484870",
+            "name": "엠앤씨솔루션",
+            "shares": 47,
+            "weightPct": 0.33,
+            "price": 108300,
+            "changeAmount": 5200,
+            "changePct": -4.58
+          }
+        ],
+        "topHoldingWeightPct": 19.4,
+        "concentrationTop5Pct": 84.28,
+        "flowProxy": {
+          "label": "거래량/NAV괴리/랭킹",
+          "rank": null,
+          "volume": 531736,
+          "navGapPct": -0.085
+        }
+      },
+      "score": {
+        "overall": 75,
+        "flow": 74,
+        "composition": 78,
+        "confidence": 0.75,
+        "label": "수급강함"
+      },
+      "dataNeeds": [],
+      "errors": []
+    },
+    {
+      "code": "469150",
+      "name": "ACE AI반도체TOP3+",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "category": "AI반도체",
+      "sourceCandidates": [
+        "security-master",
+        "portfolio:PENSION",
+        "portfolio:KIS_MAIN"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=469150"
+      },
+      "market": {
+        "price": 65435,
+        "changePct": -2.66,
+        "volume": 1249967,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": {
+        "ranking": {
+          "rank": null,
+          "changePct": -2.66,
+          "volume": 1249967,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null
+        },
+        "sectors": [],
+        "keywords": [],
+        "rationale": "",
+        "holdings": [
+          {
+            "code": "000660",
+            "name": "SK하이닉스",
+            "shares": 621,
+            "weightPct": 29.59,
+            "price": 1580000,
+            "changeAmount": 21000,
+            "changePct": -1.31
+          },
+          {
+            "code": "005930",
+            "name": "삼성전자",
+            "shares": 3073,
+            "weightPct": 24.33,
+            "price": 263000,
+            "changeAmount": 3000,
+            "changePct": -1.13
+          },
+          {
+            "code": "042700",
+            "name": "한미반도체",
+            "shares": 1822,
+            "weightPct": 21.39,
+            "price": 379000,
+            "changeAmount": 15500,
+            "changePct": -3.93
+          },
+          {
+            "code": "009150",
+            "name": "삼성전기",
+            "shares": 85,
+            "weightPct": 2.31,
+            "price": 887000,
+            "changeAmount": 25000,
+            "changePct": -2.74
+          },
+          {
+            "code": "353200",
+            "name": "대덕전자",
+            "shares": 533,
+            "weightPct": 1.99,
+            "price": 118400,
+            "changeAmount": 7000,
+            "changePct": -5.58
+          },
+          {
+            "code": "036930",
+            "name": "주성엔지니어링",
+            "shares": 514,
+            "weightPct": 1.95,
+            "price": 125900,
+            "changeAmount": 1700,
+            "changePct": -1.33
+          },
+          {
+            "code": "000990",
+            "name": "DB하이텍",
+            "shares": 395,
+            "weightPct": 1.9,
+            "price": 148900,
+            "changeAmount": 13100,
+            "changePct": -8.09
+          },
+          {
+            "code": "222800",
+            "name": "심텍",
+            "shares": 651,
+            "weightPct": 1.82,
+            "price": 105800,
+            "changeAmount": 12000,
+            "changePct": 12.79
+          },
+          {
+            "code": "095340",
+            "name": "ISC",
+            "shares": 191,
+            "weightPct": 1.46,
+            "price": 245500,
+            "changeAmount": 10500,
+            "changePct": -4.1
+          },
+          {
+            "code": "007660",
+            "name": "이수페타시스",
+            "shares": 312,
+            "weightPct": 1.41,
+            "price": 142800,
+            "changeAmount": 8800,
+            "changePct": -5.8
+          }
+        ],
+        "topHoldingWeightPct": 29.59,
+        "concentrationTop5Pct": 79.61,
+        "flowProxy": {
+          "label": "거래량/NAV괴리/랭킹",
+          "rank": null,
+          "volume": 1249967,
+          "navGapPct": null
+        }
+      },
+      "score": {
+        "overall": 71,
+        "flow": 76,
+        "composition": 66,
+        "confidence": 0.5,
+        "label": "수급양호"
+      },
+      "dataNeeds": [
+        "ETF_NAV_MISSING"
+      ],
+      "errors": []
+    },
+    {
+      "code": "475300",
+      "name": "SOL 반도체전공정",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "category": "반도체",
+      "sourceCandidates": [
+        "security-master",
+        "portfolio:ISA"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=475300"
+      },
+      "market": {
+        "price": 21915,
+        "changePct": -0.9,
+        "volume": 310758,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": {
+        "ranking": {
+          "rank": null,
+          "changePct": -0.9,
+          "volume": 310758,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null
+        },
+        "sectors": [],
+        "keywords": [],
+        "rationale": "",
+        "holdings": [
+          {
+            "code": "036930",
+            "name": "주성엔지니어링",
+            "shares": 1585,
+            "weightPct": 18.19,
+            "price": 125900,
+            "changeAmount": 1700,
+            "changePct": -1.33
+          },
+          {
+            "code": "240810",
+            "name": "원익IPS",
+            "shares": 1507,
+            "weightPct": 17.49,
+            "price": 127300,
+            "changeAmount": 1700,
+            "changePct": -1.32
+          },
+          {
+            "code": "403870",
+            "name": "HPSP",
+            "shares": 2287,
+            "weightPct": 11.64,
+            "price": 54000,
+            "changeAmount": 2600,
+            "changePct": -4.59
+          },
+          {
+            "code": "014680",
+            "name": "한솔케미칼",
+            "shares": 417,
+            "weightPct": 10.99,
+            "price": 286000,
+            "changeAmount": 7000,
+            "changePct": -2.39
+          },
+          {
+            "code": "005290",
+            "name": "동진쎄미켐",
+            "shares": 1578,
+            "weightPct": 8.39,
+            "price": 57300,
+            "changeAmount": 1800,
+            "changePct": -3.05
+          },
+          {
+            "code": "357780",
+            "name": "솔브레인",
+            "shares": 198,
+            "weightPct": 8.3,
+            "price": 466000,
+            "changeAmount": 0,
+            "changePct": 0
+          },
+          {
+            "code": "084370",
+            "name": "유진테크",
+            "shares": 649,
+            "weightPct": 8.1,
+            "price": 146000,
+            "changeAmount": 7300,
+            "changePct": 5.26
+          },
+          {
+            "code": "064760",
+            "name": "티씨케이",
+            "shares": 248,
+            "weightPct": 6.68,
+            "price": 295500,
+            "changeAmount": 4000,
+            "changePct": -1.34
+          },
+          {
+            "code": "089970",
+            "name": "브이엠",
+            "shares": 1037,
+            "weightPct": 5.3,
+            "price": 55500,
+            "changeAmount": 1300,
+            "changePct": -2.29
+          },
+          {
+            "code": "095610",
+            "name": "테스",
+            "shares": 551,
+            "weightPct": 4.45,
+            "price": 87700,
+            "changeAmount": 2000,
+            "changePct": -2.23
+          }
+        ],
+        "topHoldingWeightPct": 18.19,
+        "concentrationTop5Pct": 66.7,
+        "flowProxy": {
+          "label": "거래량/NAV괴리/랭킹",
+          "rank": null,
+          "volume": 310758,
+          "navGapPct": null
+        }
+      },
+      "score": {
+        "overall": 70,
+        "flow": 62,
+        "composition": 78,
+        "confidence": 0.5,
+        "label": "수급양호"
+      },
+      "dataNeeds": [
+        "ETF_NAV_MISSING"
+      ],
+      "errors": []
+    },
+    {
+      "code": "487240",
+      "name": "KODEX AI전력핵심설비",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "category": "전력기기",
+      "sourceCandidates": [
+        "security-master",
+        "portfolio:ISA",
+        "market-watchlist"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=487240"
+      },
+      "market": {
+        "price": 59750,
+        "changePct": -4.17,
+        "volume": 5030826,
+        "marketCap": null,
+        "nav": 59033.98,
+        "navGapPct": 1.213,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": "naver",
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": {
+        "ranking": {
+          "rank": null,
+          "changePct": -4.17,
+          "volume": 5030826,
+          "nav": 59033.98,
+          "navGapPct": 1.213,
+          "navChangePct": null
+        },
+        "sectors": [],
+        "keywords": [],
+        "rationale": "",
+        "holdings": [
+          {
+            "code": "010120",
+            "name": "LS ELECTRIC",
+            "shares": 4840,
+            "weightPct": 24.61,
+            "price": 300000,
+            "changeAmount": 15500,
+            "changePct": -4.91
+          },
+          {
+            "code": "298040",
+            "name": "효성중공업",
+            "shares": 243,
+            "weightPct": 18,
+            "price": 4457000,
+            "changeAmount": 140000,
+            "changePct": -3.05
+          },
+          {
+            "code": "006260",
+            "name": "LS",
+            "shares": 1516,
+            "weightPct": 12.97,
+            "price": 500000,
+            "changeAmount": 31000,
+            "changePct": -5.84
+          },
+          {
+            "code": "267260",
+            "name": "HD현대일렉트릭",
+            "shares": 569,
+            "weightPct": 12.74,
+            "price": 1360000,
+            "changeAmount": 29000,
+            "changePct": -2.09
+          },
+          {
+            "code": "001440",
+            "name": "대한전선",
+            "shares": 9755,
+            "weightPct": 10.88,
+            "price": 62500,
+            "changeAmount": 6700,
+            "changePct": -9.68
+          },
+          {
+            "code": "062040",
+            "name": "산일전기",
+            "shares": 1071,
+            "weightPct": 5.51,
+            "price": 317000,
+            "changeAmount": 2500,
+            "changePct": -0.78
+          },
+          {
+            "code": "000500",
+            "name": "가온전선",
+            "shares": 910,
+            "weightPct": 5.38,
+            "price": 367000,
+            "changeAmount": 0,
+            "changePct": 0
+          },
+          {
+            "code": "103590",
+            "name": "일진전기",
+            "shares": 2022,
+            "weightPct": 4.63,
+            "price": 140200,
+            "changeAmount": 2000,
+            "changePct": -1.41
+          },
+          {
+            "code": "006340",
+            "name": "대원전선",
+            "shares": 4903,
+            "weightPct": 1.43,
+            "price": 16200,
+            "changeAmount": 1840,
+            "changePct": -10.2
+          },
+          {
+            "code": "033100",
+            "name": "제룡전기",
+            "shares": 971,
+            "weightPct": 1.38,
+            "price": 83700,
+            "changeAmount": 4500,
+            "changePct": -5.1
+          }
+        ],
+        "topHoldingWeightPct": 24.61,
+        "concentrationTop5Pct": 79.2,
+        "flowProxy": {
+          "label": "거래량/NAV괴리/랭킹",
+          "rank": null,
+          "volume": 5030826,
+          "navGapPct": 1.213
+        }
+      },
+      "score": {
+        "overall": 67,
+        "flow": 62,
+        "composition": 78,
+        "confidence": 0.75,
+        "label": "수급양호"
+      },
+      "dataNeeds": [],
+      "errors": []
+    },
+    {
+      "code": "496080",
+      "name": "TIGER 코리아밸류업",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "category": "국내인덱스",
+      "sourceCandidates": [
+        "security-master",
+        "portfolio:ISA"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=496080"
+      },
+      "market": {
+        "price": 33035,
+        "changePct": -1.18,
+        "volume": 669551,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": {
+        "ranking": {
+          "rank": null,
+          "changePct": -1.18,
+          "volume": 669551,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null
+        },
+        "sectors": [],
+        "keywords": [],
+        "rationale": "",
+        "holdings": [
+          {
+            "code": "000660",
+            "name": "SK하이닉스",
+            "shares": 379,
+            "weightPct": 36.29,
+            "price": 1580000,
+            "changeAmount": 21000,
+            "changePct": -1.31
+          },
+          {
+            "code": "005930",
+            "name": "삼성전자",
+            "shares": 1312,
+            "weightPct": 20.87,
+            "price": 263000,
+            "changeAmount": 3000,
+            "changePct": -1.13
+          },
+          {
+            "code": "005380",
+            "name": "현대차",
+            "shares": 126,
+            "weightPct": 4.14,
+            "price": 568000,
+            "changeAmount": 18000,
+            "changePct": 3.27
+          },
+          {
+            "code": "105560",
+            "name": "KB금융",
+            "shares": 296,
+            "weightPct": 2.81,
+            "price": 160200,
+            "changeAmount": 1300,
+            "changePct": 0.82
+          },
+          {
+            "code": "012450",
+            "name": "한화에어로스페이스",
+            "shares": 30,
+            "weightPct": 2.57,
+            "price": 1373000,
+            "changeAmount": 60000,
+            "changePct": -4.19
+          },
+          {
+            "code": "055550",
+            "name": "신한지주",
+            "shares": 381,
+            "weightPct": 2.22,
+            "price": 98600,
+            "changeAmount": 1300,
+            "changePct": 1.34
+          },
+          {
+            "code": "000270",
+            "name": "기아",
+            "shares": 226,
+            "weightPct": 2.09,
+            "price": 158500,
+            "changeAmount": 3900,
+            "changePct": 2.52
+          },
+          {
+            "code": "086790",
+            "name": "하나금융지주",
+            "shares": 234,
+            "weightPct": 1.76,
+            "price": 126700,
+            "changeAmount": 1200,
+            "changePct": 0.96
+          },
+          {
+            "code": "267260",
+            "name": "HD현대일렉트릭",
+            "shares": 21,
+            "weightPct": 1.74,
+            "price": 1360000,
+            "changeAmount": 29000,
+            "changePct": -2.09
+          },
+          {
+            "code": "012330",
+            "name": "현대모비스",
+            "shares": 58,
+            "weightPct": 1.5,
+            "price": 441500,
+            "changeAmount": 9000,
+            "changePct": 2.08
+          }
+        ],
+        "topHoldingWeightPct": 36.29,
+        "concentrationTop5Pct": 66.68,
+        "flowProxy": {
+          "label": "거래량/NAV괴리/랭킹",
+          "rank": null,
+          "volume": 669551,
+          "navGapPct": null
+        }
+      },
+      "score": {
+        "overall": 64,
+        "flow": 62,
+        "composition": 66,
+        "confidence": 0.5,
+        "label": "수급양호"
+      },
+      "dataNeeds": [
+        "ETF_NAV_MISSING"
+      ],
+      "errors": []
+    },
+    {
+      "code": "498400",
+      "name": "KODEX 200타겟위클리커버드콜",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "category": "배당/커버드콜",
+      "sourceCandidates": [
+        "security-master",
+        "portfolio:ISA"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=498400"
+      },
+      "market": {
+        "price": 22685,
+        "changePct": -0.61,
+        "volume": 5686804,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": {
+        "ranking": {
+          "rank": null,
+          "changePct": -0.61,
+          "volume": 5686804,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null
+        },
+        "sectors": [],
+        "keywords": [],
+        "rationale": "",
+        "holdings": [
+          {
+            "code": "005930",
+            "name": "삼성전자",
+            "shares": 2435,
+            "weightPct": 27.99,
+            "price": 263000,
+            "changeAmount": 3000,
+            "changePct": -1.13
+          },
+          {
+            "code": "000660",
+            "name": "SK하이닉스",
+            "shares": 289,
+            "weightPct": 20,
+            "price": 1580000,
+            "changeAmount": 21000,
+            "changePct": -1.31
+          },
+          {
+            "code": "069500",
+            "name": "KODEX 200",
+            "shares": 2971,
+            "weightPct": 14.54,
+            "price": 112375,
+            "changeAmount": 895,
+            "changePct": -0.79
+          },
+          {
+            "code": "402340",
+            "name": "SK스퀘어",
+            "shares": 48,
+            "weightPct": 2.26,
+            "price": 1061000,
+            "changeAmount": 28000,
+            "changePct": -2.57
+          },
+          {
+            "code": "005380",
+            "name": "현대차",
+            "shares": 71,
+            "weightPct": 1.69,
+            "price": 568000,
+            "changeAmount": 18000,
+            "changePct": 3.27
+          },
+          {
+            "code": "034020",
+            "name": "두산에너빌리티",
+            "shares": 226,
+            "weightPct": 1.24,
+            "price": 135000,
+            "changeAmount": 8000,
+            "changePct": 6.3
+          },
+          {
+            "code": "105560",
+            "name": "KB금융",
+            "shares": 167,
+            "weightPct": 1.15,
+            "price": 160200,
+            "changeAmount": 1300,
+            "changePct": 0.82
+          },
+          {
+            "code": "009150",
+            "name": "삼성전기",
+            "shares": 29,
+            "weightPct": 1.14,
+            "price": 887000,
+            "changeAmount": 25000,
+            "changePct": -2.74
+          },
+          {
+            "code": "012450",
+            "name": "한화에어로스페이스",
+            "shares": 17,
+            "weightPct": 1.05,
+            "price": 1373000,
+            "changeAmount": 60000,
+            "changePct": -4.19
+          },
+          {
+            "code": "006400",
+            "name": "삼성SDI",
+            "shares": 32,
+            "weightPct": 0.97,
+            "price": 680000,
+            "changeAmount": 18000,
+            "changePct": -2.58
+          }
+        ],
+        "topHoldingWeightPct": 27.99,
+        "concentrationTop5Pct": 66.48,
+        "flowProxy": {
+          "label": "거래량/NAV괴리/랭킹",
+          "rank": null,
+          "volume": 5686804,
+          "navGapPct": null
+        }
+      },
+      "score": {
+        "overall": 77,
+        "flow": 88,
+        "composition": 66,
+        "confidence": 0.5,
+        "label": "수급강함"
+      },
+      "dataNeeds": [
+        "ETF_NAV_MISSING"
+      ],
+      "errors": []
+    },
+    {
+      "code": "012450",
+      "name": "한화에어로스페이스",
+      "type": "stock",
+      "bucket": "individual_stock",
+      "category": "방산",
+      "sourceCandidates": [
+        "security-master",
+        "portfolio:KIS_MAIN"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=012450"
+      },
+      "market": {
+        "price": 1373000,
+        "changePct": -4.19,
+        "volume": 71621,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": {
+        "per": 48.05,
+        "pbr": 7.29,
+        "eps": 28573,
+        "estimatedPer": 33,
+        "estimatedEps": 41905,
+        "dividendYield": 0.51,
+        "operatingMargin": 11.57,
+        "operatingMarginEstimate": 14.17,
+        "roe": 19.14,
+        "roeEstimate": 20.34,
+        "annualEps": 28573,
+        "previousAnnualEps": 46183,
+        "estimatedAnnualEps": 41905,
+        "epsGrowthPct": -38.13,
+        "estimatedEpsGrowthPct": 46.66
+      },
+      "etf": null,
+      "score": {
+        "overall": 55,
+        "valuation": 39,
+        "quality": 71,
+        "growth": 56,
+        "confidence": 1,
+        "label": "기본보통"
+      },
+      "dataNeeds": [],
+      "errors": []
+    },
+    {
+      "code": "034020",
+      "name": "두산에너빌리티",
+      "type": "stock",
+      "bucket": "individual_stock",
+      "category": "원자력",
+      "sourceCandidates": [
+        "security-master",
+        "portfolio:KIS_MAIN"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=034020"
+      },
+      "market": {
+        "price": 135000,
+        "changePct": 6.3,
+        "volume": 4973031,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": {
+        "per": 1022.73,
+        "pbr": 11.11,
+        "eps": 132,
+        "estimatedPer": 291,
+        "estimatedEps": 464,
+        "dividendYield": null,
+        "operatingMargin": 4.47,
+        "operatingMarginEstimate": 6.21,
+        "roe": 1.11,
+        "roeEstimate": 3.73,
+        "annualEps": 132,
+        "previousAnnualEps": 174,
+        "estimatedAnnualEps": 464,
+        "epsGrowthPct": -24.14,
+        "estimatedEpsGrowthPct": 251.52
+      },
+      "etf": null,
+      "score": {
+        "overall": 40,
+        "valuation": 27,
+        "quality": 41,
+        "growth": 56,
+        "confidence": 1,
+        "label": "기본주의"
+      },
+      "dataNeeds": [],
+      "errors": []
+    },
+    {
+      "code": "064350",
+      "name": "현대로템",
+      "type": "stock",
+      "bucket": "individual_stock",
+      "category": "방산",
+      "sourceCandidates": [
+        "security-master",
+        "portfolio:KIS_MAIN",
+        "market-watchlist"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=064350"
+      },
+      "market": {
+        "price": 240000,
+        "changePct": -8.4,
+        "volume": 950770,
+        "marketCap": 26194150320000,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": "naver",
+          "etfRanking": null
+        }
+      },
+      "metrics": {
+        "per": 33.73,
+        "pbr": 8.44,
+        "eps": 7055,
+        "estimatedPer": 28,
+        "estimatedEps": 8381,
+        "dividendYield": 0.25,
+        "operatingMargin": 17.22,
+        "operatingMarginEstimate": 16.72,
+        "roe": 30.05,
+        "roeEstimate": 26.11,
+        "annualEps": 7055,
+        "previousAnnualEps": 3728,
+        "estimatedAnnualEps": 8381,
+        "epsGrowthPct": 89.24,
+        "estimatedEpsGrowthPct": 18.8
+      },
+      "etf": null,
+      "score": {
+        "overall": 71,
+        "valuation": 46,
+        "quality": 85,
+        "growth": 85,
+        "confidence": 1,
+        "label": "기본양호"
+      },
+      "dataNeeds": [],
+      "errors": []
+    },
+    {
+      "code": "329180",
+      "name": "HD현대중공업",
+      "type": "stock",
+      "bucket": "individual_stock",
+      "category": "조선",
+      "sourceCandidates": [
+        "security-master",
+        "portfolio:KIS_MAIN"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=329180"
+      },
+      "market": {
+        "price": 671000,
+        "changePct": 3.55,
+        "volume": 191106,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": {
+        "per": 42.73,
+        "pbr": 7.54,
+        "eps": 15702,
+        "estimatedPer": 26,
+        "estimatedEps": 25535,
+        "dividendYield": 0.84,
+        "operatingMargin": 11.59,
+        "operatingMarginEstimate": 14.4,
+        "roe": 18.82,
+        "roeEstimate": 25.56,
+        "annualEps": 15702,
+        "previousAnnualEps": 7001,
+        "estimatedAnnualEps": 25535,
+        "epsGrowthPct": 124.28,
+        "estimatedEpsGrowthPct": 62.62
+      },
+      "etf": null,
+      "score": {
+        "overall": 69,
+        "valuation": 46,
+        "quality": 71,
+        "growth": 92,
+        "confidence": 1,
+        "label": "기본양호"
+      },
+      "dataNeeds": [],
+      "errors": []
+    },
+    {
+      "code": "132030",
+      "name": "KODEX 골드선물(H)",
+      "type": "etf",
+      "bucket": "core_etf",
+      "category": "금",
+      "sourceCandidates": [
+        "security-master",
+        "market-watchlist"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=132030"
+      },
+      "market": {
+        "price": 26580,
+        "changePct": 0.55,
+        "volume": 51241,
+        "marketCap": null,
+        "nav": 26590.67,
+        "navGapPct": -0.04,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": "naver",
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": {
+        "ranking": {
+          "rank": null,
+          "changePct": 0.55,
+          "volume": 51241,
+          "nav": 26590.67,
+          "navGapPct": -0.04,
+          "navChangePct": null
+        },
+        "sectors": [],
+        "keywords": [],
+        "rationale": "",
+        "holdings": [],
+        "topHoldingWeightPct": null,
+        "concentrationTop5Pct": 0,
+        "flowProxy": {
+          "label": "거래량/NAV괴리/랭킹",
+          "rank": null,
+          "volume": 51241,
+          "navGapPct": -0.04
+        }
+      },
+      "score": {
+        "overall": 67,
+        "flow": 67,
+        "composition": null,
+        "confidence": 0.5,
+        "label": "수급양호"
+      },
+      "dataNeeds": [
+        "ETF_COMPOSITION_MISSING"
+      ],
+      "errors": []
+    },
+    {
+      "code": "133690",
+      "name": "TIGER 미국나스닥100",
+      "type": "etf",
+      "bucket": "core_etf",
+      "category": "나스닥100",
+      "sourceCandidates": [
+        "security-master",
+        "market-watchlist"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=133690"
+      },
+      "market": {
+        "price": 183365,
+        "changePct": 0.84,
+        "volume": 183939,
+        "marketCap": null,
+        "nav": 183814.96,
+        "navGapPct": -0.245,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": "naver",
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": {
+        "ranking": {
+          "rank": null,
+          "changePct": 0.84,
+          "volume": 183939,
+          "nav": 183814.96,
+          "navGapPct": -0.245,
+          "navChangePct": null
+        },
+        "sectors": [],
+        "keywords": [],
+        "rationale": "",
+        "holdings": [],
+        "topHoldingWeightPct": null,
+        "concentrationTop5Pct": 0,
+        "flowProxy": {
+          "label": "거래량/NAV괴리/랭킹",
+          "rank": null,
+          "volume": 183939,
+          "navGapPct": -0.245
+        }
+      },
+      "score": {
+        "overall": 60,
+        "flow": 60,
+        "composition": null,
+        "confidence": 0.5,
+        "label": "수급양호"
+      },
+      "dataNeeds": [
+        "ETF_COMPOSITION_MISSING"
+      ],
+      "errors": []
+    },
+    {
+      "code": "251350",
+      "name": "KODEX MSCI선진국",
+      "type": "etf",
+      "bucket": "core_etf",
+      "category": "기타",
+      "sourceCandidates": [
+        "security-master"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=251350"
+      },
+      "market": {
+        "price": 39440,
+        "changePct": 1.4,
+        "volume": 23552,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": {
+        "ranking": {
+          "rank": null,
+          "changePct": 1.4,
+          "volume": 23552,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null
+        },
+        "sectors": [],
+        "keywords": [],
+        "rationale": "",
+        "holdings": [],
+        "topHoldingWeightPct": null,
+        "concentrationTop5Pct": 0,
+        "flowProxy": {
+          "label": "거래량/NAV괴리/랭킹",
+          "rank": null,
+          "volume": 23552,
+          "navGapPct": null
+        }
+      },
+      "score": {
+        "overall": 35,
+        "flow": 35,
+        "composition": null,
+        "confidence": 0.25,
+        "label": "수급주의"
+      },
+      "dataNeeds": [
+        "ETF_COMPOSITION_MISSING",
+        "ETF_NAV_MISSING"
+      ],
+      "errors": []
+    },
+    {
+      "code": "2921050",
+      "name": "TIGER 코리아TOP10",
+      "type": "etf",
+      "bucket": "core_etf",
+      "category": "국내대형주",
+      "sourceCandidates": [
+        "security-master"
+      ],
+      "sourceUrls": {
+        "naver": null
+      },
+      "market": {
+        "price": null,
+        "changePct": null,
+        "volume": null,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": null,
+      "score": {
+        "overall": 20,
+        "label": "수집필요",
+        "confidence": 0
+      },
+      "dataNeeds": [
+        "NAVER_CODE_UNSUPPORTED"
+      ],
+      "errors": []
+    },
+    {
+      "code": "396500",
+      "name": "TIGER 반도체TOP10",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "category": "기타",
+      "sourceCandidates": [
+        "security-master"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=396500"
+      },
+      "market": {
+        "price": 44360,
+        "changePct": -2.44,
+        "volume": 12678350,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": {
+        "ranking": {
+          "rank": null,
+          "changePct": -2.44,
+          "volume": 12678350,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null
+        },
+        "sectors": [],
+        "keywords": [],
+        "rationale": "",
+        "holdings": [
+          {
+            "code": "000660",
+            "name": "SK하이닉스",
+            "shares": 433,
+            "weightPct": 30.45,
+            "price": 1580000,
+            "changeAmount": 21000,
+            "changePct": -1.31
+          },
+          {
+            "code": "005930",
+            "name": "삼성전자",
+            "shares": 2117,
+            "weightPct": 24.73,
+            "price": 263000,
+            "changeAmount": 3000,
+            "changePct": -1.13
+          },
+          {
+            "code": "042700",
+            "name": "한미반도체",
+            "shares": 1002,
+            "weightPct": 17.36,
+            "price": 379000,
+            "changeAmount": 15500,
+            "changePct": -3.93
+          },
+          {
+            "code": "058470",
+            "name": "리노공업",
+            "shares": 1183,
+            "weightPct": 6.06,
+            "price": 112100,
+            "changeAmount": 4600,
+            "changePct": -3.94
+          },
+          {
+            "code": "000990",
+            "name": "DB하이텍",
+            "shares": 728,
+            "weightPct": 5.18,
+            "price": 148900,
+            "changeAmount": 13100,
+            "changePct": -8.09
+          },
+          {
+            "code": "240810",
+            "name": "원익IPS",
+            "shares": 762,
+            "weightPct": 4.32,
+            "price": 127300,
+            "changeAmount": 1700,
+            "changePct": -1.32
+          },
+          {
+            "code": "039030",
+            "name": "이오테크닉스",
+            "shares": 200,
+            "weightPct": 4.21,
+            "price": 456000,
+            "changeAmount": 23000,
+            "changePct": -4.8
+          },
+          {
+            "code": "403870",
+            "name": "HPSP",
+            "shares": 1140,
+            "weightPct": 2.83,
+            "price": 54000,
+            "changeAmount": 2600,
+            "changePct": -4.59
+          },
+          {
+            "code": "095340",
+            "name": "ISC",
+            "shares": 243,
+            "weightPct": 2.73,
+            "price": 245500,
+            "changeAmount": 10500,
+            "changePct": -4.1
+          },
+          {
+            "code": "357780",
+            "name": "솔브레인",
+            "shares": 100,
+            "weightPct": 2.05,
+            "price": 466000,
+            "changeAmount": 0,
+            "changePct": 0
+          }
+        ],
+        "topHoldingWeightPct": 30.45,
+        "concentrationTop5Pct": 83.78,
+        "flowProxy": {
+          "label": "거래량/NAV괴리/랭킹",
+          "rank": null,
+          "volume": 12678350,
+          "navGapPct": null
+        }
+      },
+      "score": {
+        "overall": 77,
+        "flow": 88,
+        "composition": 66,
+        "confidence": 0.5,
+        "label": "수급강함"
+      },
+      "dataNeeds": [
+        "ETF_NAV_MISSING"
+      ],
+      "errors": []
+    },
+    {
+      "code": "423160",
+      "name": "KODEX KOFR금리액티브",
+      "type": "etf",
+      "bucket": "core_etf",
+      "category": "현금파킹",
+      "sourceCandidates": [
+        "security-master",
+        "market-watchlist"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=423160"
+      },
+      "market": {
+        "price": 110692,
+        "changePct": 0.01,
+        "volume": 82456,
+        "marketCap": null,
+        "nav": 110678.08,
+        "navGapPct": 0.013,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": "naver",
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": {
+        "ranking": {
+          "rank": null,
+          "changePct": 0.01,
+          "volume": 82456,
+          "nav": 110678.08,
+          "navGapPct": 0.013,
+          "navChangePct": null
+        },
+        "sectors": [],
+        "keywords": [],
+        "rationale": "",
+        "holdings": [],
+        "topHoldingWeightPct": null,
+        "concentrationTop5Pct": 0,
+        "flowProxy": {
+          "label": "거래량/NAV괴리/랭킹",
+          "rank": null,
+          "volume": 82456,
+          "navGapPct": 0.013
+        }
+      },
+      "score": {
+        "overall": 67,
+        "flow": 67,
+        "composition": null,
+        "confidence": 0.5,
+        "label": "수급양호"
+      },
+      "dataNeeds": [
+        "ETF_COMPOSITION_MISSING"
+      ],
+      "errors": []
+    },
+    {
+      "code": "434730",
+      "name": "HANARO 원자력iSelect",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "category": "원자력",
+      "sourceCandidates": [
+        "security-master",
+        "market-watchlist"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=434730"
+      },
+      "market": {
+        "price": 93150,
+        "changePct": -0.62,
+        "volume": 771665,
+        "marketCap": null,
+        "nav": 93177.81,
+        "navGapPct": -0.03,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": "naver",
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": {
+        "ranking": {
+          "rank": null,
+          "changePct": -0.62,
+          "volume": 771665,
+          "nav": 93177.81,
+          "navGapPct": -0.03,
+          "navChangePct": null
+        },
+        "sectors": [],
+        "keywords": [],
+        "rationale": "",
+        "holdings": [
+          {
+            "code": "034020",
+            "name": "두산에너빌리티",
+            "shares": 8004,
+            "weightPct": 21.75,
+            "price": 135000,
+            "changeAmount": 8000,
+            "changePct": 6.3
+          },
+          {
+            "code": "267260",
+            "name": "HD현대일렉트릭",
+            "shares": 630,
+            "weightPct": 18.72,
+            "price": 1360000,
+            "changeAmount": 29000,
+            "changePct": -2.09
+          },
+          {
+            "code": "010120",
+            "name": "LS ELECTRIC",
+            "shares": 2190,
+            "weightPct": 14.78,
+            "price": 300000,
+            "changeAmount": 15500,
+            "changePct": -4.91
+          },
+          {
+            "code": "298040",
+            "name": "효성중공업",
+            "shares": 139,
+            "weightPct": 13.67,
+            "price": 4457000,
+            "changeAmount": 140000,
+            "changePct": -3.05
+          },
+          {
+            "code": "015760",
+            "name": "한국전력",
+            "shares": 8828,
+            "weightPct": 8.51,
+            "price": 45100,
+            "changeAmount": 50,
+            "changePct": 0.11
+          },
+          {
+            "code": "000720",
+            "name": "현대건설",
+            "shares": 2106,
+            "weightPct": 7.38,
+            "price": 166500,
+            "changeAmount": 2800,
+            "changePct": 1.71
+          },
+          {
+            "code": "047040",
+            "name": "대우건설",
+            "shares": 5716,
+            "weightPct": 3.94,
+            "price": 33400,
+            "changeAmount": 1200,
+            "changePct": 3.73
+          },
+          {
+            "code": "062040",
+            "name": "산일전기",
+            "shares": 340,
+            "weightPct": 2.32,
+            "price": 317000,
+            "changeAmount": 2500,
+            "changePct": -0.78
+          },
+          {
+            "code": "052690",
+            "name": "한전기술",
+            "shares": 515,
+            "weightPct": 2.01,
+            "price": 184500,
+            "changeAmount": 2500,
+            "changePct": 1.37
+          },
+          {
+            "code": "032820",
+            "name": "우리기술",
+            "shares": 4393,
+            "weightPct": 2,
+            "price": 21400,
+            "changeAmount": 150,
+            "changePct": 0.71
+          }
+        ],
+        "topHoldingWeightPct": 21.75,
+        "concentrationTop5Pct": 77.43,
+        "flowProxy": {
+          "label": "거래량/NAV괴리/랭킹",
+          "rank": null,
+          "volume": 771665,
+          "navGapPct": -0.03
+        }
+      },
+      "score": {
+        "overall": 75,
+        "flow": 74,
+        "composition": 78,
+        "confidence": 0.75,
+        "label": "수급강함"
+      },
+      "dataNeeds": [],
+      "errors": []
+    },
+    {
+      "code": "456600",
+      "name": "TIME 글로벌AI인공지능액티브",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "category": "AI반도체",
+      "sourceCandidates": [
+        "security-master"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=456600"
+      },
+      "market": {
+        "price": 59650,
+        "changePct": -0.89,
+        "volume": 300053,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": {
+        "ranking": {
+          "rank": null,
+          "changePct": -0.89,
+          "volume": 300053,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null
+        },
+        "sectors": [],
+        "keywords": [],
+        "rationale": "",
+        "holdings": [],
+        "topHoldingWeightPct": null,
+        "concentrationTop5Pct": 0,
+        "flowProxy": {
+          "label": "거래량/NAV괴리/랭킹",
+          "rank": null,
+          "volume": 300053,
+          "navGapPct": null
+        }
+      },
+      "score": {
+        "overall": 62,
+        "flow": 62,
+        "composition": null,
+        "confidence": 0.25,
+        "label": "수급양호"
+      },
+      "dataNeeds": [
+        "ETF_COMPOSITION_MISSING",
+        "ETF_NAV_MISSING"
+      ],
+      "errors": []
+    },
+    {
+      "code": "458760",
+      "name": "TIGER 미국배당+7%프리미엄다우존스",
+      "type": "etf",
+      "bucket": "core_etf",
+      "category": "배당/커버드콜",
+      "sourceCandidates": [
+        "security-master",
+        "market-watchlist"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=458760"
+      },
+      "market": {
+        "price": 10905,
+        "changePct": -0.95,
+        "volume": 202786,
+        "marketCap": null,
+        "nav": 10917.93,
+        "navGapPct": -0.118,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": "naver",
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": {
+        "ranking": {
+          "rank": null,
+          "changePct": -0.95,
+          "volume": 202786,
+          "nav": 10917.93,
+          "navGapPct": -0.118,
+          "navChangePct": null
+        },
+        "sectors": [],
+        "keywords": [],
+        "rationale": "",
+        "holdings": [],
+        "topHoldingWeightPct": null,
+        "concentrationTop5Pct": 0,
+        "flowProxy": {
+          "label": "거래량/NAV괴리/랭킹",
+          "rank": null,
+          "volume": 202786,
+          "navGapPct": -0.118
+        }
+      },
+      "score": {
+        "overall": 74,
+        "flow": 74,
+        "composition": null,
+        "confidence": 0.5,
+        "label": "수급양호"
+      },
+      "dataNeeds": [
+        "ETF_COMPOSITION_MISSING"
+      ],
+      "errors": []
+    },
+    {
+      "code": "487230",
+      "name": "KODEX 미국AI전력핵심인프라",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "category": "전력기기",
+      "sourceCandidates": [
+        "security-master"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=487230"
+      },
+      "market": {
+        "price": 27600,
+        "changePct": 0.8,
+        "volume": 943820,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": {
+        "ranking": {
+          "rank": null,
+          "changePct": 0.8,
+          "volume": 943820,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null
+        },
+        "sectors": [],
+        "keywords": [],
+        "rationale": "",
+        "holdings": [],
+        "topHoldingWeightPct": null,
+        "concentrationTop5Pct": 0,
+        "flowProxy": {
+          "label": "거래량/NAV괴리/랭킹",
+          "rank": null,
+          "volume": 943820,
+          "navGapPct": null
+        }
+      },
+      "score": {
+        "overall": 62,
+        "flow": 62,
+        "composition": null,
+        "confidence": 0.25,
+        "label": "수급양호"
+      },
+      "dataNeeds": [
+        "ETF_COMPOSITION_MISSING",
+        "ETF_NAV_MISSING"
+      ],
+      "errors": []
+    },
+    {
+      "code": "491010",
+      "name": "TIGER 글로벌AI전력인프라액티브",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "category": "전력기기",
+      "sourceCandidates": [
+        "security-master"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=491010"
+      },
+      "market": {
+        "price": 32495,
+        "changePct": 1.12,
+        "volume": 239722,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": {
+        "ranking": {
+          "rank": null,
+          "changePct": 1.12,
+          "volume": 239722,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null
+        },
+        "sectors": [],
+        "keywords": [],
+        "rationale": "",
+        "holdings": [],
+        "topHoldingWeightPct": null,
+        "concentrationTop5Pct": 0,
+        "flowProxy": {
+          "label": "거래량/NAV괴리/랭킹",
+          "rank": null,
+          "volume": 239722,
+          "navGapPct": null
+        }
+      },
+      "score": {
+        "overall": 62,
+        "flow": 62,
+        "composition": null,
+        "confidence": 0.25,
+        "label": "수급양호"
+      },
+      "dataNeeds": [
+        "ETF_COMPOSITION_MISSING",
+        "ETF_NAV_MISSING"
+      ],
+      "errors": []
+    },
+    {
+      "code": "497570",
+      "name": "TIGER 미국필라델피아AI반도체나스닥",
+      "type": "etf",
+      "bucket": "satellite_etf",
+      "category": "AI반도체",
+      "sourceCandidates": [
+        "security-master"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=497570"
+      },
+      "market": {
+        "price": 21505,
+        "changePct": 2.19,
+        "volume": 491456,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": null,
+      "etf": {
+        "ranking": {
+          "rank": null,
+          "changePct": 2.19,
+          "volume": 491456,
+          "nav": null,
+          "navGapPct": null,
+          "navChangePct": null
+        },
+        "sectors": [],
+        "keywords": [],
+        "rationale": "",
+        "holdings": [],
+        "topHoldingWeightPct": null,
+        "concentrationTop5Pct": 0,
+        "flowProxy": {
+          "label": "거래량/NAV괴리/랭킹",
+          "rank": null,
+          "volume": 491456,
+          "navGapPct": null
+        }
+      },
+      "score": {
+        "overall": 62,
+        "flow": 62,
+        "composition": null,
+        "confidence": 0.25,
+        "label": "수급양호"
+      },
+      "dataNeeds": [
+        "ETF_COMPOSITION_MISSING",
+        "ETF_NAV_MISSING"
+      ],
+      "errors": []
+    },
+    {
+      "code": "000660",
+      "name": "SK하이닉스",
+      "type": "stock",
+      "bucket": "individual_stock",
+      "category": "반도체",
+      "sourceCandidates": [
+        "security-master",
+        "market-watchlist"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=000660"
+      },
+      "market": {
+        "price": 1577000,
+        "changePct": -1.5,
+        "volume": 4328556,
+        "marketCap": 1123931629605000,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": "naver",
+          "etfRanking": null
+        }
+      },
+      "metrics": {
+        "per": 26.8,
+        "pbr": 9.05,
+        "eps": 58955,
+        "estimatedPer": 6,
+        "estimatedEps": 286170,
+        "dividendYield": 0.19,
+        "operatingMargin": 48.59,
+        "operatingMarginEstimate": 75.42,
+        "roe": 44.15,
+        "roeEstimate": 92.81,
+        "annualEps": 58955,
+        "previousAnnualEps": 27182,
+        "estimatedAnnualEps": 286170,
+        "epsGrowthPct": 116.89,
+        "estimatedEpsGrowthPct": 385.4
+      },
+      "etf": null,
+      "score": {
+        "overall": 80,
+        "valuation": 59,
+        "quality": 91,
+        "growth": 92,
+        "confidence": 1,
+        "label": "기본강함"
+      },
+      "dataNeeds": [],
+      "errors": []
+    },
+    {
+      "code": "005930",
+      "name": "삼성전자",
+      "type": "stock",
+      "bucket": "individual_stock",
+      "category": "반도체",
+      "sourceCandidates": [
+        "security-master",
+        "market-watchlist"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=005930"
+      },
+      "market": {
+        "price": 263000,
+        "changePct": -1.13,
+        "volume": 41176769,
+        "marketCap": 1537571273904000,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": "naver",
+          "etfRanking": null
+        }
+      },
+      "metrics": {
+        "per": 40.07,
+        "pbr": 4.11,
+        "eps": 6564,
+        "estimatedPer": 6,
+        "estimatedEps": 41493,
+        "dividendYield": 0.63,
+        "operatingMargin": 13.07,
+        "operatingMarginEstimate": 50.97,
+        "roe": 10.85,
+        "roeEstimate": 50.01,
+        "annualEps": 6564,
+        "previousAnnualEps": 4950,
+        "estimatedAnnualEps": 41493,
+        "epsGrowthPct": 32.61,
+        "estimatedEpsGrowthPct": 532.13
+      },
+      "etf": null,
+      "score": {
+        "overall": 71,
+        "valuation": 67,
+        "quality": 64,
+        "growth": 85,
+        "confidence": 1,
+        "label": "기본양호"
+      },
+      "dataNeeds": [],
+      "errors": []
+    },
+    {
+      "code": "007660",
+      "name": "이수페타시스",
+      "type": "stock",
+      "bucket": "individual_stock",
+      "category": "반도체/PCB",
+      "sourceCandidates": [
+        "security-master"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=007660"
+      },
+      "market": {
+        "price": 142800,
+        "changePct": -5.8,
+        "volume": 496562,
+        "marketCap": null,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": null,
+          "etfRanking": null
+        }
+      },
+      "metrics": {
+        "per": 63.27,
+        "pbr": 13.87,
+        "eps": 2257,
+        "estimatedPer": 40,
+        "estimatedEps": 3598,
+        "dividendYield": 0.16,
+        "operatingMargin": 18.82,
+        "operatingMarginEstimate": 21.1,
+        "roe": 29.64,
+        "roeEstimate": 31.83,
+        "annualEps": 2257,
+        "previousAnnualEps": 1116,
+        "estimatedAnnualEps": 3598,
+        "epsGrowthPct": 102.24,
+        "estimatedEpsGrowthPct": 59.42
+      },
+      "etf": null,
+      "score": {
+        "overall": 71,
+        "valuation": 39,
+        "quality": 85,
+        "growth": 92,
+        "confidence": 1,
+        "label": "기본양호"
+      },
+      "dataNeeds": [],
+      "errors": []
+    },
+    {
+      "code": "010120",
+      "name": "LS일렉트릭",
+      "type": "stock",
+      "bucket": "individual_stock",
+      "category": "전력기기",
+      "sourceCandidates": [
+        "security-master",
+        "market-watchlist"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=010120"
+      },
+      "market": {
+        "price": 299500,
+        "changePct": -5.07,
+        "volume": 2241240,
+        "marketCap": 44925000000000,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": "naver",
+          "etfRanking": null
+        }
+      },
+      "metrics": {
+        "per": 156.99,
+        "pbr": 21.55,
+        "eps": 1911,
+        "estimatedPer": 90,
+        "estimatedEps": 3317,
+        "dividendYield": 0.2,
+        "operatingMargin": 8.59,
+        "operatingMarginEstimate": 10.58,
+        "roe": 14.67,
+        "roeEstimate": 21.94,
+        "annualEps": 1911,
+        "previousAnnualEps": 1591,
+        "estimatedAnnualEps": 3317,
+        "epsGrowthPct": 20.11,
+        "estimatedEpsGrowthPct": 73.57
+      },
+      "etf": null,
+      "score": {
+        "overall": 57,
+        "valuation": 27,
+        "quality": 64,
+        "growth": 85,
+        "confidence": 1,
+        "label": "기본보통"
+      },
+      "dataNeeds": [],
+      "errors": []
+    },
+    {
+      "code": "047810",
+      "name": "한국항공우주",
+      "type": "stock",
+      "bucket": "individual_stock",
+      "category": "방산",
+      "sourceCandidates": [
+        "security-master",
+        "market-watchlist"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=047810"
+      },
+      "market": {
+        "price": 170200,
+        "changePct": -3.62,
+        "volume": 724818,
+        "marketCap": 16590263211400,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": "naver",
+          "etfRanking": null
+        }
+      },
+      "metrics": {
+        "per": 89.3,
+        "pbr": 9.07,
+        "eps": 1907,
+        "estimatedPer": 46,
+        "estimatedEps": 3720,
+        "dividendYield": 0.29,
+        "operatingMargin": 7.28,
+        "operatingMarginEstimate": 8.66,
+        "roe": 10.51,
+        "roeEstimate": 18.19,
+        "annualEps": 1907,
+        "previousAnnualEps": 1765,
+        "estimatedAnnualEps": 3720,
+        "epsGrowthPct": 8.05,
+        "estimatedEpsGrowthPct": 95.07
+      },
+      "etf": null,
+      "score": {
+        "overall": 54,
+        "valuation": 33,
+        "quality": 56,
+        "growth": 78,
+        "confidence": 1,
+        "label": "기본보통"
+      },
+      "dataNeeds": [],
+      "errors": []
+    },
+    {
+      "code": "267260",
+      "name": "HD현대일렉트릭",
+      "type": "stock",
+      "bucket": "individual_stock",
+      "category": "전력기기",
+      "sourceCandidates": [
+        "security-master",
+        "market-watchlist"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=267260"
+      },
+      "market": {
+        "price": 1354000,
+        "changePct": -2.52,
+        "volume": 141015,
+        "marketCap": 48807820790000,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": "naver",
+          "etfRanking": null
+        }
+      },
+      "metrics": {
+        "per": 66.92,
+        "pbr": 24.13,
+        "eps": 20324,
+        "estimatedPer": 50,
+        "estimatedEps": 27255,
+        "dividendYield": 0.52,
+        "operatingMargin": 24.4,
+        "operatingMarginEstimate": 26.64,
+        "roe": 41.5,
+        "roeEstimate": 41.17,
+        "annualEps": 20324,
+        "previousAnnualEps": 13914,
+        "estimatedAnnualEps": 27255,
+        "epsGrowthPct": 46.07,
+        "estimatedEpsGrowthPct": 34.1
+      },
+      "etf": null,
+      "score": {
+        "overall": 67,
+        "valuation": 33,
+        "quality": 85,
+        "growth": 85,
+        "confidence": 1,
+        "label": "기본양호"
+      },
+      "dataNeeds": [],
+      "errors": []
+    },
+    {
+      "code": "298040",
+      "name": "효성중공업",
+      "type": "stock",
+      "bucket": "individual_stock",
+      "category": "전력기기",
+      "sourceCandidates": [
+        "security-master",
+        "market-watchlist"
+      ],
+      "sourceUrls": {
+        "naver": "https://finance.naver.com/item/main.naver?code=298040"
+      },
+      "market": {
+        "price": 4441000,
+        "changePct": -3.39,
+        "volume": 56853,
+        "marketCap": 41410317668000,
+        "nav": null,
+        "navGapPct": null,
+        "navChangePct": null,
+        "rank": null,
+        "source": {
+          "market": "naver",
+          "etfRanking": null
+        }
+      },
+      "metrics": {
+        "per": 79.94,
+        "pbr": 17.65,
+        "eps": 55755,
+        "estimatedPer": 53,
+        "estimatedEps": 84548,
+        "dividendYield": 0.17,
+        "operatingMargin": 12.52,
+        "operatingMarginEstimate": 15.39,
+        "roe": 24.41,
+        "roeEstimate": 29.09,
+        "annualEps": 55755,
+        "previousAnnualEps": 23876,
+        "estimatedAnnualEps": 84548,
+        "epsGrowthPct": 133.52,
+        "estimatedEpsGrowthPct": 51.64
+      },
+      "etf": null,
+      "score": {
+        "overall": 64,
+        "valuation": 33,
+        "quality": 71,
+        "growth": 92,
+        "confidence": 1,
+        "label": "기본양호"
+      },
+      "dataNeeds": [],
+      "errors": []
+    }
+  ]
+}

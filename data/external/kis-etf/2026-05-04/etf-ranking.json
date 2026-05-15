@@ -1,0 +1,1710 @@
+{
+  "source": "kis",
+  "collectionMode": "kis_etfetn_quote",
+  "date": "2026-05-04",
+  "capturedAt": "2026-05-04T01:23:47.254213Z",
+  "topN": 80,
+  "scanMultiplier": 3,
+  "etfs": [
+    {
+      "code": "243880",
+      "name": "TIGER 200IT레버리지",
+      "price": 364725.0,
+      "changePct": 10.9,
+      "changeAmt": 35845.0,
+      "volume": 74924.0,
+      "highPrice": 380000.0,
+      "lowPrice": 345005.0,
+      "nav": 364473.59,
+      "navChangePct": 11.19,
+      "periodChangePct": 10.9,
+      "rank": 1,
+      "sectors": [],
+      "keywords": [],
+      "rationale": ""
+    },
+    {
+      "code": "412570",
+      "name": "TIGER 2차전지TOP10레버리지",
+      "price": 3025.0,
+      "changePct": 8.62,
+      "changeAmt": 240.0,
+      "volume": 10261772.0,
+      "highPrice": 3030.0,
+      "lowPrice": 2910.0,
+      "nav": 3031.23,
+      "navChangePct": 8.51,
+      "periodChangePct": 8.62,
+      "rank": 2,
+      "sectors": [
+        "2차전지"
+      ],
+      "keywords": [
+        "2차전지",
+        "배터리",
+        "전기차",
+        "소재"
+      ],
+      "rationale": "TIGER 2차전지TOP10레버리지의 핵심 노출(2차전지)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "462330",
+      "name": "KODEX 2차전지산업레버리지",
+      "price": 2850.0,
+      "changePct": 8.37,
+      "changeAmt": 220.0,
+      "volume": 34756430.0,
+      "highPrice": 2865.0,
+      "lowPrice": 2740.0,
+      "nav": 2879.93,
+      "navChangePct": 8.74,
+      "periodChangePct": 8.37,
+      "rank": 3,
+      "sectors": [
+        "2차전지"
+      ],
+      "keywords": [
+        "2차전지",
+        "배터리",
+        "전기차",
+        "소재"
+      ],
+      "rationale": "KODEX 2차전지산업레버리지의 핵심 노출(2차전지)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "487240",
+      "name": "KODEX AI전력핵심설비",
+      "price": 56870.0,
+      "changePct": 7.67,
+      "changeAmt": 4050.0,
+      "volume": 7061944.0,
+      "highPrice": 57060.0,
+      "lowPrice": 54465.0,
+      "nav": 56865.36,
+      "navChangePct": 7.89,
+      "periodChangePct": 7.67,
+      "rank": 4,
+      "sectors": [
+        "전력/에너지",
+        "인프라",
+        "기계"
+      ],
+      "keywords": [
+        "전력",
+        "전력기기",
+        "전력 인프라",
+        "AI 인프라",
+        "데이터센터",
+        "전선",
+        "변압기"
+      ],
+      "rationale": "전력기기와 인프라 강세를 AI 전력 설비 ETF로 압축해 가져가기 좋습니다."
+    },
+    {
+      "code": "494220",
+      "name": "UNICORN SK하이닉스밸류체인액티브",
+      "price": 46240.0,
+      "changePct": 7.45,
+      "changeAmt": 3205.0,
+      "volume": 304438.0,
+      "highPrice": 46445.0,
+      "lowPrice": 44875.0,
+      "nav": 46278.47,
+      "navChangePct": 7.03,
+      "periodChangePct": 7.45,
+      "rank": 5,
+      "sectors": [
+        "기타"
+      ],
+      "keywords": [
+        "시장 대표",
+        "테마 분산"
+      ],
+      "rationale": "UNICORN SK하이닉스밸류체인액티브의 핵심 노출(기타)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "491820",
+      "name": "HANARO 전력설비투자",
+      "price": 68170.0,
+      "changePct": 7.41,
+      "changeAmt": 4700.0,
+      "volume": 212761.0,
+      "highPrice": 68460.0,
+      "lowPrice": 65500.0,
+      "nav": 68235.49,
+      "navChangePct": 7.73,
+      "periodChangePct": 7.41,
+      "rank": 6,
+      "sectors": [],
+      "keywords": [],
+      "rationale": ""
+    },
+    {
+      "code": "271050",
+      "name": "KODEX WTI원유선물인버스(H)",
+      "price": 1936.0,
+      "changePct": 7.02,
+      "changeAmt": 127.0,
+      "volume": 15978179.0,
+      "highPrice": 1946.0,
+      "lowPrice": 1915.0,
+      "nav": 1945.57,
+      "navChangePct": 4.93,
+      "periodChangePct": 7.02,
+      "rank": 7,
+      "sectors": [
+        "원자재"
+      ],
+      "keywords": [
+        "원유",
+        "원자재",
+        "에너지",
+        "구리"
+      ],
+      "rationale": "KODEX WTI원유선물인버스(H)의 핵심 노출(원자재)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "455860",
+      "name": "SOL 2차전지소부장Fn",
+      "price": 7760.0,
+      "changePct": 6.59,
+      "changeAmt": 480.0,
+      "volume": 795115.0,
+      "highPrice": 7800.0,
+      "lowPrice": 7525.0,
+      "nav": 7774.96,
+      "navChangePct": 6.58,
+      "periodChangePct": 6.59,
+      "rank": 8,
+      "sectors": [
+        "2차전지"
+      ],
+      "keywords": [
+        "2차전지",
+        "배터리",
+        "전기차",
+        "소재"
+      ],
+      "rationale": "SOL 2차전지소부장Fn의 핵심 노출(2차전지)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "217770",
+      "name": "TIGER 원유선물인버스(H)",
+      "price": 1249.0,
+      "changePct": 6.57,
+      "changeAmt": 77.0,
+      "volume": 1876855.0,
+      "highPrice": 1255.0,
+      "lowPrice": 1238.0,
+      "nav": 1258.25,
+      "navChangePct": 4.93,
+      "periodChangePct": 6.57,
+      "rank": 9,
+      "sectors": [
+        "원자재"
+      ],
+      "keywords": [
+        "원유",
+        "원자재",
+        "에너지",
+        "구리"
+      ],
+      "rationale": "TIGER 원유선물인버스(H)의 핵심 노출(원자재)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "423920",
+      "name": "TIGER 미국필라델피아반도체레버리지(합성)",
+      "price": 88420.0,
+      "changePct": 6.46,
+      "changeAmt": 5365.0,
+      "volume": 101380.0,
+      "highPrice": 88480.0,
+      "lowPrice": 87190.0,
+      "nav": 87442.66,
+      "navChangePct": 4.58,
+      "periodChangePct": 6.46,
+      "rank": 10,
+      "sectors": [],
+      "keywords": [],
+      "rationale": ""
+    },
+    {
+      "code": "494310",
+      "name": "KODEX 반도체레버리지",
+      "price": 106835.0,
+      "changePct": 6.32,
+      "changeAmt": 6350.0,
+      "volume": 1410845.0,
+      "highPrice": 106840.0,
+      "lowPrice": 104675.0,
+      "nav": 107065.97,
+      "navChangePct": 6.43,
+      "periodChangePct": 6.32,
+      "rank": 11,
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "반도체",
+        "HBM",
+        "메모리",
+        "소부장"
+      ],
+      "rationale": "KODEX 반도체레버리지의 핵심 노출(반도체)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "461950",
+      "name": "KODEX 2차전지핵심소재10",
+      "price": 8355.0,
+      "changePct": 6.23,
+      "changeAmt": 490.0,
+      "volume": 1585813.0,
+      "highPrice": 8400.0,
+      "lowPrice": 8095.0,
+      "nav": 8362.45,
+      "navChangePct": 6.73,
+      "periodChangePct": 6.23,
+      "rank": 12,
+      "sectors": [
+        "2차전지"
+      ],
+      "keywords": [
+        "2차전지",
+        "배터리",
+        "전기차",
+        "소재"
+      ],
+      "rationale": "KODEX 2차전지핵심소재10의 핵심 노출(2차전지)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "152500",
+      "name": "ACE 레버리지",
+      "price": 50015.0,
+      "changePct": 6.17,
+      "changeAmt": 2905.0,
+      "volume": 103888.0,
+      "highPrice": 50015.0,
+      "lowPrice": 49010.0,
+      "nav": 50020.4,
+      "navChangePct": 6.1,
+      "periodChangePct": 6.17,
+      "rank": 13,
+      "sectors": [],
+      "keywords": [],
+      "rationale": ""
+    },
+    {
+      "code": "462010",
+      "name": "TIGER 2차전지소재Fn",
+      "price": 8180.0,
+      "changePct": 6.1,
+      "changeAmt": 470.0,
+      "volume": 6300471.0,
+      "highPrice": 8225.0,
+      "lowPrice": 7920.0,
+      "nav": 8196.48,
+      "navChangePct": 5.96,
+      "periodChangePct": 6.1,
+      "rank": 14,
+      "sectors": [
+        "2차전지"
+      ],
+      "keywords": [
+        "2차전지",
+        "배터리",
+        "전기차",
+        "소재"
+      ],
+      "rationale": "TIGER 2차전지소재Fn의 핵심 노출(2차전지)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "267770",
+      "name": "TIGER 200선물레버리지",
+      "price": 93805.0,
+      "changePct": 6.07,
+      "changeAmt": 5370.0,
+      "volume": 157363.0,
+      "highPrice": 93850.0,
+      "lowPrice": 91300.0,
+      "nav": 93793.04,
+      "navChangePct": 5.89,
+      "periodChangePct": 6.07,
+      "rank": 15,
+      "sectors": [
+        "국내지수"
+      ],
+      "keywords": [
+        "코스피200",
+        "국내 주식",
+        "지수"
+      ],
+      "rationale": "TIGER 200선물레버리지의 핵심 노출(국내지수)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "122630",
+      "name": "KODEX 레버리지",
+      "price": 122420.0,
+      "changePct": 6.04,
+      "changeAmt": 6970.0,
+      "volume": 7958185.0,
+      "highPrice": 122440.0,
+      "lowPrice": 119800.0,
+      "nav": 122744.74,
+      "navChangePct": 6.13,
+      "periodChangePct": 6.04,
+      "rank": 16,
+      "sectors": [
+        "기타"
+      ],
+      "keywords": [
+        "시장 대표",
+        "테마 분산"
+      ],
+      "rationale": "KODEX 레버리지의 핵심 노출(기타)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "123320",
+      "name": "TIGER 레버리지",
+      "price": 122245.0,
+      "changePct": 6.04,
+      "changeAmt": 6965.0,
+      "volume": 172594.0,
+      "highPrice": 122340.0,
+      "lowPrice": 119805.0,
+      "nav": 122362.23,
+      "navChangePct": 6.14,
+      "periodChangePct": 6.04,
+      "rank": 17,
+      "sectors": [
+        "기타"
+      ],
+      "keywords": [
+        "시장 대표",
+        "테마 분산"
+      ],
+      "rationale": "TIGER 레버리지의 핵심 노출(기타)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "491010",
+      "name": "TIGER 글로벌AI전력인프라액티브",
+      "price": 31160.0,
+      "changePct": 5.93,
+      "changeAmt": 1745.0,
+      "volume": 159394.0,
+      "highPrice": 31300.0,
+      "lowPrice": 30705.0,
+      "nav": 30947.42,
+      "navChangePct": 5.08,
+      "periodChangePct": 5.93,
+      "rank": 18,
+      "sectors": [
+        "AI/인프라",
+        "전력/에너지"
+      ],
+      "keywords": [
+        "AI",
+        "데이터센터",
+        "클라우드",
+        "로봇",
+        "전력",
+        "송배전",
+        "변압기",
+        "인프라"
+      ],
+      "rationale": "TIGER 글로벌AI전력인프라액티브의 핵심 노출(AI/인프라, 전력/에너지)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "471040",
+      "name": "KoAct 글로벌AI&로봇액티브",
+      "price": 31545.0,
+      "changePct": 5.91,
+      "changeAmt": 1760.0,
+      "volume": 235709.0,
+      "highPrice": 31565.0,
+      "lowPrice": 30975.0,
+      "nav": 31213.52,
+      "navChangePct": 5.0,
+      "periodChangePct": 5.91,
+      "rank": 19,
+      "sectors": [],
+      "keywords": [],
+      "rationale": ""
+    },
+    {
+      "code": "488080",
+      "name": "TIGER 반도체TOP10레버리지",
+      "price": 62950.0,
+      "changePct": 5.89,
+      "changeAmt": 3500.0,
+      "volume": 1628515.0,
+      "highPrice": 62985.0,
+      "lowPrice": 61540.0,
+      "nav": 63133.39,
+      "navChangePct": 6.26,
+      "periodChangePct": 5.89,
+      "rank": 20,
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "반도체",
+        "HBM",
+        "메모리",
+        "소부장"
+      ],
+      "rationale": "TIGER 반도체TOP10레버리지의 핵심 노출(반도체)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "487230",
+      "name": "KODEX 미국AI전력핵심인프라",
+      "price": 26125.0,
+      "changePct": 5.83,
+      "changeAmt": 1440.0,
+      "volume": 1031584.0,
+      "highPrice": 26160.0,
+      "lowPrice": 25915.0,
+      "nav": 26024.75,
+      "navChangePct": 5.11,
+      "periodChangePct": 5.83,
+      "rank": 21,
+      "sectors": [
+        "AI/인프라",
+        "전력/에너지"
+      ],
+      "keywords": [
+        "AI",
+        "데이터센터",
+        "클라우드",
+        "로봇",
+        "전력",
+        "송배전",
+        "변압기",
+        "인프라"
+      ],
+      "rationale": "KODEX 미국AI전력핵심인프라의 핵심 노출(AI/인프라, 전력/에너지)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "456600",
+      "name": "TIME 글로벌AI인공지능액티브",
+      "price": 57590.0,
+      "changePct": 5.53,
+      "changeAmt": 3020.0,
+      "volume": 325975.0,
+      "highPrice": 57650.0,
+      "lowPrice": 56610.0,
+      "nav": 57046.94,
+      "navChangePct": 4.65,
+      "periodChangePct": 5.53,
+      "rank": 22,
+      "sectors": [
+        "AI/인프라"
+      ],
+      "keywords": [
+        "AI",
+        "데이터센터",
+        "클라우드",
+        "로봇"
+      ],
+      "rationale": "TIME 글로벌AI인공지능액티브의 핵심 노출(AI/인프라)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "466810",
+      "name": "BNK 2차전지양극재",
+      "price": 9290.0,
+      "changePct": 5.51,
+      "changeAmt": 485.0,
+      "volume": 80935.0,
+      "highPrice": 9330.0,
+      "lowPrice": 9015.0,
+      "nav": 9304.6,
+      "navChangePct": 5.26,
+      "periodChangePct": 5.51,
+      "rank": 23,
+      "sectors": [],
+      "keywords": [],
+      "rationale": ""
+    },
+    {
+      "code": "426030",
+      "name": "TIME 미국나스닥100액티브",
+      "price": 48980.0,
+      "changePct": 5.33,
+      "changeAmt": 2480.0,
+      "volume": 768626.0,
+      "highPrice": 49060.0,
+      "lowPrice": 48205.0,
+      "nav": 48546.9,
+      "navChangePct": 4.52,
+      "periodChangePct": 5.33,
+      "rank": 24,
+      "sectors": [],
+      "keywords": [],
+      "rationale": ""
+    },
+    {
+      "code": "422420",
+      "name": "RISE 2차전지액티브",
+      "price": 11405.0,
+      "changePct": 5.21,
+      "changeAmt": 565.0,
+      "volume": 1787420.0,
+      "highPrice": 11430.0,
+      "lowPrice": 11170.0,
+      "nav": 11420.99,
+      "navChangePct": 5.26,
+      "periodChangePct": 5.21,
+      "rank": 25,
+      "sectors": [
+        "2차전지"
+      ],
+      "keywords": [
+        "2차전지",
+        "배터리",
+        "전기차",
+        "소재"
+      ],
+      "rationale": "RISE 2차전지액티브의 핵심 노출(2차전지)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "139260",
+      "name": "TIGER 200 IT",
+      "price": 120355.0,
+      "changePct": 5.04,
+      "changeAmt": 5780.0,
+      "volume": 770036.0,
+      "highPrice": 120410.0,
+      "lowPrice": 117615.0,
+      "nav": 120565.16,
+      "navChangePct": 5.68,
+      "periodChangePct": 5.04,
+      "rank": 26,
+      "sectors": [
+        "국내지수"
+      ],
+      "keywords": [
+        "코스피200",
+        "국내 주식",
+        "지수"
+      ],
+      "rationale": "TIGER 200 IT의 핵심 노출(국내지수)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "483340",
+      "name": "ACE 구글밸류체인액티브",
+      "price": 23020.0,
+      "changePct": 5.02,
+      "changeAmt": 1100.0,
+      "volume": 243264.0,
+      "highPrice": 23025.0,
+      "lowPrice": 22660.0,
+      "nav": 22659.14,
+      "navChangePct": 5.34,
+      "periodChangePct": 5.02,
+      "rank": 27,
+      "sectors": [],
+      "keywords": [],
+      "rationale": ""
+    },
+    {
+      "code": "469170",
+      "name": "ACE 포스코그룹포커스",
+      "price": 9015.0,
+      "changePct": 4.76,
+      "changeAmt": 410.0,
+      "volume": 1338641.0,
+      "highPrice": 9095.0,
+      "lowPrice": 8835.0,
+      "nav": 9016.82,
+      "navChangePct": 4.67,
+      "periodChangePct": 4.76,
+      "rank": 28,
+      "sectors": [
+        "기타"
+      ],
+      "keywords": [
+        "시장 대표",
+        "테마 분산"
+      ],
+      "rationale": "ACE 포스코그룹포커스의 핵심 노출(기타)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "409820",
+      "name": "KODEX 미국나스닥100레버리지(합성 H)",
+      "price": 18235.0,
+      "changePct": 4.71,
+      "changeAmt": 820.0,
+      "volume": 97185.0,
+      "highPrice": 18265.0,
+      "lowPrice": 18075.0,
+      "nav": 18228.98,
+      "navChangePct": 3.85,
+      "periodChangePct": 4.71,
+      "rank": 29,
+      "sectors": [
+        "미국기술주"
+      ],
+      "keywords": [
+        "나스닥",
+        "미국 기술주",
+        "빅테크"
+      ],
+      "rationale": "KODEX 미국나스닥100레버리지(합성 H)의 핵심 노출(미국기술주)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "498270",
+      "name": "KIWOOM 미국양자컴퓨팅",
+      "price": 14725.0,
+      "changePct": 4.66,
+      "changeAmt": 655.0,
+      "volume": 149283.0,
+      "highPrice": 14820.0,
+      "lowPrice": 14490.0,
+      "nav": 14837.63,
+      "navChangePct": 4.1,
+      "periodChangePct": 4.66,
+      "rank": 30,
+      "sectors": [
+        "기타"
+      ],
+      "keywords": [
+        "시장 대표",
+        "테마 분산"
+      ],
+      "rationale": "KIWOOM 미국양자컴퓨팅의 핵심 노출(기타)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "474590",
+      "name": "WON 반도체밸류체인액티브",
+      "price": 38815.0,
+      "changePct": 4.37,
+      "changeAmt": 1625.0,
+      "volume": 424065.0,
+      "highPrice": 38815.0,
+      "lowPrice": 38265.0,
+      "nav": 38870.06,
+      "navChangePct": 4.3,
+      "periodChangePct": 4.37,
+      "rank": 31,
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "반도체",
+        "HBM",
+        "메모리",
+        "소부장"
+      ],
+      "rationale": "WON 반도체밸류체인액티브의 핵심 노출(반도체)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "465330",
+      "name": "RISE 2차전지TOP10",
+      "price": 16695.0,
+      "changePct": 4.34,
+      "changeAmt": 695.0,
+      "volume": 414730.0,
+      "highPrice": 16790.0,
+      "lowPrice": 16440.0,
+      "nav": 16710.69,
+      "navChangePct": 4.15,
+      "periodChangePct": 4.34,
+      "rank": 32,
+      "sectors": [
+        "2차전지"
+      ],
+      "keywords": [
+        "2차전지",
+        "배터리",
+        "전기차",
+        "소재"
+      ],
+      "rationale": "RISE 2차전지TOP10의 핵심 노출(2차전지)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "442580",
+      "name": "PLUS 글로벌HBM반도체",
+      "price": 77800.0,
+      "changePct": 4.32,
+      "changeAmt": 3220.0,
+      "volume": 116334.0,
+      "highPrice": 77865.0,
+      "lowPrice": 75640.0,
+      "nav": 77097.54,
+      "navChangePct": 2.92,
+      "periodChangePct": 4.32,
+      "rank": 33,
+      "sectors": [],
+      "keywords": [],
+      "rationale": ""
+    },
+    {
+      "code": "457480",
+      "name": "ACE 테슬라밸류체인액티브",
+      "price": 23805.0,
+      "changePct": 4.23,
+      "changeAmt": 965.0,
+      "volume": 680279.0,
+      "highPrice": 23830.0,
+      "lowPrice": 23400.0,
+      "nav": 23744.83,
+      "navChangePct": 3.28,
+      "periodChangePct": 4.23,
+      "rank": 34,
+      "sectors": [],
+      "keywords": [],
+      "rationale": ""
+    },
+    {
+      "code": "305540",
+      "name": "TIGER 2차전지테마",
+      "price": 27795.0,
+      "changePct": 4.1,
+      "changeAmt": 1095.0,
+      "volume": 999435.0,
+      "highPrice": 27850.0,
+      "lowPrice": 27290.0,
+      "nav": 27842.31,
+      "navChangePct": 4.81,
+      "periodChangePct": 4.1,
+      "rank": 35,
+      "sectors": [
+        "2차전지"
+      ],
+      "keywords": [
+        "2차전지",
+        "배터리",
+        "전기차",
+        "소재"
+      ],
+      "rationale": "TIGER 2차전지테마의 핵심 노출(2차전지)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "388420",
+      "name": "RISE 비메모리반도체액티브",
+      "price": 29420.0,
+      "changePct": 4.07,
+      "changeAmt": 1150.0,
+      "volume": 170704.0,
+      "highPrice": 29450.0,
+      "lowPrice": 28975.0,
+      "nav": 29459.19,
+      "navChangePct": 4.02,
+      "periodChangePct": 4.07,
+      "rank": 36,
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "반도체",
+        "HBM",
+        "메모리",
+        "소부장"
+      ],
+      "rationale": "RISE 비메모리반도체액티브의 핵심 노출(반도체)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "367760",
+      "name": "RISE 네트워크인프라",
+      "price": 50235.0,
+      "changePct": 4.06,
+      "changeAmt": 1960.0,
+      "volume": 1218919.0,
+      "highPrice": 50275.0,
+      "lowPrice": 49530.0,
+      "nav": 50361.76,
+      "navChangePct": 4.37,
+      "periodChangePct": 4.06,
+      "rank": 37,
+      "sectors": [
+        "기타"
+      ],
+      "keywords": [
+        "시장 대표",
+        "테마 분산"
+      ],
+      "rationale": "RISE 네트워크인프라의 핵심 노출(기타)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "364980",
+      "name": "TIGER 2차전지TOP10",
+      "price": 14555.0,
+      "changePct": 4.04,
+      "changeAmt": 565.0,
+      "volume": 3554883.0,
+      "highPrice": 14585.0,
+      "lowPrice": 14290.0,
+      "nav": 14551.74,
+      "navChangePct": 4.14,
+      "periodChangePct": 4.04,
+      "rank": 38,
+      "sectors": [
+        "2차전지"
+      ],
+      "keywords": [
+        "2차전지",
+        "배터리",
+        "전기차",
+        "소재"
+      ],
+      "rationale": "TIGER 2차전지TOP10의 핵심 노출(2차전지)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "364990",
+      "name": "TIGER 게임TOP10",
+      "price": 6090.0,
+      "changePct": 4.01,
+      "changeAmt": 235.0,
+      "volume": 185085.0,
+      "highPrice": 6165.0,
+      "lowPrice": 6030.0,
+      "nav": 6109.9,
+      "navChangePct": 3.79,
+      "periodChangePct": 4.01,
+      "rank": 39,
+      "sectors": [
+        "인터넷/콘텐츠"
+      ],
+      "keywords": [
+        "인터넷",
+        "콘텐츠",
+        "플랫폼",
+        "게임"
+      ],
+      "rationale": "TIGER 게임TOP10의 핵심 노출(인터넷/콘텐츠)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "233160",
+      "name": "TIGER 코스닥150 레버리지",
+      "price": 19135.0,
+      "changePct": 3.99,
+      "changeAmt": 735.0,
+      "volume": 458279.0,
+      "highPrice": 19365.0,
+      "lowPrice": 18870.0,
+      "nav": 19169.0,
+      "navChangePct": 4.24,
+      "periodChangePct": 3.99,
+      "rank": 40,
+      "sectors": [
+        "국내성장주"
+      ],
+      "keywords": [
+        "코스닥",
+        "성장주",
+        "테크"
+      ],
+      "rationale": "TIGER 코스닥150 레버리지의 핵심 노출(국내성장주)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "305720",
+      "name": "KODEX 2차전지산업",
+      "price": 22300.0,
+      "changePct": 3.96,
+      "changeAmt": 850.0,
+      "volume": 4570162.0,
+      "highPrice": 22340.0,
+      "lowPrice": 21930.0,
+      "nav": 22332.66,
+      "navChangePct": 4.35,
+      "periodChangePct": 3.96,
+      "rank": 41,
+      "sectors": [
+        "2차전지"
+      ],
+      "keywords": [
+        "2차전지",
+        "배터리",
+        "전기차",
+        "소재"
+      ],
+      "rationale": "KODEX 2차전지산업의 핵심 노출(2차전지)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "307520",
+      "name": "TIGER 지주회사",
+      "price": 25525.0,
+      "changePct": 3.93,
+      "changeAmt": 965.0,
+      "volume": 302017.0,
+      "highPrice": 25705.0,
+      "lowPrice": 25300.0,
+      "nav": 25532.49,
+      "navChangePct": 3.44,
+      "periodChangePct": 3.93,
+      "rank": 42,
+      "sectors": [
+        "기타"
+      ],
+      "keywords": [
+        "시장 대표",
+        "테마 분산"
+      ],
+      "rationale": "TIGER 지주회사의 핵심 노출(기타)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "471780",
+      "name": "TIGER 코리아테크액티브",
+      "price": 34400.0,
+      "changePct": 3.93,
+      "changeAmt": 1300.0,
+      "volume": 97613.0,
+      "highPrice": 34450.0,
+      "lowPrice": 34100.0,
+      "nav": 34479.37,
+      "navChangePct": 4.05,
+      "periodChangePct": 3.93,
+      "rank": 43,
+      "sectors": [
+        "AI/인프라"
+      ],
+      "keywords": [
+        "AI",
+        "데이터센터",
+        "클라우드",
+        "로봇"
+      ],
+      "rationale": "TIGER 코리아테크액티브의 핵심 노출(AI/인프라)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "473590",
+      "name": "ACE 미국주식베스트셀러",
+      "price": 22380.0,
+      "changePct": 3.9,
+      "changeAmt": 840.0,
+      "volume": 342238.0,
+      "highPrice": 22410.0,
+      "lowPrice": 21730.0,
+      "nav": 22313.16,
+      "navChangePct": 3.91,
+      "periodChangePct": 3.9,
+      "rank": 44,
+      "sectors": [],
+      "keywords": [],
+      "rationale": ""
+    },
+    {
+      "code": "144600",
+      "name": "KODEX 은선물(H)",
+      "price": 12390.0,
+      "changePct": 3.86,
+      "changeAmt": 460.0,
+      "volume": 1287785.0,
+      "highPrice": 12485.0,
+      "lowPrice": 12365.0,
+      "nav": 12416.32,
+      "navChangePct": 5.19,
+      "periodChangePct": 3.86,
+      "rank": 45,
+      "sectors": [
+        "원자재"
+      ],
+      "keywords": [
+        "금",
+        "골드",
+        "안전자산",
+        "헤지"
+      ],
+      "rationale": "KODEX 은선물(H)의 핵심 노출(원자재)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "233740",
+      "name": "KODEX 코스닥150레버리지",
+      "price": 17250.0,
+      "changePct": 3.82,
+      "changeAmt": 635.0,
+      "volume": 13891912.0,
+      "highPrice": 17445.0,
+      "lowPrice": 17015.0,
+      "nav": 17344.14,
+      "navChangePct": 4.27,
+      "periodChangePct": 3.82,
+      "rank": 46,
+      "sectors": [
+        "국내성장주"
+      ],
+      "keywords": [
+        "코스닥",
+        "성장주",
+        "테크"
+      ],
+      "rationale": "KODEX 코스닥150레버리지의 핵심 노출(국내성장주)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "395270",
+      "name": "HANARO Fn K-반도체",
+      "price": 47750.0,
+      "changePct": 3.79,
+      "changeAmt": 1745.0,
+      "volume": 1936505.0,
+      "highPrice": 47760.0,
+      "lowPrice": 47125.0,
+      "nav": 47779.72,
+      "navChangePct": 4.11,
+      "periodChangePct": 3.79,
+      "rank": 47,
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "반도체",
+        "HBM",
+        "메모리",
+        "소부장"
+      ],
+      "rationale": "HANARO Fn K-반도체의 핵심 노출(반도체)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "157500",
+      "name": "TIGER 증권",
+      "price": 19160.0,
+      "changePct": 3.6,
+      "changeAmt": 665.0,
+      "volume": 1087533.0,
+      "highPrice": 19245.0,
+      "lowPrice": 18765.0,
+      "nav": 19193.3,
+      "navChangePct": 3.63,
+      "periodChangePct": 3.6,
+      "rank": 48,
+      "sectors": [],
+      "keywords": [],
+      "rationale": ""
+    },
+    {
+      "code": "290130",
+      "name": "RISE ESG사회책임투자",
+      "price": 42520.0,
+      "changePct": 3.51,
+      "changeAmt": 1440.0,
+      "volume": 225626.0,
+      "highPrice": 42535.0,
+      "lowPrice": 42000.0,
+      "nav": 42583.11,
+      "navChangePct": 4.04,
+      "periodChangePct": 3.51,
+      "rank": 49,
+      "sectors": [],
+      "keywords": [],
+      "rationale": ""
+    },
+    {
+      "code": "479620",
+      "name": "SOL 미국AI반도체칩메이커",
+      "price": 23140.0,
+      "changePct": 3.47,
+      "changeAmt": 775.0,
+      "volume": 75255.0,
+      "highPrice": 23150.0,
+      "lowPrice": 22880.0,
+      "nav": 22945.01,
+      "navChangePct": 2.63,
+      "periodChangePct": 3.47,
+      "rank": 50,
+      "sectors": [],
+      "keywords": [],
+      "rationale": ""
+    },
+    {
+      "code": "102970",
+      "name": "KODEX 증권",
+      "price": 27675.0,
+      "changePct": 3.34,
+      "changeAmt": 895.0,
+      "volume": 1996748.0,
+      "highPrice": 27790.0,
+      "lowPrice": 27175.0,
+      "nav": 27702.8,
+      "navChangePct": 3.36,
+      "periodChangePct": 3.34,
+      "rank": 51,
+      "sectors": [],
+      "keywords": [],
+      "rationale": ""
+    },
+    {
+      "code": "385720",
+      "name": "TIME 코스피액티브",
+      "price": 26370.0,
+      "changePct": 3.31,
+      "changeAmt": 845.0,
+      "volume": 291232.0,
+      "highPrice": 26375.0,
+      "lowPrice": 26005.0,
+      "nav": 26385.47,
+      "navChangePct": 3.86,
+      "periodChangePct": 3.31,
+      "rank": 52,
+      "sectors": [],
+      "keywords": [],
+      "rationale": ""
+    },
+    {
+      "code": "469150",
+      "name": "ACE AI반도체TOP3+",
+      "price": 60505.0,
+      "changePct": 3.25,
+      "changeAmt": 1905.0,
+      "volume": 526453.0,
+      "highPrice": 60525.0,
+      "lowPrice": 59820.0,
+      "nav": 60568.22,
+      "navChangePct": 3.76,
+      "periodChangePct": 3.25,
+      "rank": 53,
+      "sectors": [
+        "반도체",
+        "AI/인프라"
+      ],
+      "keywords": [
+        "반도체",
+        "HBM",
+        "메모리",
+        "소부장",
+        "AI",
+        "데이터센터",
+        "클라우드",
+        "로봇"
+      ],
+      "rationale": "ACE AI반도체TOP3+의 핵심 노출(반도체, AI/인프라)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "381180",
+      "name": "TIGER 미국필라델피아반도체나스닥",
+      "price": 41030.0,
+      "changePct": 3.21,
+      "changeAmt": 1275.0,
+      "volume": 581797.0,
+      "highPrice": 41030.0,
+      "lowPrice": 40675.0,
+      "nav": 40732.13,
+      "navChangePct": 2.31,
+      "periodChangePct": 3.21,
+      "rank": 54,
+      "sectors": [
+        "반도체",
+        "미국기술주"
+      ],
+      "keywords": [
+        "반도체",
+        "HBM",
+        "메모리",
+        "소부장",
+        "나스닥",
+        "미국 기술주",
+        "빅테크"
+      ],
+      "rationale": "TIGER 미국필라델피아반도체나스닥의 핵심 노출(반도체, 미국기술주)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "496080",
+      "name": "TIGER 코리아밸류업",
+      "price": 30400.0,
+      "changePct": 3.16,
+      "changeAmt": 930.0,
+      "volume": 138253.0,
+      "highPrice": 30400.0,
+      "lowPrice": 30045.0,
+      "nav": 30421.19,
+      "navChangePct": 3.37,
+      "periodChangePct": 3.16,
+      "rank": 55,
+      "sectors": [],
+      "keywords": [],
+      "rationale": ""
+    },
+    {
+      "code": "315960",
+      "name": "RISE 대형고배당10TR",
+      "price": 70870.0,
+      "changePct": 3.16,
+      "changeAmt": 2170.0,
+      "volume": 85453.0,
+      "highPrice": 70880.0,
+      "lowPrice": 69990.0,
+      "nav": 70929.7,
+      "navChangePct": 3.6,
+      "periodChangePct": 3.16,
+      "rank": 56,
+      "sectors": [],
+      "keywords": [],
+      "rationale": ""
+    },
+    {
+      "code": "421320",
+      "name": "PLUS 우주항공&UAM",
+      "price": 47860.0,
+      "changePct": 3.12,
+      "changeAmt": 1450.0,
+      "volume": 163035.0,
+      "highPrice": 48105.0,
+      "lowPrice": 46890.0,
+      "nav": 47973.15,
+      "navChangePct": 3.13,
+      "periodChangePct": 3.12,
+      "rank": 57,
+      "sectors": [],
+      "keywords": [],
+      "rationale": ""
+    },
+    {
+      "code": "237350",
+      "name": "KODEX 코스피100",
+      "price": 81245.0,
+      "changePct": 3.11,
+      "changeAmt": 2450.0,
+      "volume": 134482.0,
+      "highPrice": 81250.0,
+      "lowPrice": 80450.0,
+      "nav": 81329.77,
+      "navChangePct": 3.42,
+      "periodChangePct": 3.11,
+      "rank": 58,
+      "sectors": [],
+      "keywords": [],
+      "rationale": ""
+    },
+    {
+      "code": "091160",
+      "name": "KODEX 반도체",
+      "price": 127690.0,
+      "changePct": 3.1,
+      "changeAmt": 3840.0,
+      "volume": 1251012.0,
+      "highPrice": 127700.0,
+      "lowPrice": 126215.0,
+      "nav": 127753.26,
+      "navChangePct": 3.44,
+      "periodChangePct": 3.1,
+      "rank": 59,
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "반도체",
+        "HBM",
+        "메모리",
+        "소부장"
+      ],
+      "rationale": "KODEX 반도체의 핵심 노출(반도체)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "418660",
+      "name": "TIGER 미국나스닥100레버리지(합성)",
+      "price": 41475.0,
+      "changePct": 3.08,
+      "changeAmt": 1240.0,
+      "volume": 86806.0,
+      "highPrice": 41480.0,
+      "lowPrice": 41200.0,
+      "nav": 41370.19,
+      "navChangePct": 2.18,
+      "periodChangePct": 3.08,
+      "rank": 60,
+      "sectors": [
+        "미국기술주"
+      ],
+      "keywords": [
+        "나스닥",
+        "미국 기술주",
+        "빅테크"
+      ],
+      "rationale": "TIGER 미국나스닥100레버리지(합성)의 핵심 노출(미국기술주)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "069500",
+      "name": "KODEX 200",
+      "price": 102975.0,
+      "changePct": 3.07,
+      "changeAmt": 3070.0,
+      "volume": 4916211.0,
+      "highPrice": 102995.0,
+      "lowPrice": 101865.0,
+      "nav": 102966.02,
+      "navChangePct": 3.25,
+      "periodChangePct": 3.07,
+      "rank": 61,
+      "sectors": [],
+      "keywords": [],
+      "rationale": ""
+    },
+    {
+      "code": "444200",
+      "name": "SOL 코리아메가테크액티브",
+      "price": 52075.0,
+      "changePct": 3.06,
+      "changeAmt": 1545.0,
+      "volume": 331177.0,
+      "highPrice": 52095.0,
+      "lowPrice": 51360.0,
+      "nav": 52113.86,
+      "navChangePct": 3.45,
+      "periodChangePct": 3.06,
+      "rank": 62,
+      "sectors": [],
+      "keywords": [],
+      "rationale": ""
+    },
+    {
+      "code": "494890",
+      "name": "KODEX 200액티브",
+      "price": 29780.0,
+      "changePct": 3.06,
+      "changeAmt": 885.0,
+      "volume": 120252.0,
+      "highPrice": 29780.0,
+      "lowPrice": 29460.0,
+      "nav": 29798.96,
+      "navChangePct": 3.32,
+      "periodChangePct": 3.06,
+      "rank": 63,
+      "sectors": [],
+      "keywords": [],
+      "rationale": ""
+    },
+    {
+      "code": "495230",
+      "name": "KoAct 코리아밸류업액티브",
+      "price": 30990.0,
+      "changePct": 3.04,
+      "changeAmt": 915.0,
+      "volume": 191998.0,
+      "highPrice": 30995.0,
+      "lowPrice": 30645.0,
+      "nav": 31044.71,
+      "navChangePct": 3.67,
+      "periodChangePct": 3.04,
+      "rank": 64,
+      "sectors": [],
+      "keywords": [],
+      "rationale": ""
+    },
+    {
+      "code": "451060",
+      "name": "1Q 200액티브",
+      "price": 33225.0,
+      "changePct": 3.02,
+      "changeAmt": 975.0,
+      "volume": 191172.0,
+      "highPrice": 33225.0,
+      "lowPrice": 32875.0,
+      "nav": 33227.24,
+      "navChangePct": 3.26,
+      "periodChangePct": 3.02,
+      "rank": 65,
+      "sectors": [],
+      "keywords": [],
+      "rationale": ""
+    },
+    {
+      "code": "102110",
+      "name": "TIGER 200",
+      "price": 102975.0,
+      "changePct": 3.01,
+      "changeAmt": 3005.0,
+      "volume": 1387006.0,
+      "highPrice": 102990.0,
+      "lowPrice": 101890.0,
+      "nav": 103044.75,
+      "navChangePct": 3.33,
+      "periodChangePct": 3.01,
+      "rank": 66,
+      "sectors": [],
+      "keywords": [],
+      "rationale": ""
+    },
+    {
+      "code": "441800",
+      "name": "TIME Korea플러스배당액티브",
+      "price": 31470.0,
+      "changePct": 2.99,
+      "changeAmt": 915.0,
+      "volume": 330469.0,
+      "highPrice": 31470.0,
+      "lowPrice": 31090.0,
+      "nav": 31514.87,
+      "navChangePct": 3.15,
+      "periodChangePct": 2.99,
+      "rank": 67,
+      "sectors": [],
+      "keywords": [],
+      "rationale": ""
+    },
+    {
+      "code": "278530",
+      "name": "KODEX 200TR",
+      "price": 37240.0,
+      "changePct": 2.97,
+      "changeAmt": 1075.0,
+      "volume": 404555.0,
+      "highPrice": 37245.0,
+      "lowPrice": 36850.0,
+      "nav": 37239.7,
+      "navChangePct": 3.26,
+      "periodChangePct": 2.97,
+      "rank": 68,
+      "sectors": [],
+      "keywords": [],
+      "rationale": ""
+    },
+    {
+      "code": "105190",
+      "name": "ACE 200",
+      "price": 103480.0,
+      "changePct": 2.97,
+      "changeAmt": 2980.0,
+      "volume": 89489.0,
+      "highPrice": 103480.0,
+      "lowPrice": 102405.0,
+      "nav": 103522.36,
+      "navChangePct": 3.3,
+      "periodChangePct": 2.97,
+      "rank": 69,
+      "sectors": [
+        "국내지수"
+      ],
+      "keywords": [
+        "코스피200",
+        "국내 주식",
+        "지수"
+      ],
+      "rationale": "ACE 200의 핵심 노출(국내지수)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "091230",
+      "name": "TIGER 반도체",
+      "price": 133500.0,
+      "changePct": 2.96,
+      "changeAmt": 3840.0,
+      "volume": 144667.0,
+      "highPrice": 133600.0,
+      "lowPrice": 132110.0,
+      "nav": 133723.05,
+      "navChangePct": 3.49,
+      "periodChangePct": 2.96,
+      "rank": 70,
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "반도체",
+        "HBM",
+        "메모리",
+        "소부장"
+      ],
+      "rationale": "TIGER 반도체의 핵심 노출(반도체)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "069660",
+      "name": "KIWOOM 200",
+      "price": 102795.0,
+      "changePct": 2.96,
+      "changeAmt": 2955.0,
+      "volume": 119084.0,
+      "highPrice": 102820.0,
+      "lowPrice": 101950.0,
+      "nav": 102871.3,
+      "navChangePct": 3.32,
+      "periodChangePct": 2.96,
+      "rank": 71,
+      "sectors": [],
+      "keywords": [],
+      "rationale": ""
+    },
+    {
+      "code": "148020",
+      "name": "RISE 200",
+      "price": 103750.0,
+      "changePct": 2.94,
+      "changeAmt": 2960.0,
+      "volume": 451539.0,
+      "highPrice": 103760.0,
+      "lowPrice": 102620.0,
+      "nav": 103764.28,
+      "navChangePct": 3.26,
+      "periodChangePct": 2.94,
+      "rank": 72,
+      "sectors": [],
+      "keywords": [],
+      "rationale": ""
+    },
+    {
+      "code": "495850",
+      "name": "KODEX 코리아밸류업",
+      "price": 30350.0,
+      "changePct": 2.88,
+      "changeAmt": 850.0,
+      "volume": 234194.0,
+      "highPrice": 30370.0,
+      "lowPrice": 30000.0,
+      "nav": 30397.79,
+      "navChangePct": 3.39,
+      "periodChangePct": 2.88,
+      "rank": 73,
+      "sectors": [],
+      "keywords": [],
+      "rationale": ""
+    },
+    {
+      "code": "495050",
+      "name": "RISE 코리아밸류업",
+      "price": 30495.0,
+      "changePct": 2.87,
+      "changeAmt": 850.0,
+      "volume": 1345913.0,
+      "highPrice": 30520.0,
+      "lowPrice": 30175.0,
+      "nav": 30530.15,
+      "navChangePct": 3.34,
+      "periodChangePct": 2.87,
+      "rank": 74,
+      "sectors": [
+        "기타"
+      ],
+      "keywords": [
+        "시장 대표",
+        "테마 분산"
+      ],
+      "rationale": "RISE 코리아밸류업의 핵심 노출(기타)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "226490",
+      "name": "KODEX 코스피",
+      "price": 69715.0,
+      "changePct": 2.81,
+      "changeAmt": 1905.0,
+      "volume": 101544.0,
+      "highPrice": 69730.0,
+      "lowPrice": 69080.0,
+      "nav": 69810.33,
+      "navChangePct": 3.03,
+      "periodChangePct": 2.81,
+      "rank": 75,
+      "sectors": [],
+      "keywords": [],
+      "rationale": ""
+    },
+    {
+      "code": "396500",
+      "name": "TIGER 반도체TOP10",
+      "price": 41230.0,
+      "changePct": 2.78,
+      "changeAmt": 1115.0,
+      "volume": 5802798.0,
+      "highPrice": 41250.0,
+      "lowPrice": 40690.0,
+      "nav": 41251.79,
+      "navChangePct": 3.22,
+      "periodChangePct": 2.78,
+      "rank": 76,
+      "sectors": [
+        "반도체"
+      ],
+      "keywords": [
+        "반도체",
+        "HBM",
+        "메모리",
+        "소부장"
+      ],
+      "rationale": "TIGER 반도체TOP10의 핵심 노출(반도체)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "473460",
+      "name": "KODEX 미국서학개미",
+      "price": 24730.0,
+      "changePct": 2.74,
+      "changeAmt": 660.0,
+      "volume": 72601.0,
+      "highPrice": 24795.0,
+      "lowPrice": 24595.0,
+      "nav": 24650.85,
+      "navChangePct": 2.12,
+      "periodChangePct": 2.74,
+      "rank": 77,
+      "sectors": [
+        "기타"
+      ],
+      "keywords": [
+        "시장 대표",
+        "테마 분산"
+      ],
+      "rationale": "KODEX 미국서학개미의 핵심 노출(기타)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "300950",
+      "name": "KODEX 게임산업",
+      "price": 7115.0,
+      "changePct": 2.67,
+      "changeAmt": 185.0,
+      "volume": 164538.0,
+      "highPrice": 7215.0,
+      "lowPrice": 7035.0,
+      "nav": 7138.2,
+      "navChangePct": 3.41,
+      "periodChangePct": 2.67,
+      "rank": 78,
+      "sectors": [
+        "인터넷/콘텐츠"
+      ],
+      "keywords": [
+        "인터넷",
+        "콘텐츠",
+        "플랫폼",
+        "게임"
+      ],
+      "rationale": "KODEX 게임산업의 핵심 노출(인터넷/콘텐츠)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "385510",
+      "name": "KODEX 신재생에너지액티브",
+      "price": 60850.0,
+      "changePct": 2.65,
+      "changeAmt": 1570.0,
+      "volume": 511567.0,
+      "highPrice": 60960.0,
+      "lowPrice": 59390.0,
+      "nav": 60873.55,
+      "navChangePct": 2.99,
+      "periodChangePct": 2.65,
+      "rank": 79,
+      "sectors": [
+        "전력/에너지"
+      ],
+      "keywords": [
+        "전력",
+        "송배전",
+        "변압기",
+        "인프라"
+      ],
+      "rationale": "KODEX 신재생에너지액티브의 핵심 노출(전력/에너지)을 테마 번역 후보로 사용합니다."
+    },
+    {
+      "code": "395160",
+      "name": "KODEX AI반도체",
+      "price": 34210.0,
+      "changePct": 2.64,
+      "changeAmt": 880.0,
+      "volume": 954351.0,
+      "highPrice": 34280.0,
+      "lowPrice": 33860.0,
+      "nav": 34258.84,
+      "navChangePct": 3.02,
+      "periodChangePct": 2.64,
+      "rank": 80,
+      "sectors": [
+        "반도체",
+        "AI/인프라"
+      ],
+      "keywords": [
+        "반도체",
+        "HBM",
+        "메모리",
+        "소부장",
+        "AI",
+        "데이터센터",
+        "클라우드",
+        "로봇"
+      ],
+      "rationale": "KODEX AI반도체의 핵심 노출(반도체, AI/인프라)을 테마 번역 후보로 사용합니다."
+    }
+  ]
+}

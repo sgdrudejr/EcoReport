@@ -1,0 +1,82 @@
+{
+  "id": "stock-pulse:385510",
+  "code": "385510",
+  "name": "KODEX 신재생에너지액티브",
+  "category": "신재생에너지",
+  "type": "etf",
+  "verdict": "보유유지",
+  "urgency": "중간",
+  "pulseScore": 35,
+  "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNot": "같은 테마 중복 확대 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "marketValue": 760175,
+      "profitRate": 11.96,
+      "decision": null
+    }
+  ],
+  "position": {
+    "marketValue": 760175,
+    "purchaseValue": 678925,
+    "profitLoss": 81250,
+    "profitRate": 11.97,
+    "quantity": 13
+  },
+  "market": {
+    "price": 59580,
+    "previousClose": 60425,
+    "changePct": 0,
+    "volume": 396,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 85,
+    "signal": "STRONG_BUY",
+    "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+    "rsi": 75.63,
+    "ma20": 52810.75,
+    "ma60": 44785.3333,
+    "recentHighDistancePct": -3.07,
+    "rsVsBenchmark": 31.73,
+    "alerts": [
+      "RSI 과매수 구간 진입"
+    ]
+  },
+  "fundamental": {
+    "score": 20,
+    "label": "수집필요",
+    "metrics": null,
+    "etf": null
+  },
+  "alerts": [
+    {
+      "severity": "medium",
+      "label": "과열주의",
+      "detail": "RSI 75.63로 추격매수보다 보호 판단이 우선입니다.",
+      "tone": "amber"
+    }
+  ],
+  "quickFactors": [
+    "등락 0%",
+    "RSI 75.63",
+    "거래량 0배",
+    "손익 11.97%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "NAVER_FETCH_FAILED"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {}
+}

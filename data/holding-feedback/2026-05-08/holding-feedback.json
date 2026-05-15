@@ -1,0 +1,1128 @@
+{
+  "version": "0.1.0",
+  "date": "2026-05-08",
+  "runDate": "2026-05-09",
+  "effectiveMarketDate": "2026-05-08",
+  "runId": "2026-05-09-010001",
+  "generatedAt": "2026-05-09T01:00:02.203Z",
+  "summary": {
+    "totalHoldings": 15,
+    "highUrgency": 2,
+    "mediumUrgency": 10,
+    "lowUrgency": 3,
+    "byLabel": {
+      "손절감시": 1,
+      "수익보호": 9,
+      "조건부관망": 2,
+      "보유유지": 3
+    },
+    "byAccount": {
+      "한투 일반": 5,
+      "한투 연금저축": 4,
+      "한투 ISA": 6
+    }
+  },
+  "cards": [
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "code": "012450",
+      "name": "한화에어로스페이스",
+      "question": "한화에어로스페이스 (012450) : 평단 1,478,000원인데 손절? 관망? 추매?",
+      "recommendation": {
+        "label": "손절감시",
+        "action": "추가매수 금지 / 지지 실패 시 감량",
+        "urgency": "high",
+        "tone": "red",
+        "oneLine": "관망만 하기에는 손절 플래그가 켜졌습니다. 반등을 기다리더라도 물타기는 막고, 지지선 이탈 시 감량 기준을 먼저 적용합니다."
+      },
+      "position": {
+        "quantity": 1,
+        "avgPrice": 1478000,
+        "currentPrice": 1307000,
+        "marketValue": 1307000,
+        "accountWeightPct": 32.3,
+        "profitRatePct": -11.56,
+        "profitLoss": -171000
+      },
+      "decision": {
+        "bucket": "TRIM_REVIEW",
+        "label": "감량검토",
+        "score": 35,
+        "sourceAction": "TRIM"
+      },
+      "technical": {
+        "rsi": 39.5,
+        "bollingerPosition": "below_lower",
+        "atrPct": 5.55,
+        "recentHigh": 1570000,
+        "drawdownFromEntryPct": -11.57,
+        "drawdownFromRecentHighPct": -16.75,
+        "stopLossTriggered": true,
+        "fallback": false
+      },
+      "levels": {
+        "support1": 1227163,
+        "support2": 1161842,
+        "resistance1": 1478000,
+        "resistance2": 1570000,
+        "method": "ATR/평단/최근고점 기반 내부 추정"
+      },
+      "bullCase": [
+        "점수 35점(기술 46 / 리포트 93 / 팩터 51). 방산 노출에 직접 리포트 1건/테마 0건이 연결됐고, 1Q26: 현시점 가장 귀한 방산기업에서 긍정 신호를 확인했습니다. 수치 근거: thesis_anchor: 23.7%, thesis_anchor: 7%. 기술 신호 HOLD.",
+        "리포트 근거: 1Q26: 현시점 가장 귀한 방산기업",
+        "추가 조건: 수주/정책 모멘텀은 유지하되 동일 클러스터 과집중을 피해서 추가"
+      ],
+      "bearCase": [
+        "손절 조건 발동: 즉시 감량/매도 검토",
+        "최근 고점 대비 -16.8% 하락: 수익 보호선 점검",
+        "진입가 대비 -11.6%: 손절 기준 접근",
+        "점수 35점: forced trim 기준 접근",
+        "무효화 조건: 수주 모멘텀이 약해질 때",
+        "무효화 조건: 방산 클러스터가 목표 비중을 넘을 때"
+      ],
+      "executionRules": [
+        "1,227,163원 부근 지지 실패 또는 종가 기준 추가 저점 이탈이면 감량을 우선 검토",
+        "1,478,000원 회복 전까지 물타기 금지",
+        "반등이 나오면 손실 축소 매도/비중 조절을 먼저 검토",
+        "손절 조건 발동: 즉시 감량/매도 검토",
+        "최근 고점 대비 -16.8% 하락: 수익 보호선 점검"
+      ],
+      "watchList": [
+        "수주 모멘텀이 약해질 때",
+        "방산 클러스터가 목표 비중을 넘을 때",
+        "수주 모멘텀 또는 정책 예산이 약해질 때"
+      ],
+      "sourceRefs": {
+        "holdingDecisionCards": "data/analysis-state/2026-05-08/holding-decision-cards.json",
+        "portfolio": "data/portfolio/latest.json"
+      }
+    },
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "code": "064350",
+      "name": "현대로템",
+      "question": "현대로템 (064350) : 평단 208,000원인데 손절? 관망? 추매?",
+      "recommendation": {
+        "label": "수익보호",
+        "action": "분할 감량 검토",
+        "urgency": "high",
+        "tone": "amber",
+        "oneLine": "보유 명분은 남아 있지만 가격 리스크가 커졌습니다. 신규 매수보다 비중 보호와 이탈 기준 확인이 우선입니다."
+      },
+      "position": {
+        "quantity": 1,
+        "avgPrice": 208000,
+        "currentPrice": 223000,
+        "marketValue": 223000,
+        "accountWeightPct": 5.5,
+        "profitRatePct": 7.21,
+        "profitLoss": 15000
+      },
+      "decision": {
+        "bucket": "TRIM_REVIEW",
+        "label": "감량검토",
+        "score": 35,
+        "sourceAction": "TRIM"
+      },
+      "technical": {
+        "rsi": 47.42,
+        "bollingerPosition": "lower_half",
+        "atrPct": 7.11,
+        "recentHigh": 282000,
+        "drawdownFromEntryPct": 8.17,
+        "drawdownFromRecentHighPct": -20.21,
+        "stopLossTriggered": true,
+        "fallback": false
+      },
+      "levels": {
+        "support1": 205554,
+        "support2": 191280,
+        "resistance1": 282000,
+        "resistance2": 302056,
+        "method": "ATR/평단/최근고점 기반 내부 추정"
+      },
+      "bullCase": [
+        "점수 35점(기술 64 / 리포트 43 / 팩터 41). 방산 노출이며 직접 리포트 근거는 약하지만 기술 신호는 BUY입니다.",
+        "리포트 근거: 05/08, 미 증시, 전쟁 노이즈, 반도체 차익실현 여파 등으로 하락 전환",
+        "추가 조건: 수주/정책 모멘텀은 유지하되 동일 클러스터 과집중을 피해서 추가"
+      ],
+      "bearCase": [
+        "손절 조건 발동: 즉시 감량/매도 검토",
+        "최근 고점 대비 -20.2% 하락: 수익 보호선 점검",
+        "점수 35점: forced trim 기준 접근",
+        "무효화 조건: 수주 모멘텀이 약해질 때",
+        "무효화 조건: 방산 클러스터가 목표 비중을 넘을 때",
+        "무효화 조건: 수주 모멘텀 또는 정책 예산이 약해질 때"
+      ],
+      "executionRules": [
+        "추가매수보다 수익 보호선을 먼저 올림",
+        "205,554원 이탈 또는 RSI 과열 해소 실패 시 일부익절 검토",
+        "282,000원 돌파 후 거래대금이 붙을 때만 추세 재확인",
+        "손절 조건 발동: 즉시 감량/매도 검토",
+        "최근 고점 대비 -20.2% 하락: 수익 보호선 점검"
+      ],
+      "watchList": [
+        "수주 모멘텀이 약해질 때",
+        "방산 클러스터가 목표 비중을 넘을 때",
+        "수주 모멘텀 또는 정책 예산이 약해질 때"
+      ],
+      "sourceRefs": {
+        "holdingDecisionCards": "data/analysis-state/2026-05-08/holding-decision-cards.json",
+        "portfolio": "data/portfolio/latest.json"
+      }
+    },
+    {
+      "accountKey": "PENSION",
+      "accountLabel": "한투 연금저축",
+      "code": "360750",
+      "name": "TIGER 미국S&P500",
+      "question": "TIGER 미국S&P500 (360750) : 평단 26,163원인데 손절? 관망? 추매?",
+      "recommendation": {
+        "label": "수익보호",
+        "action": "추가매수 보류 / 일부익절 조건 대기",
+        "urgency": "medium",
+        "tone": "amber",
+        "oneLine": "수익 구간이지만 과열 신호가 있습니다. 더 사기보다 보호선을 올리고 일부익절 조건을 준비합니다."
+      },
+      "position": {
+        "quantity": 84,
+        "avgPrice": 26163.3333,
+        "currentPrice": 26820,
+        "marketValue": 2252880,
+        "accountWeightPct": 34.1,
+        "profitRatePct": 2.5,
+        "profitLoss": 55160
+      },
+      "decision": {
+        "bucket": "HOLD_KEEP",
+        "label": "보유유지",
+        "score": 55,
+        "sourceAction": "HOLD"
+      },
+      "technical": {
+        "rsi": 81.51,
+        "bollingerPosition": "upper_half",
+        "atrPct": 0.81,
+        "recentHigh": 26820,
+        "drawdownFromEntryPct": 1.96,
+        "drawdownFromRecentHighPct": -0.54,
+        "stopLossTriggered": false,
+        "fallback": false
+      },
+      "levels": {
+        "support1": 26015,
+        "support2": 25211,
+        "resistance1": 27625,
+        "resistance2": 28730,
+        "method": "ATR/평단/최근고점 기반 내부 추정"
+      },
+      "bullCase": [
+        "점수 55점(기술 85 / 리포트 44 / 팩터 52). S&P500 노출에 테마 리포트 0건/테마 5건이 연결됐고, [IBKS Daily] 인터넷/게임에서 긍정 신호를 확인했습니다. 수치 근거: supporting: 11%, supporting: 66%. 기술 신호 STRONG_BUY.",
+        "리포트 근거: 중동전쟁 불확실성 재차 부각되며 미 증시 하락 마감",
+        "리포트 근거: 05/08, 미 증시, 전쟁 노이즈, 반도체 차익실현 여파 등으로 하락 전환",
+        "추가 조건: 추격매수 금지: RSI 65 이하, 20일선 근처, 또는 급등 진정 후 1차 접근"
+      ],
+      "bearCase": [
+        "무효화 조건: 미국 코어 비중이 목표를 초과할 때",
+        "무효화 조건: 지수 과열과 환율 부담이 동시에 커질 때",
+        "무효화 조건: HBM 가격 또는 계약 물량이 예상보다 빨리 둔화될 때",
+        "리스크 플래그: RSI_OVERHEAT:81.51"
+      ],
+      "executionRules": [
+        "추가매수보다 수익 보호선을 먼저 올림",
+        "26,015원 이탈 또는 RSI 과열 해소 실패 시 일부익절 검토",
+        "27,625원 돌파 후 거래대금이 붙을 때만 추세 재확인"
+      ],
+      "watchList": [
+        "미국 코어 비중이 목표를 초과할 때",
+        "지수 과열과 환율 부담이 동시에 커질 때",
+        "HBM 가격 또는 계약 물량이 예상보다 빨리 둔화될 때"
+      ],
+      "sourceRefs": {
+        "holdingDecisionCards": "data/analysis-state/2026-05-08/holding-decision-cards.json",
+        "portfolio": "data/portfolio/latest.json"
+      }
+    },
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "code": "411060",
+      "name": "ACE KRX금현물",
+      "question": "ACE KRX금현물 (411060) : 평단 31,059원인데 손절? 관망? 추매?",
+      "recommendation": {
+        "label": "조건부관망",
+        "action": "보유 유지 / 근거 보강 전 추매 금지",
+        "urgency": "medium",
+        "tone": "blue",
+        "oneLine": "계좌 안에서는 보유 가능하지만 오늘 리포트 근거가 약합니다. 추가매수는 새 근거가 붙을 때까지 늦춥니다."
+      },
+      "position": {
+        "quantity": 69,
+        "avgPrice": 31058.913,
+        "currentPrice": 31150,
+        "marketValue": 2149350,
+        "accountWeightPct": 20.6,
+        "profitRatePct": 0.29,
+        "profitLoss": 6285
+      },
+      "decision": {
+        "bucket": "WATCH_OFF_REPORT",
+        "label": "외부관찰",
+        "score": 58,
+        "sourceAction": "HOLD"
+      },
+      "technical": {
+        "rsi": 49.5,
+        "bollingerPosition": "lower_half",
+        "atrPct": 1.62,
+        "recentHigh": 32180,
+        "drawdownFromEntryPct": 0.29,
+        "drawdownFromRecentHighPct": -3.2,
+        "stopLossTriggered": false,
+        "fallback": false
+      },
+      "levels": {
+        "support1": 30216,
+        "support2": 29281,
+        "resistance1": 32180,
+        "resistance2": 33467,
+        "method": "ATR/평단/최근고점 기반 내부 추정"
+      },
+      "bullCase": [
+        "ACE KRX금현물은 오늘 PDF 리포트 밖에 있지만 외부 시황/뉴스 1건을 확인했습니다. 핵심은 '신한투자증권, 2026년 산업·자산시장 심층 분석'이며 방향은 호재입니다. 그래서 '위험 이벤트와 원화/달러 변동성 헤지' 역할과 가격/비중을 함께 보며, 외부 근거가 이어질 때만 추가 판단합니다.",
+        "추가 조건: 외부 호재 확인: 가격 과열 완화 후 신한투자증권, 2026년 산업·자산시장 심층 분석 지속 여부 점검",
+        "추가 조건: 실질금리 하락, 달러 약세, 지정학 리스크 확대, 계좌 목표 비중 부족이 겹칠 때만 보강합니다."
+      ],
+      "bearCase": [
+        "위험자산 회복과 실질금리 상승이 같이 나오고 목표 비중을 넘으면 일부 이익 실현을 검토합니다.",
+        "무효화 조건: 실질금리 상승이 지속되고 안전자산 수요가 약해질 때",
+        "무효화 조건: 계좌 방어자산 비중이 목표를 초과할 때",
+        "무효화 조건: 유가 상승이 수요 둔화와 마진 압박으로 바뀔 때",
+        "리스크 플래그: NO_CLEAN_REPORT_LINK"
+      ],
+      "executionRules": [
+        "오늘 리포트/근거가 새로 붙기 전까지 추가매수 보류",
+        "30,216원 지지와 계좌 내 목표 비중을 함께 확인",
+        "리포트 근거가 붙거나 점수가 개선될 때만 분할 추가 검토",
+        "위험자산 회복과 실질금리 상승이 같이 나오고 목표 비중을 넘으면 일부 이익 실현을 검토합니다."
+      ],
+      "watchList": [
+        "실질금리 상승이 지속되고 안전자산 수요가 약해질 때",
+        "계좌 방어자산 비중이 목표를 초과할 때",
+        "유가 상승이 수요 둔화와 마진 압박으로 바뀔 때"
+      ],
+      "sourceRefs": {
+        "holdingDecisionCards": "data/analysis-state/2026-05-08/holding-decision-cards.json",
+        "portfolio": "data/portfolio/latest.json"
+      }
+    },
+    {
+      "accountKey": "PENSION",
+      "accountLabel": "한투 연금저축",
+      "code": "0162Z0",
+      "name": "RISE 삼성전자SK하이닉스채권혼합50",
+      "question": "RISE 삼성전자SK하이닉스채권혼합50 (0162Z0) : 평단 11,360원인데 손절? 관망? 추매?",
+      "recommendation": {
+        "label": "수익보호",
+        "action": "추가매수 보류 / 일부익절 조건 대기",
+        "urgency": "medium",
+        "tone": "amber",
+        "oneLine": "수익 구간이지만 과열 신호가 있습니다. 더 사기보다 보호선을 올리고 일부익절 조건을 준비합니다."
+      },
+      "position": {
+        "quantity": 120,
+        "avgPrice": 11360,
+        "currentPrice": 12885,
+        "marketValue": 1546200,
+        "accountWeightPct": 23.4,
+        "profitRatePct": 13.42,
+        "profitLoss": 183000
+      },
+      "decision": {
+        "bucket": "WATCH_OFF_REPORT",
+        "label": "외부관찰",
+        "score": 59,
+        "sourceAction": "HOLD"
+      },
+      "technical": {
+        "rsi": 80.87,
+        "bollingerPosition": "above_upper",
+        "atrPct": 2.44,
+        "recentHigh": 12885,
+        "drawdownFromEntryPct": 13.42,
+        "drawdownFromRecentHighPct": 0,
+        "stopLossTriggered": false,
+        "fallback": false
+      },
+      "levels": {
+        "support1": 12498,
+        "support2": 12112,
+        "resistance1": 13272,
+        "resistance2": 13802,
+        "method": "ATR/평단/최근고점 기반 내부 추정"
+      },
+      "bullCase": [
+        "RISE 삼성전자SK하이닉스채권혼합50는 오늘 PDF 리포트 밖에 있지만 외부 시황/뉴스 1건을 확인했습니다. 핵심은 '삼성전자 노조, 성과급 상한 폐지 총파업 예고'이며 방향은 호재입니다. 그래서 '반도체 성장 노출과 채권 완충의 혼합' 역할과 가격/비중을 함께 보며, 외부 근거가 이어질 때만 추가 판단합니다.",
+        "추가 조건: 외부 호재 확인: 가격 과열 완화 후 삼성전자 노조, 성과급 상한 폐지 총파업 예고 지속 여부 점검",
+        "추가 조건: HBM/메모리 신호가 유지되고 채권 완충 역할이 필요한 계좌에서만 추가합니다."
+      ],
+      "bearCase": [
+        "반도체 신호가 약해지고 채권 완충보다 기회비용이 커지면 감량을 검토합니다.",
+        "무효화 조건: HBM/메모리 모멘텀이 약해질 때",
+        "무효화 조건: 혼합형 구조가 순수 반도체/순수 방어 자산보다 열위일 때",
+        "무효화 조건: HBM 가격 또는 계약 물량이 예상보다 빨리 둔화될 때",
+        "리스크 플래그: RSI_OVERHEAT:80.87",
+        "리스크 플래그: BOLLINGER_ABOVE_UPPER"
+      ],
+      "executionRules": [
+        "추가매수보다 수익 보호선을 먼저 올림",
+        "12,498원 이탈 또는 RSI 과열 해소 실패 시 일부익절 검토",
+        "13,272원 돌파 후 거래대금이 붙을 때만 추세 재확인",
+        "반도체 신호가 약해지고 채권 완충보다 기회비용이 커지면 감량을 검토합니다."
+      ],
+      "watchList": [
+        "HBM/메모리 모멘텀이 약해질 때",
+        "혼합형 구조가 순수 반도체/순수 방어 자산보다 열위일 때",
+        "HBM 가격 또는 계약 물량이 예상보다 빨리 둔화될 때"
+      ],
+      "sourceRefs": {
+        "holdingDecisionCards": "data/analysis-state/2026-05-08/holding-decision-cards.json",
+        "portfolio": "data/portfolio/latest.json"
+      }
+    },
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "code": "0162Z0",
+      "name": "RISE 삼성전자SK하이닉스채권혼합50",
+      "question": "RISE 삼성전자SK하이닉스채권혼합50 (0162Z0) : 평단 11,200원인데 손절? 관망? 추매?",
+      "recommendation": {
+        "label": "수익보호",
+        "action": "추가매수 보류 / 일부익절 조건 대기",
+        "urgency": "medium",
+        "tone": "amber",
+        "oneLine": "수익 구간이지만 과열 신호가 있습니다. 더 사기보다 보호선을 올리고 일부익절 조건을 준비합니다."
+      },
+      "position": {
+        "quantity": 100,
+        "avgPrice": 11200,
+        "currentPrice": 12885,
+        "marketValue": 1288500,
+        "accountWeightPct": 12.4,
+        "profitRatePct": 15.04,
+        "profitLoss": 168500
+      },
+      "decision": {
+        "bucket": "WATCH_OFF_REPORT",
+        "label": "외부관찰",
+        "score": 59,
+        "sourceAction": "HOLD"
+      },
+      "technical": {
+        "rsi": 80.87,
+        "bollingerPosition": "above_upper",
+        "atrPct": 2.44,
+        "recentHigh": 12885,
+        "drawdownFromEntryPct": 15.04,
+        "drawdownFromRecentHighPct": 0,
+        "stopLossTriggered": false,
+        "fallback": false
+      },
+      "levels": {
+        "support1": 12498,
+        "support2": 12112,
+        "resistance1": 13272,
+        "resistance2": 13802,
+        "method": "ATR/평단/최근고점 기반 내부 추정"
+      },
+      "bullCase": [
+        "RISE 삼성전자SK하이닉스채권혼합50는 오늘 PDF 리포트 밖에 있지만 외부 시황/뉴스 1건을 확인했습니다. 핵심은 '삼성전자 노조, 성과급 상한 폐지 총파업 예고'이며 방향은 호재입니다. 그래서 '반도체 성장 노출과 채권 완충의 혼합' 역할과 가격/비중을 함께 보며, 외부 근거가 이어질 때만 추가 판단합니다.",
+        "추가 조건: 외부 호재 확인: 가격 과열 완화 후 삼성전자 노조, 성과급 상한 폐지 총파업 예고 지속 여부 점검",
+        "추가 조건: HBM/메모리 신호가 유지되고 채권 완충 역할이 필요한 계좌에서만 추가합니다."
+      ],
+      "bearCase": [
+        "반도체 신호가 약해지고 채권 완충보다 기회비용이 커지면 감량을 검토합니다.",
+        "무효화 조건: HBM/메모리 모멘텀이 약해질 때",
+        "무효화 조건: 혼합형 구조가 순수 반도체/순수 방어 자산보다 열위일 때",
+        "무효화 조건: HBM 가격 또는 계약 물량이 예상보다 빨리 둔화될 때",
+        "리스크 플래그: RSI_OVERHEAT:80.87",
+        "리스크 플래그: BOLLINGER_ABOVE_UPPER"
+      ],
+      "executionRules": [
+        "추가매수보다 수익 보호선을 먼저 올림",
+        "12,498원 이탈 또는 RSI 과열 해소 실패 시 일부익절 검토",
+        "13,272원 돌파 후 거래대금이 붙을 때만 추세 재확인",
+        "반도체 신호가 약해지고 채권 완충보다 기회비용이 커지면 감량을 검토합니다."
+      ],
+      "watchList": [
+        "HBM/메모리 모멘텀이 약해질 때",
+        "혼합형 구조가 순수 반도체/순수 방어 자산보다 열위일 때",
+        "HBM 가격 또는 계약 물량이 예상보다 빨리 둔화될 때"
+      ],
+      "sourceRefs": {
+        "holdingDecisionCards": "data/analysis-state/2026-05-08/holding-decision-cards.json",
+        "portfolio": "data/portfolio/latest.json"
+      }
+    },
+    {
+      "accountKey": "PENSION",
+      "accountLabel": "한투 연금저축",
+      "code": "379810",
+      "name": "KODEX 미국나스닥100",
+      "question": "KODEX 미국나스닥100 (379810) : 평단 26,155원인데 손절? 관망? 추매?",
+      "recommendation": {
+        "label": "수익보호",
+        "action": "추가매수 보류 / 일부익절 조건 대기",
+        "urgency": "medium",
+        "tone": "amber",
+        "oneLine": "수익 구간이지만 과열 신호가 있습니다. 더 사기보다 보호선을 올리고 일부익절 조건을 준비합니다."
+      },
+      "position": {
+        "quantity": 30,
+        "avgPrice": 26155,
+        "currentPrice": 27975,
+        "marketValue": 839250,
+        "accountWeightPct": 12.7,
+        "profitRatePct": 6.95,
+        "profitLoss": 54600
+      },
+      "decision": {
+        "bucket": "WATCH_OFF_REPORT",
+        "label": "외부관찰",
+        "score": 62,
+        "sourceAction": "HOLD"
+      },
+      "technical": {
+        "rsi": 88.35,
+        "bollingerPosition": "upper_half",
+        "atrPct": 1.12,
+        "recentHigh": 27975,
+        "drawdownFromEntryPct": 6.96,
+        "drawdownFromRecentHighPct": 0,
+        "stopLossTriggered": false,
+        "fallback": false
+      },
+      "levels": {
+        "support1": 27136,
+        "support2": 26297,
+        "resistance1": 28814,
+        "resistance2": 29967,
+        "method": "ATR/평단/최근고점 기반 내부 추정"
+      },
+      "bullCase": [
+        "KODEX 미국나스닥100는 오늘 PDF 리포트 밖에 있지만 외부 시황/뉴스 1건을 확인했습니다. 핵심은 '신한투자증권, 2026년 산업·자산시장 심층 분석'이며 방향은 경계입니다. 그래서 '미국 빅테크/AI 성장 코어' 역할과 가격/비중을 함께 보며, 외부 근거가 이어질 때만 추가 판단합니다.",
+        "추가 조건: 외부 경계 해소 전 추가 금지: 신한투자증권, 2026년 산업·자산시장 심층 분석",
+        "추가 조건: AI CAPEX 기대가 매출/마진으로 확인되고 지수 과열이 완화될 때만 분할 추가합니다."
+      ],
+      "bearCase": [
+        "AI 소프트웨어 수익화 의심, 금리 상승, 빅테크 과집중이 겹치면 추가매수 중단 또는 감량을 검토합니다.",
+        "무효화 조건: AI CAPEX가 현금흐름 개선보다 비용 부담으로 해석될 때",
+        "무효화 조건: 나스닥 비중이 계좌 성장자산 한도를 넘을 때",
+        "무효화 조건: 하이퍼스케일러 CAPEX 증가율은 높지만 cloud revenue/backlog 전환이 둔화될 때",
+        "리스크 플래그: RSI_OVERHEAT:88.35",
+        "리스크 플래그: NO_CLEAN_REPORT_LINK"
+      ],
+      "executionRules": [
+        "추가매수보다 수익 보호선을 먼저 올림",
+        "27,136원 이탈 또는 RSI 과열 해소 실패 시 일부익절 검토",
+        "28,814원 돌파 후 거래대금이 붙을 때만 추세 재확인",
+        "AI 소프트웨어 수익화 의심, 금리 상승, 빅테크 과집중이 겹치면 추가매수 중단 또는 감량을 검토합니다."
+      ],
+      "watchList": [
+        "AI CAPEX가 현금흐름 개선보다 비용 부담으로 해석될 때",
+        "나스닥 비중이 계좌 성장자산 한도를 넘을 때",
+        "하이퍼스케일러 CAPEX 증가율은 높지만 cloud revenue/backlog 전환이 둔화될 때"
+      ],
+      "sourceRefs": {
+        "holdingDecisionCards": "data/analysis-state/2026-05-08/holding-decision-cards.json",
+        "portfolio": "data/portfolio/latest.json"
+      }
+    },
+    {
+      "accountKey": "PENSION",
+      "accountLabel": "한투 연금저축",
+      "code": "469150",
+      "name": "ACE AI반도체TOP3+",
+      "question": "ACE AI반도체TOP3+ (469150) : 평단 59,850원인데 손절? 관망? 추매?",
+      "recommendation": {
+        "label": "수익보호",
+        "action": "추가매수 보류 / 일부익절 조건 대기",
+        "urgency": "medium",
+        "tone": "amber",
+        "oneLine": "수익 구간이지만 과열 신호가 있습니다. 더 사기보다 보호선을 올리고 일부익절 조건을 준비합니다."
+      },
+      "position": {
+        "quantity": 12,
+        "avgPrice": 59850.4167,
+        "currentPrice": 68300,
+        "marketValue": 819600,
+        "accountWeightPct": 12.4,
+        "profitRatePct": 14.11,
+        "profitLoss": 101395
+      },
+      "decision": {
+        "bucket": "WATCH_OFF_REPORT",
+        "label": "외부관찰",
+        "score": 67,
+        "sourceAction": "HOLD"
+      },
+      "technical": {
+        "rsi": 83.17,
+        "bollingerPosition": "upper_half",
+        "atrPct": 3.67,
+        "recentHigh": 68410,
+        "drawdownFromEntryPct": 14.12,
+        "drawdownFromRecentHighPct": -0.16,
+        "stopLossTriggered": false,
+        "fallback": false
+      },
+      "levels": {
+        "support1": 65542,
+        "support2": 63285,
+        "resistance1": 68410,
+        "resistance2": 71146,
+        "method": "ATR/평단/최근고점 기반 내부 추정"
+      },
+      "bullCase": [
+        "ACE AI반도체TOP3+는 오늘 PDF 리포트 밖에 있지만 외부 시황/뉴스 1건을 확인했습니다. 핵심은 '삼성전자 노조, 성과급 상한 폐지 총파업 예고'이며 방향은 호재입니다. 그래서 'AI 반도체 핵심 위성' 역할과 가격/비중을 함께 보며, 외부 근거가 이어질 때만 추가 판단합니다.",
+        "추가 조건: 외부 호재 확인: 가격 과열 완화 후 삼성전자 노조, 성과급 상한 폐지 총파업 예고 지속 여부 점검",
+        "추가 조건: 직접 리포트 또는 업황 지표가 개선되고 가격 과열이 꺼질 때만 조정 매수합니다."
+      ],
+      "bearCase": [
+        "같은 반도체 클러스터 비중이 높거나 HBM 기대가 가격에 과반영되면 일부 감량을 검토합니다.",
+        "무효화 조건: HBM 가격/계약 물량이 둔화될 때",
+        "무효화 조건: 반도체 클러스터 집중도가 목표를 넘을 때",
+        "무효화 조건: HBM 가격 또는 계약 물량이 예상보다 빨리 둔화될 때",
+        "리스크 플래그: RSI_OVERHEAT:83.17",
+        "리스크 플래그: NO_CLEAN_REPORT_LINK"
+      ],
+      "executionRules": [
+        "추가매수보다 수익 보호선을 먼저 올림",
+        "65,542원 이탈 또는 RSI 과열 해소 실패 시 일부익절 검토",
+        "68,410원 돌파 후 거래대금이 붙을 때만 추세 재확인",
+        "같은 반도체 클러스터 비중이 높거나 HBM 기대가 가격에 과반영되면 일부 감량을 검토합니다."
+      ],
+      "watchList": [
+        "HBM 가격/계약 물량이 둔화될 때",
+        "반도체 클러스터 집중도가 목표를 넘을 때",
+        "HBM 가격 또는 계약 물량이 예상보다 빨리 둔화될 때"
+      ],
+      "sourceRefs": {
+        "holdingDecisionCards": "data/analysis-state/2026-05-08/holding-decision-cards.json",
+        "portfolio": "data/portfolio/latest.json"
+      }
+    },
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "code": "385510",
+      "name": "KODEX 신재생에너지액티브",
+      "question": "KODEX 신재생에너지액티브 (385510) : 평단 52,225원인데 손절? 관망? 추매?",
+      "recommendation": {
+        "label": "수익보호",
+        "action": "추가매수 보류 / 일부익절 조건 대기",
+        "urgency": "medium",
+        "tone": "amber",
+        "oneLine": "수익 구간이지만 과열 신호가 있습니다. 더 사기보다 보호선을 올리고 일부익절 조건을 준비합니다."
+      },
+      "position": {
+        "quantity": 13,
+        "avgPrice": 52225,
+        "currentPrice": 59580,
+        "marketValue": 774540,
+        "accountWeightPct": 7.4,
+        "profitRatePct": 14.08,
+        "profitLoss": 95615
+      },
+      "decision": {
+        "bucket": "HOLD_KEEP",
+        "label": "보유유지",
+        "score": 62,
+        "sourceAction": "HOLD"
+      },
+      "technical": {
+        "rsi": 75.63,
+        "bollingerPosition": "upper_half",
+        "atrPct": 3.06,
+        "recentHigh": 61465,
+        "drawdownFromEntryPct": 14.08,
+        "drawdownFromRecentHighPct": -3.07,
+        "stopLossTriggered": false,
+        "fallback": false
+      },
+      "levels": {
+        "support1": 57572,
+        "support2": 55930,
+        "resistance1": 61465,
+        "resistance2": 63924,
+        "method": "ATR/평단/최근고점 기반 내부 추정"
+      },
+      "bullCase": [
+        "점수 62점(기술 85 / 리포트 37 / 팩터 51). 신재생에너지 노출이며 직접 리포트 근거는 약하지만 기술 신호는 STRONG_BUY입니다.",
+        "리포트 근거: 중동전쟁 불확실성 재차 부각되며 미 증시 하락 마감",
+        "리포트 근거: [IBKS Economy Monitor] Focus on Week: 경기확장 전반부, 관건은 경기 모멘텀 확산",
+        "추가 조건: 추격매수 금지: RSI 65 이하, 20일선 근처, 또는 급등 진정 후 1차 접근"
+      ],
+      "bearCase": [
+        "무효화 조건: 정책 지원이나 프로젝트 일정이 지연될 때",
+        "무효화 조건: 신재생 클러스터가 목표보다 커질 때",
+        "무효화 조건: 북미/글로벌 데이터센터 전력 프로젝트 지연 또는 취소가 확인될 때",
+        "리스크 플래그: RSI_OVERHEAT:75.63"
+      ],
+      "executionRules": [
+        "추가매수보다 수익 보호선을 먼저 올림",
+        "57,572원 이탈 또는 RSI 과열 해소 실패 시 일부익절 검토",
+        "61,465원 돌파 후 거래대금이 붙을 때만 추세 재확인"
+      ],
+      "watchList": [
+        "정책 지원이나 프로젝트 일정이 지연될 때",
+        "신재생 클러스터가 목표보다 커질 때",
+        "북미/글로벌 데이터센터 전력 프로젝트 지연 또는 취소가 확인될 때"
+      ],
+      "sourceRefs": {
+        "holdingDecisionCards": "data/analysis-state/2026-05-08/holding-decision-cards.json",
+        "portfolio": "data/portfolio/latest.json"
+      }
+    },
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "code": "161510",
+      "name": "PLUS 고배당주",
+      "question": "PLUS 고배당주 (161510) : 평단 27,217원인데 손절? 관망? 추매?",
+      "recommendation": {
+        "label": "조건부관망",
+        "action": "보유 유지 / 근거 보강 전 추매 금지",
+        "urgency": "medium",
+        "tone": "blue",
+        "oneLine": "계좌 안에서는 보유 가능하지만 오늘 리포트 근거가 약합니다. 추가매수는 새 근거가 붙을 때까지 늦춥니다."
+      },
+      "position": {
+        "quantity": 22,
+        "avgPrice": 27217.2727,
+        "currentPrice": 27740,
+        "marketValue": 610280,
+        "accountWeightPct": 5.9,
+        "profitRatePct": 1.92,
+        "profitLoss": 11500
+      },
+      "decision": {
+        "bucket": "WATCH_OFF_REPORT",
+        "label": "외부관찰",
+        "score": 60,
+        "sourceAction": "HOLD"
+      },
+      "technical": {
+        "rsi": 60.06,
+        "bollingerPosition": "upper_half",
+        "atrPct": 1.85,
+        "recentHigh": 28075,
+        "drawdownFromEntryPct": 1.92,
+        "drawdownFromRecentHighPct": -1.19,
+        "stopLossTriggered": false,
+        "fallback": false
+      },
+      "levels": {
+        "support1": 26908,
+        "support2": 26076,
+        "resistance1": 28075,
+        "resistance2": 29198,
+        "method": "ATR/평단/최근고점 기반 내부 추정"
+      },
+      "bullCase": [
+        "PLUS 고배당주는 오늘 PDF 리포트 밖에 있지만 외부 시황/뉴스 1건을 확인했습니다. 핵심은 '2026년 5월 커버드콜 ETF 1년 수익률 격차 확대'이며 방향은 호재입니다. 그래서 '현금흐름과 변동성 완충' 역할과 가격/비중을 함께 보며, 외부 근거가 이어질 때만 추가 판단합니다.",
+        "추가 조건: 외부 호재 확인: 가격 과열 완화 후 2026년 5월 커버드콜 ETF 1년 수익률 격차 확대 지속 여부 점검",
+        "추가 조건: 분배금/배당 지속성, 기초지수 과열 완화, 계좌 방어자산 목표 비중 부족이 동시에 맞을 때만 추가합니다."
+      ],
+      "bearCase": [
+        "위험자산 신호가 개선되고 방어/인컴 비중이 목표를 넘으면 일부 감량해 성장 자산으로 이동합니다.",
+        "무효화 조건: 분배금 재원이 약해지거나 NAV 훼손이 반복될 때",
+        "무효화 조건: 커버드콜 비용이 상승장 참여를 과하게 제한할 때",
+        "무효화 조건: 방어자산이 목표 비중을 초과하고 위험자산 신호가 개선될 때",
+        "리스크 플래그: NO_CLEAN_REPORT_LINK"
+      ],
+      "executionRules": [
+        "오늘 리포트/근거가 새로 붙기 전까지 추가매수 보류",
+        "26,908원 지지와 계좌 내 목표 비중을 함께 확인",
+        "리포트 근거가 붙거나 점수가 개선될 때만 분할 추가 검토",
+        "위험자산 신호가 개선되고 방어/인컴 비중이 목표를 넘으면 일부 감량해 성장 자산으로 이동합니다."
+      ],
+      "watchList": [
+        "분배금 재원이 약해지거나 NAV 훼손이 반복될 때",
+        "커버드콜 비용이 상승장 참여를 과하게 제한할 때",
+        "방어자산이 목표 비중을 초과하고 위험자산 신호가 개선될 때"
+      ],
+      "sourceRefs": {
+        "holdingDecisionCards": "data/analysis-state/2026-05-08/holding-decision-cards.json",
+        "portfolio": "data/portfolio/latest.json"
+      }
+    },
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "code": "469150",
+      "name": "ACE AI반도체TOP3+",
+      "question": "ACE AI반도체TOP3+ (469150) : 평단 59,575원인데 손절? 관망? 추매?",
+      "recommendation": {
+        "label": "수익보호",
+        "action": "추가매수 보류 / 일부익절 조건 대기",
+        "urgency": "medium",
+        "tone": "amber",
+        "oneLine": "수익 구간이지만 과열 신호가 있습니다. 더 사기보다 보호선을 올리고 일부익절 조건을 준비합니다."
+      },
+      "position": {
+        "quantity": 5,
+        "avgPrice": 59575,
+        "currentPrice": 68300,
+        "marketValue": 341500,
+        "accountWeightPct": 8.4,
+        "profitRatePct": 14.64,
+        "profitLoss": 43625
+      },
+      "decision": {
+        "bucket": "WATCH_OFF_REPORT",
+        "label": "외부관찰",
+        "score": 67,
+        "sourceAction": "HOLD"
+      },
+      "technical": {
+        "rsi": 83.17,
+        "bollingerPosition": "upper_half",
+        "atrPct": 3.67,
+        "recentHigh": 68410,
+        "drawdownFromEntryPct": 14.65,
+        "drawdownFromRecentHighPct": -0.16,
+        "stopLossTriggered": false,
+        "fallback": false
+      },
+      "levels": {
+        "support1": 65542,
+        "support2": 63285,
+        "resistance1": 68410,
+        "resistance2": 71146,
+        "method": "ATR/평단/최근고점 기반 내부 추정"
+      },
+      "bullCase": [
+        "ACE AI반도체TOP3+는 오늘 PDF 리포트 밖에 있지만 외부 시황/뉴스 1건을 확인했습니다. 핵심은 '삼성전자 노조, 성과급 상한 폐지 총파업 예고'이며 방향은 호재입니다. 그래서 'AI 반도체 핵심 위성' 역할과 가격/비중을 함께 보며, 외부 근거가 이어질 때만 추가 판단합니다.",
+        "추가 조건: 외부 호재 확인: 가격 과열 완화 후 삼성전자 노조, 성과급 상한 폐지 총파업 예고 지속 여부 점검",
+        "추가 조건: 직접 리포트 또는 업황 지표가 개선되고 가격 과열이 꺼질 때만 조정 매수합니다."
+      ],
+      "bearCase": [
+        "같은 반도체 클러스터 비중이 높거나 HBM 기대가 가격에 과반영되면 일부 감량을 검토합니다.",
+        "무효화 조건: HBM 가격/계약 물량이 둔화될 때",
+        "무효화 조건: 반도체 클러스터 집중도가 목표를 넘을 때",
+        "무효화 조건: HBM 가격 또는 계약 물량이 예상보다 빨리 둔화될 때",
+        "리스크 플래그: RSI_OVERHEAT:83.17",
+        "리스크 플래그: NO_CLEAN_REPORT_LINK"
+      ],
+      "executionRules": [
+        "추가매수보다 수익 보호선을 먼저 올림",
+        "65,542원 이탈 또는 RSI 과열 해소 실패 시 일부익절 검토",
+        "68,410원 돌파 후 거래대금이 붙을 때만 추세 재확인",
+        "같은 반도체 클러스터 비중이 높거나 HBM 기대가 가격에 과반영되면 일부 감량을 검토합니다."
+      ],
+      "watchList": [
+        "HBM 가격/계약 물량이 둔화될 때",
+        "반도체 클러스터 집중도가 목표를 넘을 때",
+        "HBM 가격 또는 계약 물량이 예상보다 빨리 둔화될 때"
+      ],
+      "sourceRefs": {
+        "holdingDecisionCards": "data/analysis-state/2026-05-08/holding-decision-cards.json",
+        "portfolio": "data/portfolio/latest.json"
+      }
+    },
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "code": "487240",
+      "name": "KODEX AI전력핵심설비",
+      "question": "KODEX AI전력핵심설비 (487240) : 평단 39,940원인데 손절? 관망? 추매?",
+      "recommendation": {
+        "label": "수익보호",
+        "action": "추가매수 보류 / 일부익절 조건 대기",
+        "urgency": "medium",
+        "tone": "amber",
+        "oneLine": "수익 구간이지만 과열 신호가 있습니다. 더 사기보다 보호선을 올리고 일부익절 조건을 준비합니다."
+      },
+      "position": {
+        "quantity": 3,
+        "avgPrice": 39940,
+        "currentPrice": 63685,
+        "marketValue": 191055,
+        "accountWeightPct": 1.8,
+        "profitRatePct": 59.45,
+        "profitLoss": 71235
+      },
+      "decision": {
+        "bucket": "HOLD_PROTECT",
+        "label": "수익보호",
+        "score": 65,
+        "sourceAction": "HOLD"
+      },
+      "technical": {
+        "rsi": 90.84,
+        "bollingerPosition": "upper_half",
+        "atrPct": 4.34,
+        "recentHigh": 64630,
+        "drawdownFromEntryPct": 55.28,
+        "drawdownFromRecentHighPct": -4.04,
+        "stopLossTriggered": false,
+        "fallback": false
+      },
+      "levels": {
+        "support1": 60644,
+        "support2": 58155,
+        "resistance1": 64630,
+        "resistance2": 67436,
+        "method": "ATR/평단/최근고점 기반 내부 추정"
+      },
+      "bullCase": [
+        "점수 65점(기술 85 / 리포트 44 / 팩터 54). 전력기기 노출에 직접 리포트 8건/테마 0건이 연결됐고, [IBKS Daily] 인터넷/게임에서 긍정 신호를 확인했습니다. 수치 근거: supporting: 11%, supporting: 66%. 기술 신호 STRONG_BUY.",
+        "리포트 근거: [IBKS Daily] 인터넷/게임",
+        "리포트 근거: 중동전쟁 불확실성 재차 부각되며 미 증시 하락 마감",
+        "추가 조건: 추격매수 금지: RSI 65 이하, 20일선 근처, 또는 급등 진정 후 1차 접근"
+      ],
+      "bearCase": [
+        "강한 수익 구간: 20일선 이탈 또는 RSI 하락 반전 시 일부 이익 실현 검토",
+        "무효화 조건: 계좌 안에서 맡은 역할을 설명할 수 없을 때",
+        "무효화 조건: 동일 클러스터 비중이 목표보다 과도할 때",
+        "무효화 조건: 북미/글로벌 데이터센터 전력 프로젝트 지연 또는 취소가 확인될 때",
+        "리스크 플래그: RSI_OVERHEAT:90.84"
+      ],
+      "executionRules": [
+        "추가매수보다 수익 보호선을 먼저 올림",
+        "60,644원 이탈 또는 RSI 과열 해소 실패 시 일부익절 검토",
+        "64,630원 돌파 후 거래대금이 붙을 때만 추세 재확인",
+        "강한 수익 구간: 20일선 이탈 또는 RSI 하락 반전 시 일부 이익 실현 검토"
+      ],
+      "watchList": [
+        "계좌 안에서 맡은 역할을 설명할 수 없을 때",
+        "동일 클러스터 비중이 목표보다 과도할 때",
+        "북미/글로벌 데이터센터 전력 프로젝트 지연 또는 취소가 확인될 때"
+      ],
+      "sourceRefs": {
+        "holdingDecisionCards": "data/analysis-state/2026-05-08/holding-decision-cards.json",
+        "portfolio": "data/portfolio/latest.json"
+      }
+    },
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "code": "475300",
+      "name": "SOL 반도체전공정",
+      "question": "SOL 반도체전공정 (475300) : 평단 21,218원인데 손절? 관망? 추매?",
+      "recommendation": {
+        "label": "보유유지",
+        "action": "관망 / 조건 충족 시 분할",
+        "urgency": "low",
+        "tone": "green",
+        "oneLine": "현재 카드 기준으로는 보유 명분이 유지됩니다. 급한 매도보다 정해둔 추가/감량 조건을 기다립니다."
+      },
+      "position": {
+        "quantity": 91,
+        "avgPrice": 21217.8022,
+        "currentPrice": 22580,
+        "marketValue": 2054780,
+        "accountWeightPct": 19.7,
+        "profitRatePct": 6.42,
+        "profitLoss": 123960
+      },
+      "decision": {
+        "bucket": "HOLD_KEEP",
+        "label": "보유유지",
+        "score": 66,
+        "sourceAction": "HOLD"
+      },
+      "technical": {
+        "rsi": 69.6,
+        "bollingerPosition": "upper_half",
+        "atrPct": 4.06,
+        "recentHigh": 22885,
+        "drawdownFromEntryPct": 6.42,
+        "drawdownFromRecentHighPct": -1.33,
+        "stopLossTriggered": false,
+        "fallback": false
+      },
+      "levels": {
+        "support1": 21572,
+        "support2": 20746,
+        "resistance1": 22885,
+        "resistance2": 23814,
+        "method": "ATR/평단/최근고점 기반 내부 추정"
+      },
+      "bullCase": [
+        "점수 66점(기술 95 / 리포트 58 / 팩터 52). 반도체 노출에 직접 리포트 2건/테마 0건이 연결됐고, [IBKS Daily] 인터넷/게임에서 긍정 신호를 확인했습니다. 수치 근거: supporting: 11%, supporting: 66%. 기술 신호 STRONG_BUY.",
+        "리포트 근거: [IBKS Daily] 인터넷/게임",
+        "리포트 근거: 05/08 Weekly Macro",
+        "추가 조건: HBM/DRAM 계약가, 고객 예약 물량, 패키징 병목이 유지될 때 조정 매수"
+      ],
+      "bearCase": [
+        "무효화 조건: 메모리/장비 업황 지표가 둔화될 때",
+        "무효화 조건: 계좌 반도체 비중이 목표를 초과할 때",
+        "무효화 조건: HBM 가격 또는 계약 물량이 예상보다 빨리 둔화될 때"
+      ],
+      "executionRules": [
+        "21,572원 이탈 전까지 보유 유지",
+        "22,885원 돌파 시 추세 강화 여부 확인",
+        "추가매수는 기존 계획의 조건과 계좌 비중 한도 안에서만 실행"
+      ],
+      "watchList": [
+        "메모리/장비 업황 지표가 둔화될 때",
+        "계좌 반도체 비중이 목표를 초과할 때",
+        "HBM 가격 또는 계약 물량이 예상보다 빨리 둔화될 때"
+      ],
+      "sourceRefs": {
+        "holdingDecisionCards": "data/analysis-state/2026-05-08/holding-decision-cards.json",
+        "portfolio": "data/portfolio/latest.json"
+      }
+    },
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "code": "449450",
+      "name": "PLUS K방산",
+      "question": "PLUS K방산 (449450) : 평단 78,536원인데 손절? 관망? 추매?",
+      "recommendation": {
+        "label": "보유유지",
+        "action": "관망 / 조건 충족 시 분할",
+        "urgency": "low",
+        "tone": "green",
+        "oneLine": "현재 카드 기준으로는 보유 명분이 유지됩니다. 급한 매도보다 정해둔 추가/감량 조건을 기다립니다."
+      },
+      "position": {
+        "quantity": 10,
+        "avgPrice": 78536,
+        "currentPrice": 73380,
+        "marketValue": 733800,
+        "accountWeightPct": 18.1,
+        "profitRatePct": -6.56,
+        "profitLoss": -51560
+      },
+      "decision": {
+        "bucket": "HOLD_KEEP",
+        "label": "보유유지",
+        "score": 65,
+        "sourceAction": "HOLD"
+      },
+      "technical": {
+        "rsi": 40.9,
+        "bollingerPosition": "below_lower",
+        "atrPct": 3.96,
+        "recentHigh": 82750,
+        "drawdownFromEntryPct": -6.58,
+        "drawdownFromRecentHighPct": -11.34,
+        "stopLossTriggered": false,
+        "fallback": false
+      },
+      "levels": {
+        "support1": 70183,
+        "support2": 67567,
+        "resistance1": 78536,
+        "resistance2": 82750,
+        "method": "ATR/평단/최근고점 기반 내부 추정"
+      },
+      "bullCase": [
+        "점수 65점(기술 42 / 리포트 43 / 팩터 39). 방산 노출이며 직접 리포트 근거는 약하지만 기술 신호는 HOLD입니다.",
+        "리포트 근거: 05/08, 미 증시, 전쟁 노이즈, 반도체 차익실현 여파 등으로 하락 전환",
+        "추가 조건: 수주/정책 모멘텀은 유지하되 동일 클러스터 과집중을 피해서 추가"
+      ],
+      "bearCase": [
+        "무효화 조건: 수주 모멘텀이 약해질 때",
+        "무효화 조건: 방산 클러스터가 목표 비중을 넘을 때",
+        "무효화 조건: 수주 모멘텀 또는 정책 예산이 약해질 때"
+      ],
+      "executionRules": [
+        "70,183원 이탈 전까지 보유 유지",
+        "78,536원 돌파 시 추세 강화 여부 확인",
+        "추가매수는 기존 계획의 조건과 계좌 비중 한도 안에서만 실행"
+      ],
+      "watchList": [
+        "수주 모멘텀이 약해질 때",
+        "방산 클러스터가 목표 비중을 넘을 때",
+        "수주 모멘텀 또는 정책 예산이 약해질 때"
+      ],
+      "sourceRefs": {
+        "holdingDecisionCards": "data/analysis-state/2026-05-08/holding-decision-cards.json",
+        "portfolio": "data/portfolio/latest.json"
+      }
+    },
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "code": "138910",
+      "name": "KODEX 구리선물(H)",
+      "question": "KODEX 구리선물(H) (138910) : 평단 8,765원인데 손절? 관망? 추매?",
+      "recommendation": {
+        "label": "보유유지",
+        "action": "관망 / 조건 충족 시 분할",
+        "urgency": "low",
+        "tone": "green",
+        "oneLine": "현재 카드 기준으로는 보유 명분이 유지됩니다. 급한 매도보다 정해둔 추가/감량 조건을 기다립니다."
+      },
+      "position": {
+        "quantity": 30,
+        "avgPrice": 8765,
+        "currentPrice": 9725,
+        "marketValue": 291750,
+        "accountWeightPct": 7.2,
+        "profitRatePct": 10.95,
+        "profitLoss": 28800
+      },
+      "decision": {
+        "bucket": "HOLD_KEEP",
+        "label": "보유유지",
+        "score": 53,
+        "sourceAction": "HOLD"
+      },
+      "technical": {
+        "rsi": 67.01,
+        "bollingerPosition": "upper_half",
+        "atrPct": 1.65,
+        "recentHigh": 9775,
+        "drawdownFromEntryPct": 10.95,
+        "drawdownFromRecentHighPct": -0.51,
+        "stopLossTriggered": false,
+        "fallback": false
+      },
+      "levels": {
+        "support1": 9433,
+        "support2": 9142,
+        "resistance1": 9775,
+        "resistance2": 10166,
+        "method": "ATR/평단/최근고점 기반 내부 추정"
+      },
+      "bullCase": [
+        "점수 53점(기술 90 / 리포트 43 / 팩터 45). 기타 노출에 직접 리포트 9건/테마 0건이 연결됐고, 5/7 KB 리서치 장마감코멘트에서 긍정 신호를 확인했습니다. 수치 근거: supporting: 21%. 기술 신호 STRONG_BUY.",
+        "리포트 근거: 5/7 KB 리서치 장마감코멘트",
+        "리포트 근거: 중동전쟁 불확실성 재차 부각되며 미 증시 하락 마감",
+        "추가 조건: 포트폴리오 변동성 완충 또는 계좌별 목표 비중 갭이 있을 때만 추가"
+      ],
+      "bearCase": [
+        "무효화 조건: 계좌 안에서 맡은 역할을 설명할 수 없을 때",
+        "무효화 조건: 동일 클러스터 비중이 목표보다 과도할 때",
+        "무효화 조건: 방어자산이 목표 비중을 초과하고 위험자산 신호가 개선될 때"
+      ],
+      "executionRules": [
+        "9,433원 이탈 전까지 보유 유지",
+        "9,775원 돌파 시 추세 강화 여부 확인",
+        "추가매수는 기존 계획의 조건과 계좌 비중 한도 안에서만 실행"
+      ],
+      "watchList": [
+        "계좌 안에서 맡은 역할을 설명할 수 없을 때",
+        "동일 클러스터 비중이 목표보다 과도할 때",
+        "방어자산이 목표 비중을 초과하고 위험자산 신호가 개선될 때"
+      ],
+      "sourceRefs": {
+        "holdingDecisionCards": "data/analysis-state/2026-05-08/holding-decision-cards.json",
+        "portfolio": "data/portfolio/latest.json"
+      }
+    }
+  ],
+  "artifacts": {
+    "json": "data/holding-feedback/2026-05-08/holding-feedback.json",
+    "latestJson": "data/holding-feedback/latest-holding-feedback.json",
+    "markdown": "reports/daily/2026-05-08-holding-feedback.md"
+  }
+}

@@ -1,0 +1,258 @@
+//@version=5
+indicator("KIS Avg + Buy Markers + RSI MTF", overlay=true, max_lines_count=100, max_labels_count=100)
+
+var line avgLine = na
+var label avgLabel = na
+var table rsiTable = table.new(position.top_right, 3, 7, border_width=1)
+
+isEventBar(int eventTs) => time <= eventTs and time_close > eventTs
+fRsiDivSignal(int recentBars) =>
+    float r = ta.rsi(close, 14)
+    float pl = ta.pivotlow(low, 2, 2)
+    float ph = ta.pivothigh(high, 2, 2)
+    float prevPl = ta.valuewhen(not na(pl), pl, 1)
+    float prevPlRsi = ta.valuewhen(not na(pl), r[2], 1)
+    float prevPh = ta.valuewhen(not na(ph), ph, 1)
+    float prevPhRsi = ta.valuewhen(not na(ph), r[2], 1)
+    bool bull = not na(pl) and not na(prevPl) and pl < prevPl * 0.997 and r[2] > prevPlRsi + 3
+    bool bear = not na(ph) and not na(prevPh) and ph > prevPh * 1.003 and r[2] < prevPhRsi - 3
+    int bullAgo = nz(ta.barssince(bull), 100000)
+    int bearAgo = nz(ta.barssince(bear), 100000)
+    bool recentBull = bullAgo <= recentBars
+    bool recentBear = bearAgo <= recentBars
+    int signal = recentBull and (not recentBear or bullAgo < bearAgo) ? 1 : recentBear ? -1 : 0
+    int age = signal == 1 ? bullAgo : signal == -1 ? bearAgo : na
+    [signal, r, age]
+fRsiDivEvent() =>
+    float r = ta.rsi(close, 14)
+    float pl = ta.pivotlow(low, 2, 2)
+    float ph = ta.pivothigh(high, 2, 2)
+    float prevPl = ta.valuewhen(not na(pl), pl, 1)
+    float prevPlRsi = ta.valuewhen(not na(pl), r[2], 1)
+    float prevPh = ta.valuewhen(not na(ph), ph, 1)
+    float prevPhRsi = ta.valuewhen(not na(ph), r[2], 1)
+    bool bull = not na(pl) and not na(prevPl) and pl < prevPl * 0.997 and r[2] > prevPlRsi + 3
+    bool bear = not na(ph) and not na(prevPh) and ph > prevPh * 1.003 and r[2] < prevPhRsi - 3
+    [bull ? pl : na, bear ? ph : na]
+divText(int signal, int age) => signal == 1 ? "상승Div " + str.tostring(age) + "봉전" : signal == -1 ? "하락Div " + str.tostring(age) + "봉전" : "없음"
+divColor(int signal) => signal == 1 ? color.new(color.lime, 0) : signal == -1 ? color.new(color.red, 0) : color.new(color.gray, 35)
+
+float avgPrice = na
+float quantity = na
+float purchaseValue = na
+
+if syminfo.tickerid == "KRX:0162Z0" or syminfo.tickerid == "KRX_DLY:0162Z0"
+    avgPrice := 11287.272727
+    quantity := 220
+    purchaseValue := 2483200
+if syminfo.tickerid == "KRX:411060" or syminfo.tickerid == "KRX_DLY:411060"
+    avgPrice := 31018.653846
+    quantity := 78
+    purchaseValue := 2419455
+if syminfo.tickerid == "KRX:475300" or syminfo.tickerid == "KRX_DLY:475300"
+    avgPrice := 21575.576923
+    quantity := 104
+    purchaseValue := 2243860
+if syminfo.tickerid == "KRX:360750" or syminfo.tickerid == "KRX_DLY:360750"
+    avgPrice := 26163.333333
+    quantity := 84
+    purchaseValue := 2197720
+if syminfo.tickerid == "KRX:379810" or syminfo.tickerid == "KRX_DLY:379810"
+    avgPrice := 27330
+    quantity := 60
+    purchaseValue := 1639800
+if syminfo.tickerid == "KRX:012450" or syminfo.tickerid == "KRX_DLY:012450"
+    avgPrice := 1478000
+    quantity := 1
+    purchaseValue := 1478000
+if syminfo.tickerid == "KRX:469150" or syminfo.tickerid == "KRX_DLY:469150"
+    avgPrice := 59769.411765
+    quantity := 17
+    purchaseValue := 1016080
+if syminfo.tickerid == "KRX:449450" or syminfo.tickerid == "KRX_DLY:449450"
+    avgPrice := 78536
+    quantity := 10
+    purchaseValue := 785360
+if syminfo.tickerid == "KRX:064400" or syminfo.tickerid == "KRX_DLY:064400"
+    avgPrice := 69200
+    quantity := 10
+    purchaseValue := 692000
+if syminfo.tickerid == "KRX:385510" or syminfo.tickerid == "KRX_DLY:385510"
+    avgPrice := 52225
+    quantity := 13
+    purchaseValue := 678925
+if syminfo.tickerid == "KRX:161510" or syminfo.tickerid == "KRX_DLY:161510"
+    avgPrice := 27217.272727
+    quantity := 22
+    purchaseValue := 598780
+if syminfo.tickerid == "KRX:068270" or syminfo.tickerid == "KRX_DLY:068270"
+    avgPrice := 194500
+    quantity := 3
+    purchaseValue := 583500
+if syminfo.tickerid == "KRX:099320" or syminfo.tickerid == "KRX_DLY:099320"
+    avgPrice := 181466.666667
+    quantity := 3
+    purchaseValue := 544400
+if syminfo.tickerid == "KRX:196170" or syminfo.tickerid == "KRX_DLY:196170"
+    avgPrice := 324000
+    quantity := 1
+    purchaseValue := 324000
+if syminfo.tickerid == "KRX:138910" or syminfo.tickerid == "KRX_DLY:138910"
+    avgPrice := 8765
+    quantity := 30
+    purchaseValue := 262950
+if syminfo.tickerid == "KRX:064350" or syminfo.tickerid == "KRX_DLY:064350"
+    avgPrice := 208000
+    quantity := 1
+    purchaseValue := 208000
+if syminfo.tickerid == "KRX:0167Z0" or syminfo.tickerid == "KRX_DLY:0167Z0"
+    avgPrice := 11200
+    quantity := 13
+    purchaseValue := 145600
+
+// Trade execution pins. Exact dates come from manual events or KIS order rows.
+int buyTs_012450_2026_05_04_1 = timestamp("Asia/Seoul", 2026, 5, 4, 12, 0)
+if (syminfo.tickerid == "KRX:012450" or syminfo.tickerid == "KRX_DLY:012450") and isEventBar(buyTs_012450_2026_05_04_1)
+    label.new(bar_index, 1478000, "", style=label.style_circle, textcolor=color.white, color=color.new(color.lime, 50), size=size.tiny)
+int buyTs_0162Z0_2026_04_22_2 = timestamp("Asia/Seoul", 2026, 4, 22, 12, 0)
+if (syminfo.tickerid == "KRX:0162Z0" or syminfo.tickerid == "KRX_DLY:0162Z0") and isEventBar(buyTs_0162Z0_2026_04_22_2)
+    label.new(bar_index, 11200, "", style=label.style_circle, textcolor=color.white, color=color.new(color.lime, 50), size=size.tiny)
+int buyTs_0162Z0_2026_04_23_3 = timestamp("Asia/Seoul", 2026, 4, 23, 12, 0)
+if (syminfo.tickerid == "KRX:0162Z0" or syminfo.tickerid == "KRX_DLY:0162Z0") and isEventBar(buyTs_0162Z0_2026_04_23_3)
+    label.new(bar_index, 11365, "", style=label.style_circle, textcolor=color.white, color=color.new(color.lime, 50), size=size.tiny)
+int buyTs_0167Z0_2026_05_11_4 = timestamp("Asia/Seoul", 2026, 5, 11, 12, 0)
+if (syminfo.tickerid == "KRX:0167Z0" or syminfo.tickerid == "KRX_DLY:0167Z0") and isEventBar(buyTs_0167Z0_2026_05_11_4)
+    label.new(bar_index, 11200, "", style=label.style_circle, textcolor=color.white, color=color.new(color.lime, 50), size=size.tiny)
+int buyTs_064350_2026_04_10_5 = timestamp("Asia/Seoul", 2026, 4, 10, 12, 0)
+if (syminfo.tickerid == "KRX:064350" or syminfo.tickerid == "KRX_DLY:064350") and isEventBar(buyTs_064350_2026_04_10_5)
+    label.new(bar_index, 208000, "", style=label.style_circle, textcolor=color.white, color=color.new(color.lime, 50), size=size.tiny)
+int buyTs_064400_2026_05_11_6 = timestamp("Asia/Seoul", 2026, 5, 11, 12, 0)
+if (syminfo.tickerid == "KRX:064400" or syminfo.tickerid == "KRX_DLY:064400") and isEventBar(buyTs_064400_2026_05_11_6)
+    label.new(bar_index, 69200, "", style=label.style_circle, textcolor=color.white, color=color.new(color.lime, 50), size=size.tiny)
+int buyTs_068270_2026_05_11_7 = timestamp("Asia/Seoul", 2026, 5, 11, 12, 0)
+if (syminfo.tickerid == "KRX:068270" or syminfo.tickerid == "KRX_DLY:068270") and isEventBar(buyTs_068270_2026_05_11_7)
+    label.new(bar_index, 194500, "", style=label.style_circle, textcolor=color.white, color=color.new(color.lime, 50), size=size.tiny)
+int buyTs_099320_2026_05_11_8 = timestamp("Asia/Seoul", 2026, 5, 11, 12, 0)
+if (syminfo.tickerid == "KRX:099320" or syminfo.tickerid == "KRX_DLY:099320") and isEventBar(buyTs_099320_2026_05_11_8)
+    label.new(bar_index, 181600, "", style=label.style_circle, textcolor=color.white, color=color.new(color.lime, 50), size=size.tiny)
+int buyTs_138910_2026_04_07_9 = timestamp("Asia/Seoul", 2026, 4, 7, 12, 0)
+if (syminfo.tickerid == "KRX:138910" or syminfo.tickerid == "KRX_DLY:138910") and isEventBar(buyTs_138910_2026_04_07_9)
+    label.new(bar_index, 8765, "", style=label.style_circle, textcolor=color.white, color=color.new(color.lime, 50), size=size.tiny)
+int buyTs_161510_2026_04_27_10 = timestamp("Asia/Seoul", 2026, 4, 27, 12, 0)
+if (syminfo.tickerid == "KRX:161510" or syminfo.tickerid == "KRX_DLY:161510") and isEventBar(buyTs_161510_2026_04_27_10)
+    label.new(bar_index, 27300, "", style=label.style_circle, textcolor=color.white, color=color.new(color.lime, 50), size=size.tiny)
+int buyTs_161510_2026_04_30_11 = timestamp("Asia/Seoul", 2026, 4, 30, 12, 0)
+if (syminfo.tickerid == "KRX:161510" or syminfo.tickerid == "KRX_DLY:161510") and isEventBar(buyTs_161510_2026_04_30_11)
+    label.new(bar_index, 27160, "", style=label.style_circle, textcolor=color.white, color=color.new(color.lime, 50), size=size.tiny)
+int buyTs_196170_2026_05_11_12 = timestamp("Asia/Seoul", 2026, 5, 11, 12, 0)
+if (syminfo.tickerid == "KRX:196170" or syminfo.tickerid == "KRX_DLY:196170") and isEventBar(buyTs_196170_2026_05_11_12)
+    label.new(bar_index, 324000, "", style=label.style_circle, textcolor=color.white, color=color.new(color.lime, 50), size=size.tiny)
+int buyTs_360750_2026_04_22_13 = timestamp("Asia/Seoul", 2026, 4, 22, 12, 0)
+if (syminfo.tickerid == "KRX:360750" or syminfo.tickerid == "KRX_DLY:360750") and isEventBar(buyTs_360750_2026_04_22_13)
+    label.new(bar_index, 26070, "", style=label.style_circle, textcolor=color.white, color=color.new(color.lime, 50), size=size.tiny)
+int buyTs_360750_2026_04_27_14 = timestamp("Asia/Seoul", 2026, 4, 27, 12, 0)
+if (syminfo.tickerid == "KRX:360750" or syminfo.tickerid == "KRX_DLY:360750") and isEventBar(buyTs_360750_2026_04_27_14)
+    label.new(bar_index, 26250, "", style=label.style_circle, textcolor=color.white, color=color.new(color.lime, 50), size=size.tiny)
+int buyTs_360750_2026_05_04_15 = timestamp("Asia/Seoul", 2026, 5, 4, 12, 0)
+if (syminfo.tickerid == "KRX:360750" or syminfo.tickerid == "KRX_DLY:360750") and isEventBar(buyTs_360750_2026_05_04_15)
+    label.new(bar_index, 26380, "", style=label.style_circle, textcolor=color.white, color=color.new(color.lime, 50), size=size.tiny)
+int buyTs_379810_2026_04_22_16 = timestamp("Asia/Seoul", 2026, 4, 22, 12, 0)
+if (syminfo.tickerid == "KRX:379810" or syminfo.tickerid == "KRX_DLY:379810") and isEventBar(buyTs_379810_2026_04_22_16)
+    label.new(bar_index, 26175, "", style=label.style_circle, textcolor=color.white, color=color.new(color.lime, 50), size=size.tiny)
+int buyTs_379810_2026_05_11_17 = timestamp("Asia/Seoul", 2026, 5, 11, 12, 0)
+if (syminfo.tickerid == "KRX:379810" or syminfo.tickerid == "KRX_DLY:379810") and isEventBar(buyTs_379810_2026_05_11_17)
+    label.new(bar_index, 28505, "", style=label.style_circle, textcolor=color.white, color=color.new(color.lime, 50), size=size.tiny)
+int buyTs_385510_2026_04_23_18 = timestamp("Asia/Seoul", 2026, 4, 23, 12, 0)
+if (syminfo.tickerid == "KRX:385510" or syminfo.tickerid == "KRX_DLY:385510") and isEventBar(buyTs_385510_2026_04_23_18)
+    label.new(bar_index, 52225, "", style=label.style_circle, textcolor=color.white, color=color.new(color.lime, 50), size=size.tiny)
+int buyTs_411060_2026_04_23_19 = timestamp("Asia/Seoul", 2026, 4, 23, 12, 0)
+if (syminfo.tickerid == "KRX:411060" or syminfo.tickerid == "KRX_DLY:411060") and isEventBar(buyTs_411060_2026_04_23_19)
+    label.new(bar_index, 31320, "", style=label.style_circle, textcolor=color.white, color=color.new(color.lime, 50), size=size.tiny)
+int buyTs_411060_2026_05_04_20 = timestamp("Asia/Seoul", 2026, 5, 4, 12, 0)
+if (syminfo.tickerid == "KRX:411060" or syminfo.tickerid == "KRX_DLY:411060") and isEventBar(buyTs_411060_2026_05_04_20)
+    label.new(bar_index, 30371.842105, "", style=label.style_circle, textcolor=color.white, color=color.new(color.lime, 50), size=size.tiny)
+int buyTs_411060_2026_05_11_21 = timestamp("Asia/Seoul", 2026, 5, 11, 12, 0)
+if (syminfo.tickerid == "KRX:411060" or syminfo.tickerid == "KRX_DLY:411060") and isEventBar(buyTs_411060_2026_05_11_21)
+    label.new(bar_index, 30710, "", style=label.style_circle, textcolor=color.white, color=color.new(color.lime, 50), size=size.tiny)
+int buyTs_449450_2026_04_06_22 = timestamp("Asia/Seoul", 2026, 4, 6, 12, 0)
+if (syminfo.tickerid == "KRX:449450" or syminfo.tickerid == "KRX_DLY:449450") and isEventBar(buyTs_449450_2026_04_06_22)
+    label.new(bar_index, 75615, "", style=label.style_circle, textcolor=color.white, color=color.new(color.lime, 50), size=size.tiny)
+int buyTs_449450_2026_04_10_23 = timestamp("Asia/Seoul", 2026, 4, 10, 12, 0)
+if (syminfo.tickerid == "KRX:449450" or syminfo.tickerid == "KRX_DLY:449450") and isEventBar(buyTs_449450_2026_04_10_23)
+    label.new(bar_index, 79370, "", style=label.style_circle, textcolor=color.white, color=color.new(color.lime, 50), size=size.tiny)
+int buyTs_449450_2026_05_04_24 = timestamp("Asia/Seoul", 2026, 5, 4, 12, 0)
+if (syminfo.tickerid == "KRX:449450" or syminfo.tickerid == "KRX_DLY:449450") and isEventBar(buyTs_449450_2026_05_04_24)
+    label.new(bar_index, 80350, "", style=label.style_circle, textcolor=color.white, color=color.new(color.lime, 50), size=size.tiny)
+int buyTs_469150_2026_04_27_25 = timestamp("Asia/Seoul", 2026, 4, 27, 12, 0)
+if (syminfo.tickerid == "KRX:469150" or syminfo.tickerid == "KRX_DLY:469150") and isEventBar(buyTs_469150_2026_04_27_25)
+    label.new(bar_index, 59592.5, "", style=label.style_circle, textcolor=color.white, color=color.new(color.lime, 50), size=size.tiny)
+int buyTs_469150_2026_05_04_26 = timestamp("Asia/Seoul", 2026, 5, 4, 12, 0)
+if (syminfo.tickerid == "KRX:469150" or syminfo.tickerid == "KRX_DLY:469150") and isEventBar(buyTs_469150_2026_05_04_26)
+    label.new(bar_index, 60022.142857, "", style=label.style_circle, textcolor=color.white, color=color.new(color.lime, 50), size=size.tiny)
+int buyTs_475300_2026_04_23_27 = timestamp("Asia/Seoul", 2026, 4, 23, 12, 0)
+if (syminfo.tickerid == "KRX:475300" or syminfo.tickerid == "KRX_DLY:475300") and isEventBar(buyTs_475300_2026_04_23_27)
+    label.new(bar_index, 21000, "", style=label.style_circle, textcolor=color.white, color=color.new(color.lime, 50), size=size.tiny)
+int buyTs_475300_2026_05_04_28 = timestamp("Asia/Seoul", 2026, 5, 4, 12, 0)
+if (syminfo.tickerid == "KRX:475300" or syminfo.tickerid == "KRX_DLY:475300") and isEventBar(buyTs_475300_2026_05_04_28)
+    label.new(bar_index, 21483.414634, "", style=label.style_circle, textcolor=color.white, color=color.new(color.lime, 50), size=size.tiny)
+int buyTs_475300_2026_05_11_29 = timestamp("Asia/Seoul", 2026, 5, 11, 12, 0)
+if (syminfo.tickerid == "KRX:475300" or syminfo.tickerid == "KRX_DLY:475300") and isEventBar(buyTs_475300_2026_05_11_29)
+    label.new(bar_index, 24090, "", style=label.style_circle, textcolor=color.white, color=color.new(color.lime, 50), size=size.tiny)
+
+[divM, rsiM, ageM] = request.security(syminfo.tickerid, "M", fRsiDivSignal(6))
+[divW, rsiW, ageW] = request.security(syminfo.tickerid, "W", fRsiDivSignal(8))
+[divD, rsiD, ageD] = request.security(syminfo.tickerid, "D", fRsiDivSignal(20))
+[div4h, rsi4h, age4h] = request.security(syminfo.tickerid, "240", fRsiDivSignal(18))
+[div1h, rsi1h, age1h] = request.security(syminfo.tickerid, "60", fRsiDivSignal(24))
+[div30m, rsi30m, age30m] = request.security(syminfo.tickerid, "30", fRsiDivSignal(32))
+[bullDivPrice, bearDivPrice] = fRsiDivEvent()
+plotshape(bullDivPrice, title="상승 RSI Div", style=shape.circle, location=location.absolute, offset=-2, color=color.new(color.lime, 0), size=size.tiny)
+plotshape(bearDivPrice, title="하락 RSI Div", style=shape.circle, location=location.absolute, offset=-2, color=color.new(color.red, 0), size=size.tiny)
+
+if barstate.islast
+    table.cell(rsiTable, 0, 0, "RSI Div", text_color=color.white, bgcolor=color.new(color.black, 0), text_size=size.normal)
+    table.cell(rsiTable, 1, 0, "RSI", text_color=color.white, bgcolor=color.new(color.black, 0), text_size=size.normal)
+    table.cell(rsiTable, 2, 0, "Signal", text_color=color.white, bgcolor=color.new(color.black, 0), text_size=size.normal)
+    table.cell(rsiTable, 0, 1, "M", text_color=color.white, bgcolor=color.new(color.black, 15), text_size=size.normal)
+    table.cell(rsiTable, 1, 1, str.tostring(rsiM, "#.0"), text_color=color.white, bgcolor=color.new(color.black, 15), text_size=size.normal)
+    table.cell(rsiTable, 2, 1, divText(divM, ageM), text_color=color.white, bgcolor=divColor(divM), text_size=size.normal)
+    table.cell(rsiTable, 0, 2, "W", text_color=color.white, bgcolor=color.new(color.black, 15), text_size=size.normal)
+    table.cell(rsiTable, 1, 2, str.tostring(rsiW, "#.0"), text_color=color.white, bgcolor=color.new(color.black, 15), text_size=size.normal)
+    table.cell(rsiTable, 2, 2, divText(divW, ageW), text_color=color.white, bgcolor=divColor(divW), text_size=size.normal)
+    table.cell(rsiTable, 0, 3, "D", text_color=color.white, bgcolor=color.new(color.black, 15), text_size=size.normal)
+    table.cell(rsiTable, 1, 3, str.tostring(rsiD, "#.0"), text_color=color.white, bgcolor=color.new(color.black, 15), text_size=size.normal)
+    table.cell(rsiTable, 2, 3, divText(divD, ageD), text_color=color.white, bgcolor=divColor(divD), text_size=size.normal)
+    table.cell(rsiTable, 0, 4, "4H", text_color=color.white, bgcolor=color.new(color.black, 15), text_size=size.normal)
+    table.cell(rsiTable, 1, 4, str.tostring(rsi4h, "#.0"), text_color=color.white, bgcolor=color.new(color.black, 15), text_size=size.normal)
+    table.cell(rsiTable, 2, 4, divText(div4h, age4h), text_color=color.white, bgcolor=divColor(div4h), text_size=size.normal)
+    table.cell(rsiTable, 0, 5, "1H", text_color=color.white, bgcolor=color.new(color.black, 15), text_size=size.normal)
+    table.cell(rsiTable, 1, 5, str.tostring(rsi1h, "#.0"), text_color=color.white, bgcolor=color.new(color.black, 15), text_size=size.normal)
+    table.cell(rsiTable, 2, 5, divText(div1h, age1h), text_color=color.white, bgcolor=divColor(div1h), text_size=size.normal)
+    table.cell(rsiTable, 0, 6, "30m", text_color=color.white, bgcolor=color.new(color.black, 15), text_size=size.normal)
+    table.cell(rsiTable, 1, 6, str.tostring(rsi30m, "#.0"), text_color=color.white, bgcolor=color.new(color.black, 15), text_size=size.normal)
+    table.cell(rsiTable, 2, 6, divText(div30m, age30m), text_color=color.white, bgcolor=divColor(div30m), text_size=size.normal)
+    if not na(avgPrice)
+        string labelText = "평단: " + str.tostring(avgPrice, format.mintick)
+        if na(avgLine)
+            avgLine := line.new(bar_index - 1, avgPrice, bar_index, avgPrice, extend=extend.both, color=color.new(color.orange, 50), width=2)
+        else
+            line.set_xy1(avgLine, bar_index - 1, avgPrice)
+            line.set_xy2(avgLine, bar_index, avgPrice)
+            line.set_color(avgLine, color.new(color.orange, 50))
+            line.set_width(avgLine, 2)
+        if na(avgLabel)
+            avgLabel := label.new(bar_index, avgPrice, labelText, style=label.style_label_left, textcolor=color.white, color=color.new(color.orange, 50), size=size.large)
+        else
+            label.set_xy(avgLabel, bar_index, avgPrice)
+            label.set_text(avgLabel, labelText)
+            label.set_textcolor(avgLabel, color.white)
+            label.set_color(avgLabel, color.new(color.orange, 50))
+    else
+        if not na(avgLine)
+            line.delete(avgLine)
+            avgLine := na
+        if not na(avgLabel)
+            label.delete(avgLabel)
+            avgLabel := na
+
+// Generated from KIS portfolio for 2026-05-12 at 2026-05-12T01:14:47.977Z.

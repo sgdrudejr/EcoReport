@@ -1,0 +1,3061 @@
+{
+  "date": "2026-05-06",
+  "bundleId": "normalized:news:2026-05-06",
+  "source": "news",
+  "sourceType": "rss_news",
+  "generatedAt": "2026-05-06T08:08:13.546Z",
+  "runId": "2026-05-06-045622",
+  "qualitySummary": {
+    "status": "ok",
+    "flags": [
+      "macro_only",
+      "unclear_direction"
+    ]
+  },
+  "observations": [
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_021:1",
+      "entityType": "macro_event",
+      "entityId": "macro_event:wegovy_pill_sales_smash_forecasts_sending_novo_nordisk_stock_7_higher",
+      "entityName": "Wegovy pill sales smash forecasts, sending Novo Nordisk stock 7% higher",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.3875,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Wegovy pill sales smash forecasts, sending Novo Nordisk stock 7% higher",
+          "text": "Novo Nordisk raised its outlook for 2026 after a strong performance from its newly launched Wegovy pill.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.cnbc.com/2026/05/06/wegovy-glp1-weight-loss-novo-nordisk-earnings-stock-nvo-ozempic.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/06/wegovy-glp1-weight-loss-novo-nordisk-earnings-stock-nvo-ozempic.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_001:2",
+      "entityType": "security",
+      "entityId": "security:064350",
+      "entityName": "064350",
+      "accountKey": null,
+      "securityCode": "064350",
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "neutral",
+      "strength": 0.35234375,
+      "confidence": 0.62,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "현대로템, 우즈벡서 국산 고속철 첫 해외 영업 운행",
+          "text": "KTX-이음 기반 제작 타슈켄트~히바 투입 이동시간 7시간 단축 국산 고속철 첫 수출현대로템은 우즈베키스탄에서 신규 고속차량이 5일(현지시간) 영업 운행을 시작했다고 6일 밝혔다...",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.mk.co.kr/news/business/12037649"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/business/12037649"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_002:3",
+      "entityType": "macro_event",
+      "entityId": "macro_event:이사갈_집이_없어요_서울_전월세_신규_계약_뚝",
+      "entityName": "\"이사갈 집이 없어요\"… 서울 전월세 신규 계약 뚝",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "negative",
+      "strength": 0.35234375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "\"이사갈 집이 없어요\"… 서울 전월세 신규 계약 뚝",
+          "text": "서울 전월세 시장에서 신규 계약 비중이 크게 줄어든 것으로 나타났다. 전월세 공급이 감소하면서 임차인들이 고가의 신규 계약 대신 갱신 계약으로 몰렸다는 분석이다. 6일 부동산 정보..",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.mk.co.kr/news/realestate/12037646"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/realestate/12037646"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_003:4",
+      "entityType": "macro_event",
+      "entityId": "macro_event:애플_메타_ai_열등생들의_반격",
+      "entityName": "애플·메타, AI 열등생들의 반격",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "neutral",
+      "strength": 0.34453125,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "애플·메타, AI 열등생들의 반격",
+          "text": "애플과 메타가 외부 인공지능(AI) 기술 도입과 AI 에이전트 개발에 속도를 내고 있다. 생성형 AI 경쟁 초반 오픈AI와 구글 등에 주도권을 내주며 뒤처졌다는 평가를 받았던 두 ..",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.mk.co.kr/news/it/12037642"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/it/12037642"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_004:5",
+      "entityType": "macro_event",
+      "entityId": "macro_event:삼성sds_토큰증권_시장에_성큼",
+      "entityName": "삼성SDS, 토큰증권 시장에 '성큼'",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "positive",
+      "strength": 0.34609375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "삼성SDS, 토큰증권 시장에 '성큼'",
+          "text": "삼성SDS가 한국예탁결제원의 토큰증권 플랫폼 운영 구축 사업을 수주했다. 토큰증권 발행과 권리 관리를 위한 정식 운영 시스템을 구축하며 디지털 자산 인프라스트럭처 사업 확장에 본격..",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.mk.co.kr/news/it/12037640"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/it/12037640"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_005:6",
+      "entityType": "macro_event",
+      "entityId": "macro_event:대이란_작전_종료한다_미국_전격발표에도_호르무즈_선박_사고_속출",
+      "entityName": "“대이란 작전 종료한다”…미국 전격발표에도 호르무즈 선박 사고 속출",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "negative",
+      "strength": 0.359375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "“대이란 작전 종료한다”…미국 전격발표에도 호르무즈 선박 사고 속출",
+          "text": "도널드 트럼프 미국 행정부가 호르무즈 해협에서 선박들의 탈출을 돕겠다는 ‘해방 프로젝트’를 시행 이틀째인 5일(현지시간) 전격 중단한 가운데에도 선박들의 폭발, 화재 사고가 이어지..",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.mk.co.kr/news/world/12037638"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/world/12037638"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_050:7",
+      "entityType": "macro_event",
+      "entityId": "macro_event:new_data_release_ecb_wage_tracker_indicates_negotiated_wage_pressures_stable_in_2026",
+      "entityName": "New data release: ECB wage tracker indicates negotiated wage pressures stable in 2026",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "중앙은행",
+      "themes": [
+        "중앙은행"
+      ],
+      "direction": "neutral",
+      "strength": 0.3171875,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "New data release: ECB wage tracker indicates negotiated wage pressures stable in 2026",
+          "text": "",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr260506~4ea17afd4a.en.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.ecb.europa.eu//press/pr/date/2026/html/ecb.pr260506~4ea17afd4a.en.html"
+      ],
+      "metadata": {
+        "source": "ECB Press Releases",
+        "category": "중앙은행",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_006:8",
+      "entityType": "macro_event",
+      "entityId": "macro_event:월드컵_경기_다_보고_7300만원_받아_희대의_꿀잡_딱_1명_뽑습니다",
+      "entityName": "월드컵 경기 다 보고 7300만원 받아?…“희대의 ‘꿀잡’, 딱 1명 뽑습니다”",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "neutral",
+      "strength": 0.36484375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "월드컵 경기 다 보고 7300만원 받아?…“희대의 ‘꿀잡’, 딱 1명 뽑습니다”",
+          "text": "미국에서 수천만 원의 보수를 받고 2026 국제축구연맹(FIFA) 북중미 월드컵 전 경기를 시청하는 이른바 ‘꿈의 일자리’가 등장했다. 6일(현지시간) 폭스 스포츠와 스트리밍 플랫..",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.mk.co.kr/news/world/12037633"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/world/12037633"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_007:9",
+      "entityType": "macro_event",
+      "entityId": "macro_event:어린이날_가족에_흉기_겨눈_50대_가장_6살_아들까지_폭행",
+      "entityName": "어린이날 가족에 흉기 겨눈 50대 가장…6살 아들까지 폭행",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "neutral",
+      "strength": 0.35546875,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "어린이날 가족에 흉기 겨눈 50대 가장…6살 아들까지 폭행",
+          "text": "어린이날 밤 자녀 문제로 다투다 아내를 흉기로 협박하고 이를 말리던 6살 아들까지 폭행한 50대 가장이 경찰에 붙잡혔다. 경기 평택경찰서는 특수협박 및 아동복지법 위반 혐의로 50..",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.mk.co.kr/news/society/12037629"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/society/12037629"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_008:10",
+      "entityType": "macro_event",
+      "entityId": "macro_event:최대호_안양시장_예비후보_철도_ai_스마트시티로_안양_대전환_청년_기업_모이는_미래도시로",
+      "entityName": "최대호 안양시장 예비후보 “철도·AI·스마트시티로 안양 대전환”…청년·기업 모이는 미래도시로",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "positive",
+      "strength": 0.3703125,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "최대호 안양시장 예비후보 “철도·AI·스마트시티로 안양 대전환”…청년·기업 모이는 미래도시로",
+          "text": "경부선 지하화·광역철도 8개 노선 구축 서울대 AI 클러스터·스타트업 생태계 조성 좋은 기업·양질의 일자리 필요 박달스마트시티·시청 이전 추진 만안구 첨단산업 중심지로 탈바꿈“경부..",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.mk.co.kr/news/politics/12037625"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/politics/12037625"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_009:11",
+      "entityType": "macro_event",
+      "entityId": "macro_event:중국_업체들_미국_제재에도_이란_러에_드론_핵심부품_계속_공급",
+      "entityName": "“중국 업체들, 미국 제재에도 이란·러에 드론 핵심부품 계속 공급”",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "negative",
+      "strength": 0.359375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "“중국 업체들, 미국 제재에도 이란·러에 드론 핵심부품 계속 공급”",
+          "text": "미국의 제재에도 불구하고 중국 업체들이 드론 핵심 부품을 이란과 러시아에 지속적으로 공급하고 있다고 5일(현지시간) 월스트리트저널(WSJ)이 보도했다. WSJ은 정체가 불분명한 중..",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.mk.co.kr/news/world/12037612"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/world/12037612"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_023:12",
+      "entityType": "macro_event",
+      "entityId": "macro_event:private_credit_s_2_trillion_boom_raises_global_stability_fears_watchdog_warns",
+      "entityName": "Private credit’s $2 trillion boom raises global stability fears, watchdog warns",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.421875,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Private credit’s $2 trillion boom raises global stability fears, watchdog warns",
+          "text": "The Financial Stability Board wants regulators to tighten up their supervision of private credit amid fears of growing stress in the sector.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.cnbc.com/2026/05/06/private-credit-stress-risks-financial-stability-markets.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/06/private-credit-stress-risks-financial-stability-markets.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_010:13",
+      "entityType": "macro_event",
+      "entityId": "macro_event:상장사가_사장_사금고_투자경험_지인에_500억_투자_부실기업_cb인수_수법_적발",
+      "entityName": "“상장사가 사장 사금고?”...‘투자경험無’ 지인에 500억 투자, 부실기업 CB인수 수법 적발",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황",
+        "132030",
+        "411060"
+      ],
+      "direction": "neutral",
+      "strength": 0.371875,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "“상장사가 사장 사금고?”...‘투자경험無’ 지인에 500억 투자, 부실기업 CB인수 수법 적발",
+          "text": "국세청, 작년 7월 이어 2차 조사 허위공시·회계사기 업체 등 대상 코스피 8곳·코스닥 15곳 포함 불법 리딩방 기업사냥꾼도 조사 “불공정 거래 이익 세금으로 환수”코스피 상장 제..",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.mk.co.kr/news/economy/12037595"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/economy/12037595"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_011:14",
+      "entityType": "macro_event",
+      "entityId": "macro_event:코스피_6_대_급등_사상_첫_7_380대_마감",
+      "entityName": "코스피, 6%대 급등 사상 첫 7,380대 마감",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "neutral",
+      "strength": 0.35078125,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "코스피, 6%대 급등 사상 첫 7,380대 마감",
+          "text": "코스피가 사상 첫 7000선을 돌파한 6일 서울 여의도 KB 증권 딜링룸에서 직원들이 세레머니를 하고 있다.이날 코스피는 전 거래일 대비 447.57(6.57%)포인트 상승한 7,..",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.mk.co.kr/news/stock/12037582"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/stock/12037582"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_012:15",
+      "entityType": "macro_event",
+      "entityId": "macro_event:코스피_6_대_급등_사상_첫_7_380대_마감",
+      "entityName": "코스피, 6%대 급등 사상 첫 7,380대 마감",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "neutral",
+      "strength": 0.35078125,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "코스피, 6%대 급등 사상 첫 7,380대 마감",
+          "text": "코스피가 사상 첫 7000선을 돌파한 6일 서울 여의도 KB 증권 딜링룸에서 직원들이 세레머니를 하고 있다.이날 코스피는 전 거래일 대비 447.57(6.57%)포인트 상승한 7,..",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.mk.co.kr/news/stock/12037572"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/stock/12037572"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_013:16",
+      "entityType": "macro_event",
+      "entityId": "macro_event:코스피_6_대_급등_사상_첫_7_380대_마감",
+      "entityName": "코스피, 6%대 급등 사상 첫 7,380대 마감",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "neutral",
+      "strength": 0.35078125,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "코스피, 6%대 급등 사상 첫 7,380대 마감",
+          "text": "코스피가 사상 첫 7000선을 돌파한 6일 서울 여의도 KB 증권 딜링룸에서 직원들이 세레머니를 하고 있다.이날 코스피는 전 거래일 대비 447.57(6.57%)포인트 상승한 7,..",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.mk.co.kr/news/stock/12037571"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/stock/12037571"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_014:17",
+      "entityType": "macro_event",
+      "entityId": "macro_event:코스피_6_대_급등_사상_첫_7_380대_마감",
+      "entityName": "코스피, 6%대 급등 사상 첫 7,380대 마감",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "neutral",
+      "strength": 0.35078125,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "코스피, 6%대 급등 사상 첫 7,380대 마감",
+          "text": "코스피가 사상 첫 7000선을 돌파한 6일 서울 여의도 KB 증권 딜링룸에서 직원들이 세레머니를 하고 있다.이날 코스피는 전 거래일 대비 447.57(6.57%)포인트 상승한 7,..",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.mk.co.kr/news/stock/12037564"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/stock/12037564"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_015:18",
+      "entityType": "macro_event",
+      "entityId": "macro_event:한국_선박_피격_가능성_낮아_해방_프로젝트_중단돼_검토_필요_없어",
+      "entityName": "靑 “한국 선박 피격 가능성 낮아…해방 프로젝트 중단돼 검토 필요 없어”",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "mixed",
+      "strength": 0.36171875,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "靑 “한국 선박 피격 가능성 낮아…해방 프로젝트 중단돼 검토 필요 없어”",
+          "text": "청와대는 6일 도널드 트럼프 미국 대통령이 동참을 제안한 호르무즈 해협 재개방 작전 ‘프로젝트 프리덤’과 관련해 “이제 검토가 필요하지 않게 됐다”고 밝혔다. 위성락 국가안보실장은..",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.mk.co.kr/news/politics/12037563"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/politics/12037563"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_016:19",
+      "entityType": "macro_event",
+      "entityId": "macro_event:투톱_나란히_경기_필승대회_동반_참석_불화설_불식",
+      "entityName": "張·宋 ‘투톱’ 나란히 경기 필승대회 동반 참석...불화설 불식",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황"
+      ],
+      "direction": "neutral",
+      "strength": 0.35703125,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "張·宋 ‘투톱’ 나란히 경기 필승대회 동반 참석...불화설 불식",
+          "text": "국힘 지도부, 경기도 모여 총력 지원 송석준 “우파 연대로 반드시 승리해야”장동혁 국민의힘 대표와 송언석 원내대표가 6·3 지방선거를 한 달도 채 남기지 않은 시점에서 경기 수원..",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.mk.co.kr/news/politics/12037557"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/politics/12037557"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_017:20",
+      "entityType": "macro_event",
+      "entityId": "macro_event:1분기_수출_2199억달러_역대_최대_사상_처음_일본도_제쳤다",
+      "entityName": "韓 1분기 수출 2199억달러 ‘역대 최대’…사상 처음 일본도 제쳤다",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황",
+        "133690",
+        "360750",
+        "379810",
+        "396500",
+        "456600",
+        "469150",
+        "475300"
+      ],
+      "direction": "positive",
+      "strength": 0.36015625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "韓 1분기 수출 2199억달러 ‘역대 최대’…사상 처음 일본도 제쳤다",
+          "text": "산업통상부 1분기 수출입 동향 日은 1895억... 1/4분기 기준 처음 추월 화장품·전기기기 등 5개 품목 ‘주요 품목’에 추가해 관리키로반도체 투자 슈퍼사이클에 올라탄 한국이 ..",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.mk.co.kr/news/economy/12037543"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/economy/12037543"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_018:21",
+      "entityType": "macro_event",
+      "entityId": "macro_event:현대차_임협_시작_노조_성과급_30_보장_요구",
+      "entityName": "현대차 임협 시작…노조, 성과급 30% 보장 요구",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황",
+        "132030",
+        "411060"
+      ],
+      "direction": "positive",
+      "strength": 0.3515625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "현대차 임협 시작…노조, 성과급 30% 보장 요구",
+          "text": "현대자동차 노사가 6일 올해 임금 및 단체협약 교섭을 위한 상견례를 시작했다. 노조 측은 성과급 확대와 인공지능(AI) 시대 고용 보장 등을 요구하고 나섰다. 현대차 노사는 이날 ..",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.mk.co.kr/news/business/12037538"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/business/12037538"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_019:22",
+      "entityType": "macro_event",
+      "entityId": "macro_event:일본_눈치껏_비켜줘_1분기_수출_2199억_달러_역대_최고",
+      "entityName": "“일본, 눈치껏 비켜줘”…1분기 수출 2199억 달러 ‘역대 최고’",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황",
+        "133690",
+        "360750",
+        "379810",
+        "396500",
+        "456600",
+        "469150",
+        "475300"
+      ],
+      "direction": "positive",
+      "strength": 0.359375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "“일본, 눈치껏 비켜줘”…1분기 수출 2199억 달러 ‘역대 최고’",
+          "text": "日 수출액보다 3백억 달러 많을 듯 1·2월 수출 네덜란드 이어 세계 5위반도체 수출 호조에 힘입어 올해 1분기 수출이 사상 최대를 기록하며 일본 수출액을 넘어선 것으로 나타났다...",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.mk.co.kr/news/economy/12037535"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.mk.co.kr/news/economy/12037535"
+      ],
+      "metadata": {
+        "source": "매일경제 증권",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_027:23",
+      "entityType": "macro_event",
+      "entityId": "macro_event:lufthansa_faces_nearly_2_billion_in_extra_fuel_costs_amid_middle_east_conflict",
+      "entityName": "Lufthansa faces nearly $2 billion in extra fuel costs amid Middle East conflict",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.41328125,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Lufthansa faces nearly $2 billion in extra fuel costs amid Middle East conflict",
+          "text": "Germany's largest airline, Lufthansa, is taking on additional fuel costs as the Middle East conflict poses 'enormous challenges.'",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.cnbc.com/2026/05/06/lufthansa-q1-middle-east-conflict-2-billion-fuel-cost.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/06/lufthansa-q1-middle-east-conflict-2-billion-fuel-cost.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_031:24",
+      "entityType": "macro_event",
+      "entityId": "macro_event:oil_prices_fall_as_trump_pauses_hormuz_escort_effort",
+      "entityName": "Oil prices fall as Trump pauses Hormuz escort effort",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.4078125,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Oil prices fall as Trump pauses Hormuz escort effort",
+          "text": "Oil prices fell after Trump said the U.S. would pause its naval escort endeavor in the Strait of Hormuz, raising hopes of a potential deal with Iran.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.cnbc.com/2026/05/06/oil-prices-trump-pauses-strait-of-hormuz-escort-effort.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/06/oil-prices-trump-pauses-strait-of-hormuz-escort-effort.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_025:25",
+      "entityType": "macro_event",
+      "entityId": "macro_event:amd_s_stock_soars_15_as_data_center_growth_pushes_revenue_and_guidance_past_estimates",
+      "entityName": "AMD's stock soars 15% as data center growth pushes revenue and guidance past estimates",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.40703125,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "AMD's stock soars 15% as data center growth pushes revenue and guidance past estimates",
+          "text": "AMD's earnings report lands as investors rush into the stock on optimism that the AI boom is just getting started.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.cnbc.com/2026/05/05/amd-q1-2026-earnings-report.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/05/amd-q1-2026-earnings-report.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_026:26",
+      "entityType": "macro_event",
+      "entityId": "macro_event:in_the_global_ai_race_a_sanctioned_chinese_firm_says_cheaper_models_can_still_win",
+      "entityName": "In the global AI race, a sanctioned Chinese firm says cheaper models can still win",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.45,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "In the global AI race, a sanctioned Chinese firm says cheaper models can still win",
+          "text": "As China’s AI competition intensifies, SenseTime is shifting toward multimodal AI, lower-cost models and overseas expansion to remain competitive, co-founder Lin Dahua said.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.cnbc.com/2026/05/06/china-ai-race-cost-efficiency-sensetime-competition.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/06/china-ai-race-cost-efficiency-sensetime-competition.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_028:27",
+      "entityType": "macro_event",
+      "entityId": "macro_event:samsung_crossses_1_trillion_valuation_as_ai_frenzy_drives_historic_rally_lifting_shares_over_15",
+      "entityName": "Samsung crossses $1 trillion valuation as AI frenzy drives historic rally, lifting shares over 15%",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.4171875,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Samsung crossses $1 trillion valuation as AI frenzy drives historic rally, lifting shares over 15%",
+          "text": "The rally comes after the company reported an over eightfold increase in first-quarter operating profits last week.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.cnbc.com/2026/05/06/samsung-electronics-ai-chip-rally-kospi-record-1-trillion.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/06/samsung-electronics-ai-chip-rally-kospi-record-1-trillion.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_070:28",
+      "entityType": "macro_event",
+      "entityId": "macro_event:apple_to_pay_250m_to_settle_shareholder_lawsuit_over_siri_ai_delays",
+      "entityName": "Apple to pay $250M to settle shareholder lawsuit over Siri AI delays",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "기술",
+      "themes": [
+        "기술"
+      ],
+      "direction": "neutral",
+      "strength": 0.30390625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Apple to pay $250M to settle shareholder lawsuit over Siri AI delays",
+          "text": "",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://seekingalpha.com/news/4586529-apple-to-pay-250m-to-settle-shareholder-lawsuit-over-siri-ai-delays?source=feed_sector_information_technology"
+        }
+      ],
+      "derivedFrom": [
+        "https://seekingalpha.com/news/4586529-apple-to-pay-250m-to-settle-shareholder-lawsuit-over-siri-ai-delays?source=feed_sector_information_technology"
+      ],
+      "metadata": {
+        "source": "Seeking Alpha Tech",
+        "category": "기술",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_071:29",
+      "entityType": "macro_event",
+      "entityId": "macro_event:microsoft_s_ai_engine_is_already_running_ahead",
+      "entityName": "Microsoft's AI Engine Is Already Running Ahead",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "기술",
+      "themes": [
+        "기술"
+      ],
+      "direction": "neutral",
+      "strength": 0.28671875,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Microsoft's AI Engine Is Already Running Ahead",
+          "text": "",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://seekingalpha.com/article/4898970-microsofts-ai-engine-is-already-running-ahead?source=feed_sector_information_technology"
+        }
+      ],
+      "derivedFrom": [
+        "https://seekingalpha.com/article/4898970-microsofts-ai-engine-is-already-running-ahead?source=feed_sector_information_technology"
+      ],
+      "metadata": {
+        "source": "Seeking Alpha Tech",
+        "category": "기술",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_072:30",
+      "entityType": "macro_event",
+      "entityId": "macro_event:arista_outlines_27_7_2026_revenue_growth_to_11_5b_while_targeting_3_5b_in_ai_fabric_sales",
+      "entityName": "Arista outlines 27.7% 2026 revenue growth to $11.5B while targeting $3.5B in AI fabric sales",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "기술",
+      "themes": [
+        "기술"
+      ],
+      "direction": "neutral",
+      "strength": 0.32265625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Arista outlines 27.7% 2026 revenue growth to $11.5B while targeting $3.5B in AI fabric sales",
+          "text": "",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://seekingalpha.com/news/4586520-arista-outlines-27_7-percent-2026-revenue-growth-to-11_5b-while-targeting-3_5b-in-ai-fabric?source=feed_sector_information_technology"
+        }
+      ],
+      "derivedFrom": [
+        "https://seekingalpha.com/news/4586520-arista-outlines-27_7-percent-2026-revenue-growth-to-11_5b-while-targeting-3_5b-in-ai-fabric?source=feed_sector_information_technology"
+      ],
+      "metadata": {
+        "source": "Seeking Alpha Tech",
+        "category": "기술",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_073:31",
+      "entityType": "macro_event",
+      "entityId": "macro_event:hackett_outlines_q2_2026_revenue_of_68_5m_70m_and_adjusted_eps_of_0_33_0_35_as_ai_platform_enabled_delivery_expands",
+      "entityName": "Hackett outlines Q2 2026 revenue of $68.5M-$70M and adjusted EPS of $0.33-$0.35 as AI platform-enabled delivery expands",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "기술",
+      "themes": [
+        "기술"
+      ],
+      "direction": "neutral",
+      "strength": 0.34375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Hackett outlines Q2 2026 revenue of $68.5M-$70M and adjusted EPS of $0.33-$0.35 as AI platform-enabled delivery expands",
+          "text": "",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://seekingalpha.com/news/4586501-hackett-outlines-q2-2026-revenue-of-68_5m-70m-and-adjusted-eps-of-0_33-0_35-as-ai-platform?source=feed_sector_information_technology"
+        }
+      ],
+      "derivedFrom": [
+        "https://seekingalpha.com/news/4586501-hackett-outlines-q2-2026-revenue-of-68_5m-70m-and-adjusted-eps-of-0_33-0_35-as-ai-platform?source=feed_sector_information_technology"
+      ],
+      "metadata": {
+        "source": "Seeking Alpha Tech",
+        "category": "기술",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_074:32",
+      "entityType": "macro_event",
+      "entityId": "macro_event:logitech_expects_q1_fy27_net_sales_growth_of_2_to_4_amid_increased_ai_and_b2b_investments",
+      "entityName": "Logitech expects Q1 FY27 net sales growth of 2% to 4% amid increased AI and B2B investments",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "기술",
+      "themes": [
+        "기술"
+      ],
+      "direction": "neutral",
+      "strength": 0.321875,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Logitech expects Q1 FY27 net sales growth of 2% to 4% amid increased AI and B2B investments",
+          "text": "",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://seekingalpha.com/news/4586498-logitech-expects-q1-fy27-net-sales-growth-of-2-percent-to-4-percent-amid-increased-ai-and-b2b?source=feed_sector_information_technology"
+        }
+      ],
+      "derivedFrom": [
+        "https://seekingalpha.com/news/4586498-logitech-expects-q1-fy27-net-sales-growth-of-2-percent-to-4-percent-amid-increased-ai-and-b2b?source=feed_sector_information_technology"
+      ],
+      "metadata": {
+        "source": "Seeking Alpha Tech",
+        "category": "기술",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_022:33",
+      "entityType": "macro_event",
+      "entityId": "macro_event:trump_pauses_u_s_bid_to_guide_ships_out_of_strait_of_hormuz_cites_iran_deal_progress",
+      "entityName": "Trump pauses U.S. bid to guide ships out of Strait of Hormuz, cites Iran deal progress",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.4265625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Trump pauses U.S. bid to guide ships out of Strait of Hormuz, cites Iran deal progress",
+          "text": "President Donald Trump said he is pausing \"Project Freedom,\" the U.S. military's bid to guide commercial ships out of the Strait of Hormuz.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.cnbc.com/2026/05/05/trump-iran-deal-project-freedom-hormuz-strait.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/05/trump-iran-deal-project-freedom-hormuz-strait.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_034:34",
+      "entityType": "macro_event",
+      "entityId": "macro_event:bitcoin_treasury_firm_strategy_breaks_from_never_sell_approach_to_the_flagship_crypto",
+      "entityName": "Bitcoin treasury firm Strategy breaks from 'never sell' approach to the flagship crypto",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.41484375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Bitcoin treasury firm Strategy breaks from 'never sell' approach to the flagship crypto",
+          "text": "Strategy is shifting from passive bitcoin accumulation to actively managing balance sheet to boost bitcoin per share value.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.cnbc.com/2026/05/05/strategy-breaks-from-never-sell-bitcoin-approach.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/05/strategy-breaks-from-never-sell-bitcoin-approach.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_032:35",
+      "entityType": "macro_event",
+      "entityId": "macro_event:ev_maker_lucid_suspends_production_guidance_amid_incoming_ceo_s_business_review",
+      "entityName": "EV maker Lucid suspends production guidance amid incoming CEO's business review",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.41015625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "EV maker Lucid suspends production guidance amid incoming CEO's business review",
+          "text": "Lucid Group said it will make moves to better align its production with customer demand for its luxury all-electric vehicles.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.cnbc.com/2026/05/05/lucid-lcid-q1-2026.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/05/lucid-lcid-q1-2026.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_020:36",
+      "entityType": "macro_event",
+      "entityId": "macro_event:시사금융용어_k에밀리_k_emilli",
+      "entityName": "[시사금융용어] K에밀리(K-EMILLI)",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "시황",
+      "themes": [
+        "시황",
+        "132030",
+        "411060"
+      ],
+      "direction": "neutral",
+      "strength": 0.503125,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "[시사금융용어] K에밀리(K-EMILLI)",
+          "text": "◆ K에밀리(K-EMILLI)는 최근 10년 이내에 금융자산 10억원 이상을 형성한 50대 이하의 한국 신흥 부자를 지칭하는 용어다.하나금융연구소가 최근 발간한 '2026 대한민국 웰스 리포트'에서 처음 명명했다.'Korea Everywhere Millionaires'의 약자로 미국 금융 전문가 크리스 호건이 지난 2019년 자신의 저서 '에브리데이 밀리어네어(Everyday Millionaire)'에서 쓴 '에밀리' 개념을 한국판으로 재정의한 것이다.에밀리는 상속이나 창업 대박 없이 평범한 일상에서 성실한 저축과 투자로 부를 일군",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://news.einfomax.co.kr/news/articleView.html?idxno=4413194"
+        }
+      ],
+      "derivedFrom": [
+        "https://news.einfomax.co.kr/news/articleView.html?idxno=4413194"
+      ],
+      "metadata": {
+        "source": "연합인포맥스",
+        "category": "시황",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_030:37",
+      "entityType": "macro_event",
+      "entityId": "macro_event:jim_cramer_here_s_the_list_of_ai_winners_to_buy_for_2026_and_beyond",
+      "entityName": "Jim Cramer: Here's the list of AI winners to buy for 2026 and beyond",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.42421875,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Jim Cramer: Here's the list of AI winners to buy for 2026 and beyond",
+          "text": "CNBC's Jim Cramer said the data center and artificial intelligence boom is spreading far beyond tech companies and into nearly every corner of the market.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.cnbc.com/2026/05/05/jim-cramer-ai-winners-to-buy.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/05/jim-cramer-ai-winners-to-buy.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_036:38",
+      "entityType": "macro_event",
+      "entityId": "macro_event:openai_trial_brockman_rebuts_musk_s_take_on_startup_s_history_recounts_secret_work_for_tesla",
+      "entityName": "OpenAI trial: Brockman rebuts Musk's take on startup's history, recounts secret work for Tesla",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.44609375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "OpenAI trial: Brockman rebuts Musk's take on startup's history, recounts secret work for Tesla",
+          "text": "OpenAI President Greg Brockman concluded his testimony on Tuesday as the blockbuster trial between the AI startup and Elon Musk rolled into its second week.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.cnbc.com/2026/05/05/open-ai-altman-musk-trial-brockman-testimony.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/05/open-ai-altman-musk-trial-brockman-testimony.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_053:39",
+      "entityType": "macro_event",
+      "entityId": "macro_event:new_home_sales_rise_as_median_price_hits_near_5_year_low",
+      "entityName": "New Home Sales Rise as Median Price Hits Near 5-Year Low",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "ETF",
+      "themes": [
+        "ETF"
+      ],
+      "direction": "neutral",
+      "strength": 0.625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "New Home Sales Rise as Median Price Hits Near 5-Year Low",
+          "text": "According to the Census Bureau, new home sales were at a seasonally adjusted annual rate of 682,000 in March. This represents a 7.4% increase from February’s rate of 635,000 and a 3.3% rise from the previous year. The latest reading was higher than the forecast of 652,000. For a long-term perspective, here is a snapshot [...] The post New Home Sales Rise as Median Price Hits Near 5-Year Low appeared first on ETF Trends.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.etftrends.com/new-home-sales-rise-as-median-price-hits-near-5-year-low/"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.etftrends.com/new-home-sales-rise-as-median-price-hits-near-5-year-low/"
+      ],
+      "metadata": {
+        "source": "ETF Trends",
+        "category": "ETF",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_054:40",
+      "entityType": "macro_event",
+      "entityId": "macro_event:as_a_matter_of_factor_momentum_and_growth_dominated_april",
+      "entityName": "As a Matter of Factor, Momentum & Growth Dominated April",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "ETF",
+      "themes": [
+        "ETF"
+      ],
+      "direction": "neutral",
+      "strength": 0.62109375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "As a Matter of Factor, Momentum & Growth Dominated April",
+          "text": "Momentum and growth had something to say about the shift to value/quality investing in April. The two factors dominated last month, accounting for a total return of 19.3% in the S&P 500 Momentum index and 16% in the S&P 500 Pure Growth index based on data from S&P Global. Given the recent volatility, more investors [...] The post As a Matter of Factor, Momentum & Growth Dominated April appeared first on ETF Trends.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.etftrends.com/matter-factor-momentum-growth-dominated-april/"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.etftrends.com/matter-factor-momentum-growth-dominated-april/"
+      ],
+      "metadata": {
+        "source": "ETF Trends",
+        "category": "ETF",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_035:41",
+      "entityType": "macro_event",
+      "entityId": "macro_event:micron_zooms_past_700_billion_market_cap_as_rally_in_memory_stocks_accelerates",
+      "entityName": "Micron zooms past $700 billion market cap as rally in memory stocks accelerates",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.415625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Micron zooms past $700 billion market cap as rally in memory stocks accelerates",
+          "text": "Micron has emerged as one of the most valuable U.S. tech companies thanks to insatiable demand for memory that's needed in AI chips.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.cnbc.com/2026/05/05/micron-zooms-past-700-billion-market-cap-rally-in-memory-stocks-.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/05/micron-zooms-past-700-billion-market-cap-rally-in-memory-stocks-.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_024:42",
+      "entityType": "macro_event",
+      "entityId": "macro_event:small_caps_put_on_their_best_monthly_showing_since_2020_bank_of_america_says_there_s_more_upside_ahead",
+      "entityName": "Small caps put on their best monthly showing since 2020. Bank of America says there's more upside ahead",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.41328125,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Small caps put on their best monthly showing since 2020. Bank of America says there's more upside ahead",
+          "text": "The Russell 2000 surged in April. Bank of America highlights ETFs to play small caps and enhance returns.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.cnbc.com/2026/05/05/small-caps-have-more-upside-after-big-april-bank-of-america-says.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/05/small-caps-have-more-upside-after-big-april-bank-of-america-says.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_029:43",
+      "entityType": "macro_event",
+      "entityId": "macro_event:data_suggests_hiring_recession_may_be_behind_us_but_the_iran_war_poses_job_market_risks",
+      "entityName": "Data suggests 'hiring recession' may be behind us — but the Iran war poses job market risks",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.43984375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Data suggests 'hiring recession' may be behind us — but the Iran war poses job market risks",
+          "text": "Hiring activity increased in March, according to federal data issued Tuesday. However, the Iran war threatens to stall that progress in the job market.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.cnbc.com/2026/05/05/hiring-picks-up-but-iran-war-poses-risks-for-job-market.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/05/hiring-picks-up-but-iran-war-poses-risks-for-job-market.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_055:44",
+      "entityType": "macro_event",
+      "entityId": "macro_event:copper_s_comeback_april_price_rebound_showcases_resilience",
+      "entityName": "Copper’s Comeback: April Price Rebound Showcases Resilience",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "ETF",
+      "themes": [
+        "ETF"
+      ],
+      "direction": "neutral",
+      "strength": 0.6234375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Copper’s Comeback: April Price Rebound Showcases Resilience",
+          "text": "March may have been a troublesome month for copper, but April seemed to show that the prior month’s sell-off might just be a thing of the past. In fact, the price of the red metal ended April at $12,911 per metric ton, gradually approaching where record highs once sat. Key Takeaways: Despite struggling in March, [...] The post Copper’s Comeback: April Price Rebound Showcases Resilience appeared first on ETF Trends.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.etftrends.com/gold-silver-investing-content-hub/coppers-comeback-april-price-rebound-showcases-resilience/"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.etftrends.com/gold-silver-investing-content-hub/coppers-comeback-april-price-rebound-showcases-resilience/"
+      ],
+      "metadata": {
+        "source": "ETF Trends",
+        "category": "ETF",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_033:45",
+      "entityType": "macro_event",
+      "entityId": "macro_event:spirit_starts_monthslong_process_of_dismantling_airline_after_biggest_collapse_in_a_generation",
+      "entityName": "Spirit starts monthslong process of dismantling airline after biggest collapse in a generation",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.38515625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Spirit starts monthslong process of dismantling airline after biggest collapse in a generation",
+          "text": "Spirit Airlines was back in bankruptcy court to start dismantling the airline.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.cnbc.com/2026/05/05/spirit-airlines-bankruptcy-costs.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/05/spirit-airlines-bankruptcy-costs.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_038:46",
+      "entityType": "macro_event",
+      "entityId": "macro_event:anthropic_ceo_warns_of_cyber_moment_of_danger_as_ai_exposes_thousands_of_vulnerabilities",
+      "entityName": "Anthropic CEO warns of cyber ‘moment of danger’ as AI exposes thousands of vulnerabilities",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.4390625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Anthropic CEO warns of cyber ‘moment of danger’ as AI exposes thousands of vulnerabilities",
+          "text": "Anthropic CEO Dario Amodei warned AI has created a narrow window for software firms, governments and banks to fix tens of thousands of vulnerabilities.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.cnbc.com/2026/05/05/anthropic-ceo-cyber-moment-of-danger-mythos-vulnerabilities.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/05/anthropic-ceo-cyber-moment-of-danger-mythos-vulnerabilities.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_056:47",
+      "entityType": "macro_event",
+      "entityId": "macro_event:fixed_income_looks_attractive_again",
+      "entityName": "Fixed Income Looks Attractive Again",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "ETF",
+      "themes": [
+        "ETF"
+      ],
+      "direction": "neutral",
+      "strength": 0.61640625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Fixed Income Looks Attractive Again",
+          "text": "SUMMARY “Yield Matters” but investors cannot ignore real yields. Real yields are attractive near 2% despite rising inflation, in our opinion. Credit spreads are tight, but defaults are low. Above Average Real Yields with Strong Fundamentals Thus far 2026 has been a roller coaster year for fixed income markets. The 10-year Treasury, the benchmark rate [...] The post Fixed Income Looks Attractive Again appeared first on ETF Trends.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.etftrends.com/etf-strategist-content-hub/fixed-income-looks-attractive-again/"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.etftrends.com/etf-strategist-content-hub/fixed-income-looks-attractive-again/"
+      ],
+      "metadata": {
+        "source": "ETF Trends",
+        "category": "ETF",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_057:48",
+      "entityType": "macro_event",
+      "entityId": "macro_event:energy_market_outlook_midstream_resilience_and_the_nuclear_renaissance",
+      "entityName": "Energy Market Outlook: Midstream Resilience & the Nuclear Renaissance",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "ETF",
+      "themes": [
+        "ETF"
+      ],
+      "direction": "neutral",
+      "strength": 0.625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Energy Market Outlook: Midstream Resilience & the Nuclear Renaissance",
+          "text": "Volatility has defined energy markets throughout 2026, as oil prices and equities respond to geopolitical turmoil and shifting global supply expectations. While the year began with a bearish consensus forecast for oil prices in the high $50s, escalating tensions in the Middle East have pushed crude significantly higher. However, despite this choppiness, energy has quietly [...] The post Energy Market Outlook: Midstream Resilience & the Nuclear Renaissance appeared first on ETF Trends.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.etftrends.com/energy-infrastructure-content-hub/energy-market-outlook-midstream-resilience-the-nuclear-renaissance/"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.etftrends.com/energy-infrastructure-content-hub/energy-market-outlook-midstream-resilience-the-nuclear-renaissance/"
+      ],
+      "metadata": {
+        "source": "ETF Trends",
+        "category": "ETF",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_058:49",
+      "entityType": "macro_event",
+      "entityId": "macro_event:economy_remains_on_solid_footing_as_powell_era_ends",
+      "entityName": "Economy Remains on Solid Footing as Powell Era Ends",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "ETF",
+      "themes": [
+        "ETF"
+      ],
+      "direction": "neutral",
+      "strength": 0.625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Economy Remains on Solid Footing as Powell Era Ends",
+          "text": "Market narratives remain split between two forces: tail risk to oil flows through the Strait of Hormuz and constructive US economic data supported by AI infrastructure capex. The Dallas Fed Weekly Economic Index (WEI), a real-time, GDP-equivalent signal of economic momentum, rose to 3.0% from 2.5% last week. Manufacturing PMI surveys also signaled a continued [...] The post Economy Remains on Solid Footing as Powell Era Ends appeared first on ETF Trends.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.etftrends.com/etf-strategist-content-hub/economy-remains-on-solid-footing-as-powell-era-ends/"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.etftrends.com/etf-strategist-content-hub/economy-remains-on-solid-footing-as-powell-era-ends/"
+      ],
+      "metadata": {
+        "source": "ETF Trends",
+        "category": "ETF",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_059:50",
+      "entityType": "macro_event",
+      "entityId": "macro_event:faith_meets_fundamentals_timothy_plan_launches_3_new_etfs",
+      "entityName": "Faith Meets Fundamentals: Timothy Plan Launches 3 New ETFs",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "ETF",
+      "themes": [
+        "ETF"
+      ],
+      "direction": "neutral",
+      "strength": 0.625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Faith Meets Fundamentals: Timothy Plan Launches 3 New ETFs",
+          "text": "Timothy Plan launched three exchange-traded funds (ETFs) today, effectively merging the worlds of values-based and fundamental investing. In partnership with sub-advisor Victory Capital, the pioneer of Biblically Responsible Investing (BRI) expanded its suite with the Timothy Plan Free Cash Flow ETF (TPFC) and Timothy Plan Free Cash Flow Growth ETF (TPFG). Additionally, they launched the actively [...] The post Faith Meets Fundamentals: Timothy Plan Launches 3 New ETFs appeared first on ETF Trends.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.etftrends.com/thematic-investing-content-hub/faith-meets-fundamentals-timothy-plan-launches-3-new-etfs/"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.etftrends.com/thematic-investing-content-hub/faith-meets-fundamentals-timothy-plan-launches-3-new-etfs/"
+      ],
+      "metadata": {
+        "source": "ETF Trends",
+        "category": "ETF",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_060:51",
+      "entityType": "macro_event",
+      "entityId": "macro_event:etf_assets_hit_14_7t_inside_the_inflow_surge",
+      "entityName": "ETF Assets Hit $14.7T: Inside the Inflow Surge",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "ETF",
+      "themes": [
+        "ETF"
+      ],
+      "direction": "neutral",
+      "strength": 0.625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "ETF Assets Hit $14.7T: Inside the Inflow Surge",
+          "text": "U.S.-listed exchange traded funds pulled in $171.4 billion during April, driving total ETF assets under management to $14.7 trillion, according to recent data from FactSet. Key Takeaways: U.S. ETF assets reached $14.7 trillion in April, up 10.5% from March. Equity funds drew $133 billion in April; fixed income fell to $31.3 billion. 93 new ETFs [...] The post ETF Assets Hit $14.7T: Inside the Inflow Surge appeared first on ETF Trends.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.etftrends.com/etf-assets-hit-14-7t-inside-inflow-surge/"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.etftrends.com/etf-assets-hit-14-7t-inside-inflow-surge/"
+      ],
+      "metadata": {
+        "source": "ETF Trends",
+        "category": "ETF",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_037:52",
+      "entityType": "macro_event",
+      "entityId": "macro_event:jerome_powell_making_a_significant_mistake_by_staying_on_at_the_fed_sen_tim_scott_says",
+      "entityName": "Jerome Powell making a 'significant mistake' by staying on at the Fed, Sen. Tim Scott says",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "글로벌",
+      "themes": [
+        "글로벌"
+      ],
+      "direction": "neutral",
+      "strength": 0.434375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Jerome Powell making a 'significant mistake' by staying on at the Fed, Sen. Tim Scott says",
+          "text": "Federal Reserve Chair Jerome Powell has said he plans to remain a member of the Federal Reserve board after his term as chair expires this month.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.cnbc.com/2026/05/05/tim-scott-jerome-powell-fed.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.cnbc.com/2026/05/05/tim-scott-jerome-powell-fed.html"
+      ],
+      "metadata": {
+        "source": "CNBC Top News",
+        "category": "글로벌",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_061:53",
+      "entityType": "macro_event",
+      "entityId": "macro_event:amazon_ai_bets_look_good_for_this_etf",
+      "entityName": "Amazon AI Bets Look Good for This ETF",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "ETF",
+      "themes": [
+        "ETF"
+      ],
+      "direction": "neutral",
+      "strength": 0.59609375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Amazon AI Bets Look Good for This ETF",
+          "text": "With shares of Amazon (AMZN) up 28% over the past month, it’s safe to say investors are at peace with the company’s massive artificial intelligence (AI) spending plans. Read more: Big Tech’s AI Bets Pay Off: How to Play Latest Earnings That could spell opportunity with the Direxion Daily AMZN Bull 2X Shares (AMZU), which [...] The post Amazon AI Bets Look Good for This ETF appeared first on ETF Trends.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.etftrends.com/leveraged-inverse-content-hub/amazon-ai-bets-look-good-etf/"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.etftrends.com/leveraged-inverse-content-hub/amazon-ai-bets-look-good-etf/"
+      ],
+      "metadata": {
+        "source": "ETF Trends",
+        "category": "ETF",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_062:54",
+      "entityType": "macro_event",
+      "entityId": "macro_event:the_rise_of_physical_ai_and_the_next_phase_of_automation",
+      "entityName": "The Rise of Physical AI & the Next Phase of Automation",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "ETF",
+      "themes": [
+        "ETF"
+      ],
+      "direction": "neutral",
+      "strength": 0.625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "The Rise of Physical AI & the Next Phase of Automation",
+          "text": "Physical AI is rapidly moving from science fiction to investable reality, poised to reshape the real economy far beyond data centers and software. Speaking during the Q2 Market Outlook, VettaFi Research Analyst Rafael Silva defined physical AI as “artificial intelligence that steps off the screen and into hardware.” This transition, he explained, gives robots, vehicles, [...] The post The Rise of Physical AI & the Next Phase of Automation appeared first on ETF Trends.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.etftrends.com/artificial-intelligence-content-hub/rise-of-physical-ai-next-phase-of-automation/"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.etftrends.com/artificial-intelligence-content-hub/rise-of-physical-ai-next-phase-of-automation/"
+      ],
+      "metadata": {
+        "source": "ETF Trends",
+        "category": "ETF",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_063:55",
+      "entityType": "macro_event",
+      "entityId": "macro_event:top_performing_leveraged_inverse_etfs_05_03_2026",
+      "entityName": "Top Performing Leveraged/Inverse ETFs: 05/03/2026",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "ETF",
+      "themes": [
+        "ETF"
+      ],
+      "direction": "neutral",
+      "strength": 0.625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Top Performing Leveraged/Inverse ETFs: 05/03/2026",
+          "text": "Top Performing Leveraged/Inverse ETFs Last Week These were last week’s top performing leveraged and inverse ETFs. Note that because of leverage, these kinds of funds can move quickly. Always do your homework. Ticker Name 1 Week Return (GGLL A) Direxion Daily GOOGL Bull 2X ETF 24.17% (GOOX A) T-Rex 2X Long Alphabet Daily Target ETF 24.05% (GDXD ) [...] The post Top Performing Leveraged/Inverse ETFs: 05/03/2026 appeared first on ETF Trends.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.etftrends.com/leveraged-inverse-content-hub/top-performing-leveraged-inverse-etfs-05-03-2026/"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.etftrends.com/leveraged-inverse-content-hub/top-performing-leveraged-inverse-etfs-05-03-2026/"
+      ],
+      "metadata": {
+        "source": "ETF Trends",
+        "category": "ETF",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_064:56",
+      "entityType": "macro_event",
+      "entityId": "macro_event:opportunity_abounds_with_this_japan_etf",
+      "entityName": "Opportunity Abounds With This Japan ETF",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "ETF",
+      "themes": [
+        "ETF"
+      ],
+      "direction": "neutral",
+      "strength": 0.59453125,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Opportunity Abounds With This Japan ETF",
+          "text": "As of May 4, the MSCI Japan Index holds a year-to-date advantage of 450 basis points over the S&P 500. Investors could be doing even better, though, with more unique approaches to Japan equities. Just look at the WisdomTree Japan Opportunities Fund (OPPJ). Up 22.5% year-to-date, that ETF is beating the S&P 500 by a [...] The post Opportunity Abounds With This Japan ETF appeared first on ETF Trends.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.etftrends.com/model-portfolio-content-hub/opportunity-abounds-japan-etf/"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.etftrends.com/model-portfolio-content-hub/opportunity-abounds-japan-etf/"
+      ],
+      "metadata": {
+        "source": "ETF Trends",
+        "category": "ETF",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_065:57",
+      "entityType": "macro_event",
+      "entityId": "macro_event:with_this_etf_it_s_easy_to_tap_the_benefits_of_commodities",
+      "entityName": "With This ETF, It’s Easy to Tap the Benefits of Commodities",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "ETF",
+      "themes": [
+        "ETF"
+      ],
+      "direction": "neutral",
+      "strength": 0.625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "With This ETF, It’s Easy to Tap the Benefits of Commodities",
+          "text": "Volatile gold and oil prices are certainly among the reasons why the commodities complex is generating plenty of buzz this year. However, that turbulence isn’t altering the fact that commodities, in broad fashion, are performing admirably in 2026. Count the actively managed ALPS CoreCommodity Natural Resources ETF (CCNR) among the ETFs benefiting from that theme. [...] The post With This ETF, It’s Easy to Tap the Benefits of Commodities appeared first on ETF Trends.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.etftrends.com/etf-building-blocks-content-hub/etf-easy-tap-benefits-commodities/"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.etftrends.com/etf-building-blocks-content-hub/etf-easy-tap-benefits-commodities/"
+      ],
+      "metadata": {
+        "source": "ETF Trends",
+        "category": "ETF",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_051:58",
+      "entityType": "macro_event",
+      "entityId": "macro_event:philip_r_lane_climate_change_and_monetary_policy",
+      "entityName": "Philip R. Lane: Climate change and monetary policy",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "중앙은행",
+      "themes": [
+        "중앙은행"
+      ],
+      "direction": "neutral",
+      "strength": 0.28984375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Philip R. Lane: Climate change and monetary policy",
+          "text": "",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260505_1~2e47b4c747.en.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260505_1~2e47b4c747.en.html"
+      ],
+      "metadata": {
+        "source": "ECB Press Releases",
+        "category": "중앙은행",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_066:59",
+      "entityType": "macro_event",
+      "entityId": "macro_event:beat_volatility_the_power_of_active_etfs",
+      "entityName": "Beat Volatility: The Power of Active ETFs",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "ETF",
+      "themes": [
+        "ETF"
+      ],
+      "direction": "neutral",
+      "strength": 0.625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Beat Volatility: The Power of Active ETFs",
+          "text": "Active equity ETFs posted double-digit returns in April. Conflicting signals from the Federal Reserve and a fracture in global oil alliances created an environment where stock selection matters. Key Takeaways: Three Fed dissents marked the most policy discord during Powell’s tenure as chair TACU returned 10.59% in April navigating conflicting earnings and Fed signals UAE’s [...] The post Beat Volatility: The Power of Active ETFs appeared first on ETF Trends.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.etftrends.com/active-etf-content-hub/beat-volatility-power-active-etfs/"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.etftrends.com/active-etf-content-hub/beat-volatility-power-active-etfs/"
+      ],
+      "metadata": {
+        "source": "ETF Trends",
+        "category": "ETF",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_039:60",
+      "entityType": "macro_event",
+      "entityId": "macro_event:bowman_a_coordinated_approach_to_consumer_fraud_protection",
+      "entityName": "Bowman, A Coordinated Approach to Consumer Fraud Protection",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "중앙은행",
+      "themes": [
+        "중앙은행"
+      ],
+      "direction": "neutral",
+      "strength": 0.35546875,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Bowman, A Coordinated Approach to Consumer Fraud Protection",
+          "text": "Speech At the 2026 Women in Housing and Finance Symposium, Washington, D.C.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.federalreserve.gov/newsevents/speech/bowman20260505a.htm"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.federalreserve.gov/newsevents/speech/bowman20260505a.htm"
+      ],
+      "metadata": {
+        "source": "Federal Reserve Speeches",
+        "category": "중앙은행",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_040:61",
+      "entityType": "macro_event",
+      "entityId": "macro_event:chang_yong_rhee_farewell_address",
+      "entityName": "Chang Yong Rhee: Farewell address",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "중앙은행",
+      "themes": [
+        "중앙은행"
+      ],
+      "direction": "neutral",
+      "strength": 0.38046875,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Chang Yong Rhee: Farewell address",
+          "text": "Farewell address by Mr Chang Yong Rhee, Governor of the Bank of Korea, on his departure from the Bank of Korea, Seoul, 20 April 2026.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.bis.org/review/r260505m.htm"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.bis.org/review/r260505m.htm"
+      ],
+      "metadata": {
+        "source": "BIS Speeches",
+        "category": "중앙은행",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_041:62",
+      "entityType": "macro_event",
+      "entityId": "macro_event:ayman_m_al_sayari_statement_international_monetary_and_financial_committee",
+      "entityName": "Ayman M Al-Sayari: Statement - International Monetary and Financial Committee",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "중앙은행",
+      "themes": [
+        "중앙은행"
+      ],
+      "direction": "neutral",
+      "strength": 0.44765625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Ayman M Al-Sayari: Statement - International Monetary and Financial Committee",
+          "text": "Statement by His Excellency Mr Ayman Al-Sayari, Governor of the Saudi Central Bank, to the International Monetary and Financial Committee (IMFC), Washington DC, 16 April 2026.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.bis.org/review/r260505i.htm"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.bis.org/review/r260505i.htm"
+      ],
+      "metadata": {
+        "source": "BIS Speeches",
+        "category": "중앙은행",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_042:63",
+      "entityType": "macro_event",
+      "entityId": "macro_event:santiago_bausili_finance_economics_and_investments",
+      "entityName": "Santiago Bausili: Finance, economics and investments",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "중앙은행",
+      "themes": [
+        "중앙은행"
+      ],
+      "direction": "neutral",
+      "strength": 0.43125,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Santiago Bausili: Finance, economics and investments",
+          "text": "Speech by Mr Santiago Bausili, President of the Central Bank of Argentina, at a presentation on \"Finance, economics and investments\", at the Expo EFI, Buenos Aires, 29 April 2026.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.bis.org/review/r260505h.htm"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.bis.org/review/r260505h.htm"
+      ],
+      "metadata": {
+        "source": "BIS Speeches",
+        "category": "중앙은행",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_043:64",
+      "entityType": "macro_event",
+      "entityId": "macro_event:sanjay_malhotra_indian_financial_markets_resilience_and_resurgence",
+      "entityName": "Sanjay Malhotra: Indian financial markets - resilience and resurgence",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "중앙은행",
+      "themes": [
+        "중앙은행"
+      ],
+      "direction": "neutral",
+      "strength": 0.49765625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Sanjay Malhotra: Indian financial markets - resilience and resurgence",
+          "text": "Keynote address by Mr Sanjay Malhotra, Governor of the Reserve Bank of India, at the 25th Fixed Income Money Market and Derivatives Association of India - Primary Dealers Association of India (FIMMDA-PDAI) Annual Conference, Amsterdam, 1 May 2026.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.bis.org/review/r260504c.htm"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.bis.org/review/r260504c.htm"
+      ],
+      "metadata": {
+        "source": "BIS Speeches",
+        "category": "중앙은행",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_044:65",
+      "entityType": "macro_event",
+      "entityId": "macro_event:aleand_353_michl_forever_hawkish",
+      "entityName": "Ale&#353; Michl: Forever hawkish",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "중앙은행",
+      "themes": [
+        "중앙은행"
+      ],
+      "direction": "neutral",
+      "strength": 0.3828125,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Ale&#353; Michl: Forever hawkish",
+          "text": "Guest lecture by Mr Aleš Michl, Governor of the Czech National Bank, at the MIT Sloan School of Management, Cambridge, MA, 30 April 2026.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.bis.org/review/r260505g.htm"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.bis.org/review/r260505g.htm"
+      ],
+      "metadata": {
+        "source": "BIS Speeches",
+        "category": "중앙은행",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_045:66",
+      "entityType": "macro_event",
+      "entityId": "macro_event:michelle_w_bowman_artificial_intelligence_in_the_financial_system",
+      "entityName": "Michelle W Bowman: Artificial intelligence in the financial system",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "중앙은행",
+      "themes": [
+        "중앙은행"
+      ],
+      "direction": "neutral",
+      "strength": 0.5109375,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Michelle W Bowman: Artificial intelligence in the financial system",
+          "text": "Speech by Ms Michelle W Bowman, Vice Chair for Supervision of the Board of Governors of the Federal Reserve System, at the Financial Stability Oversight Council Artificial Intelligence Series Roundtable on Cybersecurity and Risk Management, Washington DC, 1 May 2026.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.bis.org/review/r260504b.htm"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.bis.org/review/r260504b.htm"
+      ],
+      "metadata": {
+        "source": "BIS Speeches",
+        "category": "중앙은행",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_046:67",
+      "entityType": "macro_event",
+      "entityId": "macro_event:lesetja_kganyago_supply_shocks_monetary_policy_and_the_3_target",
+      "entityName": "Lesetja Kganyago: Supply shocks, monetary policy and the 3% target",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "중앙은행",
+      "themes": [
+        "중앙은행"
+      ],
+      "direction": "neutral",
+      "strength": 0.403125,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Lesetja Kganyago: Supply shocks, monetary policy and the 3% target",
+          "text": "Public lecture by Mr Lesetja Kganyago, Governor of the South African Reserve Bank, at Rhodes University, Grahamstown, 4 May 2026.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.bis.org/review/r260505f.htm"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.bis.org/review/r260505f.htm"
+      ],
+      "metadata": {
+        "source": "BIS Speeches",
+        "category": "중앙은행",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_047:68",
+      "entityType": "macro_event",
+      "entityId": "macro_event:john_c_williams_there_is_no_try",
+      "entityName": "John C Williams: There is no try",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "중앙은행",
+      "themes": [
+        "중앙은행"
+      ],
+      "direction": "neutral",
+      "strength": 0.41328125,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "John C Williams: There is no try",
+          "text": "Remarks by Mr John C Williams, President and Chief Executive Officer of the Federal Reserve Bank of New York, at the Cynosure Group Spring Symposium, New York City, 4 May 2026.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.bis.org/review/r260505e.htm"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.bis.org/review/r260505e.htm"
+      ],
+      "metadata": {
+        "source": "BIS Speeches",
+        "category": "중앙은행",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_048:69",
+      "entityType": "macro_event",
+      "entityId": "macro_event:chiara_scotti_digital_money_and_the_architecture_of_trust",
+      "entityName": "Chiara Scotti: Digital money and the architecture of trust",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "중앙은행",
+      "themes": [
+        "중앙은행"
+      ],
+      "direction": "neutral",
+      "strength": 0.51953125,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Chiara Scotti: Digital money and the architecture of trust",
+          "text": "Welcome address by Ms Chiara Scotti, Deputy Governor of the Bank of Italy, at a workshop \"Digital assets and monetary policy transmission\", organised by the Bank of Italy, European Central Bank, Euro Area Business Cycle Network and Centre for Economic Policy Research, Rome, 4 May 2026.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.bis.org/review/r260505d.htm"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.bis.org/review/r260505d.htm"
+      ],
+      "metadata": {
+        "source": "BIS Speeches",
+        "category": "중앙은행",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_067:70",
+      "entityType": "macro_event",
+      "entityId": "macro_event:get_durability_and_upside_in_small_cap_dividend_growth_etf_smdv",
+      "entityName": "Get Durability & Upside in Small-Cap Dividend Growth ETF SMDV",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "ETF",
+      "themes": [
+        "ETF"
+      ],
+      "direction": "neutral",
+      "strength": 0.625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Get Durability & Upside in Small-Cap Dividend Growth ETF SMDV",
+          "text": "Advisor clients have myriad goals and needs for their portfolios — but this year, delivering on them has gotten more complicated. Events in the Middle East will likely spur inflation for the rest of 2026. Meanwhile, market anxiety about the AI revolution’s profitability continues. Advisors are asked to help clients meet those goals while also, [...] The post Get Durability & Upside in Small-Cap Dividend Growth ETF SMDV appeared first on ETF Trends.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.etftrends.com/market-insights-content-hub/get-durability-upside-small-cap-dividend-growth-etf-smdv/"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.etftrends.com/market-insights-content-hub/get-durability-upside-small-cap-dividend-growth-etf-smdv/"
+      ],
+      "metadata": {
+        "source": "ETF Trends",
+        "category": "ETF",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_052:71",
+      "entityType": "macro_event",
+      "entityId": "macro_event:christine_lagarde_climate_nature_and_monetary_policy",
+      "entityName": "Christine Lagarde: Climate, nature and monetary policy",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "중앙은행",
+      "themes": [
+        "중앙은행"
+      ],
+      "direction": "neutral",
+      "strength": 0.29296875,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Christine Lagarde: Climate, nature and monetary policy",
+          "text": "",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260505~936c9c11b5.en.html"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.ecb.europa.eu//press/key/date/2026/html/ecb.sp260505~936c9c11b5.en.html"
+      ],
+      "metadata": {
+        "source": "ECB Press Releases",
+        "category": "중앙은행",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_068:72",
+      "entityType": "macro_event",
+      "entityId": "macro_event:crypto_dominates_top_5_etf_database_articles_of_april",
+      "entityName": "Crypto Dominates Top 5 ETF Database Articles of April",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "ETF",
+      "themes": [
+        "ETF"
+      ],
+      "direction": "neutral",
+      "strength": 0.625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Crypto Dominates Top 5 ETF Database Articles of April",
+          "text": "The two most read articles on ETF Database during the month of April were focused on cryptocurrency, both written by DJ Shaw. The article in the No. 1 spot, “CoinShares DIME Adds Hyperliquid to Altcoin Portfolio” highlighted a recent change in the portfolio of the CoinShares Altcoins ETF (DIME), which provides exposure to an index [...] The post Crypto Dominates Top 5 ETF Database Articles of April appeared first on ETF Trends.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.etftrends.com/crypto-dominates-top-5-etf-database-articles-april/"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.etftrends.com/crypto-dominates-top-5-etf-database-articles-april/"
+      ],
+      "metadata": {
+        "source": "ETF Trends",
+        "category": "ETF",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_049:73",
+      "entityType": "macro_event",
+      "entityId": "macro_event:piero_cipollone_digital_assets_payment_efficiency_and_monetary_policy",
+      "entityName": "Piero Cipollone: Digital assets, payment efficiency and monetary policy",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "중앙은행",
+      "themes": [
+        "중앙은행"
+      ],
+      "direction": "neutral",
+      "strength": 0.54140625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Piero Cipollone: Digital assets, payment efficiency and monetary policy",
+          "text": "Speech by Mr Piero Cipollone, Member of the Executive Board of the European Central Bank, at a workshop \"Digital assets and monetary policy transmission\", organised by the European Central Bank, Bank of Italy, Euro Area Business Cycle Network and Centre for Economic Policy Research, Rome, 4 May 2026.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.bis.org/review/r260505a.htm"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.bis.org/review/r260505a.htm"
+      ],
+      "metadata": {
+        "source": "BIS Speeches",
+        "category": "중앙은행",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    },
+    {
+      "observationId": "normalized:news:2026-05-06:article:news_069:74",
+      "entityType": "macro_event",
+      "entityId": "macro_event:williams_wmb_opportunity_rich_in_power_natural_gas",
+      "entityName": "Williams (WMB): Opportunity Rich in Power, Natural Gas",
+      "accountKey": null,
+      "securityCode": null,
+      "category": "ETF",
+      "themes": [
+        "ETF"
+      ],
+      "direction": "neutral",
+      "strength": 0.625,
+      "confidence": 0.54,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "macro_only",
+        "unclear_direction"
+      ],
+      "evidence": [
+        {
+          "kind": "snippet",
+          "title": "Williams (WMB): Opportunity Rich in Power, Natural Gas",
+          "text": "Key Takeaways Williams (WMB) has 13 pipeline projects underway with a robust backlog of additional opportunities. Growing natural gas demand should benefit the full value chain of WMB’s assets, from gathering and processing to large natural gas pipeline systems. WMB leveraged its construction capabilities, experience operating turbines, and expertise in natural gas logistics to provide [...] The post Williams (WMB): Opportunity Rich in Power, Natural Gas appeared first on ETF Trends.",
+          "value": null,
+          "refPath": "data/news/2026-05-06.json",
+          "url": "https://www.etftrends.com/energy-infrastructure-content-hub/williams-wmb-opportunity-rich-power-natural-gas/"
+        }
+      ],
+      "derivedFrom": [
+        "https://www.etftrends.com/energy-infrastructure-content-hub/williams-wmb-opportunity-rich-power-natural-gas/"
+      ],
+      "metadata": {
+        "source": "ETF Trends",
+        "category": "ETF",
+        "publishedAt": null,
+        "relevanceScore": null
+      }
+    }
+  ]
+}

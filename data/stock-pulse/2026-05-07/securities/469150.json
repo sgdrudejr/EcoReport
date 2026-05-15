@@ -1,0 +1,125 @@
+{
+  "id": "stock-pulse:469150",
+  "code": "469150",
+  "name": "ACE AI반도체TOP3+",
+  "category": "AI반도체",
+  "type": "etf",
+  "verdict": "보유유지",
+  "urgency": "중간",
+  "pulseScore": 51,
+  "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNot": "같은 테마 중복 확대 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "PENSION",
+      "accountLabel": "한투 연금저축",
+      "marketValue": 784620,
+      "profitRate": 9.24,
+      "decision": null
+    },
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "marketValue": 326925,
+      "profitRate": 9.75,
+      "decision": null
+    }
+  ],
+  "position": {
+    "marketValue": 1111545,
+    "purchaseValue": 1016080,
+    "profitLoss": 95465,
+    "profitRate": 9.4,
+    "quantity": 17
+  },
+  "market": {
+    "price": 65435,
+    "previousClose": 67225,
+    "changePct": -2.66,
+    "volume": 1249967,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 85,
+    "signal": "STRONG_BUY",
+    "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+    "rsi": 75.59,
+    "ma20": 54715.5,
+    "ma60": 47368.1667,
+    "recentHighDistancePct": -4.55,
+    "rsVsBenchmark": 28.08,
+    "alerts": [
+      "RSI 과매수 구간 진입"
+    ]
+  },
+  "fundamental": {
+    "score": 71,
+    "label": "수급양호",
+    "metrics": null,
+    "etf": {
+      "rank": null,
+      "navGapPct": null,
+      "concentrationTop5Pct": 79.61,
+      "topHoldings": [
+        {
+          "code": "000660",
+          "name": "SK하이닉스",
+          "weightPct": 29.59,
+          "changePct": -1.31
+        },
+        {
+          "code": "005930",
+          "name": "삼성전자",
+          "weightPct": 24.33,
+          "changePct": -1.13
+        },
+        {
+          "code": "042700",
+          "name": "한미반도체",
+          "weightPct": 21.39,
+          "changePct": -3.93
+        },
+        {
+          "code": "009150",
+          "name": "삼성전기",
+          "weightPct": 2.31,
+          "changePct": -2.74
+        },
+        {
+          "code": "353200",
+          "name": "대덕전자",
+          "weightPct": 1.99,
+          "changePct": -5.58
+        }
+      ]
+    }
+  },
+  "alerts": [
+    {
+      "severity": "medium",
+      "label": "과열주의",
+      "detail": "RSI 75.59로 추격매수보다 보호 판단이 우선입니다.",
+      "tone": "amber"
+    }
+  ],
+  "quickFactors": [
+    "등락 -2.66%",
+    "RSI 75.59",
+    "거래량 0배",
+    "손익 9.4%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "ETF_NAV_MISSING"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {}
+}

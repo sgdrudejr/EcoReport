@@ -1,0 +1,152 @@
+{
+  "id": "stock-pulse:469150",
+  "code": "469150",
+  "name": "ACE AI반도체TOP3+",
+  "category": "AI반도체",
+  "type": "etf",
+  "verdict": "추격금지",
+  "urgency": "높음",
+  "pulseScore": 40,
+  "oneLine": "추격금지: 좋아 보여도 오늘은 추가매수보다 보유분 보호와 눌림 대기가 우선입니다.",
+  "doNow": "좋아 보여도 오늘은 추가매수보다 보유분 보호와 눌림 대기가 우선입니다.",
+  "doNot": "급등 구간 추격매수 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "PENSION",
+      "accountLabel": "한투 연금저축",
+      "marketValue": 799320,
+      "profitRate": 11.29,
+      "decision": "매수제외"
+    },
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "marketValue": 333050,
+      "profitRate": 11.8,
+      "decision": "매수제외"
+    }
+  ],
+  "position": {
+    "marketValue": 1132370,
+    "purchaseValue": 0,
+    "profitLoss": 116290,
+    "profitRate": 11.44,
+    "quantity": 17
+  },
+  "market": {
+    "price": 66670,
+    "previousClose": 62000,
+    "changePct": 7.53,
+    "volume": 2803694,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 80,
+    "signal": "STRONG_BUY",
+    "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+    "rsi": 81.89,
+    "ma20": 53623,
+    "ma60": 46913.6667,
+    "recentHighDistancePct": -0.15,
+    "rsVsBenchmark": 35.43,
+    "alerts": [
+      "RSI 과매수 구간 진입",
+      "볼린저밴드 상단 이탈"
+    ]
+  },
+  "fundamental": {
+    "score": 71,
+    "label": "수급양호",
+    "metrics": null,
+    "etf": {
+      "rank": null,
+      "navGapPct": null,
+      "concentrationTop5Pct": 78.6,
+      "topHoldings": [
+        {
+          "code": "000660",
+          "name": "SK하이닉스",
+          "weightPct": 28.89,
+          "changePct": 11.13
+        },
+        {
+          "code": "005930",
+          "name": "삼성전자",
+          "weightPct": 22.97,
+          "changePct": 15.38
+        },
+        {
+          "code": "042700",
+          "name": "한미반도체",
+          "weightPct": 22.14,
+          "changePct": 2.65
+        },
+        {
+          "code": "009150",
+          "name": "삼성전기",
+          "weightPct": 2.51,
+          "changePct": 0.22
+        },
+        {
+          "code": "036930",
+          "name": "주성엔지니어링",
+          "weightPct": 2.09,
+          "changePct": -0.47
+        }
+      ]
+    }
+  },
+  "alerts": [
+    {
+      "severity": "medium",
+      "label": "과열주의",
+      "detail": "RSI 81.89로 추격매수보다 보호 판단이 우선입니다.",
+      "tone": "amber"
+    },
+    {
+      "severity": "high",
+      "label": "급등",
+      "detail": "당일 7.53% 상승으로 눌림 확인 전 매수 위험이 큽니다.",
+      "tone": "red"
+    },
+    {
+      "severity": "medium",
+      "label": "근거보강",
+      "detail": "NO_CLEAN_REPORT_LINK",
+      "tone": "amber"
+    }
+  ],
+  "quickFactors": [
+    "등락 7.53%",
+    "RSI 81.89",
+    "거래량 0배",
+    "손익 11.44%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "ETF_NAV_MISSING"
+  ],
+  "riskFlags": [
+    "RSI_OVERHEAT:81.89",
+    "BOLLINGER_ABOVE_UPPER",
+    "NO_CLEAN_REPORT_LINK",
+    "BLOCKED_BY_STAGE4_VALIDATION"
+  ],
+  "sourceSupport": {
+    "reports": 0.464,
+    "stockeasy": 0,
+    "marketvoice": 0,
+    "technical": 0,
+    "kisEtf": 0,
+    "news": 0,
+    "macro": 0,
+    "llm": 0
+  }
+}

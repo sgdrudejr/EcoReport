@@ -1,0 +1,75 @@
+{
+  "id": "stock-pulse:012450",
+  "code": "012450",
+  "name": "한화에어로스페이스",
+  "category": "방산",
+  "type": "stock",
+  "verdict": "보유유지",
+  "urgency": "낮음",
+  "pulseScore": 24,
+  "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNot": "같은 테마 중복 확대 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "marketValue": 1348000,
+      "profitRate": -8.79,
+      "decision": null
+    }
+  ],
+  "position": {
+    "marketValue": 1348000,
+    "purchaseValue": 1478000,
+    "profitLoss": -130000,
+    "profitRate": -8.8,
+    "quantity": 1
+  },
+  "market": {
+    "price": 1307000,
+    "previousClose": 1317000,
+    "changePct": 0,
+    "volume": 324641,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 46,
+    "signal": "HOLD",
+    "reason": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화",
+    "rsi": 39.5,
+    "ma20": 1439500,
+    "ma60": 1365250,
+    "recentHighDistancePct": -16.75,
+    "rsVsBenchmark": -46,
+    "alerts": [
+      "볼린저밴드 하단 이탈"
+    ]
+  },
+  "fundamental": {
+    "score": 20,
+    "label": "수집필요",
+    "metrics": null,
+    "etf": null
+  },
+  "alerts": [],
+  "quickFactors": [
+    "등락 0%",
+    "RSI 39.5",
+    "거래량 0배",
+    "손익 -8.8%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "NAVER_FETCH_FAILED"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {}
+}

@@ -1,0 +1,127 @@
+{
+  "id": "stock-pulse:064350",
+  "code": "064350",
+  "name": "현대로템",
+  "category": "방산",
+  "type": "stock",
+  "verdict": "익절감시",
+  "urgency": "중간",
+  "pulseScore": 63,
+  "oneLine": "익절감시: 20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+  "doNow": "20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+  "doNot": "급등 구간 추격매수 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "marketValue": 257500,
+      "profitRate": 23.79,
+      "decision": "수익보호"
+    }
+  ],
+  "position": {
+    "marketValue": 257500,
+    "purchaseValue": 0,
+    "profitLoss": 49500,
+    "profitRate": 23.79,
+    "quantity": 1
+  },
+  "market": {
+    "price": 260500,
+    "previousClose": 268500,
+    "changePct": -2.98,
+    "volume": 384898,
+    "volumeRatio": 0.4,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 85,
+    "signal": "STRONG_BUY",
+    "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+    "rsi": 76.33,
+    "ma20": 226200,
+    "ma60": 211646.6667,
+    "recentHighDistancePct": -7.62,
+    "rsVsBenchmark": -13.53,
+    "alerts": [
+      "RSI 과매수 구간 진입"
+    ]
+  },
+  "fundamental": {
+    "score": 69,
+    "label": "기본양호",
+    "metrics": {
+      "per": 38.13,
+      "pbr": 9.54,
+      "eps": 7055,
+      "estimatedPer": 32,
+      "estimatedEps": 8381,
+      "dividendYield": 0.22,
+      "operatingMargin": 17.22,
+      "operatingMarginEstimate": 16.72,
+      "roe": 30.05,
+      "roeEstimate": 26.11,
+      "annualEps": 7055,
+      "previousAnnualEps": 3728,
+      "estimatedAnnualEps": 8381,
+      "epsGrowthPct": 89.24,
+      "estimatedEpsGrowthPct": 18.8
+    },
+    "etf": null
+  },
+  "alerts": [
+    {
+      "severity": "medium",
+      "label": "과열주의",
+      "detail": "RSI 76.33로 추격매수보다 보호 판단이 우선입니다.",
+      "tone": "amber"
+    },
+    {
+      "severity": "low",
+      "label": "AI언급",
+      "detail": "보유유지: 수익률 +23.8% / 매력 65 점이지만 RSI 76.33 과열",
+      "tone": "blue"
+    }
+  ],
+  "quickFactors": [
+    "등락 -2.98%",
+    "RSI 76.33",
+    "거래량 0.4배",
+    "손익 23.79%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [
+    {
+      "bucket": "todayDo",
+      "action": "보유유지",
+      "reason": "수익률 +23.8% / 매력 65 점이지만 RSI 76.33 과열",
+      "trigger": "20 일선 이탈 또는 RSI 하락 반전 시 일부 이익 실현 검토"
+    },
+    {
+      "bucket": "sellWatch",
+      "action": "부분익절",
+      "reason": "수익률 +23.8% / RSI 76.33 과열",
+      "trigger": "20 일선 이탈 또는 RSI 하락 반전"
+    }
+  ],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결"
+  ],
+  "riskFlags": [
+    "RSI_OVERHEAT:76.33"
+  ],
+  "sourceSupport": {
+    "reports": 0.464,
+    "stockeasy": 0,
+    "marketvoice": 0,
+    "technical": 0,
+    "kisEtf": 0,
+    "news": 0,
+    "macro": 0,
+    "llm": 0
+  }
+}

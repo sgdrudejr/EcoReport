@@ -1,0 +1,747 @@
+{
+  "date": "2026-05-13",
+  "generatedAt": "2026-05-13T01:09:10.504Z",
+  "format": "TradingView Pine Script v5 indicator: horizontal average purchase price line plus vertical buy markers per KIS holding",
+  "exchangePrefix": "KRX",
+  "symbolCount": 14,
+  "buyMarkerEventCount": 27,
+  "buyMarkerSymbols": [
+    "KRX:0162Z0",
+    "KRX:0167Z0",
+    "KRX:064400",
+    "KRX:068270",
+    "KRX:099320",
+    "KRX:138910",
+    "KRX:161510",
+    "KRX:196170",
+    "KRX:360750",
+    "KRX:379810",
+    "KRX:385510",
+    "KRX:411060",
+    "KRX:469150",
+    "KRX:475300"
+  ],
+  "symbols": [
+    "KRX:0162Z0",
+    "KRX:411060",
+    "KRX:475300",
+    "KRX:360750",
+    "KRX:379810",
+    "KRX:099320",
+    "KRX:068270",
+    "KRX:064400",
+    "KRX:469150",
+    "KRX:385510",
+    "KRX:161510",
+    "KRX:196170",
+    "KRX:138910",
+    "KRX:0167Z0"
+  ],
+  "entries": [
+    {
+      "symbol": "KRX:0162Z0",
+      "code": "0162Z0",
+      "name": "RISE 삼성전자SK하이닉스채권혼합50",
+      "accounts": [
+        "ISA",
+        "PENSION"
+      ],
+      "quantity": 220,
+      "purchaseValue": 2483200,
+      "avgPrice": 11287.272727272728,
+      "marketValue": 2916100,
+      "latestDate": "2026-05-13"
+    },
+    {
+      "symbol": "KRX:411060",
+      "code": "411060",
+      "name": "ACE KRX금현물",
+      "accounts": [
+        "ISA",
+        "PENSION"
+      ],
+      "quantity": 78,
+      "purchaseValue": 2419455,
+      "avgPrice": 31018.653846153848,
+      "marketValue": 2446608,
+      "latestDate": "2026-05-13"
+    },
+    {
+      "symbol": "KRX:475300",
+      "code": "475300",
+      "name": "SOL 반도체전공정",
+      "accounts": [
+        "ISA"
+      ],
+      "quantity": 104,
+      "purchaseValue": 2243860,
+      "avgPrice": 21575.576923076922,
+      "marketValue": 2379520,
+      "latestDate": "2026-05-13"
+    },
+    {
+      "symbol": "KRX:360750",
+      "code": "360750",
+      "name": "TIGER 미국S&P500",
+      "accounts": [
+        "PENSION"
+      ],
+      "quantity": 84,
+      "purchaseValue": 2197720,
+      "avgPrice": 26163.333333333332,
+      "marketValue": 2308320,
+      "latestDate": "2026-05-13"
+    },
+    {
+      "symbol": "KRX:379810",
+      "code": "379810",
+      "name": "KODEX 미국나스닥100",
+      "accounts": [
+        "PENSION"
+      ],
+      "quantity": 60,
+      "purchaseValue": 1639800,
+      "avgPrice": 27330,
+      "marketValue": 1731900,
+      "latestDate": "2026-05-13"
+    },
+    {
+      "symbol": "KRX:099320",
+      "code": "099320",
+      "name": "쎄트렉아이",
+      "accounts": [
+        "ISA",
+        "KIS_MAIN"
+      ],
+      "quantity": 8,
+      "purchaseValue": 1387700,
+      "avgPrice": 173462.5,
+      "marketValue": 1295200,
+      "latestDate": "2026-05-13"
+    },
+    {
+      "symbol": "KRX:068270",
+      "code": "068270",
+      "name": "셀트리온",
+      "accounts": [
+        "ISA",
+        "KIS_MAIN"
+      ],
+      "quantity": 7,
+      "purchaseValue": 1346300,
+      "avgPrice": 192328.57142857142,
+      "marketValue": 1328250,
+      "latestDate": "2026-05-13"
+    },
+    {
+      "symbol": "KRX:064400",
+      "code": "064400",
+      "name": "LG씨엔에스",
+      "accounts": [
+        "ISA",
+        "KIS_MAIN"
+      ],
+      "quantity": 17,
+      "purchaseValue": 1203000,
+      "avgPrice": 70764.70588235294,
+      "marketValue": 1234200,
+      "latestDate": "2026-05-13"
+    },
+    {
+      "symbol": "KRX:469150",
+      "code": "469150",
+      "name": "ACE AI반도체TOP3+",
+      "accounts": [
+        "KIS_MAIN",
+        "PENSION"
+      ],
+      "quantity": 17,
+      "purchaseValue": 1016080,
+      "avgPrice": 59769.41176470588,
+      "marketValue": 1193705,
+      "latestDate": "2026-05-13"
+    },
+    {
+      "symbol": "KRX:385510",
+      "code": "385510",
+      "name": "KODEX 신재생에너지액티브",
+      "accounts": [
+        "ISA"
+      ],
+      "quantity": 13,
+      "purchaseValue": 678925,
+      "avgPrice": 52225,
+      "marketValue": 727545,
+      "latestDate": "2026-05-13"
+    },
+    {
+      "symbol": "KRX:161510",
+      "code": "161510",
+      "name": "PLUS 고배당주",
+      "accounts": [
+        "ISA"
+      ],
+      "quantity": 22,
+      "purchaseValue": 598780,
+      "avgPrice": 27217.272727272728,
+      "marketValue": 595540,
+      "latestDate": "2026-05-13"
+    },
+    {
+      "symbol": "KRX:196170",
+      "code": "196170",
+      "name": "알테오젠",
+      "accounts": [
+        "ISA"
+      ],
+      "quantity": 1,
+      "purchaseValue": 324000,
+      "avgPrice": 324000,
+      "marketValue": 328500,
+      "latestDate": "2026-05-13"
+    },
+    {
+      "symbol": "KRX:138910",
+      "code": "138910",
+      "name": "KODEX 구리선물(H)",
+      "accounts": [
+        "KIS_MAIN"
+      ],
+      "quantity": 30,
+      "purchaseValue": 262950,
+      "avgPrice": 8765,
+      "marketValue": 308100,
+      "latestDate": "2026-05-13"
+    },
+    {
+      "symbol": "KRX:0167Z0",
+      "code": "0167Z0",
+      "name": "KODEX 미국우주항공",
+      "accounts": [
+        "KIS_MAIN"
+      ],
+      "quantity": 13,
+      "purchaseValue": 145600,
+      "avgPrice": 11200,
+      "marketValue": 157365,
+      "latestDate": "2026-05-13"
+    }
+  ],
+  "buyMarkers": [
+    {
+      "symbol": "KRX:0162Z0",
+      "code": "0162Z0",
+      "name": "RISE 삼성전자SK하이닉스채권혼합50",
+      "date": "2026-04-22",
+      "isBuy": true,
+      "accountKeys": [
+        "ISA"
+      ],
+      "accountLabels": [
+        "한투 ISA"
+      ],
+      "quantity": 100,
+      "price": 11200,
+      "sources": [
+        "kis_order_fill"
+      ],
+      "note": null
+    },
+    {
+      "symbol": "KRX:0162Z0",
+      "code": "0162Z0",
+      "name": "RISE 삼성전자SK하이닉스채권혼합50",
+      "date": "2026-04-23",
+      "isBuy": true,
+      "accountKeys": [
+        "PENSION"
+      ],
+      "accountLabels": [
+        "한투 연금저축"
+      ],
+      "quantity": 120,
+      "price": 11365,
+      "sources": [
+        "kis_order_fill"
+      ],
+      "note": null
+    },
+    {
+      "symbol": "KRX:0167Z0",
+      "code": "0167Z0",
+      "name": "KODEX 미국우주항공",
+      "date": "2026-05-11",
+      "isBuy": true,
+      "accountKeys": [
+        "KIS_MAIN"
+      ],
+      "accountLabels": [
+        "한투 일반"
+      ],
+      "quantity": 13,
+      "price": 11200,
+      "sources": [
+        "kis_order_fill"
+      ],
+      "note": null
+    },
+    {
+      "symbol": "KRX:064400",
+      "code": "064400",
+      "name": "LG씨엔에스",
+      "date": "2026-05-11",
+      "isBuy": true,
+      "accountKeys": [
+        "ISA"
+      ],
+      "accountLabels": [
+        "한투 ISA"
+      ],
+      "quantity": 10,
+      "price": 69200,
+      "sources": [
+        "kis_order_fill"
+      ],
+      "note": null
+    },
+    {
+      "symbol": "KRX:064400",
+      "code": "064400",
+      "name": "LG씨엔에스",
+      "date": "2026-05-12",
+      "isBuy": true,
+      "accountKeys": [
+        "KIS_MAIN"
+      ],
+      "accountLabels": [
+        "한투 일반"
+      ],
+      "quantity": 7,
+      "price": 73000,
+      "sources": [
+        "kis_order_fill"
+      ],
+      "note": null
+    },
+    {
+      "symbol": "KRX:068270",
+      "code": "068270",
+      "name": "셀트리온",
+      "date": "2026-05-11",
+      "isBuy": true,
+      "accountKeys": [
+        "ISA"
+      ],
+      "accountLabels": [
+        "한투 ISA"
+      ],
+      "quantity": 3,
+      "price": 194500,
+      "sources": [
+        "kis_order_fill"
+      ],
+      "note": null
+    },
+    {
+      "symbol": "KRX:068270",
+      "code": "068270",
+      "name": "셀트리온",
+      "date": "2026-05-12",
+      "isBuy": true,
+      "accountKeys": [
+        "KIS_MAIN"
+      ],
+      "accountLabels": [
+        "한투 일반"
+      ],
+      "quantity": 4,
+      "price": 190700,
+      "sources": [
+        "kis_order_fill"
+      ],
+      "note": null
+    },
+    {
+      "symbol": "KRX:099320",
+      "code": "099320",
+      "name": "쎄트렉아이",
+      "date": "2026-05-11",
+      "isBuy": true,
+      "accountKeys": [
+        "ISA"
+      ],
+      "accountLabels": [
+        "한투 ISA"
+      ],
+      "quantity": 3,
+      "price": 181600,
+      "sources": [
+        "kis_order_fill"
+      ],
+      "note": null
+    },
+    {
+      "symbol": "KRX:099320",
+      "code": "099320",
+      "name": "쎄트렉아이",
+      "date": "2026-05-12",
+      "isBuy": true,
+      "accountKeys": [
+        "KIS_MAIN"
+      ],
+      "accountLabels": [
+        "한투 일반"
+      ],
+      "quantity": 5,
+      "price": 168700,
+      "sources": [
+        "kis_order_fill"
+      ],
+      "note": null
+    },
+    {
+      "symbol": "KRX:138910",
+      "code": "138910",
+      "name": "KODEX 구리선물(H)",
+      "date": "2026-04-07",
+      "isBuy": true,
+      "accountKeys": [
+        "KIS_MAIN"
+      ],
+      "accountLabels": [
+        "한투 일반"
+      ],
+      "quantity": 58,
+      "price": 8765,
+      "sources": [
+        "kis_order_fill"
+      ],
+      "note": null
+    },
+    {
+      "symbol": "KRX:161510",
+      "code": "161510",
+      "name": "PLUS 고배당주",
+      "date": "2026-04-27",
+      "isBuy": true,
+      "accountKeys": [
+        "ISA"
+      ],
+      "accountLabels": [
+        "한투 ISA"
+      ],
+      "quantity": 9,
+      "price": 27300,
+      "sources": [
+        "kis_order_fill"
+      ],
+      "note": null
+    },
+    {
+      "symbol": "KRX:161510",
+      "code": "161510",
+      "name": "PLUS 고배당주",
+      "date": "2026-04-30",
+      "isBuy": true,
+      "accountKeys": [
+        "ISA"
+      ],
+      "accountLabels": [
+        "한투 ISA"
+      ],
+      "quantity": 13,
+      "price": 27160,
+      "sources": [
+        "kis_order_fill"
+      ],
+      "note": null
+    },
+    {
+      "symbol": "KRX:196170",
+      "code": "196170",
+      "name": "알테오젠",
+      "date": "2026-05-11",
+      "isBuy": true,
+      "accountKeys": [
+        "ISA"
+      ],
+      "accountLabels": [
+        "한투 ISA"
+      ],
+      "quantity": 1,
+      "price": 324000,
+      "sources": [
+        "kis_order_fill"
+      ],
+      "note": null
+    },
+    {
+      "symbol": "KRX:360750",
+      "code": "360750",
+      "name": "TIGER 미국S&P500",
+      "date": "2026-04-22",
+      "isBuy": true,
+      "accountKeys": [
+        "PENSION"
+      ],
+      "accountLabels": [
+        "한투 연금저축"
+      ],
+      "quantity": 50,
+      "price": 26070,
+      "sources": [
+        "kis_order_fill"
+      ],
+      "note": null
+    },
+    {
+      "symbol": "KRX:360750",
+      "code": "360750",
+      "name": "TIGER 미국S&P500",
+      "date": "2026-04-27",
+      "isBuy": true,
+      "accountKeys": [
+        "PENSION"
+      ],
+      "accountLabels": [
+        "한투 연금저축"
+      ],
+      "quantity": 10,
+      "price": 26250,
+      "sources": [
+        "kis_order_fill"
+      ],
+      "note": null
+    },
+    {
+      "symbol": "KRX:360750",
+      "code": "360750",
+      "name": "TIGER 미국S&P500",
+      "date": "2026-05-04",
+      "isBuy": true,
+      "accountKeys": [
+        "PENSION"
+      ],
+      "accountLabels": [
+        "한투 연금저축"
+      ],
+      "quantity": 24,
+      "price": 26380,
+      "sources": [
+        "kis_order_fill"
+      ],
+      "note": null
+    },
+    {
+      "symbol": "KRX:379810",
+      "code": "379810",
+      "name": "KODEX 미국나스닥100",
+      "date": "2026-04-22",
+      "isBuy": true,
+      "accountKeys": [
+        "PENSION"
+      ],
+      "accountLabels": [
+        "한투 연금저축"
+      ],
+      "quantity": 30,
+      "price": 26175,
+      "sources": [
+        "kis_order_fill"
+      ],
+      "note": null
+    },
+    {
+      "symbol": "KRX:379810",
+      "code": "379810",
+      "name": "KODEX 미국나스닥100",
+      "date": "2026-05-11",
+      "isBuy": true,
+      "accountKeys": [
+        "PENSION"
+      ],
+      "accountLabels": [
+        "한투 연금저축"
+      ],
+      "quantity": 30,
+      "price": 28505,
+      "sources": [
+        "kis_order_fill"
+      ],
+      "note": null
+    },
+    {
+      "symbol": "KRX:385510",
+      "code": "385510",
+      "name": "KODEX 신재생에너지액티브",
+      "date": "2026-04-23",
+      "isBuy": true,
+      "accountKeys": [
+        "ISA"
+      ],
+      "accountLabels": [
+        "한투 ISA"
+      ],
+      "quantity": 13,
+      "price": 52225,
+      "sources": [
+        "kis_order_fill"
+      ],
+      "note": null
+    },
+    {
+      "symbol": "KRX:411060",
+      "code": "411060",
+      "name": "ACE KRX금현물",
+      "date": "2026-04-23",
+      "isBuy": true,
+      "accountKeys": [
+        "ISA"
+      ],
+      "accountLabels": [
+        "한투 ISA"
+      ],
+      "quantity": 50,
+      "price": 31320,
+      "sources": [
+        "kis_order_fill"
+      ],
+      "note": null
+    },
+    {
+      "symbol": "KRX:411060",
+      "code": "411060",
+      "name": "ACE KRX금현물",
+      "date": "2026-05-04",
+      "isBuy": true,
+      "accountKeys": [
+        "ISA"
+      ],
+      "accountLabels": [
+        "한투 ISA"
+      ],
+      "quantity": 19,
+      "price": 30371.842105263157,
+      "sources": [
+        "kis_order_fill"
+      ],
+      "note": null
+    },
+    {
+      "symbol": "KRX:411060",
+      "code": "411060",
+      "name": "ACE KRX금현물",
+      "date": "2026-05-11",
+      "isBuy": true,
+      "accountKeys": [
+        "PENSION"
+      ],
+      "accountLabels": [
+        "한투 연금저축"
+      ],
+      "quantity": 9,
+      "price": 30710,
+      "sources": [
+        "kis_order_fill"
+      ],
+      "note": null
+    },
+    {
+      "symbol": "KRX:469150",
+      "code": "469150",
+      "name": "ACE AI반도체TOP3+",
+      "date": "2026-04-27",
+      "isBuy": true,
+      "accountKeys": [
+        "KIS_MAIN",
+        "PENSION"
+      ],
+      "accountLabels": [
+        "한투 연금저축",
+        "한투 일반"
+      ],
+      "quantity": 10,
+      "price": 59592.5,
+      "sources": [
+        "kis_order_fill"
+      ],
+      "note": null
+    },
+    {
+      "symbol": "KRX:469150",
+      "code": "469150",
+      "name": "ACE AI반도체TOP3+",
+      "date": "2026-05-04",
+      "isBuy": true,
+      "accountKeys": [
+        "PENSION"
+      ],
+      "accountLabels": [
+        "한투 연금저축"
+      ],
+      "quantity": 7,
+      "price": 60022.142857142855,
+      "sources": [
+        "kis_order_fill"
+      ],
+      "note": null
+    },
+    {
+      "symbol": "KRX:475300",
+      "code": "475300",
+      "name": "SOL 반도체전공정",
+      "date": "2026-04-23",
+      "isBuy": true,
+      "accountKeys": [
+        "ISA"
+      ],
+      "accountLabels": [
+        "한투 ISA"
+      ],
+      "quantity": 50,
+      "price": 21000,
+      "sources": [
+        "kis_order_fill"
+      ],
+      "note": null
+    },
+    {
+      "symbol": "KRX:475300",
+      "code": "475300",
+      "name": "SOL 반도체전공정",
+      "date": "2026-05-04",
+      "isBuy": true,
+      "accountKeys": [
+        "ISA"
+      ],
+      "accountLabels": [
+        "한투 ISA"
+      ],
+      "quantity": 41,
+      "price": 21483.414634146342,
+      "sources": [
+        "kis_order_fill"
+      ],
+      "note": null
+    },
+    {
+      "symbol": "KRX:475300",
+      "code": "475300",
+      "name": "SOL 반도체전공정",
+      "date": "2026-05-11",
+      "isBuy": true,
+      "accountKeys": [
+        "ISA"
+      ],
+      "accountLabels": [
+        "한투 ISA"
+      ],
+      "quantity": 13,
+      "price": 24090,
+      "sources": [
+        "kis_order_fill"
+      ],
+      "note": null
+    }
+  ]
+}

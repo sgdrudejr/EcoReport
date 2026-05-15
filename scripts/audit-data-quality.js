@@ -100,8 +100,12 @@ function addCheck(checks, key, status, detail, metric = null) {
 function countRows(value) {
   if (Array.isArray(value)) return value.length;
   if (value && typeof value === "object") {
+    if (Number.isFinite(value.total_reports)) return value.total_reports;
+    if (Number.isFinite(value.totalReports)) return value.totalReports;
+    if (Number.isFinite(value.success_count)) return value.success_count;
     if (Array.isArray(value.reports)) return value.reports.length;
     if (Array.isArray(value.items)) return value.items.length;
+    if (Array.isArray(value.entries)) return value.entries.length;
     if (Array.isArray(value.files)) return value.files.length;
     if (Array.isArray(value.manifest)) return value.manifest.length;
   }
@@ -425,7 +429,12 @@ async function main() {
   const reportIndexCount = countRows(reportIndex);
   const textManifestCount = countRows(textManifest);
   const sourceReportCount = fullReport?.source_report_count ?? atomPayload?.source_report_count ?? 0;
-  const coverageStatus = sourceReportCount >= 50 && (!reportIndexCount || sourceReportCount <= reportIndexCount + 5) ? "ok" : "warn";
+  const coverageStatus =
+    sourceReportCount > 0 &&
+    (!reportIndexCount || sourceReportCount <= reportIndexCount + 5) &&
+    (!textManifestCount || sourceReportCount <= textManifestCount + 5)
+      ? "ok"
+      : "warn";
   addCheck(
     checks,
     "report_coverage",

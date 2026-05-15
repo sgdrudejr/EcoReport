@@ -1,0 +1,665 @@
+{
+  "date": "2026-05-06",
+  "generatedAt": "2026-05-06T14:45:54.381Z",
+  "source": "naver_siseJson",
+  "universe": "current_portfolio_holdings",
+  "settings": {
+    "dailyCount": 220,
+    "minuteDays": 30,
+    "rsiPeriod": 14,
+    "order": [
+      "day",
+      "4h",
+      "1h"
+    ]
+  },
+  "results": [
+    {
+      "code": "069500",
+      "name": "KODEX 200",
+      "accounts": [
+        "ISA",
+        "PENSION"
+      ],
+      "purchaseValue": 3034395,
+      "consensus": "none",
+      "timeframes": {
+        "day": {
+          "status": "checked",
+          "type": "none",
+          "latestRsi": 80.18,
+          "bars": 220,
+          "summary": "day 최근 구간에서 확정 RSI 다이버전스 없음."
+        },
+        "4h": {
+          "status": "insufficient_data",
+          "type": "none",
+          "summary": "4h 데이터가 부족합니다 (12개).",
+          "bars": 12
+        },
+        "1h": {
+          "status": "checked",
+          "type": "none",
+          "latestRsi": 82.76,
+          "bars": 42,
+          "summary": "1h 최근 구간에서 확정 RSI 다이버전스 없음."
+        }
+      }
+    },
+    {
+      "code": "0162Z0",
+      "name": "RISE 삼성전자SK하이닉스채권혼합50",
+      "accounts": [
+        "ISA",
+        "PENSION"
+      ],
+      "purchaseValue": 2483200,
+      "consensus": "none",
+      "timeframes": {
+        "day": {
+          "status": "checked",
+          "type": "none",
+          "latestRsi": 79.21,
+          "bars": 47,
+          "summary": "day 최근 구간에서 확정 RSI 다이버전스 없음."
+        },
+        "4h": {
+          "status": "insufficient_data",
+          "type": "none",
+          "summary": "4h 데이터가 부족합니다 (12개).",
+          "bars": 12
+        },
+        "1h": {
+          "status": "checked",
+          "type": "none",
+          "latestRsi": 87.82,
+          "bars": 42,
+          "summary": "1h 최근 구간에서 확정 RSI 다이버전스 없음."
+        }
+      }
+    },
+    {
+      "code": "360750",
+      "name": "TIGER 미국S&P500",
+      "accounts": [
+        "PENSION"
+      ],
+      "purchaseValue": 2197720,
+      "consensus": "none",
+      "timeframes": {
+        "day": {
+          "status": "checked",
+          "type": "none",
+          "latestRsi": 73.91,
+          "bars": 220,
+          "summary": "day 최근 구간에서 확정 RSI 다이버전스 없음."
+        },
+        "4h": {
+          "status": "insufficient_data",
+          "type": "none",
+          "summary": "4h 데이터가 부족합니다 (12개).",
+          "bars": 12
+        },
+        "1h": {
+          "status": "checked",
+          "type": "none",
+          "latestRsi": 48.72,
+          "bars": 42,
+          "summary": "1h 최근 구간에서 확정 RSI 다이버전스 없음."
+        }
+      }
+    },
+    {
+      "code": "411060",
+      "name": "ACE KRX금현물",
+      "accounts": [
+        "ISA"
+      ],
+      "purchaseValue": 2143065,
+      "consensus": "bullish_watch",
+      "timeframes": {
+        "day": {
+          "status": "checked",
+          "type": "none",
+          "latestRsi": 34.41,
+          "bars": 220,
+          "summary": "day 최근 구간에서 확정 RSI 다이버전스 없음."
+        },
+        "4h": {
+          "status": "insufficient_data",
+          "type": "none",
+          "summary": "4h 데이터가 부족합니다 (12개).",
+          "bars": 12
+        },
+        "1h": {
+          "status": "checked",
+          "type": "bullish",
+          "latestRsi": 37.67,
+          "bars": 42,
+          "reference": {
+            "type": "bullish",
+            "previousDate": "2026-04-30 09:00",
+            "latestDate": "2026-05-06 09:00",
+            "previousPrice": 30005,
+            "latestPrice": 29935,
+            "previousRsi": 13.8,
+            "latestRsi": 27.2,
+            "pivotAgeBars": 6
+          },
+          "summary": "1h 강세 다이버전스: 가격 저점 하락, RSI 저점 상승 (2026-04-30 09:00 -> 2026-05-06 09:00)."
+        }
+      }
+    },
+    {
+      "code": "475300",
+      "name": "SOL 반도체전공정",
+      "accounts": [
+        "ISA"
+      ],
+      "purchaseValue": 1930820,
+      "consensus": "none",
+      "timeframes": {
+        "day": {
+          "status": "checked",
+          "type": "none",
+          "latestRsi": 67.44,
+          "bars": 220,
+          "summary": "day 최근 구간에서 확정 RSI 다이버전스 없음."
+        },
+        "4h": {
+          "status": "insufficient_data",
+          "type": "none",
+          "summary": "4h 데이터가 부족합니다 (12개).",
+          "bars": 12
+        },
+        "1h": {
+          "status": "checked",
+          "type": "none",
+          "latestRsi": 58.45,
+          "bars": 42,
+          "summary": "1h 최근 구간에서 확정 RSI 다이버전스 없음."
+        }
+      }
+    },
+    {
+      "code": "012450",
+      "name": "한화에어로스페이스",
+      "accounts": [
+        "KIS_MAIN"
+      ],
+      "purchaseValue": 1478000,
+      "consensus": "bearish_watch",
+      "timeframes": {
+        "day": {
+          "status": "checked",
+          "type": "bearish",
+          "latestRsi": 50.78,
+          "bars": 220,
+          "reference": {
+            "type": "bearish",
+            "previousDate": "2026-04-07",
+            "latestDate": "2026-04-16",
+            "previousPrice": 1545000,
+            "latestPrice": 1570000,
+            "previousRsi": 63.81,
+            "latestRsi": 59.59,
+            "pivotAgeBars": 12
+          },
+          "summary": "day 약세 다이버전스: 가격 고점 상승, RSI 고점 하락 (2026-04-07 -> 2026-04-16)."
+        },
+        "4h": {
+          "status": "insufficient_data",
+          "type": "none",
+          "summary": "4h 데이터가 부족합니다 (12개).",
+          "bars": 12
+        },
+        "1h": {
+          "status": "checked",
+          "type": "none",
+          "latestRsi": 46.68,
+          "bars": 42,
+          "summary": "1h 최근 구간에서 확정 RSI 다이버전스 없음."
+        }
+      }
+    },
+    {
+      "code": "469150",
+      "name": "ACE AI반도체TOP3+",
+      "accounts": [
+        "KIS_MAIN",
+        "PENSION"
+      ],
+      "purchaseValue": 1016080,
+      "consensus": "none",
+      "timeframes": {
+        "day": {
+          "status": "checked",
+          "type": "none",
+          "latestRsi": 82.32,
+          "bars": 220,
+          "summary": "day 최근 구간에서 확정 RSI 다이버전스 없음."
+        },
+        "4h": {
+          "status": "insufficient_data",
+          "type": "none",
+          "summary": "4h 데이터가 부족합니다 (12개).",
+          "bars": 12
+        },
+        "1h": {
+          "status": "checked",
+          "type": "none",
+          "latestRsi": 87.12,
+          "bars": 42,
+          "summary": "1h 최근 구간에서 확정 RSI 다이버전스 없음."
+        }
+      }
+    },
+    {
+      "code": "449450",
+      "name": "PLUS K방산",
+      "accounts": [
+        "KIS_MAIN"
+      ],
+      "purchaseValue": 785360,
+      "consensus": "bearish_watch",
+      "timeframes": {
+        "day": {
+          "status": "checked",
+          "type": "none",
+          "latestRsi": 58.6,
+          "bars": 220,
+          "summary": "day 최근 구간에서 확정 RSI 다이버전스 없음."
+        },
+        "4h": {
+          "status": "insufficient_data",
+          "type": "none",
+          "summary": "4h 데이터가 부족합니다 (12개).",
+          "bars": 12
+        },
+        "1h": {
+          "status": "checked",
+          "type": "bearish",
+          "latestRsi": 56.88,
+          "bars": 42,
+          "reference": {
+            "type": "bearish",
+            "previousDate": "2026-04-29 09:00",
+            "latestDate": "2026-05-06 09:00",
+            "previousPrice": 80410,
+            "latestPrice": 81560,
+            "previousRsi": 54.74,
+            "latestRsi": 51.41,
+            "pivotAgeBars": 6
+          },
+          "summary": "1h 약세 다이버전스: 가격 고점 상승, RSI 고점 하락 (2026-04-29 09:00 -> 2026-05-06 09:00)."
+        }
+      }
+    },
+    {
+      "code": "379810",
+      "name": "KODEX 미국나스닥100",
+      "accounts": [
+        "PENSION"
+      ],
+      "purchaseValue": 784650,
+      "consensus": "bearish_watch",
+      "timeframes": {
+        "day": {
+          "status": "checked",
+          "type": "none",
+          "latestRsi": 84.19,
+          "bars": 220,
+          "summary": "day 최근 구간에서 확정 RSI 다이버전스 없음."
+        },
+        "4h": {
+          "status": "insufficient_data",
+          "type": "none",
+          "summary": "4h 데이터가 부족합니다 (12개).",
+          "bars": 12
+        },
+        "1h": {
+          "status": "checked",
+          "type": "bearish",
+          "latestRsi": 61.4,
+          "bars": 42,
+          "reference": {
+            "type": "bearish",
+            "previousDate": "2026-04-30 09:00",
+            "latestDate": "2026-05-06 09:00",
+            "previousPrice": 27045,
+            "latestPrice": 27410,
+            "previousRsi": 69.91,
+            "latestRsi": 63.04,
+            "pivotAgeBars": 6
+          },
+          "summary": "1h 약세 다이버전스: 가격 고점 상승, RSI 고점 하락 (2026-04-30 09:00 -> 2026-05-06 09:00)."
+        }
+      }
+    },
+    {
+      "code": "385510",
+      "name": "KODEX 신재생에너지액티브",
+      "accounts": [
+        "ISA"
+      ],
+      "purchaseValue": 678925,
+      "consensus": "bearish_watch",
+      "timeframes": {
+        "day": {
+          "status": "checked",
+          "type": "none",
+          "latestRsi": 85.58,
+          "bars": 220,
+          "summary": "day 최근 구간에서 확정 RSI 다이버전스 없음."
+        },
+        "4h": {
+          "status": "insufficient_data",
+          "type": "none",
+          "summary": "4h 데이터가 부족합니다 (12개).",
+          "bars": 12
+        },
+        "1h": {
+          "status": "checked",
+          "type": "bearish",
+          "latestRsi": 68.22,
+          "bars": 42,
+          "reference": {
+            "type": "bearish",
+            "previousDate": "2026-04-30 09:00",
+            "latestDate": "2026-05-06 10:00",
+            "previousPrice": 59715,
+            "latestPrice": 61405,
+            "previousRsi": 80.47,
+            "latestRsi": 70.84,
+            "pivotAgeBars": 5
+          },
+          "summary": "1h 약세 다이버전스: 가격 고점 상승, RSI 고점 하락 (2026-04-30 09:00 -> 2026-05-06 10:00)."
+        }
+      }
+    },
+    {
+      "code": "329180",
+      "name": "HD현대중공업",
+      "accounts": [
+        "KIS_MAIN"
+      ],
+      "purchaseValue": 617000,
+      "consensus": "none",
+      "timeframes": {
+        "day": {
+          "status": "checked",
+          "type": "none",
+          "latestRsi": 63.62,
+          "bars": 220,
+          "summary": "day 최근 구간에서 확정 RSI 다이버전스 없음."
+        },
+        "4h": {
+          "status": "insufficient_data",
+          "type": "none",
+          "summary": "4h 데이터가 부족합니다 (12개).",
+          "bars": 12
+        },
+        "1h": {
+          "status": "checked",
+          "type": "none",
+          "latestRsi": 33.68,
+          "bars": 42,
+          "summary": "1h 최근 구간에서 확정 RSI 다이버전스 없음."
+        }
+      }
+    },
+    {
+      "code": "161510",
+      "name": "PLUS 고배당주",
+      "accounts": [
+        "ISA"
+      ],
+      "purchaseValue": 598780,
+      "consensus": "none",
+      "timeframes": {
+        "day": {
+          "status": "checked",
+          "type": "none",
+          "latestRsi": 59.99,
+          "bars": 220,
+          "summary": "day 최근 구간에서 확정 RSI 다이버전스 없음."
+        },
+        "4h": {
+          "status": "insufficient_data",
+          "type": "none",
+          "summary": "4h 데이터가 부족합니다 (12개).",
+          "bars": 12
+        },
+        "1h": {
+          "status": "checked",
+          "type": "none",
+          "latestRsi": 59.79,
+          "bars": 42,
+          "summary": "1h 최근 구간에서 확정 RSI 다이버전스 없음."
+        }
+      }
+    },
+    {
+      "code": "496080",
+      "name": "TIGER 코리아밸류업",
+      "accounts": [
+        "ISA"
+      ],
+      "purchaseValue": 506065,
+      "consensus": "none",
+      "timeframes": {
+        "day": {
+          "status": "checked",
+          "type": "none",
+          "latestRsi": 80.9,
+          "bars": 220,
+          "summary": "day 최근 구간에서 확정 RSI 다이버전스 없음."
+        },
+        "4h": {
+          "status": "insufficient_data",
+          "type": "none",
+          "summary": "4h 데이터가 부족합니다 (12개).",
+          "bars": 12
+        },
+        "1h": {
+          "status": "checked",
+          "type": "none",
+          "latestRsi": 85.25,
+          "bars": 42,
+          "summary": "1h 최근 구간에서 확정 RSI 다이버전스 없음."
+        }
+      }
+    },
+    {
+      "code": "034020",
+      "name": "두산에너빌리티",
+      "accounts": [
+        "KIS_MAIN"
+      ],
+      "purchaseValue": 381000,
+      "consensus": "none",
+      "timeframes": {
+        "day": {
+          "status": "checked",
+          "type": "none",
+          "latestRsi": 69.89,
+          "bars": 220,
+          "summary": "day 최근 구간에서 확정 RSI 다이버전스 없음."
+        },
+        "4h": {
+          "status": "insufficient_data",
+          "type": "none",
+          "summary": "4h 데이터가 부족합니다 (12개).",
+          "bars": 12
+        },
+        "1h": {
+          "status": "checked",
+          "type": "none",
+          "latestRsi": 45.96,
+          "bars": 42,
+          "summary": "1h 최근 구간에서 확정 RSI 다이버전스 없음."
+        }
+      }
+    },
+    {
+      "code": "138910",
+      "name": "KODEX 구리선물(H)",
+      "accounts": [
+        "KIS_MAIN"
+      ],
+      "purchaseValue": 262950,
+      "consensus": "bullish_watch",
+      "timeframes": {
+        "day": {
+          "status": "checked",
+          "type": "none",
+          "latestRsi": 59.05,
+          "bars": 220,
+          "summary": "day 최근 구간에서 확정 RSI 다이버전스 없음."
+        },
+        "4h": {
+          "status": "insufficient_data",
+          "type": "none",
+          "summary": "4h 데이터가 부족합니다 (12개).",
+          "bars": 12
+        },
+        "1h": {
+          "status": "checked",
+          "type": "bullish",
+          "latestRsi": 67.38,
+          "bars": 42,
+          "reference": {
+            "type": "bullish",
+            "previousDate": "2026-04-29 10:00",
+            "latestDate": "2026-05-04 15:00",
+            "previousPrice": 9235,
+            "latestPrice": 9220,
+            "previousRsi": 30.79,
+            "latestRsi": 39.05,
+            "pivotAgeBars": 7
+          },
+          "summary": "1h 강세 다이버전스: 가격 저점 하락, RSI 저점 상승 (2026-04-29 10:00 -> 2026-05-04 15:00)."
+        }
+      }
+    },
+    {
+      "code": "064350",
+      "name": "현대로템",
+      "accounts": [
+        "KIS_MAIN"
+      ],
+      "purchaseValue": 208000,
+      "consensus": "bearish_watch",
+      "timeframes": {
+        "day": {
+          "status": "checked",
+          "type": "none",
+          "latestRsi": 70.33,
+          "bars": 220,
+          "summary": "day 최근 구간에서 확정 RSI 다이버전스 없음."
+        },
+        "4h": {
+          "status": "insufficient_data",
+          "type": "none",
+          "summary": "4h 데이터가 부족합니다 (12개).",
+          "bars": 12
+        },
+        "1h": {
+          "status": "checked",
+          "type": "bearish",
+          "latestRsi": 50.87,
+          "bars": 42,
+          "reference": {
+            "type": "bearish",
+            "previousDate": "2026-04-29 09:00",
+            "latestDate": "2026-05-04 13:00",
+            "previousPrice": 269000,
+            "latestPrice": 271000,
+            "previousRsi": 73,
+            "latestRsi": 60.52,
+            "pivotAgeBars": 9
+          },
+          "summary": "1h 약세 다이버전스: 가격 고점 상승, RSI 고점 하락 (2026-04-29 09:00 -> 2026-05-04 13:00)."
+        }
+      }
+    },
+    {
+      "code": "498400",
+      "name": "KODEX 200타겟위클리커버드콜",
+      "accounts": [
+        "ISA"
+      ],
+      "purchaseValue": 203300,
+      "consensus": "none",
+      "timeframes": {
+        "day": {
+          "status": "checked",
+          "type": "none",
+          "latestRsi": 81.83,
+          "bars": 220,
+          "summary": "day 최근 구간에서 확정 RSI 다이버전스 없음."
+        },
+        "4h": {
+          "status": "insufficient_data",
+          "type": "none",
+          "summary": "4h 데이터가 부족합니다 (12개).",
+          "bars": 12
+        },
+        "1h": {
+          "status": "checked",
+          "type": "none",
+          "latestRsi": 85.94,
+          "bars": 42,
+          "summary": "1h 최근 구간에서 확정 RSI 다이버전스 없음."
+        }
+      }
+    },
+    {
+      "code": "487240",
+      "name": "KODEX AI전력핵심설비",
+      "accounts": [
+        "ISA"
+      ],
+      "purchaseValue": 199700,
+      "consensus": "none",
+      "timeframes": {
+        "day": {
+          "status": "checked",
+          "type": "none",
+          "latestRsi": 90.52,
+          "bars": 220,
+          "summary": "day 최근 구간에서 확정 RSI 다이버전스 없음."
+        },
+        "4h": {
+          "status": "insufficient_data",
+          "type": "none",
+          "summary": "4h 데이터가 부족합니다 (12개).",
+          "bars": 12
+        },
+        "1h": {
+          "status": "checked",
+          "type": "none",
+          "latestRsi": 81.24,
+          "bars": 42,
+          "summary": "1h 최근 구간에서 확정 RSI 다이버전스 없음."
+        }
+      }
+    }
+  ],
+  "summary": {
+    "total": 18,
+    "bullishWatch": [
+      "411060",
+      "138910"
+    ],
+    "bearishWatch": [
+      "012450",
+      "449450",
+      "379810",
+      "385510",
+      "064350"
+    ],
+    "mixed": [],
+    "errors": []
+  }
+}

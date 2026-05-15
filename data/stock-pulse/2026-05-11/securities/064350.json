@@ -1,0 +1,75 @@
+{
+  "id": "stock-pulse:064350",
+  "code": "064350",
+  "name": "현대로템",
+  "category": "방산",
+  "type": "stock",
+  "verdict": "보유유지",
+  "urgency": "낮음",
+  "pulseScore": 31,
+  "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNot": "같은 테마 중복 확대 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "marketValue": 222500,
+      "profitRate": 6.97,
+      "decision": null
+    }
+  ],
+  "position": {
+    "marketValue": 222500,
+    "purchaseValue": 208000,
+    "profitLoss": 14500,
+    "profitRate": 6.97,
+    "quantity": 1
+  },
+  "market": {
+    "price": 225000,
+    "previousClose": 235000,
+    "changePct": -4.26,
+    "volume": 596816,
+    "volumeRatio": 0.57,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 64,
+    "signal": "BUY",
+    "reason": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화",
+    "rsi": 47.42,
+    "ma20": 230775,
+    "ma60": 212688.3333,
+    "recentHighDistancePct": -20.21,
+    "rsVsBenchmark": -47.52,
+    "alerts": [
+      "MACD 시그널 하향 이탈"
+    ]
+  },
+  "fundamental": {
+    "score": 20,
+    "label": "수집필요",
+    "metrics": null,
+    "etf": null
+  },
+  "alerts": [],
+  "quickFactors": [
+    "등락 -4.26%",
+    "RSI 47.42",
+    "거래량 0.57배",
+    "손익 6.97%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "NAVER_FETCH_FAILED"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {}
+}

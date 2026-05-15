@@ -1,0 +1,96 @@
+{
+  "id": "stock-pulse:360750",
+  "code": "360750",
+  "name": "TIGER 미국S&P500",
+  "category": "S&P500",
+  "type": "etf",
+  "verdict": "보유유지",
+  "urgency": "중간",
+  "pulseScore": 72,
+  "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNot": "같은 테마 중복 확대 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "PENSION",
+      "accountLabel": "한투 연금저축",
+      "marketValue": 2208780,
+      "profitRate": 0.5,
+      "decision": "보유유지"
+    }
+  ],
+  "position": {
+    "marketValue": 2208780,
+    "purchaseValue": 0,
+    "profitLoss": 11060,
+    "profitRate": 0.5,
+    "quantity": 84
+  },
+  "market": {
+    "price": 26260,
+    "previousClose": 26340,
+    "changePct": -0.3,
+    "volume": 21459899,
+    "volumeRatio": 1.57,
+    "nav": 26172.22,
+    "navGapPct": 0.335,
+    "rank": 0
+  },
+  "technical": {
+    "score": 95,
+    "signal": "STRONG_BUY",
+    "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+    "rsi": 74.13,
+    "ma20": 25752.75,
+    "ma60": 25032.4167,
+    "recentHighDistancePct": -0.76,
+    "rsVsBenchmark": -35.59,
+    "alerts": [
+      "RSI 과매수 구간 진입"
+    ]
+  },
+  "fundamental": {
+    "score": 80,
+    "label": "수급강함",
+    "metrics": null,
+    "etf": {
+      "rank": null,
+      "navGapPct": 0.335,
+      "concentrationTop5Pct": 0,
+      "topHoldings": []
+    }
+  },
+  "alerts": [
+    {
+      "severity": "medium",
+      "label": "과열주의",
+      "detail": "RSI 74.13로 추격매수보다 보호 판단이 우선입니다.",
+      "tone": "amber"
+    }
+  ],
+  "quickFactors": [
+    "등락 -0.3%",
+    "RSI 74.13",
+    "거래량 1.57배",
+    "손익 0.5%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "ETF_COMPOSITION_MISSING"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {
+    "reports": 0.464,
+    "stockeasy": 0,
+    "marketvoice": 0,
+    "technical": 0,
+    "kisEtf": 0,
+    "news": 0,
+    "macro": 0,
+    "llm": 0
+  }
+}

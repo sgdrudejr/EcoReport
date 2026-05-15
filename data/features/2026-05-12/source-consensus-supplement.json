@@ -1,0 +1,580 @@
+{
+  "date": "2026-05-12",
+  "generatedAt": "2026-05-12T05:44:05.724Z",
+  "sourceCoverage": {
+    "technical": 29,
+    "kisEtf": 0,
+    "news": 89
+  },
+  "themeSupplements": [
+    {
+      "theme": "방산",
+      "netScore": 0.205,
+      "sourceCount": 2,
+      "newSourceSupport": 0.334,
+      "existingSourceSupport": 0.688,
+      "label": "보완확인",
+      "support": {
+        "reports": 0.6880000000000001,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.33440000000000003,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "리포트 0.69 / 기술지표 0.33",
+      "actionHint": "기존 판단을 보강하지만 단독 매수 근거로 쓰기에는 아직 약합니다."
+    },
+    {
+      "theme": "원자력",
+      "netScore": 0.122,
+      "sourceCount": 2,
+      "newSourceSupport": 0.76,
+      "existingSourceSupport": 0.688,
+      "label": "중립확인",
+      "support": {
+        "reports": 0.6880000000000001,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "기술지표 0.76 / 리포트 0.69",
+      "actionHint": "판단 유지, 보조 근거로만 사용합니다."
+    }
+  ],
+  "securitySupplements": [
+    {
+      "code": "0162Z0",
+      "name": "RISE 삼성전자SK하이닉스채권혼합50",
+      "netScore": 0.097,
+      "sourceCount": 2,
+      "newSourceSupport": 0.19,
+      "existingSourceSupport": 0.542,
+      "label": "중립확인",
+      "support": {
+        "reports": 0.5418,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.19040000000000004,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "리포트 0.54 / 기술지표 0.19",
+      "stage4": [],
+      "holdingCards": [],
+      "actionHint": "판단 유지, 보조 근거로만 사용합니다."
+    },
+    {
+      "code": "475300",
+      "name": "SOL 반도체전공정",
+      "netScore": 0.149,
+      "sourceCount": 2,
+      "newSourceSupport": 0.76,
+      "existingSourceSupport": 0.464,
+      "label": "중립확인",
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "기술지표 0.76 / 리포트 0.46",
+      "stage4": [],
+      "holdingCards": [],
+      "actionHint": "판단 유지, 보조 근거로만 사용합니다."
+    },
+    {
+      "code": "068270",
+      "name": "셀트리온",
+      "netScore": -0.106,
+      "sourceCount": 2,
+      "newSourceSupport": 0.395,
+      "existingSourceSupport": 0.396,
+      "label": "중립확인",
+      "support": {
+        "reports": 0.3956,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3952,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "리포트 0.4 / 기술지표 0.4",
+      "stage4": [],
+      "holdingCards": [],
+      "actionHint": "판단 유지, 보조 근거로만 사용합니다."
+    },
+    {
+      "code": "196170",
+      "name": "알테오젠",
+      "netScore": -0.448,
+      "sourceCount": 2,
+      "newSourceSupport": 0.578,
+      "existingSourceSupport": 0.318,
+      "label": "감속점검",
+      "support": {
+        "reports": 0.3182,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.5776,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "기술지표 0.58 / 리포트 0.32",
+      "stage4": [],
+      "holdingCards": [],
+      "actionHint": "기존 아이디어와 새 소스가 약하거나 엇갈립니다. 추격보다 조건 확인이 우선입니다."
+    },
+    {
+      "code": "267260",
+      "name": "HD현대일렉트릭",
+      "netScore": 0.76,
+      "sourceCount": 1,
+      "newSourceSupport": 0.76,
+      "existingSourceSupport": 0,
+      "label": "신규관찰",
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "기술지표 0.76",
+      "stage4": [],
+      "holdingCards": [],
+      "actionHint": "새 소스에서만 떠오른 후보입니다. 리포트/공시/계좌 적합성 확인 전까지 관찰 전용입니다."
+    },
+    {
+      "code": "434730",
+      "name": "HANARO 원자력iSelect",
+      "netScore": 0.76,
+      "sourceCount": 1,
+      "newSourceSupport": 0.76,
+      "existingSourceSupport": 0,
+      "label": "신규관찰",
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "기술지표 0.76",
+      "stage4": [],
+      "holdingCards": [],
+      "actionHint": "새 소스에서만 떠오른 후보입니다. 리포트/공시/계좌 적합성 확인 전까지 관찰 전용입니다."
+    },
+    {
+      "code": "099320",
+      "name": "쎄트렉아이",
+      "netScore": -0.395,
+      "sourceCount": 1,
+      "newSourceSupport": 0.395,
+      "existingSourceSupport": 0,
+      "label": "단독경계",
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3952,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "기술지표 0.4",
+      "stage4": [],
+      "holdingCards": [],
+      "actionHint": "새 소스 단독 부정 신호입니다. 기존 보유/실행 판단을 바로 바꾸지 말고 충돌 근거를 확인합니다."
+    },
+    {
+      "code": "047810",
+      "name": "한국항공우주",
+      "netScore": -0.334,
+      "sourceCount": 1,
+      "newSourceSupport": 0.334,
+      "existingSourceSupport": 0,
+      "label": "단독경계",
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.33440000000000003,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "기술지표 0.33",
+      "stage4": [],
+      "holdingCards": [],
+      "actionHint": "새 소스 단독 부정 신호입니다. 기존 보유/실행 판단을 바로 바꾸지 말고 충돌 근거를 확인합니다."
+    },
+    {
+      "code": "132030",
+      "name": "KODEX 골드선물(H)",
+      "netScore": 0.304,
+      "sourceCount": 1,
+      "newSourceSupport": 0.304,
+      "existingSourceSupport": 0,
+      "label": "신규관찰",
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.30400000000000005,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "기술지표 0.3",
+      "stage4": [],
+      "holdingCards": [],
+      "actionHint": "새 소스에서만 떠오른 후보입니다. 리포트/공시/계좌 적합성 확인 전까지 관찰 전용입니다."
+    },
+    {
+      "code": "458760",
+      "name": "TIGER 미국배당다우존스타겟커버드콜2호",
+      "netScore": 0.304,
+      "sourceCount": 1,
+      "newSourceSupport": 0.304,
+      "existingSourceSupport": 0,
+      "label": "신규관찰",
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.30400000000000005,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "기술지표 0.3",
+      "stage4": [],
+      "holdingCards": [],
+      "actionHint": "새 소스에서만 떠오른 후보입니다. 리포트/공시/계좌 적합성 확인 전까지 관찰 전용입니다."
+    },
+    {
+      "code": "423160",
+      "name": "KODEX KOFR금리액티브(합성)",
+      "netScore": -0.289,
+      "sourceCount": 1,
+      "newSourceSupport": 0.289,
+      "existingSourceSupport": 0,
+      "label": "단독경계",
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.2888,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "기술지표 0.29",
+      "stage4": [],
+      "holdingCards": [],
+      "actionHint": "새 소스 단독 부정 신호입니다. 기존 보유/실행 판단을 바로 바꾸지 말고 충돌 근거를 확인합니다."
+    },
+    {
+      "code": "0167Z0",
+      "name": "KODEX 미국우주항공",
+      "netScore": 0.193,
+      "sourceCount": 1,
+      "newSourceSupport": 0.193,
+      "existingSourceSupport": 0,
+      "label": "신규관찰",
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.1932,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "기술지표 0.19",
+      "stage4": [],
+      "holdingCards": [],
+      "actionHint": "새 소스에서만 떠오른 후보입니다. 리포트/공시/계좌 적합성 확인 전까지 관찰 전용입니다."
+    }
+  ],
+  "newSourceConflicts": [
+    {
+      "entityType": "security",
+      "entityId": "0162Z0",
+      "directions": [
+        "neutral",
+        "positive",
+        "negative"
+      ],
+      "sources": [
+        "reports",
+        "technical"
+      ],
+      "sourceSummary": "리포트 / 기술지표"
+    },
+    {
+      "entityType": "security",
+      "entityId": "161510",
+      "directions": [
+        "neutral",
+        "positive",
+        "negative"
+      ],
+      "sources": [
+        "reports",
+        "technical"
+      ],
+      "sourceSummary": "리포트 / 기술지표"
+    },
+    {
+      "entityType": "security",
+      "entityId": "475300",
+      "directions": [
+        "neutral",
+        "positive",
+        "negative"
+      ],
+      "sources": [
+        "reports",
+        "technical"
+      ],
+      "sourceSummary": "리포트 / 기술지표"
+    },
+    {
+      "entityType": "security",
+      "entityId": "469150",
+      "directions": [
+        "neutral",
+        "positive",
+        "negative"
+      ],
+      "sources": [
+        "reports",
+        "technical"
+      ],
+      "sourceSummary": "리포트 / 기술지표"
+    },
+    {
+      "entityType": "security",
+      "entityId": "385510",
+      "directions": [
+        "negative",
+        "positive",
+        "neutral"
+      ],
+      "sources": [
+        "reports",
+        "technical"
+      ],
+      "sourceSummary": "리포트 / 기술지표"
+    },
+    {
+      "entityType": "security",
+      "entityId": "411060",
+      "directions": [
+        "negative",
+        "positive",
+        "neutral"
+      ],
+      "sources": [
+        "reports",
+        "technical"
+      ],
+      "sourceSummary": "리포트 / 기술지표"
+    },
+    {
+      "entityType": "security",
+      "entityId": "138910",
+      "directions": [
+        "negative",
+        "positive",
+        "neutral"
+      ],
+      "sources": [
+        "reports",
+        "technical"
+      ],
+      "sourceSummary": "리포트 / 기술지표"
+    },
+    {
+      "entityType": "security",
+      "entityId": "360750",
+      "directions": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "sources": [
+        "reports",
+        "technical"
+      ],
+      "sourceSummary": "리포트 / 기술지표"
+    },
+    {
+      "entityType": "security",
+      "entityId": "379810",
+      "directions": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "sources": [
+        "reports",
+        "technical"
+      ],
+      "sourceSummary": "리포트 / 기술지표"
+    },
+    {
+      "entityType": "security",
+      "entityId": "012450",
+      "directions": [
+        "positive",
+        "negative",
+        "neutral"
+      ],
+      "sources": [
+        "reports",
+        "technical"
+      ],
+      "sourceSummary": "리포트 / 기술지표"
+    },
+    {
+      "entityType": "security",
+      "entityId": "064350",
+      "directions": [
+        "positive",
+        "negative",
+        "neutral"
+      ],
+      "sources": [
+        "reports",
+        "technical"
+      ],
+      "sourceSummary": "리포트 / 기술지표"
+    },
+    {
+      "entityType": "security",
+      "entityId": "449450",
+      "directions": [
+        "positive",
+        "negative",
+        "neutral"
+      ],
+      "sources": [
+        "reports",
+        "technical"
+      ],
+      "sourceSummary": "리포트 / 기술지표"
+    },
+    {
+      "entityType": "security",
+      "entityId": "068270",
+      "directions": [
+        "negative",
+        "positive"
+      ],
+      "sources": [
+        "reports",
+        "technical"
+      ],
+      "sourceSummary": "리포트 / 기술지표"
+    },
+    {
+      "entityType": "theme",
+      "entityId": "방산",
+      "directions": [
+        "neutral",
+        "positive",
+        "negative"
+      ],
+      "sources": [
+        "reports",
+        "technical"
+      ],
+      "sourceSummary": "리포트 / 기술지표"
+    },
+    {
+      "entityType": "theme",
+      "entityId": "원자력",
+      "directions": [
+        "negative",
+        "neutral",
+        "positive"
+      ],
+      "sources": [
+        "reports",
+        "technical"
+      ],
+      "sourceSummary": "리포트 / 기술지표"
+    },
+    {
+      "entityType": "theme",
+      "entityId": "기타",
+      "directions": [
+        "neutral",
+        "negative",
+        "positive"
+      ],
+      "sources": [
+        "technical"
+      ],
+      "sourceSummary": "기술지표"
+    },
+    {
+      "entityType": "theme",
+      "entityId": "portfolio_holding",
+      "directions": [
+        "negative",
+        "neutral",
+        "positive"
+      ],
+      "sources": [
+        "technical"
+      ],
+      "sourceSummary": "기술지표"
+    },
+    {
+      "entityType": "theme",
+      "entityId": "시황",
+      "directions": [
+        "positive",
+        "neutral",
+        "negative",
+        "mixed"
+      ],
+      "sources": [
+        "news"
+      ],
+      "sourceSummary": "뉴스"
+    }
+  ]
+}

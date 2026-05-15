@@ -1,0 +1,127 @@
+{
+  "id": "stock-pulse:161510",
+  "code": "161510",
+  "name": "PLUS 고배당주",
+  "category": "배당/커버드콜",
+  "type": "etf",
+  "verdict": "자료보강",
+  "urgency": "중간",
+  "pulseScore": 64,
+  "oneLine": "자료보강: 공시, 뉴스, 직접 리포트가 보강되기 전까지 결론 강도를 낮춥니다.",
+  "doNow": "공시, 뉴스, 직접 리포트가 보강되기 전까지 결론 강도를 낮춥니다.",
+  "doNot": "근거 부족 상태의 신규매수 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "marketValue": 610280,
+      "profitRate": 1.92,
+      "decision": "외부관찰"
+    }
+  ],
+  "position": {
+    "marketValue": 610280,
+    "purchaseValue": 0,
+    "profitLoss": 11500,
+    "profitRate": 1.92,
+    "quantity": 22
+  },
+  "market": {
+    "price": 27740,
+    "previousClose": 27705,
+    "changePct": 0.13,
+    "volume": 885,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 100,
+    "signal": "STRONG_BUY",
+    "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+    "rsi": 60.06,
+    "ma20": 27300.75,
+    "ma60": 26750.3333,
+    "recentHighDistancePct": -1.19,
+    "rsVsBenchmark": -34.09,
+    "alerts": []
+  },
+  "fundamental": {
+    "score": 57,
+    "label": "수급보통",
+    "metrics": null,
+    "etf": {
+      "rank": null,
+      "navGapPct": null,
+      "concentrationTop5Pct": 29.81,
+      "topHoldings": [
+        {
+          "code": "005380",
+          "name": "현대차",
+          "weightPct": 8.01,
+          "changePct": 7.17
+        },
+        {
+          "code": "005940",
+          "name": "NH투자증권",
+          "weightPct": 6.11,
+          "changePct": -2.92
+        },
+        {
+          "code": "000270",
+          "name": "기아",
+          "weightPct": 5.5,
+          "changePct": 4.38
+        },
+        {
+          "code": "016360",
+          "name": "삼성증권",
+          "weightPct": 5.36,
+          "changePct": -5.51
+        },
+        {
+          "code": "005830",
+          "name": "DB손해보험",
+          "weightPct": 4.83,
+          "changePct": -0.24
+        }
+      ]
+    }
+  },
+  "alerts": [
+    {
+      "severity": "medium",
+      "label": "근거보강",
+      "detail": "NO_CLEAN_REPORT_LINK",
+      "tone": "amber"
+    }
+  ],
+  "quickFactors": [
+    "등락 0.13%",
+    "RSI 60.06",
+    "거래량 0배",
+    "손익 1.92%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "ETF_NAV_MISSING"
+  ],
+  "riskFlags": [
+    "NO_CLEAN_REPORT_LINK"
+  ],
+  "sourceSupport": {
+    "reports": 0.464,
+    "stockeasy": 0,
+    "marketvoice": 0,
+    "technical": 0.76,
+    "kisEtf": 0,
+    "news": 0,
+    "macro": 0,
+    "llm": 0
+  }
+}

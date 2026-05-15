@@ -1,0 +1,828 @@
+{
+  "date": "2026-05-06",
+  "generatedAt": "2026-05-06T08:08:13.694Z",
+  "sourceCoverage": {
+    "technical": 29,
+    "kisEtf": 5,
+    "news": 74
+  },
+  "themeSupplements": [
+    {
+      "theme": "HBM",
+      "netScore": 0.474,
+      "sourceCount": 2,
+      "newSourceSupport": 0.716,
+      "existingSourceSupport": 0,
+      "label": "신규관찰",
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.7155,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "KIS ETF 0.72",
+      "actionHint": "새 소스에서만 떠오른 후보입니다. 리포트/공시/계좌 적합성 확인 전까지 관찰 전용입니다."
+    },
+    {
+      "theme": "소부장",
+      "netScore": 0.355,
+      "sourceCount": 2,
+      "newSourceSupport": 0.716,
+      "existingSourceSupport": 0,
+      "label": "신규관찰",
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.7155,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "KIS ETF 0.72",
+      "actionHint": "새 소스에서만 떠오른 후보입니다. 리포트/공시/계좌 적합성 확인 전까지 관찰 전용입니다."
+    },
+    {
+      "theme": "메모리",
+      "netScore": 0.355,
+      "sourceCount": 2,
+      "newSourceSupport": 0.716,
+      "existingSourceSupport": 0,
+      "label": "신규관찰",
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.7155,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "KIS ETF 0.72",
+      "actionHint": "새 소스에서만 떠오른 후보입니다. 리포트/공시/계좌 적합성 확인 전까지 관찰 전용입니다."
+    },
+    {
+      "theme": "방산",
+      "netScore": 0.291,
+      "sourceCount": 2,
+      "newSourceSupport": 0.395,
+      "existingSourceSupport": 0.688,
+      "label": "보완확인",
+      "support": {
+        "reports": 0.6880000000000001,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3952,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "리포트 0.69 / 기술지표 0.4",
+      "actionHint": "기존 판단을 보강하지만 단독 매수 근거로 쓰기에는 아직 약합니다."
+    },
+    {
+      "theme": "반도체",
+      "netScore": 0.26,
+      "sourceCount": 2,
+      "newSourceSupport": 0.856,
+      "existingSourceSupport": 0,
+      "label": "신규관찰",
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.14,
+        "kis_etf": 0.7155,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "KIS ETF 0.72 / 기술지표 0.14",
+      "actionHint": "새 소스에서만 떠오른 후보입니다. 리포트/공시/계좌 적합성 확인 전까지 관찰 전용입니다."
+    },
+    {
+      "theme": "전력 인프라",
+      "netScore": 0.222,
+      "sourceCount": 2,
+      "newSourceSupport": 0.654,
+      "existingSourceSupport": 0.688,
+      "label": "보완확인",
+      "support": {
+        "reports": 0.6880000000000001,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.6536,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "리포트 0.69 / 기술지표 0.65",
+      "actionHint": "기존 판단을 보강하지만 단독 매수 근거로 쓰기에는 아직 약합니다."
+    }
+  ],
+  "securitySupplements": [
+    {
+      "code": "161510",
+      "name": "PLUS 고배당주",
+      "netScore": 0.333,
+      "sourceCount": 2,
+      "newSourceSupport": 0.76,
+      "existingSourceSupport": 0.464,
+      "label": "보완확인",
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "기술지표 0.76 / 리포트 0.46",
+      "stage4": [
+        {
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA",
+          "bucket": "보유",
+          "reason": "점수 60점(기술 100 / 팩터 53). 배당/커버드콜 노출이며 직접 리포트 근거는 약하지만 기술 신호는 STRONG_BUY입니다."
+        }
+      ],
+      "holdingCards": [
+        {
+          "accountKey": "ISA",
+          "decisionLabel": "외부관찰",
+          "reportCoverage": "외부근거",
+          "externalCoverage": "외부근거"
+        }
+      ],
+      "actionHint": "기존 판단을 보강하지만 단독 매수 근거로 쓰기에는 아직 약합니다."
+    },
+    {
+      "code": "329180",
+      "name": "HD현대중공업",
+      "netScore": 0.21,
+      "sourceCount": 2,
+      "newSourceSupport": 0.654,
+      "existingSourceSupport": 0.464,
+      "label": "보완확인",
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.6536,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "기술지표 0.65 / 리포트 0.46",
+      "stage4": [
+        {
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반",
+          "bucket": "보유",
+          "reason": "점수 68점(기술 93 / 리포트 70 / 팩터 53). 조선 노출에 직접 리포트 1건/테마 0건이 연결됐고, 한수위: IMO MEPC 84, NZF 합의 실패. 주사위는 다시 MEPC 85로에서 긍정 신호를 확인했습니다. 수치 근거: catalyst_number: $86m, supporting: 150,000. 기술 신호 STRONG_BUY."
+        }
+      ],
+      "holdingCards": [
+        {
+          "accountKey": "KIS_MAIN",
+          "decisionLabel": "보유유지",
+          "reportCoverage": "직접근거",
+          "externalCoverage": "리포트밖"
+        }
+      ],
+      "actionHint": "기존 판단을 보강하지만 단독 매수 근거로 쓰기에는 아직 약합니다."
+    },
+    {
+      "code": "411060",
+      "name": "ACE KRX금현물",
+      "netScore": 0.103,
+      "sourceCount": 2,
+      "newSourceSupport": 0.41,
+      "existingSourceSupport": 0.464,
+      "label": "중립확인",
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.41040000000000004,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "리포트 0.46 / 기술지표 0.41",
+      "stage4": [
+        {
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA",
+          "bucket": "보유",
+          "reason": "점수 62점(기술 23 / 리포트 62 / 팩터 37). 금 노출에 직접 리포트 7건/테마 0건이 연결됐고, 제약/바이오/의료기기: Kiwoom Healthcare 종합정리 (5/4)에서 긍정 신호를 확인했습니다. 수치 근거: thesis_anchor: 8.6%, thesis_anchor: 2.1%. 기술 신호 REDUCE."
+        }
+      ],
+      "holdingCards": [
+        {
+          "accountKey": "ISA",
+          "decisionLabel": "보유유지",
+          "reportCoverage": "직접근거",
+          "externalCoverage": "리포트밖"
+        }
+      ],
+      "actionHint": "판단 유지, 보조 근거로만 사용합니다."
+    },
+    {
+      "code": "449450",
+      "name": "PLUS K방산",
+      "netScore": 0.393,
+      "sourceCount": 2,
+      "newSourceSupport": 0.395,
+      "existingSourceSupport": 0.464,
+      "label": "강화확인",
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3952,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "리포트 0.46 / 기술지표 0.4",
+      "stage4": [
+        {
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반",
+          "bucket": "보유",
+          "reason": "점수 68점(기술 76 / 리포트 63 / 팩터 48). 방산 노출에 테마 리포트 0건/테마 2건이 연결됐고, 글로벌 전략 - 동맹이 사라진다, 인프라가 무기다에서 긍정 신호를 확인했습니다. 수치 근거: supporting: 7%, supporting: 5.4%. 기술 신호 BUY."
+        }
+      ],
+      "holdingCards": [
+        {
+          "accountKey": "KIS_MAIN",
+          "decisionLabel": "보유유지",
+          "reportCoverage": "테마근거",
+          "externalCoverage": "리포트밖"
+        }
+      ],
+      "actionHint": "기존 긍정 근거에 새 보강 소스가 붙은 항목입니다. 단, 실행은 Stage4 금액/계좌 제한을 유지합니다."
+    },
+    {
+      "code": "138910",
+      "name": "KODEX 구리선물(H)",
+      "netScore": 0.204,
+      "sourceCount": 2,
+      "newSourceSupport": 0.395,
+      "existingSourceSupport": 0.464,
+      "label": "보완확인",
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3952,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "리포트 0.46 / 기술지표 0.4",
+      "stage4": [
+        {
+          "accountKey": "KIS_MAIN",
+          "accountLabel": "한투 일반",
+          "bucket": "보유",
+          "reason": "점수 61점(기술 76 / 리포트 62 / 팩터 41). 기타 노출에 직접 리포트 7건/테마 0건이 연결됐고, 제약/바이오/의료기기: Kiwoom Healthcare 종합정리 (5/4)에서 긍정 신호를 확인했습니다. 수치 근거: thesis_anchor: 8.6%, thesis_anchor: 2.1%. 기술 신호 BUY."
+        }
+      ],
+      "holdingCards": [
+        {
+          "accountKey": "KIS_MAIN",
+          "decisionLabel": "보유유지",
+          "reportCoverage": "직접근거",
+          "externalCoverage": "리포트밖"
+        }
+      ],
+      "actionHint": "기존 판단을 보강하지만 단독 매수 근거로 쓰기에는 아직 약합니다."
+    },
+    {
+      "code": "379810",
+      "name": "KODEX 미국나스닥100",
+      "netScore": 0.211,
+      "sourceCount": 2,
+      "newSourceSupport": 0.35,
+      "existingSourceSupport": 0.464,
+      "label": "보완확인",
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3496,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "리포트 0.46 / 기술지표 0.35",
+      "stage4": [
+        {
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축",
+          "bucket": "보유",
+          "reason": "점수 60점(기술 73 / 팩터 50). 나스닥100 노출이며 직접 리포트 근거는 약하지만 기술 신호는 BUY입니다."
+        }
+      ],
+      "holdingCards": [
+        {
+          "accountKey": "PENSION",
+          "decisionLabel": "외부관찰",
+          "reportCoverage": "외부근거",
+          "externalCoverage": "외부근거"
+        }
+      ],
+      "actionHint": "기존 판단을 보강하지만 단독 매수 근거로 쓰기에는 아직 약합니다."
+    },
+    {
+      "code": "0162Z0",
+      "name": "RISE 삼성전자SK하이닉스채권혼합50",
+      "netScore": 0.242,
+      "sourceCount": 2,
+      "newSourceSupport": 0.14,
+      "existingSourceSupport": 0.464,
+      "label": "보완확인",
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.14,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "리포트 0.46 / 기술지표 0.14",
+      "stage4": [
+        {
+          "accountKey": "ISA",
+          "accountLabel": "한투 ISA",
+          "bucket": "보유",
+          "reason": "점수 64점(기술 62 / 리포트 67 / 팩터 50). 반도체/채권혼합 노출에 직접 리포트 6건/테마 0건이 연결됐고, 제약/바이오/의료기기: Kiwoom Healthcare 종합정리 (5/4)에서 긍정 신호를 확인했습니다. 수치 근거: thesis_anchor: 8.6%, thesis_anchor: 2.1%. 기술 신호 BUY."
+        },
+        {
+          "accountKey": "PENSION",
+          "accountLabel": "한투 연금저축",
+          "bucket": "보유",
+          "reason": "점수 64점(기술 62 / 리포트 67 / 팩터 49). 반도체/채권혼합 노출에 직접 리포트 6건/테마 0건이 연결됐고, 제약/바이오/의료기기: Kiwoom Healthcare 종합정리 (5/4)에서 긍정 신호를 확인했습니다. 수치 근거: thesis_anchor: 8.6%, thesis_anchor: 2.1%. 기술 신호 BUY."
+        }
+      ],
+      "holdingCards": [
+        {
+          "accountKey": "ISA",
+          "decisionLabel": "보유유지",
+          "reportCoverage": "직접근거",
+          "externalCoverage": "리포트밖"
+        },
+        {
+          "accountKey": "PENSION",
+          "decisionLabel": "보유유지",
+          "reportCoverage": "직접근거",
+          "externalCoverage": "리포트밖"
+        }
+      ],
+      "actionHint": "기존 판단을 보강하지만 단독 매수 근거로 쓰기에는 아직 약합니다."
+    },
+    {
+      "code": "243880",
+      "name": "TIGER 200IT레버리지",
+      "netScore": 0.72,
+      "sourceCount": 1,
+      "newSourceSupport": 0.72,
+      "existingSourceSupport": 0,
+      "label": "신규관찰",
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.72,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "KIS ETF 0.72",
+      "stage4": [],
+      "holdingCards": [],
+      "actionHint": "새 소스에서만 떠오른 후보입니다. 리포트/공시/계좌 적합성 확인 전까지 관찰 전용입니다."
+    },
+    {
+      "code": "488080",
+      "name": "TIGER 반도체TOP10레버리지",
+      "netScore": 0.716,
+      "sourceCount": 1,
+      "newSourceSupport": 0.716,
+      "existingSourceSupport": 0,
+      "label": "신규관찰",
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.7155,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "KIS ETF 0.72",
+      "stage4": [],
+      "holdingCards": [],
+      "actionHint": "새 소스에서만 떠오른 후보입니다. 리포트/공시/계좌 적합성 확인 전까지 관찰 전용입니다."
+    },
+    {
+      "code": "Q700028",
+      "name": "하나 레버리지 반도체 ETN",
+      "netScore": 0.711,
+      "sourceCount": 1,
+      "newSourceSupport": 0.711,
+      "existingSourceSupport": 0,
+      "label": "신규관찰",
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.711,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "KIS ETF 0.71",
+      "stage4": [],
+      "holdingCards": [],
+      "actionHint": "새 소스에서만 떠오른 후보입니다. 리포트/공시/계좌 적합성 확인 전까지 관찰 전용입니다."
+    },
+    {
+      "code": "494310",
+      "name": "KODEX 반도체레버리지",
+      "netScore": 0.707,
+      "sourceCount": 1,
+      "newSourceSupport": 0.706,
+      "existingSourceSupport": 0,
+      "label": "신규관찰",
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.7064999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "KIS ETF 0.71",
+      "stage4": [],
+      "holdingCards": [],
+      "actionHint": "새 소스에서만 떠오른 후보입니다. 리포트/공시/계좌 적합성 확인 전까지 관찰 전용입니다."
+    },
+    {
+      "code": "Q760013",
+      "name": "키움 레버리지 반도체TOP10 ETN",
+      "netScore": 0.648,
+      "sourceCount": 1,
+      "newSourceSupport": 0.648,
+      "existingSourceSupport": 0,
+      "label": "신규관찰",
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.6476999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "KIS ETF 0.65",
+      "stage4": [],
+      "holdingCards": [],
+      "actionHint": "새 소스에서만 떠오른 후보입니다. 리포트/공시/계좌 적합성 확인 전까지 관찰 전용입니다."
+    },
+    {
+      "code": "458760",
+      "name": "TIGER 미국배당다우존스타겟커버드콜2호",
+      "netScore": -0.395,
+      "sourceCount": 1,
+      "newSourceSupport": 0.395,
+      "existingSourceSupport": 0,
+      "label": "단독경계",
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3952,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "기술지표 0.4",
+      "stage4": [],
+      "holdingCards": [],
+      "actionHint": "새 소스 단독 부정 신호입니다. 기존 보유/실행 판단을 바로 바꾸지 말고 충돌 근거를 확인합니다."
+    },
+    {
+      "code": "423160",
+      "name": "KODEX KOFR금리액티브(합성)",
+      "netScore": -0.365,
+      "sourceCount": 1,
+      "newSourceSupport": 0.365,
+      "existingSourceSupport": 0,
+      "label": "단독경계",
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3648,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "기술지표 0.36",
+      "stage4": [],
+      "holdingCards": [],
+      "actionHint": "새 소스 단독 부정 신호입니다. 기존 보유/실행 판단을 바로 바꾸지 말고 충돌 근거를 확인합니다."
+    },
+    {
+      "code": "133690",
+      "name": "TIGER 미국나스닥100",
+      "netScore": 0.35,
+      "sourceCount": 1,
+      "newSourceSupport": 0.35,
+      "existingSourceSupport": 0,
+      "label": "신규관찰",
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3496,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "기술지표 0.35",
+      "stage4": [],
+      "holdingCards": [],
+      "actionHint": "새 소스에서만 떠오른 후보입니다. 리포트/공시/계좌 적합성 확인 전까지 관찰 전용입니다."
+    },
+    {
+      "code": "132030",
+      "name": "KODEX 골드선물(H)",
+      "netScore": -0.319,
+      "sourceCount": 1,
+      "newSourceSupport": 0.319,
+      "existingSourceSupport": 0,
+      "label": "단독경계",
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3192,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "기술지표 0.32",
+      "stage4": [],
+      "holdingCards": [],
+      "actionHint": "새 소스 단독 부정 신호입니다. 기존 보유/실행 판단을 바로 바꾸지 말고 충돌 근거를 확인합니다."
+    },
+    {
+      "code": "047810",
+      "name": "한국항공우주",
+      "netScore": -0.19,
+      "sourceCount": 1,
+      "newSourceSupport": 0.19,
+      "existingSourceSupport": 0,
+      "label": "단독경계",
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.19,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "supportSummary": "기술지표 0.19",
+      "stage4": [],
+      "holdingCards": [],
+      "actionHint": "새 소스 단독 부정 신호입니다. 기존 보유/실행 판단을 바로 바꾸지 말고 충돌 근거를 확인합니다."
+    }
+  ],
+  "newSourceConflicts": [
+    {
+      "entityType": "security",
+      "entityId": "411060",
+      "directions": [
+        "positive",
+        "negative",
+        "neutral"
+      ],
+      "sources": [
+        "reports",
+        "technical"
+      ],
+      "sourceSummary": "리포트 / 기술지표"
+    },
+    {
+      "entityType": "security",
+      "entityId": "379810",
+      "directions": [
+        "positive",
+        "negative",
+        "neutral"
+      ],
+      "sources": [
+        "reports",
+        "technical"
+      ],
+      "sourceSummary": "리포트 / 기술지표"
+    },
+    {
+      "entityType": "security",
+      "entityId": "138910",
+      "directions": [
+        "positive",
+        "negative",
+        "neutral"
+      ],
+      "sources": [
+        "reports",
+        "technical"
+      ],
+      "sourceSummary": "리포트 / 기술지표"
+    },
+    {
+      "entityType": "security",
+      "entityId": "329180",
+      "directions": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "sources": [
+        "reports",
+        "technical"
+      ],
+      "sourceSummary": "리포트 / 기술지표"
+    },
+    {
+      "entityType": "security",
+      "entityId": "385510",
+      "directions": [
+        "negative",
+        "positive",
+        "neutral"
+      ],
+      "sources": [
+        "reports",
+        "technical"
+      ],
+      "sourceSummary": "리포트 / 기술지표"
+    },
+    {
+      "entityType": "security",
+      "entityId": "487240",
+      "directions": [
+        "negative",
+        "positive",
+        "neutral"
+      ],
+      "sources": [
+        "reports",
+        "technical"
+      ],
+      "sourceSummary": "리포트 / 기술지표"
+    },
+    {
+      "entityType": "security",
+      "entityId": "360750",
+      "directions": [
+        "negative",
+        "positive",
+        "neutral"
+      ],
+      "sources": [
+        "reports",
+        "technical"
+      ],
+      "sourceSummary": "리포트 / 기술지표"
+    },
+    {
+      "entityType": "security",
+      "entityId": "034020",
+      "directions": [
+        "negative",
+        "neutral",
+        "positive"
+      ],
+      "sources": [
+        "reports",
+        "technical"
+      ],
+      "sourceSummary": "리포트 / 기술지표"
+    },
+    {
+      "entityType": "theme",
+      "entityId": "전력 인프라",
+      "directions": [
+        "neutral",
+        "negative",
+        "positive"
+      ],
+      "sources": [
+        "reports",
+        "technical"
+      ],
+      "sourceSummary": "리포트 / 기술지표"
+    },
+    {
+      "entityType": "theme",
+      "entityId": "방산",
+      "directions": [
+        "neutral",
+        "positive",
+        "negative"
+      ],
+      "sources": [
+        "reports",
+        "technical"
+      ],
+      "sourceSummary": "리포트 / 기술지표"
+    },
+    {
+      "entityType": "theme",
+      "entityId": "배당/커버드콜",
+      "directions": [
+        "positive",
+        "negative",
+        "neutral"
+      ],
+      "sources": [
+        "technical"
+      ],
+      "sourceSummary": "기술지표"
+    },
+    {
+      "entityType": "theme",
+      "entityId": "배당",
+      "directions": [
+        "positive",
+        "negative"
+      ],
+      "sources": [
+        "technical"
+      ],
+      "sourceSummary": "기술지표"
+    },
+    {
+      "entityType": "theme",
+      "entityId": "군수",
+      "directions": [
+        "positive",
+        "neutral",
+        "negative"
+      ],
+      "sources": [
+        "technical"
+      ],
+      "sourceSummary": "기술지표"
+    },
+    {
+      "entityType": "theme",
+      "entityId": "시황",
+      "directions": [
+        "neutral",
+        "negative",
+        "positive",
+        "mixed"
+      ],
+      "sources": [
+        "news"
+      ],
+      "sourceSummary": "뉴스"
+    }
+  ]
+}

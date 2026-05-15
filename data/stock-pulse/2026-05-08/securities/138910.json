@@ -1,0 +1,89 @@
+{
+  "id": "stock-pulse:138910",
+  "code": "138910",
+  "name": "KODEX 구리선물(H)",
+  "category": "기타",
+  "type": "etf",
+  "verdict": "보유유지",
+  "urgency": "낮음",
+  "pulseScore": 66,
+  "oneLine": "보유유지: 보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNow": "보유 논리는 유지하되 새 뉴스, 공시, 수급 변화를 확인합니다.",
+  "doNot": "같은 테마 중복 확대 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "KIS_MAIN",
+      "accountLabel": "한투 일반",
+      "marketValue": 291750,
+      "profitRate": 10.95,
+      "decision": "보유유지"
+    }
+  ],
+  "position": {
+    "marketValue": 291750,
+    "purchaseValue": 0,
+    "profitLoss": 28800,
+    "profitRate": 10.95,
+    "quantity": 30
+  },
+  "market": {
+    "price": 9725,
+    "previousClose": 9580,
+    "changePct": 1.51,
+    "volume": 172574,
+    "volumeRatio": 0,
+    "nav": 9750.71,
+    "navGapPct": -0.264,
+    "rank": 32
+  },
+  "technical": {
+    "score": 90,
+    "signal": "STRONG_BUY",
+    "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+    "rsi": 67.01,
+    "ma20": 9373.5,
+    "ma60": 9123.4167,
+    "recentHighDistancePct": -0.51,
+    "rsVsBenchmark": -41.66,
+    "alerts": [
+      "MACD 시그널 상향 돌파"
+    ]
+  },
+  "fundamental": {
+    "score": 58,
+    "label": "수급보통",
+    "metrics": null,
+    "etf": {
+      "rank": 32,
+      "navGapPct": -0.264,
+      "concentrationTop5Pct": 0,
+      "topHoldings": []
+    }
+  },
+  "alerts": [],
+  "quickFactors": [
+    "등락 1.51%",
+    "RSI 67.01",
+    "거래량 0배",
+    "손익 10.95%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "ETF_COMPOSITION_MISSING"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {
+    "reports": 0.464,
+    "stockeasy": 0,
+    "marketvoice": 0,
+    "technical": 0,
+    "kisEtf": 0.276,
+    "news": 0,
+    "macro": 0,
+    "llm": 0
+  }
+}

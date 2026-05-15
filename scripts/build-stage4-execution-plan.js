@@ -64,6 +64,28 @@ function compactText(value) {
     .trim();
 }
 
+function formatSourceSupport(support) {
+  const entries = Object.entries(support ?? {})
+    .filter(([, value]) => typeof value === "number" && value > 0)
+    .sort((left, right) => right[1] - left[1])
+    .map(([source, value]) => `${source}:${value.toFixed(2)}`);
+  return entries.length > 0 ? entries.join(" / ") : "교차소스 지지 약함";
+}
+
+function formatEvidenceNumber(value) {
+  if (typeof value === "string" || typeof value === "number") {
+    return compactText(value);
+  }
+  if (!value || typeof value !== "object") {
+    return "";
+  }
+
+  const label = compactText(value.label);
+  const numeric = compactText(value.value);
+  if (label && numeric) return `${label}: ${numeric}`;
+  return label || numeric || compactText(value.why_it_matters);
+}
+
 function isUsableReason(value) {
   const text = compactText(value);
   return Boolean(text && text !== "N/A" && text !== "-" && text !== "점수 기반 분류");
@@ -184,13 +206,47 @@ function bestDailySignalForSecurity({ code, accountKey, dailySignals }) {
 }
 
 function buildHoldingReason({ holding, account, quantHolding, technicalItem, score, dailySignals }) {
-  const impactReason = quantHolding?.reportImpacts?.find((item) => isUsableReason(item?.reason))?.reason;
-  if (isUsableReason(impactReason)) {
-    return simplifyDriverText(impactReason);
+  const scores = quantHolding?.scores ?? {};
+  const scoreText = typeof score === "number" ? `점수 ${score}점` : "점수 확인 필요";
+  const scoreParts = [
+    typeof scores.techScore === "number" ? `기술 ${scores.techScore}` : null,
+    typeof scores.reportScore === "number" ? `리포트 ${scores.reportScore}` : null,
+    typeof scores.factorScore === "number" ? `팩터 ${scores.factorScore}` : null,
+  ].filter(Boolean);
+  const scoreDetail = scoreParts.length ? `(${scoreParts.join(" / ")})` : "";
+  const category = safeCategory(account.key, holding.code);
+  const relation = quantHolding?.report?.relationSummary ?? {};
+  const directCount = relation.directCount ?? 0;
+  const thematicCount = relation.thematicCount ?? 0;
+  const topImpact = (quantHolding?.reportImpacts ?? []).find(
+    (item) => ["direct", "thematic"].includes(item?.relationType) && item?.direction !== "negative",
+  );
+
+  if (topImpact) {
+    const relationLabel = topImpact.relationType === "direct" ? "직접" : "테마";
+    const title = topImpact.title ?? topImpact.reportId ?? "연결 리포트";
+    const direction =
+      topImpact.direction === "positive"
+        ? "긍정"
+        : topImpact.direction === "mixed"
+          ? "혼재"
+          : "중립";
+    const evidenceNumbers = (topImpact.evidenceNumbers ?? [])
+      .map(formatEvidenceNumber)
+      .filter(Boolean)
+      .slice(0, 2)
+      .join(", ");
+    return [
+      `${scoreText}${scoreDetail}.`,
+      `${category} 노출에 ${relationLabel} 리포트 ${directCount}건/테마 ${thematicCount}건이 연결됐고,`,
+      `${title}에서 ${direction} 신호를 확인했습니다.`,
+      evidenceNumbers ? `수치 근거: ${evidenceNumbers}.` : "",
+      technicalItem ? `기술 신호 ${quantHolding?.technicalSignal ?? "확인"}.` : "가격/기술 데이터는 제한적입니다.",
+    ].filter(Boolean).join(" ");
   }
 
   if (isUsableReason(quantHolding?.technicalSignal)) {
-    return `기술 신호: ${quantHolding.technicalSignal}`;
+    return `${scoreText}${scoreDetail}. ${category} 노출이며 직접 리포트 근거는 약하지만 기술 신호는 ${quantHolding.technicalSignal}입니다.`;
   }
 
   const signal = bestDailySignalForSecurity({
@@ -198,15 +254,13 @@ function buildHoldingReason({ holding, account, quantHolding, technicalItem, sco
     accountKey: account.key,
     dailySignals,
   });
-  const category = safeCategory(account.key, holding.code);
-  const scoreText = typeof score === "number" ? `현재 점수 ${score}점` : "점수 확인 필요";
   const dataGap = technicalItem ? "" : " 가격/기술 데이터가 부족해";
 
   if (signal) {
-    return `${scoreText}.${dataGap} 직접 종목 리포트는 약하지만 ${signal.hits.join(", ")} 신호가 연결됩니다: ${simplifyDriverText(signal.text)}`;
+    return `${scoreText}${scoreDetail}.${dataGap} 직접 종목 리포트는 약하지만 ${signal.hits.join(", ")} 신호가 연결됩니다: ${simplifyDriverText(signal.text)}`;
   }
 
-  return `${scoreText}.${dataGap} 직접 연결 리포트가 부족해 ${categoryNarrative(category)} 노출은 관찰로 유지합니다. 신규 매수 전 가격 데이터와 후속 리포트 확인이 필요합니다.`;
+  return `${scoreText}${scoreDetail}.${dataGap} 직접 연결 리포트가 부족해 ${categoryNarrative(category)} 노출은 관찰로 유지합니다. 신규 매수 전 가격 데이터와 후속 리포트 확인이 필요합니다.`;
 }
 
 function holdingEntryPrice(holding) {
@@ -1310,7 +1364,23 @@ function buildMacroCommentary({
 async function main() {
   const args = parseDateArgs(process.argv.slice(2));
   const stateDir = path.join(ROOT_DIR, "data", "analysis-state", args.date);
-  const [portfolio, strategy, stage1, stage2Enriched, stage2Raw, quant, impactMap, technical, market, fullDailyReport, insightAtoms] = await Promise.all([
+  const featuresDir = path.join(ROOT_DIR, "data", "features", args.date);
+  const [
+    portfolio,
+    strategy,
+    stage1,
+    stage2Enriched,
+    stage2Raw,
+    quant,
+    impactMap,
+    technical,
+    market,
+    fullDailyReport,
+    insightAtoms,
+    decisionFeatures,
+    sourceConsensus,
+    sourceDivergence,
+  ] = await Promise.all([
     readJson(path.join(ROOT_DIR, "data", "portfolio", "latest.json"), { accounts: [] }),
     readJson(path.join(ROOT_DIR, "config", "strategy.json"), { accounts: {} }),
     readJson(path.join(stateDir, "stage1-report-extracts-v2.json"), { extracts: [] }),
@@ -1322,6 +1392,9 @@ async function main() {
     readJson(path.join(ROOT_DIR, "data", "market", `${args.date}.json`), { indices: {}, macro: {}, watchlist: {} }),
     readJson(path.join(stateDir, "stage1-4-full-daily-report.json"), null),
     readJson(path.join(stateDir, "stage1-4-insight-atoms.json"), null),
+    readJson(path.join(featuresDir, "decision-features.json"), null),
+    readJson(path.join(featuresDir, "cross-source-consensus.json"), null),
+    readJson(path.join(featuresDir, "source-divergence.json"), null),
   ]);
   const stage2 = stage2Enriched ?? stage2Raw;
   if (!stage2) {
@@ -1359,6 +1432,9 @@ async function main() {
       .filter((item) => item.related_accounts?.includes(account.key))
       .slice(0, 4)
       .map((item) => ({ id: item.id, title: item.title, thesis: item.key_thesis }));
+    const sourceFeature = (decisionFeatures?.accountFeatures ?? []).find(
+      (item) => item.accountKey === account.key,
+    );
     const stagedBuys = distributeBudget({
       bucket,
       account,
@@ -1373,8 +1449,8 @@ async function main() {
       account,
       bucket,
       stagedBuys,
-      trims: bucket.trim.slice(0, 3),
-      holds: bucket.hold.slice(0, 3),
+      trims: bucket.trim,
+      holds: [...bucket.buy, ...bucket.hold],
       rejectedAlternatives: stage2CandidateSet.rejected ?? [],
       strategy,
       exposureTracker: satelliteExposureTracker,
@@ -1413,10 +1489,14 @@ async function main() {
       validatorFlags: validation.validatorFlags,
       validationConfidence: validation.confidence,
       validationEvidence: validation.topEvidence,
-      trims: bucket.trim.slice(0, 3),
-      holds: bucket.hold.slice(0, 3),
-      watches: bucket.watch.slice(0, 3),
+      trims: bucket.trim,
+      holds: [...bucket.buy, ...bucket.hold],
+      watches: bucket.watch,
       macroCommentary,
+      sourceSupport: sourceFeature?.support ?? null,
+      sourceSupportSummary: formatSourceSupport(sourceFeature?.support),
+      sourceConsensusThemes: sourceFeature?.topSupportingThemes ?? [],
+      sourceConsensusRisks: sourceFeature?.topRisks ?? [],
       stage1Drivers,
       emergencyDefense,
       technicalFallback:
@@ -1443,6 +1523,11 @@ async function main() {
     entryConditions: entryConfig,
     technicalFallback: technical?.fallback ?? null,
     marketFallback: market?.fallback ?? null,
+    sourceConsensus: {
+      topAlignedThemes: sourceConsensus?.consensus?.topAlignedThemes ?? [],
+      topAlignedSecurities: sourceConsensus?.consensus?.topAlignedSecurities ?? [],
+      sourceConflictCount: sourceDivergence?.divergence?.sourceConflicts?.length ?? 0,
+    },
     accountPlans,
   };
 
@@ -1468,6 +1553,7 @@ async function main() {
       `- 검증 confidence: ${account.validationConfidence ?? 0}`,
       `- 실행 노출 정책: ${account.validationPolicy?.buyVisibility ?? "validated_only"}`,
       `- validator flags: ${account.validatorFlags?.join(", ") || "없음"}`,
+      `- 교차소스 지지: ${account.sourceSupportSummary}`,
       `- 가장 부족한 자산군: ${account.topGap ? `${account.topGap.category} / ${won(Math.max(account.topGap.gapAmount, 0))}` : "없음"}`,
       `- 우선 보강 후보: ${account.candidateFromGap ?? "없음"}`,
       `- 매크로 → 자산군 → 액션: ${account.macroCommentary?.actionLine ?? "요약 없음"}`,

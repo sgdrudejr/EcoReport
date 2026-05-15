@@ -1,0 +1,313 @@
+{
+  "date": "2026-05-04",
+  "generatedAt": "2026-05-05T01:03:53.249Z",
+  "divergence": {
+    "sourceConflicts": [
+      {
+        "entityType": "security",
+        "entityId": "411060",
+        "directions": [
+          "positive",
+          "negative",
+          "neutral"
+        ],
+        "sources": [
+          "reports",
+          "technical"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "379810",
+        "directions": [
+          "positive",
+          "negative",
+          "neutral"
+        ],
+        "sources": [
+          "reports",
+          "technical"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "138910",
+        "directions": [
+          "positive",
+          "negative",
+          "neutral"
+        ],
+        "sources": [
+          "reports",
+          "technical"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "329180",
+        "directions": [
+          "positive",
+          "neutral",
+          "negative"
+        ],
+        "sources": [
+          "reports",
+          "marketvoice",
+          "technical"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "385510",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "reports",
+          "technical",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "487240",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "reports",
+          "technical",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "security",
+        "entityId": "360750",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "reports",
+          "technical"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "AI 인프라",
+        "directions": [
+          "positive",
+          "neutral",
+          "negative"
+        ],
+        "sources": [
+          "reports",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "금/원자재",
+        "directions": [
+          "positive",
+          "neutral",
+          "negative"
+        ],
+        "sources": [
+          "reports"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "금리/매크로",
+        "directions": [
+          "positive",
+          "neutral",
+          "negative"
+        ],
+        "sources": [
+          "reports"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "전력 인프라",
+        "directions": [
+          "neutral",
+          "negative",
+          "positive"
+        ],
+        "sources": [
+          "reports",
+          "technical",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "방산",
+        "directions": [
+          "neutral",
+          "positive",
+          "negative"
+        ],
+        "sources": [
+          "reports",
+          "stockeasy",
+          "technical"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "금융",
+        "directions": [
+          "negative",
+          "positive"
+        ],
+        "sources": [
+          "stockeasy"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "반도체",
+        "directions": [
+          "positive",
+          "negative",
+          "neutral"
+        ],
+        "sources": [
+          "stockeasy",
+          "technical",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "인프라",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "stockeasy",
+          "technical",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "전력/에너지",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "stockeasy",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "기계",
+        "directions": [
+          "positive",
+          "negative"
+        ],
+        "sources": [
+          "stockeasy",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "2차전지",
+        "directions": [
+          "negative",
+          "positive"
+        ],
+        "sources": [
+          "stockeasy",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "IT/플랫폼",
+        "directions": [
+          "positive",
+          "negative"
+        ],
+        "sources": [
+          "stockeasy"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "화학/소재",
+        "directions": [
+          "negative",
+          "positive"
+        ],
+        "sources": [
+          "stockeasy"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "중동/유가",
+        "directions": [
+          "negative",
+          "positive",
+          "neutral"
+        ],
+        "sources": [
+          "marketvoice"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "금리/환율",
+        "directions": [
+          "negative",
+          "positive"
+        ],
+        "sources": [
+          "marketvoice"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "금",
+        "directions": [
+          "negative",
+          "positive"
+        ],
+        "sources": [
+          "technical",
+          "kis_etf"
+        ]
+      },
+      {
+        "entityType": "theme",
+        "entityId": "안전자산",
+        "directions": [
+          "negative",
+          "positive"
+        ],
+        "sources": [
+          "technical",
+          "kis_etf"
+        ]
+      }
+    ],
+    "policyConflicts": []
+  }
+}

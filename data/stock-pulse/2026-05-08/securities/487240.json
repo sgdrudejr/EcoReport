@@ -1,0 +1,128 @@
+{
+  "id": "stock-pulse:487240",
+  "code": "487240",
+  "name": "KODEX AI전력핵심설비",
+  "category": "전력기기",
+  "type": "etf",
+  "verdict": "익절감시",
+  "urgency": "높음",
+  "pulseScore": 61,
+  "oneLine": "익절감시: 20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+  "doNow": "20일선 이탈, RSI 하락반전, 장대음봉 중 하나가 나오면 일부 익절을 검토합니다.",
+  "doNot": "급등 구간 추격매수 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "marketValue": 191055,
+      "profitRate": 59.45,
+      "decision": "수익보호"
+    }
+  ],
+  "position": {
+    "marketValue": 191055,
+    "purchaseValue": 0,
+    "profitLoss": 71235,
+    "profitRate": 59.45,
+    "quantity": 3
+  },
+  "market": {
+    "price": 62020,
+    "previousClose": 62285,
+    "changePct": -0.43,
+    "volume": 4780896,
+    "volumeRatio": 0.63,
+    "nav": 61977.36,
+    "navGapPct": 0.069,
+    "rank": 0
+  },
+  "technical": {
+    "score": 85,
+    "signal": "STRONG_BUY",
+    "reason": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+    "rsi": 90.84,
+    "ma20": 45392.25,
+    "ma60": 36144.1667,
+    "recentHighDistancePct": -4.04,
+    "rsVsBenchmark": 95.74,
+    "alerts": [
+      "RSI 과매수 구간 진입"
+    ]
+  },
+  "fundamental": {
+    "score": 80,
+    "label": "수급강함",
+    "metrics": null,
+    "etf": {
+      "rank": null,
+      "navGapPct": 0.069,
+      "concentrationTop5Pct": 77.83,
+      "topHoldings": [
+        {
+          "code": "010120",
+          "name": "LS ELECTRIC",
+          "weightPct": 24.01,
+          "changePct": -1.73
+        },
+        {
+          "code": "298040",
+          "name": "효성중공업",
+          "weightPct": 16.94,
+          "changePct": -4.41
+        },
+        {
+          "code": "006260",
+          "name": "LS",
+          "weightPct": 13.05,
+          "changePct": 7.1
+        },
+        {
+          "code": "267260",
+          "name": "HD현대일렉트릭",
+          "weightPct": 12.65,
+          "changePct": -1.2
+        },
+        {
+          "code": "001440",
+          "name": "대한전선",
+          "weightPct": 11.18,
+          "changePct": 12.79
+        }
+      ]
+    }
+  },
+  "alerts": [
+    {
+      "severity": "high",
+      "label": "과열",
+      "detail": "RSI 90.84 과열권입니다.",
+      "tone": "red"
+    }
+  ],
+  "quickFactors": [
+    "등락 -0.43%",
+    "RSI 90.84",
+    "거래량 0.63배",
+    "손익 59.45%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결"
+  ],
+  "riskFlags": [
+    "RSI_OVERHEAT:90.84"
+  ],
+  "sourceSupport": {
+    "reports": 0.464,
+    "stockeasy": 0,
+    "marketvoice": 0,
+    "technical": 0,
+    "kisEtf": 0,
+    "news": 0,
+    "macro": 0,
+    "llm": 0
+  }
+}

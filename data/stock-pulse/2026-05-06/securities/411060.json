@@ -1,0 +1,95 @@
+{
+  "id": "stock-pulse:411060",
+  "code": "411060",
+  "name": "ACE KRX금현물",
+  "category": "금",
+  "type": "etf",
+  "verdict": "손절감시",
+  "urgency": "중간",
+  "pulseScore": 39,
+  "oneLine": "손절감시: 손실 확대 원인을 확인하고 20일선 회복 실패 시 감량 기준을 먼저 봅니다.",
+  "doNow": "손실 확대 원인을 확인하고 20일선 회복 실패 시 감량 기준을 먼저 봅니다.",
+  "doNot": "손절 기준 없이 물타기 금지",
+  "nextCheck": "장중 가격/거래량, DART 공시, 종목 직접 뉴스, 외국인·기관 수급을 다시 확인",
+  "accounts": [
+    {
+      "accountKey": "ISA",
+      "accountLabel": "한투 ISA",
+      "marketValue": 2076900,
+      "profitRate": -3.08,
+      "decision": "보유유지"
+    }
+  ],
+  "position": {
+    "marketValue": 2076900,
+    "purchaseValue": 0,
+    "profitLoss": -66165,
+    "profitRate": -3.08,
+    "quantity": 69
+  },
+  "market": {
+    "price": 30115,
+    "previousClose": 30255,
+    "changePct": -0.46,
+    "volume": 2719827,
+    "volumeRatio": 0,
+    "nav": 0,
+    "navGapPct": 0,
+    "rank": 0
+  },
+  "technical": {
+    "score": 23,
+    "signal": "REDUCE",
+    "reason": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 둔화",
+    "rsi": 34.41,
+    "ma20": 31242.75,
+    "ma60": 32195.9167,
+    "recentHighDistancePct": -6.43,
+    "rsVsBenchmark": -62.52,
+    "alerts": []
+  },
+  "fundamental": {
+    "score": 76,
+    "label": "수급강함",
+    "metrics": null,
+    "etf": {
+      "rank": null,
+      "navGapPct": null,
+      "concentrationTop5Pct": 0,
+      "topHoldings": []
+    }
+  },
+  "alerts": [
+    {
+      "severity": "medium",
+      "label": "기술약화",
+      "detail": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 둔화",
+      "tone": "amber"
+    }
+  ],
+  "quickFactors": [
+    "등락 -0.46%",
+    "RSI 34.41",
+    "거래량 0배",
+    "손익 -3.08%"
+  ],
+  "newsHits": [],
+  "strategyMentions": [],
+  "missingSources": [
+    "뉴스미수집",
+    "DART미연결",
+    "ETF_COMPOSITION_MISSING",
+    "ETF_NAV_MISSING"
+  ],
+  "riskFlags": [],
+  "sourceSupport": {
+    "reports": 0.464,
+    "stockeasy": 0,
+    "marketvoice": 0,
+    "technical": 0.41,
+    "kisEtf": 0,
+    "news": 0,
+    "macro": 0,
+    "llm": 0
+  }
+}

@@ -1,0 +1,1657 @@
+{
+  "date": "2026-05-07",
+  "bundleId": "normalized:technical:2026-05-07",
+  "source": "technical",
+  "sourceType": "technical_signal",
+  "generatedAt": "2026-05-08T07:01:45.476Z",
+  "runId": "2026-05-08-053754",
+  "qualitySummary": {
+    "status": "ok",
+    "flags": [
+      "short_history"
+    ]
+  },
+  "observations": [
+    {
+      "observationId": "normalized:technical:2026-05-07:security:132030:isa",
+      "entityType": "security",
+      "entityId": "security:132030",
+      "entityName": "KODEX 골드선물(H)",
+      "accountKey": "ISA",
+      "securityCode": "132030",
+      "category": "금",
+      "themes": [
+        "금",
+        "금",
+        "gold",
+        "안전자산",
+        "gold",
+        "금",
+        "귀금속",
+        "인플레이션 헤지"
+      ],
+      "direction": "neutral",
+      "strength": 0.25,
+      "confidence": 0.76,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "mixed_signal"
+      ],
+      "evidence": [
+        {
+          "kind": "metric",
+          "title": "technical_score",
+          "text": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 우호적",
+          "value": 53,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "rsi",
+          "text": "RSI 50.86로 중립 구간입니다.",
+          "value": 50.86,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "derived_note",
+          "title": "중립",
+          "text": "기술 지표가 엇갈려 현재는 중립 또는 관망에 가깝습니다. / RSI 50.86로 중립 구간입니다. / MACD가 시그널선을 상향 돌파해 매수 쪽으로 기울었습니다. / 가격이 볼린저 중단 부근에 있어 중립에 가깝습니다.",
+          "value": null,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "technical:132030"
+      ],
+      "metadata": {
+        "signal": "HOLD",
+        "score": 53,
+        "rsi": 50.86,
+        "changePct": 0.0055,
+        "historyPoints": 360,
+        "alerts": [
+          "MACD 시그널 상향 돌파"
+        ],
+        "sourceBucket": "core_etf",
+        "inPortfolio": false
+      }
+    },
+    {
+      "observationId": "normalized:technical:2026-05-07:security:133690:pension",
+      "entityType": "security",
+      "entityId": "security:133690",
+      "entityName": "TIGER 미국나스닥100",
+      "accountKey": "PENSION",
+      "securityCode": "133690",
+      "category": "나스닥100",
+      "themes": [
+        "나스닥100",
+        "나스닥",
+        "nasdaq",
+        "기술주",
+        "나스닥",
+        "nasdaq",
+        "기술주",
+        "미국 빅테크"
+      ],
+      "direction": "neutral",
+      "strength": 0.7,
+      "confidence": 0.76,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "mixed_signal"
+      ],
+      "evidence": [
+        {
+          "kind": "metric",
+          "title": "technical_score",
+          "text": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+          "value": 85,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "rsi",
+          "text": "RSI 89.05로 과매수에 가까워 매도 쪽 경계가 필요합니다.",
+          "value": 89.05,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "derived_note",
+          "title": "중립",
+          "text": "기술 지표가 엇갈려 현재는 중립 또는 관망에 가깝습니다. / RSI 89.05로 과매수에 가까워 매도 쪽 경계가 필요합니다. / MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다. / 가격이 볼린저 상단에 가까워 단기 과열에 따른 매도 쪽 경계가 필요합니다.",
+          "value": null,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "technical:133690"
+      ],
+      "metadata": {
+        "signal": "STRONG_BUY",
+        "score": 85,
+        "rsi": 89.05,
+        "changePct": 0.0084,
+        "historyPoints": 360,
+        "alerts": [
+          "RSI 과매수 구간 진입"
+        ],
+        "sourceBucket": "core_etf",
+        "inPortfolio": false
+      }
+    },
+    {
+      "observationId": "normalized:technical:2026-05-07:security:138910:kis_main",
+      "entityType": "security",
+      "entityId": "security:138910",
+      "entityName": "KODEX 구리선물(H)",
+      "accountKey": "KIS_MAIN",
+      "securityCode": "138910",
+      "category": "기타",
+      "themes": [
+        "기타",
+        "구리",
+        "원자재",
+        "산업금속",
+        "구리",
+        "copper",
+        "구리선물",
+        "원자재"
+      ],
+      "direction": "neutral",
+      "strength": 0.8,
+      "confidence": 0.76,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "mixed_signal"
+      ],
+      "evidence": [
+        {
+          "kind": "metric",
+          "title": "technical_score",
+          "text": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+          "value": 90,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "rsi",
+          "text": "RSI 67.01로 과매수에 가까워 매도 쪽 경계가 필요합니다.",
+          "value": 67.01,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "derived_note",
+          "title": "중립",
+          "text": "기술 지표가 엇갈려 현재는 중립 또는 관망에 가깝습니다. / RSI 67.01로 과매수에 가까워 매도 쪽 경계가 필요합니다. / MACD가 시그널선을 상향 돌파해 매수 쪽으로 기울었습니다. / 가격이 볼린저 상단에 가까워 단기 과열에 따른 매도 쪽 경계가 필요합니다.",
+          "value": null,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "technical:138910"
+      ],
+      "metadata": {
+        "signal": "STRONG_BUY",
+        "score": 90,
+        "rsi": 67.01,
+        "changePct": 0.0151,
+        "historyPoints": 360,
+        "alerts": [
+          "MACD 시그널 상향 돌파"
+        ],
+        "sourceBucket": "portfolio_holding",
+        "inPortfolio": true
+      }
+    },
+    {
+      "observationId": "normalized:technical:2026-05-07:security:161510:isa",
+      "entityType": "security",
+      "entityId": "security:161510",
+      "entityName": "PLUS 고배당주",
+      "accountKey": "ISA",
+      "securityCode": "161510",
+      "category": "배당/커버드콜",
+      "themes": [
+        "배당/커버드콜",
+        "배당",
+        "고배당",
+        "인컴",
+        "방어",
+        "고배당",
+        "배당",
+        "인컴"
+      ],
+      "direction": "positive",
+      "strength": 1,
+      "confidence": 0.76,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived"
+      ],
+      "evidence": [
+        {
+          "kind": "metric",
+          "title": "technical_score",
+          "text": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+          "value": 100,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "rsi",
+          "text": "RSI 60.06로 중립 구간입니다.",
+          "value": 60.06,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "derived_note",
+          "title": "매수 쪽",
+          "text": "여러 기술 지표가 매수 쪽에 더 가깝습니다. / RSI 60.06로 중립 구간입니다. / MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다. / 가격이 볼린저 중단 부근에 있어 중립에 가깝습니다.",
+          "value": null,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "technical:161510"
+      ],
+      "metadata": {
+        "signal": "STRONG_BUY",
+        "score": 100,
+        "rsi": 60.06,
+        "changePct": 0.0013,
+        "historyPoints": 360,
+        "alerts": [],
+        "sourceBucket": "portfolio_holding",
+        "inPortfolio": true
+      }
+    },
+    {
+      "observationId": "normalized:technical:2026-05-07:security:267260:generic",
+      "entityType": "security",
+      "entityId": "security:267260",
+      "entityName": "HD현대일렉트릭",
+      "accountKey": null,
+      "securityCode": "267260",
+      "category": "전력기기",
+      "themes": [
+        "전력기기",
+        "변압기",
+        "전력기기",
+        "송배전",
+        "hd현대일렉트릭",
+        "현대일렉트릭",
+        "변압기",
+        "전력기기"
+      ],
+      "direction": "neutral",
+      "strength": 0.7,
+      "confidence": 0.76,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "mixed_signal"
+      ],
+      "evidence": [
+        {
+          "kind": "metric",
+          "title": "technical_score",
+          "text": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+          "value": 85,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "rsi",
+          "text": "RSI 75.01로 과매수에 가까워 매도 쪽 경계가 필요합니다.",
+          "value": 75.01,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "derived_note",
+          "title": "중립",
+          "text": "기술 지표가 엇갈려 현재는 중립 또는 관망에 가깝습니다. / RSI 75.01로 과매수에 가까워 매도 쪽 경계가 필요합니다. / MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다. / 가격이 볼린저 상단에 가까워 단기 과열에 따른 매도 쪽 경계가 필요합니다.",
+          "value": null,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "technical:267260"
+      ],
+      "metadata": {
+        "signal": "STRONG_BUY",
+        "score": 85,
+        "rsi": 75.01,
+        "changePct": -0.0252,
+        "historyPoints": 360,
+        "alerts": [
+          "RSI 과매수 구간 진입"
+        ],
+        "sourceBucket": "individual_stocks",
+        "inPortfolio": false
+      }
+    },
+    {
+      "observationId": "normalized:technical:2026-05-07:security:298040:generic",
+      "entityType": "security",
+      "entityId": "security:298040",
+      "entityName": "효성중공업",
+      "accountKey": null,
+      "securityCode": "298040",
+      "category": "전력기기",
+      "themes": [
+        "전력기기",
+        "변압기",
+        "전력기기",
+        "초전도",
+        "효성중공업",
+        "효성",
+        "변압기",
+        "초전도"
+      ],
+      "direction": "neutral",
+      "strength": 0.7,
+      "confidence": 0.76,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "mixed_signal"
+      ],
+      "evidence": [
+        {
+          "kind": "metric",
+          "title": "technical_score",
+          "text": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+          "value": 85,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "rsi",
+          "text": "RSI 75.74로 과매수에 가까워 매도 쪽 경계가 필요합니다.",
+          "value": 75.74,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "derived_note",
+          "title": "중립",
+          "text": "기술 지표가 엇갈려 현재는 중립 또는 관망에 가깝습니다. / RSI 75.74로 과매수에 가까워 매도 쪽 경계가 필요합니다. / MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다. / 가격이 볼린저 상단에 가까워 단기 과열에 따른 매도 쪽 경계가 필요합니다.",
+          "value": null,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "technical:298040"
+      ],
+      "metadata": {
+        "signal": "STRONG_BUY",
+        "score": 85,
+        "rsi": 75.74,
+        "changePct": -0.0339,
+        "historyPoints": 360,
+        "alerts": [
+          "RSI 과매수 구간 진입"
+        ],
+        "sourceBucket": "individual_stocks",
+        "inPortfolio": false
+      }
+    },
+    {
+      "observationId": "normalized:technical:2026-05-07:security:360750:pension",
+      "entityType": "security",
+      "entityId": "security:360750",
+      "entityName": "TIGER 미국S&P500",
+      "accountKey": "PENSION",
+      "securityCode": "360750",
+      "category": "S&P500",
+      "themes": [
+        "S&P500",
+        "s&p500",
+        "sp500",
+        "미국",
+        "대형주",
+        "지수",
+        "s&p500",
+        "s&p 500"
+      ],
+      "direction": "neutral",
+      "strength": 0.7,
+      "confidence": 0.76,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "mixed_signal"
+      ],
+      "evidence": [
+        {
+          "kind": "metric",
+          "title": "technical_score",
+          "text": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+          "value": 85,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "rsi",
+          "text": "RSI 81.51로 과매수에 가까워 매도 쪽 경계가 필요합니다.",
+          "value": 81.51,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "derived_note",
+          "title": "중립",
+          "text": "기술 지표가 엇갈려 현재는 중립 또는 관망에 가깝습니다. / RSI 81.51로 과매수에 가까워 매도 쪽 경계가 필요합니다. / MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다. / 가격이 볼린저 중단 부근에 있어 중립에 가깝습니다.",
+          "value": null,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "technical:360750"
+      ],
+      "metadata": {
+        "signal": "STRONG_BUY",
+        "score": 85,
+        "rsi": 81.51,
+        "changePct": 0.007,
+        "historyPoints": 360,
+        "alerts": [
+          "RSI 과매수 구간 진입"
+        ],
+        "sourceBucket": "core_etf",
+        "inPortfolio": true
+      }
+    },
+    {
+      "observationId": "normalized:technical:2026-05-07:security:379810:pension",
+      "entityType": "security",
+      "entityId": "security:379810",
+      "entityName": "KODEX 미국나스닥100",
+      "accountKey": "PENSION",
+      "securityCode": "379810",
+      "category": "나스닥100",
+      "themes": [
+        "나스닥100",
+        "나스닥",
+        "nasdaq",
+        "기술주",
+        "나스닥",
+        "nasdaq",
+        "기술주",
+        "미국 빅테크"
+      ],
+      "direction": "neutral",
+      "strength": 0.7,
+      "confidence": 0.76,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "mixed_signal"
+      ],
+      "evidence": [
+        {
+          "kind": "metric",
+          "title": "technical_score",
+          "text": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+          "value": 85,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "rsi",
+          "text": "RSI 88.35로 과매수에 가까워 매도 쪽 경계가 필요합니다.",
+          "value": 88.35,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "derived_note",
+          "title": "중립",
+          "text": "기술 지표가 엇갈려 현재는 중립 또는 관망에 가깝습니다. / RSI 88.35로 과매수에 가까워 매도 쪽 경계가 필요합니다. / MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다. / 가격이 볼린저 상단에 가까워 단기 과열에 따른 매도 쪽 경계가 필요합니다.",
+          "value": null,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "technical:379810"
+      ],
+      "metadata": {
+        "signal": "STRONG_BUY",
+        "score": 85,
+        "rsi": 88.35,
+        "changePct": 0.0151,
+        "historyPoints": 360,
+        "alerts": [
+          "RSI 과매수 구간 진입"
+        ],
+        "sourceBucket": "portfolio_holding",
+        "inPortfolio": true
+      }
+    },
+    {
+      "observationId": "normalized:technical:2026-05-07:security:385510:isa",
+      "entityType": "security",
+      "entityId": "security:385510",
+      "entityName": "KODEX 신재생에너지액티브",
+      "accountKey": "ISA",
+      "securityCode": "385510",
+      "category": "신재생에너지",
+      "themes": [
+        "신재생에너지",
+        "신재생",
+        "재생에너지",
+        "태양광",
+        "풍력",
+        "전력",
+        "신재생",
+        "재생에너지"
+      ],
+      "direction": "neutral",
+      "strength": 0.7,
+      "confidence": 0.76,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "mixed_signal"
+      ],
+      "evidence": [
+        {
+          "kind": "metric",
+          "title": "technical_score",
+          "text": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+          "value": 85,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "rsi",
+          "text": "RSI 75.63로 과매수에 가까워 매도 쪽 경계가 필요합니다.",
+          "value": 75.63,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "derived_note",
+          "title": "중립",
+          "text": "기술 지표가 엇갈려 현재는 중립 또는 관망에 가깝습니다. / RSI 75.63로 과매수에 가까워 매도 쪽 경계가 필요합니다. / MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다. / 가격이 볼린저 중단 부근에 있어 중립에 가깝습니다.",
+          "value": null,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "technical:385510"
+      ],
+      "metadata": {
+        "signal": "STRONG_BUY",
+        "score": 85,
+        "rsi": 75.63,
+        "changePct": -0.014,
+        "historyPoints": 360,
+        "alerts": [
+          "RSI 과매수 구간 진입"
+        ],
+        "sourceBucket": "portfolio_holding",
+        "inPortfolio": true
+      }
+    },
+    {
+      "observationId": "normalized:technical:2026-05-07:security:411060:isa",
+      "entityType": "security",
+      "entityId": "security:411060",
+      "entityName": "ACE KRX금현물",
+      "accountKey": "ISA",
+      "securityCode": "411060",
+      "category": "금",
+      "themes": [
+        "금",
+        "금",
+        "gold",
+        "금현물",
+        "안전자산",
+        "gold",
+        "금",
+        "krx금현물"
+      ],
+      "direction": "negative",
+      "strength": 0.52,
+      "confidence": 0.76,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived"
+      ],
+      "evidence": [
+        {
+          "kind": "metric",
+          "title": "technical_score",
+          "text": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 둔화",
+          "value": 24,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "rsi",
+          "text": "RSI 49.5로 중립 구간입니다.",
+          "value": 49.5,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "derived_note",
+          "title": "매도 쪽",
+          "text": "여러 기술 지표가 매도 쪽에 더 가깝습니다. / RSI 49.5로 중립 구간입니다. / MACD가 시그널선 아래에 있고 히스토그램도 마이너스라 매도 쪽 모멘텀이 우세합니다. / 가격이 볼린저 중단 부근에 있어 중립에 가깝습니다.",
+          "value": null,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "technical:411060"
+      ],
+      "metadata": {
+        "signal": "REDUCE",
+        "score": 24,
+        "rsi": 49.5,
+        "changePct": 0.0099,
+        "historyPoints": 360,
+        "alerts": [],
+        "sourceBucket": "portfolio_holding",
+        "inPortfolio": true
+      }
+    },
+    {
+      "observationId": "normalized:technical:2026-05-07:security:423160:generic",
+      "entityType": "security",
+      "entityId": "security:423160",
+      "entityName": "KODEX KOFR금리액티브(합성)",
+      "accountKey": null,
+      "securityCode": "423160",
+      "category": "현금파킹",
+      "themes": [
+        "현금파킹",
+        "KOFR",
+        "단기금리",
+        "현금",
+        "파킹",
+        "kofr",
+        "금리",
+        "단기채"
+      ],
+      "direction": "negative",
+      "strength": 0.38,
+      "confidence": 0.76,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived"
+      ],
+      "evidence": [
+        {
+          "kind": "metric",
+          "title": "technical_score",
+          "text": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화",
+          "value": 31,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "rsi",
+          "text": "RSI 46.65로 중립 구간입니다.",
+          "value": 46.65,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "derived_note",
+          "title": "매도 쪽",
+          "text": "여러 기술 지표가 매도 쪽에 더 가깝습니다. / RSI 46.65로 중립 구간입니다. / MACD가 시그널선 아래에 있고 히스토그램도 마이너스라 매도 쪽 모멘텀이 우세합니다. / 가격이 볼린저 중단 부근에 있어 중립에 가깝습니다.",
+          "value": null,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "technical:423160"
+      ],
+      "metadata": {
+        "signal": "REDUCE",
+        "score": 31,
+        "rsi": 46.65,
+        "changePct": 0.0001,
+        "historyPoints": 360,
+        "alerts": [],
+        "sourceBucket": "core_etf",
+        "inPortfolio": false
+      }
+    },
+    {
+      "observationId": "normalized:technical:2026-05-07:security:434730:kis_main",
+      "entityType": "security",
+      "entityId": "security:434730",
+      "entityName": "HANARO 원자력iSelect",
+      "accountKey": "KIS_MAIN",
+      "securityCode": "434730",
+      "category": "원자력",
+      "themes": [
+        "원자력",
+        "원자력",
+        "원전",
+        "SMR",
+        "핵",
+        "원자력",
+        "원전",
+        "smr"
+      ],
+      "direction": "neutral",
+      "strength": 0.9,
+      "confidence": 0.76,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "mixed_signal"
+      ],
+      "evidence": [
+        {
+          "kind": "metric",
+          "title": "technical_score",
+          "text": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+          "value": 95,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "rsi",
+          "text": "RSI 73.26로 과매수에 가까워 매도 쪽 경계가 필요합니다.",
+          "value": 73.26,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "derived_note",
+          "title": "중립",
+          "text": "기술 지표가 엇갈려 현재는 중립 또는 관망에 가깝습니다. / RSI 73.26로 과매수에 가까워 매도 쪽 경계가 필요합니다. / MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다. / 가격이 볼린저 상단에 가까워 단기 과열에 따른 매도 쪽 경계가 필요합니다.",
+          "value": null,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "technical:434730"
+      ],
+      "metadata": {
+        "signal": "STRONG_BUY",
+        "score": 95,
+        "rsi": 73.26,
+        "changePct": -0.0062,
+        "historyPoints": 360,
+        "alerts": [
+          "RSI 과매수 구간 진입"
+        ],
+        "sourceBucket": "satellite_etf",
+        "inPortfolio": false
+      }
+    },
+    {
+      "observationId": "normalized:technical:2026-05-07:security:449450:kis_main",
+      "entityType": "security",
+      "entityId": "security:449450",
+      "entityName": "PLUS K방산",
+      "accountKey": "KIS_MAIN",
+      "securityCode": "449450",
+      "category": "방산",
+      "themes": [
+        "방산",
+        "방산",
+        "국방",
+        "무기",
+        "군수",
+        "방산",
+        "국방",
+        "미사일"
+      ],
+      "direction": "negative",
+      "strength": 0.25,
+      "confidence": 0.76,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived"
+      ],
+      "evidence": [
+        {
+          "kind": "metric",
+          "title": "technical_score",
+          "text": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화",
+          "value": 38,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "rsi",
+          "text": "RSI 40.9로 중립 구간입니다.",
+          "value": 40.9,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "derived_note",
+          "title": "중립",
+          "text": "기술 지표가 엇갈려 현재는 중립 또는 관망에 가깝습니다. / RSI 40.9로 중립 구간입니다. / MACD가 시그널선 아래에 있고 히스토그램도 마이너스라 매도 쪽 모멘텀이 우세합니다. / 가격이 볼린저 중단 부근에 있어 중립에 가깝습니다.",
+          "value": null,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "technical:449450"
+      ],
+      "metadata": {
+        "signal": "REDUCE",
+        "score": 38,
+        "rsi": 40.9,
+        "changePct": -0.0467,
+        "historyPoints": 360,
+        "alerts": [
+          "데드크로스(5일/20일) 발생"
+        ],
+        "sourceBucket": "satellite_etf",
+        "inPortfolio": true
+      }
+    },
+    {
+      "observationId": "normalized:technical:2026-05-07:security:458760:isa",
+      "entityType": "security",
+      "entityId": "security:458760",
+      "entityName": "TIGER 미국배당다우존스타겟커버드콜2호",
+      "accountKey": "ISA",
+      "securityCode": "458760",
+      "category": "배당/커버드콜",
+      "themes": [
+        "배당/커버드콜",
+        "배당",
+        "커버드콜",
+        "다우",
+        "프리미엄",
+        "배당",
+        "커버드콜",
+        "미국배당"
+      ],
+      "direction": "negative",
+      "strength": 0.34,
+      "confidence": 0.76,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived"
+      ],
+      "evidence": [
+        {
+          "kind": "metric",
+          "title": "technical_score",
+          "text": "주가가 20일선 아래에 위치, 중기 추세는 약세, MACD 모멘텀이 둔화",
+          "value": 33,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "rsi",
+          "text": "RSI 46.54로 중립 구간입니다.",
+          "value": 46.54,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "derived_note",
+          "title": "중립",
+          "text": "기술 지표가 엇갈려 현재는 중립 또는 관망에 가깝습니다. / RSI 46.54로 중립 구간입니다. / MACD가 시그널선 아래에 있고 히스토그램도 마이너스라 매도 쪽 모멘텀이 우세합니다. / 가격이 볼린저 하단에 가까워 단기 반등 관점의 매수 쪽에 가깝습니다.",
+          "value": null,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "technical:458760"
+      ],
+      "metadata": {
+        "signal": "REDUCE",
+        "score": 33,
+        "rsi": 46.54,
+        "changePct": -0.0095,
+        "historyPoints": 360,
+        "alerts": [
+          "볼린저밴드 하단 이탈"
+        ],
+        "sourceBucket": "core_etf",
+        "inPortfolio": false
+      }
+    },
+    {
+      "observationId": "normalized:technical:2026-05-07:security:469150:kis_main",
+      "entityType": "security",
+      "entityId": "security:469150",
+      "entityName": "ACE AI반도체TOP3+",
+      "accountKey": "KIS_MAIN",
+      "securityCode": "469150",
+      "category": "AI반도체",
+      "themes": [
+        "AI반도체",
+        "AI반도체",
+        "HBM",
+        "삼성전자",
+        "SK하이닉스",
+        "한미반도체",
+        "ai반도체",
+        "hbm"
+      ],
+      "direction": "neutral",
+      "strength": 0.7,
+      "confidence": 0.76,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "mixed_signal"
+      ],
+      "evidence": [
+        {
+          "kind": "metric",
+          "title": "technical_score",
+          "text": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+          "value": 85,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "rsi",
+          "text": "RSI 83.17로 과매수에 가까워 매도 쪽 경계가 필요합니다.",
+          "value": 83.17,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "derived_note",
+          "title": "중립",
+          "text": "기술 지표가 엇갈려 현재는 중립 또는 관망에 가깝습니다. / RSI 83.17로 과매수에 가까워 매도 쪽 경계가 필요합니다. / MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다. / 가격이 볼린저 상단에 가까워 단기 과열에 따른 매도 쪽 경계가 필요합니다.",
+          "value": null,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "technical:469150"
+      ],
+      "metadata": {
+        "signal": "STRONG_BUY",
+        "score": 85,
+        "rsi": 83.17,
+        "changePct": 0.0044,
+        "historyPoints": 360,
+        "alerts": [
+          "RSI 과매수 구간 진입"
+        ],
+        "sourceBucket": "portfolio_holding",
+        "inPortfolio": true
+      }
+    },
+    {
+      "observationId": "normalized:technical:2026-05-07:security:475300:isa",
+      "entityType": "security",
+      "entityId": "security:475300",
+      "entityName": "SOL 반도체전공정",
+      "accountKey": "ISA",
+      "securityCode": "475300",
+      "category": "반도체",
+      "themes": [
+        "반도체",
+        "반도체",
+        "전공정",
+        "소부장",
+        "장비",
+        "반도체 전공정",
+        "전공정",
+        "소부장"
+      ],
+      "direction": "neutral",
+      "strength": 0.9,
+      "confidence": 0.76,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "mixed_signal"
+      ],
+      "evidence": [
+        {
+          "kind": "metric",
+          "title": "technical_score",
+          "text": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+          "value": 95,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "rsi",
+          "text": "RSI 69.6로 과매수에 가까워 매도 쪽 경계가 필요합니다.",
+          "value": 69.6,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "derived_note",
+          "title": "중립",
+          "text": "기술 지표가 엇갈려 현재는 중립 또는 관망에 가깝습니다. / RSI 69.6로 과매수에 가까워 매도 쪽 경계가 필요합니다. / MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다. / 가격이 볼린저 중단 부근에 있어 중립에 가깝습니다.",
+          "value": null,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "technical:475300"
+      ],
+      "metadata": {
+        "signal": "STRONG_BUY",
+        "score": 95,
+        "rsi": 69.6,
+        "changePct": -0.0002,
+        "historyPoints": 360,
+        "alerts": [],
+        "sourceBucket": "portfolio_holding",
+        "inPortfolio": true
+      }
+    },
+    {
+      "observationId": "normalized:technical:2026-05-07:security:487240:isa",
+      "entityType": "security",
+      "entityId": "security:487240",
+      "entityName": "KODEX AI전력핵심설비",
+      "accountKey": "ISA",
+      "securityCode": "487240",
+      "category": "전력기기",
+      "themes": [
+        "전력기기",
+        "전력",
+        "변압",
+        "전력기기",
+        "인프라",
+        "데이터센터",
+        "전력",
+        "변압기"
+      ],
+      "direction": "neutral",
+      "strength": 0.7,
+      "confidence": 0.76,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "mixed_signal"
+      ],
+      "evidence": [
+        {
+          "kind": "metric",
+          "title": "technical_score",
+          "text": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+          "value": 85,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "rsi",
+          "text": "RSI 90.84로 과매수에 가까워 매도 쪽 경계가 필요합니다.",
+          "value": 90.84,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "derived_note",
+          "title": "중립",
+          "text": "기술 지표가 엇갈려 현재는 중립 또는 관망에 가깝습니다. / RSI 90.84로 과매수에 가까워 매도 쪽 경계가 필요합니다. / MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다. / 가격이 볼린저 상단에 가까워 단기 과열에 따른 매도 쪽 경계가 필요합니다.",
+          "value": null,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "technical:487240"
+      ],
+      "metadata": {
+        "signal": "STRONG_BUY",
+        "score": 85,
+        "rsi": 90.84,
+        "changePct": -0.0417,
+        "historyPoints": 360,
+        "alerts": [
+          "RSI 과매수 구간 진입"
+        ],
+        "sourceBucket": "satellite_etf",
+        "inPortfolio": true
+      }
+    },
+    {
+      "observationId": "normalized:technical:2026-05-07:security:005930:generic",
+      "entityType": "security",
+      "entityId": "security:005930",
+      "entityName": "삼성전자",
+      "accountKey": null,
+      "securityCode": "005930",
+      "category": "반도체",
+      "themes": [
+        "반도체",
+        "반도체",
+        "메모리",
+        "hbm",
+        "파운드리",
+        "삼성전자",
+        "삼성",
+        "갤럭시"
+      ],
+      "direction": "neutral",
+      "strength": 0.9,
+      "confidence": 0.76,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "mixed_signal"
+      ],
+      "evidence": [
+        {
+          "kind": "metric",
+          "title": "technical_score",
+          "text": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+          "value": 95,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "rsi",
+          "text": "RSI 74.48로 과매수에 가까워 매도 쪽 경계가 필요합니다.",
+          "value": 74.48,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "derived_note",
+          "title": "중립",
+          "text": "기술 지표가 엇갈려 현재는 중립 또는 관망에 가깝습니다. / RSI 74.48로 과매수에 가까워 매도 쪽 경계가 필요합니다. / MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다. / 가격이 볼린저 상단에 가까워 단기 과열에 따른 매도 쪽 경계가 필요합니다.",
+          "value": null,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "technical:005930"
+      ],
+      "metadata": {
+        "signal": "STRONG_BUY",
+        "score": 95,
+        "rsi": 74.48,
+        "changePct": -0.0113,
+        "historyPoints": 360,
+        "alerts": [
+          "RSI 과매수 구간 진입"
+        ],
+        "sourceBucket": "individual_stocks",
+        "inPortfolio": false
+      }
+    },
+    {
+      "observationId": "normalized:technical:2026-05-07:security:000660:generic",
+      "entityType": "security",
+      "entityId": "security:000660",
+      "entityName": "SK하이닉스",
+      "accountKey": null,
+      "securityCode": "000660",
+      "category": "반도체",
+      "themes": [
+        "반도체",
+        "반도체",
+        "hbm",
+        "dram",
+        "낸드",
+        "메모리",
+        "sk하이닉스",
+        "하이닉스"
+      ],
+      "direction": "neutral",
+      "strength": 0.7,
+      "confidence": 0.76,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "mixed_signal"
+      ],
+      "evidence": [
+        {
+          "kind": "metric",
+          "title": "technical_score",
+          "text": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+          "value": 85,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "rsi",
+          "text": "RSI 85.65로 과매수에 가까워 매도 쪽 경계가 필요합니다.",
+          "value": 85.65,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "derived_note",
+          "title": "중립",
+          "text": "기술 지표가 엇갈려 현재는 중립 또는 관망에 가깝습니다. / RSI 85.65로 과매수에 가까워 매도 쪽 경계가 필요합니다. / MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다. / 가격이 볼린저 상단에 가까워 단기 과열에 따른 매도 쪽 경계가 필요합니다.",
+          "value": null,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "technical:000660"
+      ],
+      "metadata": {
+        "signal": "STRONG_BUY",
+        "score": 85,
+        "rsi": 85.65,
+        "changePct": -0.015,
+        "historyPoints": 360,
+        "alerts": [
+          "RSI 과매수 구간 진입"
+        ],
+        "sourceBucket": "individual_stocks",
+        "inPortfolio": false
+      }
+    },
+    {
+      "observationId": "normalized:technical:2026-05-07:security:010120:generic",
+      "entityType": "security",
+      "entityId": "security:010120",
+      "entityName": "LS ELECTRIC",
+      "accountKey": null,
+      "securityCode": "010120",
+      "category": "전력기기",
+      "themes": [
+        "전력기기",
+        "전력기기",
+        "수배전",
+        "인프라",
+        "ls일렉트릭",
+        "ls electric",
+        "전력기기",
+        "수배전"
+      ],
+      "direction": "neutral",
+      "strength": 0.62,
+      "confidence": 0.76,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "mixed_signal"
+      ],
+      "evidence": [
+        {
+          "kind": "metric",
+          "title": "technical_score",
+          "text": "주가가 20일선 위에서 유지 중, 중기 추세는 약세, MACD 모멘텀이 우호적",
+          "value": 81,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "rsi",
+          "text": "RSI 38.62로 중립 구간입니다.",
+          "value": 38.62,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "derived_note",
+          "title": "중립",
+          "text": "기술 지표가 엇갈려 현재는 중립 또는 관망에 가깝습니다. / RSI 38.62로 중립 구간입니다. / MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다. / 가격이 볼린저 중단 부근에 있어 중립에 가깝습니다.",
+          "value": null,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "technical:010120"
+      ],
+      "metadata": {
+        "signal": "STRONG_BUY",
+        "score": 81,
+        "rsi": 38.62,
+        "changePct": -0.0507,
+        "historyPoints": 360,
+        "alerts": [
+          "골든크로스(5일/20일) 발생"
+        ],
+        "sourceBucket": "individual_stocks",
+        "inPortfolio": false
+      }
+    },
+    {
+      "observationId": "normalized:technical:2026-05-07:security:064350:kis_main",
+      "entityType": "security",
+      "entityId": "security:064350",
+      "entityName": "현대로템",
+      "accountKey": "KIS_MAIN",
+      "securityCode": "064350",
+      "category": "방산",
+      "themes": [
+        "방산",
+        "방산",
+        "전차",
+        "군수",
+        "현대로템",
+        "로템",
+        "k2전차",
+        "방산"
+      ],
+      "direction": "neutral",
+      "strength": 0.62,
+      "confidence": 0.76,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "mixed_signal"
+      ],
+      "evidence": [
+        {
+          "kind": "metric",
+          "title": "technical_score",
+          "text": "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 둔화",
+          "value": 81,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "rsi",
+          "text": "RSI 47.42로 중립 구간입니다.",
+          "value": 47.42,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "derived_note",
+          "title": "중립",
+          "text": "기술 지표가 엇갈려 현재는 중립 또는 관망에 가깝습니다. / RSI 47.42로 중립 구간입니다. / MACD가 시그널선을 하향 이탈해 매도 쪽으로 기울었습니다. / 가격이 볼린저 중단 부근에 있어 중립에 가깝습니다.",
+          "value": null,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "technical:064350"
+      ],
+      "metadata": {
+        "signal": "STRONG_BUY",
+        "score": 81,
+        "rsi": 47.42,
+        "changePct": -0.084,
+        "historyPoints": 360,
+        "alerts": [
+          "MACD 시그널 하향 이탈"
+        ],
+        "sourceBucket": "individual_stocks",
+        "inPortfolio": true
+      }
+    },
+    {
+      "observationId": "normalized:technical:2026-05-07:security:047810:generic",
+      "entityType": "security",
+      "entityId": "security:047810",
+      "entityName": "한국항공우주",
+      "accountKey": null,
+      "securityCode": "047810",
+      "category": "방산",
+      "themes": [
+        "방산",
+        "방산",
+        "항공",
+        "우주",
+        "군수",
+        "한국항공우주",
+        "kai",
+        "항공"
+      ],
+      "direction": "negative",
+      "strength": 0.25,
+      "confidence": 0.76,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived"
+      ],
+      "evidence": [
+        {
+          "kind": "metric",
+          "title": "technical_score",
+          "text": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화",
+          "value": 38,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "rsi",
+          "text": "RSI 40.39로 중립 구간입니다.",
+          "value": 40.39,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "derived_note",
+          "title": "중립",
+          "text": "기술 지표가 엇갈려 현재는 중립 또는 관망에 가깝습니다. / RSI 40.39로 중립 구간입니다. / MACD가 시그널선 아래에 있고 히스토그램도 마이너스라 매도 쪽 모멘텀이 우세합니다. / 가격이 볼린저 중단 부근에 있어 중립에 가깝습니다.",
+          "value": null,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "technical:047810"
+      ],
+      "metadata": {
+        "signal": "REDUCE",
+        "score": 38,
+        "rsi": 40.39,
+        "changePct": -0.0362,
+        "historyPoints": 360,
+        "alerts": [],
+        "sourceBucket": "individual_stocks",
+        "inPortfolio": false
+      }
+    },
+    {
+      "observationId": "normalized:technical:2026-05-07:security:0162z0:pension",
+      "entityType": "security",
+      "entityId": "security:0162z0",
+      "entityName": "RISE 삼성전자SK하이닉스채권혼합50",
+      "accountKey": "PENSION",
+      "securityCode": "0162Z0",
+      "category": "반도체/채권혼합",
+      "themes": [
+        "반도체/채권혼합",
+        "반도체",
+        "삼성전자",
+        "SK하이닉스",
+        "채권혼합",
+        "삼성전자",
+        "sk하이닉스",
+        "반도체"
+      ],
+      "direction": "positive",
+      "strength": 0.25,
+      "confidence": 0.56,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "short_history"
+      ],
+      "evidence": [
+        {
+          "kind": "metric",
+          "title": "technical_score",
+          "text": "주가가 20일선 위에서 유지 중, MACD 모멘텀이 우호적, RSI 기준 단기 과열 구간",
+          "value": 62,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "rsi",
+          "text": "RSI 80.87로 과매수에 가까워 매도 쪽 경계가 필요합니다.",
+          "value": 80.87,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "derived_note",
+          "title": "중립",
+          "text": "기술 지표가 엇갈려 현재는 중립 또는 관망에 가깝습니다. / RSI 80.87로 과매수에 가까워 매도 쪽 경계가 필요합니다. / MACD가 시그널선 위에 있고 히스토그램도 플러스라 매수 쪽 모멘텀이 우세합니다. / 가격이 볼린저 상단에 가까워 단기 과열에 따른 매도 쪽 경계가 필요합니다.",
+          "value": null,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "technical:0162Z0"
+      ],
+      "metadata": {
+        "signal": "BUY",
+        "score": 62,
+        "rsi": 80.87,
+        "changePct": 0.0035,
+        "historyPoints": 49,
+        "alerts": [
+          "RSI 과매수 구간 진입",
+          "볼린저밴드 상단 이탈"
+        ],
+        "sourceBucket": "portfolio_holding",
+        "inPortfolio": true
+      }
+    },
+    {
+      "observationId": "normalized:technical:2026-05-07:security:012450:kis_main",
+      "entityType": "security",
+      "entityId": "security:012450",
+      "entityName": "한화에어로스페이스",
+      "accountKey": "KIS_MAIN",
+      "securityCode": "012450",
+      "category": "방산",
+      "themes": [
+        "방산",
+        "방산",
+        "항공우주",
+        "엔진",
+        "군수",
+        "한화에어로스페이스",
+        "한화에어로",
+        "방산"
+      ],
+      "direction": "neutral",
+      "strength": 0.25,
+      "confidence": 0.76,
+      "freshnessDays": 0,
+      "horizon": "1w",
+      "qualityFlags": [
+        "derived",
+        "mixed_signal"
+      ],
+      "evidence": [
+        {
+          "kind": "metric",
+          "title": "technical_score",
+          "text": "주가가 20일선 아래에 위치, 중기 추세는 우상향, MACD 모멘텀이 둔화",
+          "value": 46,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "metric",
+          "title": "rsi",
+          "text": "RSI 39.5로 중립 구간입니다.",
+          "value": 39.5,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        },
+        {
+          "kind": "derived_note",
+          "title": "중립",
+          "text": "기술 지표가 엇갈려 현재는 중립 또는 관망에 가깝습니다. / RSI 39.5로 중립 구간입니다. / MACD가 시그널선 아래에 있고 히스토그램도 마이너스라 매도 쪽 모멘텀이 우세합니다. / 가격이 볼린저 하단에 가까워 단기 반등 관점의 매수 쪽에 가깝습니다.",
+          "value": null,
+          "refPath": "data/technical/2026-05-07.json",
+          "url": null
+        }
+      ],
+      "derivedFrom": [
+        "technical:012450"
+      ],
+      "metadata": {
+        "signal": "HOLD",
+        "score": 46,
+        "rsi": 39.5,
+        "changePct": -0.0076,
+        "historyPoints": 360,
+        "alerts": [
+          "볼린저밴드 하단 이탈"
+        ],
+        "sourceBucket": "portfolio_holding",
+        "inPortfolio": true
+      }
+    }
+  ]
+}

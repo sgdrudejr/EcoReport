@@ -1,0 +1,2616 @@
+{
+  "date": "2026-05-04",
+  "generatedAt": "2026-05-05T01:03:53.249Z",
+  "themeFeatures": [
+    {
+      "theme": "AI 인프라",
+      "netScore": 0.2417,
+      "support": {
+        "reports": 0.6880000000000001,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5832,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "금/원자재",
+      "netScore": 0.2568,
+      "support": {
+        "reports": 0.6880000000000001,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "금리/매크로",
+      "netScore": 0.2745,
+      "support": {
+        "reports": 0.6880000000000001,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "전력 인프라",
+      "netScore": 0.2221,
+      "support": {
+        "reports": 0.6880000000000001,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5832,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 3
+    },
+    {
+      "theme": "방산",
+      "netScore": 0.2603,
+      "support": {
+        "reports": 0.6880000000000001,
+        "stockeasy": 0.7372,
+        "marketvoice": 0,
+        "technical": 0.3952,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 3
+    },
+    {
+      "theme": "HBM/메모리",
+      "netScore": 0.3413,
+      "support": {
+        "reports": 0.6880000000000001,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "원자력",
+      "netScore": 0.2244,
+      "support": {
+        "reports": 0.49879999999999997,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "금융",
+      "netScore": -0.2063,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7524,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "반도체",
+      "netScore": 0.4039,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7524,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0.5078999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 3
+    },
+    {
+      "theme": "인프라",
+      "netScore": 0.1197,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7524,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5832,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 3
+    },
+    {
+      "theme": "전력/에너지",
+      "netScore": 0.2184,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7524,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5832,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "기계",
+      "netScore": 0.3741,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7524,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5832,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "소비재",
+      "netScore": 0.2244,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.44880000000000003,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "2차전지",
+      "netScore": 0.4263,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7372,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.6141,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "IT/플랫폼",
+      "netScore": 0.3706,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.7372,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "화학/소재",
+      "netScore": -0.4066,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.722,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "지주사",
+      "netScore": 0.6392,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.6392,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "자동차",
+      "netScore": 0.5236,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.5236000000000001,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "조선/해운",
+      "netScore": 0.4964,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.4964,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "K-컬처",
+      "netScore": 0.4624,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.4624000000000001,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "바이오",
+      "netScore": 0.3944,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0.39440000000000003,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "중동/유가",
+      "netScore": 0.0115,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0.5336,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "금리/환율",
+      "netScore": -0.0169,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0.5336,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "방산/국방",
+      "netScore": 0.4159,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0.58692,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "금",
+      "netScore": -0.2738,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.41040000000000004,
+        "kis_etf": 0.31770000000000004,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "gold",
+      "netScore": -0.3724,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.41040000000000004,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "안전자산",
+      "netScore": -0.1424,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.41040000000000004,
+        "kis_etf": 0.31770000000000004,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "귀금속",
+      "netScore": -0.3344,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.33440000000000003,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "인플레이션 헤지",
+      "netScore": -0.3344,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.33440000000000003,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "나스닥100",
+      "netScore": 0.3496,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3496,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "나스닥",
+      "netScore": 0.3112,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3496,
+        "kis_etf": 0.37529999999999997,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "nasdaq",
+      "netScore": 0.3496,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3496,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "기술주",
+      "netScore": 0.3496,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3496,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "미국 빅테크",
+      "netScore": 0.3496,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3496,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "기타",
+      "netScore": 0.3204,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5655,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "구리",
+      "netScore": 0.2662,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5436,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "원자재",
+      "netScore": 0.3496,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5436,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "산업금속",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "copper",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "구리선물",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "배당/커버드콜",
+      "netScore": 0.3547,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "배당",
+      "netScore": 0.532,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "고배당",
+      "netScore": 0.76,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "인컴",
+      "netScore": 0.76,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "방어",
+      "netScore": 0.76,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "전력기기",
+      "netScore": 0.053,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5832,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "변압기",
+      "netScore": 0.1831,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5832,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "송배전",
+      "netScore": 0.2662,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.46140000000000003,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "hd현대일렉트릭",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "현대일렉트릭",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "초전도",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "효성중공업",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "효성",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "조선",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "엔진",
+      "netScore": 0.095,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.19,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "데이터센터",
+      "netScore": 0.3042,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5832,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "hd현대중공업",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "현대중공업",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "S&P500",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "s&p500",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "sp500",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "미국",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "대형주",
+      "netScore": 0.0625,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.18749999999999997,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "지수",
+      "netScore": 0.2072,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.47909999999999997,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "s&p 500",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "신재생에너지",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "신재생",
+      "netScore": 0.0528,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.15839999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "재생에너지",
+      "netScore": 0.0528,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.15839999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "태양광",
+      "netScore": 0.0792,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.15839999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "풍력",
+      "netScore": 0.0792,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.15839999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "전력",
+      "netScore": 0.2007,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5832,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "금현물",
+      "netScore": -0.4104,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.41040000000000004,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "krx금현물",
+      "netScore": -0.4104,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.41040000000000004,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "현금파킹",
+      "netScore": -0.3648,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3648,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "KOFR",
+      "netScore": -0.3648,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3648,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "단기금리",
+      "netScore": -0.3648,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3648,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "현금",
+      "netScore": -0.3648,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3648,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "파킹",
+      "netScore": -0.3648,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3648,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "kofr",
+      "netScore": -0.3648,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3648,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "금리",
+      "netScore": -0.3648,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3648,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "단기채",
+      "netScore": -0.3648,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3648,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "원전",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "SMR",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "핵",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "smr",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "국방",
+      "netScore": 0.3952,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3952,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "무기",
+      "netScore": 0.3952,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3952,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "군수",
+      "netScore": 0.1463,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3952,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "미사일",
+      "netScore": 0.3952,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.3952,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "커버드콜",
+      "netScore": 0.152,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.30400000000000005,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "다우",
+      "netScore": 0.304,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.30400000000000005,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "프리미엄",
+      "netScore": 0.304,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.30400000000000005,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "미국배당",
+      "netScore": 0.304,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.30400000000000005,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "AI반도체",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "HBM",
+      "netScore": 0.2551,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5078999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "삼성전자",
+      "netScore": 0.3412,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "SK하이닉스",
+      "netScore": 0.1512,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.30240000000000006,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "한미반도체",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "ai반도체",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "hbm",
+      "netScore": 0.2296,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0.15839999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "전공정",
+      "netScore": 0.76,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "소부장",
+      "netScore": 0.3524,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0.5078999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "장비",
+      "netScore": 0.76,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "반도체 전공정",
+      "netScore": 0.76,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "변압",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "국내인덱스",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "밸류업",
+      "netScore": 0.109,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.21809999999999996,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "주주환원",
+      "netScore": 0.109,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.21809999999999996,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "국내 인덱스",
+      "netScore": 0.0727,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.21809999999999996,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "저pbr",
+      "netScore": 0.109,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.21809999999999996,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "국내지수",
+      "netScore": 0.2547,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.47909999999999997,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "분배금",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "변동성 완충",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "위클리커버드콜",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "코스피200",
+      "netScore": 0.1788,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.47909999999999997,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "메모리",
+      "netScore": 0.2759,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0.5078999999999999,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "파운드리",
+      "netScore": 0.76,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "삼성",
+      "netScore": 0.76,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "갤럭시",
+      "netScore": 0.76,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "dram",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "낸드",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "sk하이닉스",
+      "netScore": 0.1512,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.30240000000000006,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "하이닉스",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "수배전",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "ls일렉트릭",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "ls electric",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "전차",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "현대로템",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "로템",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "k2전차",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "항공",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "우주",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "한국항공우주",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "kai",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "반도체/채권혼합",
+      "netScore": 0.3024,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.30240000000000006,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "채권혼합",
+      "netScore": 0.3024,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.30240000000000006,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "국내 대형주",
+      "netScore": 0.0937,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.18749999999999997,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "kospi200",
+      "netScore": 0.0937,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.18749999999999997,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "국내 지수",
+      "netScore": 0.0937,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.18749999999999997,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 2
+    },
+    {
+      "theme": "항공우주",
+      "netScore": 0.19,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.19,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "한화에어로스페이스",
+      "netScore": 0.19,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.19,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "한화에어로",
+      "netScore": 0.19,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0.19,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "가스터빈",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "두산에너빌리티",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "두산중공업",
+      "netScore": 0,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "배터리",
+      "netScore": 0.449,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.6141,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "전기차",
+      "netScore": 0.449,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.6141,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "소재",
+      "netScore": 0.449,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.6141,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "전선",
+      "netScore": 0.5832,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5832,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "시장 대표",
+      "netScore": 0.356,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5655,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "테마 분산",
+      "netScore": 0.356,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5655,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "원유",
+      "netScore": 0.5323,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5436,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "에너지",
+      "netScore": 0.5323,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.5436,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "국내 주식",
+      "netScore": 0.3518,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.47909999999999997,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "AI/인프라",
+      "netScore": 0.3379,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.46140000000000003,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "AI",
+      "netScore": 0.3513,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.46140000000000003,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "클라우드",
+      "netScore": 0.3513,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.46140000000000003,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "로봇",
+      "netScore": 0.3379,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.46140000000000003,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "인공지능",
+      "netScore": 0.4314,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.43140000000000006,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "미국기술주",
+      "netScore": 0.26,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.37529999999999997,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "미국 기술주",
+      "netScore": 0.26,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.37529999999999997,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "빅테크",
+      "netScore": 0.26,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.37529999999999997,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "인터넷/콘텐츠",
+      "netScore": 0.2338,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.30929999999999996,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "인터넷",
+      "netScore": 0.2338,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.30929999999999996,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "콘텐츠",
+      "netScore": 0.2338,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.30929999999999996,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "플랫폼",
+      "netScore": 0.2338,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.30929999999999996,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "게임",
+      "netScore": 0.2338,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.30929999999999996,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "국내성장주",
+      "netScore": 0.2986,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.3117,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "코스닥",
+      "netScore": 0.2986,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.3117,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "성장주",
+      "netScore": 0.2986,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.3117,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "테크",
+      "netScore": 0.2986,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.3117,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "골드",
+      "netScore": 0.3177,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.31770000000000004,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "헤지",
+      "netScore": 0.3177,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.31770000000000004,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    },
+    {
+      "theme": "기업가치 제고",
+      "netScore": 0.2181,
+      "support": {
+        "reports": 0,
+        "stockeasy": 0,
+        "marketvoice": 0,
+        "technical": 0,
+        "kis_etf": 0.21809999999999996,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "sourceCount": 1
+    }
+  ]
+}

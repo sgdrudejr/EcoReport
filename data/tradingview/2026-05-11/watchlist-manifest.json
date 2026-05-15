@@ -1,0 +1,559 @@
+{
+  "date": "2026-05-11",
+  "generatedAt": "2026-05-11T01:08:21.295Z",
+  "format": "TradingView import .txt: exchange-prefixed symbols, comma-separated",
+  "exchangePrefix": "KRX",
+  "symbolCount": 28,
+  "symbols": [
+    "KRX:012450",
+    "KRX:0162Z0",
+    "KRX:064350",
+    "KRX:064400",
+    "KRX:068270",
+    "KRX:138910",
+    "KRX:161510",
+    "KRX:360750",
+    "KRX:379810",
+    "KRX:385510",
+    "KRX:411060",
+    "KRX:449450",
+    "KRX:469150",
+    "KRX:475300",
+    "KRX:267260",
+    "KRX:298040",
+    "KRX:487230",
+    "KRX:487240",
+    "KRX:491010",
+    "KRX:000660",
+    "KRX:005930",
+    "KRX:010120",
+    "KRX:047810",
+    "KRX:132030",
+    "KRX:133690",
+    "KRX:423160",
+    "KRX:434730",
+    "KRX:458760"
+  ],
+  "entries": [
+    {
+      "symbol": "KRX:012450",
+      "code": "012450",
+      "name": "한화에어로스페이스",
+      "exchangePrefix": "KRX",
+      "accounts": [
+        "KIS_MAIN"
+      ],
+      "sources": [
+        "kis_holding"
+      ],
+      "reasons": [
+        "current KIS holding"
+      ],
+      "latestDate": "2026-05-11",
+      "priority": 100,
+      "investedAmount": 1478000,
+      "marketValue": 1348000
+    },
+    {
+      "symbol": "KRX:0162Z0",
+      "code": "0162Z0",
+      "name": "RISE 삼성전자SK하이닉스채권혼합50",
+      "exchangePrefix": "KRX",
+      "accounts": [
+        "ISA",
+        "PENSION"
+      ],
+      "sources": [
+        "kis_holding"
+      ],
+      "reasons": [
+        "current KIS holding"
+      ],
+      "latestDate": "2026-05-11",
+      "priority": 100,
+      "investedAmount": 2483200,
+      "marketValue": 2934200
+    },
+    {
+      "symbol": "KRX:064350",
+      "code": "064350",
+      "name": "현대로템",
+      "exchangePrefix": "KRX",
+      "accounts": [
+        "KIS_MAIN"
+      ],
+      "sources": [
+        "config_watchlist:individual_stocks",
+        "kis_holding"
+      ],
+      "reasons": [
+        "current KIS holding"
+      ],
+      "latestDate": "2026-05-11",
+      "priority": 100,
+      "investedAmount": 208000,
+      "marketValue": 222500
+    },
+    {
+      "symbol": "KRX:064400",
+      "code": "064400",
+      "name": "LG씨엔에스",
+      "exchangePrefix": "KRX",
+      "accounts": [
+        "ISA"
+      ],
+      "sources": [
+        "kis_holding"
+      ],
+      "reasons": [
+        "current KIS holding"
+      ],
+      "latestDate": "2026-05-11",
+      "priority": 100,
+      "investedAmount": 692000,
+      "marketValue": 693000
+    },
+    {
+      "symbol": "KRX:068270",
+      "code": "068270",
+      "name": "셀트리온",
+      "exchangePrefix": "KRX",
+      "accounts": [
+        "ISA"
+      ],
+      "sources": [
+        "kis_holding"
+      ],
+      "reasons": [
+        "current KIS holding"
+      ],
+      "latestDate": "2026-05-11",
+      "priority": 100,
+      "investedAmount": 583500,
+      "marketValue": 582900
+    },
+    {
+      "symbol": "KRX:138910",
+      "code": "138910",
+      "name": "KODEX 구리선물(H)",
+      "exchangePrefix": "KRX",
+      "accounts": [
+        "KIS_MAIN"
+      ],
+      "sources": [
+        "kis_holding"
+      ],
+      "reasons": [
+        "current KIS holding"
+      ],
+      "latestDate": "2026-05-11",
+      "priority": 100,
+      "investedAmount": 262950,
+      "marketValue": 293100
+    },
+    {
+      "symbol": "KRX:161510",
+      "code": "161510",
+      "name": "PLUS 고배당주",
+      "exchangePrefix": "KRX",
+      "accounts": [
+        "ISA"
+      ],
+      "sources": [
+        "kis_holding"
+      ],
+      "reasons": [
+        "current KIS holding"
+      ],
+      "latestDate": "2026-05-11",
+      "priority": 100,
+      "investedAmount": 598780,
+      "marketValue": 611490
+    },
+    {
+      "symbol": "KRX:360750",
+      "code": "360750",
+      "name": "TIGER 미국S&P500",
+      "exchangePrefix": "KRX",
+      "accounts": [
+        "PENSION"
+      ],
+      "sources": [
+        "config_watchlist:core_etf",
+        "kis_holding"
+      ],
+      "reasons": [
+        "current KIS holding"
+      ],
+      "latestDate": "2026-05-11",
+      "priority": 100,
+      "investedAmount": 2197720,
+      "marketValue": 2258340
+    },
+    {
+      "symbol": "KRX:379810",
+      "code": "379810",
+      "name": "KODEX 미국나스닥100",
+      "exchangePrefix": "KRX",
+      "accounts": [
+        "PENSION"
+      ],
+      "sources": [
+        "kis_holding"
+      ],
+      "reasons": [
+        "current KIS holding"
+      ],
+      "latestDate": "2026-05-11",
+      "priority": 100,
+      "investedAmount": 784650,
+      "marketValue": 852300
+    },
+    {
+      "symbol": "KRX:385510",
+      "code": "385510",
+      "name": "KODEX 신재생에너지액티브",
+      "exchangePrefix": "KRX",
+      "accounts": [
+        "ISA"
+      ],
+      "sources": [
+        "ghost_execution_history",
+        "kis_holding"
+      ],
+      "reasons": [
+        "current KIS holding",
+        "AI 전력 인프라 신호와 ETF 키워드가 일치하며 당일 등락률 +2.99% 흐름이 동행합니다."
+      ],
+      "latestDate": "2026-05-11",
+      "priority": 100,
+      "investedAmount": 678925,
+      "marketValue": 760175
+    },
+    {
+      "symbol": "KRX:411060",
+      "code": "411060",
+      "name": "ACE KRX금현물",
+      "exchangePrefix": "KRX",
+      "accounts": [
+        "ISA"
+      ],
+      "sources": [
+        "kis_holding"
+      ],
+      "reasons": [
+        "current KIS holding"
+      ],
+      "latestDate": "2026-05-11",
+      "priority": 100,
+      "investedAmount": 2143065,
+      "marketValue": 2117265
+    },
+    {
+      "symbol": "KRX:449450",
+      "code": "449450",
+      "name": "PLUS K방산",
+      "exchangePrefix": "KRX",
+      "accounts": [
+        "KIS_MAIN"
+      ],
+      "sources": [
+        "config_watchlist:satellite_etf",
+        "kis_holding"
+      ],
+      "reasons": [
+        "current KIS holding"
+      ],
+      "latestDate": "2026-05-11",
+      "priority": 100,
+      "investedAmount": 785360,
+      "marketValue": 749700
+    },
+    {
+      "symbol": "KRX:469150",
+      "code": "469150",
+      "name": "ACE AI반도체TOP3+",
+      "exchangePrefix": "KRX",
+      "accounts": [
+        "KIS_MAIN",
+        "PENSION"
+      ],
+      "sources": [
+        "kis_holding"
+      ],
+      "reasons": [
+        "current KIS holding"
+      ],
+      "latestDate": "2026-05-11",
+      "priority": 100,
+      "investedAmount": 1016080,
+      "marketValue": 1215540
+    },
+    {
+      "symbol": "KRX:475300",
+      "code": "475300",
+      "name": "SOL 반도체전공정",
+      "exchangePrefix": "KRX",
+      "accounts": [
+        "ISA"
+      ],
+      "sources": [
+        "kis_holding"
+      ],
+      "reasons": [
+        "current KIS holding"
+      ],
+      "latestDate": "2026-05-11",
+      "priority": 100,
+      "investedAmount": 1930820,
+      "marketValue": 2192190
+    },
+    {
+      "symbol": "KRX:267260",
+      "code": "267260",
+      "name": "HD현대일렉트릭",
+      "exchangePrefix": "KRX",
+      "accounts": [
+        "KIS_MAIN"
+      ],
+      "sources": [
+        "config_watchlist:individual_stocks",
+        "ghost_execution_history"
+      ],
+      "reasons": [
+        "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적"
+      ],
+      "latestDate": "2026-04-20",
+      "priority": 50,
+      "investedAmount": 0,
+      "marketValue": 0
+    },
+    {
+      "symbol": "KRX:298040",
+      "code": "298040",
+      "name": "효성중공업",
+      "exchangePrefix": "KRX",
+      "accounts": [
+        "KIS_MAIN"
+      ],
+      "sources": [
+        "config_watchlist:individual_stocks",
+        "ghost_execution_history"
+      ],
+      "reasons": [
+        "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적"
+      ],
+      "latestDate": "2026-04-20",
+      "priority": 50,
+      "investedAmount": 0,
+      "marketValue": 0
+    },
+    {
+      "symbol": "KRX:487230",
+      "code": "487230",
+      "name": "KODEX 미국AI전력핵심인프라",
+      "exchangePrefix": "KRX",
+      "accounts": [
+        "ISA",
+        "KIS_MAIN"
+      ],
+      "sources": [
+        "ghost_execution_history"
+      ],
+      "reasons": [
+        "AI 전력 인프라 신호와 ETF 키워드가 일치하며 당일 등락률 +2.14% 흐름이 동행합니다."
+      ],
+      "latestDate": "2026-04-23",
+      "priority": 50,
+      "investedAmount": 0,
+      "marketValue": 0
+    },
+    {
+      "symbol": "KRX:487240",
+      "code": "487240",
+      "name": "KODEX AI전력핵심설비",
+      "exchangePrefix": "KRX",
+      "accounts": [
+        "KIS_MAIN"
+      ],
+      "sources": [
+        "config_watchlist:satellite_etf",
+        "ghost_execution_history"
+      ],
+      "reasons": [
+        "주가가 20일선 위에서 유지 중, 중기 추세는 우상향, MACD 모멘텀이 우호적",
+        "AI 데이터센터 전력 수요 증가로 변압기 수주 확대."
+      ],
+      "latestDate": "2026-04-21",
+      "priority": 50,
+      "investedAmount": 0,
+      "marketValue": 0
+    },
+    {
+      "symbol": "KRX:491010",
+      "code": "491010",
+      "name": "TIGER 글로벌AI전력인프라액티브",
+      "exchangePrefix": "KRX",
+      "accounts": [
+        "ISA",
+        "KIS_MAIN"
+      ],
+      "sources": [
+        "ghost_execution_history"
+      ],
+      "reasons": [
+        "AI 전력 인프라 신호와 ETF 키워드가 일치하며 당일 등락률 +0.84% 흐름이 동행합니다.",
+        "AI 전력 인프라 신호와 ETF 키워드가 일치하며 당일 등락률 +2.00% 흐름이 동행합니다."
+      ],
+      "latestDate": "2026-04-23",
+      "priority": 50,
+      "investedAmount": 0,
+      "marketValue": 0
+    },
+    {
+      "symbol": "KRX:000660",
+      "code": "000660",
+      "name": "SK하이닉스",
+      "exchangePrefix": "KRX",
+      "accounts": [],
+      "sources": [
+        "config_watchlist:individual_stocks"
+      ],
+      "reasons": [],
+      "latestDate": null,
+      "priority": 40,
+      "investedAmount": 0,
+      "marketValue": 0
+    },
+    {
+      "symbol": "KRX:005930",
+      "code": "005930",
+      "name": "삼성전자",
+      "exchangePrefix": "KRX",
+      "accounts": [],
+      "sources": [
+        "config_watchlist:individual_stocks"
+      ],
+      "reasons": [],
+      "latestDate": null,
+      "priority": 40,
+      "investedAmount": 0,
+      "marketValue": 0
+    },
+    {
+      "symbol": "KRX:010120",
+      "code": "010120",
+      "name": "LS일렉트릭",
+      "exchangePrefix": "KRX",
+      "accounts": [],
+      "sources": [
+        "config_watchlist:individual_stocks"
+      ],
+      "reasons": [],
+      "latestDate": null,
+      "priority": 40,
+      "investedAmount": 0,
+      "marketValue": 0
+    },
+    {
+      "symbol": "KRX:047810",
+      "code": "047810",
+      "name": "한국항공우주",
+      "exchangePrefix": "KRX",
+      "accounts": [],
+      "sources": [
+        "config_watchlist:individual_stocks"
+      ],
+      "reasons": [],
+      "latestDate": null,
+      "priority": 40,
+      "investedAmount": 0,
+      "marketValue": 0
+    },
+    {
+      "symbol": "KRX:132030",
+      "code": "132030",
+      "name": "KODEX 골드선물(H)",
+      "exchangePrefix": "KRX",
+      "accounts": [
+        "ISA"
+      ],
+      "sources": [
+        "config_watchlist:core_etf"
+      ],
+      "reasons": [],
+      "latestDate": null,
+      "priority": 40,
+      "investedAmount": 0,
+      "marketValue": 0
+    },
+    {
+      "symbol": "KRX:133690",
+      "code": "133690",
+      "name": "TIGER 미국나스닥100",
+      "exchangePrefix": "KRX",
+      "accounts": [
+        "PENSION"
+      ],
+      "sources": [
+        "config_watchlist:core_etf"
+      ],
+      "reasons": [],
+      "latestDate": null,
+      "priority": 40,
+      "investedAmount": 0,
+      "marketValue": 0
+    },
+    {
+      "symbol": "KRX:423160",
+      "code": "423160",
+      "name": "KODEX KOFR금리액티브",
+      "exchangePrefix": "KRX",
+      "accounts": [
+        "전계좌"
+      ],
+      "sources": [
+        "config_watchlist:core_etf"
+      ],
+      "reasons": [],
+      "latestDate": null,
+      "priority": 40,
+      "investedAmount": 0,
+      "marketValue": 0
+    },
+    {
+      "symbol": "KRX:434730",
+      "code": "434730",
+      "name": "HANARO 원자력iSelect",
+      "exchangePrefix": "KRX",
+      "accounts": [
+        "KIS_MAIN"
+      ],
+      "sources": [
+        "config_watchlist:satellite_etf"
+      ],
+      "reasons": [],
+      "latestDate": null,
+      "priority": 40,
+      "investedAmount": 0,
+      "marketValue": 0
+    },
+    {
+      "symbol": "KRX:458760",
+      "code": "458760",
+      "name": "TIGER 미국배당+7%프리미엄다우존스",
+      "exchangePrefix": "KRX",
+      "accounts": [
+        "ISA"
+      ],
+      "sources": [
+        "config_watchlist:core_etf"
+      ],
+      "reasons": [],
+      "latestDate": null,
+      "priority": 40,
+      "investedAmount": 0,
+      "marketValue": 0
+    }
+  ]
+}

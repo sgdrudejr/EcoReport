@@ -1,0 +1,82 @@
+{
+  "date": "2026-05-06",
+  "generatedAt": "2026-05-06T08:08:13.618Z",
+  "accountFeatures": [
+    {
+      "accountKey": "ISA",
+      "netScore": 0.1544,
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0.39440000000000003,
+        "technical": 0.76,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "topSupportingThemes": [
+        "AI 인프라",
+        "금/원자재",
+        "금리/매크로",
+        "전력 인프라",
+        "방산"
+      ],
+      "topRisks": [
+        "ai",
+        "power",
+        "income"
+      ]
+    },
+    {
+      "accountKey": "PENSION",
+      "netScore": 0.2385,
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0.39440000000000003,
+        "technical": 0.3496,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "topSupportingThemes": [
+        "AI 인프라",
+        "금/원자재",
+        "금리/매크로",
+        "전력 인프라",
+        "방산"
+      ],
+      "topRisks": [
+        "ai",
+        "power"
+      ]
+    },
+    {
+      "accountKey": "KIS_MAIN",
+      "netScore": 0.2148,
+      "support": {
+        "reports": 0.46440000000000003,
+        "stockeasy": 0,
+        "marketvoice": 0.39440000000000003,
+        "technical": 0.6536,
+        "kis_etf": 0,
+        "news": 0,
+        "macro": 0,
+        "llm": 0
+      },
+      "topSupportingThemes": [
+        "AI 인프라",
+        "금/원자재",
+        "금리/매크로",
+        "전력 인프라",
+        "방산"
+      ],
+      "topRisks": [
+        "ai",
+        "power"
+      ]
+    }
+  ]
+}
